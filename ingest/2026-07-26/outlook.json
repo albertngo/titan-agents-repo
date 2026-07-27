@@ -1,0 +1,18 @@
+{
+  "contract_version": "1",
+  "source": "outlook",
+  "run_at": "2026-07-26T22:05:00-04:00",
+  "status": "error",
+  "error": "Outlook/M365 unreachable: no Outlook MCP connector attached to this session and no Microsoft Graph credentials (GRAPH_*/AZURE_* env vars) configured. .mcp.json only defines the GHL server; .env expects Outlook via an MCP connector that is not connected. No mailbox data was scanned.",
+  "items": [],
+  "metrics": {
+    "total_scanned": 0,
+    "customer": 0,
+    "supplier": 0,
+    "admin": 0,
+    "noise_skipped": 0
+  },
+  "needs_attention": [
+    "Outlook ingest failed for 2026-07-26 — connect the Outlook/M365 MCP connector (or set Graph API credentials) and re-run; today's inbox was not scanned."
+  ]
+}
