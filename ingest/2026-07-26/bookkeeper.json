@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "source": "bookkeeper",
+  "run_at": "2026-07-26T21:56:32-04:00",
+  "status": "error",
+  "error": "Intuit QuickBooks MCP connector unavailable in this session — no QuickBooks tools were loaded, so no QBO data could be retrieved. Metrics are placeholders (0), not real values.",
+  "items": [],
+  "metrics": {
+    "payments_received_cents": 0,
+    "overdue_invoices": 0,
+    "uncategorized_txns": 0
+  },
+  "needs_attention": [
+    "QuickBooks ingest failed 2026-07-26: MCP connector not available. Today's payments, overdue invoices, and uncategorized transactions are unknown — reconnect the Intuit QuickBooks MCP and re-run the bookkeeper ingest."
+  ]
+}
