@@ -88,6 +88,11 @@ go-ahead on each. The vault's `CONVENTIONS.md` still governs every write:
 - Append, don't rewrite. Prose above a note's `## Log` is Albert's.
 - Never delete or rename a note. Never edit `goals/`. Never touch `.obsidian/`.
 - Commit as `vault: <what> YYYY-MM-DD`. Vault commits go to `main` — no review step.
+- **Earned relevance, not bulk import** (CONVENTIONS.md note rule 4 + "Scaling to
+  more sources"): a vault note is created when something durable happens to an
+  entity — a win, a `needs_attention` hit, an analysis touching it — never by a
+  proactive bulk or windowed pull of a platform's history, GHL or otherwise. Read
+  that section before proposing any backfill.
 
 **Ask Albert to push to the vault** when any of these happen. Don't batch them to the
 end of a session, and never write to the vault unprompted:
