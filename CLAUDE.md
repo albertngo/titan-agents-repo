@@ -50,6 +50,22 @@ Run `/daily-ingest` (see `.claude/commands/daily-ingest.md`).
 It spawns each ingester as a subagent in parallel, waits, then synthesizes
 `/ingest/YYYY-MM-DD/DAILY-BRIEF.md`.
 
+## Analyses
+
+An analysis earns structure by being re-run, not by being interesting. The ladder:
+
+| Tier | What exists | When |
+|---|---|---|
+| 0 — inline | Findings note in vault `09_analyses/YYYY-MM-DD-slug.md` + raw artifact in `analysis/output/` | Any one-off question. **Default.** |
+| 1 — method + script | `methods/<slug>.md` + `analysis/<slug>.py` | Second time the same question is asked (rule of two), or first time if the pull needs caching |
+| 2 — command | `.claude/commands/<slug>.md` wrapping the script | Re-run on demand AND has traps that must not be re-derived (field mappings, unit conversions, exclusion rules). Reference example: `won-analysis` |
+| 3 — agent + contract | `.claude/agents/` + `contracts/` | Only when it joins the scheduled daily flow. High bar — `planner-agent` is parked at exactly this boundary |
+
+Promotion triggers (any one suffices): asked twice; painful-to-get-right method;
+output feeds other automation; expensive pull needing a cache. Not triggers:
+"interesting," "might be useful later." Findings always land in the vault
+regardless of tier; the repo holds data and method, the vault holds conclusions.
+
 ## Companion repo: titan-vault
 
 The vault (`albertngo/titan-vault`) is a **separate repo**. A cloud session clones one
@@ -78,7 +94,8 @@ end of a session, and never write to the vault unprompted:
 
 - An agent is added, or its definition/contract changes.
 - A platform quirk, trap, or ID surfaces that `platforms/<Platform>.md` doesn't already have.
-- An analysis produces findings worth keeping (e.g. the GHL win-timeline).
+- An analysis produces findings worth keeping (e.g. the GHL win-timeline) →
+  `09_analyses/YYYY-MM-DD-slug.md` per the vault's `templates/analysis.md`.
 - A decision gets made → `decisions/YYYY-MM-DD-slug.md`.
 - A contract in `contracts/` changes.
 
