@@ -1,0 +1,13 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-07-26T20:05:50-04:00",
+  "status": "error",
+  "error": "GHL MCP server unreachable this run: every call (opportunities_get-pipelines, locations_get-location, contacts_get-contacts) returned HTTP 401 'Invalid JWT'. Root cause: GHL_PIT_TOKEN and GHL_LOCATION_ID are not set in this session's environment, so the Authorization header sent to https://services.leadconnectorhq.com/mcp/ is empty/invalid. No GHL data (leads, opportunities, appointments, conversations) could be retrieved for the 2026-07-26 window. Fix the credentials (see .env.example) and re-run; per the ingest contract this file is safe to overwrite once a successful pull completes.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest FAILED for 2026-07-26 (401 Invalid JWT on every call) — GHL_PIT_TOKEN / GHL_LOCATION_ID missing from the environment. No leads, opportunities, appointments, or conversations were pulled today. Fix credentials and re-run before the daily brief is finalized; treat GHL as a 'source missing today' until then.",
+    "A prior /ingest/2026-07-26/ghl.json existed before this run (status ok, run_at 00:25, template_version 2, fully populated) and was overwritten by this error record per the idempotent-overwrite rule. That earlier content is no longer available from this file — if it is needed, retrieve it from git history / re-run once credentials are restored."
+  ]
+}

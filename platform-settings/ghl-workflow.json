@@ -1,0 +1,42 @@
+{
+  "_comment": "Titan's GHL workflow timing, mirrored from the live GHL automation settings so ghl-ingest-agent can predict staleness BEFORE the automation fires. Not secrets — version-controlled on purpose, so a change in GHL shows up as a reviewable diff here. Source: Albert, read from the GHL workflow UI 2026-07-25.",
+  "_maintenance": "If a threshold changes in GHL, change it here in the same sitting. A stale value here makes ghl-ingest-agent's stale_approaching and abandonment_next findings silently wrong — worse than absent, because they look authoritative.",
+
+  "config_version": "1",
+
+  "stale_thresholds_days": {
+    "_comment": "Days in stage before GHL applies the `stale_lead` tag. Keys are EXACT live stage names, including prefixes and trailing spaces.",
+    "0a. New Lead": 14,
+    "0c. ASAP (Hot)": 7,
+    "0b. Later Date (Warm)": 40,
+    "0b. Far Out (Cold)": 90,
+    "*Meeting (Scheduled)* CCAM|GHL": 30,
+    "1b. Postponed ": 90
+  },
+
+  "abandonment_rule": {
+    "_comment": "Per the workflow: once `stale_lead` is present, if the same duration passes again the opportunity is automatically abandoned. So effective abandonment is 2x the stage threshold.",
+    "multiplier": 2,
+    "terminal_status": "abandoned"
+  },
+
+  "meeting_stage": {
+    "_comment": "The Meeting-scheduled threshold counts from STAGE ENTRY, not from the appointment. An appointment booked far out eats into the window: a 30-day threshold with an appointment 10 days out leaves only ~20 days of post-appointment follow-up. There is no follow-up sequence for this stage yet — this is the window it must fit inside.",
+    "stage": "*Meeting (Scheduled)* CCAM|GHL",
+    "threshold_days": 30,
+    "measured_from": "stage_entry",
+    "followup_anchor": "appointment_date",
+    "report_effective_window": true
+  },
+
+  "quote_followup_days": {
+    "_comment": "Days after a mobile quote is sent that the follow-up text should fire (workflow step 7).",
+    "days": 5
+  },
+
+  "unstaged": {
+    "_comment": "Stages with no stale threshold, and why. Do not invent thresholds for these.",
+    "2. *Project Won* ": "terminal — deal closed, staleness is meaningless",
+    "STORE: Material Pipeline": "[FILL: thresholds not provided] — this pipeline runs its own +3d / +8d automated follow-up cadence and its stages were not covered in the workflow review. ghl-ingest-agent reports its volume but must NOT predict staleness here."
+  }
+}

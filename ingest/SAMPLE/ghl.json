@@ -1,0 +1,298 @@
+{
+  "_comment": "REFERENCE ONLY — not a real run. Demonstrates the full ghl-ingest-agent v3 output structure. Every value is a [FILL: ...] placeholder. Real runs write /ingest/YYYY-MM-DD/ghl.json and ARE committed during the build phase. Arrays show one representative element each; real output has many. Tag and stage strings below are the VERIFIED live GHL names, byte-exact including trailing spaces (see .claude/agents/ghl-ingest-agent.md).",
+
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "[FILL: ISO timestamp, America/Toronto offset — -04:00 in EDT, -05:00 in EST]",
+  "status": "ok",
+  "error": null,
+
+  "items": [
+    {
+      "id": "ghl-lead-[FILL: contactId]",
+      "type": "lead",
+      "title": "[FILL: New lead: name — scope, city (<=80 chars)]",
+      "summary": "[FILL: 1-3 sentences. Source, what they want, whether tagged.]",
+      "timestamp": "[FILL: ISO timestamp]",
+      "priority": "normal",
+      "link": "https://app.gohighlevel.com/v2/location/[FILL: locationId]/contacts/detail/[FILL: contactId]",
+      "amount_cents": null,
+      "raw_ref": "contact [FILL: contactId]"
+    },
+    {
+      "id": "ghl-conv-[FILL: conversationId]",
+      "type": "message",
+      "title": "[FILL: Unanswered: name (channel)]",
+      "summary": "[FILL: 1-3 sentences. What they asked, what is owed, how long sitting.]",
+      "timestamp": "[FILL: ISO timestamp]",
+      "priority": "high",
+      "link": "https://app.gohighlevel.com/v2/location/[FILL: locationId]/conversations/conversations/[FILL: conversationId]",
+      "amount_cents": null,
+      "raw_ref": "conversation [FILL: conversationId]"
+    },
+    {
+      "id": "ghl-opp-[FILL: opportunityId]",
+      "type": "pipeline",
+      "title": "[FILL: Project WON: name | city]",
+      "summary": "[FILL: 1-3 sentences. Stage moved from/to, pipeline, value, status.]",
+      "timestamp": "[FILL: ISO timestamp]",
+      "priority": "high",
+      "link": "https://app.gohighlevel.com/v2/location/[FILL: locationId]/contacts/detail/[FILL: contactId]",
+      "amount_cents": "[FILL: integer cents CAD]",
+      "raw_ref": "opportunity [FILL: opportunityId]"
+    },
+    {
+      "id": "ghl-appt-[FILL: appointmentId]",
+      "type": "appointment",
+      "title": "[FILL: Booked: name — in-home visit]",
+      "summary": "[FILL: 1-3 sentences. When, visit type, how booked, prep needed.]",
+      "timestamp": "[FILL: ISO timestamp]",
+      "priority": "normal",
+      "link": "https://app.gohighlevel.com/v2/location/[FILL: locationId]/contacts/detail/[FILL: contactId]",
+      "amount_cents": null,
+      "raw_ref": "appointment [FILL: appointmentId]"
+    },
+    {
+      "id": "ghl-drift-untagged_in_queue-[FILL: contactId]",
+      "type": "drift",
+      "title": "[FILL: Untagged in call queue 38h: name]",
+      "summary": "[FILL: 1-3 sentences. Which workflow step was missed and what it blocks.]",
+      "timestamp": "[FILL: ISO timestamp]",
+      "priority": "high",
+      "link": "https://app.gohighlevel.com/v2/location/[FILL: locationId]/contacts/detail/[FILL: contactId]",
+      "amount_cents": null,
+      "raw_ref": "contact [FILL: contactId]"
+    },
+    {
+      "id": "ghl-rollup-[FILL: YYYY-MM-DD]",
+      "type": "rollup",
+      "title": "[FILL: +N lower-priority items not itemized]",
+      "summary": "[FILL: 1-3 sentences aggregating the overflow beyond the 50-item cap.]",
+      "timestamp": "[FILL: ISO timestamp]",
+      "priority": "low",
+      "link": null,
+      "amount_cents": null,
+      "raw_ref": "rollup of [FILL: N] items"
+    }
+  ],
+
+  "metrics": {
+    "lead_count": "[FILL: number — total active leads]",
+    "new_leads": "[FILL: number — created in window, NET of supplier-solicitation and spam; raw in reporting.exclusions]",
+    "untagged_in_queue": "[FILL: number]",
+    "unanswered_conversations": "[FILL: number — NET of missed-call-no-voicemail and automated-system-log; raw in reporting.exclusions]",
+    "appointments_booked": "[FILL: number]",
+    "pipeline_moves": "[FILL: number]",
+    "won_today": "[FILL: number — (2) PROJECT: Sales Pipeline ONLY; store material in reporting.store_wins_today]",
+    "won_value_cents": "[FILL: integer cents CAD — project pipeline ONLY]",
+    "drift_findings": "[FILL: number]",
+    "leads_hot": "[FILL: number]",
+    "leads_warm": "[FILL: number]",
+    "leads_cold": "[FILL: number]",
+    "leads_unqualified": "[FILL: number]",
+    "leads_stale": "[FILL: number]"
+  },
+
+  "needs_attention": [
+    "[FILL: act-immediately item, e.g. payment pending on conversation X]",
+    "[FILL: drift item, e.g. 3 contacts in call queue untagged over 24h]",
+    "[FILL: won deal needing install scheduling]",
+    "[FILL: contact one cycle from auto-abandonment]"
+  ],
+
+  "extensions": {
+    "ghl": {
+      "template_version": "3",
+
+      "reporting": {
+        "lead_count": "[FILL: number]",
+
+        "exclusions": {
+          "_comment": "Reconciles the netted metrics back to raw. A netted metric with no visible raw is indistinguishable from a quiet day, so both halves ship. Excluded records are NOT dropped — they stay in conversations[] / new_leads[] carrying the flag that excluded them.",
+          "new_leads_raw": "[FILL: number — every contact created in the window]",
+          "new_leads_excluded": {
+            "supplier-solicitation": "[FILL: number]",
+            "spam likely": "[FILL: number]"
+          },
+          "unanswered_raw": "[FILL: number — every thread where next_response_owner is us]",
+          "unanswered_excluded": {
+            "missed-call-no-voicemail": "[FILL: number]",
+            "automated-system-log": "[FILL: number]"
+          }
+        },
+
+        "store_wins_today": "[FILL: number — 6a. Closed - Won, retail material. Kept OUT of metrics.won_today: a box of laminate and a $17K install do not belong in one figure]",
+        "store_won_value_cents": "[FILL: integer cents CAD]",
+
+        "leads_by_source": {
+          "[FILL: source, e.g. Store | Meta Ad | referral | website]": "[FILL: number]"
+        },
+        "leads_by_tag": {
+          "lead: hot": "[FILL: number]",
+          "lead: warm": "[FILL: number]",
+          "lead: cold": "[FILL: number]",
+          "lead: unqualified": "[FILL: number]",
+          "lead: lost": "[FILL: number]",
+          "lead: rate-shopper": "[FILL: number]",
+          "stale_lead": "[FILL: number]",
+          "untagged": "[FILL: number — no lead:* tag, still in queue or nurture]"
+        },
+        "leads_by_stage": {
+          "0a. New Lead": "[FILL: number]",
+          "0b. Far Out (Cold)": "[FILL: number]",
+          "0b. Later Date (Warm)": "[FILL: number]",
+          "0c. ASAP (Hot)": "[FILL: number]",
+          "*Meeting (Scheduled)* CCAM|GHL": "[FILL: number]",
+          "1b. Postponed ": "[FILL: number]",
+          "2. *Project Won* ": "[FILL: number]"
+        },
+        "avg_days_in_stage": {
+          "[FILL: exact stage name]": "[FILL: number]"
+        },
+        "opportunity_status_counts": {
+          "open": "[FILL: number]",
+          "won": "[FILL: number]",
+          "lost": "[FILL: number]",
+          "abandoned": "[FILL: number]"
+        },
+        "store_pipeline_note": "[FILL: one line on STORE: Material Pipeline volume — retail material, distinct from project work. No stale thresholds defined for it]",
+        "stale_thresholds_used": {
+          "_comment": "Echoed from platform-settings/ghl-workflow.json so the output is self-describing and a threshold change is visible in the diff.",
+          "0c. ASAP (Hot)": 7,
+          "0a. New Lead": 14,
+          "0b. Later Date (Warm)": 40,
+          "0b. Far Out (Cold)": 90,
+          "*Meeting (Scheduled)* CCAM|GHL": 30,
+          "1b. Postponed ": 90
+        },
+        "meeting_window_summary": {
+          "_comment": "The window any new Meeting-scheduled follow-up sequence must fit inside. Threshold counts from stage entry, so appointments booked far out shrink the usable runway.",
+          "contacts_in_stage": "[FILL: number]",
+          "median_days_entry_to_appointment": "[FILL: number]",
+          "median_effective_window_days": "[FILL: number — 30 minus the above]",
+          "window_already_expired": "[FILL: number — appointment booked so far out that stale fires before follow-up is possible; a workflow bug, not a rep failure]"
+        }
+      },
+
+      "new_leads": [
+        {
+          "contact_id": "[FILL: id]",
+          "name": "[FILL: name, or null if phone-only]",
+          "phone": "[FILL: E.164, or null]",
+          "source": "[FILL: source]",
+          "self_reported_source": "[FILL: contact.how_did_you_hear_about_us value, or null]",
+          "stage": "[FILL: exact stage name]",
+          "qualification_tag": "[FILL: lead: hot | lead: warm | lead: cold | lead: unqualified | lead: lost | lead: rate-shopper | untagged]",
+          "timeline_field": "[FILL: < 1 month | 1-3 months | 3+ months | Not Sure | null]",
+          "days_in_stage": "[FILL: number]",
+          "in_call_queue": "[FILL: true/false — call-queue tag present]",
+          "tag_matches_timeline": "[FILL: true/false — expected mapping held; false becomes a drift finding]",
+          "summary": "[FILL: 1-2 sentences]"
+        }
+      ],
+
+      "opportunities": [
+        {
+          "opportunity_id": "[FILL: id]",
+          "contact": "[FILL: name]",
+          "pipeline": "[FILL: (1) PROJECT: Lead Qualification | (2) PROJECT: Sales Pipeline | STORE: Material Pipeline]",
+          "stage": "[FILL: exact stage name]",
+          "status": "[FILL: open | won | lost | abandoned]",
+          "qualification_tag": "[FILL: tag or untagged]",
+          "value_cents": "[FILL: integer cents CAD, or null]",
+          "days_in_stage": "[FILL: number]",
+          "stale_threshold_days": "[FILL: number for THIS stage from config, or null if the stage has none]",
+          "pct_of_threshold": "[FILL: number 0-1+ — days_in_stage / threshold. RANK ON THIS, not raw days: thresholds span 7-90 days so absolute days are not comparable across stages]",
+          "days_remaining": "[FILL: number until stale_lead, negative if overdue, or null]",
+          "moved_today": "[FILL: true/false]",
+          "previous_stage": "[FILL: exact stage name, or null if not moved]",
+          "stale_risk": "[FILL: none | approaching (>=75% of threshold) | stale | abandonment_next | not_applicable (stage has no threshold)]"
+        }
+      ],
+
+      "appointments_booked": [
+        {
+          "appointment_id": "[FILL: id]",
+          "contact": "[FILL: name]",
+          "contact_id": "[FILL: id]",
+          "datetime": "[FILL: ISO timestamp]",
+          "visit_type": "[FILL: in-home (appt-home) | in-store (appt-store) | both | call (appt-call)]",
+          "booked_via": "[FILL: calendar widget | manual | automation]",
+          "status": "[FILL: booked | cancelled (appt-cancelled tag present)]",
+          "followup_activity_since": "[FILL: true/false — any outbound touch after the appointment]",
+          "hours_since_appointment": "[FILL: number, or null if future]",
+          "days_stage_entry_to_appointment": "[FILL: number — how much of the 30-day window was consumed before the visit]",
+          "effective_window_days": "[FILL: number — 30 minus the above; the real post-appointment runway. <=0 means stale fires before follow-up is possible]"
+        }
+      ],
+
+      "conversations": [
+        {
+          "conversation_id": "[FILL: id]",
+          "contact": "[FILL: name]",
+          "contact_id": "[FILL: id]",
+          "channel": "[FILL: sms | email | call | whatsapp | webchat | facebook | instagram]",
+          "next_response_owner": "[FILL: us | them]",
+          "sitting_hours": "[FILL: number]",
+          "contact_notion": "[FILL: 1-3 sentence read of who this contact is and what they actually want, formed from the ENTIRE conversation history]",
+          "act_immediately": "[FILL: true/false]",
+          "act_immediately_reason": "[FILL: e.g. payment pending / install date at risk / insurance deadline, or null]",
+          "qualification_tag": "[FILL: ground-truth GHL tag, or untagged]",
+          "agent_read": "[FILL: hot | warm | cold | unqualified]",
+          "tag_mismatch": "[FILL: true/false]",
+          "mismatch_note": "[FILL: one sentence explaining the disagreement, or null. SIGNAL ONLY — never corrected in GHL]",
+          "needs_followup": "[FILL: true/false]",
+          "followup_intent": "[FILL: the intent driving the follow-up, or null]",
+          "importance_rank": "[FILL: number, 1 = most important]",
+          "flags": [
+            "[FILL: payment-pending | insurance-claim | appt-cancelled | spam-suspected | supplier-solicitation | missed-call-no-voicemail]"
+          ]
+        }
+      ],
+
+      "workflow_drift": [
+        {
+          "type": "[FILL: untagged_in_queue | categorization_miss | followup_not_fired | stale_approaching | abandonment_next | meeting_no_followup]",
+          "contact": "[FILL: name]",
+          "detail": "[FILL: one sentence naming the workflow step that was missed]",
+          "ref": "[FILL: contact or conversation id]",
+          "severity": "[FILL: high | normal]",
+          "days_overdue": "[FILL: number, or null]"
+        }
+      ],
+
+      "won_records": [
+        {
+          "opportunity_id": "[FILL: id]",
+          "contact": "[FILL: name]",
+          "source": "[FILL: source]",
+          "pipeline": "[FILL: (2) PROJECT: Sales Pipeline | STORE: Material Pipeline]",
+          "created": "[FILL: YYYY-MM-DD]",
+          "first_contact": "[FILL: YYYY-MM-DD]",
+          "appointment_date": "[FILL: YYYY-MM-DD, or null]",
+          "visit_type": "[FILL: in-home | in-store | both | null]",
+          "won_date": "[FILL: YYYY-MM-DD]",
+          "value_cents": "[FILL: integer cents CAD]",
+          "days_lead_to_contact": "[FILL: number]",
+          "days_lead_to_appointment": "[FILL: number, or null]",
+          "days_appointment_to_won": "[FILL: number, or null]",
+          "contact_points": {
+            "calls": "[FILL: number]",
+            "sms": "[FILL: number]",
+            "emails": "[FILL: number]"
+          },
+          "conversation_summary": "[FILL: 2-3 sentences on how the conversation actually went — objections, what closed it]"
+        }
+      ],
+
+      "stragglers_ranked": [
+        {
+          "rank": "[FILL: number, 1 = most important]",
+          "item": "[FILL: what needs dealing with]",
+          "category": "[FILL: payment | quote | scheduling | scope-change | categorization | supplier | other]",
+          "ref": "[FILL: conversation or opportunity id]"
+        }
+      ]
+    }
+  }
+}
