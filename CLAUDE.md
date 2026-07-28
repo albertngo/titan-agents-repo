@@ -162,6 +162,17 @@ written.
 - Brand color for any rendered output: RiderBlue #1e6fff.
 - Response style for briefs: terse, PARA (Point, Action, Result, Ask) where a decision is needed.
 
+## Git workflow
+
+`main-agents` is this repo's actual default branch on GitHub (verify with
+`gh repo view --json defaultBranchRef` if unsure — don't trust a stale session
+hint). `main` is a separate, older branch that predates active work here; treat
+it as legacy, not the PR target.
+
+Work on a session-named branch off `main-agents` (e.g. `session/2026-07-27-notion-sync`),
+open the PR against `main-agents`, merge there. Decided 2026-07-27 after a PR
+was accidentally opened against `main` instead.
+
 ## Secrets
 
 No secrets in this repo. See `.env.example` for what each environment must provide.
