@@ -25,6 +25,7 @@ No ingester reads another ingester's raw platform data.
 | `ghl-ingest-agent` | GoHighLevel (leads, SMS, pipeline) | `ghl.json` |
 | `outlook-ingest-agent` | Outlook / M365 | `outlook.json` |
 | `bookkeeper-ingest-agent` | QuickBooks / receipts | `bookkeeper.json` |
+| `notion-ingest-agent` | Notion (projects, work orders, payments, meetings) | `notion.json` |
 
 | `ghl-actions-agent` | GoHighLevel (write: replies, stages, tags) | appends to `actions-log.json` |
 | `vault-writer-agent` | titan-vault Obsidian repo (write) | vault notes per its CONVENTIONS.md — runs automatically in `/daily-ingest`, bound to its whitelist. See Vault writes. |
@@ -130,6 +131,11 @@ approves → write → commit → push.
 (wired in 2026-07-27, on Albert's explicit instruction). Governed by
 `contracts/notion-task-schema.md`; all ids/property names/routing live in
 `platform-settings/notion-destinations.json`, never hardcoded in the command.
+
+Separately, `notion-ingest-agent` READS Notion daily (read-side registry:
+`platform-settings/notion-ingest-sources.json`) — including the same Tactical
+Tasks List this sync writes to. That coexistence is deliberate: the ingester is
+strictly read-only and excludes rows the sync created the same day.
 
 Two destinations, different trust levels:
 

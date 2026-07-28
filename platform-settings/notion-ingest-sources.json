@@ -1,0 +1,65 @@
+{
+  "_comment": "Read-side registry for notion-ingest-agent (.claude/agents/notion-ingest-agent.md). All Notion ids, property names, windows, and thresholds live here so a renamed property or a new source is a one-line data edit, never a code change. Write-side counterpart: notion-destinations.json. Source: Albert's live Notion workspace, verified via Notion MCP 2026-07-28.",
+  "_maintenance": "Notion property/status strings are EXACT MATCH. If someone renames a property or status option in Notion, this file goes stale silently — queries start erroring or returning empty. Re-verify against the live schema (notion-fetch on the data_source url) whenever a query starts failing on an unknown column.",
+
+  "config_version": "1",
+
+  "sources": {
+    "titan_projects": {
+      "_comment": "Every row is a won project — Date Won is a created_time property (row creation IS the win event, downstream of GHL '2. *Project Won* '). No numeric Status field exists. Date Won is a PLAIN column in SQL, not date:X:start (400s if queried that way).",
+      "database_id": "1b4596a4-505f-81c8-9c9e-fc3746791ad4",
+      "data_source": "collection://1b4596a4-505f-81ca-b1d5-000bb73ecbe1",
+      "window_days": 7,
+      "stable_key_property": "Opportunity ID",
+      "select_columns": ["url", "Opportunity ID", "Name", "Description", "Street Address", "City", "Contact", "Contact Link", "Value Approx", "Project Type", "Sales Person", "PM Name", "Date Won"]
+    },
+    "qa_work_orders": {
+      "_comment": "Covers deficiencies AND warranty calls via QA Type (Deficiency / Warranty / Other). Date Created and Completed Date are real date properties -> use date:X:start virtual columns.",
+      "database_id": "2eb596a4-505f-80b9-a449-de877e140751",
+      "data_source": "collection://2eb596a4-505f-800a-af8f-000b24ce4c57",
+      "window_days": 2,
+      "error_statuses": ["Error: Manual Send Needed", "Error: No Contractor Selected", "Pending Status"],
+      "closed_statuses": ["Dropped", "Done"],
+      "select_columns": ["url", "Generated Reference", "Status", "QA Type", "Severity", "Budget Expense", "date:Date Created:start", "date:Contractor Notified Date:start", "date:Completed Date:start", "Description To Send", "Project"]
+    },
+    "master_payments_log": {
+      "_comment": "The only payments database — there is no separate 'Notion payments'. Amount is CAD float -> convert to integer cents.",
+      "database_id": "26d596a4-505f-8098-a3da-e5f626d176c5",
+      "data_source": "collection://26d596a4-505f-8073-a0ac-000b2a8d3a0e",
+      "window_days": 2,
+      "needs_attention_at_cents": 500000,
+      "select_columns": ["url", "Details", "Sender's Name", "Amount", "date:Received Date:start", "Form of Payment", "Reference Number", "Projects"]
+    },
+    "tactical_tasks_list": {
+      "_comment": "Same database notion-sync WRITES to (see notion-destinations.json 'team'). This agent only READS it for staleness. Two url concepts: the row's own page url (identity key) vs the 'url' PROPERTY (userDefined:url — set only on notion-sync-created rows; used to exclude today's sync writes, cross-checked against actions-log.json).",
+      "database_id": "238596a4-505f-81f2-8eb0-c7599aa1745a",
+      "data_source": "collection://238596a4-505f-8137-af13-000bde205213",
+      "closed_statuses": ["Dropped", "Done"],
+      "staleness_days_by_status": {
+        "Not started": 14,
+        "In progress": 21,
+        "On Hold": 30
+      },
+      "select_columns": ["url", "Name", "Status", "Tags", "Priority", "userDefined:url", "date:Due Date:start", "Notes", "Assign To", "Verification", "createdTime"]
+    },
+    "project_status_meetings": {
+      "_comment": "Weekly cadence. Titles are NOT reliably date-suffixed (older rows are plain 'Project Status') — identify by page url only. Meeting Summary property links to the meeting-processor skill's output page (the cheap deep-read path). Each meeting page body holds inline child databases — enumerated dynamically on deep pull, never hardcoded by name.",
+      "database_id": "24d596a4-505f-80b6-9f5e-fa60be24a59b",
+      "data_source": "collection://24d596a4-505f-803a-9797-000b3f8f5a68",
+      "meetings_limit": 3,
+      "select_columns": ["url", "Name of Meeting", "date:Date of Meeting:start", "Meeting Summary", "Tactical Associated", "CII Associated"]
+    }
+  },
+
+  "v2_candidates": {
+    "_comment": "Captured ids for sources NOT in v1 scope. Flip cii_enabled and add a type to the agent file to activate CII.",
+    "cii_enabled": false,
+    "cii": {
+      "database_id": "365596a4-505f-8005-86d1-dd4fa1ef8dd4",
+      "data_source": "collection://365596a4-505f-81b2-8eb7-000b068f506c"
+    },
+    "lessons": {
+      "data_source": "collection://35e596a4-505f-8055-a793-000b8a20f1f0"
+    }
+  }
+}
