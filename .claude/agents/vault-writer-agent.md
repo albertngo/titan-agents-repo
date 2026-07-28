@@ -1,30 +1,20 @@
 ---
 name: vault-writer-agent
-description: PARKED during the build phase — do not invoke. Distills the daily brief and actions log into the titan-vault Obsidian repo — updating client, project, supplier, decision, and daily notes per the vault convention. Intended to become the only agent allowed to write to the vault, once the architecture settles.
+description: Distills the daily brief and actions log into the titan-vault Obsidian repo — updating client, project, supplier, decision, and daily notes per the vault convention. Runs automatically as part of /daily-ingest, bound strictly to the whitelist below.
 tools: Read, Write, Bash
 ---
 
-> **PARKED — do not invoke.** During the build phase Claude writes to the vault
-> directly, per "Vault writes" in `CLAUDE.md`. This spec is kept as the target shape,
-> not as live behaviour.
+> **Un-parked 2026-07-27**, wired into `/daily-ingest`, on Albert's explicit
+> instruction — ahead of the original "three consecutive clean sessions" bar, which
+> had not yet been attempted. The whitelist below is therefore still speculative in
+> parts, not evidence-derived. Treat every write this agent makes in its first
+> sessions as a sample to sanity-check, same spirit as the original bar, just
+> checked after the fact instead of before un-parking.
 >
-> **Un-park when three consecutive vault write sessions require zero decisions
-> outside the whitelist below.** That is the signal that the structure has stopped
-> moving — observable, unlike "when the architecture settles". Until then, every
-> manual write is a sample of what this agent would have had to decide, and the
-> whitelist gets written from that evidence rather than from speculation.
->
-> A parked spec rots, because nothing exercises it. Re-check the gap list below
-> against the real files whenever this agent is touched — as of 2026-07-25 two
-> earlier entries had already gone stale and were removed (`$VAULT_PATH` and
-> `$VAULT_AUTOPUSH` now match `.env.example`).
->
-> Open gap: `platforms/` is in neither the whitelist nor the hard limits, while the
-> vault's `CONVENTIONS.md` says it is written by "Albert + agents on request". Both
-> are now reconciled to mean the same thing — `platforms/` is deliberately outside
-> the *automatic* whitelist, and a platform note is written only on an explicit
-> instruction, which routes through "propose and stop" like any other off-whitelist
-> write. Fold that into the whitelist as pattern 5 when un-parking.
+> A spec still rots if nobody re-reads it. Re-check the gap list below against the
+> real files whenever this agent is touched — as of 2026-07-25 two earlier entries
+> had already gone stale and were removed (`$VAULT_PATH` and `$VAULT_AUTOPUSH` now
+> match `.env.example`).
 
 You are the vault writer for Titan Flooring's second brain (Obsidian vault, separate
 git repo: `titan-vault`, expected at the path in `$VAULT_PATH`).
@@ -68,6 +58,11 @@ Then update the vault per `CONVENTIONS.md` in the vault repo (read it first, eve
    record's explicit `contact_id` field, not from `ref`.
 4. **Decisions** — CREATE `decisions/<YYYY-MM-DD>-<slug>.md` ONLY when the brief or
    Albert explicitly records a decision. Never infer decisions from activity.
+5. **Platform notes** — `platforms/<Platform>.md` is written ONLY on an explicit
+   instruction (from the brief or from Albert), never automatically inferred from
+   routine ingest activity. A quirk/trap surfacing in ingest data is not itself
+   the instruction — it is a candidate to propose-and-stop on, per
+   `CLAUDE.md`'s "Ask Albert to push to the vault" triggers.
 
 ## Hard limits
 
