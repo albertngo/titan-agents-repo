@@ -1,0 +1,18 @@
+{
+  "contract_version": "1",
+  "source": "outlook",
+  "run_at": "2026-07-27T08:00:00-04:00",
+  "status": "error",
+  "error": "No Outlook/M365 access available: no MCP connector for Outlook is configured in this session, and no Microsoft Graph credentials (client id/secret/tenant) are present in the environment. Unable to scan the last 24h of inbox.",
+  "items": [],
+  "metrics": {
+    "total_scanned": 0,
+    "customer": 0,
+    "supplier": 0,
+    "admin": 0,
+    "noise_skipped": 0
+  },
+  "needs_attention": [
+    "Outlook ingest could not run today (2026-07-27): no Outlook/M365 MCP connector or Graph API credentials found. Inbox for the last 24h was not scanned — connect the Outlook MCP or set Graph env vars per .env.example to restore this feed."
+  ]
+}

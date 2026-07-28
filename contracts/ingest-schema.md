@@ -45,19 +45,21 @@ Re-runs on the same day overwrite the file (idempotent). Never append.
   "priority": "high",
   "link": "https://app.gohighlevel.com/...",
   "amount_cents": null,
-  "raw_ref": "conversation 8842"
+  "raw_ref": "conversation 8842",
+  "sensitivity": null
 }
 ```
 
 | Field | Rules |
 |---|---|
-| `id` | Globally unique, prefixed with source. Stable across re-runs so the funnel can dedupe. |
+| `id` | Globally unique, prefixed with source. Stable across re-runs **within the same day's file** so the funnel can dedupe intra-day. **Not stable across days** — as an entity's status changes (e.g. a lead's drift type), its id changes with it. Cross-day dedupe must key on a stable entity identifier (e.g. a platform contact ID), never on `id`. |
 | `type` | Controlled per source, documented in that agent's file. Examples: `lead`, `message`, `invoice`, `expense`, `meeting`. |
 | `title` | ≤ 80 chars. What it is. |
 | `summary` | 1–3 sentences. What matters. No raw dumps. |
 | `priority` | `high` (act today), `normal`, `low` (FYI). |
 | `link` | Deep link to the source platform when available, else null. |
 | `amount_cents` | Integer cents CAD when money is involved, else null. |
+| `sensitivity` | Optional. `"team"` or `"private"`, else null (source default applies). Set by the ingest agent when an item needs routing different from its source's default — e.g. a liability/complaint item that shouldn't be team-visible. May only escalate `team → private`, never the reverse. Consumed by `contracts/notion-task-schema.md`; not used elsewhere yet. |
 | `raw_ref` | Pointer back to the source record for audit. Never paste full raw content here. |
 
 ## `extensions` — optional, source-owned detail

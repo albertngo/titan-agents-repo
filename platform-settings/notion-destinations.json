@@ -1,0 +1,75 @@
+{
+  "_comment": "Routing/property registry for the Notion task sync (.claude/commands/notion-sync.md, contracts/notion-task-schema.md). All Notion ids, property names, and vocabulary strings live here so a renamed property or a new source is a one-line data edit, never a code change. Source: Albert's live Notion workspace, verified 2026-07-27.",
+  "_maintenance": "Notion property/status strings are EXACT MATCH (e.g. 'Not started' lowercase s). If someone renames a property or status option in Notion, this file goes stale silently — the sync will start failing writes. Re-verify against the live schema (notion-fetch on the data_source url) whenever a write starts erroring on an unknown property/option.",
+
+  "config_version": "1",
+
+  "ghl_location_id": "4BwjVRlyDCR4ZRdcSrFR",
+  "_ghl_location_id_comment": "Used to CONSTRUCT the url property for every created row: https://app.gohighlevel.com/v2/location/<ghl_location_id>/contacts/detail/<contactId>. Never copy item.link verbatim — message-type items link to /conversations/conversations/, not /contacts/detail/.",
+
+  "destinations": {
+    "team": {
+      "_comment": "Shared 'Tactical Tasks List' database, Titan Flooring HQ teamspace. Auto-write.",
+      "database_id": "238596a4-505f-81f2-8eb0-c7599aa1745a",
+      "data_source": "collection://238596a4-505f-8137-af13-000bde205213",
+      "write_policy": "auto",
+      "tag": "ghl",
+      "status_new": "Not started",
+      "verification_new": "Needs Verification",
+      "properties": {
+        "title": "Name",
+        "status": "Status",
+        "tags": "Tags",
+        "priority": "Priority",
+        "url": "url",
+        "notes": "Notes",
+        "verification": "Verification",
+        "assign_to": "Assign To",
+        "due_date": "Due Date"
+      },
+      "status_values": ["On Hold", "Not started", "In progress", "Dropped", "Done"],
+      "open_statuses": ["On Hold", "Not started", "In progress"],
+      "closed_statuses": ["Dropped", "Done"],
+      "priority_values": ["high", "medium", "low"],
+      "verification_values": ["Needs Verification", "Verified"]
+    },
+    "private": {
+      "_comment": "Reuses Albert's existing personal 'to-do' database (under 'to-do list (personal)' page, Albert's Notion Directory > PERSONAL), filtered by its 'Private To Do' view. NOT a new database. Notes/url/Source properties were added 2026-07-27 to support this sync; Status/Priority/tags/Assignee/Due Date/Task already existed and are unchanged. Approval-gated: the sync must always propose-and-stop for this destination, never auto-write.",
+      "database_id": "1f8596a4-505f-8125-bc32-c775f462a7f1",
+      "data_source": "collection://1f8596a4-505f-8114-9459-000b34d2f11f",
+      "write_policy": "approval_required",
+      "parent_page": "2c6596a4-505f-80c1-aa20-f65c284bd732",
+      "properties": {
+        "title": "Task",
+        "status": "Status",
+        "tags": "tags",
+        "source": "Source",
+        "priority": "Priority",
+        "url": "url",
+        "notes": "Notes",
+        "assignee": "Assignee",
+        "due_date": "Due Date"
+      },
+      "status_values": ["Not started", "In progress", "Done"],
+      "open_statuses": ["Not started", "In progress"],
+      "closed_statuses": ["Done"],
+      "source_values": ["bookkeeper", "outlook", "ghl-escalated", "other"],
+      "priority_values": ["high", "medium", "low"]
+    }
+  },
+
+  "source_defaults": {
+    "_comment": "Default destination per ingest source. A new *-ingest source needs only one line here — no writer code change. An item's own `sensitivity` field (contracts/ingest-schema.md) may escalate team -> private, never the reverse.",
+    "ghl": "team",
+    "bookkeeper": "private",
+    "outlook": "private"
+  },
+
+  "people": {
+    "_comment": "Notion person IDs behind the Tactical Tasks List per-person views. The sync NEVER sets Assign To (contracts/notion-task-schema.md rule 4) — this table exists for reference/reporting only (e.g. to name whose view a row would land in once triaged), not for the sync to assign into.",
+    "albert": "c39aa5d3-c87c-4152-92ef-5ed13d9c4605",
+    "pourya": "1f4d872b-594c-8101-b28a-00020fc13998",
+    "mike": "22ad872b-594c-8164-bc5c-00025c1b0f2c",
+    "front_desk": "2165565e-ec9a-4260-b684-89c3da94f996"
+  }
+}

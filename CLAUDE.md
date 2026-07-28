@@ -7,7 +7,9 @@ Multi-agent system for Titan Flooring, split into two agent classes:
 - **`*-actions` agents** — write. Execute explicit, pre-approved actions on a platform
   and append to the daily actions log. Never scheduled, never autonomous.
 
-A daily orchestrator spawns the ingesters, reads their outputs, and produces the daily brief.
+A daily orchestrator spawns the ingesters, reads their outputs, produces the daily
+brief, then hands off to `vault-writer-agent` (vault) and `.claude/commands/notion-sync.md`
+(Notion) — see Orchestration below.
 
 ## Architecture rule (do not break)
 
@@ -25,7 +27,10 @@ No ingester reads another ingester's raw platform data.
 | `bookkeeper-ingest-agent` | QuickBooks / receipts | `bookkeeper.json` |
 
 | `ghl-actions-agent` | GoHighLevel (write: replies, stages, tags) | appends to `actions-log.json` |
-| `vault-writer-agent` | titan-vault Obsidian repo (write) | vault notes per its CONVENTIONS.md — **parked, see Vault writes** |
+| `vault-writer-agent` | titan-vault Obsidian repo (write) | vault notes per its CONVENTIONS.md — runs automatically in `/daily-ingest`, bound to its whitelist. See Vault writes. |
+
+`.claude/commands/notion-sync.md` runs automatically at the end of `/daily-ingest` too,
+but is a command, not an agent — see Notion writes below for why.
 
 Add a new agent = add one file in `.claude/agents/` + conform to the matching contract
 (`ingest-schema.md` for ingesters, `actions-log-schema.md` for actions agents).
@@ -48,7 +53,14 @@ does all three steps.
 
 Run `/daily-ingest` (see `.claude/commands/daily-ingest.md`).
 It spawns each ingester as a subagent in parallel, waits, then synthesizes
-`/ingest/YYYY-MM-DD/DAILY-BRIEF.md`.
+`/ingest/YYYY-MM-DD/DAILY-BRIEF.md`. After the brief is written, it hands off to:
+
+1. `vault-writer-agent` — writes/updates vault notes per its whitelist (Vault writes, below).
+2. `.claude/commands/notion-sync.md` — auto-creates/updates team-visible GHL tasks in
+   Notion, proposes-and-stops for anything private/sensitive (Notion writes, below).
+
+Both run every time `/daily-ingest` runs, including unattended/scheduled runs. Neither
+can affect `DAILY-BRIEF.md` — it's already written before either starts.
 
 ## Analyses
 
@@ -75,27 +87,32 @@ repo, so the vault is NOT present at session start — load it before any vault 
 2. Clone once, inline, generous timeout: `git clone --depth 1 <clone_url> /workspace/titan-vault`.
 3. `register_repo_root` so the vault's `CONVENTIONS.md` loads into context.
 
-## Vault writes (build phase)
+## Vault writes
 
-`vault-writer-agent` is **parked** — see the note in its definition. Spec it once the agent
-architecture and the ingest contracts have settled; its whitelist is a list of folders
-and contracts, so writing it against a moving target means rewriting it every time one
-of them changes.
+`vault-writer-agent` runs automatically at the end of `/daily-ingest` (**un-parked
+2026-07-27**, on Albert's explicit instruction, ahead of its own originally-stated
+"three clean sessions" bar — see the note in its definition). It may ONLY write in
+the 5 whitelisted patterns there: daily note, entity-note Log appends, new entity
+notes (ID-matched), decision notes on explicit record, platform notes on explicit
+instruction. Anything else, it proposes and stops — same as a manual write always did.
 
-Until then Claude writes to the vault directly, one change at a time, with Albert's
-go-ahead on each. The vault's `CONVENTIONS.md` still governs every write:
+The vault's `CONVENTIONS.md` still governs every write, automatic or manual:
 
 - Append, don't rewrite. Prose above a note's `## Log` is Albert's.
 - Never delete or rename a note. Never edit `goals/`. Never touch `.obsidian/`.
-- Commit as `vault: <what> YYYY-MM-DD`. Vault commits go to `main` — no review step.
+- Commit as `vault: <what> YYYY-MM-DD`. Vault commits go to `main-vault` (the vault
+  repo's actual default branch, confirmed with Albert 2026-07-27) — no review step.
+  Push only if `$VAULT_AUTOPUSH=true` (currently `false`).
 - **Earned relevance, not bulk import** (CONVENTIONS.md note rule 4 + "Scaling to
   more sources"): a vault note is created when something durable happens to an
   entity — a win, a `needs_attention` hit, an analysis touching it — never by a
-  proactive bulk or windowed pull of a platform's history, GHL or otherwise. Read
-  that section before proposing any backfill.
+  proactive bulk or windowed pull of a platform's history, GHL or otherwise. This is
+  exactly why the whitelist excludes routine drift findings: most days, most GHL
+  activity produces no vault write at all. Read that section before proposing any
+  backfill.
 
-**Ask Albert to push to the vault** when any of these happen. Don't batch them to the
-end of a session, and never write to the vault unprompted:
+**Ask Albert / propose-and-stop** for anything off-whitelist. Don't batch to the end
+of a session, and never write outside the whitelist unprompted:
 
 - An agent is added, or its definition/contract changes.
 - A platform quirk, trap, or ID surfaces that `platforms/<Platform>.md` doesn't already have.
@@ -104,8 +121,33 @@ end of a session, and never write to the vault unprompted:
 - A decision gets made → `decisions/YYYY-MM-DD-slug.md`.
 - A contract in `contracts/` changes.
 
-Checkpoint flow: draft the change → show it in chat → Albert approves → write →
-commit → push.
+Checkpoint flow for off-whitelist writes: draft the change → show it in chat → Albert
+approves → write → commit → push.
+
+## Notion writes
+
+`.claude/commands/notion-sync.md` runs automatically at the end of `/daily-ingest`
+(wired in 2026-07-27, on Albert's explicit instruction). Governed by
+`contracts/notion-task-schema.md`; all ids/property names/routing live in
+`platform-settings/notion-destinations.json`, never hardcoded in the command.
+
+Two destinations, different trust levels:
+
+- **Team** — the shared "✅ Tactical Tasks List" (Titan Flooring HQ teamspace).
+  Auto-write: high-priority GHL findings become task rows, deduped by an exact
+  match on a constructed contact-detail URL (never `item.id` — see the contract for
+  why that's not cross-day stable). Rows are always created unassigned and
+  `Verification: Needs Verification` — the sync never assigns a person or a due date.
+- **Private** — Albert's personal "to-do" database (to-do list (personal), PERSONAL
+  section). Always approval-gated: candidates are proposed in chat with their routing
+  reason, written only on explicit yes. Bookkeeper/Outlook findings default here;
+  a GHL item can escalate `team → private` via its own `sensitivity` field, never
+  the reverse.
+
+Every write is logged to `actions-log.json` per `contracts/actions-log-schema.md`
+(`notion_create_task` / `notion_update_task`). A Notion outage never blocks or
+retroactively affects `DAILY-BRIEF.md` — the sync runs after the brief is already
+written.
 
 ## Failure policy
 
