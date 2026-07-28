@@ -25,6 +25,7 @@ No ingester reads another ingester's raw platform data.
 | `ghl-ingest-agent` | GoHighLevel (leads, SMS, pipeline) | `ghl.json` |
 | `outlook-ingest-agent` | Outlook / M365 | `outlook.json` |
 | `bookkeeper-ingest-agent` | QuickBooks / receipts | `bookkeeper.json` |
+| `notion-ingest-agent` | Notion (projects, work orders, payments, meetings) | `notion.json` |
 
 | `ghl-actions-agent` | GoHighLevel (write: replies, stages, tags) | appends to `actions-log.json` |
 | `vault-writer-agent` | titan-vault Obsidian repo (write) | vault notes per its CONVENTIONS.md — runs automatically in `/daily-ingest`, bound to its whitelist. See Vault writes. |
@@ -102,7 +103,16 @@ The vault's `CONVENTIONS.md` still governs every write, automatic or manual:
 - Never delete or rename a note. Never edit `goals/`. Never touch `.obsidian/`.
 - Commit as `vault: <what> YYYY-MM-DD`. Vault commits go to `main-vault` (the vault
   repo's actual default branch, confirmed with Albert 2026-07-27) — no review step.
-  Push only if `$VAULT_AUTOPUSH=true` (currently `false`).
+- **Push rule depends on where the session runs** (Albert, 2026-07-28):
+  - **Albert's Mac** (vault at `~/Documents/claude/titan-vault`): the file edit
+    itself is durable — the Obsidian git plugin auto-commits and pushes every
+    ~10 min, sweeping up anything a session left uncommitted. Make the
+    descriptive commit when git cooperates, but never block on it. Manual push
+    only if `$VAULT_AUTOPUSH=true` (currently `false`).
+  - **Cloud/VM session** (vault cloned to `/workspace/titan-vault`): the sandbox
+    is ephemeral and there is no Obsidian to sweep up after you — **commit AND
+    push are mandatory**, in the same step as the write. `$VAULT_AUTOPUSH` does
+    not apply here; an unpushed vault commit in a VM is a lost write.
 - **Earned relevance, not bulk import** (CONVENTIONS.md note rule 4 + "Scaling to
   more sources"): a vault note is created when something durable happens to an
   entity — a win, a `needs_attention` hit, an analysis touching it — never by a
@@ -130,6 +140,11 @@ approves → write → commit → push.
 (wired in 2026-07-27, on Albert's explicit instruction). Governed by
 `contracts/notion-task-schema.md`; all ids/property names/routing live in
 `platform-settings/notion-destinations.json`, never hardcoded in the command.
+
+Separately, `notion-ingest-agent` READS Notion daily (read-side registry:
+`platform-settings/notion-ingest-sources.json`) — including the same Tactical
+Tasks List this sync writes to. That coexistence is deliberate: the ingester is
+strictly read-only and excludes rows the sync created the same day.
 
 Two destinations, different trust levels:
 
