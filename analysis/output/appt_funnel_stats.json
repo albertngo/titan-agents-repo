@@ -1,0 +1,3254 @@
+{
+  "generated_at": "2026-07-29T00:13:56.402247-04:00",
+  "opportunities": 1961,
+  "calendar_events": 747,
+  "calendar_coverage_of_won_corpus": {
+    "matched": 327,
+    "total": 368,
+    "coverage": 0.89,
+    "note": "conversation TYPE_ACTIVITY_APPOINTMENT events (won corpus) found in the calendar pull within \u00b11 day"
+  },
+  "repeat_gap_days": 30,
+  "by_status": {
+    "abandoned": {
+      "n": 1137,
+      "appt_rate": 0.17,
+      "repeat_rate": 0.14,
+      "opp_to_appt": {
+        "n": 190,
+        "min": -23.9,
+        "p25": 0.0,
+        "median": 0.0,
+        "p75": 1.2,
+        "max": 142.2,
+        "avg": 4.8
+      },
+      "contact_to_appt": {
+        "n": 190,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.8,
+        "p75": 4.0,
+        "max": 1067.4,
+        "avg": 27.3
+      },
+      "booked_to_visit": {
+        "n": 190,
+        "min": 0.0,
+        "p25": 0.7,
+        "median": 1.9,
+        "p75": 3.9,
+        "max": 59.8,
+        "avg": 3.2
+      },
+      "appt_to_close": {
+        "n": 190,
+        "min": 0.1,
+        "p25": 22.2,
+        "median": 45.0,
+        "p75": 78.9,
+        "max": 650.0,
+        "avg": 91.4
+      },
+      "value_total_cad": 1121403.51
+    },
+    "lost": {
+      "n": 223,
+      "appt_rate": 0.31,
+      "repeat_rate": 0.25,
+      "opp_to_appt": {
+        "n": 70,
+        "min": -3.4,
+        "p25": -0.0,
+        "median": 0.0,
+        "p75": 0.8,
+        "max": 142.2,
+        "avg": 4.0
+      },
+      "contact_to_appt": {
+        "n": 70,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.3,
+        "p75": 2.8,
+        "max": 219.2,
+        "avg": 12.6
+      },
+      "booked_to_visit": {
+        "n": 70,
+        "min": 0.0,
+        "p25": 1.0,
+        "median": 2.8,
+        "p75": 4.1,
+        "max": 27.3,
+        "avg": 3.4
+      },
+      "appt_to_close": {
+        "n": 70,
+        "min": 3.1,
+        "p25": 18.6,
+        "median": 37.0,
+        "p75": 110.7,
+        "max": 397.2,
+        "avg": 73.8
+      },
+      "value_total_cad": 1137009.21
+    },
+    "open": {
+      "n": 303,
+      "appt_rate": 0.2,
+      "repeat_rate": 0.46,
+      "opp_to_appt": {
+        "n": 62,
+        "min": -19.8,
+        "p25": -0.0,
+        "median": 0.0,
+        "p75": 0.8,
+        "max": 321.0,
+        "avg": 10.1
+      },
+      "contact_to_appt": {
+        "n": 62,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.4,
+        "p75": 6.6,
+        "max": 1156.6,
+        "avg": 59.1
+      },
+      "booked_to_visit": {
+        "n": 62,
+        "min": 0.0,
+        "p25": 1.1,
+        "median": 3.2,
+        "p75": 5.9,
+        "max": 10.8,
+        "avg": 3.7
+      },
+      "appt_to_close": null,
+      "value_total_cad": 952012.11
+    },
+    "won": {
+      "n": 298,
+      "appt_rate": 0.55,
+      "repeat_rate": 0.23,
+      "opp_to_appt": {
+        "n": 165,
+        "min": -23.2,
+        "p25": -0.0,
+        "median": -0.0,
+        "p75": 0.8,
+        "max": 252.8,
+        "avg": 5.9
+      },
+      "contact_to_appt": {
+        "n": 165,
+        "min": -0.0,
+        "p25": 0.0,
+        "median": 0.9,
+        "p75": 7.0,
+        "max": 905.4,
+        "avg": 57.4
+      },
+      "booked_to_visit": {
+        "n": 165,
+        "min": 0.0,
+        "p25": 0.9,
+        "median": 2.9,
+        "p75": 4.9,
+        "max": 23.1,
+        "avg": 3.3
+      },
+      "appt_to_close": {
+        "n": 165,
+        "min": 0.0,
+        "p25": 7.1,
+        "median": 15.2,
+        "p75": 29.9,
+        "max": 611.1,
+        "avg": 36.1
+      },
+      "value_total_cad": 2405370.09
+    }
+  },
+  "by_status_source": {
+    "abandoned|Contractor": {
+      "n": 5,
+      "appt_rate": 0.2,
+      "repeat_rate": 1.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": -1.9,
+        "p25": -1.9,
+        "median": -1.9,
+        "p75": -1.9,
+        "max": -1.9,
+        "avg": -1.9
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 895.7,
+        "p25": 895.7,
+        "median": 895.7,
+        "p75": 895.7,
+        "max": 895.7,
+        "avg": 895.7
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 0.8,
+        "p25": 0.8,
+        "median": 0.8,
+        "p75": 0.8,
+        "max": 0.8,
+        "avg": 0.8
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 269.8,
+        "p25": 269.8,
+        "median": 269.8,
+        "p75": 269.8,
+        "max": 269.8,
+        "avg": 269.8
+      },
+      "value_total_cad": 31000
+    },
+    "abandoned|Direct": {
+      "n": 2,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.5,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 9788.34
+    },
+    "abandoned|Facebook": {
+      "n": 11,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.09,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 26753.35
+    },
+    "abandoned|Google Organic": {
+      "n": 4,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 40794.0
+    },
+    "abandoned|Meta Ad": {
+      "n": 991,
+      "appt_rate": 0.13,
+      "repeat_rate": 0.13,
+      "opp_to_appt": {
+        "n": 129,
+        "min": -3.9,
+        "p25": 0.0,
+        "median": 0.5,
+        "p75": 1.5,
+        "max": 142.2,
+        "avg": 5.6
+      },
+      "contact_to_appt": {
+        "n": 129,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.7,
+        "p75": 1.9,
+        "max": 371.2,
+        "avg": 13.1
+      },
+      "booked_to_visit": {
+        "n": 129,
+        "min": 0.0,
+        "p25": 0.3,
+        "median": 2.0,
+        "p75": 3.8,
+        "max": 59.8,
+        "avg": 3.3
+      },
+      "appt_to_close": {
+        "n": 129,
+        "min": 0.1,
+        "p25": 19.4,
+        "median": 44.2,
+        "p75": 74.2,
+        "max": 650.0,
+        "avg": 84.1
+      },
+      "value_total_cad": 481747.31
+    },
+    "abandoned|Other / Unsure": {
+      "n": 2,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 10616
+    },
+    "abandoned|Preliminary Mobile Quote": {
+      "n": 7,
+      "appt_rate": 0.57,
+      "repeat_rate": 0.14,
+      "opp_to_appt": {
+        "n": 4,
+        "min": -5.9,
+        "p25": -3.8,
+        "median": -1.6,
+        "p75": 3.5,
+        "max": 14.0,
+        "avg": 1.2
+      },
+      "contact_to_appt": {
+        "n": 4,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 3.0,
+        "p75": 8.0,
+        "max": 14.0,
+        "avg": 5.0
+      },
+      "booked_to_visit": {
+        "n": 4,
+        "min": 3.1,
+        "p25": 3.6,
+        "median": 4.4,
+        "p75": 5.3,
+        "max": 5.9,
+        "avg": 4.5
+      },
+      "appt_to_close": {
+        "n": 4,
+        "min": 0.7,
+        "p25": 18.8,
+        "median": 35.8,
+        "p75": 69.8,
+        "max": 138.7,
+        "avg": 52.8
+      },
+      "value_total_cad": 35299.25
+    },
+    "abandoned|Saw the Store / Drove By": {
+      "n": 1,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 4265
+    },
+    "abandoned|Store": {
+      "n": 78,
+      "appt_rate": 0.59,
+      "repeat_rate": 0.24,
+      "opp_to_appt": {
+        "n": 46,
+        "min": -23.9,
+        "p25": -0.0,
+        "median": 0.0,
+        "p75": -0.0,
+        "max": 4.3,
+        "avg": -0.6
+      },
+      "contact_to_appt": {
+        "n": 46,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.7,
+        "p75": 7.8,
+        "max": 1067.4,
+        "avg": 50.6
+      },
+      "booked_to_visit": {
+        "n": 46,
+        "min": 0.0,
+        "p25": 0.9,
+        "median": 1.9,
+        "p75": 3.9,
+        "max": 10.2,
+        "avg": 2.7
+      },
+      "appt_to_close": {
+        "n": 46,
+        "min": 1.1,
+        "p25": 31.1,
+        "median": 49.5,
+        "p75": 98.3,
+        "max": 525.1,
+        "avg": 115.5
+      },
+      "value_total_cad": 419062.09
+    },
+    "abandoned|Tradeshow": {
+      "n": 4,
+      "appt_rate": 0.25,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": 64.9,
+        "p25": 64.9,
+        "median": 64.9,
+        "p75": 64.9,
+        "max": 64.9,
+        "avg": 64.9
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 68.9,
+        "p25": 68.9,
+        "median": 68.9,
+        "p75": 68.9,
+        "max": 68.9,
+        "avg": 68.9
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 4.1,
+        "p25": 4.1,
+        "median": 4.1,
+        "p75": 4.1,
+        "max": 4.1,
+        "avg": 4.1
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 79.5,
+        "p25": 79.5,
+        "median": 79.5,
+        "p75": 79.5,
+        "max": 79.5,
+        "avg": 79.5
+      },
+      "value_total_cad": 0
+    },
+    "abandoned|contractor": {
+      "n": 1,
+      "appt_rate": 0.0,
+      "repeat_rate": 1.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 0
+    },
+    "abandoned|facebook": {
+      "n": 1,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": 0.1,
+        "p25": 0.1,
+        "median": 0.1,
+        "p75": 0.1,
+        "max": 0.1,
+        "avg": 0.1
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 0.1,
+        "p25": 0.1,
+        "median": 0.1,
+        "p75": 0.1,
+        "max": 0.1,
+        "avg": 0.1
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 1.0,
+        "p25": 1.0,
+        "median": 1.0,
+        "p75": 1.0,
+        "max": 1.0,
+        "avg": 1.0
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 28.9,
+        "p25": 28.9,
+        "median": 28.9,
+        "p75": 28.9,
+        "max": 28.9,
+        "avg": 28.9
+      },
+      "value_total_cad": 18100
+    },
+    "abandoned|lightspeed": {
+      "n": 2,
+      "appt_rate": 0.5,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": -0.0,
+        "p25": -0.0,
+        "median": -0.0,
+        "p75": -0.0,
+        "max": -0.0,
+        "avg": 0.0
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.0,
+        "p75": 0.0,
+        "max": 0.0,
+        "avg": 0.0
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 0.7,
+        "p25": 0.7,
+        "median": 0.7,
+        "p75": 0.7,
+        "max": 0.7,
+        "avg": 0.7
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 34.7,
+        "p25": 34.7,
+        "median": 34.7,
+        "p75": 34.7,
+        "max": 34.7,
+        "avg": 34.7
+      },
+      "value_total_cad": 5883.49
+    },
+    "abandoned|onlineMeta Ad": {
+      "n": 2,
+      "appt_rate": 0.5,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": 99.3,
+        "p25": 99.3,
+        "median": 99.3,
+        "p75": 99.3,
+        "max": 99.3,
+        "avg": 99.3
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 99.3,
+        "p25": 99.3,
+        "median": 99.3,
+        "p75": 99.3,
+        "max": 99.3,
+        "avg": 99.3
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 1.6,
+        "p25": 1.6,
+        "median": 1.6,
+        "p75": 1.6,
+        "max": 1.6,
+        "avg": 1.6
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 30.4,
+        "p25": 30.4,
+        "median": 30.4,
+        "p75": 30.4,
+        "max": 30.4,
+        "avg": 30.4
+      },
+      "value_total_cad": 15594.68
+    },
+    "abandoned|store - pos": {
+      "n": 1,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 2500
+    },
+    "abandoned|tradeshow": {
+      "n": 21,
+      "appt_rate": 0.24,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 5,
+        "min": -3.2,
+        "p25": -1.1,
+        "median": -0.0,
+        "p75": 3.9,
+        "max": 57.0,
+        "avg": 11.3
+      },
+      "contact_to_appt": {
+        "n": 5,
+        "min": 1.8,
+        "p25": 7.1,
+        "median": 7.1,
+        "p75": 8.9,
+        "max": 61.0,
+        "avg": 17.2
+      },
+      "booked_to_visit": {
+        "n": 5,
+        "min": 0.0,
+        "p25": 6.1,
+        "median": 6.1,
+        "p75": 6.9,
+        "max": 6.9,
+        "avg": 5.2
+      },
+      "appt_to_close": {
+        "n": 5,
+        "min": 22.1,
+        "p25": 49.1,
+        "median": 54.2,
+        "p75": 128.9,
+        "max": 266.9,
+        "avg": 104.2
+      },
+      "value_total_cad": 10000
+    },
+    "abandoned|website": {
+      "n": 4,
+      "appt_rate": 0.25,
+      "repeat_rate": 0.25,
+      "opp_to_appt": {
+        "n": 1,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.0,
+        "p75": 0.0,
+        "max": 0.0,
+        "avg": 0.0
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.0,
+        "p75": 0.0,
+        "max": 0.0,
+        "avg": 0.0
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 0.2,
+        "p25": 0.2,
+        "median": 0.2,
+        "p75": 0.2,
+        "max": 0.2,
+        "avg": 0.2
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 32.2,
+        "p25": 32.2,
+        "median": 32.2,
+        "p75": 32.2,
+        "max": 32.2,
+        "avg": 32.2
+      },
+      "value_total_cad": 10000
+    },
+    "lost|Meta Ad": {
+      "n": 146,
+      "appt_rate": 0.33,
+      "repeat_rate": 0.32,
+      "opp_to_appt": {
+        "n": 48,
+        "min": -3.4,
+        "p25": -0.0,
+        "median": 0.1,
+        "p75": 1.4,
+        "max": 142.2,
+        "avg": 5.8
+      },
+      "contact_to_appt": {
+        "n": 48,
+        "min": -0.0,
+        "p25": 0.0,
+        "median": 0.6,
+        "p75": 3.2,
+        "max": 219.2,
+        "avg": 16.6
+      },
+      "booked_to_visit": {
+        "n": 48,
+        "min": 0.1,
+        "p25": 1.1,
+        "median": 3.0,
+        "p75": 4.2,
+        "max": 27.3,
+        "avg": 3.7
+      },
+      "appt_to_close": {
+        "n": 48,
+        "min": 3.1,
+        "p25": 23.2,
+        "median": 51.3,
+        "p75": 132.4,
+        "max": 397.2,
+        "avg": 86.7
+      },
+      "value_total_cad": 460860.2
+    },
+    "lost|Preliminary Mobile Quote": {
+      "n": 2,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.5,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 46000
+    },
+    "lost|Store": {
+      "n": 63,
+      "appt_rate": 0.32,
+      "repeat_rate": 0.08,
+      "opp_to_appt": {
+        "n": 20,
+        "min": 0.0,
+        "p25": -0.0,
+        "median": -0.0,
+        "p75": 0.0,
+        "max": 2.1,
+        "avg": 0.1
+      },
+      "contact_to_appt": {
+        "n": 20,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.0,
+        "p75": 0.1,
+        "max": 43.0,
+        "avg": 3.5
+      },
+      "booked_to_visit": {
+        "n": 20,
+        "min": 0.0,
+        "p25": 0.9,
+        "median": 2.4,
+        "p75": 3.9,
+        "max": 8.0,
+        "avg": 2.7
+      },
+      "appt_to_close": {
+        "n": 20,
+        "min": 4.1,
+        "p25": 17.9,
+        "median": 31.6,
+        "p75": 70.1,
+        "max": 140.0,
+        "avg": 49.3
+      },
+      "value_total_cad": 591167.3
+    },
+    "lost|Tradeshow": {
+      "n": 3,
+      "appt_rate": 0.33,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": 1.7,
+        "p25": 1.7,
+        "median": 1.7,
+        "p75": 1.7,
+        "max": 1.7,
+        "avg": 1.7
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 5.7,
+        "p25": 5.7,
+        "median": 5.7,
+        "p75": 5.7,
+        "max": 5.7,
+        "avg": 5.7
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 6.2,
+        "p25": 6.2,
+        "median": 6.2,
+        "p75": 6.2,
+        "max": 6.2,
+        "avg": 6.2
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 12.1,
+        "p25": 12.1,
+        "median": 12.1,
+        "p75": 12.1,
+        "max": 12.1,
+        "avg": 12.1
+      },
+      "value_total_cad": 9500
+    },
+    "lost|Unknown": {
+      "n": 1,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 12000
+    },
+    "lost|lightspeed": {
+      "n": 7,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.29,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 17481.71
+    },
+    "lost|tradeshow": {
+      "n": 1,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": 0.1,
+        "p25": 0.1,
+        "median": 0.1,
+        "p75": 0.1,
+        "max": 0.1,
+        "avg": 0.1
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 5.0,
+        "p25": 5.0,
+        "median": 5.0,
+        "p75": 5.0,
+        "max": 5.0,
+        "avg": 5.0
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 1.9,
+        "p25": 1.9,
+        "median": 1.9,
+        "p75": 1.9,
+        "max": 1.9,
+        "avg": 1.9
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 3.9,
+        "p25": 3.9,
+        "median": 3.9,
+        "p75": 3.9,
+        "max": 3.9,
+        "avg": 3.9
+      },
+      "value_total_cad": 0
+    },
+    "open|Contractor": {
+      "n": 2,
+      "appt_rate": 0.0,
+      "repeat_rate": 1.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 9651.66
+    },
+    "open|Direct": {
+      "n": 14,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.14,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 27343.32
+    },
+    "open|Facebook": {
+      "n": 4,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 18442.5
+    },
+    "open|Google Organic": {
+      "n": 4,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 45269
+    },
+    "open|Meta Ad": {
+      "n": 185,
+      "appt_rate": 0.16,
+      "repeat_rate": 0.55,
+      "opp_to_appt": {
+        "n": 29,
+        "min": -10.9,
+        "p25": 0.0,
+        "median": 0.0,
+        "p75": 0.5,
+        "max": 174.1,
+        "avg": 6.2
+      },
+      "contact_to_appt": {
+        "n": 29,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.2,
+        "p75": 2.3,
+        "max": 1092.7,
+        "avg": 59.9
+      },
+      "booked_to_visit": {
+        "n": 29,
+        "min": 0.0,
+        "p25": 1.1,
+        "median": 2.7,
+        "p75": 6.0,
+        "max": 10.8,
+        "avg": 3.7
+      },
+      "appt_to_close": null,
+      "value_total_cad": 318732.72
+    },
+    "open|Preliminary Mobile Quote": {
+      "n": 6,
+      "appt_rate": 0.5,
+      "repeat_rate": 0.33,
+      "opp_to_appt": {
+        "n": 3,
+        "min": -19.8,
+        "p25": -9.8,
+        "median": 0.1,
+        "p75": 2.2,
+        "max": 4.3,
+        "avg": -5.1
+      },
+      "contact_to_appt": {
+        "n": 3,
+        "min": 4.3,
+        "p25": 24.2,
+        "median": 44.2,
+        "p75": 44.2,
+        "max": 44.2,
+        "avg": 30.9
+      },
+      "booked_to_visit": {
+        "n": 3,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.0,
+        "p75": 0.4,
+        "max": 0.8,
+        "avg": 0.3
+      },
+      "appt_to_close": null,
+      "value_total_cad": 67462.19
+    },
+    "open|Referral": {
+      "n": 2,
+      "appt_rate": 0.5,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": 0.9,
+        "p25": 0.9,
+        "median": 0.9,
+        "p75": 0.9,
+        "max": 0.9,
+        "avg": 0.9
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 0.9,
+        "p25": 0.9,
+        "median": 0.9,
+        "p75": 0.9,
+        "max": 0.9,
+        "avg": 0.9
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 1.3,
+        "p25": 1.3,
+        "median": 1.3,
+        "p75": 1.3,
+        "max": 1.3,
+        "avg": 1.3
+      },
+      "appt_to_close": null,
+      "value_total_cad": 18641
+    },
+    "open|Store": {
+      "n": 16,
+      "appt_rate": 0.81,
+      "repeat_rate": 0.25,
+      "opp_to_appt": {
+        "n": 13,
+        "min": 0.0,
+        "p25": -0.0,
+        "median": -0.0,
+        "p75": -0.0,
+        "max": 65.9,
+        "avg": 7.7
+      },
+      "contact_to_appt": {
+        "n": 13,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.0,
+        "p75": 37.1,
+        "max": 383.0,
+        "avg": 48.2
+      },
+      "booked_to_visit": {
+        "n": 13,
+        "min": 0.6,
+        "p25": 2.2,
+        "median": 4.0,
+        "p75": 5.9,
+        "max": 7.8,
+        "avg": 4.1
+      },
+      "appt_to_close": null,
+      "value_total_cad": 86045.49
+    },
+    "open|Unknown": {
+      "n": 3,
+      "appt_rate": 0.0,
+      "repeat_rate": 1.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 0
+    },
+    "open|Word of Mouth": {
+      "n": 1,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 3327.5
+    },
+    "open|Yard Sign": {
+      "n": 1,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 4238.32
+    },
+    "open|facebook form lead": {
+      "n": 2,
+      "appt_rate": 0.0,
+      "repeat_rate": 1.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 0
+    },
+    "open|hike": {
+      "n": 2,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.5,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 14029.55
+    },
+    "open|lightspeed": {
+      "n": 45,
+      "appt_rate": 0.04,
+      "repeat_rate": 0.51,
+      "opp_to_appt": {
+        "n": 2,
+        "min": 20.2,
+        "p25": 95.4,
+        "median": 170.6,
+        "p75": 245.8,
+        "max": 321.0,
+        "avg": 170.6
+      },
+      "contact_to_appt": {
+        "n": 2,
+        "min": 20.2,
+        "p25": 304.3,
+        "median": 588.4,
+        "p75": 872.5,
+        "max": 1156.6,
+        "avg": 588.4
+      },
+      "booked_to_visit": {
+        "n": 2,
+        "min": 0.9,
+        "p25": 0.9,
+        "median": 0.9,
+        "p75": 1.0,
+        "max": 1.0,
+        "avg": 0.9
+      },
+      "appt_to_close": null,
+      "value_total_cad": 174033.45
+    },
+    "open|online": {
+      "n": 3,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 3,
+        "min": -0.0,
+        "p25": -0.0,
+        "median": -0.0,
+        "p75": -0.0,
+        "max": -0.0,
+        "avg": 0.0
+      },
+      "contact_to_appt": {
+        "n": 3,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.0,
+        "p75": 0.0,
+        "max": 0.0,
+        "avg": 0.0
+      },
+      "booked_to_visit": {
+        "n": 3,
+        "min": 3.1,
+        "p25": 5.2,
+        "median": 7.2,
+        "p75": 7.7,
+        "max": 8.1,
+        "avg": 6.1
+      },
+      "appt_to_close": null,
+      "value_total_cad": 14200
+    },
+    "open|onlineMeta Ad": {
+      "n": 5,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 5,
+        "min": 0.1,
+        "p25": 0.4,
+        "median": 0.6,
+        "p75": 0.9,
+        "max": 18.2,
+        "avg": 4.0
+      },
+      "contact_to_appt": {
+        "n": 5,
+        "min": 0.1,
+        "p25": 0.4,
+        "median": 0.6,
+        "p75": 0.9,
+        "max": 18.2,
+        "avg": 4.0
+      },
+      "booked_to_visit": {
+        "n": 5,
+        "min": 1.2,
+        "p25": 3.9,
+        "median": 4.0,
+        "p75": 5.9,
+        "max": 7.9,
+        "avg": 4.6
+      },
+      "appt_to_close": null,
+      "value_total_cad": 107832.41
+    },
+    "open|onlinePreliminary Mobile Quote": {
+      "n": 2,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 2,
+        "min": 0.0,
+        "p25": 0.8,
+        "median": 1.5,
+        "p75": 2.2,
+        "max": 3.0,
+        "avg": 1.5
+      },
+      "contact_to_appt": {
+        "n": 2,
+        "min": 0.0,
+        "p25": 0.8,
+        "median": 1.5,
+        "p75": 2.2,
+        "max": 3.0,
+        "avg": 1.5
+      },
+      "booked_to_visit": {
+        "n": 2,
+        "min": 4.9,
+        "p25": 5.7,
+        "median": 6.5,
+        "p75": 7.3,
+        "max": 8.1,
+        "avg": 6.5
+      },
+      "appt_to_close": null,
+      "value_total_cad": 19872
+    },
+    "open|onlineUnknown": {
+      "n": 1,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": 6.4,
+        "p25": 6.4,
+        "median": 6.4,
+        "p75": 6.4,
+        "max": 6.4,
+        "avg": 6.4
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 6.4,
+        "p25": 6.4,
+        "median": 6.4,
+        "p75": 6.4,
+        "max": 6.4,
+        "avg": 6.4
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 5.4,
+        "p25": 5.4,
+        "median": 5.4,
+        "p75": 5.4,
+        "max": 5.4,
+        "avg": 5.4
+      },
+      "appt_to_close": null,
+      "value_total_cad": 8860
+    },
+    "open|onlinewebsite": {
+      "n": 1,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": 0.2,
+        "p25": 0.2,
+        "median": 0.2,
+        "p75": 0.2,
+        "max": 0.2,
+        "avg": 0.2
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 0.2,
+        "p25": 0.2,
+        "median": 0.2,
+        "p75": 0.2,
+        "max": 0.2,
+        "avg": 0.2
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 0.2,
+        "p25": 0.2,
+        "median": 0.2,
+        "p75": 0.2,
+        "max": 0.2,
+        "avg": 0.2
+      },
+      "appt_to_close": null,
+      "value_total_cad": 4341
+    },
+    "open|tradeshow": {
+      "n": 1,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 0
+    },
+    "open|website": {
+      "n": 3,
+      "appt_rate": 0.67,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 2,
+        "min": -6.0,
+        "p25": -5.3,
+        "median": -4.7,
+        "p75": -4.0,
+        "max": -3.3,
+        "avg": -4.7
+      },
+      "contact_to_appt": {
+        "n": 2,
+        "min": 0.2,
+        "p25": 0.4,
+        "median": 0.6,
+        "p75": 0.8,
+        "max": 1.0,
+        "avg": 0.6
+      },
+      "booked_to_visit": {
+        "n": 2,
+        "min": 0.2,
+        "p25": 1.0,
+        "median": 1.7,
+        "p75": 2.5,
+        "max": 3.2,
+        "avg": 1.7
+      },
+      "appt_to_close": null,
+      "value_total_cad": 9690
+    },
+    "won|Contractor": {
+      "n": 3,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.67,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 20800
+    },
+    "won|David": {
+      "n": 1,
+      "appt_rate": 1.0,
+      "repeat_rate": 1.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.0,
+        "p75": 0.0,
+        "max": 0.0,
+        "avg": 0.0
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 841.6,
+        "p25": 841.6,
+        "median": 841.6,
+        "p75": 841.6,
+        "max": 841.6,
+        "avg": 841.6
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 0.8,
+        "p25": 0.8,
+        "median": 0.8,
+        "p75": 0.8,
+        "max": 0.8,
+        "avg": 0.8
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 8.0,
+        "p25": 8.0,
+        "median": 8.0,
+        "p75": 8.0,
+        "max": 8.0,
+        "avg": 8.0
+      },
+      "value_total_cad": 2500
+    },
+    "won|Meta Ad": {
+      "n": 61,
+      "appt_rate": 0.82,
+      "repeat_rate": 0.11,
+      "opp_to_appt": {
+        "n": 50,
+        "min": -23.2,
+        "p25": -0.0,
+        "median": 0.8,
+        "p75": 2.8,
+        "max": 203.2,
+        "avg": 10.7
+      },
+      "contact_to_appt": {
+        "n": 50,
+        "min": -0.0,
+        "p25": 0.0,
+        "median": 1.5,
+        "p75": 4.4,
+        "max": 392.8,
+        "avg": 33.2
+      },
+      "booked_to_visit": {
+        "n": 50,
+        "min": 0.0,
+        "p25": 0.9,
+        "median": 2.5,
+        "p75": 5.0,
+        "max": 23.1,
+        "avg": 3.6
+      },
+      "appt_to_close": {
+        "n": 50,
+        "min": 0.1,
+        "p25": 7.0,
+        "median": 15.7,
+        "p75": 31.5,
+        "max": 611.1,
+        "avg": 45.9
+      },
+      "value_total_cad": 490868.21
+    },
+    "won|Pourya": {
+      "n": 3,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.33,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 25182.5
+    },
+    "won|Preliminary Mobile Quote": {
+      "n": 2,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 2,
+        "min": -1.4,
+        "p25": -1.0,
+        "median": -0.7,
+        "p75": -0.3,
+        "max": 0.0,
+        "avg": -0.7
+      },
+      "contact_to_appt": {
+        "n": 2,
+        "min": 0.9,
+        "p25": 3.0,
+        "median": 5.0,
+        "p75": 7.1,
+        "max": 9.2,
+        "avg": 5.0
+      },
+      "booked_to_visit": {
+        "n": 2,
+        "min": 0.1,
+        "p25": 0.4,
+        "median": 0.7,
+        "p75": 1.0,
+        "max": 1.3,
+        "avg": 0.7
+      },
+      "appt_to_close": {
+        "n": 2,
+        "min": 1.4,
+        "p25": 1.5,
+        "median": 1.7,
+        "p75": 1.9,
+        "max": 2.0,
+        "avg": 1.7
+      },
+      "value_total_cad": 28148
+    },
+    "won|Referral": {
+      "n": 1,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": -0.0,
+        "p25": -0.0,
+        "median": -0.0,
+        "p75": -0.0,
+        "max": -0.0,
+        "avg": 0.0
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.0,
+        "p75": 0.0,
+        "max": 0.0,
+        "avg": 0.0
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 3.1,
+        "p25": 3.1,
+        "median": 3.1,
+        "p75": 3.1,
+        "max": 3.1,
+        "avg": 3.1
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 17.0,
+        "p25": 17.0,
+        "median": 17.0,
+        "p75": 17.0,
+        "max": 17.0,
+        "avg": 17.0
+      },
+      "value_total_cad": 22035
+    },
+    "won|Store": {
+      "n": 201,
+      "appt_rate": 0.48,
+      "repeat_rate": 0.25,
+      "opp_to_appt": {
+        "n": 96,
+        "min": -12.1,
+        "p25": -0.0,
+        "median": -0.0,
+        "p75": 0.0,
+        "max": 14.9,
+        "avg": 0.3
+      },
+      "contact_to_appt": {
+        "n": 96,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.1,
+        "p75": 5.9,
+        "max": 905.4,
+        "avg": 67.2
+      },
+      "booked_to_visit": {
+        "n": 96,
+        "min": 0.0,
+        "p25": 0.9,
+        "median": 2.7,
+        "p75": 3.9,
+        "max": 12.9,
+        "avg": 2.8
+      },
+      "appt_to_close": {
+        "n": 96,
+        "min": 0.0,
+        "p25": 6.9,
+        "median": 14.0,
+        "p75": 31.5,
+        "max": 350.7,
+        "avg": 30.4
+      },
+      "value_total_cad": 1602625.59
+    },
+    "won|contractor": {
+      "n": 1,
+      "appt_rate": 0.0,
+      "repeat_rate": 1.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 8900
+    },
+    "won|facebook": {
+      "n": 1,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": -0.0,
+        "p25": -0.0,
+        "median": -0.0,
+        "p75": -0.0,
+        "max": -0.0,
+        "avg": 0.0
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 3.5,
+        "p25": 3.5,
+        "median": 3.5,
+        "p75": 3.5,
+        "max": 3.5,
+        "avg": 3.5
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 1.3,
+        "p25": 1.3,
+        "median": 1.3,
+        "p75": 1.3,
+        "max": 1.3,
+        "avg": 1.3
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 16.4,
+        "p25": 16.4,
+        "median": 16.4,
+        "p75": 16.4,
+        "max": 16.4,
+        "avg": 16.4
+      },
+      "value_total_cad": 7300
+    },
+    "won|lightspeed": {
+      "n": 6,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.5,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 22798.91
+    },
+    "won|online": {
+      "n": 2,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 2,
+        "min": 0.0,
+        "p25": 31.2,
+        "median": 62.5,
+        "p75": 93.8,
+        "max": 125.0,
+        "avg": 62.5
+      },
+      "contact_to_appt": {
+        "n": 2,
+        "min": 0.0,
+        "p25": 31.2,
+        "median": 62.5,
+        "p75": 93.8,
+        "max": 125.0,
+        "avg": 62.5
+      },
+      "booked_to_visit": {
+        "n": 2,
+        "min": 6.0,
+        "p25": 6.2,
+        "median": 6.5,
+        "p75": 6.8,
+        "max": 7.0,
+        "avg": 6.5
+      },
+      "appt_to_close": {
+        "n": 2,
+        "min": 18.0,
+        "p25": 19.2,
+        "median": 20.4,
+        "p75": 21.7,
+        "max": 22.9,
+        "avg": 20.4
+      },
+      "value_total_cad": 29333
+    },
+    "won|onlineMeta Ad": {
+      "n": 2,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.5,
+      "opp_to_appt": {
+        "n": 2,
+        "min": 0.7,
+        "p25": 5.5,
+        "median": 10.2,
+        "p75": 15.0,
+        "max": 19.8,
+        "avg": 10.2
+      },
+      "contact_to_appt": {
+        "n": 2,
+        "min": 24.6,
+        "p25": 34.4,
+        "median": 44.1,
+        "p75": 53.9,
+        "max": 63.6,
+        "avg": 44.1
+      },
+      "booked_to_visit": {
+        "n": 2,
+        "min": 4.0,
+        "p25": 4.3,
+        "median": 4.5,
+        "p75": 4.8,
+        "max": 5.1,
+        "avg": 4.5
+      },
+      "appt_to_close": {
+        "n": 2,
+        "min": 10.3,
+        "p25": 12.8,
+        "median": 15.2,
+        "p75": 17.7,
+        "max": 20.1,
+        "avg": 15.2
+      },
+      "value_total_cad": 10426.5
+    },
+    "won|onlinePreliminary Mobile Quote": {
+      "n": 3,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 3,
+        "min": 0.0,
+        "p25": 1.9,
+        "median": 3.7,
+        "p75": 6.3,
+        "max": 9.0,
+        "avg": 4.2
+      },
+      "contact_to_appt": {
+        "n": 3,
+        "min": 3.7,
+        "p25": 3.8,
+        "median": 3.9,
+        "p75": 6.5,
+        "max": 9.0,
+        "avg": 5.5
+      },
+      "booked_to_visit": {
+        "n": 3,
+        "min": 4.1,
+        "p25": 4.7,
+        "median": 5.3,
+        "p75": 6.5,
+        "max": 7.8,
+        "avg": 5.7
+      },
+      "appt_to_close": {
+        "n": 3,
+        "min": 8.0,
+        "p25": 9.1,
+        "median": 10.2,
+        "p75": 10.6,
+        "max": 11.0,
+        "avg": 9.7
+      },
+      "value_total_cad": 39443.93
+    },
+    "won|onlinetradeshow": {
+      "n": 1,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": 252.8,
+        "p25": 252.8,
+        "median": 252.8,
+        "p75": 252.8,
+        "max": 252.8,
+        "avg": 252.8
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 257.9,
+        "p25": 257.9,
+        "median": 257.9,
+        "p75": 257.9,
+        "max": 257.9,
+        "avg": 257.9
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 7.2,
+        "p25": 7.2,
+        "median": 7.2,
+        "p75": 7.2,
+        "max": 7.2,
+        "avg": 7.2
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 15.0,
+        "p25": 15.0,
+        "median": 15.0,
+        "p75": 15.0,
+        "max": 15.0,
+        "avg": 15.0
+      },
+      "value_total_cad": 4200
+    },
+    "won|referral": {
+      "n": 2,
+      "appt_rate": 0.0,
+      "repeat_rate": 1.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 5250
+    },
+    "won|store - both": {
+      "n": 1,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": -0.0,
+        "p25": -0.0,
+        "median": -0.0,
+        "p75": -0.0,
+        "max": -0.0,
+        "avg": 0.0
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.0,
+        "p75": 0.0,
+        "max": 0.0,
+        "avg": 0.0
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 1.8,
+        "p25": 1.8,
+        "median": 1.8,
+        "p75": 1.8,
+        "max": 1.8,
+        "avg": 1.8
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 10.0,
+        "p25": 10.0,
+        "median": 10.0,
+        "p75": 10.0,
+        "max": 10.0,
+        "avg": 10.0
+      },
+      "value_total_cad": 12199
+    },
+    "won|store - referral": {
+      "n": 1,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 7900
+    },
+    "won|tradeshow": {
+      "n": 4,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 4,
+        "min": -0.0,
+        "p25": -0.0,
+        "median": -0.0,
+        "p75": -0.0,
+        "max": -0.0,
+        "avg": 0.0
+      },
+      "contact_to_appt": {
+        "n": 4,
+        "min": 0.1,
+        "p25": 1.4,
+        "median": 2.5,
+        "p75": 5.7,
+        "max": 13.1,
+        "avg": 4.5
+      },
+      "booked_to_visit": {
+        "n": 4,
+        "min": 5.8,
+        "p25": 6.0,
+        "median": 7.1,
+        "p75": 10.0,
+        "max": 15.6,
+        "avg": 8.9
+      },
+      "appt_to_close": {
+        "n": 4,
+        "min": 15.4,
+        "p25": 19.6,
+        "median": 135.4,
+        "p75": 250.4,
+        "max": 252.1,
+        "avg": 134.6
+      },
+      "value_total_cad": 57918.46
+    },
+    "won|website": {
+      "n": 2,
+      "appt_rate": 0.5,
+      "repeat_rate": 0.5,
+      "opp_to_appt": {
+        "n": 1,
+        "min": 2.0,
+        "p25": 2.0,
+        "median": 2.0,
+        "p75": 2.0,
+        "max": 2.0,
+        "avg": 2.0
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 2.0,
+        "p25": 2.0,
+        "median": 2.0,
+        "p75": 2.0,
+        "max": 2.0,
+        "avg": 2.0
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 8.1,
+        "p25": 8.1,
+        "median": 8.1,
+        "p75": 8.1,
+        "max": 8.1,
+        "avg": 8.1
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 48.1,
+        "p25": 48.1,
+        "median": 48.1,
+        "p75": 48.1,
+        "max": 48.1,
+        "avg": 48.1
+      },
+      "value_total_cad": 7540.99
+    }
+  },
+  "by_source": {
+    "Contractor": {
+      "n": 10,
+      "appt_rate": 0.1,
+      "repeat_rate": 0.9,
+      "opp_to_appt": {
+        "n": 1,
+        "min": -1.9,
+        "p25": -1.9,
+        "median": -1.9,
+        "p75": -1.9,
+        "max": -1.9,
+        "avg": -1.9
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 895.7,
+        "p25": 895.7,
+        "median": 895.7,
+        "p75": 895.7,
+        "max": 895.7,
+        "avg": 895.7
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 0.8,
+        "p25": 0.8,
+        "median": 0.8,
+        "p75": 0.8,
+        "max": 0.8,
+        "avg": 0.8
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 269.8,
+        "p25": 269.8,
+        "median": 269.8,
+        "p75": 269.8,
+        "max": 269.8,
+        "avg": 269.8
+      },
+      "value_total_cad": 61451.66
+    },
+    "David": {
+      "n": 1,
+      "appt_rate": 1.0,
+      "repeat_rate": 1.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.0,
+        "p75": 0.0,
+        "max": 0.0,
+        "avg": 0.0
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 841.6,
+        "p25": 841.6,
+        "median": 841.6,
+        "p75": 841.6,
+        "max": 841.6,
+        "avg": 841.6
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 0.8,
+        "p25": 0.8,
+        "median": 0.8,
+        "p75": 0.8,
+        "max": 0.8,
+        "avg": 0.8
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 8.0,
+        "p25": 8.0,
+        "median": 8.0,
+        "p75": 8.0,
+        "max": 8.0,
+        "avg": 8.0
+      },
+      "value_total_cad": 2500
+    },
+    "Direct": {
+      "n": 16,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.19,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 37131.66
+    },
+    "Facebook": {
+      "n": 15,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.07,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 45195.85
+    },
+    "Google Organic": {
+      "n": 8,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 86063.0
+    },
+    "Meta Ad": {
+      "n": 1383,
+      "appt_rate": 0.19,
+      "repeat_rate": 0.2,
+      "opp_to_appt": {
+        "n": 256,
+        "min": -23.2,
+        "p25": 0.0,
+        "median": 0.3,
+        "p75": 1.6,
+        "max": 203.2,
+        "avg": 6.7
+      },
+      "contact_to_appt": {
+        "n": 256,
+        "min": -0.0,
+        "p25": 0.0,
+        "median": 0.7,
+        "p75": 2.6,
+        "max": 1092.7,
+        "avg": 23.0
+      },
+      "booked_to_visit": {
+        "n": 256,
+        "min": 0.0,
+        "p25": 0.8,
+        "median": 2.1,
+        "p75": 4.2,
+        "max": 59.8,
+        "avg": 3.5
+      },
+      "appt_to_close": {
+        "n": 227,
+        "min": 0.1,
+        "p25": 14.9,
+        "median": 35.3,
+        "p75": 74.7,
+        "max": 650.0,
+        "avg": 76.2
+      },
+      "value_total_cad": 1752208.44
+    },
+    "Other / Unsure": {
+      "n": 2,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 10616
+    },
+    "Pourya": {
+      "n": 3,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.33,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 25182.5
+    },
+    "Preliminary Mobile Quote": {
+      "n": 17,
+      "appt_rate": 0.53,
+      "repeat_rate": 0.24,
+      "opp_to_appt": {
+        "n": 9,
+        "min": -19.8,
+        "p25": -3.1,
+        "median": 0.0,
+        "p75": 0.1,
+        "max": 14.0,
+        "avg": -1.3
+      },
+      "contact_to_appt": {
+        "n": 9,
+        "min": 0.0,
+        "p25": 0.9,
+        "median": 6.0,
+        "p75": 14.0,
+        "max": 44.2,
+        "avg": 13.6
+      },
+      "booked_to_visit": {
+        "n": 9,
+        "min": 0.0,
+        "p25": 0.1,
+        "median": 1.3,
+        "p75": 3.8,
+        "max": 5.9,
+        "avg": 2.2
+      },
+      "appt_to_close": {
+        "n": 6,
+        "min": 0.7,
+        "p25": 1.5,
+        "median": 13.4,
+        "p75": 41.3,
+        "max": 138.7,
+        "avg": 35.7
+      },
+      "value_total_cad": 176909.44
+    },
+    "Referral": {
+      "n": 3,
+      "appt_rate": 0.67,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 2,
+        "min": -0.0,
+        "p25": 0.2,
+        "median": 0.5,
+        "p75": 0.7,
+        "max": 0.9,
+        "avg": 0.5
+      },
+      "contact_to_appt": {
+        "n": 2,
+        "min": 0.0,
+        "p25": 0.2,
+        "median": 0.5,
+        "p75": 0.7,
+        "max": 0.9,
+        "avg": 0.5
+      },
+      "booked_to_visit": {
+        "n": 2,
+        "min": 1.3,
+        "p25": 1.8,
+        "median": 2.2,
+        "p75": 2.7,
+        "max": 3.1,
+        "avg": 2.2
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 17.0,
+        "p25": 17.0,
+        "median": 17.0,
+        "p75": 17.0,
+        "max": 17.0,
+        "avg": 17.0
+      },
+      "value_total_cad": 40676
+    },
+    "Saw the Store / Drove By": {
+      "n": 1,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 4265
+    },
+    "Store": {
+      "n": 358,
+      "appt_rate": 0.49,
+      "repeat_rate": 0.22,
+      "opp_to_appt": {
+        "n": 175,
+        "min": -23.9,
+        "p25": -0.0,
+        "median": -0.0,
+        "p75": -0.0,
+        "max": 65.9,
+        "avg": 0.6
+      },
+      "contact_to_appt": {
+        "n": 175,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.1,
+        "p75": 6.0,
+        "max": 1067.4,
+        "avg": 54.1
+      },
+      "booked_to_visit": {
+        "n": 175,
+        "min": 0.0,
+        "p25": 0.9,
+        "median": 2.5,
+        "p75": 4.0,
+        "max": 12.9,
+        "avg": 2.9
+      },
+      "appt_to_close": {
+        "n": 162,
+        "min": 0.0,
+        "p25": 9.0,
+        "median": 21.8,
+        "p75": 52.6,
+        "max": 525.1,
+        "avg": 56.9
+      },
+      "value_total_cad": 2698900.47
+    },
+    "Tradeshow": {
+      "n": 7,
+      "appt_rate": 0.29,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 2,
+        "min": 1.7,
+        "p25": 17.5,
+        "median": 33.3,
+        "p75": 49.1,
+        "max": 64.9,
+        "avg": 33.3
+      },
+      "contact_to_appt": {
+        "n": 2,
+        "min": 5.7,
+        "p25": 21.5,
+        "median": 37.3,
+        "p75": 53.1,
+        "max": 68.9,
+        "avg": 37.3
+      },
+      "booked_to_visit": {
+        "n": 2,
+        "min": 4.1,
+        "p25": 4.6,
+        "median": 5.2,
+        "p75": 5.7,
+        "max": 6.2,
+        "avg": 5.2
+      },
+      "appt_to_close": {
+        "n": 2,
+        "min": 12.1,
+        "p25": 28.9,
+        "median": 45.8,
+        "p75": 62.6,
+        "max": 79.5,
+        "avg": 45.8
+      },
+      "value_total_cad": 9500
+    },
+    "Unknown": {
+      "n": 4,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.75,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 12000
+    },
+    "Word of Mouth": {
+      "n": 1,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 3327.5
+    },
+    "Yard Sign": {
+      "n": 1,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 4238.32
+    },
+    "contractor": {
+      "n": 2,
+      "appt_rate": 0.0,
+      "repeat_rate": 1.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 8900
+    },
+    "facebook": {
+      "n": 2,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 2,
+        "min": -0.0,
+        "p25": 0.0,
+        "median": 0.1,
+        "p75": 0.1,
+        "max": 0.1,
+        "avg": 0.1
+      },
+      "contact_to_appt": {
+        "n": 2,
+        "min": 0.1,
+        "p25": 0.9,
+        "median": 1.8,
+        "p75": 2.6,
+        "max": 3.5,
+        "avg": 1.8
+      },
+      "booked_to_visit": {
+        "n": 2,
+        "min": 1.0,
+        "p25": 1.1,
+        "median": 1.1,
+        "p75": 1.2,
+        "max": 1.3,
+        "avg": 1.1
+      },
+      "appt_to_close": {
+        "n": 2,
+        "min": 16.4,
+        "p25": 19.5,
+        "median": 22.6,
+        "p75": 25.8,
+        "max": 28.9,
+        "avg": 22.6
+      },
+      "value_total_cad": 25400
+    },
+    "facebook form lead": {
+      "n": 2,
+      "appt_rate": 0.0,
+      "repeat_rate": 1.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 0
+    },
+    "hike": {
+      "n": 2,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.5,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 14029.55
+    },
+    "lightspeed": {
+      "n": 60,
+      "appt_rate": 0.05,
+      "repeat_rate": 0.47,
+      "opp_to_appt": {
+        "n": 3,
+        "min": -0.0,
+        "p25": 10.1,
+        "median": 20.2,
+        "p75": 170.6,
+        "max": 321.0,
+        "avg": 113.7
+      },
+      "contact_to_appt": {
+        "n": 3,
+        "min": 0.0,
+        "p25": 10.1,
+        "median": 20.2,
+        "p75": 588.4,
+        "max": 1156.6,
+        "avg": 392.3
+      },
+      "booked_to_visit": {
+        "n": 3,
+        "min": 0.7,
+        "p25": 0.8,
+        "median": 0.9,
+        "p75": 0.9,
+        "max": 1.0,
+        "avg": 0.9
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 34.7,
+        "p25": 34.7,
+        "median": 34.7,
+        "p75": 34.7,
+        "max": 34.7,
+        "avg": 34.7
+      },
+      "value_total_cad": 220197.56
+    },
+    "online": {
+      "n": 5,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 5,
+        "min": -0.0,
+        "p25": -0.0,
+        "median": -0.0,
+        "p75": 0.0,
+        "max": 125.0,
+        "avg": 25.0
+      },
+      "contact_to_appt": {
+        "n": 5,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.0,
+        "p75": 0.0,
+        "max": 125.0,
+        "avg": 25.0
+      },
+      "booked_to_visit": {
+        "n": 5,
+        "min": 3.1,
+        "p25": 6.0,
+        "median": 7.0,
+        "p75": 7.2,
+        "max": 8.1,
+        "avg": 6.3
+      },
+      "appt_to_close": {
+        "n": 2,
+        "min": 18.0,
+        "p25": 19.2,
+        "median": 20.4,
+        "p75": 21.7,
+        "max": 22.9,
+        "avg": 20.4
+      },
+      "value_total_cad": 43533
+    },
+    "onlineMeta Ad": {
+      "n": 9,
+      "appt_rate": 0.89,
+      "repeat_rate": 0.11,
+      "opp_to_appt": {
+        "n": 8,
+        "min": 0.1,
+        "p25": 0.5,
+        "median": 0.8,
+        "p75": 18.6,
+        "max": 99.3,
+        "avg": 17.5
+      },
+      "contact_to_appt": {
+        "n": 8,
+        "min": 0.1,
+        "p25": 0.5,
+        "median": 9.5,
+        "p75": 34.4,
+        "max": 99.3,
+        "avg": 26.0
+      },
+      "booked_to_visit": {
+        "n": 8,
+        "min": 1.2,
+        "p25": 3.3,
+        "median": 4.0,
+        "p75": 5.3,
+        "max": 7.9,
+        "avg": 4.2
+      },
+      "appt_to_close": {
+        "n": 3,
+        "min": 10.3,
+        "p25": 15.2,
+        "median": 20.1,
+        "p75": 25.2,
+        "max": 30.4,
+        "avg": 20.3
+      },
+      "value_total_cad": 133853.59
+    },
+    "onlinePreliminary Mobile Quote": {
+      "n": 5,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 5,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 3.0,
+        "p75": 3.7,
+        "max": 9.0,
+        "avg": 3.1
+      },
+      "contact_to_appt": {
+        "n": 5,
+        "min": 0.0,
+        "p25": 3.0,
+        "median": 3.7,
+        "p75": 3.9,
+        "max": 9.0,
+        "avg": 3.9
+      },
+      "booked_to_visit": {
+        "n": 5,
+        "min": 4.1,
+        "p25": 4.9,
+        "median": 5.3,
+        "p75": 7.8,
+        "max": 8.1,
+        "avg": 6.0
+      },
+      "appt_to_close": {
+        "n": 3,
+        "min": 8.0,
+        "p25": 9.1,
+        "median": 10.2,
+        "p75": 10.6,
+        "max": 11.0,
+        "avg": 9.7
+      },
+      "value_total_cad": 59315.93
+    },
+    "onlineUnknown": {
+      "n": 1,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": 6.4,
+        "p25": 6.4,
+        "median": 6.4,
+        "p75": 6.4,
+        "max": 6.4,
+        "avg": 6.4
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 6.4,
+        "p25": 6.4,
+        "median": 6.4,
+        "p75": 6.4,
+        "max": 6.4,
+        "avg": 6.4
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 5.4,
+        "p25": 5.4,
+        "median": 5.4,
+        "p75": 5.4,
+        "max": 5.4,
+        "avg": 5.4
+      },
+      "appt_to_close": null,
+      "value_total_cad": 8860
+    },
+    "onlinetradeshow": {
+      "n": 1,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": 252.8,
+        "p25": 252.8,
+        "median": 252.8,
+        "p75": 252.8,
+        "max": 252.8,
+        "avg": 252.8
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 257.9,
+        "p25": 257.9,
+        "median": 257.9,
+        "p75": 257.9,
+        "max": 257.9,
+        "avg": 257.9
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 7.2,
+        "p25": 7.2,
+        "median": 7.2,
+        "p75": 7.2,
+        "max": 7.2,
+        "avg": 7.2
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 15.0,
+        "p25": 15.0,
+        "median": 15.0,
+        "p75": 15.0,
+        "max": 15.0,
+        "avg": 15.0
+      },
+      "value_total_cad": 4200
+    },
+    "onlinewebsite": {
+      "n": 1,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": 0.2,
+        "p25": 0.2,
+        "median": 0.2,
+        "p75": 0.2,
+        "max": 0.2,
+        "avg": 0.2
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 0.2,
+        "p25": 0.2,
+        "median": 0.2,
+        "p75": 0.2,
+        "max": 0.2,
+        "avg": 0.2
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 0.2,
+        "p25": 0.2,
+        "median": 0.2,
+        "p75": 0.2,
+        "max": 0.2,
+        "avg": 0.2
+      },
+      "appt_to_close": null,
+      "value_total_cad": 4341
+    },
+    "referral": {
+      "n": 2,
+      "appt_rate": 0.0,
+      "repeat_rate": 1.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 5250
+    },
+    "store - both": {
+      "n": 1,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": -0.0,
+        "p25": -0.0,
+        "median": -0.0,
+        "p75": -0.0,
+        "max": -0.0,
+        "avg": 0.0
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.0,
+        "p75": 0.0,
+        "max": 0.0,
+        "avg": 0.0
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 1.8,
+        "p25": 1.8,
+        "median": 1.8,
+        "p75": 1.8,
+        "max": 1.8,
+        "avg": 1.8
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 10.0,
+        "p25": 10.0,
+        "median": 10.0,
+        "p75": 10.0,
+        "max": 10.0,
+        "avg": 10.0
+      },
+      "value_total_cad": 12199
+    },
+    "store - pos": {
+      "n": 1,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 2500
+    },
+    "store - referral": {
+      "n": 1,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 7900
+    },
+    "tradeshow": {
+      "n": 27,
+      "appt_rate": 0.37,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 10,
+        "min": -3.2,
+        "p25": -0.0,
+        "median": -0.0,
+        "p75": 0.1,
+        "max": 57.0,
+        "avg": 5.7
+      },
+      "contact_to_appt": {
+        "n": 10,
+        "min": 0.1,
+        "p25": 2.2,
+        "median": 6.0,
+        "p75": 8.5,
+        "max": 61.0,
+        "avg": 10.9
+      },
+      "booked_to_visit": {
+        "n": 10,
+        "min": 0.0,
+        "p25": 5.9,
+        "median": 6.1,
+        "p75": 6.9,
+        "max": 15.6,
+        "avg": 6.3
+      },
+      "appt_to_close": {
+        "n": 10,
+        "min": 3.9,
+        "p25": 21.3,
+        "median": 51.7,
+        "p75": 219.6,
+        "max": 266.9,
+        "avg": 106.3
+      },
+      "value_total_cad": 67918.46
+    },
+    "website": {
+      "n": 9,
+      "appt_rate": 0.44,
+      "repeat_rate": 0.22,
+      "opp_to_appt": {
+        "n": 4,
+        "min": -6.0,
+        "p25": -4.0,
+        "median": -1.6,
+        "p75": 0.5,
+        "max": 2.0,
+        "avg": -1.8
+      },
+      "contact_to_appt": {
+        "n": 4,
+        "min": 0.0,
+        "p25": 0.2,
+        "median": 0.6,
+        "p75": 1.2,
+        "max": 2.0,
+        "avg": 0.8
+      },
+      "booked_to_visit": {
+        "n": 4,
+        "min": 0.2,
+        "p25": 0.2,
+        "median": 1.7,
+        "p75": 4.4,
+        "max": 8.1,
+        "avg": 2.9
+      },
+      "appt_to_close": {
+        "n": 2,
+        "min": 32.2,
+        "p25": 36.2,
+        "median": 40.2,
+        "p75": 44.1,
+        "max": 48.1,
+        "avg": 40.2
+      },
+      "value_total_cad": 27230.99
+    }
+  },
+  "by_pipeline_status": {
+    "(1) PROJECT: Lead Qualification|abandoned": {
+      "n": 940,
+      "appt_rate": 0.04,
+      "repeat_rate": 0.14,
+      "opp_to_appt": {
+        "n": 38,
+        "min": -5.9,
+        "p25": 0.0,
+        "median": 0.1,
+        "p75": 1.1,
+        "max": 142.1,
+        "avg": 7.3
+      },
+      "contact_to_appt": {
+        "n": 38,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.5,
+        "p75": 3.1,
+        "max": 289.7,
+        "avg": 13.2
+      },
+      "booked_to_visit": {
+        "n": 38,
+        "min": 0.0,
+        "p25": 0.1,
+        "median": 0.6,
+        "p75": 2.6,
+        "max": 6.1,
+        "avg": 1.5
+      },
+      "appt_to_close": {
+        "n": 38,
+        "min": 0.1,
+        "p25": 13.1,
+        "median": 14.9,
+        "p75": 47.0,
+        "max": 500.0,
+        "avg": 63.1
+      },
+      "value_total_cad": 251682.99
+    },
+    "(1) PROJECT: Lead Qualification|lost": {
+      "n": 106,
+      "appt_rate": 0.08,
+      "repeat_rate": 0.41,
+      "opp_to_appt": {
+        "n": 8,
+        "min": -0.0,
+        "p25": -0.0,
+        "median": 0.1,
+        "p75": 1.2,
+        "max": 11.6,
+        "avg": 1.8
+      },
+      "contact_to_appt": {
+        "n": 8,
+        "min": -0.0,
+        "p25": 0.0,
+        "median": 0.5,
+        "p75": 4.5,
+        "max": 15.4,
+        "avg": 3.8
+      },
+      "booked_to_visit": {
+        "n": 8,
+        "min": 0.5,
+        "p25": 2.4,
+        "median": 3.9,
+        "p75": 4.7,
+        "max": 27.3,
+        "avg": 6.2
+      },
+      "appt_to_close": {
+        "n": 8,
+        "min": 29.7,
+        "p25": 106.5,
+        "median": 122.9,
+        "p75": 158.4,
+        "max": 397.2,
+        "avg": 155.8
+      },
+      "value_total_cad": 104312.04
+    },
+    "(1) PROJECT: Lead Qualification|open": {
+      "n": 201,
+      "appt_rate": 0.07,
+      "repeat_rate": 0.53,
+      "opp_to_appt": {
+        "n": 14,
+        "min": -19.8,
+        "p25": -6.0,
+        "median": -0.9,
+        "p75": 1.7,
+        "max": 65.9,
+        "avg": 2.9
+      },
+      "contact_to_appt": {
+        "n": 14,
+        "min": 0.0,
+        "p25": 0.1,
+        "median": 1.0,
+        "p75": 18.9,
+        "max": 65.9,
+        "avg": 12.1
+      },
+      "booked_to_visit": {
+        "n": 14,
+        "min": 0.0,
+        "p25": 0.4,
+        "median": 1.2,
+        "p75": 5.4,
+        "max": 10.8,
+        "avg": 3.0
+      },
+      "appt_to_close": null,
+      "value_total_cad": 372640.68
+    },
+    "(1) PROJECT: Lead Qualification|won": {
+      "n": 1,
+      "appt_rate": 1.0,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": -1.2,
+        "p25": -1.2,
+        "median": -1.2,
+        "p75": -1.2,
+        "max": -1.2,
+        "avg": -1.2
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.0,
+        "p75": 0.0,
+        "max": 0.0,
+        "avg": 0.0
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 1.2,
+        "p25": 1.2,
+        "median": 1.2,
+        "p75": 1.2,
+        "max": 1.2,
+        "avg": 1.2
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 41.9,
+        "p25": 41.9,
+        "median": 41.9,
+        "p75": 41.9,
+        "max": 41.9,
+        "avg": 41.9
+      },
+      "value_total_cad": 0
+    },
+    "(2) PROJECT: Sales Pipeline|abandoned": {
+      "n": 195,
+      "appt_rate": 0.77,
+      "repeat_rate": 0.12,
+      "opp_to_appt": {
+        "n": 151,
+        "min": -23.9,
+        "p25": 0.0,
+        "median": -0.0,
+        "p75": 1.2,
+        "max": 142.2,
+        "avg": 4.3
+      },
+      "contact_to_appt": {
+        "n": 151,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.8,
+        "p75": 4.2,
+        "max": 1067.4,
+        "avg": 31.0
+      },
+      "booked_to_visit": {
+        "n": 151,
+        "min": 0.0,
+        "p25": 0.9,
+        "median": 2.0,
+        "p75": 4.1,
+        "max": 59.8,
+        "avg": 3.6
+      },
+      "appt_to_close": {
+        "n": 151,
+        "min": 0.7,
+        "p25": 31.6,
+        "median": 49.1,
+        "p75": 81.8,
+        "max": 650.0,
+        "avg": 98.9
+      },
+      "value_total_cad": 863837.03
+    },
+    "(2) PROJECT: Sales Pipeline|lost": {
+      "n": 110,
+      "appt_rate": 0.56,
+      "repeat_rate": 0.09,
+      "opp_to_appt": {
+        "n": 62,
+        "min": -3.4,
+        "p25": -0.0,
+        "median": 0.0,
+        "p75": 0.7,
+        "max": 142.2,
+        "avg": 4.3
+      },
+      "contact_to_appt": {
+        "n": 62,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.3,
+        "p75": 2.8,
+        "max": 219.2,
+        "avg": 13.7
+      },
+      "booked_to_visit": {
+        "n": 62,
+        "min": 0.0,
+        "p25": 1.0,
+        "median": 2.5,
+        "p75": 4.1,
+        "max": 14.2,
+        "avg": 3.1
+      },
+      "appt_to_close": {
+        "n": 62,
+        "min": 3.1,
+        "p25": 17.2,
+        "median": 34.0,
+        "p75": 77.5,
+        "max": 389.3,
+        "avg": 63.2
+      },
+      "value_total_cad": 1015215.46
+    },
+    "(2) PROJECT: Sales Pipeline|open": {
+      "n": 54,
+      "appt_rate": 0.85,
+      "repeat_rate": 0.17,
+      "opp_to_appt": {
+        "n": 46,
+        "min": -3.3,
+        "p25": -0.0,
+        "median": 0.0,
+        "p75": 0.5,
+        "max": 174.1,
+        "avg": 5.3
+      },
+      "contact_to_appt": {
+        "n": 46,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.2,
+        "p75": 4.0,
+        "max": 1092.7,
+        "avg": 50.4
+      },
+      "booked_to_visit": {
+        "n": 46,
+        "min": 0.0,
+        "p25": 1.9,
+        "median": 3.9,
+        "p75": 6.0,
+        "max": 10.8,
+        "avg": 4.0
+      },
+      "appt_to_close": null,
+      "value_total_cad": 391308.43
+    },
+    "(2) PROJECT: Sales Pipeline|won": {
+      "n": 291,
+      "appt_rate": 0.56,
+      "repeat_rate": 0.23,
+      "opp_to_appt": {
+        "n": 164,
+        "min": -23.2,
+        "p25": -0.0,
+        "median": -0.0,
+        "p75": 0.8,
+        "max": 252.8,
+        "avg": 6.0
+      },
+      "contact_to_appt": {
+        "n": 164,
+        "min": -0.0,
+        "p25": 0.0,
+        "median": 0.9,
+        "p75": 7.0,
+        "max": 905.4,
+        "avg": 57.8
+      },
+      "booked_to_visit": {
+        "n": 164,
+        "min": 0.0,
+        "p25": 0.9,
+        "median": 2.9,
+        "p75": 4.9,
+        "max": 23.1,
+        "avg": 3.3
+      },
+      "appt_to_close": {
+        "n": 164,
+        "min": 0.0,
+        "p25": 7.1,
+        "median": 15.1,
+        "p75": 28.9,
+        "max": 611.1,
+        "avg": 36.1
+      },
+      "value_total_cad": 2382571.18
+    },
+    "STORE: Material Pipeline|abandoned": {
+      "n": 2,
+      "appt_rate": 0.5,
+      "repeat_rate": 0.0,
+      "opp_to_appt": {
+        "n": 1,
+        "min": -0.0,
+        "p25": -0.0,
+        "median": -0.0,
+        "p75": -0.0,
+        "max": -0.0,
+        "avg": 0.0
+      },
+      "contact_to_appt": {
+        "n": 1,
+        "min": 0.0,
+        "p25": 0.0,
+        "median": 0.0,
+        "p75": 0.0,
+        "max": 0.0,
+        "avg": 0.0
+      },
+      "booked_to_visit": {
+        "n": 1,
+        "min": 0.7,
+        "p25": 0.7,
+        "median": 0.7,
+        "p75": 0.7,
+        "max": 0.7,
+        "avg": 0.7
+      },
+      "appt_to_close": {
+        "n": 1,
+        "min": 34.7,
+        "p25": 34.7,
+        "median": 34.7,
+        "p75": 34.7,
+        "max": 34.7,
+        "avg": 34.7
+      },
+      "value_total_cad": 5883.49
+    },
+    "STORE: Material Pipeline|lost": {
+      "n": 7,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.29,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 17481.71
+    },
+    "STORE: Material Pipeline|open": {
+      "n": 48,
+      "appt_rate": 0.04,
+      "repeat_rate": 0.52,
+      "opp_to_appt": {
+        "n": 2,
+        "min": 20.2,
+        "p25": 95.4,
+        "median": 170.6,
+        "p75": 245.8,
+        "max": 321.0,
+        "avg": 170.6
+      },
+      "contact_to_appt": {
+        "n": 2,
+        "min": 20.2,
+        "p25": 304.3,
+        "median": 588.4,
+        "p75": 872.5,
+        "max": 1156.6,
+        "avg": 588.4
+      },
+      "booked_to_visit": {
+        "n": 2,
+        "min": 0.9,
+        "p25": 0.9,
+        "median": 0.9,
+        "p75": 1.0,
+        "max": 1.0,
+        "avg": 0.9
+      },
+      "appt_to_close": null,
+      "value_total_cad": 188063.0
+    },
+    "STORE: Material Pipeline|won": {
+      "n": 6,
+      "appt_rate": 0.0,
+      "repeat_rate": 0.5,
+      "opp_to_appt": null,
+      "contact_to_appt": null,
+      "booked_to_visit": null,
+      "appt_to_close": null,
+      "value_total_cad": 22798.91
+    }
+  }
+}
