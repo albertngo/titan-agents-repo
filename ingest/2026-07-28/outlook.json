@@ -1,0 +1,18 @@
+{
+  "contract_version": "1",
+  "source": "outlook",
+  "run_at": "2026-07-28T10:30:33-04:00",
+  "status": "error",
+  "error": "No Outlook/M365 access available: no Outlook MCP connector is attached to this session (.mcp.json defines only the GHL server), and no Microsoft Graph credentials are configured (.env contains only GHL_PIT_TOKEN, GHL_LOCATION_ID, TZ, VAULT_PATH, VAULT_AUTOPUSH — no GRAPH_*/AZURE_* vars). The last 24h of the inbox was not scanned. Third consecutive failed run (2026-07-26, 2026-07-27, 2026-07-28).",
+  "items": [],
+  "metrics": {
+    "total_scanned": 0,
+    "customer": 0,
+    "supplier": 0,
+    "admin": 0,
+    "noise_skipped": 0
+  },
+  "needs_attention": [
+    "Outlook ingest failed for the 3rd consecutive day (2026-07-26 through 2026-07-28) — the email feed is dark. Connect the Outlook/M365 MCP connector or add Microsoft Graph credentials (client id/secret/tenant) to .env, then re-run; three days of inbox activity are unscanned."
+  ]
+}

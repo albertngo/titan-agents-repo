@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "source": "bookkeeper",
+  "run_at": "2026-07-28T10:29:43-04:00",
+  "status": "error",
+  "error": "Intuit QuickBooks MCP connector unavailable in this session — no QuickBooks tools were loaded, so no QBO data could be retrieved. Metrics are placeholders (0), not real values. Third consecutive daily failure (2026-07-26, 2026-07-27, 2026-07-28).",
+  "items": [],
+  "metrics": {
+    "payments_received_cents": 0,
+    "overdue_invoices": 0,
+    "uncategorized_txns": 0
+  },
+  "needs_attention": [
+    "QuickBooks ingest failed 2026-07-28: MCP connector not available — third consecutive day (since 2026-07-26). Payments, overdue invoices, and uncategorized transactions are unknown for the whole window. Reconnect the Intuit QuickBooks MCP and re-run the bookkeeper ingest; expect a 3-day backlog when it comes back."
+  ]
+}
