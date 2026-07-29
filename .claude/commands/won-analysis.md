@@ -109,12 +109,12 @@ CSV at all. Copying by name-similarity produces silently wrong records.
 | `pipeline` | — | Not in the CSV. Resolve the opportunity's `pipelineId` through `opportunities_get-pipelines`. |
 | `created` | `opp_created_date` | **Not `lead_date`.** `lead_date` is `min(contact.dateAdded, opportunity.createdAt)`; `created` is the opportunity's own `createdAt`. They differ by months for repeat customers. |
 | `first_contact` | — | Not in the CSV. First message in either direction, from the cached conversation pull. |
-| `appointment_date` | — | Only the offset is emitted. Derive: `lead_date + days_lead_to_appt`. |
+| `appointment_date` | — | Only the offset is emitted. Derive: `opp_created_date + days_opp_to_appt`. |
 | `visit_type` | `appt_modes` | Vocabulary differs — see below. |
 | `won_date` | `close_date` | direct |
 | `value_cents` | `value_cad` | **× 100.** `value_cad` is dollars; `value_cents` is integer cents. Copying it straight understates every deal 100-fold. |
 | `days_lead_to_contact` | — | Not in the CSV; depends on `first_contact`. |
-| `days_lead_to_appointment` | `days_lead_to_appt` | rename only |
+| `days_lead_to_appointment` | `days_opp_to_appt` | **Anchor differs (v2).** The CSV figure is opportunity-anchored; the schema field's lead-anchored value is `days_opp_to_appt + max(0, days_contact_to_opp)`. Prefer reporting the opp-anchored number — the lead-anchored one is meaningless for repeat customers. |
 | `days_appointment_to_won` | `days_appt_to_close` | rename only |
 | `contact_points.{calls,sms,emails}` | `channels` | A JSON channel→count blob. Split it; don't paste it. |
 | `conversation_summary` | — | Not in the CSV. Written by reading the thread. |

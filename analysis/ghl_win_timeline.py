@@ -3,8 +3,9 @@
 
 Read-only against GHL (uses $GHL_PIT_TOKEN / $GHL_LOCATION_ID).
 Pulls all won opportunities, their contacts, and full conversation
-histories; computes lead-to-close durations, appointment timing, and
-touch/workload metrics; writes CSV + stats JSON + markdown tables.
+histories; computes lead-age and deal-cycle durations, opportunity-anchored
+appointment timing, and touch/workload metrics; writes CSV + stats JSON +
+markdown tables.
 
 Raw pulls are cached under analysis/cache/ so re-runs only fetch what's
 missing; that dir stays gitignored (full message bodies, regenerable with
@@ -21,7 +22,7 @@ import os
 import statistics
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -75,7 +76,9 @@ def get(path, params=None):
         r = SESSION.get(f"{BASE}{path}", params=params, timeout=30)
         if r.status_code == 404:
             return None
-        if r.status_code in (429, 500, 502, 503, 504):
+        # 401 included: GHL intermittently rejects a valid PIT mid-burst
+        # (observed 2026-07-29); a genuinely dead token exhausts retries.
+        if r.status_code in (401, 429, 500, 502, 503, 504):
             time.sleep(2 ** attempt)
             continue
         r.raise_for_status()
@@ -106,6 +109,13 @@ def days(a, b):
 # repeat customer. Threshold is a judgment call, not a GHL field — it is stated here
 # and in methods/ghl-analysis-framework.md so the repeat rate is reproducible. Changing
 # it changes every repeat figure downstream.
+#
+# The same constant bounds the deal-activity window: touches and appointments count
+# toward an opportunity only from REPEAT_GAP_DAYS before its creation through its
+# close. Anything older belongs to a prior relationship (repeat customers carry years
+# of history that would otherwise contaminate this deal's appointment and workload
+# metrics), while appointments logged a few days before the opp record — walk-ins
+# whose opportunity was created after booking — stay in.
 REPEAT_GAP_DAYS = 30
 
 
@@ -204,7 +214,10 @@ def build_record(opp, contact, messages, anomalies):
     comm.sort(key=lambda m: m["ts"])
     appts.sort()
 
-    pre = [m for m in comm if m["ts"] <= close]
+    # Deal-scoped window (see REPEAT_GAP_DAYS): only activity from shortly
+    # before this opportunity's creation through its close counts toward it.
+    window_start = opp_created - timedelta(days=REPEAT_GAP_DAYS)
+    pre = [m for m in comm if window_start <= m["ts"] <= close]
     inbound = [m for m in pre if m["direction"] == "inbound"]
     outbound = [m for m in pre if m["direction"] == "outbound"]
 
@@ -221,8 +234,8 @@ def build_record(opp, contact, messages, anomalies):
                 for a, b in zip(outbound, outbound[1:])]
         cadence = round(statistics.median(gaps), 2)
 
-    first_appt = next((a for a in appts if a[0] <= close), None)
-    appt_modes = sorted({mode for ts, mode in appts if ts <= close})
+    first_appt = next((a for a in appts if window_start <= a[0] <= close), None)
+    appt_modes = sorted({mode for ts, mode in appts if window_start <= ts <= close})
 
     channels = {}
     for m in pre:
@@ -252,10 +265,14 @@ def build_record(opp, contact, messages, anomalies):
         "outbound_cadence_days": cadence,
         "appt_booked": bool(first_appt),
         "appt_modes": "+".join(appt_modes),
-        "days_lead_to_appt": days(min([d for d in (contact_added, opp_created) if d]),
-                                  first_appt[0]) if first_appt else None,
+        # Anchored on opportunity creation, not lead date: repeat customers'
+        # contact records predate the deal by months or years, which made the
+        # old lead-anchored figure meaningless for them. Slightly negative
+        # values (≥ -REPEAT_GAP_DAYS) are appointments booked just before the
+        # opp record existed.
+        "days_opp_to_appt": days(opp_created, first_appt[0]) if first_appt else None,
         "days_appt_to_close": days(first_appt[0], close) if first_appt else None,
-        "touches_before_appt": sum(1 for m in comm if first_appt and m["ts"] <= first_appt[0])
+        "touches_before_appt": sum(1 for m in pre if m["ts"] <= first_appt[0])
                                if first_appt else None,
     }
 
@@ -299,8 +316,8 @@ def group_stats(rows, key):
             "touches": five_num([r["touches_total"] for r in grp]),
             "outbound": five_num([r["touches_outbound"] for r in grp]),
             "appt_rate": round(sum(1 for r in grp if r["appt_booked"]) / len(grp), 2),
-            "lead_to_appt": five_num([r["days_lead_to_appt"] for r in grp
-                                      if r["days_lead_to_appt"] is not None]),
+            "opp_to_appt": five_num([r["days_opp_to_appt"] for r in grp
+                                     if r["days_opp_to_appt"] is not None]),
             "appt_to_close": five_num([r["days_appt_to_close"] for r in grp
                                        if r["days_appt_to_close"] is not None]),
             "first_response_min": five_num([r["first_response_min"] for r in grp

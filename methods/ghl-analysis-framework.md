@@ -17,7 +17,12 @@ Requires `GHL_PIT_TOKEN` (read-only PIT) + `GHL_LOCATION_ID`. Outputs:
 `analysis/output/won_rows.csv` (one row per won opportunity),
 `analysis/output/stats.json` (aggregates).
 
-## Metric definitions (v1)
+## Metric definitions (v2)
+
+v2 (2026-07-28): appointment and touch metrics are **opportunity-anchored** —
+scoped to the deal window `[opp_created − 30 d, close]` — instead of running over
+the contact's whole history. `days_lead_to_appt` was replaced by
+`days_opp_to_appt`. Rationale under "Lead age vs sales cycle" below.
 
 | Metric | Definition |
 |---|---|
@@ -29,12 +34,13 @@ Requires `GHL_PIT_TOKEN` (read-only PIT) + `GHL_LOCATION_ID`. Outputs:
 | `days_contact_to_opp` | `opp_created_date − contact.dateAdded`. The repeat-customer signal. |
 | `repeat_customer` | `days_contact_to_opp > 30`. The 30-day threshold is a judgment call, not a GHL field; it lives in `REPEAT_GAP_DAYS` in the script. Changing it changes every repeat figure. |
 | `source` | `opportunity.source`, fallback `contact.source`, else `Unknown`. `attribution_first` (first-touch UTM session source) kept as a secondary column. |
+| Deal window | `[opp_created_date − REPEAT_GAP_DAYS, close_date]`. Activity outside it belongs to a prior relationship, not this deal. Reuses the 30-day repeat threshold deliberately — one line defines both "repeat customer" and "whose deal is this activity". |
 | Touch | One communication message (SMS, email, call, WhatsApp, social, chat — incl. campaign/automated variants). `TYPE_ACTIVITY_*` events and internal comments are not touches. |
-| Pre-close | Touch timestamps ≤ `close_date`. All workload metrics use pre-close touches only. |
+| Pre-close | Touches inside the deal window. All workload metrics use these only. |
 | `first_response_min` | First inbound message → next outbound message, minutes. |
 | `outbound_cadence_days` | Median gap between consecutive outbound touches. |
-| Appointment | First `TYPE_ACTIVITY_APPOINTMENT` event in the contact's conversations. Body prefix classifies mode: `Visit:` → in-home, `Store:` → in-store. |
-| `days_lead_to_appt` / `days_appt_to_close` | Lead → first appointment; first appointment → close. |
+| Appointment | First `TYPE_ACTIVITY_APPOINTMENT` event **inside the deal window** (not first-ever in the contact's history). Body prefix classifies mode: `Visit:` → in-home, `Store:` → in-store. |
+| `days_opp_to_appt` / `days_appt_to_close` | Opportunity created → first in-window appointment; that appointment → close. Slightly negative `days_opp_to_appt` (≥ −30) is real: the appointment was booked just before the opp record was created. |
 | Workload index | Pre-close outbound touches (calls, SMS, emails our side sent). Compare per source to see cost-per-close. |
 
 Buckets for duration distribution: 0–1, 1–3, 3–7, 7–14, 14–30, 30–60, 60–90,
@@ -52,6 +58,17 @@ numbers are real and they answer different questions:
 
 Quote `cycle_days` for anything about sales-cycle length or pipeline forecasting, and
 say which one you used. `repeat_rate` per source explains most of the gap between them.
+
+The same trap applies to **every per-deal metric**, which is why appointments and
+touches are scoped to the deal window (v2). Before that, a repeat customer's row
+used the first appointment and full message history of the *contact* — SALIH's
+fourth win reported a 905-day "lead → appointment" because the appointment
+belonged to a deal three years earlier. Opportunity `createdAt` is the default
+clock for anything measuring this deal; `contact.dateAdded` is only a lead-age /
+repeat-customer signal. In the 2026-07-26 corpus the v2 window dropped 13
+prior-relationship first-appointments (6 rows had a later in-window appointment
+that took over; 7 correctly flipped to no-appointment) and kept all 12
+appointments booked within 30 days before their opp record.
 
 ### Percentiles are inclusive
 
