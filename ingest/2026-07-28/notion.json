@@ -1,51 +1,15 @@
 {
   "contract_version": "1",
   "source": "notion",
-  "run_at": "2026-07-28T08:19:33-04:00",
+  "run_at": "2026-07-28T10:31:58-04:00",
   "status": "ok",
   "error": null,
   "items": [
     {
-      "id": "notion-new_won_project-3a7596a4505f81639365fdfce43fa3b9",
-      "type": "new_won_project",
-      "title": "New won project: Orlando Sidoro — Flooring, Mississauga",
-      "summary": "Won 2026-07-24. Flooring project at 849 Ivandale Drive, Mississauga, approx $6,570.50. Sales: Pourya Lalee; no PM assigned yet.",
-      "timestamp": "2026-07-24T10:41:57-04:00",
-      "priority": "high",
-      "link": "https://app.notion.com/3a7596a4505f81639365fdfce43fa3b9",
-      "amount_cents": 657050,
-      "raw_ref": "notion:titan-projects:opp=e7hd18SsWP9MGBEcu3ez",
-      "sensitivity": null
-    },
-    {
-      "id": "notion-new_won_project-3a7596a4505f80699207f17f895fa47b",
-      "type": "new_won_project",
-      "title": "New won project: David Ngo — Stairs (details TBD)",
-      "summary": "Won 2026-07-24. Stairs project, approx $4,100; street address and city still TBD and no GHL Opportunity ID linked. Sales & PM: Pourya Lalee.",
-      "timestamp": "2026-07-24T12:00:29-04:00",
-      "priority": "high",
-      "link": "https://app.notion.com/3a7596a4505f80699207f17f895fa47b",
-      "amount_cents": 410000,
-      "raw_ref": "notion:titan-projects:https://app.notion.com/3a7596a4505f80699207f17f895fa47b",
-      "sensitivity": null
-    },
-    {
-      "id": "notion-new_won_project-3a4596a4505f816eaa72c8a96d3e8e07",
-      "type": "new_won_project",
-      "title": "New won project: Arkadi Chmir — Stairs, Vaughan",
-      "summary": "Won 2026-07-21. Stairs project at 36 Joanna Crest, Vaughan, approx $7,600. Sales: Pourya Lalee; no PM assigned yet.",
-      "timestamp": "2026-07-21T14:23:55-04:00",
-      "priority": "high",
-      "link": "https://app.notion.com/3a4596a4505f816eaa72c8a96d3e8e07",
-      "amount_cents": 760000,
-      "raw_ref": "notion:titan-projects:opp=4t6E5dzabHwa101JhpML",
-      "sensitivity": null
-    },
-    {
       "id": "notion-work_order_deficiency-341596a4505f80d18d6bf8dcf5fe139f",
       "type": "work_order_deficiency",
       "title": "WO-Rino Del Giudice-041326 stuck in 'Pending Status' since April",
-      "summary": "Deficiency (Minor): plank lifting; nosing to install and stain. Created 2026-04-13, contractor notified 2026-04-14, never completed — 106 days in 'Pending Status'. Budget expense $250.",
+      "summary": "Deficiency (Minor): plank lifting; nosing to install and stain. Created 2026-04-13, contractor notified 2026-04-14, never completed — 106 days in the 'Pending Status' error state. Budget expense $250.",
       "timestamp": "2026-04-13T00:00:00-04:00",
       "priority": "high",
       "link": "https://app.notion.com/341596a4505f80d18d6bf8dcf5fe139f",
@@ -56,8 +20,8 @@
     {
       "id": "notion-work_order_warranty-3ab596a4505f80ff999add47e8ca6698",
       "type": "work_order_warranty",
-      "title": "New warranty WO-Imraan Khaan Anwar-072726 already in 'Pending Status'",
-      "summary": "Warranty (Minor) created 2026-07-27: customer reports floors are not level and getting worse; wants the problem rectified. No contractor notified yet and Status is the 'Pending Status' error state.",
+      "title": "Warranty WO-Imraan Khaan Anwar-072726 still in 'Pending Status', day 2",
+      "summary": "Warranty (Minor) created 2026-07-27: customer reports floors are not level and getting worse; wants the problem rectified. Still no contractor notified and still in the 'Pending Status' error state a day after creation.",
       "timestamp": "2026-07-27T00:00:00-04:00",
       "priority": "high",
       "link": "https://app.notion.com/3ab596a4505f80ff999add47e8ca6698",
@@ -69,7 +33,7 @@
       "id": "notion-work_order_other-304596a4505f80889270cb577e350f89",
       "type": "work_order_other",
       "title": "WO-Justin-021126 (Other) closed 2026-07-27 as Dropped",
-      "summary": "Other (Minor) work order from 2026-02-11 got a Completed Date of 2026-07-27 and now sits in 'Dropped'. Its description template was never filled in. Budget expense $100.",
+      "summary": "Other (Minor) work order from 2026-02-11 got a Completed Date of 2026-07-27 and sits in 'Dropped'. Its description template was never filled in. Budget expense $100. Still inside the 2-day completed window (also reported yesterday).",
       "timestamp": "2026-07-27T00:00:00-04:00",
       "priority": "normal",
       "link": "https://app.notion.com/304596a4505f80889270cb577e350f89",
@@ -81,7 +45,7 @@
       "id": "notion-payment-3ab596a4505f81d1a0cef1c7a91aae96",
       "type": "payment",
       "title": "Payment received: $4,259.00 from Jason Law",
-      "summary": "Interac e-Transfer received 2026-07-27, auto-deposited (ref C1Aq8QKXSgAb). No project linked on the payment row.",
+      "summary": "Interac e-Transfer received 2026-07-27, auto-deposited (ref C1Aq8QKXSgAb). No project linked on the payment row. Still inside the 2-day window (also reported by the prior run).",
       "timestamp": "2026-07-27T00:00:00-04:00",
       "priority": "normal",
       "link": "https://app.notion.com/3ab596a4505f81d1a0cef1c7a91aae96",
@@ -93,24 +57,12 @@
       "id": "notion-payment-3ab596a4505f817c8213e42eda1873f1",
       "type": "payment",
       "title": "Payment received: $3,000.00 from Elena Passetchnaia",
-      "summary": "Interac e-Transfer received 2026-07-27, auto-deposited (ref C1AHhVspdE2Y). No project linked on the payment row.",
+      "summary": "Interac e-Transfer received 2026-07-27, auto-deposited (ref C1AHhVspdE2Y). No project linked on the payment row. Still inside the 2-day window (also reported by the prior run).",
       "timestamp": "2026-07-27T00:00:00-04:00",
       "priority": "normal",
       "link": "https://app.notion.com/3ab596a4505f817c8213e42eda1873f1",
       "amount_cents": 300000,
       "raw_ref": "notion:payments:https://app.notion.com/3ab596a4505f817c8213e42eda1873f1",
-      "sensitivity": null
-    },
-    {
-      "id": "notion-meeting_logged-3a5596a4505f81d0bc02cdceb421b81a",
-      "type": "meeting_logged",
-      "title": "Meeting logged: Project Status — Jul 28/26",
-      "summary": "New Project Status meeting row dated today (2026-07-28). Its Meeting Summary is not set yet, so this is metadata-only — no synopsis or action items were pulled. Run the project-status-meeting-processor after the meeting to populate it.",
-      "timestamp": "2026-07-28T00:00:00-04:00",
-      "priority": "normal",
-      "link": "https://app.notion.com/3a5596a4505f81d0bc02cdceb421b81a",
-      "amount_cents": null,
-      "raw_ref": "notion:meeting:https://app.notion.com/3a5596a4505f81d0bc02cdceb421b81a",
       "sensitivity": null
     },
     {
@@ -428,8 +380,8 @@
     {
       "id": "notion-tactical_task_stale-397596a4505f80ac981ceb0536144078",
       "type": "tactical_task_stale",
-      "title": "Stale task (19d): Complete The Essential Details for the project (INQ for pay...",
-      "summary": "Open Tactical task in 'Not started' since 2026-07-08 — 19 days old, past the 14-day staleness threshold for that status.",
+      "title": "Stale task (20d): Complete The Essential Details for the project (INQ for pay...",
+      "summary": "Open Tactical task in 'Not started' since 2026-07-08 — 20 days old, past the 14-day staleness threshold for that status.",
       "timestamp": "2026-07-08T09:58:32-04:00",
       "priority": "low",
       "link": "https://app.notion.com/397596a4505f80ac981ceb0536144078",
@@ -488,8 +440,8 @@
     {
       "id": "notion-tactical_task_stale-39a596a4505f81b08073f609a2909c91",
       "type": "tactical_task_stale",
-      "title": "Stale task (16d): No Opportunity ID Found for - [Jim Simply]",
-      "summary": "Open Tactical task in 'Not started' since 2026-07-11 — 16 days old, past the 14-day staleness threshold for that status.",
+      "title": "Stale task (17d): No Opportunity ID Found for - [Jim Simply]",
+      "summary": "Open Tactical task in 'Not started' since 2026-07-11 — 17 days old, past the 14-day staleness threshold for that status.",
       "timestamp": "2026-07-11T09:25:40-04:00",
       "priority": "low",
       "link": "https://app.notion.com/39a596a4505f81b08073f609a2909c91",
@@ -500,8 +452,8 @@
     {
       "id": "notion-tactical_task_stale-39a596a4505f81bc9536c243a42bafd4",
       "type": "tactical_task_stale",
-      "title": "Stale task (16d): No Opportunity ID Found for - [David Ngo]",
-      "summary": "Open Tactical task in 'Not started' since 2026-07-11 — 16 days old, past the 14-day staleness threshold for that status.",
+      "title": "Stale task (17d): No Opportunity ID Found for - [David Ngo]",
+      "summary": "Open Tactical task in 'Not started' since 2026-07-11 — 17 days old, past the 14-day staleness threshold for that status.",
       "timestamp": "2026-07-11T09:25:41-04:00",
       "priority": "low",
       "link": "https://app.notion.com/39a596a4505f81bc9536c243a42bafd4",
@@ -512,8 +464,8 @@
     {
       "id": "notion-tactical_task_stale-39a596a4505f815aad94fa29751ad87a",
       "type": "tactical_task_stale",
-      "title": "Stale task (16d): No Opportunity ID Found for - [David Ngo]",
-      "summary": "Open Tactical task in 'Not started' since 2026-07-11 — 16 days old, past the 14-day staleness threshold for that status.",
+      "title": "Stale task (17d): No Opportunity ID Found for - [David Ngo]",
+      "summary": "Open Tactical task in 'Not started' since 2026-07-11 — 17 days old, past the 14-day staleness threshold for that status.",
       "timestamp": "2026-07-11T09:25:43-04:00",
       "priority": "low",
       "link": "https://app.notion.com/39a596a4505f815aad94fa29751ad87a",
@@ -535,21 +487,21 @@
     }
   ],
   "metrics": {
-    "new_won_projects": 3,
-    "new_won_value_cents": 1827050,
+    "new_won_projects": 0,
+    "new_won_value_cents": 0,
     "open_work_orders": 2,
     "work_orders_in_error": 2,
     "work_orders_completed": 1,
     "payments_count": 2,
     "payments_received_cents": 725900,
     "stale_tactical_tasks": 35,
-    "new_meetings": 1
+    "new_meetings": 0
   },
   "needs_attention": [
     "QA deficiency WO-Rino Del Giudice-041326 has sat in 'Pending Status' since 2026-04-13 (106 days) — plank lifting + nosing to install/stain; contractor was notified 2026-04-14 but the order never progressed.",
-    "New warranty work order WO-Imraan Khaan Anwar-072726 (created 2026-07-27) is already in 'Pending Status' with no contractor notified — customer reports floors increasingly not level.",
-    "Today's meeting row 'Project Status — Jul 28/26' has no Meeting Summary yet — run the project-status-meeting-processor skill after the meeting so its synopsis and action items can be ingested (this run captured metadata only).",
-    "35 of 72 open Tactical Tasks are past their staleness threshold — oldest: 'Call For Balance (Naqib)' (In progress, 113 days). 12 of them are 'Update POS Price List' rows dating back to 2026-06-11."
+    "Warranty work order WO-Imraan Khaan Anwar-072726 (created 2026-07-27) is still in 'Pending Status' with no contractor notified — customer reports floors increasingly not level. Second consecutive day in this error state.",
+    "Today's meeting row 'Project Status — Jul 28/26' still has no Meeting Summary — run the project-status-meeting-processor after the meeting so its synopsis and action items can be ingested tomorrow.",
+    "35 of 72 open Tactical Tasks are past their staleness threshold — oldest: 'Call For Balance (Naqib)' (In progress, 113 days). 12 are 'Update POS Price List' rows dating back to 2026-06-11."
   ],
   "extensions": {
     "notion": {
@@ -747,11 +699,12 @@
         ]
       },
       "reporting": {
-        "cold_start": true,
-        "cold_start_note": "First-ever run: snapshot seeded silently; only in-window activity reported (won projects last 7 days, work orders/payments last 2 days, meeting rows current). No historical backlog emitted.",
-        "titan_projects_snapshot_coverage": "Full-table key pull hit the SQL result page limit (has_more=true after 100 rows); keys cover Date Won back to 2026-03-22, far deeper than the 7-day diff window, so cross-day dedupe is safe. SQL mode exposes no pagination cursor.",
-        "tactical_sync_exclusions": "No actions-log.json exists for 2026-07-28, so no notion-sync writes were excluded. The 8 GHL task rows created 2026-07-28T02:30Z by last night's sync are in the snapshot but are 0.4 days old — nowhere near stale.",
-        "meeting_deep_pull": "Skipped: latest meeting (Project Status — Jul 28/26) has a null Meeting Summary (not yet processed), so per definition the meeting_logged item is metadata-only.",
+        "cold_start": false,
+        "prior_snapshot_source": "ingest/2026-07-28/notion.json from the prior (solo test) run, run_at 2026-07-28T08:19:33-04:00 — loaded before this idempotent overwrite. Snapshot carried forward as union (prior + today's pulled keys); no keys added today, every pulled key was already present.",
+        "won_projects_window": "3 rows have Date Won inside the 7-day window (Arkadi Chmir, Orlando Sidoro, David Ngo); all 3 stable keys already in the prior snapshot, so 0 new_won_project items — the win events were reported by the prior run.",
+        "tactical_sync_exclusions": "No actions-log.json exists for 2026-07-28, so no same-day notion-sync writes to exclude. The 8 GHL task rows from the overnight sync (created 2026-07-28T02:30Z, logged in 2026-07-27's actions-log) are ~0.5 days old — nowhere near stale, so they surface nowhere in items.",
+        "meeting_deep_pull": "Skipped — no new meeting row since the prior run (top 3 meeting urls unchanged). Latest meeting 'Project Status — Jul 28/26' still has a null Meeting Summary; re-flagged in needs_attention.",
+        "payments_note": "Both payments were received 2026-07-27 and were also in the prior run's file; they re-emit because Received Date is still inside the 2-day window (point-in-time events, no diffing per agent spec).",
         "stale_tasks_by_status": {
           "In progress": 7,
           "Not started": 28
@@ -762,6 +715,7 @@
           "create_gift_box": 3,
           "other": 16
         },
+        "stale_threshold_crossings_today": "No task newly crossed a staleness threshold since the prior run; three ticked up a day in floor age (Complete The Essential Details 19d to 20d; No Opportunity ID [Jim Simply] and 2x [David Ngo] 16d to 17d). Five tasks created 2026-07-14 ~18:25-18:42Z cross the 14-day line late this afternoon.",
         "work_orders_by_type": {
           "deficiency": 1,
           "warranty": 1,
