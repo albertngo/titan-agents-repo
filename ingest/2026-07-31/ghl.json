@@ -1,0 +1,12 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-07-31T21:46:06-04:00",
+  "status": "error",
+  "error": "GHL is unreachable for this run: every authenticated call to the GHL API rejected the configured Private Integration token with HTTP 401 'Invalid Private Integration token'. Verified two ways: (1) direct REST calls to services.leadconnectorhq.com (GET /locations/{locationId}, GET /contacts) both returned 401 with that exact message; (2) the ghl MCP server's tools/list responded normally (200), but every actual tool invocation (e.g. opportunities_get-pipelines) proxied through to the same 401 from the GHL backend. This is not a transient network issue and not one endpoint failing in isolation — the token itself is being rejected account-wide, so no category (leads, opportunities, appointments, conversations) could be pulled. $GHL_PIT_TOKEN needs to be regenerated/rotated in GHL (Settings > Private Integrations) and updated in this environment before the next run.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest could not run today — $GHL_PIT_TOKEN is being rejected (401 Invalid Private Integration token) on every call, including a plain GET /locations lookup. No lead, opportunity, appointment, or conversation data for 2026-07-31 in this brief. Rotate the PIT token in GHL and update the environment, then re-run ghl-ingest-agent — do not treat today as a quiet day."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "contract_version": "1",
+  "source": "outlook",
+  "run_at": "2026-07-31T21:44:00-04:00",
+  "status": "error",
+  "error": "No Outlook/M365 access available: this session's MCP config (/tmp/mcp-config-cse_01W6rPLMhSVd6VFgiVBfLeLH.json) only registers Notion and GitHub servers — no Outlook/M365 MCP connector is attached. The repo's .mcp.json also defines only the GHL server. No Microsoft Graph credentials (GRAPH_*/AZURE_* client id/secret/tenant) are present in the environment either. The last 24h of the inbox was not scanned. Fourth consecutive failed run (2026-07-26, 2026-07-27, 2026-07-28, 2026-07-31).",
+  "items": [],
+  "metrics": {
+    "total_scanned": 0,
+    "customer": 0,
+    "supplier": 0,
+    "admin": 0,
+    "noise_skipped": 0
+  },
+  "needs_attention": [
+    "Outlook ingest failed for the 4th consecutive day (2026-07-26, 07-27, 07-28, 07-31) — the email feed is dark. Connect an Outlook/M365 MCP connector or add Microsoft Graph credentials (client id/secret/tenant) to the environment, then re-run; four days of inbox activity are unscanned."
+  ]
+}
