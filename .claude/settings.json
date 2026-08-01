@@ -18,5 +18,20 @@
     ]
   },
   "agentPushNotifEnabled": true,
-  "cleanupPeriodDays": 365
+  "cleanupPeriodDays": 365,
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "git -C \"${CLAUDE_PROJECT_DIR:-.}\" pull --ff-only 2>&1 || echo 'git pull --ff-only failed (offline or diverged) — continuing with local state'",
+            "timeout": 30,
+            "statusMessage": "Pulling latest from GitHub…"
+          }
+        ]
+      }
+    ]
+  }
 }
