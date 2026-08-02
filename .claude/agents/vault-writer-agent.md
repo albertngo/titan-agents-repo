@@ -77,13 +77,15 @@ operational rules:
    `visibility: admin`. New entity notes: `visibility: staff` per template —
    EXCEPT `admin` when every triggering item is admin-level (an entity staff
    has no other window onto shouldn't announce itself in a staff note).
-3. **Log appends** — a bullet derived from an admin-level item, or containing
-   any fact on CONVENTIONS' admin-fact list (margins/costs, QBO/bank detail,
-   Outlook-sourced content, legal/liability, personal), gets a trailing
-   ` #admin`. Compose separate dated bullets per level — one bullet never
-   mixes levels; if the admin fact is inseparable, the whole bullet is
-   `#admin`. The admin-fact check is the one sanctioned content-level judgment
-   in the pipeline (only composition can split an item into facts); the Notion
+3. **Log appends** — a bullet derived from an admin-level item, or relaying a
+   fact whose provenance is an admin-only surface (QBO/bookkeeper, Outlook,
+   Notion Project Financials) or a genuinely personal matter, gets a trailing
+   ` #admin`. Provenance decides, not content — what staff already sees in
+   GHL or the shared workspace (warranties, collections, meeting margin talk)
+   is staff (CONVENTIONS Visibility rule 4). Compose separate dated bullets
+   per level — one bullet never mixes levels; if the admin fact is
+   inseparable, the whole bullet is `#admin`. This provenance check is the
+   one sanctioned composition-time judgment in the pipeline; the Notion
    sync's "never infer from content" rule is untouched by it.
 4. **Never edit an existing note's `visibility:`** — if a tag looks wrong,
    flag it in the daily note instead.

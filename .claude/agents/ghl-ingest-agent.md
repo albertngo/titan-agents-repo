@@ -314,17 +314,20 @@ isn't listed here; adding a type is an edit to this table first.
 
 Per `contracts/notion-task-schema.md` and the vault's CONVENTIONS Visibility
 section, this source's default is **team** (`notion-destinations.json`
-`source_defaults`) — GHL is the staff CRM. Leave `sensitivity: null` on routine
-items. Stamp `sensitivity: "private"` only on an item exposing:
+`source_defaults`) — GHL is the staff CRM, and **everything staff already sees
+in GHL is team-level by definition**, warranty/liability complaints and
+collections chases included (Albert, 2026-08-02: "GHL warranties shouldn't be
+private" — this REVERSES the private stamps the 2026-07-28/29 runs put on the
+cracked-tile and collections items; do not repeat them). Provenance decides,
+not content: being about money or a dispute is never, by itself, grounds for
+private.
 
-- legal / liability / warranty-claim exposure (the cracked-tile pattern,
-  2026-07-28) or a collections decision (the 2026-07-29 pattern — this section
-  formalizes what those runs already did),
-- margins, costs, or banking detail beyond what sits on a staff-shared surface,
-- anything personal.
-
-Never set `"team"` — this field only escalates. Downstream, `"private"` routes
-the item to the private Notion queue and marks its vault line `#admin`.
+Leave `sensitivity: null` on all GHL-native content. Stamp
+`sensitivity: "private"` only on an item that would relay content from an
+admin-only surface (QBO/bookkeeper figures, Outlook email content, Notion
+Project Financials data) or a genuinely personal matter. Never set `"team"` —
+this field only escalates. Downstream, `"private"` routes the item to the
+private Notion queue and marks its vault line `#admin`.
 
 ## Conversation analysis (read the WHOLE thread, not the last message)
 

@@ -189,10 +189,12 @@ all escalation-only:
   add a `needs_attention` line naming the gap (fail-safe, same posture as any
   other missing config).
 - A `rollup` item covering any private-stamped item is itself private.
-- MAY stamp `"private"` on an individual item whose title or summary alone would
-  leak admin-grade data (margins/costs/job profitability not shown on the shared
-  table, banking detail, legal/liability matter, anything personal) — meeting
-  items are the usual case.
+- MAY stamp `"private"` on an individual item only when it relays content from
+  an admin-only surface (QBO/bookkeeper figures, Outlook email content, Project
+  Financials data) or a genuinely personal matter. Provenance decides, not
+  content: what staff already sees on the shared tables or heard in the
+  staff-attended status meetings — margin mentions included — is team (Albert,
+  2026-08-02).
 - Never set `"team"` — this field only escalates.
 
 ## Hard limits
