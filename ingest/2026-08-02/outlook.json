@@ -1,0 +1,24 @@
+{
+  "contract_version": "1",
+  "source": "outlook",
+  "run_at": "2026-08-02T17:35:09-04:00",
+  "status": "error",
+  "error": "No mailbox was scanned: the Outlook connector's tools could not be loaded into this subagent, so zero messages were read. This run followed the corrected instruction and attempted the documented remedy FIRST, before anything else: ToolSearch with query 'select:mcp__147d263c-d720-48a2-b00a-4a0eda0e8db2__get_me,mcp__147d263c-d720-48a2-b00a-4a0eda0e8db2__outlook_email_search,mcp__147d263c-d720-48a2-b00a-4a0eda0e8db2__read_resource'. It did not resolve zero tools -- it failed to run at all, returning 'Error: No such tool available: ToolSearch. ToolSearch exists but is not enabled in this context.' The keyword-query retry ('+outlook search') was therefore not attempted, because the retry uses the same unavailable tool. This is a DIFFERENT failure from the previous run and supersedes its conclusion. The previous run inferred 'no connector attached' from the absence of the UUID in .mcp.json / ~/.claude.json / /tmp/mcp-config-*.json; per the agent file that test is invalid, since a claude.ai connector is session-attached and appears in none of those files. That inference is withdrawn. The accurate statement is narrower: the connector is attached to the parent session (parent confirmed get_me returned albert@titanfloors.ca), its tools are deferred, and this subagent was spawned WITHOUT the ToolSearch capability needed to resolve deferred tools -- so the frontmatter grant alone left the toolset at Read, Write, Bash only. The gap is in subagent tool provisioning, not in the connector or the mailbox. The Graph API fallback is also unavailable: .env holds only GHL_PIT_TOKEN, GHL_LOCATION_ID, TZ, VAULT_PATH, VAULT_AUTOPUSH, and no GRAPH_*/AZURE_*/tenant/client variables are set in the environment. CATCH-UP WINDOW: no outlook.json with status 'ok' or 'partial' exists anywhere in the 7-day lookback, so the window was widened to the max_catchup_days cap of 7 days -- 2026-07-26T00:00 through 2026-08-02T17:35 America/Toronto. That entire range remains unscanned. 2026-07-26, 07-27, 07-28, 07-29 and 07-31 each wrote status 'error'; 07-30 and 08-01 produced no outlook.json at all. 2026-08-02 is the 8th consecutive calendar day with no Outlook data. No items were emitted and no message content was inferred or fabricated. Read-only was preserved throughout: no Outlook tool of any kind was called, mutating or otherwise.",
+  "items": [],
+  "metrics": {
+    "total_scanned": 0,
+    "customer": 0,
+    "supplier": 0,
+    "admin": 0,
+    "noise_skipped": 0,
+    "unanswered_customer": 0,
+    "bounces": 0
+  },
+  "needs_attention": [
+    "Outlook ingest failed for the 8th consecutive day (2026-07-26 through 2026-08-02). Root cause this run is NOT a missing connector -- the connector is live as albert@titanfloors.ca. Its tools are deferred, and this subagent had no ToolSearch tool available to load them, leaving it with Read/Write/Bash only.",
+    "Catch-up run covering 2026-07-26 -> 2026-08-02 (widened to the max_catchup_days cap of 7) returned nothing. Treat that whole range as unreviewed mail, not as a quiet week.",
+    "Unanswered customer quote requests, complaints, supplier price lists and admin due dates across the dark range are all undetected. A week-old quote request is likely lost business -- review the Inbox manually before acting on today's brief.",
+    "Fix path, in order: (1) grant ToolSearch to outlook-ingest-agent when spawning it, or have the orchestrator pass the connector tools in pre-resolved; (2) longer term, wire a portable Graph server into .mcp.json with credentials in .env so scheduled runs never depend on session tool provisioning.",
+    "Correct the agent file: outlook-ingest-agent.md instructs 'the first thing you do every run is load your own tools' via ToolSearch, but does not handle ToolSearch itself being unavailable. Add that branch, and note that ToolSearch must be granted in the spawn for the deferred-tool workaround to function."
+  ]
+}
