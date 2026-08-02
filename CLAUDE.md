@@ -101,6 +101,12 @@ The vault's `CONVENTIONS.md` still governs every write, automatic or manual:
 
 - Append, don't rewrite. Prose above a note's `## Log` is Albert's.
 - Never delete or rename a note. Never edit `goals/`. Never touch `.obsidian/`.
+- **Visibility tagging** (CONVENTIONS v2.0, 2026-08-02): every note carries
+  `visibility: staff | admin`; on staff-floor entity notes, admin-grade Log
+  bullets carry a trailing `#admin`. Ingest `sensitivity` maps `team → staff`,
+  `private → admin`; anything missing or unknown reads as admin. The vault
+  CONVENTIONS Visibility section is canonical; the tag is advisory until a
+  staff-facing export is built.
 - Commit as `vault: <what> YYYY-MM-DD`. Vault commits go to `main-vault` (the vault
   repo's actual default branch, confirmed with Albert 2026-07-27) — no review step.
 - **Push rule depends on where the session runs** (Albert, 2026-07-28):

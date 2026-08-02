@@ -1,0 +1,68 @@
+{
+  "_comment": "Read-side registry for outlook-ingest-agent (.claude/agents/outlook-ingest-agent.md). Mailbox, folders, window, and classification hints live here so a new supplier domain or a renamed folder is a one-line data edit, never a change to the agent file. Verified live against the Outlook/M365 MCP connector 2026-08-02.",
+  "_maintenance": "Folder names are EXACT MATCH (case-insensitive) against Outlook. The connector recognizes the standard set (Inbox, Sent Items, Drafts, Deleted Items, Archive, Junk Email, Outbox) directly; any other name is resolved by enumerating the mailbox, so a renamed custom folder silently returns nothing. Sender lists below are OVERRIDES, not the whole classifier — the agent classifies semantically and consults these only to force a bucket.",
+
+  "config_version": "1",
+
+  "mailbox": {
+    "_comment": "App-only Graph access reads all of these directly — no delegation needed, which is why info@ works here after the session connector could not touch it (FORBIDDEN/ErrorItemNotFound, 2026-08-02). OUTLOOK_MAILBOXES in .env overrides this list; keep the two in sync.",
+    "primary": "albert@titanfloors.ca",
+    "self_addresses": ["albert@titanfloors.ca", "info@titanfloors.ca"],
+    "shared_mailboxes": ["info@titanfloors.ca", "pourya@titanfloors.ca", "mike@titanfloors.ca"],
+    "shared_mailboxes_note": "A mailbox here MUST also be a member of titan-ingest-mailboxes@titanfloors.ca, the group the Exchange Application Access Policy is scoped to — otherwise Graph returns 403 for it while the other mailboxes still succeed (status: partial).",
+    "staff_mailboxes": ["pourya@titanfloors.ca", "mike@titanfloors.ca"],
+    "staff_mailboxes_note": "Personal work mailboxes, not a shared company inbox. Items from these ALWAYS get sensitivity 'private' — a staff member's mail must never be routed to a team-visible Notion board on the strength of a keyword match."
+  },
+
+  "scan": {
+    "inbox_folder": "Inbox",
+    "sent_folder": "Sent Items",
+    "window_hours": 24,
+    "max_catchup_days": 7,
+    "max_catchup_note": "If the most recent prior outlook.json is older than window_hours, widen the window to cover the gap, capped at this many days. Outlook ingest went dark 2026-07-26..07-31 with no connector; a catch-up run must not silently skip those days.",
+    "page_limit": 25,
+    "max_pages": 4,
+    "unanswered_threshold_hours": 24
+  },
+
+  "classification": {
+    "_comment": "Match on the sender's full address or any domain suffix listed. A sender matching more than one list resolves in this order: admin > supplier > customer > noise (money and deadlines outrank marketing).",
+    "admin_senders": [
+      "bmo.com",
+      "rci.rogers.com",
+      "rogers.com",
+      "virginplus.ca",
+      "cra-arc.gc.ca",
+      "canada.ca",
+      "payments.interac.ca"
+    ],
+    "supplier_senders": [],
+    "supplier_senders_note": "Seed as real supplier domains surface (Olympia Tile, CIF Distributors, flooring vendors). Empty means the agent falls back to semantic classification — it does not mean 'no suppliers'.",
+    "noise_senders": [
+      "marketing.colonialsurety.com",
+      "yourbizsite.ca",
+      "smtp-relay.sendinblue.com",
+      "updates.notion.so",
+      "updates.notion.com",
+      "accounts.google.com"
+    ],
+    "noise_subject_patterns": [
+      "unsubscribe",
+      "newsletter",
+      "webinar",
+      "a new device logged into your account",
+      "security alert for"
+    ],
+    "escalate_from_noise_note": "A sender on noise_senders still becomes an `admin` item if the message reports a FAILED payment, an account suspension, or a password/MFA change Albert did not initiate. Routine login and marketing notices stay noise.",
+    "price_list_keywords": ["price list", "price increase", "pricing update", "new pricing", "catalogue", "catalog"],
+    "deadline_days": 7
+  },
+
+  "attention_rules": {
+    "unanswered_customer": true,
+    "bounce_on_outbound": true,
+    "price_list_attachment": true,
+    "admin_amount_due_within_days": 7,
+    "needs_attention_max": 5
+  }
+}

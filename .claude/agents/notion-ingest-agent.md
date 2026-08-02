@@ -174,6 +174,29 @@ fail, write `status: "error"` naming the gap (e.g. "Notion connector not
 attached to this session"). Never crash without writing the file. A failed run
 must not block sibling ingesters.
 
+## Sensitivity
+
+Per `contracts/notion-task-schema.md` and the vault's CONVENTIONS Visibility
+section, this source's default is **team** (`notion-destinations.json`
+`source_defaults`) — the five ingested databases are staff-shared tables, so
+leave `sensitivity: null` on their items and let the default apply. Exceptions,
+all escalation-only:
+
+- A source whose registry entry (`notion-ingest-sources.json`) carries
+  `"sensitivity": "private"` → stamp `sensitivity: "private"` on **every** item
+  from it (e.g. Project Financials, if ever activated).
+- A registry entry **missing** the `sensitivity` key → treat it as private and
+  add a `needs_attention` line naming the gap (fail-safe, same posture as any
+  other missing config).
+- A `rollup` item covering any private-stamped item is itself private.
+- MAY stamp `"private"` on an individual item only when it relays content from
+  an admin-only surface (QBO/bookkeeper figures, Outlook email content, Project
+  Financials data) or a genuinely personal matter. Provenance decides, not
+  content: what staff already sees on the shared tables or heard in the
+  staff-attended status meetings — margin mentions included — is team (Albert,
+  2026-08-02).
+- Never set `"team"` — this field only escalates.
+
 ## Hard limits
 
 - **Read-only.** Never create, edit, or comment on any Notion page; never change
