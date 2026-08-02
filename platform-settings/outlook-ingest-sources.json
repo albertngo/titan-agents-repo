@@ -5,11 +5,13 @@
   "config_version": "1",
 
   "mailbox": {
-    "_comment": "The connector authenticates as one account; get_me confirmed albert@titanfloors.ca on 2026-08-02. info@titanfloors.ca is NOT delegated (probe returned FORBIDDEN/ErrorItemNotFound) — but it auto-forwards into this inbox, so its traffic is already covered. Do not re-probe it every run.",
+    "_comment": "App-only Graph access reads all of these directly — no delegation needed, which is why info@ works here after the session connector could not touch it (FORBIDDEN/ErrorItemNotFound, 2026-08-02). OUTLOOK_MAILBOXES in .env overrides this list; keep the two in sync.",
     "primary": "albert@titanfloors.ca",
     "self_addresses": ["albert@titanfloors.ca", "info@titanfloors.ca"],
-    "shared_mailboxes": [],
-    "shared_mailboxes_note": "Empty on purpose. Adding an address here only works once Albert grants delegate access with Mail.Read.Shared in M365."
+    "shared_mailboxes": ["info@titanfloors.ca", "pourya@titanfloors.ca", "mike@titanfloors.ca"],
+    "shared_mailboxes_note": "A mailbox here MUST also be a member of titan-ingest-mailboxes@titanfloors.ca, the group the Exchange Application Access Policy is scoped to — otherwise Graph returns 403 for it while the other mailboxes still succeed (status: partial).",
+    "staff_mailboxes": ["pourya@titanfloors.ca", "mike@titanfloors.ca"],
+    "staff_mailboxes_note": "Personal work mailboxes, not a shared company inbox. Items from these ALWAYS get sensitivity 'private' — a staff member's mail must never be routed to a team-visible Notion board on the strength of a keyword match."
   },
 
   "scan": {
