@@ -310,6 +310,22 @@ isn't listed here; adding a type is an edit to this table first.
 | `drift` | One workflow-drift finding (the six types below) |
 | `rollup` | The single aggregate item covering overflow past the 50-item cap |
 
+## Sensitivity
+
+Per `contracts/notion-task-schema.md` and the vault's CONVENTIONS Visibility
+section, this source's default is **team** (`notion-destinations.json`
+`source_defaults`) — GHL is the staff CRM. Leave `sensitivity: null` on routine
+items. Stamp `sensitivity: "private"` only on an item exposing:
+
+- legal / liability / warranty-claim exposure (the cracked-tile pattern,
+  2026-07-28) or a collections decision (the 2026-07-29 pattern — this section
+  formalizes what those runs already did),
+- margins, costs, or banking detail beyond what sits on a staff-shared surface,
+- anything personal.
+
+Never set `"team"` — this field only escalates. Downstream, `"private"` routes
+the item to the private Notion queue and marks its vault line `#admin`.
+
 ## Conversation analysis (read the WHOLE thread, not the last message)
 
 For every active conversation, fill every field in the `conversations` schema:

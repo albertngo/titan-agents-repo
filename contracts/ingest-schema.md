@@ -59,7 +59,7 @@ Re-runs on the same day overwrite the file (idempotent). Never append.
 | `priority` | `high` (act today), `normal`, `low` (FYI). |
 | `link` | Deep link to the source platform when available, else null. |
 | `amount_cents` | Integer cents CAD when money is involved, else null. |
-| `sensitivity` | Optional. `"team"` or `"private"`, else null (source default applies). Set by the ingest agent when an item needs routing different from its source's default — e.g. a liability/complaint item that shouldn't be team-visible. May only escalate `team → private`, never the reverse. Consumed by `contracts/notion-task-schema.md`; not used elsewhere yet. |
+| `sensitivity` | Optional. `"team"` or `"private"`, else null (source default applies). Set by the ingest agent when an item needs routing different from its source's default — e.g. a liability/complaint item that shouldn't be team-visible. May only escalate `team → private`, never the reverse. Consumed by `contracts/notion-task-schema.md` (Notion team/private routing) and by `vault-writer-agent` (vault `visibility` tagging: `team → staff`, `private → admin` — the mapping and the admin-fact list live in the Visibility section of the vault's `CONVENTIONS.md`). |
 | `raw_ref` | Pointer back to the source record for audit. Never paste full raw content here. |
 
 ## `extensions` — optional, source-owned detail

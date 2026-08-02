@@ -17,6 +17,14 @@ conforming exactly to `contracts/ingest-schema.md` (read it first, every run).
 - `expense` — new expenses over $500 CAD, and any uncategorized transactions.
 - `flag` — anything that looks like a duplicate, a missing receipt, or an unusual amount.
 
+## Sensitivity
+
+This source's default is **private** (`notion-destinations.json`
+`source_defaults`) — QBO data is admin-only everywhere downstream (private
+Notion queue, `#admin`/admin in the vault). Leave `sensitivity: null` and let
+the default apply; never set `"team"` — this source cannot escalate in that
+direction.
+
 ## Access
 
 Use the Intuit QuickBooks MCP connector. If unavailable, write the file with

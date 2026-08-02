@@ -34,9 +34,9 @@ Then update the vault per `CONVENTIONS.md` in the vault repo (read it first, eve
 
 ## Write patterns (the whitelist)
 
-1. **Daily note** — CREATE `daily/<YYYY-MM-DD>.md` from the daily template.
+1. **Daily note** — CREATE `01_daily/<YYYY-MM-DD>.md` from the daily template.
    This is your primary output. Overwrite if re-run same day.
-2. **Entity notes** — UPDATE `clients/`, `projects/`, `suppliers/` notes:
+2. **Entity notes** — UPDATE `03_clients/`, `02_opportunities/`, `07_suppliers/` notes:
    append to their `## Log` section only (dated bullet). Update frontmatter
    `status:` / `last_activity:` fields. Never rewrite prose above the Log.
 3. **New entities** — CREATE a note from the matching template when a genuinely new
@@ -56,17 +56,42 @@ Then update the vault per `CONVENTIONS.md` in the vault repo (read it first, eve
    One caveat belongs to us, not the vault: `workflow_drift[].ref` may hold either a
    contact or a conversation ID depending on the finding type. Take contact IDs from a
    record's explicit `contact_id` field, not from `ref`.
-4. **Decisions** — CREATE `decisions/<YYYY-MM-DD>-<slug>.md` ONLY when the brief or
+4. **Decisions** — CREATE `05_decisions/<YYYY-MM-DD>-<slug>.md` ONLY when the brief or
    Albert explicitly records a decision. Never infer decisions from activity.
-5. **Platform notes** — `platforms/<Platform>.md` is written ONLY on an explicit
+5. **Platform notes** — `06_platforms/<Platform>.md` is written ONLY on an explicit
    instruction (from the brief or from Albert), never automatically inferred from
    routine ingest activity. A quirk/trap surfacing in ingest data is not itself
    the instruction — it is a candidate to propose-and-stop on, per
    `CLAUDE.md`'s "Ask Albert to push to the vault" triggers.
 
+## Visibility (vault tagging)
+
+The Visibility section of the vault's `CONVENTIONS.md` is canonical — read it
+every run, same as the Identity rule; never rely on a restated copy here. Your
+operational rules:
+
+1. **Per-item level** — source default from `notion-destinations.json`
+   `source_defaults` (`team → staff`, `private → admin`; unknown source →
+   admin), escalated to admin when the item carries `sensitivity: "private"`.
+2. **Note-level tags** — daily, decision, analysis, and platform notes:
+   `visibility: admin`. New entity notes: `visibility: staff` per template —
+   EXCEPT `admin` when every triggering item is admin-level (an entity staff
+   has no other window onto shouldn't announce itself in a staff note).
+3. **Log appends** — a bullet derived from an admin-level item, or containing
+   any fact on CONVENTIONS' admin-fact list (margins/costs, QBO/bank detail,
+   Outlook-sourced content, legal/liability, personal), gets a trailing
+   ` #admin`. Compose separate dated bullets per level — one bullet never
+   mixes levels; if the admin fact is inseparable, the whole bullet is
+   `#admin`. The admin-fact check is the one sanctioned content-level judgment
+   in the pipeline (only composition can split an item into facts); the Notion
+   sync's "never infer from content" rule is untouched by it.
+4. **Never edit an existing note's `visibility:`** — if a tag looks wrong,
+   flag it in the daily note instead.
+5. **In doubt → admin.**
+
 ## Hard limits
 
-- Never delete or rename any note. Never edit `goals/` (that's Albert's and, later,
+- Never delete or rename any note. Never edit `04_goals/` (that's Albert's and, later,
   the planner's territory). Never touch `.obsidian/`.
 - Wiki-links (`[[Client Name]]`) for every entity mention in the daily note.
 - After writing, `git add -A && git commit -m "vault: daily update <date>"` in the

@@ -59,10 +59,11 @@
   },
 
   "source_defaults": {
-    "_comment": "Default destination per ingest source. A new *-ingest source needs only one line here — no writer code change. An item's own `sensitivity` field (contracts/ingest-schema.md) may escalate team -> private, never the reverse.",
+    "_comment": "Default destination per ingest source. A new *-ingest source needs only one line here — no writer code change. An item's own `sensitivity` field (contracts/ingest-schema.md) may escalate team -> private, never the reverse. This table also feeds vault-writer-agent's `visibility` mapping (team -> staff, private -> admin — see the Visibility section of titan-vault CONVENTIONS.md); an unknown source reads as private/admin. `notion` is team because the five ingested databases are staff-shared tables; admin-grade sub-sources (e.g. Project Financials, if ever ingested) are escalated per-item at ingest via notion-ingest-sources.json.",
     "ghl": "team",
     "bookkeeper": "private",
-    "outlook": "private"
+    "outlook": "private",
+    "notion": "team"
   },
 
   "people": {
