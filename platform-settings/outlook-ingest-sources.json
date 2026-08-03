@@ -58,6 +58,10 @@
     "deadline_days": 7
   },
 
+  "notion_task_eligible_mailboxes": ["info@titanfloors.ca"],
+  "notion_task_eligible_mailboxes_note": "HARD RULE, Albert 2026-08-02: a Notion task is never created from an Outlook item that arrived anywhere else. Not because staff mail doesn't matter, but because it has no correct destination yet — the team board is wrong (personal mail) and Albert's private database is wrong (it would be someone else's task, filed in his inbox). info@ is the company inbox, so it has a valid destination today. Enforced in contracts/notion-task-schema.md and .claude/commands/notion-sync.md, which read the mailbox from raw_ref and FAIL CLOSED when it is absent. Not the same lever as `sensitivity`, which only forces an approval prompt — and approvals get given by mistake.",
+  "notion_task_eligible_mailboxes_direction": "Albert 2026-08-03: each staff member is to get their own private Notion database, with their mailbox's findings routing there. Sequence matters — add the per-person destination to notion-destinations.json FIRST (write_policy: approval_required, owned by that person), then widen this list by one entry. Widening this list before the destination exists produces exactly the misfiling the rule prevents.",
+
   "attention_rules": {
     "unanswered_customer": true,
     "bounce_on_outbound": true,

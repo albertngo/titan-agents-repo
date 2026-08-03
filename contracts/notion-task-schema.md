@@ -42,6 +42,48 @@ AND type != "rollup" AND id does not contain "-rollup-"
 AND a GHL contact ID is derivable (see below)
 ```
 
+### Outlook: mailbox exclusion (hard rule, Albert 2026-08-02)
+
+**A task is NEVER created from an Outlook item that did not arrive in
+`info@titanfloors.ca`.** No exceptions — not at `priority: "high"`, not with an
+approval, not to the private destination, not if a future edit adds Outlook
+types to the selection rule above.
+
+```
+IF source == "outlook" AND mailbox != "info@titanfloors.ca"  ⇒  never a candidate
+```
+
+The mailbox is read from `raw_ref` (`outlook:<mailbox>:message:<id>`). **Fail
+closed**: if `raw_ref` doesn't carry a mailbox, or carries one not in
+`notion_task_eligible_mailboxes` in `platform-settings/outlook-ingest-sources.json`,
+the item is excluded. Never fall back to parsing the summary or guessing from
+the sender.
+
+Why it's here and not left to `sensitivity`: `sensitivity: "private"` only forces
+an approval prompt, and an approval can be given by mistake.
+
+**The real reason is that staff mail has no correct destination yet.** Only two
+destinations exist (the team board and Albert's private database), and a task
+built from `pourya@`'s mail belongs in neither: the team board is wrong because
+it's personal mail, and Albert's private database is wrong because it's *Pourya's*
+task — filing it there both misattributes the work and drops Pourya's
+correspondence into someone else's inbox. With no right answer available, the
+only correct action is none. `info@` is the company inbox; mail sent there is
+already addressed to the business, so it has a valid destination today.
+
+This rule is about **provenance, not content** — the same principle as the vault
+visibility rule. Widening it means editing this block, and the eligible-mailbox
+list is data in the settings file, not a judgment the sync makes per item.
+
+**Intended direction (Albert, 2026-08-03): per-staff private destinations.** Each
+staff member gets their own private Notion database, and their mailbox's findings
+route there — not to Albert's. That is a destinations change first
+(`notion-destinations.json` gains one entry per staff member, each
+`write_policy: "approval_required"` and owned by that person), and only then a
+one-line widening of `notion_task_eligible_mailboxes`. Do not widen the mailbox
+list before the destination exists — that is precisely the misfiling this rule
+prevents.
+
 No daily cap. `priority == "high"` is already the ingest agent's own
 judgment call about what deserves attention today — a second, arbitrary
 ceiling on top of it would defer real obligations for no defensible reason.

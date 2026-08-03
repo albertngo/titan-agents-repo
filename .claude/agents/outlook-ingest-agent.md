@@ -128,6 +128,26 @@ A reply sent from a phone outside the window will look unanswered.
 - **`receivedDateTime` is UTC.** Convert to America/Toronto before deciding
   what "today" means, or a late-evening email lands on the wrong day.
 
+## Notion — only `info@` may ever become a task
+
+Hard rule (Albert 2026-08-02): a Notion task is **never** created from an item
+that arrived in any mailbox other than `info@titanfloors.ca` — not because staff
+mail doesn't matter, but because it has no correct destination yet. Each staff
+member is to get their own private database later (see the direction note in the
+settings file); until that exists, a staff finding would land either on a team
+board or in Albert's private database, and both are wrong. The gate lives
+downstream in
+`contracts/notion-task-schema.md` and reads `raw_ref`, which is why the mailbox
+segment above is mandatory — an item with no mailbox in `raw_ref` is silently
+dropped from sync, so omitting it loses `info@` findings rather than leaking
+personal ones.
+
+Your job here is only to be accurate about provenance. Never re-attribute an
+item to `info@` because the content is business-relevant, and never merge a
+cross-mailbox duplicate under `info@` unless it genuinely landed there — when a
+message arrived in several boxes including `info@`, `info@` is the correct
+`raw_ref` mailbox and the summary names the others.
+
 ## Sensitivity
 
 Per `contracts/notion-task-schema.md`, Outlook findings default to the
@@ -149,8 +169,12 @@ apply, except staff-mailbox items, which are explicitly `"private"`. Never set
 - Money as integer cents, CAD.
 - `id`: `outlook-<type>-<stable suffix of internetMessageId>`. Per the contract
   no consumer may rely on `id` across days.
-- `raw_ref`: `outlook:message:<internetMessageId>` — the documented cross-day
-  key. `link` is the message's `webLink`.
+- `raw_ref`: `outlook:<mailbox>:message:<internetMessageId>` — the documented
+  cross-day key, and the **only** machine-readable record of which mailbox an
+  item came from. Downstream automation gates on it (see Notion below), so the
+  mailbox segment is mandatory on every item, including rollups (use the
+  mailbox they aggregate, or `multi` when they span several — `multi` is not
+  eligible for anything). `link` is the message's `webLink`.
 - Overwrite today's file on re-run (idempotent). Never append.
 
 ## Metrics
