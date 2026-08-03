@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "source": "bookkeeper",
+  "run_at": "2026-08-03T08:11:55-04:00",
+  "status": "error",
+  "error": "Intuit QuickBooks MCP connector unavailable this run: .mcp.json only defines the 'ghl' server (confirmed alongside active github/Notion/ghl MCP sessions) and no QuickBooks/Intuit tools or credentials were present in the session. Unable to pull last-24h transactions, unmatched receipts, or overdue invoices. No QBO data was read. Fifth consecutive failed day (2026-07-26, 2026-07-27, 2026-07-28, 2026-07-31, 2026-08-03).",
+  "items": [],
+  "metrics": {
+    "payments_received_cents": 0,
+    "overdue_invoices": 0,
+    "uncategorized_txns": 0
+  },
+  "needs_attention": [
+    "QuickBooks ingest failed 2026-08-03: MCP connector not configured — fifth consecutive day (since 2026-07-26, with a gap 07-29/07-30 not on record). Payments received, overdue invoices, and uncategorized transactions are unknown for the whole window. Add/repair the Intuit QuickBooks MCP server in .mcp.json before the next scheduled run; expect a growing backlog when it comes back."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "contract_version": "1",
+  "source": "outlook",
+  "run_at": "2026-08-03T08:12:52-04:00",
+  "status": "error",
+  "error": "Both script invocations (Inbox, SentItems; --hours 24; all 4 configured mailboxes) failed before reaching Graph: every request to graph.microsoft.com:443 was rejected at the CONNECT/tunnel step with 403 (this session's outbound network egress policy, not a Graph or Exchange response). The token call to login.microsoftonline.com succeeded, so this is not the missing-credentials or expired-secret failure mode, and it never got far enough to hit a per-mailbox Application Access Policy 403 either -- the block is at the network layer, ahead of any Graph auth or authorization check. Zero messages retrieved from any mailbox/folder; no classification was possible this run.",
+  "items": [],
+  "metrics": {
+    "total_scanned": 0,
+    "customer": 0,
+    "supplier": 0,
+    "admin": 0,
+    "noise_skipped": 0,
+    "unanswered_customer": 0,
+    "bounces": 0,
+    "scanned_albert": 0,
+    "scanned_info": 0,
+    "scanned_pourya": 0,
+    "scanned_mike": 0
+  },
+  "needs_attention": [
+    "Outlook ingest produced zero data today (2026-08-03): both the Inbox and SentItems pulls (all 4 mailboxes: albert, info, pourya, mike) failed identically with a CONNECT-level 403 to graph.microsoft.com from this session's egress proxy -- 'gateway answered 403 to CONNECT (policy denial or upstream failure)'. This is distinct from the known traps in the agent file: it is not missing/expired Graph credentials (the token request to login.microsoftonline.com succeeded) and not a per-mailbox Exchange Application Access Policy gap (no request ever reached Graph far enough to get that response). First hypothesis: this run's sandbox does not have graph.microsoft.com allow-listed on its outbound proxy. Worth confirming whether the scheduled/production runner has the same restriction -- if so this is a one-line proxy allowlist fix, not an Outlook or Azure app problem.",
+    "No Outlook coverage gap has actually been skipped in the file record -- the last successful run remains 2026-08-02T18:46:33-04:00 (status ok, window widened to 168h, covering 2026-07-26 through 2026-08-02 18:00 America/Toronto). But real mail has continued to arrive since then with nothing scanned since; if today's run cannot be retried successfully, the next successful run must widen its window to cover 2026-08-02 18:46 onward (capped at max_catchup_days=7) so nothing from today is silently dropped.",
+    "Do not report this to Albert as 'Outlook is down' -- report it as an egress/network-policy block specific to this run's environment, first hypothesis being a proxy allowlist gap for graph.microsoft.com."
+  ]
+}
