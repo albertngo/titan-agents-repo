@@ -1,0 +1,27 @@
+{
+  "contract_version": "1",
+  "source": "outlook",
+  "run_at": "2026-08-04T08:22:19-04:00",
+  "status": "error",
+  "error": "scripts/outlook_pull.py could not reach Microsoft Graph: every call to graph.microsoft.com:443 was rejected at the outbound proxy tunnel with 403 (proxy status endpoint logs 'gateway answered 403 to CONNECT (policy denial or upstream failure)' for graph.microsoft.com, 8 times across the Inbox and SentItems attempts). Token acquisition against login.microsoftonline.com was not the failure point -- the block is specifically on the Graph API host, before any mailbox is reached. Per the environment's proxy runbook (/root/.ccr/README.md), this class of 403 is an organization egress-policy denial, not something to retry or route around, so no further pull attempts were made. This is a different failure mode than the documented mailbox-level 403 (Exchange Application Access Policy), the missing-credentials case, or an expired client secret -- none of those were reached because the network path to Graph itself is blocked in this session. Needs an administrator to allow graph.microsoft.com through the session's egress proxy, or a session without this restriction.",
+  "items": [],
+  "metrics": {
+    "total_scanned": 0,
+    "customer": 0,
+    "supplier": 0,
+    "admin": 0,
+    "noise_skipped": 0,
+    "unanswered_customer": 0,
+    "bounces": 0,
+    "scanned_albert": 0,
+    "scanned_info": 0,
+    "scanned_pourya": 0,
+    "scanned_mike": 0,
+    "window_hours_attempted": 40
+  },
+  "needs_attention": [
+    "Outlook ingest could not run at all today: the session's outbound proxy blocked every connection to graph.microsoft.com with 403 (policy denial at the CONNECT tunnel, confirmed via /root/.ccr/__agentproxy/status -- 8 rejected attempts, host graph.microsoft.com:443). This is an egress-policy/infrastructure gap, not a Microsoft 365 outage, not the known mailbox-level 403 (Exchange Application Access Policy), and not a credentials problem -- the token step to login.microsoftonline.com was never even reached to test. Needs an admin to allow graph.microsoft.com on this session's proxy allowlist.",
+    "Zero data retrieved -- Inbox and SentItems pulls both failed before any mailbox was queried, so no customer/supplier/admin/bounce items and no unanswered-detection could be produced today.",
+    "Catch-up gap widening: last successful run (status ok) was 2026-08-02T18:46:33-04:00, covering back to 2026-07-26 18:00 (7-day catch-up cap already used then). Today's attempt tried a 40h window to close the gap since that run but got zero data due to the proxy block above. The next successful run must widen --hours to cover from 2026-08-02T18:46:33-04:00 forward (currently ~38h and growing), capped at max_catchup_days=7, or Outlook coverage will have a second silent gap on top of the 07-26..07-31 one already on record."
+  ]
+}
