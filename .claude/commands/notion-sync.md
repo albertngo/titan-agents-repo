@@ -20,7 +20,17 @@ re-derive or guess.
 
 2. **Select candidates**, per `notion-task-schema.md`'s selection rule:
    `priority == "high"`, `type` in `{lead, message, drift}`, not a rollup,
-   and a platform contact ID is derivable from the item. For GHL specifically,
+   and a platform contact ID is derivable from the item.
+
+   **Apply the Outlook mailbox exclusion FIRST**, before any other test: drop
+   every `outlook` item whose `raw_ref` mailbox is not in
+   `notion_task_eligible_mailboxes` (`platform-settings/outlook-ingest-sources.json`
+   — currently `info@titanfloors.ca` only). Fail closed when the mailbox can't
+   be read. This is a hard rule per `notion-task-schema.md`; it is not
+   overridable by priority, sensitivity, or an approval in chat. Log each drop
+   with its mailbox so the exclusion is auditable.
+
+   For GHL specifically,
    derive the contact ID by parsing `item.link`, falling back to
    `extensions.ghl.conversations[].contact_id` for message items. Skip and
    log anything a contact ID can't be resolved for.
