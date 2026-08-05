@@ -1,0 +1,27 @@
+{
+  "contract_version": "1",
+  "source": "outlook",
+  "run_at": "2026-08-05T08:22:54-04:00",
+  "status": "error",
+  "error": "Every Graph call failed before authentication: both the Inbox pull (--hours 64, catch-up widened from the standard 24h to cover the gap since the last successful run on 2026-08-02T18:46:33-04:00, capped well under max_catchup_days=7) and the SentItems pull (--hours 88, +unanswered_threshold_hours) returned 'Tunnel connection failed: 403 Forbidden' identically for all 4 configured mailboxes (albert@, info@, pourya@, mike@titanfloors.ca). The agent proxy status endpoint confirms this is a CONNECT-level policy denial to graph.microsoft.com:443 itself ('gateway answered 403 to CONNECT (policy denial or upstream failure)'), not a Graph API response — so this is neither the documented per-mailbox Exchange Application Access Policy trap (that surfaces as a Graph 403 JSON body on an individual mailbox after a successful TLS connection, with siblings still succeeding) nor missing/expired credentials (those fail at the token step, after a successful connection to Graph). This session's outbound network policy is not permitting any reach to graph.microsoft.com — a session/environment egress configuration gap. Per proxy guidance this was not retried or routed around. No mailbox was reachable, so no items could be pulled, classified, or checked for unanswered status this run.",
+  "items": [],
+  "metrics": {
+    "total_scanned": 0,
+    "customer": 0,
+    "supplier": 0,
+    "admin": 0,
+    "noise_skipped": 0,
+    "unanswered_customer": 0,
+    "bounces": 0,
+    "scanned_albert": 0,
+    "scanned_info": 0,
+    "scanned_pourya": 0,
+    "scanned_mike": 0
+  },
+  "needs_attention": [
+    "Outlook ingest could not reach graph.microsoft.com at all this run (CONNECT-level 403 from the egress proxy on every call, confirmed via the proxy status endpoint as a policy denial to the host, before any Graph auth) — report to whoever manages this session's network/proxy allowlist that graph.microsoft.com needs to be reachable; this is a session egress-policy gap, not a per-mailbox Access Policy issue and not expired/missing credentials.",
+    "Zero mailboxes scanned: albert@, info@, pourya@, mike@titanfloors.ca all failed identically, so this is not a single-mailbox access-policy problem — treat as a full outage for today, not a partial one.",
+    "The last successful Outlook ingest was 2026-08-02T18:46:33-04:00 (a catch-up run itself, widened to 168h after a 2026-07-26 to 2026-08-02 outage). Today's failure means the unscanned gap now extends from 2026-08-02 18:00 to at least 2026-08-05 08:22 America/Toronto (about 62 hours) and is still growing — the next successful run should widen its window to cover it (capped at max_catchup_days=7) rather than only pulling the standard 24h.",
+    "No unanswered-customer or unanswered-supplier detection ran today; anything genuinely waiting on a reply since 2026-08-02 is not yet flagged."
+  ]
+}
