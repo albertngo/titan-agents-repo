@@ -1,0 +1,104 @@
+{
+  "contract_version": "1",
+  "entries": [
+    {
+      "logged_at": "2026-08-05T09:05:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_create_task",
+      "target": "Notion Tactical Tasks List — Azzam Rahman",
+      "content_summary": "Cancelled today's 11:30am in-home visit, $10,287.50 Meeting-Scheduled deal needs formal close-out",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3b3596a4-505f-8125-8423-fee27ae67f08"
+    },
+    {
+      "logged_at": "2026-08-05T09:06:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_update_task",
+      "target": "Notion Tactical Tasks List — Vic Montero",
+      "content_summary": "Appended dated Notes line: demanding Aug 11 install start, no written confirmation sent yet",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3af596a4-505f-811a-8f65-f91af76574b4"
+    },
+    {
+      "logged_at": "2026-08-05T09:07:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_update_task",
+      "target": "Notion Tactical Tasks List — Therese Gomes",
+      "content_summary": "Appended dated Notes line: deposit confirmation still outstanding, no update since 2026-08-03",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3b0596a4-505f-81ce-84d2-d9eb43c11852"
+    },
+    {
+      "logged_at": "2026-08-05T09:03:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_update_task",
+      "target": "Notion Tactical Tasks List — *Ben Burlington $37,438",
+      "content_summary": "Appended dated Notes line: now 32 days of silence since visit, confirmed no follow-up sequence exists for this stage",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3ab596a4-505f-813f-9b69-d1a66282c19c"
+    },
+    {
+      "logged_at": "2026-08-05T09:08:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_update_task",
+      "target": "Notion Tactical Tasks List — Abdul Khaliq",
+      "content_summary": "Appended dated Notes line: now 298 days in Later Date (Warm), 744% of threshold",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3af596a4-505f-813d-a671-c729b889a9ba"
+    },
+    {
+      "logged_at": "2026-08-05T09:09:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_update_task",
+      "target": "Notion Tactical Tasks List — Momatoo",
+      "content_summary": "Appended dated Notes line: now 13.3 days untagged, five outbound touches with no reply",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3b0596a4-505f-81b7-baac-d9693ee2a762"
+    },
+    {
+      "logged_at": "2026-08-05T09:10:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_update_task",
+      "target": "Notion Tactical Tasks List — Rose Vill",
+      "content_summary": "Appended dated Notes line: categorization_miss confirmed, real 2-way SMS 8.5 days ago still untagged",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3ab596a4-505f-81bf-9af3-cc23d1370ade"
+    },
+    {
+      "logged_at": "2026-08-05T09:11:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_update_task",
+      "target": "Notion Tactical Tasks List — Charles Crooks",
+      "content_summary": "Appended dated Notes line: now 20.6 days in ASAP (Hot), 294% of threshold, no quote sent",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3ac596a4-505f-8191-b026-e353c02d7d39"
+    },
+    {
+      "logged_at": "2026-08-05T09:04:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_update_task",
+      "target": "Notion Tactical Tasks List — *Dar Mississauga $19,372 (unintended target)",
+      "content_summary": "OPERATOR ERROR: an update intended for Vic Montero was sent to the wrong page_id (this row) using an unverified URL from a truncated query result, overwriting its Notes field with a placeholder string. Original Notes content could not be recovered via the API; replaced placeholder with an incident notice pointing to Notion's page version history. No other rows were affected.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "failed",
+      "error": "Wrong page_id used for an update_properties call — overwrote existing Notes text on an unrelated row instead of appending to the intended target. Root cause: page_id was taken from an incomplete (has_more=true) SQL query result without verifying it matched the intended contact's constructed GHL url before writing.",
+      "raw_ref": "notion page 3ab596a4-505f-81c3-b035-dc8a16dbc76c"
+    }
+  ]
+}
