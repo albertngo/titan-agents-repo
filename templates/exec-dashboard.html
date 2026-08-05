@@ -1,0 +1,205 @@
+<title>Titan Exec Dashboard — 2026-08-03 (v1)</title>
+<style>
+:root{
+  --bg:#f7f9fc; --card:#ffffff; --ink:#17222f; --ink2:#54657a; --ink3:#8595a8;
+  --line:#e1e7ef; --accent:#1e6fff; --accent-soft:#e8f0ff;
+  --crit:#c0392b; --crit-soft:#faeae7; --warn:#9a6b00; --warn-soft:#faf3e0;
+  --ok:#1f7a4d; --ok-soft:#e7f4ec; --off:#8595a8; --off-soft:#eef1f5;
+  --bar:#9dbdfc; --bar-now:#1e6fff;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#0f151d; --card:#171f2a; --ink:#e7edf5; --ink2:#a3b1c2; --ink3:#718092;
+  --line:#26313f; --accent:#5b93ff; --accent-soft:#1b2c4d;
+  --crit:#e46a5c; --crit-soft:#3a1f1b; --warn:#d9a949; --warn-soft:#33290f;
+  --ok:#57b183; --ok-soft:#12301f; --off:#718092; --off-soft:#1d2632;
+  --bar:#33507e; --bar-now:#5b93ff;
+}}
+:root[data-theme="dark"]{
+  --bg:#0f151d; --card:#171f2a; --ink:#e7edf5; --ink2:#a3b1c2; --ink3:#718092;
+  --line:#26313f; --accent:#5b93ff; --accent-soft:#1b2c4d;
+  --crit:#e46a5c; --crit-soft:#3a1f1b; --warn:#d9a949; --warn-soft:#33290f;
+  --ok:#57b183; --ok-soft:#12301f; --off:#718092; --off-soft:#1d2632;
+  --bar:#33507e; --bar-now:#5b93ff;
+}
+:root[data-theme="light"]{
+  --bg:#f7f9fc; --card:#ffffff; --ink:#17222f; --ink2:#54657a; --ink3:#8595a8;
+  --line:#e1e7ef; --accent:#1e6fff; --accent-soft:#e8f0ff;
+  --crit:#c0392b; --crit-soft:#faeae7; --warn:#9a6b00; --warn-soft:#faf3e0;
+  --ok:#1f7a4d; --ok-soft:#e7f4ec; --off:#8595a8; --off-soft:#eef1f5;
+  --bar:#9dbdfc; --bar-now:#1e6fff;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);margin:0;
+  font:15px/1.5 -apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 48px}
+h1{font-size:21px;font-weight:700;margin:0;letter-spacing:-.01em}
+h1 .blue{color:var(--accent)}
+.sub{color:var(--ink2);font-size:13px;margin-top:4px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink3);margin:30px 0 10px;display:flex;align-items:baseline;gap:8px}
+.eyebrow .date{font-weight:500;letter-spacing:.02em;text-transform:none;color:var(--ink3)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.num{font-variant-numeric:tabular-nums}
+/* header chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{font-size:12px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);
+  background:var(--card);color:var(--ink2);display:inline-flex;gap:6px;align-items:center}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+.dot.ok{background:var(--ok)} .dot.err{background:var(--crit)} .dot.off{background:var(--off)}
+/* needs attention */
+.attn{display:flex;flex-direction:column;gap:8px}
+.attn .item{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);
+  border-left:4px solid var(--ink3);border-radius:6px;padding:10px 14px;align-items:baseline}
+.attn .item.crit{border-left-color:var(--crit)}
+.attn .item.warn{border-left-color:var(--warn)}
+.attn .tag{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  white-space:nowrap;color:var(--ink3);min-width:76px}
+.attn .item.crit .tag{color:var(--crit)} .attn .item.warn .tag{color:var(--warn)}
+.attn .why{color:var(--ink2)}
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.tile .k{font-size:12px;color:var(--ink2)}
+.tile .v{font-size:24px;font-weight:700;margin-top:2px;letter-spacing:-.01em}
+.tile .d{font-size:12px;color:var(--ink3);margin-top:3px}
+.tile.offline{background:var(--off-soft);border-style:dashed}
+.tile.offline .v{color:var(--off);font-size:16px;font-weight:600}
+/* two-col */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.cols{grid-template-columns:1fr}}
+.kv{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid var(--line);font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .l{color:var(--ink2)} .kv .r{font-weight:600}
+.mini{font-size:12.5px;color:var(--ink3);margin-top:8px;line-height:1.45}
+ul.tight{margin:6px 0 0;padding-left:18px;font-size:13.5px;color:var(--ink)}
+ul.tight li{margin:5px 0} ul.tight .m{color:var(--ink2)}
+/* drift rows */
+.drift{display:flex;flex-direction:column;gap:10px}
+.drow{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center}
+.drow .name{font-size:13.5px}
+.drow .name small{display:block;color:var(--ink3);font-size:11.5px}
+.spark{display:flex;align-items:flex-end;gap:2px;height:26px}
+.spark i{width:9px;background:var(--bar);border-radius:2px 2px 0 0;display:block;min-height:2px}
+.spark i.now{background:var(--bar-now)}
+.spark i.gap{background:transparent;border-bottom:2px dotted var(--ink3)}
+.badge{font-size:10.5px;font-weight:700;letter-spacing:.05em;padding:2px 8px;border-radius:999px;min-width:56px;text-align:center}
+.badge.rise{background:var(--crit-soft);color:var(--crit)}
+.badge.flat{background:var(--off-soft);color:var(--ink2)}
+.badge.fall{background:var(--ok-soft);color:var(--ok)}
+/* ledger */
+.ledger{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.lcell{width:84px;border:1px solid var(--line);border-radius:6px;padding:6px 8px;background:var(--card)}
+.lcell .ld{font-size:10.5px;color:var(--ink3)}
+.lcell .ls{display:flex;gap:3px;margin-top:4px}
+.ls i{width:8px;height:8px;border-radius:2px;display:block}
+.ls i.ok{background:var(--ok)} .ls i.err{background:var(--crit)} .ls i.miss{background:transparent;border:1px dashed var(--ink3)}
+.lcell.missed{background:var(--crit-soft);border-color:var(--crit)}
+.lcell.missed .ld{color:var(--crit);font-weight:700}
+.foot{font-size:12px;color:var(--ink3);margin-top:14px}
+a{color:var(--accent)}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Titan Flooring — <span class="blue">Exec Dashboard</span></h1>
+    <div class="sub">v1 · built 2026-08-03 · admin view (contains private-provenance items — do not share with staff)</div>
+    <div class="chips">
+      <span class="chip"><span class="dot ok"></span>GHL · data 07-31</span>
+      <span class="chip"><span class="dot ok"></span>Notion · data 07-31</span>
+      <span class="chip"><span class="dot ok"></span>Outlook · data to 08-02 (7-day catch-up)</span>
+      <span class="chip"><span class="dot off"></span>Bookkeeper · never reported</span>
+    </div>
+  </header>
+
+  <div class="eyebrow">Needs attention <span class="date">· merged, top 6</span></div>
+  <div class="attn">
+    <div class="item crit"><span class="tag">Collections</span><span>MetCredit says the overdue Rogers account is now in collections — amount not in the notice; verify against the Rogers account.<span class="why"> (Outlook, 08-01)</span></span></div>
+    <div class="item crit"><span class="tag">Customer</span><span>Vic Montero's install move (Aug 4 → Aug 27 offered) still needs written confirmation back to him.<span class="why"> (GHL, 07-31)</span></span></div>
+    <div class="item crit"><span class="tag">Customer</span><span>2 unanswered customer emails: Allan Parsons (engineered white oak quote via info@, unread since 07-27) and job photos sent to Pourya on 07-29 — no reply found for either.<span class="why"> (Outlook)</span></span></div>
+    <div class="item warn"><span class="tag">Signature</span><span>Dang &amp; Associates: 2025 T2 return + Ontario Annual Return are waiting on your signature.<span class="why"> (Outlook)</span></span></div>
+    <div class="item warn"><span class="tag">Warranty</span><span>Helena's second cracked-tile claim — form sent 07-31, needs tracking to completion.<span class="why"> (GHL)</span></span></div>
+    <div class="item warn"><span class="tag">Leads</span><span>Two new leads (Shaheen Sheikh, Baba) enabled Do-Not-Disturb minutes after the automated intro SMS — call manually; the intro cadence may be triggering opt-outs.<span class="why"> (GHL)</span></span></div>
+  </div>
+
+  <div class="eyebrow">Money <span class="date">· Notion 07-31 · Outlook window 07-26 → 08-02</span></div>
+  <div class="tiles">
+    <div class="tile"><div class="k">Won this week — Project</div><div class="v num">$5,124</div><div class="d">Ryan Langen, Toronto (07-31) · STORE: $0</div></div>
+    <div class="tile"><div class="k">Money in (Outlook window)</div><div class="v num">$16,853</div><div class="d">6 e-Transfers $16,234.31 + Yardi EFT $619.24</div></div>
+    <div class="tile"><div class="k">BMO corporate card</div><div class="v num">$9,506.47</div><div class="d">statement ready · due Aug 21</div></div>
+    <div class="tile offline"><div class="k">Outstanding / overdue AR</div><div class="v">bookkeeper offline</div><div class="d">QBO not wired — last manual read: ~$73K outstanding (07-29 brief)</div></div>
+  </div>
+
+  <div class="cols" style="margin-top:14px">
+    <div>
+      <div class="eyebrow" style="margin-top:16px">Pipeline health <span class="date">· GHL 07-31</span></div>
+      <div class="card">
+        <div class="kv"><span class="l">Open leads (project pipelines)</span><span class="r num">254</span></div>
+        <div class="kv"><span class="l">Hot / Warm / Cold</span><span class="r num">17 / 66 / 121</span></div>
+        <div class="kv"><span class="l">Stale-tagged · untagged</span><span class="r num">48 · 53</span></div>
+        <div class="kv"><span class="l">New leads (net of 0 excluded)</span><span class="r num">4</span></div>
+        <div class="kv"><span class="l">Unanswered conversations (14 raw − 2)</span><span class="r num">12</span></div>
+        <div class="kv"><span class="l">Appointments booked · pipeline moves</span><span class="r num">1 · 2</span></div>
+        <div class="kv"><span class="l">Meeting (Scheduled) stage</span><span class="r num">49 opps · avg 63.2d</span></div>
+        <div class="mini"><strong style="color:var(--crit)">At risk:</strong> Ben (Burlington) — follow-up window expired 69d <em>before</em> his Jul 4 visit, 27.5d post-visit now · Silviya (Toronto) — same config bug, window −9.1d · Vivek — 57d post-appointment, zero activity.</div>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow" style="margin-top:16px">Process leaks <span class="date">· 07-31 vs prior-4-run avg</span></div>
+      <div class="card drift">
+        <div class="drow"><div class="name">Untagged in call queue<small>17 today · avg 11.8</small></div>
+          <div class="spark"><i style="height:100%" title="07-26: 18"></i><i style="height:72%" title="07-27: 13"></i><i style="height:6%" title="07-28: 1"></i><i style="height:83%" title="07-29: 15"></i><i class="now" style="height:94%" title="07-31: 17"></i></div>
+          <span class="badge rise">▲ rising</span></div>
+        <div class="drow"><div class="name">Categorization misses<small>5 today · avg 0.5</small></div>
+          <div class="spark"><i style="height:4%" title="07-26: 0"></i><i style="height:4%" title="07-27: 0"></i><i style="height:4%" title="07-28: 0"></i><i style="height:40%" title="07-29: 2"></i><i class="now" style="height:100%" title="07-31: 5"></i></div>
+          <span class="badge rise">▲ rising</span></div>
+        <div class="drow"><div class="name">Meeting, no follow-up<small>6 today · avg 6.8</small></div>
+          <div class="spark"><i style="height:64%" title="07-26: 9"></i><i style="height:21%" title="07-27: 3"></i><i style="height:100%" title="07-28: 14"></i><i style="height:7%" title="07-29: 1"></i><i class="now" style="height:43%" title="07-31: 6"></i></div>
+          <span class="badge flat">— flat</span></div>
+        <div class="drow"><div class="name">Abandonment next<small>5 today · avg 4.8</small></div>
+          <div class="spark"><i style="height:100%" title="07-26: 13"></i><i style="height:8%" title="07-27: 1"></i><i style="height:8%" title="07-28: 1"></i><i style="height:31%" title="07-29: 4"></i><i class="now" style="height:38%" title="07-31: 5"></i></div>
+          <span class="badge flat">— flat</span></div>
+        <div class="drow"><div class="name">Stale approaching<small>5 today · avg 10</small></div>
+          <div class="spark"><i style="height:100%" title="07-26: 13"></i><i style="height:62%" title="07-27: 8"></i><i style="height:92%" title="07-28: 12"></i><i style="height:54%" title="07-29: 7"></i><i class="now" style="height:38%" title="07-31: 5"></i></div>
+          <span class="badge fall">▼ falling</span></div>
+        <div class="mini">Standing items: 108-opportunity bulk-import backlog (needs one batch decision) · auto-abandon not firing — 3 contacts open up to 530 days past threshold. Bars: 07-26/27/28/29/31 (07-30 had no run).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cols" style="margin-top:14px">
+    <div>
+      <div class="eyebrow" style="margin-top:16px">Operations <span class="date">· Notion 07-31</span></div>
+      <div class="card">
+        <div class="kv"><span class="l">QA work orders open · in error</span><span class="r num">0 · 0</span></div>
+        <div class="kv"><span class="l">Stale tactical tasks (all assigned to you)</span><span class="r num">16</span></div>
+        <div class="kv"><span class="l">Next status meeting</span><span class="r">Aug 4 — logged, not yet processed</span></div>
+        <div class="mini">Stale-task pile is mostly automation duplicates: "Update POS Price List" ×8, "No Opportunity ID Found" ×3, "Add Tags in CCAM" ×2, "Create Gift Box" ×2 — one batch triage clears it. Count scope changed across days (35→41→16), so no trend shown until the definition is pinned.</div>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow" style="margin-top:16px">Admin inbox <span class="date">· Outlook to 08-02 · admin-only</span></div>
+      <div class="card">
+        <ul class="tight">
+          <li>3 supplier price lists pending for the catalogue: Grandeur clearance, Prosol increases, Floordi Aug promo <span class="m">(attachments flagged, not downloaded)</span></li>
+          <li>Outbound "T250 Wrap Order Inquiry" bounced 07-31 — that vendor never got it <span class="m">· two other wrap quotes ($3,500–$5,900) sitting unanswered</span></li>
+          <li>Co-operators business-insurance quote unread 6 days</li>
+          <li>Civic Holiday Mon Aug 3: 6+ suppliers closed or reduced hours · AP Disposal bin lands Tue Aug 4, 10–11am</li>
+          <li>Dang &amp; Associates mortgage-review thread has questions pending <span class="m">(QBO cleanup parked behind it)</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="eyebrow">System health <span class="date">· run-ledger 07-26 → 08-02</span></div>
+  <div class="ledger">
+    <div class="lcell"><div class="ld">07-26</div><div class="ls"><i class="ok" title="ghl ok"></i><i class="err" title="outlook error"></i><i class="err" title="bookkeeper error"></i><i class="miss" title="notion missing"></i></div></div>
+    <div class="lcell"><div class="ld">07-27</div><div class="ls"><i class="ok"></i><i class="err"></i><i class="err"></i><i class="miss"></i></div></div>
+    <div class="lcell"><div class="ld">07-28</div><div class="ls"><i class="ok"></i><i class="err"></i><i class="err"></i><i class="ok"></i></div></div>
+    <div class="lcell"><div class="ld">07-29</div><div class="ls"><i class="ok"></i><i class="err"></i><i class="err"></i><i class="ok"></i></div></div>
+    <div class="lcell missed"><div class="ld">07-30</div><div class="ls">no run</div></div>
+    <div class="lcell"><div class="ld">07-31</div><div class="ls"><i class="ok"></i><i class="err"></i><i class="err"></i><i class="ok"></i></div></div>
+    <div class="lcell missed"><div class="ld">08-01</div><div class="ls">no run</div></div>
+    <div class="lcell"><div class="ld">08-02</div><div class="ls"><i class="miss"></i><i class="ok" title="outlook ok"></i><i class="miss"></i><i class="miss"></i></div></div>
+  </div>
+  <div class="foot">Cell squares: GHL · Outlook · Bookkeeper · Notion — <span style="color:var(--ok)">■</span> ok · <span style="color:var(--crit)">■</span> error · dashed = no file. Outlook's first-ever success was 08-02 (7-day catch-up; anything before 07-26 unscanned). Bookkeeper has never reported — waiting on CoA + QBO wiring. Run-ledger now guards against silent missed days.</div>
+</div>
