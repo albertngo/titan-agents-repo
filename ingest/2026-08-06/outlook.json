@@ -1,0 +1,26 @@
+{
+  "contract_version": "1",
+  "source": "outlook",
+  "run_at": "2026-08-06T08:22:33-04:00",
+  "status": "error",
+  "error": "scripts/outlook_pull.py could not reach Microsoft Graph: every call (Inbox --hours 96 and SentItems --hours 120, all 4 configured mailboxes: albert@, info@, pourya@, mike@titanfloors.ca) failed identically with 'Tunnel connection failed: 403 Forbidden'. The session's egress proxy status endpoint (curl $HTTPS_PROXY/__agentproxy/status) confirms this is not a Graph-side or per-mailbox problem: the proxy's own gateway is rejecting the CONNECT to graph.microsoft.com:443 with 403 ('policy denial or upstream failure') for every attempt in the last few minutes. This is an organization egress-policy block on graph.microsoft.com from this session, not a missing/expired credential, not an Exchange Application Access Policy 403 (which would isolate to one mailbox and still let the others succeed as 'partial'), and not a platform outage. No mailbox data was scanned. Per proxy policy this must be reported, not retried or routed around.",
+  "items": [],
+  "metrics": {
+    "total_scanned": 0,
+    "customer": 0,
+    "supplier": 0,
+    "admin": 0,
+    "noise_skipped": 0,
+    "unanswered_customer": 0,
+    "bounces": 0,
+    "scanned_albert": 0,
+    "scanned_info": 0,
+    "scanned_pourya": 0,
+    "scanned_mike": 0
+  },
+  "needs_attention": [
+    "Outlook ingest for 2026-08-06 could not run: this session's egress proxy is blocking graph.microsoft.com:443 with a 403 at the CONNECT/tunnel level (gateway policy denial), before any Graph auth or per-mailbox access check happens. This is a session/infrastructure egress-policy gap, not a credential or Exchange Application Access Policy problem — escalate to whoever manages this session's egress allowlist and add graph.microsoft.com, then re-run.",
+    "Catch-up still owed: the last successful Outlook run was 2026-08-02T18:46:33-04:00 (a 168h catch-up covering 2026-07-26 18:00 to 2026-08-02 18:00 America/Toronto). Today's run attempted to widen to 96h/120h to close the ~85.6h gap since then but failed outright, so 2026-08-02 18:00 through now (2026-08-06 08:22 America/Toronto) remains completely unscanned. Still within max_catchup_days=7 from the 2026-08-02 window start — the next successful run must widen --hours to at least ~102 (Inbox) / ~126 (SentItems) to cover from 2026-08-02T18:46 forward, or wider still if this gap persists past 2026-08-09.",
+    "Two script invocations were spent on this failed attempt (Inbox 96h, SentItems 120h) — both exhausted the normal daily budget with zero data returned; no further Outlook calls were made this run."
+  ]
+}
