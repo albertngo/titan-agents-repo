@@ -1,0 +1,12 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-08-07T08:31:57-04:00",
+  "status": "error",
+  "error": "GHL MCP server (ghl / services.leadconnectorhq.com) was not reachable from this session: no ghl-prefixed MCP tools (contacts, opportunities, conversations, calendars, locations) were exposed in the toolset this run, so no read calls could be made against GHL_LOCATION_ID 4BwjVRlyDCR4ZRdcSrFR. platform-settings/ghl-workflow.json was present and readable, so this is not a config problem — it is a platform/tool connectivity problem. No GHL data (leads, opportunities, appointments, conversations) could be pulled for the 2026-08-07 window. Per failure policy this is recorded as status: error rather than crashing, so sibling ingesters (bookkeeper, outlook, notion) are not blocked.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "ghl-ingest-agent could not run today (2026-08-07): the ghl MCP server/tools were unavailable this session, so zero GHL leads/opportunities/appointments/conversations were pulled. Re-run ghl-ingest-agent once MCP access is restored — do not treat today's absence of GHL findings as a quiet day."
+  ]
+}

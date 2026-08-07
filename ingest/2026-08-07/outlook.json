@@ -1,0 +1,26 @@
+{
+  "contract_version": "1",
+  "source": "outlook",
+  "run_at": "2026-08-07T08:32:46-04:00",
+  "status": "error",
+  "error": "All outbound calls to graph.microsoft.com were rejected at the network/proxy layer (CONNECT tunnel returned 403 Forbidden) before any Graph API request could be attempted, for all 4 configured mailboxes (albert@, info@, pourya@, mike@titanfloors.ca). This is not a missing-credential problem (GRAPH_TENANT_ID/GRAPH_CLIENT_ID/GRAPH_CLIENT_SECRET are all present in env) and not a per-mailbox Exchange Application Access Policy 403 (those come back from Graph itself, per-mailbox, after a successful tunnel) -- this failed identically and immediately on every mailbox on the very first outbound attempt, which points at the session's outbound egress policy not allowing graph.microsoft.com for this run. Per the proxy runbook (/root/.ccr/README.md), this class of 403 is a policy denial that must be reported, not retried or routed around, so no further pull attempts (including SentItems) were made this run.",
+  "items": [],
+  "metrics": {
+    "total_scanned": 0,
+    "customer": 0,
+    "supplier": 0,
+    "admin": 0,
+    "noise_skipped": 0,
+    "unanswered_customer": 0,
+    "bounces": 0,
+    "scanned_albert": 0,
+    "scanned_info": 0,
+    "scanned_pourya": 0,
+    "scanned_mike": 0
+  },
+  "needs_attention": [
+    "Outlook ingest could not reach Microsoft Graph at all this run: the outbound proxy rejected the CONNECT to graph.microsoft.com with 403 for every configured mailbox before any Graph call was made -- likely a session/network egress allowlist gap for graph.microsoft.com, not an Outlook or credential outage. Needs an admin/infra check of the egress policy, not a mailbox or Entra fix.",
+    "Catch-up gap is now open: the last successful Outlook ingest was 2026-08-02 18:46 (status ok); this run attempted a widened 110-hour catch-up window per max_catchup_days=7 but returned zero data due to the network block above. 2026-08-03 through 2026-08-07 Outlook activity for all 4 mailboxes (albert@, info@, pourya@, mike@titanfloors.ca) is still unscanned and must be caught up on the next successful run, still within the 7-day cap.",
+    "Interim runs 2026-07-26 through 2026-07-31 also recorded status: error in prior outlook.json files -- confirm those gaps were resolved by the 2026-08-02 catch-up run before assuming today's is the only open window."
+  ]
+}
