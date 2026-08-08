@@ -1,0 +1,25 @@
+{
+  "contract_version": "1",
+  "source": "outlook",
+  "run_at": "2026-08-08T08:16:49-04:00",
+  "status": "error",
+  "error": "scripts/outlook_pull.py obtained a Graph token successfully (login.microsoftonline.com reachable, 302) but every subsequent call to graph.microsoft.com:443 was rejected at the outbound proxy layer with 'Tunnel connection failed: 403 Forbidden' for all 4 mailboxes (albert@, info@, pourya@, mike@) on both Inbox and SentItems. The session's agent-proxy status endpoint (http://127.0.0.1:46633/__agentproxy/status) confirms this as a gateway-side policy denial on the CONNECT to graph.microsoft.com:443, not a client TLS/config issue and not a per-mailbox Exchange Application Access Policy 403 (those come back from Graph itself with a JSON error body naming Mail.Read/consent; this is a bare tunnel rejection before any Graph request is even sent). This is a new failure mode, distinct from every documented trap: not missing/expired credentials (the token step succeeded), not a per-mailbox 403 (all 4 failed identically and before reaching Graph), not an Outlook outage. Per this session's proxy README, a 403 on a CONNECT is an organization egress-policy denial and must be reported, not retried or routed around — graph.microsoft.com needs to be allow-listed for this session's egress policy (or the equivalent outbound rule) before this ingester can run here. No mailbox data was scanned for 2026-08-08.",
+  "items": [],
+  "metrics": {
+    "total_scanned": 0,
+    "customer": 0,
+    "supplier": 0,
+    "admin": 0,
+    "noise_skipped": 0,
+    "unanswered_customer": 0,
+    "bounces": 0,
+    "scanned_albert": 0,
+    "scanned_info": 0,
+    "scanned_pourya": 0,
+    "scanned_mike": 0
+  },
+  "needs_attention": [
+    "Outlook ingest could not run for 2026-08-08: Microsoft Graph (graph.microsoft.com) is being blocked at this session's outbound egress proxy with a 403 on CONNECT, after the OAuth token step succeeded. This is an egress/network-policy gap, not missing credentials, not an expired secret, and not a per-mailbox Exchange Application Access Policy issue — allow-list graph.microsoft.com:443 for this session/environment and re-run.",
+    "Catch-up context: last successful Outlook ingest (status ok) was 2026-08-02T18:46:33-04:00. Today's attempt tried to widen the pull to ~135h (Inbox) / ~159h (SentItems, +unanswered_threshold_hours) to close that gap per max_catchup_days=7, but the proxy block meant zero messages were retrieved for any mailbox or folder. The 2026-08-02 18:46 through 2026-08-08 window remains completely unscanned pending network access — re-run with the same widened window once graph.microsoft.com is reachable, not just a fresh 24h pull, or mail from this gap will be silently dropped."
+  ]
+}
