@@ -18,6 +18,7 @@ The intermediate shape between an ingest item and a Notion row:
   "title": "GHL drift: Ryan Langen — one cycle from abandonment",
   "summary": "Score 12, mobile quote sent, already stale_lead-tagged, no appointment booked.",
   "entity": { "name": "Ryan Langen", "ghl_contact_id": "4TzieXflcVqohecIkbEB" },
+  "types": ["drift"],
   "priority": "high",
   "url": "https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/4TzieXflcVqohecIkbEB",
   "thread_url": null,
@@ -31,6 +32,12 @@ The intermediate shape between an ingest item and a Notion row:
 `assigned_to` is carried through unchanged from the source item(s) (`contracts/ingest-schema.md`)
 — null when the source had none. See "Reference-only owner line" below for what the sync
 does with it; it is never a routing input.
+
+`types` is the set of distinct `item.type` values among everything merged into this
+candidate (usually one; see "Collapse to one candidate per contact" for when it's more
+than one). It maps to `Tags` — see "Grouping by finding type" below — never to routing
+or to `Name`'s `<type>` placeholder, which stays whatever the merge logic already picks
+for the title.
 
 This shape is deliberately a strict subset of `contracts/plan-schema.md`'s
 Action object (`entity`, `basis`, `rule_id` all line up). When planner-agent
@@ -209,6 +216,33 @@ does not detect or append an owner-change line in v1 — the update whitelist
 (below) still only covers a dated finding line and a `Priority` raise. Revisit
 if stale `ghl_owner` lines turn out to cause real confusion.
 
+## Grouping by finding type (`lead` / `message` / `drift` tags)
+
+**Added 2026-08-09, Albert** — wants to group/filter the board by what kind of
+GHL finding a row is. `item.type` (`lead`, `message`, or `drift` — `pipeline`
+is never a candidate, see above) is added to the existing multi-select `Tags`
+property as its own value(s), rather than a new dedicated column: `lead`
+(pink), `message` (blue), `drift` (purple) were added as `Tags` options
+alongside the pre-existing `ghl` and the board's other unrelated tags
+(`@order`, `training`, `price list`, etc.) — no new property, no schema
+disruption for non-GHL rows.
+
+- **On create**, `Tags` = `["ghl"]` plus one entry per value in the
+  candidate's `types` (usually one; two when items of different types
+  collapsed into the same contact, e.g. a `lead` and a `drift` finding on the
+  same brand-new contact — both tags go on, the row is genuinely both things).
+- **On update**, `Tags` **MAY gain** a type value the row doesn't already
+  have, when the day's new finding introduces one (e.g. a row created from a
+  `message` item gets a `drift` finding three weeks later — add `drift`,
+  keep `message`). `Tags` **MUST NOT** lose a value on update — this is
+  additive-only, same spirit as "MAY raise `Priority`, never lower it." The
+  `ghl` tag itself is never removed; it's what the dedupe query in "Dedupe
+  and update" keys on.
+- This is classification, not routing or assignment — it never affects
+  `sensitivity`-based routing, never sets `Assign To`, and grouping by it in
+  a Notion view is a human choice, same as `ghl_owner` is a human's reference,
+  not the sync's decision.
+
 ## Constructing the Notion `url` property
 
 **Always constructed, never copied from `item.link`:**
@@ -269,6 +303,9 @@ On a match, the sync:
 - **MAY** append one dated line to `Notes`.
 - **MAY** raise `Priority` if the new finding is more severe than the
   existing value.
+- **MAY** add a `lead`/`message`/`drift` value to `Tags` if the new finding's
+  type isn't already tagged (see "Grouping by finding type" above) — additive
+  only, never remove an existing tag.
 - **MUST NOT** touch `Status`, `Assign To`, `Due Date`, `Name`, or rewrite
   any existing `Notes` text.
 
@@ -283,7 +320,7 @@ Destination: shared "✅ Tactical Tasks List" (Titan Flooring HQ teamspace).
 |---|---|---|
 | `title` | `Name` | `GHL <type>: <Entity> — <short detail>`, ≤ 80 chars |
 | — | `Status` | `Not started` (create only) |
-| — | `Tags` | `["ghl"]` |
+| — | `Tags` | `["ghl"]` plus one entry per distinct `type` among the candidate's merged items — `lead` / `message` / `drift` (create only; see below for the update behavior) |
 | `priority` | `Priority` | `high` |
 | `url` | `url` | constructed contact URL — see above |
 | `summary` + footer | `Notes` | summary, blank line, then:<br>`[agent] key=<key> \| first_seen=<date> \| basis=<file>#<item_id>`<br>`ghl_owner: <name>` (create only, when `assigned_to` resolves — see "Reference-only owner line" above)<br>`thread: <conversation_url>` (message items only) |

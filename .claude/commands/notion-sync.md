@@ -40,7 +40,9 @@ re-derive or guess.
    summaries; keep the highest priority and all `basis` item ids). Carry
    forward `assigned_to` too: take the first non-null value among the merged
    items (see `notion-task-schema.md`'s Reference-only owner line section for
-   why they should agree and what to do if they don't).
+   why they should agree and what to do if they don't). Also collect `types`:
+   the set of distinct `item.type` values among the merged items (see
+   "Grouping by finding type" in that same contract).
 
 4. **Route each candidate** using `notion-destinations.json`
    (`source_defaults`, then the item's own `sensitivity` field if set,
@@ -56,9 +58,11 @@ re-derive or guess.
    c. No match → create, using the team property mapping table in
       `notion-task-schema.md`, including the `ghl_owner:` Notes line resolved
       from `notion-destinations.json`'s `people` table per that contract's
-      Reference-only owner line section.
+      Reference-only owner line section, and `Tags` = `["ghl"]` plus each
+      value in the candidate's `types`.
    d. Match found → update per the whitelist only (append a dated `Notes`
-      line, raise `Priority` on escalation). Never touch `Status`,
+      line, raise `Priority` on escalation, add any `types` value not
+      already in the row's `Tags` — never remove one). Never touch `Status`,
       `Assign To`, `Due Date`, `Name`, or existing `Notes` text.
    e. If the dedupe query in (a) fails, stop before writing anything for
       this destination — do not create rows without it.
