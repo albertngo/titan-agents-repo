@@ -1,0 +1,27 @@
+{
+  "contract_version": "1",
+  "source": "outlook",
+  "run_at": "2026-08-09T08:20:43-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [],
+  "metrics": {
+    "total_scanned": 6,
+    "customer": 0,
+    "supplier": 0,
+    "admin": 0,
+    "noise_skipped": 6,
+    "unanswered_customer": 0,
+    "bounces": 0,
+    "scanned_albert": 2,
+    "scanned_info": 3,
+    "scanned_pourya": 1,
+    "scanned_mike": 0,
+    "self_traffic_dropped": 0,
+    "sent_items_scanned": 7
+  },
+  "needs_attention": [
+    "Quiet 24h window: none of the 6 Inbox messages across the 4 mailboxes were customer, supplier, or admin mail — all were automated notifications (2x Google Business Profile to info@, a SiteGround weekly scan report to info@, a marketing newsletter to pourya@) or system alerts, so no items were emitted and no customer/supplier correspondence was left unanswered in this window.",
+    "FYI, not an Outlook item type: albert@ received two Make.com alerts (Aug 8, ~12:44pm ET) reporting the 'Stage: Project Won w Celebrate' automation scenario hit an error and was deactivated. This looks like an internal workflow (likely a post-win customer/celebration step) silently stopped — worth a quick check that it isn't dropping anything."
+  ]
+}
