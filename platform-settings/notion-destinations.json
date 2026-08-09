@@ -67,10 +67,12 @@
   },
 
   "people": {
-    "_comment": "Notion person IDs behind the Tactical Tasks List per-person views. The sync NEVER sets Assign To (contracts/notion-task-schema.md rule 4) — this table exists for reference/reporting only (e.g. to name whose view a row would land in once triaged), not for the sync to assign into.",
-    "albert": "c39aa5d3-c87c-4152-92ef-5ed13d9c4605",
-    "pourya": "1f4d872b-594c-8101-b28a-00020fc13998",
-    "mike": "22ad872b-594c-8164-bc5c-00025c1b0f2c",
-    "front_desk": "2165565e-ec9a-4260-b684-89c3da94f996"
+    "_comment": "Reference registry of human identities across platforms — Notion person IDs behind the Tactical Tasks List per-person views, and (as of 2026-08-09) GHL user IDs for the ghl_owner: reference line in Notes (contracts/notion-task-schema.md). The sync NEVER sets Assign To and never auto-routes off ghl_user_id (contracts/notion-task-schema.md rule 4) — this table exists for reference/reporting only, not for the sync to assign into.",
+    "_ghl_user_id_comment": "There is no MCP tool that resolves a GHL user ID to a name (confirmed 2026-08-09 against the live account's full tool catalog and a direct /users/ pull) — this is a hand-maintained mapping of GHL's entire 5-user roster. Re-verify if Titan's GHL user list changes; a `ghl_owner: unmapped (<id>)` line in a synced task's Notes is the signal that a new ID needs adding here.",
+    "albert": {"name": "Albert", "notion_person_id": "c39aa5d3-c87c-4152-92ef-5ed13d9c4605", "ghl_user_id": "ooPNab06Ka04uZ1yQ4w6"},
+    "pourya": {"name": "Pourya", "notion_person_id": "1f4d872b-594c-8101-b28a-00020fc13998", "ghl_user_id": "rAMFCiXbAjJOEjtyyvmn"},
+    "mike": {"name": "Mike", "notion_person_id": "22ad872b-594c-8164-bc5c-00025c1b0f2c", "ghl_user_id": "GH0XAA6gD38CEMR9oREm"},
+    "front_desk": {"name": "Front Desk", "notion_person_id": "2165565e-ec9a-4260-b684-89c3da94f996", "ghl_user_id": "edv6p75Y79cYsPS0jPv0"},
+    "mark_bot": {"name": "Mark Bot", "notion_person_id": null, "ghl_user_id": "CvW3gPWmxP0OkyUiFmhT", "_note": "GHL-only automation/bot account, not a staff member — no Notion person mapped. Kept here so its ID resolves to a label instead of showing as unmapped."}
   }
 }

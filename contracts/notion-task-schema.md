@@ -23,9 +23,14 @@ The intermediate shape between an ingest item and a Notion row:
   "thread_url": null,
   "amount_cents": null,
   "sensitivity": "team",
+  "assigned_to": "rAMFCiXbAjJOEjtyyvmn",
   "basis": { "file": "ingest/2026-07-27/ghl.json", "item_ids": ["ghl-drift-abandonment_next-c1BQdU8s0TbdEKCX1ktb"] }
 }
 ```
+
+`assigned_to` is carried through unchanged from the source item(s) (`contracts/ingest-schema.md`)
+— null when the source had none. See "Reference-only owner line" below for what the sync
+does with it; it is never a routing input.
 
 This shape is deliberately a strict subset of `contracts/plan-schema.md`'s
 Action object (`entity`, `basis`, `rule_id` all line up). When planner-agent
@@ -164,6 +169,46 @@ execution: `"auto"` writes immediately; `"approval_required"` always
 proposes-and-stops for Albert's explicit yes, regardless of anything else in
 this file.
 
+## Reference-only owner line (`ghl_owner`)
+
+**Added 2026-08-09, Albert.** GHL exposes a raw `assignedTo` user ID on the
+contact/opportunity behind most candidates (`contracts/ingest-schema.md`'s
+`assigned_to` field, ~93–96% populated per a live sample). There is no MCP tool
+that resolves it to a name, and there are only 5 users total on the account, so
+resolution is a hand-maintained lookup: `platform-settings/notion-destinations.json`
+`people[*].ghl_user_id`.
+
+**This is a reference for whoever triages the board — it is never an
+assignment.** It does not touch `Assign To`, does not affect routing (team vs.
+private is `sensitivity`-driven only, per Routing above), and is not read by
+the sync for any decision. The actions-class rule that assignment is always a
+human call is unchanged; this just saves a lookup.
+
+At **create** time only, add one line to the `Notes` footer, after the
+`[agent] key=...` line and before any `thread:` line:
+
+- `assigned_to` resolves to a `people` entry → `ghl_owner: <name>` (the entry's
+  `name` field, e.g. `ghl_owner: Pourya`).
+- `assigned_to` is present but matches no entry in `people` → `ghl_owner:
+  unmapped (<raw id>) — add to notion-destinations.json people table`. Don't
+  drop it silently; an unmapped ID is a signal the roster changed.
+- `assigned_to` is `null`/absent on every merged item → omit the line
+  entirely. Do not write `ghl_owner: unassigned` — that would assert GHL has
+  no owner when the truth may just be that this ingest run didn't carry the
+  field (e.g. an older ingest file predating this feature).
+
+For a collapsed candidate (multiple items, one contact), use the first
+non-null `assigned_to` among the merged items — they should agree, since
+assignment lives on the contact and is only mirrored onto opportunities; if
+they disagree, that's itself worth a `needs_attention` note from the ingest
+side, not something the sync silently picks a winner on.
+
+**Not tracked on update.** The `ghl_owner` line is stamped once, at creation,
+as part of the immutable footer. If GHL reassigns the contact later, the sync
+does not detect or append an owner-change line in v1 — the update whitelist
+(below) still only covers a dated finding line and a `Priority` raise. Revisit
+if stale `ghl_owner` lines turn out to cause real confusion.
+
 ## Constructing the Notion `url` property
 
 **Always constructed, never copied from `item.link`:**
@@ -241,7 +286,7 @@ Destination: shared "✅ Tactical Tasks List" (Titan Flooring HQ teamspace).
 | — | `Tags` | `["ghl"]` |
 | `priority` | `Priority` | `high` |
 | `url` | `url` | constructed contact URL — see above |
-| `summary` + footer | `Notes` | summary, blank line, then:<br>`[agent] key=<key> \| first_seen=<date> \| basis=<file>#<item_id>`<br>`thread: <conversation_url>` (message items only) |
+| `summary` + footer | `Notes` | summary, blank line, then:<br>`[agent] key=<key> \| first_seen=<date> \| basis=<file>#<item_id>`<br>`ghl_owner: <name>` (create only, when `assigned_to` resolves — see "Reference-only owner line" above)<br>`thread: <conversation_url>` (message items only) |
 | — | `Verification` | `Needs Verification` (create only) |
 | — | `Assign To` | **always empty** |
 | — | `Due Date` | **always empty** |

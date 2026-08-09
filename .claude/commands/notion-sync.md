@@ -37,7 +37,10 @@ re-derive or guess.
 
 3. **Collapse to one candidate per contact.** Multiple items for the same
    contact in one run merge into a single task candidate (combine titles/
-   summaries; keep the highest priority and all `basis` item ids).
+   summaries; keep the highest priority and all `basis` item ids). Carry
+   forward `assigned_to` too: take the first non-null value among the merged
+   items (see `notion-task-schema.md`'s Reference-only owner line section for
+   why they should agree and what to do if they don't).
 
 4. **Route each candidate** using `notion-destinations.json`
    (`source_defaults`, then the item's own `sensitivity` field if set,
@@ -51,7 +54,9 @@ re-derive or guess.
       — never copy `item.link` verbatim) and match by exact equality
       against the queried rows' `url`.
    c. No match → create, using the team property mapping table in
-      `notion-task-schema.md`.
+      `notion-task-schema.md`, including the `ghl_owner:` Notes line resolved
+      from `notion-destinations.json`'s `people` table per that contract's
+      Reference-only owner line section.
    d. Match found → update per the whitelist only (append a dated `Notes`
       line, raise `Priority` on escalation). Never touch `Status`,
       `Assign To`, `Due Date`, `Name`, or existing `Notes` text.
@@ -70,8 +75,9 @@ re-derive or guess.
    after an explicit yes, write the approved ones using the private
    property mapping table (dedupe query scoped to `Source` in
    `["bookkeeper","outlook","ghl-escalated","other"]`, matched the same way
-   as the team destination). Log with the real approval as `approved_by`,
-   not the auto-write string.
+   as the team destination), including the same `ghl_owner:` Notes line as
+   the team destination when `assigned_to` resolves. Log with the real
+   approval as `approved_by`, not the auto-write string.
 
 7. **Report** in chat: a table of created / updated / skipped_duplicate /
    failed rows for the team destination, then the private proposal list
@@ -82,7 +88,9 @@ re-derive or guess.
 - Never write anywhere except the two destinations named in
   `notion-destinations.json`.
 - Never set `Assign To` / `Assignee` or `Due Date`. Assignment and due
-  dates are Albert's calls, not the sync's.
+  dates are Albert's calls, not the sync's. `ghl_owner:` in `Notes` is a
+  reference line for whoever triages the board — it is informational only
+  and must never be used to set `Assign To` or to route team vs. private.
 - Never infer `sensitivity` from item content (keyword matching, etc.).
   Routing is a lookup against `notion-destinations.json` and the item's own
   declared field — never an inference this command makes on its own.

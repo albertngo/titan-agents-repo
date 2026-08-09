@@ -46,7 +46,8 @@ Re-runs on the same day overwrite the file (idempotent). Never append.
   "link": "https://app.gohighlevel.com/...",
   "amount_cents": null,
   "raw_ref": "conversation 8842",
-  "sensitivity": null
+  "sensitivity": null,
+  "assigned_to": null
 }
 ```
 
@@ -61,6 +62,7 @@ Re-runs on the same day overwrite the file (idempotent). Never append.
 | `amount_cents` | Integer cents CAD when money is involved, else null. |
 | `sensitivity` | Optional. `"team"` or `"private"`, else null (source default applies). Set by the ingest agent when an item needs routing different from its source's default — e.g. an item relaying content from an admin-only surface (QBO, Outlook, Notion Project Financials) or a genuinely personal matter. Provenance decides, not content: what staff already sees in its source platform stays team (Albert, 2026-08-02). May only escalate `team → private`, never the reverse. Consumed by `contracts/notion-task-schema.md` (Notion team/private routing) and by `vault-writer-agent` (vault `visibility` tagging: `team → staff`, `private → admin` — the mapping and the admin-fact list live in the Visibility section of the vault's `CONVENTIONS.md`). |
 | `raw_ref` | Pointer back to the source record for audit. Never paste full raw content here. |
+| `assigned_to` | Optional. The source platform's own raw user ID for whoever the record is currently assigned/owned by, when the platform exposes one (e.g. GHL's `assignedTo` on a contact/opportunity) — pass it through **as observed, unresolved**. Never guess one, never translate it to a name here: name resolution is a downstream, source-specific lookup (see `contracts/notion-task-schema.md`'s `ghl_owner` reference line), because ingest agents stay platform-read-only and unaware of Notion/vault concerns. Null when the source has no such concept or the record itself has no owner. Informational only — no ingest or downstream consumer may use it to originate an assignment; assigning a person to work is always a human decision. |
 
 ## `extensions` — optional, source-owned detail
 
