@@ -169,6 +169,27 @@ which is canonical for why and for how they're matched. Pipeline and stage go ou
 verifiable and an ID isn't. Never emit `traceId` / `mcp_trace_id` — per-request
 debugging only.
 
+## `assigned_to` — pass the raw GHL user ID through, never resolve it
+
+Both the contact and opportunity objects carry a top-level `assignedTo` field — a raw
+~20-char GHL user ID (assignment lives on the contact; the opportunity's copy is just
+a mirror of the same value). Populated ~93–96% of records, null on the rest — leave it
+`null` on the item when the source record itself has none, don't fall back to a guess.
+
+Copy it verbatim onto the item's `assigned_to` field (`contracts/ingest-schema.md`) for
+`lead`, `message`, and `drift` items where a single contact/opportunity backs the item.
+**Do not translate the ID to a name** — there is no MCP tool that resolves a GHL user
+ID (confirmed 2026-08-09: no `users`/`team` tool exists on this server, and
+`locations_get-location` returns business/settings metadata only, no team-member list).
+Name resolution happens downstream, by `notion-sync` against the static
+`platform-settings/notion-destinations.json` `people` table — that keeps this agent
+platform-read-only and unaware of Notion. This is reference data only: it must never
+be used, here or downstream, to originate an assignment.
+
+Drift items covering multiple contacts at once (the `*_aggregate_*` and
+`*_batch` rollup-style findings) have no single owner — leave `assigned_to` null on
+those rather than picking one contact's value arbitrarily.
+
 Full ID inventory: `platforms/GHL.md` in the vault.
 
 ## Timeline field (drives the qualification tag, per step 6)
