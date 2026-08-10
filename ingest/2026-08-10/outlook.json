@@ -1,0 +1,51 @@
+{
+  "contract_version": "1",
+  "source": "outlook",
+  "run_at": "2026-08-10T08:28:31-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "outlook-admin-4650793515",
+      "type": "admin",
+      "title": "QuickBooks Auto Payroll preview: $2,772.58 to be withdrawn",
+      "summary": "Intuit's Auto Payroll preview landed in albert@'s inbox Aug 10 confirming the upcoming pay run will withdraw $2,772.58 from BMO - Titan Flooring. Routine automatic payroll debit, informational only, no action needed unless the amount looks wrong.",
+      "timestamp": "2026-08-10T04:06:44-04:00",
+      "priority": "normal",
+      "link": "https://outlook.office365.com/owa/?ItemID=AAMkADliNWJmMjVmLTA2YzctNGRlMC1iMmVlLTkyNjdhZjBmYzUwZABGAAAAAABHf1EfuF%2FiToI4%2BcF0d6pDBwDbPhKQg8c%2FRp%2Bc7qfEdjkNAAAAAAEMAADbPhKQg8c%2FRp%2Bc7qfEdjkNAAKmExbMAAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
+      "amount_cents": 277258,
+      "raw_ref": "outlook:albert@titanfloors.ca:message:<W89lNRH6TuKUQtelEJAQTA@geopod-ismtpd-4>",
+      "sensitivity": null
+    },
+    {
+      "id": "outlook-admin-5e34dae34d",
+      "type": "admin",
+      "title": "Interac e-transfer: $2,000 from Damian Martin auto-deposited",
+      "summary": "info@ forwarded a Damian Martin Interac e-transfer notice to albert@ Aug 9 confirming $2,000 was automatically deposited. Money incoming, no action needed.",
+      "timestamp": "2026-08-09T16:23:21-04:00",
+      "priority": "normal",
+      "link": "https://outlook.office365.com/owa/?ItemID=AAMkADliNWJmMjVmLTA2YzctNGRlMC1iMmVlLTkyNjdhZjBmYzUwZABGAAAAAABHf1EfuF%2FiToI4%2BcF0d6pDBwDbPhKQg8c%2FRp%2Bc7qfEdjkNAAAAAAEMAADbPhKQg8c%2FRp%2Bc7qfEdjkNAAKmExbKAAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
+      "amount_cents": 200000,
+      "raw_ref": "outlook:albert@titanfloors.ca:message:<bc60b29a791c422ead67dc5754128c9e@YT5PR01MB11905.CANPRD01.PROD.OUTLOOK.COM>",
+      "sensitivity": null
+    }
+  ],
+  "metrics": {
+    "total_scanned": 9,
+    "customer": 0,
+    "supplier": 0,
+    "admin": 2,
+    "noise_skipped": 5,
+    "unanswered_customer": 0,
+    "bounces": 0,
+    "scanned_albert": 3,
+    "scanned_info": 3,
+    "scanned_pourya": 3,
+    "scanned_mike": 0,
+    "self_traffic_dropped": 2
+  },
+  "needs_attention": [
+    "Catch-up widening: last successful Outlook ingest was 2026-08-09T01:01:58-04:00 (~31h before this run), older than the 24h window_hours, so this run pulled 36h on Inbox and 60h on Sent Items (36h + unanswered_threshold_hours buffer) per max_catchup_days=7 to close the gap. All 4 mailboxes and both folders succeeded this time.",
+    "Quiet window: no customer or supplier emails landed across any mailbox in this ~36h window, so no unanswered-customer flags today. Only 2 routine admin items (a QuickBooks Auto Payroll preview and an incoming Interac deposit) plus 5 noise items (WordPress plugin notice, 2 Google Business Profile notifications, a Meta Marketing API onboarding email, a newsletter)."
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-08-10T08:28:07-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Aug 9 spend $55.43, 6 leads, CPL $9.24",
+      "summary": "Yesterday (Aug 9) Titan spent $55.43 CAD across 1 active campaign, generating 6 leads at a $9.24 CPL. Flooring Problems Campaign was the only campaign delivering spend and carried the full account total; CPL came in well under the 7-day baseline of $15.64.",
+      "timestamp": "2026-08-10T08:28:07-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 5543,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 5543,
+    "impressions": 1685,
+    "clicks": 39,
+    "leads": 6,
+    "cpl_cents": 924,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "First successful run of meta-ads-ingest-agent — no prior meta-ads.json found in the last 7 days (ingest/2026-08-03 through 2026-08-09), so this is establishing cadence rather than covering a gap. Pulled the standard yesterday window (--days 1) plus a 7-day baseline for CPL comparison.",
+    "Flooring Problems Campaign's raw actions include lead-like types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each value=6, same as the counted max). They didn't change the lead count today, but per the script's own trap this should be reviewed and LEAD_ACTION_TYPES possibly extended rather than hand-patched here."
+  ]
+}
