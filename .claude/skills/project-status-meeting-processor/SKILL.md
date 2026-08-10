@@ -5,7 +5,7 @@ description: Ingest a weekly Project Status meeting transcript (a .docx export f
 
 # Project Status Meeting Processor (Titan Flooring)
 
-This skill ingests Albert's weekly Project Status meeting transcripts and produces structured markdown ready to paste into the corresponding sections of his Notion meeting template. The skill operates in **Mode 1 (manual paste)** — it does NOT write to Notion directly.
+This skill ingests Albert's weekly Project Status meeting transcripts and produces structured markdown ready to paste into the corresponding sections of his Notion meeting template. The skill operates in **Mode 2 (direct Notion writes)** — Albert has authorized it to write to Notion directly (task-note appends, transcript/summary sub-pages, next week's draft page) per the steps below, all append-only or clearly-scoped creates as detailed in Step 4.6 and Steps 7.6–7.8.
 
 ## When this skill applies
 
@@ -715,7 +715,7 @@ ALWAYS use this exact template:
 - Items flagged "Needs Verification" should be confirmed before marking as Done
 - Project name matches with low confidence are flagged "needs match"
 - Playbook candidates are drafts — none are auto-published
-- This skill operates in Mode 1: no Notion writes
+- This skill operates in Mode 2: Notion writes are authorized (append-only task notes; sub-page/draft-page creates per Steps 4.6, 7.6–7.8)
 ```
 
 ## Quality bar
@@ -746,7 +746,7 @@ Both inline display and downloadable file. Albert's preference is to see it in t
 
 ## What this skill does NOT do
 
-- Write to Notion (Mode 2 — direct Notion writes — is deferred to a future version)
+- Write to Notion beyond what's specified above (append-only task notes; sub-page/draft-page creates) — it never replaces fields, renames, or auto-publishes Playbook entries
 - Process audio or video — text transcript only
 - Auto-publish Playbook entries
 - Make decisions Albert needs to make (e.g., whether to mark something Done after a "Needs Verification" flag)
