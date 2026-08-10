@@ -40,8 +40,11 @@ API_VERSION = os.environ.get("META_API_VERSION", "v23.0")
 GRAPH = "https://graph.facebook.com/%s" % API_VERSION
 
 # Action types Meta uses for lead events, depending on where the lead form
-# lives. `leads` per campaign = sum over these; raw actions ride along for
-# audit so a new action_type is visible rather than silently dropped.
+# lives. The SAME lead is reported under several of these at once (verified
+# live 2026-08-10: 6 leads appeared as lead=6 AND lead_grouped=6), so
+# `leads` per campaign = MAX over these, never the sum. Raw actions ride
+# along for audit so a new action_type is visible rather than silently
+# dropped.
 LEAD_ACTION_TYPES = {
     "lead",
     "leadgen_grouped",
@@ -141,8 +144,8 @@ def currency_to_cents(val):
 
 
 def leads_from_actions(actions):
-    return sum(int(a.get("value", 0)) for a in (actions or [])
-               if a.get("action_type") in LEAD_ACTION_TYPES)
+    return max((int(a.get("value", 0)) for a in (actions or [])
+                if a.get("action_type") in LEAD_ACTION_TYPES), default=0)
 
 
 def main():
@@ -204,8 +207,10 @@ def main():
     if err:
         errors.append(err)
     for c in campaigns:
-        c["daily_budget_cents"] = currency_to_cents(c.get("daily_budget"))
-        c["lifetime_budget_cents"] = currency_to_cents(c.get("lifetime_budget"))
+        # Unlike insights `spend` (currency units), budget fields arrive
+        # ALREADY in minor units: daily_budget "5000" is $50.00, not $5000.
+        c["daily_budget_cents"] = int(c["daily_budget"]) if c.get("daily_budget") else None
+        c["lifetime_budget_cents"] = int(c["lifetime_budget"]) if c.get("lifetime_budget") else None
 
     flagged_ads, err = api_get_paged("%s/ads" % account, {
         "fields": "id,name,effective_status,campaign_id,ad_review_feedback",

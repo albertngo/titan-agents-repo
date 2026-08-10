@@ -67,10 +67,16 @@ source cannot escalate in that direction.
   The script converts to `*_cents` fields — use those, never re-parse `spend`.
   The account currency is in `account.currency`; if it is ever not CAD, say so
   in `needs_attention` rather than silently mixing currencies.
-- **Lead counting is action-type dependent.** The script sums a documented set
-  of lead action types into `leads` per campaign. If a campaign's raw
-  `actions` show conversions under an action type outside that set, flag it in
+- **Lead counting is action-type dependent, and the types overlap.** Meta
+  reports the SAME lead under several action types at once (verified live
+  2026-08-10: 6 leads showed as `lead: 6` and `onsite_conversion.lead_grouped: 6`
+  simultaneously). The script takes the max over its documented set into
+  `leads` — never re-sum action types yourself. If a campaign's raw `actions`
+  show conversions under a lead-like type outside that set, flag it in
   `needs_attention` — the script's set needs extending, don't hand-patch here.
+- **Budget fields are already minor units; spend is not.** `daily_budget: "5000"`
+  means $50.00/day, while `spend: "54.45"` means $54.45. The script normalizes
+  both into `*_cents` — use those, never convert raw values yourself.
 - **Token death looks like an outage.** An HTTP 401/`code 190` means the
   system-user token expired or was revoked — report "credential expired or
   revoked" as the first hypothesis, `status: "error"`, setup gap not outage.
