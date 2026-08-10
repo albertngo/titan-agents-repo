@@ -15,6 +15,7 @@ Run the daily ingest funnel for Titan Flooring.
    - `outlook-ingest-agent`
    - `bookkeeper-ingest-agent`
    - `notion-ingest-agent`
+   - `meta-ads-ingest-agent`
    Do not do their work yourself. Do not let one failure stop the others.
 3. When all tasks return, read every `*.json` in `/ingest/<date>/`.
 4. Write `/ingest/<date>/DAILY-BRIEF.md` with exactly these sections:
@@ -31,7 +32,7 @@ Run the daily ingest funnel for Titan Flooring.
 
    ```json
    {"date": "<date>", "run_at": "<ISO timestamp, America/Toronto>",
-    "sources": {"ghl": "ok|partial|error|missing", "outlook": "...", "bookkeeper": "...", "notion": "..."},
+    "sources": {"ghl": "ok|partial|error|missing", "outlook": "...", "bookkeeper": "...", "notion": "...", "meta-ads": "..."},
     "brief": true}
    ```
 

@@ -26,6 +26,7 @@ No ingester reads another ingester's raw platform data.
 | `outlook-ingest-agent` | Outlook / M365 | `outlook.json` |
 | `bookkeeper-ingest-agent` | QuickBooks / receipts | `bookkeeper.json` |
 | `notion-ingest-agent` | Notion (projects, work orders, payments, meetings) | `notion.json` |
+| `meta-ads-ingest-agent` | Meta Ads (spend, leads, CPL, delivery health) | `meta-ads.json` |
 
 | `ghl-actions-agent` | GoHighLevel (write: replies, stages, tags) | appends to `actions-log.json` |
 | `vault-writer-agent` | titan-vault Obsidian repo (write) | vault notes per its CONVENTIONS.md — runs automatically in `/daily-ingest`, bound to its whitelist. See Vault writes. |
