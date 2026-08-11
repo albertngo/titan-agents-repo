@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "source": "bookkeeper",
+  "run_at": "2026-08-11T08:29:00-04:00",
+  "status": "error",
+  "error": "Intuit QuickBooks MCP connector unavailable this run: no QBO/Intuit MCP server is configured (.mcp.json only defines the 'ghl' server) and no QuickBooks credentials/tools were present in the session. Unable to pull last-24h transactions, unmatched receipts, or overdue invoices. No QBO data was read.",
+  "items": [],
+  "metrics": {
+    "payments_received_cents": 0,
+    "overdue_invoices": 0,
+    "uncategorized_txns": 0
+  },
+  "needs_attention": [
+    "QuickBooks MCP connector not reachable/configured — bookkeeper ingest produced no data for 2026-08-11. Add/repair the Intuit QuickBooks MCP server (see .mcp.json) before the next scheduled run."
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-08-11T08:29:59-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "2026-08-10 spend $54.06, 4 leads, CPL $13.52",
+      "summary": "Total Meta spend for 2026-08-10 (America/Toronto) was $54.06 CAD across 1 active campaign, Flooring Problems Campaign, producing 4 leads at $13.52 CPL. That's below the 7-day baseline CPL of $15.98, so delivery looks healthy. Account status is ACTIVE and no ads are flagged.",
+      "timestamp": "2026-08-10T23:59:59-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 5406,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 5406,
+    "impressions": 1466,
+    "clicks": 24,
+    "leads": 4,
+    "active_campaigns": 1,
+    "flagged_ads": 0,
+    "cpl_cents": 1352
+  },
+  "needs_attention": [
+    "No prior meta-ads.json found in the last 7 days of /ingest — this looks like the first run of this source, so --days 1 (yesterday, 2026-08-10) was pulled per standard cadence rather than widened; there was no prior successful run to measure a gap against.",
+    "Flooring Problems Campaign's raw actions include lead-like action types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — all value=4, matching the counted 4 leads today with no evidence of undercount, but the set should be reviewed for whether these need adding)."
+  ]
+}
