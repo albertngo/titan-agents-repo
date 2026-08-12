@@ -1,0 +1,47 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-08-12T08:28:17-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta spend $52.71 CAD, 1 lead, CPL $52.71 (Flooring Problems Campaign)",
+      "summary": "Yesterday (2026-08-11) Titan spent $52.71 CAD across 1 active campaign, generating 1 lead at a $52.71 CPL. All spend came from 'Flooring Problems Campaign', the only active campaign of 4 — the other 3 are paused.",
+      "timestamp": "2026-08-12T08:28:17-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 5271,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    },
+    {
+      "id": "meta-ads-anomaly-120216224215840296",
+      "type": "anomaly",
+      "title": "CPL ~2.8x 7-day baseline: Flooring Problems Campaign",
+      "summary": "Flooring Problems Campaign spent $52.71 for 1 lead yesterday (CPL $52.71), versus its 7-day baseline CPL of $18.58 across 19 leads/$352.93 spend — roughly 2.8x higher. Window spend clears the $50 minimum for flagging; day-to-day volume is thin (1 lead) so treat as a signal to watch, not yet a budget call.",
+      "timestamp": "2026-08-12T08:28:17-04:00",
+      "priority": "normal",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 5271,
+      "raw_ref": "meta-ads:act_927167028457360:campaign:120216224215840296",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 5271,
+    "impressions": 1292,
+    "clicks": 35,
+    "leads": 1,
+    "cpl_cents": 5271,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Flooring Problems Campaign's raw `actions` include lead-like action types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — seen in both yesterday's and the 7-day baseline pull, values matching the counted lead figure both times). Counts weren't affected this run, but the set should be reviewed/extended so a future divergence doesn't silently undercount leads."
+  ]
+}

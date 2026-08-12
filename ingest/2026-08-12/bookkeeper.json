@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "source": "bookkeeper",
+  "run_at": "2026-08-12T08:27:23-04:00",
+  "status": "error",
+  "error": "Intuit QuickBooks MCP connector unavailable this run: no QBO/Intuit MCP server is defined in .mcp.json (only 'ghl' is configured) and no QuickBooks tool was loaded into this session. Root cause investigated: this is not a transient outage — .mcp.json has never included a QBO/Intuit entry across any of the prior failed runs (2026-07-26, 2026-07-27, 2026-07-28, 2026-07-31, 2026-08-08), and .env.example has no QuickBooks/Intuit credential section at all (compare the GHL_*, GRAPH_*, META_* blocks that back the other ingesters). The connector was never set up, not merely down. Unable to pull last-24h transactions, unmatched receipts, or overdue invoices; no QBO data was read. This is now the 6th consecutive failed/attempted bookkeeper run since 2026-07-26 (only 2026-08-02 and 2026-08-09 had no bookkeeper attempt at all).",
+  "items": [],
+  "metrics": {
+    "payments_received_cents": 0,
+    "overdue_invoices": 0,
+    "uncategorized_txns": 0
+  },
+  "needs_attention": [
+    "QuickBooks ingest has never succeeded since tracking began (2026-07-26) because no Intuit/QBO MCP server is configured in .mcp.json and no QBO credential vars exist in .env.example — this needs a one-time setup (register the Intuit MCP server + add QBO_* vars), not a retry. All financial metrics for 2026-08-12 (payments received, overdue invoices, uncategorized txns) are unknown."
+  ]
+}
