@@ -1,0 +1,18 @@
+{
+  "contract_version": "1",
+  "source": "bookkeeper",
+  "run_at": "2026-08-13T08:27:00-04:00",
+  "status": "error",
+  "error": "Intuit QuickBooks MCP connector unavailable this run: .mcp.json only defines the 'ghl' server, and no QuickBooks/Intuit MCP tools or credentials were present in this session. Unable to pull transactions, unmatched receipts, or overdue invoices for any window. No QBO data was read. This is the same failure mode as the last successful-adjacent run (2026-08-08, also error) and every bookkeeper run since; there were no runs at all on 2026-08-09 through 2026-08-12. Intended lookback for this run, once the connector is restored, is the full gap back to the last known-ok bookkeeper pull (status unclear beyond 2026-07-31 — all bookkeeper entries in run-ledger.json from 2026-07-26 onward are 'error' or 'missing'; no bookkeeper run has actually succeeded in the visible ledger history) through 2026-08-13, i.e. roughly 13+ days, not the usual 24h window.",
+  "items": [],
+  "metrics": {
+    "payments_received_cents": 0,
+    "overdue_invoices": 0,
+    "uncategorized_txns": 0
+  },
+  "needs_attention": [
+    "QuickBooks MCP connector still not reachable/configured — bookkeeper ingest has produced no data for 2026-08-13, continuing an unbroken string of bookkeeper errors back through at least 2026-07-26 in run-ledger.json.",
+    "No bookkeeper run occurred at all on 2026-08-09 through 2026-08-12 (multi-day gap, per orchestrator note) — once the connector is fixed, the next successful run must use a widened lookback (13+ days) to catch overdue invoices, payments, and expenses missed during the gap, not the standard 24h window.",
+    "Add/repair the Intuit QuickBooks MCP server (see .mcp.json, currently only defines 'ghl') before the next scheduled run."
+  ]
+}

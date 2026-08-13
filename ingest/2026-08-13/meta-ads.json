@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-08-13T08:28:10-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads spend 2026-08-12: $51.03, 5 leads, CPL $10.21",
+      "summary": "One active campaign, \"Flooring Problems Campaign,\" accounted for all spend and leads yesterday: $51.03 across 1,380 impressions / 41 clicks, producing 5 leads at ~$10.21 CPL. That's well under its 7-day baseline CPL of ~$15.93, so delivery looks healthy.",
+      "timestamp": "2026-08-12T00:00:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 5103,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 5103,
+    "impressions": 1380,
+    "clicks": 41,
+    "leads": 5,
+    "cpl_cents": 1021,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Ingest gap: no meta-ads run recorded 2026-08-09 through 2026-08-12 (last run in the ledger was 2026-08-08). Per orchestrator instruction this run pulled only yesterday's (2026-08-12) day-bucketed window as normal daily scope rather than widening to backfill the gap, so Meta spend/leads for 2026-08-09 through 2026-08-11 were not captured by this pipeline and are not reflected anywhere.",
+    "Campaign 120216224215840296 (\"Flooring Problems Campaign\") reports lead-like conversions under action types outside the script's documented LEAD_ACTION_TYPES set: offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, and offsite_content_view_add_meta_leads all showed value=5 yesterday (value=22 in the 7-day baseline), matching lead/onsite_conversion.lead_grouped exactly both times. Didn't change today's leads count (already captured via lead/lead_grouped), but the script's action-type set may need extending to cover these Meta Lead Ads variants explicitly rather than relying on coincidental overlap."
+  ]
+}
