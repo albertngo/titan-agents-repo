@@ -1,7 +1,7 @@
 ## Daily Brief — 2026-08-14
 
 **Needs attention today**
-- PR #14 ("daily-ingest: 2026-08-09 run") has sat open and unmerged for 5 days — that run actually happened (GHL/Outlook/Notion ok) but never landed on `main-agents`, so 2026-08-09 looks like a missed day from the ledger even though it isn't. Merge or close it.
+- ~~PR #14 ("daily-ingest: 2026-08-09 run") sat open and unmerged for 5 days — that run actually happened (GHL/Outlook/Notion ok) but never landed on `main-agents`.~~ **Resolved same-day**: merged into `main-agents` (commit `0bd73e1`) on Albert's request; 2026-08-09 is now correctly on record in `run-ledger.json`.
 - Dang Associates (accountant) flagged that Titan's 2022–2024 historical QuickBooks numbers changed after those years' tax returns were already filed with CRA — a compliance exposure, needs review before it becomes a filing problem.
 - Sowmya's project won today ($10,680) — the automated 35% deposit request just went out; confirm the e-transfer is received before the Aug 27 start date.
 - MetCredit collections agency is chasing a $438.57 Rogers Communications debt on Titan's account, with a settlement offer on the table — needs a decision.
@@ -25,4 +25,4 @@
 
 **Sources missing today**
 - bookkeeper — status: error — no QuickBooks/Intuit MCP connector configured
-- No run at all on: 2026-08-10, 2026-08-11, 2026-08-12, 2026-08-13. (2026-08-09 did run — GHL/Outlook/Notion ok — but its PR #14 was never merged to `main-agents`, so it never reached the run-ledger on this branch; see "Needs attention" above.)
+- No run at all on: 2026-08-10, 2026-08-11, 2026-08-12, 2026-08-13. (2026-08-09 did run — GHL/Outlook/Notion ok — and PR #14 has since been merged to `main-agents`; see "Needs attention" above.)
