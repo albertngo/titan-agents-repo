@@ -14,6 +14,14 @@
     "1b. Postponed ": 90
   },
 
+  "drift_excluded_stages": {
+    "_comment": "Stages whose opportunities/contacts are EXCLUDED from workflow-drift findings (Albert, 2026-08-14). Keys are EXACT live stage names, same as stale_thresholds_days. The stage keeps its stale threshold above — exclusion suppresses drift REPORTING for it, it does not mean the stage has no threshold and must never be read as one.",
+    "_why": "0a. New Lead is the pre-categorization holding stage: every uncategorized lead sits there by definition, so drift findings against it restate the known intake backlog every single day instead of surfacing anything new. The other stages represent work already qualified and committed to, where drift is a real signal.",
+    "_scope": "Applies to ALL drift types for records whose stage is listed here — including untagged_in_queue, which is definitionally a 0a. New Lead finding and is therefore fully suppressed by this entry. A contact with no opportunity (so no stage) is NOT excluded: categorization_miss on an unstaged contact still reports.",
+    "_visibility": "Excluded findings are counted and reported in reporting.exclusions.drift_excluded_by_stage, never silently dropped — same rule as the new_leads / unanswered_conversations netting.",
+    "stages": ["0a. New Lead"]
+  },
+
   "abandonment_rule": {
     "_comment": "Per the workflow: once `stale_lead` is present, if the same duration passes again the opportunity is automatically abandoned. So effective abandonment is 2x the stage threshold.",
     "multiplier": 2,

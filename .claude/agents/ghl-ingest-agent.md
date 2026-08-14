@@ -237,6 +237,11 @@ No threshold exists for `2. *Project Won* ` (terminal) or for any
 was not covered in the workflow review). **Never invent a threshold** — if a stage
 has none, report volume and omit the staleness prediction.
 
+The same file's `drift_excluded_stages.stages` lists stages that produce no drift
+findings at all (currently `0a. New Lead`). That is a *reporting* filter and is
+separate from the thresholds above — an excluded stage still has its threshold. See
+"Excluded stages" under Workflow drift detection.
+
 If the config file is missing, write the file with `status: "partial"` and say so in
 `needs_attention` rather than guessing. A wrong threshold produces confidently
 wrong findings, which is worse than none.
@@ -391,6 +396,39 @@ drifted from the intended workflow. Every run, check all six:
 Each finding becomes an `items` entry (priority `high` or `normal`) and, when
 urgent, a `needs_attention` line.
 
+### Excluded stages (read `drift_excluded_stages` from the config)
+
+`platform-settings/ghl-workflow.json` carries `drift_excluded_stages.stages` — stages
+whose records produce **no drift findings at all**. Currently `0a. New Lead` (Albert,
+2026-08-14): it is the pre-categorization holding stage, so every uncategorized lead
+sits there by definition and drift against it restates the known intake backlog daily
+rather than surfacing anything new.
+
+Apply it to **every** drift type, not just the staleness ones. `untagged_in_queue` is
+definitionally a `0a. New Lead` finding (a `call-queue` contact awaiting
+categorization) and is therefore fully suppressed while that stage is listed — do not
+emit it as an item, a `needs_attention` line, or a `stragglers_ranked` entry. A contact
+with **no opportunity**, and therefore no stage, is *not* excluded: a
+`categorization_miss` on an unstaged contact still reports normally.
+
+Exclusion suppresses reporting only. The stage keeps its `stale_thresholds_days` entry,
+and that threshold is still the right answer if something else asks for it — never read
+this list as "this stage has no threshold."
+
+**Publish what was suppressed**, same rule as the metric netting below — a filtered
+output with no visible raw is indistinguishable from a clean day:
+
+```
+"exclusions": {
+  ...,
+  "drift_excluded_by_stage": {"0a. New Lead": {"untagged_in_queue": N, "stale_approaching": N, ...}}
+}
+```
+
+`drift_findings` in `metrics` counts findings **after** this exclusion; the suppressed
+count is recoverable from `reporting.exclusions`. If the config key is absent, exclude
+nothing and carry on — an empty list is a valid state, not an error.
+
 ## Won-lead analysis (daily half)
 
 A deal is won in two places, and they are different businesses:
@@ -468,6 +506,12 @@ Three of those 9 are narrower than their names suggest, per the two sections abo
 `reporting.exclusions`), and `won_today` / `won_value_cents` are the project pipeline
 only (store material in `reporting.store_wins_today` /
 `reporting.store_won_value_cents`).
+
+`untagged_in_queue` stays a **live metric** even while `0a. New Lead` is in
+`drift_excluded_stages` — the stage exclusion suppresses drift *findings*, not the
+volume stat. Albert still sees the queue depth as a number each day; what he stops
+getting is a daily finding and `needs_attention` line restating it. Do not zero this
+metric because the matching drift type is suppressed.
 
 The FULL tag breakdown — including `lead: lost`, `lead: rate-shopper`, `untagged`,
 and `abandoned` (opportunity status) — goes in `reporting.leads_by_tag` and
