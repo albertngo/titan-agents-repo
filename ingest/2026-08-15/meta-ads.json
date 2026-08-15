@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-08-15T08:14:31-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $45.73 spend, 1 lead, $45.73 CPL — Flooring Problems Campaign",
+      "summary": "Yesterday (2026-08-14) Meta spent $45.73 across the only actively-delivering campaign, Flooring Problems Campaign, generating 1 lead at $45.73 CPL. That's roughly 2.9x the 7-day baseline CPL (~$15.67 over $344.83 / 22 leads), but yesterday's window spend was below the $50 minimum spend floor for flagging a CPL anomaly, so no anomaly item is raised. Account is ACTIVE and no ads are flagged.",
+      "timestamp": "2026-08-14T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 4573,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 4573,
+    "impressions": 1435,
+    "clicks": 22,
+    "leads": 1,
+    "cpl_cents": 4573,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Flooring Problems Campaign's CPL yesterday ($45.73) ran ~2.9x the 7-day baseline ($15.67) on just 1 lead from $45.73 spend — below the $50 window-spend floor the anomaly rule requires before flagging, so this is reported for context only, not as an anomaly item. Worth a glance if the low lead count continues.",
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued at 1 yesterday, matching the counted leads exactly, same as prior runs). Still no discrepancy, but per the agent's trap note this should be reviewed for whether the script's lead-action set needs extending, not hand-patched here."
+  ]
+}

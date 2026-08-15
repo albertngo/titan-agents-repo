@@ -119,5 +119,18 @@
     },
     "brief": true,
     "note": "scheduled run; no run at all on 2026-08-10 through 2026-08-13; 2026-08-09's run (GHL/Outlook/Notion ok) had been stranded on unmerged PR #14 (branch claude/kind-feynman-4tyval) but was merged into main-agents same-day on request; first-ever meta-ads ingest run; outlook catch-up window widened to 130h/154h; bookkeeper still has no QBO/Intuit MCP connector configured"
+  },
+  {
+    "date": "2026-08-15",
+    "run_at": "2026-08-15T08:20:00-04:00",
+    "sources": {
+      "ghl": "error",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; GHL failed on a session tool-provisioning gap (mcp__ghl__* bindings not granted to the ingest subagent) rather than a platform outage — endpoint reachable, credentials present, re-run once bindings are restored; bookkeeper still has no QBO/Intuit MCP connector configured (5th+ consecutive day)"
   }
 ]

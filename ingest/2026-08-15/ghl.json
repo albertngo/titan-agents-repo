@@ -1,0 +1,27 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-08-15T08:14:45-04:00",
+  "status": "error",
+  "error": "GHL MCP tools were not provisioned to this agent session. .mcp.json defines the 'ghl' HTTP MCP server and the endpoint (https://services.leadconnectorhq.com/mcp/) is network-reachable (confirmed via a direct HTTPS probe through the session's egress proxy — HTTP 200 with a valid SSE response), but none of the mcp__ghl__* tool bindings (contacts_get-contacts, contacts_get-contact, contacts_get-all-tasks, conversations_search-conversation, conversations_get-messages, opportunities_search-opportunity, opportunities_get-opportunity, opportunities_get-pipelines, calendars_get-calendar-events, calendars_get-appointment-notes, locations_get-location, locations_get-custom-fields) were available to call in this session — only Read, Write, and Bash were granted, and a direct tool-call attempt (mcp__ghl__contacts_get-contacts) returned 'No such tool available'. Per the read-only mandate, hand-rolling the MCP JSON-RPC/SSE protocol over raw HTTPS as a workaround was deliberately avoided rather than risk producing unverified, mis-parsed lead/opportunity/appointment/conversation data ('a wrong threshold produces confidently wrong findings, which is worse than none' applies equally to a hand-rolled data path). No contacts, opportunities, appointments, or conversations were read this run. This is a session tool-provisioning gap, not a GHL outage or credential problem — GHL_PIT_TOKEN and GHL_LOCATION_ID are present in the environment and the prior 2026-08-14 run completed status: 'ok' via the same MCP server.",
+  "items": [],
+  "metrics": {
+    "lead_count": 0,
+    "new_leads": 0,
+    "untagged_in_queue": 0,
+    "unanswered_conversations": 0,
+    "appointments_booked": 0,
+    "pipeline_moves": 0,
+    "won_today": 0,
+    "won_value_cents": 0,
+    "drift_findings": 0,
+    "leads_hot": 0,
+    "leads_warm": 0,
+    "leads_cold": 0,
+    "leads_unqualified": 0,
+    "leads_stale": 0
+  },
+  "needs_attention": [
+    "GHL ingest FAILED for 2026-08-15: the mcp__ghl__* tool bindings were not available in this agent session (server is configured and reachable; only the tool bindings were missing), so zero leads/opportunities/appointments/conversations were pulled and no workflow-drift detection ran today. GHL is the primary driver of the daily brief — treat today's brief as missing its backbone source. Re-run this ingest once the ghl MCP tool bindings are restored to the session; do not backfill by guessing."
+  ]
+}
