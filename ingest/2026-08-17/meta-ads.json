@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-08-17T08:35:26-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $148.01 spend, 6 leads, $24.67 CPL — Flooring Problems Campaign",
+      "summary": "Last successful run was 2026-08-14 (covering 2026-08-13), so this run widened to a 3-day window (2026-08-14 to 2026-08-16, America/Toronto) to close the gap. Across those 3 days, Meta spent $148.01 entirely on the only actively-delivering campaign, Flooring Problems Campaign, generating 6 leads at $24.67 CPL. That's above the 7-day baseline CPL (~$17.66 over $353.15 / 20 leads) but under the 2x anomaly threshold; account is ACTIVE and no ads are flagged.",
+      "timestamp": "2026-08-16T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 14801,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 14801,
+    "impressions": 4726,
+    "clicks": 85,
+    "leads": 6,
+    "cpl_cents": 2467,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Window widened: last successful meta-ads run was 2026-08-14 (folder date), covering only 2026-08-13. This run used --days 3 (2026-08-14 to 2026-08-16) to cover the resulting 3-day gap through yesterday, per the ingest agent's window-gap rule.",
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued at 6 over the 3-day window / 20 over the 7-day baseline, matching the counted leads exactly both times, same pattern noted on 2026-08-14). No discrepancy in the counted total, but per the agent's trap note this should be reviewed for whether the script's lead-action set needs extending, not hand-patched here."
+  ]
+}
