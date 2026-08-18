@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-08-18T08:17:47-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $198.40 spend (4d catch-up), 11 leads, $18.04 CPL",
+      "summary": "Catch-up window 2026-08-14 through 2026-08-17 (4 days, no prior meta-ads run covered them): Meta spent $198.40, all on the only actively-delivering campaign, Flooring Problems Campaign, generating 11 leads at $18.04 CPL. That's above the 7-day baseline CPL (~$16.64 over $349.45 / 21 leads) but well under the 2x anomaly threshold. Account is ACTIVE and no ads are flagged.",
+      "timestamp": "2026-08-17T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 19840,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 19840,
+    "impressions": 6207,
+    "clicks": 119,
+    "leads": 11,
+    "cpl_cents": 1804,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Gap wider than a day: the most recent prior meta-ads.json was 2026-08-14 (run_at 08:46:49), covering yesterday-of-that-run 2026-08-13 only \u2014 no meta-ads run happened 2026-08-15 through 2026-08-17. This run widened to --days 4 (2026-08-14 through 2026-08-17, within the 7-day cap) to cover the gap; the spend/leads/CPL above are a 4-day aggregate for that catch-up window, not a single day, because Meta's insights endpoint (level=campaign, no time_increment) returns one combined row per window rather than per-day rows.",
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads \u2014 each valued at 11 over the catch-up window / 21 over the 7-day baseline, matching the counted leads exactly both times, same pattern first flagged 2026-08-14). No discrepancy in the counted total either time, but this is now a repeat observation \u2014 worth reviewing whether LEAD_ACTION_TYPES should be extended rather than continuing to hand-verify it run over run."
+  ]
+}

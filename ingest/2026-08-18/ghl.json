@@ -1,0 +1,27 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-08-18T08:17:04-04:00",
+  "status": "error",
+  "error": "GHL MCP server tools were not available in this session (no mcp__ghl__* tools registered despite .mcp.json and GHL_PIT_TOKEN/GHL_LOCATION_ID being present). No contacts, opportunities, conversations, or calendar data could be pulled. This is a tool-access/connection failure, not a data-empty result, so this run intentionally does not fabricate any leads, pipeline moves, appointments, or conversations.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest failed to run: the ghl MCP server was unreachable from this agent session (no GHL tools available). No leads, pipeline moves, appointments, or conversations were pulled for 2026-08-18 — re-run once MCP connectivity is restored."
+  ],
+  "extensions": {
+    "ghl": {
+      "template_version": "3",
+      "reporting": {
+        "note": "No data retrieved this run due to GHL MCP server unavailability. All sections below are empty by design, not a report of zero activity."
+      },
+      "new_leads": [],
+      "opportunities": [],
+      "appointments_booked": [],
+      "conversations": [],
+      "workflow_drift": [],
+      "won_records": [],
+      "stragglers_ranked": []
+    }
+  }
+}

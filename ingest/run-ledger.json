@@ -119,5 +119,18 @@
     },
     "brief": true,
     "note": "scheduled run; no run at all on 2026-08-10 through 2026-08-13; 2026-08-09's run (GHL/Outlook/Notion ok) had been stranded on unmerged PR #14 (branch claude/kind-feynman-4tyval) but was merged into main-agents same-day on request; first-ever meta-ads ingest run; outlook catch-up window widened to 130h/154h; bookkeeper still has no QBO/Intuit MCP connector configured"
+  },
+  {
+    "date": "2026-08-18",
+    "run_at": "2026-08-18T08:25:00-04:00",
+    "sources": {
+      "ghl": "error",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled catch-up run after gap on 2026-08-15/16/17 (no run at all those days); ghl MCP server tools unreachable this session (config present but tools not registered, likely session-level, not confirmed GHL-side outage); bookkeeper QBO/Intuit MCP connector still unconfigured (ongoing since at least 2026-07-26); outlook widened to 97h/121h catch-up window; meta-ads widened to 4-day catch-up window (aggregate, not per-day); notion ran clean, still flags 82 stale tactical tasks (4th consecutive flag) and unpopulated David Ngo won-project row."
   }
 ]
