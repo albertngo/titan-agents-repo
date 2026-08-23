@@ -1,0 +1,279 @@
+{
+  "window": {
+    "since": "2026-07-23",
+    "until": "2026-08-21",
+    "timezone": "America/Toronto"
+  },
+  "spend": {
+    "spend_cad": 1510.42,
+    "impressions": 44726,
+    "clicks": 999,
+    "meta_reported_leads": 85,
+    "meta_cpl_cad": 17.77,
+    "account_status": "ACTIVE",
+    "currency": "CAD"
+  },
+  "funnel": {
+    "ghl_leads": 75,
+    "contacted": 73,
+    "conversations": 75,
+    "two_way_conversations": 41,
+    "appointments": 5,
+    "opportunities": 72,
+    "won": 0,
+    "open": 31,
+    "lost_or_abandoned": 41
+  },
+  "rates": {
+    "contacted_rate": 0.973,
+    "reply_rate": 0.562,
+    "appt_rate": 0.067,
+    "appt_rate_of_repliers": 0.122,
+    "won_rate_of_leads": 0.0,
+    "won_rate_of_appts": 0.0
+  },
+  "cost_per": {
+    "lead_ghl_cad": 20.14,
+    "conversation_cad": 20.14,
+    "two_way_conversation_cad": 36.84,
+    "appointment_cad": 302.08,
+    "won_job_cad": null
+  },
+  "response": {
+    "speed_to_lead_min_median": 0.2,
+    "speed_to_lead_min_p90": 0.9,
+    "within_5_min": 0.893,
+    "within_60_min": 0.92,
+    "never_contacted": 2,
+    "speed_to_lead_manual_min_median": 1693.2,
+    "manual_touch_within_60_min": 0.053,
+    "never_touched_by_a_human": 34,
+    "reply_to_inbound_min_median": 1364.4,
+    "reply_to_inbound_min_p90": 4313.8,
+    "reply_to_inbound_manual_min_median": 163.7,
+    "inbound_never_answered": 5,
+    "median_outbound_touches": 7
+  },
+  "value": {
+    "won_value_cad": 0,
+    "open_pipeline_value_cad": 149238.80000000002,
+    "roas_won": 0.0,
+    "roas_won_plus_open": 98.81,
+    "median_won_value_cad": null,
+    "note": "opportunity monetaryValue = quoted/booked deal value in GHL, not collected revenue; open pipeline is unrealized",
+    "closed_value_in_window_cad": 17870.5,
+    "roas_closed_in_window": 11.83
+  },
+  "attribution": {
+    "contacts_scanned_in_window": 160,
+    "meta_attributed": 75,
+    "by_signal": {
+      "attribution": {
+        "leads": 71,
+        "two_way": 39,
+        "appts": 4,
+        "won": 0,
+        "won_value_cad": 0,
+        "appt_rate": 0.056
+      },
+      "tag": {
+        "leads": 4,
+        "two_way": 2,
+        "appts": 1,
+        "won": 0,
+        "won_value_cad": 0,
+        "appt_rate": 0.25
+      }
+    },
+    "note": "attribution beats the source label \u2014 see methods/meta-ads-roi.md; Meta's own lead count and GHL's contact count are different counters and are expected to disagree"
+  },
+  "maturity": {
+    "median_lead_age_days": 14.0,
+    "leads_older_than_30d": 0,
+    "still_open": 31,
+    "note": "won counts here are a floor: leads younger than a typical sales cycle have not had time to close"
+  },
+  "closed_wins": {
+    "lookback_days": 365,
+    "meta_wins_closed_in_window": 2,
+    "value_closed_in_window_cad": 17870.5,
+    "wins_in_window": [
+      {
+        "name": "Therese | Cambridge",
+        "value_cad": 11300,
+        "lead_date": "2025-07-22",
+        "opp_created": "2025-07-22",
+        "closed": "2026-08-01",
+        "lead_to_win_days": 375.2,
+        "opp_to_win_days": 375.2
+      },
+      {
+        "name": "Orlando | Mississauga",
+        "value_cad": 6570.5,
+        "lead_date": "2026-05-01",
+        "opp_created": "2026-07-03",
+        "closed": "2026-07-24",
+        "lead_to_win_days": 83.7,
+        "opp_to_win_days": 20.8
+      }
+    ],
+    "lag_days": {
+      "n": 30,
+      "lead_to_win_median": 19.5,
+      "lead_to_win_p90": 377.2,
+      "opp_to_win_median": 13.1
+    },
+    "note": "wins closed in the window against spend in the window is a cash-period view, not a cohort return \u2014 the leads behind these wins were mostly bought in earlier windows"
+  },
+  "appt_signal_mix": {
+    "(none)": {
+      "leads": 70,
+      "two_way": 37,
+      "appts": 0,
+      "won": 0,
+      "won_value_cad": 0,
+      "appt_rate": 0.0
+    },
+    "event+tag+calendar": {
+      "leads": 5,
+      "two_way": 4,
+      "appts": 5,
+      "won": 0,
+      "won_value_cad": 0,
+      "appt_rate": 1.0
+    }
+  },
+  "by_creative": {
+    "Flooring Install (B&A)": {
+      "leads": 66,
+      "two_way": 36,
+      "appts": 4,
+      "won": 0,
+      "won_value_cad": 0,
+      "appt_rate": 0.061
+    },
+    "90's Commercial": {
+      "leads": 5,
+      "two_way": 3,
+      "appts": 0,
+      "won": 0,
+      "won_value_cad": 0,
+      "appt_rate": 0.0
+    },
+    "meta-ad-b&a": {
+      "leads": 4,
+      "two_way": 2,
+      "appts": 1,
+      "won": 0,
+      "won_value_cad": 0,
+      "appt_rate": 0.25
+    }
+  },
+  "by_week": {
+    "2026-W32": {
+      "leads": 22,
+      "two_way": 9,
+      "appts": 1,
+      "won": 0,
+      "won_value_cad": 0,
+      "appt_rate": 0.045
+    },
+    "2026-W33": {
+      "leads": 17,
+      "two_way": 13,
+      "appts": 2,
+      "won": 0,
+      "won_value_cad": 0,
+      "appt_rate": 0.118
+    },
+    "2026-W31": {
+      "leads": 17,
+      "two_way": 9,
+      "appts": 2,
+      "won": 0,
+      "won_value_cad": 0,
+      "appt_rate": 0.118
+    },
+    "2026-W34": {
+      "leads": 13,
+      "two_way": 7,
+      "appts": 0,
+      "won": 0,
+      "won_value_cad": 0,
+      "appt_rate": 0.0
+    },
+    "2026-W30": {
+      "leads": 6,
+      "two_way": 3,
+      "appts": 0,
+      "won": 0,
+      "won_value_cad": 0,
+      "appt_rate": 0.0
+    }
+  },
+  "previous_window": {
+    "window": {
+      "since": "2026-06-23",
+      "until": "2026-07-22",
+      "timezone": "America/Toronto"
+    },
+    "spend": {
+      "spend_cad": 1489.8,
+      "impressions": 43460,
+      "clicks": 1006,
+      "meta_reported_leads": 74,
+      "meta_cpl_cad": 20.13,
+      "account_status": "ACTIVE",
+      "currency": "CAD"
+    },
+    "funnel": {
+      "ghl_leads": 71,
+      "contacted": 70,
+      "conversations": 71,
+      "two_way_conversations": 31,
+      "appointments": 9,
+      "opportunities": 69,
+      "won": 0,
+      "open": 10,
+      "lost_or_abandoned": 59
+    },
+    "rates": {
+      "contacted_rate": 0.986,
+      "reply_rate": 0.443,
+      "appt_rate": 0.127,
+      "appt_rate_of_repliers": 0.29,
+      "won_rate_of_leads": 0.0,
+      "won_rate_of_appts": 0.0
+    },
+    "cost_per": {
+      "lead_ghl_cad": 20.98,
+      "conversation_cad": 20.98,
+      "two_way_conversation_cad": 48.06,
+      "appointment_cad": 165.53,
+      "won_job_cad": null
+    },
+    "response": {
+      "speed_to_lead_min_median": 0.2,
+      "speed_to_lead_min_p90": 5.3,
+      "within_5_min": 0.873,
+      "within_60_min": 0.944,
+      "never_contacted": 1,
+      "speed_to_lead_manual_min_median": 2763.6,
+      "manual_touch_within_60_min": 0.085,
+      "never_touched_by_a_human": 35,
+      "reply_to_inbound_min_median": 76.4,
+      "reply_to_inbound_min_p90": 3450.8,
+      "reply_to_inbound_manual_min_median": 79.8,
+      "inbound_never_answered": 1,
+      "median_outbound_touches": 5
+    },
+    "value": {
+      "won_value_cad": 0,
+      "open_pipeline_value_cad": 25289.18,
+      "roas_won": 0.0,
+      "roas_won_plus_open": 16.97,
+      "median_won_value_cad": null,
+      "note": "opportunity monetaryValue = quoted/booked deal value in GHL, not collected revenue; open pipeline is unrealized"
+    }
+  }
+}
