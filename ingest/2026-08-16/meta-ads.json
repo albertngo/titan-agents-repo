@@ -1,0 +1,36 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-08-16T08:19:51-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $89.26 spend, 3 leads, $29.75 CPL — Flooring Problems Campaign",
+      "summary": "Over the widened 2026-08-14 to 2026-08-15 window (covering the gap since the last run's 2026-08-13 window), Meta spent $89.26 across the only actively-delivering campaign, Flooring Problems Campaign, generating 3 leads at $29.75 CPL. That's about 1.96x the 7-day baseline CPL (~$15.21 over $349.84 / 23 leads) — elevated but just under the 2x anomaly threshold, so not flagged. Account is ACTIVE, no ads are DISAPPROVED or WITH_ISSUES.",
+      "timestamp": "2026-08-15T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 8926,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 8926,
+    "impressions": 2867,
+    "clicks": 49,
+    "leads": 3,
+    "cpl_cents": 2975,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Last successful meta-ads run (2026-08-14) covered window 2026-08-13 only; that left 2026-08-14 uncovered. Widened this run to --days 2 (since=2026-08-14, until=2026-08-15) to close the gap through yesterday, well under the 7-day cap.",
+    "The 7-day baseline pull (2026-08-09 to 2026-08-15) necessarily overlaps the 2-day widened window itself (both include 2026-08-14 and 2026-08-15), so the CPL-vs-baseline comparison above is somewhat self-referential this run — treat the 1.96x figure as directional, not a clean prior-period comparison.",
+    "Flooring Problems Campaign's raw actions again show lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads=3, offsite_search_add_meta_leads=3, offsite_content_view_add_meta_leads=3 — each matching the counted lead value of 3 exactly, same pattern as the 2026-08-14 run). Recommend extending the script's action-type set rather than continuing to hand-verify each run."
+  ]
+}

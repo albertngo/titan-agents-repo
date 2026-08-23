@@ -195,6 +195,13 @@ Work on a session-named branch off `main-agents` (e.g. `session/2026-07-27-notio
 open the PR against `main-agents`, merge there. Decided 2026-07-27 after a PR
 was accidentally opened against `main` instead.
 
+**Exception — `ingest/` commits go straight to `main-agents`, no PR** (Albert,
+2026-08-23). Ingest output is data, not code; review adds nothing and demonstrably
+lost eight days (2026-08-15 through 2026-08-22 sat complete on eight unmerged
+branches while every brief reported them as "no run at all"). `daily-ingest` step 6
+commits and pushes them as part of the run. Everything else — agents, commands,
+contracts, scripts — still goes through a session branch and a PR.
+
 ## Secrets
 
 No secrets in this repo. See `.env.example` for what each environment must provide.

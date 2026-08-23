@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "source": "bookkeeper",
+  "run_at": "2026-08-20T08:15:58-04:00",
+  "status": "error",
+  "error": "Intuit QuickBooks MCP connector unavailable this run: no QBO/Intuit MCP server is configured (.mcp.json only defines the 'ghl' server) and no QuickBooks credentials/tools were present in the session. Unable to pull transactions, unmatched receipts, or overdue invoices for the catch-up window. No QBO data was read. This is the 4th consecutive failed run (2026-08-08, 2026-08-09, 2026-08-14, 2026-08-20) — the connector has not been repaired since it was first flagged. Catch-up window intended for this run: 2026-08-14T08:45:50-04:00 (last successful/attempted run_at) through 2026-08-20T08:15:58-04:00 (today), i.e. the 5 unrun days 2026-08-15 through 2026-08-19 plus today, all uncovered.",
+  "items": [],
+  "metrics": {
+    "payments_received_cents": 0,
+    "overdue_invoices": 0,
+    "uncategorized_txns": 0
+  },
+  "needs_attention": [
+    "QuickBooks MCP connector still not reachable/configured as of 2026-08-20 — 4th consecutive failed bookkeeper ingest (2026-08-08, 2026-08-09, 2026-08-14, 2026-08-20). No QBO data (invoices, payments, expenses, receipts) has been captured since before 2026-08-08, and the 2026-08-15 through 2026-08-19 window was never run at all — a 12+ day blind spot on cash-in, overdue invoices, and uncategorized transactions. Add/repair the Intuit QuickBooks MCP server (see .mcp.json) before the next scheduled run; once fixed, the next run should pull the full backlog window, not just the last 24h."
+  ]
+}

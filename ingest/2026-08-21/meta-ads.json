@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-08-21T08:19:05-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $349.29 spend, 23 leads, $15.19 CPL — Flooring Problems Campaign",
+      "summary": "The last successful meta-ads run was 2026-08-14 and only covered through 2026-08-13, so this run widened the window to the full 7-day gap (2026-08-14 through 2026-08-20). Over that window, Meta spent $349.29 on the only actively-delivering campaign, Flooring Problems Campaign, generating 23 leads at $15.19 CPL — close to the prior 7-day baseline ($344.89 / 24 leads = $14.37 CPL, 2026-08-07 to 2026-08-13). Account is ACTIVE, no ads are flagged, and no campaign is off-baseline enough to flag as an anomaly.",
+      "timestamp": "2026-08-20T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 34929,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 34929,
+    "impressions": 11135,
+    "clicks": 220,
+    "leads": 23,
+    "cpl_cents": 1519,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Gap since last successful meta-ads run: the prior file was ingest/2026-08-14/meta-ads.json (covering through 2026-08-13). No meta-ads.json existed for 2026-08-15 through 2026-08-20, so this run widened to --since 2026-08-14 --until 2026-08-20 (7 days, the cap) instead of the standard yesterday-only pull, to cover the gap. Baseline comparison used --since 2026-08-07 --until 2026-08-13 (the 7 days immediately prior) rather than the script's default 'last 7 days ending yesterday', since that would have duplicated the now-widened current window.",
+    "Flooring Problems Campaign's raw actions again show lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued at 23 in the current window and 24 in the baseline window, matching the counted `leads` figure exactly both times, same pattern first flagged on 2026-08-14). Still no discrepancy in the counted total, but this recurrence strengthens the case that the script's lead-action set may need extending — flagging again per the trap note rather than hand-patching here."
+  ]
+}

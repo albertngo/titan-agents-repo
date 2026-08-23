@@ -1,0 +1,71 @@
+{
+  "contract_version": "1",
+  "entries": [
+    {
+      "logged_at": "2026-08-17T09:05:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_create_task",
+      "target": "Tactical Tasks List — GHL lead: Pavlina Gavrilova",
+      "content_summary": "Website lead's SMS qualification bot is failing to reach her (Twilio error 30006); needs a manual call.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3bf596a4-505f-812d-8270-ebc7b7586d80"
+    },
+    {
+      "logged_at": "2026-08-17T09:05:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_create_task",
+      "target": "Tactical Tasks List — GHL message: Mellisa Fonte",
+      "content_summary": "Mobile quote never arrived, blocking her decision; needs resend today.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3bf596a4-505f-81ee-8748-dd6f3c05c17a"
+    },
+    {
+      "logged_at": "2026-08-17T09:05:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_create_task",
+      "target": "Tactical Tasks List — GHL drift: Ritesh Dewan",
+      "content_summary": "Hot lead already 24% past its 7-day stale threshold with no stale_lead tag.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3bf596a4-505f-81fe-a5ad-e8a8b6af65f3"
+    },
+    {
+      "logged_at": "2026-08-17T09:05:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_update_task",
+      "target": "Tactical Tasks List row 3b9596a4-505f-8123-bb81-eb40c72a748b (GHL drift: *Zinat)",
+      "content_summary": "Appended dated note: still open, now 68 days past the 2x auto-abandon point — rule still hasn't fired.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3b9596a4-505f-8123-bb81-eb40c72a748b"
+    },
+    {
+      "logged_at": "2026-08-17T09:05:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_update_task",
+      "target": "Tactical Tasks List row 3b9596a4-505f-81f4-bfe6-f3b467c3eadc (GHL drift: *Muhammad)",
+      "content_summary": "Appended dated note: still silent 33.7 days since visit, no follow-up sequence exists for this stage.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3b9596a4-505f-81f4-bfe6-f3b467c3eadc"
+    },
+    {
+      "logged_at": "2026-08-17T09:05:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_update_task",
+      "target": "Tactical Tasks List row 3ba596a4-505f-8195-bbe7-e61c9e73212a (GHL drift: Lena Navsarikar)",
+      "content_summary": "Appended dated note: now at 103% of the 2x auto-abandon point, still open.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3ba596a4-505f-8195-bbe7-e61c9e73212a"
+    }
+  ]
+}
