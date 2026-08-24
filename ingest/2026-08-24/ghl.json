@@ -1,0 +1,13 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-08-24T08:23:18-04:00",
+  "status": "error",
+  "error": "GHL MCP server unreachable this run. It is configured in .mcp.json (https://services.leadconnectorhq.com/mcp/, ghl) but `claude mcp list`/`claude mcp get ghl` report it as '⏸ Pending approval (run `claude` to approve)' — a one-time interactive confirmation that this non-interactive session cannot grant, and no ghl_* tool was exposed to this agent's tool set as a result. GHL_PIT_TOKEN and GHL_LOCATION_ID are present in the environment, but this agent is scoped to read GHL only via the sanctioned MCP tool interface per .claude/agents/ghl-ingest-agent.md ('Reach GHL through the `ghl` MCP server') — calling the LeadConnector HTTP API directly with the token, bypassing the pending-approval gate, was deliberately not attempted as a workaround. No contacts, opportunities, appointments, or conversations could be pulled for the 2026-08-24 24h window. Per instructions this run did not attempt any backfill of the gap since the last successful run.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest FAILED for 2026-08-24: the `ghl` MCP server is stuck at 'Pending approval' in this session and no GHL data (leads, opportunities, appointments, conversations) could be pulled. Needs a human to run `claude` interactively in this project and approve the `ghl` MCP server (or otherwise re-authorize it), then re-run the ghl ingest.",
+    "run-ledger.json shows the last successful ghl ingest was 2026-08-14 — today's failure extends the gap to 10 days with no GHL coverage (2026-08-15 through 2026-08-24 inclusive). This run intentionally did not backfill; once the MCP connection is restored, consider whether Albert wants a manual GHL review of that window given the sales/lead activity that likely occurred (won deals, new leads, drift) is currently invisible to the daily brief."
+  ]
+}
