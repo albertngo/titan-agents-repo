@@ -1,0 +1,36 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-08-26T08:30:20-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $349.35 spend, 33 leads, $10.59 CPL — Flooring Problems Campaign",
+      "summary": "This run widened to the 7-day cap (2026-08-19–2026-08-25) to close part of an 11-day ingest gap since the last successful run (2026-08-14); it does not cover 2026-08-14 through 2026-08-18 (see needs_attention). Across the window, Meta spent $349.35 on the only actively-delivering campaign, Flooring Problems Campaign, generating 33 leads at $10.59 CPL — well below the preceding 7-day baseline (~$14.59 CPL over $350.20 / 24 leads, 2026-08-12–2026-08-18). Account is ACTIVE and no ads are flagged.",
+      "timestamp": "2026-08-25T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 34935,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 34935,
+    "impressions": 11074,
+    "clicks": 251,
+    "leads": 33,
+    "cpl_cents": 1059,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Ingest gap: the last successful meta-ads run was 2026-08-14 (that run's data actually covered 2026-08-13, the day before it ran). This run widened to --days 7 — the documented cap — pulling 2026-08-19 through 2026-08-25, but the true gap was 11 days (2026-08-15 through 2026-08-25). 2026-08-14 through 2026-08-18 (5 days) remain un-ingested for spend/lead reporting. A supplementary call (--since 2026-08-12 --until 2026-08-18) was made only to build a like-for-like 7-day CPL baseline for anomaly comparison; its aggregate ($350.20 spend / 24 leads over that span, which partially overlaps the missing 08-15–08-18 days) was not folded into this run's spend_summary, and the 08-15–08-18 slice can't be isolated from that aggregate without another call. Recommend a manual backfill pull for 2026-08-14 through 2026-08-18 if exact figures for that stretch are needed.",
+    "Flooring Problems Campaign's raw actions again show lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads=33, offsite_search_add_meta_leads=33, offsite_content_view_add_meta_leads=33 — all matching the counted 33 leads exactly, same pattern first flagged 2026-08-14). No discrepancy in the counted total, but per the agent's trap note this should be reviewed for whether the script's lead-action set needs extending, not hand-patched here.",
+    "This run's spend_summary window is a 7-day aggregate, not a single day, so day-level delivery anomalies (e.g., one specific day within the window with zero spend/leads despite an active budget) can't be checked from this pull — only the account/campaign-level total for the whole window."
+  ]
+}
