@@ -1,0 +1,12 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-08-19T08:18:49-04:00",
+  "status": "error",
+  "error": "GHL MCP connector unavailable this run: the `ghl` server in .mcp.json (https://services.leadconnectorhq.com/mcp/) is in 'Pending approval' state (`claude mcp get ghl` confirms it requires interactive approval via `claude` that this non-interactive ingest session cannot perform), and none of the mcp__ghl__* tools (contacts, conversations, opportunities, calendars, locations) were exposed to this agent. GHL_PIT_TOKEN and GHL_LOCATION_ID are present in the environment, so this is a connector-wiring failure, not a missing-credential one. No GHL calls were attempted/succeeded; zero data was pulled. Per failure policy this agent is writing a status:error record rather than crashing, and per the architecture rule this must not block sibling ingesters (bookkeeper.json for today already exists alongside this file).",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest failed: MCP server 'ghl' is pending approval and not connected — no leads/opportunities/appointments/conversations data available for today's brief. Needs someone to run `claude` interactively once to approve the .mcp.json server (or otherwise re-wire the connector), then re-run ghl-ingest-agent for 2026-08-19."
+  ]
+}
