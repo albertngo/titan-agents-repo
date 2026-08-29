@@ -1,0 +1,36 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-08-20T08:16:36-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $304.70 spend, 22 leads, $13.85 CPL — Flooring Problems Campaign",
+      "summary": "Catch-up window 2026-08-14 to 2026-08-19 (6 days, closing the gap since the last successful run on 2026-08-14 which covered spend through 2026-08-13) spent $304.70 across the only actively-delivering campaign, Flooring Problems Campaign, generating 22 leads at $13.85 CPL. That's roughly in line with the 7-day trailing baseline (~$13.53 CPL), which substantially overlaps this window since both pulls end on 2026-08-19. Account is ACTIVE and no ads are flagged.",
+      "timestamp": "2026-08-19T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 30470,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 30470,
+    "impressions": 9686,
+    "clicks": 194,
+    "leads": 22,
+    "cpl_cents": 1385,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Gap catch-up: the last successful meta-ads run was 2026-08-14 (covering spend through 2026-08-13); no run happened 2026-08-15 through 2026-08-19 (5 missed days). This run widened to --days 6 (2026-08-14 to 2026-08-19) to cover the full gap with no missed day, per the window rule (capped at 7).",
+    "Because the catch-up window (6 days, 2026-08-14 to 2026-08-19) and the standard 7-day baseline pull (2026-08-13 to 2026-08-19) both end today's 'yesterday' and overlap on 5 of 6 days, the baseline CPL used for comparison (~$13.53) is not a fully independent prior period this run — treat the anomaly check as approximate until tomorrow's run restores a clean non-overlapping baseline.",
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued at 22 over this window, matching the counted leads exactly, same pattern flagged on 2026-08-14). No discrepancy in the counted total, but this recurrence suggests the script's lead-action set may need extending — a script change, not something to hand-patch in this file."
+  ]
+}

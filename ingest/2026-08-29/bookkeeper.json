@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "source": "bookkeeper",
+  "run_at": "2026-08-29T12:12:00-04:00",
+  "status": "error",
+  "error": "Intuit QuickBooks MCP connector unavailable this run: no QBO/Intuit MCP server is configured (repo .mcp.json only defines the 'ghl' server; the live session MCP config only wires up 'Notion' and 'github') and no QuickBooks credentials/tools were present in the session. Attempted the pull with a widened lookback to cover the gap back to the last successful bookkeeper ingest (2026-08-14, ~15 days), but no QBO connection could be established at any window size. Unable to pull transactions, unmatched receipts, or overdue/paid invoices for any part of the 2026-08-14 through 2026-08-29 gap. No QBO data was read. This is the same unconfigured-connector failure recorded on 2026-08-08, 2026-08-09, and 2026-08-14 (see run-ledger.json) — the connector has not yet been added/repaired.",
+  "items": [],
+  "metrics": {
+    "payments_received_cents": 0,
+    "overdue_invoices": 0,
+    "uncategorized_txns": 0
+  },
+  "needs_attention": [
+    "QuickBooks/Intuit MCP connector still not configured — bookkeeper ingest has produced zero data since 2026-08-14 (this is the 4th recorded consecutive failure). A ~15-day gap of invoices, payments, and expenses is now unreviewed. Add the Intuit QuickBooks MCP server to .mcp.json (or the session MCP config) before the next scheduled run, then re-run bookkeeper ingest with a widened window to backfill the gap."
+  ]
+}

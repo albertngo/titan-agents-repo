@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-08-27T08:25:24-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $349.63 spend, 28 leads, $12.49 CPL — Flooring Problems Campaign",
+      "summary": "This run covers 2026-08-20 through 2026-08-26, a 7-day catch-up window (widened from the standard 1-day pull because the last successful meta-ads run was 2026-08-14 — see needs_attention). Meta spent $349.63 across the only actively-delivering campaign, Flooring Problems Campaign, generating 28 leads at a $12.49 average CPL, in line with the prior comparable week ($351.87 / 26 leads, $13.53 CPL). Account is ACTIVE and no ads are flagged DISAPPROVED or WITH_ISSUES.",
+      "timestamp": "2026-08-26T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 34963,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 34963,
+    "impressions": 10639,
+    "clicks": 249,
+    "leads": 28,
+    "cpl_cents": 1249,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Gap in coverage: the last successful meta-ads run was 2026-08-14 (13 days ago), older than the 7-day lookback this agent checks. Per policy the window was widened to the maximum 7 days (2026-08-20 to 2026-08-26) rather than the standard 1-day pull. Days 2026-08-15 through 2026-08-19 have no meta-ads.json coverage and were not backfilled — the cap is 7 days per run.",
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads=28, offsite_search_add_meta_leads=28, offsite_content_view_add_meta_leads=28 — each exactly matching the 28 counted leads, no discrepancy). This is now the second observed run with this pattern (also seen 2026-08-14) — worth reviewing whether the script's lead-action set needs extending; not hand-patched here."
+  ]
+}

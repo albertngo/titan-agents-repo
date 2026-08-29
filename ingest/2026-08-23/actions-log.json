@@ -1,0 +1,93 @@
+{
+  "contract_version": "1",
+  "entries": [
+    {
+      "logged_at": "2026-08-23T09:05:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_create_task",
+      "target": "Tactical Tasks List row: GHL message: Daniella Powel — won job, e-transfer payment pending",
+      "content_summary": "Created team task for won-customer Daniella Powel chasing a repair-cost e-transfer while Albert is traveling.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "https://app.notion.com/p/3c5596a4505f814c86fefb11a90b0797?pvs=204"
+    },
+    {
+      "logged_at": "2026-08-23T09:05:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_create_task",
+      "target": "Tactical Tasks List row: GHL drift: Albert Ngo (contact) — 13 missed calls, follow-up never fired",
+      "content_summary": "Created team task merging a message and a drift finding for a contact with 13 unreturned calls and a never-fired 5-day quote follow-up.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "https://app.notion.com/p/3c5596a4505f8109a580e4e97d2222ce?pvs=204"
+    },
+    {
+      "logged_at": "2026-08-23T09:05:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_create_task",
+      "target": "Tactical Tasks List row: GHL drift: Basil Da Souza — meeting window expired before follow-up",
+      "content_summary": "Created team task flagging a Meeting-Scheduled workflow-timing bug (effective_window_days = -28) for Basil Da Souza.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "https://app.notion.com/p/3c5596a4505f819a8036cd2b7fa33199?pvs=204"
+    },
+    {
+      "logged_at": "2026-08-23T09:05:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_create_task",
+      "target": "Tactical Tasks List row: GHL drift: Silviya Jardany — meeting window expired before follow-up",
+      "content_summary": "Created team task flagging the same Meeting-Scheduled workflow-timing bug pattern (effective_window_days = -9.1) for Silviya Jardany.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "https://app.notion.com/p/3c5596a4505f819baf37c3c5dc6de667?pvs=204"
+    },
+    {
+      "logged_at": "2026-08-23T09:06:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_update_task",
+      "target": "Tactical Tasks List row: GHL drift: *Gina | Georgetown - one cycle from auto-abandon (Meeting-Sched)",
+      "content_summary": "Appended dated Notes line (won today, $6,130.50, deposit e-transfer pending) and added the message Tag to the existing Gina Martino row.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "https://app.notion.com/3b9596a4505f810bad5ec034ae8d1c05"
+    },
+    {
+      "logged_at": "2026-08-23T09:06:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_update_task",
+      "target": "Tactical Tasks List row: GHL drift: Piyush Aggarwal — 109% of Hot-lane stale threshold",
+      "content_summary": "Appended dated Notes line updating Piyush Aggarwal to 124% of the ASAP-Hot 7-day threshold, 1.7 days overdue.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "https://app.notion.com/3c4596a4505f815aa9f2f60a2035ef46"
+    },
+    {
+      "logged_at": "2026-08-23T09:06:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_update_task",
+      "target": "Tactical Tasks List row: GHL drift: Tina Tran — no follow-up since appointment (138.7d ago)",
+      "content_summary": "Appended dated Notes line updating Tina Tran to 149.7 days silent since her appointment, still carrying the undocumented abandoned-stale tag.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "https://app.notion.com/3ba596a4505f81abb8b7cc0ffcb488e8"
+    },
+    {
+      "logged_at": "2026-08-23T09:06:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_update_task",
+      "target": "Tactical Tasks List row: GHL drift: *Bash | Mississauga - 319% of stale threshold, non-standard tag",
+      "content_summary": "Appended dated Notes line updating Bash Saqr to 106.6 days silent since his appointment, still carrying the non-standard abandoned-stale tag.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "https://app.notion.com/3b9596a4505f81f4a108cd06e3b75229"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-08-25T08:24:23-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $354.93 spend, 29 leads, $12.24 CPL — Flooring Problems Campaign",
+      "summary": "Catch-up run: last successful meta-ads ingest ended 2026-08-13, an 11-day gap, so this pull was widened to the capped 7-day window 2026-08-18 through 2026-08-24. Spend was $354.93 across the only actively-delivering campaign, Flooring Problems Campaign, for 29 leads at $12.24 CPL — down from $16.65 CPL in the preceding 7-day window (2026-08-11 through 2026-08-17), so no CPL anomaly. Account is ACTIVE, no ads are flagged, and the three other campaigns (Tiles Carasoul 1.99, Dead Stock Inventory Campaign Campaign, Real Estate List Building) remain PAUSED with no budget.",
+      "timestamp": "2026-08-24T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 35493,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 35493,
+    "impressions": 11458,
+    "clicks": 249,
+    "leads": 29,
+    "cpl_cents": 1224,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Gap in meta-ads coverage: last successful run ended 2026-08-13; this run's window (2026-08-18 through 2026-08-24) is capped at 7 days per policy, leaving 2026-08-14 through 2026-08-17 (4 days) with no meta-ads ingest record at all.",
+    "Flooring Problems Campaign's raw actions again show lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued at 29 in the catch-up window and 21 in the prior-week baseline, matching the counted `leads` exactly in both). No discrepancy in the counted total either time, but per the agent's trap note this pattern (now seen twice) should be reviewed for whether the script's lead-action set needs extending, not hand-patched here."
+  ]
+}

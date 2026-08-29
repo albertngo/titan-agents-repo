@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-08-28T08:21:14-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $349.90 spend, 30 leads, $11.66 CPL — Flooring Problems Campaign",
+      "summary": "Last successful meta-ads run was 2026-08-14, so this catch-up pull widened to the last 7 full days (2026-08-21 through 2026-08-27, cap per policy). Flooring Problems Campaign was the only actively-delivering campaign: $349.90 spend, 30 leads, $11.66 CPL — cheaper than the prior comparable 7-day baseline (2026-08-14 to 2026-08-20: $349.92 / 23 leads ≈ $15.21 CPL). Account is ACTIVE, no ads flagged.",
+      "timestamp": "2026-08-27T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 34990,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 34990,
+    "impressions": 10402,
+    "clicks": 254,
+    "leads": 30,
+    "cpl_cents": 1166,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Gap wider than cap: last successful meta-ads run was 2026-08-14 (14 days before this run). Per policy the pull window was widened to 7 days (2026-08-21 through 2026-08-27) but that does not cover the full gap — 2026-08-15 through 2026-08-20 has no meta-ads ingest data and was not backfilled; a 7-day window ending 2026-08-20 was pulled only as a CPL baseline reference for this run, not written as its own day's file.",
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads) — each valued at exactly 30 in the current window and 23 in the baseline window, matching the counted leads exactly both times. No discrepancy in the counted total either time, but per the agent's trap note this should be reviewed for whether LEAD_ACTION_TYPES needs extending, not hand-patched here."
+  ]
+}

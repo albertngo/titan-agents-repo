@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "source": "bookkeeper",
+  "run_at": "2026-08-25T08:23:19-04:00",
+  "status": "error",
+  "error": "Intuit QuickBooks MCP connector unavailable this run: no QBO/Intuit MCP server is configured (.mcp.json only defines the 'ghl' server, confirmed via `claude mcp list` returning no servers) and no QuickBooks credentials/tools were present in the session. Requested catch-up window was 2026-08-14T08:45:11-04:00 (last successful ledger entry) through 2026-08-25T08:23:19-04:00 (~250h), but no calls could be made — unable to pull payments received, overdue invoices, new expenses, or uncategorized transactions for that window. No QBO data was read.",
+  "items": [],
+  "metrics": {
+    "payments_received_cents": 0,
+    "overdue_invoices": 0,
+    "uncategorized_txns": 0
+  },
+  "needs_attention": [
+    "QuickBooks MCP connector still not configured — bookkeeper ingest has produced no data every run since at least 2026-07-26 (11+ consecutive attempts per run-ledger.json), most recently 2026-08-14. Catch-up window of ~11 days (2026-08-14 through 2026-08-25) remains un-pulled. Add/repair the Intuit QuickBooks MCP server (see .mcp.json) before the next scheduled run — once fixed, the next run should cover this full gap."
+  ]
+}
