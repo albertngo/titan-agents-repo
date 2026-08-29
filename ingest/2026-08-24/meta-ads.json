@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-08-24T08:23:40-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $353.63 spend, 29 leads, $12.19 CPL — Flooring Problems Campaign",
+      "summary": "Aug 17–23, 2026 (7-day window — widened from the standard 1-day pull because the last successful meta-ads ingest was 2026-08-14, a 10-day gap capped at 7 per policy): Meta spent $353.63 across the only actively-delivering campaign, Flooring Problems Campaign, generating 29 leads at $12.19 CPL. That's well below the prior 7-day baseline of $17.66 CPL (Aug 10–16: $353.20 / 20 leads). Account is ACTIVE, currency CAD, and no ads are currently flagged DISAPPROVED or WITH_ISSUES.",
+      "timestamp": "2026-08-23T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 35363,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 35363,
+    "impressions": 11193,
+    "clicks": 249,
+    "leads": 29,
+    "cpl_cents": 1219,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Gap wider than the 7-day cap: the last successful meta-ads.json was 2026-08-14 (covering data through 2026-08-13, 10 days ago), so per policy this run's primary window was widened to the capped 7 days (2026-08-17 to 2026-08-23) rather than the full gap. An additional exploratory pull for the still-uncovered days (2026-08-14 to 2026-08-16) found $148.06 spend, 6 leads, 85 clicks, 4729 impressions on Flooring Problems Campaign — not included in this run's metrics or spend_summary since it falls outside both the capped primary window and the comparison baseline window. Recommend confirming with Albert whether a manual backfill entry is needed to avoid an undercount in month-to-date views, or whether the daily-ingest schedule gap that caused this should be investigated.",
+    "Recurring pattern (also seen in the 2026-08-14 run): raw actions for Flooring Problems Campaign include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set — offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued exactly equal to the counted leads in both the primary window (29) and the baseline window (20). No discrepancy today, but this is the second consecutive run showing the pattern; worth reviewing whether LEAD_ACTION_TYPES in scripts/meta_ads_pull.py needs extending rather than continuing to hand-verify each run."
+  ]
+}
