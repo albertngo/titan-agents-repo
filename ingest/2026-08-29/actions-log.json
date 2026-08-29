@@ -1,0 +1,72 @@
+{
+  "contract_version": "1",
+  "entries": [
+    {
+      "logged_at": "2026-08-29T09:05:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_create_task",
+      "target": "Tactical Tasks List row 3cb596a4505f814e92e7f81281e7f74e (Taylor, contact FT0vrtJwWoMEirKeqDnG)",
+      "content_summary": "Created team task: WhatsApp supplier solicitation logged as a contact, not a customer lead.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "ingest/2026-08-29/ghl.json#ghl-lead-FT0vrtJwWoMEirKeqDnG"
+    },
+    {
+      "logged_at": "2026-08-29T09:05:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_create_task",
+      "target": "Tactical Tasks List row 3cb596a4505f812cbcacc919d790f0dd (Sowmya, contact Ora83mwSV5QhmbyIoIKd)",
+      "content_summary": "Created team task: repeat Oakville customer asking about today's crew arrival and confirming a 2nd payment.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "ingest/2026-08-29/ghl.json#ghl-conv-YpEmHWkJLCoZYAATACzo"
+    },
+    {
+      "logged_at": "2026-08-29T09:05:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_create_task",
+      "target": "Tactical Tasks List row 3cb596a4505f81d99052c7f8cb4b9da0 (Gina Martino, contact 0xmmjfcfQPdvsdGJyMVE)",
+      "content_summary": "Created team task: Georgetown win deposit sent, confirm receipt + Sept 8 install.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "ingest/2026-08-29/ghl.json#ghl-conv-qYVSGzNpWngXX33lrhy4"
+    },
+    {
+      "logged_at": "2026-08-29T09:05:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_create_task",
+      "target": "Tactical Tasks List row 3cb596a4505f81dfbb9ae634099643cf (Khadija, contact A8yQlTah85oGbaqABxzJ)",
+      "content_summary": "Created team task: store customer ready to buy baseboards, wants a callback to pay and arrange delivery.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "ingest/2026-08-29/ghl.json#ghl-conv-nq87ncOD60CLFh375m9l"
+    },
+    {
+      "logged_at": "2026-08-29T09:06:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_update_task",
+      "target": "Tactical Tasks List row 3ca596a4505f8154b030dfe1f063caaf (Ariel Aradanas, contact SI6WqIHJje7miWAzsbwG)",
+      "content_summary": "Appended dated note: conflicting lead: hot / lead: unqualified tags still unresolved.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "ingest/2026-08-29/ghl.json#ghl-lead-SI6WqIHJje7miWAzsbwG"
+    },
+    {
+      "logged_at": "2026-08-29T09:06:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_update_task",
+      "target": "Tactical Tasks List row 3c8596a4505f81ddaa78f221b0d5a57e (Therese Gomes, contact OT0kdd7OrXCpNI6Hmb70)",
+      "content_summary": "Appended dated note: receipt/warranty docs sent, now asking today's crew/bin-removal time, still unanswered.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "ingest/2026-08-29/ghl.json#ghl-conv-EhxmxVaYC4tZ1CsCWdE9"
+    }
+  ],
+  "notes": "Skipped: Basil Felix Da Souza (contact ECcnb0wnweKgs3Q6rjaG) matched existing open row (created 2026-08-23, updated 2026-08-26) — today's ghl.json item ($1,972 balance held up by daily transfer limit) restates the same fact already logged 2026-08-26 with no new development, so no duplicate note was appended. 5 aggregate/opportunity-level drift items (categorization_miss, both stale_approaching batches, abandonment_next for Zinat Hirji, meeting_no_followup batch) had no derivable contact link (item.link was null) and were excluded per contracts/notion-task-schema.md's contact-ID derivation rule — logged here for audit, not written anywhere. No Outlook or other-source candidates: no item this run had type in {lead, message, drift}, so nothing routed to the private destination."
+}
