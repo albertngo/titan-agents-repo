@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "entries": [
+    {
+      "logged_at": "2026-08-27T09:05:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_create_task",
+      "target": "Tactical Tasks List (team) — dedupe query for 7 GHL candidates (Zinat Hirji, Ghandi, Silviya Jardany, Jill Sellar, Clerance Pitters, Basil Felix Da Souza, Khadija)",
+      "content_summary": "Dedupe query against the Tactical Tasks List data source failed twice with a Notion workspace usage-limit error before any row create/update was attempted; per notion-task-schema.md's failure policy (\"Dedupe query fails\") the entire team batch was stopped before writing.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "failed",
+      "error": "mcp__Notion__notion-query-data-sources: \"Your workspace has reached the usage limit for Query Data Source. You can try again later, or upgrade to Business for unlimited querying right away.\" (retried once, same error)",
+      "raw_ref": "collection://238596a4-505f-8137-af13-000bde205213"
+    }
+  ]
+}
