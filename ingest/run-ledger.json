@@ -119,5 +119,18 @@
     },
     "brief": true,
     "note": "scheduled run; no run at all on 2026-08-10 through 2026-08-13; 2026-08-09's run (GHL/Outlook/Notion ok) had been stranded on unmerged PR #14 (branch claude/kind-feynman-4tyval) but was merged into main-agents same-day on request; first-ever meta-ads ingest run; outlook catch-up window widened to 130h/154h; bookkeeper still has no QBO/Intuit MCP connector configured"
+  },
+  {
+    "date": "2026-08-29",
+    "run_at": "2026-08-29T08:12:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled catch-up run; no run at all on 2026-08-15 through 2026-08-28 (14-day gap, last successful run was 2026-08-14); GHL and Notion widened fully back to 2026-08-14, Outlook and Meta Ads catch-up capped at 7 days so 2026-08-15 through 2026-08-21 remains un-ingested for those two sources; bookkeeper QBO/Intuit MCP connector still unconfigured, 4th consecutive failure"
   }
 ]
