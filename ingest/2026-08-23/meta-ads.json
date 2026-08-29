@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-08-23T08:13:16-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $349.74 spend, 26 leads, $13.45 CPL (2026-08-16 to 2026-08-22)",
+      "summary": "Widened window (last successful run was 2026-08-14, covering 2026-08-13) — reporting the 7 most recent full days, 2026-08-16 through 2026-08-22. Meta spent $349.74, all on the only actively-delivering campaign, Flooring Problems Campaign, generating 26 leads at $13.45 CPL — below the prior 7-day baseline (2026-08-09 to 2026-08-15) of $15.21 CPL. Account is ACTIVE, currency CAD, no ads flagged.",
+      "timestamp": "2026-08-22T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 34974,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 34974,
+    "impressions": 10834,
+    "clicks": 238,
+    "leads": 26,
+    "cpl_cents": 1345,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Coverage gap: the last successful meta-ads.json run was 2026-08-14 (covering yesterday=2026-08-13). This run widened --days to 7 (the cap) to cover the gap, giving 2026-08-16 through 2026-08-22 — but 2026-08-14 and 2026-08-15 fall outside even the widened window and were never pulled, so spend/leads for those two days are permanently missing from meta-ads ingest history. Recommend running ingest daily going forward to avoid recurring gaps.",
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued at 26 in this window, 23 in the prior 7-day baseline), matching the counted `leads` figure exactly both times, same pattern noted in the 2026-08-14 run. No discrepancy today, but this should be reviewed for whether the script's LEAD_ACTION_TYPES set needs extending, not hand-patched here."
+  ]
+}
