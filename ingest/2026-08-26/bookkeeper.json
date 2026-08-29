@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "source": "bookkeeper",
+  "run_at": "2026-08-26T08:28:29-04:00",
+  "status": "error",
+  "error": "Intuit QuickBooks MCP connector unavailable this run: .mcp.json only defines the 'ghl' server, no QBO/Intuit MCP server is configured, and no QuickBooks credentials/tools were present in the session. Unable to pull new transactions, unmatched receipts, or overdue invoices since the last successful bookkeeper ingest (2026-08-14) — an 11-day gap. No QBO data was read. This is the 4th consecutive failed attempt (2026-08-08, 2026-08-09, 2026-08-14, 2026-08-26) with the identical unconfigured-connector cause.",
+  "items": [],
+  "metrics": {
+    "payments_received_cents": 0,
+    "overdue_invoices": 0,
+    "uncategorized_txns": 0
+  },
+  "needs_attention": [
+    "QuickBooks MCP connector still not configured — bookkeeper ingest has produced no data for 4 consecutive attempts (2026-08-08, 2026-08-09, 2026-08-14, 2026-08-26). 11-day gap since the last successful run (2026-08-14). Add the Intuit QuickBooks MCP server to .mcp.json (currently only 'ghl' is defined) and provide credentials before the next scheduled run — recommend escalating this as a standing blocker rather than a transient outage."
+  ]
+}
