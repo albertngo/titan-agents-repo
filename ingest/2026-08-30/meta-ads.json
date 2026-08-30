@@ -1,0 +1,36 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-08-30T08:13:42-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $349.67 spend, 29 leads, $12.06 CPL — Flooring Problems",
+      "summary": "Ingest resumed after a 15-day gap (last successful run 2026-08-14 covered 2026-08-13); per policy the window was widened to the capped maximum of 7 days (2026-08-23 to 2026-08-29) rather than the standard single day, so these are 7-day totals, not yesterday's. Across that window Meta spent $349.67 on the only actively-delivering campaign, Flooring Problems Campaign, generating 29 leads at $12.06 CPL — below the 7-day-prior baseline of $13.45 CPL (2026-08-16 to 2026-08-22, $349.74 / 26 leads). Account is ACTIVE and no ads are flagged.",
+      "timestamp": "2026-08-29T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 34967,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 34967,
+    "impressions": 10205,
+    "clicks": 249,
+    "leads": 29,
+    "cpl_cents": 1206,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Gap since last successful run: the last meta-ads.json was written 2026-08-14 (covering 2026-08-13), a 15-day gap. Per policy this run widened the pull to the capped maximum of 7 days (2026-08-23 to 2026-08-29) instead of the standard 'yesterday' window — the file above reports a 7-day rollup, not a single day. Days 2026-08-14 through 2026-08-22 were NOT pulled or backfilled (out of scope per instructions not to backfill 15 days of history); if day-level detail for that stretch is needed, it requires a separate deliberate pull.",
+    "Baseline adjustment: the CPL baseline was pulled from the 7 days immediately preceding the gap-window (2026-08-16 to 2026-08-22) rather than the default trailing-7-days-ending-yesterday, because the default would have been identical to the primary window itself (a meaningless self-comparison). This is a one-off adjustment for the gap day, not a change to the standard baseline call — worth confirming this reasoning is acceptable.",
+    "Recurring (also flagged on the 2026-08-14 run, still unresolved): Flooring Problems Campaign's raw actions show lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads), each matching the counted lead value exactly in both windows pulled today (29 in-window, 26 in baseline). No discrepancy in the counted totals, but per the agent's trap note this should be reviewed for whether the script's lead-action set needs extending — not hand-patched here."
+  ]
+}
