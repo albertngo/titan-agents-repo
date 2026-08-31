@@ -19,7 +19,12 @@
     "_why": "0a. New Lead is the pre-categorization holding stage: every uncategorized lead sits there by definition, so drift findings against it restate the known intake backlog every single day instead of surfacing anything new. The other stages represent work already qualified and committed to, where drift is a real signal.",
     "_scope": "Applies to ALL drift types for records whose stage is listed here — including untagged_in_queue, which is definitionally a 0a. New Lead finding and is therefore fully suppressed by this entry. A contact with no opportunity (so no stage) is NOT excluded: categorization_miss on an unstaged contact still reports.",
     "_visibility": "Excluded findings are counted and reported in reporting.exclusions.drift_excluded_by_stage, never silently dropped — same rule as the new_leads / unanswered_conversations netting.",
-    "stages": ["0a. New Lead"]
+    "stages": ["0a. New Lead"],
+    "conditional_stages": {
+      "_comment": "Unlike `stages` above (unconditional — suppresses every record in that stage), each entry here suppresses drift ONLY for a record that is BOTH in the named stage AND carries the paired tag (Albert, 2026-08-31). A record sitting in the stage WITHOUT that exact tag — untagged, or tagged something else — is NOT excluded and reports normally: that mismatch is itself a categorization_miss / stale_approaching signal worth surfacing, not noise.",
+      "_why": "0b. Far Out (Cold) is high-volume and low-urgency by design (90-day threshold, leads self-reported 3+ months out) — genuinely cold-tagged leads sitting there generate daily stale_approaching noise that restates the same known long-tail backlog rather than surfacing anything new. A cold-STAGE record missing the cold tag is a different, real signal (e.g. the categorization automation didn't run) and must still report.",
+      "0b. Far Out (Cold)": "lead: cold"
+    }
   },
 
   "abandonment_rule": {

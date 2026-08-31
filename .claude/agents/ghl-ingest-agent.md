@@ -415,19 +415,39 @@ Exclusion suppresses reporting only. The stage keeps its `stale_thresholds_days`
 and that threshold is still the right answer if something else asks for it — never read
 this list as "this stage has no threshold."
 
+#### Conditional (tag + stage) exclusion
+
+`drift_excluded_stages.conditional_stages` (Albert, 2026-08-31) is narrower than
+`stages`: each entry is `"<stage>": "<required tag>"`, and a record is suppressed only
+when it is **both** in that exact stage **and** carries that exact tag. Currently
+`"0b. Far Out (Cold)": "lead: cold"` — genuinely cold-tagged leads sitting in the Cold
+stage generate daily `stale_approaching` noise against a 90-day threshold that almost
+never resolves same-day, so it's suppressed the same way the `0a` backlog is.
+
+**This is not a stage-only exclusion — check the tag too.** A record in
+`0b. Far Out (Cold)` that is untagged, or tagged anything other than `lead: cold`
+(wrong tag, stale tag from a data migration, etc.), is **NOT** excluded and reports
+normally — that combination (right stage, wrong/missing tag) is precisely a
+`categorization_miss` or a tag/stage mismatch worth surfacing, not noise. Don't collapse
+this into `stages` even though today it only has one entry; the whole point is the two
+conditions are independent.
+
 **Publish what was suppressed**, same rule as the metric netting below — a filtered
-output with no visible raw is indistinguishable from a clean day:
+output with no visible raw is indistinguishable from a clean day. Report unconditional
+and conditional exclusions as separate keys so the two mechanisms stay distinguishable:
 
 ```
 "exclusions": {
   ...,
-  "drift_excluded_by_stage": {"0a. New Lead": {"untagged_in_queue": N, "stale_approaching": N, ...}}
+  "drift_excluded_by_stage": {"0a. New Lead": {"untagged_in_queue": N, "stale_approaching": N, ...}},
+  "drift_excluded_by_stage_and_tag": {"0b. Far Out (Cold) + lead: cold": {"stale_approaching": N, "abandonment_next": N, ...}}
 }
 ```
 
-`drift_findings` in `metrics` counts findings **after** this exclusion; the suppressed
-count is recoverable from `reporting.exclusions`. If the config key is absent, exclude
-nothing and carry on — an empty list is a valid state, not an error.
+`drift_findings` in `metrics` counts findings **after** both exclusions; the suppressed
+counts are recoverable from `reporting.exclusions`. If a config key (`stages` or
+`conditional_stages`) is absent, exclude nothing under that mechanism and carry on — an
+empty/missing list is a valid state, not an error.
 
 ## Won-lead analysis (daily half)
 
