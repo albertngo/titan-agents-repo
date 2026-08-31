@@ -169,6 +169,27 @@ which is canonical for why and for how they're matched. Pipeline and stage go ou
 verifiable and an ID isn't. Never emit `traceId` / `mcp_trace_id` — per-request
 debugging only.
 
+### Verify every `link` against its own record's contact ID before emitting
+
+**Confirmed bug, 2026-08-31**: two `meeting_no_followup` drift items in the same run
+had a correctly-named title/summary (built from the right opportunity) but a `link`
+built from a *different, nearby* record's contact ID — e.g. the Biplab Ghosh finding
+linked to Oz Aziz's contact page, and the Muhammad Alams finding linked to Biplab
+Ghosh's. Both records were Meeting-scheduled opportunities processed close together;
+the contact ID appears to have been carried over from adjacent record while
+constructing links in sequence, rather than re-read from the record the finding is
+actually about. This reached a live Notion task (wrong `url`) before being caught by
+a manual link-through-Notion check — the pipeline itself never flagged it.
+
+**Before writing each item with a `link`, re-derive the contact ID from that same
+item's own `raw_ref`/backing record — never carry forward a value used for a
+previous item.** Concretely: the contact ID in `link` must equal the `contact_id`
+field on the exact opportunity/contact named in the item's `title` and `raw_ref`, not
+merely "a contact ID seen recently while processing this batch." When emitting a
+batch of similar findings (e.g. several `meeting_no_followup` items back to back),
+treat each one as an independent lookup — do not reuse or increment/shift a working
+variable across items.
+
 ## `assigned_to` — pass the raw GHL user ID through, never resolve it
 
 Both the contact and opportunity objects carry a top-level `assignedTo` field — a raw
