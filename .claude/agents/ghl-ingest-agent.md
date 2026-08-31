@@ -169,6 +169,27 @@ which is canonical for why and for how they're matched. Pipeline and stage go ou
 verifiable and an ID isn't. Never emit `traceId` / `mcp_trace_id` — per-request
 debugging only.
 
+### Verify every `link` against its own record's contact ID before emitting
+
+**Confirmed bug, 2026-08-31**: two `meeting_no_followup` drift items in the same run
+had a correctly-named title/summary (built from the right opportunity) but a `link`
+built from a *different, nearby* record's contact ID — e.g. the Biplab Ghosh finding
+linked to Oz Aziz's contact page, and the Muhammad Alams finding linked to Biplab
+Ghosh's. Both records were Meeting-scheduled opportunities processed close together;
+the contact ID appears to have been carried over from adjacent record while
+constructing links in sequence, rather than re-read from the record the finding is
+actually about. This reached a live Notion task (wrong `url`) before being caught by
+a manual link-through-Notion check — the pipeline itself never flagged it.
+
+**Before writing each item with a `link`, re-derive the contact ID from that same
+item's own `raw_ref`/backing record — never carry forward a value used for a
+previous item.** Concretely: the contact ID in `link` must equal the `contact_id`
+field on the exact opportunity/contact named in the item's `title` and `raw_ref`, not
+merely "a contact ID seen recently while processing this batch." When emitting a
+batch of similar findings (e.g. several `meeting_no_followup` items back to back),
+treat each one as an independent lookup — do not reuse or increment/shift a working
+variable across items.
+
 ## `assigned_to` — pass the raw GHL user ID through, never resolve it
 
 Both the contact and opportunity objects carry a top-level `assignedTo` field — a raw
@@ -415,19 +436,39 @@ Exclusion suppresses reporting only. The stage keeps its `stale_thresholds_days`
 and that threshold is still the right answer if something else asks for it — never read
 this list as "this stage has no threshold."
 
+#### Conditional (tag + stage) exclusion
+
+`drift_excluded_stages.conditional_stages` (Albert, 2026-08-31) is narrower than
+`stages`: each entry is `"<stage>": "<required tag>"`, and a record is suppressed only
+when it is **both** in that exact stage **and** carries that exact tag. Currently
+`"0b. Far Out (Cold)": "lead: cold"` — genuinely cold-tagged leads sitting in the Cold
+stage generate daily `stale_approaching` noise against a 90-day threshold that almost
+never resolves same-day, so it's suppressed the same way the `0a` backlog is.
+
+**This is not a stage-only exclusion — check the tag too.** A record in
+`0b. Far Out (Cold)` that is untagged, or tagged anything other than `lead: cold`
+(wrong tag, stale tag from a data migration, etc.), is **NOT** excluded and reports
+normally — that combination (right stage, wrong/missing tag) is precisely a
+`categorization_miss` or a tag/stage mismatch worth surfacing, not noise. Don't collapse
+this into `stages` even though today it only has one entry; the whole point is the two
+conditions are independent.
+
 **Publish what was suppressed**, same rule as the metric netting below — a filtered
-output with no visible raw is indistinguishable from a clean day:
+output with no visible raw is indistinguishable from a clean day. Report unconditional
+and conditional exclusions as separate keys so the two mechanisms stay distinguishable:
 
 ```
 "exclusions": {
   ...,
-  "drift_excluded_by_stage": {"0a. New Lead": {"untagged_in_queue": N, "stale_approaching": N, ...}}
+  "drift_excluded_by_stage": {"0a. New Lead": {"untagged_in_queue": N, "stale_approaching": N, ...}},
+  "drift_excluded_by_stage_and_tag": {"0b. Far Out (Cold) + lead: cold": {"stale_approaching": N, "abandonment_next": N, ...}}
 }
 ```
 
-`drift_findings` in `metrics` counts findings **after** this exclusion; the suppressed
-count is recoverable from `reporting.exclusions`. If the config key is absent, exclude
-nothing and carry on — an empty list is a valid state, not an error.
+`drift_findings` in `metrics` counts findings **after** both exclusions; the suppressed
+counts are recoverable from `reporting.exclusions`. If a config key (`stages` or
+`conditional_stages`) is absent, exclude nothing under that mechanism and carry on — an
+empty/missing list is a valid state, not an error.
 
 ## Won-lead analysis (daily half)
 

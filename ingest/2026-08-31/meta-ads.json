@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-08-31T08:25:05-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $351.86 spend, 27 leads, $13.03 CPL — Flooring Problems Campaign",
+      "summary": "No meta-ads.json existed since 2026-08-14, so this run widened the window to the capped maximum of 7 days (2026-08-24 to 2026-08-30) to catch up. Over that window Meta spent $351.86, all on the only actively-delivering campaign, Flooring Problems Campaign, generating 27 leads at $13.03 CPL. That's roughly in line with the prior 7-day baseline (2026-08-17 to 2026-08-23: $353.65 / 29 leads, ~$12.19 CPL); account is ACTIVE and no ads are flagged.",
+      "timestamp": "2026-08-30T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 35186,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 35186,
+    "impressions": 9496,
+    "clicks": 235,
+    "leads": 27,
+    "cpl_cents": 1303,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Gap wider than the 7-day lookback: the most recent prior meta-ads.json was 2026-08-14 (covering spend through 2026-08-13). That's 17 days before today, so per policy this run widened to the capped maximum of 7 days (2026-08-24 through 2026-08-30) rather than the standard yesterday-only pull. Spend/leads for 2026-08-14 through 2026-08-23 (10 days) were never captured by this ingester and cannot be recovered retroactively.",
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued at 27 in this window, 29 in the baseline window, matching the counted leads exactly both times). No discrepancy in the counted total, but per the agent's trap note this should be reviewed for whether the script's lead-action set needs extending, not hand-patched here."
+  ]
+}
