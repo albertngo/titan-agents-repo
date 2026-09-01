@@ -1,0 +1,48 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-09-01T08:31:35-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $52.20 spend, 1 lead, $52.20 CPL — Flooring Problems Campaign",
+      "summary": "Yesterday (2026-08-31) Meta spent $52.20, all on the only actively-delivering campaign, Flooring Problems Campaign, generating 1 lead at $52.20 CPL. Account is ACTIVE, the other three campaigns remain paused, and no ads are flagged.",
+      "timestamp": "2026-08-31T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 5220,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    },
+    {
+      "id": "meta-ads-anomaly-120216224215840296",
+      "type": "anomaly",
+      "title": "Flooring Problems Campaign CPL spiked to $52.20 vs $15.32 baseline",
+      "summary": "Flooring Problems Campaign's CPL yesterday ($52.20/lead on $52.20 spend, 1 lead) ran ~3.4x its 7-day baseline CPL of $15.32/lead ($352.45 / 23 leads over 2026-08-25 to 2026-08-31). Window spend clears the $50 minimum for flagging, but at $52.20 the dollars at stake stay under the $100/day high-priority bar — worth a look if it repeats today.",
+      "timestamp": "2026-08-31T23:59:00-04:00",
+      "priority": "normal",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 5220,
+      "raw_ref": "meta-ads:act_927167028457360:campaign:120216224215840296",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 5220,
+    "impressions": 1315,
+    "clicks": 24,
+    "leads": 1,
+    "cpl_cents": 5220,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Flooring Problems Campaign CPL spiked to $52.20/lead yesterday (2026-08-31), ~3.4x the 7-day baseline of $15.32/lead — only 1 lead landed on $52.20 spend. Below the $100/day high-priority bar for now but worth watching if it continues.",
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued at 1 yesterday / 23 over the 7-day baseline, matching the counted leads exactly both times). No discrepancy in the counted total, but per the agent's trap note this should be reviewed for whether the script's lead-action set needs extending, not hand-patched here."
+  ]
+}
