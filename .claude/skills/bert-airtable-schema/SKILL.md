@@ -371,6 +371,79 @@ Standard row values: `Change date` = date recorded; `Supplier` = the supplier; `
 
 ---
 
+## Updating existing products from a price list
+
+**Most price lists are an UPDATE, not an import.** Once a supplier is in the
+catalogue, their next price list is a set of price changes against rows that already
+exist. Importing it instead of updating creates a duplicate catalogue.
+
+Decide which you are doing before writing anything: query the Master Flooring
+Catalogue filtered to that supplier. Rows returned → update. No rows → import, per
+the section above.
+
+### Match on Supplier SKU — never on the SKU column
+
+Match incoming rows to existing records on **`Supplier SKU`** (`fldLOrMqh4aBftjtu`),
+the supplier's own code (`WB1361`, `SP2801`, `VS081`).
+
+**Never match on the internal `SKU` column.** The extraction step assigns those
+sequence numbers per run and its numbering does not survive between runs: on the
+2026-09-01 GreenTouch list it emitted `LVP-GRNT-0001…0010` for products the
+catalogue already held as `LVP-GRNT-0073…0082` (the live base numbers LVP and ACC
+continuing on from where ENG ends, rather than restarting per category). Matching on
+that column would have created 83 duplicates of a catalogue that already held all 83
+products. The supplier's own code is the only stable join key — which is exactly what
+the `Supplier SKU` field description says it is for.
+
+Where a supplier genuinely has no codes, match on product name + specs, and expect it
+to need review; this is the main reason the Supplier SKU policy above says never to
+invent codes.
+
+### What to write
+
+- **Only fields that actually changed.** Compare against current values and build a
+  per-record diff; do not blanket-write every field on every row.
+- `Last price update` and `Price last changed by` — set these **only when cost or
+  retail actually moved**, not when the only change was a stock-status flag.
+- `Stock status` / `Active` — set from the supplier's own markers
+  (`Discontinued` → `Discontinued` + `Active` unchecked; `Limited` → `Low stock`,
+  still active). The enum has no "Limited" value; `Low stock` is the mapping.
+- Append one row per **cost** change to `Price History Log v2` per the logging
+  convention above. Its `Supplier` select is sparsely populated — pass
+  `typecast: true` so a supplier missing from that field's options is added rather
+  than erroring the whole batch.
+- Airtable caps `update_records_for_table` / `create_records_for_table` at **50
+  records per call** — batch accordingly.
+
+### Manual vs Cowork on unattended runs
+
+`Changed by` / `Price last changed by` = `Cowork` for **any unattended run** —
+including a scheduled Claude routine with no human watching. `Manual` means a person
+or an interactive session made the change. The distinction is whether a human was in
+the loop, not whether Claude was involved.
+
+### Name casing differs per system — do not normalise it
+
+| System | Form | Example |
+|---|---|---|
+| Airtable `Supplier` select | established mixed case | `GreenTouch` |
+| Notion `Company` select | ALL CAPS | `GREENTOUCH` |
+| Make scenario 4382120 | ALL CAPS, must match Notion exactly | `GREENTOUCH` |
+
+Each system's existing convention wins. "Correcting" Airtable's casing to match
+Notion fragments the select options and orphans existing rows.
+
+### Verify against the source document
+
+This writes live pricing that Bert quotes to customers. Cross-check extracted
+SKU→price pairs against the source PDF's own text before writing, and again after.
+The full download-and-parse recipe (the share link needs `?download=1` **and** a
+cookie jar; the Microsoft 365 connector returns Graph's text conversion rather than
+file bytes, which flattens table geometry) is in `methods/pricelist-extraction.md`,
+with a wrapper at `scripts/pricelist_fetch.py`.
+
+---
+
 ## SKU format reference
 
 | Prefix | Category | Example | Format |
@@ -2251,3 +2324,30 @@ When a new supplier is added, gather this information before processing their fi
 This document should be updated whenever the schema changes or a new supplier is onboarded. If a field is added, removed, or its purpose changes, update this guide at the same time.
 
 Schema changes should also be reflected in the Bert — Pricing & Promo SOP in Notion. New supplier subsections should be added under Supplier Ingest Rules following the structure of the FAW entry.
+
+### Verifying this document against the live base
+
+The live schema can be exported to a review workbook — every field, type,
+description, and select option, plus a Review Flags sheet:
+
+```
+python3 scripts/bert_schema_export.py --names names.json --config config.json \
+    --out analysis/output/bert-airtable-schema-YYYY-MM-DD.xlsx
+```
+
+`names.json` / `config.json` are the raw payloads from the Airtable MCP calls
+`list_tables_for_base` and `get_table_schema` — neither is sufficient alone (the
+first has names and descriptions but no select options; the second has options but
+no names). Latest snapshot committed alongside the workbook in `analysis/output/`.
+
+### Changelog
+
+- **2026-09-01** — Added "Updating existing products from a price list": match on
+  `Supplier SKU`, never the internal `SKU` column, after the GreenTouch 2026-09-01
+  run surfaced that the extraction step renumbers SKUs per run and would have
+  duplicated all 83 existing records. Same section adds the per-system name-casing
+  table, the batch caps, the `Low stock` mapping for supplier "Limited" markers, and
+  clarifies `Changed by` = `Cowork` for unattended runs (a scheduled Claude routine
+  is automated, not `Manual`). Added the schema-export instructions above. Verified
+  against a live schema snapshot the same day: Price History Log v2 documentation
+  was already accurate; no field-level drift found.
