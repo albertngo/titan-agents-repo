@@ -49,16 +49,37 @@ stock-status markers mid-row, e.g. `WB1381 Limited LUCCA ABC $4.09`, where
 pdfplumber correctly puts `Limited` on its own line). `sharepoint.com` is reachable
 from cloud sessions; no network-policy change is needed.
 
-## Airtable is an UPDATE, not an import
+## Check the supplier exists first
 
-The single most expensive trap here. Most suppliers already have their whole
-catalogue in Airtable (`appWHOVZ0QCS0xQ3M` / `tblfLXD3zkSdNQGbS`, Master Flooring
-Catalogue). A price list is a **price change against existing rows.**
+**A price list for a supplier not already in the catalogue never creates records
+through the API.** Query the Master Flooring Catalogue (`appWHOVZ0QCS0xQ3M` /
+`tblfLXD3zkSdNQGbS`) filtered to that supplier before writing anything:
 
-- **Match on `Supplier SKU`** (`fldLOrMqh4aBftjtu`) — the supplier's own code
-  (`WB1361`, `SP2801`). **Never match on the `SKU` column**: the extraction skill
-  renumbers those per-run (it emitted `LVP-GRNT-0001…0010` where Airtable holds
-  `LVP-GRNT-0073…0082`), so matching on it silently duplicates the entire catalogue.
+- **Rows returned** → update path, below.
+- **No rows** → produce the Bert schema Excel export (canonical column order) and
+  stop. New products enter through Airtable's own importer after human review, and
+  the supplier's select option, SKU suffix, cost column and markup overrides have to
+  be settled first — see the skill's new-supplier onboarding checklist.
+
+## For an existing supplier, Airtable is an UPDATE, not an import
+
+Most suppliers already have their whole catalogue in Airtable. A price list is a
+**price change against existing rows.** Match in this cascade, stopping at the first
+tier that resolves cleanly:
+
+1. **Internal `SKU`** (`fldx3byCOht5HbKmH`) — the canonical key, as stored in
+   Airtable. Resolves deterministically for suppliers whose code is the SKU suffix
+   verbatim (Biyork, Triforest, Olympia).
+2. **`Supplier SKU`** (`fldLOrMqh4aBftjtu`) — partial/fuzzy on the supplier's own
+   code (`WB1361`, `SP2801`). Where sequentially numbered suppliers land.
+3. **Specifications** — name, collection, size, grade, colour. Last resort, always
+   review.
+
+**Never match against a SKU generated during the run.** Tier 1 means the stored SKU,
+looked up live. Extraction renumbers per run — it emitted `LVP-GRNT-0001…0010` where
+Airtable holds `LVP-GRNT-0073…0082` — so treating generated values as tier-1 keys
+silently duplicates the catalogue. GreenTouch is sequential, so that run correctly
+resolved at tier 2.
 - Write only fields that actually changed. Set `Last price update` and
   `Price last changed by` = **`Cowork`** (the extraction skill defaults this to
   `Manual` — override it; these runs are not manual).

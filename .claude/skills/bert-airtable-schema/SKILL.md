@@ -377,27 +377,53 @@ Standard row values: `Change date` = date recorded; `Supplier` = the supplier; `
 catalogue, their next price list is a set of price changes against rows that already
 exist. Importing it instead of updating creates a duplicate catalogue.
 
-Decide which you are doing before writing anything: query the Master Flooring
-Catalogue filtered to that supplier. Rows returned → update. No rows → import, per
-the section above.
+### Step 1 — does this supplier already exist in the catalogue?
 
-### Match on Supplier SKU — never on the SKU column
+Before parsing anything for import, query the Master Flooring Catalogue filtered to
+that supplier.
 
-Match incoming rows to existing records on **`Supplier SKU`** (`fldLOrMqh4aBftjtu`),
-the supplier's own code (`WB1361`, `SP2801`, `VS081`).
+- **Rows returned → update path.** Continue to Step 2.
+- **No rows → new supplier. Do not create records through the API.** Produce the
+  Bert schema Excel export instead — the canonical column list above, in that exact
+  order — and stop there. New products enter the catalogue through Airtable's own
+  importer after a human has reviewed the file, never by automated record creation.
+  Work the "New supplier onboarding — checklist" and "Before importing a new
+  supplier" items first: the supplier's single-select option, 4-char SKU suffix,
+  which cost column to use, markup overrides, and parsing quirks all have to be
+  settled before the file is worth importing.
 
-**Never match on the internal `SKU` column.** The extraction step assigns those
-sequence numbers per run and its numbering does not survive between runs: on the
-2026-09-01 GreenTouch list it emitted `LVP-GRNT-0001…0010` for products the
-catalogue already held as `LVP-GRNT-0073…0082` (the live base numbers LVP and ACC
-continuing on from where ENG ends, rather than restarting per category). Matching on
-that column would have created 83 duplicates of a catalogue that already held all 83
-products. The supplier's own code is the only stable join key — which is exactly what
-the `Supplier SKU` field description says it is for.
+This check comes first because the two paths diverge completely, and getting it
+wrong in either direction is expensive: importing over an existing supplier
+duplicates their catalogue; API-creating a new supplier bypasses the review the
+import path exists to provide.
 
-Where a supplier genuinely has no codes, match on product name + specs, and expect it
-to need review; this is the main reason the Supplier SKU policy above says never to
-invent codes.
+### Step 2 — the matching cascade
+
+Match incoming rows to existing records in this order, stopping at the first tier
+that resolves cleanly:
+
+1. **Internal `SKU`** (`fldx3byCOht5HbKmH`) — the canonical key. Supplier SKU is an
+   input when the internal SKU is first *created*; once created, the internal SKU is
+   the identifier the record is known by. For suppliers whose code is the SKU suffix
+   verbatim (Biyork, Triforest, Olympia — see the Supplier SKU policy above) this
+   tier resolves deterministically and should always be tried first.
+2. **`Supplier SKU`** (`fldLOrMqh4aBftjtu`) — partial / fuzzy match on the
+   supplier's own code (`WB1361`, `SP2801`, `VS081`). This is where sequentially
+   numbered suppliers land, since a sequence number carries no information that ties
+   it to a supplier row.
+3. **Specifications** — product name, collection, size, grade, colour. Last resort,
+   for suppliers with no codes at all. Always expect these to need review; this is
+   the main reason the Supplier SKU policy says never to invent codes.
+
+**Never match against a SKU the extraction step generated.** Tier 1 means the
+internal SKU **as stored in Airtable**, looked up live — not a SKU reconstructed in
+the current run. Extraction assigns sequence numbers per run and that numbering does
+not survive between runs: on the 2026-09-01 GreenTouch list it emitted
+`LVP-GRNT-0001…0010` for products the base holds as `LVP-GRNT-0073…0082` (the live
+base continues LVP and ACC numbering on from where ENG ends rather than restarting
+per category). Treating those generated values as tier-1 keys would have created 83
+duplicates of a catalogue that already held all 83 products. GreenTouch is
+sequentially numbered, so that run correctly resolved at tier 2.
 
 ### What to write
 
@@ -2342,12 +2368,20 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
 
 ### Changelog
 
-- **2026-09-01** — Added "Updating existing products from a price list": match on
-  `Supplier SKU`, never the internal `SKU` column, after the GreenTouch 2026-09-01
-  run surfaced that the extraction step renumbers SKUs per run and would have
-  duplicated all 83 existing records. Same section adds the per-system name-casing
-  table, the batch caps, the `Low stock` mapping for supplier "Limited" markers, and
-  clarifies `Changed by` = `Cowork` for unattended runs (a scheduled Claude routine
-  is automated, not `Manual`). Added the schema-export instructions above. Verified
-  against a live schema snapshot the same day: Price History Log v2 documentation
-  was already accurate; no field-level drift found.
+- **2026-09-01** — Added "Updating existing products from a price list", after the
+  GreenTouch 2026-09-01 run surfaced that the extraction step renumbers internal
+  SKUs per run and would have duplicated all 83 existing records. Two rules
+  (Albert): a price list for a supplier **not** already in the catalogue never
+  creates records through the API — it produces the Bert schema Excel export for
+  human-reviewed import instead; and matching for an existing supplier cascades
+  **internal SKU → Supplier SKU (partial/fuzzy) → specifications**, against the SKU
+  as stored in Airtable, never one regenerated during the run. (An earlier draft of
+  this section said "match on Supplier SKU, never the SKU column" — wrong as a
+  general rule: it breaks the Biyork/Triforest/Olympia pattern where the supplier
+  code *is* the internal SKU suffix and tier 1 is the most precise key available.)
+  Same section adds the per-system name-casing table, the batch caps, the
+  `Low stock` mapping for supplier "Limited" markers, and clarifies `Changed by` =
+  `Cowork` for unattended runs (a scheduled Claude routine is automated, not
+  `Manual`). Added the schema-export instructions above. Verified against a live
+  schema snapshot the same day: Price History Log v2 documentation was already
+  accurate; no field-level drift found.
