@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "source": "bookkeeper",
+  "run_at": "2026-09-01T08:45:00-04:00",
+  "status": "error",
+  "error": "Intuit QuickBooks MCP connector unavailable this run: no QBO/Intuit MCP server is configured (.mcp.json only defines the 'ghl' server) and no QuickBooks credentials/tools were present in the session. Unable to pull last-24h transactions, unmatched receipts, or overdue invoices. No QBO data was read. Every bookkeeper ingest run on record (2026-07-26, 2026-07-27, 2026-07-28, 2026-07-31, 2026-08-08, 2026-08-09, 2026-08-14, 2026-08-31) has failed for this same reason — the connector has never been configured, not a transient outage.",
+  "items": [],
+  "metrics": {
+    "payments_received_cents": 0,
+    "overdue_invoices": 0,
+    "uncategorized_txns": 0
+  },
+  "needs_attention": [
+    "QuickBooks MCP connector still not configured/reachable — bookkeeper ingest has produced zero data on every recorded run since 2026-07-26 (9 attempts). This is a standing setup gap, not a one-off outage: add an Intuit QuickBooks MCP server entry to .mcp.json with valid credentials before the next scheduled run. Until then, all payments-received, overdue-invoice, and uncategorized-transaction figures for Titan Flooring are unknown."
+  ]
+}
