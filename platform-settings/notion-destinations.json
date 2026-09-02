@@ -58,6 +58,54 @@
     }
   },
 
+  "project_status_meeting_processor": {
+    "_comment": "Registry for .claude/skills/project-status-meeting-processor. All Notion database/collection ids, template ids, and property names that skill uses live here, never hardcoded in SKILL.md or its references/ files. Source: titan_context.md uploaded by Albert 2026-09-02.",
+    "_write_policy_note": "This skill's Notion writes are 'auto' (task/CII creation and note-appends happen without a per-item approval prompt) per Albert's explicit direction 2026-09-02, and are logged to the day's actions-log.json for audit, same as the notion-sync command's auto destination. Unlike notion-sync's GHL-sourced candidates, an owner/due-date named here comes from an explicit spoken assignment in a meeting Albert runs, not an inference — see SKILL.md's 'Setting Assign To / Due Date' note for the narrower rule that still applies (unambiguous + explicitly stated only).",
+    "project_status_meetings": {
+      "data_source": "collection://24d596a4-505f-803a-9797-000b3f8f5a68",
+      "title_property": "Name of Meeting",
+      "title_format": "Project Status — [Mon D/YY]",
+      "template_id": "24d596a4505f80d184c8e7d455c4f7c6",
+      "_template_note": "Template instantiation overrides the properties block passed at creation — always re-apply Name of Meeting + Date of Meeting via update_properties immediately after create.",
+      "properties": {
+        "tactical_associated": "Tactical Associated",
+        "cii_associated": "CII Associated",
+        "meeting_summary": "Meeting Summary",
+        "short_synopsis": "Short Synopsis on Meeting",
+        "date_of_meeting": "Date of Meeting"
+      }
+    },
+    "tactical_tasks": {
+      "_comment": "Same underlying database as destinations.team above (the shared Tactical Tasks List) — property names for title/status/priority/etc. are that same schema. This skill additionally uses Tactical Associated (relation to the meeting page) and Project (relation to Titan Projects), which notion-sync.md does not touch.",
+      "data_source": "collection://238596a4-505f-8137-af13-000bde205213",
+      "title_property": "Name",
+      "extra_properties": {
+        "tactical_associated": "Tactical Associated",
+        "project": "Project"
+      }
+    },
+    "cii": {
+      "data_source": "collection://365596a4-505f-81b2-8eb7-000b068f506c",
+      "title_property": "Stage/Task",
+      "properties": {
+        "initiative_name": "Initiative Name",
+        "priority": "Priority",
+        "project_status_meetings_relation": "Project Status Meetings"
+      },
+      "initiative_name_values": ["Marketing", "Funnel-Sales", "Inventory Improvement", "Operations", "Reporting-Analytics"],
+      "priority_values": ["High", "Medium", "Low"],
+      "_never_link_to_meeting": "Per Albert's directive: never populate the Project Status Meetings relation on a CII at creation or on append, even though the property exists. CIIs are scoped above any single meeting."
+    },
+    "titan_projects": {
+      "data_source": "collection://1b4596a4-505f-81ca-b1d5-000bb73ecbe1",
+      "_comment": "Master project list. Query by client name; bias toward projects from the last 60 days for match accuracy. Read-only for this skill — never created or modified."
+    },
+    "project_financials": {
+      "data_source": "collection://8afe9453-6580-414f-8215-1934d12a3d22",
+      "_comment": "Row titles: PP-XXX_ClientName | City (Financials). Search client name + 'Financials', not PP-ID alone. Read-only for this skill."
+    }
+  },
+
   "source_defaults": {
     "_comment": "Default destination per ingest source. A new *-ingest source needs only one line here — no writer code change. An item's own `sensitivity` field (contracts/ingest-schema.md) may escalate team -> private, never the reverse. This table also feeds vault-writer-agent's `visibility` mapping (team -> staff, private -> admin — see the Visibility section of titan-vault CONVENTIONS.md); an unknown source reads as private/admin. `notion` is team because the five ingested databases are staff-shared tables; admin-grade sub-sources (e.g. Project Financials, if ever ingested) are escalated per-item at ingest via notion-ingest-sources.json.",
     "ghl": "team",
