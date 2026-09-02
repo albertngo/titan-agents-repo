@@ -115,15 +115,71 @@ T-Moulding accessory, has a non-conforming SKU) with **zero mismatches**.
 Normalising Airtable to match Notion fragments its select options and orphans
 existing rows. Each system's existing convention wins.
 
-## Known blockers (as of 2026-09-01)
+## Company assignment belongs to the routine, not to Make
 
-- **Make scenario 4382120** maps companies via ~38 hardcoded router branches, not a
-  data store. Its blueprint is ~500KB minified / ~1.9MB pretty, and
-  `scenarios_update` takes the whole blueprint inline — over this environment's
-  limits. **Do not attempt a full blueprint replace**; report the branch that needs
-  adding for a human to apply in the Make UI. There is also an orphaned,
-  disconnected `greentouch` branch (module id 14) matching on `sender_email`, which
-  can never fire: all mail arrives from `info@titanfloors.ca`. Match `email_subject`.
+**Decided 2026-09-02 (Albert).** Make scenario 4382120 ("Price Lists (Assign
+Company)") is being retired as the owner of the Company field. The routine assigns
+it directly on the Notion row instead.
+
+Why: 4382120 matched on `sender_email` in 38 of its 40 conditions, but every price
+list arrives from `info@titanfloors.ca` because Titan forwards them to itself — so
+it was keying off a field that is nearly always the same value. That is why the
+GreenTouch branch never fired, and it means most branches likely never matched
+either. It also carried real bugs: `lucky` matched `"jospehren"` (a transposed
+typo), `baltic homes` matched `"josephren"` and wrote `NORTHWAY`, `FLOORDI` wrote
+`UMBRELLAR`, and there was no catch-all — an unmatched supplier silently no-ops.
+
+The routine has strictly more to work with: it reads the document itself. On the
+2026-09-01 run the company came from the PDF footer (`GREEN TOUCH FLOORS /
+INFO@GREENTOUCHFLOORS.COM`), which is ground truth rather than a guess from an
+envelope.
+
+### The matching cascade
+
+Read the Company select options **live** from the Notion data source schema each
+run — never hardcode the list, it drifts. Then, in strict priority order:
+
+1. **The company name printed in the document** (header/footer/contact block).
+2. **Sender domain**, when it is not Titan's own forwarding address.
+3. **Subject keyword.**
+
+If none of these is confident, **leave Company blank and flag it.** Do not pick a
+nearest match. The option list contains near-collisions the old scenario already
+got wrong (BALTIC/NORTHWAY, FLOORDI/UMBRELLAR); a wrong value looks authoritative
+and mis-routes silently, whereas a blank one is visibly incomplete.
+
+**Assign Company before the parseability check.** The routine terminates early on a
+file that is not a price document; if Company is only set after parsing, flyers and
+junk attachments lose their tag entirely — worse than the old behaviour. Set it
+from subject/sender first, then upgrade to the document-derived value.
+
+### Parent scenario 4381438 depends on the returned value
+
+4381438 feeds `{{20.company_name}}` into a Tactical Tasks title,
+`"Update POS Price List - {{company}}"`, created at ingest time — before the routine
+has read anything. Retitle that task from the **email subject** (which carries the
+supplier name in practice) so the CallSubscenario modules can be dropped; otherwise
+the title renders with a blank.
+
+## Do not edit large Make blueprints through `scenarios_update`
+
+`scenarios_update` takes the blueprint as an inline parameter, so the whole thing
+must be generated as tool output. 4382120's was 488,594 bytes (~140k tokens) —
+impossible in one call. 4381438's is larger still.
+
+**Stripping `metadata` to make it fit does not work, and fails silently.** Tried
+2026-09-02: `metadata.expect` (the input parameter schema, ~1.8KB per module) and
+`metadata.interface` (~9KB) look like regenerable UI cache, and Make does rebuild
+them when a module is opened in the designer — but the **runtime needs `expect`**.
+Without it the module still matches, still executes, still consumes an operation and
+still makes a real Notion API round-trip (~3KB transfer), but the `fields` payload is
+dropped and nothing is written. Status comes back `SUCCESS`, no error, no DLQ entry.
+Verified in both directions: restoring `expect` on one module made its write land;
+firing a different branch with `expect` stripped consumed an operation and wrote
+nothing.
+
+Edit Make blueprints in the Make UI. If an API edit is ever unavoidable, keep every
+module's `metadata` intact and accept the size limit as a hard stop.
 - **OneDrive folder itemId** — `sharepoint_create_folder` / `sharepoint_upload_file`
   need the parent's Graph itemId, and no available tool surfaces it: the drive-root
   listing silently omits `Price List (Attachments)` (though creating it returns
