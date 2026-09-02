@@ -51,6 +51,10 @@ The script auto-detects VTT vs. the docx-export format and normalizes both to th
 
 If the script isn't available, do the cleaning inline by filtering out turns shorter than 4 words AND consisting only of filler tokens. Preserve the speaker labels and timestamps for citation purposes.
 
+**Known failure mode — single-room / shared-mic recordings (confirmed Albert, 2026-09-02).** When everyone is in one room on a single device/mic rather than joining individually, Teams' diarization frequently tags only the very first speaker and then folds the entire rest of the meeting — every participant — into one continuous unbroken block under that one name, with no further speaker labels or timestamps anywhere in the document. `clean_transcript.py` will report 0 or 1 parsed turns in this case (its docx-turn regex won't match a header that isn't alone on its own line) and fall back to plain pass-through filtering — that's expected, not a bug.
+
+**Do not attribute any of that block's content to the one labeled speaker.** Process the content normally through Steps 2-8, but every item's owner in Step 3B is unattributable by construction here — the "explicit and unambiguous" bar in Step 4.6.4b is trivially unmet for the whole meeting, so `Assign To`/`Due Date` stay blank on every newly-created task and CII, same as any other ambiguous-owner case. This is NOT a reason to skip Step 4.6's Notion writes — still reconcile against existing tasks and create missing Tactical Tasks/CIIs as usual; Albert assigns owners himself in Notion afterward. Note the limitation once, plainly, in Skill Notes (e.g. "Shared-room recording — no per-speaker attribution beyond the opening seconds; all new items left unassigned") rather than repeating a caveat on every single line item.
+
 ### Step 2: Identify section markers in the transcript
 
 Albert tends to verbally announce section transitions. Watch for phrases like:
@@ -268,8 +272,8 @@ For each **MISSING-TACTICAL** item, create a new row in the Tactical Tasks datab
 | — | `Status` | `Not started` |
 | — | `Tags` | `["project status"]` plus `meeting` / `parked` if they apply |
 | — | `Verification` | `Needs Verification` |
-| — | `Tactical Associated` | this meeting's page URL (omit if no meeting page exists yet, per 4.6.1) |
-| — | `Project` | the matched Titan Projects page from Step 4, if any — omit if "needs match" |
+| — | `Project Status` | this meeting's page URL (omit if no meeting page exists yet, per 4.6.1) — confirm the exact property name against `notion-destinations.json`'s `_relation_naming_note`, since each side of this relation is named independently in Notion |
+| — | `Projects` | the matched Titan Projects page from Step 4, if any — omit if "needs match" |
 | — | `Notes` | description + source quote: `**Source:** "[quote]" — [Speaker], [timestamp]`, footer `[skill] project-status-meeting-processor \| meeting=[Mon D/YY]` |
 | — | `Assign To` | see "Setting Assign To / Due Date" below |
 | — | `Due Date` | see "Setting Assign To / Due Date" below |

@@ -76,13 +76,14 @@
       }
     },
     "tactical_tasks": {
-      "_comment": "Same underlying database as destinations.team above (the shared Tactical Tasks List) — property names for title/status/priority/etc. are that same schema. This skill additionally uses Tactical Associated (relation to the meeting page) and Project (relation to Titan Projects), which notion-sync.md does not touch.",
+      "_comment": "Same underlying database as destinations.team above (the shared Tactical Tasks List) — property names for title/status/priority/etc. are that same schema. This skill additionally uses two relation properties notion-sync.md does not touch — verified live against an existing row (notion-fetch on 'Verify flooring from Orlando', 2026-09-02) after the uploaded titan_context.md's names (Tactical Associated / Project) turned out wrong for this side of the relation.",
       "data_source": "collection://238596a4-505f-8137-af13-000bde205213",
       "title_property": "Name",
       "extra_properties": {
-        "tactical_associated": "Tactical Associated",
-        "project": "Project"
-      }
+        "project_status_meeting_relation": "Project Status",
+        "titan_project_relation": "Projects"
+      },
+      "_relation_naming_note": "Notion names each side of a two-way relation independently. On the Project Status Meetings page, the reverse-relation listing its linked tasks is 'Tactical Associated' (unverified, inherited from titan_context.md) — but on the Tactical Task's own page, the property pointing back to its meeting is 'Project Status' (confirmed live), and the property pointing to Titan Projects is 'Projects', plural (confirmed live), not 'Project'."
     },
     "cii": {
       "data_source": "collection://365596a4-505f-81b2-8eb7-000b068f506c",

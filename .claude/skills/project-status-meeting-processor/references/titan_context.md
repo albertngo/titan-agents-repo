@@ -96,3 +96,4 @@ Quick map of what lives where (see the settings file for the actual ids):
 - Teams transcripts are ~50–60% filler — always clean before extraction (`scripts/clean_transcript.py`), regardless of source format.
 - Albert verbally announces sections ("alright, on to our projects", "work orders", "sales touch point", "to-do items would be", "before we end").
 - Off-topic chatter (e.g. personal trip planning) is dropped entirely from all outputs.
+- **Recording setup varies.** Sometimes everyone joins individually (live transcript / .docx export is properly per-turn speaker-tagged). Sometimes everyone is physically in one room on a single shared device (confirmed 2026-09-02) — Teams then usually diarizes only the first speaker and folds the rest of the meeting into one unattributed block. See SKILL.md Step 1's "Known failure mode" note for handling; this is a recording-setup fact, not something the skill can detect in advance — check the parsed turn count after cleaning.
