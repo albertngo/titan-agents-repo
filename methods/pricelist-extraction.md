@@ -139,14 +139,29 @@ envelope.
 Read the Company select options **live** from the Notion data source schema each
 run — never hardcode the list, it drifts. Then, in strict priority order:
 
-1. **The company name printed in the document** (header/footer/contact block).
-2. **Sender domain**, when it is not Titan's own forwarding address.
-3. **Subject keyword.**
+1. **The company name printed in the document** (header/footer/contact block) —
+   the best indicator, and the only one taken from the thing being priced.
+2. **Subject keyword** — reliable in practice; subjects carry the supplier name.
+3. **Sender domain** — weakest, and often no signal at all: Titan forwards supplier
+   mail to itself, so the sender is usually `info@titanfloors.ca`. Use only when it
+   is genuinely a supplier domain.
 
-If none of these is confident, **leave Company blank and flag it.** Do not pick a
-nearest match. The option list contains near-collisions the old scenario already
-got wrong (BALTIC/NORTHWAY, FLOORDI/UMBRELLAR); a wrong value looks authoritative
-and mis-routes silently, whereas a blank one is visibly incomplete.
+If none of these is confident, **leave Company blank, flag it, and escalate** (see
+below). Do not pick a nearest match. The option list contains near-collisions the
+old scenario already got wrong (BALTIC/NORTHWAY, FLOORDI/UMBRELLAR); a wrong value
+looks authoritative and mis-routes silently, whereas a blank one is visibly
+incomplete.
+
+### Escalation when the company can't be determined
+
+Create a row in the **✅ Tactical Tasks List**
+(`collection://238596a4-505f-8137-af13-000bde205213`) assigned to Albert
+(`c39aa5d3-c87c-4152-92ef-5ed13d9c4605`), `Priority: high`,
+`Tags: ["price list"]`, `Verification: Needs Verification`, `url` pointing at the
+Price Lists row, and Notes recording what was tried and what the document showed.
+Send a PushNotification as well — the task is the durable record, the push is the
+alert. Assigning Albert matches what scenario 4381438 already does for its
+"Update POS Price List" tasks; it is not a new convention.
 
 **Assign Company before the parseability check.** The routine terminates early on a
 file that is not a price document; if Company is only set after parsing, flyers and
