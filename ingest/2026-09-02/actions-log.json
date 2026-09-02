@@ -440,6 +440,50 @@
       "result": "executed",
       "error": null,
       "raw_ref": "https://app.notion.com/p/3cf596a4505f814eb782d42f1fcf9d2a"
+    },
+    {
+      "logged_at": "2026-09-02T23:05:00-04:00",
+      "agent": "project-status-meeting-processor",
+      "type": "notion_create_page",
+      "target": "Project Status Meetings: Project Status \u2014 Sep 2/26",
+      "content_summary": "Created the meeting page (from database template) since none existed for this ad hoc Sep 2 recording; title/date confirmed correct without needing the template-override re-apply.",
+      "approved_by": "auto: Albert 2026-09-02, project-status-meeting-processor auto-create",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "https://app.notion.com/p/3cf596a4505f81f1b872c8a5be87ac69"
+    },
+    {
+      "logged_at": "2026-09-02T23:05:00-04:00",
+      "agent": "project-status-meeting-processor",
+      "type": "notion_create_page",
+      "target": "Transcript \u2014 Sep 2/26 (sub-page)",
+      "content_summary": "Created combined transcript sub-page (both the 50m42s primary and 8m23s addendum recordings) under the meeting page, linked at top.",
+      "approved_by": "auto: Albert 2026-09-02, project-status-meeting-processor auto-create",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "https://app.notion.com/p/3cf596a4505f813d9e8bf19081f19822"
+    },
+    {
+      "logged_at": "2026-09-02T23:05:00-04:00",
+      "agent": "project-status-meeting-processor",
+      "type": "notion_create_page",
+      "target": "Meeting Summary \u2014 Sep 2/26 (sub-page)",
+      "content_summary": "Created full meeting recap sub-page, set Meeting Summary URL property on meeting page, linked both sub-pages at top (Transcript then Summary).",
+      "approved_by": "auto: Albert 2026-09-02, project-status-meeting-processor auto-create",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "https://app.notion.com/p/3cf596a4505f818aa60dfc8645e82d6e"
+    },
+    {
+      "logged_at": "2026-09-02T23:05:00-04:00",
+      "agent": "project-status-meeting-processor",
+      "type": "notion_update_task",
+      "target": "7 Tactical Tasks created earlier this run",
+      "content_summary": "Retroactively linked all 7 Tactical Tasks (created before the meeting page existed) to the new Project Status \u2014 Sep 2/26 page via their Project Status relation property, so they appear in its New Action Items view.",
+      "approved_by": "auto: Albert 2026-09-02, project-status-meeting-processor auto-create",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "https://app.notion.com/p/3cf596a4505f81f1b872c8a5be87ac69"
     }
   ]
 }
