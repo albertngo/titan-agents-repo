@@ -132,5 +132,18 @@
     },
     "brief": true,
     "note": "scheduled run; last ledger entry on this branch was 2026-08-14 (16-day gap: 2026-08-15 through 2026-08-30 have no entry here, though git history shows several of those days ingest work exists on unmerged sibling session branches, e.g. through 2026-08-24, never merged to main-agents); outlook/notion/meta-ads all cold-started or window-capped due to the gap (7-day max_catchup_days), permanently losing 2026-08-14 through 2026-08-23 coverage; bookkeeper still has no QBO/Intuit MCP connector (8th consecutive failed run since 2026-07-26)"
+  },
+  {
+    "date": "2026-09-02",
+    "run_at": "2026-09-02T08:45:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; no run at all on 2026-09-01 (prior day was a pricelist-processor run only, no daily-ingest); outlook/meta-ads windows widened to cover the 1-day gap, no data lost; bookkeeper still has no QBO/Intuit MCP connector configured (9th consecutive failed run since 2026-07-26)"
   }
 ]
