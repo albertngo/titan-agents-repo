@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "entries": [
+    {
+      "logged_at": "2026-09-03T08:55:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_create_task",
+      "target": "Tactical Tasks List dedupe query (team destination), 14 GHL high-priority candidates pending",
+      "content_summary": "Dedupe query against the Tactical Tasks List data source failed: workspace has reached its Notion MCP usage limit for Query Data Source. Per notion-task-schema.md failure policy, stopped before any writes — no rows created or updated.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "failed",
+      "error": "Notion MCP 'Query Data Source' usage limit reached for this workspace (mcpRequestId 3cfc8957-ba82-47aa-8886-dd15844a08bc)",
+      "raw_ref": null
+    }
+  ]
+}

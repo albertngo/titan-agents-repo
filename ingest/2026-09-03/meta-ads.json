@@ -1,0 +1,34 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-09-03T08:23:48-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $48.89 spend, 3 leads, $16.30 CPL — Flooring Problems Campaign",
+      "summary": "Yesterday (2026-09-02) Meta spent $48.89, all on the only actively-delivering campaign, Flooring Problems Campaign, generating 3 leads at $16.30 CPL. That's below the 7-day baseline (2026-08-27 to 2026-09-02: $345.37 / 18 leads, ~$19.19 CPL), so no CPL anomaly. Account is ACTIVE, currency CAD, and no ads are flagged DISAPPROVED or WITH_ISSUES.",
+      "timestamp": "2026-09-02T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 4889,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 4889,
+    "impressions": 1552,
+    "clicks": 29,
+    "leads": 3,
+    "cpl_cents": 1630,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued at 3, matching the counted leads exactly, same recurrence flagged on 2026-08-31 and 2026-09-02). No discrepancy in the counted total, but the script's lead-action set should be reviewed for extension rather than continuing to hand-note it each run."
+  ]
+}
