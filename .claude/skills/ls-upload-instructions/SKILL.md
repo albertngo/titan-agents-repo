@@ -47,6 +47,22 @@ reconcile — do not "fill them in later".
 A blank `id` is a defect on a matched row and the correct value on a new row. Decide
 by `MatchStatus`, never by whether the cell happens to be empty.
 
+### Matching for a backfill — colour alone is not a key
+
+**Grandeur, 2026-09-03.** A backfill matched on colour name only, so `Lagom HB` (5"
+herringbone) took the UUID of `Lagom` (7.5" plank), and `Barossa` / `Barossa HB` /
+`Barossa` at three widths shared one. Seven UUIDs ended up on sixteen rows; Lightspeed
+ignored nine of them.
+
+A layout or format suffix — `HB`, `Chevron`, `XL` — is part of the product's identity,
+not decoration on the colour. **The key must include width, layout and grade, not just
+the colour**, and every match must be 1:1: if two source rows resolve to the same LS
+record, neither is safe.
+
+**When an LS export exists, do not spec-match at all.** Join on `sku`, which is unique on
+both sides and carries no ambiguity. Spec matching is the fallback for the first contact
+with a supplier's live LS data, not the routine path.
+
 ### After the import: reverse-populate the new ids (batched)
 
 **An upload containing new products is not finished when the import succeeds.**
@@ -869,6 +885,15 @@ The source data sheet (any brand) MUST contain these columns:
   genuinely new products, where LS assigns the UUID on import. This is the LS-side
   twin of the SKU-duplication trap — the 2026-09-03 Grandeur file was built with all
   231 ids blank, which would have duplicated 212 live products.
+- ☐ **Every `id` in the file is unique.** A UUID appearing on two rows means the backfill
+  matched two products to one Lightspeed record. Lightspeed accepts the first row and
+  rejects the rest with *"handle already exists for your retailer, sku already exists for
+  your retailer"* — and if the accepted row is not the UUID's rightful owner, it silently
+  overwrites a different product. Assert uniqueness over the whole file, not by eye.
+  (Grandeur, 2026-09-03: 7 UUIDs shared across 16 rows, 9 rows ignored on import.)
+- ☐ **Every row that already exists in Lightspeed carries its own id, verified against an
+  LS export rather than inferred.** Where an export is available, re-derive `id` by `sku` —
+  it is exact and unique on both sides — instead of trusting an earlier spec match.
 - ☐ Every row has a unique SKU (column 3)
 - ☐ **Handles contain ONLY letters and numbers** — no hyphens, dots, spaces, or symbols (strip from source before upload)
 - ☐ **SKUs contain only letters, numbers and `. - _ /`** — NO commas or spaces (LS rejects commas; replace `,`→`.` — see Olympia subsection)
