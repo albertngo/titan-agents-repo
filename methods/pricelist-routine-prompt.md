@@ -187,6 +187,13 @@ file means the run is incomplete.
 Then set `Extracted` = checked and `Status` = `Extracted [Pending Review]` — the
 files are a proposal awaiting a human import, so the row is not `Done`.
 
+**If the upload is blocked** (a cloud session cannot reach `api.notion.com` — see the
+blocker section in `methods/pricelist-extraction.md`), stop here: leave `Extracted`
+unchecked and `Status` at `Extracting`, and report the blocked host. Never mark a row
+`Extracted [Pending Review]` with an empty `Extracted Files` — that reads as ready to
+review when nothing is attached. `Company` and `Tags` from steps 3–4 still stand, and
+the files are still committed to `ingest/YYYY-MM-DD/`.
+
 Also mirror both files into the repo at `ingest/YYYY-MM-DD/` and commit them, so the
 run is reproducible after the Notion attachment is superseded.
 

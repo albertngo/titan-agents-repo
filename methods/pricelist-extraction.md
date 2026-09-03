@@ -69,6 +69,40 @@ the Notion row's `Extracted Files`** — the Airtable upload and the LS upload �
 An earlier draft of step 7 said to paste a OneDrive share link into it; that does not
 match the schema.
 
+### Blocker — cloud sessions cannot upload the bytes (2026-09-03)
+
+**The native upload does not work from a Claude cloud session.** The Notion MCP tools
+reach Notion over the MCP transport, but `create-file-upload` hands back an
+`api.notion.com` URL that the run must POST the bytes to directly — and the agent
+egress proxy denies it:
+
+```
+curl: (56) CONNECT tunnel failed, response 403
+status → connect_rejected: "gateway answered 403 to CONNECT
+         (policy denial or upstream failure)"  host: api.notion.com:443
+```
+
+That is an organization egress-policy denial, not a transient error and not something
+to route around. Consequences for the routine:
+
+- Steps 3, 4 and 5 complete normally in a cloud session — `Company`, `Tags` and both
+  .xlsx files are all produced.
+- **Step 7 cannot complete there.** Leave `Extracted` unchecked and `Status` at
+  `Extracting`; do not mark a row `Extracted [Pending Review]` with an empty
+  `Extracted Files`, which reads as "ready to review" when there is nothing attached.
+- The files still land in `ingest/YYYY-MM-DD/` and are committed, so nothing is lost.
+
+Three ways to close it, in order of preference:
+
+1. **Allow `api.notion.com` egress** for the environment the routine runs in. This is
+   the only fix that makes the routine complete unattended, which is the whole point.
+2. **Run the routine where Notion egress exists** (e.g. Albert's Mac).
+3. **Attach manually** from the committed files — fine as a one-off, but it makes an
+   unattended routine depend on a human step every single run.
+
+Until (1) or (2), treat a scheduled cloud run as ending at step 6, and say so in the
+run's summary rather than reporting the row as finished.
+
 Not writing does **not** remove the need to read the catalogue first — see below.
 
 ## Check the supplier exists first
