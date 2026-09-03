@@ -306,11 +306,49 @@ On a match, the sync:
 - **MAY** add a `lead`/`message`/`drift` value to `Tags` if the new finding's
   type isn't already tagged (see "Grouping by finding type" above) — additive
   only, never remove an existing tag.
-- **MUST NOT** touch `Status`, `Assign To`, `Due Date`, `Name`, or rewrite
-  any existing `Notes` text.
+- **MAY** rewrite the trailing `[<stage>]` suffix on `Name` if the contact's
+  current stage differs from what's bracketed (see "Pipeline stage in `Name`"
+  below) — this is the one exception to Name being otherwise immutable on
+  update; everything before the bracket is untouched.
+- **MUST NOT** touch `Status`, `Assign To`, `Due Date`, the non-bracket
+  portion of `Name`, or rewrite any existing `Notes` text.
 
 Everything outside the whitelist is human-owned, mirroring the vault's
 "append, don't rewrite" rule.
+
+## Pipeline stage in `Name`
+
+**Added 2026-09-02, Albert.** Every `Name` — team and private alike — ends with
+the contact's current pipeline stage in square brackets: `<base name> [<stage>]`.
+Day-count/staleness detail stays in `Notes` (already gets a fresh dated line every
+run) rather than in `Name`, because a day-count goes stale the moment it's written
+and `Name` isn't rewritten every run — only the bracket is, and only when the
+stage itself has actually changed.
+
+**Deriving the stage**: look up the candidate's already-resolved contact ID in
+`extensions.ghl.opportunities[]` (matched on `contact_id`, never on the `contact`
+display name — see the ghl-ingest-agent's identity-key rule for why name matching
+is unreliable here). Use the matched entry's `stage` field, trimmed of any
+trailing whitespace (stage names are emitted byte-exact including trailing spaces
+per the ghl-ingest-agent's vault-linking convention; trim for display only, never
+for matching). Prefer an `open`-status opportunity; if a contact has more than one,
+take the most recently updated. **No opportunity found for the contact** → use the
+literal bracket `[no opportunity]` rather than omitting it — the absence is itself
+informative (this is Wanda/Karvin-Cheung-shaped: a categorization miss with no
+opportunity yet).
+
+**On create**: append `[<stage>]` when constructing `Name`, subject to the
+existing ≤80-char cap — trim the base name (never the bracket) with a trailing
+`…` if the combined string would exceed it.
+
+**On update**: refresh the bracket only, in place, if the contact's current stage
+differs from what's already bracketed. This is a live lookup against the same
+`extensions.ghl.opportunities[]` source as create — not a network call to GHL —
+so it depends on the ghl-ingest-agent actually emitting `contact_id` on every
+opportunity record (see that agent's ID section). If the day's `ghl.json` doesn't
+carry an opportunity for a contact that has one bracketed from a prior run, leave
+the existing bracket as-is rather than guessing — a stale-but-plausible stage beats
+a fabricated one.
 
 ## Property mapping (team destination)
 
@@ -318,7 +356,7 @@ Destination: shared "✅ Tactical Tasks List" (Titan Flooring HQ teamspace).
 
 | Candidate field | Notion property | Value |
 |---|---|---|
-| `title` | `Name` | `GHL <type>: <Entity> — <short detail>`, ≤ 80 chars |
+| `title` | `Name` | `GHL <type>: <Entity> — <short detail> [<stage>]`, ≤ 80 chars — see "Pipeline stage in `Name`" below |
 | — | `Status` | `Not started` (create only) |
 | — | `Tags` | `["ghl"]` plus one entry per distinct `type` among the candidate's merged items — `lead` / `message` / `drift` (create only; see below for the update behavior) |
 | `priority` | `Priority` | `high` |
@@ -347,7 +385,7 @@ meaning.
 
 | Candidate field | Notion property | Value |
 |---|---|---|
-| `title` | `Task` | `<Source> <type>: <Entity> — <short detail>`, ≤ 80 chars |
+| `title` | `Task` | `<Source> <type>: <Entity> — <short detail> [<stage>]`, ≤ 80 chars — see "Pipeline stage in `Name`" below. For non-GHL sources (bookkeeper/outlook/meta-ads) there is no pipeline stage; omit the bracket entirely rather than writing `[no opportunity]`, which is GHL-specific phrasing |
 | — | `Status` | `Not started` (create only) |
 | source | `Source` | `bookkeeper` / `outlook` / `ghl-escalated` / `other` |
 | — | `tags` | add `"GHL"` only when `Source == "ghl-escalated"`; otherwise untouched |
