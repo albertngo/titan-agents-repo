@@ -184,8 +184,19 @@ link.
 `Extracted Files`** — the Airtable upload and the Lightspeed upload from step 5. One
 file means the run is incomplete.
 
-Then set `Extracted` = checked and `Status` = `Extracted [Pending Review]` — the
-files are a proposal awaiting a human import, so the row is not `Done`.
+Then set, in this order:
+
+- `Extracted` = checked, `Status` = `Extracted [Pending Review]` — the files are a
+  proposal awaiting a human import, so the row is not `Done`.
+- **`New Products`** = the count of rows whose `MatchStatus` is `new` (`0` if none).
+- **`LS Backfill`** = `Pending` if that count is ≥ 1, otherwise `Not needed`.
+
+Those last two are how Albert finds the price lists whose new products still owe
+Airtable their Lightspeed IDs. The backfill is **batched** — one LS export covers
+several lists at once — so it lags these runs by design, and `LS Backfill is Pending`
+is the whole worklist. Never set `Done`; only the backfill does that. Getting
+`New Products` right matters: it is the count that says how many UUIDs should come
+back, so an incomplete backfill is visible rather than silent.
 
 Two traps in the upload itself — the recipe and both failure signatures are in
 `methods/pricelist-extraction.md`: `api.notion.com` must be allowed by the

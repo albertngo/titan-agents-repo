@@ -72,16 +72,35 @@ Airtable.
 its Lightspeed product in both directions, and it is how the returning UUID finds its
 home.
 
-#### Closing the loop is mandatory, not optional
+#### Closing the loop is mandatory — but it is batched, not per-run
 
-**After any Lightspeed import containing new products, the generated `Lightspeed ID`s
-must be reverse-populated into Airtable.** Use the `ls-id-backfill` skill: export the
-products from LS, match on `SKU`, write the UUIDs back.
+The generated `Lightspeed ID`s must come back into Airtable. **The cadence is Albert's
+choice and is deliberately batched** (decided 2026-09-03): one LS product export can
+cover many price lists at once, so the backfill runs periodically rather than after
+every list. Use the `ls-id-backfill` skill — export the products from LS, match on
+`SKU`, write the UUIDs back.
 
-Until that happens the Airtable records are incomplete, and the failure is delayed and
-silent: the *next* price list run reads a blank `Lightspeed ID`, ships an LS file with
-a blank `id` for a product that now exists in LS, and **duplicates it**. A new product
-is not finished when it is uploaded — it is finished when its id is back in Airtable.
+Because the backfill lags the runs that created the products, **the outstanding work
+is tracked on the Notion Price Lists row**, not in anyone's head:
+
+| Property | Set by | Meaning |
+|---|---|---|
+| `New Products` (number) | the price list run | how many new SKUs it minted — `0` when none |
+| `LS Backfill` (select) | run, then backfill | `Pending` = new products awaiting UUIDs · `Done` = backfilled · `Not needed` = the run created none |
+
+The run sets `Pending` whenever it mints at least one new product, and `Not needed`
+otherwise. The backfill flips `Pending → Done` for every row it covers. **The worklist
+is one filter: `LS Backfill is Pending`** — those are the price lists whose new
+products are still missing their ids.
+
+`New Products` is the check on the backfill: it says how many UUIDs that row should
+have produced, so a short count is visible rather than silent.
+
+Until a row reaches `Done` its products are incomplete, and the failure is delayed and
+silent: a later run reads a blank `Lightspeed ID`, ships an LS file with a blank `id`
+for a product that now exists in LS, and **duplicates it**. A new product is not
+finished when it is uploaded — it is finished when its id is back in Airtable. Batching
+changes *when* that happens, never *whether*.
 
 #### Once populated, they are authoritative
 

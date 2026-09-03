@@ -158,12 +158,29 @@ the handle is uploaded to Lightspeed, which adopts it. `Lightspeed ID` is
 product's id is *correctly* blank, and judged by `MatchStatus`, never by the cell
 being empty.
 
-**Step 5, and it is not optional: after an import containing new products, reverse-
-populate the generated ids back into Airtable** (`ls-id-backfill` — export from LS,
-match on `SKU`, write the UUIDs in). A new product is finished when its id is back in
-Airtable, not when the import succeeds. Skip it and the next run reads a blank id for
-a product that now exists in LS and duplicates it — the same silent failure, one cycle
-later.
+**Step 5 — reverse-populate the generated ids, batched.** A new product is finished
+when its id is back in Airtable, not when the import succeeds. Skip it and a later run
+reads a blank id for a product that now exists in LS and duplicates it — the same
+silent failure, one cycle later.
+
+**Decided 2026-09-03 (Albert): the backfill is batched, not per-price-list.** One
+Lightspeed product export covers many lists' new products at once, so it runs
+periodically (`ls-id-backfill` — export from LS, match on `SKU`, write the UUIDs in).
+
+Batching means the debt outlives the run that created it, so it is tracked on the
+Notion row rather than remembered:
+
+| Property | Written by | Values |
+|---|---|---|
+| `New Products` | the run | count of `MatchStatus = new` rows, `0` if none |
+| `LS Backfill` | run, then backfill | `Pending` · `Done` · `Not needed` |
+
+The run sets `Pending` when it minted ≥1 new product, else `Not needed`; it never sets
+`Done`. The backfill flips the rows it covered to `Done`.
+
+**The worklist is one filter — `LS Backfill is Pending`.** `New Products` is the
+cross-check: it states how many UUIDs that row should yield, so a partial backfill
+shows up instead of passing silently.
 
 Once a record holds an id and a handle, Airtable owns both. No automation overwrites
 them; only an explicit instruction from Albert to swap in a specific matching set

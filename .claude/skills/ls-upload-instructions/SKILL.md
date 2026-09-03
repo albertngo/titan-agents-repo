@@ -47,15 +47,22 @@ reconcile — do not "fill them in later".
 A blank `id` is a defect on a matched row and the correct value on a new row. Decide
 by `MatchStatus`, never by whether the cell happens to be empty.
 
-### After the import: reverse-populate the new ids
+### After the import: reverse-populate the new ids (batched)
 
 **An upload containing new products is not finished when the import succeeds.**
 Lightspeed has just generated UUIDs that Airtable does not have yet. Export the
 products from LS, match on `SKU`, and write the `Lightspeed ID`s back into Airtable —
 the `ls-id-backfill` skill exists for exactly this.
 
-Skip it and the next price list run sees a blank `Lightspeed ID` on a product that now
-exists in LS, and duplicates it. The loop has to close.
+**This is batched deliberately** (Albert, 2026-09-03): one LS export can cover several
+price lists' worth of new products, so the backfill runs periodically rather than after
+every upload. What keeps that safe is the tracking on the Notion Price Lists row —
+`New Products` (count) and `LS Backfill` (`Pending` / `Done` / `Not needed`). Filter
+`LS Backfill is Pending` for the outstanding set, and flip each covered row to `Done`
+after writing the UUIDs back.
+
+Skip it and a later price list run sees a blank `Lightspeed ID` on a product that now
+exists in LS, and duplicates it. Batching changes when the loop closes, not whether.
 
 ## ⚠️ RULE 0 — Airtable owns the SKU; Lightspeed matches to it
 

@@ -56,8 +56,11 @@ A blank `Lightspeed ID` on a row whose `MatchStatus` is `matched` is a defect â€
 means step 3 did not happen, and the import will duplicate a live product. On a `new`
 row the same blank is correct. Judge by `MatchStatus`, never by the cell.
 
-**Say in your summary how many `new` rows are awaiting an LS ID**, so whoever imports
-knows the loop has to be closed afterwards (`ls-id-backfill`).
+**Report the exact count of `new` rows in your summary.** It is not just narrative â€”
+the caller writes it to the Notion row's `New Products` property and sets
+`LS Backfill = Pending`, which is how Albert finds the price lists whose new products
+still owe Airtable their Lightspeed IDs. The backfill is batched, so that count is the
+only record that this run created a debt.
 
 Output:
 1. An Airtable-ready .xlsx with all 56 canonical columns in the exact order listed in
