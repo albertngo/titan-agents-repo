@@ -183,10 +183,24 @@ the title renders with a blank.
 as `Company`. The two options are exactly `Regular List` and `Promo` — no others.
 
 **The file decides, not the email.** One email with several attachments becomes
-several rows, and they are tagged per attachment: 24 subjects in the database carry
-*both* tags across 55 rows (Vidar's "…price list and monthly promotion price list"
-pattern, Tosca's "NEW Price List and July Clearance List", Floordi, Weiss, Lee,
-Impressive). The payload hands you one `notionID` = one file. Classify that file.
+several rows — 4381438 aggregates the attachments (`#10`), then iterates them with a
+`BasicFeeder` (`#12`), so every module past the feeder runs once per file. 24
+subjects in the database carry *both* tags across 55 rows (Vidar's "…price list and
+monthly promotion price list" pattern, Tosca's "NEW Price List and July Clearance
+List", Floordi, Weiss, Lee, Impressive). The payload hands you one `notionID` = one
+file. Classify that file.
+
+**Where the existing tags came from — they are not a human's judgement.** Until
+2026-09-03, `Tags` was set by 4381438's router (`#15`) from the **OneDrive
+filename**: route 0 hardcoded `Promo` on `promotion|promo|special|clearance|sale|
+sales`, route 1 hardcoded `Regular List` on `price list|pricelist|price`, route 2
+had no filter and wrote no tag (the source of the 5 untagged rows). So the 24
+split-tag subjects are two filenames landing in two keyword buckets, not per-file
+judgement — treat historical tags as a weak baseline, and see the mis-tags below.
+The `sale` condition is a substring match, so it also fires on **"Whole*sale*"**;
+`/Price List (Attachments)` currently holds three such files
+(`Wholesale Price List.xlsx.pdf`, `Wholesale Price List.xlsx - Waterproofing (3).pdf`,
+`Door Wholesale pricelist (05122025).pdf`).
 
 ### The distinction
 
