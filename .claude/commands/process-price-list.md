@@ -176,11 +176,11 @@ curl -sS -X POST "<upload_url>" -H "authorization: Bearer <token>" \
 - `Status` = `Extracted [Pending Review]`
 - `Airtable Sync` = `Pending` — always; the run produced a file Airtable does not reflect
 - `New Products` = count of `MatchStatus = new` (`0` if none)
-- `LS Backfill` = `Pending` if that count ≥ 1, else `Not needed`
+- `UUID Backfill` = `Pending` if that count ≥ 1, else `Not needed`
 
-**Never write `Done` to either tracker, and never touch `POS`** — the person (later, the
+**Never write `Done` to any of the three trackers, and never touch `LS Upload`** — the person (later, the
 agent) who does the import, the upload or the backfill writes those. The downstream order
-is forced: `Airtable Sync: Done` → `POS ✅` → `LS Backfill: Done`, because a new product
+is forced: `Airtable Sync: Done` → `LS Upload: Done` → `UUID Backfill: Done`, because a new product
 has no Lightspeed ID until the POS upload creates one.
 
 If the upload fails, leave `Status` at `Extracting` and say why. Never leave a row reading `Extracted [Pending Review]` with an empty

@@ -67,7 +67,7 @@ It covers, in order: reading the row; downloading the actual PDF bytes; assignin
 Company and Tags; extracting against the live Airtable catalogue and reconciling SKUs,
 handles and Lightspeed IDs; producing the Airtable upload file and, for an existing
 supplier, the Lightspeed upload file; attaching them to the row's Extracted Files; and
-setting Status, Airtable Sync, New Products and LS Backfill.
+setting Status, Airtable Sync, New Products and UUID Backfill.
 
 **Finish**
 Commit and push the two generated files to the repo.
@@ -263,26 +263,28 @@ file means the run is incomplete.
 
 Then set, in this order:
 
-- `Extracted` = checked, `Status` = `Extracted [Pending Review]` — the files are a
-  proposal awaiting a human import, so the row is not `Done`.
+- `Status` = `Extracted [Pending Review]` — the files are a proposal awaiting a human
+  import, so the row is not `Done`. (The property displays as `Extraction Status` since
+  2026-09-03; the update key is still `Status`. There is no `Extracted` checkbox — it
+  was removed, and writing it fails the whole update.)
 - **`Airtable Sync`** = `Pending` — always. The run produced a file Airtable does not
   yet reflect.
 - **`New Products`** = the count of rows whose `MatchStatus` is `new` (`0` if none).
-- **`LS Backfill`** = `Pending` if that count is ≥ 1, otherwise `Not needed`.
+- **`UUID Backfill`** = `Pending` if that count is ≥ 1, otherwise `Not needed`.
 
 These are the two things a run leaves owing, each its own worklist filter:
 `Airtable Sync is Pending` (file attached, Airtable not updated to match) and
-`LS Backfill is Pending` (new products whose Lightspeed IDs are not back yet). The LS
+`UUID Backfill is Pending` (new products whose Lightspeed IDs are not back yet). The LS
 backfill is **batched** — one LS export covers several lists — so it lags by design.
 
-**A run never writes `Done` to either tracker, and never touches `POS`** (the checkbox
+**A run never writes `Done` to either tracker, and never touches `LS Upload`** (the checkbox
 marking that the LS file has been pushed to the POS). Only the person — later, the
 agent — who performs the import, the upload or the backfill does. Getting
 `New Products` right matters: it says how many UUIDs should come back, so an incomplete
 backfill is visible.
 
 The three downstream actions are ordered by dependency —
-`Airtable Sync: Done` → `POS ✅` → `LS Backfill: Done` — because a new product has no
+`Airtable Sync: Done` → `LS Upload: Done` → `UUID Backfill: Done` — because a new product has no
 Lightspeed ID until the POS upload creates one.
 
 `Airtable Sync = Done` means Airtable *currently mirrors the attached file* — so if

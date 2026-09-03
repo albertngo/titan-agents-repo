@@ -106,22 +106,50 @@ is tracked on the Notion Price Lists row**, not in anyone's head:
 |---|---|---|
 | `New Products` (number) | the price list run | how many new SKUs it minted — `0` when none |
 | `Airtable Sync` (select) | run, then importer | `Pending` = Airtable does not yet mirror the attached file · `Done` = it does · `Not needed` = reviewed, deliberately not imported |
-| `POS` (checkbox) | whoever uploads | checked = the LS file has been pushed to the POS |
-| `LS Backfill` (select) | run, then backfill | `Pending` = new products awaiting UUIDs · `Done` = backfilled · `Not needed` = the run created none |
+| `LS Upload` (select) | whoever uploads to Lightspeed | `Pending` = the LS file has not been pushed to the POS yet · `Done` = it has · `Not needed` = no LS file for this run |
+| `UUID Backfill` (select) | run, then backfill | `Pending` = new products awaiting UUIDs · `Done` = backfilled · `Not needed` = the run created none |
 
-A run leaves `Airtable Sync = Pending` always, and `LS Backfill = Pending` whenever it
+A run leaves `Airtable Sync = Pending` always, and `UUID Backfill = Pending` whenever it
 minted ≥1 new product (`Not needed` otherwise). **A run never writes `Done`, and never
-touches `POS`** — the person or agent that performs the import, the upload or the
+touches `LS Upload`** — the person or agent that performs the import, the upload or the
 backfill does.
 
-**The order is forced:** `Airtable Sync: Done` → `POS ✅` → `LS Backfill: Done`. A new
+**The order is forced:** `Airtable Sync: Done` → `LS Upload: Done` → `UUID Backfill: Done`. A new
 product has no Lightspeed ID until the POS upload creates one, so nothing can be
-back-filled before `POS` is checked. The actionable backfill set is therefore
-`LS Backfill is Pending` **and** `POS` checked — a `Pending` row with `POS` unchecked
+back-filled before `LS Upload` is `Done`. The actionable backfill set is therefore
+`UUID Backfill is Pending` **and** `LS Upload: Done` — a `Pending` row with `LS Upload` not yet `Done`
 is waiting to be uploaded, not waiting for you to backfill it.
 
 `New Products` is the check on the backfill: it says how many UUIDs that row should
 have produced, so a short count is visible rather than silent.
+
+#### Property names on the Price Lists row — renamed 2026-09-03
+
+**These were renamed in Notion and a run using the old names fails outright** — a
+`update-page` call with an unknown property returns `400 validation_error` and writes
+nothing, so the whole state update is lost, not just that field. Verified against the
+live data source on 2026-09-03:
+
+| Old | Current | Type |
+|---|---|---|
+| `LS Backfill` | **`UUID Backfill`** | select — `Pending` / `Done` / `Not needed` |
+| `POS` (checkbox) | **`LS Upload`** | select — `Pending` / `Done` / `Not needed` |
+| `Status` | displays as **`Extraction Status`** | status — `Not started` / `Extracting` / `Extracted [Pending Review]` / `Done` |
+| `Wordpress` | **removed** | — |
+
+Two things worth knowing:
+
+- **`LS Upload` is a select now, not a checkbox.** "Check `POS`" became
+  "set `LS Upload = Done`", and `Not needed` is a real third state — a promo run that
+  produces no LS file should say so rather than sit at `Pending` forever.
+- **The status property displays as `Extraction Status`, but page updates still take
+  the key `Status`** (verified by writing it successfully on two rows the same day).
+  Write `Status`; expect to *see* `Extraction Status` in the UI.
+
+A `Notes` (text) property also exists now and nothing writes it — free for a human note.
+
+**Read the data source schema when a write fails rather than guessing the new name.**
+The 400's message lists every editable key, which is how these were found.
 
 **`Airtable Sync = Done` is a claim about agreement, not a completed step:** it means
 Airtable *currently* mirrors the file attached to that row. Edit the file and re-attach

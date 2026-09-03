@@ -69,7 +69,7 @@ a record or updates one.
 
 **Report the exact count of `new` rows in your summary.** It is not just narrative —
 the caller writes it to the Notion row's `New Products` property and sets
-`LS Backfill = Pending`, which is how Albert finds the price lists whose new products
+`UUID Backfill = Pending`, which is how Albert finds the price lists whose new products
 still owe Airtable their Lightspeed IDs. The backfill is batched, so that count is the
 only record that this run created a debt.
 
