@@ -57,9 +57,14 @@ the `ls-id-backfill` skill exists for exactly this.
 **This is batched deliberately** (Albert, 2026-09-03): one LS export can cover several
 price lists' worth of new products, so the backfill runs periodically rather than after
 every upload. What keeps that safe is the tracking on the Notion Price Lists row —
-`New Products` (count) and `LS Backfill` (`Pending` / `Done` / `Not needed`). Filter
-`LS Backfill is Pending` for the outstanding set, and flip each covered row to `Done`
-after writing the UUIDs back.
+`New Products` (count), `POS` (checkbox: the LS file has been pushed) and `LS Backfill`
+(`Pending` / `Done` / `Not needed`).
+
+**Check `POS` on the row when you push its file to Lightspeed.** That is what makes the
+backfill queue meaningful: a new product has no UUID until the upload creates one, so
+the actionable set is `LS Backfill is Pending` **and** `POS` checked. Filter on
+`Pending` alone and you will chase ids for products that were never uploaded. Flip each
+covered row to `Done` after writing the UUIDs back.
 
 Skip it and a later price list run sees a blank `Lightspeed ID` on a product that now
 exists in LS, and duplicates it. Batching changes when the loop closes, not whether.

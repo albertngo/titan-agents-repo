@@ -87,12 +87,19 @@ is tracked on the Notion Price Lists row**, not in anyone's head:
 |---|---|---|
 | `New Products` (number) | the price list run | how many new SKUs it minted — `0` when none |
 | `Airtable Sync` (select) | run, then importer | `Pending` = Airtable does not yet mirror the attached file · `Done` = it does · `Not needed` = reviewed, deliberately not imported |
+| `POS` (checkbox) | whoever uploads | checked = the LS file has been pushed to the POS |
 | `LS Backfill` (select) | run, then backfill | `Pending` = new products awaiting UUIDs · `Done` = backfilled · `Not needed` = the run created none |
 
 A run leaves `Airtable Sync = Pending` always, and `LS Backfill = Pending` whenever it
-minted ≥1 new product (`Not needed` otherwise). **A run never writes `Done`** — the
-person or agent that performs the import or the backfill does. Two worklists, one
-filter each: `Airtable Sync is Pending`, `LS Backfill is Pending`.
+minted ≥1 new product (`Not needed` otherwise). **A run never writes `Done`, and never
+touches `POS`** — the person or agent that performs the import, the upload or the
+backfill does.
+
+**The order is forced:** `Airtable Sync: Done` → `POS ✅` → `LS Backfill: Done`. A new
+product has no Lightspeed ID until the POS upload creates one, so nothing can be
+back-filled before `POS` is checked. The actionable backfill set is therefore
+`LS Backfill is Pending` **and** `POS` checked — a `Pending` row with `POS` unchecked
+is waiting to be uploaded, not waiting for you to backfill it.
 
 `New Products` is the check on the backfill: it says how many UUIDs that row should
 have produced, so a short count is visible rather than silent.

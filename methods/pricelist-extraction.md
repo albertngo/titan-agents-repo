@@ -177,19 +177,42 @@ is tracked on the row, because it happens later and (for now) by hand.
 
 | Property | Written by | Values |
 |---|---|---|
-| `Status` | run, then whoever finishes it | `Extracted [Pending Review]` after the files land; `Done` only when both trackers below are resolved |
+| `Status` | run, then whoever finishes it | `Extracted [Pending Review]` after the files land; `Done` only when everything below is resolved |
 | `New Products` | the run | count of `MatchStatus = new` rows, `0` if none |
 | `Airtable Sync` | run, then importer | `Pending` · `Done` · `Not needed` |
+| `POS` (checkbox) | whoever uploads to Lightspeed | checked = the LS file has been pushed to the POS |
 | `LS Backfill` | run, then backfill | `Pending` · `Done` · `Not needed` |
 
 **The run always leaves `Airtable Sync = Pending`** — it has produced a file Airtable
 does not yet reflect. It sets `LS Backfill = Pending` when it minted ≥1 new product,
-else `Not needed`. **A run never writes `Done` to either.**
+else `Not needed`. **A run never writes `Done` to either, and never touches `POS`** —
+it does not upload anything.
 
-Two worklists, each one filter:
+### The three actions happen in this order, and the order is forced
+
+```
+Airtable Sync: Done  →  POS ✅  →  LS Backfill: Done
+   import the file      push LS file    export from LS, write
+   into Airtable        to the POS      the UUIDs back
+```
+
+Not a convention — a dependency:
+
+- The LS file's identity fields come from the Airtable-synced state, so importing
+  second would push Lightspeed values Airtable does not yet agree with.
+- **A new product has no Lightspeed ID until the POS upload creates it.** So there is
+  nothing to back-fill until `POS` is checked.
+
+That last point sharpens the backfill worklist: **`LS Backfill is Pending` AND
+`POS` is checked** is the actionable set. A `Pending` row whose `POS` is unchecked is
+not waiting on you to run the backfill — it is waiting to be uploaded. Filtering
+without the `POS` condition sends you looking for UUIDs that do not exist yet.
+
+Two worklists, then:
 
 - `Airtable Sync is Pending` — files attached, Airtable not yet updated to match.
-- `LS Backfill is Pending` — new products whose Lightspeed IDs are not back yet.
+- `LS Backfill is Pending` **and** `POS` checked — products live in LS whose ids are
+  not back yet.
 
 `New Products` is the cross-check on the backfill: it states how many UUIDs that row
 should yield, so a partial backfill shows up instead of passing silently.
@@ -208,8 +231,13 @@ also why the import is *not* a `Status` value — `Status` moves forward, this d
 `Not needed` covers a file reviewed and deliberately not imported (rejected, or the
 list turned out to hold no real changes).
 
-Set `Status = Done` only when `Airtable Sync` and `LS Backfill` are both `Done` or
-`Not needed`. Until then the row still owes something.
+**If a re-attached file also changes what Lightspeed should hold, uncheck `POS` as
+well** — the same reasoning applies one step downstream. A corrected file that only
+touches Airtable-side fields leaves `POS` alone.
+
+Set `Status = Done` only when `Airtable Sync` is `Done`/`Not needed`, `LS Backfill` is
+`Done`/`Not needed`, and any LS upload the row needed has happened. Until then the row
+still owes something.
 
 ### When the agent takes this over
 

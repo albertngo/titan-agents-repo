@@ -198,9 +198,15 @@ These are the two things a run leaves owing, each its own worklist filter:
 `LS Backfill is Pending` (new products whose Lightspeed IDs are not back yet). The LS
 backfill is **batched** — one LS export covers several lists — so it lags by design.
 
-**A run never writes `Done` to either tracker.** Only the person (later, the agent)
-who performs the import or the backfill does. Getting `New Products` right matters: it
-says how many UUIDs should come back, so an incomplete backfill is visible.
+**A run never writes `Done` to either tracker, and never touches `POS`** (the checkbox
+marking that the LS file has been pushed to the POS). Only the person — later, the
+agent — who performs the import, the upload or the backfill does. Getting
+`New Products` right matters: it says how many UUIDs should come back, so an incomplete
+backfill is visible.
+
+The three downstream actions are ordered by dependency —
+`Airtable Sync: Done` → `POS ✅` → `LS Backfill: Done` — because a new product has no
+Lightspeed ID until the POS upload creates one.
 
 `Airtable Sync = Done` means Airtable *currently mirrors the attached file* — so if
 that file is edited and re-attached, it returns to `Pending`. `Status = Done` only
