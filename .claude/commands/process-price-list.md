@@ -188,9 +188,13 @@ If the upload fails, leave `Status` at `Extracting` and say why. Never leave a r
 
 ## 7. Escalate anything you could not determine
 
+(Note the spacing in `$ 1.69` above: a dollar sign immediately followed by a single
+digit is consumed as a positional argument when this command runs, and the token is
+replaced by the caller's text. Keep a space after every `$` in prose.)
+
 **The cost basis is always one of these on a new supplier, and on any supplier whose
 sheet shows more than one candidate cost column.** Do not infer it from the numbers —
-$1.69–$6.99/sf reads equally well as dealer cost or as budget retail. Name the columns
+a range like $ 1.69–$ 6.99/sf reads equally well as dealer cost or as budget retail. Name the columns
 as printed, say which you would otherwise take as cost, and ask Albert to look at the
 file. Extraction may proceed; the import waits. Record his answer in the supplier's
 `#### Cost column` subsection so the next run inherits it.
