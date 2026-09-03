@@ -7,7 +7,8 @@ input comes off the Notion row.
 
 Fetch helper: `scripts/pricelist_fetch.py`. Extraction itself is the
 `pricelist-processor` agent (carries the `bert-airtable-schema` and
-`ls-upload-instructions` skills preloaded).
+`ls-upload-instructions` skills preloaded). The routine's own prompt text lives in
+`methods/pricelist-routine-prompt.md` — change it and this file together.
 
 ## The chain
 
@@ -175,6 +176,83 @@ from subject/sender first, then upgrade to the document-derived value.
 has read anything. Retitle that task from the **email subject** (which carries the
 supplier name in practice) so the CallSubscenario modules can be dropped; otherwise
 the title renders with a blank.
+
+## Tagging the row: Regular List vs Promo
+
+**Decided 2026-09-03 (Albert).** The routine sets `Tags` on the Notion row as well
+as `Company`. The two options are exactly `Regular List` and `Promo` — no others.
+
+**The file decides, not the email.** One email with several attachments becomes
+several rows, and they are tagged per attachment: 24 subjects in the database carry
+*both* tags across 55 rows (Vidar's "…price list and monthly promotion price list"
+pattern, Tosca's "NEW Price List and July Clearance List", Floordi, Weiss, Lee,
+Impressive). The payload hands you one `notionID` = one file. Classify that file.
+
+### The distinction
+
+A **Promo** is a document whose *purpose* is a temporary discount — clearance,
+specials, monthly promo, overstock, flyer, blowout, combo, spiff.
+
+A **Regular List** is the supplier's standing catalogue. It stays `Regular List`
+even when prices went down, even when it contains a sale or clearance *section*,
+and even when the email carrying it is marketing a sale. Only a purely promotional
+document is `Promo`.
+
+### Read these, in order
+
+Tag `Promo` if the document shows any of:
+
+1. **Its own title says so** — `PROMOTION`, `PROMO`, `SPECIAL(S)`, `CLEARANCE`,
+   `SALE`, `FLYER`, `OVERSTOCK`, `BLOWOUT`, `COMBO`. The title printed on the page,
+   not the email subject. (`Oakel City Clearance Price List`; Vidar's page-1
+   `PROMOTION / AUGUST`.)
+2. **Two price columns** — a regular/original price beside a promo/sale/now price.
+   Oakel's clearance sheet is `Original | Promotion` per row. A document that has to
+   show you the old price exists to express a discount.
+3. **An expiry or validity window** — "valid until", "offers expire", "while
+   quantities last", "good till", "must be picked up by promotion ends", or a named
+   month as the offer period. This is the cleanest single discriminator: a regular
+   list carries an **effective-from** date and no end date; a promo carries an end.
+4. **Subset scope** — a handful of colours or SKUs pulled from collections the
+   supplier sells far more of, rather than the catalogue.
+
+Otherwise `Regular List`: organised by collection/series, often a contents page and
+many pages, one price per item, `Effective <date>` with no end, standing order and
+payment terms at the foot.
+
+Worked pair, both from the same email, both verified with pdfplumber
+(`Vidar Design Flooring 2026 August New Update price list and monthly promotion
+price list`):
+
+| | Regular List file | Promo file |
+|---|---|---|
+| Pages | 15 | 2 |
+| Title | `Price List` | `PROMOTION` |
+| Date | `Effective From August 1, 2026` | `Offers are valid and until August 31, 2026` |
+| Structure | contents page, 14 collections | one table, subset of colours |
+| Terms | standing order/payment terms | "cannot be combined with any other discounts" |
+
+### Signals that do not decide it
+
+- **The email subject.** Treated as the rule it is right 102 times out of 136 —
+  34 `Regular List` rows have a promo word in the subject and 11 `Promo` rows have a
+  neutral one. Use it only to break a tie the document genuinely leaves open.
+- **The tag on a sibling row, or on the supplier's past rows.** The existing data
+  contains real mis-tags in both directions, two of them verified here: Oakel's
+  `Oakel City Clearance Price List` (dual Original/Promotion columns) is tagged
+  `Regular List`, and Vizion's plain 6-page `Vizion Floor Price List` — single price
+  column, no promo language — is tagged `Promo`. Classify from the document; do not
+  imitate history.
+- **Bare keyword counts in the body.** The Vidar regular list contains "Limited" 12
+  times (stock-status markers, per the Cautions below) and "sale" twice, with no
+  promotional meaning. Look at titles, column headers and terms blocks — not a
+  word frequency.
+
+### When it is genuinely unclear
+
+Leave `Tags` blank and escalate on the same path as an unresolvable Company (below).
+A blank tag is visibly incomplete; a wrong one silently mis-files the document.
+Five rows already sit untagged, so blank is an existing state, not a new one.
 
 ## Do not edit large Make blueprints through `scenarios_update`
 
