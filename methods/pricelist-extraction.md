@@ -69,39 +69,52 @@ the Notion row's `Extracted Files`** — the Airtable upload and the LS upload �
 An earlier draft of step 7 said to paste a OneDrive share link into it; that does not
 match the schema.
 
-### Blocker — cloud sessions cannot upload the bytes (2026-09-03)
+### The upload recipe (two traps, both resolved 2026-09-03)
 
-**The native upload does not work from a Claude cloud session.** The Notion MCP tools
-reach Notion over the MCP transport, but `create-file-upload` hands back an
-`api.notion.com` URL that the run must POST the bytes to directly — and the agent
-egress proxy denies it:
+Verified working end-to-end from a cloud session. Both hurdles below were hit on the
+first attempt, so expect them.
+
+**1. `api.notion.com` must be allowed by the environment's egress policy.** The Notion
+MCP tools reach Notion over the MCP transport, but `create-file-upload` hands back an
+`api.notion.com` URL the run must POST the bytes to *directly*. Without that host
+allowed, the proxy denies the CONNECT before the request reaches Notion:
 
 ```
 curl: (56) CONNECT tunnel failed, response 403
-status → connect_rejected: "gateway answered 403 to CONNECT
-         (policy denial or upstream failure)"  host: api.notion.com:443
+status → connect_rejected  host: api.notion.com:443
 ```
 
-That is an organization egress-policy denial, not a transient error and not something
-to route around. Consequences for the routine:
+Added to the environment's network policy on 2026-09-03 and the denial is gone. If it
+returns, `curl -sS "$HTTPS_PROXY/__agentproxy/status"` names the blocked host — do not
+route around a policy denial, report it.
 
-- Steps 3, 4 and 5 complete normally in a cloud session — `Company`, `Tags` and both
-  .xlsx files are all produced.
-- **Step 7 cannot complete there.** Leave `Extracted` unchecked and `Status` at
-  `Extracting`; do not mark a row `Extracted [Pending Review]` with an empty
-  `Extracted Files`, which reads as "ready to review" when there is nothing attached.
-- The files still land in `ingest/YYYY-MM-DD/` and are committed, so nothing is lost.
+**2. Send the correct MIME type on the multipart part.** curl labels a `-F` file part
+`application/octet-stream` by default, and Notion rejects that against the content
+type registered at `create-file-upload`:
 
-Three ways to close it, in order of preference:
+```
+400 validation_error — Current file content type of `application/octet-stream`
+does not match the original content type of `application/vnd...spreadsheetml.sheet`
+```
 
-1. **Allow `api.notion.com` egress** for the environment the routine runs in. This is
-   the only fix that makes the routine complete unattended, which is the whole point.
-2. **Run the routine where Notion egress exists** (e.g. Albert's Mac).
-3. **Attach manually** from the committed files — fine as a one-off, but it makes an
-   unattended routine depend on a human step every single run.
+Append `;type=<mime>` to the `-F` argument:
 
-Until (1) or (2), treat a scheduled cloud run as ending at step 6, and say so in the
-run's summary rather than reporting the row as finished.
+```bash
+XLSX="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+curl -sS -X POST "<upload_url>" -H "authorization: Bearer <token>" \
+     -F "file=@<name>.xlsx;type=$XLSX"
+```
+
+A `200` with `"status":"uploaded"` is the success signal. Then pass each
+`file_upload_id` to `update-page`:
+
+```
+"Extracted Files": [{"type":"file_upload","file_upload":{"id":"<id>"}}, …]
+```
+
+The upload URL is short-lived (~10 min) and single-part uploads cap at 20 MiB —
+neither binds for these files (~49 KB and ~34 KB). Re-fetch the row afterwards and
+confirm two attachments are present before setting `Extracted`.
 
 Not writing does **not** remove the need to read the catalogue first — see below.
 
