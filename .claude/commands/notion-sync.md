@@ -35,6 +35,13 @@ re-derive or guess.
    `extensions.ghl.conversations[].contact_id` for message items. Skip and
    log anything a contact ID can't be resolved for.
 
+   Also resolve each GHL candidate's current pipeline **stage** for the
+   `Name` bracket (`contracts/notion-task-schema.md`'s "Pipeline stage in
+   `Name`" section): match the resolved contact ID against
+   `extensions.ghl.opportunities[].contact_id` in the same file, take the
+   `stage` field (trimmed), preferring an `open`-status, most-recently-updated
+   entry if more than one matches. No match → `[no opportunity]`.
+
 3. **Collapse to one candidate per contact.** Multiple items for the same
    contact in one run merge into a single task candidate (combine titles/
    summaries; keep the highest priority and all `basis` item ids). Carry
@@ -58,12 +65,15 @@ re-derive or guess.
    c. No match → create, using the team property mapping table in
       `notion-task-schema.md`, including the `ghl_owner:` Notes line resolved
       from `notion-destinations.json`'s `people` table per that contract's
-      Reference-only owner line section, and `Tags` = `["ghl"]` plus each
-      value in the candidate's `types`.
+      Reference-only owner line section, `Tags` = `["ghl"]` plus each
+      value in the candidate's `types`, and `Name` ending in the resolved
+      `[<stage>]` bracket.
    d. Match found → update per the whitelist only (append a dated `Notes`
       line, raise `Priority` on escalation, add any `types` value not
-      already in the row's `Tags` — never remove one). Never touch `Status`,
-      `Assign To`, `Due Date`, `Name`, or existing `Notes` text.
+      already in the row's `Tags` — never remove one, rewrite the `[<stage>]`
+      bracket on `Name` if the resolved stage differs from what's currently
+      bracketed). Never touch `Status`, `Assign To`, `Due Date`, the
+      non-bracket portion of `Name`, or existing `Notes` text.
    e. If the dedupe query in (a) fails, stop before writing anything for
       this destination — do not create rows without it.
    f. If a single row create/update fails, log it and stop the rest of the
