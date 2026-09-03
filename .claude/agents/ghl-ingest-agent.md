@@ -169,6 +169,16 @@ which is canonical for why and for how they're matched. Pipeline and stage go ou
 verifiable and an ID isn't. Never emit `traceId` / `mcp_trace_id` — per-request
 debugging only.
 
+**This applies to `extensions.ghl.opportunities[]` entries too, concretely**: each one
+must carry `contact_id` alongside `contact` (the display name). notion-sync (per
+`contracts/notion-task-schema.md`) joins a task candidate to its current pipeline stage
+by looking up the candidate's already-resolved contact ID in this array — name-only
+matching is exactly the fragile pattern flagged elsewhere in this system (duplicate
+first names, no way to disambiguate). Confirmed gap, 2026-09-02: a full day's
+`opportunities[]` output had zero entries with `contact_id` despite every underlying
+GHL opportunity record carrying one (`opportunities_search-opportunity` returns
+`contactId` directly) — don't drop it when transcribing the record.
+
 ### Verify every `link` against its own record's contact ID before emitting
 
 **Confirmed bug, 2026-08-31**: two `meeting_no_followup` drift items in the same run
