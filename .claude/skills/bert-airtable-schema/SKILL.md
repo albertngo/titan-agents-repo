@@ -835,20 +835,77 @@ finds the basis already settled, and proceeds without asking again. An answer le
 in a chat log or in `Salesperson notes` is an answer that gets re-litigated every quarter.
 
 Record all three of: which printed column is `Cost/unit`, any multiplier applied, and —
-explicitly — whether the supplier publishes an MSRP at all. "No MSRP" is a real finding
-worth stating, not an omission.
+explicitly — whether the supplier publishes a recommended sale price at all. "No MSRP" is
+a real finding worth stating, not an omission.
 
-The three shapes seen so far, all of which must keep working:
+#### Two numbers, always — and they are not the same kind of thing
 
-| Shape | Supplier | Handling |
+**Corrected 2026-09-03 (Albert), because the earlier wording here was wrong.** Every
+supplier ingest resolves **two** distinct quantities, and conflating them is what causes
+cost to be overstated:
+
+| | What it is | Where it goes |
 |---|---|---|
-| Prints dealer cost only, no MSRP | Canadian Standard | Printed price → `Cost/unit` as-is. `Retail = Cost + $ 1.00`. |
-| Prints MSRP only; dealer cost is a multiplier | CIF (×0.60), Olympia (×0.564) | Apply the multiplier to reach `Cost/unit`. |
-| Prints both, side by side | Biyork (`MSRP/SF` + `Your Price`) | Dealer column → `Cost/unit`; MSRP → `MAP price ($/sf)`. |
+| **Our cost** | What Titan actually pays per unit | `Cost/unit` — **always**, for every supplier, no exceptions |
+| **MSRP / list** | The supplier's *recommended sale price to the customer* | A reference field — never `Cost/unit` |
+
+**An MSRP is a selling price, not a costing input.** It is never "the thing we multiply
+to get cost" in any conceptual sense — the multiplier exists because the supplier's
+*discount terms* say Titan pays 40% (or 43.6%) less than what they print, and the printed
+number happens to be the base those terms are written against. Describing a supplier as
+"MSRP-based costing" invites exactly the error of pasting a sale price into `Cost/unit`
+and overstating cost by 40%.
+
+So the axis that actually matters is **what the printed column IS**, not what it is
+labelled:
+
+| The sheet prints | Supplier | Our cost | MSRP |
+|---|---|---|---|
+| One price, and it is Titan's cost | Canadian Standard | Printed price as-is | None published — record that fact |
+| One price, and it is list / suggested retail | CIF, Olympia | Printed × the discount (CIF ×0.60; Olympia ×0.60×0.94 = ×0.564) | The printed price itself |
+| Two prices, side by side | Biyork (`Your Price` + `MSRP/SF`) | The dealer column | The MSRP column |
+
+**A supplier's column label is not evidence of what the column is.** CIF's price list
+heads its column **"Cost Per Sq Ft"**, yet the Terms & Conditions on page 3 of the same
+document say *"All product from CIF Distributors contain suggested retail pricing"* and
+grant Titan 40% off list. Taking that column at its label would overstate every CIF cost
+by 67%. Read the terms page, not the header.
 
 **`Retail = Cost + $ 1.00` is the default and stays the default.** A multiplier is a
 supplier-specific override that exists only where the supplier's own sheet forces it —
 never a house adjustment applied on top of a confirmed dealer cost.
+
+#### ⚠️ Open gap — CIF and Olympia discard their list price
+
+**Verified against the live base 2026-09-03.** `MAP price ($/sf)` is populated on 399
+records, all Grandeur or Biyork. It is populated on **zero** of the 805 CIF and Olympia
+records. Those two suppliers' printed list price is used as the multiplier input and then
+thrown away.
+
+Costs themselves are **not** overstated — the ×0.60 and ×0.564 discounts are documented
+and the stored values are consistent with them (CIF `TIL-CIFD-0652`: cost $2.27, retail
+$4.27, matching the tile `Cost + $ 2.00` tier). The gap is that the second number is lost.
+
+Two consequences, the first worse than it looks:
+
+1. **The discount is now unauditable.** Because the list price was not retained, nothing
+   in the base can confirm the multiplier was ever applied to a given row. A row where it
+   was silently skipped — cost overstated by 67% — is indistinguishable from a correct
+   one. Keeping the list price is what makes the arithmetic checkable later.
+2. Bert cannot see what CIF and Olympia suggest those products sell for.
+
+**Do not fix this by writing list prices into `MAP price ($/sf)` without asking first.**
+MAP and MSRP are different instruments and that field is consumed as a hard floor —
+*"Bert will not quote below MAP"*. A **MAP** is a contractual floor; an **MSRP** is a
+suggestion Titan is free to price under. Loading suggestions into a floor field would
+silently constrain quoting. Biyork's MSRP is already stored there, so the conflation
+exists today and wants a decision from Albert: either a separate `MSRP / list price`
+field, or an explicit ruling that `MAP price` holds both and Bert's floor logic keys off
+something narrower.
+
+Retro-populating CIF and Olympia means re-parsing their source price lists — the numbers
+are not recoverable from the base. Worth doing on their next ingest rather than as a
+backfill.
 
 ---
 
@@ -2169,13 +2226,15 @@ CIF Distributors (4700 Dixie Road, Unit 2, Mississauga ON L4W 2R1 — 905-455-05
 
 The Terms & Conditions letter (page 3 of every list) states: *"As a valued customer we will be offering you a 40% discount off the list price on all items listed unless otherwise stated by your sales representative."* And: *"All product from CIF Distributors contain suggested retail pricing to protect the retailer."*
 
-**This means every printed cost column on the price list is list price (the retailer's suggested retail to end customers), not Titan's actual cost.** Apply a single ×0.60 multiplier to convert to Titan's cost before pasting into `Cost/unit`:
+**This means every printed cost column on the price list is list price (the retailer's suggested retail to end customers), not Titan's actual cost — despite the column being headed "Cost Per Sq Ft".** Taking it at its label overstates cost by 67%. Apply a single ×0.60 multiplier to convert to Titan's cost before pasting into `Cost/unit`:
 
 ```
 Cost/unit = printed "Cost Per Sq Ft" (or "Cost per piece") × 0.60
 ```
 
 Round to two decimals. Apply this exactly once — do not double-discount. The pages labelled "Net Cost" (pp. 40–41) are a separate qty-discount tier (10+ pieces) and are out of scope for the standard ingest; do not use those numbers as the regular cost.
+
+**Also retain the printed list price** — it is CIF's suggested retail, the second of the two numbers every ingest resolves, and it is what makes the ×0.60 auditable afterwards. It is currently discarded on all 805 CIF/Olympia records; see *Open gap* in the Cost basis section, including why it must not simply be written to `MAP price ($/sf)` without a ruling.
 
 #### Markup overrides — CIF only
 
