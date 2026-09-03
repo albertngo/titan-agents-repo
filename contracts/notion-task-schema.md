@@ -243,6 +243,36 @@ disruption for non-GHL rows.
   a Notion view is a human choice, same as `ghl_owner` is a human's reference,
   not the sync's decision.
 
+### The `projects` tag (post-sale conversations)
+
+**Added 2026-09-02, Albert.** When the contact's conversation is about a job
+we've already won rather than a sale we're chasing, add the **existing**
+`projects` tag (lowercase — it is already an option on the board alongside
+`ghl`/`lead`/`message`/`drift`; do not create a `Projects` variant). It goes on
+in addition to the type tags, never instead of them, and follows the same
+additive-only rule: never removed on update.
+
+**Qualifying signal (GHL, ID-based)**: the contact has an opportunity whose
+`status` is `won`, or whose stage is `2. *Project Won*` (projects) or
+`6a. Closed - Won` (store material). This resolves off the same
+`extensions.ghl.opportunities[]` lookup already used for the `[<stage>]`
+bracket, so it costs nothing extra.
+
+Applied to the five open won-stage rows on 2026-09-02, and the read was
+strongly confirmed: every one turned out to be a post-sale service
+conversation — final payment, trim-delivery timing, demo payment, a warranty
+noise complaint, a warranty touch-up. None were sales chases. That's the
+distinction the tag is for.
+
+**Not yet wired: the Notion half.** Albert also wants a contact to qualify when
+a Titan Projects row exists for them within roughly the last 2–3 months, even
+absent a won GHL opportunity. That join does not exist today — Notion projects
+carry no GHL contact ID, so matching would fall back to contact *name*, which is
+exactly the failure mode this system keeps getting bitten by (the vault agent
+flagged Silviya Jardany vs. Outlook's "Sylvia" on 2026-09-02 as an unresolvable
+name match). Build an ID-based join before adding this half; do not ship
+name-matching for it.
+
 ## Constructing the Notion `url` property
 
 **Always constructed, never copied from `item.link`:**
