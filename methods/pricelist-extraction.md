@@ -18,10 +18,16 @@ Make scenario 4381438 (Price Lists)
   → anonymous share link → Notion "Price Lists" row
         ↓  {"notionID": ...}
   routine → Notion row → share link → curl (cookie jar) → pdfplumber
-        → bert-airtable-schema → airtable_upload.xlsx  ┐
-        → ls-upload-instructions → ls_upload.xlsx      ┴→ Notion "Extracted Files"
+        → bert-airtable-schema → extract
+        → match live catalogue → SKU + LS Handle + Lightspeed ID into the sheet
+        → airtable_upload.xlsx
+        → ls-upload-instructions (reads THAT file) → ls_upload.xlsx
+        → both attached to Notion "Extracted Files"
         → Status: Extracted [Pending Review] → human imports both
 ```
+
+The LS file is downstream of the reconciled Airtable file, never parallel to it — see
+"Order of operations" below.
 
 The Notion "Price Lists" database is the index of **every** supplier PDF Titan has
 received, tagged by company and Promo/Regular. Any past price list can be pulled
@@ -75,6 +81,27 @@ filtered to that supplier. The answer decides what the exported file *is*:
 - **No rows** → the file is a fresh import sheet. The supplier's select option, SKU
   suffix, cost column and markup overrides have to be settled first — see the skill's
   new-supplier onboarding checklist.
+
+## Order of operations — reconcile before you build anything
+
+**Decided 2026-09-03 (Albert).** Matching comes first, and the identity fields are
+written into the Airtable schema file before the LS file exists:
+
+1. Extract into the 56-column schema.
+2. Match every row against the live catalogue (cascade below).
+3. For each matched row, copy from the live record **verbatim**: `SKU`,
+   `LS Handle / Parent ID`, `Lightspeed ID`. New rows mint a SKU and handle and leave
+   `Lightspeed ID` blank — LS assigns it on import.
+4. Build the LS file from that enriched sheet, copying `id` / `handle` / `sku` out of
+   it.
+
+Both defects on the 2026-09-03 Grandeur run come from skipping step 3: the SKUs were
+generated rather than read back (231 rows matching nothing), and the LS file was built
+with `id` blank on all 231 rows, which would have duplicated 212 live LS products.
+Each one is silent — the file looks complete and imports without error.
+
+**A matched row with a blank `Lightspeed ID`, or a handle that differs from the stored
+one, means step 3 did not run.** Both are cheap to assert; assert them.
 
 ## RULE 0 — the Airtable SKU never changes
 

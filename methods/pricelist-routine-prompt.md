@@ -113,12 +113,20 @@ Confirm the file is a parseable price document. If it is not, stop here — Comp
 and Tags are already set — and say only that the file is not a supported price
 document.
 
-Otherwise extract with the **bert-airtable-schema** skill and produce **both** files:
+Otherwise extract with the **bert-airtable-schema** skill and produce **both** files —
+**in this order, which is not optional**:
 
 1. **Airtable upload** — `<supplier>_airtable_upload_YYYY-MM-DD.xlsx`, all 56
-   canonical columns in the exact documented order.
+   canonical columns in the exact documented order. Reconcile against the live
+   catalogue first, then write the live `SKU`, `LS Handle / Parent ID` and
+   `Lightspeed ID` into every matched row, verbatim.
 2. **Lightspeed upload** — `<supplier>_ls_upload_YYYY-MM-DD.xlsx`, per the
-   **ls-upload-instructions** skill.
+   **ls-upload-instructions** skill, **built from the file produced in step 1** —
+   never from the raw extraction. LS columns 1–3 (`id`, `handle`, `sku`) are copied
+   out of it.
+
+A matched row reaching the LS file with a blank `id` means the reconciliation did not
+happen, and importing it duplicates a live Lightspeed product instead of updating it.
 
 **RULE 0 — the Airtable `SKU` is immutable and is the source of truth.** It is
 created once and never changes: not renamed, re-cased, re-numbered, re-formatted or

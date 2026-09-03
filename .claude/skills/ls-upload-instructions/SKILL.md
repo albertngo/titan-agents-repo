@@ -15,6 +15,28 @@ This document defines how to transform product data from any brand's source shee
 
 ---
 
+## ⚠️ STOP — do not build an LS file from unreconciled data
+
+**Before any LS file is built, the source sheet must already carry, for every row that
+matches an existing product: the live `SKU`, the live `LS Handle / Parent ID`, and the
+live `Lightspeed ID`.** LS columns 1–3 (`id`, `handle`, `sku`) are identity fields
+owned by Airtable — this skill copies them, it never derives them.
+
+The order is fixed:
+
+```
+extract → match against the live catalogue → write SKU + handle + Lightspeed ID
+into the Airtable schema file → THEN build the LS file from that file
+```
+
+Building the LS file first, or in parallel, produces blank ids and regenerated
+handles. That is not cosmetic: **a blank `id` makes LS create a duplicate instead of
+updating**, and a regenerated handle breaks the variant grouping LS already has.
+
+Check before you start: does the source sheet have `Lightspeed ID` populated on rows
+that exist in LS, and handles that match what LS already holds? If not, stop and
+reconcile — do not "fill them in later".
+
 ## ⚠️ RULE 0 — Airtable owns the SKU; Lightspeed matches to it
 
 **The Airtable `SKU` is immutable and is the source of truth.** Column 3 (`sku`) is
