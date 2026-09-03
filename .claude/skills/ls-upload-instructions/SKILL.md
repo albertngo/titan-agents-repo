@@ -15,6 +15,78 @@ This document defines how to transform product data from any brand's source shee
 
 ---
 
+## ⚠️ STOP — do not build an LS file from unreconciled data
+
+**Before any LS file is built, the source sheet must already carry, for every row that
+matches an existing product: the live `SKU`, the live `LS Handle / Parent ID`, and the
+live `Lightspeed ID`.** LS columns 1–3 (`id`, `handle`, `sku`) are identity fields
+owned by Airtable — this skill copies them, it never derives them.
+
+The order is fixed:
+
+```
+extract → match against the live catalogue → write SKU + handle + Lightspeed ID
+into the Airtable schema file → THEN build the LS file from that file
+```
+
+Building the LS file first, or in parallel, produces blank ids and regenerated
+handles. That is not cosmetic: **a blank `id` makes LS create a duplicate instead of
+updating**, and a regenerated handle breaks the variant grouping LS already has.
+
+Check before you start: does the source sheet have `Lightspeed ID` populated on rows
+that exist in LS, and handles that match what LS already holds? If not, stop and
+reconcile — do not "fill them in later".
+
+### Existing product vs new product — the id column differs, the handle does not
+
+| | `id` (column 1) | `handle` (column 2) | `sku` (column 3) |
+|---|---|---|---|
+| **Matched** (already in LS) | The stored `Lightspeed ID`. **Required** — blank duplicates it. | The stored handle, copied as-is. Never regenerated. | The stored SKU, verbatim. |
+| **New** (not yet in LS) | **Blank, correctly** — Lightspeed generates the UUID on import. | **Minted by us** from the handle-generating schema, then uploaded. LS adopts it. | Minted by us from the price list. |
+
+A blank `id` is a defect on a matched row and the correct value on a new row. Decide
+by `MatchStatus`, never by whether the cell happens to be empty.
+
+### After the import: reverse-populate the new ids (batched)
+
+**An upload containing new products is not finished when the import succeeds.**
+Lightspeed has just generated UUIDs that Airtable does not have yet. Export the
+products from LS, match on `SKU`, and write the `Lightspeed ID`s back into Airtable —
+the `ls-id-backfill` skill exists for exactly this.
+
+**This is batched deliberately** (Albert, 2026-09-03): one LS export can cover several
+price lists' worth of new products, so the backfill runs periodically rather than after
+every upload. What keeps that safe is the tracking on the Notion Price Lists row —
+`New Products` (count), `POS` (checkbox: the LS file has been pushed) and `LS Backfill`
+(`Pending` / `Done` / `Not needed`).
+
+**Check `POS` on the row when you push its file to Lightspeed.** That is what makes the
+backfill queue meaningful: a new product has no UUID until the upload creates one, so
+the actionable set is `LS Backfill is Pending` **and** `POS` checked. Filter on
+`Pending` alone and you will chase ids for products that were never uploaded. Flip each
+covered row to `Done` after writing the UUIDs back.
+
+Skip it and a later price list run sees a blank `Lightspeed ID` on a product that now
+exists in LS, and duplicates it. Batching changes when the loop closes, not whether.
+
+## ⚠️ RULE 0 — Airtable owns the SKU; Lightspeed matches to it
+
+**The Airtable `SKU` is immutable and is the source of truth.** Column 3 (`sku`) is
+copied from the source sheet **verbatim** and is never regenerated, reformatted or
+"improved" on the way into Lightspeed. When LS and Airtable disagree about a SKU,
+**Airtable is right** and the LS record is what gets corrected — never the reverse.
+
+An LS import must never be the reason an Airtable SKU changes. If a SKU cannot be
+loaded into LS as stored, that is escalated, not silently rewritten on both sides.
+
+The one sanctioned transformation is the **Olympia comma→dot** replacement below, and
+it is applied **when the record is first created** so Airtable stores the dotted form
+from the outset — it is a minting rule, not permission to edit existing SKUs.
+
+Full statement: RULE 0 at the top of the `bert-airtable-schema` skill.
+
+---
+
 ## ⚠️ Load-bearing rule — every SKU must carry a readable sf/b
 
 **Box size (sf/b) is the key factor used for quantity analysis.** Staff and reporting convert between boxes and square feet using it constantly. A SKU that reaches Lightspeed without a visible sf/b cannot be quantity-analyzed at the POS, and the gap is invisible until someone needs the number and can't find it.
@@ -26,7 +98,7 @@ This document defines how to transform product data from any brand's source shee
 | **Single-grade / no-grade product** (1 row per handle) | In the **name** | `… - 24.18sf/b` (before the grade suffix, if any) |
 | **Variant group, uniform box size** (all rows share one `Box size (sf)`) | In the **name** — names stay identical, so LS is satisfied | `… - 24.18sf/b`; column 11 = grade alone (`Character`) |
 | **Variant group, mixed box sizes** (2+ distinct values in the group) | In **column 11**, `variant_option_one_value` | `Character - 24.18sf/b` |
-| **Per-piece item** (accessories, STONE, mosaics — `Box size (sf)` legitimately blank) | Nowhere — exempt | n/a |
+| **Per-piece item** (accessories, STONE, mosaics — `Box size (sf)` legitimately blank) | Exempt from **name / column 11** only — the **description still states `Sold per piece`** | n/a |
 
 **Uniform is the common case.** Grades of the same product almost always box the same — across the entire Vidar catalogue only one handle group carries mixed box sizes. So most variant groups keep sf/b in the name and leave column 11 as a clean grade picker, which is what staff expect the dropdown to be.
 
@@ -34,7 +106,9 @@ This document defines how to transform product data from any brand's source shee
 
 **Compute uniform vs mixed per handle group at build time — it is a property of the data, not of the brand, and it can change.** A supplier revising one grade's box size flips a group from uniform to mixed. When that happens, sf/b must move out of the name and into column 11 for *every* row in the group, and all the names must be updated together — otherwise the group either carries a stale number or fails name identity.
 
-**Do not put sf/b in both places.** One placement per group. Duplicating it creates a second copy that silently goes stale.
+**Do not put sf/b in both the name AND column 11.** One placement per group — that choice is forced by LS's name-identity constraint, and doing both breaks the variant group.
+
+> **This does not apply to the description.** Per the strict rule under *Description rules (column 8)*, `Box size (sf)` goes in the description on **every** product regardless of where it lives here, plus `Pieces per box` when present, plus `Sold per piece` / `Sold per sq ft` for items that genuinely have no box. All copies are generated from the same Airtable field on each build, so they cannot drift — provided the file is regenerated rather than hand-edited.
 
 **Blank `Box size (sf)` on a flooring row is a data defect, not an exemption.** Per-piece accessories and STONE are legitimately blank. A plank/tile flooring SKU with no box size must be flagged and fixed in Airtable before upload — the LS file cannot invent it.
 
@@ -46,12 +120,45 @@ Before generating an upload, identify these brand-specific values from the sourc
 
 | Variable | Description / How to determine |
 |----------|-------------------------------|
-| `[BRAND]` | The brand name as it appears in the source sheet "Brand" column. Used for brand_name and supplier_name fields. Examples: "VIDAR", "SUNSHINY", "WODEN". |
-| `[NAME_PREFIX]` | The product name prefix used in Lightspeed. Convention: **[3–4 char brand abbreviation] + [3 char product type abbreviation]**. The brand abbreviation is always 3–4 uppercase letters. The product type abbreviation is always 3 uppercase letters. A single brand may have multiple prefixes if it spans multiple product types. Examples: "VIDENG" (Vidar Engineered), "GRNDENG" (Grandeur Engineered), "GRNDSPC" (Grandeur SPC), "GRNDLAM" (Grandeur Laminate). Confirm with user if a new brand. **Exception — transitions, mouldings, stair components, and sundries do NOT use an abbreviated prefix.** They lead with the full brand name spelled out (`Vidar - Transition \| …`) so the family is searchable by supplier. See *Accessories — transitions and mouldings*. |
+| `[BRAND]` | The brand name as it appears in the source sheet "Brand" column. Feeds **`brand_name` (column 23) only** — it does NOT feed the name prefix or `supplier_name`. Examples: "VIDAR", "SUNSHINY", "WODEN", "BOEN". |
+| `[SUPPLIER]` | The supplier as it appears in the source sheet "Supplier" column — who Titan actually orders from. Feeds `supplier_name` (column 24) and **`[NAME_PREFIX]`**. Equal to `[BRAND]` for single-brand suppliers; different for distributors (Supplier "Canadian Standard", Brand "BOEN"). |
+| `[NAME_PREFIX]` | The product name prefix used in Lightspeed. Convention: **[3–4 char SUPPLIER abbreviation] + [3 char product type abbreviation]**. The supplier abbreviation is always 3–4 uppercase letters. The product type abbreviation is always 3 uppercase letters. One supplier may have several prefixes if it spans several product types. Examples: "VIDENG" (Vidar Engineered), "GRNDENG" (Grandeur Engineered), "GRNDSPC" (Grandeur SPC), "GRNDLAM" (Grandeur Laminate), "CANSENG" (Canadian Standard Engineered). **Derive it from `Supplier`, never from `Brand`** — see *Supplier, not brand, drives the name prefix* below. Confirm with Albert if a new supplier. **Exception — transitions, mouldings, stair components, and sundries do NOT use an abbreviated prefix.** They lead with the full supplier name spelled out (`Vidar - Transition \| …`) so the family is searchable by supplier. See *Accessories — transitions and mouldings*. |
 | `[HANDLE_PREFIX]` | **Descriptive only — do NOT enforce.** This is just what the first few characters of the brand's existing Airtable handles happen to look like. Handle format varies by brand and is set in Airtable; the LS upload copies handles as-is with no transformation. Only recorded here as a reference for recognizing which handles belong to which brand. Examples: Vidar handles start with "VIDR", Grandeur with "GRND", FAW/NAF handles start with the category (LVP/ENG/LAM/LVT/HWD). |
 | `[SKU_PREFIX]` | The prefix pattern in the source sheet's SKU column. Read from the data — don't assume. Examples: "ENG-VIDR-" (Vidar), "ENG-SUN-" (Sunshiny). |
 | `[SOURCE_SHEET]` | The name of the source data sheet in the workbook. Examples: "Vidar Engineered Hardwood", "Sunshiny Engineered", "Woden Products". |
-| `[CATEGORY]` | The Lightspeed product category. All caps, space-slash-space separator. Vinyl products use a construction-based leaf subcategory: `FLOORING / VINYL / SPC`, `FLOORING / VINYL / WPC`, `FLOORING / VINYL / LOOSE LAY` (loose-lay vinyl), or `FLOORING / VINYL / GLUE DOWN` (dry-back / glue-down vinyl). **Exact leaf names confirmed from the Lightspeed category tree (Jul 2026): GLUE DOWN, LOOSE LAY, SPC, WPC.** **LS requires a LEAF category — never assign a product to `FLOORING / VINYL` itself (or any parent node); the import rejects it with "A product can only be assigned to a leaf category" (learned from the Grandeur Jul 2026 import, 42 rows rejected).** When core is ambiguous (e.g. Grandeur Inov8 'engineered vinyl'), default to `FLOORING / VINYL / SPC` — avoid `FLOORING / VINYL / ENGINEERED` as it conflicts with the engineered hardwood category name. Matching name prefixes for non-SPC/WPC vinyl: `[BRAND]LVP-LL` (loose lay), `[BRAND]LVP-DB` (glue down / dry-back). Ambiguous-core vinyl uses `[BRAND]LVP-SPC` and `FLOORING / VINYL / SPC`. All other flooring types follow the two-level pattern: `FLOORING / ENGINEERED HARDWOOD`, `FLOORING / SOLID HARDWOOD`, `FLOORING / LAMINATE`, `FLOORING / TILE`. The LVP vs LVT format distinction is tracked in Airtable (Category field) — it does not create a separate LS category. **Exception: accessories use the standalone category `ACCESSORIES` — not nested under FLOORING.** This applies to transitions, mouldings, stair treads/risers, underlay, glue, and any other non-flooring product items. |
+| `[CATEGORY]` | The Lightspeed product category. All caps, space-slash-space separator. Vinyl products use a construction-based leaf subcategory: `FLOORING / VINYL / SPC`, `FLOORING / VINYL / WPC`, `FLOORING / VINYL / LOOSE LAY` (loose-lay vinyl), or `FLOORING / VINYL / GLUE DOWN` (dry-back / glue-down vinyl). **Exact leaf names confirmed from the Lightspeed category tree (Jul 2026): GLUE DOWN, LOOSE LAY, SPC, WPC.** **LS requires a LEAF category — never assign a product to `FLOORING / VINYL` itself (or any parent node); the import rejects it with "A product can only be assigned to a leaf category" (learned from the Grandeur Jul 2026 import, 42 rows rejected).** When core is ambiguous (e.g. Grandeur Inov8 'engineered vinyl'), default to `FLOORING / VINYL / SPC` — avoid `FLOORING / VINYL / ENGINEERED` as it conflicts with the engineered hardwood category name. Matching name prefixes for non-SPC/WPC vinyl: `[SUPPLIER]LVP-LL` (loose lay), `[SUPPLIER]LVP-DB` (glue down / dry-back). Ambiguous-core vinyl uses `[SUPPLIER]LVP-SPC` and `FLOORING / VINYL / SPC`. All other flooring types follow the two-level pattern: `FLOORING / ENGINEERED HARDWOOD`, `FLOORING / SOLID HARDWOOD`, `FLOORING / LAMINATE`, `FLOORING / TILE`. The LVP vs LVT format distinction is tracked in Airtable (Category field) — it does not create a separate LS category. **Exception: accessories use the standalone category `ACCESSORIES` — not nested under FLOORING.** This applies to transitions, mouldings, stair treads/risers, underlay, glue, and any other non-flooring product items. |
+
+### Supplier, not brand, drives the name prefix
+
+**Rule (Albert, 2026-09-03): `[NAME_PREFIX]` is built from the `Supplier`, never from
+the `Brand`. Every product Titan buys from one supplier carries that supplier's prefix,
+whatever brand is printed on the box.** The same holds for the spelled-out accessory
+prefix: `Canadian Standard - Transition | …`, never `Inhaus - Transition | …`.
+
+For most suppliers this changes nothing, which is why it went unnoticed until now —
+Vidar, Grandeur, Sunshiny, Floordi and NAF each sell one brand, so supplier and brand
+are the same string and `VIDENG` is correct under either reading.
+
+**Canadian Standard is the first true distributor** — one supplier reselling eleven
+brands (BOEN, EGGER, Inhaus, SONO, Antikkwood, Nestwood, Unikkwood, Handcraft, Brand
+Surfaces, Brand Coverings, plus its own house line). Under the old brand-derived rule
+its catalogue fragmented into ten unrelated prefixes, so a staff member searching
+`CANS` on the POS found 130 of 339 products and no indication the other 209 existed.
+The supplier is what Titan orders against, so the supplier is what the name is keyed to.
+
+`Brand` is not lost — it still goes to LS column 23 (`brand_name`) and stays in Airtable.
+It is simply not part of the name prefix.
+
+**Handles are unaffected.** `[HANDLE_PREFIX]` is a separate, descriptive token and
+handles are copied from Airtable verbatim (RULE 0a). Canadian Standard's handles were
+already 100% `CANS`-prefixed — the old rule had names disagreeing with the handles on
+the very same row; this makes the two agree.
+
+**Applying it to past suppliers:** re-derive the prefix when a supplier's file is next
+regenerated, not as a standalone sweep. Renaming a live LS product is a real change to
+what staff see on the POS, so it rides along with an import that was already going to
+touch those rows — and only single-brand suppliers are affected at all, meaning none of
+them change.
 
 ### Brand configuration examples
 
@@ -73,7 +180,9 @@ Before generating an upload, identify these brand-specific values from the sourc
 
 > **Floordi brand config (added Jul 2026):** `[BRAND]` = Floordi (brand_name = supplier_name = "Floordi"). `[NAME_PREFIX]` = `FLRDLVP-SPC` (AVO-ROX vinyl) / `FLRDACC` (accessories). `[SKU_PREFIX]` = `LVP-FLRD-` / `ACC-FLRD-` (Floordi code verbatim as suffix, e.g. `LVP-FLRD-AVR651`). `[CATEGORY]` = `FLOORING / VINYL / SPC` for all AVO-ROX lines; `ACCESSORIES` for mouldings. `[HANDLE_PREFIX]` descriptive = FLRD, brand-first: `FLRD65[COLOUR]` (EASE 6.5mm), `FLRD8[COLOUR]` (GRAND 8mm); accessories = FLRD + Floordi code with hyphens stripped (`FLRDATAVR65`). No grades → no variant groups; one row per product, box size in the name, columns 10–11 blank. Accessory names: **superseded (Aug 2026)** — Floordi mouldings now follow `Floordi - Transition | [Type] | [Material] | [Dimensions]` per *Accessories — transitions and mouldings*, not the old `FLRDACC - …` form. Still priced per piece via Cost/unit / Retail price/unit as normal.
 
-> **Note on `[HANDLE_PREFIX]`:** The values in this row describe what each brand's handles look like — they are not rules to enforce. Handle format is set in Airtable per brand and flows through to LS unchanged. Never transform, prepend, or normalize handles to match another brand's convention. Whatever is in the "LS Handle / Parent ID" column of Airtable is what goes to Lightspeed.
+> **Note on `[HANDLE_PREFIX]`:** For a product that **already exists**, these values are descriptive, not rules to enforce — the stored handle flows through to LS unchanged. Never transform, prepend, or normalize an existing handle to match another brand's convention. Whatever is in the "LS Handle / Parent ID" column of Airtable is what goes to Lightspeed.
+>
+> **For a genuinely new product there is no stored handle, so we mint one** from the brand's handle-generating schema — `[HANDLE_PREFIX][SizePrefix][SpeciesAbbrev][COLOUR]`, uppercase, alphanumeric only, **never truncated**. That minted handle is written into Airtable *and* uploaded to LS, which adopts it. This is the one case where the prefix pattern is generative rather than descriptive; see RULE 0a in the bert-airtable-schema skill.
 
 ### Product type abbreviations
 
@@ -113,7 +222,7 @@ Before generating an upload, identify these brand-specific values from the sourc
 | **18. retail_price** | = Source **"Retail price/unit"** column. Numeric only. See *Pricing field reflection rule* below. |
 | **19–22. loyalty & account codes** | Leave ALL BLANK. |
 | **23. brand_name** | = `[BRAND]`. Read from source sheet "Brand" column. |
-| **24. supplier_name** | = `[BRAND]`. Same as brand_name. If supplier differs from brand, use source "Supplier" column. |
+| **24. supplier_name** | = `[SUPPLIER]`. Always read from the source "Supplier" column, never from "Brand". For a single-brand supplier the two strings coincide; for a distributor they must not be conflated — a Canadian Standard row carrying BOEN flooring is `brand_name` BOEN, `supplier_name` Canadian Standard. |
 | **25. supplier_code** | Leave BLANK. |
 | **26. active** | Always: "1" (active). Set to "0" to deactivate. |
 | **27. track_inventory** | Always: "1". |
@@ -143,7 +252,7 @@ This mapping is unconditional. There is never a case where supply_price/retail_p
 Built from multiple source columns using this exact format:
 
 ```
-[NAME_PREFIX] - [Collection] [Species] ([Color]) [Install] | [Width]" x [Thickness]mm x RL - [Veneer]mm top - [BoxSize]sf/b[ - [Grade]]
+[NAME_PREFIX] - [Collection] [Species] ([Color]) [Install] | [Width]" x [Thickness]mm x [Length] - [Veneer]mm top - [BoxSize]sf/b[ - [Grade]]
 ```
 
 Components:
@@ -154,6 +263,13 @@ Components:
 - `[Install]` = "T&G" or "Click" from "Install profile"
 - `[Width]` = source "Width (in)" + "
 - `[Thickness]` = source "Thickness (mm)" + "mm"
+- `[Length]` = source **`Length`** (schema column 17) AS-IS — `RL`, `48"`, `1520mm`,
+  `20" - 83"`. **Length stays in the LS name exactly as it always has** (Albert,
+  2026-09-03); the only change is that it is now *read from the `Length` field*
+  rather than re-parsed out of the price list or assumed. Fall back to `RL` when
+  the field is blank — random length is the overwhelming default for plank goods,
+  and every pre-existing LS name uses it. Copy the field verbatim, including its
+  unit; do not normalize `1520mm` to inches or `RL` to a measurement.
 - `[Veneer]` = source "Veneer / top layer (mm)" + "mm top" (only if non-empty)
 - `[BoxSize]` = source "Box size (sf)" + "sf/b". Include for single-grade and no-grade products, **and for variant groups where every row shares the same box size** — the name stays identical across the group, so LS is satisfied. Omit **only** for variant groups with mixed box sizes; on those rows sf/b moves to **column 11** alongside the grade (`Character - 24.18sf/b`). Never omit it from both.
 - `[Grade]` = source "Grade" AS-IS, appended at the end after " - " — **ONLY for single-grade products** (products NOT part of a variant group). Omit entirely if the row is part of a variant group OR if Grade is empty.
@@ -240,9 +356,25 @@ Contains every source column NOT already used in other LS fields (e.g. Product t
 
 **Unmapped** = all source columns EXCEPT: id, SKU, Brand, Supplier, Product name, LS Handle, Collection, Species, Grade, Width, Thickness, Veneer, Install profile, Cost, Retail, Product type, Category, Material type.
 
-**Box size (sf) — conditional on where it landed:**
-- **Box size is in the NAME** (singletons, no-grade products, and uniform-box-size variant groups): exclude it from the description — it's already in the name.
-- **Box size is in column 11** (mixed-box-size variant groups only): also include `Box size (sf)` in the description, since the description is searchable in POS. It is a searchability aid, **not** the primary placement — a row with sf/b only in the description does not satisfy the load-bearing rule.
+### ⚠️ STRICT RULE — `Box size (sf)` is ALWAYS in the description
+
+**Albert, 2026-09-03. Every product, without exception, carries its square feet per box in the description. If it also has `Pieces per box`, that goes in too.**
+
+This is unconditional and overrides the "empty and false fields are excluded" default above, and it applies **regardless of where else sf/b appears**:
+
+| Row | Description must contain |
+|---|---|
+| sf/b in the **name** (singletons, no-grade, uniform variant groups) | `Box size (sf): 24.18` — **still include it**, even though the name already says it |
+| sf/b in **column 11** (mixed-box-size variant groups) | `Box size (sf): 24.18` |
+| Has `Pieces per box` | `Pieces per box: 8` — always, alongside the box size |
+| **Genuine per-piece item** (trims, thresholds, STONE, mosaics — `Box size (sf)` legitimately blank) | `Sold per piece` — state the unit explicitly. Never silently omit, and never invent a box size. |
+| Per-**square-foot** item (e.g. underpad priced $/sf) | `Sold per sq ft` |
+
+**This supersedes the previous rule**, which excluded box size from the description whenever it was already in the name. It is no longer conditional on placement.
+
+**Why the duplication is safe here.** The load-bearing rule says "do not put sf/b in both places" — that is about **name vs column 11**, where the choice is forced by LS's name-identity constraint on variant groups, and picking both breaks the group. The description is a third, always-present location, and every one of them is generated from the same Airtable `Box size (sf)` field on each build. They cannot drift apart as long as the file is **regenerated** rather than hand-patched. Hand-editing one copy of a generated file is what makes duplicates go stale — so don't do that; rebuild.
+
+**Why it is worth the duplication.** The description is the searchable, always-visible field at the POS. The name can be truncated in some views, a column-11 variant value only surfaces at the point of selection, and neither is guaranteed to be where a staff member is looking when they need to convert boxes to square feet. The description is the one place that is always there.
 
 ---
 
@@ -286,37 +418,120 @@ This is expected to be rare. The name-embedded approach optimizes for the common
 
 ## Accessories — transitions and mouldings
 
-Transitions and mouldings must be **findable by supplier in one search**. Typing `Vidar Transition` into LS product search should return every T-moulding, reducer, and nosing Vidar sells — and nothing else. That requirement drives the format below.
+### The search contract — two tokens, every supplier
+
+**This is the requirement the whole section exists to satisfy, and it holds for every
+supplier without exception (Albert, 2026-09-03):**
+
+> Typing **`<Supplier> <Family>`** — two tokens, nothing else — into Lightspeed product
+> search returns **every** accessory of that family for that supplier, and **nothing
+> outside it**. `Vidar Transition`. `Canadian Standard Transition`. `Grandeur Stair`.
+
+You never have to know in advance whether the part you want is a reducer, a T-moulding
+or a nosing. You search the company and the word, you get the whole family, and you pick
+the right one off the list. **The specific type is a filter you apply with your eyes,
+not a term you must guess to make the search work at all.**
+
+Three properties of the name format deliver that, and each one breaks the contract if
+dropped:
+
+| Property | Why it is load-bearing |
+|---|---|
+| Supplier spelled out in full, first | LS search matches text, and does **not** match `Vidar` against `VIDACC`. An abbreviated prefix defeats the entire purpose. This is the one family where the abbreviated `[NAME_PREFIX]` is deliberately overridden. |
+| The literal token `Transition` on **every** row | This is what makes the family a set. A reducer that says only `Reducer` is invisible to the search that matters. |
+| `[Type]` **after** the family token, never before | Type is what you read off the result list once it is on screen; it must not be what you had to type to get there. |
+
+**Corollary — do not dilute the token.** Only the controlled types below carry
+`Transition`. If stair treads or underlay also said `Transition`, the search would
+return them and stop being a clean pick-list. That is why stair components and sundries
+get their own family token instead (see *What is NOT a transition*).
 
 ### Name format
 
 ```
-[Brand] - Transition | [Type] | [Material] | [Dimensions]
+[Supplier] - Transition | [Type] | [Material] | [Dimensions]
 ```
 
-- `[Brand]` — the **full brand name, spelled out** (`Vidar`, `Grandeur`, `Floordi`). This is the search anchor and it **replaces the `[BRAND]ACC` name prefix** for this family. LS search does not match `Vidar` against `VIDACC`, so the abbreviated prefix defeats the entire purpose here.
+- `[Supplier]` — the **full supplier name, spelled out** (`Vidar`, `Grandeur`, `Floordi`, `Canadian Standard`). This is the search anchor and it **replaces the abbreviated name prefix** for this family. LS search does not match `Vidar` against `VIDACC`, so the abbreviated prefix defeats the entire purpose here. **Supplier, not brand** — a Canadian Standard reducer made by Inhaus reads `Canadian Standard - Transition | Reducer | Laminate | 8 ft.`, because the search that must succeed is the one for everything Titan can order from Canadian Standard.
 - `Transition` — literal constant token, on every row in the family. This is what makes them searchable as a set.
 - `[Type]` — canonical token from the controlled list below. Never free-text, never the supplier's spelling.
 - `[Material]` — **which floor this transition matches.** See the source order below. Omit the segment if genuinely unknown — do not guess.
-- `[Dimensions]` — length and profile detail: `94.5"`, `70.86" Square`, or `Cut Order` for made-to-order items. Omit if not in the source.
+- `[Dimensions]` — length, profile and the fine detail that separates two trims sharing a material: `94.5"`, `70.86" Square`, `Cut Order` for made-to-order items, the species on a wood trim (`94.5" Square AWO`), or the floor line in parentheses (`2400mm x 45mm x 12mm (Evion 9)`). **This is the segment that does the actual picking** once the material token has narrowed the list — put the distinguishing detail here rather than inventing a material token for it. Omit if the source has none.
 
 **The name is driven by product TYPE, not by LS category.** A nosing stays a nosing whether it lands in `ACCESSORIES` or in a vinyl category (see the Olympia routing table, where LVP nosings/reducers sit under `FLOORING / VINYL / SPC`). Category routing is unchanged by this rule.
 
 ### The `[Material]` segment — source order
 
-A transition is bought to match a floor, so this segment must answer *"which floor?"*. No single Airtable field answers that for every product type, so resolve in this order and take the first that yields a useful token:
+A transition is bought to match a floor, so this segment must answer *"which floor?"*.
 
-| Order | Source | Transform | Example |
-|---|---|---|---|
-| 1 | `Material type` | drop the word "core" | `SPC core` → `SPC`, `WPC core` → `WPC`, `HDF core` → `HDF` |
-| 2 | `Category` | use as-is, shortened | `Laminate` → `Laminate`, `Engineered hardwood` → `Engineered` |
-| 3 | `Species` | supplier's species code or full name | `AWO`, `European Oak`, `Ash` |
+**It is a CLOSED vocabulary of exactly three tokens (Albert, 2026-09-03):**
 
-**`Hardwood plywood` is never used as the material token.** It is the literal `Material type` on every hardwood transition, but it describes the core of a plank rather than the floor being matched — no one searches for it. Fall through to Species instead: a stair nosing that matches American White Oak reads `AWO`, not `Hardwood plywood`.
+| Token | Covers |
+|---|---|
+| `SPC` | All rigid-core vinyl — SPC, WPC, and any vinyl line whose core is unstated or ambiguous |
+| `Laminate` | All laminate, including water-resistant and HDF-core laminate |
+| `Wood` | All real-wood floors — engineered and solid alike |
+
+**Three, not "however many the source fields happen to yield."** The whole point of the
+segment is that you scan it, and you can only scan a set you already know. An
+open-ended token list means reading each result to work out what it is, which is the
+work the format exists to remove. If a product seems to need a fourth token, that is a
+question for Albert, not a new token.
+
+Resolve to one of the three in this order:
+
+| Order | Source | Maps to |
+|---|---|---|
+| 1 | `Material type` | `SPC core` / `WPC core` → **SPC**; `Water-Resistant Core`, `HDF core` → **Laminate**; `Hardwood plywood` → **Wood** |
+| 2 | `Category` | `LVP` / `LVT` / `Vinyl` → **SPC**; `Laminate` → **Laminate**; `Engineered hardwood` / `Solid hardwood` → **Wood** |
+| 3 | The floor line the trim belongs to | Take the parent collection's material and use its token |
+
+**`Hardwood plywood` maps to `Wood`, it is never the token itself.** It is the literal `Material type` on every hardwood transition, but it describes the core of a plank rather than the floor being matched — no one searches for it.
+
+**`LVP` and `LVT` are formats, not materials — never emit them here.** A vinyl trim is `SPC`. The 2026-09-03 Canadian Standard build shipped three SONO Eclipse trims tagged `LVP` purely because SONO's `Material type` is blank and the resolver fell through to `Category`; the same product line's flooring rows were correctly built as SPC. That was a fourth token created by a data gap, not by a real fourth material.
+
+**Species does not belong in this segment.** `AWO` and `European Oak` are `Wood`. Species is a *fine* distinction and it belongs in `[Dimensions]` with the other detail, where it still displays and still searches — the material token is coarse triage, the detail segment is how you pick the exact one. Losing species entirely would be a real loss; moving it is not.
 
 **Deduplication — do not emit the token twice.** Skip the `[Material]` segment if the same token already appears in `[Type]` or `[Dimensions]` (case-insensitive, whole word). When restructuring an existing free-text name that already embeds the material — `Vidar SPC Nosing` — **extract** it into the `[Material]` slot rather than leaving it in place and appending a second copy. Correct: `Vidar - Transition | Nosing | SPC`. Wrong: `Vidar - Transition | SPC Nosing | SPC`.
 
 > **Material type is currently blank on every accessory record.** Neither `Category` nor `Material type` is populated on Vidar's 20 accessories — the material exists only inside the free-text `Product name`. Populating these two fields on accessory records makes this segment deterministic instead of parsed, and has the side benefit of making accessories filterable in Bert, which they are not today.
+
+### One SKU per physically distinct trim — collection is not a SKU axis
+
+**Rule (Albert, 2026-09-03): a trim earns its own SKU when its DIMENSIONS differ.
+Collection does not, on its own, justify a separate SKU.**
+
+The unit is the physical stick: **type × material × dimensions × price**. Two rows
+identical on all four are one product that two collections happen to share — list them
+once and name both lines in `[Dimensions]`:
+
+```
+Canadian Standard - Transition | T-Moulding | SPC | 2400mm x 45mm x 7mm (VANNTETT PLUS / VANNTETTPRO)
+```
+
+**The reason is inventory, not naming.** Each SKU is a separate stock count in
+Lightspeed. Two SKUs describing the same stick split one physical pile into two counts —
+both wrong — and staff pick from whichever happens to show stock. The mirror-image
+failure is just as real: merging a 7mm trim with a 10mm one produces a SKU that cannot
+tell you which you are holding. So the test is physical interchangeability, nothing else.
+
+**Do not collapse across a price difference**, even at equal dimensions — a price gap
+means the supplier is treating them as different products, and the POS must too. Within
+Canadian Standard the house lines are consistent ($18/$28 reducer across Evion 9,
+Elemental12 and VANNTETT), while third-party lines inside the same supplier run ~2.5×
+(Inhaus $40, SONO Eclipse $48.50). Those stay separate on price alone.
+
+**Decide this before the import, not after.** Merging is free while the rows are
+`MatchStatus: new` with no Lightspeed ID. Once imported, a merge means deleting live
+SKUs that carry stock counts and sales history.
+
+**When the supplier gives per-trim order codes, they win.** If a price list carries a
+distinct `Supplier SKU` per collection, keep them separate regardless of matching
+dimensions — the name is then telling the truth about how the part is ordered. Canadian
+Standard's list has no trim codes at all, so the granularity was ours to choose.
+
+Applied 2026-09-03: VANNTETT PLUS and VANNTETTPRO trims were byte-identical apart from
+the collection string — 21 trim SKUs became 18.
 
 ### Controlled type tokens
 
@@ -336,19 +551,20 @@ A transition is bought to match a floor, so this segment must answer *"which flo
 
 | Airtable Product name (current) | LS name | `[Material]` from |
 |---|---|---|
-| Vidar AWO Stair Nosing — 94.5" Square | `Vidar - Transition \| Stair Nosing \| AWO \| 94.5" Square` | Species (order 3) |
-| Vidar European Oak Stair Nosing — 70.86" Square | `Vidar - Transition \| Stair Nosing \| European Oak \| 70.86" Square` | Species (order 3) |
+| Vidar AWO Stair Nosing — 94.5" Square | `Vidar - Transition \| Stair Nosing \| Wood \| 94.5" Square AWO` | Wood; species moved to detail |
+| Vidar European Oak Stair Nosing — 70.86" Square | `Vidar - Transition \| Stair Nosing \| Wood \| 70.86" Square European Oak` | Wood; species moved to detail |
 | Vidar SPC T-Molding — Cut Order | `Vidar - Transition \| T-Moulding \| SPC \| Cut Order` | Material type (order 1) |
 | Vidar SPC Reducer — Cut Order | `Vidar - Transition \| Reducer \| SPC \| Cut Order` | Material type (order 1) |
 | Vidar SPC Nosing | `Vidar - Transition \| Nosing \| SPC` — material extracted, not duplicated; no length in source | Material type (order 1) |
 | Vidar Laminate Nosing | `Vidar - Transition \| Nosing \| Laminate` — no length in source | Category (order 2) |
+| SONO Eclipse Reducer — 94" (vinyl, `Material type` blank) | `Canadian Standard - Transition \| Reducer \| SPC \| 94" (Eclipse)` | Parent line (order 3) — **not** `LVP` |
 
 ### What is NOT a transition
 
-Only the controlled types carry the `Transition` token. Diluting it defeats the search. Adjacent families follow the same shape with their own anchor, so `Vidar Stair` and `Vidar Sundry` work as searches too:
+Only the controlled types carry the `Transition` token. Diluting it defeats the search. Adjacent families follow the same shape with their own family token, so `Vidar Stair` and `Canadian Standard Sundry` work as searches too:
 
-- **Stair components** (stairboards, stair treads, stair risers) → `[Brand] - Stair | [Type] | [Material] | [Dimensions]`
-- **Sundries** (underlay, underpad, glue, floor protection, vents) → `[Brand] - Sundry | [Type] | [Dimensions]` — no material segment; a bucket of glue does not match a floor
+- **Stair components** (stairboards, stair treads, stair risers) → `[Supplier] - Stair | [Type] | [Material] | [Dimensions]`
+- **Sundries** (underlay, underpad, glue, floor protection, vents) → `[Supplier] - Sundry | [Type] | [Dimensions]` — no material segment; a bucket of glue does not match a floor
 
 ### Source data limitation — why the Airtable mirror matters
 
@@ -388,14 +604,15 @@ The rules above (Variant grouping, Name construction, Description) were written 
 
 ### Name prefix
 
-Follows the same `[brand abbrev][product type abbrev]` convention as flooring:
+Follows the same `[supplier abbrev][product type abbrev]` convention as flooring
+(supplier, never brand — see *Supplier, not brand, drives the name prefix*):
 
-- **`[BRAND]TIL`** — all rows where Airtable Category = `Tile / Stone` (includes mosaics, field tile, large-format slabs, wall tile)
-- **`[BRAND]STN`** — all rows where Airtable Category = `STONE` (marble/quartz thresholds, shower jambs, benches)
+- **`[SUPPLIER]TIL`** — all rows where Airtable Category = `Tile / Stone` (includes mosaics, field tile, large-format slabs, wall tile)
+- **`[SUPPLIER]STN`** — all rows where Airtable Category = `STONE` (marble/quartz thresholds, shower jambs, benches)
 
-Example brand prefixes:
+Example supplier prefixes:
 
-| Brand | Tile prefix | STONE prefix |
+| Supplier | Tile prefix | STONE prefix |
 |---|---|---|
 | CIF Distributors | `CIFDTIL` | `CIFDSTN` |
 
@@ -502,7 +719,7 @@ If the source sheet has `STONE` rows with a blank `LS Handle / Parent ID`, gener
 ```
 
 Where:
-- `[BRAND_PREFIX]STN` is the brand's STONE prefix (e.g. `CIFDSTN`)
+- `[SUPPLIER_PREFIX]STN` is the supplier's STONE prefix (e.g. `CIFDSTN`)
 - `[ITEMTYPE_TOKEN]` is `THRESHOLD`, `JAMB`, or `BENCH` (parsed from the first em-dash segment)
 - `[COLOUR_TOKEN]` is the Colour / tone value with all non-alphanumeric characters stripped, uppercased
 
@@ -514,7 +731,9 @@ Same rule as flooring: include all unmapped source fields as pipe-delimited text
 
 `Tile format | Finish type | Material type | Colour / tone | Box size (sf) | Pieces per box | Layout pattern | Salesperson notes`
 
-Box size goes in the description for **both variant and singleton rows** (it's already in column 11 for variants, but description is searchable in POS — redundancy is harmless).
+Box size goes in the description for **both variant and singleton rows** — this is the same strict rule that now applies to every product (see *Description rules (column 8)*), not a tile-specific allowance. Tile is simply where the practice started.
+
+Per-piece tile and STONE (thresholds, jambs, benches, listellos, pencils, decors) genuinely have no box size: the description states **`Sold per piece`** and carries `Pieces per box` where the supplier gives one. Never leave the question unanswered, and never invent a box size.
 
 ---
 
@@ -536,7 +755,12 @@ Olympia Tile is a tile/stone/vinyl supplier whose Zone AT catalogue produces ~3,
 
 Olympia uses European decimal commas in ~109 stock codes (e.g. `LW.AL.SIL.0,8X1,8.BD`, `IO.ANG.BUT.0,48X0,48`). LS permits `. - _ /` in the `sku` field but **rejects commas** ("SKU codes can only have letters, numbers and …"). 
 
-**Rule:** replace every `,` → `.` in the SKU before writing the LS file (`LW.AL.SIL.0,8X1,8.BD` → `LW.AL.SIL.0.8X1.8.BD`). Apply the same replacement to Airtable's `SKU`/`Supplier SKU` so the merge key stays aligned across both systems (see the bert-airtable-schema Olympia note).
+**Rule:** replace every `,` → `.` in the SKU before writing the LS file (`LW.AL.SIL.0,8X1,8.BD` → `LW.AL.SIL.0.8X1.8.BD`). Apply the same replacement to Airtable's `SKU`/`Supplier SKU` **at ingest, when the record is first created**, so both systems store the dotted form from the outset (see the bert-airtable-schema Olympia note).
+
+> **Not a licence to rewrite existing SKUs.** This is a minting rule for new records.
+> If comma-form SKUs are already stored in Airtable, changing them is a human-approved
+> migration that updates LS and Price History Log v2 together — never an in-place edit
+> and never something an upload run does on its own. See RULE 0.
 
 #### Quirk 2 — Finish-spanning collections (finish must go in the NAME)
 
@@ -637,6 +861,13 @@ The source data sheet (any brand) MUST contain these columns:
 
 ## Pre-upload checklist
 
+- ☐ **Every row for a product that already exists in Lightspeed carries its
+  `Lightspeed ID` in column 1 (`id`).** A blank `id` on an existing product makes LS
+  **create a duplicate instead of updating it**. Populate from Airtable's
+  `Lightspeed ID` (`fldQhbI35Ng2ZxNKL`) for every matched row; leave blank *only* for
+  genuinely new products, where LS assigns the UUID on import. This is the LS-side
+  twin of the SKU-duplication trap — the 2026-09-03 Grandeur file was built with all
+  231 ids blank, which would have duplicated 212 live products.
 - ☐ Every row has a unique SKU (column 3)
 - ☐ **Handles contain ONLY letters and numbers** — no hyphens, dots, spaces, or symbols (strip from source before upload)
 - ☐ **SKUs contain only letters, numbers and `. - _ /`** — NO commas or spaces (LS rejects commas; replace `,`→`.` — see Olympia subsection)
@@ -658,7 +889,10 @@ The source data sheet (any brand) MUST contain these columns:
   - Variant group, mixed box sizes → sf/b OMITTED from name, carried in column 11 as `[Grade] - [sfb]sf/b`, and echoed in description for POS search
   - sf/b formatted to two decimals wherever it appears in column 11
 - ☐ variant_option_one_name AND variant_option_one_value are BLANK for every single-row handle (regardless of whether grade is present)
-- ☐ **Transitions/mouldings follow the searchable name format** — `[Brand] - Transition | [Type] | [Material] | [Dimensions]`, full brand name spelled out, `Transition` token present, type token taken verbatim from the controlled list
+- ☐ **Transitions/mouldings follow the searchable name format** — `[Supplier] - Transition | [Type] | [Material] | [Dimensions]`, full supplier name spelled out, `Transition` token present, type token taken verbatim from the controlled list
+- ☐ **The two-token search actually resolves** — for every accessory family in the file, confirm that `<Supplier> <Family>` (e.g. `Canadian Standard Transition`) matches every row of that family and no row outside it. This is the whole point of the format; assert it over the file rather than trusting the template.
+- ☐ **No two trims share type + material + dimensions + price** — identical on all four means one physical stick listed twice; merge them and name both lines in `[Dimensions]`. Differing dimensions or price stay separate. Check before import: merging is free while the rows are new.
+- ☐ **`[Material]` is one of exactly `SPC` / `Laminate` / `Wood`** — no `LVP`, `LVT`, `WPC`, `Engineered`, `Hardwood plywood`, or a species code. Any other value means the resolver fell through a data gap; fix the mapping, do not ship a fourth token.
 - ☐ **Renamed accessories carry their `id`** — every accessory row whose name changed has the Lightspeed UUID in column 1, or the import creates duplicates instead of renaming
 - ☐ **Name dedup applied** — if Collection contains Species, Species dropped from name; if Collection ends with Install, Install dropped from name
 - ☐ **supply_price ← `Cost/unit` and retail_price ← `Retail price/unit`** for every row (the only valid source for these two columns; never blank for priced products, including per-piece accessories)
@@ -670,12 +904,15 @@ The source data sheet (any brand) MUST contain these columns:
 - ☐ **id column copied from Airtable source** — populated rows will UPDATE existing LS products; blank rows will CREATE new ones. Never leave blank for products that already have an LS UUID in Airtable.
 - ☐ brand_name and supplier_name match the source Brand/Supplier columns
 - ☐ description contains all unmapped source fields as pipe-delimited text
+- ☐ **EVERY row's description states its square feet per box** — `Box size (sf): <n>` where the product has one, or `Sold per piece` / `Sold per sq ft` where it genuinely does not. No exceptions, including rows whose name or column 11 already carries sf/b. Assert this over the whole file, not by spot-check: a row with neither is a defect.
+- ☐ **`Pieces per box` is in the description on every row that has one**
 
 ---
 
 ## Notes
 
 - The LS product name is for POS/internal use only. Website names managed separately.
-- If a new brand is introduced, confirm `[NAME_PREFIX]` and `[HANDLE_PREFIX]` with user first.
+- If a new supplier is introduced, confirm `[NAME_PREFIX]` and `[HANDLE_PREFIX]` with user first.
+- Assert every `name` in the file starts with the SAME supplier prefix (or the spelled-out supplier name, for accessories). More than one supplier abbreviation in a single-supplier upload means the prefix was taken from `Brand` — a defect.
 - SPC and Laminate follow a different schema — not covered here.
 - Source sheet column names must match the schema above. Map different column names first.

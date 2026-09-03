@@ -7,6 +7,25 @@ description: "The master reference for Titan Flooring's Airtable database schema
 
 Master Flooring Catalogue + Price History Log | Titan Flooring Inc. | Internal Use Only
 
+> ### ⚠️ Two formatting rules that protect the prices in this file — do not "tidy" them
+>
+> **1. This is a reference document. Never invoke it with arguments.** To process a
+> price list, use **`/process-price-list <notionID>`**, which loads this file as a
+> reference.
+>
+> **2. Single-digit dollar amounts are written `$ 1.00`, with a space.** That space is
+> load-bearing. A dollar sign immediately followed by a single digit (1 through 9) is a
+> slash-command **positional-argument token**: invoke this file with an argument and
+> every such price is silently rewritten to that argument, keeping only the decimals.
+> On 2026-09-03 a `/bert-airtable-schema <url>` invocation turned the global markup
+> rule into `Retail = Cost + https://…notion.so/….00`, in all 45 places it appears,
+> plus 28 more single-digit prices. Nothing errors; the document just states wrong
+> prices. (This note deliberately never writes the token itself, so the warning
+> survives the very substitution it describes.)
+>
+> Multi-digit amounts (`$20`, `$15.00`) are safe and stay tight — the mismatch is
+> deliberate. Closing the gap in `$ 1.00` reintroduces the bug.
+
 ## Purpose
 
 This guide explains every field in the Bert Airtable base — what it is, how to fill it in, and why it matters. It is the reference document for anyone entering products, updating pricing, or building automation on top of this data.
@@ -16,6 +35,115 @@ The base has two tables: **Master Flooring Catalogue** (the product database) an
 ---
 
 ## How the base works
+
+### RULE 0 — the Airtable SKU is immutable and is the source of truth
+
+**This rule overrides everything else in this document, every supplier subsection,
+every method file, and every routine. There is no exception and no supplier-specific
+override.**
+
+1. **Once a record exists in the Master Flooring Catalogue, its `SKU`
+   (`fldx3byCOht5HbKmH`) never changes.** Not renamed, not re-cased, not re-numbered,
+   not re-formatted, not "tidied", not migrated to a newer convention, not corrected
+   for a typo. A SKU is created exactly once and is then permanent for the life of the
+   record.
+2. **The Airtable SKU is the single source of truth.** Lightspeed, Notion, Make,
+   every export, every upload file and every downstream system **matches to it**.
+   Nothing matches the other way. If Airtable and another system disagree about a
+   SKU, **Airtable is right by definition** and the other system is what gets fixed.
+3. **No automated process may ever write the `SKU` field on an existing record.**
+   Upserts merge *on* SKU (`fieldIdsToMergeOn: ['fldx3byCOht5HbKmH']`); SKU is never
+   itself in the payload of fields being updated. An update that would change a SKU is
+   a bug — stop the batch and escalate, do not "fix" it.
+4. **A newly generated SKU is valid only for a product that genuinely does not exist
+   yet**, and only after the matching cascade has failed to find it. Extraction
+   renumbers per run, so a generated SKU is never evidence that a product is new — it
+   is a value awaiting confirmation.
+5. **A SKU that looks wrong is escalated, never edited.** Changing one orphans the
+   Lightspeed record, every Price History Log v2 row, and any relation pointing at it.
+   If a legacy or malformed SKU genuinely has to change, that is a deliberate,
+   human-approved migration that updates every dependent system together — never an
+   in-place edit, and never something a routine does on its own.
+
+Legacy prefixes that predate the current format (e.g. Grandeur's `SPC-`/`WPC-` vinyl,
+Olympia's dotted stock codes) are **correct by virtue of existing**. Match against
+them as they are stored. Apply current formatting rules only when minting a SKU for a
+genuinely new product.
+
+### RULE 0a — the three identity fields and where each one is born
+
+`SKU`, `LS Handle / Parent ID` and `Lightspeed ID` are **all three source-of-truth on
+Airtable**. They differ only in *who creates them and when*, and confusing that is
+what produces duplicates.
+
+| Field | Created by | Created when | On a new product |
+|---|---|---|---|
+| `SKU` | **Titan** | Record creation | Minted from the price list. Permanent from that moment (RULE 0). |
+| `LS Handle / Parent ID` | **Titan** | Record creation | **We mint it ourselves** using the handle-generating schema (`[HANDLE_PREFIX][SizePrefix][SpeciesAbbrev][COLOUR]`, alphanumeric only). It is uploaded to Lightspeed, and Lightspeed adopts it. |
+| `Lightspeed ID` | **Lightspeed** | On import into LS | **Blank — and correctly blank.** LS generates the UUID. It must then be **reverse-populated back into Airtable**. |
+
+**The asymmetry that matters:** a handle is ours to create and push *out* to
+Lightspeed. An LS ID can only come back *in* from Lightspeed. So a new product is
+uploaded with a handle and no id; LS assigns the id; that id is written back to
+Airtable.
+
+`SKU` remains the matching factor throughout — it is what ties an Airtable record to
+its Lightspeed product in both directions, and it is how the returning UUID finds its
+home.
+
+#### Closing the loop is mandatory — but it is batched, not per-run
+
+The generated `Lightspeed ID`s must come back into Airtable. **The cadence is Albert's
+choice and is deliberately batched** (decided 2026-09-03): one LS product export can
+cover many price lists at once, so the backfill runs periodically rather than after
+every list. Use the `ls-id-backfill` skill — export the products from LS, match on
+`SKU`, write the UUIDs back.
+
+Because the backfill lags the runs that created the products, **the outstanding work
+is tracked on the Notion Price Lists row**, not in anyone's head:
+
+| Property | Set by | Meaning |
+|---|---|---|
+| `New Products` (number) | the price list run | how many new SKUs it minted — `0` when none |
+| `Airtable Sync` (select) | run, then importer | `Pending` = Airtable does not yet mirror the attached file · `Done` = it does · `Not needed` = reviewed, deliberately not imported |
+| `POS` (checkbox) | whoever uploads | checked = the LS file has been pushed to the POS |
+| `LS Backfill` (select) | run, then backfill | `Pending` = new products awaiting UUIDs · `Done` = backfilled · `Not needed` = the run created none |
+
+A run leaves `Airtable Sync = Pending` always, and `LS Backfill = Pending` whenever it
+minted ≥1 new product (`Not needed` otherwise). **A run never writes `Done`, and never
+touches `POS`** — the person or agent that performs the import, the upload or the
+backfill does.
+
+**The order is forced:** `Airtable Sync: Done` → `POS ✅` → `LS Backfill: Done`. A new
+product has no Lightspeed ID until the POS upload creates one, so nothing can be
+back-filled before `POS` is checked. The actionable backfill set is therefore
+`LS Backfill is Pending` **and** `POS` checked — a `Pending` row with `POS` unchecked
+is waiting to be uploaded, not waiting for you to backfill it.
+
+`New Products` is the check on the backfill: it says how many UUIDs that row should
+have produced, so a short count is visible rather than silent.
+
+**`Airtable Sync = Done` is a claim about agreement, not a completed step:** it means
+Airtable *currently* mirrors the file attached to that row. Edit the file and re-attach
+it and the row returns to `Pending` — a corrected file is a new pending change, and
+leaving it `Done` is how the base drifts from what the row claims. `Status = Done` only
+once both trackers read `Done` or `Not needed`.
+
+Until a row reaches `Done` its products are incomplete, and the failure is delayed and
+silent: a later run reads a blank `Lightspeed ID`, ships an LS file with a blank `id`
+for a product that now exists in LS, and **duplicates it**. A new product is not
+finished when it is uploaded — it is finished when its id is back in Airtable. Batching
+changes *when* that happens, never *whether*.
+
+#### Once populated, they are authoritative
+
+**Once a record carries a `Lightspeed ID` and a handle, Airtable is the source of
+truth for them and no automated process overwrites either.** Not a regenerated handle,
+not an id from a stale export, not a "corrected" value.
+
+They may be replaced only on an **explicit instruction from Albert to swap in a
+specific matching set of data** — a deliberate, named operation, never a routine's own
+judgement and never a side effect of a price list run.
 
 ### Three layers of data
 
@@ -29,7 +157,7 @@ Every product record in the Master Flooring Catalogue serves three consumers sim
 
 All products follow a single flat markup:
 
-**Retail price/unit = Cost/unit + $1.00**
+**Retail price/unit = Cost/unit + $ 1.00**
 
 This applies to every category.
 
@@ -51,7 +179,7 @@ When scanning a supplier promo sheet, a promoted grade or colour may not exist a
 - **Do not apply the promo cost to an incorrect grade** (e.g. do not put a Character promo on a Select record)
 - **Create a new product record** for the missing grade, copying all available specs from the closest matching record (same colour, same width, different grade)
 - Set **Cost/unit = Promo cost ($/sf)** — since no original cost is available, the promo cost is used as a placeholder per the Sale item pricing logic rule 3
-- Set **Retail price/unit = Cost + $1.00**
+- Set **Retail price/unit = Cost + $ 1.00**
 - Set **Promo cost ($/sf)** and **Promo end date** as per the promo sheet
 - For fields that cannot be confirmed from existing records (e.g. Collection), **leave blank** rather than guessing — do not copy fields that may differ by grade
 - Flag the new record to the team so specs can be verified with the supplier
@@ -64,9 +192,41 @@ When processing a supplier price list, some products are marked as SALE items wi
 
 2. **Previous price list** — if no regular price exists in the current price list, check the most recent previous price list from the same supplier. Use that cost as the original Cost/unit. The SALE cost goes into Promo cost ($/sf).
 
-3. **Use promo cost as original** — if neither source provides an original cost, use the SALE cost as Cost/unit. Retail price/unit = SALE cost + $1.00. The SALE cost still goes into Promo cost ($/sf) as well. When Cost and Promo cost show the same value, this signals that the original cost was not available and the promo cost was used as a placeholder.
+3. **Use promo cost as original** — if neither source provides an original cost, use the SALE cost as Cost/unit. Retail price/unit = SALE cost + $ 1.00. The SALE cost still goes into Promo cost ($/sf) as well. When Cost and Promo cost show the same value, this signals that the original cost was not available and the promo cost was used as a placeholder.
 
-In all cases, Promo cost ($/sf) = the supplier's SALE cost as-is. The regular Retail price/unit = Cost + $1.00. Retail adjustment during a promo is done manually.
+In all cases, Promo cost ($/sf) = the supplier's SALE cost as-is. The regular Retail price/unit = Cost + $ 1.00. Retail adjustment during a promo is done manually.
+
+### Length extraction — always attempt it
+
+**Added 2026-09-03 (Albert).** `Length` is column 17 of the canonical list. Every ingest
+attempts to populate it; leave it blank only when the supplier genuinely never states a
+length.
+
+**It is a text field on purpose.** Length is not reliably a number:
+
+| Supplier states | Store | Why text |
+|---|---|---|
+| Random length | `RL` | A real product fact, not missing data — the dominant value on engineered and solid hardwood |
+| A fixed length | `48"`, `1520mm`, `94.5"` | Units vary by supplier; keep the unit with the value |
+| A range | `20" - 83"` | Common on wide-plank and XL lines |
+| Random within a range | `RL (16" - 75")` | Both facts matter |
+| Nothing | blank | Never invent one |
+
+A number column would force discarding `RL`, ranges, and the unit — which is most of the
+data. Store what the supplier printed.
+
+**Where to find it.** Length is usually the third element of a printed dimension string:
+`6½" x ¾" x RL` → `RL`; `9.29" x 59.76"` → `59.76"`; `(6+2mm x 9" x 60"RL)` → `60"RL`.
+Watch for it in section headers rather than per-row — most suppliers state the size once
+per collection and list only colours beneath.
+
+**Do not confuse it with thickness or veneer.** In `5" x 12.7mm x RL` the middle value is
+thickness. Where a supplier appends veneer to the same string (`RL - 2.5mm top`), the
+length is `RL` and the veneer belongs in `Veneer / top layer (mm)`.
+
+**Lightspeed is unchanged** — length keeps living in the LS `name` spec segment as it
+always has. The new field is the source it reads from, rather than something re-parsed
+out of the product name.
 
 ### Stock status assignment rules
 
@@ -149,13 +309,13 @@ The source of truth for all Titan flooring products. Every active product that B
 
 | Field name | Type | Description | Notes |
 |------------|------|-------------|-------|
-| **SKU** | Single line text | Internal product code. Primary key — unique across all records. Format: CAT-SUPP-0001 e.g. ENG-VIDR-0042 | LS · Bert — never change after creation |
+| **SKU** | Single line text | Internal product code. Primary key — unique across all records. Format: CAT-SUPP-0001 e.g. ENG-VIDR-0042 | LS · Bert — **immutable and the source of truth; see RULE 0. Never written on an existing record by any process.** |
 | **Product name** | Single line text | Human-readable name including colour and grade. e.g. Vidar 7.5" AWO — Macaroon (Character) | LS · Bert |
 | **Brand** | Single line text | The product brand. May differ from Supplier — e.g. BOEN sold by Canadian Standard | LS |
 | **Supplier** | Single select | Which supplier this product is ordered from. Choose from the controlled list. | Bert |
 | **Supplier SKU** | Single line text | Supplier's own product code if they use one. Leave blank if supplier does not assign codes. Cowork uses this for price list matching. | Auto — blank if no supplier code |
-| **Lightspeed ID** | Single line text | Lightspeed's internal record ID. Populated after LS upload. Do not fill in manually. | LS — populated post-upload |
-| **LS Handle / Parent ID** | Single line text | Groups grade variants under one parent in Lightspeed. Shared by all grades of the same colour and width. **Must contain only letters and numbers — no hyphens, dots, spaces, or symbols.** This value is copied directly into Lightspeed on upload; LS rejects non-alphanumeric handles. Format: `[HANDLE_PREFIX][SizePrefix][SpeciesAbbrev][COLOR]` e.g. VIDR6AWOSILVERSTONE | LS |
+| **Lightspeed ID** | Single line text | Lightspeed's internal record ID. **Generated by Lightspeed on import, never by us** — blank is the correct state for a product not yet uploaded. After an upload it must be **reverse-populated back into Airtable** (`ls-id-backfill`), matching on SKU; skipping that duplicates the product on the next run. Once populated, Airtable is source of truth and no automation overwrites it. See RULE 0a. | LS — populated post-upload |
+| **LS Handle / Parent ID** | Single line text | Groups grade variants under one parent in Lightspeed. Shared by all grades of the same colour and width. **Must contain only letters and numbers — no hyphens, dots, spaces, or symbols.** This value is copied directly into Lightspeed on upload; LS rejects non-alphanumeric handles. **We create it ourselves** for a new product, from the handle-generating schema `[HANDLE_PREFIX][SizePrefix][SpeciesAbbrev][COLOR]` (e.g. VIDR6AWOSILVERSTONE) — never truncate the colour/collection token. Once stored it is authoritative: copied as-is on every later upload, never regenerated. See RULE 0a. | LS |
 | **Collection** | Single line text | Product line or series name. e.g. 6 Collection, 7.5 Collection, Chevron Collection | LS · Bert |
 | **Product type** | Single select | Top-level type. Flooring / Accessory / Moulding / Hardware / Adhesive / Underpad | LS · Bert |
 | **Category** | Single select | Flooring format/shape category. **LVP** (luxury vinyl plank), **LVT** (luxury vinyl tile), Engineered hardwood, Solid hardwood, Laminate, Tile / Stone, **STONE**, Carpet. `Tile / Stone` is for installed tile, mosaic, and slab products (floor or wall). `STONE` is a separate category reserved for fabricated marble and quartz pieces sold per-piece — thresholds, shower jambs, and benches. Do not mix the two: a 12×24 porcelain field tile is `Tile / Stone`; a 4×48 Bianco Carrara threshold is `STONE`. Note: SPC and WPC are core construction types — they live in Material type, not Category. A product can be "LVP" (category) with "SPC core" (material type) simultaneously. | LS · Bert |
@@ -170,6 +330,7 @@ The source of truth for all Titan flooring products. Every active product that B
 | Field name | Type | Description | Notes |
 |------------|------|-------------|-------|
 | **Width (in)** | Number | Plank or tile width in inches. | Bert |
+| **Length** | Single line text | Plank, tile or piece length **as the supplier states it**. Deliberately text, not a number — see *Length extraction* below. `RL` for random length, a measurement with its unit (`48"`, `1520mm`, `94.5"`), or a range (`20" - 83"`). **Always attempt to populate it** (Albert, 2026-09-03). | LS · Bert |
 | **Thickness (mm)** | Number | Overall product thickness in mm. | Bert |
 | **Wear layer (mil)** | Number | LVP / SPC only. Wear layer in mil. e.g. 12, 20, 22. Leave blank for hardwood. | Bert |
 | **Veneer / top layer (mm)** | Number | Engineered hardwood only. Top veneer thickness in mm. e.g. 2, 3, 4. Affects sanding potential. | Bert |
@@ -194,12 +355,12 @@ The source of truth for all Titan flooring products. Every active product that B
 | Field name | Type | Description | Notes |
 |------------|------|-------------|-------|
 | **Cost/unit** | Currency | Supplier cost per unit. The unit is per sq ft for flooring, and per piece for tile, stone, and accessories. **All supplier costs go here** regardless of pricing unit. Updated by Cowork when a new price list is processed. | LS · Auto |
-| **Retail price/unit** | Currency | Selling price per unit (same unit as Cost/unit — per sq ft for flooring, per piece for tile/stone/accessories). Default = Cost + $1.00 for flooring; accessory markups vary (see supplier sections). This is what Bert quotes. | LS · Bert |
+| **Retail price/unit** | Currency | Selling price per unit (same unit as Cost/unit — per sq ft for flooring, per piece for tile/stone/accessories). Default = Cost + $ 1.00 for flooring; accessory markups vary (see supplier sections). This is what Bert quotes. | LS · Bert |
 | **MAP price ($/sf)** | Currency | Minimum Advertised Price set by supplier. Grandeur and some others enforce this. Bert will not quote below MAP. | |
 | **Pallet price ($/sf)** | Currency | Full skid / pallet price per sq ft where supplier offers a volume discount. | Auto |
 | **Promo cost ($/sf)** | Currency | Active promotional cost per sq ft from the supplier. When populated, Bert flags this product as having an active promo. Retail price is adjusted manually — not auto-calculated. Cleared automatically when promo ends. | Bert · Auto |
 | **Promo end date** | Date | When the promotional price expires. Cowork clears Promo cost automatically on this date. | Auto |
-| **Volume pricing notes** | Long text | Tiered pricing rules. e.g. Vidar: Cut order $1.39 / 1-5 skids $1.34 / 6-20 skids $1.29 | |
+| **Volume pricing notes** | Long text | Tiered pricing rules. e.g. Vidar: Cut order $ 1.39 / 1-5 skids $ 1.34 / 6-20 skids $ 1.29 | |
 | **Last price update** | Date | Date cost or retail was last updated. Bert flags records older than 90 days as potentially stale. | Auto |
 | **Price last changed by** | Single select | Manual or Cowork. Audit trail. | Auto |
 
@@ -295,13 +456,13 @@ Standard row values: `Change date` = date recorded; `Supplier` = the supplier; `
 - Column headers must match Airtable field names exactly
 - All columns must be present even if blank
 - Checkbox fields: use TRUE or FALSE (text)
-- Currency fields: numbers only, no $ sign (e.g. 4.79 not $4.79)
+- Currency fields: numbers only, no $ sign (e.g. 4.79 not $ 4.79)
 - Date fields: YYYY-MM-DD format
 - Multi-select fields: separate values with a semicolon (e.g. Kitchen; Bedroom; Living room)
 
 ### Canonical column list — ALWAYS use this exact order
 
-**Every Airtable upload file must contain exactly these 56 columns in this order.** Do not infer columns from the schema description — use this list verbatim. Columns not applicable to a product are left blank (None), never omitted.
+**Every Airtable upload file must contain exactly these 57 columns in this order.** Do not infer columns from the schema description — use this list verbatim. Columns not applicable to a product are left blank (None), never omitted.
 
 | # | Column header |
 |---|---|
@@ -321,46 +482,47 @@ Standard row values: `Change date` = date recorded; `Supplier` = the supplier; `
 | 14 | Grade |
 | 15 | Layout pattern |
 | 16 | Width (in) |
-| 17 | Thickness (mm) |
-| 18 | Wear layer (mil) |
-| 19 | Veneer / top layer (mm) |
-| 20 | Veneer cut type |
-| 21 | AC rating |
-| 22 | Finish type |
-| 23 | Install profile |
-| 24 | Install method |
-| 25 | Locking system |
-| 26 | Underpad included |
-| 27 | Underpad type |
-| 28 | IIC rating |
-| 29 | STC rating |
-| 30 | Tile format |
-| 31 | Weight per piece (kg) |
-| 32 | Certifications |
-| 33 | Cost/unit |
-| 34 | Retail price/unit |
-| 35 | MAP price ($/sf) |
-| 36 | Pallet price ($/sf) |
-| 37 | Promo cost ($/sf) |
-| 38 | Promo end date |
-| 39 | Volume pricing notes |
-| 40 | Last price update |
-| 41 | Price last changed by |
-| 42 | Box size (sf) |
-| 43 | Pieces per box |
-| 44 | Boxes per skid |
-| 45 | Pieces per pallet |
-| 46 | Stock status |
-| 47 | Active |
-| 48 | Waterproof |
-| 49 | Pet friendly |
-| 50 | Radiant heat compatible |
-| 51 | Traffic rating |
-| 52 | Suitable rooms |
-| 53 | Residential warranty (yrs) |
-| 54 | Commercial warranty (yrs) |
-| 55 | Salesperson notes |
-| 56 | Pairs well with |
+| 17 | Length |
+| 18 | Thickness (mm) |
+| 19 | Wear layer (mil) |
+| 20 | Veneer / top layer (mm) |
+| 21 | Veneer cut type |
+| 22 | AC rating |
+| 23 | Finish type |
+| 24 | Install profile |
+| 25 | Install method |
+| 26 | Locking system |
+| 27 | Underpad included |
+| 28 | Underpad type |
+| 29 | IIC rating |
+| 30 | STC rating |
+| 31 | Tile format |
+| 32 | Weight per piece (kg) |
+| 33 | Certifications |
+| 34 | Cost/unit |
+| 35 | Retail price/unit |
+| 36 | MAP price ($/sf) |
+| 37 | Pallet price ($/sf) |
+| 38 | Promo cost ($/sf) |
+| 39 | Promo end date |
+| 40 | Volume pricing notes |
+| 41 | Last price update |
+| 42 | Price last changed by |
+| 43 | Box size (sf) |
+| 44 | Pieces per box |
+| 45 | Boxes per skid |
+| 46 | Pieces per pallet |
+| 47 | Stock status |
+| 48 | Active |
+| 49 | Waterproof |
+| 50 | Pet friendly |
+| 51 | Radiant heat compatible |
+| 52 | Traffic rating |
+| 53 | Suitable rooms |
+| 54 | Residential warranty (yrs) |
+| 55 | Commercial warranty (yrs) |
+| 56 | Salesperson notes |
+| 57 | Pairs well with |
 
 ### Before importing a new supplier
 
@@ -397,7 +559,25 @@ wrong in either direction is expensive: importing over an existing supplier
 duplicates their catalogue; API-creating a new supplier bypasses the review the
 import path exists to provide.
 
+> **"Stop there" means stop before importing — still produce the file.** Clarified
+> 2026-09-03 after a run read it the other way and produced nothing for Canadian
+> Standard. A missing supplier subsection means *invent no supplier-specific rules*, not
+> *extract nothing*: apply the global rules, and record every choice the document forced
+> as an explicit assumption in `Salesperson notes` and in the run summary — the **cost
+> basis** first, since dealer-cost-vs-suggested-retail changes every row and precedent
+> runs both ways (CIF ×0.60, Olympia ×0.564, Biyork prints MSRP beside a dealer price).
+> The checklist gates the import; the file makes the checklist *answerable*, because the
+> reviewer can see the actual columns while deciding. Withholding it leaves them nothing.
+>
+> A new supplier also gets **no Lightspeed file** — LS columns 1–3 are copied from the
+> Airtable state, which does not exist until the import happens.
+
 ### Step 2 — the matching cascade
+
+> Everything below resolves **which existing SKU a row belongs to**. It never
+> produces a reason to change one. Per RULE 0, the stored SKU wins every
+> disagreement — a mismatch means the incoming row is wrong about the product, not
+> that the record needs renaming.
 
 Match incoming rows to existing records in this order, stopping at the first tier
 that resolves cleanly:
@@ -427,6 +607,10 @@ sequentially numbered, so that run correctly resolved at tier 2.
 
 ### What to write
 
+- **Never the `SKU` field** (RULE 0). It is the merge key, not a payload field.
+  Upsert with `fieldIdsToMergeOn: ['fldx3byCOht5HbKmH']` and omit SKU from the
+  written fields. If a diff ever shows a SKU change, the match is wrong — stop and
+  escalate rather than writing it.
 - **Only fields that actually changed.** Compare against current values and build a
   per-record diff; do not blanket-write every field on every row.
 - `Last price update` and `Price last changed by` — set these **only when cost or
@@ -527,7 +711,7 @@ Views must be created manually — they cannot be built via the API.
 
 ### Always fill in
 
-- **SKU** — every record must have one, and it never changes after creation
+- **SKU** — every record must have one, and it **never changes after creation** (RULE 0). It is the source of truth every other system matches to.
 - **Product name** — include colour and grade in the name. **Exception: transitions, mouldings, stair components, and sundries** follow the searchable accessory format instead — see below.
 - **Supplier** — use the controlled list, never free-text
 - **Category and Product type** — Bert's primary filters
@@ -579,6 +763,9 @@ Only the controlled transition types get the `Transition` token — stair treads
 
 ### Never edit manually
 
+- **SKU — never edited by anyone, human or automated, once the record exists (RULE 0).
+  Not a "prefer not to": there is no workflow in which editing a SKU in place is
+  correct. Escalate instead.**
 - Cost/unit — updated by Cowork from supplier price lists
 - Promo cost ($/sf) and Promo end date — set and cleared by Cowork
 - Last price update and Price last changed by — written by Cowork
@@ -643,7 +830,7 @@ FAW price lists show three columns after "Size": **Pallet price / sf**, **Box pr
 
 #### Markup overrides
 
-- **Flooring products**: standard `Retail = Cost + $1.00` (global rule).
+- **Flooring products**: standard `Retail = Cost + $ 1.00` (global rule).
 - **Vinyl stair steps and risers**: `Retail = Cost + $20` per set or per piece. Applies only to SPC/vinyl stair products — not to oak or hardwood stair treads.
 - **Oak and hardwood stair treads**: markup rule TBD. Store the supplier per-piece cost in `Cost/unit` and leave `Retail price/unit` blank until a rule is set. Flag in Salesperson notes.
 
@@ -760,7 +947,7 @@ FAW marks promo items as "Colors ON SALE: [names]" in yellow highlighting, usual
 - **Rule 1 applies most often** — regular colours live in the same section, so pull Cost from the regular pallet price and put the SALE pallet price in `Promo cost ($/sf)`.
 - **Promo end date** — FAW does not print end dates on SALE items. Per the global month-end default rule (Jul 2026, supersedes the earlier leave-blank convention): set `Promo end date` = last day of the price list's month, and roll it forward month-by-month if the promo is confirmed still running on the next list. Flag in Salesperson notes.
 
-Example from Feb 23 2026 list: Designer 7.5" regular colours (Monet, Dali) @ $4.99 pallet; SALE colours (Da Vinci, Picasso) @ $3.99 pallet → Cost=$4.99, Retail=$5.99, Promo cost=$3.99, Promo end date blank.
+Example from Feb 23 2026 list: Designer 7.5" regular colours (Monet, Dali) @ $ 4.99 pallet; SALE colours (Da Vinci, Picasso) @ $ 3.99 pallet → Cost=$ 4.99, Retail=$ 5.99, Promo cost=$ 3.99, Promo end date blank.
 
 #### Coming Soon items
 
@@ -798,7 +985,7 @@ Per-piece priced accessories. Store each tread type as a separate `ACC-FAWK-XXXX
 - `Boxes per skid` = pieces per pallet (field is reused for piece count)
 - `Salesperson notes` = style description (Two-sided closed / Left-side finished / Right-side finished / One-side closed Pie), full dimensions, and the phrase "Retail markup TBD — FAW stair markup rule covers vinyl steps only"
 
-Oak Riser has dual pricing (Pallet $2.99 / Piece $3.99). Use $3.99 as `Cost/unit` (per-piece).
+Oak Riser has dual pricing (Pallet $ 2.99 / Piece $ 3.99). Use $ 3.99 as `Cost/unit` (per-piece).
 
 #### Known issues / soft spots
 
@@ -835,7 +1022,7 @@ Triforest price lists show **Price/SF** and **Price/Box** columns (no separate p
 
 - **Use the Price/SF column as `Cost/unit`.**
 - Ignore Price/Box (it's derivable from Cost × Box size).
-- Standard markup applies: `Retail = Cost + $1.00`.
+- Standard markup applies: `Retail = Cost + $ 1.00`.
 
 #### LS Handle format
 
@@ -939,7 +1126,7 @@ Purelux Canada Floors Inc. is supplier and brand (single entity, like Vidar or F
 
 #### Cost column
 
-Purelux lists **Price/SF** and **Price/Box** columns. Use Price/SF as `Cost/unit`. Standard markup applies: `Retail = Cost + $1.00`.
+Purelux lists **Price/SF** and **Price/Box** columns. Use Price/SF as `Cost/unit`. Standard markup applies: `Retail = Cost + $ 1.00`.
 
 #### LS Handle format
 
@@ -1011,11 +1198,11 @@ Purelux **does provide** (usually more thorough than Triforest):
 
 #### SALE items
 
-Purelux marks clearance items with red "On Sale" text in the price column. Known pattern from Feb 2025 list: **5 WPC Series colours (Arctic Mist, Mocha Glow, Natural Essence, Nimbus Gray, Whispering Breeze) on sale at $1.99/sf** while other colours in the same series are $2.99/sf.
+Purelux marks clearance items with red "On Sale" text in the price column. Known pattern from Feb 2025 list: **5 WPC Series colours (Arctic Mist, Mocha Glow, Natural Essence, Nimbus Gray, Whispering Breeze) on sale at $ 1.99/sf** while other colours in the same series are $ 2.99/sf.
 
 **Sale pricing flow**:
-- If a sale colour has a **regular-price equivalent in the same series** (same structure, same spec sheet), set `Cost` = regular equivalent price, `Retail` = Cost + $1.00, `Promo cost ($/sf)` = sale price.
-- If a sale item has **no regular equivalent**, set `Cost` = sale price, `Retail` = Cost + $1.00, `Promo cost ($/sf)` = sale price (clearance-only product).
+- If a sale colour has a **regular-price equivalent in the same series** (same structure, same spec sheet), set `Cost` = regular equivalent price, `Retail` = Cost + $ 1.00, `Promo cost ($/sf)` = sale price.
+- If a sale item has **no regular equivalent**, set `Cost` = sale price, `Retail` = Cost + $ 1.00, `Promo cost ($/sf)` = sale price (clearance-only product).
 - **Promo end date** = blank (Purelux does not publish end dates).
 - Flag in Salesperson notes: "ON SALE. Regular price $X.XX/sf assumed (same structure as series). Confirm with Purelux."
 
@@ -1046,14 +1233,14 @@ Evergreen Building Materials Ltd. is supplier and brand (single entity). Based i
 
 #### Cost column
 
-Evergreen lists `Price / Sq.ft` per tier. Standard markup: `Retail = Cost + $1.00`.
+Evergreen lists `Price / Sq.ft` per tier. Standard markup: `Retail = Cost + $ 1.00`.
 
 **Clearance pricing nuance** — Evergreen marks clearance items with asterisks on the code AND yellow highlighting on the row AND a "*Clearance" label in the header. Pricing logic:
 
-- **If the clearance item has a regular-price equivalent** (same thickness/dimensions in another tier): `Cost` = regular equivalent price, `Retail` = Cost + $1.00, `Promo cost ($/sf)` = clearance price.
-  - Example: `2020*` at $1.69 has a regular equivalent at $1.79 in the same 48"×7.7"×12mm tier. Cost = $1.79, Retail = $2.79, Promo = $1.69.
-- **If the clearance item has no regular equivalent** (unique thickness): `Cost` = clearance price, `Retail` = Cost + $1.00, `Promo cost ($/sf)` = clearance price.
-  - Example: 10mm tier has no non-clearance equivalent. Cost = $1.49, Retail = $2.49, Promo = $1.49.
+- **If the clearance item has a regular-price equivalent** (same thickness/dimensions in another tier): `Cost` = regular equivalent price, `Retail` = Cost + $ 1.00, `Promo cost ($/sf)` = clearance price.
+  - Example: `2020*` at $ 1.69 has a regular equivalent at $ 1.79 in the same 48"×7.7"×12mm tier. Cost = $ 1.79, Retail = $ 2.79, Promo = $ 1.69.
+- **If the clearance item has no regular equivalent** (unique thickness): `Cost` = clearance price, `Retail` = Cost + $ 1.00, `Promo cost ($/sf)` = clearance price.
+  - Example: 10mm tier has no non-clearance equivalent. Cost = $ 1.49, Retail = $ 2.49, Promo = $ 1.49.
 - **Stock status** = `Clearance` on all clearance rows.
 - **Promo end date** = blank (Evergreen's price list is monthly — "Effective DD/MM/YYYY-DD/MM/YYYY" — and they don't publish separate promo end dates; the clearance holds while stock lasts).
 
@@ -1085,12 +1272,12 @@ Evergreen doesn't use named "series" — their tiers are defined by size + thick
 
 | PDF tier | Collection name |
 |---|---|
-| Water Resistant 14mm, 60"×9.4" + 2mm pad, $1.69/sf | `Water Resistant 14mm` |
-| Waterproof 10mm clearance, 60"×9.4", $1.49/sf | `Waterproof Drop Lock 10mm (Clearance)` |
-| Waterproof 12mm clearance, 48"×7.7", $1.69/sf (`2020*`) | `Waterproof Drop Lock 12mm Short Plank` (same collection as the regular tier; stock status distinguishes it) |
-| Waterproof 12mm regular, 48"×7.7", $1.79/sf | `Waterproof Drop Lock 12mm Short Plank` |
-| Waterproof 12mm, 60"×9.4", $1.89/sf | `Waterproof Drop Lock 12mm Standard Plank` |
-| Waterproof 12mm Large Board, 72"×9.4", $1.99/sf | `Waterproof Drop Lock 12mm Large Board` |
+| Water Resistant 14mm, 60"×9.4" + 2mm pad, $ 1.69/sf | `Water Resistant 14mm` |
+| Waterproof 10mm clearance, 60"×9.4", $ 1.49/sf | `Waterproof Drop Lock 10mm (Clearance)` |
+| Waterproof 12mm clearance, 48"×7.7", $ 1.69/sf (`2020*`) | `Waterproof Drop Lock 12mm Short Plank` (same collection as the regular tier; stock status distinguishes it) |
+| Waterproof 12mm regular, 48"×7.7", $ 1.79/sf | `Waterproof Drop Lock 12mm Short Plank` |
+| Waterproof 12mm, 60"×9.4", $ 1.89/sf | `Waterproof Drop Lock 12mm Standard Plank` |
+| Waterproof 12mm Large Board, 72"×9.4", $ 1.99/sf | `Waterproof Drop Lock 12mm Large Board` |
 
 #### Material type defaults
 
@@ -1152,7 +1339,7 @@ GreenTouch price lists show a **single Price column** per product — no pallet/
 
 #### Markup overrides
 
-- **All flooring products** (engineered hardwood and SPC vinyl): standard `Retail = Cost + $1.00` (global rule).
+- **All flooring products** (engineered hardwood and SPC vinyl): standard `Retail = Cost + $ 1.00` (global rule).
 - **T-Moulding & Reducer accessory**: no $/sf price. Store the listed per-piece cost in `Cost/unit` (unit = per piece) and leave `Retail price/unit` blank. Retail markup rule for accessories is TBD — flag in Salesperson notes.
 
 #### Scope of ingest
@@ -1318,9 +1505,9 @@ Vidar is supplier and brand (single entity). Engineered hardwood specialist with
 
 Vidar price lists show tiered volume pricing (cut order / 1–5 skids / 6–20 skids). **Use the 1–5 skid price as `Cost/unit`** unless otherwise instructed. Log the full tier schedule in `Volume pricing notes`.
 
-Example: `Vidar: Cut order $1.39 / 1-5 skids $1.34 / 6-20 skids $1.29`
+Example: `Vidar: Cut order $ 1.39 / 1-5 skids $ 1.34 / 6-20 skids $ 1.29`
 
-Standard markup applies: `Retail = Cost + $1.00`.
+Standard markup applies: `Retail = Cost + $ 1.00`.
 
 #### LS Handle format
 
@@ -1448,28 +1635,41 @@ Grandeur is supplier and brand (single entity). Multi-category supplier: enginee
 |---|---|
 | **Supplier** (single-select) | `Grandeur` |
 | **Brand** | `Grandeur` |
-| **SKU supplier code** | `GRAN` — 4-char suffix for Supplier SKU matching; internal SKU uses `GRND` prefix |
-| **Internal SKU prefix** | `GRND` — e.g. `GRNDENG-0001`, `GRNDLVP-0001` |
-| **Supplier SKU** | Populate with Grandeur's product code verbatim (they publish codes on their price list). SKU prefix by product type: `GRAN` (general), varies by line — confirm per price list. |
+| **SKU supplier code** | `GRAN` — 4-char suffix, canonical format |
+| **Internal SKU format** | `[CAT]-GRAN-####` — the canonical format, e.g. `ENG-GRAN-0030`, `SPC-GRAN-0015`. **`GRND` is the Lightspeed name prefix, NOT the Airtable SKU prefix** — see the correction note below. |
+| **Supplier SKU** | Mostly **blank**. Despite an earlier note that Grandeur publishes codes, only **10 of 239** live records carry a `Supplier SKU`. Populate it when a code is genuinely printed; do not invent one. Expect price-list matching to fall to tier 3 (specifications / `Product name`). |
 
 #### SKU prefix by product type
 
-| Category | LS Name prefix | Example SKU |
-|---|---|---|
-| Engineered hardwood | `GRNDENG` | `GRNDENG-0001` |
-| Solid hardwood | `GRNDHWD` | `GRNDHWD-0001` |
-| SPC/WPC LVP | `GRNDLVP` or `GRNDWPC` | `GRNDLVP-0001` |
-| SPC (rigid core) | `GRNDSPC` | `GRNDSPC-0001` |
-| Laminate | `GRNDLAM` | `GRNDLAM-0001` |
+`GRND…` is the **Lightspeed** name prefix. The **Airtable** SKU is `[CAT]-GRAN-####`.
+Do not use the LS prefix as an Airtable SKU.
+
+| Category | LS Name prefix | Airtable SKU format | Live count (2026-09-03) |
+|---|---|---|---|
+| Engineered hardwood | `GRNDENG` | `ENG-GRAN-####` | 102 |
+| Solid hardwood | `GRNDHWD` | `HWD-GRAN-####` | 6 |
+| LVP | `GRNDLVP` | `LVP-GRAN-####` | 36 |
+| SPC (rigid core) — **legacy** | `GRNDSPC` | `SPC-GRAN-####` | 45 |
+| WPC — **legacy** | `GRNDWPC` | `WPC-GRAN-####` | 20 |
+| Laminate | `GRNDLAM` | `LAM-GRAN-####` | 30 |
+
+> **Correction, 2026-09-03.** This subsection previously stated the internal SKU
+> prefix was `GRND` (`GRNDENG-0001`). That is wrong and was never what the base held.
+> The 2026-09-03 routine run generated 231 rows of `GRNDENG-####` / `GRNDLVP-####`
+> SKUs that matched **none** of the 239 existing Grandeur records; importing that file
+> would have duplicated the whole Grandeur catalogue. Verified against
+> `appWHOVZ0QCS0xQ3M` / `tblfLXD3zkSdNQGbS`. `SPC-`/`WPC-` are legacy prefixes still
+> present in the base — match against them, but issue new vinyl SKUs as `LVP-`/`LVT-`
+> per the global SKU format reference.
 
 #### Cost column
 
-Grandeur lists a single price column per product. Use that value as `Cost/unit`. Standard markup applies: `Retail = Cost + $1.00`.
+Grandeur lists a single price column per product. Use that value as `Cost/unit`. Standard markup applies: `Retail = Cost + $ 1.00`.
 
 **MAP pricing** — Grandeur enforces Minimum Advertised Price on some lines. When MAP is listed:
 - Store MAP in `MAP price ($/sf)` field.
 - Bert will not quote below MAP — it uses `MAP price` as the floor when present.
-- Standard `Retail = Cost + $1.00` still applies for internal cost tracking.
+- Standard `Retail = Cost + $ 1.00` still applies for internal cost tracking.
 
 #### LS Handle format
 
@@ -1522,16 +1722,88 @@ Confirm which fields are omitted on the specific price list being processed. Com
 - **Pet friendly = TRUE** when wear layer ≥ 20 mil.
 - **Radiant heat compatible = FALSE** for Black Walnut. Blank for all others.
 
+#### Product name — the tier-3 matching key
+
+Grandeur rarely carries a `Supplier SKU`, so `Product name` is what an update run
+matches on. The live base and the extraction agree on this shape, and it must not
+drift:
+
+```
+Grandeur [width]" [SpeciesAbbrev] — [Colour] ([LetterGrade])
+```
+
+**The species abbreviations are a hard contract, not a preference.** The 2026-09-03
+run had to normalise 56 rows because the extraction invented its own; a mismatch here
+means a product silently reads as new and gets a duplicate SKU.
+
+| Use | Never | Species |
+|---|---|---|
+| `EWO` | | European White Oak |
+| `AO` / `WO` | | American Oak / White Oak |
+| `NAH` | `HIC` | North American Hickory |
+| `HM` | `MPL` | Hard Maple |
+| `NARO` | `RO` | North American Red Oak |
+
+Vinyl/laminate rows use the collection in place of the species —
+`Grandeur 7" Pacific — Canterbury`.
+
+**No redundant parentheticals.** The width is already in the name, so
+`Sandbar (ABC)` — never `Sandbar (7.5") (ABC)`. No thickness parenthetical either:
+`Connecticut`, not `Connecticut (7.0mm)`. Collection names drop a trailing
+"Collection": `12mm XXL — …`, not `12mm XXL Collection — …`.
+
+**The grade in parentheses is the supplier's letter grade verbatim** (`(ABCD)`,
+`(ABC)`, `(AB)`) — *not* the mapped canonical word. The mapped value goes in the
+`Grade` field; the name keeps the letters. Examples from the live base:
+`Grandeur 7.5" EWO — Moonfrost (ABCD)`, `Grandeur 7.5" AO — Honeycomb (AB)`.
+**Exception — solid hardwood** uses the word form without "Grade": `(Select)`, never
+`(Select Grade)`.
+
+#### LS Handle convention
+
+`GRND` + the Product name minus the leading `Grandeur ` and minus the trailing grade
+parenthetical, uppercased, all non-alphanumerics stripped. Examples verified against
+the live base: `GRND75EWOMORAINE`, `GRND7PACIFICCANTERBURY`, `GRND12MMAQUAMATESYDNEY`.
+
+**Never truncate the colour or collection token** — the same rule as CIF and Olympia.
+The 2026-09-03 run truncated collections to 12 characters and produced collisions
+(`GRNDESSENTIAALGONQUIN`, `GRND12COLLECARLESNATURAL`), and also left dots in
+(`GRND6.5EWOBARBADOS`) which LS rejects outright. Strip to alphanumeric, keep the
+whole token, however long it gets.
+
+**For a matched row, take the handle from the live record rather than regenerating
+it** — the stored handle is what Lightspeed already groups on.
+
 #### Upload stats (reference)
 
-From the most recent Grandeur LS upload:
-- **238 total products** extracted from price list.
-- **163 updates** to existing LS records + **75 new products** added.
-- Airtable upsert used `performUpsert` with `fieldIdsToMergeOn: ['fldx3byCOht5HbKmH']` (SKU field).
+Live catalogue as of **2026-09-03**: **239 Grandeur records** (ENG 102, SPC 45,
+LVP 36, LAM 30, WPC 20, HWD 6), only 10 of which carry a `Supplier SKU`.
+
+Matching resolves at **tier 3 (specifications / `Product name`)** for 229 of 239 rows,
+because only 10 carry a `Supplier SKU`. Use the matching cascade under "Updating
+existing products from a price list"; do not upsert on a SKU the extraction generated.
+
+> An earlier version of this block cited a `performUpsert` on
+> `fieldIdsToMergeOn: ['fldx3byCOht5HbKmH']` against 238 extracted products. Merging
+> on a **run-generated** SKU is exactly the failure the 2026-09-01 changelog entry
+> forbids and the 2026-09-03 run reproduced. Merge only on a SKU read back from the
+> base for that specific product.
+
+**Every LS upload row for an existing product needs its `Lightspeed ID`** in column 1
+of the LS file. All 239 live Grandeur records carry one (`fldQhbI35Ng2ZxNKL`). A blank
+`id` on an existing product makes Lightspeed **create a duplicate instead of
+updating** — the 2026-09-03 LS file was built with all 231 ids blank and had to be
+backfilled before it was safe to import. Leave `id` blank only for genuinely new
+products.
 
 #### Grandeur ingest output format
 
-File naming convention: `grandeur_airtable_upload_[YYYY-MM-DD].xlsx`. Save to `/mnt/user-data/outputs/`.
+Two files per price list, both attached to the Notion Price Lists row's
+`Extracted Files` (see `methods/pricelist-routine-prompt.md` step 7):
+`grandeur_airtable_upload_[YYYY-MM-DD].xlsx` and
+`grandeur_ls_upload_[YYYY-MM-DD].xlsx`. In this repo they are written to
+`ingest/YYYY-MM-DD/`, not `/mnt/user-data/outputs/` (that path is for claude.ai
+sessions).
 
 ---
 
@@ -1552,7 +1824,7 @@ Sunshiny is supplier and brand (single entity), and also distributes the **Appal
 
 Sunshiny price lists show a **single Dealer/Retailer price column** per product. Use that value directly as `Cost/unit` for all flooring products. Ignore any deposit or CAD-column variants if present.
 
-Standard markup applies: `Retail = Cost + $1.00` for all flooring.
+Standard markup applies: `Retail = Cost + $ 1.00` for all flooring.
 
 #### Markup overrides — accessories (cross-supplier standard)
 
@@ -1739,7 +2011,7 @@ Woden Flooring (order@wodenflooring.com, 905-475-0339, wodenflooring.com) is bot
 
 #### Cost column
 
-Woden prints a single per-sf price per collection (sometimes two/three price tags where promo tiers exist). That price is the **cost**. Standard markup applies: `Retail = Cost + $1.00`. Accessories and underpad are priced per piece and are also costs (see below).
+Woden prints a single per-sf price per collection (sometimes two/three price tags where promo tiers exist). That price is the **cost**. Standard markup applies: `Retail = Cost + $ 1.00`. Accessories and underpad are priced per piece and are also costs (see below).
 
 #### Scope of ingest
 
@@ -1777,7 +2049,7 @@ Woden uses European letter grades on engineered lines plus one word grade:
 | `Character Grade` | `Character` (verbatim — word "Grade" present) |
 | (no grade stated — Vermont, all vinyl, laminate) | blank |
 
-**Lumine** lists the same colours in both AB and ABC at different prices (AB @ $5.49, ABC @ $4.99) — split into two records per colour, one per grade, with the grade in the Product name suffix (` — Snowhaze AB` / ` — Snowhaze ABC`).
+**Lumine** lists the same colours in both AB and ABC at different prices (AB @ $ 5.49, ABC @ $ 4.99) — split into two records per colour, one per grade, with the grade in the Product name suffix (` — Snowhaze AB` / ` — Snowhaze ABC`).
 
 #### Specs Woden provides / omits
 
@@ -1797,8 +2069,8 @@ ENG thickness is printed as ¾" → store `Thickness (mm) = 19.05`. SPC "PAD" la
 
 Woden uses two distinct words and they map differently:
 
-- **"Clearance / while stock last"** (7 Diamond Collection) → `Stock status = Clearance` **and** apply Sale pricing. No regular price exists on the list for 7 Diamond, so **Sale rule 3**: `Cost = SALE price`, `Retail = Cost + $1.00`, `Promo cost = SALE price`. Cost = Promo cost signals original cost unavailable. Note "while stock last; final sale" and the 8 Diamond replacement.
-- **"(promotion)"** (Vermont Charcoal @ $2.50; Grand Chateau Natural/Coyote @ $2.50; and effectively the lower in-collection price tiers) → `Stock status` stays **blank**; `Promo cost = promo price`; `Cost` = the in-collection regular price (Sale rule 1). For Grand Chateau Natural/Coyote no separate regular price is printed → use the nearest in-collection regular tier ($3.29) as Cost and flag to confirm.
+- **"Clearance / while stock last"** (7 Diamond Collection) → `Stock status = Clearance` **and** apply Sale pricing. No regular price exists on the list for 7 Diamond, so **Sale rule 3**: `Cost = SALE price`, `Retail = Cost + $ 1.00`, `Promo cost = SALE price`. Cost = Promo cost signals original cost unavailable. Note "while stock last; final sale" and the 8 Diamond replacement.
+- **"(promotion)"** (Vermont Charcoal @ $ 2.50; Grand Chateau Natural/Coyote @ $ 2.50; and effectively the lower in-collection price tiers) → `Stock status` stays **blank**; `Promo cost = promo price`; `Cost` = the in-collection regular price (Sale rule 1). For Grand Chateau Natural/Coyote no separate regular price is printed → use the nearest in-collection regular tier ($ 3.29) as Cost and flag to confirm.
 - **No promo end dates** — Woden never prints them. Leave `Promo end date` blank; promo holds until next list or manual update.
 
 Multi-tier collections (Elite 3.79/3.59, Grand Chateau 3.79/3.29/2.50, Timbercraft 5.99/5.49, Lumine 5.49/4.99) are priced per colour at the tier shown — these are different price points, not promos, unless the word "promotion" appears.
@@ -1813,8 +2085,8 @@ All per-piece. Woden list prices are **costs** → store in `Cost/unit` (unit = 
 | T-Moulding | $15 | +$10 | $25 |
 | Stair Nosing (Round Return) | $18 | +$15 (stair nose) | $33 |
 | Stair Board (Square Return) set (1 stair + 1 riser) | $38 | +$15 | $53 |
-| Riser (sold separately) | $8 | +$15 | $23 |
-| 2mm Blue Underpad w/ vapour barrier (200 sf) | $6 | +$20 | $26 |
+| Riser (sold separately) | $ 8 | +$15 | $23 |
+| 2mm Blue Underpad w/ vapour barrier (200 sf) | $ 6 | +$20 | $26 |
 | 3mm Black EVA Condo Pad, silver foil, IIC 73/STC 72 (200 sf) | $17 | +$20 | $37 |
 
 Riser-alone and the square-return set both lack a dedicated markup standard — Stair Tread +$15 applied as the closest rule; flag to confirm with rep. Accessories: `Category = LVP`, `Material type = SPC core` (or blank for underpad), `Product type = Accessory`/`Underpad`. The condo pad's IIC 73 / STC 72 go in the IIC/STC fields.
@@ -1832,7 +2104,7 @@ Glue Down, Herringbone, and Looselay colours list "identical to [plank code]" (e
 
 #### Woden ingest output format
 
-Produce an Excel file with all 56 schema columns. File naming: `woden_airtable_upload_[YYYY-MM-DD].xlsx` using the list's Effective date. Save to `/mnt/user-data/outputs/`.
+Produce an Excel file with all 57 schema columns. File naming: `woden_airtable_upload_[YYYY-MM-DD].xlsx` using the list's Effective date. Save to `/mnt/user-data/outputs/`.
 
 ---
 
@@ -1863,12 +2135,12 @@ Round to two decimals. Apply this exactly once — do not double-discount. The p
 
 #### Markup overrides — CIF only
 
-CIF breaks the standard `Retail = Cost + $1.00` rule. Three distinct markup tiers apply:
+CIF breaks the standard `Retail = Cost + $ 1.00` rule. Three distinct markup tiers apply:
 
 | Product type | Markup | Notes |
 |---|---|---|
-| Tile (porcelain, ceramic field tile, slabs) | `Retail = Cost + $2.00` | Applies to floor and wall tile, regardless of size or material |
-| Mosaic (anything `Tile format = Mosaic`, including hex mosaics, listellos, pencils, decors) | `Retail = Cost + $5.00` | Higher markup reflects accent-product positioning |
+| Tile (porcelain, ceramic field tile, slabs) | `Retail = Cost + $ 2.00` | Applies to floor and wall tile, regardless of size or material |
+| Mosaic (anything `Tile format = Mosaic`, including hex mosaics, listellos, pencils, decors) | `Retail = Cost + $ 5.00` | Higher markup reflects accent-product positioning |
 | STONE (marble/quartz thresholds, jambs, benches — Category = `STONE`) | `Retail = 0` (leave at zero) | Markup rule unsettled; leave `Retail price/unit = 0` and flag for Albert to set. Do not infer. |
 
 These overrides are **CIF-specific** and do not generalize to other tile suppliers.
@@ -1927,7 +2199,7 @@ Mosaics get their own handle (suffix `M`) even when sharing a colour with the fi
 A handful of mosaic-adjacent items (Artico 2×2 and Hex sheets, Sena 2×2 and Hex, Park Listello, Identity Tetris Listello, Cristalli Pencil, Boemia Dots, Boemia Single Decor, Picnic/Hyde/Decor Pipa listellos) are priced as `Cost per piece` only — CIF lists no sf/piece. For these:
 
 - Apply the same ×0.60 discount to the per-piece cost → store in `Cost/unit`
-- Apply mosaic markup `Retail = Cost + $5.00`
+- Apply mosaic markup `Retail = Cost + $ 5.00`
 - Treat as mosaics (`Tile format = Mosaic`, `Layout pattern = Mosaic`)
 - Leave `Box size (sf)` blank — only `Pieces per box` is meaningful
 - Flag in Salesperson notes: `Cost listed as per-piece on price list.`
@@ -2043,7 +2315,7 @@ The LS upload build script catches this and normalizes the colour spelling to th
 
 #### CIF ingest output format
 
-Produce an Excel file with all 56 schema columns. File naming: `cif_airtable_upload_[YYYY-MM-DD].xlsx` using the list's Effective date (the date printed on the Terms letter, page 3). Save to `/mnt/user-data/outputs/`.
+Produce an Excel file with all 57 schema columns. File naming: `cif_airtable_upload_[YYYY-MM-DD].xlsx` using the list's Effective date (the date printed on the Terms letter, page 3). Save to `/mnt/user-data/outputs/`.
 
 A typical CIF ingest produces ~800 rows: ~190 mosaics, ~570 field tiles, ~50 STONE items.
 
@@ -2073,20 +2345,20 @@ The Zone AT price book prints both a `$/SqFt` and a `$/Pcs.` (or `/Box`, `/Sheet
 Cost/unit = printed_price × 0.60 × 0.94 = printed_price × 0.564
 ```
 
-Round to two decimals. Apply the 0.564 multiplier exactly once. Example: `$9.11/sf` list → `9.11 × 0.564 = $5.14/sf` cost.
+Round to two decimals. Apply the 0.564 multiplier exactly once. Example: `$ 9.11/sf` list → `9.11 × 0.564 = $ 5.14/sf` cost.
 
 Use the **`$/SqFt`** figure as `Cost/unit` for anything sold by area (tile, stone, vinyl). Use the **per-piece** figure (`$/Pcs.`, `$/Lin.Ft`, `$/Set`) as `Cost/unit` for per-piece-only items (thresholds, jambs, trims, vinyl nosing/reducer) — those have no meaningful `$/SqFt`.
 
 #### Markup overrides — Olympia (CIF-style tiers)
 
-Olympia breaks the standard `Retail = Cost + $1.00` rule, using the same tier structure agreed for CIF:
+Olympia breaks the standard `Retail = Cost + $ 1.00` rule, using the same tier structure agreed for CIF:
 
 | Product type | Markup | Applies to |
 |---|---|---|
-| Field tile (porcelain, ceramic, granite, marble, limestone, quartzite, travertine, slate field tile, agglomerated slabs) | `Retail = Cost + $2.00` | `Category = Tile / Stone`, `Tile format` ≠ Mosaic |
-| Mosaic (anything `Tile format = Mosaic` — glazed porcelain mosaics, mother of pearl, metal/aluminum mosaic, riverstone, sheet-format glass) | `Retail = Cost + $5.00` | `Tile format = Mosaic` |
+| Field tile (porcelain, ceramic, granite, marble, limestone, quartzite, travertine, slate field tile, agglomerated slabs) | `Retail = Cost + $ 2.00` | `Category = Tile / Stone`, `Tile format` ≠ Mosaic |
+| Mosaic (anything `Tile format = Mosaic` — glazed porcelain mosaics, mother of pearl, metal/aluminum mosaic, riverstone, sheet-format glass) | `Retail = Cost + $ 5.00` | `Tile format = Mosaic` |
 | Ceramic Trims (bullnose, cove base, pencil, listello — the Trims section) | `Retail = Cost + $10.00` | `Product type = Moulding`, `Category = Tile / Stone` |
-| SPC / LVT vinyl flooring (Chimestone, Chimewood) | `Retail = Cost + $1.00` | `Category = LVP / LVT`, `Product type = Flooring` |
+| SPC / LVT vinyl flooring (Chimestone, Chimewood) | `Retail = Cost + $ 1.00` | `Category = LVP / LVT`, `Product type = Flooring` |
 | Vinyl reducer (Chimewood reducer) | `Retail = Cost + $10.00` | cross-supplier accessory markup |
 | Vinyl nosing (Chimewood nosing) | `Retail = Cost + $20.00` | cross-supplier accessory markup (stair-step/riser tier) |
 | STONE (marble/quartz thresholds, shower jambs, benches — `Category = STONE`) | `Retail = 0` (leave at zero) | Markup unsettled; leave `Retail price/unit = 0` and flag for Albert. Do not infer. |
@@ -2167,7 +2439,7 @@ Leave `Stock status` blank for all Olympia rows; set `Active = TRUE`. The Zone A
 
 #### Olympia ingest output format
 
-Produce an Excel file with all 56 schema columns. File naming: `olympia_full_airtable_upload_[YYYY-MM-DD].xlsx` using the list's effective date (foot of page, e.g. 2026-01-26). Save to `/mnt/user-data/outputs/`. A typical full Zone AT ingest produces ~3,000 rows across the 20 in-scope sections.
+Produce an Excel file with all 57 schema columns. File naming: `olympia_full_airtable_upload_[YYYY-MM-DD].xlsx` using the list's effective date (foot of page, e.g. 2026-01-26). Save to `/mnt/user-data/outputs/`. A typical full Zone AT ingest produces ~3,000 rows across the 20 in-scope sections.
 
 
 ---
@@ -2194,7 +2466,7 @@ Biyork prints **`MSRP/SF`** and **`Your Price`**.
 
 - **Use `Your Price` as `Cost/unit`.**
 - Put `MSRP/SF` in the `MAP price ($/sf)` reference field.
-- Standard markup applies to flooring: `Retail = Cost + $1.00`.
+- Standard markup applies to flooring: `Retail = Cost + $ 1.00`.
 
 #### Markup overrides (accessories)
 
@@ -2235,7 +2507,7 @@ Laminate: `Riptide`.
 
 #### Parsing quirks / known soft spots
 
-- **Hydrogen 8 price inversion:** the plank `Your Price` ($6.63) **exceeds** `MSRP/SF` ($6.34), and Hydrogen 8 accessory `Your Price` equals MSRP exactly (no dealer discount). Ingest the values as-is (Cost = `Your Price`) per flag-don't-block, and tag both in `Salesperson notes` for review. Almost certainly a typo on Biyork's sheet — confirm with the rep.
+- **Hydrogen 8 price inversion:** the plank `Your Price` ($ 6.63) **exceeds** `MSRP/SF` ($ 6.34), and Hydrogen 8 accessory `Your Price` equals MSRP exactly (no dealer discount). Ingest the values as-is (Cost = `Your Price`) per flag-don't-block, and tag both in `Salesperson notes` for review. Almost certainly a typo on Biyork's sheet — confirm with the rep.
 - **Multi-size groups under one header:** Nouveau 7 splits Hickory into Wirebrush vs Handscraped finishes (different finish, same price). Hydrogen 6 Plank has two size groups (7"×48" box 23.64 and 7"×60" box 23.25) under one collection. Create records for every sub-group with its specific box size/finish.
 - **Tile lines inside vinyl collections:** Hydrogen PRO Tile and Hydrogen 6 Tile are vinyl tile (`LVT`), not porcelain — keep `Material type = SPC core`.
 - **Nouveau 6 Clic** is engineered hardwood with a Uniclic float system → `Install profile = Click`, `Locking system = Uniclic`, thickness 1/2" (12.7mm).
@@ -2246,7 +2518,7 @@ Leave `Stock status` blank for all Biyork rows; set `Active = TRUE`. The regular
 
 #### Biyork ingest output format
 
-Produce an Excel file with all 56 schema columns. File naming: `biyork_full_airtable_upload_[YYYY-MM-DD].xlsx` using the list date (e.g. 2025-07-07). Save to `/mnt/user-data/outputs/`. A full flooring + accessories ingest produces ~324 rows (154 flooring, 170 mouldings/accessories).
+Produce an Excel file with all 57 schema columns. File naming: `biyork_full_airtable_upload_[YYYY-MM-DD].xlsx` using the list date (e.g. 2025-07-07). Save to `/mnt/user-data/outputs/`. A full flooring + accessories ingest produces ~324 rows (154 flooring, 170 mouldings/accessories).
 
 
 ---
@@ -2269,7 +2541,7 @@ Floordi is both the supplier and the brand. Floordi Canada Inc (Hamilton, ON) is
 
 - **Use `Price/UoM (CAD)` as `Cost/unit`** (per sqft for flooring, per piece for accessories).
 - `Price/Box (CAD)` and `Price/Pallet (CAD)` are extended totals — do not map them. **`Pallet price ($/sf)` stays blank** (Floordi gives a pallet total in CAD, not a per-sf pallet rate).
-- Standard markup on flooring: `Retail = Cost + $1.00`.
+- Standard markup on flooring: `Retail = Cost + $ 1.00`.
 
 #### Reduced-price colours are NOT promos
 
@@ -2322,7 +2594,7 @@ Floordi issues **separate monthly promotion sheets** (e.g. "JUNE PROMOTION") lis
 
 #### Floordi ingest output format
 
-`floordi_full_airtable_upload_[YYYY-MM-DD].xlsx` using the "Last updated" date on the list (e.g. 2025-09-03), all 56 schema columns, saved to `/mnt/user-data/outputs/`. Record the effective date in `Price list reference` when logging future price changes to Price History Log v2.
+`floordi_full_airtable_upload_[YYYY-MM-DD].xlsx` using the "Last updated" date on the list (e.g. 2025-09-03), all 57 schema columns, saved to `/mnt/user-data/outputs/`. Record the effective date in `Price list reference` when logging future price changes to Price History Log v2.
 
 ---
 
@@ -2336,7 +2608,7 @@ When a new supplier is added, gather this information before processing their fi
 4. **Which of the three cost columns to use** (pallet / box / list / MSRP — varies by supplier)
 5. **Does the supplier assign product codes?** If yes, populate Supplier SKU. If no, leave blank.
 6. **Categories in scope** (ENG, LVP, LVT, HWD, LAM, TIL, CAR, ACC)
-7. **Markup overrides** — any category where `Retail = Cost + $1` doesn't apply (e.g. stair products, accessories, clearance)
+7. **Markup overrides** — any category where `Retail = Cost + $ 1` doesn't apply (e.g. stair products, accessories, clearance)
 8. **Which schema fields the supplier omits** (wear layer, veneer, grade, warranty, certifications, radiant heat compatibility)
 9. **Collection naming convention** — which line names to use verbatim
 10. **Material type defaults** — what to infer from section headers when not stated
@@ -2368,6 +2640,28 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
 
 ### Changelog
 
+- **2026-09-03** — **Grandeur SKU format corrected.** The subsection claimed the
+  internal SKU prefix was `GRND` (`GRNDENG-0001`); the base actually holds
+  `[CAT]-GRAN-####` (`ENG-GRAN-0030`, `SPC-GRAN-0015`). `GRND…` is the *Lightspeed*
+  name prefix only. The scheduled run that day generated 231 rows of `GRND`-prefixed
+  SKUs matching none of the 239 live Grandeur records — an import would have
+  duplicated the catalogue. Also recorded: Grandeur's `Supplier SKU` is blank on 229
+  of 239 records (so matching falls to `Product name`), the letter grade stays
+  verbatim in `Product name`, and legacy `SPC-`/`WPC-` prefixes are still present.
+  **General lesson: verify a supplier's documented SKU format against the live base
+  before generating SKUs from it.**
+- **2026-09-03** — Price list runs export **two** files (Airtable + Lightspeed) and
+  attach them to the Notion row; the routine no longer writes to Airtable. See
+  `methods/pricelist-routine-prompt.md`.
+- **2026-09-03** — Same run surfaced two more Grandeur defects, both now documented
+  above: LS handles were generated with dots retained and collections truncated to 12
+  chars (collisions LS rejects), and the LS file was built with **column 1 `id` blank
+  on all 231 rows**, which would have duplicated 212 existing Lightspeed products
+  rather than updating them. Added the handle convention, the "take the handle from
+  the live record when matched" rule, the species-abbreviation contract
+  (`NAH`/`HM`/`NARO`, no redundant size or thickness parenthetical) that 56 rows had
+  to be normalised against, and the `Lightspeed ID` requirement — mirrored into the
+  `ls-upload-instructions` pre-upload checklist.
 - **2026-09-01** — Added "Updating existing products from a price list", after the
   GreenTouch 2026-09-01 run surfaced that the extraction step renumbers internal
   SKUs per run and would have duplicated all 83 existing records. Two rules
