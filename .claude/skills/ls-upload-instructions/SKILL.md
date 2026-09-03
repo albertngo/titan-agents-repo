@@ -15,6 +15,66 @@ This document defines how to transform product data from any brand's source shee
 
 ---
 
+## ⚠️ STOP — do not build an LS file from unreconciled data
+
+**Before any LS file is built, the source sheet must already carry, for every row that
+matches an existing product: the live `SKU`, the live `LS Handle / Parent ID`, and the
+live `Lightspeed ID`.** LS columns 1–3 (`id`, `handle`, `sku`) are identity fields
+owned by Airtable — this skill copies them, it never derives them.
+
+The order is fixed:
+
+```
+extract → match against the live catalogue → write SKU + handle + Lightspeed ID
+into the Airtable schema file → THEN build the LS file from that file
+```
+
+Building the LS file first, or in parallel, produces blank ids and regenerated
+handles. That is not cosmetic: **a blank `id` makes LS create a duplicate instead of
+updating**, and a regenerated handle breaks the variant grouping LS already has.
+
+Check before you start: does the source sheet have `Lightspeed ID` populated on rows
+that exist in LS, and handles that match what LS already holds? If not, stop and
+reconcile — do not "fill them in later".
+
+### Existing product vs new product — the id column differs, the handle does not
+
+| | `id` (column 1) | `handle` (column 2) | `sku` (column 3) |
+|---|---|---|---|
+| **Matched** (already in LS) | The stored `Lightspeed ID`. **Required** — blank duplicates it. | The stored handle, copied as-is. Never regenerated. | The stored SKU, verbatim. |
+| **New** (not yet in LS) | **Blank, correctly** — Lightspeed generates the UUID on import. | **Minted by us** from the handle-generating schema, then uploaded. LS adopts it. | Minted by us from the price list. |
+
+A blank `id` is a defect on a matched row and the correct value on a new row. Decide
+by `MatchStatus`, never by whether the cell happens to be empty.
+
+### After the import: reverse-populate the new ids
+
+**An upload containing new products is not finished when the import succeeds.**
+Lightspeed has just generated UUIDs that Airtable does not have yet. Export the
+products from LS, match on `SKU`, and write the `Lightspeed ID`s back into Airtable —
+the `ls-id-backfill` skill exists for exactly this.
+
+Skip it and the next price list run sees a blank `Lightspeed ID` on a product that now
+exists in LS, and duplicates it. The loop has to close.
+
+## ⚠️ RULE 0 — Airtable owns the SKU; Lightspeed matches to it
+
+**The Airtable `SKU` is immutable and is the source of truth.** Column 3 (`sku`) is
+copied from the source sheet **verbatim** and is never regenerated, reformatted or
+"improved" on the way into Lightspeed. When LS and Airtable disagree about a SKU,
+**Airtable is right** and the LS record is what gets corrected — never the reverse.
+
+An LS import must never be the reason an Airtable SKU changes. If a SKU cannot be
+loaded into LS as stored, that is escalated, not silently rewritten on both sides.
+
+The one sanctioned transformation is the **Olympia comma→dot** replacement below, and
+it is applied **when the record is first created** so Airtable stores the dotted form
+from the outset — it is a minting rule, not permission to edit existing SKUs.
+
+Full statement: RULE 0 at the top of the `bert-airtable-schema` skill.
+
+---
+
 ## ⚠️ Load-bearing rule — every SKU must carry a readable sf/b
 
 **Box size (sf/b) is the key factor used for quantity analysis.** Staff and reporting convert between boxes and square feet using it constantly. A SKU that reaches Lightspeed without a visible sf/b cannot be quantity-analyzed at the POS, and the gap is invisible until someone needs the number and can't find it.
@@ -73,7 +133,9 @@ Before generating an upload, identify these brand-specific values from the sourc
 
 > **Floordi brand config (added Jul 2026):** `[BRAND]` = Floordi (brand_name = supplier_name = "Floordi"). `[NAME_PREFIX]` = `FLRDLVP-SPC` (AVO-ROX vinyl) / `FLRDACC` (accessories). `[SKU_PREFIX]` = `LVP-FLRD-` / `ACC-FLRD-` (Floordi code verbatim as suffix, e.g. `LVP-FLRD-AVR651`). `[CATEGORY]` = `FLOORING / VINYL / SPC` for all AVO-ROX lines; `ACCESSORIES` for mouldings. `[HANDLE_PREFIX]` descriptive = FLRD, brand-first: `FLRD65[COLOUR]` (EASE 6.5mm), `FLRD8[COLOUR]` (GRAND 8mm); accessories = FLRD + Floordi code with hyphens stripped (`FLRDATAVR65`). No grades → no variant groups; one row per product, box size in the name, columns 10–11 blank. Accessory names: **superseded (Aug 2026)** — Floordi mouldings now follow `Floordi - Transition | [Type] | [Material] | [Dimensions]` per *Accessories — transitions and mouldings*, not the old `FLRDACC - …` form. Still priced per piece via Cost/unit / Retail price/unit as normal.
 
-> **Note on `[HANDLE_PREFIX]`:** The values in this row describe what each brand's handles look like — they are not rules to enforce. Handle format is set in Airtable per brand and flows through to LS unchanged. Never transform, prepend, or normalize handles to match another brand's convention. Whatever is in the "LS Handle / Parent ID" column of Airtable is what goes to Lightspeed.
+> **Note on `[HANDLE_PREFIX]`:** For a product that **already exists**, these values are descriptive, not rules to enforce — the stored handle flows through to LS unchanged. Never transform, prepend, or normalize an existing handle to match another brand's convention. Whatever is in the "LS Handle / Parent ID" column of Airtable is what goes to Lightspeed.
+>
+> **For a genuinely new product there is no stored handle, so we mint one** from the brand's handle-generating schema — `[HANDLE_PREFIX][SizePrefix][SpeciesAbbrev][COLOUR]`, uppercase, alphanumeric only, **never truncated**. That minted handle is written into Airtable *and* uploaded to LS, which adopts it. This is the one case where the prefix pattern is generative rather than descriptive; see RULE 0a in the bert-airtable-schema skill.
 
 ### Product type abbreviations
 
@@ -536,7 +598,12 @@ Olympia Tile is a tile/stone/vinyl supplier whose Zone AT catalogue produces ~3,
 
 Olympia uses European decimal commas in ~109 stock codes (e.g. `LW.AL.SIL.0,8X1,8.BD`, `IO.ANG.BUT.0,48X0,48`). LS permits `. - _ /` in the `sku` field but **rejects commas** ("SKU codes can only have letters, numbers and …"). 
 
-**Rule:** replace every `,` → `.` in the SKU before writing the LS file (`LW.AL.SIL.0,8X1,8.BD` → `LW.AL.SIL.0.8X1.8.BD`). Apply the same replacement to Airtable's `SKU`/`Supplier SKU` so the merge key stays aligned across both systems (see the bert-airtable-schema Olympia note).
+**Rule:** replace every `,` → `.` in the SKU before writing the LS file (`LW.AL.SIL.0,8X1,8.BD` → `LW.AL.SIL.0.8X1.8.BD`). Apply the same replacement to Airtable's `SKU`/`Supplier SKU` **at ingest, when the record is first created**, so both systems store the dotted form from the outset (see the bert-airtable-schema Olympia note).
+
+> **Not a licence to rewrite existing SKUs.** This is a minting rule for new records.
+> If comma-form SKUs are already stored in Airtable, changing them is a human-approved
+> migration that updates LS and Price History Log v2 together — never an in-place edit
+> and never something an upload run does on its own. See RULE 0.
 
 #### Quirk 2 — Finish-spanning collections (finish must go in the NAME)
 
@@ -637,6 +704,13 @@ The source data sheet (any brand) MUST contain these columns:
 
 ## Pre-upload checklist
 
+- ☐ **Every row for a product that already exists in Lightspeed carries its
+  `Lightspeed ID` in column 1 (`id`).** A blank `id` on an existing product makes LS
+  **create a duplicate instead of updating it**. Populate from Airtable's
+  `Lightspeed ID` (`fldQhbI35Ng2ZxNKL`) for every matched row; leave blank *only* for
+  genuinely new products, where LS assigns the UUID on import. This is the LS-side
+  twin of the SKU-duplication trap — the 2026-09-03 Grandeur file was built with all
+  231 ids blank, which would have duplicated 212 live products.
 - ☐ Every row has a unique SKU (column 3)
 - ☐ **Handles contain ONLY letters and numbers** — no hyphens, dots, spaces, or symbols (strip from source before upload)
 - ☐ **SKUs contain only letters, numbers and `. - _ /`** — NO commas or spaces (LS rejects commas; replace `,`→`.` — see Olympia subsection)

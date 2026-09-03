@@ -17,6 +17,82 @@ The base has two tables: **Master Flooring Catalogue** (the product database) an
 
 ## How the base works
 
+### RULE 0 — the Airtable SKU is immutable and is the source of truth
+
+**This rule overrides everything else in this document, every supplier subsection,
+every method file, and every routine. There is no exception and no supplier-specific
+override.**
+
+1. **Once a record exists in the Master Flooring Catalogue, its `SKU`
+   (`fldx3byCOht5HbKmH`) never changes.** Not renamed, not re-cased, not re-numbered,
+   not re-formatted, not "tidied", not migrated to a newer convention, not corrected
+   for a typo. A SKU is created exactly once and is then permanent for the life of the
+   record.
+2. **The Airtable SKU is the single source of truth.** Lightspeed, Notion, Make,
+   every export, every upload file and every downstream system **matches to it**.
+   Nothing matches the other way. If Airtable and another system disagree about a
+   SKU, **Airtable is right by definition** and the other system is what gets fixed.
+3. **No automated process may ever write the `SKU` field on an existing record.**
+   Upserts merge *on* SKU (`fieldIdsToMergeOn: ['fldx3byCOht5HbKmH']`); SKU is never
+   itself in the payload of fields being updated. An update that would change a SKU is
+   a bug — stop the batch and escalate, do not "fix" it.
+4. **A newly generated SKU is valid only for a product that genuinely does not exist
+   yet**, and only after the matching cascade has failed to find it. Extraction
+   renumbers per run, so a generated SKU is never evidence that a product is new — it
+   is a value awaiting confirmation.
+5. **A SKU that looks wrong is escalated, never edited.** Changing one orphans the
+   Lightspeed record, every Price History Log v2 row, and any relation pointing at it.
+   If a legacy or malformed SKU genuinely has to change, that is a deliberate,
+   human-approved migration that updates every dependent system together — never an
+   in-place edit, and never something a routine does on its own.
+
+Legacy prefixes that predate the current format (e.g. Grandeur's `SPC-`/`WPC-` vinyl,
+Olympia's dotted stock codes) are **correct by virtue of existing**. Match against
+them as they are stored. Apply current formatting rules only when minting a SKU for a
+genuinely new product.
+
+### RULE 0a — the three identity fields and where each one is born
+
+`SKU`, `LS Handle / Parent ID` and `Lightspeed ID` are **all three source-of-truth on
+Airtable**. They differ only in *who creates them and when*, and confusing that is
+what produces duplicates.
+
+| Field | Created by | Created when | On a new product |
+|---|---|---|---|
+| `SKU` | **Titan** | Record creation | Minted from the price list. Permanent from that moment (RULE 0). |
+| `LS Handle / Parent ID` | **Titan** | Record creation | **We mint it ourselves** using the handle-generating schema (`[HANDLE_PREFIX][SizePrefix][SpeciesAbbrev][COLOUR]`, alphanumeric only). It is uploaded to Lightspeed, and Lightspeed adopts it. |
+| `Lightspeed ID` | **Lightspeed** | On import into LS | **Blank — and correctly blank.** LS generates the UUID. It must then be **reverse-populated back into Airtable**. |
+
+**The asymmetry that matters:** a handle is ours to create and push *out* to
+Lightspeed. An LS ID can only come back *in* from Lightspeed. So a new product is
+uploaded with a handle and no id; LS assigns the id; that id is written back to
+Airtable.
+
+`SKU` remains the matching factor throughout — it is what ties an Airtable record to
+its Lightspeed product in both directions, and it is how the returning UUID finds its
+home.
+
+#### Closing the loop is mandatory, not optional
+
+**After any Lightspeed import containing new products, the generated `Lightspeed ID`s
+must be reverse-populated into Airtable.** Use the `ls-id-backfill` skill: export the
+products from LS, match on `SKU`, write the UUIDs back.
+
+Until that happens the Airtable records are incomplete, and the failure is delayed and
+silent: the *next* price list run reads a blank `Lightspeed ID`, ships an LS file with
+a blank `id` for a product that now exists in LS, and **duplicates it**. A new product
+is not finished when it is uploaded — it is finished when its id is back in Airtable.
+
+#### Once populated, they are authoritative
+
+**Once a record carries a `Lightspeed ID` and a handle, Airtable is the source of
+truth for them and no automated process overwrites either.** Not a regenerated handle,
+not an id from a stale export, not a "corrected" value.
+
+They may be replaced only on an **explicit instruction from Albert to swap in a
+specific matching set of data** — a deliberate, named operation, never a routine's own
+judgement and never a side effect of a price list run.
+
 ### Three layers of data
 
 Every product record in the Master Flooring Catalogue serves three consumers simultaneously:
@@ -149,13 +225,13 @@ The source of truth for all Titan flooring products. Every active product that B
 
 | Field name | Type | Description | Notes |
 |------------|------|-------------|-------|
-| **SKU** | Single line text | Internal product code. Primary key — unique across all records. Format: CAT-SUPP-0001 e.g. ENG-VIDR-0042 | LS · Bert — never change after creation |
+| **SKU** | Single line text | Internal product code. Primary key — unique across all records. Format: CAT-SUPP-0001 e.g. ENG-VIDR-0042 | LS · Bert — **immutable and the source of truth; see RULE 0. Never written on an existing record by any process.** |
 | **Product name** | Single line text | Human-readable name including colour and grade. e.g. Vidar 7.5" AWO — Macaroon (Character) | LS · Bert |
 | **Brand** | Single line text | The product brand. May differ from Supplier — e.g. BOEN sold by Canadian Standard | LS |
 | **Supplier** | Single select | Which supplier this product is ordered from. Choose from the controlled list. | Bert |
 | **Supplier SKU** | Single line text | Supplier's own product code if they use one. Leave blank if supplier does not assign codes. Cowork uses this for price list matching. | Auto — blank if no supplier code |
-| **Lightspeed ID** | Single line text | Lightspeed's internal record ID. Populated after LS upload. Do not fill in manually. | LS — populated post-upload |
-| **LS Handle / Parent ID** | Single line text | Groups grade variants under one parent in Lightspeed. Shared by all grades of the same colour and width. **Must contain only letters and numbers — no hyphens, dots, spaces, or symbols.** This value is copied directly into Lightspeed on upload; LS rejects non-alphanumeric handles. Format: `[HANDLE_PREFIX][SizePrefix][SpeciesAbbrev][COLOR]` e.g. VIDR6AWOSILVERSTONE | LS |
+| **Lightspeed ID** | Single line text | Lightspeed's internal record ID. **Generated by Lightspeed on import, never by us** — blank is the correct state for a product not yet uploaded. After an upload it must be **reverse-populated back into Airtable** (`ls-id-backfill`), matching on SKU; skipping that duplicates the product on the next run. Once populated, Airtable is source of truth and no automation overwrites it. See RULE 0a. | LS — populated post-upload |
+| **LS Handle / Parent ID** | Single line text | Groups grade variants under one parent in Lightspeed. Shared by all grades of the same colour and width. **Must contain only letters and numbers — no hyphens, dots, spaces, or symbols.** This value is copied directly into Lightspeed on upload; LS rejects non-alphanumeric handles. **We create it ourselves** for a new product, from the handle-generating schema `[HANDLE_PREFIX][SizePrefix][SpeciesAbbrev][COLOR]` (e.g. VIDR6AWOSILVERSTONE) — never truncate the colour/collection token. Once stored it is authoritative: copied as-is on every later upload, never regenerated. See RULE 0a. | LS |
 | **Collection** | Single line text | Product line or series name. e.g. 6 Collection, 7.5 Collection, Chevron Collection | LS · Bert |
 | **Product type** | Single select | Top-level type. Flooring / Accessory / Moulding / Hardware / Adhesive / Underpad | LS · Bert |
 | **Category** | Single select | Flooring format/shape category. **LVP** (luxury vinyl plank), **LVT** (luxury vinyl tile), Engineered hardwood, Solid hardwood, Laminate, Tile / Stone, **STONE**, Carpet. `Tile / Stone` is for installed tile, mosaic, and slab products (floor or wall). `STONE` is a separate category reserved for fabricated marble and quartz pieces sold per-piece — thresholds, shower jambs, and benches. Do not mix the two: a 12×24 porcelain field tile is `Tile / Stone`; a 4×48 Bianco Carrara threshold is `STONE`. Note: SPC and WPC are core construction types — they live in Material type, not Category. A product can be "LVP" (category) with "SPC core" (material type) simultaneously. | LS · Bert |
@@ -399,6 +475,11 @@ import path exists to provide.
 
 ### Step 2 — the matching cascade
 
+> Everything below resolves **which existing SKU a row belongs to**. It never
+> produces a reason to change one. Per RULE 0, the stored SKU wins every
+> disagreement — a mismatch means the incoming row is wrong about the product, not
+> that the record needs renaming.
+
 Match incoming rows to existing records in this order, stopping at the first tier
 that resolves cleanly:
 
@@ -427,6 +508,10 @@ sequentially numbered, so that run correctly resolved at tier 2.
 
 ### What to write
 
+- **Never the `SKU` field** (RULE 0). It is the merge key, not a payload field.
+  Upsert with `fieldIdsToMergeOn: ['fldx3byCOht5HbKmH']` and omit SKU from the
+  written fields. If a diff ever shows a SKU change, the match is wrong — stop and
+  escalate rather than writing it.
 - **Only fields that actually changed.** Compare against current values and build a
   per-record diff; do not blanket-write every field on every row.
 - `Last price update` and `Price last changed by` — set these **only when cost or
@@ -527,7 +612,7 @@ Views must be created manually — they cannot be built via the API.
 
 ### Always fill in
 
-- **SKU** — every record must have one, and it never changes after creation
+- **SKU** — every record must have one, and it **never changes after creation** (RULE 0). It is the source of truth every other system matches to.
 - **Product name** — include colour and grade in the name. **Exception: transitions, mouldings, stair components, and sundries** follow the searchable accessory format instead — see below.
 - **Supplier** — use the controlled list, never free-text
 - **Category and Product type** — Bert's primary filters
@@ -579,6 +664,9 @@ Only the controlled transition types get the `Transition` token — stair treads
 
 ### Never edit manually
 
+- **SKU — never edited by anyone, human or automated, once the record exists (RULE 0).
+  Not a "prefer not to": there is no workflow in which editing a SKU in place is
+  correct. Escalate instead.**
 - Cost/unit — updated by Cowork from supplier price lists
 - Promo cost ($/sf) and Promo end date — set and cleared by Cowork
 - Last price update and Price last changed by — written by Cowork
@@ -1448,19 +1536,32 @@ Grandeur is supplier and brand (single entity). Multi-category supplier: enginee
 |---|---|
 | **Supplier** (single-select) | `Grandeur` |
 | **Brand** | `Grandeur` |
-| **SKU supplier code** | `GRAN` — 4-char suffix for Supplier SKU matching; internal SKU uses `GRND` prefix |
-| **Internal SKU prefix** | `GRND` — e.g. `GRNDENG-0001`, `GRNDLVP-0001` |
-| **Supplier SKU** | Populate with Grandeur's product code verbatim (they publish codes on their price list). SKU prefix by product type: `GRAN` (general), varies by line — confirm per price list. |
+| **SKU supplier code** | `GRAN` — 4-char suffix, canonical format |
+| **Internal SKU format** | `[CAT]-GRAN-####` — the canonical format, e.g. `ENG-GRAN-0030`, `SPC-GRAN-0015`. **`GRND` is the Lightspeed name prefix, NOT the Airtable SKU prefix** — see the correction note below. |
+| **Supplier SKU** | Mostly **blank**. Despite an earlier note that Grandeur publishes codes, only **10 of 239** live records carry a `Supplier SKU`. Populate it when a code is genuinely printed; do not invent one. Expect price-list matching to fall to tier 3 (specifications / `Product name`). |
 
 #### SKU prefix by product type
 
-| Category | LS Name prefix | Example SKU |
-|---|---|---|
-| Engineered hardwood | `GRNDENG` | `GRNDENG-0001` |
-| Solid hardwood | `GRNDHWD` | `GRNDHWD-0001` |
-| SPC/WPC LVP | `GRNDLVP` or `GRNDWPC` | `GRNDLVP-0001` |
-| SPC (rigid core) | `GRNDSPC` | `GRNDSPC-0001` |
-| Laminate | `GRNDLAM` | `GRNDLAM-0001` |
+`GRND…` is the **Lightspeed** name prefix. The **Airtable** SKU is `[CAT]-GRAN-####`.
+Do not use the LS prefix as an Airtable SKU.
+
+| Category | LS Name prefix | Airtable SKU format | Live count (2026-09-03) |
+|---|---|---|---|
+| Engineered hardwood | `GRNDENG` | `ENG-GRAN-####` | 102 |
+| Solid hardwood | `GRNDHWD` | `HWD-GRAN-####` | 6 |
+| LVP | `GRNDLVP` | `LVP-GRAN-####` | 36 |
+| SPC (rigid core) — **legacy** | `GRNDSPC` | `SPC-GRAN-####` | 45 |
+| WPC — **legacy** | `GRNDWPC` | `WPC-GRAN-####` | 20 |
+| Laminate | `GRNDLAM` | `LAM-GRAN-####` | 30 |
+
+> **Correction, 2026-09-03.** This subsection previously stated the internal SKU
+> prefix was `GRND` (`GRNDENG-0001`). That is wrong and was never what the base held.
+> The 2026-09-03 routine run generated 231 rows of `GRNDENG-####` / `GRNDLVP-####`
+> SKUs that matched **none** of the 239 existing Grandeur records; importing that file
+> would have duplicated the whole Grandeur catalogue. Verified against
+> `appWHOVZ0QCS0xQ3M` / `tblfLXD3zkSdNQGbS`. `SPC-`/`WPC-` are legacy prefixes still
+> present in the base — match against them, but issue new vinyl SKUs as `LVP-`/`LVT-`
+> per the global SKU format reference.
 
 #### Cost column
 
@@ -1522,16 +1623,88 @@ Confirm which fields are omitted on the specific price list being processed. Com
 - **Pet friendly = TRUE** when wear layer ≥ 20 mil.
 - **Radiant heat compatible = FALSE** for Black Walnut. Blank for all others.
 
+#### Product name — the tier-3 matching key
+
+Grandeur rarely carries a `Supplier SKU`, so `Product name` is what an update run
+matches on. The live base and the extraction agree on this shape, and it must not
+drift:
+
+```
+Grandeur [width]" [SpeciesAbbrev] — [Colour] ([LetterGrade])
+```
+
+**The species abbreviations are a hard contract, not a preference.** The 2026-09-03
+run had to normalise 56 rows because the extraction invented its own; a mismatch here
+means a product silently reads as new and gets a duplicate SKU.
+
+| Use | Never | Species |
+|---|---|---|
+| `EWO` | | European White Oak |
+| `AO` / `WO` | | American Oak / White Oak |
+| `NAH` | `HIC` | North American Hickory |
+| `HM` | `MPL` | Hard Maple |
+| `NARO` | `RO` | North American Red Oak |
+
+Vinyl/laminate rows use the collection in place of the species —
+`Grandeur 7" Pacific — Canterbury`.
+
+**No redundant parentheticals.** The width is already in the name, so
+`Sandbar (ABC)` — never `Sandbar (7.5") (ABC)`. No thickness parenthetical either:
+`Connecticut`, not `Connecticut (7.0mm)`. Collection names drop a trailing
+"Collection": `12mm XXL — …`, not `12mm XXL Collection — …`.
+
+**The grade in parentheses is the supplier's letter grade verbatim** (`(ABCD)`,
+`(ABC)`, `(AB)`) — *not* the mapped canonical word. The mapped value goes in the
+`Grade` field; the name keeps the letters. Examples from the live base:
+`Grandeur 7.5" EWO — Moonfrost (ABCD)`, `Grandeur 7.5" AO — Honeycomb (AB)`.
+**Exception — solid hardwood** uses the word form without "Grade": `(Select)`, never
+`(Select Grade)`.
+
+#### LS Handle convention
+
+`GRND` + the Product name minus the leading `Grandeur ` and minus the trailing grade
+parenthetical, uppercased, all non-alphanumerics stripped. Examples verified against
+the live base: `GRND75EWOMORAINE`, `GRND7PACIFICCANTERBURY`, `GRND12MMAQUAMATESYDNEY`.
+
+**Never truncate the colour or collection token** — the same rule as CIF and Olympia.
+The 2026-09-03 run truncated collections to 12 characters and produced collisions
+(`GRNDESSENTIAALGONQUIN`, `GRND12COLLECARLESNATURAL`), and also left dots in
+(`GRND6.5EWOBARBADOS`) which LS rejects outright. Strip to alphanumeric, keep the
+whole token, however long it gets.
+
+**For a matched row, take the handle from the live record rather than regenerating
+it** — the stored handle is what Lightspeed already groups on.
+
 #### Upload stats (reference)
 
-From the most recent Grandeur LS upload:
-- **238 total products** extracted from price list.
-- **163 updates** to existing LS records + **75 new products** added.
-- Airtable upsert used `performUpsert` with `fieldIdsToMergeOn: ['fldx3byCOht5HbKmH']` (SKU field).
+Live catalogue as of **2026-09-03**: **239 Grandeur records** (ENG 102, SPC 45,
+LVP 36, LAM 30, WPC 20, HWD 6), only 10 of which carry a `Supplier SKU`.
+
+Matching resolves at **tier 3 (specifications / `Product name`)** for 229 of 239 rows,
+because only 10 carry a `Supplier SKU`. Use the matching cascade under "Updating
+existing products from a price list"; do not upsert on a SKU the extraction generated.
+
+> An earlier version of this block cited a `performUpsert` on
+> `fieldIdsToMergeOn: ['fldx3byCOht5HbKmH']` against 238 extracted products. Merging
+> on a **run-generated** SKU is exactly the failure the 2026-09-01 changelog entry
+> forbids and the 2026-09-03 run reproduced. Merge only on a SKU read back from the
+> base for that specific product.
+
+**Every LS upload row for an existing product needs its `Lightspeed ID`** in column 1
+of the LS file. All 239 live Grandeur records carry one (`fldQhbI35Ng2ZxNKL`). A blank
+`id` on an existing product makes Lightspeed **create a duplicate instead of
+updating** — the 2026-09-03 LS file was built with all 231 ids blank and had to be
+backfilled before it was safe to import. Leave `id` blank only for genuinely new
+products.
 
 #### Grandeur ingest output format
 
-File naming convention: `grandeur_airtable_upload_[YYYY-MM-DD].xlsx`. Save to `/mnt/user-data/outputs/`.
+Two files per price list, both attached to the Notion Price Lists row's
+`Extracted Files` (see `methods/pricelist-routine-prompt.md` step 7):
+`grandeur_airtable_upload_[YYYY-MM-DD].xlsx` and
+`grandeur_ls_upload_[YYYY-MM-DD].xlsx`. In this repo they are written to
+`ingest/YYYY-MM-DD/`, not `/mnt/user-data/outputs/` (that path is for claude.ai
+sessions).
 
 ---
 
@@ -2368,6 +2541,28 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
 
 ### Changelog
 
+- **2026-09-03** — **Grandeur SKU format corrected.** The subsection claimed the
+  internal SKU prefix was `GRND` (`GRNDENG-0001`); the base actually holds
+  `[CAT]-GRAN-####` (`ENG-GRAN-0030`, `SPC-GRAN-0015`). `GRND…` is the *Lightspeed*
+  name prefix only. The scheduled run that day generated 231 rows of `GRND`-prefixed
+  SKUs matching none of the 239 live Grandeur records — an import would have
+  duplicated the catalogue. Also recorded: Grandeur's `Supplier SKU` is blank on 229
+  of 239 records (so matching falls to `Product name`), the letter grade stays
+  verbatim in `Product name`, and legacy `SPC-`/`WPC-` prefixes are still present.
+  **General lesson: verify a supplier's documented SKU format against the live base
+  before generating SKUs from it.**
+- **2026-09-03** — Price list runs export **two** files (Airtable + Lightspeed) and
+  attach them to the Notion row; the routine no longer writes to Airtable. See
+  `methods/pricelist-routine-prompt.md`.
+- **2026-09-03** — Same run surfaced two more Grandeur defects, both now documented
+  above: LS handles were generated with dots retained and collections truncated to 12
+  chars (collisions LS rejects), and the LS file was built with **column 1 `id` blank
+  on all 231 rows**, which would have duplicated 212 existing Lightspeed products
+  rather than updating them. Added the handle convention, the "take the handle from
+  the live record when matched" rule, the species-abbreviation contract
+  (`NAH`/`HM`/`NARO`, no redundant size or thickness parenthetical) that 56 rows had
+  to be normalised against, and the `Lightspeed ID` requirement — mirrored into the
+  `ls-upload-instructions` pre-upload checklist.
 - **2026-09-01** — Added "Updating existing products from a price list", after the
   GreenTouch 2026-09-01 run surfaced that the extraction step renumbers internal
   SKUs per run and would have duplicated all 83 existing records. Two rules

@@ -102,27 +102,66 @@ counts in the body (stock-status markers like "Limited" are not promotions).
 
 If it is genuinely unclear, **leave `Tags` blank and escalate (step 6)**.
 
-### 5. Extract, verify, write
+### 5. Extract and verify — export files, do not write to Airtable
+
+**Decided 2026-09-03 (Albert). The routine does not write to Airtable. It produces
+two Excel files and attaches them to the Notion row for human review.** Neither
+Airtable nor Lightspeed is written by this routine; both imports are done by a
+person from the attached files.
 
 Confirm the file is a parseable price document. If it is not, stop here — Company
 and Tags are already set — and say only that the file is not a supported price
 document.
 
-Otherwise extract with the **bert-airtable-schema** skill and produce the
-**ls-upload** file. Before writing anything to Airtable, check the supplier already
-exists in the Master Flooring Catalogue (`appWHOVZ0QCS0xQ3M` / `tblfLXD3zkSdNQGbS`):
+Otherwise extract with the **bert-airtable-schema** skill and produce **both** files —
+**in this order, which is not optional**:
 
-- **Rows returned** → this is an UPDATE, not an import. Match on internal `SKU`
-  first, then `Supplier SKU` as a partial/fuzzy match, then specifications as a last
-  resort. Never match against a SKU the extraction step generated. Write only fields
-  that changed; set `Price last changed by` = `Cowork`, and append one row per cost
-  change to Price History Log v2 (`tbly2em2cMuQs9eqK`, `typecast: true`).
-- **No rows** → produce the Bert schema Excel export and stop. New suppliers enter
-  through Airtable's own importer after human review.
+1. **Airtable upload** — `<supplier>_airtable_upload_YYYY-MM-DD.xlsx`, all 56
+   canonical columns in the exact documented order. Reconcile against the live
+   catalogue first, then write the live `SKU`, `LS Handle / Parent ID` and
+   `Lightspeed ID` into every matched row, verbatim.
+2. **Lightspeed upload** — `<supplier>_ls_upload_YYYY-MM-DD.xlsx`, per the
+   **ls-upload-instructions** skill, **built from the file produced in step 1** —
+   never from the raw extraction. LS columns 1–3 (`id`, `handle`, `sku`) are copied
+   out of it.
+
+A matched row reaching the LS file with a blank `id` means the reconciliation did not
+happen, and importing it duplicates a live Lightspeed product instead of updating it.
+On a **new** row that blank is correct — Lightspeed generates the id on import, and it
+is reverse-populated into Airtable afterwards (`ls-id-backfill`). New rows still carry
+a minted SKU and a minted handle, which we create and Lightspeed adopts. Judge by
+`MatchStatus`, never by whether the cell is empty. See RULE 0a in the
+`bert-airtable-schema` skill.
+
+Say in the run's summary how many new products are awaiting a Lightspeed ID, so
+whoever imports knows the loop still has to be closed.
+
+**RULE 0 — the Airtable `SKU` is immutable and is the source of truth.** It is
+created once and never changes: not renamed, re-cased, re-numbered, re-formatted or
+"corrected". Everything matches to it, never the reverse. Never put a SKU in a
+payload of fields to update; it is the merge key only. A SKU that looks wrong is
+escalated (step 6), never edited — see RULE 0 in the `bert-airtable-schema` skill.
+This holds even though this routine writes nothing: the file you attach must obey it,
+because a person will import it.
+
+Still **read** the Master Flooring Catalogue (`appWHOVZ0QCS0xQ3M` /
+`tblfLXD3zkSdNQGbS`) filtered to that supplier — the read decides what the Airtable
+file must contain, even though nothing is written:
+
+- **Rows returned** → the file is an **UPDATE sheet**. Reconcile each extracted row
+  against the live records and carry the **existing** `SKU` verbatim. Match on
+  internal `SKU` first, then `Supplier SKU` (partial/fuzzy), then specifications —
+  principally `Product name`. **Never ship a SKU the extraction step generated for a
+  product that already exists**: extraction renumbers per run, so a generated SKU
+  duplicates the catalogue instead of updating it. Append two helper columns,
+  `MatchedRecId` and `MatchStatus` (`matched` / `new` / `ambiguous`), so the reviewer
+  can see what resolved and what did not; they are removed before import.
+- **No rows** → new supplier. The file is a fresh import sheet, and the
+  new-supplier onboarding checklist has to be settled before it is worth importing.
 
 Cross-check the extracted SKU→price pairs against pdfplumber's own text before
-writing and again after. Lightspeed has no API here — produce the file, never
-report it as imported.
+attaching. Never report either file as imported — producing the file is the whole
+job.
 
 ### 6. Escalate anything you could not determine
 
@@ -134,16 +173,47 @@ Price Lists row, and Notes recording what you tried and what the document showed
 Send a PushNotification as well — the task is the durable record, the push is the
 alert.
 
-### 7. Finish the Notion row
+### 7. Finish the Notion row — two files attached
 
-Create the OneDrive folder `[Company]_[effective price date]_[Promo or Regular]`,
-upload the extracted files, generate a shareable link, then check `Extracted` and
-paste the link into `Extracted Files`.
+`Extracted Files` is a Notion **`file`** property, not a URL field: upload the files
+to it directly (`create-file-upload` → POST the bytes → `update-page` with
+`{"type":"file_upload","file_upload":{"id":"<id>"}}`). It is not a place to paste a
+link.
+
+**Every processed Price Lists row ends with exactly two .xlsx files in
+`Extracted Files`** — the Airtable upload and the Lightspeed upload from step 5. One
+file means the run is incomplete.
+
+Then set `Extracted` = checked and `Status` = `Extracted [Pending Review]` — the
+files are a proposal awaiting a human import, so the row is not `Done`.
+
+Two traps in the upload itself — the recipe and both failure signatures are in
+`methods/pricelist-extraction.md`: `api.notion.com` must be allowed by the
+environment's egress policy (it is, since 2026-09-03), and the multipart part must
+carry the real MIME type (`-F "file=@x.xlsx;type=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"`)
+or Notion 400s on a content-type mismatch. Look for `"status":"uploaded"`.
+
+**Order matters: attach first, then flag.** Re-fetch the row and confirm both
+attachments are present before setting `Extracted` / `Status`. If the upload fails,
+leave `Extracted` unchecked and `Status` at `Extracting` and report why — never mark a
+row `Extracted [Pending Review]` with an empty `Extracted Files`, which reads as ready
+to review when nothing is attached. `Company` and `Tags` from steps 3–4 still stand
+either way, and the files are still committed to `ingest/YYYY-MM-DD/`.
+
+Also mirror both files into the repo at `ingest/YYYY-MM-DD/` and commit them, so the
+run is reproducible after the Notion attachment is superseded.
 
 ---
 
 ## Changelog
 
+- **2026-09-03** — **The routine no longer writes to Airtable** (Albert). Steps 5 and
+  7 rewritten: it exports both the Airtable upload and the Lightspeed upload and
+  attaches them to the Notion row's `Extracted Files` (a `file` property — native
+  upload, not a pasted link), leaving `Status` at `Extracted [Pending Review]` for a
+  human to import. Two .xlsx per row, always. The catalogue read stays, because it
+  decides whether the Airtable file is an update sheet carrying existing SKUs or a
+  fresh import sheet — the SKU-duplication trap is unchanged by not writing.
 - **2026-09-03** — Added step 4 (Regular List / Promo classification) and made the
   routine set `Tags` as well as `Company`. Rules derived from the 357 rows already
   in the database and validated against four documents; see
