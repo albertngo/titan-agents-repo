@@ -228,6 +228,31 @@ length is `RL` and the veneer belongs in `Veneer / top layer (mm)`.
 always has. The new field is the source it reads from, rather than something re-parsed
 out of the product name.
 
+#### Why Length is text while Width and Thickness are numbers
+
+**Confirmed by Albert 2026-09-03. This asymmetry is deliberate — do not "harmonize" the
+three dimension fields to one type.**
+
+| Field | Type | Why |
+|---|---|---|
+| `Width (in)` | Number | Always exactly one stated measurement; unit fixed by the field name. Fractions (`5 ¾"`) convert cleanly to `5.75`. |
+| `Thickness (mm)` | Number | Same. |
+| `Length` | **Text** | Frequently not a measurement at all. |
+
+Width and thickness stay numeric because Bert's filters depend on it — "7-inch or wider",
+"12mm and up". As text, `9` sorts before `12` and range filters break outright.
+
+Length cannot be numeric without discarding most of the real data. One supplier, one run
+(Canadian Standard, 2026-09-03) produced: `RL`, `RL (16"-75")`, `RL (20" - 83")`,
+`1285mm`, `50.87"`, `48"` — random-length dominates, ranges are common, and metric and
+imperial appear in the same supplier's sheet.
+
+**Sortability is a known, accepted trade.** You cannot filter "planks over 48 inches" off
+a text field. **Deferred (Albert, 2026-09-03):** if that need becomes real, add companion
+numeric `Length min (in)` / `Length max (in)` fields **alongside** the text — never
+convert it. Both are needed: a numeric field alone cannot express "random". Do not add
+them speculatively; nothing quotes on length today.
+
 ### Stock status assignment rules
 
 When entering products from a supplier price list, Stock status should be assigned as follows:
