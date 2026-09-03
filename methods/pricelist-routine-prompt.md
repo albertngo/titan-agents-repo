@@ -4,8 +4,20 @@ The canonical text for the scheduled routine. Kept here so it is versioned and
 diffable; the live copy is in the routine itself. **The payload is unchanged and
 must stay unchanged** — Make sends `{"notionID": "<page id>"}` and nothing else.
 
-Method and rationale for every rule below: `methods/pricelist-extraction.md`.
-Change that file and this one together.
+**The same workflow is now a slash command: `/process-price-list <notionID>`**
+(`.claude/commands/process-price-list.md`) — that is how to run it by hand. Three
+files now state these rules; **change them together**:
+
+| File | Role |
+|---|---|
+| `methods/pricelist-extraction.md` | method and rationale — why each rule exists |
+| `methods/pricelist-routine-prompt.md` | this file — the scheduled routine's prompt |
+| `.claude/commands/process-price-list.md` | the manual entry point |
+
+**The stored routine prompt can be shortened to a pointer at that command** — the
+2026-09-03 run arrived truncated at step 2, so `Company`, `Tags` and steps 5–7 never
+happened. A three-line stored prompt cannot truncate meaningfully or drift from the
+repo. Not yet done; the full text below is still what the routine carries.
 
 ---
 

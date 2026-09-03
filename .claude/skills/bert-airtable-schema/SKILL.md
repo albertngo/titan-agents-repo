@@ -7,6 +7,25 @@ description: "The master reference for Titan Flooring's Airtable database schema
 
 Master Flooring Catalogue + Price History Log | Titan Flooring Inc. | Internal Use Only
 
+> ### ⚠️ Two formatting rules that protect the prices in this file — do not "tidy" them
+>
+> **1. This is a reference document. Never invoke it with arguments.** To process a
+> price list, use **`/process-price-list <notionID>`**, which loads this file as a
+> reference.
+>
+> **2. Single-digit dollar amounts are written `$ 1.00`, with a space.** That space is
+> load-bearing. A dollar sign immediately followed by a single digit (1 through 9) is a
+> slash-command **positional-argument token**: invoke this file with an argument and
+> every such price is silently rewritten to that argument, keeping only the decimals.
+> On 2026-09-03 a `/bert-airtable-schema <url>` invocation turned the global markup
+> rule into `Retail = Cost + https://…notion.so/….00`, in all 45 places it appears,
+> plus 28 more single-digit prices. Nothing errors; the document just states wrong
+> prices. (This note deliberately never writes the token itself, so the warning
+> survives the very substitution it describes.)
+>
+> Multi-digit amounts (`$20`, `$15.00`) are safe and stay tight — the mismatch is
+> deliberate. Closing the gap in `$ 1.00` reintroduces the bug.
+
 ## Purpose
 
 This guide explains every field in the Bert Airtable base — what it is, how to fill it in, and why it matters. It is the reference document for anyone entering products, updating pricing, or building automation on top of this data.
@@ -138,7 +157,7 @@ Every product record in the Master Flooring Catalogue serves three consumers sim
 
 All products follow a single flat markup:
 
-**Retail price/unit = Cost/unit + $1.00**
+**Retail price/unit = Cost/unit + $ 1.00**
 
 This applies to every category.
 
@@ -160,7 +179,7 @@ When scanning a supplier promo sheet, a promoted grade or colour may not exist a
 - **Do not apply the promo cost to an incorrect grade** (e.g. do not put a Character promo on a Select record)
 - **Create a new product record** for the missing grade, copying all available specs from the closest matching record (same colour, same width, different grade)
 - Set **Cost/unit = Promo cost ($/sf)** — since no original cost is available, the promo cost is used as a placeholder per the Sale item pricing logic rule 3
-- Set **Retail price/unit = Cost + $1.00**
+- Set **Retail price/unit = Cost + $ 1.00**
 - Set **Promo cost ($/sf)** and **Promo end date** as per the promo sheet
 - For fields that cannot be confirmed from existing records (e.g. Collection), **leave blank** rather than guessing — do not copy fields that may differ by grade
 - Flag the new record to the team so specs can be verified with the supplier
@@ -173,9 +192,9 @@ When processing a supplier price list, some products are marked as SALE items wi
 
 2. **Previous price list** — if no regular price exists in the current price list, check the most recent previous price list from the same supplier. Use that cost as the original Cost/unit. The SALE cost goes into Promo cost ($/sf).
 
-3. **Use promo cost as original** — if neither source provides an original cost, use the SALE cost as Cost/unit. Retail price/unit = SALE cost + $1.00. The SALE cost still goes into Promo cost ($/sf) as well. When Cost and Promo cost show the same value, this signals that the original cost was not available and the promo cost was used as a placeholder.
+3. **Use promo cost as original** — if neither source provides an original cost, use the SALE cost as Cost/unit. Retail price/unit = SALE cost + $ 1.00. The SALE cost still goes into Promo cost ($/sf) as well. When Cost and Promo cost show the same value, this signals that the original cost was not available and the promo cost was used as a placeholder.
 
-In all cases, Promo cost ($/sf) = the supplier's SALE cost as-is. The regular Retail price/unit = Cost + $1.00. Retail adjustment during a promo is done manually.
+In all cases, Promo cost ($/sf) = the supplier's SALE cost as-is. The regular Retail price/unit = Cost + $ 1.00. Retail adjustment during a promo is done manually.
 
 ### Stock status assignment rules
 
@@ -303,12 +322,12 @@ The source of truth for all Titan flooring products. Every active product that B
 | Field name | Type | Description | Notes |
 |------------|------|-------------|-------|
 | **Cost/unit** | Currency | Supplier cost per unit. The unit is per sq ft for flooring, and per piece for tile, stone, and accessories. **All supplier costs go here** regardless of pricing unit. Updated by Cowork when a new price list is processed. | LS · Auto |
-| **Retail price/unit** | Currency | Selling price per unit (same unit as Cost/unit — per sq ft for flooring, per piece for tile/stone/accessories). Default = Cost + $1.00 for flooring; accessory markups vary (see supplier sections). This is what Bert quotes. | LS · Bert |
+| **Retail price/unit** | Currency | Selling price per unit (same unit as Cost/unit — per sq ft for flooring, per piece for tile/stone/accessories). Default = Cost + $ 1.00 for flooring; accessory markups vary (see supplier sections). This is what Bert quotes. | LS · Bert |
 | **MAP price ($/sf)** | Currency | Minimum Advertised Price set by supplier. Grandeur and some others enforce this. Bert will not quote below MAP. | |
 | **Pallet price ($/sf)** | Currency | Full skid / pallet price per sq ft where supplier offers a volume discount. | Auto |
 | **Promo cost ($/sf)** | Currency | Active promotional cost per sq ft from the supplier. When populated, Bert flags this product as having an active promo. Retail price is adjusted manually — not auto-calculated. Cleared automatically when promo ends. | Bert · Auto |
 | **Promo end date** | Date | When the promotional price expires. Cowork clears Promo cost automatically on this date. | Auto |
-| **Volume pricing notes** | Long text | Tiered pricing rules. e.g. Vidar: Cut order $1.39 / 1-5 skids $1.34 / 6-20 skids $1.29 | |
+| **Volume pricing notes** | Long text | Tiered pricing rules. e.g. Vidar: Cut order $ 1.39 / 1-5 skids $ 1.34 / 6-20 skids $ 1.29 | |
 | **Last price update** | Date | Date cost or retail was last updated. Bert flags records older than 90 days as potentially stale. | Auto |
 | **Price last changed by** | Single select | Manual or Cowork. Audit trail. | Auto |
 
@@ -404,7 +423,7 @@ Standard row values: `Change date` = date recorded; `Supplier` = the supplier; `
 - Column headers must match Airtable field names exactly
 - All columns must be present even if blank
 - Checkbox fields: use TRUE or FALSE (text)
-- Currency fields: numbers only, no $ sign (e.g. 4.79 not $4.79)
+- Currency fields: numbers only, no $ sign (e.g. 4.79 not $ 4.79)
 - Date fields: YYYY-MM-DD format
 - Multi-select fields: separate values with a semicolon (e.g. Kitchen; Bedroom; Living room)
 
@@ -764,7 +783,7 @@ FAW price lists show three columns after "Size": **Pallet price / sf**, **Box pr
 
 #### Markup overrides
 
-- **Flooring products**: standard `Retail = Cost + $1.00` (global rule).
+- **Flooring products**: standard `Retail = Cost + $ 1.00` (global rule).
 - **Vinyl stair steps and risers**: `Retail = Cost + $20` per set or per piece. Applies only to SPC/vinyl stair products — not to oak or hardwood stair treads.
 - **Oak and hardwood stair treads**: markup rule TBD. Store the supplier per-piece cost in `Cost/unit` and leave `Retail price/unit` blank until a rule is set. Flag in Salesperson notes.
 
@@ -881,7 +900,7 @@ FAW marks promo items as "Colors ON SALE: [names]" in yellow highlighting, usual
 - **Rule 1 applies most often** — regular colours live in the same section, so pull Cost from the regular pallet price and put the SALE pallet price in `Promo cost ($/sf)`.
 - **Promo end date** — FAW does not print end dates on SALE items. Per the global month-end default rule (Jul 2026, supersedes the earlier leave-blank convention): set `Promo end date` = last day of the price list's month, and roll it forward month-by-month if the promo is confirmed still running on the next list. Flag in Salesperson notes.
 
-Example from Feb 23 2026 list: Designer 7.5" regular colours (Monet, Dali) @ $4.99 pallet; SALE colours (Da Vinci, Picasso) @ $3.99 pallet → Cost=$4.99, Retail=$5.99, Promo cost=$3.99, Promo end date blank.
+Example from Feb 23 2026 list: Designer 7.5" regular colours (Monet, Dali) @ $ 4.99 pallet; SALE colours (Da Vinci, Picasso) @ $ 3.99 pallet → Cost=$ 4.99, Retail=$ 5.99, Promo cost=$ 3.99, Promo end date blank.
 
 #### Coming Soon items
 
@@ -919,7 +938,7 @@ Per-piece priced accessories. Store each tread type as a separate `ACC-FAWK-XXXX
 - `Boxes per skid` = pieces per pallet (field is reused for piece count)
 - `Salesperson notes` = style description (Two-sided closed / Left-side finished / Right-side finished / One-side closed Pie), full dimensions, and the phrase "Retail markup TBD — FAW stair markup rule covers vinyl steps only"
 
-Oak Riser has dual pricing (Pallet $2.99 / Piece $3.99). Use $3.99 as `Cost/unit` (per-piece).
+Oak Riser has dual pricing (Pallet $ 2.99 / Piece $ 3.99). Use $ 3.99 as `Cost/unit` (per-piece).
 
 #### Known issues / soft spots
 
@@ -956,7 +975,7 @@ Triforest price lists show **Price/SF** and **Price/Box** columns (no separate p
 
 - **Use the Price/SF column as `Cost/unit`.**
 - Ignore Price/Box (it's derivable from Cost × Box size).
-- Standard markup applies: `Retail = Cost + $1.00`.
+- Standard markup applies: `Retail = Cost + $ 1.00`.
 
 #### LS Handle format
 
@@ -1060,7 +1079,7 @@ Purelux Canada Floors Inc. is supplier and brand (single entity, like Vidar or F
 
 #### Cost column
 
-Purelux lists **Price/SF** and **Price/Box** columns. Use Price/SF as `Cost/unit`. Standard markup applies: `Retail = Cost + $1.00`.
+Purelux lists **Price/SF** and **Price/Box** columns. Use Price/SF as `Cost/unit`. Standard markup applies: `Retail = Cost + $ 1.00`.
 
 #### LS Handle format
 
@@ -1132,11 +1151,11 @@ Purelux **does provide** (usually more thorough than Triforest):
 
 #### SALE items
 
-Purelux marks clearance items with red "On Sale" text in the price column. Known pattern from Feb 2025 list: **5 WPC Series colours (Arctic Mist, Mocha Glow, Natural Essence, Nimbus Gray, Whispering Breeze) on sale at $1.99/sf** while other colours in the same series are $2.99/sf.
+Purelux marks clearance items with red "On Sale" text in the price column. Known pattern from Feb 2025 list: **5 WPC Series colours (Arctic Mist, Mocha Glow, Natural Essence, Nimbus Gray, Whispering Breeze) on sale at $ 1.99/sf** while other colours in the same series are $ 2.99/sf.
 
 **Sale pricing flow**:
-- If a sale colour has a **regular-price equivalent in the same series** (same structure, same spec sheet), set `Cost` = regular equivalent price, `Retail` = Cost + $1.00, `Promo cost ($/sf)` = sale price.
-- If a sale item has **no regular equivalent**, set `Cost` = sale price, `Retail` = Cost + $1.00, `Promo cost ($/sf)` = sale price (clearance-only product).
+- If a sale colour has a **regular-price equivalent in the same series** (same structure, same spec sheet), set `Cost` = regular equivalent price, `Retail` = Cost + $ 1.00, `Promo cost ($/sf)` = sale price.
+- If a sale item has **no regular equivalent**, set `Cost` = sale price, `Retail` = Cost + $ 1.00, `Promo cost ($/sf)` = sale price (clearance-only product).
 - **Promo end date** = blank (Purelux does not publish end dates).
 - Flag in Salesperson notes: "ON SALE. Regular price $X.XX/sf assumed (same structure as series). Confirm with Purelux."
 
@@ -1167,14 +1186,14 @@ Evergreen Building Materials Ltd. is supplier and brand (single entity). Based i
 
 #### Cost column
 
-Evergreen lists `Price / Sq.ft` per tier. Standard markup: `Retail = Cost + $1.00`.
+Evergreen lists `Price / Sq.ft` per tier. Standard markup: `Retail = Cost + $ 1.00`.
 
 **Clearance pricing nuance** — Evergreen marks clearance items with asterisks on the code AND yellow highlighting on the row AND a "*Clearance" label in the header. Pricing logic:
 
-- **If the clearance item has a regular-price equivalent** (same thickness/dimensions in another tier): `Cost` = regular equivalent price, `Retail` = Cost + $1.00, `Promo cost ($/sf)` = clearance price.
-  - Example: `2020*` at $1.69 has a regular equivalent at $1.79 in the same 48"×7.7"×12mm tier. Cost = $1.79, Retail = $2.79, Promo = $1.69.
-- **If the clearance item has no regular equivalent** (unique thickness): `Cost` = clearance price, `Retail` = Cost + $1.00, `Promo cost ($/sf)` = clearance price.
-  - Example: 10mm tier has no non-clearance equivalent. Cost = $1.49, Retail = $2.49, Promo = $1.49.
+- **If the clearance item has a regular-price equivalent** (same thickness/dimensions in another tier): `Cost` = regular equivalent price, `Retail` = Cost + $ 1.00, `Promo cost ($/sf)` = clearance price.
+  - Example: `2020*` at $ 1.69 has a regular equivalent at $ 1.79 in the same 48"×7.7"×12mm tier. Cost = $ 1.79, Retail = $ 2.79, Promo = $ 1.69.
+- **If the clearance item has no regular equivalent** (unique thickness): `Cost` = clearance price, `Retail` = Cost + $ 1.00, `Promo cost ($/sf)` = clearance price.
+  - Example: 10mm tier has no non-clearance equivalent. Cost = $ 1.49, Retail = $ 2.49, Promo = $ 1.49.
 - **Stock status** = `Clearance` on all clearance rows.
 - **Promo end date** = blank (Evergreen's price list is monthly — "Effective DD/MM/YYYY-DD/MM/YYYY" — and they don't publish separate promo end dates; the clearance holds while stock lasts).
 
@@ -1206,12 +1225,12 @@ Evergreen doesn't use named "series" — their tiers are defined by size + thick
 
 | PDF tier | Collection name |
 |---|---|
-| Water Resistant 14mm, 60"×9.4" + 2mm pad, $1.69/sf | `Water Resistant 14mm` |
-| Waterproof 10mm clearance, 60"×9.4", $1.49/sf | `Waterproof Drop Lock 10mm (Clearance)` |
-| Waterproof 12mm clearance, 48"×7.7", $1.69/sf (`2020*`) | `Waterproof Drop Lock 12mm Short Plank` (same collection as the regular tier; stock status distinguishes it) |
-| Waterproof 12mm regular, 48"×7.7", $1.79/sf | `Waterproof Drop Lock 12mm Short Plank` |
-| Waterproof 12mm, 60"×9.4", $1.89/sf | `Waterproof Drop Lock 12mm Standard Plank` |
-| Waterproof 12mm Large Board, 72"×9.4", $1.99/sf | `Waterproof Drop Lock 12mm Large Board` |
+| Water Resistant 14mm, 60"×9.4" + 2mm pad, $ 1.69/sf | `Water Resistant 14mm` |
+| Waterproof 10mm clearance, 60"×9.4", $ 1.49/sf | `Waterproof Drop Lock 10mm (Clearance)` |
+| Waterproof 12mm clearance, 48"×7.7", $ 1.69/sf (`2020*`) | `Waterproof Drop Lock 12mm Short Plank` (same collection as the regular tier; stock status distinguishes it) |
+| Waterproof 12mm regular, 48"×7.7", $ 1.79/sf | `Waterproof Drop Lock 12mm Short Plank` |
+| Waterproof 12mm, 60"×9.4", $ 1.89/sf | `Waterproof Drop Lock 12mm Standard Plank` |
+| Waterproof 12mm Large Board, 72"×9.4", $ 1.99/sf | `Waterproof Drop Lock 12mm Large Board` |
 
 #### Material type defaults
 
@@ -1273,7 +1292,7 @@ GreenTouch price lists show a **single Price column** per product — no pallet/
 
 #### Markup overrides
 
-- **All flooring products** (engineered hardwood and SPC vinyl): standard `Retail = Cost + $1.00` (global rule).
+- **All flooring products** (engineered hardwood and SPC vinyl): standard `Retail = Cost + $ 1.00` (global rule).
 - **T-Moulding & Reducer accessory**: no $/sf price. Store the listed per-piece cost in `Cost/unit` (unit = per piece) and leave `Retail price/unit` blank. Retail markup rule for accessories is TBD — flag in Salesperson notes.
 
 #### Scope of ingest
@@ -1439,9 +1458,9 @@ Vidar is supplier and brand (single entity). Engineered hardwood specialist with
 
 Vidar price lists show tiered volume pricing (cut order / 1–5 skids / 6–20 skids). **Use the 1–5 skid price as `Cost/unit`** unless otherwise instructed. Log the full tier schedule in `Volume pricing notes`.
 
-Example: `Vidar: Cut order $1.39 / 1-5 skids $1.34 / 6-20 skids $1.29`
+Example: `Vidar: Cut order $ 1.39 / 1-5 skids $ 1.34 / 6-20 skids $ 1.29`
 
-Standard markup applies: `Retail = Cost + $1.00`.
+Standard markup applies: `Retail = Cost + $ 1.00`.
 
 #### LS Handle format
 
@@ -1598,12 +1617,12 @@ Do not use the LS prefix as an Airtable SKU.
 
 #### Cost column
 
-Grandeur lists a single price column per product. Use that value as `Cost/unit`. Standard markup applies: `Retail = Cost + $1.00`.
+Grandeur lists a single price column per product. Use that value as `Cost/unit`. Standard markup applies: `Retail = Cost + $ 1.00`.
 
 **MAP pricing** — Grandeur enforces Minimum Advertised Price on some lines. When MAP is listed:
 - Store MAP in `MAP price ($/sf)` field.
 - Bert will not quote below MAP — it uses `MAP price` as the floor when present.
-- Standard `Retail = Cost + $1.00` still applies for internal cost tracking.
+- Standard `Retail = Cost + $ 1.00` still applies for internal cost tracking.
 
 #### LS Handle format
 
@@ -1758,7 +1777,7 @@ Sunshiny is supplier and brand (single entity), and also distributes the **Appal
 
 Sunshiny price lists show a **single Dealer/Retailer price column** per product. Use that value directly as `Cost/unit` for all flooring products. Ignore any deposit or CAD-column variants if present.
 
-Standard markup applies: `Retail = Cost + $1.00` for all flooring.
+Standard markup applies: `Retail = Cost + $ 1.00` for all flooring.
 
 #### Markup overrides — accessories (cross-supplier standard)
 
@@ -1945,7 +1964,7 @@ Woden Flooring (order@wodenflooring.com, 905-475-0339, wodenflooring.com) is bot
 
 #### Cost column
 
-Woden prints a single per-sf price per collection (sometimes two/three price tags where promo tiers exist). That price is the **cost**. Standard markup applies: `Retail = Cost + $1.00`. Accessories and underpad are priced per piece and are also costs (see below).
+Woden prints a single per-sf price per collection (sometimes two/three price tags where promo tiers exist). That price is the **cost**. Standard markup applies: `Retail = Cost + $ 1.00`. Accessories and underpad are priced per piece and are also costs (see below).
 
 #### Scope of ingest
 
@@ -1983,7 +2002,7 @@ Woden uses European letter grades on engineered lines plus one word grade:
 | `Character Grade` | `Character` (verbatim — word "Grade" present) |
 | (no grade stated — Vermont, all vinyl, laminate) | blank |
 
-**Lumine** lists the same colours in both AB and ABC at different prices (AB @ $5.49, ABC @ $4.99) — split into two records per colour, one per grade, with the grade in the Product name suffix (` — Snowhaze AB` / ` — Snowhaze ABC`).
+**Lumine** lists the same colours in both AB and ABC at different prices (AB @ $ 5.49, ABC @ $ 4.99) — split into two records per colour, one per grade, with the grade in the Product name suffix (` — Snowhaze AB` / ` — Snowhaze ABC`).
 
 #### Specs Woden provides / omits
 
@@ -2003,8 +2022,8 @@ ENG thickness is printed as ¾" → store `Thickness (mm) = 19.05`. SPC "PAD" la
 
 Woden uses two distinct words and they map differently:
 
-- **"Clearance / while stock last"** (7 Diamond Collection) → `Stock status = Clearance` **and** apply Sale pricing. No regular price exists on the list for 7 Diamond, so **Sale rule 3**: `Cost = SALE price`, `Retail = Cost + $1.00`, `Promo cost = SALE price`. Cost = Promo cost signals original cost unavailable. Note "while stock last; final sale" and the 8 Diamond replacement.
-- **"(promotion)"** (Vermont Charcoal @ $2.50; Grand Chateau Natural/Coyote @ $2.50; and effectively the lower in-collection price tiers) → `Stock status` stays **blank**; `Promo cost = promo price`; `Cost` = the in-collection regular price (Sale rule 1). For Grand Chateau Natural/Coyote no separate regular price is printed → use the nearest in-collection regular tier ($3.29) as Cost and flag to confirm.
+- **"Clearance / while stock last"** (7 Diamond Collection) → `Stock status = Clearance` **and** apply Sale pricing. No regular price exists on the list for 7 Diamond, so **Sale rule 3**: `Cost = SALE price`, `Retail = Cost + $ 1.00`, `Promo cost = SALE price`. Cost = Promo cost signals original cost unavailable. Note "while stock last; final sale" and the 8 Diamond replacement.
+- **"(promotion)"** (Vermont Charcoal @ $ 2.50; Grand Chateau Natural/Coyote @ $ 2.50; and effectively the lower in-collection price tiers) → `Stock status` stays **blank**; `Promo cost = promo price`; `Cost` = the in-collection regular price (Sale rule 1). For Grand Chateau Natural/Coyote no separate regular price is printed → use the nearest in-collection regular tier ($ 3.29) as Cost and flag to confirm.
 - **No promo end dates** — Woden never prints them. Leave `Promo end date` blank; promo holds until next list or manual update.
 
 Multi-tier collections (Elite 3.79/3.59, Grand Chateau 3.79/3.29/2.50, Timbercraft 5.99/5.49, Lumine 5.49/4.99) are priced per colour at the tier shown — these are different price points, not promos, unless the word "promotion" appears.
@@ -2019,8 +2038,8 @@ All per-piece. Woden list prices are **costs** → store in `Cost/unit` (unit = 
 | T-Moulding | $15 | +$10 | $25 |
 | Stair Nosing (Round Return) | $18 | +$15 (stair nose) | $33 |
 | Stair Board (Square Return) set (1 stair + 1 riser) | $38 | +$15 | $53 |
-| Riser (sold separately) | $8 | +$15 | $23 |
-| 2mm Blue Underpad w/ vapour barrier (200 sf) | $6 | +$20 | $26 |
+| Riser (sold separately) | $ 8 | +$15 | $23 |
+| 2mm Blue Underpad w/ vapour barrier (200 sf) | $ 6 | +$20 | $26 |
 | 3mm Black EVA Condo Pad, silver foil, IIC 73/STC 72 (200 sf) | $17 | +$20 | $37 |
 
 Riser-alone and the square-return set both lack a dedicated markup standard — Stair Tread +$15 applied as the closest rule; flag to confirm with rep. Accessories: `Category = LVP`, `Material type = SPC core` (or blank for underpad), `Product type = Accessory`/`Underpad`. The condo pad's IIC 73 / STC 72 go in the IIC/STC fields.
@@ -2069,12 +2088,12 @@ Round to two decimals. Apply this exactly once — do not double-discount. The p
 
 #### Markup overrides — CIF only
 
-CIF breaks the standard `Retail = Cost + $1.00` rule. Three distinct markup tiers apply:
+CIF breaks the standard `Retail = Cost + $ 1.00` rule. Three distinct markup tiers apply:
 
 | Product type | Markup | Notes |
 |---|---|---|
-| Tile (porcelain, ceramic field tile, slabs) | `Retail = Cost + $2.00` | Applies to floor and wall tile, regardless of size or material |
-| Mosaic (anything `Tile format = Mosaic`, including hex mosaics, listellos, pencils, decors) | `Retail = Cost + $5.00` | Higher markup reflects accent-product positioning |
+| Tile (porcelain, ceramic field tile, slabs) | `Retail = Cost + $ 2.00` | Applies to floor and wall tile, regardless of size or material |
+| Mosaic (anything `Tile format = Mosaic`, including hex mosaics, listellos, pencils, decors) | `Retail = Cost + $ 5.00` | Higher markup reflects accent-product positioning |
 | STONE (marble/quartz thresholds, jambs, benches — Category = `STONE`) | `Retail = 0` (leave at zero) | Markup rule unsettled; leave `Retail price/unit = 0` and flag for Albert to set. Do not infer. |
 
 These overrides are **CIF-specific** and do not generalize to other tile suppliers.
@@ -2133,7 +2152,7 @@ Mosaics get their own handle (suffix `M`) even when sharing a colour with the fi
 A handful of mosaic-adjacent items (Artico 2×2 and Hex sheets, Sena 2×2 and Hex, Park Listello, Identity Tetris Listello, Cristalli Pencil, Boemia Dots, Boemia Single Decor, Picnic/Hyde/Decor Pipa listellos) are priced as `Cost per piece` only — CIF lists no sf/piece. For these:
 
 - Apply the same ×0.60 discount to the per-piece cost → store in `Cost/unit`
-- Apply mosaic markup `Retail = Cost + $5.00`
+- Apply mosaic markup `Retail = Cost + $ 5.00`
 - Treat as mosaics (`Tile format = Mosaic`, `Layout pattern = Mosaic`)
 - Leave `Box size (sf)` blank — only `Pieces per box` is meaningful
 - Flag in Salesperson notes: `Cost listed as per-piece on price list.`
@@ -2279,20 +2298,20 @@ The Zone AT price book prints both a `$/SqFt` and a `$/Pcs.` (or `/Box`, `/Sheet
 Cost/unit = printed_price × 0.60 × 0.94 = printed_price × 0.564
 ```
 
-Round to two decimals. Apply the 0.564 multiplier exactly once. Example: `$9.11/sf` list → `9.11 × 0.564 = $5.14/sf` cost.
+Round to two decimals. Apply the 0.564 multiplier exactly once. Example: `$ 9.11/sf` list → `9.11 × 0.564 = $ 5.14/sf` cost.
 
 Use the **`$/SqFt`** figure as `Cost/unit` for anything sold by area (tile, stone, vinyl). Use the **per-piece** figure (`$/Pcs.`, `$/Lin.Ft`, `$/Set`) as `Cost/unit` for per-piece-only items (thresholds, jambs, trims, vinyl nosing/reducer) — those have no meaningful `$/SqFt`.
 
 #### Markup overrides — Olympia (CIF-style tiers)
 
-Olympia breaks the standard `Retail = Cost + $1.00` rule, using the same tier structure agreed for CIF:
+Olympia breaks the standard `Retail = Cost + $ 1.00` rule, using the same tier structure agreed for CIF:
 
 | Product type | Markup | Applies to |
 |---|---|---|
-| Field tile (porcelain, ceramic, granite, marble, limestone, quartzite, travertine, slate field tile, agglomerated slabs) | `Retail = Cost + $2.00` | `Category = Tile / Stone`, `Tile format` ≠ Mosaic |
-| Mosaic (anything `Tile format = Mosaic` — glazed porcelain mosaics, mother of pearl, metal/aluminum mosaic, riverstone, sheet-format glass) | `Retail = Cost + $5.00` | `Tile format = Mosaic` |
+| Field tile (porcelain, ceramic, granite, marble, limestone, quartzite, travertine, slate field tile, agglomerated slabs) | `Retail = Cost + $ 2.00` | `Category = Tile / Stone`, `Tile format` ≠ Mosaic |
+| Mosaic (anything `Tile format = Mosaic` — glazed porcelain mosaics, mother of pearl, metal/aluminum mosaic, riverstone, sheet-format glass) | `Retail = Cost + $ 5.00` | `Tile format = Mosaic` |
 | Ceramic Trims (bullnose, cove base, pencil, listello — the Trims section) | `Retail = Cost + $10.00` | `Product type = Moulding`, `Category = Tile / Stone` |
-| SPC / LVT vinyl flooring (Chimestone, Chimewood) | `Retail = Cost + $1.00` | `Category = LVP / LVT`, `Product type = Flooring` |
+| SPC / LVT vinyl flooring (Chimestone, Chimewood) | `Retail = Cost + $ 1.00` | `Category = LVP / LVT`, `Product type = Flooring` |
 | Vinyl reducer (Chimewood reducer) | `Retail = Cost + $10.00` | cross-supplier accessory markup |
 | Vinyl nosing (Chimewood nosing) | `Retail = Cost + $20.00` | cross-supplier accessory markup (stair-step/riser tier) |
 | STONE (marble/quartz thresholds, shower jambs, benches — `Category = STONE`) | `Retail = 0` (leave at zero) | Markup unsettled; leave `Retail price/unit = 0` and flag for Albert. Do not infer. |
@@ -2400,7 +2419,7 @@ Biyork prints **`MSRP/SF`** and **`Your Price`**.
 
 - **Use `Your Price` as `Cost/unit`.**
 - Put `MSRP/SF` in the `MAP price ($/sf)` reference field.
-- Standard markup applies to flooring: `Retail = Cost + $1.00`.
+- Standard markup applies to flooring: `Retail = Cost + $ 1.00`.
 
 #### Markup overrides (accessories)
 
@@ -2441,7 +2460,7 @@ Laminate: `Riptide`.
 
 #### Parsing quirks / known soft spots
 
-- **Hydrogen 8 price inversion:** the plank `Your Price` ($6.63) **exceeds** `MSRP/SF` ($6.34), and Hydrogen 8 accessory `Your Price` equals MSRP exactly (no dealer discount). Ingest the values as-is (Cost = `Your Price`) per flag-don't-block, and tag both in `Salesperson notes` for review. Almost certainly a typo on Biyork's sheet — confirm with the rep.
+- **Hydrogen 8 price inversion:** the plank `Your Price` ($ 6.63) **exceeds** `MSRP/SF` ($ 6.34), and Hydrogen 8 accessory `Your Price` equals MSRP exactly (no dealer discount). Ingest the values as-is (Cost = `Your Price`) per flag-don't-block, and tag both in `Salesperson notes` for review. Almost certainly a typo on Biyork's sheet — confirm with the rep.
 - **Multi-size groups under one header:** Nouveau 7 splits Hickory into Wirebrush vs Handscraped finishes (different finish, same price). Hydrogen 6 Plank has two size groups (7"×48" box 23.64 and 7"×60" box 23.25) under one collection. Create records for every sub-group with its specific box size/finish.
 - **Tile lines inside vinyl collections:** Hydrogen PRO Tile and Hydrogen 6 Tile are vinyl tile (`LVT`), not porcelain — keep `Material type = SPC core`.
 - **Nouveau 6 Clic** is engineered hardwood with a Uniclic float system → `Install profile = Click`, `Locking system = Uniclic`, thickness 1/2" (12.7mm).
@@ -2475,7 +2494,7 @@ Floordi is both the supplier and the brand. Floordi Canada Inc (Hamilton, ON) is
 
 - **Use `Price/UoM (CAD)` as `Cost/unit`** (per sqft for flooring, per piece for accessories).
 - `Price/Box (CAD)` and `Price/Pallet (CAD)` are extended totals — do not map them. **`Pallet price ($/sf)` stays blank** (Floordi gives a pallet total in CAD, not a per-sf pallet rate).
-- Standard markup on flooring: `Retail = Cost + $1.00`.
+- Standard markup on flooring: `Retail = Cost + $ 1.00`.
 
 #### Reduced-price colours are NOT promos
 
@@ -2542,7 +2561,7 @@ When a new supplier is added, gather this information before processing their fi
 4. **Which of the three cost columns to use** (pallet / box / list / MSRP — varies by supplier)
 5. **Does the supplier assign product codes?** If yes, populate Supplier SKU. If no, leave blank.
 6. **Categories in scope** (ENG, LVP, LVT, HWD, LAM, TIL, CAR, ACC)
-7. **Markup overrides** — any category where `Retail = Cost + $1` doesn't apply (e.g. stair products, accessories, clearance)
+7. **Markup overrides** — any category where `Retail = Cost + $ 1` doesn't apply (e.g. stair products, accessories, clearance)
 8. **Which schema fields the supplier omits** (wear layer, veneer, grade, warranty, certifications, radiant heat compatibility)
 9. **Collection naming convention** — which line names to use verbatim
 10. **Material type defaults** — what to infer from section headers when not stated
