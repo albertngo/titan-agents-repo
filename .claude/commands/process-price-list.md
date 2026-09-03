@@ -158,7 +158,7 @@ curl -sS -X POST "<upload_url>" -H "authorization: Bearer <token>" \
 
 **Attach first, re-fetch to confirm both files are present, then set state:**
 
-- `Extracted` = checked, `Status` = `Extracted [Pending Review]`
+- `Status` = `Extracted [Pending Review]`
 - `Airtable Sync` = `Pending` — always; the run produced a file Airtable does not reflect
 - `New Products` = count of `MatchStatus = new` (`0` if none)
 - `LS Backfill` = `Pending` if that count ≥ 1, else `Not needed`
@@ -168,8 +168,7 @@ agent) who does the import, the upload or the backfill writes those. The downstr
 is forced: `Airtable Sync: Done` → `POS ✅` → `LS Backfill: Done`, because a new product
 has no Lightspeed ID until the POS upload creates one.
 
-If the upload fails, leave `Extracted` unchecked and `Status` at `Extracting`, and say
-why. Never leave a row reading `Extracted [Pending Review]` with an empty
+If the upload fails, leave `Status` at `Extracting` and say why. Never leave a row reading `Extracted [Pending Review]` with an empty
 `Extracted Files` — that claims there is something to review when there is not.
 
 ## 7. Escalate anything you could not determine

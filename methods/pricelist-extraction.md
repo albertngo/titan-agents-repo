@@ -114,7 +114,7 @@ A `200` with `"status":"uploaded"` is the success signal. Then pass each
 
 The upload URL is short-lived (~10 min) and single-part uploads cap at 20 MiB —
 neither binds for these files (~49 KB and ~34 KB). Re-fetch the row afterwards and
-confirm two attachments are present before setting `Extracted`.
+confirm the attachments are present before setting `Status`.
 
 Not writing does **not** remove the need to read the catalogue first — see below.
 
@@ -178,6 +178,7 @@ is tracked on the row, because it happens later and (for now) by hand.
 | Property | Written by | Values |
 |---|---|---|
 | `Status` | run, then whoever finishes it | `Extracted [Pending Review]` after the files land; `Done` only when everything below is resolved |
+| ~~`Extracted`~~ | — | **Removed from the data source 2026-09-03.** It duplicated `Status = Extracted [Pending Review]`. Writing it now fails the whole `update-page` call with a `validation_error`, so do not reintroduce it. |
 | `New Products` | the run | count of `MatchStatus = new` rows, `0` if none |
 | `Airtable Sync` | run, then importer | `Pending` · `Done` · `Not needed` |
 | `POS` (checkbox) | whoever uploads to Lightspeed | checked = the LS file has been pushed to the POS |

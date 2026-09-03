@@ -65,9 +65,9 @@ before.
 
 It covers, in order: reading the row; downloading the actual PDF bytes; assigning
 Company and Tags; extracting against the live Airtable catalogue and reconciling SKUs,
-handles and Lightspeed IDs; producing BOTH the Airtable upload file and the Lightspeed
-upload file; attaching both to the row's Extracted Files; and setting Extracted,
-Status, Airtable Sync, New Products and LS Backfill.
+handles and Lightspeed IDs; producing the Airtable upload file and, for an existing
+supplier, the Lightspeed upload file; attaching them to the row's Extracted Files; and
+setting Status, Airtable Sync, New Products and LS Backfill.
 
 **Finish**
 Commit and push the two generated files to the repo.
@@ -297,8 +297,8 @@ carry the real MIME type (`-F "file=@x.xlsx;type=application/vnd.openxmlformats-
 or Notion 400s on a content-type mismatch. Look for `"status":"uploaded"`.
 
 **Order matters: attach first, then flag.** Re-fetch the row and confirm both
-attachments are present before setting `Extracted` / `Status`. If the upload fails,
-leave `Extracted` unchecked and `Status` at `Extracting` and report why — never mark a
+attachments are present before setting `Status`. If the upload fails,
+leave `Status` at `Extracting` and report why — never mark a
 row `Extracted [Pending Review]` with an empty `Extracted Files`, which reads as ready
 to review when nothing is attached. `Company` and `Tags` from steps 3–4 still stand
 either way, and the files are still committed to `ingest/YYYY-MM-DD/`.
