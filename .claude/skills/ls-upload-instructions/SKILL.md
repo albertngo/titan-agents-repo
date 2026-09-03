@@ -496,6 +496,43 @@ Resolve to one of the three in this order:
 
 > **Material type is currently blank on every accessory record.** Neither `Category` nor `Material type` is populated on Vidar's 20 accessories — the material exists only inside the free-text `Product name`. Populating these two fields on accessory records makes this segment deterministic instead of parsed, and has the side benefit of making accessories filterable in Bert, which they are not today.
 
+### One SKU per physically distinct trim — collection is not a SKU axis
+
+**Rule (Albert, 2026-09-03): a trim earns its own SKU when its DIMENSIONS differ.
+Collection does not, on its own, justify a separate SKU.**
+
+The unit is the physical stick: **type × material × dimensions × price**. Two rows
+identical on all four are one product that two collections happen to share — list them
+once and name both lines in `[Dimensions]`:
+
+```
+Canadian Standard - Transition | T-Moulding | SPC | 2400mm x 45mm x 7mm (VANNTETT PLUS / VANNTETTPRO)
+```
+
+**The reason is inventory, not naming.** Each SKU is a separate stock count in
+Lightspeed. Two SKUs describing the same stick split one physical pile into two counts —
+both wrong — and staff pick from whichever happens to show stock. The mirror-image
+failure is just as real: merging a 7mm trim with a 10mm one produces a SKU that cannot
+tell you which you are holding. So the test is physical interchangeability, nothing else.
+
+**Do not collapse across a price difference**, even at equal dimensions — a price gap
+means the supplier is treating them as different products, and the POS must too. Within
+Canadian Standard the house lines are consistent ($18/$28 reducer across Evion 9,
+Elemental12 and VANNTETT), while third-party lines inside the same supplier run ~2.5×
+(Inhaus $40, SONO Eclipse $48.50). Those stay separate on price alone.
+
+**Decide this before the import, not after.** Merging is free while the rows are
+`MatchStatus: new` with no Lightspeed ID. Once imported, a merge means deleting live
+SKUs that carry stock counts and sales history.
+
+**When the supplier gives per-trim order codes, they win.** If a price list carries a
+distinct `Supplier SKU` per collection, keep them separate regardless of matching
+dimensions — the name is then telling the truth about how the part is ordered. Canadian
+Standard's list has no trim codes at all, so the granularity was ours to choose.
+
+Applied 2026-09-03: VANNTETT PLUS and VANNTETTPRO trims were byte-identical apart from
+the collection string — 21 trim SKUs became 18.
+
 ### Controlled type tokens
 
 | Token | Covers |
@@ -854,6 +891,7 @@ The source data sheet (any brand) MUST contain these columns:
 - ☐ variant_option_one_name AND variant_option_one_value are BLANK for every single-row handle (regardless of whether grade is present)
 - ☐ **Transitions/mouldings follow the searchable name format** — `[Supplier] - Transition | [Type] | [Material] | [Dimensions]`, full supplier name spelled out, `Transition` token present, type token taken verbatim from the controlled list
 - ☐ **The two-token search actually resolves** — for every accessory family in the file, confirm that `<Supplier> <Family>` (e.g. `Canadian Standard Transition`) matches every row of that family and no row outside it. This is the whole point of the format; assert it over the file rather than trusting the template.
+- ☐ **No two trims share type + material + dimensions + price** — identical on all four means one physical stick listed twice; merge them and name both lines in `[Dimensions]`. Differing dimensions or price stay separate. Check before import: merging is free while the rows are new.
 - ☐ **`[Material]` is one of exactly `SPC` / `Laminate` / `Wood`** — no `LVP`, `LVT`, `WPC`, `Engineered`, `Hardwood plywood`, or a species code. Any other value means the resolver fell through a data gap; fix the mapping, do not ship a fourth token.
 - ☐ **Renamed accessories carry their `id`** — every accessory row whose name changed has the Lightspeed UUID in column 1, or the import creates duplicates instead of renaming
 - ☐ **Name dedup applied** — if Collection contains Species, Species dropped from name; if Collection ends with Install, Install dropped from name
