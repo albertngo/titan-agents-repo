@@ -2450,6 +2450,8 @@ Cost/unit = printed_price × 0.60 × 0.94 = printed_price × 0.564
 
 Round to two decimals. Apply the 0.564 multiplier exactly once. Example: `$ 9.11/sf` list → `9.11 × 0.564 = $ 5.14/sf` cost.
 
+**Also retain the printed list price** — it is Olympia's suggested retail to the customer, the second of the two numbers every ingest resolves, and it is what makes the ×0.564 auditable afterwards. It is currently discarded on every Olympia record; see *Open gap — CIF and Olympia discard their list price* in the Cost basis section, including why it must not simply be written to `MAP price ($ /sf)` without a ruling.
+
 Use the **`$/SqFt`** figure as `Cost/unit` for anything sold by area (tile, stone, vinyl). Use the **per-piece** figure (`$/Pcs.`, `$/Lin.Ft`, `$/Set`) as `Cost/unit` for per-piece-only items (thresholds, jambs, trims, vinyl nosing/reducer) — those have no meaningful `$/SqFt`.
 
 #### Markup overrides — Olympia (CIF-style tiers)
