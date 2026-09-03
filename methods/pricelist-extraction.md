@@ -18,8 +18,9 @@ Make scenario 4381438 (Price Lists)
   → anonymous share link → Notion "Price Lists" row
         ↓  {"notionID": ...}
   routine → Notion row → share link → curl (cookie jar) → pdfplumber
-        → bert-airtable-schema → Airtable update + Price History Log v2
-        → ls-upload file → OneDrive company folder → link back to Notion
+        → bert-airtable-schema → airtable_upload.xlsx  ┐
+        → ls-upload-instructions → ls_upload.xlsx      ┴→ Notion "Extracted Files"
+        → Status: Extracted [Pending Review] → human imports both
 ```
 
 The Notion "Price Lists" database is the index of **every** supplier PDF Titan has
@@ -50,19 +51,32 @@ stock-status markers mid-row, e.g. `WB1381 Limited LUCCA ABC $4.09`, where
 pdfplumber correctly puts `Limited` on its own line). `sharepoint.com` is reachable
 from cloud sessions; no network-policy change is needed.
 
+## The routine writes no platform — it exports two files
+
+**Decided 2026-09-03 (Albert).** The routine does not write to Airtable, and
+Lightspeed has no API here anyway. Every run ends with **two .xlsx files attached to
+the Notion row's `Extracted Files`** — the Airtable upload and the LS upload — and
+`Status = Extracted [Pending Review]`. A person does both imports.
+
+`Extracted Files` is a Notion **`file`** property, so the files are uploaded natively
+(`create-file-upload` → POST bytes → `update-page` with a `file_upload` reference).
+An earlier draft of step 7 said to paste a OneDrive share link into it; that does not
+match the schema.
+
+Not writing does **not** remove the need to read the catalogue first — see below.
+
 ## Check the supplier exists first
 
-**A price list for a supplier not already in the catalogue never creates records
-through the API.** Query the Master Flooring Catalogue (`appWHOVZ0QCS0xQ3M` /
-`tblfLXD3zkSdNQGbS`) filtered to that supplier before writing anything:
+Query the Master Flooring Catalogue (`appWHOVZ0QCS0xQ3M` / `tblfLXD3zkSdNQGbS`)
+filtered to that supplier. The answer decides what the exported file *is*:
 
-- **Rows returned** → update path, below.
-- **No rows** → produce the Bert schema Excel export (canonical column order) and
-  stop. New products enter through Airtable's own importer after human review, and
-  the supplier's select option, SKU suffix, cost column and markup overrides have to
-  be settled first — see the skill's new-supplier onboarding checklist.
+- **Rows returned** → the file is an **update sheet** and must carry the existing
+  SKUs. See the cascade below.
+- **No rows** → the file is a fresh import sheet. The supplier's select option, SKU
+  suffix, cost column and markup overrides have to be settled first — see the skill's
+  new-supplier onboarding checklist.
 
-## For an existing supplier, Airtable is an UPDATE, not an import
+## For an existing supplier, the export is an UPDATE sheet, not an import
 
 Most suppliers already have their whole catalogue in Airtable. A price list is a
 **price change against existing rows.** Match in this cascade, stopping at the first
@@ -76,18 +90,38 @@ tier that resolves cleanly:
 3. **Specifications** — name, collection, size, grade, colour. Last resort, always
    review.
 
-**Never match against a SKU generated during the run.** Tier 1 means the stored SKU,
-looked up live. Extraction renumbers per run — it emitted `LVP-GRNT-0001…0010` where
-Airtable holds `LVP-GRNT-0073…0082` — so treating generated values as tier-1 keys
-silently duplicates the catalogue. GreenTouch is sequential, so that run correctly
-resolved at tier 2.
-- Write only fields that actually changed. Set `Last price update` and
-  `Price last changed by` = **`Cowork`** (the extraction skill defaults this to
-  `Manual` — override it; these runs are not manual).
-- Append one row per cost change to **Price History Log v2** (`tbly2em2cMuQs9eqK`):
-  entry type, previous/new cost, change date, supplier, `Changed by` = Cowork, and
-  the source filename. Its `Supplier` select is sparse — pass `typecast: true` so a
-  new supplier option is created rather than erroring.
+**Never ship a SKU generated during the run for a product that already exists.**
+Tier 1 means the stored SKU, looked up live. Extraction renumbers per run, so a
+generated SKU duplicates the catalogue instead of updating it. Two runs have now hit
+this:
+
+| Run | Extraction emitted | Airtable actually holds |
+|---|---|---|
+| GreenTouch 2026-09-01 | `LVP-GRNT-0001…0010` | `LVP-GRNT-0073…0082` |
+| Grandeur 2026-09-03 | `GRNDENG-0001`, `GRNDLVP-0001` | `ENG-GRAN-####`, `SPC-GRAN-####` |
+
+GreenTouch resolved at tier 2 (sequential supplier codes). **Grandeur could not** —
+only 10 of its 239 records carry a `Supplier SKU` — so it resolved at tier 3 on
+`Product name`, which uses the same convention on both sides
+(`Grandeur 7.5" EWO — Moonfrost (ABCD)`). Expect tier 3 to be the normal path for
+suppliers who publish no codes.
+
+The Grandeur case was worse than a renumbering: the skill's Grandeur subsection
+documented the wrong SKU *format* (`GRND` prefix), so no generated SKU could ever
+have matched. **Verify a supplier's documented SKU format against the live base
+before trusting it** — the skill is not authoritative about what is actually stored.
+
+- Carry the matched record's existing SKU verbatim into the export, and record
+  `MatchedRecId` + `MatchStatus` (`matched` / `new` / `ambiguous`) as helper columns
+  the reviewer deletes before import.
+- New products continue the live numbering for their category prefix — never restart
+  at 0001, never reuse a number already present.
+- Note the base can carry **legacy prefixes** the current schema no longer issues
+  (Grandeur holds `SPC-GRAN-####` / `WPC-GRAN-####` vinyl; the schema now issues
+  LVP/LVT). Match against what is stored; issue new SKUs per the current rule.
+- Fields that changed, `Last price update`, `Price last changed by` = **`Cowork`**,
+  and the Price History Log v2 rows are all still the *reviewer's* import job — the
+  routine no longer performs them. Keep the values correct in the exported sheet.
 - Lightspeed has no API in this environment. Produce the ls-upload file; never
   report it as imported.
 

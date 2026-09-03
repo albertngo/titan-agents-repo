@@ -1448,19 +1448,32 @@ Grandeur is supplier and brand (single entity). Multi-category supplier: enginee
 |---|---|
 | **Supplier** (single-select) | `Grandeur` |
 | **Brand** | `Grandeur` |
-| **SKU supplier code** | `GRAN` — 4-char suffix for Supplier SKU matching; internal SKU uses `GRND` prefix |
-| **Internal SKU prefix** | `GRND` — e.g. `GRNDENG-0001`, `GRNDLVP-0001` |
-| **Supplier SKU** | Populate with Grandeur's product code verbatim (they publish codes on their price list). SKU prefix by product type: `GRAN` (general), varies by line — confirm per price list. |
+| **SKU supplier code** | `GRAN` — 4-char suffix, canonical format |
+| **Internal SKU format** | `[CAT]-GRAN-####` — the canonical format, e.g. `ENG-GRAN-0030`, `SPC-GRAN-0015`. **`GRND` is the Lightspeed name prefix, NOT the Airtable SKU prefix** — see the correction note below. |
+| **Supplier SKU** | Mostly **blank**. Despite an earlier note that Grandeur publishes codes, only **10 of 239** live records carry a `Supplier SKU`. Populate it when a code is genuinely printed; do not invent one. Expect price-list matching to fall to tier 3 (specifications / `Product name`). |
 
 #### SKU prefix by product type
 
-| Category | LS Name prefix | Example SKU |
-|---|---|---|
-| Engineered hardwood | `GRNDENG` | `GRNDENG-0001` |
-| Solid hardwood | `GRNDHWD` | `GRNDHWD-0001` |
-| SPC/WPC LVP | `GRNDLVP` or `GRNDWPC` | `GRNDLVP-0001` |
-| SPC (rigid core) | `GRNDSPC` | `GRNDSPC-0001` |
-| Laminate | `GRNDLAM` | `GRNDLAM-0001` |
+`GRND…` is the **Lightspeed** name prefix. The **Airtable** SKU is `[CAT]-GRAN-####`.
+Do not use the LS prefix as an Airtable SKU.
+
+| Category | LS Name prefix | Airtable SKU format | Live count (2026-09-03) |
+|---|---|---|---|
+| Engineered hardwood | `GRNDENG` | `ENG-GRAN-####` | 102 |
+| Solid hardwood | `GRNDHWD` | `HWD-GRAN-####` | 6 |
+| LVP | `GRNDLVP` | `LVP-GRAN-####` | 36 |
+| SPC (rigid core) — **legacy** | `GRNDSPC` | `SPC-GRAN-####` | 45 |
+| WPC — **legacy** | `GRNDWPC` | `WPC-GRAN-####` | 20 |
+| Laminate | `GRNDLAM` | `LAM-GRAN-####` | 30 |
+
+> **Correction, 2026-09-03.** This subsection previously stated the internal SKU
+> prefix was `GRND` (`GRNDENG-0001`). That is wrong and was never what the base held.
+> The 2026-09-03 routine run generated 231 rows of `GRNDENG-####` / `GRNDLVP-####`
+> SKUs that matched **none** of the 239 existing Grandeur records; importing that file
+> would have duplicated the whole Grandeur catalogue. Verified against
+> `appWHOVZ0QCS0xQ3M` / `tblfLXD3zkSdNQGbS`. `SPC-`/`WPC-` are legacy prefixes still
+> present in the base — match against them, but issue new vinyl SKUs as `LVP-`/`LVT-`
+> per the global SKU format reference.
 
 #### Cost column
 
@@ -1522,16 +1535,43 @@ Confirm which fields are omitted on the specific price list being processed. Com
 - **Pet friendly = TRUE** when wear layer ≥ 20 mil.
 - **Radiant heat compatible = FALSE** for Black Walnut. Blank for all others.
 
+#### Product name — the tier-3 matching key
+
+Grandeur rarely carries a `Supplier SKU`, so `Product name` is what an update run
+matches on. The live base and the extraction agree on this shape, and it must not
+drift:
+
+```
+Grandeur [width]" [SpeciesAbbrev] — [Colour] ([LetterGrade])
+```
+
+Species abbreviations seen live: `EWO` (European White Oak), `AO` (American Oak),
+`NAH` (North American Hickory), `HM` (Hard Maple). Vinyl/laminate rows use the
+collection in place of the species — `Grandeur 7" Pacific — Canterbury`.
+
+**The grade in parentheses is the supplier's letter grade verbatim** (`(ABCD)`,
+`(ABC)`, `(AB)`) — *not* the mapped canonical word. The mapped value goes in the
+`Grade` field; the name keeps the letters. Examples from the live base:
+`Grandeur 7.5" EWO — Moonfrost (ABCD)`, `Grandeur 7.5" AO — Honeycomb (AB)`.
+
 #### Upload stats (reference)
 
-From the most recent Grandeur LS upload:
+Live catalogue as of **2026-09-03**: **239 Grandeur records** (ENG 102, SPC 45,
+LVP 36, LAM 30, WPC 20, HWD 6), only 10 of which carry a `Supplier SKU`.
+
+From an earlier Grandeur LS upload:
 - **238 total products** extracted from price list.
 - **163 updates** to existing LS records + **75 new products** added.
 - Airtable upsert used `performUpsert` with `fieldIdsToMergeOn: ['fldx3byCOht5HbKmH']` (SKU field).
 
 #### Grandeur ingest output format
 
-File naming convention: `grandeur_airtable_upload_[YYYY-MM-DD].xlsx`. Save to `/mnt/user-data/outputs/`.
+Two files per price list, both attached to the Notion Price Lists row's
+`Extracted Files` (see `methods/pricelist-routine-prompt.md` step 7):
+`grandeur_airtable_upload_[YYYY-MM-DD].xlsx` and
+`grandeur_ls_upload_[YYYY-MM-DD].xlsx`. In this repo they are written to
+`ingest/YYYY-MM-DD/`, not `/mnt/user-data/outputs/` (that path is for claude.ai
+sessions).
 
 ---
 
@@ -2368,6 +2408,19 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
 
 ### Changelog
 
+- **2026-09-03** — **Grandeur SKU format corrected.** The subsection claimed the
+  internal SKU prefix was `GRND` (`GRNDENG-0001`); the base actually holds
+  `[CAT]-GRAN-####` (`ENG-GRAN-0030`, `SPC-GRAN-0015`). `GRND…` is the *Lightspeed*
+  name prefix only. The scheduled run that day generated 231 rows of `GRND`-prefixed
+  SKUs matching none of the 239 live Grandeur records — an import would have
+  duplicated the catalogue. Also recorded: Grandeur's `Supplier SKU` is blank on 229
+  of 239 records (so matching falls to `Product name`), the letter grade stays
+  verbatim in `Product name`, and legacy `SPC-`/`WPC-` prefixes are still present.
+  **General lesson: verify a supplier's documented SKU format against the live base
+  before generating SKUs from it.**
+- **2026-09-03** — Price list runs export **two** files (Airtable + Lightspeed) and
+  attach them to the Notion row; the routine no longer writes to Airtable. See
+  `methods/pricelist-routine-prompt.md`.
 - **2026-09-01** — Added "Updating existing products from a price list", after the
   GreenTouch 2026-09-01 run surfaced that the extraction step renumbers internal
   SKUs per run and would have duplicated all 83 existing records. Two rules
