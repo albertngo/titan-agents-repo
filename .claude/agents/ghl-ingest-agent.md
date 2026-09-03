@@ -425,9 +425,22 @@ internal comment is **not** a customer reply — it never counts as a response f
 `next_response_owner`, `sitting_hours`, or unanswered-conversation metrics; a
 thread where we only left ourselves a note is still unanswered to the customer.
 Do reflect it in `contact_notion` and, where it changes urgency, in
-`act_immediately_reason`. Mentions arrive as `@Name<userId>…</userId>` markup —
-resolve the ID against the `people` table the same way `assigned_to` is handled
-downstream, and never paste the raw markup into a summary.
+`act_immediately_reason`.
+
+**Author vs. mention — get this right, it has already been wrong once.** The
+author of an internal comment is the message's own top-level `userId` field.
+People *mentioned* inside it appear as `@Name<userId>…</userId>` markup **in the
+`body`** — those are recipients being tagged, not the writer. Never read an ID
+out of the body and call it the author.
+
+Confirmed bug, 2026-09-02: a note on Maria Wildfang's thread with
+`userId: ooPNab06Ka04uZ1yQ4w6` (Albert) whose body opened
+`@Pourya Lalee<userId>rAMFCiXbAjJOEjtyyvmn</userId> suggest to followup…` was
+reported as "Pourya left an internal note." Albert wrote it; Pourya was the
+person he tagged. That reversal reached the daily brief and a live Notion task
+before Albert caught it. When both matter, say so explicitly — "Albert noted,
+tagging Pourya" — and resolve each ID against the `people` table separately.
+Never paste the raw markup into a summary.
 
 ## Opportunity notes (`query_getNotes`)
 
