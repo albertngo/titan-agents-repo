@@ -67,6 +67,13 @@ Standard, 2026-09-03: 292 of 336 rows). Those rows are legitimately
 present. Judge by `MatchStatus` only for the Airtable side — whether the row creates
 a record or updates one.
 
+**Surface anything that blocks or qualifies the import as a distinct, one-line flag**
+— assumed cost basis, placeholder prices, specs copied from a sibling, conflicts with
+stored data — naming the affected SKUs. The caller writes these to the Notion row's
+`Notes` property, which is the only warning visible when scanning the database. Keep them
+separate from the narrative summary; if there is nothing blocking, say so explicitly so
+the caller leaves `Notes` empty.
+
 **Report the exact count of `new` rows in your summary.** It is not just narrative —
 the caller writes it to the Notion row's `New Products` property and sets
 `UUID Backfill = Pending`, which is how Albert finds the price lists whose new products

@@ -146,7 +146,40 @@ Two things worth knowing:
   the key `Status`** (verified by writing it successfully on two rows the same day).
   Write `Status`; expect to *see* `Extraction Status` in the UI.
 
-A `Notes` (text) property also exists now and nothing writes it — free for a human note.
+#### `Notes` — the row's own flag line (Albert, 2026-09-03)
+
+**Every run writes `Notes` when it has something the reviewer must know, and leaves it
+empty when it does not.** An empty `Notes` is a real signal — "this run found nothing
+worth stopping for" — so never fill it with a summary of what went right.
+
+It exists because the other escalation paths are all *off* the row: a Tactical Task, a
+push notification, a chat report. None of them are visible to someone scanning the Price
+Lists database, which is where the decision to import actually gets made. `Notes` is the
+row-local pointer; it does not replace the task or the push for anything actionable.
+
+**What earns a line, in priority order:**
+
+1. **Anything that blocks or invalidates the import** — a cost basis assumed rather than
+   confirmed, a placeholder price, a schema field the base does not have yet.
+2. **An assumption a human must verify** — specs copied from a sibling record, a core
+   type inferred, a supplier typo corrected.
+3. **A conflict with stored data** — a collection or spec that disagrees with the
+   catalogue, especially where an immutable field (handle, SKU) encodes the old value.
+
+**What does not:** row counts, match rates, "no price changes", or anything already
+visible in `New Products` and the three trackers.
+
+**Format.** Terse, one line per issue, most severe first, each naming the affected rows
+or SKUs so it can be acted on without opening the file. Lead with the run date, because
+a re-run overwrites this field and a stale note is worse than none:
+
+```
+2026-09-03: 12 rows have Cost/unit set to the PROMO price as a placeholder
+(no regular cost known) — verify with Vidar before import. SKUs ENG-VIDR-0193…0204.
+```
+
+**Overwrite, don't append.** It describes the current state of the row, not its history —
+the repo commits and `Salesperson notes` carry the history.
 
 **Read the data source schema when a write fails rather than guessing the new name.**
 The 400's message lists every editable key, which is how these were found.

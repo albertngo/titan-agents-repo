@@ -67,7 +67,8 @@ It covers, in order: reading the row; downloading the actual PDF bytes; assignin
 Company and Tags; extracting against the live Airtable catalogue and reconciling SKUs,
 handles and Lightspeed IDs; producing the Airtable upload file and, for an existing
 supplier, the Lightspeed upload file; attaching them to the row's Extracted Files; and
-setting Status, Airtable Sync, New Products and UUID Backfill.
+setting Status, Airtable Sync, New Products, UUID Backfill and Notes (the row's flag
+line — anything blocking or needing verification, else left empty).
 
 **Finish**
 Commit and push the two generated files to the repo.
@@ -270,6 +271,10 @@ Then set, in this order:
 - **`Airtable Sync`** = `Pending` — always. The run produced a file Airtable does not
   yet reflect.
 - **`New Products`** = the count of rows whose `MatchStatus` is `new` (`0` if none).
+- **`Notes`** = the flag line, or empty. Only what blocks or qualifies the import —
+  assumed cost basis, placeholder prices, unverified specs, conflicts with stored data.
+  Date-prefixed, terse, worst first, naming SKUs. Overwrite; never append. Empty means
+  nothing blocking, so never put counts or match rates there.
 - **`UUID Backfill`** = `Pending` if that count is ≥ 1, otherwise `Not needed`.
 
 These are the two things a run leaves owing, each its own worklist filter:

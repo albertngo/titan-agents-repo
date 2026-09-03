@@ -177,6 +177,14 @@ curl -sS -X POST "<upload_url>" -H "authorization: Bearer <token>" \
 - `Airtable Sync` = `Pending` — always; the run produced a file Airtable does not reflect
 - `New Products` = count of `MatchStatus = new` (`0` if none)
 - `UUID Backfill` = `Pending` if that count ≥ 1, else `Not needed`
+- `Notes` = **the flag line, or leave empty.** Write it only when the reviewer must know
+  something before importing: a cost basis assumed rather than confirmed, a placeholder
+  price, a schema field the base lacks, specs copied from a sibling, or a conflict with
+  stored data. Terse, one line per issue, worst first, naming the affected SKUs, prefixed
+  with the run date. **Overwrite it; never append.** An empty `Notes` means "nothing
+  blocking" — do not fill it with counts or match rates, those are already in
+  `New Products` and the trackers. It does not replace the escalation task (step 7); it
+  is the pointer visible when scanning the database.
 
 **Never write `Done` to any of the three trackers, and never touch `LS Upload`** — the person (later, the
 agent) who does the import, the upload or the backfill writes those. The downstream order
