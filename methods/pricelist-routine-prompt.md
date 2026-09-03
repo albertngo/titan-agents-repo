@@ -127,6 +127,14 @@ Otherwise extract with the **bert-airtable-schema** skill and produce **both** f
 
 A matched row reaching the LS file with a blank `id` means the reconciliation did not
 happen, and importing it duplicates a live Lightspeed product instead of updating it.
+On a **new** row that blank is correct — Lightspeed generates the id on import, and it
+is reverse-populated into Airtable afterwards (`ls-id-backfill`). New rows still carry
+a minted SKU and a minted handle, which we create and Lightspeed adopts. Judge by
+`MatchStatus`, never by whether the cell is empty. See RULE 0a in the
+`bert-airtable-schema` skill.
+
+Say in the run's summary how many new products are awaiting a Lightspeed ID, so
+whoever imports knows the loop still has to be closed.
 
 **RULE 0 — the Airtable `SKU` is immutable and is the source of truth.** It is
 created once and never changes: not renamed, re-cased, re-numbered, re-formatted or

@@ -37,6 +37,26 @@ Check before you start: does the source sheet have `Lightspeed ID` populated on 
 that exist in LS, and handles that match what LS already holds? If not, stop and
 reconcile — do not "fill them in later".
 
+### Existing product vs new product — the id column differs, the handle does not
+
+| | `id` (column 1) | `handle` (column 2) | `sku` (column 3) |
+|---|---|---|---|
+| **Matched** (already in LS) | The stored `Lightspeed ID`. **Required** — blank duplicates it. | The stored handle, copied as-is. Never regenerated. | The stored SKU, verbatim. |
+| **New** (not yet in LS) | **Blank, correctly** — Lightspeed generates the UUID on import. | **Minted by us** from the handle-generating schema, then uploaded. LS adopts it. | Minted by us from the price list. |
+
+A blank `id` is a defect on a matched row and the correct value on a new row. Decide
+by `MatchStatus`, never by whether the cell happens to be empty.
+
+### After the import: reverse-populate the new ids
+
+**An upload containing new products is not finished when the import succeeds.**
+Lightspeed has just generated UUIDs that Airtable does not have yet. Export the
+products from LS, match on `SKU`, and write the `Lightspeed ID`s back into Airtable —
+the `ls-id-backfill` skill exists for exactly this.
+
+Skip it and the next price list run sees a blank `Lightspeed ID` on a product that now
+exists in LS, and duplicates it. The loop has to close.
+
 ## ⚠️ RULE 0 — Airtable owns the SKU; Lightspeed matches to it
 
 **The Airtable `SKU` is immutable and is the source of truth.** Column 3 (`sku`) is
@@ -113,7 +133,9 @@ Before generating an upload, identify these brand-specific values from the sourc
 
 > **Floordi brand config (added Jul 2026):** `[BRAND]` = Floordi (brand_name = supplier_name = "Floordi"). `[NAME_PREFIX]` = `FLRDLVP-SPC` (AVO-ROX vinyl) / `FLRDACC` (accessories). `[SKU_PREFIX]` = `LVP-FLRD-` / `ACC-FLRD-` (Floordi code verbatim as suffix, e.g. `LVP-FLRD-AVR651`). `[CATEGORY]` = `FLOORING / VINYL / SPC` for all AVO-ROX lines; `ACCESSORIES` for mouldings. `[HANDLE_PREFIX]` descriptive = FLRD, brand-first: `FLRD65[COLOUR]` (EASE 6.5mm), `FLRD8[COLOUR]` (GRAND 8mm); accessories = FLRD + Floordi code with hyphens stripped (`FLRDATAVR65`). No grades → no variant groups; one row per product, box size in the name, columns 10–11 blank. Accessory names: **superseded (Aug 2026)** — Floordi mouldings now follow `Floordi - Transition | [Type] | [Material] | [Dimensions]` per *Accessories — transitions and mouldings*, not the old `FLRDACC - …` form. Still priced per piece via Cost/unit / Retail price/unit as normal.
 
-> **Note on `[HANDLE_PREFIX]`:** The values in this row describe what each brand's handles look like — they are not rules to enforce. Handle format is set in Airtable per brand and flows through to LS unchanged. Never transform, prepend, or normalize handles to match another brand's convention. Whatever is in the "LS Handle / Parent ID" column of Airtable is what goes to Lightspeed.
+> **Note on `[HANDLE_PREFIX]`:** For a product that **already exists**, these values are descriptive, not rules to enforce — the stored handle flows through to LS unchanged. Never transform, prepend, or normalize an existing handle to match another brand's convention. Whatever is in the "LS Handle / Parent ID" column of Airtable is what goes to Lightspeed.
+>
+> **For a genuinely new product there is no stored handle, so we mint one** from the brand's handle-generating schema — `[HANDLE_PREFIX][SizePrefix][SpeciesAbbrev][COLOUR]`, uppercase, alphanumeric only, **never truncated**. That minted handle is written into Airtable *and* uploaded to LS, which adopts it. This is the one case where the prefix pattern is generative rather than descriptive; see RULE 0a in the bert-airtable-schema skill.
 
 ### Product type abbreviations
 

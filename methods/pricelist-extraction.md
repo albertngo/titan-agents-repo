@@ -103,6 +103,25 @@ Each one is silent — the file looks complete and imports without error.
 **A matched row with a blank `Lightspeed ID`, or a handle that differs from the stored
 one, means step 3 did not run.** Both are cheap to assert; assert them.
 
+### The three identity fields are born in different places
+
+`SKU` and `LS Handle / Parent ID` are **ours** — we mint both for a new product, and
+the handle is uploaded to Lightspeed, which adopts it. `Lightspeed ID` is
+**Lightspeed's** — it does not exist until LS generates it on import, so a new
+product's id is *correctly* blank, and judged by `MatchStatus`, never by the cell
+being empty.
+
+**Step 5, and it is not optional: after an import containing new products, reverse-
+populate the generated ids back into Airtable** (`ls-id-backfill` — export from LS,
+match on `SKU`, write the UUIDs in). A new product is finished when its id is back in
+Airtable, not when the import succeeds. Skip it and the next run reads a blank id for
+a product that now exists in LS and duplicates it — the same silent failure, one cycle
+later.
+
+Once a record holds an id and a handle, Airtable owns both. No automation overwrites
+them; only an explicit instruction from Albert to swap in a specific matching set
+does. Full statement: RULE 0a in the `bert-airtable-schema` skill.
+
 ## RULE 0 — the Airtable SKU never changes
 
 The stored `SKU` (`fldx3byCOht5HbKmH`) is **immutable and the source of truth**.

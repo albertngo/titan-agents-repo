@@ -42,13 +42,22 @@ Work in this order, every time:
    - `LS Handle / Parent ID` — the existing handle
    - `Lightspeed ID` — the existing LS UUID
    Record `MatchedRecId` and `MatchStatus` (`matched` / `new` / `ambiguous`) as helper
-   columns 57–58. Genuinely new rows get a minted SKU and handle, and a blank
-   `Lightspeed ID` (LS assigns it on import).
+   columns 57–58.
+
+   **A genuinely new row gets a minted `SKU`, a minted `LS Handle / Parent ID` (from
+   the brand's handle-generating schema — uppercase, alphanumeric, never truncated),
+   and a deliberately blank `Lightspeed ID`.** The blank is correct, not an omission:
+   Lightspeed generates the UUID on import, and it is reverse-populated into Airtable
+   afterwards. Never invent, guess or placeholder an LS ID.
 4. **Only now build the LS file**, reading `id`, `handle` and `sku` straight out of
    that enriched file.
 
 A blank `Lightspeed ID` on a row whose `MatchStatus` is `matched` is a defect — it
-means step 3 did not happen, and the import will duplicate a live product.
+means step 3 did not happen, and the import will duplicate a live product. On a `new`
+row the same blank is correct. Judge by `MatchStatus`, never by the cell.
+
+**Say in your summary how many `new` rows are awaiting an LS ID**, so whoever imports
+knows the loop has to be closed afterwards (`ls-id-backfill`).
 
 Output:
 1. An Airtable-ready .xlsx with all 56 canonical columns in the exact order listed in
