@@ -356,7 +356,7 @@ The source of truth for all Titan flooring products. Every active product that B
 |------------|------|-------------|-------|
 | **Cost/unit** | Currency | Supplier cost per unit. The unit is per sq ft for flooring, and per piece for tile, stone, and accessories. **All supplier costs go here** regardless of pricing unit. Updated by Cowork when a new price list is processed. | LS · Auto |
 | **Retail price/unit** | Currency | Selling price per unit (same unit as Cost/unit — per sq ft for flooring, per piece for tile/stone/accessories). Default = Cost + $ 1.00 for flooring; accessory markups vary (see supplier sections). This is what Bert quotes. | LS · Bert |
-| **MAP price ($/sf)** | Currency | Minimum Advertised Price set by supplier. Grandeur and some others enforce this. Bert will not quote below MAP. | |
+| **MAP price ($/sf)** | Currency | **Holds either a MAP or an MSRP** (Albert, 2026-09-03 — one field for both, no separate MSRP field). A **MAP** is a contractual Minimum Advertised Price the supplier enforces (Grandeur); an **MSRP** is the supplier's advisory suggested retail (Biyork). Populated only when the price list actually publishes one — most suppliers publish neither, and a list price is never an MSRP. Bert will not quote below this value whichever it is, so a stored MSRP acts as a soft floor. | |
 | **Pallet price ($/sf)** | Currency | Full skid / pallet price per sq ft where supplier offers a volume discount. | Auto |
 | **Promo cost ($/sf)** | Currency | Active promotional cost per sq ft from the supplier. When populated, Bert flags this product as having an active promo. Retail price is adjusted manually — not auto-calculated. Cleared automatically when promo ends. | Bert · Auto |
 | **Promo end date** | Date | When the promotional price expires. Cowork clears Promo cost automatically on this date. | Auto |
@@ -847,7 +847,7 @@ Getting this wrong is what overstates cost, so it is worth being literal about:
 | Printed as | Feeds | Rule |
 |---|---|---|
 | **List price**, **cost per unit**, **cost per sq ft**, **cost per piece** | **`Cost/unit`** | These are the **cost-side inputs**. Take the one the supplier prices in, apply the supplier's discount multiplier if their terms give one, and store the result. |
-| **MSRP**, **suggested retail**, **suggested price**, or a similarly-named column | **MSRP reference only** | Advisory. A notification to Titan of what the supplier suggests we retail at. **Never touches `Cost/unit` and never constrains a quote.** |
+| **MSRP**, **suggested retail**, **suggested price**, or a similarly-named column | **`MAP price ($/sf)`** | Advisory — a notification of what the supplier suggests we retail at. **Never touches `Cost/unit`.** Shares the MAP field by ruling; see *MSRP goes into `MAP price ($/sf)`* below. |
 | **Promo price**, **sale price**, **promotional cost** | **`Promo cost ($/sf)`** | A cost, not a selling price — see *Promo and sale costs* below. |
 
 **MSRP is populated only when the price list actually publishes one** — an MSRP column, a
@@ -864,7 +864,7 @@ Neither supplier publishes an MSRP column, so **neither gets an MSRP value.**
 |---|---|---|---|
 | One price, already our cost | Canadian Standard | Printed price as-is | None published |
 | A list price, discount in the terms | CIF, Olympia | List × discount (CIF ×0.60; Olympia ×0.60×0.94 = ×0.564) | None published |
-| A dealer price **and** an MSRP column | Biyork (`Your Price` + `MSRP/SF`) | `Your Price` | `MSRP/SF` — the one supplier that has one |
+| A dealer price **and** an MSRP column | Biyork (`Your Price` + `MSRP/SF`) | `Your Price` | `MSRP/SF` → `MAP price ($/sf)`. The one supplier that has one |
 
 **Read the terms page, not just the column header.** CIF heads its column "Cost Per Sq
 Ft" while page 3 grants 40% off. Taking the header at its word would overstate every CIF
@@ -894,22 +894,29 @@ has its own field. It never overwrites `Cost/unit`.
 - A supplier discount multiplier and a promo are independent: apply the multiplier to
   both the regular and the promo price where the supplier's terms cover both.
 
-#### MAP is not MSRP — open question for Albert
+#### MSRP goes into `MAP price ($/sf)` — settled
 
-`MAP price ($/sf)` is documented as a hard floor: *"Bert will not quote below MAP."*
-That is the right behaviour for a **MAP**, which is contractual. It is the wrong
-behaviour for an **MSRP**, which per the rule above is advisory only and something Titan
-is free to price under.
+**Ruling (Albert, 2026-09-03): MSRP is stored in `MAP price ($/sf)`. One field carries
+both instruments — no separate MSRP field.**
 
-Biyork's `MSRP/SF` is currently written into `MAP price ($/sf)` — so today an advisory
-number sits in a field whose consumer treats it as binding. Verified 2026-09-03: `MAP
-price` is populated on 399 records, all Grandeur (true MAP) and Biyork (actually MSRP);
-zero CIF or Olympia records, which is now understood to be **correct** — neither
-publishes an MSRP.
+So the field holds, depending on the supplier:
 
-Needs a ruling: either a separate `MSRP / suggested retail` field, or an explicit
-decision that `MAP price` carries both with Bert's floor logic keyed to something
-narrower. Until then, do not add more MSRP values to `MAP price`.
+| Supplier publishes | Stored in `MAP price ($/sf)` | Nature |
+|---|---|---|
+| A contractual MAP | The MAP | Binding — advertising below it risks the dealership |
+| An MSRP / suggested price | The MSRP | Advisory — the supplier's recommendation |
+| Neither | Blank | Most suppliers |
+
+**Practical effect, stated so it is not a surprise later:** Bert's floor logic reads this
+one field, so it will not quote below a stored MSRP any more than below a stored MAP. In
+Titan's case that is a margin-protective default rather than a problem — but it does mean
+a stored MSRP behaves as a soft floor in practice. If Bert should ever be free to quote
+under an MSRP while still respecting a true MAP, that needs a distinguishing flag; it does
+not today.
+
+**Verified 2026-09-03.** `MAP price` is populated on 399 records — Grandeur (true MAP) and
+Biyork (MSRP). Zero CIF or Olympia records, which is **correct**: neither publishes an
+MSRP or suggested-price column, and their printed list price is a cost-side input.
 
 ---
 
@@ -2574,7 +2581,7 @@ Accessory SKUs follow the same rule: `ACC-BIYK-[Biyork code]`, Supplier SKU = th
 Biyork prints **`MSRP/SF`** and **`Your Price`**.
 
 - **Use `Your Price` as `Cost/unit`.**
-- Put `MSRP/SF` in the `MAP price ($/sf)` reference field.
+- Put `MSRP/SF` in the `MAP price ($/sf)` field — correct per the 2026-09-03 ruling that one field carries both MAP and MSRP. Biyork is currently the only supplier publishing an MSRP at all.
 - Standard markup applies to flooring: `Retail = Cost + $ 1.00`.
 
 #### Markup overrides (accessories)
