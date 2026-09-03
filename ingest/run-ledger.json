@@ -60,6 +60,18 @@
     "note": "backfilled 2026-08-03 from ingest/ history; 2026-07-30 had no run"
   },
   {
+    "date": "2026-08-01",
+    "run_at": "2026-08-01T08:45:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "error",
+      "bookkeeper": "error",
+      "notion": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/kind-feynman-w7gb9v, never merged to main-agents. Not a missed run"
+  },
+  {
     "date": "2026-08-02",
     "run_at": "2026-08-02T18:46:33-04:00",
     "sources": {
@@ -72,8 +84,8 @@
     "note": "backfilled 2026-08-03 from ingest/ history; outlook-only catch-up run, no brief; 2026-08-01 had no run"
   },
   {
-    "date": "2026-08-08",
-    "run_at": "2026-08-08T08:41:00-04:00",
+    "date": "2026-08-03",
+    "run_at": "2026-08-03T08:45:00-04:00",
     "sources": {
       "ghl": "ok",
       "outlook": "error",
@@ -81,7 +93,55 @@
       "notion": "ok"
     },
     "brief": true,
-    "note": "scheduled run; no run at all on 2026-08-03 through 2026-08-07; outlook blocked by session egress proxy (403 on graph.microsoft.com CONNECT), not the usual missing-connector failure"
+    "note": "scheduled run; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/kind-feynman-htoasm, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-04",
+    "run_at": "2026-08-04T08:45:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "error",
+      "bookkeeper": "error",
+      "notion": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/kind-feynman-3kxsgw, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-05",
+    "run_at": "2026-08-05T08:52:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "error",
+      "bookkeeper": "error",
+      "notion": "ok"
+    },
+    "brief": true,
+    "note": "outlook failed at proxy CONNECT to graph.microsoft.com (session egress policy gap, not per-mailbox access or credentials); bookkeeper has no QBO connector configured; no run at all on 2026-08-03 or 2026-08-04; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/kind-feynman-1j7ggt, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-06",
+    "run_at": "2026-08-06T08:46:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "error",
+      "bookkeeper": "error",
+      "notion": "ok"
+    },
+    "brief": true,
+    "note": "no run at all on 2026-08-03, 2026-08-04, 2026-08-05; outlook blocked by session egress proxy (403 on graph.microsoft.com), bookkeeper has no QuickBooks MCP connector this session; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/kind-feynman-9ja8ox, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-07",
+    "run_at": "2026-08-07T12:43:00-04:00",
+    "sources": {
+      "ghl": "error",
+      "outlook": "error",
+      "bookkeeper": "error",
+      "notion": "ok"
+    },
+    "brief": true,
+    "note": "3/4 sources errored (ghl: MCP tools unreachable; outlook: proxy blocked graph.microsoft.com; bookkeeper: no QBO MCP server configured); no run at all on 2026-08-03 through 2026-08-06; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/kind-feynman-y2vd2t, never merged to main-agents. Not a missed run"
   },
   {
     "date": "2026-08-08",
@@ -108,6 +168,58 @@
     "note": "scheduled run; bookkeeper connector still unconfigured (2nd consecutive day)"
   },
   {
+    "date": "2026-08-10",
+    "run_at": "2026-08-10T08:50:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; no run at all on 2026-08-09; bookkeeper failing 3rd day straight (QBO MCP connector not configured); meta-ads-ingest-agent's first-ever successful run; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/kind-feynman-uqxj4z, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-11",
+    "run_at": "2026-08-11T08:28:27-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; no run at all on 2026-08-09 or 2026-08-10; bookkeeper failed (QuickBooks MCP connector not configured in this session); meta-ads first successful run (no prior file to diff against, standard 1-day pull); RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/kind-feynman-k93ygh, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-12",
+    "run_at": "2026-08-12T08:57:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run via automated routine; no run at all on 2026-08-09 through 2026-08-11 (last entry before this was 2026-08-08/logged 2026-08-09); outlook widened its own pull to an 80h catch-up window to cover the gap; bookkeeper still hard-down, no Intuit/QBO MCP server or credentials configured in this environment since tracking began; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/kind-feynman-6fg3ta, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-13",
+    "run_at": "2026-08-13T09:05:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; no run at all on 2026-08-09 through 2026-08-12; ghl/outlook/notion widened lookback to cover the 5-day gap; meta-ads pulled normal single-day (2026-08-12) window per orchestrator instruction, gap not backfilled for that source; bookkeeper still blocked, QBO MCP connector not configured in .mcp.json; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/kind-feynman-4qteoi, never merged to main-agents. Not a missed run"
+  },
+  {
     "date": "2026-08-14",
     "run_at": "2026-08-14T08:45:11-04:00",
     "sources": {
@@ -121,6 +233,214 @@
     "note": "scheduled run; no run at all on 2026-08-10 through 2026-08-13; 2026-08-09's run (GHL/Outlook/Notion ok) had been stranded on unmerged PR #14 (branch claude/kind-feynman-4tyval) but was merged into main-agents same-day on request; first-ever meta-ads ingest run; outlook catch-up window widened to 130h/154h; bookkeeper still has no QBO/Intuit MCP connector configured"
   },
   {
+    "date": "2026-08-15",
+    "run_at": "2026-08-15T08:20:00-04:00",
+    "sources": {
+      "ghl": "error",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; GHL failed on a session tool-provisioning gap (mcp__ghl__* bindings not granted to the ingest subagent) rather than a platform outage \u2014 endpoint reachable, credentials present, re-run once bindings are restored; bookkeeper still has no QBO/Intuit MCP connector configured (5th+ consecutive day) [recovered 2026-08-29: this run was originally stranded on unmerged branch claude/kind-feynman-6vpjmu, invisible to main-agents until merged today]; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/agents-roadmap-next-pmu3m3, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-16",
+    "run_at": "2026-08-16T08:38:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; no run at all on 2026-08-15; bookkeeper QBO connector unconfigured, 4th consecutive failure since 2026-08-08; outlook window widened to 56h/80h and meta-ads to 2 days to cover the 08-15 gap [recovered 2026-08-29: this run was originally stranded on unmerged branch claude/kind-feynman-pico55, invisible to main-agents until merged today]; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/agents-roadmap-next-pmu3m3, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-17",
+    "run_at": "2026-08-17T08:58:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; no run at all on 2026-08-15 and 2026-08-16; bookkeeper connector still unconfigured (5th consecutive failure); outlook and meta-ads widened catch-up windows to cover the gap since 2026-08-14 [recovered 2026-08-29: this run was originally stranded on unmerged branch claude/kind-feynman-1q4z48, invisible to main-agents until merged today]; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/agents-roadmap-next-pmu3m3, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-18",
+    "run_at": "2026-08-18T08:25:00-04:00",
+    "sources": {
+      "ghl": "error",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled catch-up run after gap on 2026-08-15/16/17 (no run at all those days); ghl MCP server tools unreachable this session (config present but tools not registered, likely session-level, not confirmed GHL-side outage); bookkeeper QBO/Intuit MCP connector still unconfigured (ongoing since at least 2026-07-26); outlook widened to 97h/121h catch-up window; meta-ads widened to 4-day catch-up window (aggregate, not per-day); notion ran clean, still flags 82 stale tactical tasks (4th consecutive flag) and unpopulated David Ngo won-project row. [recovered 2026-08-29: this run was originally stranded on unmerged branch claude/kind-feynman-3qrmnr, invisible to main-agents until merged today]; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/agents-roadmap-next-pmu3m3, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-19",
+    "run_at": "2026-08-19T08:55:00-04:00",
+    "sources": {
+      "ghl": "error",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; no run at all on 2026-08-15 through 2026-08-18; ghl MCP server stuck pending interactive approval (not the usual missing-credential failure); bookkeeper QBO/Intuit connector still unconfigured (recurring); outlook/notion/meta-ads all widened catch-up windows to cover the gap since 08-14, within max_catchup_days caps [recovered 2026-08-29: this run was originally stranded on unmerged branch claude/kind-feynman-0m98u8, invisible to main-agents until merged today]; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/agents-roadmap-next-pmu3m3, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-20",
+    "run_at": "2026-08-20T08:16:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; no run at all on 2026-08-15 through 2026-08-19; all catch-up-capable sources widened their windows to cover the full gap (GHL/outlook/notion/meta-ads all ok); bookkeeper still has no QBO/Intuit MCP connector configured, 4th consecutive failure, 12+ day blind spot on cash-in/invoices [recovered 2026-08-29: this run was originally stranded on unmerged branch claude/kind-feynman-zshk0x, invisible to main-agents until merged today]; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/agents-roadmap-next-pmu3m3, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-21",
+    "run_at": "2026-08-21T08:41:00-04:00",
+    "sources": {
+      "ghl": "partial",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled catch-up run; no run at all on 2026-08-15 through 2026-08-20 (last prior run 2026-08-14); bookkeeper connector still unconfigured (8th consecutive failure) [recovered 2026-08-29: this run was originally stranded on unmerged branch claude/kind-feynman-9d7mth, invisible to main-agents until merged today]; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/agents-roadmap-next-pmu3m3, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-22",
+    "run_at": "2026-08-22T08:39:15-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; no run at all on 2026-08-15 through 2026-08-21; bookkeeper connector still unconfigured; outlook/meta-ads/notion widened catch-up windows for the 8-day gap since 2026-08-14; notion hit a cold-start snapshot (prior file outside 7-day lookback) [recovered 2026-08-29: this run was originally stranded on unmerged branch claude/kind-feynman-4hsmaq, invisible to main-agents until merged today]; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/agents-roadmap-next-pmu3m3, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-23",
+    "run_at": "2026-08-23T08:11:25-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled catch-up run; no run at all on 2026-08-15 through 2026-08-22 (last prior run 2026-08-14); bookkeeper connector still unconfigured (recurring since 2026-07-26); outlook/meta-ads/notion widened catch-up windows to their caps, gaps documented in DAILY-BRIEF.md [recovered 2026-08-29: this run was originally stranded on unmerged branch claude/kind-feynman-4pqp8b, invisible to main-agents until merged today]; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/kind-feynman-4pqp8b, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-24",
+    "run_at": "2026-08-24T08:21:42-04:00",
+    "sources": {
+      "ghl": "error",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled catch-up run after 9-day gap (no run 2026-08-15 through 2026-08-23); ghl MCP server stuck pending-approval (needs interactive claude mcp approve, not attempted here); bookkeeper still has no QBO/Intuit MCP connector configured (8th consecutive error); outlook/notion widened to 7-day catch-up window (capped, some days still uncovered); meta-ads widened to 7-day window, found additional uncovered spend in 2026-08-14 to 08-16 gap [recovered 2026-08-29: this run was originally stranded on unmerged branch claude/kind-feynman-ykpl6e, invisible to main-agents until merged today]; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/kind-feynman-qf26a0, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-25",
+    "run_at": "2026-08-25T08:23:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled catch-up run; no run at all on 2026-08-15 through 2026-08-24 (10 days); ghl/outlook/notion windows widened to cover the gap but could not fully close it (outlook missed 2026-08-14 to 2026-08-18; meta-ads missed 2026-08-14 to 2026-08-17, capped at 7 days per policy); bookkeeper's QBO/Intuit MCP connector remains unconfigured, 11+ consecutive failed runs since 2026-07-26 [recovered 2026-08-29: this run was originally stranded on unmerged branch claude/kind-feynman-e5jnnr, invisible to main-agents until merged today]; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/kind-feynman-e5jnnr, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-26",
+    "run_at": "2026-08-26T08:35:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled catch-up run; no run at all on 2026-08-15 through 2026-08-25 (11 days since last logged run on 2026-08-14); all sources widened lookback windows to cover the gap (GHL ~288h, outlook 168h/192h capped leaving ~5 days 08-14 to 08-19 unscanned, meta-ads 7-day cap leaving 08-14 to 08-18 unscanned, notion ~12-day lookback); bookkeeper still has no QBO/Intuit MCP connector configured, 4th consecutive failure [recovered 2026-08-29: this run was originally stranded on unmerged branch claude/kind-feynman-xmot9t, invisible to main-agents until merged today]; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/kind-feynman-qf26a0, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-27",
+    "run_at": "2026-08-27T08:45:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled catch-up run after a 12-day gap (no runs 2026-08-15 through 2026-08-26); outlook/notion/meta-ads widened their lookback windows to partially cover the gap (outlook still missing 2026-08-14 to 2026-08-20, meta-ads still missing 2026-08-15 to 2026-08-19); bookkeeper QBO/Intuit MCP connector still unconfigured, error on every run since 2026-07-28 [recovered 2026-08-29: this run was originally stranded on unmerged branch claude/kind-feynman-akhnuv, invisible to main-agents until merged today]; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/kind-feynman-akhnuv, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-28",
+    "run_at": "2026-08-28T08:19:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; no run at all on 2026-08-15 through 2026-08-27 (13-day gap since last run on 2026-08-14); ghl/outlook/notion/meta-ads all widened their catch-up windows to cover the gap (ghl full 14 days, notion 15 days, outlook capped at 168h/192h leaving 08-15 through 08-21 unrecoverable, meta-ads capped at 7 days leaving 08-15 through 08-20 unrecoverable); bookkeeper still has no QBO/Intuit MCP connector configured, unconfigured on every observed run back through at least 2026-07-26; notion cold-start suppressed 8 unreported won projects (~$78,751.61 CAD) per its own no-backlog-dump rule [recovered 2026-08-29: this run was originally stranded on unmerged branch claude/kind-feynman-vmof4f, invisible to main-agents until merged today]; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/kind-feynman-qf26a0, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-29",
+    "run_at": "2026-08-29T08:12:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; discovered during this run that daily-ingest actually ran every day 2026-08-15 through 2026-08-28 (14 consecutive days), each time stranded on its own unmerged session branch off main-agents and invisible to this ledger and to main-agents generally -- not a true 14-day outage as this run initially assumed. All 14 branches were merged into this session and are now reflected as their own entries above (recovered 2026-08-29). Today ghl/outlook/notion/meta-ads still ran their own widened catch-up pulls under the (mistaken, pre-recovery) assumption of a 14-day gap, so some of today's ghl.json/notion.json content overlaps previously-recovered days rather than being genuinely new; notion-sync deduped against Notion's live board state and skipped one redundant re-detection (Basil Felix Da Souza) accordingly. bookkeeper QBO/Intuit MCP connector still unconfigured, 4th+ consecutive failure. Flagging for Albert: whatever creates the daily session branch needs to also merge or PR it into main-agents -- this silently recurred for 14 straight days; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/kind-feynman-qf26a0, never merged to main-agents. Not a missed run"
+  },
+  {
+    "date": "2026-08-30",
+    "run_at": "2026-08-30T08:32:45-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; no run at all on 2026-08-15 through 2026-08-29 (15-day gap); bookkeeper connector still unconfigured (4th consecutive occurrence); outlook/notion/meta-ads windows widened to their respective catch-up caps (7-8 days) to cover as much of the gap as policy allows, 2026-08-15 through ~08-22 remains permanently un-ingested; RECOVERED 2026-09-03: this run completed normally and its vault daily note and Notion writes went through at the time \u2014 only its repo artifacts stayed on session branch claude/kind-feynman-9iyx7w, never merged to main-agents. Not a missed run"
+  },
+  {
     "date": "2026-08-31",
     "run_at": "2026-08-31T08:45:00-04:00",
     "sources": {
@@ -131,7 +451,20 @@
       "meta-ads": "ok"
     },
     "brief": true,
-    "note": "scheduled run; last ledger entry on this branch was 2026-08-14 (16-day gap: 2026-08-15 through 2026-08-30 have no entry here, though git history shows several of those days ingest work exists on unmerged sibling session branches, e.g. through 2026-08-24, never merged to main-agents); outlook/notion/meta-ads all cold-started or window-capped due to the gap (7-day max_catchup_days), permanently losing 2026-08-14 through 2026-08-23 coverage; bookkeeper still has no QBO/Intuit MCP connector (8th consecutive failed run since 2026-07-26)"
+    "note": "scheduled run; bookkeeper still has no QBO/Intuit MCP connector (8th consecutive failed run since 2026-07-26). CORRECTED 2026-09-03: this entry previously read that 2026-08-15 through 2026-08-30 had no ledger entry and that outlook/notion/meta-ads coverage for 2026-08-14 through 2026-08-23 was PERMANENTLY LOST to the 7-day catch-up cap. Both claims were artifacts of branch isolation, not reality. Every one of those days ran, wrote its Notion tasks, and has a complete vault daily note in 01_daily/; the raw ingest files sit on unmerged session branches. Nothing was lost"
+  },
+  {
+    "date": "2026-09-01",
+    "run_at": "2026-09-01T08:45:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; no missed days (last entry 2026-08-31, consecutive with today); bookkeeper still has no QBO/Intuit MCP connector (9th consecutive failed run since 2026-07-26)"
   },
   {
     "date": "2026-09-02",
@@ -144,6 +477,6 @@
       "meta-ads": "ok"
     },
     "brief": true,
-    "note": "scheduled run; no run at all on 2026-09-01 (prior day was a pricelist-processor run only, no daily-ingest); outlook/meta-ads windows widened to cover the 1-day gap, no data lost; bookkeeper still has no QBO/Intuit MCP connector configured (9th consecutive failed run since 2026-07-26)"
+    "note": "scheduled run; outlook/meta-ads windows widened by one day; bookkeeper still has no QBO/Intuit MCP connector (9th consecutive failed run since 2026-07-26). CORRECTED 2026-09-03: this entry previously read 'no run at all on 2026-09-01 (prior day was a pricelist-processor run only)'. False \u2014 a full five-source daily-ingest ran on 2026-09-01; its vault note 01_daily/2026-09-01.md carries GHL/Outlook/bookkeeper/Notion/Meta-Ads numbers and 48 drift findings, and its raw output is on branch claude/kind-feynman-cefsdp. The one-day window widening was harmless but unnecessary"
   }
 ]
