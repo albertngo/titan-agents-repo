@@ -168,19 +168,56 @@ Lightspeed product export covers many lists' new products at once, so it runs
 periodically (`ls-id-backfill` — export from LS, match on `SKU`, write the UUIDs in).
 
 Batching means the debt outlives the run that created it, so it is tracked on the
-Notion row rather than remembered:
+Notion row rather than remembered. See the full state model below.
+
+## Row state — what is still owed after a run
+
+A run produces files; it does not change Airtable or Lightspeed. Everything downstream
+is tracked on the row, because it happens later and (for now) by hand.
 
 | Property | Written by | Values |
 |---|---|---|
+| `Status` | run, then whoever finishes it | `Extracted [Pending Review]` after the files land; `Done` only when both trackers below are resolved |
 | `New Products` | the run | count of `MatchStatus = new` rows, `0` if none |
+| `Airtable Sync` | run, then importer | `Pending` · `Done` · `Not needed` |
 | `LS Backfill` | run, then backfill | `Pending` · `Done` · `Not needed` |
 
-The run sets `Pending` when it minted ≥1 new product, else `Not needed`; it never sets
-`Done`. The backfill flips the rows it covered to `Done`.
+**The run always leaves `Airtable Sync = Pending`** — it has produced a file Airtable
+does not yet reflect. It sets `LS Backfill = Pending` when it minted ≥1 new product,
+else `Not needed`. **A run never writes `Done` to either.**
 
-**The worklist is one filter — `LS Backfill is Pending`.** `New Products` is the
-cross-check: it states how many UUIDs that row should yield, so a partial backfill
-shows up instead of passing silently.
+Two worklists, each one filter:
+
+- `Airtable Sync is Pending` — files attached, Airtable not yet updated to match.
+- `LS Backfill is Pending` — new products whose Lightspeed IDs are not back yet.
+
+`New Products` is the cross-check on the backfill: it states how many UUIDs that row
+should yield, so a partial backfill shows up instead of passing silently.
+
+### `Airtable Sync` can go backwards — that is the point
+
+`Airtable Sync = Done` means **Airtable currently mirrors the file attached to this
+row**. It is a statement about agreement between two things, not a step that was once
+completed.
+
+So: **edit the upload file and re-attach it, and the row goes back to `Pending`.** A
+reviewed-and-corrected file is a new pending change; leaving it `Done` because it was
+imported once is exactly how Airtable silently drifts from what the row claims. This is
+also why the import is *not* a `Status` value — `Status` moves forward, this does not.
+
+`Not needed` covers a file reviewed and deliberately not imported (rejected, or the
+list turned out to hold no real changes).
+
+Set `Status = Done` only when `Airtable Sync` and `LS Backfill` are both `Done` or
+`Not needed`. Until then the row still owes something.
+
+### When the agent takes this over
+
+Both trackers are written by whoever performs the action — today a person, later the
+agent once it is trusted to import to Airtable and upload to Lightspeed itself. The
+fields do not change when that happens; the writer does. That is the reason to record
+state on the row now rather than rely on memory: the handover needs no rework, and an
+autonomous run is auditable against the same two filters.
 
 Once a record holds an id and a handle, Airtable owns both. No automation overwrites
 them; only an explicit instruction from Albert to swap in a specific matching set

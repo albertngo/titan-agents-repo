@@ -188,15 +188,24 @@ Then set, in this order:
 
 - `Extracted` = checked, `Status` = `Extracted [Pending Review]` — the files are a
   proposal awaiting a human import, so the row is not `Done`.
+- **`Airtable Sync`** = `Pending` — always. The run produced a file Airtable does not
+  yet reflect.
 - **`New Products`** = the count of rows whose `MatchStatus` is `new` (`0` if none).
 - **`LS Backfill`** = `Pending` if that count is ≥ 1, otherwise `Not needed`.
 
-Those last two are how Albert finds the price lists whose new products still owe
-Airtable their Lightspeed IDs. The backfill is **batched** — one LS export covers
-several lists at once — so it lags these runs by design, and `LS Backfill is Pending`
-is the whole worklist. Never set `Done`; only the backfill does that. Getting
-`New Products` right matters: it is the count that says how many UUIDs should come
-back, so an incomplete backfill is visible rather than silent.
+These are the two things a run leaves owing, each its own worklist filter:
+`Airtable Sync is Pending` (file attached, Airtable not updated to match) and
+`LS Backfill is Pending` (new products whose Lightspeed IDs are not back yet). The LS
+backfill is **batched** — one LS export covers several lists — so it lags by design.
+
+**A run never writes `Done` to either tracker.** Only the person (later, the agent)
+who performs the import or the backfill does. Getting `New Products` right matters: it
+says how many UUIDs should come back, so an incomplete backfill is visible.
+
+`Airtable Sync = Done` means Airtable *currently mirrors the attached file* — so if
+that file is edited and re-attached, it returns to `Pending`. `Status = Done` only
+once both trackers read `Done` or `Not needed`. Full state model:
+`methods/pricelist-extraction.md`.
 
 Two traps in the upload itself — the recipe and both failure signatures are in
 `methods/pricelist-extraction.md`: `api.notion.com` must be allowed by the

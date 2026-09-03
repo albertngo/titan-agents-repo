@@ -86,15 +86,22 @@ is tracked on the Notion Price Lists row**, not in anyone's head:
 | Property | Set by | Meaning |
 |---|---|---|
 | `New Products` (number) | the price list run | how many new SKUs it minted — `0` when none |
+| `Airtable Sync` (select) | run, then importer | `Pending` = Airtable does not yet mirror the attached file · `Done` = it does · `Not needed` = reviewed, deliberately not imported |
 | `LS Backfill` (select) | run, then backfill | `Pending` = new products awaiting UUIDs · `Done` = backfilled · `Not needed` = the run created none |
 
-The run sets `Pending` whenever it mints at least one new product, and `Not needed`
-otherwise. The backfill flips `Pending → Done` for every row it covers. **The worklist
-is one filter: `LS Backfill is Pending`** — those are the price lists whose new
-products are still missing their ids.
+A run leaves `Airtable Sync = Pending` always, and `LS Backfill = Pending` whenever it
+minted ≥1 new product (`Not needed` otherwise). **A run never writes `Done`** — the
+person or agent that performs the import or the backfill does. Two worklists, one
+filter each: `Airtable Sync is Pending`, `LS Backfill is Pending`.
 
 `New Products` is the check on the backfill: it says how many UUIDs that row should
 have produced, so a short count is visible rather than silent.
+
+**`Airtable Sync = Done` is a claim about agreement, not a completed step:** it means
+Airtable *currently* mirrors the file attached to that row. Edit the file and re-attach
+it and the row returns to `Pending` — a corrected file is a new pending change, and
+leaving it `Done` is how the base drifts from what the row claims. `Status = Done` only
+once both trackers read `Done` or `Not needed`.
 
 Until a row reaches `Done` its products are incomplete, and the failure is delayed and
 silent: a later run reads a blank `Lightspeed ID`, ships an LS file with a blank `id`
