@@ -20,8 +20,8 @@ Make scenario 4381438 (Price Lists)
   routine → Notion row → share link → curl (cookie jar) → pdfplumber
         → bert-airtable-schema → extract
         → match live catalogue → SKU + LS Handle + Lightspeed ID into the sheet
-        → airtable_upload.xlsx
-        → ls-upload-instructions (reads THAT file) → ls_upload.xlsx
+        → airtable_upload.csv
+        → ls-upload-instructions (reads THAT file) → ls_upload.csv
         → both attached to Notion "Extracted Files"
         → Status: Extracted [Pending Review] → human imports both
 ```
@@ -60,7 +60,7 @@ from cloud sessions; no network-policy change is needed.
 ## The routine writes no platform — it exports two files
 
 **Decided 2026-09-03 (Albert).** The routine does not write to Airtable, and
-Lightspeed has no API here anyway. Every run ends with **two .xlsx files attached to
+Lightspeed has no API here anyway. Every run ends with **two CSV files attached to
 the Notion row's `Extracted Files`** — the Airtable upload and the LS upload — and
 `Status = Extracted [Pending Review]`. A person does both imports.
 
@@ -94,15 +94,15 @@ type registered at `create-file-upload`:
 
 ```
 400 validation_error — Current file content type of `application/octet-stream`
-does not match the original content type of `application/vnd...spreadsheetml.sheet`
+does not match the original content type of `text/csv`
 ```
 
 Append `;type=<mime>` to the `-F` argument:
 
 ```bash
-XLSX="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+CSV="text/csv"
 curl -sS -X POST "<upload_url>" -H "authorization: Bearer <token>" \
-     -F "file=@<name>.xlsx;type=$XLSX"
+     -F "file=@<name>.csv;type=$CSV"
 ```
 
 A `200` with `"status":"uploaded"` is the success signal. Then pass each

@@ -81,14 +81,14 @@ still owe Airtable their Lightspeed IDs. The backfill is batched, so that count 
 only record that this run created a debt.
 
 Output:
-1. An Airtable-ready .xlsx with all 57 canonical columns in the exact order listed in
+1. An Airtable-ready .csv with all 57 canonical columns in the exact order listed in
    the schema skill (+ the two helper columns), named
-   `<supplier>_airtable_upload_YYYY-MM-DD.xlsx`, written to `ingest/YYYY-MM-DD/` in
+   `<supplier>_airtable_upload_YYYY-MM-DD.csv`, written to `ingest/YYYY-MM-DD/` in
    this repo (not /mnt/user-data/outputs — that path in the skill text is for
    claude.ai sessions).
-2. The Lightspeed import file, `<supplier>_ls_upload_YYYY-MM-DD.xlsx`, built per step 4
+2. The Lightspeed import file, `<supplier>_ls_upload_YYYY-MM-DD.csv`, built per step 4
    and the ls-upload-instructions skill. Both files are produced by default — a price
-   list run ends with two .xlsx, not one.
+   list run ends with two CSVs, not one.
 3. A short summary: row counts **by `MatchStatus`**, how many matched rows carry a
    `Lightspeed ID`, SALE/promo items handled, records flagged for Albert (missing
    specs, ambiguous grades, markup TBD), and any supplier not yet documented in the
@@ -108,7 +108,7 @@ Rules:
   most defensible choice the document supports, and record each one as an explicit
   assumption in `Salesperson notes` and in your summary. See "New supplier" below.
 - **New supplier** (no records in the catalogue): the schema skill's *Step 1* governs —
-  **produce the Bert schema Excel export and stop before any import.** "Stop there"
+  **produce the Bert schema CSV export and stop before any import.** "Stop there"
   means stop short of importing, not short of extracting; the onboarding checklist gates
   the **import**, not the file. The human review that the import path exists to provide
   is the safety mechanism, and the checklist is easier to answer with the extracted data

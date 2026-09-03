@@ -148,7 +148,7 @@ Otherwise, **in this order — it is a dependency, not a preference**:
 Cross-check extracted SKU→price pairs against pdfplumber's own text before attaching.
 
 Write both to `ingest/YYYY-MM-DD/` and commit them:
-`<supplier>_airtable_upload_YYYY-MM-DD.xlsx` and `<supplier>_ls_upload_YYYY-MM-DD.xlsx`.
+`<supplier>_airtable_upload_YYYY-MM-DD.csv` and `<supplier>_ls_upload_YYYY-MM-DD.csv`.
 
 **This command writes no platform.** It does not touch Airtable or Lightspeed; a person
 does both imports from the attached files. Never report either as imported.
@@ -161,9 +161,9 @@ link:
 ```bash
 # 1. create-file-upload -> gives upload_url + auth header
 # 2. POST the bytes, WITH the real MIME type or Notion 400s on a content-type mismatch:
-XLSX="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+CSV="text/csv"
 curl -sS -X POST "<upload_url>" -H "authorization: Bearer <token>" \
-     -F "file=@<name>.xlsx;type=$XLSX"
+     -F "file=@<name>.csv;type=$CSV"
 # success = HTTP 200 with "status":"uploaded"
 # 3. update-page: "Extracted Files": [{"type":"file_upload","file_upload":{"id":"<id>"}}, ...]
 ```

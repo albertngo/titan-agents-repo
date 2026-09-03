@@ -570,7 +570,7 @@ Standard row values: `Change date` = date recorded; `Supplier` = the supplier; `
 - Airtable will auto-match columns by header name — confirm each mapping
 - Click Import. One record per row.
 
-### Excel file rules
+### CSV file rules
 
 - Column headers must match Airtable field names exactly
 - All columns must be present even if blank
@@ -578,6 +578,35 @@ Standard row values: `Change date` = date recorded; `Supplier` = the supplier; `
 - Currency fields: numbers only, no $ sign (e.g. 4.79 not $ 4.79)
 - Date fields: YYYY-MM-DD format
 - Multi-select fields: separate values with a semicolon (e.g. Kitchen; Bedroom; Living room)
+
+### CSV, not xlsx — how to write it
+
+**Decided 2026-09-03 (Albert): every export is a `.csv`.** One format for both the
+Airtable and the Lightspeed upload, so there is nothing to convert before importing and
+no question about which file is which.
+
+Four settings, each of which fails silently if you get it wrong:
+
+| Setting | Value | Why |
+|---|---|---|
+| Encoding | **UTF-8, no BOM** | Product names carry `—`, `½`, `¾`, `×`, `"`. A BOM would make the first header read `\ufeffSKU` and the import would not find the SKU column. |
+| Quoting | **minimal, RFC 4180** | `Salesperson notes` contains commas on essentially every row, and embedded `"` from quoted LS product names. Let the CSV writer quote and double-escape; never hand-roll it. |
+| Line endings | **CRLF** (`newline=''` in Python) | RFC 4180, and what Excel expects if anyone opens the file to eyeball it. |
+| Empty cells | **empty string, not `None`** | `None` stringifies to the literal text `None` and lands in the field. |
+
+```python
+with open(out, 'w', newline='', encoding='utf-8') as f:
+    w = csv.writer(f, quoting=csv.QUOTE_MINIMAL)
+    for row in rows:
+        w.writerow(['' if c is None else c for c in row])
+```
+
+**Verify the round-trip before attaching.** Read the CSV back and compare cell-for-cell
+against the source rows — commas and unicode are exactly the cases that look fine in a
+spot-check and are wrong in bulk.
+
+The Notion upload MIME type changes with it: `text/csv`, not the spreadsheetml type.
+Sending the wrong one is rejected with a `400 validation_error`.
 
 ### Canonical column list — ALWAYS use this exact order
 
@@ -665,7 +694,7 @@ that supplier.
 
 - **Rows returned → update path.** Continue to Step 2.
 - **No rows → new supplier. Do not create records through the API.** Produce the
-  Bert schema Excel export instead — the canonical column list above, in that exact
+  Bert schema CSV export instead — the canonical column list above, in that exact
   order — and stop there. New products enter the catalogue through Airtable's own
   importer after a human has reviewed the file, never by automated record creation.
   Work the "New supplier onboarding — checklist" and "Before importing a new
@@ -922,7 +951,7 @@ The general flow for any supplier ingest:
 1. Look up the supplier's subsection below
 2. Apply global schema rules (pricing markup, SALE logic, stock status, etc.)
 3. Apply supplier-specific overrides from the subsection
-4. Generate an Airtable-ready Excel file with all 57 schema fields as columns
+4. Generate an Airtable-ready CSV file with all 57 schema fields as columns
 5. Spot-check a sample covering every edge case before committing to import
 
 ---
@@ -1229,7 +1258,7 @@ When processing a new FAW list, double-check these recurring ambiguities:
 
 #### FAW ingest output format
 
-Always produce an Excel file with all 54 schema fields as columns (header row), records starting on row 2. File naming convention: `faw_airtable_upload_[YYYY-MM-DD].xlsx`. Save to `/mnt/user-data/outputs/`.
+Always produce a CSV file with all 54 schema fields as columns (header row), records starting on row 2. File naming convention: `faw_airtable_upload_[YYYY-MM-DD].csv`. Save to `/mnt/user-data/outputs/`.
 
 ---
 
@@ -1337,7 +1366,7 @@ The Jan 2026 list has no explicit SALE items. If future lists add promos, Trifor
 
 #### Triforest ingest output format
 
-Produce an Excel file with all 58 schema fields as columns (header row), records starting on row 2. File naming: `toucan_triforest_airtable_upload_[YYYY-MM-DD].xlsx`. Save to `/mnt/user-data/outputs/`.
+Produce a CSV file with all 58 schema fields as columns (header row), records starting on row 2. File naming: `toucan_triforest_airtable_upload_[YYYY-MM-DD].csv`. Save to `/mnt/user-data/outputs/`.
 
 ---
 
@@ -1443,7 +1472,7 @@ The Feb 2025 PDF shows conflicting date information — filename "Feb 2025", cov
 
 #### Purelux ingest output format
 
-Produce an Excel file with all 58 schema fields as columns, records starting on row 2. File naming: `purelux_airtable_upload_[YYYY-MM-DD].xlsx`. Save to `/mnt/user-data/outputs/`.
+Produce a CSV file with all 58 schema fields as columns, records starting on row 2. File naming: `purelux_airtable_upload_[YYYY-MM-DD].csv`. Save to `/mnt/user-data/outputs/`.
 
 ---
 
@@ -1547,7 +1576,7 @@ Evergreen publishes a **monthly price list** with a date range in the header (e.
 
 #### Evergreen ingest output format
 
-Produce an Excel file with all 58 schema fields as columns, records starting on row 2. Highlight clearance rows with yellow fill (`FFF3B0`) for visual scanning. File naming: `evergreen_airtable_upload_[YYYY-MM-DD].xlsx` (use effective-date start). Save to `/mnt/user-data/outputs/`.
+Produce a CSV file with all 58 schema fields as columns, records starting on row 2. Highlight clearance rows with yellow fill (`FFF3B0`) for visual scanning. File naming: `evergreen_airtable_upload_[YYYY-MM-DD].csv` (use effective-date start). Save to `/mnt/user-data/outputs/`.
 
 ---
 
@@ -1715,7 +1744,7 @@ Every GreenTouch list is headed "Effective date: [date]" on every page. Record t
 
 #### GreenTouch ingest output format
 
-File naming convention: `greentouch_airtable_upload_[YYYY-MM-DD].xlsx`. Save to `/mnt/user-data/outputs/`.
+File naming convention: `greentouch_airtable_upload_[YYYY-MM-DD].csv`. Save to `/mnt/user-data/outputs/`.
 
 ---
 
@@ -1852,7 +1881,7 @@ Log every applied/cleared promo to `Price History Log v2` with the matching `Ent
 
 #### Vidar ingest output format
 
-File naming convention: `vidar_airtable_upload_[YYYY-MM-DD].xlsx`. Save to `/mnt/user-data/outputs/`.
+File naming convention: `vidar_airtable_upload_[YYYY-MM-DD].csv`. Save to `/mnt/user-data/outputs/`.
 
 ---
 
@@ -2031,8 +2060,8 @@ products.
 
 Two files per price list, both attached to the Notion Price Lists row's
 `Extracted Files` (see `methods/pricelist-routine-prompt.md` step 7):
-`grandeur_airtable_upload_[YYYY-MM-DD].xlsx` and
-`grandeur_ls_upload_[YYYY-MM-DD].xlsx`. In this repo they are written to
+`grandeur_airtable_upload_[YYYY-MM-DD].csv` and
+`grandeur_ls_upload_[YYYY-MM-DD].csv`. In this repo they are written to
 `ingest/YYYY-MM-DD/`, not `/mnt/user-data/outputs/` (that path is for claude.ai
 sessions).
 
@@ -2223,7 +2252,7 @@ Sunshiny does not typically show promos on their standard price list. If a promo
 
 #### Sunshiny ingest output format
 
-File naming convention: `sunshiny_airtable_upload_[YYYY-MM-DD].xlsx`. Save to `/mnt/user-data/outputs/`.
+File naming convention: `sunshiny_airtable_upload_[YYYY-MM-DD].csv`. Save to `/mnt/user-data/outputs/`.
 
 ---
 
@@ -2335,7 +2364,7 @@ Glue Down, Herringbone, and Looselay colours list "identical to [plank code]" (e
 
 #### Woden ingest output format
 
-Produce an Excel file with all 57 schema columns. File naming: `woden_airtable_upload_[YYYY-MM-DD].xlsx` using the list's Effective date. Save to `/mnt/user-data/outputs/`.
+Produce a CSV file with all 57 schema columns. File naming: `woden_airtable_upload_[YYYY-MM-DD].csv` using the list's Effective date. Save to `/mnt/user-data/outputs/`.
 
 ---
 
@@ -2548,7 +2577,7 @@ The LS upload build script catches this and normalizes the colour spelling to th
 
 #### CIF ingest output format
 
-Produce an Excel file with all 57 schema columns. File naming: `cif_airtable_upload_[YYYY-MM-DD].xlsx` using the list's Effective date (the date printed on the Terms letter, page 3). Save to `/mnt/user-data/outputs/`.
+Produce a CSV file with all 57 schema columns. File naming: `cif_airtable_upload_[YYYY-MM-DD].csv` using the list's Effective date (the date printed on the Terms letter, page 3). Save to `/mnt/user-data/outputs/`.
 
 A typical CIF ingest produces ~800 rows: ~190 mosaics, ~570 field tiles, ~50 STONE items.
 
@@ -2674,7 +2703,7 @@ Leave `Stock status` blank for all Olympia rows; set `Active = TRUE`. The Zone A
 
 #### Olympia ingest output format
 
-Produce an Excel file with all 57 schema columns. File naming: `olympia_full_airtable_upload_[YYYY-MM-DD].xlsx` using the list's effective date (foot of page, e.g. 2026-01-26). Save to `/mnt/user-data/outputs/`. A typical full Zone AT ingest produces ~3,000 rows across the 20 in-scope sections.
+Produce a CSV file with all 57 schema columns. File naming: `olympia_full_airtable_upload_[YYYY-MM-DD].csv` using the list's effective date (foot of page, e.g. 2026-01-26). Save to `/mnt/user-data/outputs/`. A typical full Zone AT ingest produces ~3,000 rows across the 20 in-scope sections.
 
 
 ---
@@ -2753,7 +2782,7 @@ Leave `Stock status` blank for all Biyork rows; set `Active = TRUE`. The regular
 
 #### Biyork ingest output format
 
-Produce an Excel file with all 57 schema columns. File naming: `biyork_full_airtable_upload_[YYYY-MM-DD].xlsx` using the list date (e.g. 2025-07-07). Save to `/mnt/user-data/outputs/`. A full flooring + accessories ingest produces ~324 rows (154 flooring, 170 mouldings/accessories).
+Produce a CSV file with all 57 schema columns. File naming: `biyork_full_airtable_upload_[YYYY-MM-DD].csv` using the list date (e.g. 2025-07-07). Save to `/mnt/user-data/outputs/`. A full flooring + accessories ingest produces ~324 rows (154 flooring, 170 mouldings/accessories).
 
 
 ---
@@ -2829,7 +2858,7 @@ Floordi issues **separate monthly promotion sheets** (e.g. "JUNE PROMOTION") lis
 
 #### Floordi ingest output format
 
-`floordi_full_airtable_upload_[YYYY-MM-DD].xlsx` using the "Last updated" date on the list (e.g. 2025-09-03), all 57 schema columns, saved to `/mnt/user-data/outputs/`. Record the effective date in `Price list reference` when logging future price changes to Price History Log v2.
+`floordi_full_airtable_upload_[YYYY-MM-DD].csv` using the "Last updated" date on the list (e.g. 2025-09-03), all 57 schema columns, saved to `/mnt/user-data/outputs/`. Record the effective date in `Price list reference` when logging future price changes to Price History Log v2.
 
 ---
 
@@ -2969,7 +2998,7 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
   GreenTouch 2026-09-01 run surfaced that the extraction step renumbers internal
   SKUs per run and would have duplicated all 83 existing records. Two rules
   (Albert): a price list for a supplier **not** already in the catalogue never
-  creates records through the API — it produces the Bert schema Excel export for
+  creates records through the API — it produces the Bert schema CSV export for
   human-reviewed import instead; and matching for an existing supplier cascades
   **internal SKU → Supplier SKU (partial/fuzzy) → specifications**, against the SKU
   as stored in Airtable, never one regenerated during the run. (An earlier draft of

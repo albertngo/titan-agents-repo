@@ -1,6 +1,6 @@
 ---
 name: ls-upload-instructions
-description: "Lightspeed Retail X product upload instructions for Titan Flooring. Use this skill whenever generating a Lightspeed import file, transforming Airtable product data into Lightspeed format, building LS upload spreadsheets, mapping source sheet columns to LS fields, constructing LS product names, setting up variant grouping by grade, or troubleshooting Lightspeed import issues. Also trigger when the user mentions Lightspeed upload, LS import, LS handle, LS name format, variant grouping, or any task that involves converting flooring product data into a Lightspeed-ready .xlsx or .csv file. This skill works alongside the bert-airtable-schema skill — the Airtable schema defines the source data, and this skill defines how to transform it for Lightspeed."
+description: "Lightspeed Retail X product upload instructions for Titan Flooring. Use this skill whenever generating a Lightspeed import file, transforming Airtable product data into Lightspeed format, building LS upload spreadsheets, mapping source sheet columns to LS fields, constructing LS product names, setting up variant grouping by grade, or troubleshooting Lightspeed import issues. Also trigger when the user mentions Lightspeed upload, LS import, LS handle, LS name format, variant grouping, or any task that involves converting flooring product data into a Lightspeed-ready .csv file. This skill works alongside the bert-airtable-schema skill — the Airtable schema defines the source data, and this skill defines how to transform it for Lightspeed."
 ---
 
 # Lightspeed Retail X — Product Upload Instructions
@@ -11,7 +11,7 @@ Last updated: August 2026 | Applies to ALL flooring brands using the standard so
 
 This document defines how to transform product data from any brand's source sheet (following the standard column schema) into a Lightspeed Retail X import-ready file. Follow these rules exactly to ensure every upload is consistent regardless of brand.
 
-> **Note:** This schema is for Lightspeed Retail X (not R-Series). Import file = .xlsx or .csv.
+> **Note:** This schema is for Lightspeed Retail X (not R-Series). Import file = .csv.
 
 ---
 

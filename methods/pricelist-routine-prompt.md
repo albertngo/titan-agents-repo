@@ -92,7 +92,7 @@ partial instruction set); and **notify only when something is outstanding**.
 You are processing one supplier price list. The payload gives you a single Notion
 page id: `{"notionID": "<id>"}`. Everything else comes off that Notion row.
 
-**Process only PDF, image, CSV, or Excel files. Do not produce any output for
+**Process only PDF, image, CSV, or CSV files. Do not produce any output for
 unsupported or unrelated files beyond the required statement. Do not alter the
 original file contents. Preserve all skill names and system identifiers exactly as
 given.**
@@ -183,7 +183,7 @@ If it is genuinely unclear, **leave `Tags` blank and escalate (step 6)**.
 ### 5. Extract and verify — export files, do not write to Airtable
 
 **Decided 2026-09-03 (Albert). The routine does not write to Airtable. It produces
-two Excel files and attaches them to the Notion row for human review.** Neither
+two CSV files and attaches them to the Notion row for human review.** Neither
 Airtable nor Lightspeed is written by this routine; both imports are done by a
 person from the attached files.
 
@@ -194,11 +194,11 @@ document.
 Otherwise extract with the **bert-airtable-schema** skill and produce **both** files —
 **in this order, which is not optional**:
 
-1. **Airtable upload** — `<supplier>_airtable_upload_YYYY-MM-DD.xlsx`, all 57
+1. **Airtable upload** — `<supplier>_airtable_upload_YYYY-MM-DD.csv`, all 57
    canonical columns in the exact documented order. Reconcile against the live
    catalogue first, then write the live `SKU`, `LS Handle / Parent ID` and
    `Lightspeed ID` into every matched row, verbatim.
-2. **Lightspeed upload** — `<supplier>_ls_upload_YYYY-MM-DD.xlsx`, per the
+2. **Lightspeed upload** — `<supplier>_ls_upload_YYYY-MM-DD.csv`, per the
    **ls-upload-instructions** skill, **built from the file produced in step 1** —
    never from the raw extraction. LS columns 1–3 (`id`, `handle`, `sku`) are copied
    out of it.
@@ -258,7 +258,7 @@ to it directly (`create-file-upload` → POST the bytes → `update-page` with
 `{"type":"file_upload","file_upload":{"id":"<id>"}}`). It is not a place to paste a
 link.
 
-**Every processed Price Lists row ends with exactly two .xlsx files in
+**Every processed Price Lists row ends with exactly two CSV files in
 `Extracted Files`** — the Airtable upload and the Lightspeed upload from step 5. One
 file means the run is incomplete.
 
@@ -300,7 +300,7 @@ once both trackers read `Done` or `Not needed`. Full state model:
 Two traps in the upload itself — the recipe and both failure signatures are in
 `methods/pricelist-extraction.md`: `api.notion.com` must be allowed by the
 environment's egress policy (it is, since 2026-09-03), and the multipart part must
-carry the real MIME type (`-F "file=@x.xlsx;type=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"`)
+carry the real MIME type (`-F "file=@x.csv;type=text/csv"`)
 or Notion 400s on a content-type mismatch. Look for `"status":"uploaded"`.
 
 **Order matters: attach first, then flag.** Re-fetch the row and confirm both
@@ -322,7 +322,7 @@ run is reproducible after the Notion attachment is superseded.
   7 rewritten: it exports both the Airtable upload and the Lightspeed upload and
   attaches them to the Notion row's `Extracted Files` (a `file` property — native
   upload, not a pasted link), leaving `Status` at `Extracted [Pending Review]` for a
-  human to import. Two .xlsx per row, always. The catalogue read stays, because it
+  human to import. Two CSVs per row, always. The catalogue read stays, because it
   decides whether the Airtable file is an update sheet carrying existing SKUs or a
   fresh import sheet — the SKU-duplication trap is unchanged by not writing.
 - **2026-09-03** — Added step 4 (Regular List / Promo classification) and made the
