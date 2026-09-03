@@ -147,7 +147,9 @@ paste the link into `Extracted Files`.
 - **2026-09-03** — Added step 4 (Regular List / Promo classification) and made the
   routine set `Tags` as well as `Company`. Rules derived from the 357 rows already
   in the database and validated against four documents; see
-  `methods/pricelist-extraction.md`.
+  `methods/pricelist-extraction.md`. Same day, Albert rebuilt 4381438: the router is
+  gone, so `Tags` and `Company` both arrive blank and this routine is the only thing
+  that sets them.
 - **2026-09-02** — The routine assigns `Company` itself (step 3). Make scenario
   4382120 no longer owns that field: it matched on `sender_email` in 38 of 40
   conditions, and every price list arrives from `info@titanfloors.ca`.
