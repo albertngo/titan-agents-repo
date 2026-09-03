@@ -98,7 +98,7 @@ Full statement: RULE 0 at the top of the `bert-airtable-schema` skill.
 | **Single-grade / no-grade product** (1 row per handle) | In the **name** | `… - 24.18sf/b` (before the grade suffix, if any) |
 | **Variant group, uniform box size** (all rows share one `Box size (sf)`) | In the **name** — names stay identical, so LS is satisfied | `… - 24.18sf/b`; column 11 = grade alone (`Character`) |
 | **Variant group, mixed box sizes** (2+ distinct values in the group) | In **column 11**, `variant_option_one_value` | `Character - 24.18sf/b` |
-| **Per-piece item** (accessories, STONE, mosaics — `Box size (sf)` legitimately blank) | Nowhere — exempt | n/a |
+| **Per-piece item** (accessories, STONE, mosaics — `Box size (sf)` legitimately blank) | Exempt from **name / column 11** only — the **description still states `Sold per piece`** | n/a |
 
 **Uniform is the common case.** Grades of the same product almost always box the same — across the entire Vidar catalogue only one handle group carries mixed box sizes. So most variant groups keep sf/b in the name and leave column 11 as a clean grade picker, which is what staff expect the dropdown to be.
 
@@ -106,7 +106,9 @@ Full statement: RULE 0 at the top of the `bert-airtable-schema` skill.
 
 **Compute uniform vs mixed per handle group at build time — it is a property of the data, not of the brand, and it can change.** A supplier revising one grade's box size flips a group from uniform to mixed. When that happens, sf/b must move out of the name and into column 11 for *every* row in the group, and all the names must be updated together — otherwise the group either carries a stale number or fails name identity.
 
-**Do not put sf/b in both places.** One placement per group. Duplicating it creates a second copy that silently goes stale.
+**Do not put sf/b in both the name AND column 11.** One placement per group — that choice is forced by LS's name-identity constraint, and doing both breaks the variant group.
+
+> **This does not apply to the description.** Per the strict rule under *Description rules (column 8)*, `Box size (sf)` goes in the description on **every** product regardless of where it lives here, plus `Pieces per box` when present, plus `Sold per piece` / `Sold per sq ft` for items that genuinely have no box. All copies are generated from the same Airtable field on each build, so they cannot drift — provided the file is regenerated rather than hand-edited.
 
 **Blank `Box size (sf)` on a flooring row is a data defect, not an exemption.** Per-piece accessories and STONE are legitimately blank. A plank/tile flooring SKU with no box size must be flagged and fixed in Airtable before upload — the LS file cannot invent it.
 
@@ -314,9 +316,25 @@ Contains every source column NOT already used in other LS fields (e.g. Product t
 
 **Unmapped** = all source columns EXCEPT: id, SKU, Brand, Supplier, Product name, LS Handle, Collection, Species, Grade, Width, Thickness, Veneer, Install profile, Cost, Retail, Product type, Category, Material type.
 
-**Box size (sf) — conditional on where it landed:**
-- **Box size is in the NAME** (singletons, no-grade products, and uniform-box-size variant groups): exclude it from the description — it's already in the name.
-- **Box size is in column 11** (mixed-box-size variant groups only): also include `Box size (sf)` in the description, since the description is searchable in POS. It is a searchability aid, **not** the primary placement — a row with sf/b only in the description does not satisfy the load-bearing rule.
+### ⚠️ STRICT RULE — `Box size (sf)` is ALWAYS in the description
+
+**Albert, 2026-09-03. Every product, without exception, carries its square feet per box in the description. If it also has `Pieces per box`, that goes in too.**
+
+This is unconditional and overrides the "empty and false fields are excluded" default above, and it applies **regardless of where else sf/b appears**:
+
+| Row | Description must contain |
+|---|---|
+| sf/b in the **name** (singletons, no-grade, uniform variant groups) | `Box size (sf): 24.18` — **still include it**, even though the name already says it |
+| sf/b in **column 11** (mixed-box-size variant groups) | `Box size (sf): 24.18` |
+| Has `Pieces per box` | `Pieces per box: 8` — always, alongside the box size |
+| **Genuine per-piece item** (trims, thresholds, STONE, mosaics — `Box size (sf)` legitimately blank) | `Sold per piece` — state the unit explicitly. Never silently omit, and never invent a box size. |
+| Per-**square-foot** item (e.g. underpad priced $/sf) | `Sold per sq ft` |
+
+**This supersedes the previous rule**, which excluded box size from the description whenever it was already in the name. It is no longer conditional on placement.
+
+**Why the duplication is safe here.** The load-bearing rule says "do not put sf/b in both places" — that is about **name vs column 11**, where the choice is forced by LS's name-identity constraint on variant groups, and picking both breaks the group. The description is a third, always-present location, and every one of them is generated from the same Airtable `Box size (sf)` field on each build. They cannot drift apart as long as the file is **regenerated** rather than hand-patched. Hand-editing one copy of a generated file is what makes duplicates go stale — so don't do that; rebuild.
+
+**Why it is worth the duplication.** The description is the searchable, always-visible field at the POS. The name can be truncated in some views, a column-11 variant value only surfaces at the point of selection, and neither is guaranteed to be where a staff member is looking when they need to convert boxes to square feet. The description is the one place that is always there.
 
 ---
 
@@ -588,7 +606,9 @@ Same rule as flooring: include all unmapped source fields as pipe-delimited text
 
 `Tile format | Finish type | Material type | Colour / tone | Box size (sf) | Pieces per box | Layout pattern | Salesperson notes`
 
-Box size goes in the description for **both variant and singleton rows** (it's already in column 11 for variants, but description is searchable in POS — redundancy is harmless).
+Box size goes in the description for **both variant and singleton rows** — this is the same strict rule that now applies to every product (see *Description rules (column 8)*), not a tile-specific allowance. Tile is simply where the practice started.
+
+Per-piece tile and STONE (thresholds, jambs, benches, listellos, pencils, decors) genuinely have no box size: the description states **`Sold per piece`** and carries `Pieces per box` where the supplier gives one. Never leave the question unanswered, and never invent a box size.
 
 ---
 
@@ -756,6 +776,8 @@ The source data sheet (any brand) MUST contain these columns:
 - ☐ **id column copied from Airtable source** — populated rows will UPDATE existing LS products; blank rows will CREATE new ones. Never leave blank for products that already have an LS UUID in Airtable.
 - ☐ brand_name and supplier_name match the source Brand/Supplier columns
 - ☐ description contains all unmapped source fields as pipe-delimited text
+- ☐ **EVERY row's description states its square feet per box** — `Box size (sf): <n>` where the product has one, or `Sold per piece` / `Sold per sq ft` where it genuinely does not. No exceptions, including rows whose name or column 11 already carries sf/b. Assert this over the whole file, not by spot-check: a row with neither is a defect.
+- ☐ **`Pieces per box` is in the description on every row that has one**
 
 ---
 
