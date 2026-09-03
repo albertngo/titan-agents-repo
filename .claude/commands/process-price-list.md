@@ -102,8 +102,15 @@ Otherwise, **in this order — it is a dependency, not a preference**:
    (partial/fuzzy) → specifications, principally `Product name`. Stop at the first tier
    that resolves cleanly.
    - **Rows returned** → this is an **update sheet**.
-   - **No rows** → new supplier; this is a fresh import sheet, and the new-supplier
-     onboarding checklist has to be settled before it is worth importing.
+   - **No rows** → **new supplier. Still produce the Airtable export** — the canonical
+     columns, every row `MatchStatus = new`, `Lightspeed ID` and `MatchedRecId` blank —
+     and stop before any import. The onboarding checklist gates the *import*, not the
+     extraction, and it is easier to answer with the data in hand. A missing supplier
+     subsection means "invent no supplier-specific rules", not "produce nothing": apply
+     the global rules and record every choice you had to make as an explicit assumption,
+     the **cost basis first** (dealer cost vs suggested retail changes every row, and
+     precedent runs both ways — CIF ×0.60, Olympia ×0.564, Biyork MSRP-beside-dealer).
+     **Skip the Lightspeed file** in this case — see step 5.4.
    - **Verify the supplier's documented SKU format against the base before generating
      any SKU.** The skill has been wrong about this (Grandeur, 2026-09-03).
 3. **Write the identity fields into the Airtable sheet**, verbatim from the live record
@@ -119,6 +126,9 @@ Otherwise, **in this order — it is a dependency, not a preference**:
    `handle` / `sku` straight out of that enriched sheet — never from the raw extraction.
    A matched row shipped with a blank `id` makes Lightspeed **create a duplicate instead
    of updating**.
+   - **Exception — a new supplier gets no LS file.** Those three columns are copied from
+     the Airtable state, and for a new supplier that state does not exist yet. The LS file
+     follows the Airtable import, per the forced order below. One file, not two.
 
 Cross-check extracted SKU→price pairs against pdfplumber's own text before attaching.
 

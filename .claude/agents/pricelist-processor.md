@@ -85,7 +85,22 @@ Rules:
   a product is new — only a failed match is.
 - Never trust a supplier's documented SKU format in the skill over the live base. If
   the two disagree, the base wins and the skill is wrong — say so in your summary.
-- If the supplier has no subsection in the schema skill, do not invent rules — report
-  that onboarding (the "New supplier onboarding" checklist) is needed first.
+- If the supplier has no subsection in the schema skill, do not invent supplier-specific
+  rules. **This is not a reason to produce nothing.** Apply the global rules, make the
+  most defensible choice the document supports, and record each one as an explicit
+  assumption in `Salesperson notes` and in your summary. See "New supplier" below.
+- **New supplier** (no records in the catalogue): the schema skill's *Step 1* governs —
+  **produce the Bert schema Excel export and stop before any import.** "Stop there"
+  means stop short of importing, not short of extracting; the onboarding checklist gates
+  the **import**, not the file. The human review that the import path exists to provide
+  is the safety mechanism, and the checklist is easier to answer with the extracted data
+  in hand than without it. Withholding the file leaves the reviewer nothing to work from.
+  - Flag the **cost basis** explicitly — whether the printed prices are dealer cost or
+    suggested retail is the single assumption that changes every row, and precedent runs
+    both ways (CIF ×0.60, Olympia ×0.564, Biyork prints MSRP beside a dealer price).
+  - `MatchStatus` = `new` on every row, `Lightspeed ID` and `MatchedRecId` blank.
+  - **No Lightspeed file for a new supplier** — LS columns 1–3 are copied from the
+    Airtable state, which does not exist yet. It comes after the Airtable import, per the
+    forced order. The "always two files" rule assumes an existing supplier.
 - Flag, don't block: ambiguous rows go into the output with a note in Salesperson
   notes and a line in your summary.

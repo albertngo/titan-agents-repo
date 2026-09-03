@@ -525,6 +525,19 @@ wrong in either direction is expensive: importing over an existing supplier
 duplicates their catalogue; API-creating a new supplier bypasses the review the
 import path exists to provide.
 
+> **"Stop there" means stop before importing — still produce the file.** Clarified
+> 2026-09-03 after a run read it the other way and produced nothing for Canadian
+> Standard. A missing supplier subsection means *invent no supplier-specific rules*, not
+> *extract nothing*: apply the global rules, and record every choice the document forced
+> as an explicit assumption in `Salesperson notes` and in the run summary — the **cost
+> basis** first, since dealer-cost-vs-suggested-retail changes every row and precedent
+> runs both ways (CIF ×0.60, Olympia ×0.564, Biyork prints MSRP beside a dealer price).
+> The checklist gates the import; the file makes the checklist *answerable*, because the
+> reviewer can see the actual columns while deciding. Withholding it leaves them nothing.
+>
+> A new supplier also gets **no Lightspeed file** — LS columns 1–3 are copied from the
+> Airtable state, which does not exist until the import happens.
+
 ### Step 2 — the matching cascade
 
 > Everything below resolves **which existing SKU a row belongs to**. It never
