@@ -427,6 +427,25 @@ thread where we only left ourselves a note is still unanswered to the customer.
 Do reflect it in `contact_notion` and, where it changes urgency, in
 `act_immediately_reason`.
 
+### An automated post-call SMS DOES count as a response (Albert, 2026-09-02)
+
+The opposite call from the internal-comment rule above, and deliberately so.
+Albert's post-call workflow fires a real SMS to the contact ("just tried giving
+you a call… when would be a good time to chat?"). From the customer's side that
+is indistinguishable from a human follow-up — they were contacted and asked a
+question — so **it flips `next_response_owner` to `them`, resets
+`sitting_hours`, and clears the thread from `unanswered_conversations`.** Do not
+treat it as noise, and do not exclude it the way `automated-system-log` entries
+are excluded; that flag is for system log lines nobody sent, not for a message a
+customer actually received.
+
+**But the handling is only good until they answer.** The moment the contact
+replies to that SMS, ownership flips back to `us` and the thread is unanswered
+again — now with a warmer signal than before, because they responded to an
+outreach. A thread sitting on an auto-SMS with no reply is handled; a thread
+where they wrote back and nobody followed up is a *worse* miss than one we never
+touched, and must surface accordingly.
+
 **Author vs. mention — get this right, it has already been wrong once.** The
 author of an internal comment is the message's own top-level `userId` field.
 People *mentioned* inside it appear as `@Name<userId>…</userId>` markup **in the
