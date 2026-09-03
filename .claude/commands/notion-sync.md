@@ -66,8 +66,9 @@ re-derive or guess.
       `notion-task-schema.md`, including the `ghl_owner:` Notes line resolved
       from `notion-destinations.json`'s `people` table per that contract's
       Reference-only owner line section, `Tags` = `["ghl"]` plus each
-      value in the candidate's `types`, and `Name` ending in the resolved
-      `[<stage>]` bracket.
+      value in the candidate's `types`, plus `projects` when the contact has a
+      won opportunity (see "The `projects` tag" in the contract), and `Name`
+      ending in the resolved `[<stage>]` bracket.
    d. Match found → update per the whitelist only (append a dated `Notes`
       line, raise `Priority` on escalation, add any `types` value not
       already in the row's `Tags` — never remove one, rewrite the `[<stage>]`
