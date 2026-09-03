@@ -112,7 +112,8 @@ Otherwise, **in this order — it is a dependency, not a preference**:
      the global rules and record every choice you had to make as an explicit assumption,
      the **cost basis first** (dealer cost vs suggested retail changes every row, and
      precedent runs both ways — CIF ×0.60, Olympia ×0.564, Biyork MSRP-beside-dealer).
-     **Skip the Lightspeed file** in this case — see step 5.4.
+     **Skip the Lightspeed file** only while the products are new to Lightspeed too —
+     if `Lightspeed ID`s have been reconciled in from an LS export, build it. See 5.4.
    - **Verify the supplier's documented SKU format against the base before generating
      any SKU.** The skill has been wrong about this (Grandeur, 2026-09-03).
 3. **Write the identity fields into the Airtable sheet**, verbatim from the live record
@@ -123,12 +124,20 @@ Otherwise, **in this order — it is a dependency, not a preference**:
      alphanumeric, never truncated) and a **deliberately blank `Lightspeed ID`** — LS
      generates that on import. Never invent or placeholder one.
    - A blank `Lightspeed ID` on a `matched` row is a defect; on a `new` row it is
-     correct. Judge by `MatchStatus`, never by the cell.
+     correct. Judge the Airtable side by `MatchStatus`, never by the cell.
+
+     **Third state — new to Airtable, already live in Lightspeed.** A supplier can be
+     absent from the catalogue while its products already exist in Lightspeed (Canadian
+     Standard, 2026-09-03: 292 of 336 rows). Those rows are legitimately
+     `MatchStatus: new` *and* carry a `Lightspeed ID`. So the LS `id` column is decided by
+     **whether a `Lightspeed ID` exists**, never by `MatchStatus`: copy it wherever it is
+     present. Judge by `MatchStatus` only for the Airtable side — whether the row creates
+     a record or updates one.
 4. **Only now build the Lightspeed file**, per `ls-upload-instructions`, reading `id` /
    `handle` / `sku` straight out of that enriched sheet — never from the raw extraction.
    A matched row shipped with a blank `id` makes Lightspeed **create a duplicate instead
    of updating**.
-   - **Exception — a new supplier gets no LS file.** Those three columns are copied from
+   - **Exception — a new supplier with no Lightspeed presence gets no LS file.** Those three columns are copied from
      the Airtable state, and for a new supplier that state does not exist yet. The LS file
      follows the Airtable import, per the forced order below. One file, not two.
 

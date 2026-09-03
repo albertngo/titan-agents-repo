@@ -56,7 +56,16 @@ Work in this order, every time:
 
 A blank `Lightspeed ID` on a row whose `MatchStatus` is `matched` is a defect — it
 means step 3 did not happen, and the import will duplicate a live product. On a `new`
-row the same blank is correct. Judge by `MatchStatus`, never by the cell.
+row the same blank is correct. Judge the Airtable side by `MatchStatus`, never by the
+cell.
+
+**Third state — new to Airtable, already live in Lightspeed.** A supplier can be
+absent from the catalogue while its products already exist in Lightspeed (Canadian
+Standard, 2026-09-03: 292 of 336 rows). Those rows are legitimately
+`MatchStatus: new` *and* carry a `Lightspeed ID`. So the LS `id` column is decided by
+**whether a `Lightspeed ID` exists**, never by `MatchStatus`: copy it wherever it is
+present. Judge by `MatchStatus` only for the Airtable side — whether the row creates
+a record or updates one.
 
 **Report the exact count of `new` rows in your summary.** It is not just narrative —
 the caller writes it to the Notion row's `New Products` property and sets
@@ -100,9 +109,15 @@ Rules:
   - Flag the **cost basis** explicitly — whether the printed prices are dealer cost or
     suggested retail is the single assumption that changes every row, and precedent runs
     both ways (CIF ×0.60, Olympia ×0.564, Biyork prints MSRP beside a dealer price).
-  - `MatchStatus` = `new` on every row, `Lightspeed ID` and `MatchedRecId` blank.
-  - **No Lightspeed file for a new supplier** — LS columns 1–3 are copied from the
-    Airtable state, which does not exist yet. It comes after the Airtable import, per the
-    forced order. The "always two files" rule assumes an existing supplier.
+  - `MatchStatus` = `new` on every row, `MatchedRecId` blank. `Lightspeed ID` is blank
+    too **unless the products already exist in Lightspeed** — see the third state above.
+  - **No Lightspeed file for a new supplier whose products are not yet in Lightspeed** —
+    LS columns 1–3 are copied from the Airtable state, which does not exist yet. It comes
+    after the Airtable import, per the forced order.
+    - **Exception, and it is common:** if `Lightspeed ID`s have been reconciled into the
+      sheet from an LS export, columns 1–3 *are* resolved and you **do** build the LS
+      file. New-to-Airtable does not imply new-to-Lightspeed; the two systems drift.
+      Canadian Standard (2026-09-03) was a new supplier with 292 of 336 rows already
+      live in LS. The "always two files" rule holds whenever the ids exist.
 - Flag, don't block: ambiguous rows go into the output with a note in Salesperson
   notes and a line in your summary.
