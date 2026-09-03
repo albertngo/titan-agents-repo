@@ -191,8 +191,17 @@ agent) who does the import, the upload or the backfill writes those. The downstr
 is forced: `Airtable Sync: Done` → `LS Upload: Done` → `UUID Backfill: Done`, because a new product
 has no Lightspeed ID until the POS upload creates one.
 
-If the upload fails, leave `Status` at `Extracting` and say why. Never leave a row reading `Extracted [Pending Review]` with an empty
+**If the run cannot finish — the download failed, the file is not a parseable price
+document, `Company` or `Tags` could not be determined, an attachment upload or a
+property write was rejected — set `Status` = `Error: Needs attention` and put the
+reason in `Notes`**, naming the step it failed at and what it needs to proceed. Never
+leave a row at `Extracting` after the run ends: that reads as still-in-flight and hides
+the failure. Never leave a row reading `Extracted [Pending Review]` with an empty
 `Extracted Files` — that claims there is something to review when there is not.
+
+`Error: Needs attention` is for a run that did not produce what it should have. A run
+that finished but carries assumptions stays `Extracted [Pending Review]` with those
+assumptions in `Notes`.
 
 ## 7. Escalate anything you could not determine
 

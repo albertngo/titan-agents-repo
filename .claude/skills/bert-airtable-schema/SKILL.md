@@ -181,6 +181,39 @@ a re-run overwrites this field and a stale note is worse than none:
 **Overwrite, don't append.** It describes the current state of the row, not its history —
 the repo commits and `Salesperson notes` carry the history.
 
+#### `Error: Needs attention` — the status that pairs with `Notes`
+
+**Added on Albert's instruction 2026-09-03.** A run that cannot finish sets
+**`Status = Error: Needs attention`** and puts the reason in **`Notes`**. The two always
+travel together: the status makes the row findable in a view, `Notes` says what happened.
+
+| Outcome | `Status` | `Notes` |
+|---|---|---|
+| Ran, files attached, nothing blocking | `Extracted [Pending Review]` | empty |
+| Ran, files attached, caveats a reviewer must clear | `Extracted [Pending Review]` | the flag lines |
+| **Could not finish** | **`Error: Needs attention`** | **what failed, at which step, and what it needs** |
+
+`Error: Needs attention` is for a run that did not produce what it was meant to:
+the download failed, the file is not a parseable price document, `Company` or `Tags`
+could not be determined, the attachment upload failed, a write was rejected. It is
+**not** for a completed run carrying assumptions — that is
+`Extracted [Pending Review]` with a populated `Notes`.
+
+This replaces the older "leave `Status` at `Extracting` and say why" rule, which left a
+failed run indistinguishable from one still in flight. **A row must never sit at
+`Extracting` after a run ends.**
+
+The error note names the step, so it can be resumed rather than re-run blind:
+
+```
+2026-09-03: FAILED at step 2 — SharePoint returned 403 on the share link
+(cookie jar set, ?download=1 present). No file retrieved, nothing extracted.
+Re-share the file or check the link has not expired.
+```
+
+Escalating still applies on top: the Tactical Task and the push are what reach a human
+who is not looking at the database.
+
 **Read the data source schema when a write fails rather than guessing the new name.**
 The 400's message lists every editable key, which is how these were found.
 

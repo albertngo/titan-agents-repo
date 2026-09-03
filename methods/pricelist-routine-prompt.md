@@ -305,7 +305,8 @@ or Notion 400s on a content-type mismatch. Look for `"status":"uploaded"`.
 
 **Order matters: attach first, then flag.** Re-fetch the row and confirm both
 attachments are present before setting `Status`. If the upload fails,
-leave `Status` at `Extracting` and report why — never mark a
+set `Status` = `Error: Needs attention` with the reason in `Notes` — never leave the row
+at `Extracting`, and never mark a
 row `Extracted [Pending Review]` with an empty `Extracted Files`, which reads as ready
 to review when nothing is attached. `Company` and `Tags` from steps 3–4 still stand
 either way, and the files are still committed to `ingest/YYYY-MM-DD/`.
