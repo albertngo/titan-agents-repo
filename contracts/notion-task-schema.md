@@ -192,7 +192,7 @@ the sync for any decision. The actions-class rule that assignment is always a
 human call is unchanged; this just saves a lookup.
 
 At **create** time only, add one line to the `Notes` footer, after the
-`[agent] key=...` line and before any `thread:` line:
+`[agent] key=...` line (it is the last line of the footer):
 
 - `assigned_to` resolves to a `people` entry → `ghl_owner: <name>` (the entry's
   `name` field, e.g. `ghl_owner: Pourya`).
@@ -264,9 +264,16 @@ derived above. This matters for three reasons:
 - **Precedent** — mirrors the existing Lightspeed automation pattern already
   in Tactical Tasks List, where `url` holds the canonical deep link.
 
-For `message`-type items, the conversation thread link is not lost — it goes
-into `Notes` as `thread: <conversation_url>`, so the row still gives a
-one-click path to the actual message.
+**Do not write a `thread:` conversation link into `Notes`** (removed 2026-09-02,
+Albert). This used to be added for `message`-type items on the theory that it
+gave a one-click path to the actual message. It doesn't: a
+`/conversations/conversations/<id>` URL does not reliably deep-link in the GHL
+UI — it drops you into the conversations inbox on whatever thread happens to be
+selected, which reads as the row pointing at a completely unrelated customer.
+Verified 2026-09-02: every conversation ID we were emitting resolved to the
+**correct** contact via the API, so this was never a record-matching bug, purely
+a bad URL form. The row's `url` property already lands on the contact record,
+where the conversation is visible anyway. Don't reintroduce it.
 
 ## Dedupe and update
 
@@ -361,7 +368,7 @@ Destination: shared "✅ Tactical Tasks List" (Titan Flooring HQ teamspace).
 | — | `Tags` | `["ghl"]` plus one entry per distinct `type` among the candidate's merged items — `lead` / `message` / `drift` (create only; see below for the update behavior) |
 | `priority` | `Priority` | `high` |
 | `url` | `url` | constructed contact URL — see above |
-| `summary` + footer | `Notes` | summary, blank line, then:<br>`[agent] key=<key> \| first_seen=<date> \| basis=<file>#<item_id>`<br>`ghl_owner: <name>` (create only, when `assigned_to` resolves — see "Reference-only owner line" above)<br>`thread: <conversation_url>` (message items only) |
+| `summary` + footer | `Notes` | summary, blank line, then:<br>`[agent] key=<key> \| first_seen=<date> \| basis=<file>#<item_id>`<br>`ghl_owner: <name>` (create only, when `assigned_to` resolves — see "Reference-only owner line" above)<br>**No `thread:` line** — see "Constructing the Notion `url`" for why it was removed |
 | — | `Verification` | `Needs Verification` (create only) |
 | — | `Assign To` | **always empty** |
 | — | `Due Date` | **always empty** |
