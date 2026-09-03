@@ -1591,24 +1591,69 @@ drift:
 Grandeur [width]" [SpeciesAbbrev] — [Colour] ([LetterGrade])
 ```
 
-Species abbreviations seen live: `EWO` (European White Oak), `AO` (American Oak),
-`NAH` (North American Hickory), `HM` (Hard Maple). Vinyl/laminate rows use the
-collection in place of the species — `Grandeur 7" Pacific — Canterbury`.
+**The species abbreviations are a hard contract, not a preference.** The 2026-09-03
+run had to normalise 56 rows because the extraction invented its own; a mismatch here
+means a product silently reads as new and gets a duplicate SKU.
+
+| Use | Never | Species |
+|---|---|---|
+| `EWO` | | European White Oak |
+| `AO` / `WO` | | American Oak / White Oak |
+| `NAH` | `HIC` | North American Hickory |
+| `HM` | `MPL` | Hard Maple |
+| `NARO` | `RO` | North American Red Oak |
+
+Vinyl/laminate rows use the collection in place of the species —
+`Grandeur 7" Pacific — Canterbury`.
+
+**No redundant parentheticals.** The width is already in the name, so
+`Sandbar (ABC)` — never `Sandbar (7.5") (ABC)`. No thickness parenthetical either:
+`Connecticut`, not `Connecticut (7.0mm)`. Collection names drop a trailing
+"Collection": `12mm XXL — …`, not `12mm XXL Collection — …`.
 
 **The grade in parentheses is the supplier's letter grade verbatim** (`(ABCD)`,
 `(ABC)`, `(AB)`) — *not* the mapped canonical word. The mapped value goes in the
 `Grade` field; the name keeps the letters. Examples from the live base:
 `Grandeur 7.5" EWO — Moonfrost (ABCD)`, `Grandeur 7.5" AO — Honeycomb (AB)`.
+**Exception — solid hardwood** uses the word form without "Grade": `(Select)`, never
+`(Select Grade)`.
+
+#### LS Handle convention
+
+`GRND` + the Product name minus the leading `Grandeur ` and minus the trailing grade
+parenthetical, uppercased, all non-alphanumerics stripped. Examples verified against
+the live base: `GRND75EWOMORAINE`, `GRND7PACIFICCANTERBURY`, `GRND12MMAQUAMATESYDNEY`.
+
+**Never truncate the colour or collection token** — the same rule as CIF and Olympia.
+The 2026-09-03 run truncated collections to 12 characters and produced collisions
+(`GRNDESSENTIAALGONQUIN`, `GRND12COLLECARLESNATURAL`), and also left dots in
+(`GRND6.5EWOBARBADOS`) which LS rejects outright. Strip to alphanumeric, keep the
+whole token, however long it gets.
+
+**For a matched row, take the handle from the live record rather than regenerating
+it** — the stored handle is what Lightspeed already groups on.
 
 #### Upload stats (reference)
 
 Live catalogue as of **2026-09-03**: **239 Grandeur records** (ENG 102, SPC 45,
 LVP 36, LAM 30, WPC 20, HWD 6), only 10 of which carry a `Supplier SKU`.
 
-From an earlier Grandeur LS upload:
-- **238 total products** extracted from price list.
-- **163 updates** to existing LS records + **75 new products** added.
-- Airtable upsert used `performUpsert` with `fieldIdsToMergeOn: ['fldx3byCOht5HbKmH']` (SKU field).
+Matching resolves at **tier 3 (specifications / `Product name`)** for 229 of 239 rows,
+because only 10 carry a `Supplier SKU`. Use the matching cascade under "Updating
+existing products from a price list"; do not upsert on a SKU the extraction generated.
+
+> An earlier version of this block cited a `performUpsert` on
+> `fieldIdsToMergeOn: ['fldx3byCOht5HbKmH']` against 238 extracted products. Merging
+> on a **run-generated** SKU is exactly the failure the 2026-09-01 changelog entry
+> forbids and the 2026-09-03 run reproduced. Merge only on a SKU read back from the
+> base for that specific product.
+
+**Every LS upload row for an existing product needs its `Lightspeed ID`** in column 1
+of the LS file. All 239 live Grandeur records carry one (`fldQhbI35Ng2ZxNKL`). A blank
+`id` on an existing product makes Lightspeed **create a duplicate instead of
+updating** — the 2026-09-03 LS file was built with all 231 ids blank and had to be
+backfilled before it was safe to import. Leave `id` blank only for genuinely new
+products.
 
 #### Grandeur ingest output format
 
@@ -2467,6 +2512,15 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
 - **2026-09-03** — Price list runs export **two** files (Airtable + Lightspeed) and
   attach them to the Notion row; the routine no longer writes to Airtable. See
   `methods/pricelist-routine-prompt.md`.
+- **2026-09-03** — Same run surfaced two more Grandeur defects, both now documented
+  above: LS handles were generated with dots retained and collections truncated to 12
+  chars (collisions LS rejects), and the LS file was built with **column 1 `id` blank
+  on all 231 rows**, which would have duplicated 212 existing Lightspeed products
+  rather than updating them. Added the handle convention, the "take the handle from
+  the live record when matched" rule, the species-abbreviation contract
+  (`NAH`/`HM`/`NARO`, no redundant size or thickness parenthetical) that 56 rows had
+  to be normalised against, and the `Lightspeed ID` requirement — mirrored into the
+  `ls-upload-instructions` pre-upload checklist.
 - **2026-09-01** — Added "Updating existing products from a price list", after the
   GreenTouch 2026-09-01 run surfaced that the extraction step renumbers internal
   SKUs per run and would have duplicated all 83 existing records. Two rules

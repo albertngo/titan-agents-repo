@@ -660,6 +660,13 @@ The source data sheet (any brand) MUST contain these columns:
 
 ## Pre-upload checklist
 
+- ☐ **Every row for a product that already exists in Lightspeed carries its
+  `Lightspeed ID` in column 1 (`id`).** A blank `id` on an existing product makes LS
+  **create a duplicate instead of updating it**. Populate from Airtable's
+  `Lightspeed ID` (`fldQhbI35Ng2ZxNKL`) for every matched row; leave blank *only* for
+  genuinely new products, where LS assigns the UUID on import. This is the LS-side
+  twin of the SKU-duplication trap — the 2026-09-03 Grandeur file was built with all
+  231 ids blank, which would have duplicated 212 live products.
 - ☐ Every row has a unique SKU (column 3)
 - ☐ **Handles contain ONLY letters and numbers** — no hyphens, dots, spaces, or symbols (strip from source before upload)
 - ☐ **SKUs contain only letters, numbers and `. - _ /`** — NO commas or spaces (LS rejects commas; replace `,`→`.` — see Olympia subsection)
