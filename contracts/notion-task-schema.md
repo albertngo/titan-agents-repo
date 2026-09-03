@@ -374,6 +374,19 @@ literal bracket `[no opportunity]` rather than omitting it — the absence is it
 informative (this is Wanda/Karvin-Cheung-shaped: a categorization miss with no
 opportunity yet).
 
+**When the chosen opportunity is not `open`, the bracket must say so**:
+`[<stage> · <status>]`, e.g. `[Meeting (Scheduled) · abandoned]`. A stage name
+alone describes where the record sits, not whether it is still alive, and
+`Meeting (Scheduled)` reads as active when the deal is actually dead.
+`won` is the one exception — the stage names (`2. *Project Won*`,
+`6a. Closed - Won`) already carry it, so `[Project Won]` needs no suffix.
+
+Regression, 2026-09-02: the first pass fell back to the most recently updated
+opportunity of *any* status when no open one existed, and stamped Sean K's row
+`[Meeting (Scheduled)]` while his opportunity was `abandoned`. Fixed same day.
+The fallback itself is correct — a dead opportunity is better context than
+`[no opportunity]` — but it must be labelled.
+
 **On create**: append `[<stage>]` when constructing `Name`, subject to the
 existing ≤80-char cap — trim the base name (never the bracket) with a trailing
 `…` if the combined string would exceed it.
