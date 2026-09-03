@@ -456,21 +456,41 @@ get their own family token instead (see *What is NOT a transition*).
 - `Transition` — literal constant token, on every row in the family. This is what makes them searchable as a set.
 - `[Type]` — canonical token from the controlled list below. Never free-text, never the supplier's spelling.
 - `[Material]` — **which floor this transition matches.** See the source order below. Omit the segment if genuinely unknown — do not guess.
-- `[Dimensions]` — length and profile detail: `94.5"`, `70.86" Square`, or `Cut Order` for made-to-order items. Omit if not in the source.
+- `[Dimensions]` — length, profile and the fine detail that separates two trims sharing a material: `94.5"`, `70.86" Square`, `Cut Order` for made-to-order items, the species on a wood trim (`94.5" Square AWO`), or the floor line in parentheses (`2400mm x 45mm x 12mm (Evion 9)`). **This is the segment that does the actual picking** once the material token has narrowed the list — put the distinguishing detail here rather than inventing a material token for it. Omit if the source has none.
 
 **The name is driven by product TYPE, not by LS category.** A nosing stays a nosing whether it lands in `ACCESSORIES` or in a vinyl category (see the Olympia routing table, where LVP nosings/reducers sit under `FLOORING / VINYL / SPC`). Category routing is unchanged by this rule.
 
 ### The `[Material]` segment — source order
 
-A transition is bought to match a floor, so this segment must answer *"which floor?"*. No single Airtable field answers that for every product type, so resolve in this order and take the first that yields a useful token:
+A transition is bought to match a floor, so this segment must answer *"which floor?"*.
 
-| Order | Source | Transform | Example |
-|---|---|---|---|
-| 1 | `Material type` | drop the word "core" | `SPC core` → `SPC`, `WPC core` → `WPC`, `HDF core` → `HDF` |
-| 2 | `Category` | use as-is, shortened | `Laminate` → `Laminate`, `Engineered hardwood` → `Engineered` |
-| 3 | `Species` | supplier's species code or full name | `AWO`, `European Oak`, `Ash` |
+**It is a CLOSED vocabulary of exactly three tokens (Albert, 2026-09-03):**
 
-**`Hardwood plywood` is never used as the material token.** It is the literal `Material type` on every hardwood transition, but it describes the core of a plank rather than the floor being matched — no one searches for it. Fall through to Species instead: a stair nosing that matches American White Oak reads `AWO`, not `Hardwood plywood`.
+| Token | Covers |
+|---|---|
+| `SPC` | All rigid-core vinyl — SPC, WPC, and any vinyl line whose core is unstated or ambiguous |
+| `Laminate` | All laminate, including water-resistant and HDF-core laminate |
+| `Wood` | All real-wood floors — engineered and solid alike |
+
+**Three, not "however many the source fields happen to yield."** The whole point of the
+segment is that you scan it, and you can only scan a set you already know. An
+open-ended token list means reading each result to work out what it is, which is the
+work the format exists to remove. If a product seems to need a fourth token, that is a
+question for Albert, not a new token.
+
+Resolve to one of the three in this order:
+
+| Order | Source | Maps to |
+|---|---|---|
+| 1 | `Material type` | `SPC core` / `WPC core` → **SPC**; `Water-Resistant Core`, `HDF core` → **Laminate**; `Hardwood plywood` → **Wood** |
+| 2 | `Category` | `LVP` / `LVT` / `Vinyl` → **SPC**; `Laminate` → **Laminate**; `Engineered hardwood` / `Solid hardwood` → **Wood** |
+| 3 | The floor line the trim belongs to | Take the parent collection's material and use its token |
+
+**`Hardwood plywood` maps to `Wood`, it is never the token itself.** It is the literal `Material type` on every hardwood transition, but it describes the core of a plank rather than the floor being matched — no one searches for it.
+
+**`LVP` and `LVT` are formats, not materials — never emit them here.** A vinyl trim is `SPC`. The 2026-09-03 Canadian Standard build shipped three SONO Eclipse trims tagged `LVP` purely because SONO's `Material type` is blank and the resolver fell through to `Category`; the same product line's flooring rows were correctly built as SPC. That was a fourth token created by a data gap, not by a real fourth material.
+
+**Species does not belong in this segment.** `AWO` and `European Oak` are `Wood`. Species is a *fine* distinction and it belongs in `[Dimensions]` with the other detail, where it still displays and still searches — the material token is coarse triage, the detail segment is how you pick the exact one. Losing species entirely would be a real loss; moving it is not.
 
 **Deduplication — do not emit the token twice.** Skip the `[Material]` segment if the same token already appears in `[Type]` or `[Dimensions]` (case-insensitive, whole word). When restructuring an existing free-text name that already embeds the material — `Vidar SPC Nosing` — **extract** it into the `[Material]` slot rather than leaving it in place and appending a second copy. Correct: `Vidar - Transition | Nosing | SPC`. Wrong: `Vidar - Transition | SPC Nosing | SPC`.
 
@@ -494,12 +514,13 @@ A transition is bought to match a floor, so this segment must answer *"which flo
 
 | Airtable Product name (current) | LS name | `[Material]` from |
 |---|---|---|
-| Vidar AWO Stair Nosing — 94.5" Square | `Vidar - Transition \| Stair Nosing \| AWO \| 94.5" Square` | Species (order 3) |
-| Vidar European Oak Stair Nosing — 70.86" Square | `Vidar - Transition \| Stair Nosing \| European Oak \| 70.86" Square` | Species (order 3) |
+| Vidar AWO Stair Nosing — 94.5" Square | `Vidar - Transition \| Stair Nosing \| Wood \| 94.5" Square AWO` | Wood; species moved to detail |
+| Vidar European Oak Stair Nosing — 70.86" Square | `Vidar - Transition \| Stair Nosing \| Wood \| 70.86" Square European Oak` | Wood; species moved to detail |
 | Vidar SPC T-Molding — Cut Order | `Vidar - Transition \| T-Moulding \| SPC \| Cut Order` | Material type (order 1) |
 | Vidar SPC Reducer — Cut Order | `Vidar - Transition \| Reducer \| SPC \| Cut Order` | Material type (order 1) |
 | Vidar SPC Nosing | `Vidar - Transition \| Nosing \| SPC` — material extracted, not duplicated; no length in source | Material type (order 1) |
 | Vidar Laminate Nosing | `Vidar - Transition \| Nosing \| Laminate` — no length in source | Category (order 2) |
+| SONO Eclipse Reducer — 94" (vinyl, `Material type` blank) | `Canadian Standard - Transition \| Reducer \| SPC \| 94" (Eclipse)` | Parent line (order 3) — **not** `LVP` |
 
 ### What is NOT a transition
 
@@ -833,6 +854,7 @@ The source data sheet (any brand) MUST contain these columns:
 - ☐ variant_option_one_name AND variant_option_one_value are BLANK for every single-row handle (regardless of whether grade is present)
 - ☐ **Transitions/mouldings follow the searchable name format** — `[Supplier] - Transition | [Type] | [Material] | [Dimensions]`, full supplier name spelled out, `Transition` token present, type token taken verbatim from the controlled list
 - ☐ **The two-token search actually resolves** — for every accessory family in the file, confirm that `<Supplier> <Family>` (e.g. `Canadian Standard Transition`) matches every row of that family and no row outside it. This is the whole point of the format; assert it over the file rather than trusting the template.
+- ☐ **`[Material]` is one of exactly `SPC` / `Laminate` / `Wood`** — no `LVP`, `LVT`, `WPC`, `Engineered`, `Hardwood plywood`, or a species code. Any other value means the resolver fell through a data gap; fix the mapping, do not ship a fourth token.
 - ☐ **Renamed accessories carry their `id`** — every accessory row whose name changed has the Lightspeed UUID in column 1, or the import creates duplicates instead of renaming
 - ☐ **Name dedup applied** — if Collection contains Species, Species dropped from name; if Collection ends with Install, Install dropped from name
 - ☐ **supply_price ← `Cost/unit` and retail_price ← `Retail price/unit`** for every row (the only valid source for these two columns; never blank for priced products, including per-piece accessories)
