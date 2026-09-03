@@ -803,8 +803,52 @@ The general flow for any supplier ingest:
 1. Look up the supplier's subsection below
 2. Apply global schema rules (pricing markup, SALE logic, stock status, etc.)
 3. Apply supplier-specific overrides from the subsection
-4. Generate an Airtable-ready Excel file with all 54 schema fields as columns
+4. Generate an Airtable-ready Excel file with all 57 schema fields as columns
 5. Spot-check a sample covering every edge case before committing to import
+
+---
+
+### ⚠️ Cost basis — ask once, then write it down forever
+
+**Rule (Albert, 2026-09-03).** The cost basis is the one assumption that moves every row
+in a file at once, and no amount of staring at a PDF settles it. So it is **asked, not
+inferred** — and the answer is **recorded in that supplier's subsection**, so it is asked
+exactly once per supplier and never again.
+
+**Stop and ask Albert before continuing when either is true:**
+
+1. **The supplier is new** — always ask. There is no subsection to inherit from.
+2. **The sheet has more than one candidate cost column**, or a number whose role is not
+   stated, on *any* supplier — a second price beside the first, an "MSRP"/"list"/"retail"
+   column, a promo price beside a regular one, or a per-piece figure next to a per-sq-ft
+   one. Ambiguity on an existing supplier means the *format changed*; the stored note may
+   no longer describe the file in front of you.
+
+Ask him to look at the file and confirm **before** the supplier and its costs go any
+further. Put it to him concretely — name the columns as printed and say which one you
+would otherwise take as cost. This is a **blocking** question: the extraction may proceed
+so he has data to look at, but the import does not.
+
+**Then write the answer into the supplier's subsection under a `#### Cost column`
+heading.** That is what makes it a one-time cost. A future run reads the subsection,
+finds the basis already settled, and proceeds without asking again. An answer left only
+in a chat log or in `Salesperson notes` is an answer that gets re-litigated every quarter.
+
+Record all three of: which printed column is `Cost/unit`, any multiplier applied, and —
+explicitly — whether the supplier publishes an MSRP at all. "No MSRP" is a real finding
+worth stating, not an omission.
+
+The three shapes seen so far, all of which must keep working:
+
+| Shape | Supplier | Handling |
+|---|---|---|
+| Prints dealer cost only, no MSRP | Canadian Standard | Printed price → `Cost/unit` as-is. `Retail = Cost + $ 1.00`. |
+| Prints MSRP only; dealer cost is a multiplier | CIF (×0.60), Olympia (×0.564) | Apply the multiplier to reach `Cost/unit`. |
+| Prints both, side by side | Biyork (`MSRP/SF` + `Your Price`) | Dealer column → `Cost/unit`; MSRP → `MAP price ($/sf)`. |
+
+**`Retail = Cost + $ 1.00` is the default and stays the default.** A multiplier is a
+supplier-specific override that exists only where the supplier's own sheet forces it —
+never a house adjustment applied on top of a confirmed dealer cost.
 
 ---
 
@@ -2598,6 +2642,69 @@ Floordi issues **separate monthly promotion sheets** (e.g. "JUNE PROMOTION") lis
 
 ---
 
+### Canadian Standard
+
+Canadian Standard is a **distributor, not a brand** — Titan's first. One supplier
+reselling eleven brands: its own house line plus BOEN, EGGER, Inhaus, SONO, Antikkwood,
+Nestwood, Unikkwood, Handcraft, Brand Surfaces and Brand Coverings. The list arrives as
+the "Product Guide", a multi-page PDF organised by brand and collection.
+
+**Supplier is not brand here, and the distinction is load-bearing.** `Supplier` is
+`Canadian Standard` on every row; `Brand` carries the actual maker. The Lightspeed name
+prefix derives from the **supplier** (`CANSENG`, `CANSLVP-SPC`, …), never the brand — see
+*Supplier, not brand, drives the name prefix* in the ls-upload-instructions skill.
+
+#### Identity
+
+| Field | Value |
+|---|---|
+| **Supplier** (single-select) | `Canadian Standard` |
+| **Brand** | The actual maker, verbatim — `Canadian Standard`, `BOEN`, `EGGER`, `Inhaus`, `SONO`, `Antikkwood`, `Nestwood`, `Unikkwood`, `Handcraft`, `Brand Surfaces`, `Brand Coverings` |
+| **SKU supplier code** | `CANS` — 4-char suffix |
+| **Internal SKU format** | `[CAT]-CANS-####` — sequential, since the guide prints no per-product codes |
+| **Supplier SKU** | Leave blank. The Product Guide carries no product codes, for flooring or trims. |
+
+#### Cost column
+
+**Canadian Standard prints ONE price, and it is Titan's cost per unit. There is no MSRP
+and no multiplier.** (Confirmed by Albert, 2026-09-03 — the Aug 31 2026 Product Guide
+prints a single unlabelled price, which was ambiguous on first ingest.)
+
+- Printed price → `Cost/unit` **as-is**. Never apply a multiplier.
+- `Retail = Cost + $ 1.00` — the schema default, unmodified.
+- **Do not look for an MSRP column; there isn't one.** If a future guide ever prints a
+  second price column, that is a format change: stop and re-confirm before ingesting.
+
+Accessories keep the standard cross-supplier trim markup: T-Moulding / Reducer `Cost + $ 10`,
+Stair Nose `Cost + $ 15`.
+
+#### Promo convention
+
+The guide prints paired **Promotion / Regular** prices under a printed validity window
+("Promotion Valid until October 31, 2026"). `Cost/unit` = Regular, `Promo cost ($/sf)` =
+Promotion, `Promo end date` = the printed date. The document as a whole is still a
+`Regular List` — a catalogue containing a promo section is not a promo sheet.
+
+#### Trims
+
+Trims are listed per collection, but priced identically across the house lines
+($18 T-Moulding/Reducer, $22 Stair Nose). **One SKU per physically distinct trim —
+collection alone does not earn a SKU**; see the trim rule in ls-upload-instructions.
+VANNTETT PLUS and VANNTETTPRO trims are the same part and are listed once.
+
+#### Parsing quirks
+
+- **`Origins` names two different programmes** on different pages with different specs.
+  Keep the collection as printed and distinguish by species / width / finish.
+- Species is often printed bare (`Oak`, no origin) — store verbatim, do not enrich.
+- The guide contains supplier typos (`Amercian Hickory`); keep the corrected spelling in
+  `Species` and note the source spelling.
+- SONO and several other brands leave `Material type` unstated. Unlabelled rigid vinyl
+  defaults to `SPC core` per the global rule — it is **not** a reason to emit `LVP` as a
+  material.
+
+---
+
 ### New supplier onboarding — checklist
 
 When a new supplier is added, gather this information before processing their first price list, and add a subsection above following the FAW template:
@@ -2605,7 +2712,12 @@ When a new supplier is added, gather this information before processing their fi
 1. **Supplier name** (exact string for Airtable single-select)
 2. **Brand(s)** — is the supplier also the brand, or do they distribute multiple brands?
 3. **4-char SKU suffix** (e.g. FAWK, VIDR, GRAN)
-4. **Which of the three cost columns to use** (pallet / box / list / MSRP — varies by supplier)
+4. **Cost basis — ASK ALBERT, do not infer.** Which printed column is `Cost/unit`,
+   any multiplier, and whether the supplier publishes an MSRP at all. This is the one
+   answer that moves every row in the file, and a PDF rarely states it. See
+   *Cost basis — ask once, then write it down forever* at the top of this section, and
+   **write the answer into the new subsection under `#### Cost column`** so it is never
+   asked twice.
 5. **Does the supplier assign product codes?** If yes, populate Supplier SKU. If no, leave blank.
 6. **Categories in scope** (ENG, LVP, LVT, HWD, LAM, TIL, CAR, ACC)
 7. **Markup overrides** — any category where `Retail = Cost + $ 1` doesn't apply (e.g. stair products, accessories, clearance)

@@ -110,8 +110,12 @@ Otherwise, **in this order — it is a dependency, not a preference**:
      extraction, and it is easier to answer with the data in hand. A missing supplier
      subsection means "invent no supplier-specific rules", not "produce nothing": apply
      the global rules and record every choice you had to make as an explicit assumption,
-     the **cost basis first** (dealer cost vs suggested retail changes every row, and
-     precedent runs both ways — CIF ×0.60, Olympia ×0.564, Biyork MSRP-beside-dealer).
+     the **cost basis first — and for that one, ASK rather than assume** (step 7). It
+     changes every row and precedent runs three ways: dealer-cost-only (Canadian
+     Standard), MSRP needing a multiplier (CIF ×0.60, Olympia ×0.564), or both columns
+     printed (Biyork). **Once Albert answers, write it into that supplier's subsection
+     in bert-airtable-schema under `#### Cost column`** so the question is never asked
+     again.
      **Skip the Lightspeed file** only while the products are new to Lightspeed too —
      if `Lightspeed ID`s have been reconciled in from an LS export, build it. See 5.4.
    - **Verify the supplier's documented SKU format against the base before generating
@@ -183,6 +187,13 @@ If the upload fails, leave `Status` at `Extracting` and say why. Never leave a r
 `Extracted Files` — that claims there is something to review when there is not.
 
 ## 7. Escalate anything you could not determine
+
+**The cost basis is always one of these on a new supplier, and on any supplier whose
+sheet shows more than one candidate cost column.** Do not infer it from the numbers —
+$1.69–$6.99/sf reads equally well as dealer cost or as budget retail. Name the columns
+as printed, say which you would otherwise take as cost, and ask Albert to look at the
+file. Extraction may proceed; the import waits. Record his answer in the supplier's
+`#### Cost column` subsection so the next run inherits it.
 
 Create a row in the **✅ Tactical Tasks List**
 (`collection://238596a4-505f-8137-af13-000bde205213`) assigned to Albert

@@ -106,9 +106,13 @@ Rules:
   the **import**, not the file. The human review that the import path exists to provide
   is the safety mechanism, and the checklist is easier to answer with the extracted data
   in hand than without it. Withholding the file leaves the reviewer nothing to work from.
-  - Flag the **cost basis** explicitly — whether the printed prices are dealer cost or
-    suggested retail is the single assumption that changes every row, and precedent runs
-    both ways (CIF ×0.60, Olympia ×0.564, Biyork prints MSRP beside a dealer price).
+  - **Cost basis is asked, never inferred.** Whether the printed prices are dealer cost
+    or suggested retail is the single assumption that changes every row, and precedent
+    runs three ways: dealer-cost-only (Canadian Standard, no MSRP at all), MSRP needing a
+    multiplier (CIF ×0.60, Olympia ×0.564), or both columns printed (Biyork). Put the
+    question to Albert naming the columns as printed; the extraction may proceed so he has
+    data to look at, the import may not. His answer is then written into that supplier's
+    `#### Cost column` subsection, which is what stops it being asked twice.
   - `MatchStatus` = `new` on every row, `MatchedRecId` blank. `Lightspeed ID` is blank
     too **unless the products already exist in Lightspeed** — see the third state above.
   - **No Lightspeed file for a new supplier whose products are not yet in Lightspeed** —
