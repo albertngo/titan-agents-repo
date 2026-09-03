@@ -120,12 +120,45 @@ Before generating an upload, identify these brand-specific values from the sourc
 
 | Variable | Description / How to determine |
 |----------|-------------------------------|
-| `[BRAND]` | The brand name as it appears in the source sheet "Brand" column. Used for brand_name and supplier_name fields. Examples: "VIDAR", "SUNSHINY", "WODEN". |
-| `[NAME_PREFIX]` | The product name prefix used in Lightspeed. Convention: **[3–4 char brand abbreviation] + [3 char product type abbreviation]**. The brand abbreviation is always 3–4 uppercase letters. The product type abbreviation is always 3 uppercase letters. A single brand may have multiple prefixes if it spans multiple product types. Examples: "VIDENG" (Vidar Engineered), "GRNDENG" (Grandeur Engineered), "GRNDSPC" (Grandeur SPC), "GRNDLAM" (Grandeur Laminate). Confirm with user if a new brand. **Exception — transitions, mouldings, stair components, and sundries do NOT use an abbreviated prefix.** They lead with the full brand name spelled out (`Vidar - Transition \| …`) so the family is searchable by supplier. See *Accessories — transitions and mouldings*. |
+| `[BRAND]` | The brand name as it appears in the source sheet "Brand" column. Feeds **`brand_name` (column 23) only** — it does NOT feed the name prefix or `supplier_name`. Examples: "VIDAR", "SUNSHINY", "WODEN", "BOEN". |
+| `[SUPPLIER]` | The supplier as it appears in the source sheet "Supplier" column — who Titan actually orders from. Feeds `supplier_name` (column 24) and **`[NAME_PREFIX]`**. Equal to `[BRAND]` for single-brand suppliers; different for distributors (Supplier "Canadian Standard", Brand "BOEN"). |
+| `[NAME_PREFIX]` | The product name prefix used in Lightspeed. Convention: **[3–4 char SUPPLIER abbreviation] + [3 char product type abbreviation]**. The supplier abbreviation is always 3–4 uppercase letters. The product type abbreviation is always 3 uppercase letters. One supplier may have several prefixes if it spans several product types. Examples: "VIDENG" (Vidar Engineered), "GRNDENG" (Grandeur Engineered), "GRNDSPC" (Grandeur SPC), "GRNDLAM" (Grandeur Laminate), "CANSENG" (Canadian Standard Engineered). **Derive it from `Supplier`, never from `Brand`** — see *Supplier, not brand, drives the name prefix* below. Confirm with Albert if a new supplier. **Exception — transitions, mouldings, stair components, and sundries do NOT use an abbreviated prefix.** They lead with the full supplier name spelled out (`Vidar - Transition \| …`) so the family is searchable by supplier. See *Accessories — transitions and mouldings*. |
 | `[HANDLE_PREFIX]` | **Descriptive only — do NOT enforce.** This is just what the first few characters of the brand's existing Airtable handles happen to look like. Handle format varies by brand and is set in Airtable; the LS upload copies handles as-is with no transformation. Only recorded here as a reference for recognizing which handles belong to which brand. Examples: Vidar handles start with "VIDR", Grandeur with "GRND", FAW/NAF handles start with the category (LVP/ENG/LAM/LVT/HWD). |
 | `[SKU_PREFIX]` | The prefix pattern in the source sheet's SKU column. Read from the data — don't assume. Examples: "ENG-VIDR-" (Vidar), "ENG-SUN-" (Sunshiny). |
 | `[SOURCE_SHEET]` | The name of the source data sheet in the workbook. Examples: "Vidar Engineered Hardwood", "Sunshiny Engineered", "Woden Products". |
-| `[CATEGORY]` | The Lightspeed product category. All caps, space-slash-space separator. Vinyl products use a construction-based leaf subcategory: `FLOORING / VINYL / SPC`, `FLOORING / VINYL / WPC`, `FLOORING / VINYL / LOOSE LAY` (loose-lay vinyl), or `FLOORING / VINYL / GLUE DOWN` (dry-back / glue-down vinyl). **Exact leaf names confirmed from the Lightspeed category tree (Jul 2026): GLUE DOWN, LOOSE LAY, SPC, WPC.** **LS requires a LEAF category — never assign a product to `FLOORING / VINYL` itself (or any parent node); the import rejects it with "A product can only be assigned to a leaf category" (learned from the Grandeur Jul 2026 import, 42 rows rejected).** When core is ambiguous (e.g. Grandeur Inov8 'engineered vinyl'), default to `FLOORING / VINYL / SPC` — avoid `FLOORING / VINYL / ENGINEERED` as it conflicts with the engineered hardwood category name. Matching name prefixes for non-SPC/WPC vinyl: `[BRAND]LVP-LL` (loose lay), `[BRAND]LVP-DB` (glue down / dry-back). Ambiguous-core vinyl uses `[BRAND]LVP-SPC` and `FLOORING / VINYL / SPC`. All other flooring types follow the two-level pattern: `FLOORING / ENGINEERED HARDWOOD`, `FLOORING / SOLID HARDWOOD`, `FLOORING / LAMINATE`, `FLOORING / TILE`. The LVP vs LVT format distinction is tracked in Airtable (Category field) — it does not create a separate LS category. **Exception: accessories use the standalone category `ACCESSORIES` — not nested under FLOORING.** This applies to transitions, mouldings, stair treads/risers, underlay, glue, and any other non-flooring product items. |
+| `[CATEGORY]` | The Lightspeed product category. All caps, space-slash-space separator. Vinyl products use a construction-based leaf subcategory: `FLOORING / VINYL / SPC`, `FLOORING / VINYL / WPC`, `FLOORING / VINYL / LOOSE LAY` (loose-lay vinyl), or `FLOORING / VINYL / GLUE DOWN` (dry-back / glue-down vinyl). **Exact leaf names confirmed from the Lightspeed category tree (Jul 2026): GLUE DOWN, LOOSE LAY, SPC, WPC.** **LS requires a LEAF category — never assign a product to `FLOORING / VINYL` itself (or any parent node); the import rejects it with "A product can only be assigned to a leaf category" (learned from the Grandeur Jul 2026 import, 42 rows rejected).** When core is ambiguous (e.g. Grandeur Inov8 'engineered vinyl'), default to `FLOORING / VINYL / SPC` — avoid `FLOORING / VINYL / ENGINEERED` as it conflicts with the engineered hardwood category name. Matching name prefixes for non-SPC/WPC vinyl: `[SUPPLIER]LVP-LL` (loose lay), `[SUPPLIER]LVP-DB` (glue down / dry-back). Ambiguous-core vinyl uses `[SUPPLIER]LVP-SPC` and `FLOORING / VINYL / SPC`. All other flooring types follow the two-level pattern: `FLOORING / ENGINEERED HARDWOOD`, `FLOORING / SOLID HARDWOOD`, `FLOORING / LAMINATE`, `FLOORING / TILE`. The LVP vs LVT format distinction is tracked in Airtable (Category field) — it does not create a separate LS category. **Exception: accessories use the standalone category `ACCESSORIES` — not nested under FLOORING.** This applies to transitions, mouldings, stair treads/risers, underlay, glue, and any other non-flooring product items. |
+
+### Supplier, not brand, drives the name prefix
+
+**Rule (Albert, 2026-09-03): `[NAME_PREFIX]` is built from the `Supplier`, never from
+the `Brand`. Every product Titan buys from one supplier carries that supplier's prefix,
+whatever brand is printed on the box.** The same holds for the spelled-out accessory
+prefix: `Canadian Standard - Transition | …`, never `Inhaus - Transition | …`.
+
+For most suppliers this changes nothing, which is why it went unnoticed until now —
+Vidar, Grandeur, Sunshiny, Floordi and NAF each sell one brand, so supplier and brand
+are the same string and `VIDENG` is correct under either reading.
+
+**Canadian Standard is the first true distributor** — one supplier reselling eleven
+brands (BOEN, EGGER, Inhaus, SONO, Antikkwood, Nestwood, Unikkwood, Handcraft, Brand
+Surfaces, Brand Coverings, plus its own house line). Under the old brand-derived rule
+its catalogue fragmented into ten unrelated prefixes, so a staff member searching
+`CANS` on the POS found 130 of 339 products and no indication the other 209 existed.
+The supplier is what Titan orders against, so the supplier is what the name is keyed to.
+
+`Brand` is not lost — it still goes to LS column 23 (`brand_name`) and stays in Airtable.
+It is simply not part of the name prefix.
+
+**Handles are unaffected.** `[HANDLE_PREFIX]` is a separate, descriptive token and
+handles are copied from Airtable verbatim (RULE 0a). Canadian Standard's handles were
+already 100% `CANS`-prefixed — the old rule had names disagreeing with the handles on
+the very same row; this makes the two agree.
+
+**Applying it to past suppliers:** re-derive the prefix when a supplier's file is next
+regenerated, not as a standalone sweep. Renaming a live LS product is a real change to
+what staff see on the POS, so it rides along with an import that was already going to
+touch those rows — and only single-brand suppliers are affected at all, meaning none of
+them change.
 
 ### Brand configuration examples
 
@@ -189,7 +222,7 @@ Before generating an upload, identify these brand-specific values from the sourc
 | **18. retail_price** | = Source **"Retail price/unit"** column. Numeric only. See *Pricing field reflection rule* below. |
 | **19–22. loyalty & account codes** | Leave ALL BLANK. |
 | **23. brand_name** | = `[BRAND]`. Read from source sheet "Brand" column. |
-| **24. supplier_name** | = `[BRAND]`. Same as brand_name. If supplier differs from brand, use source "Supplier" column. |
+| **24. supplier_name** | = `[SUPPLIER]`. Always read from the source "Supplier" column, never from "Brand". For a single-brand supplier the two strings coincide; for a distributor they must not be conflated — a Canadian Standard row carrying BOEN flooring is `brand_name` BOEN, `supplier_name` Canadian Standard. |
 | **25. supplier_code** | Leave BLANK. |
 | **26. active** | Always: "1" (active). Set to "0" to deactivate. |
 | **27. track_inventory** | Always: "1". |
@@ -390,10 +423,10 @@ Transitions and mouldings must be **findable by supplier in one search**. Typing
 ### Name format
 
 ```
-[Brand] - Transition | [Type] | [Material] | [Dimensions]
+[Supplier] - Transition | [Type] | [Material] | [Dimensions]
 ```
 
-- `[Brand]` — the **full brand name, spelled out** (`Vidar`, `Grandeur`, `Floordi`). This is the search anchor and it **replaces the `[BRAND]ACC` name prefix** for this family. LS search does not match `Vidar` against `VIDACC`, so the abbreviated prefix defeats the entire purpose here.
+- `[Supplier]` — the **full supplier name, spelled out** (`Vidar`, `Grandeur`, `Floordi`, `Canadian Standard`). This is the search anchor and it **replaces the abbreviated name prefix** for this family. LS search does not match `Vidar` against `VIDACC`, so the abbreviated prefix defeats the entire purpose here. **Supplier, not brand** — a Canadian Standard reducer made by Inhaus reads `Canadian Standard - Transition | Reducer | Laminate | 8 ft.`, because the search that must succeed is the one for everything Titan can order from Canadian Standard.
 - `Transition` — literal constant token, on every row in the family. This is what makes them searchable as a set.
 - `[Type]` — canonical token from the controlled list below. Never free-text, never the supplier's spelling.
 - `[Material]` — **which floor this transition matches.** See the source order below. Omit the segment if genuinely unknown — do not guess.
@@ -487,14 +520,15 @@ The rules above (Variant grouping, Name construction, Description) were written 
 
 ### Name prefix
 
-Follows the same `[brand abbrev][product type abbrev]` convention as flooring:
+Follows the same `[supplier abbrev][product type abbrev]` convention as flooring
+(supplier, never brand — see *Supplier, not brand, drives the name prefix*):
 
-- **`[BRAND]TIL`** — all rows where Airtable Category = `Tile / Stone` (includes mosaics, field tile, large-format slabs, wall tile)
-- **`[BRAND]STN`** — all rows where Airtable Category = `STONE` (marble/quartz thresholds, shower jambs, benches)
+- **`[SUPPLIER]TIL`** — all rows where Airtable Category = `Tile / Stone` (includes mosaics, field tile, large-format slabs, wall tile)
+- **`[SUPPLIER]STN`** — all rows where Airtable Category = `STONE` (marble/quartz thresholds, shower jambs, benches)
 
-Example brand prefixes:
+Example supplier prefixes:
 
-| Brand | Tile prefix | STONE prefix |
+| Supplier | Tile prefix | STONE prefix |
 |---|---|---|
 | CIF Distributors | `CIFDTIL` | `CIFDSTN` |
 
@@ -601,7 +635,7 @@ If the source sheet has `STONE` rows with a blank `LS Handle / Parent ID`, gener
 ```
 
 Where:
-- `[BRAND_PREFIX]STN` is the brand's STONE prefix (e.g. `CIFDSTN`)
+- `[SUPPLIER_PREFIX]STN` is the supplier's STONE prefix (e.g. `CIFDSTN`)
 - `[ITEMTYPE_TOKEN]` is `THRESHOLD`, `JAMB`, or `BENCH` (parsed from the first em-dash segment)
 - `[COLOUR_TOKEN]` is the Colour / tone value with all non-alphanumeric characters stripped, uppercased
 
@@ -791,6 +825,7 @@ The source data sheet (any brand) MUST contain these columns:
 ## Notes
 
 - The LS product name is for POS/internal use only. Website names managed separately.
-- If a new brand is introduced, confirm `[NAME_PREFIX]` and `[HANDLE_PREFIX]` with user first.
+- If a new supplier is introduced, confirm `[NAME_PREFIX]` and `[HANDLE_PREFIX]` with user first.
+- Assert every `name` in the file starts with the SAME supplier prefix (or the spelled-out supplier name, for accessories). More than one supplier abbreviation in a single-supplier upload means the prefix was taken from `Brand` — a defect.
 - SPC and Laminate follow a different schema — not covered here.
 - Source sheet column names must match the schema above. Map different column names first.
