@@ -2326,6 +2326,63 @@ Floordi issues **separate monthly promotion sheets** (e.g. "JUNE PROMOTION") lis
 
 ---
 
+### Canadian Standard
+
+Canadian Standard ("CS – The Best of Floors"), 135 Commander Blvd, Scarborough, ON M1S 3H6 (canadianstandardflooring@gmail.com, (416) 412-7772), is a **distributor** carrying many third-party and private-label lines under one "Product Guide (Ontario)" PDF — unlike FAW/Purelux/Biyork/Floordi (single-entity supplier=brand). **Decided with Albert (2026-09-03): treat Supplier and Brand both as `Canadian Standard`** for every line, including lines that are themselves recognizable manufacturer brands (e.g. EGGER, BOEN) — the line/series name goes in `Collection`, never in `Brand`. This is a deliberate simplification, not an oversight.
+
+#### Identity
+
+| Field | Value |
+|---|---|
+| **Supplier** (single-select) | `Canadian Standard` (matches the `CANADIAN STANDARD` option already present on the Notion "Price Lists" `Company` field) |
+| **Brand** | `Canadian Standard` (always — see above) |
+| **SKU supplier code** | `CDST` — 4-char suffix |
+| **Internal SKU format** | Per-product-code pattern where the supplier prints a unique code per colour (see below): `[CAT]-CDST-[code]` verbatim, e.g. `LVP-CDST-EV411009`. Otherwise sequential: `[CAT]-CDST-0001`. |
+| **Supplier SKU** | Populated verbatim when the price list prints a per-colour code (Evion 9 `EV4110xx`, Elemental12 `EL2110xx`/`EL213001`, BOEN alphanumeric codes, Inhaus/Elandura/Inspiration-Lamdura/SONO numeric parenthetical codes). Left **blank** on lines that print colour names only, no code (Origins, Origins XL, LUCID, Novella, Brand Coverings, Brand Surfaces, Antikkwood, Nestwood, Unikkwood, Handcraft, 8MM Laminate, custom-trim lines). |
+
+#### Cost column
+
+The list prints paired **Promotion Price** / **Regular Price** per sqft directly — these are already Titan's cost, no supplier discount-off-list to back out (confirmed with Albert). Apply the global Sale item pricing logic, rule 1 (same collection/section carries both prices):
+
+- `Cost/unit` = **Regular Price**
+- `Promo cost ($/sf)` = **Promotion Price**
+- `Promo end date` = the printed "Promotion Valid until [date]" (e.g. 2026-10-31 on the Sep 2026 list) — do **not** apply the month-end-default rule when an explicit date is printed, which it is on every promo section seen so far.
+- Standard markup on flooring: `Retail = Cost + $1.00`.
+- Lines with only one price shown (no Regular/Promotion pair) — treat the single price as `Cost/unit` directly; leave promo columns blank.
+
+#### Discontinued items
+
+Colourways/lines marked **`*DISCONTINUE ITEM*`** (line-level, and occasionally a whole sub-section) → `Stock status = Discontinued`. Still ingest the record (for historical/remaining-stock lookups) rather than skipping it — same convention as Vidar vents.
+
+#### Other flags → Salesperson notes
+
+- **"New Arrival"** — note as new arrival, no other field impact.
+- **"\*LIMITED STOCK\*"** — note limited stock.
+- **"SPECIAL ORDER"** lines (Inhaus Laminate Trim, SONO Eclipse Trim, the p.9 "Custom Trims" table) — see Scope of ingest below; these are excluded, not noted.
+- **Printed promo codes** (e.g. `Promo Code: LOYAL399, Price $3.99` on the ORIGINS – Engineered / T&G Engineered European Oak (Wirebrushed) section) — record the code in Salesperson notes. Note when the code's section also carries `*DISCONTINUE ITEM*` flags on some but not all colourways in the same row group (as seen Sep 2026: 4 of 8 colours discontinued) — flag for the rep to confirm which surviving colours the code still applies to; do not silently apply it to discontinued colours.
+
+#### Scope of ingest
+
+**In scope**: every flooring collection with a flat, per-box/per-sqft price — Origins, Origins XL, Evion 9, Elemental12, LUCID 6"/7", Novella, VANNTETT PLUS, VANNTETTPRO, BRAND COVERINGS, BRAND SURFACES (both Engineered Click and Engineered T&G tables), 8MM Laminate, EGGER PRO, EGGER AQUA+, Inhaus 12mm AC4 / Elandura Plank / Elandura Tile / Inspiration-Lamdura (8mm and 10mm), SONO Eclipse (stone + wood), SONO Forest, SONO Landscape, BOEN Plank Engineered, BOEN (Live Pure), Antikkwood, Nestwood, Unikkwood, Handcraft, LVT (Double Click).
+
+**Trims/accessories in scope**: the flat **per-piece** trim lines that repeat the same T-Moulding/Reducer (~$18) + Stair Nose (~$22) pattern directly under a flooring collection (e.g. Evion 9 Trims, Elemental12 Trims, VANNTETT PLUS Trims, VANNTETTPRO Trims). Take the printed price as `Cost/unit` as-is; standard `Retail = Cost + $1.00` applies (no override).
+
+**Out of scope (per Albert, 2026-09-03)**: the page 9 **"Custom Trims"** table (T-Mould/Reducer $35/linear ft, Stairnose $40/linear ft, 15–20 business day lead time, advance payment required, final sale) and the **SPECIAL ORDER** trim lines (Inhaus Laminate Trim, SONO Eclipse Trim) — priced per-linear-foot or as special-order rather than flat per-piece stock, so excluded entirely rather than force-fit into the accessory schema. Also out of scope: **BOEN (Live Pure-Lacquer)** — the Sep 2026 list marks this whole section `**Discontinue item** (TBA)`, and **page 10** (blank Order Sheet template — not product data).
+
+#### Collections (use line/series name verbatim)
+
+Use the printed line name as `Collection` exactly, including sub-variants where the list distinguishes them, e.g. `Evion 9`, `Elemental12 Planks`, `Elemental12 Herringbone`, `LUCID 6"`, `LUCID 7"`, `Origins XL`, `BOEN Plank Engineered`, `SONO Eclipse`, etc. Do not fold sub-variants (Planks vs Herringbone, 6" vs 7") into one Collection name — they have distinct dimensions/sqft-per-box and sometimes distinct pricing.
+
+#### Fields Canadian Standard omits
+
+**Grade** is never stated — only finish descriptors (Wirebrushed, Handscraped, Smoked, Sawn Cut, Distressed, Arc Saw, Wire brushed). Leave `Grade` blank across every Canadian Standard line (no grade-translation table applies here, unlike suppliers that print letter-grade columns).
+
+#### Canadian Standard ingest output format
+
+`canadian_standard_airtable_upload_[YYYY-MM-DD].xlsx` using the price list's cover date (e.g. 2026-08-31), all 56 schema columns, saved to `/mnt/user-data/outputs/` (or the session's `ingest/` output dir when run via `pricelist-processor`). Record the price list date in `Price list reference` when logging future price changes to Price History Log v2.
+
+---
+
 ### New supplier onboarding — checklist
 
 When a new supplier is added, gather this information before processing their first price list, and add a subsection above following the FAW template:
