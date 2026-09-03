@@ -410,6 +410,47 @@ For every active conversation, fill every field in the `conversations` schema:
   `missed-call-no-voicemail`, `automated-system-log`, …). The last three are load-
   bearing, not decorative: they drive the metric exclusions below.
 
+### Internal comments are part of the thread — read them
+
+`conversations_get-messages` returns team-internal notes alongside customer
+messages, distinguished by `messageType: "TYPE_INTERNAL_COMMENT"` (vs.
+`TYPE_SMS` / `TYPE_EMAIL` / `TYPE_CALL`). **This is where Albert and the team
+log status that is deliberately not a customer reply** ("called, waiting on
+their contractor", "quote too high value not to probe") — confirmed with Albert
+2026-09-02 as the intended channel for internal status.
+
+Treat an internal comment as authoritative about *our* side of the state: it can
+answer "has anyone actually picked this up?" when nothing outbound was sent. An
+internal comment is **not** a customer reply — it never counts as a response for
+`next_response_owner`, `sitting_hours`, or unanswered-conversation metrics; a
+thread where we only left ourselves a note is still unanswered to the customer.
+Do reflect it in `contact_notion` and, where it changes urgency, in
+`act_immediately_reason`. Mentions arrive as `@Name<userId>…</userId>` markup —
+resolve the ID against the `people` table the same way `assigned_to` is handled
+downstream, and never paste the raw markup into a summary.
+
+## Opportunity notes (`query_getNotes`)
+
+Pass `query_getNotes: true` on `opportunities_search-opportunity`. Notes come back
+under `notes.notes[]` and carry two distinct kinds, told apart by `userId` and
+`_AUDIT_CREATED.source`:
+
+- **Human-typed** (`userId` present) — a person's own note on the record. Read it
+  the same way as an internal comment above: it's real context about our side.
+- **Workflow-generated** (`userId: null`, `source: "WORKFLOW_NEW"`) — most often
+  the **mobile quote breakdown**: removal sqft by surface, stair counts, added
+  costs, totals. Genuinely useful (it's the only structured place that detail
+  lives) but verbose HTML.
+
+Both are HTML blobs. **Never paste one raw into an item `summary` or into
+`extensions`** — strip tags and carry only the figures or the sentence that
+changes what Albert would do. The ingest contract's "no raw dumps" rule applies
+here exactly as it does everywhere else.
+
+Added 2026-09-02 on Albert's instruction. There is no contact-level notes tool on
+this MCP server — `opportunities_search-opportunity` with the flag, and
+`calendars_get-appointment-notes`, are the only two note surfaces available.
+
 ## Workflow drift detection (the highest-value output)
 
 Because qualification is manual, the most valuable daily output is where reality
