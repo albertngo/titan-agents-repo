@@ -17,6 +17,40 @@ The base has two tables: **Master Flooring Catalogue** (the product database) an
 
 ## How the base works
 
+### RULE 0 — the Airtable SKU is immutable and is the source of truth
+
+**This rule overrides everything else in this document, every supplier subsection,
+every method file, and every routine. There is no exception and no supplier-specific
+override.**
+
+1. **Once a record exists in the Master Flooring Catalogue, its `SKU`
+   (`fldx3byCOht5HbKmH`) never changes.** Not renamed, not re-cased, not re-numbered,
+   not re-formatted, not "tidied", not migrated to a newer convention, not corrected
+   for a typo. A SKU is created exactly once and is then permanent for the life of the
+   record.
+2. **The Airtable SKU is the single source of truth.** Lightspeed, Notion, Make,
+   every export, every upload file and every downstream system **matches to it**.
+   Nothing matches the other way. If Airtable and another system disagree about a
+   SKU, **Airtable is right by definition** and the other system is what gets fixed.
+3. **No automated process may ever write the `SKU` field on an existing record.**
+   Upserts merge *on* SKU (`fieldIdsToMergeOn: ['fldx3byCOht5HbKmH']`); SKU is never
+   itself in the payload of fields being updated. An update that would change a SKU is
+   a bug — stop the batch and escalate, do not "fix" it.
+4. **A newly generated SKU is valid only for a product that genuinely does not exist
+   yet**, and only after the matching cascade has failed to find it. Extraction
+   renumbers per run, so a generated SKU is never evidence that a product is new — it
+   is a value awaiting confirmation.
+5. **A SKU that looks wrong is escalated, never edited.** Changing one orphans the
+   Lightspeed record, every Price History Log v2 row, and any relation pointing at it.
+   If a legacy or malformed SKU genuinely has to change, that is a deliberate,
+   human-approved migration that updates every dependent system together — never an
+   in-place edit, and never something a routine does on its own.
+
+Legacy prefixes that predate the current format (e.g. Grandeur's `SPC-`/`WPC-` vinyl,
+Olympia's dotted stock codes) are **correct by virtue of existing**. Match against
+them as they are stored. Apply current formatting rules only when minting a SKU for a
+genuinely new product.
+
 ### Three layers of data
 
 Every product record in the Master Flooring Catalogue serves three consumers simultaneously:
@@ -149,7 +183,7 @@ The source of truth for all Titan flooring products. Every active product that B
 
 | Field name | Type | Description | Notes |
 |------------|------|-------------|-------|
-| **SKU** | Single line text | Internal product code. Primary key — unique across all records. Format: CAT-SUPP-0001 e.g. ENG-VIDR-0042 | LS · Bert — never change after creation |
+| **SKU** | Single line text | Internal product code. Primary key — unique across all records. Format: CAT-SUPP-0001 e.g. ENG-VIDR-0042 | LS · Bert — **immutable and the source of truth; see RULE 0. Never written on an existing record by any process.** |
 | **Product name** | Single line text | Human-readable name including colour and grade. e.g. Vidar 7.5" AWO — Macaroon (Character) | LS · Bert |
 | **Brand** | Single line text | The product brand. May differ from Supplier — e.g. BOEN sold by Canadian Standard | LS |
 | **Supplier** | Single select | Which supplier this product is ordered from. Choose from the controlled list. | Bert |
@@ -399,6 +433,11 @@ import path exists to provide.
 
 ### Step 2 — the matching cascade
 
+> Everything below resolves **which existing SKU a row belongs to**. It never
+> produces a reason to change one. Per RULE 0, the stored SKU wins every
+> disagreement — a mismatch means the incoming row is wrong about the product, not
+> that the record needs renaming.
+
 Match incoming rows to existing records in this order, stopping at the first tier
 that resolves cleanly:
 
@@ -427,6 +466,10 @@ sequentially numbered, so that run correctly resolved at tier 2.
 
 ### What to write
 
+- **Never the `SKU` field** (RULE 0). It is the merge key, not a payload field.
+  Upsert with `fieldIdsToMergeOn: ['fldx3byCOht5HbKmH']` and omit SKU from the
+  written fields. If a diff ever shows a SKU change, the match is wrong — stop and
+  escalate rather than writing it.
 - **Only fields that actually changed.** Compare against current values and build a
   per-record diff; do not blanket-write every field on every row.
 - `Last price update` and `Price last changed by` — set these **only when cost or
@@ -527,7 +570,7 @@ Views must be created manually — they cannot be built via the API.
 
 ### Always fill in
 
-- **SKU** — every record must have one, and it never changes after creation
+- **SKU** — every record must have one, and it **never changes after creation** (RULE 0). It is the source of truth every other system matches to.
 - **Product name** — include colour and grade in the name. **Exception: transitions, mouldings, stair components, and sundries** follow the searchable accessory format instead — see below.
 - **Supplier** — use the controlled list, never free-text
 - **Category and Product type** — Bert's primary filters
@@ -579,6 +622,9 @@ Only the controlled transition types get the `Transition` token — stair treads
 
 ### Never edit manually
 
+- **SKU — never edited by anyone, human or automated, once the record exists (RULE 0).
+  Not a "prefer not to": there is no workflow in which editing a SKU in place is
+  correct. Escalate instead.**
 - Cost/unit — updated by Cowork from supplier price lists
 - Promo cost ($/sf) and Promo end date — set and cleared by Cowork
 - Last price update and Price last changed by — written by Cowork

@@ -76,6 +76,15 @@ filtered to that supplier. The answer decides what the exported file *is*:
   suffix, cost column and markup overrides have to be settled first — see the skill's
   new-supplier onboarding checklist.
 
+## RULE 0 — the Airtable SKU never changes
+
+The stored `SKU` (`fldx3byCOht5HbKmH`) is **immutable and the source of truth**.
+Every export, upload file, Lightspeed record and downstream system matches **to** it;
+nothing matches the other way, and no process writes it on an existing record. A SKU
+that looks wrong is escalated, never edited — changing one orphans the LS record and
+every Price History Log v2 row pointing at it. Full statement: RULE 0 at the top of
+the `bert-airtable-schema` skill. It has no exceptions.
+
 ## For an existing supplier, the export is an UPDATE sheet, not an import
 
 Most suppliers already have their whole catalogue in Airtable. A price list is a

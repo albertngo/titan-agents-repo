@@ -15,6 +15,24 @@ This document defines how to transform product data from any brand's source shee
 
 ---
 
+## ⚠️ RULE 0 — Airtable owns the SKU; Lightspeed matches to it
+
+**The Airtable `SKU` is immutable and is the source of truth.** Column 3 (`sku`) is
+copied from the source sheet **verbatim** and is never regenerated, reformatted or
+"improved" on the way into Lightspeed. When LS and Airtable disagree about a SKU,
+**Airtable is right** and the LS record is what gets corrected — never the reverse.
+
+An LS import must never be the reason an Airtable SKU changes. If a SKU cannot be
+loaded into LS as stored, that is escalated, not silently rewritten on both sides.
+
+The one sanctioned transformation is the **Olympia comma→dot** replacement below, and
+it is applied **when the record is first created** so Airtable stores the dotted form
+from the outset — it is a minting rule, not permission to edit existing SKUs.
+
+Full statement: RULE 0 at the top of the `bert-airtable-schema` skill.
+
+---
+
 ## ⚠️ Load-bearing rule — every SKU must carry a readable sf/b
 
 **Box size (sf/b) is the key factor used for quantity analysis.** Staff and reporting convert between boxes and square feet using it constantly. A SKU that reaches Lightspeed without a visible sf/b cannot be quantity-analyzed at the POS, and the gap is invisible until someone needs the number and can't find it.
@@ -536,7 +554,12 @@ Olympia Tile is a tile/stone/vinyl supplier whose Zone AT catalogue produces ~3,
 
 Olympia uses European decimal commas in ~109 stock codes (e.g. `LW.AL.SIL.0,8X1,8.BD`, `IO.ANG.BUT.0,48X0,48`). LS permits `. - _ /` in the `sku` field but **rejects commas** ("SKU codes can only have letters, numbers and …"). 
 
-**Rule:** replace every `,` → `.` in the SKU before writing the LS file (`LW.AL.SIL.0,8X1,8.BD` → `LW.AL.SIL.0.8X1.8.BD`). Apply the same replacement to Airtable's `SKU`/`Supplier SKU` so the merge key stays aligned across both systems (see the bert-airtable-schema Olympia note).
+**Rule:** replace every `,` → `.` in the SKU before writing the LS file (`LW.AL.SIL.0,8X1,8.BD` → `LW.AL.SIL.0.8X1.8.BD`). Apply the same replacement to Airtable's `SKU`/`Supplier SKU` **at ingest, when the record is first created**, so both systems store the dotted form from the outset (see the bert-airtable-schema Olympia note).
+
+> **Not a licence to rewrite existing SKUs.** This is a minting rule for new records.
+> If comma-form SKUs are already stored in Airtable, changing them is a human-approved
+> migration that updates LS and Price History Log v2 together — never an in-place edit
+> and never something an upload run does on its own. See RULE 0.
 
 #### Quirk 2 — Finish-spanning collections (finish must go in the NAME)
 

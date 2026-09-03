@@ -120,6 +120,14 @@ Otherwise extract with the **bert-airtable-schema** skill and produce **both** f
 2. **Lightspeed upload** — `<supplier>_ls_upload_YYYY-MM-DD.xlsx`, per the
    **ls-upload-instructions** skill.
 
+**RULE 0 — the Airtable `SKU` is immutable and is the source of truth.** It is
+created once and never changes: not renamed, re-cased, re-numbered, re-formatted or
+"corrected". Everything matches to it, never the reverse. Never put a SKU in a
+payload of fields to update; it is the merge key only. A SKU that looks wrong is
+escalated (step 6), never edited — see RULE 0 in the `bert-airtable-schema` skill.
+This holds even though this routine writes nothing: the file you attach must obey it,
+because a person will import it.
+
 Still **read** the Master Flooring Catalogue (`appWHOVZ0QCS0xQ3M` /
 `tblfLXD3zkSdNQGbS`) filtered to that supplier — the read decides what the Airtable
 file must contain, even though nothing is written:
