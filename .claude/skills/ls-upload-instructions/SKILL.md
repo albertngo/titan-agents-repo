@@ -418,7 +418,33 @@ This is expected to be rare. The name-embedded approach optimizes for the common
 
 ## Accessories — transitions and mouldings
 
-Transitions and mouldings must be **findable by supplier in one search**. Typing `Vidar Transition` into LS product search should return every T-moulding, reducer, and nosing Vidar sells — and nothing else. That requirement drives the format below.
+### The search contract — two tokens, every supplier
+
+**This is the requirement the whole section exists to satisfy, and it holds for every
+supplier without exception (Albert, 2026-09-03):**
+
+> Typing **`<Supplier> <Family>`** — two tokens, nothing else — into Lightspeed product
+> search returns **every** accessory of that family for that supplier, and **nothing
+> outside it**. `Vidar Transition`. `Canadian Standard Transition`. `Grandeur Stair`.
+
+You never have to know in advance whether the part you want is a reducer, a T-moulding
+or a nosing. You search the company and the word, you get the whole family, and you pick
+the right one off the list. **The specific type is a filter you apply with your eyes,
+not a term you must guess to make the search work at all.**
+
+Three properties of the name format deliver that, and each one breaks the contract if
+dropped:
+
+| Property | Why it is load-bearing |
+|---|---|
+| Supplier spelled out in full, first | LS search matches text, and does **not** match `Vidar` against `VIDACC`. An abbreviated prefix defeats the entire purpose. This is the one family where the abbreviated `[NAME_PREFIX]` is deliberately overridden. |
+| The literal token `Transition` on **every** row | This is what makes the family a set. A reducer that says only `Reducer` is invisible to the search that matters. |
+| `[Type]` **after** the family token, never before | Type is what you read off the result list once it is on screen; it must not be what you had to type to get there. |
+
+**Corollary — do not dilute the token.** Only the controlled types below carry
+`Transition`. If stair treads or underlay also said `Transition`, the search would
+return them and stop being a clean pick-list. That is why stair components and sundries
+get their own family token instead (see *What is NOT a transition*).
 
 ### Name format
 
@@ -477,10 +503,10 @@ A transition is bought to match a floor, so this segment must answer *"which flo
 
 ### What is NOT a transition
 
-Only the controlled types carry the `Transition` token. Diluting it defeats the search. Adjacent families follow the same shape with their own anchor, so `Vidar Stair` and `Vidar Sundry` work as searches too:
+Only the controlled types carry the `Transition` token. Diluting it defeats the search. Adjacent families follow the same shape with their own family token, so `Vidar Stair` and `Canadian Standard Sundry` work as searches too:
 
-- **Stair components** (stairboards, stair treads, stair risers) → `[Brand] - Stair | [Type] | [Material] | [Dimensions]`
-- **Sundries** (underlay, underpad, glue, floor protection, vents) → `[Brand] - Sundry | [Type] | [Dimensions]` — no material segment; a bucket of glue does not match a floor
+- **Stair components** (stairboards, stair treads, stair risers) → `[Supplier] - Stair | [Type] | [Material] | [Dimensions]`
+- **Sundries** (underlay, underpad, glue, floor protection, vents) → `[Supplier] - Sundry | [Type] | [Dimensions]` — no material segment; a bucket of glue does not match a floor
 
 ### Source data limitation — why the Airtable mirror matters
 
@@ -805,7 +831,8 @@ The source data sheet (any brand) MUST contain these columns:
   - Variant group, mixed box sizes → sf/b OMITTED from name, carried in column 11 as `[Grade] - [sfb]sf/b`, and echoed in description for POS search
   - sf/b formatted to two decimals wherever it appears in column 11
 - ☐ variant_option_one_name AND variant_option_one_value are BLANK for every single-row handle (regardless of whether grade is present)
-- ☐ **Transitions/mouldings follow the searchable name format** — `[Brand] - Transition | [Type] | [Material] | [Dimensions]`, full brand name spelled out, `Transition` token present, type token taken verbatim from the controlled list
+- ☐ **Transitions/mouldings follow the searchable name format** — `[Supplier] - Transition | [Type] | [Material] | [Dimensions]`, full supplier name spelled out, `Transition` token present, type token taken verbatim from the controlled list
+- ☐ **The two-token search actually resolves** — for every accessory family in the file, confirm that `<Supplier> <Family>` (e.g. `Canadian Standard Transition`) matches every row of that family and no row outside it. This is the whole point of the format; assert it over the file rather than trusting the template.
 - ☐ **Renamed accessories carry their `id`** — every accessory row whose name changed has the Lightspeed UUID in column 1, or the import creates duplicates instead of renaming
 - ☐ **Name dedup applied** — if Collection contains Species, Species dropped from name; if Collection ends with Install, Install dropped from name
 - ☐ **supply_price ← `Cost/unit` and retail_price ← `Retail price/unit`** for every row (the only valid source for these two columns; never blank for priced products, including per-piece accessories)
