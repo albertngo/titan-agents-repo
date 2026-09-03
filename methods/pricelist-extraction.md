@@ -134,7 +134,7 @@ filtered to that supplier. The answer decides what the exported file *is*:
 **Decided 2026-09-03 (Albert).** Matching comes first, and the identity fields are
 written into the Airtable schema file before the LS file exists:
 
-1. Extract into the 56-column schema.
+1. Extract into the 57-column schema (`Length` joined it at column 17 on 2026-09-03).
 2. Match every row against the live catalogue (cascade below).
 3. For each matched row, copy from the live record **verbatim**: `SKU`,
    `LS Handle / Parent ID`, `Lightspeed ID`. New rows mint a SKU and handle and leave

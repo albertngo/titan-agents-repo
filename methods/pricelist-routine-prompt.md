@@ -193,7 +193,7 @@ document.
 Otherwise extract with the **bert-airtable-schema** skill and produce **both** files —
 **in this order, which is not optional**:
 
-1. **Airtable upload** — `<supplier>_airtable_upload_YYYY-MM-DD.xlsx`, all 56
+1. **Airtable upload** — `<supplier>_airtable_upload_YYYY-MM-DD.xlsx`, all 57
    canonical columns in the exact documented order. Reconcile against the live
    catalogue first, then write the live `SKU`, `LS Handle / Parent ID` and
    `Lightspeed ID` into every matched row, verbatim.

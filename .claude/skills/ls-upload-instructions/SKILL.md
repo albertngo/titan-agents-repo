@@ -219,7 +219,7 @@ This mapping is unconditional. There is never a case where supply_price/retail_p
 Built from multiple source columns using this exact format:
 
 ```
-[NAME_PREFIX] - [Collection] [Species] ([Color]) [Install] | [Width]" x [Thickness]mm x RL - [Veneer]mm top - [BoxSize]sf/b[ - [Grade]]
+[NAME_PREFIX] - [Collection] [Species] ([Color]) [Install] | [Width]" x [Thickness]mm x [Length] - [Veneer]mm top - [BoxSize]sf/b[ - [Grade]]
 ```
 
 Components:
@@ -230,6 +230,13 @@ Components:
 - `[Install]` = "T&G" or "Click" from "Install profile"
 - `[Width]` = source "Width (in)" + "
 - `[Thickness]` = source "Thickness (mm)" + "mm"
+- `[Length]` = source **`Length`** (schema column 17) AS-IS — `RL`, `48"`, `1520mm`,
+  `20" - 83"`. **Length stays in the LS name exactly as it always has** (Albert,
+  2026-09-03); the only change is that it is now *read from the `Length` field*
+  rather than re-parsed out of the price list or assumed. Fall back to `RL` when
+  the field is blank — random length is the overwhelming default for plank goods,
+  and every pre-existing LS name uses it. Copy the field verbatim, including its
+  unit; do not normalize `1520mm` to inches or `RL` to a measurement.
 - `[Veneer]` = source "Veneer / top layer (mm)" + "mm top" (only if non-empty)
 - `[BoxSize]` = source "Box size (sf)" + "sf/b". Include for single-grade and no-grade products, **and for variant groups where every row shares the same box size** — the name stays identical across the group, so LS is satisfied. Omit **only** for variant groups with mixed box sizes; on those rows sf/b moves to **column 11** alongside the grade (`Character - 24.18sf/b`). Never omit it from both.
 - `[Grade]` = source "Grade" AS-IS, appended at the end after " - " — **ONLY for single-grade products** (products NOT part of a variant group). Omit entirely if the row is part of a variant group OR if Grade is empty.

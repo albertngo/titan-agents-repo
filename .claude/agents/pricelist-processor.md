@@ -29,7 +29,9 @@ of updating.
 
 Work in this order, every time:
 
-1. **Extract** the price list into the 56-column schema.
+1. **Extract** the price list into the 57-column schema. **Always attempt `Length`**
+   (column 17) — it is text, so `RL`, `48"`, `1520mm` and `20" - 83"` are all valid
+   values; leave it blank only when the supplier states no length at all.
 2. **Match** every extracted row against the live catalogue, using the matching
    cascade (internal `SKU` → `Supplier SKU` → specifications / `Product name`).
    Whoever invokes you must supply the live records — you have no Airtable tools — as
@@ -42,7 +44,7 @@ Work in this order, every time:
    - `LS Handle / Parent ID` — the existing handle
    - `Lightspeed ID` — the existing LS UUID
    Record `MatchedRecId` and `MatchStatus` (`matched` / `new` / `ambiguous`) as helper
-   columns 57–58.
+   columns 58–59.
 
    **A genuinely new row gets a minted `SKU`, a minted `LS Handle / Parent ID` (from
    the brand's handle-generating schema — uppercase, alphanumeric, never truncated),
@@ -63,7 +65,7 @@ still owe Airtable their Lightspeed IDs. The backfill is batched, so that count 
 only record that this run created a debt.
 
 Output:
-1. An Airtable-ready .xlsx with all 56 canonical columns in the exact order listed in
+1. An Airtable-ready .xlsx with all 57 canonical columns in the exact order listed in
    the schema skill (+ the two helper columns), named
    `<supplier>_airtable_upload_YYYY-MM-DD.xlsx`, written to `ingest/YYYY-MM-DD/` in
    this repo (not /mnt/user-data/outputs — that path in the skill text is for

@@ -12,7 +12,7 @@ The full method, with the rationale behind every rule below, is
 `methods/pricelist-extraction.md`. The canonical prompt text this command mirrors is
 `methods/pricelist-routine-prompt.md` — **change those two and this file together.**
 
-Load the **bert-airtable-schema** skill (supplier rules, 56-column schema, RULE 0/0a)
+Load the **bert-airtable-schema** skill (supplier rules, 57-column schema, RULE 0/0a)
 and, for step 5, the **ls-upload-instructions** skill. Load them as references; never
 pass them arguments.
 
@@ -96,7 +96,9 @@ are already set — and say only that it is not a supported price document.
 
 Otherwise, **in this order — it is a dependency, not a preference**:
 
-1. **Extract** into the 56 canonical columns (exact documented order).
+1. **Extract** into the 57 canonical columns (exact documented order). **Always attempt
+   `Length`** (column 17) — text, so `RL` / `48"` / `20" - 83"` are all valid; blank only
+   when the supplier never states one.
 2. **Read the live catalogue** (`appWHOVZ0QCS0xQ3M` / `tblfLXD3zkSdNQGbS`) filtered to
    that supplier, and match every extracted row: internal `SKU` → `Supplier SKU`
    (partial/fuzzy) → specifications, principally `Product name`. Stop at the first tier
@@ -115,7 +117,7 @@ Otherwise, **in this order — it is a dependency, not a preference**:
      any SKU.** The skill has been wrong about this (Grandeur, 2026-09-03).
 3. **Write the identity fields into the Airtable sheet**, verbatim from the live record
    for every matched row: `SKU`, `LS Handle / Parent ID`, `Lightspeed ID`. Add helper
-   columns 57–58, `MatchedRecId` and `MatchStatus` (`matched` / `new` / `ambiguous`),
+   columns 58–59, `MatchedRecId` and `MatchStatus` (`matched` / `new` / `ambiguous`),
    for the reviewer to delete before import.
    - A **new** row gets a minted SKU, a minted handle (handle-generating schema,
      alphanumeric, never truncated) and a **deliberately blank `Lightspeed ID`** — LS

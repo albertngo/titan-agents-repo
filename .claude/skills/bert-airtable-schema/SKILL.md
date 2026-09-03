@@ -196,6 +196,38 @@ When processing a supplier price list, some products are marked as SALE items wi
 
 In all cases, Promo cost ($/sf) = the supplier's SALE cost as-is. The regular Retail price/unit = Cost + $ 1.00. Retail adjustment during a promo is done manually.
 
+### Length extraction — always attempt it
+
+**Added 2026-09-03 (Albert).** `Length` is column 17 of the canonical list. Every ingest
+attempts to populate it; leave it blank only when the supplier genuinely never states a
+length.
+
+**It is a text field on purpose.** Length is not reliably a number:
+
+| Supplier states | Store | Why text |
+|---|---|---|
+| Random length | `RL` | A real product fact, not missing data — the dominant value on engineered and solid hardwood |
+| A fixed length | `48"`, `1520mm`, `94.5"` | Units vary by supplier; keep the unit with the value |
+| A range | `20" - 83"` | Common on wide-plank and XL lines |
+| Random within a range | `RL (16" - 75")` | Both facts matter |
+| Nothing | blank | Never invent one |
+
+A number column would force discarding `RL`, ranges, and the unit — which is most of the
+data. Store what the supplier printed.
+
+**Where to find it.** Length is usually the third element of a printed dimension string:
+`6½" x ¾" x RL` → `RL`; `9.29" x 59.76"` → `59.76"`; `(6+2mm x 9" x 60"RL)` → `60"RL`.
+Watch for it in section headers rather than per-row — most suppliers state the size once
+per collection and list only colours beneath.
+
+**Do not confuse it with thickness or veneer.** In `5" x 12.7mm x RL` the middle value is
+thickness. Where a supplier appends veneer to the same string (`RL - 2.5mm top`), the
+length is `RL` and the veneer belongs in `Veneer / top layer (mm)`.
+
+**Lightspeed is unchanged** — length keeps living in the LS `name` spec segment as it
+always has. The new field is the source it reads from, rather than something re-parsed
+out of the product name.
+
 ### Stock status assignment rules
 
 When entering products from a supplier price list, Stock status should be assigned as follows:
@@ -298,6 +330,7 @@ The source of truth for all Titan flooring products. Every active product that B
 | Field name | Type | Description | Notes |
 |------------|------|-------------|-------|
 | **Width (in)** | Number | Plank or tile width in inches. | Bert |
+| **Length** | Single line text | Plank, tile or piece length **as the supplier states it**. Deliberately text, not a number — see *Length extraction* below. `RL` for random length, a measurement with its unit (`48"`, `1520mm`, `94.5"`), or a range (`20" - 83"`). **Always attempt to populate it** (Albert, 2026-09-03). | LS · Bert |
 | **Thickness (mm)** | Number | Overall product thickness in mm. | Bert |
 | **Wear layer (mil)** | Number | LVP / SPC only. Wear layer in mil. e.g. 12, 20, 22. Leave blank for hardwood. | Bert |
 | **Veneer / top layer (mm)** | Number | Engineered hardwood only. Top veneer thickness in mm. e.g. 2, 3, 4. Affects sanding potential. | Bert |
@@ -429,7 +462,7 @@ Standard row values: `Change date` = date recorded; `Supplier` = the supplier; `
 
 ### Canonical column list — ALWAYS use this exact order
 
-**Every Airtable upload file must contain exactly these 56 columns in this order.** Do not infer columns from the schema description — use this list verbatim. Columns not applicable to a product are left blank (None), never omitted.
+**Every Airtable upload file must contain exactly these 57 columns in this order.** Do not infer columns from the schema description — use this list verbatim. Columns not applicable to a product are left blank (None), never omitted.
 
 | # | Column header |
 |---|---|
@@ -449,46 +482,47 @@ Standard row values: `Change date` = date recorded; `Supplier` = the supplier; `
 | 14 | Grade |
 | 15 | Layout pattern |
 | 16 | Width (in) |
-| 17 | Thickness (mm) |
-| 18 | Wear layer (mil) |
-| 19 | Veneer / top layer (mm) |
-| 20 | Veneer cut type |
-| 21 | AC rating |
-| 22 | Finish type |
-| 23 | Install profile |
-| 24 | Install method |
-| 25 | Locking system |
-| 26 | Underpad included |
-| 27 | Underpad type |
-| 28 | IIC rating |
-| 29 | STC rating |
-| 30 | Tile format |
-| 31 | Weight per piece (kg) |
-| 32 | Certifications |
-| 33 | Cost/unit |
-| 34 | Retail price/unit |
-| 35 | MAP price ($/sf) |
-| 36 | Pallet price ($/sf) |
-| 37 | Promo cost ($/sf) |
-| 38 | Promo end date |
-| 39 | Volume pricing notes |
-| 40 | Last price update |
-| 41 | Price last changed by |
-| 42 | Box size (sf) |
-| 43 | Pieces per box |
-| 44 | Boxes per skid |
-| 45 | Pieces per pallet |
-| 46 | Stock status |
-| 47 | Active |
-| 48 | Waterproof |
-| 49 | Pet friendly |
-| 50 | Radiant heat compatible |
-| 51 | Traffic rating |
-| 52 | Suitable rooms |
-| 53 | Residential warranty (yrs) |
-| 54 | Commercial warranty (yrs) |
-| 55 | Salesperson notes |
-| 56 | Pairs well with |
+| 17 | Length |
+| 18 | Thickness (mm) |
+| 19 | Wear layer (mil) |
+| 20 | Veneer / top layer (mm) |
+| 21 | Veneer cut type |
+| 22 | AC rating |
+| 23 | Finish type |
+| 24 | Install profile |
+| 25 | Install method |
+| 26 | Locking system |
+| 27 | Underpad included |
+| 28 | Underpad type |
+| 29 | IIC rating |
+| 30 | STC rating |
+| 31 | Tile format |
+| 32 | Weight per piece (kg) |
+| 33 | Certifications |
+| 34 | Cost/unit |
+| 35 | Retail price/unit |
+| 36 | MAP price ($/sf) |
+| 37 | Pallet price ($/sf) |
+| 38 | Promo cost ($/sf) |
+| 39 | Promo end date |
+| 40 | Volume pricing notes |
+| 41 | Last price update |
+| 42 | Price last changed by |
+| 43 | Box size (sf) |
+| 44 | Pieces per box |
+| 45 | Boxes per skid |
+| 46 | Pieces per pallet |
+| 47 | Stock status |
+| 48 | Active |
+| 49 | Waterproof |
+| 50 | Pet friendly |
+| 51 | Radiant heat compatible |
+| 52 | Traffic rating |
+| 53 | Suitable rooms |
+| 54 | Residential warranty (yrs) |
+| 55 | Commercial warranty (yrs) |
+| 56 | Salesperson notes |
+| 57 | Pairs well with |
 
 ### Before importing a new supplier
 
@@ -2070,7 +2104,7 @@ Glue Down, Herringbone, and Looselay colours list "identical to [plank code]" (e
 
 #### Woden ingest output format
 
-Produce an Excel file with all 56 schema columns. File naming: `woden_airtable_upload_[YYYY-MM-DD].xlsx` using the list's Effective date. Save to `/mnt/user-data/outputs/`.
+Produce an Excel file with all 57 schema columns. File naming: `woden_airtable_upload_[YYYY-MM-DD].xlsx` using the list's Effective date. Save to `/mnt/user-data/outputs/`.
 
 ---
 
@@ -2281,7 +2315,7 @@ The LS upload build script catches this and normalizes the colour spelling to th
 
 #### CIF ingest output format
 
-Produce an Excel file with all 56 schema columns. File naming: `cif_airtable_upload_[YYYY-MM-DD].xlsx` using the list's Effective date (the date printed on the Terms letter, page 3). Save to `/mnt/user-data/outputs/`.
+Produce an Excel file with all 57 schema columns. File naming: `cif_airtable_upload_[YYYY-MM-DD].xlsx` using the list's Effective date (the date printed on the Terms letter, page 3). Save to `/mnt/user-data/outputs/`.
 
 A typical CIF ingest produces ~800 rows: ~190 mosaics, ~570 field tiles, ~50 STONE items.
 
@@ -2405,7 +2439,7 @@ Leave `Stock status` blank for all Olympia rows; set `Active = TRUE`. The Zone A
 
 #### Olympia ingest output format
 
-Produce an Excel file with all 56 schema columns. File naming: `olympia_full_airtable_upload_[YYYY-MM-DD].xlsx` using the list's effective date (foot of page, e.g. 2026-01-26). Save to `/mnt/user-data/outputs/`. A typical full Zone AT ingest produces ~3,000 rows across the 20 in-scope sections.
+Produce an Excel file with all 57 schema columns. File naming: `olympia_full_airtable_upload_[YYYY-MM-DD].xlsx` using the list's effective date (foot of page, e.g. 2026-01-26). Save to `/mnt/user-data/outputs/`. A typical full Zone AT ingest produces ~3,000 rows across the 20 in-scope sections.
 
 
 ---
@@ -2484,7 +2518,7 @@ Leave `Stock status` blank for all Biyork rows; set `Active = TRUE`. The regular
 
 #### Biyork ingest output format
 
-Produce an Excel file with all 56 schema columns. File naming: `biyork_full_airtable_upload_[YYYY-MM-DD].xlsx` using the list date (e.g. 2025-07-07). Save to `/mnt/user-data/outputs/`. A full flooring + accessories ingest produces ~324 rows (154 flooring, 170 mouldings/accessories).
+Produce an Excel file with all 57 schema columns. File naming: `biyork_full_airtable_upload_[YYYY-MM-DD].xlsx` using the list date (e.g. 2025-07-07). Save to `/mnt/user-data/outputs/`. A full flooring + accessories ingest produces ~324 rows (154 flooring, 170 mouldings/accessories).
 
 
 ---
@@ -2560,7 +2594,7 @@ Floordi issues **separate monthly promotion sheets** (e.g. "JUNE PROMOTION") lis
 
 #### Floordi ingest output format
 
-`floordi_full_airtable_upload_[YYYY-MM-DD].xlsx` using the "Last updated" date on the list (e.g. 2025-09-03), all 56 schema columns, saved to `/mnt/user-data/outputs/`. Record the effective date in `Price list reference` when logging future price changes to Price History Log v2.
+`floordi_full_airtable_upload_[YYYY-MM-DD].xlsx` using the "Last updated" date on the list (e.g. 2025-09-03), all 57 schema columns, saved to `/mnt/user-data/outputs/`. Record the effective date in `Price list reference` when logging future price changes to Price History Log v2.
 
 ---
 
