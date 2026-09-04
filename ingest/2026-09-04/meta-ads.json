@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-09-04T08:21:37-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $99.78 spend, 8 leads, $12.47 CPL — Flooring Problems Campaign",
+      "summary": "The most recent prior meta-ads.json (2026-09-02) covered spend through 2026-09-01, so this run widened from the standard --days 1 to --days 2 (2026-09-02 through 2026-09-03) to close the gap. Over that window Meta spent $99.78, all on the only actively-delivering campaign, Flooring Problems Campaign, generating 8 leads at $12.47 CPL. CPL is well below the 7-day baseline (2026-08-28 to 2026-09-03: $350.68 / 20 leads, ~$17.53 CPL); account is ACTIVE and no ads are flagged.",
+      "timestamp": "2026-09-03T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 9978,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 9978,
+    "impressions": 2967,
+    "clicks": 64,
+    "leads": 8,
+    "cpl_cents": 1247,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Window widened: the most recent prior meta-ads.json was 2026-09-02, covering spend through 2026-09-01. Per policy this run widened from the standard yesterday-only pull to 2 days (2026-09-02 through 2026-09-03) to cover the gap, rather than missing 2026-09-02 entirely.",
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued at 8 in this window, 20 in the 7-day baseline, matching the counted leads exactly both times, same as flagged on 2026-08-31 and 2026-09-02). No discrepancy in the counted total so far, but this recurrence (now 3 runs running) suggests the script's lead-action set should be reviewed for extension rather than continuing to hand-note it each run."
+  ]
+}
