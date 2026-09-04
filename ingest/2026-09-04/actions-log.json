@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "entries": [
+    {
+      "logged_at": "2026-09-04T09:15:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_create_task",
+      "target": "team destination: Tactical Tasks List dedupe query (collection://238596a4-505f-8137-af13-000bde205213)",
+      "content_summary": "Dedupe query (Tags contains 'ghl' AND Status not in Dropped/Done) failed before any writes: Notion MCP query-data-sources tool returned 'workspace has reached the usage limit for Query Data Source' on every attempt (sql, rows, and a retry). Per contracts/notion-task-schema.md failure policy, stopped before writing any of the 21 team-routed candidates for 2026-09-04. Consistent with today's notion.json ingest, which flagged the same workspace query-quota ceiling.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "failed",
+      "error": "Notion query-data-sources tool: workspace usage limit reached for Query Data Source (all modes: sql, rows). No rows could be read to dedupe against, so no create/update writes were attempted for any of the 21 GHL team-routed candidates.",
+      "raw_ref": null
+    }
+  ]
+}
