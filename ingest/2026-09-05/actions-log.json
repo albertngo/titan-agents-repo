@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "entries": [
+    {
+      "logged_at": "2026-09-05T12:40:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_create_task",
+      "target": "team destination: Tactical Tasks List (22 candidate GHL contacts)",
+      "content_summary": "Dedupe query (Query Data Source) against the Tactical Tasks List failed with a Notion workspace usage-limit error before any row could be matched or written; per contract, stopped before any writes to avoid creating duplicates.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "failed",
+      "error": "Notion Query Data Source: workspace usage limit reached",
+      "raw_ref": null
+    }
+  ]
+}
