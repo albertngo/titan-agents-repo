@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "source": "bookkeeper",
+  "run_at": "2026-09-05T08:11:30-04:00",
+  "status": "error",
+  "error": "No Intuit QuickBooks MCP connector is configured in this environment. The session's .mcp.json registers only the 'ghl' server, and `claude mcp list` shows no QuickBooks/Intuit tool available. Cannot pull last 24h of invoices, expenses, or receipts. This has recurred on prior runs and needs the QBO MCP connector added/authorized before this agent can produce real data.",
+  "items": [],
+  "metrics": {
+    "payments_received_cents": 0,
+    "overdue_invoices": 0,
+    "uncategorized_txns": 0
+  },
+  "needs_attention": [
+    "bookkeeper-ingest-agent: QuickBooks/Intuit MCP connector unavailable again today — no bookkeeping data ingested for 2026-09-05. Needs setup/reconnection."
+  ]
+}
