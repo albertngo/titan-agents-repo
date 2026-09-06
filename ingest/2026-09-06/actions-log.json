@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "entries": [
+    {
+      "logged_at": "2026-09-06T12:55:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_create_task",
+      "target": "team destination dedupe query (✅ Tactical Tasks List, collection://238596a4-505f-8137-af13-000bde205213, filter: Tags contains \"ghl\" AND Status not in [Done, Dropped])",
+      "content_summary": "11 team-routed GHL candidates were resolved and ready to sync, but the mandatory dedupe query failed on a Notion workspace 'Query Data Source' usage-limit error (tried both SQL mode and rows mode). Per notion-task-schema.md step 5e and the Failure policy table, the sync stopped before writing any row for the team destination.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "failed",
+      "error": "Notion MCP Query Data Source usage-limit error: \"Your workspace has reached the usage limit for Query Data Source\" on collection://238596a4-505f-8137-af13-000bde205213 (same limit notion-ingest-agent hit today per ingest/2026-09-06/notion.json needs_attention)",
+      "raw_ref": null
+    }
+  ]
+}
