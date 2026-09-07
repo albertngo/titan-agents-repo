@@ -478,5 +478,18 @@
     },
     "brief": true,
     "note": "scheduled run; outlook/meta-ads windows widened by one day; bookkeeper still has no QBO/Intuit MCP connector (9th consecutive failed run since 2026-07-26). CORRECTED 2026-09-03: this entry previously read 'no run at all on 2026-09-01 (prior day was a pricelist-processor run only)'. False \u2014 a full five-source daily-ingest ran on 2026-09-01; its vault note 01_daily/2026-09-01.md carries GHL/Outlook/bookkeeper/Notion/Meta-Ads numbers and 48 drift findings, and its raw output is on branch claude/kind-feynman-cefsdp. The one-day window widening was harmless but unnecessary"
+  },
+  {
+    "date": "2026-09-07",
+    "run_at": "2026-09-07T08:43:12-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; ledger's last entry was 2026-09-02, showing an apparent 4-day gap (09-03..09-06), but this is the known branch-isolation artifact (see 2026-09-03 correction above): outlook and meta-ads both independently widened their catch-up windows because their own prior ingest files stopped at 2026-09-02 on this branch, and titan-vault/01_daily/ confirms daily notes exist for 09-03 through 09-06 already \u2014 those runs happened on branches not merged here, nothing was actually missed. bookkeeper still has no QBO/Intuit MCP connector (10th consecutive failed run since 2026-07-26)."
   }
 ]
