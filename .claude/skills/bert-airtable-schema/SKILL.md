@@ -270,13 +270,45 @@ When a supplier posts a promotional cost:
 
 When scanning a supplier promo sheet, a promoted grade or colour may not exist as a record in the Master Flooring Catalogue. In this case:
 
+**Rule (Albert, 2026-09-08): always check the live Airtable for matching products before
+deciding a promo/price-list item is "new" — for every list, not just when something looks
+ambiguous.** A promo sheet routinely lists only colour + grade + price, with no box size,
+thickness, or veneer — that is a gap in the *document*, not proof the product is absent
+from the catalogue. The Vidar Sept 2026 promo run first marked 12 grade/colour combos as
+new-with-unknown-specs; checking the live base found that 8 of them had the same
+colour+width+species (and veneer, where the sheet differentiates by veneer thickness) as
+an existing record at a *different* grade, or the width+species collection was uniform
+enough across every other colour to use as a default. Only 4 were genuinely absent from
+the catalogue at any grade or veneer.
+
+**Match cascade before creating anything new**, in order:
+
+1. **Exact colour + width + species + grade already exists** → this isn't new at all,
+   it's a tier-3 match (see the matching cascade above) that the initial pass missed.
+   Route it through the normal matched-row path, not creation.
+2. **Same colour + width + species, matching veneer where the sheet states one** (a
+   sheet that prints "(2mm)"/"(3mm)" per colour is telling you veneer is a distinguishing
+   spec, not a footnote — a 3mm sibling is not a safe template for a 2mm promo line) →
+   copy box size, thickness, veneer, collection, install profile/method, finish type,
+   certifications, warranty, and radiant-heat/suitability flags from that sibling
+   verbatim. This is the common case — most promo colours are grade variants of a plank
+   Titan already stocks in some other grade.
+3. **No colour match, but every other record of that width + species (+ veneer, if the
+   sheet differentiates) shares one box size / thickness / veneer value** → that's a
+   collection-level default, not a guess. Safe to copy.
+4. **No width + species precedent exists at all** (nothing else in the catalogue shares
+   the width and species, at any colour or veneer) → this is the only case that is
+   genuinely new-with-unknown-specs. Leave Box size / Thickness / Veneer blank, flag to
+   the team, and stop there — do not invent a spec by analogy across species or width.
+
+Whichever tier resolves it:
+
 - **Do not apply the promo cost to an incorrect grade** (e.g. do not put a Character promo on a Select record)
-- **Create a new product record** for the missing grade, copying all available specs from the closest matching record (same colour, same width, different grade)
-- Set **Cost/unit = Promo cost ($/sf)** — since no original cost is available, the promo cost is used as a placeholder per the Sale item pricing logic rule 3
+- Set **Cost/unit = Promo cost ($/sf)** — since no original cost is available, the promo cost is used as a placeholder per the Sale item pricing logic rule 3
 - Set **Retail price/unit = Cost + $ 1.00**
 - Set **Promo cost ($/sf)** and **Promo end date** as per the promo sheet
-- For fields that cannot be confirmed from existing records (e.g. Collection), **leave blank** rather than guessing — do not copy fields that may differ by grade
-- Flag the new record to the team so specs can be verified with the supplier
+- **Colour / tone is aesthetic, not a spec** — leave it blank rather than guessing from the colour name, even when every other field copied cleanly from a sibling
+- Flag the new record's cost basis to the team (placeholder, not a confirmed dealer cost) even when the specs themselves are fully verified — spec confidence and cost confidence are separate questions
 
 ### Sale item pricing logic
 
@@ -2972,6 +3004,13 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
 
 ### Changelog
 
+- **2026-09-08** — **Promo/new-product matching strengthened.** "Promo product not
+  found in catalogue" now requires checking the live base for a same-colour+width+
+  species(+veneer) sibling, or a uniform width+species collection default, before
+  treating a promo line as new-with-unknown-specs. Vidar's Sept 2026 promo run had
+  flagged 12 grade/colour combos this way; live-base checking resolved specs for 8
+  of them (only 4 were genuinely new). A promo sheet omitting box size/thickness is
+  a document gap, not evidence the product is missing from Airtable.
 - **2026-09-03** — **Grandeur SKU format corrected.** The subsection claimed the
   internal SKU prefix was `GRND` (`GRNDENG-0001`); the base actually holds
   `[CAT]-GRAN-####` (`ENG-GRAN-0030`, `SPC-GRAN-0015`). `GRND…` is the *Lightspeed*
