@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-09-08T08:18:00-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $48.17 spend, 5 leads, $9.63 CPL — Flooring Problems Campaign",
+      "summary": "Yesterday (2026-09-07) Meta spent $48.17, all on the sole actively-delivering campaign, Flooring Problems Campaign, generating 5 leads at $9.63 CPL. That's well under the 7-day baseline (2026-09-01 to 2026-09-07: $335.93 / 24 leads, ~$14.00 CPL), so no anomaly; account is ACTIVE and no ads are flagged.",
+      "timestamp": "2026-09-07T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 4817,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 4817,
+    "impressions": 1145,
+    "clicks": 38,
+    "leads": 5,
+    "cpl_cents": 963,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued at 5, matching the counted leads exactly, same as flagged on 2026-08-31, 2026-09-02, and 2026-09-07). No discrepancy in the counted total so far, but this is now the fourth consecutive run seeing it — the script's lead-action set should be extended rather than continuing to hand-note it.",
+    "This branch's own ingest/ history only shows a prior meta-ads.json through 2026-09-02 (a known branch-isolation artifact — daily-ingest runs for 2026-09-03 through 2026-09-07 landed on separate unmerged session branches: adoring-mendel-i23iun, -855vhn, -3rgf82, -pccybs, -gs75gw respectively). Confirmed via cross-branch check that 2026-09-07's run completed normally and its window already covered through 2026-09-06, so today's pull correctly used the standard 1-day window (2026-09-07) with no gap to widen."
+  ]
+}

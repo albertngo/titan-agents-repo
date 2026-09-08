@@ -1,0 +1,52 @@
+{
+  "contract_version": "1",
+  "source": "outlook",
+  "run_at": "2026-09-08T08:20:03-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "outlook-customer-7c1627a0e9",
+      "type": "customer",
+      "title": "Sabrina Crvik: 9 Midnight Lane Brampton move-out prep confirmed",
+      "summary": "Customer Sabrina Crvik and Pourya finished confirming move-out prep for the Sept 10 install (pack away small items, clothing, sentimental items) after Pourya's arrival-window reply; thread closed with a thank-you from Sabrina, no reply needed. Landed in pourya@ (to) and albert@ (cc).",
+      "timestamp": "2026-09-07T12:57:12-04:00",
+      "priority": "normal",
+      "link": "https://outlook.office365.com/owa/?ItemID=AQMkAGUwZmIwNGUzLTFjYmUtNDkyMC05ZWM4LTFjNGNkNWE3MzU2NABGAAADVDF%2BvOlcfUWouzaiZMo9EgcAnxwx6GogQ0C6e3q5wrzPwgAAAgEMAAAAnxwx6GogQ0C6e3q5wrzPwgABOx74NQAAAA%3D%3D&exvsurl=1&viewmodel=ReadMessageItem",
+      "amount_cents": null,
+      "raw_ref": "outlook:pourya@titanfloors.ca:message:<A40DA278-F533-4744-9CA8-52A6D5BAB1B0@gmail.com>",
+      "sensitivity": null,
+      "assigned_to": null
+    },
+    {
+      "id": "outlook-supplier-426c3fc43d",
+      "type": "supplier",
+      "title": "Best Vanity: cabinet order received/confirmed",
+      "summary": "Order confirmation from Best Vanity (order@bestvanity.ca) acknowledging receipt of Titan's cabinet order, into info@. No price list, no dollar amount stated, no action required.",
+      "timestamp": "2026-09-07T12:09:56-04:00",
+      "priority": "normal",
+      "link": "https://outlook.office365.com/owa/?ItemID=AAMkADg3ODE1NTk4LTZiNWQtNGQ5NC1iOWJhLWZhZTI0NjQ4ODRjOQBGAAAAAACfW0oVpd2VRJyg7ITCqcIQBwBFlqPg%2FSDYTaqiknz3W61PAAAAAAEMAABFlqPg%2FSDYTaqiknz3W61PAAPvRKg4AAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
+      "amount_cents": null,
+      "raw_ref": "outlook:info@titanfloors.ca:message:<SA1PR19MB9973688709FAAA488E6BC9EBBCF8B22@SA1PR19MB997368.namprd19.prod.outlook.com>",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "total_scanned": 10,
+    "customer": 1,
+    "supplier": 1,
+    "admin": 0,
+    "noise_skipped": 7,
+    "unanswered_customer": 0,
+    "bounces": 0,
+    "scanned_albert": 3,
+    "scanned_info": 3,
+    "scanned_pourya": 6,
+    "scanned_mike": 0
+  },
+  "needs_attention": [
+    "Local branch's run-ledger last entry is 2026-09-02, but cross-branch evidence (ingest/2026-09-0{3..7}/outlook.json present on unmerged session branches, most recent 2026-09-07T08:30:11-04:00 status:ok) confirms runs continued through 2026-09-07 -- this is the documented branch-isolation artifact, not a real gap. That prior run's 24h coverage overlaps today's, so the standard 24h window was used with no catch-up widening needed.",
+    "Unsolicited inquiry to albert@ from claireevans@glogisticsllcgrid.com (\"Titan Flooring Inquiry\") asking who to contact about buying Titan Flooring -- reads as broker/M&A cold outreach, not a service quote request, so it doesn't fit the customer/supplier/admin type vocabulary and no item was created. Flagging for awareness only; the email's content is informational, not an instruction, and no action was taken on it."
+  ]
+}
