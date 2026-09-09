@@ -2957,6 +2957,66 @@ VANNTETT PLUS and VANNTETTPRO trims are the same part and are listed once.
 
 ---
 
+### Dragona (Dragona Flooring, house brand Falcon Floors)
+
+Dragona is a **new supplier** onboarded 2026-09-08 from the "Dragona Flooring Pricing
+Program — Store Program" (Aug 1 2026), a 15-page PDF spanning flooring, tile, carpet,
+underlayment, and building materials.
+
+#### Identity
+
+| Field | Value |
+|---|---|
+| **Supplier** (single-select) | `Dragona` |
+| **Brand** | `Dragona` for its own lines; `Falcon Floors` for the house-brand laminate/vinyl |
+| **SKU supplier code** | `DRAG` — 4-char suffix |
+| **Internal SKU format** | `[CAT]-DRAG-####` — sequential, since the sheet prints no per-product codes for flooring |
+
+#### Cost column
+
+**CONFIRMED 2026-09-09 by Albert: STORE PRICING is Titan's dealer cost, as printed, no
+multiplier.** The sheet prints exactly one price column, headed "STORE PRICING" — this
+was genuinely ambiguous on first ingest (could have read as Dragona's own retail shelf
+price) and was escalated via Tactical Task before any Lightspeed write. Do not ask again.
+
+- Printed STORE PRICING → `Cost/unit` **as-is**. Never apply a multiplier.
+- Where the sheet prints two tiers (flooring), CUT ORDER → `Cost/unit`, SKID ORDER →
+  `Pallet price ($/sf)`, both tiers noted in `Volume pricing notes`.
+- `Retail = Cost + $ 1.00` — the schema default — **except** where noted below under
+  Parsing quirks; several pricing units have no markup rule yet and are intentionally
+  left blank pending Albert (carpet per sqyd/per linear yard, per-linear-foot unfinished
+  hardwood mouldings, per-piece stair parts and registers). Do not guess a markup for
+  these; ask before writing one.
+
+#### Parsing quirks
+
+- **Rolls (underlayment) are converted to per-roll cost** from the printed per-SF price
+  (e.g. $0.13/SF × 200 SF roll → $26.00/roll), so the +$20 underlayment markup applies on
+  the same basis as other suppliers' roll pricing (Woden precedent).
+- **Carpet is priced per SQYD (tile) or per linear YRD (roll on a 12 ft width)**, not per
+  sf. `Cost/unit` holds the as-printed per-sqyd/per-linear-yard figure; `Box size (sf)`
+  for carpet tile is converted from the printed SQYD box size. No carpet markup rule
+  exists yet — `Retail price/unit` stays blank until Albert sets one.
+- **Unfinished hardwood mouldings are priced per linear foot** on random-length stock;
+  the standard +$10/+$15 per-piece accessory tiers do not transfer to a per-linear-foot
+  cost — `Retail price/unit` stays blank until Albert sets a rule.
+- **Hardwood/register stair parts are priced per piece**, not per sq ft — matches the FAW
+  precedent for stair treads: store the per-piece cost, leave retail blank until a
+  hardwood-stair markup is set.
+- **Core construction is unstated for rigid vinyl** — defaults to SPC per the global
+  rule. Underpad material is unstated — IXPE assumed; verify with Dragona if it matters.
+- **Pro-7mm vinyl click prices below the standard 7mm line** despite an identical printed
+  construction (5.5mm + 1.5mm condo pad, 18.9 sf/box) — flagged on the affected rows as a
+  possible sheet error, not corrected.
+- **Subway tile (3x6/4x12/4x16 white) is stored as Porcelain**, following the printed
+  section header, though this format is normally ceramic wall tile — confirm with
+  Dragona if it matters.
+- Building materials (drywall, framing, insulation, doors, plumbing, lumber, MDF/pine
+  millwork, tile edge, lighting, consumables) — roughly half the document — are **excluded**
+  from the catalogue.
+
+---
+
 ### New supplier onboarding — checklist
 
 When a new supplier is added, gather this information before processing their first price list, and add a subsection above following the FAW template:
