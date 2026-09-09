@@ -3318,8 +3318,69 @@ plus helper columns 58–59, written to `ingest/YYYY-MM-DD/`:
 `gracious_tiles_coded_airtable_upload_[YYYY-MM-DD].csv`,
 `gracious_vinyl_laminate_airtable_upload_[YYYY-MM-DD].csv`.
 
-**No Lightspeed file until the Airtable import happens** — Gracious has no LS presence, so
-there are no ids or handles to copy from.
+**No Lightspeed file until the Airtable import happens** — the LS `id`/`handle`/`sku` columns
+are copied from the Airtable state, and no Gracious record exists in the catalogue yet. But that
+is a statement about *Airtable*, not about Lightspeed — see below.
+
+#### Gracious IS already live in Lightspeed — the third state
+
+> **Corrected 2026-09-09**, same day, from a `GRACIOUS` LS product export Albert supplied.
+> The first run concluded "Gracious has no Lightspeed presence" by inferring it from the
+> **absence of Gracious records in Airtable**. That inference was wrong. **Lightspeed holds
+> 207 Gracious products** — 110 tile, 42 laminate, 39 vinyl, plus shower niches, wall panels
+> and two hardwood lines.
+
+This is exactly the **third state** documented under RULE 0a: *new to Airtable, already live in
+Lightspeed* (the Canadian Standard pattern, 292 of 336 rows). Such rows are legitimately
+`MatchStatus: new` **and** carry a `Lightspeed ID`.
+
+**The general lesson: an empty catalogue query tells you nothing about Lightspeed.** The two
+systems are populated independently, and a supplier that has been selling for years can be
+absent from Airtable and fully present in the POS. Ask for an LS export before declaring a
+supplier LS-absent.
+
+**LS name format for Gracious** — worth knowing, because it carries facts the price lists don't:
+
+```
+[(P) ]GRACTIL -  - [Porcelain|Ceramic] ([Colour][ (Finish)])  | #[code] |  - [1224|2424|2448] - pc/b - [N]sf/b
+GRACLAM - [Series] -  ([Colour])  | #[code] | AC[N] - [L]x[W]x[T]mm ([W]") - [N]sf/b
+GRACVIN -  -  ()  | #[code] | SPC - [T]mm x [L]" x [W]" - [N]sf/b
+```
+
+- Name prefixes: `GRACTIL` / `GRACLAM` / `GRACVIN` / `GRAENG-`. A leading **`(P)` marks a
+  promo row**, not a colour — skip it when parsing.
+- **The LS name is the authority for `Material type`** (`Porcelain` vs `Ceramic`), which the
+  price lists never state. The 2026-09-09 backfill filled it on all 35 matched rows (all
+  Porcelain) from this field.
+- Size is the bare `1224` / `2424` / `2448` token — map to `12 x 24` / `24 x 24` / `24 x 48`.
+- LS tile colours carry their own spelling: `Satuvario` (vs the list's `Satvario`),
+  `Antartica Ice`, `Diana Antic Light` (vs `Diana Antique Light`), `Marquiry`. Match through
+  the drift; **never "correct" either side**.
+
+**Backfill matching** — the bridge is **colour + size**, never SKU (LS SKUs are `20026`,
+`GRA.T.P.RodBia.1224`, `5012` — a different namespace from `TIL-GRAC-####`):
+
+- Strip the finish token from both sides before comparing (`Unicorn 5 GL` ↔ `Unicorn 5 Glossy`),
+  then use finish only as a confirming detail.
+- **Digits inside a colour token are identity and must be identical for a spelling-drift
+  match.** `Unicorn 3` and `Unicorn 5` are one edit apart and are different products; so are
+  `Tropical Grey` and `Tropical Grey 2`. A drift matcher without this rule silently collapses
+  them — it did, on the first pass of the 2026-09-09 backfill, and produced a false contention
+  for one UUID.
+- A **size mismatch disqualifies** a tile candidate outright: the same colour genuinely exists
+  at several sizes as separate LS products, and the right one for that size usually also exists.
+- **Cost disagreement is expected and is not a conflict worth blocking on.** Every matched row
+  showed the new list *below* the LS supply price ($1.29 vs $1.39, $1.39 vs $1.49, $1.69 vs
+  $2.29) — that is the price drop the list exists to deliver. Flag it in the note; it actually
+  confirms the match direction.
+
+**The SPC colour range is in Lightspeed** — this answers the open question the first run raised.
+LS carries the vinyl as individual colour SKUs where the price sheet gives only a series:
+`KS-01`…`KS-13` + `KS-20`, `GS-01`…`GS-13` + `GS-20`, `TS01`…`TS10` (a series not on the new
+list), and a single `Vinyl Code NP8-13 | 8.6mm`. **So the three series-level Airtable records
+are the wrong shape** — each should become per-colour records keyed on those LS codes, after
+which the backfill resolves them one-to-one. Until then they stay `NOT_FOUND` with a blank
+`Lightspeed ID`; one record cannot hold fourteen UUIDs.
 
 ---
 
@@ -3370,6 +3431,19 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
 
 ### Changelog
 
+- **2026-09-09** — **"Gracious has no Lightspeed presence" was wrong, and the way it was
+  reached is the reusable lesson.** The first Gracious run queried the Master Flooring
+  Catalogue, found no Gracious records, and inferred from that empty result that the supplier
+  was absent from Lightspeed too. An LS product export Albert supplied the same day shows
+  **207 live Gracious products**. Airtable and Lightspeed are populated independently — an
+  empty catalogue query is evidence about Airtable only, and a supplier selling for years can
+  be absent from one and complete in the other. **Ask for an LS export before declaring a
+  supplier LS-absent.** The backfill that followed matched 35 of 248 rows on colour + size and
+  also recovered `Material type` (Porcelain) for those rows from the LS name, a field the price
+  lists never state. Recorded in the Gracious subsection: the LS name format, the `(P)` promo
+  prefix, the LS-side colour spellings, and the rule that **digits inside a colour token are
+  identity and may not change across a spelling-drift match** — without it `Unicorn 3` and
+  `Unicorn 5` collapse into one product, which they did on the first pass.
 - **2026-09-09** — Added the **Gracious** supplier subsection from three PDFs emailed
   2026-06-30 (248 rows: 156 + 88 tile, 4 vinyl/laminate; first ingest, not yet imported).
   Its `#### Cost column` is **settled on arrival** — Albert supplied the basis with the
