@@ -134,7 +134,7 @@ live data source on 2026-09-03:
 |---|---|---|
 | `LS Backfill` | **`UUID Backfill`** | select — `Pending` / `Done` / `Not needed` |
 | `POS` (checkbox) | **`LS Upload`** | select — `Pending` / `Done` / `Not needed` |
-| `Status` | displays as **`Extraction Status`** | status — `Not started` / `Extracting` / `Extracted [Pending Review]` / `Done` |
+| `Status` | **`Extraction Status`** — that is the write key too | status — see the option list below |
 | `Wordpress` | **removed** | — |
 
 Two things worth knowing:
@@ -142,9 +142,11 @@ Two things worth knowing:
 - **`LS Upload` is a select now, not a checkbox.** "Check `POS`" became
   "set `LS Upload = Done`", and `Not needed` is a real third state — a promo run that
   produces no LS file should say so rather than sit at `Pending` forever.
-- **The status property displays as `Extraction Status`, but page updates still take
-  the key `Status`** (verified by writing it successfully on two rows the same day).
-  Write `Status`; expect to *see* `Extraction Status` in the UI.
+- **The status property is written as `Extraction Status`, not `Status`.** Corrected
+  2026-09-09: an earlier note here claimed `update-page` still accepted the key
+  `Status`. It does not — it returns `400 validation_error` and writes nothing, losing
+  the whole state update. The error message helpfully lists every editable key, which
+  is how this was caught. **Read the error, don't guess the replacement.**
 
 #### `Notes` — the row's own flag line (Albert, 2026-09-03)
 
@@ -181,25 +183,40 @@ a re-run overwrites this field and a stale note is worse than none:
 **Overwrite, don't append.** It describes the current state of the row, not its history —
 the repo commits and `Salesperson notes` carry the history.
 
-#### `Error: Needs attention` — the status that pairs with `Notes`
+#### `Extraction Status` — the option list, and the status that pairs with `Notes`
 
-**Added on Albert's instruction 2026-09-03.** A run that cannot finish sets
-**`Status = Error: Needs attention`** and puts the reason in **`Notes`**. The two always
-travel together: the status makes the row findable in a view, `Notes` says what happened.
+**Re-verified against the live data source 2026-09-09. The option names changed and the
+old ones are rejected outright** — `Extracted [Pending Review]`, `Error: Needs attention`
+and `Done` no longer exist. The live options are:
 
-| Outcome | `Status` | `Notes` |
+| Option | Means |
+|---|---|
+| `Not started` | Untouched. |
+| `Extracting` | A run is in flight. **Never the resting state after a run ends.** |
+| `Extracted [Needs Review]` | Files attached, but the run carries caveats a human must clear before import. Pairs with a populated `Notes`. |
+| `Extracted [Ready to Upload]` | Files attached and nothing blocking. Pairs with an empty `Notes`. |
+| `Extracted [Error]` | The run could not finish. Pairs with a populated `Notes`. |
+| `Not Needed` | Reviewed and deliberately not processed. |
+| `Extracted [All Uploaded]` | Everything downstream is done — the old `Done`. |
+
+The split between `Needs Review` and `Ready to Upload` is new and is worth using
+deliberately: it makes the empty-vs-populated `Notes` distinction visible in a board view
+without opening the row. **A run that assumed a cost basis is `Needs Review`, never
+`Ready to Upload`** — the file is complete but not safe to import yet.
+
+| Outcome | `Extraction Status` | `Notes` |
 |---|---|---|
-| Ran, files attached, nothing blocking | `Extracted [Pending Review]` | empty |
-| Ran, files attached, caveats a reviewer must clear | `Extracted [Pending Review]` | the flag lines |
-| **Could not finish** | **`Error: Needs attention`** | **what failed, at which step, and what it needs** |
+| Ran, files attached, nothing blocking | `Extracted [Ready to Upload]` | empty |
+| Ran, files attached, caveats a reviewer must clear | `Extracted [Needs Review]` | the flag lines |
+| **Could not finish** | **`Extracted [Error]`** | **what failed, at which step, and what it needs** |
 
-`Error: Needs attention` is for a run that did not produce what it was meant to:
+`Extracted [Error]` is for a run that did not produce what it was meant to:
 the download failed, the file is not a parseable price document, `Company` or `Tags`
 could not be determined, the attachment upload failed, a write was rejected. It is
 **not** for a completed run carrying assumptions — that is
-`Extracted [Pending Review]` with a populated `Notes`.
+`Extracted [Needs Review]` with a populated `Notes`.
 
-This replaces the older "leave `Status` at `Extracting` and say why" rule, which left a
+This replaces the older "leave the status at `Extracting` and say why" rule, which left a
 failed run indistinguishable from one still in flight. **A row must never sit at
 `Extracting` after a run ends.**
 
@@ -2925,6 +2942,147 @@ VANNTETT PLUS and VANNTETTPRO trims are the same part and are listed once.
 
 ---
 
+### Vizion (Vizion Floor)
+
+Vizion Floor (toronto@vizionfloor.com, 647-802-6868, 1195 Clark Blvd, Brampton ON L6T 3W4
+— vizionfloor.com) is both the supplier and the brand. The price list is a short
+multi-page PDF (6 pages on the 2026/07/01 list) with a cover page, then one collection
+per page: a header bar, a two-column item/colour table, a single spec block, a single
+price, and a per-page accessory strip beneath. **First ingested 2026-09-09 from the
+2026/07/01 list — 52 rows (41 flooring, 11 accessories). Not yet imported.**
+
+#### Identity
+
+| Field | Value |
+|---|---|
+| **Supplier** (single-select) | `Vizion` — **does not exist in the Airtable select yet**; it is created on first import |
+| **Brand** | `Vizion` (supplier is the brand; Marvelous and Epic are collection names, not brands) |
+| **SKU supplier code** | `VIZN` — 4-char suffix. **Proposed on the first run, not yet confirmed by Albert.** |
+| **Internal SKU format** | `[CAT]-VIZN-[Vizion code]` — the code used **verbatim** as the suffix, per the per-product unique-code pattern (like Biyork and Triforest). e.g. `LVP-VIZN-V7001`, `LAM-VIZN-LV321`, `LVP-VIZN-VL501`. |
+| **Supplier SKU** | Always populated with the Vizion code on its own (`V7001`, `V8001`, `VL501`, `LV321`, `LV221`). Verified unique across the whole list. |
+
+Accessories carry no codes → sequential `ACC-VIZN-0001`, `Supplier SKU` blank.
+
+#### Cost column
+
+**⚠️ OPEN — ASKED, NOT YET ANSWERED (2026-09-09).** Do not treat the values below as
+settled; they are what the first run assumed so it could produce a file.
+
+The list prints **exactly one price column, headed only `> PRICE`**, one price per
+collection rather than per row. There is **no terms page, no stated discount off list,
+and no MSRP or suggested-retail column anywhere in the document** — the only commercial
+terms printed are a returns window and a past-due service charge, neither of which
+implies a multiplier.
+
+That is genuinely ambiguous for a new supplier, and precedent runs three ways (Canadian
+Standard prints dealer cost as-is; CIF and Olympia print a list price with the discount
+in the terms; Biyork prints both columns), so it was escalated to Albert per
+*Cost basis — ask once, then write it down forever* rather than inferred.
+
+| | Assumed by the first run | Status |
+|---|---|---|
+| `Cost/unit` | the printed price **as-is, no multiplier** | **unconfirmed** |
+| `Retail price/unit` | `Cost + $ 1.00` (schema default) | follows from the above |
+| `MAP price ($/sf)` | blank — no MSRP column is published | confident; the absence is a real finding |
+| `Pallet price ($/sf)` | blank — the sheet gives a boxes-per-pallet **count**, not a per-sf pallet rate | confident |
+
+**When Albert answers, replace this block with the settled basis** so the next run
+inherits it and stops asking.
+
+#### Markup overrides (accessories)
+
+Accessories are per piece (stair boards per set). Standard cross-supplier markups:
+Reducer and T-Moulding `Cost + $10`; any nosing `Cost + $15`. **Stair Board sets have no
+dedicated standard** — the Stair Nose/Tread `+$15` rule was applied as the closest match,
+the same call made for the Woden square-return set; confirm with Albert.
+
+#### Scope of ingest
+
+In scope: **LVP** (Marvelous 7MM, 8MM, and 5MM Loose Lay) and **LAM** (Epic 120 HR at
+both thicknesses), plus their trims.
+
+**Out of scope: Adhesive Zeromono 2GL (12KG pail, $68.00/pail, p.4)** — excluded as a
+jobsite consumable, matching how Biyork and Olympia adhesives are treated. Flagged to
+Albert; revisit if he wants consumables catalogued.
+
+#### Collections
+
+Use verbatim: `Marvelous 7MM Luxury Vinyl`, `Marvelous 8MM Luxury Vinyl`,
+`Marvelous 5MM Loose Lay`.
+
+**The two laminate groups print the identical collection name at different specs**, so
+the thickness is appended to disambiguate (the Evergreen precedent for tier-named
+collections): `Epic 120 HR Water Resistant Laminate With Underlayment (14.3mm)` and
+`... (12.3mm)`. Their colour sets are disjoint (Whistler/Aspen/… vs Nile/Yangtze/…), so
+nothing collides beyond the name itself.
+
+| Collection | Spec | Box | Boxes/pallet | Printed price |
+|---|---|---|---|---|
+| Marvelous 7MM Luxury Vinyl | 7.2" × 60.8" × 7mm | 24.35 sf | 50 | $ 1.69 |
+| Marvelous 8MM Luxury Vinyl | 7.2" × 60.8" × 8mm | 21.31 sf | 45 | $ 1.89 |
+| Marvelous 5MM Loose Lay | 9.14" × 60.32" × 5mm | 30.61 sf | 40 | $ 2.39 |
+| Epic 120 HR … (14.3mm) | 7.7" × 60.8" × 14.3mm | 19.28 sf | 55 | $ 1.89 |
+| Epic 120 HR … (12.3mm) | 7.7" × 48" × 12.3mm | 20.48 sf | 50 | $ 1.69 |
+
+#### Category / Material type mapping
+
+- **Marvelous 7MM / 8MM** → `LVP`. **The core is never stated** — `SPC core` assumed per
+  the global rule for unlabelled rigid vinyl. Re-confirm if a future line looks flexible
+  or glue-down.
+- **Marvelous 5MM Loose Lay** → `LVP` + `Loose-lay vinyl`, `Install profile` and
+  `Install method` = `Loose lay` (stated). Do **not** collapse this to `SPC core`.
+- **Epic 120 HR** → `Laminate` + `Water-Resistant Core`. `Waterproof = FALSE` — 120 HR
+  water-*resistant* is not waterproof (the Purelux Betten / Evergreen distinction).
+  "With Underlayment" is in the collection name → `Underpad included = TRUE`,
+  `Underpad type` blank (material not stated), exactly as FAW's Waterproof Laminate Pro.
+
+#### LS Handle format
+
+Brand-first, alphanumeric only, colour never truncated:
+`VIZN[LVP7|LVP8|LVPLL5|LAM143|LAM123][COLOUR]` — e.g. `VIZNLVP7ACADIA`,
+`VIZNLAM143WHISTLER`. Accessories append the printed dimensions, because two vinyl
+nosings differ **only** by size and collide otherwise:
+`VIZNACC[TYPE][MATERIAL][DIMS]`.
+
+Note `Revelstoke` appears twice on the list — as `VL501` (5mm loose lay) and `LV330`
+(14.3mm laminate). Different products; the category token keeps the handles apart.
+
+#### Fields Vizion does not provide
+
+**Wear layer, AC rating, install profile and locking system (except Loose Lay), veneer,
+species, grade, finish type, colour/tone, IIC/STC, certifications, warranty, pieces per
+box, trim material.** None appear anywhere in the document — leave all blank. Spec
+coverage is thin; request a full spec sheet from the rep if Bert lookups need it.
+
+Provides: item code, colour name, plank size (W × L × T), sf/box, boxes/pallet, one
+price per collection, and accessory dimensions.
+
+#### Known soft spots
+
+- **Laminate Reducer and T-Moulding are printed twice at conflicting prices** —
+  $ 8.00/pc in the 14.3mm section (p.5) and $12.00/pc in the 12.3mm section (p.6), with
+  **identical dimensions** (`15 × 45 × 2400 mm` and `12 × 45 × 2400 mm`). Either the
+  dimension string is reused sloppily across two real parts, or one price is a typo.
+  The first run kept **both rows** so neither price is lost — merge to one SKU if Vizion
+  confirms one part. The Stair Board is printed in both sections at the same $28.00 and
+  is correctly one row.
+- **One price per collection, not per row.** The price token sits vertically centred
+  beside the colour block, so a naive row-wise parse will orphan it. Verified
+  positionally on the first run.
+- **The vinyl accessory strip repeats identically** under both the 7MM and 8MM sections
+  at the same prices — one SKU each, not two (the Canadian Standard trim rule).
+- **Colour names are place names** (Acadia, Banff, Whistler, Nile…) and carry no tone
+  information — `Colour / tone` stays blank.
+
+#### Vizion ingest output format
+
+`vizion_airtable_upload_[YYYY-MM-DD].csv`, all 57 schema columns (plus helper columns
+58–59 on a routine run), written to `ingest/YYYY-MM-DD/`. **No Lightspeed file until the
+Airtable import happens** — Vizion has no LS presence, so there are no ids or handles to
+copy from.
+
+---
+
 ### New supplier onboarding — checklist
 
 When a new supplier is added, gather this information before processing their first price list, and add a subsection above following the FAW template:
@@ -2971,6 +3129,21 @@ first has names and descriptions but no select options; the second has options b
 no names). Latest snapshot committed alongside the workbook in `analysis/output/`.
 
 ### Changelog
+
+- **2026-09-09** — **`Extraction Status` is the write key, and its options were
+  renamed.** The note here claimed `update-page` still accepted `Status`; it does not,
+  and a run using it loses its entire state update to a `400 validation_error`.
+  `Extracted [Pending Review]` → `Extracted [Needs Review]`, `Error: Needs attention` →
+  `Extracted [Error]`, `Done` → `Extracted [All Uploaded]`, plus a new
+  `Extracted [Ready to Upload]` that finally distinguishes a clean run from one carrying
+  caveats. Corrected here and in `methods/pricelist-extraction.md`,
+  `methods/pricelist-routine-prompt.md` and `.claude/commands/process-price-list.md`.
+  **General lesson: the 400's message lists every valid key and option — read it rather
+  than guessing the replacement.**
+- **2026-09-09** — Added the **Vizion** supplier subsection from the 2026/07/01 list
+  (52 rows, first ingest, not yet imported). Its `#### Cost column` is deliberately
+  **open**: the sheet prints one unlabelled price column with no terms page and no MSRP,
+  so the basis was escalated to Albert rather than inferred, per *Cost basis — ask once*.
 
 - **2026-09-03** — **Grandeur SKU format corrected.** The subsection claimed the
   internal SKU prefix was `GRND` (`GRNDENG-0001`); the base actually holds

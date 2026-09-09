@@ -23,7 +23,7 @@ Make scenario 4381438 (Price Lists)
         → airtable_upload.csv
         → ls-upload-instructions (reads THAT file) → ls_upload.csv
         → both attached to Notion "Extracted Files"
-        → Status: Extracted [Pending Review] → human imports both
+        → Extraction Status: Extracted [Needs Review] → human imports both
 ```
 
 The LS file is downstream of the reconciled Airtable file, never parallel to it — see
@@ -62,7 +62,8 @@ from cloud sessions; no network-policy change is needed.
 **Decided 2026-09-03 (Albert).** The routine does not write to Airtable, and
 Lightspeed has no API here anyway. Every run ends with **two CSV files attached to
 the Notion row's `Extracted Files`** — the Airtable upload and the LS upload — and
-`Status = Extracted [Pending Review]`. A person does both imports.
+`Extraction Status = Extracted [Needs Review]` (or `Extracted [Ready to Upload]` when
+the run carries no caveats). A person does both imports.
 
 `Extracted Files` is a Notion **`file`** property, so the files are uploaded natively
 (`create-file-upload` → POST bytes → `update-page` with a `file_upload` reference).
@@ -177,8 +178,8 @@ is tracked on the row, because it happens later and (for now) by hand.
 
 | Property | Written by | Values |
 |---|---|---|
-| `Status` | run, then whoever finishes it | `Extracted [Pending Review]` after the files land; `Done` only when everything below is resolved |
-| ~~`Extracted`~~ | — | **Removed from the data source 2026-09-03.** It duplicated `Status = Extracted [Pending Review]`. Writing it now fails the whole `update-page` call with a `validation_error`, so do not reintroduce it. |
+| `Extraction Status` | run, then whoever finishes it | `Extracted [Needs Review]` after the files land (`Extracted [Ready to Upload]` if nothing is flagged); `Extracted [All Uploaded]` only when everything below is resolved. **The write key is `Extraction Status`, not `Status`** — corrected 2026-09-09. |
+| ~~`Extracted`~~ | — | **Removed from the data source 2026-09-03.** It duplicated the extraction status. Writing it now fails the whole `update-page` call with a `validation_error`, so do not reintroduce it. |
 | `New Products` | the run | count of `MatchStatus = new` rows, `0` if none |
 | `Airtable Sync` | run, then importer | `Pending` · `Done` · `Not needed` |
 | `LS Upload` (select) | whoever uploads to Lightspeed | `Pending` = not pushed to the POS yet · `Done` = pushed · `Not needed` = no LS file for this run |
