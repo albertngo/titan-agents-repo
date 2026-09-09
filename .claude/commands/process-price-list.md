@@ -110,12 +110,13 @@ Otherwise, **in this order — it is a dependency, not a preference**:
      extraction, and it is easier to answer with the data in hand. A missing supplier
      subsection means "invent no supplier-specific rules", not "produce nothing": apply
      the global rules and record every choice you had to make as an explicit assumption,
-     the **cost basis first — and for that one, ASK rather than assume** (step 7). It
-     changes every row and precedent runs three ways: dealer-cost-only (Canadian
-     Standard), MSRP needing a multiplier (CIF ×0.60, Olympia ×0.564), or both columns
-     printed (Biyork). **Once Albert answers, write it into that supplier's subsection
-     in bert-airtable-schema under `#### Cost column`** so the question is never asked
-     again.
+     the **cost basis first**. Its default is settled (Albert, 2026-09-09): a printed
+     cost column IS the dealer cost, taken as-is with no multiplier, unless the document
+     states otherwise. Escalate it (step 7) only when the sheet gives a reason to — a
+     second candidate column, an MSRP/list column, a discount in the terms, or promo
+     pricing. **Either way write the basis into that supplier's subsection in
+     bert-airtable-schema under `#### Cost column`**, the plain default included, so the
+     question is never re-opened.
      **Skip the Lightspeed file** only while the products are new to Lightspeed too —
      if `Lightspeed ID`s have been reconciled in from an LS export, build it. See 5.4.
    - **Verify the supplier's documented SKU format against the base before generating
@@ -217,12 +218,16 @@ the import, exactly as `Done` on the three trackers does.
 digit is consumed as a positional argument when this command runs, and the token is
 replaced by the caller's text. Keep a space after every `$` in prose.)
 
-**The cost basis is always one of these on a new supplier, and on any supplier whose
-sheet shows more than one candidate cost column.** Do not infer it from the numbers —
-a range like $ 1.69–$ 6.99/sf reads equally well as dealer cost or as budget retail. Name the columns
-as printed, say which you would otherwise take as cost, and ask Albert to look at the
-file. Extraction may proceed; the import waits. Record his answer in the supplier's
-`#### Cost column` subsection so the next run inherits it.
+**The cost basis defaults to the printed column being dealer cost, as-is** (Albert,
+2026-09-09) — a new supplier is no longer reason enough to ask. Escalate it only when
+the DOCUMENT is ambiguous: more than one candidate cost column, an MSRP/list/suggested-
+retail column, a discount stated in the terms (CIF ×0.60, Olympia ×0.564 — read the terms
+page, not just the header), promo pricing beside regular, or a known supplier whose
+format has changed. Never infer it from the numbers — a range like $ 1.69–$ 6.99/sf reads
+equally well as dealer cost or as budget retail. When you do escalate: name the columns as
+printed, say which you would otherwise take as cost, and ask Albert to look at the file.
+Extraction may proceed; the import waits. Record the basis in the supplier's
+`#### Cost column` subsection either way, so the next run inherits it.
 
 Create a row in the **✅ Tactical Tasks List**
 (`collection://238596a4-505f-8137-af13-000bde205213`) assigned to Albert

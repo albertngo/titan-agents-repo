@@ -982,36 +982,53 @@ The general flow for any supplier ingest:
 
 ---
 
-### ⚠️ Cost basis — ask once, then write it down forever
+### ⚠️ Cost basis — a printed cost is the dealer cost unless the document says otherwise
 
-**Rule (Albert, 2026-09-03).** The cost basis is the one assumption that moves every row
-in a file at once, and no amount of staring at a PDF settles it. So it is **asked, not
-inferred** — and the answer is **recorded in that supplier's subsection**, so it is asked
-exactly once per supplier and never again.
+**Rule (Albert, 2026-09-09).** **A printed cost column is Titan's dealer cost.** That is
+the normal case, it is the default, and it does not need a question — most of all when the
+price is **standalone** (one price column, one number per product) and the document **is
+not a promo sheet**.
 
-**Stop and ask Albert before continuing when either is true:**
+So for a new supplier the default is: printed price → `Cost/unit`, verbatim, no
+multiplier; `Retail = Cost + $ 1.00`. Extract on that basis and carry on.
 
-1. **The supplier is new** — always ask. There is no subsection to inherit from.
-2. **The sheet has more than one candidate cost column**, or a number whose role is not
-   stated, on *any* supplier — a second price beside the first, an "MSRP"/"list"/"retail"
-   column, a promo price beside a regular one, or a per-piece figure next to a per-sq-ft
-   one. Ambiguity on an existing supplier means the *format changed*; the stored note may
-   no longer describe the file in front of you.
+> **This supersedes the always-ask rule of 2026-09-03**, which required stopping on every
+> new supplier. That over-fired: Canadian Standard, Tosca and Vizion each print one
+> unlabelled price column on a regular list, and each turned out to be plain dealer cost.
+> The question is worth asking when the *document* is ambiguous, not merely when the
+> supplier is unfamiliar.
 
-Ask him to look at the file and confirm **before** the supplier and its costs go any
-further. Put it to him concretely — name the columns as printed and say which one you
-would otherwise take as cost. This is a **blocking** question: the extraction may proceed
-so he has data to look at, but the import does not.
+**"Unless otherwise stated" has to be stated IN THE DOCUMENT** — a terms page, a footer, a
+covering note, a second column. **Never infer it from the size of the numbers.** A range
+like $ 1.69–$ 6.99/sf reads equally well as dealer cost or as budget retail, which is
+exactly why the numbers are not evidence either way.
 
-**Then write the answer into the supplier's subsection under a `#### Cost column`
-heading.** That is what makes it a one-time cost. A future run reads the subsection,
-finds the basis already settled, and proceeds without asking again. An answer left only
-in a chat log or in `Salesperson notes` is an answer that gets re-litigated every quarter.
+**Stop and ask Albert only when the document shows one of these:**
 
-Record all four of: which printed column is `Cost/unit`, any multiplier applied, whether
-the supplier publishes an MSRP / suggested-price column at all, and how they mark promo
-pricing. "No MSRP column" is a real finding worth stating, not an omission — it is what
-stops the next run hunting for one.
+1. **More than one candidate cost column** — a second price beside the first, an
+   `MSRP` / `list` / `suggested retail` column, a per-piece figure beside a per-sq-ft one.
+   Two numbers mean a choice, and the choice is his. (Biyork: `Your Price` + `MSRP/SF`.)
+2. **The terms grant a discount off the printed price.** Read the terms page, not just the
+   column header — CIF heads its column "Cost Per Sq Ft" and grants 40% on page 3;
+   Olympia prints Zone AT list against a compound 40%+6%. Taking either header at its word
+   overstates every row.
+3. **The document is a promo/sale sheet, or prints promo beside regular** — then *which*
+   column is the regular cost is the open question.
+4. **An existing supplier's format changed** — the stored `#### Cost column` note no
+   longer describes the file in front of you.
+
+Absent all four, do not ask: a single unlabelled price column on a regular list is a
+dealer cost. When you do ask, it is **blocking** — name the columns as printed, say which
+one you would otherwise take as cost, and let the extraction proceed so he has data to
+look at, but not the import.
+
+**Either way, write the basis into the supplier's subsection under a `#### Cost column`
+heading** — including when it was the plain default, because "single standalone column,
+taken as-is, no MSRP published" is exactly what stops the next run re-opening it. Record
+all four of: which printed column is `Cost/unit`, any multiplier, whether the supplier
+publishes an MSRP / suggested-price column at all, and how they mark promo pricing.
+"No MSRP column" is a real finding, not an omission — it is what stops the next run
+hunting for one.
 
 #### Which printed number feeds which field
 
@@ -3006,29 +3023,27 @@ Accessories carry no codes → sequential `ACC-VIZN-0001`, `Supplier SKU` blank.
 
 #### Cost column
 
-**⚠️ OPEN — ASKED, NOT YET ANSWERED (2026-09-09).** Do not treat the values below as
-settled; they are what the first run assumed so it could produce a file.
+**Settled 2026-09-09 by the global default** — see *Cost basis — a printed cost is the
+dealer cost unless the document says otherwise*. The first run escalated this under the
+older always-ask rule; Albert's answer that day generalised it, and Vizion is squarely the
+default case.
 
 The list prints **exactly one price column, headed only `> PRICE`**, one price per
-collection rather than per row. There is **no terms page, no stated discount off list,
-and no MSRP or suggested-retail column anywhere in the document** — the only commercial
-terms printed are a returns window and a past-due service charge, neither of which
-implies a multiplier.
+collection rather than per row. There is **no terms page, no stated discount off list, and
+no MSRP or suggested-retail column anywhere in the document** — the only commercial terms
+printed are a returns window and a past-due service charge, neither of which implies a
+multiplier. It is a regular list, not a promo sheet. Standalone column + nothing stated
+otherwise = dealer cost.
 
-That is genuinely ambiguous for a new supplier, and precedent runs three ways (Canadian
-Standard prints dealer cost as-is; CIF and Olympia print a list price with the discount
-in the terms; Biyork prints both columns), so it was escalated to Albert per
-*Cost basis — ask once, then write it down forever* rather than inferred.
+| Field | Value |
+|---|---|
+| `Cost/unit` | the printed price **as-is, no multiplier** |
+| `Retail price/unit` | `Cost + $ 1.00` (schema default) |
+| `MAP price ($/sf)` | blank — Vizion publishes no MSRP. The absence is a real finding, not an omission |
+| `Pallet price ($/sf)` | blank — the sheet gives a boxes-per-pallet **count**, not a per-sf pallet rate |
 
-| | Assumed by the first run | Status |
-|---|---|---|
-| `Cost/unit` | the printed price **as-is, no multiplier** | **unconfirmed** |
-| `Retail price/unit` | `Cost + $ 1.00` (schema default) | follows from the above |
-| `MAP price ($/sf)` | blank — no MSRP column is published | confident; the absence is a real finding |
-| `Pallet price ($/sf)` | blank — the sheet gives a boxes-per-pallet **count**, not a per-sf pallet rate | confident |
-
-**When Albert answers, replace this block with the settled basis** so the next run
-inherits it and stops asking.
+**No rows change**: this is what the first run already assumed, so the file it produced
+stands as extracted. Only the status moved, from unconfirmed to settled.
 
 #### Markup overrides (accessories)
 
@@ -3323,12 +3338,12 @@ When a new supplier is added, gather this information before processing their fi
 1. **Supplier name** (exact string for Airtable single-select)
 2. **Brand(s)** — is the supplier also the brand, or do they distribute multiple brands?
 3. **4-char SKU suffix** (e.g. FAWK, VIDR, GRAN)
-4. **Cost basis — ASK ALBERT, do not infer.** Which printed column is `Cost/unit`,
-   any multiplier, and whether the supplier publishes an MSRP at all. This is the one
-   answer that moves every row in the file, and a PDF rarely states it. See
-   *Cost basis — ask once, then write it down forever* at the top of this section, and
-   **write the answer into the new subsection under `#### Cost column`** so it is never
-   asked twice.
+4. **Cost basis.** Default: the printed price IS the dealer cost, taken as-is with no
+   multiplier. Ask Albert only if the document gives a reason to doubt it — a second
+   candidate column, an MSRP/list column, a discount stated in the terms, or promo
+   pricing. See *Cost basis — a printed cost is the dealer cost unless the document says
+   otherwise* at the top of this section. **Either way, write the basis into the new
+   subsection under `#### Cost column`**, default included, so it is never re-opened.
 5. **Does the supplier assign product codes?** If yes, populate Supplier SKU. If no, leave blank.
 6. **Categories in scope** (ENG, LVP, LVT, HWD, LAM, TIL, CAR, ACC)
 7. **Markup overrides** — any category where `Retail = Cost + $ 1` doesn't apply (e.g. stair products, accessories, clearance)
@@ -3363,6 +3378,20 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
 
 ### Changelog
 
+- **2026-09-09** — **Cost basis: the default flipped from ask-always to assume-dealer-cost**
+  (Albert). A printed cost column IS Titan's dealer cost unless the document states
+  otherwise — most clearly when the price is standalone and the sheet is not a promo. The
+  always-ask rule of 2026-09-03 over-fired: Canadian Standard, Tosca and Vizion each print
+  one unlabelled price column on a regular list and each turned out to be plain dealer
+  cost, so three runs blocked on a question the document had already answered. The ask now
+  triggers on document ambiguity — a second candidate column, an MSRP/list column, a
+  discount in the terms, promo beside regular, or a format change on a known supplier —
+  and never on unfamiliarity alone. CIF and Olympia are untouched: their multiplier is
+  *stated in the terms*, which is exactly the "otherwise" the rule turns on. Mirrored into
+  `.claude/commands/process-price-list.md`. **Vizion's open cost column is closed by this**
+  — it was escalated under the old rule and is squarely the default case; no rows change,
+  only its status.
+
 - **2026-09-09** — Added the **Tosca Floors** subsection from the 2026-07-01 list (225
   rows, first ingest). Its `#### Cost column` is **settled**: Albert confirmed the printed
   `Price(per sq.ft)` is Titan's dealer cost, taken as-is with no multiplier, and Tosca
@@ -3390,7 +3419,8 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
 - **2026-09-09** — Added the **Vizion** supplier subsection from the 2026/07/01 list
   (52 rows, first ingest, not yet imported). Its `#### Cost column` is deliberately
   **open**: the sheet prints one unlabelled price column with no terms page and no MSRP,
-  so the basis was escalated to Albert rather than inferred, per *Cost basis — ask once*.
+  so the basis was escalated to Albert under the always-ask rule then in force; the
+  2026-09-09 default (printed = dealer cost) is what settled it.
   Found independently on the Vizion run, alongside the status-name defect above.
 
 - **2026-09-03** — **Grandeur SKU format corrected.** The subsection claimed the
