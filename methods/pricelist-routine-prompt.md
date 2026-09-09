@@ -334,7 +334,7 @@ run is reproducible after the Notion attachment is superseded.
 - **2026-09-03** — **The routine no longer writes to Airtable** (Albert). Steps 5 and
   7 rewritten: it exports both the Airtable upload and the Lightspeed upload and
   attaches them to the Notion row's `Extracted Files` (a `file` property — native
-  upload, not a pasted link), leaving `Status` at `Extracted [Needs Review]` for a
+  upload, not a pasted link), leaving the row at `Extracted [Needs Review]` for a
   human to import. Two CSVs per row, always. The catalogue read stays, because it
   decides whether the Airtable file is an update sheet carrying existing SKUs or a
   fresh import sheet — the SKU-duplication trap is unchanged by not writing.
