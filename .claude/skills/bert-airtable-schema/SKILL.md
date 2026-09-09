@@ -3124,6 +3124,157 @@ copy from.
 
 ---
 
+### Lee Flooring (Lee Flooring Canada)
+
+Lee Flooring Canada (145 Gibson Dr, Markham ON L3R 3K7 — 289-378-8888 —
+info@leeflooring.ca) is both the supplier and the brand. The price list arrives as a
+**multi-tab `.xlsx`, not a PDF** — four tabs (`LANINATE `, `VINYL`, `ENG WOOD`,
+`SOILD & 3mm`; the typos are Lee's and the laminate tab name has a trailing space).
+First ingested 2026-09-09 from the 2026-06-12 list: 84 rows (79 flooring, 5 accessories).
+
+#### Cost column
+
+**Settled by Albert 2026-09-09. Do not ask again.**
+
+Lee prints **exactly one price column, headed `PRICE/SQ.FT`** (column G on every tab;
+there is nothing beyond column G). **That printed price IS Titan's dealer cost — take it
+as-is, no multiplier** — and `Retail = Cost + $ 1.00`, the schema default.
+
+| | |
+|---|---|
+| `Cost/unit` | the printed `PRICE/SQ.FT`, verbatim |
+| `Retail price/unit` | `Cost + $ 1.00` (flooring); accessories per the cross-supplier markups below |
+| `MAP price ($/sf)` | **blank — Lee publishes no MSRP or suggested-retail column at all** |
+| `Pallet price ($/sf)` | blank — Lee gives a boxes-per-skid *count*, not a per-sf pallet rate |
+
+There is **no terms page and no discount off list** anywhere in the workbook; the only
+commercial terms printed are a 30-day return window, a 25% restocking fee, and "All
+Promoted Orders are Final Sales and COD." So Lee is the Canadian Standard shape (dealer
+cost printed directly), **not** the CIF/Olympia shape (list price with the discount in
+the terms). If a future Lee list ever prints a second price column, that is a format
+change — stop and re-confirm rather than assuming which is cost.
+
+The price cell carries its own label: `SALE: $ 1.39`, `PRICE: $ 2.99`, or a bare `1.19`.
+**`PRICE:` is just a label on the regular cost — it is not a promo marker.** Only `SALE:`
+means promo.
+
+#### Identity
+
+| Field | Value |
+|---|---|
+| **Supplier** (single-select) | `Lee Flooring` — **proposed on the first run, not yet confirmed**; the option does not exist in Airtable yet |
+| **Brand** | `Lee Flooring` (supplier is the brand) |
+| **SKU supplier code** | `LEEF` — **proposed, not yet confirmed** |
+| **Notion `Company`** | `LEE` (ALL CAPS, per the per-system casing rule — do not "fix" either side) |
+
+**Lee assigns product codes on laminate only.** `T01`–`T10` (72-hour), `R01`–`R09`+`R11`
+(24-hour) and `98001`–`98013` (SOHO) are unique across the whole list; vinyl, engineered,
+solid and accessories carry no codes at all. The first run therefore used the code
+verbatim as the SKU suffix on laminate (`LAM-LEEF-T01`) and sequential numbering
+elsewhere (`LVP-LEEF-0001`, `ENG-LEEF-0001`, `HWD-LEEF-0001`, `ACC-LEEF-0001`), with
+`Supplier SKU` populated on laminate and blank everywhere else. **That split is proposed,
+not confirmed — settle it before the first import, because RULE 0 makes it permanent.**
+
+#### Lee is already in Lightspeed
+
+**36 Lee products were live in Lightspeed before Lee existed in Airtable** — the RULE 0a
+third state. A Lee ingest is therefore `MatchStatus: new` on every row (it creates
+Airtable records) while a large share also carry a `Lightspeed ID` and must **update**
+rather than create on the POS. Always run `ls-id-backfill` against an LS export before
+building any Lee LS file.
+
+**Lee's LS skus are its own product codes**, so the laminate rows join exactly on
+`Supplier SKU` ↔ LS `sku` (`98001`, `T01`…). That is a stronger bridge than colour
+matching and should be tried first for Lee. The legacy LS names are inconsistent
+(`LEE ENG - Color: BRENTON`, `LEEENG - 7' 3mm Veneer - Hickory (Barnwood)`,
+`LEELAM - 7 Series - ()`), and the LS catalogue predates the current list, so expect
+cost and width to disagree — the price list is authoritative.
+
+Two known duplicates to clean up in Lightspeed: `LEE.T03` duplicates `T03`, and
+`LEE.E.H.Bar.7` (Barnwood 7" / 26.2 sf) is superseded by `11237` (6.5" / 27.5 sf).
+
+#### Collections (use verbatim)
+
+Laminate: `72 Hours Water-Resistant Laminate`, `24 Hours Water-Resistant Laminate`,
+`SOHO Laminate`. Vinyl: `7mm SPC`. Engineered: `Heritage Hills` (American Oak),
+`Solvara` (European Oak), `Hybrid`, `3mm Veneer Engineered`. Solid: `Solid Handscraped`.
+
+#### Category / Material type
+
+| Section | Category | Material type |
+|---|---|---|
+| 72HR / 24HR laminate | `Laminate` | `Water-Resistant Core` |
+| SOHO laminate | `Laminate` | `HDF core` (no water-resistance claimed) |
+| 7mm SPC | `LVP` | `SPC core` |
+| Heritage Hills / Solvara / Hybrid / 3mm Veneer | `Engineered hardwood` | `Hardwood plywood` |
+| Solid Handscraped | `Solid hardwood` | *(blank)* |
+
+`Waterproof = TRUE` on the SPC only — the laminates are water-**resistant**, not
+waterproof. `Pet friendly = TRUE` on the SPC (22 mil ≥ 20). `Radiant heat compatible`
+blank throughout; Lee states nothing.
+
+#### Grade
+
+`SELECT & BETTER` (Heritage Hills) → `Select & Better`; `SELECT GRADE` (Solvara) →
+`Select`. Nothing else states a grade — Hybrid, vinyl and laminate stay blank.
+**`HANDSCRAPED` on the solid tab is a finish, not a grade** — `Grade` blank,
+`Finish type = Hand scraped`.
+
+#### Parsing quirks — the workbook is merge-driven
+
+**Read the merged-cell ranges; do not forward-fill by eye.** Lee states dimensions,
+sf/box, packaging and price **once per group** and merges the cell down the rows it
+covers, and the group boundaries **do not line up between columns**. On the 72HR tab
+`E8:E13` (sf/box 20.8) and `F13:F17` (40 boxes/skid) split one row apart, so `T06` is
+20.8 sf at 40/skid — correct, and invisible to a naive fill.
+
+- **Multi-spec groups under one header.** Hybrid runs 7¾"/20.97 sf, 7¾"/23.98 sf and
+  9½"/26.08 sf under a single heading, with the price merged across a different span again.
+- **Sequence gaps are real**: `R10` and `98010` are absent, and the accessory rows
+  contradict themselves about the range (`R01-R10` vs `R01-R11`). Extract what is printed.
+- **`WARM EMBER (WALNUT)`** sits inside the American Oak collection at $ 4.49 against
+  $ 2.99 — set `Species = Walnut`. Confirm whether it is American Black Walnut; if so
+  `Radiant heat compatible = FALSE` per the global rule.
+- **Length** is in the description, not the dimension string: `UP TO 6 FOOT` →
+  `RL (up to 6')`, `UP TO 4 FOOT` → `RL (up to 4')`. Laminate and vinyl are a fixed `48"`.
+- **`5 + 2 MM EVA`** on the vinyl = 5mm SPC + 2mm EVA pad, 7mm total, `Underpad
+  included = TRUE`, `Underpad type = EVA` (Lee names the material, so no assumption).
+  The tab header's `ICC 74` is a typo for `IIC 74`.
+
+#### Fields Lee does not provide
+
+Install profile, install method, locking system, AC rating, certifications, warranties,
+traffic rating, pieces per box, colour/tone, veneer cut type, and STC. Leave all blank —
+`Click`/`Float` was assumed on laminate and vinyl per the Evergreen precedent and left
+blank on all 48 hardwood rows. Request a spec sheet from the rep if Bert lookups need them.
+
+#### SALE items
+
+Lee marks promos as `SALE:` in the price cell and **prints no end dates** — apply the
+global month-end default (the list's own month), and note that a Lee list can arrive
+months stale, in which case its promos are already expired on receipt.
+
+Both laminate collections are wholly on sale with no regular price printed anywhere, so
+they fall to **Sale rule 3** (`Cost = Promo = SALE price`, a placeholder). Hybrid is the
+instructive one: it prints three regular colours at $ 2.99 and seven at `SALE: $ 2.55`
+across two widths. The four 7¾" sale colours share specs exactly with the regular 7¾"
+Chicago, so **rule 1** applies (`Cost` $ 2.99, `Promo` $ 2.55); the three 9½" colours have
+no same-spec regular price and fall to **rule 3**. Match specs, not just the collection.
+
+#### Accessories
+
+Priced per piece / per roll on the laminate tab. Standard cross-supplier markups:
+T-Moulding and Reducer `Cost + $10`, Stair Nosing `Cost + $15`, Underlayment `Cost + $20`.
+Lee gives no trim material or profile detail beyond the matching-colour list.
+
+#### Lee ingest output format
+
+`lee_airtable_upload_[YYYY-MM-DD].csv`, all 57 schema columns plus helpers, written to
+`ingest/YYYY-MM-DD/`. No Lightspeed file until the Airtable import happens and LS ids are
+reconciled in — see *Lee is already in Lightspeed* above.
+
+---
+
 ### New supplier onboarding — checklist
 
 When a new supplier is added, gather this information before processing their first price list, and add a subsection above following the FAW template:
@@ -3170,6 +3321,19 @@ first has names and descriptions but no select options; the second has options b
 no names). Latest snapshot committed alongside the workbook in `analysis/output/`.
 
 ### Changelog
+
+- **2026-09-09** — **Lee Flooring onboarded, and its cost basis settled on the first
+  run.** Albert confirmed the printed `PRICE/SQ.FT` is Titan's dealer cost as-is, no
+  multiplier, `Retail = Cost + $ 1.00`, and that Lee publishes no MSRP — recorded under
+  Lee's `#### Cost column` so it is never asked again. Two things this supplier teaches
+  that generalize: (1) a price list can arrive as a **multi-tab .xlsx** whose specs are
+  **merged-cell groups that do not align between columns**, so the merge ranges must be
+  read rather than forward-filled by eye; (2) a supplier can be **absent from Airtable
+  while already live in Lightspeed** — 36 Lee products were — which is RULE 0a's third
+  state and means `ls-id-backfill` must run before any LS file is built. Lee's LS skus
+  are its own product codes, so laminate joins exactly on `Supplier SKU` ↔ LS `sku`,
+  a stronger bridge than colour matching. Supplier option `Lee Flooring`, suffix `LEEF`
+  and the laminate-code-as-SKU-suffix split remain **proposed, not confirmed**.
 
 - **2026-09-09** — **Price Lists status option names corrected against the live data
   source.** The documented values `Extracted [Pending Review]`, `Error: Needs attention`
