@@ -1231,9 +1231,50 @@ Each section begins with a coloured header bar naming the collection, followed b
 FAW marks promo items as "Colors ON SALE: [names]" in yellow highlighting, usually within a collection that also lists regular-priced colourways. Apply the global Sale item pricing logic:
 
 - **Rule 1 applies most often** — regular colours live in the same section, so pull Cost from the regular pallet price and put the SALE pallet price in `Promo cost ($/sf)`.
-- **Promo end date** — FAW does not print end dates on SALE items. Per the global month-end default rule (Jul 2026, supersedes the earlier leave-blank convention): set `Promo end date` = last day of the price list's month, and roll it forward month-by-month if the promo is confirmed still running on the next list. Flag in Salesperson notes.
+- **Promo end date** — **on the regular price list** FAW does not print one, so the global
+  month-end default applies (Jul 2026, supersedes the earlier leave-blank convention): set
+  `Promo end date` = last day of the price list's month, and roll it forward month-by-month
+  if the promo is confirmed still running on the next list. Flag in Salesperson notes.
+  **On a standalone promo sheet FAW does print one — use the printed date, never the
+  default** (corrected 2026-09-09; see *Standalone promo sheets* below).
 
 Example from Feb 23 2026 list: Designer 7.5" regular colours (Monet, Dali) @ $ 4.99 pallet; SALE colours (Da Vinci, Picasso) @ $ 3.99 pallet → Cost=$ 4.99, Retail=$ 5.99, Promo cost=$ 3.99, Promo end date blank.
+
+#### Standalone promo sheets — a different document from the price list
+
+**Added 2026-09-09** from the "NAF August Specials & Clearance Sale" sheet. FAW also issues
+short standalone promo documents, separate from the Product Guide, headed
+`PROMOTIONS - LAMINATE / VINYL` with the month and a printed validity window. They are
+tagged `Promo`, and they are always an **update** against existing records — never an import.
+
+- **They print an end date** ("Valid until August 31, 2026"). Use it verbatim. This is the
+  exception to the month-end default above.
+- **They carry no specs at all** — only a group label, colour, MOQ, sf/box, boxes available
+  and one price. Every spec on the output row therefore comes from the live catalogue
+  record, not from the sheet. Match on **colour + sf/box**; the box size is what
+  disambiguates, and it resolves both documented FAW collisions cleanly: the **Tobermory**
+  duplicate (17.91 -> `LVP-FAWK-0015`, not the 15.0 record) and **Westminster**, which
+  exists in both 6.5mm SPC (23.90) and Aquaplus Platinum (11.94).
+- **The `PRODUCT` group label is vertically centred on its block, not repeated per row.**
+  A row-wise text parse mis-assigns it. Extract positionally and assign each label to the
+  block it centres on — on the Aug 2026 sheet that correctly put Superior and Rainbow in
+  Waterproof Laminate rather than the Handscraped Laminate block above them, which the
+  catalogue then confirmed.
+- **The sheet's own group names are not the catalogue's collection names.** Observed
+  mapping: `Waterproof Laminate +` -> `Waterproof Laminate Plus`; `WPC 10MM` -> `Aquawood`;
+  `Dryback 3MM` / `Dryback 5MM` / `LVT 5MM` -> `Aqua Commercial`; `Loose Lay 5MM` ->
+  `Aqualuuuz`; `AquaTile 5G Click 7MM` -> `Aqua Tile`; `Vinyl 6MM` -> `6.5mm SPC Vinyl`.
+  `Vinyl 7MM` is a thickness, not a collection — it spans Classic, Aquaplus Select,
+  Aquaplus Gold and Aquaplus Gold with Cork at once.
+- **A promo run produces no Lightspeed file.** Only `Promo cost ($/sf)` and `Promo end date`
+  change; retail during a promo is adjusted manually, so no LS-visible field moves.
+- **Check the printed end date against today before reporting.** The Aug 2026 sheet was
+  processed on 2026-09-09, nine days after it expired. Do not roll the date forward on your
+  own — an extension has to be confirmed — but say plainly that it has lapsed.
+- **Watch for promo = stored regular cost.** Four of the 37 rows on the Aug 2026 sheet
+  (Nordstrom, Fiji, Madagascar, Muskoka) priced exactly at the stored `Cost/unit`, i.e. no
+  discount at all — usually a sign the stored regular cost is stale rather than a fake
+  promo. Flag, do not block.
 
 #### Coming Soon items
 
@@ -3170,6 +3211,14 @@ first has names and descriptions but no select options; the second has options b
 no names). Latest snapshot committed alongside the workbook in `analysis/output/`.
 
 ### Changelog
+
+- **2026-09-09** — Corrected the FAW claim that "FAW does not print end dates on SALE
+  items": true of the regular price list, false of the **standalone promo sheets**, which
+  print an explicit validity window. Added a *Standalone promo sheets* block covering their
+  layout (vertically-centred group labels that a row-wise parse mis-assigns), the
+  sheet-label -> catalogue-collection mapping, matching on colour + sf/box (which resolves
+  the documented Tobermory and Westminster collisions), and the fact that a promo run
+  produces no Lightspeed file. From the NAF August 2026 run.
 
 - **2026-09-09** — **Price Lists status option names corrected against the live data
   source.** The documented values `Extracted [Pending Review]`, `Error: Needs attention`
