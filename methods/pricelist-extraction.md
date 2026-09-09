@@ -62,8 +62,7 @@ from cloud sessions; no network-policy change is needed.
 **Decided 2026-09-03 (Albert).** The routine does not write to Airtable, and
 Lightspeed has no API here anyway. Every run ends with **two CSV files attached to
 the Notion row's `Extracted Files`** — the Airtable upload and the LS upload — and
-`Extraction Status = Extracted [Needs Review]` (or `Extracted [Ready to Upload]` when
-the run carries no caveats). A person does both imports.
+`Extraction Status = Extracted [Needs Review]`. A person does both imports.
 
 `Extracted Files` is a Notion **`file`** property, so the files are uploaded natively
 (`create-file-upload` → POST bytes → `update-page` with a `file_upload` reference).
@@ -178,8 +177,8 @@ is tracked on the row, because it happens later and (for now) by hand.
 
 | Property | Written by | Values |
 |---|---|---|
-| `Extraction Status` | run, then whoever finishes it | `Extracted [Needs Review]` after the files land (`Extracted [Ready to Upload]` if nothing is flagged); `Extracted [All Uploaded]` only when everything below is resolved. **The write key is `Extraction Status`, not `Status`** — corrected 2026-09-09. |
-| ~~`Extracted`~~ | — | **Removed from the data source 2026-09-03.** It duplicated the extraction status. Writing it now fails the whole `update-page` call with a `validation_error`, so do not reintroduce it. |
+| `Extraction Status` | run, then whoever finishes it | `Extracted [Needs Review]` after the files land, or `Extracted [Error]` if the run could not finish. `Extracted [Ready to Upload]` / `Extracted [All Uploaded]` / `Not Needed` are the reviewer's, never a run's. **The property key is `Extraction Status`; writing `Status`, or an option name the property does not have, fails the whole `update-page` call** — corrected 2026-09-09, the names in this file used to be wrong. |
+| ~~`Extracted`~~ | — | **Removed from the data source 2026-09-03.** It duplicated `Extraction Status = Extracted [Needs Review]`. Writing it now fails the whole `update-page` call with a `validation_error`, so do not reintroduce it. |
 | `New Products` | the run | count of `MatchStatus = new` rows, `0` if none |
 | `Airtable Sync` | run, then importer | `Pending` · `Done` · `Not needed` |
 | `LS Upload` (select) | whoever uploads to Lightspeed | `Pending` = not pushed to the POS yet · `Done` = pushed · `Not needed` = no LS file for this run |
@@ -237,7 +236,7 @@ list turned out to hold no real changes).
 well** — the same reasoning applies one step downstream. A corrected file that only
 touches Airtable-side fields leaves `LS Upload` alone.
 
-Set `Status = Done` only when `Airtable Sync` is `Done`/`Not needed`, `UUID Backfill` is
+Set `Extraction Status = Extracted [All Uploaded]` only when `Airtable Sync` is `Done`/`Not needed`, `UUID Backfill` is
 `Done`/`Not needed`, and any LS upload the row needed has happened. Until then the row
 still owes something.
 

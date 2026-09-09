@@ -134,7 +134,7 @@ live data source on 2026-09-03:
 |---|---|---|
 | `LS Backfill` | **`UUID Backfill`** | select — `Pending` / `Done` / `Not needed` |
 | `POS` (checkbox) | **`LS Upload`** | select — `Pending` / `Done` / `Not needed` |
-| `Status` | **`Extraction Status`** — that is the write key too | status — see the option list below |
+| `Status` | **`Extraction Status`** — write this key, not `Status` | status — `Not started` / `Extracting` / `Extracted [Needs Review]` / `Extracted [Ready to Upload]` / `Extracted [Error]` / `Extracted [All Uploaded]` / `Not Needed` |
 | `Wordpress` | **removed** | — |
 
 Two things worth knowing:
@@ -142,11 +142,30 @@ Two things worth knowing:
 - **`LS Upload` is a select now, not a checkbox.** "Check `POS`" became
   "set `LS Upload = Done`", and `Not needed` is a real third state — a promo run that
   produces no LS file should say so rather than sit at `Pending` forever.
-- **The status property is written as `Extraction Status`, not `Status`.** Corrected
-  2026-09-09: an earlier note here claimed `update-page` still accepted the key
-  `Status`. It does not — it returns `400 validation_error` and writes nothing, losing
-  the whole state update. The error message helpfully lists every editable key, which
-  is how this was caught. **Read the error, don't guess the replacement.**
+- **The status property's key IS `Extraction Status`, and so are its option names.**
+  Corrected 2026-09-09: an earlier note here said page updates took the key `Status` and
+  listed options (`Extracted [Pending Review]`, `Error: Needs attention`, a bare `Done`)
+  that **do not exist on the live data source**. Writing an option a status property does
+  not have is rejected, and the whole `update_properties` call fails with it. The live
+  option set, read off `collection://e2dc37bc-63da-42e9-b6c0-63ff48d72e6b` and written
+  successfully the same day. Confirmed from the other direction too — writing the key
+  `Status` returns `400 validation_error`: *"Property \"Status\" not found in the data
+  source"*, followed by the full list of editable keys. That error message is the fastest
+  way to re-derive this table if it ever drifts again:
+
+  | Option | Who sets it |
+  |---|---|
+  | `Not started` | the row's default before a run |
+  | `Extracting` | in-flight only — **never the state a run ends in** |
+  | `Extracted [Needs Review]` | **the run**, when files are attached |
+  | `Extracted [Ready to Upload]` | the reviewer, once the file is cleared for import |
+  | `Extracted [Error]` | **the run**, when it could not finish |
+  | `Extracted [All Uploaded]` | whoever closes out the imports |
+  | `Not Needed` | a human, for a row that will never be extracted |
+
+  **A run only ever writes `Extracted [Needs Review]` or `Extracted [Error]`.** The three
+  downstream states belong to the person doing the import, the same way `Airtable Sync`,
+  `LS Upload` and `UUID Backfill` never receive `Done` from a run.
 
 #### `Notes` — the row's own flag line (Albert, 2026-09-03)
 
@@ -183,32 +202,22 @@ a re-run overwrites this field and a stale note is worse than none:
 **Overwrite, don't append.** It describes the current state of the row, not its history —
 the repo commits and `Salesperson notes` carry the history.
 
-#### `Extraction Status` — the option list, and the status that pairs with `Notes`
+#### `Extracted [Error]` — the status that pairs with `Notes`
 
-**Re-verified against the live data source 2026-09-09. The option names changed and the
-old ones are rejected outright** — `Extracted [Pending Review]`, `Error: Needs attention`
-and `Done` no longer exist. The live options are:
-
-| Option | Means |
-|---|---|
-| `Not started` | Untouched. |
-| `Extracting` | A run is in flight. **Never the resting state after a run ends.** |
-| `Extracted [Needs Review]` | Files attached, but the run carries caveats a human must clear before import. Pairs with a populated `Notes`. |
-| `Extracted [Ready to Upload]` | Files attached and nothing blocking. Pairs with an empty `Notes`. |
-| `Extracted [Error]` | The run could not finish. Pairs with a populated `Notes`. |
-| `Not Needed` | Reviewed and deliberately not processed. |
-| `Extracted [All Uploaded]` | Everything downstream is done — the old `Done`. |
-
-The split between `Needs Review` and `Ready to Upload` is new and is worth using
-deliberately: it makes the empty-vs-populated `Notes` distinction visible in a board view
-without opening the row. **A run that assumed a cost basis is `Needs Review`, never
-`Ready to Upload`** — the file is complete but not safe to import yet.
+**Added on Albert's instruction 2026-09-03; renamed to the live option name 2026-09-09.**
+A run that cannot finish sets **`Extraction Status = Extracted [Error]`** and puts the
+reason in **`Notes`**. The two always travel together: the status makes the row findable
+in a view, `Notes` says what happened.
 
 | Outcome | `Extraction Status` | `Notes` |
 |---|---|---|
-| Ran, files attached, nothing blocking | `Extracted [Ready to Upload]` | empty |
+| Ran, files attached, nothing blocking | `Extracted [Needs Review]` | empty |
 | Ran, files attached, caveats a reviewer must clear | `Extracted [Needs Review]` | the flag lines |
 | **Could not finish** | **`Extracted [Error]`** | **what failed, at which step, and what it needs** |
+
+Both completed-run outcomes are `Extracted [Needs Review]`; only `Notes` distinguishes
+them, and neither is ever `Extracted [Ready to Upload]` — that is the reviewer's to set
+once the file is cleared for import.
 
 `Extracted [Error]` is for a run that did not produce what it was meant to:
 the download failed, the file is not a parseable price document, `Company` or `Tags`
@@ -237,7 +246,7 @@ The 400's message lists every editable key, which is how these were found.
 **`Airtable Sync = Done` is a claim about agreement, not a completed step:** it means
 Airtable *currently* mirrors the file attached to that row. Edit the file and re-attach
 it and the row returns to `Pending` — a corrected file is a new pending change, and
-leaving it `Done` is how the base drifts from what the row claims. `Status = Done` only
+leaving it `Done` is how the base drifts from what the row claims. `Extraction Status = Extracted [All Uploaded]` only
 once both trackers read `Done` or `Not needed`.
 
 Until a row reaches `Done` its products are incomplete, and the failure is delayed and
@@ -2764,8 +2773,8 @@ In scope: **ENG** (Nouveau lines), **LVP/LVT** (Hydrogen + Traktion), **LAM** (R
 
 #### Collections (use verbatim)
 
-Engineered hardwood (Nouveau): `Nouveau 6`, `Nouveau 6 American Oak`, `Nouveau 6 Clic`, `Nouveau 7 Prelude`, `Nouveau 7`, `Nouveau 7 Bespoke (Plank)`, `Nouveau 7 Bespoke (Herringbone)`, `Nouveau 8`.
-Vinyl: `Hydrogen PRO 2mm`, `Hydrogen PRO Tile 2mm`, `Hydrogen PRO 3mm`, `Hydrogen PRO Tile 3mm`, `Hydrogen 5`, `Hydrogen 6 Plank`, `Hydrogen 6 Tile`, `Hydrogen 7`, `Hydrogen 8`, `Traktion`.
+Engineered hardwood (Nouveau): `Nouveau 5 American Oak` (new on the May 22 2026 list), `Nouveau 6`, `Nouveau 6 American Oak`, `Nouveau 6 Clic`, `Nouveau 7 Prelude`, `Nouveau 7`, `Nouveau 7 Bespoke (Plank)`, `Nouveau 7 Bespoke (Herringbone)`, `Nouveau 8`.
+Vinyl: `Hydrogen PRO 2mm`, `Hydrogen PRO Tile 2mm`, `Hydrogen PRO 3mm`, `Hydrogen PRO Tile 3mm`, `Hydrogen 5`, `Hydrogen 6 Plank`, `Hydrogen 6 Tile`, `Hydrogen 7`, `Hydrogen 7 Angle & Angle` (new on the May 22 2026 list; 9" × 60" × 7mm, Angle/Angle — a separate collection from `Hydrogen 7`), `Hydrogen 8`, `Traktion`.
 Laminate: `Riptide`.
 
 #### Category / Material type mapping
@@ -2788,14 +2797,46 @@ Laminate: `Riptide`.
 
 #### Parsing quirks / known soft spots
 
-- **Hydrogen 8 price inversion:** the plank `Your Price` ($ 6.63) **exceeds** `MSRP/SF` ($ 6.34), and Hydrogen 8 accessory `Your Price` equals MSRP exactly (no dealer discount). Ingest the values as-is (Cost = `Your Price`) per flag-don't-block, and tag both in `Salesperson notes` for review. Almost certainly a typo on Biyork's sheet — confirm with the rep.
-- **Multi-size groups under one header:** Nouveau 7 splits Hickory into Wirebrush vs Handscraped finishes (different finish, same price). Hydrogen 6 Plank has two size groups (7"×48" box 23.64 and 7"×60" box 23.25) under one collection. Create records for every sub-group with its specific box size/finish.
+- **⚠️ Recurring defect — blocks of rows where `Your Price` ≥ `MSRP/SF`.** Biyork's sheet
+  intermittently ships a block with the dealer column filled from the MSRP column, or higher.
+  **Titan's real discount runs 33-57% of MSRP on every other line**, so the test is arithmetic,
+  not judgement: compute `Your Price / MSRP` per price block and flag any block ≥ 1.0. Ingest as
+  printed (Cost = `Your Price`) per flag-don't-block, tag in `Salesperson notes`, and confirm with
+  the rep before the import.
+  - **Jul 2025 list:** Hydrogen 8 plank ($ 6.63 vs MSRP $ 6.34) and Hydrogen 8 accessories
+    (`Your Price` = MSRP exactly). **Both corrected on the May 22 2026 list** — H8 plank is now
+    $ 3.22 (ratio 0.508) and its accessories $23.27 / $37.05.
+  - **May 22 2026 list:** three fresh blocks, 30 flooring SKUs — Nouveau 6 Clic ($ 8.20 vs MSRP
+    $ 7.89, ratio 1.039, against a stored cost of $ 4.12), Hydrogen 7 ($ 6.29 vs $ 5.71,
+    ratio 1.102, stored $ 3.04) and Nouveau 7 Bespoke Plank + Herringbone ($14.65 = MSRP exactly,
+    stored $ 7.84). Each is roughly double the stored cost with the MSRP unchanged — the
+    signature of a mis-filled dealer column, not a real increase.
+- **Biyork re-codes products without renaming them.** On the May 22 2026 list Hydrogen 6 Plank
+  shortened `BYKHY6HP50xx` / `BYKRCEH50xx` → `BYKHY6Pxx`; Hydrogen 6 Tile changed Chalk `CH` → `CK`
+  and moved Combed Cotton from `BYKHY6HT50CO` → `BYKRCET50CO`; the Hydrogen 6 Tile stairnose codes
+  gained an `86` suffix. Tiers 1 and 2 both miss, so these resolve at **tier 3 (collection +
+  colour)**. Mark them `MatchStatus: ambiguous` and have a human confirm — never let them fall
+  through to `new`, which duplicates a live product in both Airtable and Lightspeed.
+- **Multi-size groups under one header:** Nouveau 7 splits Hickory into Wirebrush vs Handscraped finishes (different finish, same price). Hydrogen 6 Plank had two size groups (7"×48" box 23.64 and 7"×60" box 23.25) on the Jul 2025 list; the May 22 2026 list collapses it to one 7" × 60" group at box 23.64. Create records for every sub-group with its specific box size/finish.
 - **Tile lines inside vinyl collections:** Hydrogen PRO Tile and Hydrogen 6 Tile are vinyl tile (`LVT`), not porcelain — keep `Material type = SPC core`.
 - **Nouveau 6 Clic** is engineered hardwood with a Uniclic float system → `Install profile = Click`, `Locking system = Uniclic`, thickness 1/2" (12.7mm).
 
 #### Stock status & promo
 
 Leave `Stock status` blank for all Biyork rows; set `Active = TRUE`. The regular pricelist carries no SALE/promo pricing — never populate `Promo cost ($/sf)` / `Promo end date` from a standard Biyork ingest. If a future list adds promos, fall back to the global promo logic.
+
+#### LS name prefix — derived, NOT yet confirmed by Albert
+
+`ls-upload-instructions` carries no Biyork brand-config row, so the 2026-09-09 run derived the
+prefix from the documented convention (`[4-char supplier abbrev][3-char type abbrev]`):
+`BIYKENG` / `BIYKLVP-SPC` / `BIYKLVT-SPC` / `BIYKLAM`, with mouldings on the spelled-out
+`Biyork - Transition | …` / `Biyork - Sundry | …` accessory format.
+
+**Confirm it against a Lightspeed product export before importing any Biyork LS file.** If the
+live products carry a different prefix, the file renames every existing Biyork product on the
+POS. The `id` is populated, so it is an update rather than a duplicate — but a visible rename of
+~276 products is not something to discover after the fact. Record the confirmed prefix here and
+in the LS skill's brand-config table.
 
 #### Biyork ingest output format
 
@@ -3130,20 +3171,22 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
 
 ### Changelog
 
-- **2026-09-09** — **`Extraction Status` is the write key, and its options were
-  renamed.** The note here claimed `update-page` still accepted `Status`; it does not,
-  and a run using it loses its entire state update to a `400 validation_error`.
-  `Extracted [Pending Review]` → `Extracted [Needs Review]`, `Error: Needs attention` →
-  `Extracted [Error]`, `Done` → `Extracted [All Uploaded]`, plus a new
-  `Extracted [Ready to Upload]` that finally distinguishes a clean run from one carrying
-  caveats. Corrected here and in `methods/pricelist-extraction.md`,
-  `methods/pricelist-routine-prompt.md` and `.claude/commands/process-price-list.md`.
-  **General lesson: the 400's message lists every valid key and option — read it rather
-  than guessing the replacement.**
+- **2026-09-09** — **Price Lists status option names corrected against the live data
+  source.** The documented values `Extracted [Pending Review]`, `Error: Needs attention`
+  and a bare `Done` do not exist; the real ones are `Extracted [Needs Review]`,
+  `Extracted [Error]` and `Extracted [All Uploaded]`, and the write key is
+  `Extraction Status`, not `Status`. Because a status property rejects an unknown option
+  and takes the whole `update_properties` call down with it, every run following the old
+  names would have lost its entire state write — the same failure mode as the renamed
+  properties above. Fixed here, in `.claude/commands/process-price-list.md`, and in both
+  `methods/pricelist-*.md`. Also recorded: the three downstream states
+  (`Extracted [Ready to Upload]`, `Extracted [All Uploaded]`, `Not Needed`) belong to the
+  reviewer, never to a run. Found on the Biyork 2026-09-09 run.
 - **2026-09-09** — Added the **Vizion** supplier subsection from the 2026/07/01 list
   (52 rows, first ingest, not yet imported). Its `#### Cost column` is deliberately
   **open**: the sheet prints one unlabelled price column with no terms page and no MSRP,
   so the basis was escalated to Albert rather than inferred, per *Cost basis — ask once*.
+  Found independently on the Vizion run, alongside the status-name defect above.
 
 - **2026-09-03** — **Grandeur SKU format corrected.** The subsection claimed the
   internal SKU prefix was `GRND` (`GRNDENG-0001`); the base actually holds

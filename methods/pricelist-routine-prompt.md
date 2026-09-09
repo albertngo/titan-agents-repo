@@ -264,12 +264,15 @@ file means the run is incomplete.
 
 Then set, in this order:
 
-- `Extraction Status` = `Extracted [Needs Review]` when the run carries caveats, or
-  `Extracted [Ready to Upload]` when nothing is flagged — either way the files are a
-  proposal awaiting a human import, so the row is not `Extracted [All Uploaded]`.
-  (**The property is named AND written as `Extraction Status`** — corrected 2026-09-09;
-  the key `Status` is rejected with a `400 validation_error` that writes nothing. There
-  is no `Extracted` checkbox — it was removed, and writing it fails the whole update.)
+- `Extraction Status` = `Extracted [Needs Review]` — the files are a proposal awaiting a
+  human import, so the row is not finished. **The update key is `Extraction Status`, and
+  these are the live option names** (corrected 2026-09-09; this file previously said the
+  key was `Status` and the value `Extracted [Pending Review]`, neither of which exists).
+  A status property rejects an unknown option and fails the whole `update-page` call with
+  it, so a stale name loses every property in that write, not just this one. A run writes
+  only `Extracted [Needs Review]` or `Extracted [Error]`; `Extracted [Ready to Upload]`,
+  `Extracted [All Uploaded]` and `Not Needed` are the reviewer's. There is no `Extracted`
+  checkbox — it was removed, and writing it fails the whole update too.
 - **`Airtable Sync`** = `Pending` — always. The run produced a file Airtable does not
   yet reflect.
 - **`New Products`** = the count of rows whose `MatchStatus` is `new` (`0` if none).
@@ -295,7 +298,7 @@ The three downstream actions are ordered by dependency —
 Lightspeed ID until the POS upload creates one.
 
 `Airtable Sync = Done` means Airtable *currently mirrors the attached file* — so if
-that file is edited and re-attached, it returns to `Pending`. `Status = Done` only
+that file is edited and re-attached, it returns to `Pending`. `Extraction Status = Extracted [All Uploaded]` only
 once both trackers read `Done` or `Not needed`. Full state model:
 `methods/pricelist-extraction.md`.
 
@@ -307,8 +310,8 @@ or Notion 400s on a content-type mismatch. Look for `"status":"uploaded"`.
 
 **Order matters: attach first, then flag.** Re-fetch the row and confirm both
 attachments are present before setting `Extraction Status`. If the upload fails,
-set `Extraction Status` = `Extracted [Error]` with the reason in `Notes` — never leave
-the row at `Extracting`, and never mark a
+set `Extraction Status` = `Extracted [Error]` with the reason in `Notes` — never leave the row
+at `Extracting`, and never mark a
 row `Extracted [Needs Review]` with an empty `Extracted Files`, which reads as ready
 to review when nothing is attached. `Company` and `Tags` from steps 3–4 still stand
 either way, and the files are still committed to `ingest/YYYY-MM-DD/`.
@@ -320,6 +323,14 @@ run is reproducible after the Notion attachment is superseded.
 
 ## Changelog
 
+- **2026-09-09** — **Status option names corrected against the live data source.**
+  `Extracted [Pending Review]`, `Error: Needs attention` and a bare `Done` were never
+  real options; the live ones are `Extracted [Needs Review]`, `Extracted [Error]` and
+  `Extracted [All Uploaded]`, and the update key is `Extraction Status`, not `Status`.
+  Since an unknown status option fails the entire `update-page` call, every run following
+  the old names would have lost its whole state write. Corrected here, in
+  `.claude/commands/process-price-list.md`, in `methods/pricelist-extraction.md` and in
+  the `bert-airtable-schema` skill. Found on the Biyork 2026-09-09 run.
 - **2026-09-03** — **The routine no longer writes to Airtable** (Albert). Steps 5 and
   7 rewritten: it exports both the Airtable upload and the Lightspeed upload and
   attaches them to the Notion row's `Extracted Files` (a `file` property — native
