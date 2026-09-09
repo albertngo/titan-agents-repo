@@ -3124,6 +3124,205 @@ copy from.
 
 ---
 
+### Gracious (trading as "Amazing Flooring")
+
+Gracious is both the supplier and the brand. Contact on file is `sammygracious18@gmail.com`;
+the price lists arrive as a set of untitled "Fwd: PRICE LIST" emails, one PDF per range
+rather than one combined book. **First ingested 2026-09-09 from three PDFs emailed
+2026-06-30 — 248 rows (244 tile, 4 vinyl/laminate). Not yet imported.**
+
+**Amazing = Gracious** (Albert, 2026-09-09). The vinyl/laminate sheet's own header reads
+`AMAZING FLOORING`; the supplier of record is `Gracious`. Whether *Amazing* is a distinct
+**brand** on that range is still open — the first run set `Brand = Gracious` on every row
+and flagged it.
+
+#### Identity
+
+| Field | Value |
+|---|---|
+| **Supplier** (single-select) | `Gracious` — **does not exist in the Airtable select yet**; created on first import |
+| **Brand** | `Gracious` — **unconfirmed on the vinyl/laminate range**, whose sheet is headed `AMAZING FLOORING` |
+| **SKU supplier code** | `GRAC` — 4-char suffix. **Proposed on the first run, not yet confirmed by Albert.** |
+| **Internal SKU format** | Sequential per category: `TIL-GRAC-####`, `LVP-GRAC-####`, `LAM-GRAC-####`. Gracious publishes no product codes on the tile lists — the "names" there (`EUT-33`, `AWT-01`, `TOPGL-005`) are colour identifiers within a range, not standalone product codes. |
+| **Supplier SKU** | Leave blank. See above — do not promote a colour identifier to a product code. |
+| **Notion `Company`** | `GRACIOUS` (ALL CAPS, already an option) |
+
+#### Cost column
+
+**SETTLED (Albert, 2026-09-09): the single printed price is Titan's dealer cost. No
+multiplier, on any of the three ranges.**
+
+The vinyl/laminate sheet heads its price column **`STORE PRICE`** and Albert's ruling
+was literally *"Store Price is Dealer Cost"*. The two tile sheets print one price column
+with no usable header at all (`Column2`, or nothing), and the same basis applies.
+
+- Printed price → `Cost/unit` **as-is**.
+- **No MSRP, no suggested-retail, no list price and no terms page anywhere in the three
+  documents.** `MAP price ($/sf)` stays blank. That absence is a finding, not an
+  omission — do not go hunting for a second column on the next list. If one ever
+  appears, that is a format change: stop and re-confirm.
+- `Pallet price ($/sf)` blank — no pallet rate is printed.
+
+#### Markup — the tile tier is OPEN
+
+Flooring takes the schema default `Retail = Cost + $ 1.00`, applied on the vinyl and
+laminate rows.
+
+**The tile rows also carry `Cost + $ 1.00`, and that is the unconfirmed part.** Both
+other tile suppliers in the base run a supplier-specific tier (CIF `+$ 2.00` field tile /
+`+$ 5.00` mosaic; Olympia the same), and both subsections say explicitly that those
+overrides do **not** generalize. So the default was applied rather than a borrowed tier —
+but on a $ 1.29/sf tile a flat +$ 1.00 is a very different business than +$ 2.00, and
+Albert has not ruled. **Escalated 2026-09-09; replace this block with the settled tier
+when he answers.**
+
+No accessories, trims or consumables appear on any of the three sheets, so the
+cross-supplier accessory markups do not come into play yet.
+
+#### Scope of ingest
+
+Everything the three sheets contain: **TIL** (porcelain/ceramic field tile) and **LVP** +
+**LAM**. There are no mosaics, no stone, no trims and no adhesives on the current lists.
+
+#### Collections
+
+The tile sheets have almost no series naming — the section headers are mostly a size and
+a finish. Collections were therefore kept minimal so that **size variants of one colour
+group under a single LS handle** (the CIF convention):
+
+| Sheet | Printed section header | Collection |
+|---|---|---|
+| Tiles (named colours) | `TILES - 12*24` / `TILES - (24*24 POLISHED)` / `TILES - (24*48 POLISHED)` | `Tiles` |
+| " | `TILES 24*24 - ITALIAN SERIES(GLOSSY)` / `TILES 24*48 - ITALIAN SERIES(GLOSSY)` | `Italian Series` |
+| " | `TILES 24*48 - DESIGNER SERIES` | `Designer Series` |
+| Tiles (coded colours) | `TILES 24*24 -` / `TILES - (24*48 POLISHED CHINA)` / `MATTE FINISH 248*48` | `Tiles` |
+| Vinyl / laminate | `CS/DE SERIES 6.8MM`, `GS SERIES 7.8MM`, `NP SERIES 8.6MM` | `KS/DE Series`, `GS Series`, `NP Series` |
+| " | `WATERPROOF LAMINIATE 8mm+3.5mm` | `Waterproof Laminate 72HR` |
+
+**The size stays out of the collection name deliberately** — it lives in the `Size`
+segment of `Product name` and in `Width (in)` / `Length`, which is what lets one colour
+carry several sizes as LS variants.
+
+#### Product name
+
+Tile follows the CIF four-segment em-dash contract verbatim — **including the redundant
+colour segment**, since breaking it silently produces blank LS variant sizes:
+
+```
+[Collection] — [Colour] — [Size] ([Finish])
+```
+
+e.g. `Tiles — Amaretto Grey Matt — 12 x 24 (Matte)`, `Italian Series — VSK-02 Matt — 24 x 48 (Matte)`.
+The finish parenthetical is dropped only where neither the row nor its section states one.
+
+Vinyl and laminate have **no colours at all** on the sheet, so each series is one record:
+`Gracious 6.8mm KS/DE Series SPC Vinyl`, `Gracious 11.5mm Waterproof Laminate 9.37" (72HR)`.
+
+#### LS Handle format
+
+`GRAC` + alnum(Collection) + alnum(Colour) + alnum(Finish), uppercase, **colour never
+truncated** (the CIF/Olympia rule — truncation collides `TOPGL-003` with `TOPGL-004`).
+e.g. `GRACTILESAMARETTOGREYMATTMATTE`, `GRACITALIANSERIESVSK02MATTMATTE`, `GRACLVPKSDESERIES`.
+
+Finish is part of the handle, so the same colour code at a stated finish and at an unknown
+one lands in two groups — see the truncated-header quirk below.
+
+#### Category / Material type
+
+- **Tile** → `Tile / Stone`. **`Material type` is left BLANK on all 244 tile rows** — the
+  lists never say porcelain or ceramic, and neither does any header. Do not infer it from
+  the format; large-format polished is *probably* porcelain and probably is not good
+  enough. `Tile format` also blank (defaults to floor); no mosaics on these lists.
+- **KS/DE, GS, NP series** → `LVP` + `SPC core`. The sheet does not name the core;
+  `SPC core` is the global default for unlabelled rigid vinyl. `Waterproof = TRUE`.
+- **Waterproof Laminate 72HR** → `Laminate` + `Water-Resistant Core`, `Waterproof = TRUE`
+  per the Triforest precedent for hour-rated waterproof laminate (72HR/120HR). Note this
+  differs from Purelux Betten and Vizion Epic, which are printed as *water-resistant* and
+  are FALSE.
+
+#### Vinyl thickness is core + pad + wear layer
+
+The series headline thickness reconciles only when the wear layer is included, which is
+worth knowing before anyone "corrects" it:
+
+| Series | Printed composition | Headline | Check |
+|---|---|---|---|
+| KS/DE | `5+1.5mm` core+pad, `0.3` / 12 mil wear | 6.8mm | 5 + 1.5 + 0.3 = 6.8 ✓ |
+| GS | `5.5+2mm`, `0.3` / 12 mil | 7.8mm | 5.5 + 2 + 0.3 = 7.8 ✓ |
+| NP | `6+2mm`, `0.5` / 20 mil | 8.6mm | 6 + 2 + 0.5 = 8.5 — 0.1mm unaccounted for |
+
+Store the headline value. Attached pad is present on all three (`Underpad included = TRUE`)
+but **never named — `IXPE` assumed** per the global SPC default; flag it. The laminate's
+3.5mm pad is left with a blank `Underpad type`.
+
+`Pet friendly` follows the global ≥ 20 mil rule: FALSE on KS/DE and GS (12 mil), TRUE on NP.
+
+#### Fields Gracious does not provide
+
+**Tile:** material type, thickness, box size, pieces per box, sf/piece, country of origin,
+certifications, warranty, IIC/STC, traffic rating, slip rating, suitability of any kind.
+The tile sheets are literally two columns — a name and a price.
+
+**Vinyl / laminate:** colour names, colour codes, plank width and length (except the
+laminate's `1515*238`), locking system, install profile, certifications, warranty,
+IIC/STC, radiant heat.
+
+Provides: colour identifier, price, and — on the vinyl/laminate sheet only — sf/box,
+thickness composition, wear layer, and the EIR/embossed finish.
+
+#### Parsing quirks / known soft spots
+
+- **Blank name cells beside a real price.** Four rows across the two tile sheets have an
+  empty name cell with a price ($ 1.69 ×2 and $ 2.19 on the named sheet, $ 1.89 on the
+  coded sheet). They are genuinely empty in the source, not an extraction dropout —
+  verified against `extract_tables()`. Dropped and flagged; ask the rep what belongs there.
+- **A price on the `NAME` header row.** On the Designer Series page the column header
+  carries `$ 2.19`. It is a header, not a product — drop it.
+- **`TILES 24*24 -` is truncated in the source**, ending at the dash with no series name
+  and no finish. Those rows therefore carry a blank `Finish type`, which puts the same
+  colour code in a different LS handle group from its 24*48 twin (`EUT-33/34/35/47`,
+  `AWT-01/02/03`). Blank is the honest value — the section demonstrably mixes finishes
+  (`GL-005` glossy sits beside `GL-008 MATT`) — but confirm the finish before an LS upload.
+- **`MATTE FINISH 248*48`** — read as a typo for `24*48`; the $ 1.89 prices match the
+  24*48 group exactly.
+- **Sizes stated per row override the section size.** `EUT-02 12*24` inside the 24*24
+  section, `TOPGL-003 32*32`, `AWT 24*24-01`. Strip the size out of the colour token —
+  `AWT 24*24-01` becomes colour `AWT-01` at size `24 x 24`, not `AWT -01`.
+- **`(SUGAR FINISH)`** is a finish, not part of the colour — moves to `Finish type = Sugar`.
+- **Duplicate rows.** `UNICORN 5 GL` is printed twice at $ 1.39 in the same 24*24 section.
+  Deduped to one record.
+- **Suspected source typos, kept verbatim** (escalate, never silently edit): `IM6482D`
+  where every sibling is `JX`/`JM`/`JBM`-prefixed; `JM10482D-36` in a `-36` group that
+  otherwise mirrors the 24*24 codes; `CS/DE SERIES` in a header whose product row says
+  `KS/DE SERIES`; `WATERPROOF LAMINIATE`; `pianted` for painted; `syco` for sync.
+- **Colour casing.** The sheets are ALL CAPS. Title-case only words of 4+ letters —
+  short all-caps tokens are abbreviations (`SS 3633`, `XL Grey`, `Thasos White POL`,
+  `Atlanta WT`, `Unicorn 5 GL`) and anything containing a digit is a code, both left
+  exactly as printed.
+- **No effective date anywhere on any of the three PDFs.** Use the email date
+  (2026-06-30 on the first set) as `Last price update`, and record it in
+  `Price list reference` when logging to Price History Log v2.
+
+#### Stock status & promo
+
+Leave `Stock status` blank; `Active = TRUE`. None of the three sheets carries SALE,
+promo, clearance or expiry language, and there is no second price column — all three rows
+are `Regular List`. Never populate `Promo cost ($/sf)` / `Promo end date` from these
+lists; if a future one adds promos, fall back to the global promo logic.
+
+#### Gracious ingest output format
+
+One file per emailed PDF, since each arrives on its own Notion row — all 57 schema columns
+plus helper columns 58–59, written to `ingest/YYYY-MM-DD/`:
+`gracious_tiles_named_airtable_upload_[YYYY-MM-DD].csv`,
+`gracious_tiles_coded_airtable_upload_[YYYY-MM-DD].csv`,
+`gracious_vinyl_laminate_airtable_upload_[YYYY-MM-DD].csv`.
+
+**No Lightspeed file until the Airtable import happens** — Gracious has no LS presence, so
+there are no ids or handles to copy from.
+
+---
+
 ### New supplier onboarding — checklist
 
 When a new supplier is added, gather this information before processing their first price list, and add a subsection above following the FAW template:
@@ -3171,6 +3370,21 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
 
 ### Changelog
 
+- **2026-09-09** — Added the **Gracious** supplier subsection from three PDFs emailed
+  2026-06-30 (248 rows: 156 + 88 tile, 4 vinyl/laminate; first ingest, not yet imported).
+  Its `#### Cost column` is **settled on arrival** — Albert supplied the basis with the
+  request (*"Store Price is Dealer Cost"*, and *Amazing = Gracious as the supplier*), so
+  the one question that normally blocks a new supplier never had to be asked. What is
+  **open** instead is the **tile markup tier**: `Retail = Cost + $ 1.00` (the global
+  default) was applied, deliberately *not* the CIF/Olympia `+$ 2.00` field-tile tier,
+  because both of those subsections state their overrides do not generalize — but a flat
+  `+$ 1.00` on a $ 1.29/sf tile is a materially different business and Albert has not
+  ruled. Also open: whether *Amazing* is a distinct `Brand` on the vinyl/laminate range.
+  Recorded from the run: the tile sheets are two columns wide (name + price) and state no
+  material, so `Material type` is blank on all 244 tile rows rather than inferred; four
+  rows have a genuinely empty name cell beside a real price and were dropped; and the
+  vinyl series' headline thickness only reconciles once the wear layer is added to the
+  core+pad figure.
 - **2026-09-09** — **Price Lists status option names corrected against the live data
   source.** The documented values `Extracted [Pending Review]`, `Error: Needs attention`
   and a bare `Done` do not exist; the real ones are `Extracted [Needs Review]`,
