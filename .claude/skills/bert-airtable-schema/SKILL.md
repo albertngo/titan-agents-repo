@@ -611,6 +611,24 @@ Standard row values: `Change date` = date recorded; `Supplier` = the supplier; `
 Airtable and the Lightspeed upload, so there is nothing to convert before importing and
 no question about which file is which.
 
+> **Reaffirmed and widened 2026-09-09 (Albert): "make sure Notion files are csv always."**
+> The rule is about **every file attached to a Notion row's `Extracted Files`**, not only
+> the two upload files. `.xlsx` never goes on a row — not as a second copy, not as a
+> "review copy," not alongside the CSV.
+>
+> **This is the loophole that produced the violation, so it is worth naming.** The rule
+> above says "every *export*"; the 2026-09-09 Gracious backfill attached a `.xlsx`
+> *review* copy beside each CSV, reasoning that a review artifact was not an export and
+> that the yellow highlighting justified it. It was still a file on the row, and it still
+> made "which file is which" a question. **A second format is not a second opinion.**
+>
+> **The `ls-id-backfill` skill tells you to produce a highlighted `.xlsx`. On a Notion
+> row, this rule wins.** Write the backfill output as CSV like everything else. Nothing
+> is lost that matters: `Match status` and `Match notes` are real columns and survive the
+> CSV; only the row highlighting does not, and a reviewer filters or sorts on
+> `Match status` instead. If someone explicitly asks for a highlighted workbook, hand it
+> to them directly — never by attaching it to the row.
+
 Four settings, each of which fails silently if you get it wrong:
 
 | Setting | Value | Why |

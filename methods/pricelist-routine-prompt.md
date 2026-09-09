@@ -262,6 +262,11 @@ link.
 `Extracted Files`** — the Airtable upload and the Lightspeed upload from step 5. One
 file means the run is incomplete.
 
+**CSV, always** (Albert, 2026-09-09). Never attach an `.xlsx` to a row, in any role —
+not a second copy, not a highlighted review copy alongside the CSV. This binds a later
+`ls-id-backfill` re-attach too, whose own skill asks for a workbook: on a Notion row
+this rule wins. Give a workbook to the person directly if they want one.
+
 Then set, in this order:
 
 - `Extraction Status` = `Extracted [Needs Review]` — the files are a proposal awaiting a

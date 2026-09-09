@@ -69,6 +69,11 @@ the Notion row's `Extracted Files`** — the Airtable upload and the LS upload �
 An earlier draft of step 7 said to paste a OneDrive share link into it; that does not
 match the schema.
 
+**Reaffirmed 2026-09-09 (Albert): every file on a Notion row is a `.csv`, always.** No
+`.xlsx` on a row — including the highlighted workbook `ls-id-backfill` asks for. Its
+`Match status` / `Match notes` are ordinary columns and survive the CSV; only the row
+shading does not, and that is not worth a second file format on the row.
+
 ### The upload recipe (two traps, both resolved 2026-09-03)
 
 Verified working end-to-end from a cloud session. Both hurdles below were hit on the
