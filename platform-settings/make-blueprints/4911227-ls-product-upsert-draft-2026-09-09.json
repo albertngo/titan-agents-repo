@@ -1,0 +1,72 @@
+{
+  "name": "Lightspeed Product Upsert (from LS upload CSV)",
+  "metadata": { "version": 1 },
+  "flow": [
+    {
+      "id": 1,
+      "module": "gateway:CustomWebHook",
+      "version": 1,
+      "parameters": {},
+      "mapper": {},
+      "metadata": {
+        "designer": { "x": 0, "y": 0, "name": "1. Trigger - POST {file_url, notion_page_id}" }
+      }
+    },
+    {
+      "id": 2,
+      "module": "http:ActionGetFile",
+      "version": 3,
+      "parameters": {},
+      "mapper": { "url": "{{1.file_url}}", "method": "GET" },
+      "metadata": {
+        "designer": { "x": 300, "y": 0, "name": "2. Download the LS upload CSV" }
+      }
+    },
+    {
+      "id": 3,
+      "module": "csv:ParseCSV",
+      "version": 1,
+      "parameters": { "delimiter": "," },
+      "mapper": { "csv": "{{2.data}}" },
+      "metadata": {
+        "designer": { "x": 600, "y": 0, "name": "3. Parse CSV - one bundle per product row" }
+      }
+    },
+    {
+      "id": 4,
+      "module": "vend:MakeAPICall",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "url": "/api/2.0/products",
+        "method": "POST",
+        "headers": [],
+        "qs": [],
+        "body": "{\n  \"id\": \"{{3.id}}\",\n  \"name\": \"{{3.name}}\",\n  \"handle\": \"{{3.handle}}\",\n  \"sku\": \"{{3.sku}}\",\n  \"description\": \"{{3.description}}\",\n  \"supply_price\": {{3.supply_price}},\n  \"retail_price\": {{3.retail_price}},\n  \"brand_name\": \"{{3.brand_name}}\",\n  \"supplier_name\": \"{{3.supplier_name}}\",\n  \"active\": true,\n  \"has_inventory\": true\n}"
+      },
+      "metadata": {
+        "designer": { "x": 900, "y": 0, "name": "4. Lightspeed upsert (blank id = create, id = update)" }
+      }
+    },
+    {
+      "id": 5,
+      "module": "builtin:BasicAggregator",
+      "version": 1,
+      "parameters": { "feeder": 4 },
+      "mapper": {},
+      "metadata": {
+        "designer": { "x": 1200, "y": 0, "name": "5. Aggregate results" }
+      }
+    },
+    {
+      "id": 6,
+      "module": "notion:updateADatabaseItem",
+      "version": 1,
+      "parameters": {},
+      "mapper": { "pageId": "{{1.notion_page_id}}" },
+      "metadata": {
+        "designer": { "x": 1500, "y": 0, "name": "6. Notion - set LS Upload = Done + counts" }
+      }
+    }
+  ]
+}
