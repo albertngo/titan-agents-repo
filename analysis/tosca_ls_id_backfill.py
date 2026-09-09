@@ -7,7 +7,7 @@ from openpyxl.styles import PatternFill, Font
 
 AT  = "/home/user/titan-agents-repo/ingest/2026-09-09/tosca_airtable_upload_2026-09-09.csv"
 LSX = "/root/.claude/uploads/269a198f-9764-5d66-99c8-c4b232f92e0d/033fff57-tosca_uuid.xlsx"
-OUT = "/home/user/titan-agents-repo/ingest/2026-09-09/tosca_airtable_with_ls_ids_2026-09-09.xlsx"
+OUT = None  # xlsx dropped 2026-09-09 (Albert: CSV only) -- see write block below
 
 def al(s): return re.sub(r'[^a-z0-9]', '', str(s or '').lower())
 def lev(a, b):
@@ -216,21 +216,11 @@ written = [v['uuid'] for v in res.values() if v and v['uuid']]
 assert len(written) == len(set(written)), "duplicate UUID assignment"
 
 # ---------------------------------------------------------------- write
+# CSV only (Albert, 2026-09-09), per the standing "every export is a .csv" rule.
+# The `LS match status` / `LS match notes` helper columns carry what the highlighting did.
 COLS = list(at[0].keys())
-wbo = openpyxl.Workbook(); ws = wbo.active; ws.title = "Airtable Upload"
-ws.append(COLS + ['LS match status', 'LS match notes'])
-for c in ws[1]: c.font = Font(bold=True)
-YEL = PatternFill('solid', start_color='FFF3B0', end_color='FFF3B0')
 for i, r in enumerate(at):
-    v = res[i]
-    r['Lightspeed ID'] = v['uuid'] or ''
-    ws.append([r[c] for c in COLS] + [v['status'], v['note']])
-    if v['status'] != 'OK':
-        for c in ws[ws.max_row]: c.fill = YEL
-ws.freeze_panes = 'A2'
-for col, w in (('A', 16), ('B', 52), ('F', 38), ('G', 34), ('BH', 13), ('BI', 78)):
-    ws.column_dimensions[col].width = w
-wbo.save(OUT)
+    r['Lightspeed ID'] = res[i]['uuid'] or ''
 
 CSVOUT = "/home/user/titan-agents-repo/ingest/2026-09-09/tosca_airtable_upload_2026-09-09.csv"
 with open(CSVOUT, 'w', newline='', encoding='utf-8') as fh:
