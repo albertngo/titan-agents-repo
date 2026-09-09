@@ -3124,6 +3124,198 @@ copy from.
 
 ---
 
+### Tosca Floors
+
+Tosca Floors (george@toscaflooring.com) is both the supplier and the brand. The price
+list is a 13-page PDF opening with a content page, then solid Red Oak (p.2), engineered
+split into AB-grade (pp.3-5) and ABCD-grade (pp.6-8) sections, vinyl (p.9), laminate and
+both accessory strips (p.10), Primed Pine Wood Trim (pp.11-12) and Baluster (p.13).
+First ingested 2026-09-09 from the 2026 list, effective **2026-07-01** — 225 rows.
+
+**Tosca was already live in Lightspeed before it existed in Airtable.** The Master
+Flooring Catalogue returns zero Tosca records, but an LS export carries 195 Tosca
+products under hand-built SKUs (`TOS.E.EO.Bee.6`, `TOS.H.RO.Ant.4.1`, and bare numeric
+codes). This is the third state from RULE 0a — `MatchStatus: new` on the Airtable side
+**and** a populated `Lightspeed ID`. Do not conclude "new supplier, therefore no LS
+presence"; ask for an LS export before deciding there is no LS file to build.
+
+#### Identity
+
+| Field | Value |
+|---|---|
+| **Supplier** (single-select) | `Tosca` — **does not exist in the Airtable select yet**; created on first import |
+| **Brand** | `Tosca` (supplier is the brand) |
+| **SKU supplier code** | `TOSC` — 4-char suffix. **Proposed on the first run, not yet confirmed by Albert.** |
+| **Internal SKU format** | Sequential per category: `HWD-TOSC-####`, `ENG-TOSC-####`, `LVP-TOSC-####`, `LAM-TOSC-####`, `ACC-TOSC-####` |
+| **Supplier SKU** | Populated with the numeric colour code on **vinyl and laminate only** (`3301`, `18001`, `9901`). Blank on solid, engineered and accessories — Tosca prints colour names there, no codes. |
+
+**Do not use the per-product-unique-code pattern here.** Tosca's vinyl codes are *not*
+globally unique: `18001`-`18010` appear under both the 7mm and the 8mm 7 1/4" lines. The
+codes are unique only within a thickness group, so they go in `Supplier SKU` and the
+internal SKU stays sequential (the fallback the Supplier SKU policy calls for).
+
+#### Cost column
+
+**Settled by Albert, 2026-09-09: the printed `Price(per sq.ft)` column IS Titan's dealer
+cost. Taken as-is, no multiplier. Do not ask again.**
+
+- `Cost/unit` = the printed price, verbatim. `Price(per pc)` for the accessory strips.
+- `Retail price/unit` = `Cost + $ 1.00` — the schema default, unmodified.
+- **Tosca publishes no MSRP or suggested-retail column**, and there is no terms page or
+  stated discount anywhere in the document. `MAP price ($/sf)` stays blank. The absence
+  is a real finding, not an omission — it is what stops the next run hunting for one.
+- `Pallet price ($/sf)` stays blank: the sheet gives `Sq.ft/Carton`, never a pallet rate.
+
+Corroborated independently by the 2026-09-09 LS export: across the 129 rows matched to
+live Lightspeed products, `supply_price` — what Titan already books as cost — was
+**identical to the printed price on 60 rows**, lower on 63 (price cuts on the new list)
+and higher on 2. A discount off list would have left none identical.
+
+#### Markup overrides (accessories)
+
+Accessories are per piece. Standard cross-supplier markups apply on top of the printed cost:
+
+| Printed as | Cost/unit | Retail |
+|---|---|---|
+| SPC T-Moulding, 8ft | $15 | $25 (+$10) |
+| SPC Reducer, 8ft | $15 | $25 (+$10) |
+| Flush Nosing, 4" x 8ft | $35 | $50 (+$15, the Stair Nose/Nosing tier) |
+| MDF T-Moulding, 8ft | $10 | $20 (+$10) |
+| MDF Reducer, 8ft | $10 | $20 (+$10) |
+
+Each is one SKU, not one per colour — the list says "All Color of vinyl flooring has
+matching T-Moulding available".
+
+#### Scope of ingest
+
+In scope: **HWD** (solid Red Oak), **ENG** (both grade sections), **LVP** (all nine SPC
+vinyl groups), **LAM**, and the five vinyl/laminate transitions.
+
+**Out of scope: Primed Pine Wood Trim (pp.11-12)** — baseboard, casing, quarter round,
+doorstop, door jamb — per the standing moulding exclusion applied to FAW, Triforest and
+Woden; and **Baluster (p.13)** — hollow iron spindles, shoe bottoms, wall rail brackets:
+stair railing hardware, not flooring. Flagged to Albert 2026-09-09; revisit if he wants
+them catalogued.
+
+Note that Lightspeed separately carries **33 `TREAD` and 1 `HANDRAIL` Tosca products**
+(oak treads, risers, bullnose, pizza sets, landings) that this price list does not price
+at all. They will go stale unless Tosca sends a stair/trim list — they are not something
+this ingest can maintain.
+
+#### Collections
+
+Engineered collections are printed per section and used verbatim: `Deluxe Collection`,
+`Deluxe Collection Bespoke Series`, `Deluxe Collection 7 1/2" Series`,
+`Deluxe Collection Herringbone Series`, `Prestige Collection`, `Glory Collection`,
+`Superior Collection`, `Aura Collection`, `Elegant Herringbone Collection`,
+`Prime Oak Collection` (AB grade); `Renaissance Collection`, `Legend Collection`,
+`Composer Collection`, `Master Collection`, `Diamond Collection`, `Royal Oak Collection`,
+`Monarch Collection`, `Noble Collection` (ABCD grade).
+
+Solid is one line → `Red Oak Solid`. Vinyl and laminate are unnamed on the sheet, so use
+the descriptive spec form (the Evergreen precedent): `5.5mm SPC Click 6"`,
+`7mm SPC Click 7 1/4"`, `8mm SPC Click 7 1/4"`, `7mm SPC Click 9"`,
+`7.5mm SPC 5G Click 7 1/4"`, `7.5mm SPC 5G Click 9"`, `8mm SPC 5G Click 7"`,
+`9mm SPC 5G Click 9"`, `9mm SPC 5G Click 9" Random Length`; `12.3mm Laminate 8"`,
+`12.3mm Laminate 7.68"`.
+
+#### Category / Material type mapping
+
+| Section | Category | Material type |
+|---|---|---|
+| Solid Red Oak | `Solid hardwood` | *(blank — solid)* |
+| All engineered | `Engineered hardwood` | `Hardwood plywood` |
+| All vinyl | `LVP` | `SPC core` — **the core is never stated**; assumed per the global rule for unlabelled rigid click vinyl |
+| Laminate | `Laminate` | `HDF core` — not marked waterproof or water-resistant anywhere |
+
+`Waterproof = TRUE` on vinyl only. `Radiant heat compatible = TRUE` on **engineered**
+(both grade sections state it explicitly) and **blank on solid** — the solid page does
+not claim it. Do not carry the engineered claim across.
+
+#### Grade mapping
+
+Tosca uses the European letter system on engineered and a word grade on solid:
+
+| Tosca says | Airtable Grade |
+|---|---|
+| `AB` (pp.3-5 section header) | `Select & Better` |
+| `ABCD` (pp.6-8 section header) | `Character` |
+| `Select & Better` (solid, p.2 column) | `Select & Better` |
+
+`Product name` keeps the **letter** grade in parentheses on engineered
+(`Tosca Glory Collection 7.5" — Lily (AB)`) and the **word** form on solid
+(`Tosca Red Oak 4.25" — Antwerp (Select & Better)`) — the Grandeur convention.
+
+#### LS handle format
+
+Brand-first, alphanumeric only, colour never truncated:
+`TOSCHWD425REDOAK[COLOUR]`, `TOSCENG[width][COLLECTION][COLOUR]`,
+`TOSCLVP[thickness]MM[width][CODE]`, `TOSCLAM123[width][CODE]`, `TOSCACC[TYPE][MATERIAL]`.
+The thickness token is load-bearing on vinyl — it is what keeps the 7mm and 8mm lines
+apart when they share a colour code.
+
+#### Fields Tosca does not provide
+
+**Species on the AB-grade engineered collections** — the ABCD section states European
+White Oak, the AB section states nothing. Left blank on all 60 AB rows; do not infer it
+from the ABCD section. Also absent throughout: wear layer, AC rating, locking system
+brand, IIC/STC, certifications, colour/tone, pieces per box, boxes per skid, traffic
+rating, veneer cut type, and any warranty beyond the 35-year finish warranty printed for
+solid and engineered.
+
+Provides: colour names (except vinyl/laminate, which are code-only), price, plank size,
+veneer thickness, finish, `Sq.ft/Carton`, and the attached underpad material on vinyl —
+stated as `1.5mm IXPE`, `2.0mm IXPE` or `1.5mm CORK`, so **the underpad type is read, not
+assumed**, which is unusual and worth keeping.
+
+#### Parsing quirks / known soft spots
+
+- **Monarch Collection is printed as two separately numbered blocks (7 and 8) across the
+  p.7/p.8 page break**, and `Greyish white` / `Greyish White` appears in both halves at
+  the same size, price and box. It is one collection of 10 colours. Taking the numbering
+  at face value duplicates a SKU.
+- **The ABCD sheet cross-references AB colours in parentheses** — `Dawn (Lite Latte)`,
+  `Florence (Invisible Oak)`, `Moonstone (Pearlescent Down)`, `Roma (Yale)`,
+  `Genoa (Oak Charm)`, `Gold Coast ( Oak Charm)`. The colour is the leading token; the
+  parenthetical is the equivalent colour in the other grade and belongs in
+  `Salesperson notes`, not in the colour value. (`Pearlescent Down` is a typo for the AB
+  colour `Pearlescent Dawn`.)
+- **Box size printed as a pair** on Noble Collection: `20.247/20.25`. 20.25 used.
+  Diamond and Monarch print `23.315` where every other 7.5" collection prints `23.32`.
+  Stored as printed.
+- **Solid wood width is a mixed fraction**, `4 1/4''`, and the row-wise text extraction
+  merges the species column into the colour (`Northern Bari` for colour `Bari`). Use
+  table extraction, not `extract_text`, on this document.
+- **Vinyl codes repeat across thickness groups** — see Identity above.
+- **Gaps in the code sequences are real**: laminate skips 9911, vinyl skips 9806. Do not
+  create placeholder rows.
+- **Five vinyl codes are marked `*` = "will be discontinued"** (5601-5604, 5608). Written
+  `Stock status = Discontinued` with `Active = TRUE`, because the list still prices them —
+  the future tense matters. Deactivate once stock is exhausted.
+- **"NEW" markers** on the 8mm 7 1/4", 8mm 7", and 9mm Random Length vinyl groups, with
+  a footnote that new vinyl lands mid-July. Treated like FAW's Coming Soon: `Active` TRUE,
+  `Stock status` blank, noted.
+- **The 9mm 9"x60" Random Length group** prints a fixed `60"` size and calls itself Random
+  Length. `Length = RL`; it is a distinct product from the other 9mm 9"x60" group (26.80
+  vs 22.38 sf/carton).
+
+#### SALE / promo items
+
+The 2026 price list carries **no promo or clearance pricing** — never populate
+`Promo cost ($/sf)` / `Promo end date` from it. Tosca does issue a separate clearance
+list (the 2026-07-01 email was subject "Tosca Floors NEW Price List and July Clearance
+List"), but that attachment did not reach the Price Lists row; ask for it rather than
+inferring clearance from the regular sheet.
+
+#### Tosca ingest output format
+
+`tosca_airtable_upload_[YYYY-MM-DD].csv`, all 57 schema columns plus helper columns 58-59,
+written to `ingest/YYYY-MM-DD/`. A Lightspeed file is buildable **once `Lightspeed ID`s
+have been reconciled in from an LS export** — 129 of the 225 rows carry one as of
+2026-09-09; the remaining 96 are new to LS and correctly blank.
+
+---
+
 ### New supplier onboarding — checklist
 
 When a new supplier is added, gather this information before processing their first price list, and add a subsection above following the FAW template:
@@ -3170,6 +3362,19 @@ first has names and descriptions but no select options; the second has options b
 no names). Latest snapshot committed alongside the workbook in `analysis/output/`.
 
 ### Changelog
+
+- **2026-09-09** — Added the **Tosca Floors** subsection from the 2026-07-01 list (225
+  rows, first ingest). Its `#### Cost column` is **settled**: Albert confirmed the printed
+  `Price(per sq.ft)` is Titan's dealer cost, taken as-is with no multiplier, and Tosca
+  publishes no MSRP. Corroborated by an LS export the same day — on the 129 rows matched
+  to live Lightspeed products, `supply_price` was identical to the printed price on 60
+  and lower on 63, which a discount off list could not produce.
+  **General lesson, and the reason this run nearly shipped wrong: an empty Airtable
+  catalogue does NOT mean the supplier is absent from Lightspeed.** Tosca had 195 live LS
+  products while the Master Flooring Catalogue held none — the RULE 0a third state. The
+  first pass concluded "new supplier, therefore no LS presence, therefore no LS file";
+  only the export showed otherwise. Ask for an LS export before deciding a supplier has no
+  Lightspeed footprint.
 
 - **2026-09-09** — **Price Lists status option names corrected against the live data
   source.** The documented values `Extracted [Pending Review]`, `Error: Needs attention`
