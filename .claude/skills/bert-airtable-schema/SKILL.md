@@ -2747,8 +2747,8 @@ In scope: **ENG** (Nouveau lines), **LVP/LVT** (Hydrogen + Traktion), **LAM** (R
 
 #### Collections (use verbatim)
 
-Engineered hardwood (Nouveau): `Nouveau 6`, `Nouveau 6 American Oak`, `Nouveau 6 Clic`, `Nouveau 7 Prelude`, `Nouveau 7`, `Nouveau 7 Bespoke (Plank)`, `Nouveau 7 Bespoke (Herringbone)`, `Nouveau 8`.
-Vinyl: `Hydrogen PRO 2mm`, `Hydrogen PRO Tile 2mm`, `Hydrogen PRO 3mm`, `Hydrogen PRO Tile 3mm`, `Hydrogen 5`, `Hydrogen 6 Plank`, `Hydrogen 6 Tile`, `Hydrogen 7`, `Hydrogen 8`, `Traktion`.
+Engineered hardwood (Nouveau): `Nouveau 5 American Oak` (new on the May 22 2026 list), `Nouveau 6`, `Nouveau 6 American Oak`, `Nouveau 6 Clic`, `Nouveau 7 Prelude`, `Nouveau 7`, `Nouveau 7 Bespoke (Plank)`, `Nouveau 7 Bespoke (Herringbone)`, `Nouveau 8`.
+Vinyl: `Hydrogen PRO 2mm`, `Hydrogen PRO Tile 2mm`, `Hydrogen PRO 3mm`, `Hydrogen PRO Tile 3mm`, `Hydrogen 5`, `Hydrogen 6 Plank`, `Hydrogen 6 Tile`, `Hydrogen 7`, `Hydrogen 7 Angle & Angle` (new on the May 22 2026 list; 9" × 60" × 7mm, Angle/Angle — a separate collection from `Hydrogen 7`), `Hydrogen 8`, `Traktion`.
 Laminate: `Riptide`.
 
 #### Category / Material type mapping
@@ -2771,14 +2771,46 @@ Laminate: `Riptide`.
 
 #### Parsing quirks / known soft spots
 
-- **Hydrogen 8 price inversion:** the plank `Your Price` ($ 6.63) **exceeds** `MSRP/SF` ($ 6.34), and Hydrogen 8 accessory `Your Price` equals MSRP exactly (no dealer discount). Ingest the values as-is (Cost = `Your Price`) per flag-don't-block, and tag both in `Salesperson notes` for review. Almost certainly a typo on Biyork's sheet — confirm with the rep.
-- **Multi-size groups under one header:** Nouveau 7 splits Hickory into Wirebrush vs Handscraped finishes (different finish, same price). Hydrogen 6 Plank has two size groups (7"×48" box 23.64 and 7"×60" box 23.25) under one collection. Create records for every sub-group with its specific box size/finish.
+- **⚠️ Recurring defect — blocks of rows where `Your Price` ≥ `MSRP/SF`.** Biyork's sheet
+  intermittently ships a block with the dealer column filled from the MSRP column, or higher.
+  **Titan's real discount runs 33-57% of MSRP on every other line**, so the test is arithmetic,
+  not judgement: compute `Your Price / MSRP` per price block and flag any block ≥ 1.0. Ingest as
+  printed (Cost = `Your Price`) per flag-don't-block, tag in `Salesperson notes`, and confirm with
+  the rep before the import.
+  - **Jul 2025 list:** Hydrogen 8 plank ($ 6.63 vs MSRP $ 6.34) and Hydrogen 8 accessories
+    (`Your Price` = MSRP exactly). **Both corrected on the May 22 2026 list** — H8 plank is now
+    $ 3.22 (ratio 0.508) and its accessories $23.27 / $37.05.
+  - **May 22 2026 list:** three fresh blocks, 30 flooring SKUs — Nouveau 6 Clic ($ 8.20 vs MSRP
+    $ 7.89, ratio 1.039, against a stored cost of $ 4.12), Hydrogen 7 ($ 6.29 vs $ 5.71,
+    ratio 1.102, stored $ 3.04) and Nouveau 7 Bespoke Plank + Herringbone ($14.65 = MSRP exactly,
+    stored $ 7.84). Each is roughly double the stored cost with the MSRP unchanged — the
+    signature of a mis-filled dealer column, not a real increase.
+- **Biyork re-codes products without renaming them.** On the May 22 2026 list Hydrogen 6 Plank
+  shortened `BYKHY6HP50xx` / `BYKRCEH50xx` → `BYKHY6Pxx`; Hydrogen 6 Tile changed Chalk `CH` → `CK`
+  and moved Combed Cotton from `BYKHY6HT50CO` → `BYKRCET50CO`; the Hydrogen 6 Tile stairnose codes
+  gained an `86` suffix. Tiers 1 and 2 both miss, so these resolve at **tier 3 (collection +
+  colour)**. Mark them `MatchStatus: ambiguous` and have a human confirm — never let them fall
+  through to `new`, which duplicates a live product in both Airtable and Lightspeed.
+- **Multi-size groups under one header:** Nouveau 7 splits Hickory into Wirebrush vs Handscraped finishes (different finish, same price). Hydrogen 6 Plank had two size groups (7"×48" box 23.64 and 7"×60" box 23.25) on the Jul 2025 list; the May 22 2026 list collapses it to one 7" × 60" group at box 23.64. Create records for every sub-group with its specific box size/finish.
 - **Tile lines inside vinyl collections:** Hydrogen PRO Tile and Hydrogen 6 Tile are vinyl tile (`LVT`), not porcelain — keep `Material type = SPC core`.
 - **Nouveau 6 Clic** is engineered hardwood with a Uniclic float system → `Install profile = Click`, `Locking system = Uniclic`, thickness 1/2" (12.7mm).
 
 #### Stock status & promo
 
 Leave `Stock status` blank for all Biyork rows; set `Active = TRUE`. The regular pricelist carries no SALE/promo pricing — never populate `Promo cost ($/sf)` / `Promo end date` from a standard Biyork ingest. If a future list adds promos, fall back to the global promo logic.
+
+#### LS name prefix — derived, NOT yet confirmed by Albert
+
+`ls-upload-instructions` carries no Biyork brand-config row, so the 2026-09-09 run derived the
+prefix from the documented convention (`[4-char supplier abbrev][3-char type abbrev]`):
+`BIYKENG` / `BIYKLVP-SPC` / `BIYKLVT-SPC` / `BIYKLAM`, with mouldings on the spelled-out
+`Biyork - Transition | …` / `Biyork - Sundry | …` accessory format.
+
+**Confirm it against a Lightspeed product export before importing any Biyork LS file.** If the
+live products carry a different prefix, the file renames every existing Biyork product on the
+POS. The `id` is populated, so it is an update rather than a duplicate — but a visible rename of
+~276 products is not something to discover after the fact. Record the confirmed prefix here and
+in the LS skill's brand-config table.
 
 #### Biyork ingest output format
 
