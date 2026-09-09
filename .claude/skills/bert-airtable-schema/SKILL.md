@@ -134,7 +134,7 @@ live data source on 2026-09-03:
 |---|---|---|
 | `LS Backfill` | **`UUID Backfill`** | select — `Pending` / `Done` / `Not needed` |
 | `POS` (checkbox) | **`LS Upload`** | select — `Pending` / `Done` / `Not needed` |
-| `Status` | displays as **`Extraction Status`** | status — `Not started` / `Extracting` / `Extracted [Pending Review]` / `Done` |
+| `Status` | **`Extraction Status`** — write this key, not `Status` | status — `Not started` / `Extracting` / `Extracted [Needs Review]` / `Extracted [Ready to Upload]` / `Extracted [Error]` / `Extracted [All Uploaded]` / `Not Needed` |
 | `Wordpress` | **removed** | — |
 
 Two things worth knowing:
@@ -142,9 +142,30 @@ Two things worth knowing:
 - **`LS Upload` is a select now, not a checkbox.** "Check `POS`" became
   "set `LS Upload = Done`", and `Not needed` is a real third state — a promo run that
   produces no LS file should say so rather than sit at `Pending` forever.
-- **The status property displays as `Extraction Status`, but page updates still take
-  the key `Status`** (verified by writing it successfully on two rows the same day).
-  Write `Status`; expect to *see* `Extraction Status` in the UI.
+- **The status property's key IS `Extraction Status`, and so are its option names.**
+  Corrected 2026-09-09: an earlier note here said page updates took the key `Status` and
+  listed options (`Extracted [Pending Review]`, `Error: Needs attention`, a bare `Done`)
+  that **do not exist on the live data source**. Writing an option a status property does
+  not have is rejected, and the whole `update_properties` call fails with it. The live
+  option set, read off `collection://e2dc37bc-63da-42e9-b6c0-63ff48d72e6b` and written
+  successfully the same day. Confirmed from the other direction too — writing the key
+  `Status` returns `400 validation_error`: *"Property \"Status\" not found in the data
+  source"*, followed by the full list of editable keys. That error message is the fastest
+  way to re-derive this table if it ever drifts again:
+
+  | Option | Who sets it |
+  |---|---|
+  | `Not started` | the row's default before a run |
+  | `Extracting` | in-flight only — **never the state a run ends in** |
+  | `Extracted [Needs Review]` | **the run**, when files are attached |
+  | `Extracted [Ready to Upload]` | the reviewer, once the file is cleared for import |
+  | `Extracted [Error]` | **the run**, when it could not finish |
+  | `Extracted [All Uploaded]` | whoever closes out the imports |
+  | `Not Needed` | a human, for a row that will never be extracted |
+
+  **A run only ever writes `Extracted [Needs Review]` or `Extracted [Error]`.** The three
+  downstream states belong to the person doing the import, the same way `Airtable Sync`,
+  `LS Upload` and `UUID Backfill` never receive `Done` from a run.
 
 #### `Notes` — the row's own flag line (Albert, 2026-09-03)
 
@@ -181,23 +202,24 @@ a re-run overwrites this field and a stale note is worse than none:
 **Overwrite, don't append.** It describes the current state of the row, not its history —
 the repo commits and `Salesperson notes` carry the history.
 
-#### `Error: Needs attention` — the status that pairs with `Notes`
+#### `Extracted [Error]` — the status that pairs with `Notes`
 
-**Added on Albert's instruction 2026-09-03.** A run that cannot finish sets
-**`Status = Error: Needs attention`** and puts the reason in **`Notes`**. The two always
-travel together: the status makes the row findable in a view, `Notes` says what happened.
+**Added on Albert's instruction 2026-09-03; renamed to the live option name 2026-09-09.**
+A run that cannot finish sets **`Extraction Status = Extracted [Error]`** and puts the
+reason in **`Notes`**. The two always travel together: the status makes the row findable
+in a view, `Notes` says what happened.
 
 | Outcome | `Status` | `Notes` |
 |---|---|---|
-| Ran, files attached, nothing blocking | `Extracted [Pending Review]` | empty |
-| Ran, files attached, caveats a reviewer must clear | `Extracted [Pending Review]` | the flag lines |
-| **Could not finish** | **`Error: Needs attention`** | **what failed, at which step, and what it needs** |
+| Ran, files attached, nothing blocking | `Extracted [Needs Review]` | empty |
+| Ran, files attached, caveats a reviewer must clear | `Extracted [Needs Review]` | the flag lines |
+| **Could not finish** | **`Extracted [Error]`** | **what failed, at which step, and what it needs** |
 
-`Error: Needs attention` is for a run that did not produce what it was meant to:
+`Extracted [Error]` is for a run that did not produce what it was meant to:
 the download failed, the file is not a parseable price document, `Company` or `Tags`
 could not be determined, the attachment upload failed, a write was rejected. It is
 **not** for a completed run carrying assumptions — that is
-`Extracted [Pending Review]` with a populated `Notes`.
+`Extracted [Needs Review]` with a populated `Notes`.
 
 This replaces the older "leave `Status` at `Extracting` and say why" rule, which left a
 failed run indistinguishable from one still in flight. **A row must never sit at
@@ -220,7 +242,7 @@ The 400's message lists every editable key, which is how these were found.
 **`Airtable Sync = Done` is a claim about agreement, not a completed step:** it means
 Airtable *currently* mirrors the file attached to that row. Edit the file and re-attach
 it and the row returns to `Pending` — a corrected file is a new pending change, and
-leaving it `Done` is how the base drifts from what the row claims. `Status = Done` only
+leaving it `Done` is how the base drifts from what the row claims. `Extraction Status = Extracted [All Uploaded]` only
 once both trackers read `Done` or `Not needed`.
 
 Until a row reaches `Done` its products are incomplete, and the failure is delayed and
@@ -3004,6 +3026,17 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
 
 ### Changelog
 
+- **2026-09-09** — **Price Lists status option names corrected against the live data
+  source.** The documented values `Extracted [Pending Review]`, `Error: Needs attention`
+  and a bare `Done` do not exist; the real ones are `Extracted [Needs Review]`,
+  `Extracted [Error]` and `Extracted [All Uploaded]`, and the write key is
+  `Extraction Status`, not `Status`. Because a status property rejects an unknown option
+  and takes the whole `update_properties` call down with it, every run following the old
+  names would have lost its entire state write — the same failure mode as the renamed
+  properties above. Fixed here, in `.claude/commands/process-price-list.md`, and in both
+  `methods/pricelist-*.md`. Also recorded: the three downstream states
+  (`Extracted [Ready to Upload]`, `Extracted [All Uploaded]`, `Not Needed`) belong to the
+  reviewer, never to a run. Found on the Biyork 2026-09-09 run.
 - **2026-09-03** — **Grandeur SKU format corrected.** The subsection claimed the
   internal SKU prefix was `GRND` (`GRNDENG-0001`); the base actually holds
   `[CAT]-GRAN-####` (`ENG-GRAN-0030`, `SPC-GRAN-0015`). `GRND…` is the *Lightspeed*

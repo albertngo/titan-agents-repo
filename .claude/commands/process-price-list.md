@@ -171,9 +171,13 @@ curl -sS -X POST "<upload_url>" -H "authorization: Bearer <token>" \
 `api.notion.com` must be allowed by the environment's egress policy (it is, since
 2026-09-03). If the CONNECT is refused, report the blocked host — do not route around it.
 
-**Attach first, re-fetch to confirm both files are present, then set state:**
+**Attach first, re-fetch to confirm both files are present, then set state.** The write
+key is **`Extraction Status`**, not `Status`, and the option names below are the live
+ones — a status property rejects an option it does not have and takes the whole
+`update_properties` call down with it, so a stale name loses the entire state write, not
+just that field. Read the option list off the data source if a write is rejected.
 
-- `Status` = `Extracted [Pending Review]`
+- `Extraction Status` = `Extracted [Needs Review]`
 - `Airtable Sync` = `Pending` — always; the run produced a file Airtable does not reflect
 - `New Products` = count of `MatchStatus = new` (`0` if none)
 - `UUID Backfill` = `Pending` if that count ≥ 1, else `Not needed`
@@ -193,15 +197,19 @@ has no Lightspeed ID until the POS upload creates one.
 
 **If the run cannot finish — the download failed, the file is not a parseable price
 document, `Company` or `Tags` could not be determined, an attachment upload or a
-property write was rejected — set `Status` = `Error: Needs attention` and put the
+property write was rejected — set `Extraction Status` = `Extracted [Error]` and put the
 reason in `Notes`**, naming the step it failed at and what it needs to proceed. Never
 leave a row at `Extracting` after the run ends: that reads as still-in-flight and hides
-the failure. Never leave a row reading `Extracted [Pending Review]` with an empty
+the failure. Never leave a row reading `Extracted [Needs Review]` with an empty
 `Extracted Files` — that claims there is something to review when there is not.
 
-`Error: Needs attention` is for a run that did not produce what it should have. A run
-that finished but carries assumptions stays `Extracted [Pending Review]` with those
+`Extracted [Error]` is for a run that did not produce what it should have. A run
+that finished but carries assumptions stays `Extracted [Needs Review]` with those
 assumptions in `Notes`.
+
+**A run writes only those two.** The data source also carries `Extracted [Ready to
+Upload]`, `Extracted [All Uploaded]` and `Not Needed` — those belong to the person doing
+the import, exactly as `Done` on the three trackers does.
 
 ## 7. Escalate anything you could not determine
 
