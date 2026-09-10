@@ -23,13 +23,25 @@ stops there and notifies. That is a complete, successful run — not a failure.
 
 ## Before you start
 
-Required in `.env` (never a cloud env var — a personal token is admin-equivalent and
-not scopable):
+Required as environment variables — a gitignored `.env` file **or** the cloud
+environment's own env vars (Albert, 2026-09-10: this session's environment injects
+them directly; `scripts/lightspeed_client.py` reads via `os.environ.get()`, so either
+source works identically and neither needs code changes):
 
 ```
 LIGHTSPEED_DOMAIN_PREFIX=flooru
 LIGHTSPEED_PERSONAL_TOKEN=lsxs_pt_...
 ```
+
+**The token is still admin-equivalent and not scopable — no read-only variant
+exists.** That fact doesn't change with where the value is stored. A cloud env var is
+visible to anyone with access to this environment's configuration (`CLAUDE.md`'s
+Secrets section: "treat anything there as visible") — wider exposure than a
+gitignored file most people never open. The mitigations that do still apply
+regardless of source: the read scripts (`lightspeed_pull.py`, `lightspeed_client.py`)
+contain no write verb and a test enforces that; rotate the token periodically; never
+paste its value into a prompt, a committed file, or anywhere else it would be logged
+or retained as text.
 
 Egress must allow `flooru.retail.lightspeed.app` and `x-series-api.lightspeedhq.com`.
 If either is blocked, **report the blocked host and stop** — never route around it.
