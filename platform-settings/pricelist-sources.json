@@ -27,6 +27,7 @@
       "uuid_backfill": "UUID Backfill",
       "new_products": "New Products",
       "notes": "Notes",
+      "review_reason": "Review Reason",
       "extracted_files": "Extracted Files"
     },
 
@@ -60,6 +61,23 @@
       "tags": {
         "_type": "select",
         "_all": ["Regular List", "Promo"]
+      },
+
+      "review_reason": {
+        "_type": "multi_select",
+        "_comment": "Added 2026-09-10 (Albert). WHY a row needs a human check, beside Extraction Status, which only says THAT it does. Multi-select because one file routinely trips several at once — a new supplier's list is usually New Supplier + Ambiguous Pricing + Unmapped Grade. This is the filterable half; `Notes` carries the specifics (which SKUs, which columns as printed).",
+        "_all": ["New Supplier", "Ambiguous Pricing", "Ambiguous Naming", "Unmapped Category", "Unmapped Grade", "Spec Gap"],
+        "_meanings": {
+          "New Supplier": "Zero existing Airtable rows for this supplier. Nothing on the file has been reconciled against a live record, so EVERY detail needs a human check before upload — spec confidence and cost confidence are both unearned. Such a row also gets no Lightspeed file, so it carries one CSV and cannot reach the sync's write steps until a person has done the Airtable import.",
+          "Ambiguous Pricing": "More than one candidate cost column, or a number whose role is not printed. The default (printed price = cost, Retail = Cost + $ 1.00) was still applied; Notes says which column was taken as cost.",
+          "Ambiguous Naming": "Collection / colour / width / layout did not resolve 1:1 against the live catalogue. The Grandeur 2026-09-03 failure mode.",
+          "Unmapped Category": "No Lightspeed leaf category maps. LVP/LVT are formats, not leaves.",
+          "Unmapped Grade": "Supplier shorthand with no canonical mapping ('A' alone, 'BC', 'Prime' with no context). Grade left blank, supplier wording preserved.",
+          "Spec Gap": "A flooring row missing something the upload cannot invent — most often a blank `Box size (sf)` on a plank or tile SKU."
+        },
+        "_written_by": "Either run, additively. The extraction run sets it first, since that is where most reasons surface; the catalogue-sync run ADDS when the reconciler finds more. A run never removes another run's reasons.",
+        "_cleared_by": "The reviewer, in the UI, as each one is resolved. A run never clears it.",
+        "_why_not_just_notes": "`Notes` is prose, overwritten every run, and cannot be filtered. Every other piece of state on this row is a filterable property because it drives a worklist. `Extraction Status is Extracted [Needs Review] AND Review Reason contains New Supplier` is the full-check queue; without this property that queue cannot exist."
       }
     },
 

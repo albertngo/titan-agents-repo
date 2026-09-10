@@ -109,9 +109,26 @@ New suppliers are a deliberate two-pass flow. Report the row, say it is new, and
 | A supplier quirk with no recorded subsection | Apply the global rules, record the choice as an explicit assumption, flag |
 | A flooring row with a blank `Box size (sf)` | Flag as a data defect — the file cannot invent one |
 
-Flagging means: in the plan, in the run summary, and in the Notion row — naming the
-SKUs. **Never invent a mapping to avoid a flag.** An ambiguity absorbed silently is
-the one failure this pipeline cannot detect later.
+Flagging means three places, every time:
+
+1. **The plan** — as a `blocked` entry or a `warning`.
+2. **`Review Reason`** on the Notion row — the multi-select in
+   `price_lists.status_values.review_reason`. **Add to it; never clear it.** Both runs
+   write it and only the reviewer clears it, one option at a time as each is resolved.
+3. **`Notes`** — the specifics: which SKUs, which columns as printed, which value you
+   took. `Review Reason` says what kind of problem; `Notes` says which rows.
+
+`Extraction Status` says *that* a human must look. `Review Reason` says *why*, and is
+what makes "sit down and check everything" a filterable queue rather than a judgment
+made row by row:
+
+```
+Extraction Status is Extracted [Needs Review]
+  AND Review Reason contains New Supplier
+```
+
+**Never invent a mapping to avoid a flag.** An ambiguity absorbed silently is the one
+failure this pipeline cannot detect later.
 
 Output: `plans/YYYY-MM-DD/catalog-plan-<supplier-slug>.json`, per
 `contracts/catalog-plan-schema.md`.

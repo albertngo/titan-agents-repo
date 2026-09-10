@@ -190,6 +190,7 @@ is tracked on the row, because it happens later and (for now) by hand.
 | `Airtable Sync` | run, then importer | `Pending` · `Done: Updated` · `Done: New List UUID` · `Not needed`. **There is no plain `Done`** — corrected 2026-09-10 against the live data source; this file said `Done` until then. `Done: Updated` = the import updated existing records; `Done: New List UUID` = it created records still awaiting Lightspeed UUIDs. |
 | `LS Upload` (select) | whoever uploads to Lightspeed | `Pending` = not pushed to the POS yet · `Done` = pushed · `Not needed` = no LS file for this run |
 | `UUID Backfill` | run, then backfill | `Pending` · `Done` · `Not needed` |
+| `Review Reason` (multi-select) | **both runs, additively** — cleared only by the reviewer | `New Supplier` · `Ambiguous Pricing` · `Ambiguous Naming` · `Unmapped Category` · `Unmapped Grade` · `Spec Gap`. **Added 2026-09-10.** `Extraction Status` says *that* a human must look; this says *why*. A run adds every reason that applies and never removes one — the catalogue-sync run writes here too, and the reviewer clears each option as it is resolved. Options live in `price_lists.status_values.review_reason`; a name not on that list fails the whole `update-page` call. |
 
 **The run always leaves `Airtable Sync = Pending`** — it has produced a file Airtable
 does not yet reflect. It sets `UUID Backfill = Pending` when it minted ≥1 new product,
