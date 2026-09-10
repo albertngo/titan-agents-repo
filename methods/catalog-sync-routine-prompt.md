@@ -88,8 +88,23 @@ It covers: pulling the live Lightspeed catalogue read-only; taking a live Airtab
 snapshot for the supplier; reconciling both against the two CSVs into one plan at
 plans/YYYY-MM-DD/catalog-plan-<supplier>.json; and stopping.
 
-The cost basis for a NEW supplier is a human stop — dealer cost vs MSRP x
-multiplier. Never infer it. Leave the row unprocessed and say why.
+**Pricing — assume, do not stop.** Take the price list's printed prices as the
+COST. Retail price/unit = Cost/unit + $ 1.00. A column printed as MSRP,
+suggested retail or suggested price goes to MAP price ($/sf) and never touches
+Cost/unit. Apply these defaults and keep going; they are the rule, not a guess.
+
+**Flag, do not stop, for anything the defaults do not cover** — more than one
+candidate cost column, a number whose role is not printed, a grade or category
+that maps to nothing, a supplier quirk with no recorded subsection. Record each
+one in the plan and in the notification, naming the SKUs. Never invent a mapping
+to avoid flagging.
+
+**A NEW supplier is always flagged.** Zero existing Airtable rows for that
+supplier means every field on every row is unverified and nothing has been
+reviewed against a live record. Say "NEW SUPPLIER — every detail needs a human
+check before upload" in the notification, in those words, and say it first.
+A new supplier's row carries only ONE CSV, so it falls outside your scope
+anyway (see Scope) — report it, do not plan it.
 
 If the Lightspeed host is unreachable or a credential is missing, report the exact
 host or variable name and stop. Never route around a blocked host, never disable
@@ -131,7 +146,11 @@ There is no value in a tighter interval, and each run walks the full catalogue.
   re-running the reconcile — never editing the plan.
 - **Touch `LS Upload` or any Notion completion tracker.** Those record work that
   actually happened; this routine's work is a proposal.
-- **Infer a cost basis.** Asked, never inferred, for every new supplier.
+- **Stop on a pricing question.** Superseded 2026-09-10 (Albert). The printed price
+  is the cost, `Retail = Cost + $ 1.00`, MSRP → `MAP price ($/sf)`. The old rule
+  blocked the whole run on a question; this one produces the work and flags it.
+- **Silently absorb an ambiguity.** Anything the defaults do not cover is flagged
+  with its SKUs — never resolved by inventing a mapping.
 
 ## Changelog
 

@@ -1048,26 +1048,34 @@ The general flow for any supplier ingest:
 
 ---
 
-### ⚠️ Cost basis — ask once, then write it down forever
+### ⚠️ Cost basis — default to the printed price, flag the exceptions
 
-**Rule (Albert, 2026-09-03).** The cost basis is the one assumption that moves every row
-in a file at once, and no amount of staring at a PDF settles it. So it is **asked, not
-inferred** — and the answer is **recorded in that supplier's subsection**, so it is asked
-exactly once per supplier and never again.
+**Rule (Albert, 2026-09-10 — supersedes the blocking version of 2026-09-03).** There is
+now a **default**, and it applies unless a supplier's subsection says otherwise:
 
-**Stop and ask Albert before continuing when either is true:**
+> **The price list's printed prices are the COST.** `Retail price/unit = Cost/unit + $ 1.00`.
+> A column printed as **MSRP**, suggested retail or suggested price goes to
+> **`MAP price ($/sf)`** and never touches `Cost/unit`.
 
-1. **The supplier is new** — always ask. There is no subsection to inherit from.
+Apply it and keep going. **Do not stop to ask which number is the cost.** The old rule
+made this a blocking question on every new supplier, which held whole files behind one
+answer; the default settles the common case, and the exceptions get flagged instead.
+
+**Flag for human review — do not stop, and never guess — when:**
+
+1. **The supplier is new.** Flag the whole file: there is no subsection to inherit from,
+   nothing has been reconciled against a live record, and **every detail needs a human
+   check before upload**. Spec confidence and cost confidence are separate questions and
+   neither is earned yet.
 2. **The sheet has more than one candidate cost column**, or a number whose role is not
    stated, on *any* supplier — a second price beside the first, an "MSRP"/"list"/"retail"
    column, a promo price beside a regular one, or a per-piece figure next to a per-sq-ft
    one. Ambiguity on an existing supplier means the *format changed*; the stored note may
    no longer describe the file in front of you.
 
-Ask him to look at the file and confirm **before** the supplier and its costs go any
-further. Put it to him concretely — name the columns as printed and say which one you
-would otherwise take as cost. This is a **blocking** question: the extraction may proceed
-so he has data to look at, but the import does not.
+Flag concretely: name the columns as printed, say which one you took as cost under the
+default, and name the SKUs affected. Extraction proceeds; the **import** is what waits on
+the human. An ambiguity absorbed silently is the one failure nothing downstream detects.
 
 **Then write the answer into the supplier's subsection under a `#### Cost column`
 heading.** That is what makes it a one-time cost. A future run reads the subsection,
@@ -3709,12 +3717,13 @@ When a new supplier is added, gather this information before processing their fi
 1. **Supplier name** (exact string for Airtable single-select)
 2. **Brand(s)** — is the supplier also the brand, or do they distribute multiple brands?
 3. **4-char SKU suffix** (e.g. FAWK, VIDR, GRAN)
-4. **Cost basis — ASK ALBERT, do not infer.** Which printed column is `Cost/unit`,
-   any multiplier, and whether the supplier publishes an MSRP at all. This is the one
-   answer that moves every row in the file, and a PDF rarely states it. See
-   *Cost basis — ask once, then write it down forever* at the top of this section, and
-   **write the answer into the new subsection under `#### Cost column`** so it is never
-   asked twice.
+4. **Cost basis — apply the default, flag if the sheet is ambiguous.** The printed
+   price is the cost and `Retail = Cost + $ 1.00` unless the sheet gives you more than
+   one candidate cost column or a number whose role is not stated — then flag it,
+   naming the columns and which one you took. See *Cost basis — default to the printed
+   price, flag the exceptions* at the top of this section, and **write what you applied
+   into the new subsection under `#### Cost column`** so the next run inherits it rather
+   than re-deriving it.
 5. **Does the supplier assign product codes?** If yes, populate Supplier SKU. If no, leave blank.
 6. **Categories in scope** (ENG, LVP, LVT, HWD, LAM, TIL, CAR, ACC)
 7. **Markup overrides** — any category where `Retail = Cost + $ 1` doesn't apply (e.g. stair products, accessories, clearance)
@@ -3805,7 +3814,9 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
 - **2026-09-09** — Added the **Vizion** supplier subsection from the 2026/07/01 list
   (52 rows, first ingest, not yet imported). Its `#### Cost column` is deliberately
   **open**: the sheet prints one unlabelled price column with no terms page and no MSRP,
-  so the basis was escalated to Albert rather than inferred, per *Cost basis — ask once*.
+  so the basis was escalated to Albert rather than inferred, under the blocking rule in
+  force at the time (superseded 2026-09-10 — a sheet like this now takes the printed
+  price as cost and is flagged, not held).
   Found independently on the Vizion run, alongside the status-name defect above.
 - **2026-09-08** — **Promo/new-product matching strengthened.** "Promo product not
   found in catalogue" now requires checking the live base for a same-colour+width+
