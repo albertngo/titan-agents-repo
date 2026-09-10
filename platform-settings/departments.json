@@ -1,0 +1,192 @@
+{
+  "_comment": "The department routing partition for Titan Flooring. Consumed by .claude/commands/route.md to decide which department owns an incoming request, and by department lead agents to know which files they may read. A new department, or a source changing hands, is a one-line data edit here — never a prose edit in route.md. Verified against .claude/agents/ and .claude/commands/ on 2026-09-10.",
+  "_maintenance": "owns.sources[] across all departments MUST be a partition of the ingest sources in CLAUDE.md's agent table: every source owned exactly once. A source owned twice routes non-deterministically; a source owned by nobody falls silently to `general`. tests/test_departments_registry.py enforces both, plus the rule that no *-actions agent may appear in a specialists.readonly[] list. When an agent or command is added or renamed, update the entry here in the same change — a dangling name in specialists[] or owns.commands[] is a routing bug, not a typo.",
+  "_no_sensitivity_note": "There is deliberately no `sensitivity` or `write_policy` key anywhere in this file. A department is NOT a sensitivity boundary — provenance decides (Albert, 2026-08-02). Item sensitivity is set at ingest per contracts/ingest-schema.md and defaulted per source in notion-destinations.json `source_defaults`; write_policy lives on the destination being written to. Mirroring either here would create a second source of truth that silently disagrees with the first.",
+  "config_version": 1,
+
+  "departments": {
+    "sales": {
+      "display_name": "Sales",
+      "status": "active",
+      "kind": "agent",
+      "lead": "planner-agent",
+      "plan_file": "plans/{date}/plan.json",
+      "plan_contract": "contracts/plan-schema.md",
+      "escalation_order": 1,
+      "owns": {
+        "sources": ["ghl"],
+        "sub_sources": [],
+        "platforms": ["gohighlevel", "ghl"],
+        "commands": ["manager-dashboard", "won-analysis", "notion-sync"]
+      },
+      "specialists": {
+        "readonly": ["ghl-ingest-agent"],
+        "actions": ["ghl-actions-agent"]
+      },
+      "route_keywords": [
+        "lead", "leads", "pipeline", "opportunity", "opportunities", "quote",
+        "follow-up", "followup", "stale", "drift", "stage", "won", "conversion",
+        "sms", "text the customer", "sales board", "call queue", "appointment"
+      ],
+      "_note": "plan_file is plans/{date}/plan.json, NOT dept-plan-sales.json. /manager-dashboard reads that exact path and contracts/plan-schema.md states it literally. Sales is grandfathered on the plan-1 envelope; its actions[] entries are already the shape contracts/dept-plan-schema.md cites, so nothing diverges where it matters."
+    },
+
+    "operations": {
+      "display_name": "Operations",
+      "status": "spec",
+      "kind": "agent",
+      "lead": null,
+      "plan_file": "plans/{date}/dept-plan-operations.json",
+      "plan_contract": "contracts/dept-plan-schema.md",
+      "escalation_order": 2,
+      "owns": {
+        "sources": ["notion"],
+        "sub_sources": [
+          "titan_projects",
+          "qa_work_orders",
+          "master_payments_log",
+          "tactical_tasks_list",
+          "project_status_meetings"
+        ],
+        "platforms": ["notion"],
+        "commands": []
+      },
+      "specialists": {
+        "readonly": ["notion-ingest-agent"],
+        "actions": []
+      },
+      "route_keywords": [
+        "project", "projects", "work order", "work orders", "deficiency",
+        "warranty", "install", "installation", "tactical task", "tactical tasks",
+        "status meeting", "job site", "schedule", "qa"
+      ],
+      "spec_reason": "The source is live and findings recur daily (stale tactical tasks, QA error statuses, won projects missing an Opportunity ID), but no rule table exists yet. Until ops-lead-agent is written, requests routed here are answered inline from ingest/<date>/notion.json — never planned.",
+      "_note": "/notion-sync is NOT listed under owns.commands. It writes GHL-derived candidates to the Tactical Tasks List, so it belongs to Sales even though its destination is a Notion database Operations reads. This is why ownership keys on source, not platform."
+    },
+
+    "catalogue": {
+      "display_name": "Catalogue",
+      "status": "active",
+      "kind": "command",
+      "lead": "catalog-sync",
+      "plan_file": "plans/{date}/catalog-plan-{supplier_slug}.json",
+      "plan_contract": "contracts/catalog-plan-schema.md",
+      "escalation_order": 3,
+      "owns": {
+        "sources": [],
+        "sub_sources": ["price_lists"],
+        "platforms": ["airtable", "lightspeed", "pricelists"],
+        "commands": ["catalog-sync", "process-price-list"]
+      },
+      "specialists": {
+        "readonly": ["pricelist-processor"],
+        "actions": ["lightspeed-actions-agent", "airtable-actions-agent"]
+      },
+      "route_keywords": [
+        "price list", "pricelist", "supplier price", "catalogue", "catalog",
+        "sku", "product", "airtable", "lightspeed", "ls upload", "upload file",
+        "backfill", "price history", "markup", "promo"
+      ],
+      "_note": "kind is `command`, not `agent` — this department's lead is /catalog-sync plus scripts/catalog_reconcile.py, and it predates the lead-agent pattern. It is registered so routing is complete, not so it can be rebuilt. It contributes no ingest source: the catalogue pipeline is not part of /daily-ingest."
+    },
+
+    "marketing": {
+      "display_name": "Marketing",
+      "status": "registry_only",
+      "kind": "agent",
+      "lead": null,
+      "plan_file": null,
+      "plan_contract": null,
+      "escalation_order": 4,
+      "owns": {
+        "sources": ["meta-ads"],
+        "sub_sources": [],
+        "platforms": ["meta", "facebook", "instagram"],
+        "commands": []
+      },
+      "specialists": {
+        "readonly": ["meta-ads-ingest-agent"],
+        "actions": []
+      },
+      "route_keywords": [
+        "ad", "ads", "ad spend", "campaign", "cpl", "cost per lead", "meta",
+        "facebook", "instagram", "creative", "impressions", "delivery", "budget"
+      ],
+      "spec_reason": "Tier 1 work is missing, not Tier 3. There is no methods/marketing-framework.md defining CPL or its baseline, and no platform-settings/meta-ads.json holding thresholds — meta-ads is the only ingest source with no registry file. A lead built now would hardcode the '~$14 7-day CPL baseline' the daily brief quotes from nowhere.",
+      "promote_criteria": [
+        "methods/marketing-framework.md exists and defines CPL, the baseline window, and what counts as a delivery problem",
+        "platform-settings/meta-ads.json exists and holds the thresholds that framework names",
+        "a second distinct marketing question has been asked (rule of two, CLAUDE.md analysis ladder)"
+      ]
+    },
+
+    "finance": {
+      "display_name": "Finance",
+      "status": "blocked",
+      "kind": "agent",
+      "lead": null,
+      "plan_file": null,
+      "plan_contract": null,
+      "escalation_order": 5,
+      "owns": {
+        "sources": ["bookkeeper"],
+        "sub_sources": [],
+        "platforms": ["quickbooks", "qbo"],
+        "commands": []
+      },
+      "specialists": {
+        "readonly": ["bookkeeper-ingest-agent"],
+        "actions": []
+      },
+      "route_keywords": [
+        "invoice", "invoices", "overdue", "quickbooks", "qbo", "bookkeeping",
+        "receipt", "receipts", "expense", "uncategorized", "reconcile",
+        "profit", "p&l", "cash"
+      ],
+      "blocked_reason": "bookkeeper-ingest-agent has written status: \"error\" on every recorded run from 2026-07-26 through 2026-09-08 — sixteen consecutive failures. No Intuit QuickBooks MCP server is configured in .mcp.json and there is no scripts/bookkeeper_pull.py equivalent to scripts/outlook_pull.py. A Finance lead would read an empty file every day and emit an empty plan.",
+      "unblock_criteria": [
+        "ingest/run-ledger.json shows three consecutive entries with bookkeeper: \"ok\"",
+        "then, and only then, write finance-lead-agent with a rule table derived from those three real days"
+      ],
+      "partial_answer_sources": ["notion:master_payments_log"],
+      "_note": "partial_answer_sources is what route.md may fall back to for a finance-shaped question, ALWAYS labelled as partial. A Notion payments-log figure is not bookkeeping and must never be presented as if it were. GHL value_cents is deliberately not listed — it is pipeline value, not money received."
+    },
+
+    "general": {
+      "display_name": "General",
+      "status": "active",
+      "kind": "command",
+      "lead": "route",
+      "plan_file": null,
+      "plan_contract": null,
+      "escalation_order": 6,
+      "owns": {
+        "sources": ["outlook"],
+        "sub_sources": [],
+        "platforms": ["outlook", "microsoft365", "m365", "vault", "titan-vault"],
+        "commands": ["exec-dashboard", "daily-ingest"]
+      },
+      "specialists": {
+        "readonly": ["outlook-ingest-agent"],
+        "actions": ["vault-writer-agent"]
+      },
+      "route_keywords": [
+        "email", "inbox", "mailbox", "outlook", "vault", "note", "notes",
+        "brief", "dashboard", "system health", "run ledger", "what should i do"
+      ],
+      "_note": "General is the fallback lane AND the owner of outlook. outlook routes here rather than to a department because the 2026-08-03 per-staff-destination direction is unbuilt: staff mail has no correct destination yet, and assigning it to a department before one exists is the misfiling contracts/notion-task-schema.md forbids. General has no lead agent — /route answers inline from files already in ingest/, or asks one clarifying question."
+    }
+  },
+
+  "routing": {
+    "_comment": "Fixed precedence, first match wins. No scoring, no confidence thresholds — the same discipline notion-sync.md uses for sensitivity: routing is a lookup, never inferred from content.",
+    "precedence": [
+      "explicit — the request names a department key or matches a route_keywords[] entry",
+      "command_named — the request names a command in some department's owns.commands[]",
+      "source_named — the request names a source, sub_source, or platform owned by exactly one department",
+      "fallback — general"
+    ],
+    "ambiguity_rule": "If a precedence step matches more than one department, record every match in the request log's routing.alternatives[] and ASK. Ambiguity is surfaced, never resolved silently.",
+    "fallback_department": "general"
+  }
+}

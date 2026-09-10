@@ -1,0 +1,46 @@
+{
+  "_comment": "Identity -> permission, for requests arriving through .claude/commands/route.md. Answers two questions and no others: WHO is asking (requester_id), and WHAT may they reach (tier + departments). Consumed by route.md only. This is not an authentication system — the channel is responsible for proving identity before it hands a request over; this file only says what a proven identity is allowed to do.",
+  "_maintenance": "Adding a person is one entry here plus one channel identifier. A channel identifier that resolves to no entry is REFUSED, never downgraded to staff and never guessed — see resolution.unknown_identifier below. When a staff member leaves, delete the entry; do not set tier to null, which reads as a malformed entry rather than a revocation.",
+  "_privacy_note": "THIS REPO IS PUBLIC (see CLAUDE.md 'Open items', settled 2026-07-26). Never put a real phone number, personal email address, or WhatsApp handle in this file. Channel identifiers are stored as sha256(REQUESTER_ID_SALT + raw_identifier), hex, first 16 chars. The salt lives in .env (REQUESTER_ID_SALT) and never in the repo. The alternative, equally acceptable: have Make resolve the raw identifier to an opaque requester_id before the request ever reaches this system, in which case the channels[] list here stays empty and Make owns the mapping.",
+  "config_version": 1,
+
+  "tiers": {
+    "admin": {
+      "_comment": "Albert, and anyone he explicitly grants the same reach. Sees everything, including items whose sensitivity is `private`.",
+      "may_see_private": true,
+      "departments": "*"
+    },
+    "staff": {
+      "_comment": "Titan staff. May reach the operational departments and sees only `team`-sensitivity items. This is the tier a WhatsApp number would land in.",
+      "may_see_private": false,
+      "departments": ["sales", "operations", "catalogue", "general"]
+    }
+  },
+
+  "requesters": [
+    {
+      "requester_id": "albert",
+      "display_name": "Albert",
+      "tier": "admin",
+      "channels": [
+        { "channel": "chat", "identifier": "session-owner" },
+        { "channel": "routine", "identifier": "*" },
+        { "channel": "command", "identifier": "*" }
+      ],
+      "_note": "The `chat` and `command` channels are the local session, which is already Albert's by definition — a cloud session runs under his account. The `routine` channel is every scheduled Routine, which he owns. These three are the only wildcards in this file and they are all the same person."
+    }
+  ],
+
+  "resolution": {
+    "_comment": "How route.md turns a channel identifier into a tier. Fail-closed at every step — the same posture as the notion_task_eligible_mailboxes exclusion in contracts/notion-task-schema.md, which is a hard rule precisely because a wrong answer misfiles something private.",
+    "order": [
+      "hash the raw identifier: sha256(REQUESTER_ID_SALT + raw)[:16]",
+      "find the requesters[] entry whose channels[] contains that (channel, identifier) pair",
+      "read its tier; read that tier's may_see_private and departments from tiers{}"
+    ],
+    "unknown_identifier": "REFUSE. Reply that the sender is not registered and stop. Do not default to staff, do not answer 'just the safe parts', and do not ask the sender who they are — an unregistered identity answering that question is not evidence.",
+    "unknown_tier": "REFUSE. A requesters[] entry naming a tier that tiers{} does not define is a malformed registry, not a permission question.",
+    "department_not_allowed": "Reply that the department is out of reach for this requester and name which departments are in reach. Do not silently reroute to general — a staff member asking Finance a question should learn they cannot, not receive a General answer that looks like the answer.",
+    "private_filter": "An item whose effective sensitivity is `private` is NEVER returned to a requester whose tier has may_see_private: false. This is a filter applied at reply time, not a new routing axis: the item's sensitivity was already set at ingest per contracts/ingest-schema.md and defaulted per source in notion-destinations.json. Filtering happens after the department has done its work, so a lead's plan file on disk is unchanged by who asked."
+  }
+}
