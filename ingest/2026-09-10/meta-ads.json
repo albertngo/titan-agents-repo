@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-09-10T08:18:00-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $53.20 spend, 7 leads, $7.60 CPL — Flooring Problems Campaign",
+      "summary": "Yesterday (2026-09-09) Meta spent $53.20, all on the sole actively-delivering campaign, Flooring Problems Campaign, generating 7 leads at $7.60 CPL. That's well under the 7-day baseline (2026-09-03 to 2026-09-09: $346.94 / 30 leads, ~$11.56 CPL), so no anomaly; account is ACTIVE and no ads are flagged.",
+      "timestamp": "2026-09-09T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 5320,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 5320,
+    "impressions": 1431,
+    "clicks": 46,
+    "leads": 7,
+    "cpl_cents": 760,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued at 7, matching the counted leads exactly, same as flagged on 2026-08-31, 2026-09-02, 2026-09-07, and 2026-09-08). No discrepancy in the counted total so far, but this is now the fifth consecutive run seeing it — the script's lead-action set should be extended rather than continuing to hand-note it.",
+    "The most recent prior meta-ads.json on this branch is 2026-09-08. Per the orchestrator's instruction this run, 2026-09-09's daily-ingest completed normally but its raw ingest files landed on an unmerged session branch (confirmed via the vault's 01_daily/2026-09-09.md note) — a known branch-isolation artifact, not a missed run. Today's pull correctly used the standard 1-day window (2026-09-09) with no gap to widen."
+  ]
+}

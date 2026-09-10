@@ -1,0 +1,12 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-09-10T08:18:01-04:00",
+  "status": "error",
+  "error": "Session tool-provisioning gap: no mcp__ghl__* tools were bound to this agent invocation (function list for this run contained only Read/Write/Bash — none of contacts_get-contacts, conversations_search-conversation, opportunities_search-opportunity, calendars_get-calendar-events, etc. were available to call). GHL_PIT_TOKEN and GHL_LOCATION_ID are both present in the environment and .mcp.json defines the ghl server correctly, so this does not look like a credentials or platform-side outage — it matches the same tool-binding gap logged in run-ledger.json on 2026-08-15, 2026-08-18, 2026-08-19, and 2026-08-24 (e.g. 2026-08-15: 'GHL failed on a session tool-provisioning gap (mcp__ghl__* bindings not granted to the ingest subagent) rather than a platform outage'). Per this agent's hard read-only-via-MCP instruction, no direct HTTP call to the GHL API was attempted as a substitute. Zero GHL calls were made; no leads, opportunities, appointments, or conversations were pulled. Re-run once mcp__ghl__* bindings are restored to this agent's tool grant.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest could not run today (2026-09-10): mcp__ghl__* MCP tools were not bound to this session despite valid credentials/config — same class of failure as 2026-08-15/08-18/08-19/08-24. Re-run ghl-ingest-agent once tool bindings are restored; today's GHL activity (leads, pipeline moves, appointments, conversations, drift findings, won records) is entirely un-ingested and will need a widened lookback on the next successful run to avoid a permanent gap."
+  ]
+}
