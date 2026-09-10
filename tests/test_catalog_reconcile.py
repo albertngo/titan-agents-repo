@@ -470,7 +470,11 @@ class TestPromoPricing(unittest.TestCase):
 
 
 class TestPromoMarkerAndSfb(unittest.TestCase):
-    """The `(P)` prefix lives in column 11 and must not disturb the sf/b rule."""
+    """The `(P YYYY-MM-DD)` prefix lives in column 11 and must not disturb sf/b.
+
+    The date is inside the marker so a stale one exposes its own staleness — the
+    marker is a prompt to verify, not a claim the sale is live (Albert, 2026-09-10).
+    """
 
     def test_p_prefix_does_not_hide_sfb_in_a_mixed_group(self):
         rows = [row(SKU=f"A-{i}", **{"Lightspeed ID": "", "Box size (sf)": b,
@@ -484,17 +488,17 @@ class TestPromoMarkerAndSfb(unittest.TestCase):
                        "variant_option_one_value": v,
                        "supply_price": "1", "retail_price": "2",
                        "product_category": "FLOORING / ENGINEERED HARDWOOD"}
-            for i, v in ((1, "(P) Select - 20.18sf/b"),
+            for i, v in ((1, "(P 2026-10-31) Select - 20.18sf/b"),
                          (2, "Select & Better - 18.19sf/b"))}
         _, blocked, _ = run(rows, [], ls_upload=ls_rows)
         self.assertEqual(blocked, [],
-                         "a (P)-prefixed variant value still exposes its box size")
+                         "a dated (P ...) variant value still exposes its box size")
 
     def test_p_prefix_on_a_singleton_name_keeps_sfb_readable(self):
         rows = [row(SKU="A-1", **{"Lightspeed ID": "", "Box size (sf)": "25.32"})]
         _, blocked, _ = run(rows, [], ls_upload={"A-1": {
             "sku": "A-1", "handle": "HX1",
-            "name": '(P) VIDENG - 7 AWO (X) T&G | 7.5" x 3mm x RL - 25.32sf/b',
+            "name": '(P 2026-10-31) VIDENG - 7 AWO (X) T&G | 7.5" x 3mm x RL - 25.32sf/b',
             "variant_option_one_value": "", "supply_price": "1", "retail_price": "2",
             "product_category": "FLOORING / ENGINEERED HARDWOOD"}})
         self.assertEqual(blocked, [])

@@ -571,22 +571,26 @@ def ls_update_fields(row):
     sync. That is visible rather than silent — it appears as a before/after on the
     plan a person approves — but it is not preserved.
 
-    ## Known gap: the API sync moves the promo PRICE, not the promo MARKER
+    ## The sync moves the promo PRICE, not the promo MARKER — deliberately
 
     An update writes prices and nothing else, so it cannot set or clear the two
-    visible promo markers — `tags: PROMO` (column 16) and the `(P)` prefix on
-    `variant_option_one_value` (column 11). On an existing product those reach
+    visible promo markers — `tags: PROMO` (column 16) and the `(P YYYY-MM-DD)` prefix
+    on `variant_option_one_value` (column 11). On an existing product those reach
     Lightspeed only through a rebuilt CSV import.
 
-    So today: `supply_price` follows `Promo cost ($/sf)` automatically in both
-    directions, and the marker does not. A product whose promo ended has the right
-    cost and a stale `(P)` until its file is rebuilt and imported.
+    That asymmetry is the right way round (Albert, 2026-09-10). `(P …)` means "verify
+    this promo before quoting", not "this is on sale today"; it carries the end date,
+    so a stale marker exposes its own staleness; and a salesperson checks the date
+    before committing to a quote regardless. A lagging marker costs a lookup. The
+    price is the part that has to be right without anyone thinking about it, and it
+    is — in both directions, since clearing `Promo cost ($/sf)` on `Promo end date`
+    puts `supply_price` back on the next sync.
 
-    Closing it means letting an update write `variant_attribute_values` and tags.
-    That is a real widening of a payload kept deliberately narrow, and the 2.1
-    attribute shape has already bitten once (a guard read the wrong key and returned
-    [] where a `Select` existed). It needs a live check against the API before it is
-    written, not a guess — the credential was dead when this was authored.
+    Making the marker self-clearing would mean letting an update write
+    `variant_attribute_values` and tags: a real widening of a payload kept
+    deliberately narrow, against a 2.1 attribute shape that has already bitten once
+    (a guard read the wrong key and returned [] where a `Select` existed). Worth
+    doing only on the evidence of a live API check. Not urgent.
     """
     promo = as_number(row.get(PROMO_COST))
     cost = as_number(row.get("Cost/unit"))

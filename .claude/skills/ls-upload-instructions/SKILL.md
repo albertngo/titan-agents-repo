@@ -152,13 +152,36 @@ So the mixed case is **both**, never either-or. Dropping the name half loses the
 ## Marking a promo — `(P)` and the `PROMO` tag
 
 **Rule (Albert, 2026-09-10).** A row whose `Promo cost ($/sf)` is populated is on
-promo, and the LS file marks it in two places:
+promo, and the LS file marks it in two places.
+
+### What `(P)` means — and what it does not
+
+**`(P)` means "there is a promotion on this product — verify it before you quote."**
+It does **not** assert that the sale is live today at that price.
+
+That distinction is the design, not a hedge (Albert, 2026-09-10). A salesperson
+verifies the promo end date before committing to a quote regardless; a new price list
+overwriting the promo is the only thing that settles it authoritatively. So the marker
+is a **prompt to check**, in the same spirit as a `18.19/20.18sf/b` name telling you to
+ring the supplier. A marker that has to be perfectly current to be safe would be a much
+more fragile thing than one that only has to be noticed.
 
 | Where | What | Why |
 |---|---|---|
-| **Column 16 `tags`** | `PROMO` | Machine-readable. Filterable at the POS, and the thing an automated sweep can flip off when the promo ends. |
-| **Column 11 `variant_option_one_value`** — variant rows | `(P) ` **prefixed** to the existing value: `(P) Select - 20.18sf/b`, `(P) Character` | Visible to staff at the point of selection. |
-| **The name** — singleton / no-grade rows only (columns 10–11 blank) | `(P) ` prefixed to the whole name | A singleton has no variant value to carry it. |
+| **Column 16 `tags`** | `PROMO` | Machine-readable. Filterable at the POS, and what an automated sweep would flip. |
+| **Column 11 `variant_option_one_value`** — variant rows | `(P YYYY-MM-DD) ` **prefixed** to the existing value: `(P 2026-10-31) Select - 20.18sf/b` | Visible at the point of selection, with the date the salesperson has to verify against. |
+| **The name** — singleton / no-grade rows only (columns 10–11 blank) | `(P YYYY-MM-DD) ` prefixed to the whole name | A singleton has no variant value to carry it. |
+
+**Carry `Promo end date` in the marker, not just `(P)`.** A bare `(P)` says "go look
+this up somewhere else"; `(P 2026-10-31)` answers the question where the decision is
+being made. It also makes a stale marker **self-invalidating** — a date in the past
+tells the salesperson the promo is over without anyone having rebuilt the file. That is
+what makes the verify-before-quoting rule practical rather than a discipline nobody can
+act on at the counter.
+
+**If `Promo end date` is blank, emit `(P)` alone** — and treat the blank as worth
+flagging, since a promo with no printed expiry is exactly the case where a person most
+needs to ask the supplier.
 
 **The `(P)` goes in the variant value, never in a variant family's shared name.** This
 is the whole reason the marker works, and it is worth being explicit about why:
@@ -194,17 +217,23 @@ This only holds because **the file is regenerated, not hand-edited**. Every prom
 is derived from the Airtable field on each build, so it cannot go stale on its own — but
 a row that never gets rebuilt after its promo ends keeps the marker until it does.
 
-> **⚠️ Known gap (2026-09-10): the API sync moves the promo PRICE, not the promo MARKER.**
-> `/catalog-sync`'s Lightspeed update writes prices and nothing else, by design. So on an
-> existing product `supply_price` follows `Promo cost ($/sf)` automatically in both
-> directions, while `tags` and the `(P)` prefix reach Lightspeed **only through a rebuilt
-> CSV import**. A product whose promo has ended will carry the correct cost and a stale
-> `(P)` until its file is rebuilt and re-imported.
+> **The API sync moves the promo PRICE, not the promo MARKER.** `/catalog-sync`'s
+> Lightspeed update writes prices and nothing else, by design. So on an existing product
+> `supply_price` follows `Promo cost ($/sf)` automatically in both directions, while
+> `tags` and the `(P …)` prefix reach Lightspeed **only through a rebuilt CSV import**.
+> A product whose promo has ended carries the correct cost and a stale marker until its
+> file is rebuilt.
 >
-> Until that is closed, **a promo ending is a rebuild-and-import, not just a date passing.**
-> Closing it means letting an update write `variant_attribute_values` and tags — a real
-> widening of a deliberately narrow payload, and the 2.1 attribute shape has already caused
-> one incident, so it needs a live API check first rather than a guess.
+> **This is a documented characteristic, not an outstanding defect** (Albert,
+> 2026-09-10). The marker is a prompt to verify, the date inside it exposes its own
+> staleness, and a salesperson checks the promo before quoting regardless — so a marker
+> lagging a rebuild costs a lookup, not a mispriced order. The *price* is the part that
+> must be right automatically, and it is.
+>
+> Making the marker self-clearing would mean letting an update write
+> `variant_attribute_values` and tags — a real widening of a deliberately narrow payload,
+> and the 2.1 attribute shape has already caused one incident. Worth doing only on the
+> evidence of a live API check, and not urgent.
 
 ### Retail does not follow the promo
 
