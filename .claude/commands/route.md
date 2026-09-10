@@ -45,6 +45,16 @@ Where this file and a contract it cites disagree, **the contract wins**.
 
    Record `routing.rule` and the literal token in `routing.matched_on`.
 
+   **Match on whole words, never substrings.** `ad` as a substring pulls every
+   mention of `leads` into Marketing — this is not hypothetical, it is what the
+   registry's first dry run did. A multi-word entry matches as a whole phrase,
+   also on word boundaries.
+
+   **Longer match wins.** If the matches include one keyword that contains
+   another as a whole phrase, discard the shorter *before* the ambiguity check:
+   `cost per lead` beats `lead`, `stale lead` beats `lead`. This is a tie-break
+   on matches already found — never a way to match something that did not.
+
    **Classification is a lookup, not a judgment about content.** Never infer a
    department from tone, urgency, or who you think should handle it. If a step
    matches more than one department, put every match in
