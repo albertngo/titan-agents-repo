@@ -64,6 +64,19 @@ agents are never scheduled and never autonomous, so the automation covers walkin
 14,000-product catalogue and catching identity collisions, and asks a person only for
 the yes. **A run that ends at the approval gate has SUCCEEDED.**
 
+**Existing suppliers flow through the routine automatically; new suppliers never do
+(Albert, 2026-09-10).** A row for a supplier already in Airtable carries both CSVs and
+reconciles cleanly — steps 1–3 run unattended for it like any other row, stopping at
+the same approval gate. A brand-new supplier's row carries only one CSV (there is no
+live Airtable state yet to build the Lightspeed file from) and gets `Review Reason:
+New Supplier` instead — the routine reports it and does not plan it (see
+`methods/catalog-sync-routine-prompt.md`, "A NEW supplier is always flagged"). A person
+imports the Airtable file by hand first, then runs `/catalog-sync` interactively (this
+is what happened for Northway, 2026-09-10 — see its subsection in `bert-airtable-schema`
+for the worked example). So once the routine's scope filter is fixed, its scope should
+stay "reviewed rows for suppliers already on file" — never "every Pending row" — new
+suppliers are excluded by design, not by a gap still to close.
+
 **Lightspeed is written before Airtable** — the reverse of `forced_downstream_order` in
 `pricelist-sources.json`, which describes the manual CSV flow. `POST /api/2.0/products`
 returns the new UUID, so the Lightspeed create is what mints the id the Airtable write
