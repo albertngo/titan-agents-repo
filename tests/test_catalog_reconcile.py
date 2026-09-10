@@ -297,6 +297,44 @@ class TestRowInvariant(unittest.TestCase):
         self.assert_partitioned(rows, actions, blocked)
 
 
+class TestAirtableSnapshotRequired(unittest.TestCase):
+    """Planning Airtable writes from the upload CSV is not allowed.
+
+    The CSV records the base as it stood when the price list was processed. On
+    2026-09-10 that difference was real: the Lee plan claimed 50 rows needed a
+    Lightspeed ID backfill when the live base was missing exactly 5, because the
+    other 45 had been filled in after the CSV was written.
+    """
+
+    def test_no_snapshot_means_no_airtable_actions(self):
+        rows = [row(SKU="A-1", **{"Lightspeed ID": "u-1", "Cost/unit": "9.99"})]
+        ls = [product(id="u-1", sku="A-1", supply_price=1.0, price_excluding_tax=2.0)]
+        actions, blocked, _ = cr.reconcile(rows, fake_ls(ls), {}, "T", LEAVES,
+                                           airtable_snapshot=False)
+        self.assertEqual([a for a in actions if a["target_system"] == "airtable"], [])
+        self.assertEqual(blocked, [])
+
+    def test_the_lightspeed_side_still_plans(self):
+        """LS is reconciled against the live pull, so it is unaffected."""
+        rows = [row(SKU="A-1", **{"Lightspeed ID": "u-1", "Cost/unit": "9.99"})]
+        ls = [product(id="u-1", sku="A-1", supply_price=1.0, price_excluding_tax=2.0)]
+        actions, _, _ = cr.reconcile(rows, fake_ls(ls), {}, "T", LEAVES,
+                                     airtable_snapshot=False)
+        ls_actions = [a for a in actions if a["target_system"] == "lightspeed"]
+        self.assertEqual([a["op"] for a in ls_actions], ["update"])
+
+    def test_a_create_still_queues_its_backfill_shape(self):
+        """A create's backfill action is about a UUID that does not exist yet, so it
+        does not depend on knowing current Airtable state."""
+        rows = [row(SKU="NEW-1", MatchStatus="new", **{"LS Handle / Parent ID": "HNEW"})]
+        actions, blocked, _ = cr.reconcile(rows, fake_ls([]), {}, "T", LEAVES,
+                                           ls_upload_row(), airtable_snapshot=False)
+        self.assertEqual(blocked, [])
+        ops = {(a["target_system"], a["op"]) for a in actions}
+        self.assertIn(("lightspeed", "create"), ops)
+        self.assertIn(("airtable", "backfill_ls_id"), ops)
+
+
 class TestPriceMapping(unittest.TestCase):
     """Airtable -> Lightspeed price fields, verified against every matched row."""
 

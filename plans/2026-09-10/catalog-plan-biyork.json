@@ -1,7 +1,7 @@
 {
  "contract_version": "catalog-plan-1",
  "supplier": "Biyork",
- "run_at": "2026-09-10T00:49:59.820520-04:00",
+ "run_at": "2026-09-10T01:28:28.700343-04:00",
  "status": "partial",
  "inputs": [
   {
@@ -25,7 +25,7 @@
   "actions_total": 287,
   "uuid_recovered_by_sku": 20,
   "blocked": 87,
-  "warnings": 187,
+  "warnings": 188,
   "rows_in": 354
  },
  "actions": [
@@ -8755,6 +8755,11 @@
   }
  ],
  "warnings": [
+  {
+   "sku": null,
+   "reason": "airtable_state_unverified",
+   "detail": "267 Airtable actions were derived from the upload CSV, not from live Airtable. The CSV shows the base as it was when the price list was processed; anything filled in since will be proposed again. Re-run with --airtable-existing pointing at a live snapshot before approving any Airtable write."
+  },
   {
    "sku": "LVP-BIYK-BYKH5PRO12NI",
    "reason": "category_unresolved",

@@ -175,7 +175,8 @@ def live_value(record, field):
     return None, False
 
 
-def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None):
+def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
+              airtable_snapshot=True):
     """Every row -> an action or a block. Never both, never neither.
 
     Warnings are separate: things worth a reader's attention that are not a
@@ -278,7 +279,11 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None):
                  "Install method. Not blocking: no write path sets a category yet.")
 
         # ---- Airtable side ----
-        live = existing.get(sku)
+        # Without a live snapshot there is no honest way to say what Airtable needs.
+        # The upload CSV shows the base as it was when the price list was processed,
+        # and on 2026-09-10 that difference was 50 rows against a real gap of 5.
+        # Emitting nothing is correct; emitting a guess and warning about it is not.
+        live = existing.get(sku) if airtable_snapshot else None
         is_new_in_airtable = (match_status == "new") or (live is None and match_status != "matched")
         fields, before, unreadable = {}, {}, []
         for field in DIFF_FIELDS:
@@ -320,6 +325,8 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None):
                   "Pass --ls-upload.")
             continue
 
+        if fields and not airtable_snapshot:
+            fields = {}
         if fields:
             price_moved = any(f in PRICE_FIELDS for f in fields)
             reason = ("new_product" if is_new_in_airtable
@@ -458,6 +465,15 @@ def ls_create_fields(row, ls_upload_row):
         value = clean(ls_upload_row.get(csv_col))
         if value:
             fields[api_key] = value
+
+    # Variant grouping. The CSV carries the option as a name/value pair; the API
+    # wants {attribute_id, value}, resolved against the live attribute list at
+    # write time. Carried through as names here so the plan stays readable and the
+    # push step does the resolution — it must never invent an attribute.
+    opt_name = clean(ls_upload_row.get("variant_option_one_name"))
+    opt_value = clean(ls_upload_row.get("variant_option_one_value"))
+    if opt_name and opt_value:
+        fields["variant_option"] = {"name": opt_name, "value": opt_value}
     return {k: v for k, v in fields.items() if v is not None}
 
 
@@ -534,25 +550,21 @@ def main():
         (REPO_ROOT / "platform-settings" / "lightspeed.json").read_text()
     )["product_categories"]["leaves"]
 
+    have_snapshot = bool(args.airtable_existing)
     actions, blocked, warnings = reconcile(rows, ls, existing, supplier, categories,
-                                          ls_upload)
+                                          ls_upload, airtable_snapshot=have_snapshot)
 
-    # Without a live Airtable snapshot the Airtable side is guesswork: the upload CSV
-    # records what Airtable looked like when the price list was processed, not now.
-    # Verified 2026-09-10 — the Lee plan claimed 50 rows needing a Lightspeed ID
-    # backfill when the live base was missing only 5, because 45 had been filled in
-    # since the CSV was written. Overstating by 10x on exactly the case this is meant
-    # to catch is not a footnote.
-    airtable_actions = [a for a in actions if a["target_system"] == "airtable"]
-    if airtable_actions and not args.airtable_existing:
+    if not have_snapshot:
         warnings.insert(0, {
             "sku": None,
-            "reason": "airtable_state_unverified",
-            "detail": (f"{len(airtable_actions)} Airtable actions were derived from the "
-                       "upload CSV, not from live Airtable. The CSV shows the base as it "
-                       "was when the price list was processed; anything filled in since "
-                       "will be proposed again. Re-run with --airtable-existing pointing "
-                       "at a live snapshot before approving any Airtable write."),
+            "reason": "airtable_side_not_planned",
+            "detail": ("No live Airtable snapshot was supplied, so this plan contains NO "
+                       "Airtable actions. The upload CSV records the base as it stood when "
+                       "the price list was processed, not now — on 2026-09-10 planning from "
+                       "it claimed 50 Lee rows needed a Lightspeed ID when the live base was "
+                       "missing 5. Pass --airtable-existing with a snapshot exported through "
+                       "the Airtable MCP tools; the Lightspeed side below is unaffected, "
+                       "since it is reconciled against the live catalogue pull."),
         })
 
     kinds = Counter(f"{a['target_system']}_{a['op']}" for a in actions)
@@ -602,9 +614,9 @@ def main():
         print(f"  warnings   {len(warnings)}")
         for reason, n in Counter(w["reason"] for w in warnings).most_common():
             print(f"    {reason:28} {n}")
-    if any(w["reason"] == "airtable_state_unverified" for w in warnings):
-        print("\n  NOT APPROVABLE for Airtable writes: the Airtable side came from the "
-              "upload\n  CSV, not the live base. Pass --airtable-existing.")
+    if any(w["reason"] == "airtable_side_not_planned" for w in warnings):
+        print("\n  NO Airtable actions planned: no live snapshot was supplied, and the "
+              "upload\n  CSV is not the current state of the base. Pass --airtable-existing.")
     if blocked:
         print("\n  Blocked rows are NOT approvable and never reach a write. Fix the data "
               "and re-run.")

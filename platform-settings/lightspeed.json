@@ -62,9 +62,19 @@
     "_abort_policy": "On repeated 429 or any 5xx, STOP THE BATCH, log, report \u2014 the house rule for actions agents. Resume is re-running the command: every completed action is already in the day's actions-log.json and is skipped."
   },
   "outlet": {
-    "_comment": "The outlet name is baked verbatim into three LS import column headers: outlet_tax_<name>, inventory_<name>, reorder_point_<name>, restock_level_<name>. Renaming the outlet in Lightspeed silently breaks every upload file.",
-    "name": "Titan Flooring",
-    "default_tax": "Default Tax"
+    "_comment": "Read live from GET /api/2.0/outlets 2026-09-10. There is exactly one outlet, and it is NOT named 'Titan Flooring' \u2014 this file previously said it was, inferred from the LS upload CSV column suffixes.",
+    "id": "02dcd191-ae2b-11e8-ed44-690eeeb7340d",
+    "name": "Mississauga Outlet",
+    "display_prices": "exclusive",
+    "_display_prices_note": "Authoritative confirmation of the tax-exclusive model that api_shape.prices established empirically.",
+    "default_tax_id": "02dcd191-ae89-11e8-ed44-942183bc97f2",
+    "default_tax_name": "Default",
+    "taxes": {
+      "No Tax": "02dcd191-ae2b-11e8-ed44-690eeeb1e1f3",
+      "Default": "02dcd191-ae89-11e8-ed44-942183bc97f2",
+      "Credit Tax": "02dcd191-ae89-11e8-ed44-9427436ca11f"
+    },
+    "_csv_column_mismatch": "WORTH CHECKING. The LS upload CSV built by ls-upload-instructions uses the column headers outlet_tax_Titan Flooring, inventory_Titan Flooring, reorder_point_Titan Flooring and restock_level_Titan Flooring. The skill states the suffix must match the outlet name exactly, and the outlet is named 'Mississauga Outlet'. Those four columns have therefore most likely been ignored on every CSV import to date. Little practical harm \u2014 products fall back to the outlet default tax, and the inventory columns are documented as left blank anyway \u2014 but the headers are wrong and the API path should use the id above rather than any name."
   },
   "product_categories": {
     "_comment": "LS requires a LEAF category \u2014 an intermediate node is rejected with 'A product can only be assigned to a leaf category'. 42 Grandeur rows were rejected on this in July 2026. Format is all caps, space-slash-space separated.",
@@ -352,6 +362,7 @@
         "Color": "02dcd191-ae89-11e9-ed44-19a758b69456"
       },
       "_junk_present": "Several attributes are clearly accidental \u2014 'Red Oak', '31/2\"*7', '5-1/4\" STEP', \"10'\", '____ BATCH'. Note both 'Colour' and 'Color' exist. Never create an attribute automatically; pick from the live list or stop."
-    }
+    },
+    "categories_are_product_types": "product_category and product_type are the same thing \u2014 the reference says 'Product types are now product categories', and on a live product product_type_id equals product_category.id. Resolve names via GET /api/2.0/product_types; 63 exist, flat, e.g. ENGINEERED HARDWOOD, SPC, GLUE DOWN, LOOSE LAY, ACCESSORIES."
   }
 }

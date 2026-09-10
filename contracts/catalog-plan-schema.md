@@ -34,6 +34,52 @@ the whole safety story:
 - `blocked` entries carry no `id` and are therefore unapprovable by construction.
   Unblocking means fixing the underlying data and re-running the reconcile.
 
+## The approval file
+
+`plans/YYYY-MM-DD/catalog-approval-<supplier-slug>.json`. Written by a person (or by
+a command on a person's explicit yes), never by the reconciler.
+
+```json
+{
+  "contract_version": "catalog-approval-1",
+  "supplier": "Lee Flooring",
+  "plan": "plans/2026-09-10/catalog-plan-lee_flooring.json",
+  "approved_by": "Albert",
+  "decisions": [
+    {"id": "cat-11fa9eeb853e", "status": "approved", "at": "2026-09-10T09:20:00-04:00"},
+    {"id": "cat-146ca21a4386", "status": "rejected", "at": "2026-09-10T09:20:00-04:00"}
+  ]
+}
+```
+
+| Field | Notes |
+|---|---|
+| `plan` | Path of the plan these decisions belong to. A writer must check it matches the plan it was handed |
+| `decisions[].id` | An action `id` from that plan |
+| `decisions[].status` | `approved` \| `rejected`. Anything else is not an approval |
+
+Rules, and they are absolute:
+
+- **Absence of this file means nothing is approved.** Not "approve everything", not
+  "ask again later". A writer with no approval file executes nothing.
+- An action executes **only** if its `id` appears here with `status: "approved"`.
+  An id missing from `decisions` is not approved.
+- **Partial approval is normal**, and a writer must handle it without complaint —
+  approving 222 of 231 rows is a perfectly ordinary outcome.
+- A `blocked` entry carries no `id`, so it cannot be approved even by mistake.
+- Approvals are per-plan and expire with it. A re-run produces a new plan; the old
+  approval does not carry over. Action ids are stable across re-runs *by design*,
+  so a writer must compare `plan` paths rather than assuming matching ids mean a
+  matching plan.
+
+### Why ids are stable, and what that buys
+
+An action `id` is `cat-<sha1[:12]>` over supplier + sku + target_system + op, so the
+same logical change gets the same id on every re-run. That is what makes resume work
+without new machinery: a writer reads today's `actions-log.json` first and skips any
+id already recorded `executed`. A run interrupted by a rate limit resumes by simply
+being run again.
+
 ## Envelope
 
 | Field | Notes |
@@ -171,15 +217,19 @@ because Ontario HST is applied at checkout by the outlet's Default Tax rule.
 | Reason | What it means |
 |---|---|
 | `category_unresolved` | The Airtable `Category` does not correspond to a Lightspeed leaf on its own |
-| `airtable_state_unverified` | The plan was built without a live Airtable snapshot, so its Airtable side may propose work already done |
+| `airtable_side_not_planned` | No live Airtable snapshot was supplied, so the plan contains no Airtable actions at all |
 
-`airtable_state_unverified` is the one warning that should stop an approval. The
-upload CSV records Airtable as it stood when the price list was processed, not now.
-On 2026-09-10 the Lee plan claimed 50 rows needing a `Lightspeed ID` backfill when
-the live base was missing only 5 — the other 45 had been filled in since the CSV was
-written. Overstating by 10x on exactly the case the plan exists to catch is not a
-footnote, so the reconciler says so in the plan and on stdout. Pass
-`--airtable-existing`.
+`airtable_side_not_planned` is not a caveat on the Airtable actions — it means there
+are none. The upload CSV records Airtable as it stood when the price list was
+processed, not now. On 2026-09-10 planning from it claimed 50 Lee rows needed a
+`Lightspeed ID` backfill when the live base was missing exactly 5; the other 45 had
+been filled in since. A plan that overstates by 10x on the very case it exists to
+catch is worse than no plan, so the reconciler emits nothing for Airtable rather than
+emitting a guess with a warning attached.
+
+The Lightspeed side is unaffected — it is reconciled against the live catalogue pull,
+not against the CSV. Pass `--airtable-existing` with a snapshot read through the
+Airtable MCP tools to plan the Airtable side.
 
 `category_unresolved` is a warning rather than a block because the mapping is
 genuinely unsettled, not because it is unimportant. `LVP` and `LVT` name a
