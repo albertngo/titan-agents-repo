@@ -203,6 +203,11 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
             uuid_rows[uuid].append(clean(row.get(SKU)))
     collided = {u: skus for u, skus in uuid_rows.items() if len(skus) > 1}
 
+    # Pass 1b — box sizes per handle group. Whether a group is uniform or mixed is
+    # a property of the data, not of the brand, and it decides where sf/b has to
+    # appear. A row cannot answer this about itself.
+    group_boxes = box_sizes_by_handle(upload_rows)
+
     # Pass 2 — per row.
     for row in upload_rows:
         sku = clean(row.get(SKU))
@@ -276,7 +281,8 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
         # Enforced always, including variant groups (Albert, 2026-09-10). The rule
         # was already written in ls-upload-instructions; nothing checked it, and
         # ENG-VIDR-0038 sat in Lightspeed for months with no sf/b in its name.
-        sfb_problem = sfb_not_exposed(row, ls_upload.get(sku))
+        sfb_problem = sfb_not_exposed(row, ls_upload.get(sku),
+                                      group_boxes.get(handle) if handle else None)
         if sfb_problem:
             block(sku, "sfb_not_exposed", sfb_problem)
             continue
@@ -396,16 +402,65 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
     return order(actions), blocked, warnings
 
 
-def sfb_not_exposed(upload_row, ls_row):
-    """Return a reason string if this row's sf/b would be invisible in Lightspeed.
+def two_dp(value):
+    """A box size as the two-decimal string every sf/b token is written with."""
+    try:
+        return f"{float(clean(value)):.2f}"
+    except (TypeError, ValueError):
+        return None
+
+
+def box_sizes_by_handle(upload_rows):
+    """handle -> sorted distinct two-decimal box sizes, for the rows that have one.
+
+    Uniform vs mixed is the whole question this answers, so rows with no readable
+    box size contribute nothing rather than an implicit extra value.
+    """
+    groups = defaultdict(set)
+    for row in upload_rows:
+        handle = clean(row.get(HANDLE))
+        box = two_dp(row.get(BOX_SIZE))
+        if handle and box:
+            groups[handle].add(box)
+    return {h: sorted(v, key=float) for h, v in groups.items()}
+
+
+def combined_sfb(boxes):
+    """The shared-name token for a mixed group: `18.19/20.18sf/b`.
+
+    Ascending, two decimals, unit once. Identical on every row in the group, which
+    is what lets it sit in a name Lightspeed requires to be identical.
+    """
+    return "/".join(boxes) + "sf/b"
+
+
+def contains(haystack, needle):
+    return needle in haystack or needle in haystack.replace(" ", "")
+
+
+def sfb_not_exposed(upload_row, ls_row, group_boxes=None):
+    """Return a reason string if this row's sf/b would be unreadable in Lightspeed.
 
     The invariant, from ls-upload-instructions: every row carrying a `Box size (sf)`
-    must expose it somewhere a person can read at the POS. Where it goes is forced by
-    Lightspeed's name-identity constraint, so it is one place or the other and never
-    both:
+    must expose it where a person can read it at the POS. Lightspeed requires one
+    name per variant family, so where it goes depends on the group:
 
-      singleton / no-grade / uniform variant group -> the shared name
-      mixed-box-size variant group                 -> variant_option_one_value
+      singleton / no-grade / uniform group -> the shared name
+      mixed-box-size GRADE group           -> BOTH: the combined `18.19/20.18sf/b`
+                                              in the shared name, and this row's own
+                                              value in variant_option_one_value
+      SIZE group (tile)                    -> variant_option_one_value only
+
+    The mixed grade case is both because the two carry different facts (Albert,
+    2026-09-10). The name says the family boxes two ways — a standing prompt to
+    confirm with the supplier which one this product really is — and a combined
+    string is identical across the group, so name identity still holds. Column 11
+    says which of the two *this* grade is, which is what a staff member needs to
+    convert the box in front of them. Neither substitutes for the other.
+
+    Tile is exempt from the name half: there the variant dimension IS size, so box
+    sizes differ by construction, nothing is ambiguous, and a six-size family would
+    carry six numbers in its name.
 
     Per-piece items — accessories, STONE, mosaics — legitimately have no box size and
     are exempt. A FLOORING row with no box size is a data defect, but that is caught
@@ -415,23 +470,38 @@ def sfb_not_exposed(upload_row, ls_row):
     Without one there is nothing to check and nothing to send.
     """
     box = clean(upload_row.get(BOX_SIZE))
-    if box is None or ls_row is None:
-        return None
-    try:
-        needle = f"{float(box):.2f}"
-    except (TypeError, ValueError):
+    needle = two_dp(box)
+    if needle is None or ls_row is None:
         return None
     name = clean(ls_row.get("name")) or ""
     value = clean(ls_row.get("variant_option_one_value")) or ""
-    if needle in name.replace(" ", "") or needle in name:
+    dimension = (clean(ls_row.get("variant_option_one_name")) or "").lower()
+
+    boxes = list(group_boxes or [])
+    mixed = len(boxes) > 1
+
+    if mixed and dimension != "size":
+        expected = combined_sfb(boxes)
+        if not contains(name, expected):
+            return (f"handle group boxes {len(boxes)} ways ({', '.join(boxes)}), so the "
+                    f"shared Lightspeed name must state {expected} — it reads "
+                    f"{name[:70]!r}. Two box sizes under one grade group is normally an "
+                    "ambiguous price list, and the name is what prompts someone to "
+                    "confirm with the supplier which one this is.")
+        if not contains(value, needle):
+            return (f"Box size (sf) is {box}, and the name correctly states the group's "
+                    f"{expected}, but the variant value ({value!r}) does not say which "
+                    f"of them this row is. Staff selling this grade need {needle}sf/b at "
+                    "the point of selection; the combined name cannot give it to them.")
         return None
-    if needle in value.replace(" ", "") or needle in value:
+
+    if contains(name, needle) or contains(value, needle):
         return None
     return (f"Box size (sf) is {box}, but {needle}sf/b appears in neither the Lightspeed "
             f"name ({name[:60]!r}) nor the variant value ({value!r}). Staff convert boxes "
             "to square feet off one of those two, so a row exposing it in neither is "
             "unusable at the POS. Uniform groups and singletons carry it in the name; "
-            "mixed-box-size groups carry it in the variant value.")
+            "tile size groups carry it in the variant value.")
 
 
 def category_resolves(category, leaves):

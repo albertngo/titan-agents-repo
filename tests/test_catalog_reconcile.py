@@ -314,11 +314,12 @@ class TestSfbAlwaysExposed(unittest.TestCase):
         self.assertEqual(blocked, [])
 
     def test_sfb_in_the_variant_value_passes(self):
-        """The mixed-box-size group case — name cannot carry it."""
+        """A tile size group — the one family type whose name carries no sf/b."""
         rows = [row(SKU="A-1", **{"Lightspeed ID": "", "Box size (sf)": "20.18"})]
         _, blocked, _ = run(rows, [], ls_upload=self.upload(
-            name='VIDENG - HB 5 AWO (Macaroon) T&G | 5" x 18mm x RL - 3mm top',
-            variant_option_one_value="Select - 20.18sf/b"))
+            name="CIFDTIL - Aldo (Bianco)",
+            variant_option_one_name="Size",
+            variant_option_one_value="12 x 24 - 20.18sf/b"))
         self.assertEqual(blocked, [])
 
     def test_sfb_in_neither_is_blocked(self):
@@ -340,6 +341,90 @@ class TestSfbAlwaysExposed(unittest.TestCase):
         rows = [row(SKU="A-1", **{"Lightspeed ID": "", "Box size (sf)": "18.19"})]
         _, blocked, _ = run(rows, [], ls_upload=self.upload())  # name says 25.32
         self.assertEqual([b["reason"] for b in blocked], ["sfb_not_exposed"])
+
+
+class TestMixedBoxSizeGroup(unittest.TestCase):
+    """A grade group boxing two ways states BOTH in the name (Albert, 2026-09-10).
+
+    The combined `18.19/20.18sf/b` is identical on every row, so Lightspeed's
+    one-name-per-family rule still holds, and it is the standing prompt to confirm
+    with the supplier which size this product actually is. Column 11 still carries
+    this row's own value, because the combined name cannot tell a staff member how
+    many square feet are in the box they are holding.
+    """
+
+    MIXED_NAME = ('VIDENG - HB 5 AWO (Macaroon) T&G | 5" x 18mm x RL - 3mm top'
+                  " - 18.19/20.18sf/b")
+
+    def ls_rows(self, name=MIXED_NAME, values=("Select - 20.18sf/b",
+                                               "Select & Better - 18.19sf/b")):
+        return {f"A-{i + 1}": {"sku": f"A-{i + 1}", "handle": "HX1", "name": name,
+                               "variant_option_one_name": "Grade",
+                               "variant_option_one_value": v,
+                               "supply_price": "1", "retail_price": "2",
+                               "product_category": "FLOORING / ENGINEERED HARDWOOD"}
+                for i, v in enumerate(values)}
+
+    def upload_rows(self, boxes=("20.18", "18.19")):
+        return [row(SKU=f"A-{i + 1}", **{"Lightspeed ID": "", "Box size (sf)": b,
+                                         "LS Handle / Parent ID": "HX1"})
+                for i, b in enumerate(boxes)]
+
+    def test_combined_name_plus_per_row_value_passes(self):
+        rows = self.upload_rows()
+        _, blocked, _ = run(rows, [], ls_upload=self.ls_rows())
+        self.assertEqual(blocked, [])
+
+    def test_combined_value_is_ascending_two_decimals_unit_once(self):
+        self.assertEqual(cr.combined_sfb(["18.19", "20.18"]), "18.19/20.18sf/b")
+        self.assertEqual(
+            cr.box_sizes_by_handle(self.upload_rows())["HX1"], ["18.19", "20.18"],
+            "sorted numerically, not as strings")
+
+    def test_only_one_size_in_the_name_is_blocked(self):
+        """The old rule's output: one grade's number standing for the whole family."""
+        rows = self.upload_rows()
+        actions, blocked, _ = run(rows, [], ls_upload=self.ls_rows(
+            name='VIDENG - HB 5 AWO (Macaroon) T&G | 5" x 18mm x RL - 3mm top'
+                 " - 20.18sf/b"))
+        self.assertEqual([b["reason"] for b in blocked],
+                         ["sfb_not_exposed", "sfb_not_exposed"])
+        self.assertEqual(actions, [], "blocked rows must emit no action")
+
+    def test_no_sfb_in_the_name_is_blocked_even_when_column_11_has_it(self):
+        """What the superseded rule produced — column 11 alone is no longer enough."""
+        rows = self.upload_rows()
+        _, blocked, _ = run(rows, [], ls_upload=self.ls_rows(
+            name='VIDENG - HB 5 AWO (Macaroon) T&G | 5" x 18mm x RL - 3mm top'))
+        self.assertEqual(len(blocked), 2)
+        self.assertIn("confirm with the supplier", blocked[0]["detail"])
+
+    def test_combined_name_without_the_per_row_value_is_blocked(self):
+        """The other half: which of the two is THIS grade?"""
+        rows = self.upload_rows()
+        _, blocked, _ = run(rows, [], ls_upload=self.ls_rows(
+            values=("Select", "Select & Better")))
+        self.assertEqual(len(blocked), 2)
+        self.assertIn("does not say which", blocked[0]["detail"])
+
+    def test_a_uniform_group_still_wants_only_the_name(self):
+        """Unchanged: one number, in the name, and column 11 left a clean grade."""
+        rows = self.upload_rows(boxes=("20.18", "20.18"))
+        _, blocked, _ = run(rows, [], ls_upload=self.ls_rows(
+            name='VIDENG - HB 5 AWO (Macaroon) T&G | 5" x 18mm x RL - 3mm top'
+                 " - 20.18sf/b",
+            values=("Select", "Select & Better")))
+        self.assertEqual(blocked, [])
+
+    def test_a_tile_size_group_is_exempt_from_the_name_half(self):
+        """Box size varies with size by construction — nothing to ask the supplier."""
+        rows = self.upload_rows(boxes=("15.52", "21.33"))
+        ls_rows = self.ls_rows(name="CIFDTIL - Aldo (Bianco)",
+                               values=("12 x 24 - 15.52sf/b", "32 x 32 - 21.33sf/b"))
+        for r in ls_rows.values():
+            r["variant_option_one_name"] = "Size"
+        _, blocked, _ = run(rows, [], ls_upload=ls_rows)
+        self.assertEqual(blocked, [])
 
 
 class TestAirtableSnapshotRequired(unittest.TestCase):

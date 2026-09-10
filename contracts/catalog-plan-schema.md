@@ -154,13 +154,26 @@ POS. Staff convert boxes to square feet off that number constantly, and a row th
 shows it nowhere is unusable at the counter — but the gap is invisible until someone
 needs it and can't find it.
 
-Where it goes is forced by Lightspeed's name-identity constraint, so it is one place
-or the other and never both:
+Lightspeed allows one name per variant family, so where it goes depends on the group:
 
 | Row | sf/b lives in |
 |---|---|
-| Singleton, no-grade, or a variant group whose members all box the same | the shared **name** |
-| Variant group with **mixed** box sizes | **`variant_option_one_value`** — the name cannot differ across the group |
+| Singleton, no-grade, or a grade group whose members all box the same | the shared **name** |
+| **Grade** group with **mixed** box sizes | **both** — the combined `18.19/20.18sf/b` in the shared name, and this row's own value in `variant_option_one_value` |
+| **Size** group (tile) | **`variant_option_one_value`** only |
+
+The mixed grade case is both, and that is not redundancy — the two hold different
+facts (Albert, 2026-09-10). A combined string is identical on every row, so name
+identity still holds, and it states that the family boxes two ways: a standing prompt
+to confirm with the supplier which one the product really is. Column 11 says which of
+the two *this* grade is, which is what a staff member needs to convert the box in
+front of them. Dropping the name half loses the flag; dropping the column-11 half
+loses the number. Tile is exempt from the name half because there the variant
+dimension *is* size — box sizes differ by construction, so there is nothing ambiguous
+to raise, and a six-size family would carry six numbers in its name.
+
+The reconciler decides uniform vs mixed by grouping the upload's rows on
+`LS Handle / Parent ID`; a row cannot answer it about itself.
 
 **Enforced always, variant groups included** (Albert, 2026-09-10). The rule was
 already written in `ls-upload-instructions`; nothing checked it, and
@@ -229,7 +242,7 @@ because Ontario HST is applied at checkout by the outlet's Default Tax rule.
 | `handle_collision_on_create` | A create whose handle is already held by a different SKU |
 | `ambiguous_match` | `MatchStatus: ambiguous`, or `LS Match status: AMBIGUOUS` / `DUPLICATE` |
 | `sku_missing` | No SKU. Usually a new product still awaiting one — under RULE 0 Titan mints the SKU at record creation and no automated process may generate it |
-| `sfb_not_exposed` | The row has a `Box size (sf)` that would be readable nowhere in Lightspeed — neither the name nor the variant value |
+| `sfb_not_exposed` | The row's `Box size (sf)` would be unreadable in Lightspeed — nowhere at all, or, on a mixed-box-size grade group, missing from either half of the required name + variant-value pair |
 | `ls_payload_unavailable` | The SKU is new to Lightspeed and no skill-built `<supplier>_ls_upload_<date>.csv` row was supplied — see **What a write may set** |
 
 ## `warnings`
