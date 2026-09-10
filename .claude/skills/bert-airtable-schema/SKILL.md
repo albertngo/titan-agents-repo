@@ -357,7 +357,17 @@ When processing a supplier price list, some products are marked as SALE items wi
 
 2. **Previous price list** — if no regular price exists in the current price list, check the most recent previous price list from the same supplier. Use that cost as the original Cost/unit. The SALE cost goes into Promo cost ($/sf).
 
-3. **Use promo cost as original** — if neither source provides an original cost, use the SALE cost as Cost/unit. Retail price/unit = SALE cost + $ 1.00. The SALE cost still goes into Promo cost ($/sf) as well. When Cost and Promo cost show the same value, this signals that the original cost was not available and the promo cost was used as a placeholder.
+3. **Carry the stored regular cost forward** — where neither of the above resolves, keep the `Cost/unit` already on the record. A promo does not change what the price reverts to, so the stored value still stands and re-stating it is not a guess.
+
+   Steps 1 and 2 are preferred over it in that order because both read a price the supplier *published*: a sibling in the sheet in front of you is this cycle's regular price, and the previous list is at least a price they once printed. The stored value is whatever we last recorded, which may predate a change neither document shows. Where step 1 matches on a *near* spec rather than an exact one, take it but flag `Review Reason: Ambiguous Pricing` and name the source SKU in `Notes`.
+
+**Never write the SALE cost into `Cost/unit`** (corrected 2026-09-10, Albert). This file
+previously said to do exactly that when no original cost was available, contradicting
+*Promo and sale costs* below — *"never the promo price into `Cost/unit`, which would make
+a temporary discount look like a permanent cost drop and lose the reversion price."* That
+reversion price is the entire reason `Cost/unit` and `Promo cost ($/sf)` are separate
+fields. If all three steps fail, leave `Cost/unit` blank and flag it. A blank is honest; a promo price wearing a regular cost's clothes is
+not, and it reverts to nothing when the promo ends.
 
 In all cases, Promo cost ($/sf) = the supplier's SALE cost as-is. The regular Retail price/unit = Cost + $ 1.00. Retail adjustment during a promo is done manually.
 
