@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
 """Lightspeed Retail (X-Series) API transport for the Titan catalogue pipeline.
 
-READ ONLY. This module exposes GET and cursor pagination and nothing else — there
-is no POST, PUT, PATCH or DELETE code path in this file, by design. The write side
-lands separately with the catalogue-sync actions agents, so that granting a write
-credential and shipping write code stay two deliberate decisions rather than one.
-`grep -nE "POST|PUT|PATCH|DELETE"` over this file is the check.
+READ ONLY. This class exposes get() and paginate() and nothing else. The HTTP verb
+is a parameter of the private _send() so retry, throttle and error handling are
+written once, but no write verb appears in this file and nothing here can be made to
+send one without editing it.
+
+The write side is a separate module, scripts/lightspeed_write.py, which subclasses
+this one to add post() and put(). Keeping them apart means the read path — the daily
+catalogue pull — stays reviewable on its own, and a reader can tell at a glance which
+scripts are capable of changing the POS. tests/test_lightspeed.py fails if a write
+verb ever appears in this file or in lightspeed_pull.py.
 
 Titan is on X-Series (formerly Vend), not R-Series. Connection config — base URL
 template, pinned API version, pagination and rate-limit tuning — lives in
@@ -136,28 +141,41 @@ class LightspeedClient:
         if gap < self.min_interval:
             time.sleep(self.min_interval - gap)
 
-    def _open(self, url):
-        req = urllib.request.Request(url, method="GET")
+    def _open(self, url, method, body=None):
+        data = None
+        req = urllib.request.Request(url, method=method)
         req.add_header("Authorization", f"Bearer {self.token}")
         req.add_header("Accept", "application/json")
         req.add_header("User-Agent", USER_AGENT)
+        if body is not None:
+            data = json.dumps(body).encode("utf-8")
+            req.add_header("Content-Type", "application/json")
         self._respect_min_interval()
         self._last_request_at = time.monotonic()
         self.request_count += 1
-        return urllib.request.urlopen(req, timeout=60)
+        return urllib.request.urlopen(req, data=data, timeout=60)
 
-    # -- public ------------------------------------------------------------
+    def _send(self, method, path, params=None, body=None):
+        """One request, with rate-limit retries. Returns the decoded JSON body.
 
-    def get(self, path, params=None):
-        """One GET, with rate-limit retries. Returns the decoded JSON body."""
+        `method` is a parameter rather than a literal so retry, throttle and error
+        handling live in one place while this class still exposes only get(). The
+        write verbs are introduced deliberately, and only in
+        scripts/lightspeed_write.py.
+
+        Retries cover 429 and 5xx. Harmless for GET; on the write side it is exactly
+        why LightspeedWriter re-reads to confirm rather than trusting a retried
+        response, since a 5xx can follow a change that actually landed.
+        """
         url = self.base_url.rstrip("/") + path
         if params:
             url += "?" + urllib.parse.urlencode(params)
 
         for attempt in range(self.max_retries + 1):
             try:
-                with self._open(url) as resp:
-                    return json.loads(resp.read().decode("utf-8"))
+                with self._open(url, method, body) as resp:
+                    raw = resp.read().decode("utf-8")
+                    return json.loads(raw) if raw.strip() else {}
             except urllib.error.HTTPError as e:
                 retryable = e.code == 429 or 500 <= e.code < 600
                 if not retryable or attempt == self.max_retries:
@@ -190,6 +208,12 @@ class LightspeedClient:
                 time.sleep(wait)
 
         raise LightspeedError(f"exhausted retries on {url}")
+
+    # -- public ------------------------------------------------------------
+
+    def get(self, path, params=None):
+        """One GET. This class exposes no other verb."""
+        return self._send("GET", path, params=params)
 
     def paginate(self, path, page_size=None, start_after=None, max_pages=None):
         """Yield every record from a collection endpoint, page by page.

@@ -28,14 +28,25 @@ sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
 
 def _load(name, path):
+    """Load a script as a module, registering it in sys.modules first.
+
+    Registration matters: lightspeed_write.py does `from lightspeed_client import
+    LightspeedError`, and without this the test would hold a different module
+    object than the writer does — so `assertRaises(LightspeedError)` would not
+    catch the writer's own exceptions. Same class, two identities.
+    """
+    if name in sys.modules:
+        return sys.modules[name]
     spec = importlib.util.spec_from_file_location(name, REPO_ROOT / path)
     mod = importlib.util.module_from_spec(spec)
+    sys.modules[name] = mod
     spec.loader.exec_module(mod)
     return mod
 
 
 lsc = _load("lightspeed_client", "scripts/lightspeed_client.py")
 lp = _load("lightspeed_pull", "scripts/lightspeed_pull.py")
+lw = _load("lightspeed_write", "scripts/lightspeed_write.py")
 
 GRANDEUR = REPO_ROOT / "ingest/2026-09-03/grandeur_ls_product_export_2026-09-03.xlsx"
 CANADIAN = REPO_ROOT / "ingest/2026-09-03/canadian_standard_ls_product_export_2026-09-03.xlsx"
@@ -72,6 +83,112 @@ class TestNoWritePath(unittest.TestCase):
                 self.assertNotIn(f'"{verb}"', src,
                                  f"{rel} contains a {verb} literal — the read-only "
                                  "guarantee in its docstring is no longer true")
+
+
+class TestWriter(unittest.TestCase):
+    """The only module that can change the POS. Its guardrails are the tests."""
+
+    def writer(self, dry_run=False, capture=None):
+        w = lw.LightspeedWriter(domain_prefix="x", token="y",
+                                config=lsc.load_config(), dry_run=dry_run)
+        w.min_interval = 0
+        if capture is not None:
+            # stand in for the network at the lowest level, so anything that
+            # reaches the wire is visible to the test
+            def fake(url, method, body=None):
+                capture.append({"method": method, "url": url, "body": body})
+                raise AssertionError("a live request was attempted")
+            w._open = fake
+        return w
+
+    def test_dry_run_never_builds_a_request(self):
+        sent = []
+        w = self.writer(dry_run=True, capture=sent)
+        w.create_family({"name": "T", "variants": [{"sku": "A-1"}]})
+        w.update_variant("id-1", {"supply_price": 1.0})
+        self.assertEqual(sent, [], "dry run reached the network")
+        self.assertEqual(len(w.planned), 2)
+        self.assertEqual(w.write_stats()["writes_sent"], 0)
+
+    def test_dry_run_returns_no_usable_id(self):
+        """A placeholder id would get written into Airtable as if it were real."""
+        w = self.writer(dry_run=True)
+        self.assertIsNone(w.create_family({"name": "T", "variants": [{"sku": "A-1"}]}))
+
+    def test_create_requires_a_name(self):
+        w = self.writer(dry_run=True)
+        with self.assertRaises(lsc.LightspeedError):
+            w.create_family({"variants": [{"sku": "A-1"}]})
+
+    def test_every_variant_needs_an_explicit_sku(self):
+        """Lightspeed mints one otherwise, which RULE 0 forbids."""
+        w = self.writer(dry_run=True)
+        with self.assertRaises(lsc.LightspeedError) as cm:
+            w.create_family({"name": "T", "variants": [{"sku": "A-1"}, {"supply_price": 2}]})
+        self.assertIn("sku", str(cm.exception))
+
+    def test_create_returns_raw_ids_not_a_mapping(self):
+        """Pairing ids to SKUs positionally is the Grandeur mistake."""
+        w = self.writer()
+        w._send = lambda m, p, params=None, body=None: {"data": ["id-a", "id-b"]}
+        got = w.create_family({"name": "T", "variants": [{"sku": "A-1"}, {"sku": "A-2"}]})
+        self.assertEqual(got, ["id-a", "id-b"])
+        self.assertNotIsInstance(got, dict)
+
+    def test_unexpected_create_response_raises(self):
+        w = self.writer()
+        w._send = lambda m, p, params=None, body=None: {"data": {}}
+        with self.assertRaises(lsc.LightspeedError):
+            w.create_family({"name": "T", "variants": [{"sku": "A-1"}]})
+
+    def test_common_section_is_refused_without_a_reason(self):
+        """`common` rewrites every family member, and name regroups families."""
+        w = self.writer(dry_run=True)
+        with self.assertRaises(lsc.LightspeedError) as cm:
+            w.update_variant("id-1", {"supply_price": 1.0}, common={"name": "New"})
+        self.assertIn("common", str(cm.exception))
+        w.update_variant("id-1", {"supply_price": 1.0}, common={"name": "New"},
+                         allow_common_reason="explicit operator intent")
+
+    def test_update_with_nothing_to_write_raises(self):
+        w = self.writer(dry_run=True)
+        with self.assertRaises(lsc.LightspeedError):
+            w.update_variant("id-1", {})
+
+    def test_update_payload_shape(self):
+        w = self.writer()
+        seen = {}
+        def cap(m, p, params=None, body=None):
+            seen.update(method=m, path=p, body=body); return {}
+        w._send = cap
+        w.update_variant("id-1", {"supply_price": 3.5, "price_excluding_tax": 4.5})
+        self.assertEqual(seen["method"], "PUT")
+        self.assertIn("2.1", seen["path"])
+        self.assertEqual(seen["body"], {"details": {"supply_price": 3.5,
+                                                    "price_excluding_tax": 4.5}})
+        self.assertNotIn("common", seen["body"])
+
+    def test_there_is_no_delete_capability(self):
+        w = self.writer(dry_run=True)
+        for banned in ("delete", "delete_product", "deactivate", "archive"):
+            self.assertFalse(hasattr(w, banned), f"writer exposes {banned}")
+        src = (REPO_ROOT / "scripts/lightspeed_write.py").read_text()
+        self.assertNotIn('"DELETE"', src.replace('WRITE_METHODS = ("POST", "PUT", "PATCH", "DELETE")', ''))
+
+    def test_reads_still_go_through_the_read_path(self):
+        """read_family must not be caught by the dry-run write interceptor."""
+        w = self.writer(dry_run=True)
+        calls = []
+
+        class FakeResponse:
+            def read(self): return b'{"data": {"variants": []}}'
+            def __enter__(self): return self
+            def __exit__(self, *a): return False
+
+        w._open = lambda url, method, body=None: (calls.append(method), FakeResponse())[1]
+        w.read_family("id-1")
+        self.assertEqual(calls, ["GET"])
+        self.assertEqual(w.planned, [], "a read was recorded as a planned write")
 
 
 class TestRetryAfter(unittest.TestCase):

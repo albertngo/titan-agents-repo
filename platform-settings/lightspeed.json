@@ -9,7 +9,9 @@
     "_api_version_note": "Pinned. See _maintenance \u2014 2.0 is deprecated in favour of date-based versioning.",
     "endpoints": {
       "products": "/api/2.0/products",
-      "variant_attributes": "/api/2.0/variant_attributes"
+      "variant_attributes": "/api/2.0/variant_attributes",
+      "product_update": "/api/2.1/products/{id}",
+      "product_family": "/api/3.0/products/{id}"
     },
     "auth": {
       "scheme": "Bearer",
