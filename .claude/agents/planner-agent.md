@@ -124,7 +124,7 @@ side by side in `escalation_order`.
 
 > **Resolved 2026-09-10 — ranking field gap.** Checked against `ghl-ingest-agent`'s
 > actual output: a numeric `pct_of_threshold` is emitted ONLY on
-> `stale_approaching` findings (`extensions.ghl.workflow_drift[].pct_of_threshold`).
+> `stale_approaching` findings (on `extensions.ghl.opportunities[]`, joined to a finding on `workflow_drift[].ref == opportunities[].opportunity_id` — **not** on the `workflow_drift` entry itself, which carries only `type`, `contact`, `detail`, `ref`, `severity`, `days_overdue`. Verified against a real run 2026-09-10; both this file and `contracts/plan-schema.md` previously said otherwise. The same join supplies `contact_id`, which `workflow_drift` also lacks.).
 > It is absent on `untagged_in_queue`, `categorization_miss`, and
 > `abandonment_next`. `meeting_no_followup` carries `effective_window_days` /
 > `days_since_appointment` instead. `untagged_in_queue` (R2) has no per-stage
@@ -155,6 +155,42 @@ side by side in `escalation_order`.
 > it, and amending it is a version note in this file. It also needs a vault
 > decision note under the checkpoint flow — contract-adjacent changes are
 > off-whitelist for `vault-writer-agent`.
+
+## Admission — which findings become actions
+
+**Admission and ranking are different questions.** Backtesting 2026-08-31,
+09-02 and 09-08 on 2026-09-10 produced plans that were **100% R3 calls on all
+three days** — ranking class-first and then truncating at 25 spent every slot on
+`stale_approaching` before any other class was reached. Two days running, that
+discarded Zinat Hirji's abandonment escalation at 82 and 84 days past
+auto-abandon. That is a veto-on-sight, produced by the ordering rule rather than
+by the rules themselves.
+
+So admit in this order, then rank:
+
+1. **Admit every action from R1, R2, R4, R5 and R6 first.** These classes are
+   low-volume and high-signal — a fired abandonment or a categorization miss is
+   rare and specific, unlike the 58th stale call.
+2. **Fill the remaining slots with R3**, highest `pct_of_threshold` first.
+3. If steps 1–2 still exceed 25, overflow R3 first and never a rarer class.
+
+If the low-volume classes alone ever exceed 25, that is a finding in its own
+right: say so in `needs_attention` rather than silently truncating.
+
+## One action per entity per run
+
+**At most one action per opportunity (or per contact where no opportunity
+exists).** When two rules fire on the same entity, keep the one from the rarer
+class — the admission order above is the priority — and record the suppressed
+rule in the kept action's `note`.
+
+Backtesting found five opportunities on 2026-09-02 that matched both an R3
+`call` and an R1 `draft_followup`. Only the cap prevented double outreach to the
+same customer on the same day; fixing admission removes that accident, so this
+rule has to land in the same change.
+
+This mirrors `.claude/commands/notion-sync.md` step 3, which already collapses to
+one candidate per contact for the same reason.
 
 ## Hard limits
 
@@ -200,26 +236,68 @@ contract states it literally. The registry records the difference. If Sales ever
 needs a `dispatch[]`, that is the moment to migrate it to
 `contracts/dept-plan-schema.md`; not before.
 
-## Status — un-parked 2026-09-10, output not yet trusted
+## Status — runs; criterion 1 FAILED on first backtest
 
-Un-parking criteria, and where each actually stands:
+Backtested 2026-09-10 against three real ingest days — `2026-08-31`, `2026-09-02`,
+`2026-09-08`, all `ghl: "ok"` in the run ledger. Plans are committed at
+`plans/<date>/plan.json`.
 
 | # | Criterion | State |
 |---|---|---|
-| 1 | Rule table reviewed against ≥ 3 real ingest days, **zero** actions Albert would veto on sight | **Evidence generated, review outstanding.** See the backtest paths below. Only Albert can close this one. |
-| 2 | `contracts/plan-schema.md` reviewed once against those same real plans | **Outstanding**, and falls out of (1). |
-| 3 | The ranking field gap resolved | **Resolved** — the stopgap was accepted as the real rule, by the second branch the criterion offers. See the Ranking section. |
+| 1 | ≥ 3 real days, **zero** actions Albert would veto on sight | **FAILED, then partly addressed.** All three plans came out 100% R3 `call` actions. Two days running that discarded Zinat Hirji's abandonment escalation at 82 and 84 days past auto-abandon; 2026-08-31 also planned a call to Tina Tran, tagged `lost`. The Admission and one-action-per-entity sections above are the fix. **Re-run all three days and re-read them before this closes.** |
+| 2 | `contracts/plan-schema.md` reviewed against those real plans | **Partly done.** Three contract defects found and fixed (below); four gaps found and left open for Albert. |
+| 3 | Ranking field gap resolved | **Resolved** — the stopgap was accepted as the rule, and every action now carries `rank_basis`. Note the backtest showed ranking was never the binding problem; **admission** was. |
 
-**What "un-parked" means here, precisely:** the agent runs, and `/route` may
-invoke it. It does not mean its plans may be executed. Nothing can execute from a
-plan without `plans/<date>/approvals.json` naming exact ids, and Albert should
-not write one until he has read the three backtest days and criterion 1 is
-genuinely closed.
+### Fixed on the strength of the backtest
 
-Running it is safe regardless of that review: the `tools:` grant is `Read, Write`
-with no `mcp__*` and no `Bash`, so it cannot reach a platform; it writes exactly
-one file; and it is idempotent on re-run.
+- **Class-first truncation starved every rare rule class.** Admission is now
+  separate from ranking; see § Admission.
+- **No per-entity dedup.** Five opportunities on 09-02 matched both an R3 `call`
+  and an R1 `draft_followup`; only the cap prevented double outreach. See
+  § One action per entity per run.
+- **`pct_of_threshold` was documented in the wrong place** — it is on
+  `extensions.ghl.opportunities[]`, joined on `ref == opportunity_id`, not on the
+  `workflow_drift` entry. Corrected here and in the contract.
+- **The contract demanded a hash this agent has no tool to compute.** Amended to
+  require a deterministic, reproducible function; stability is the property that
+  matters, not opacity.
+
+### Open — Albert's call, not the planner's
+
+1. **The rule table only sees `workflow_drift`, so it misses the day's real
+   commitments.** On 09-08, 8 of the ingest's own 10 `stragglers_ranked` produced
+   no action — "please book me in", a same-day store visit, "call me now", a
+   Sept 21 start at risk. On 09-02 it silenced 11 of the top 13. These arrive as
+   `message`/`pipeline` items, and no rule keys on them. **This is the largest
+   coverage gap and the one most likely to make a plan feel wrong.**
+2. **No rule for an abandonment that has already fired.** R4 triggers on
+   `abandonment_next` (approaching). Michael Camara's ASAP-Hot opportunity
+   auto-abandoned mid price-negotiation on a $3,968 quote and produced nothing.
+3. **R2 is structurally unreachable.** `untagged_in_queue` reads 8–17 in
+   `metrics`, but ingest suppresses all of them at stage `0a. New Lead`, so
+   `workflow_drift` holds zero. On 08-31 the two numbers also failed to
+   reconcile (metric 12, exclusions 12, findings 0). Either the rule or the
+   exclusion is wrong.
+4. **R3's tier table never binds.** Ingest emits `stale_approaching` only at
+   ≥ 75%, above every tier in the table, so hot/warm/cold gating is inert.
+5. **`first_contact` does not exist on open opportunities** — only in
+   `won_records`. The documented tie-break is not implementable; all three runs
+   fell back to emission order and said so.
+6. **Rolled-up drift findings carry no `id`.** 24 of 34 on 09-08 exist only
+   inside the rollup, so `basis.item_id` had to be reconstructed on ingest's
+   `ghl-drift-<type>-<ref>` convention. Traceability depends on a convention
+   rather than a field; `contracts/ingest-schema.md` should emit one.
+
+### What "runs" means
+
+`/route` may invoke this agent, and running it is safe: `tools: Read, Write`,
+no `mcp__*`, no `Bash`, one file written, idempotent on re-run.
+
+It does **not** mean its plans may be executed. Nothing executes without
+`plans/<date>/approvals.json` naming exact ids, and **no approvals file should be
+written against these ids until criterion 1 closes** — the id shape is settled
+now, but the action set is not.
 
 **Not in any scheduled flow.** `/daily-ingest` does not spawn this agent and must
-not be changed to. It is on-demand via `/route` until there is evidence its plans
-get read — see the approval-fatigue note in `methods/departments.md`.
+not be changed to. On-demand via `/route` until there is evidence its plans get
+read — see the approval-fatigue note in `methods/departments.md`.

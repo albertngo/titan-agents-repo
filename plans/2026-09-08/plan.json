@@ -1,0 +1,691 @@
+{
+  "contract_version": "plan-1",
+  "source": "planner",
+  "run_at": "2026-09-10T00:00:00-04:00",
+  "status": "ok",
+  "error": null,
+  "inputs": [
+    { "file": "ingest/2026-09-08/ghl.json", "run_at": "2026-09-08T08:45:00-04:00" }
+  ],
+  "actions": [
+    {
+      "id": "plan-R3_stale_approaching-TGvPzQRcAeKAvjWu1gyO",
+      "rank": 1,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Shahim Pochee - Flooring | Johannesburg",
+        "ghl_contact_id": "Ite5gYYjWo93iKEvzeA4",
+        "ghl_opportunity_id": "TGvPzQRcAeKAvjWu1gyO"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-TGvPzQRcAeKAvjWu1gyO",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Far Out (Cold)",
+        "days_in_stage": 314,
+        "stale_threshold_days": 90,
+        "pct_of_threshold": 3.489
+      },
+      "note": "349% of the 90-day Far Out (Cold) threshold, tagged lead: unqualified, no stale_lead tag ever applied. R3 unqualified tier is 70%. Ingest's own largest single miss."
+    },
+    {
+      "id": "plan-R3_stale_approaching-plDAaaMcaOhZYIsIpyC4",
+      "rank": 2,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "*Maria | Waterdown",
+        "ghl_contact_id": "LhXVwRvJY4ExDCcWZJW3",
+        "ghl_opportunity_id": "plDAaaMcaOhZYIsIpyC4"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-plDAaaMcaOhZYIsIpyC4",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "*Meeting (Scheduled)* CCAM|GHL",
+        "days_in_stage": 83,
+        "stale_threshold_days": 30,
+        "pct_of_threshold": 2.767
+      },
+      "note": "277% of the 30-day Meeting-Scheduled threshold, tagged lead: warm (R3 warm tier 60%). Largest open value in the drift set at $41,150."
+    },
+    {
+      "id": "plan-R3_stale_approaching-yIe1ry47XGGmXJwDuKzq",
+      "rank": 3,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "*Mona | Mississauga",
+        "ghl_contact_id": "T0nd090u2K86TwwFpAYf",
+        "ghl_opportunity_id": "yIe1ry47XGGmXJwDuKzq"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-yIe1ry47XGGmXJwDuKzq",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "*Meeting (Scheduled)* CCAM|GHL",
+        "days_in_stage": 81,
+        "stale_threshold_days": 30,
+        "pct_of_threshold": 2.7
+      },
+      "note": "270% of the 30-day Meeting-Scheduled threshold, tagged lead: warm, no stale_lead tag yet."
+    },
+    {
+      "id": "plan-R3_stale_approaching-2iJsEl6B4jrFcBjAd9oO",
+      "rank": 4,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Jai Sukhai - Flooring | Caledon",
+        "ghl_contact_id": "2PNojW1YWFfRDdTilgt8",
+        "ghl_opportunity_id": "2iJsEl6B4jrFcBjAd9oO"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-2iJsEl6B4jrFcBjAd9oO",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0c. ASAP (Hot)",
+        "days_in_stage": 18,
+        "stale_threshold_days": 7,
+        "pct_of_threshold": 2.571
+      },
+      "note": "257% of the 7-day ASAP (Hot) threshold, tagged lead: hot. R3 hot tier fires on any stale_approaching finding at all."
+    },
+    {
+      "id": "plan-R3_stale_approaching-krIaRdXKfcA07XQzLPDL",
+      "rank": 5,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "*Mizanur | Scarborough",
+        "ghl_contact_id": "qn7dYid4tIpjLYe2qENY",
+        "ghl_opportunity_id": "krIaRdXKfcA07XQzLPDL"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-krIaRdXKfcA07XQzLPDL",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "*Meeting (Scheduled)* CCAM|GHL",
+        "days_in_stage": 75,
+        "stale_threshold_days": 30,
+        "pct_of_threshold": 2.5
+      },
+      "note": "250% of the 30-day Meeting-Scheduled threshold, tagged lead: warm, no stale_lead tag yet."
+    },
+    {
+      "id": "plan-R3_stale_approaching-Xg2C2ZM4mlOzyMc0Ha9l",
+      "rank": 6,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Wilfredo Comendador - Stairs | Toronto",
+        "ghl_contact_id": "ewDMC7tNrZDJF6ZaJrcm",
+        "ghl_opportunity_id": "Xg2C2ZM4mlOzyMc0Ha9l"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-Xg2C2ZM4mlOzyMc0Ha9l",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Far Out (Cold)",
+        "days_in_stage": 207,
+        "stale_threshold_days": 90,
+        "pct_of_threshold": 2.3
+      },
+      "note": "230% of the 90-day Far Out (Cold) threshold, no lead:* tag at all (R3 untagged tier 70%). Same contact also carries a categorization_miss finding, which fell into overflow."
+    },
+    {
+      "id": "plan-R3_stale_approaching-8lVbE6kXysWuEj2gEbMY",
+      "rank": 7,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "*Shahid | Brampton",
+        "ghl_contact_id": "TAPx6WmRYKKV9zHk7Q1Y",
+        "ghl_opportunity_id": "8lVbE6kXysWuEj2gEbMY"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-8lVbE6kXysWuEj2gEbMY",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "*Meeting (Scheduled)* CCAM|GHL",
+        "days_in_stage": 66,
+        "stale_threshold_days": 30,
+        "pct_of_threshold": 2.2
+      },
+      "note": "220% of the 30-day Meeting-Scheduled threshold, tagged lead: warm, no stale_lead tag yet."
+    },
+    {
+      "id": "plan-R3_stale_approaching-bncGJOBODCXong8B2oMz",
+      "rank": 8,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Richard Harris - Flooring | Toronto",
+        "ghl_contact_id": "BgwPscQTeFeLe4stlifY",
+        "ghl_opportunity_id": "bncGJOBODCXong8B2oMz"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-bncGJOBODCXong8B2oMz",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Later Date (Warm)",
+        "days_in_stage": 81,
+        "stale_threshold_days": 40,
+        "pct_of_threshold": 2.025
+      },
+      "note": "202% of the 40-day Later Date (Warm) threshold, tagged lead: warm. Last touch was an automated SMS send, not a human one."
+    },
+    {
+      "id": "plan-R3_stale_approaching-nDrKeoFaHLShDSicaOLw",
+      "rank": 9,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Avishekh Pal - Flooring | Toronto",
+        "ghl_contact_id": "m4s5yqgiAN4fQtSj36sQ",
+        "ghl_opportunity_id": "nDrKeoFaHLShDSicaOLw"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-nDrKeoFaHLShDSicaOLw",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0c. ASAP (Hot)",
+        "days_in_stage": 14,
+        "stale_threshold_days": 7,
+        "pct_of_threshold": 2.0
+      },
+      "note": "200% of the 7-day ASAP (Hot) threshold, tagged lead: hot, $11,920 open value."
+    },
+    {
+      "id": "plan-R3_stale_approaching-6y80ctYbSu9gTgRbkofR",
+      "rank": 10,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "*Harry | Brampton",
+        "ghl_contact_id": "kczIwlqukyaTF0HNQi07",
+        "ghl_opportunity_id": "6y80ctYbSu9gTgRbkofR"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-6y80ctYbSu9gTgRbkofR",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "*Meeting (Scheduled)* CCAM|GHL",
+        "days_in_stage": 53,
+        "stale_threshold_days": 30,
+        "pct_of_threshold": 1.767
+      },
+      "note": "177% of the 30-day Meeting-Scheduled threshold, untagged, appointment cancelled, no assigned rep, zero notes. Same contact also carries a categorization_miss finding, which fell into overflow."
+    },
+    {
+      "id": "plan-R3_stale_approaching-DiavD0pPhcxiOaXKKyWs",
+      "rank": 11,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "*Baljit | Barmton",
+        "ghl_contact_id": "L8TVz9Uv1cfXpiM9SYe5",
+        "ghl_opportunity_id": "DiavD0pPhcxiOaXKKyWs"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-DiavD0pPhcxiOaXKKyWs",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "*Meeting (Scheduled)* CCAM|GHL",
+        "days_in_stage": 52,
+        "stale_threshold_days": 30,
+        "pct_of_threshold": 1.733
+      },
+      "note": "173% of the 30-day Meeting-Scheduled threshold, tagged lead: hot."
+    },
+    {
+      "id": "plan-R3_stale_approaching-hyQ5PdxuzHpu0XSTlRB0",
+      "rank": 12,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "*Siham | Toronto",
+        "ghl_contact_id": "LmirvggOkSw3KzAAlUVH",
+        "ghl_opportunity_id": "hyQ5PdxuzHpu0XSTlRB0"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-hyQ5PdxuzHpu0XSTlRB0",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "*Meeting (Scheduled)* CCAM|GHL",
+        "days_in_stage": 48,
+        "stale_threshold_days": 30,
+        "pct_of_threshold": 1.6
+      },
+      "note": "160% of the 30-day Meeting-Scheduled threshold, tagged lead: hot."
+    },
+    {
+      "id": "plan-R3_stale_approaching-QBx44WnhynDsfXmOETil",
+      "rank": 13,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Raman Aggarwal - Flooring | Mississauga",
+        "ghl_contact_id": "os4Ra8YFPDFKpViJNtWe",
+        "ghl_opportunity_id": "QBx44WnhynDsfXmOETil"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-QBx44WnhynDsfXmOETil",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0c. ASAP (Hot)",
+        "days_in_stage": 11,
+        "stale_threshold_days": 7,
+        "pct_of_threshold": 1.571
+      },
+      "note": "157% of the 7-day ASAP (Hot) threshold, tagged lead: hot. Tied with rank 14 on percentage; tie broken by ingest emission order, not first_contact (see needs_attention)."
+    },
+    {
+      "id": "plan-R3_stale_approaching-aBCBo8lBrzV0sHWUm1dl",
+      "rank": 14,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Supreet Singh |  | ",
+        "ghl_contact_id": "dXLEOH0okCUfTXTgqM0e",
+        "ghl_opportunity_id": "aBCBo8lBrzV0sHWUm1dl"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-aBCBo8lBrzV0sHWUm1dl",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0c. ASAP (Hot)",
+        "days_in_stage": 11,
+        "stale_threshold_days": 7,
+        "pct_of_threshold": 1.571
+      },
+      "note": "157% of the 7-day ASAP (Hot) threshold, tagged lead: hot. Tied with rank 13 on percentage."
+    },
+    {
+      "id": "plan-R3_stale_approaching-lEinEINPetw0dAU3J30Z",
+      "rank": 15,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Chandara Thileepan - Flooring | Toronto",
+        "ghl_contact_id": "GBkdkn4wa1ec3NRUtpXH",
+        "ghl_opportunity_id": "lEinEINPetw0dAU3J30Z"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-lEinEINPetw0dAU3J30Z",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0c. ASAP (Hot)",
+        "days_in_stage": 10,
+        "stale_threshold_days": 7,
+        "pct_of_threshold": 1.429
+      },
+      "note": "143% of the 7-day ASAP (Hot) threshold, tagged lead: hot."
+    },
+    {
+      "id": "plan-R3_stale_approaching-7H39hJAGbBhkEJPnjDAJ",
+      "rank": 16,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Imtiaz Shallwani - Flooring | Toronto",
+        "ghl_contact_id": "6ecLSJc0acsw4QnpRexD",
+        "ghl_opportunity_id": "7H39hJAGbBhkEJPnjDAJ"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-7H39hJAGbBhkEJPnjDAJ",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Later Date (Warm)",
+        "days_in_stage": 52,
+        "stale_threshold_days": 40,
+        "pct_of_threshold": 1.3
+      },
+      "note": "130% of the 40-day Later Date (Warm) threshold, tagged lead: warm. Tied with rank 17 on percentage."
+    },
+    {
+      "id": "plan-R3_stale_approaching-ISAOWXGDarq8T2vUv4Wj",
+      "rank": 17,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Arkadi Chmir",
+        "ghl_contact_id": "UwyLY5mfWjSxvy5fFhnp",
+        "ghl_opportunity_id": "ISAOWXGDarq8T2vUv4Wj"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-ISAOWXGDarq8T2vUv4Wj",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Later Date (Warm)",
+        "days_in_stage": 52,
+        "stale_threshold_days": 40,
+        "pct_of_threshold": 1.3
+      },
+      "note": "130% of the 40-day Later Date (Warm) threshold, untagged (R3 untagged tier 70%). Ingest notes the contact also carries project complete, so this may be a leftover opportunity rather than a live lead -- likely veto candidate."
+    },
+    {
+      "id": "plan-R3_stale_approaching-cHE2OELaaUp61h3ZPGWP",
+      "rank": 18,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Naveen Sharma - Flooring | Mississauga",
+        "ghl_contact_id": "Jn0rTM3xDVHTJaZGv1Qt",
+        "ghl_opportunity_id": "cHE2OELaaUp61h3ZPGWP"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-cHE2OELaaUp61h3ZPGWP",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0c. ASAP (Hot)",
+        "days_in_stage": 9,
+        "stale_threshold_days": 7,
+        "pct_of_threshold": 1.286
+      },
+      "note": "129% of the 7-day ASAP (Hot) threshold, tagged lead: hot."
+    },
+    {
+      "id": "plan-R3_stale_approaching-iGDoj2PaxqHx9CUzYKKt",
+      "rank": 19,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Abhi |  | ",
+        "ghl_contact_id": "QufDEnt1nxnfNgDhfCB8",
+        "ghl_opportunity_id": "iGDoj2PaxqHx9CUzYKKt"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-iGDoj2PaxqHx9CUzYKKt",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Later Date (Warm)",
+        "days_in_stage": 51,
+        "stale_threshold_days": 40,
+        "pct_of_threshold": 1.275
+      },
+      "note": "127% of the 40-day Later Date (Warm) threshold, tagged lead: warm. No assigned rep on the opportunity."
+    },
+    {
+      "id": "plan-R3_stale_approaching-MmDVp90LmiAJpbVlFZNw",
+      "rank": 20,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Rajeev Jishtu - Flooring | Milton",
+        "ghl_contact_id": "FAVGMSIqrkK8T0vxBa1J",
+        "ghl_opportunity_id": "MmDVp90LmiAJpbVlFZNw"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-MmDVp90LmiAJpbVlFZNw",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Later Date (Warm)",
+        "days_in_stage": 49,
+        "stale_threshold_days": 40,
+        "pct_of_threshold": 1.225
+      },
+      "note": "123% of the 40-day Later Date (Warm) threshold, tagged lead: warm."
+    },
+    {
+      "id": "plan-R3_stale_approaching-I4aWuQBogr3G29mob7XZ",
+      "rank": 21,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "*Jayanthan | Toronto",
+        "ghl_contact_id": "4dDFapsRQh3INNerEdVN",
+        "ghl_opportunity_id": "I4aWuQBogr3G29mob7XZ"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-I4aWuQBogr3G29mob7XZ",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "*Meeting (Scheduled)* CCAM|GHL",
+        "days_in_stage": 33,
+        "stale_threshold_days": 30,
+        "pct_of_threshold": 1.1
+      },
+      "note": "110% of the 30-day Meeting-Scheduled threshold, tagged lead: hot."
+    },
+    {
+      "id": "plan-R3_stale_approaching-P4aA6bwEpQNmPTGzkRSR",
+      "rank": 22,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Rafay A. Wasay - Flooring | Mississauga",
+        "ghl_contact_id": "enUblc9LIh1pv3waaWnn",
+        "ghl_opportunity_id": "P4aA6bwEpQNmPTGzkRSR"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-P4aA6bwEpQNmPTGzkRSR",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Later Date (Warm)",
+        "days_in_stage": 42,
+        "stale_threshold_days": 40,
+        "pct_of_threshold": 1.05
+      },
+      "note": "105% of the 40-day Later Date (Warm) threshold, tagged lead: warm. Four-way tie at 105% across ranks 22-25."
+    },
+    {
+      "id": "plan-R3_stale_approaching-y9VKiamm9fueXwDffviV",
+      "rank": 23,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Elsa Espejo - Flooring | Toronto",
+        "ghl_contact_id": "VvdpgIpVWtKgkpuM6Ndp",
+        "ghl_opportunity_id": "y9VKiamm9fueXwDffviV"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-y9VKiamm9fueXwDffviV",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Later Date (Warm)",
+        "days_in_stage": 42,
+        "stale_threshold_days": 40,
+        "pct_of_threshold": 1.05
+      },
+      "note": "105% of the 40-day Later Date (Warm) threshold, tagged lead: warm. Four-way tie at 105%."
+    },
+    {
+      "id": "plan-R3_stale_approaching-4TBqWus31R1eQUnFugV5",
+      "rank": 24,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Ushi Masrani - Both | Brampton",
+        "ghl_contact_id": "o1xtDQGEoqyD9VinAcqd",
+        "ghl_opportunity_id": "4TBqWus31R1eQUnFugV5"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-4TBqWus31R1eQUnFugV5",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Later Date (Warm)",
+        "days_in_stage": 42,
+        "stale_threshold_days": 40,
+        "pct_of_threshold": 1.05
+      },
+      "note": "105% of the 40-day Later Date (Warm) threshold, tagged lead: warm, $8,309 open value. Four-way tie at 105%."
+    },
+    {
+      "id": "plan-R3_stale_approaching-LJVVNOf8b8hWCeIEQ9S5",
+      "rank": 25,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Harj Heer - Stairs | Mississauga",
+        "ghl_contact_id": "zvih25unOJuJuIg0Jnff",
+        "ghl_opportunity_id": "LJVVNOf8b8hWCeIEQ9S5"
+      },
+      "basis": {
+        "file": "ingest/2026-09-08/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-LJVVNOf8b8hWCeIEQ9S5",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Later Date (Warm)",
+        "days_in_stage": 42,
+        "stale_threshold_days": 40,
+        "pct_of_threshold": 1.05
+      },
+      "note": "105% of the 40-day Later Date (Warm) threshold, tagged lead: warm. Last action inside the 25-action cap."
+    }
+  ],
+  "metrics": {
+    "actions_total": 25,
+    "requires_write_count": 0,
+    "by_business": { "project": 25, "store": 0 },
+    "by_action_type": {
+      "call": 25,
+      "draft_followup": 0,
+      "apply_tag": 0,
+      "stage_move": 0,
+      "schedule_review": 0,
+      "escalate_to_albert": 0
+    }
+  },
+  "needs_attention": [
+    "BACKTEST RUN. Plan for 2026-09-08 generated 2026-09-10 as evidence for un-parking criteria 1 and 2. run_at reflects the actual planner run, not the ingest date. Nothing here is intended for execution and no approvals file was created or read.",
+    "CAP OVERFLOW: 39 rule-matched findings, 25 planned, 14 overflow. Top 5 overflow by rank: *Gopal | TORONTO (103% of threshold), Priya Chotrani (100%), *Oz | TORONTO (100%), Clerance Pitters (82.5%), *Jonathan | Toronto (80%). Remaining overflow: Mike Medeiros (75%), Shaker Matti (75%), Albert O Akonnor (75%), Vipul Patel (75%), plus all 5 categorization_miss findings, which carry no percentage.",
+    "RULE-TABLE GAP -- every categorization_miss (R5) was squeezed out of the plan. The Ranking class order (R3, then R1, then R2/R4/R5) puts all 34 stale_approaching findings ahead of all 5 categorization_miss findings, so the 25-action cap is exhausted before R5 is reached. Wilfredo Comendador (207 days untagged) and *Harry | Brampton (cancelled appointment, untagged, no rep, zero notes) reach the plan only via their separate stale_approaching findings; *John | Toronto (Meeting-Scheduled with no calendar event on file) and *Ulupi | Mississauga get no action at all. Four warm leads at exactly 75% of threshold also outrank them by construction.",
+    "RULE-TABLE GAP -- the ingest's own #1 item produces no action. Michael Camara's ASAP-Hot opportunity (ghl-opp-DHrlkU4mjciQ1OY2BUv4, contact TmQX8DQ8tTb2fU2MRIlK) auto-abandoned today at 15 days mid price-negotiation on a $3,968.34 quote, over an insurance-funds delay. R4 triggers on drift type abandonment_next (abandonment approaching); there is no drift type, and therefore no rule, for an abandonment that has already fired. Escalate manually.",
+    "RULE-TABLE GAP -- R2 (untagged_in_queue) is unreachable in this ingest shape. The metric untagged_in_queue is 17 and needs_attention names 3 new Meta-ad leads awaiting categorization, but extensions.ghl.reporting.exclusions.drift_excluded_by_stage suppresses all 17 untagged_in_queue findings at stage 0a. New Lead, so workflow_drift contains zero of them. R2 produced 0 actions today and would produce 0 on any day with this exclusion in place.",
+    "RULE-TABLE GAP -- 8 of the ingest's 10 stragglers_ranked entries produce no action, because the rule table keys only on workflow_drift types and these arrive as items of type message/pipeline: Agabus Paul (\"please book me in\", ready to close), Debbie (store visit today 2-3pm, needs same-day answer), Rachita Saini (pricing to finalize tomorrow, Sep 21 start at risk), Jorge Barroilhet (re-engaged after going stale, \"call me now\"), Firoz Rajan (insurance adjuster follow-up to confirm), Nash (detailed scope, asked to visit Monday, never tagged), Kamal Manchanda (disputing 560sf vs 433sf and price), Paresh Bhatt (second budget rejection, still on nurture drip). All are time-critical; the plan instead contains warm leads at 75-105% of threshold.",
+    "R1, R2, R4 and R6 produced zero actions: workflow_drift contains only categorization_miss (5) and stale_approaching (34). No meeting_no_followup, followup_not_fired, untagged_in_queue or abandonment_next findings were emitted, so four of six rules were untested by this day.",
+    "CONTRACT DISAGREEMENT (criterion 2) -- both planner-agent.md and plan-schema.md state pct_of_threshold is emitted at extensions.ghl.workflow_drift[].pct_of_threshold. It is not. workflow_drift entries carry type, contact, detail, ref, severity and days_overdue only. The numeric pct_of_threshold lives in extensions.ghl.opportunities[], joined on workflow_drift[].ref == opportunities[].opportunity_id; that join is what produced every rank here. It was also cross-checked against the identity pct = (days_overdue + stale_threshold_days) / stale_threshold_days, which held exactly on every finding tested. No percentage was parsed from detail prose.",
+    "CONTRACT DISAGREEMENT (criterion 2) -- workflow_drift entries carry no contact_id. entity.ghl_contact_id was resolved for every action via the same opportunities[] join, or from the contact-detail URL in the matching items[] entry. Contract requires source IDs whenever the finding has one, but the finding record itself does not.",
+    "CONTRACT DISAGREEMENT (criterion 2) -- the Ranking tie-break names first_contact. No such field exists anywhere in the ingest output. Ties at 157% (ranks 13-14), 130% (16-17) and 105% (22-25) were broken by workflow_drift emission order instead. No tie straddles the 25-action cap, so this did not change which actions were planned today, but the rule is not implementable as written.",
+    "CONTRACT DISAGREEMENT (criterion 2) -- action ids are not hashes. The schema requires a hash of (entity source ID + rule_id + finding id), but the planner's tools grant is Read and Write only, with no hashing primitive available. ids here are the deterministic composite plan-<rule_id>-<opportunity_id>, which preserves the stability property the hash exists to guarantee (same finding, same id, across re-runs) without fabricating hex that no implementation could reproduce. Resolve before any approvals file is ever written against these ids.",
+    "TRACEABILITY -- only 10 of the 34 stale_approaching findings appear as itemized entries in items[]; the other 24 are covered by the rollup ghl-rollup-2026-09-08 and exist only in extensions.ghl.workflow_drift. basis.item_id for those was constructed as ghl-drift-stale_approaching-<ref>, matching the id convention ghl-ingest-agent uses for the ones it did itemize. Confirm that convention is stable before a consumer joins on it.",
+    "R3 tier gating did not bind on any finding. ghl-ingest-agent emits stale_approaching only at 75% of threshold or above, and the lowest finding today is exactly 75%, so all 34 cleared their tier (hot any, warm 60%, untagged/unqualified 70%). No cold-tagged findings exist at all -- 107 were excluded upstream by the 0b. Far Out (Cold) + lead: cold rule -- so the 80% cold tier was never exercised.",
+    "by_business shows zero store actions. The STORE: Material Pipeline has no stale threshold defined (51 open opportunities today), so it generates no workflow_drift and cannot produce a rule-matched action under the v1 table. project and store counts are reported side by side and are not summed."
+  ]
+}
