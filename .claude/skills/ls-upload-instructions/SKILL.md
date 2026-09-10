@@ -113,21 +113,137 @@ Full statement: RULE 0 at the top of the `bert-airtable-schema` skill.
 | Row type | Where sf/b lives | Format |
 |---|---|---|
 | **Single-grade / no-grade product** (1 row per handle) | In the **name** | `… - 24.18sf/b` (before the grade suffix, if any) |
-| **Variant group, uniform box size** (all rows share one `Box size (sf)`) | In the **name** — names stay identical, so LS is satisfied | `… - 24.18sf/b`; column 11 = grade alone (`Character`) |
-| **Variant group, mixed box sizes** (2+ distinct values in the group) | In **column 11**, `variant_option_one_value` | `Character - 24.18sf/b` |
+| **Grade variant group, uniform box size** (all rows share one `Box size (sf)`) | In the **name** — names stay identical, so LS is satisfied | `… - 24.18sf/b`; column 11 = grade alone (`Character`) |
+| **Grade variant group, mixed box sizes** (2+ distinct values in the group) | In **both**: the **combined** value in the shared name, **this row's own** value in column 11 | name `… - 18.19/20.18sf/b`; column 11 `Select - 20.18sf/b` |
+| **Size variant group** (tile — the variant dimension *is* size) | In **column 11** only, beside the size | `12 x 24 - 15.52sf/b`; name carries no sf/b |
 | **Per-piece item** (accessories, STONE, mosaics — `Box size (sf)` legitimately blank) | Exempt from **name / column 11** only — the **description still states `Sold per piece`** | n/a |
 
 **Uniform is the common case.** Grades of the same product almost always box the same — across the entire Vidar catalogue only one handle group carries mixed box sizes. So most variant groups keep sf/b in the name and leave column 11 as a clean grade picker, which is what staff expect the dropdown to be.
 
-**Why the mixed case is different:** LS requires every row in a variant group to share an identical `name`. When box sizes differ across the group, putting sf/b in the name makes the names differ and LS rejects the group. Column 11 is per-row, so it can carry a value that varies. This is the same mechanism tile uses for size (see *Size dropdown value — includes sf/b*).
+### The mixed-box-size case — combined in the name, exact in column 11
 
-**Compute uniform vs mixed per handle group at build time — it is a property of the data, not of the brand, and it can change.** A supplier revising one grade's box size flips a group from uniform to mixed. When that happens, sf/b must move out of the name and into column 11 for *every* row in the group, and all the names must be updated together — otherwise the group either carries a stale number or fails name identity.
+**Rule (Albert, 2026-09-10): when a grade group carries two box sizes, the shared name states both — `18.19/20.18sf/b` — and column 11 still carries this row's own exact value.**
 
-**Do not put sf/b in both the name AND column 11.** One placement per group — that choice is forced by LS's name-identity constraint, and doing both breaks the variant group.
+LS's constraint is name *identity*, not name simplicity: a combined string is identical on every row in the group, so the group imports cleanly. The two placements are not duplication, because they hold different facts:
+
+| | Says | Why it has to be there |
+|---|---|---|
+| **Name** — `18.19/20.18sf/b` | "this family boxes two ways" | Travels on receipts, order lines, exports and search. It is also the deliberate irritant: two box sizes under one handle usually means the price list is ambiguous, and the name is what prompts whoever sees it to **confirm with the supplier which one it is**. |
+| **Column 11** — `Select - 20.18sf/b` | "*this* grade boxes 20.18" | The name alone cannot tell a staff member at the counter how many sf are in the box they are actually selling. Without this the group is un-analyzable per row — the exact failure the whole rule exists to prevent. |
+
+So the mixed case is **both**, never either-or. Dropping the name half loses the flag; dropping the column-11 half loses the number.
+
+**This holds even after the supplier answers.** If they confirm the sizes genuinely differ by grade, the combined name is the permanent form — LS still allows only one name per family, and splitting the family into two handles to get clean names would destroy the grade dropdown. If they confirm it was a price-list error, the group becomes uniform and the name collapses to a single `20.18sf/b` on the next build.
+
+**Format:** every distinct value in the group, two decimals, ascending, `/`-joined, unit once at the end — `18.19/20.18sf/b`. Not `18.19sf/b/20.18sf/b`, and not integers (`22/24sf/b`) — two decimals everywhere, so the automated check can find each value.
+
+**Compute uniform vs mixed per handle group at build time — it is a property of the data, not of the brand, and it can change.** A supplier revising one grade's box size flips a group from uniform to mixed. When that happens the shared name gains the combined value and column 11 gains the per-row value, for *every* row in the group at once — a half-converted group either fails name identity or carries a stale number.
+
+**The one exemption: tile size groups.** Where the variant dimension is size rather than grade, differing box sizes are expected and derivable from the size, so there is nothing to ask the supplier about — sf/b stays in column 11 beside its size and the name carries none (see *Size dropdown value — includes sf/b*). A six-size tile family would otherwise carry six numbers in its name. Grade groups are the opposite: same plank, so a box-size difference is an anomaly worth surfacing.
+
+**Do not put sf/b in both the name and column 11 on a uniform group.** There it is pure repetition of one number, and it turns the grade dropdown into noise. The both-places rule is specific to the mixed case, where the two values differ.
 
 > **This does not apply to the description.** Per the strict rule under *Description rules (column 8)*, `Box size (sf)` goes in the description on **every** product regardless of where it lives here, plus `Pieces per box` when present, plus `Sold per piece` / `Sold per sq ft` for items that genuinely have no box. All copies are generated from the same Airtable field on each build, so they cannot drift — provided the file is regenerated rather than hand-edited.
 
 **Blank `Box size (sf)` on a flooring row is a data defect, not an exemption.** Per-piece accessories and STONE are legitimately blank. A plank/tile flooring SKU with no box size must be flagged and fixed in Airtable before upload — the LS file cannot invent it.
+
+---
+
+## Marking a promo — `(P)` and the `PROMO` tag
+
+**Rule (Albert, 2026-09-10).** A row whose `Promo cost ($/sf)` is populated is on
+promo, and the LS file marks it in two places.
+
+### What `(P)` means — and what it does not
+
+**`(P)` means "there is a promotion on this product — verify it before you quote."**
+It does **not** assert that the sale is live today at that price.
+
+That distinction is the design, not a hedge (Albert, 2026-09-10). A salesperson
+verifies the promo end date before committing to a quote regardless; a new price list
+overwriting the promo is the only thing that settles it authoritatively. So the marker
+is a **prompt to check**, in the same spirit as a `18.19/20.18sf/b` name telling you to
+ring the supplier. A marker that has to be perfectly current to be safe would be a much
+more fragile thing than one that only has to be noticed.
+
+| Where | What | Why |
+|---|---|---|
+| **Column 16 `tags`** | `PROMO` | Machine-readable. Filterable at the POS, and what an automated sweep would flip. |
+| **Column 11 `variant_option_one_value`** — variant rows | `(P YYYY-MM-DD) ` **prefixed** to the existing value: `(P 2026-10-31) Select - 20.18sf/b` | Visible at the point of selection, with the date the salesperson has to verify against. |
+| **The name** — singleton / no-grade rows only (columns 10–11 blank) | `(P YYYY-MM-DD) ` prefixed to the whole name | A singleton has no variant value to carry it. |
+
+**Carry `Promo end date` in the marker, not just `(P)`.** A bare `(P)` says "go look
+this up somewhere else"; `(P 2026-10-31)` answers the question where the decision is
+being made. It also makes a stale marker **self-invalidating** — a date in the past
+tells the salesperson the promo is over without anyone having rebuilt the file. That is
+what makes the verify-before-quoting rule practical rather than a discipline nobody can
+act on at the counter.
+
+**If `Promo end date` is blank, emit `(P)` alone** — and treat the blank as worth
+flagging, since a promo with no printed expiry is exactly the case where a person most
+needs to ask the supplier.
+
+**The `(P)` goes in the variant value, never in a variant family's shared name.** This
+is the whole reason the marker works, and it is worth being explicit about why:
+
+- Lightspeed requires every row in a variant family to share an identical `name`. A
+  promo almost always covers a **subset** of a family — two grades out of five. Putting
+  `(P)` in the shared name is therefore impossible for the normal case: it would either
+  mark all five (three of them falsely, at full price) or break name identity and get
+  the group rejected.
+- Column 11 is **per-row**. It can differ across the group, which is exactly what a
+  subset promo needs.
+- The name is also Lightspeed's **identity key** (see *LS identifies a product by NAME*).
+  A promo marker has to go on and come off; churning the identity field twice per promo,
+  across hundreds of rows, is the surface the Grandeur incident lived on. The variant
+  value carries no identity.
+
+**It does not collide with sf/b.** `(P)` is a prefix, so a mixed-box-size group still
+reads `(P) Select - 20.18sf/b` and the box size is still exposed. The two rules stack.
+
+**It cannot cause a Duplicate Variants rejection.** Marking some rows in a group makes
+their column 11 values *more* distinct, never less.
+
+### Coming off is part of the rule
+
+**A stale `(P)` is worse than no marker** — staff quote a discount that expired. The
+marker's lifetime is `Promo cost ($/sf)`:
+
+- **Populated** → `tags: PROMO`, `(P)` prefix, `supply_price` = the promo cost.
+- **Cleared** (Cowork clears it on `Promo end date`) → the next build emits no tag, no
+  `(P)`, and `supply_price` back to `Cost/unit`.
+
+This only holds because **the file is regenerated, not hand-edited**. Every promo marker
+is derived from the Airtable field on each build, so it cannot go stale on its own — but
+a row that never gets rebuilt after its promo ends keeps the marker until it does.
+
+> **The API sync moves the promo PRICE, not the promo MARKER.** `/catalog-sync`'s
+> Lightspeed update writes prices and nothing else, by design. So on an existing product
+> `supply_price` follows `Promo cost ($/sf)` automatically in both directions, while
+> `tags` and the `(P …)` prefix reach Lightspeed **only through a rebuilt CSV import**.
+> A product whose promo has ended carries the correct cost and a stale marker until its
+> file is rebuilt.
+>
+> **This is a documented characteristic, not an outstanding defect** (Albert,
+> 2026-09-10). The marker is a prompt to verify, the date inside it exposes its own
+> staleness, and a salesperson checks the promo before quoting regardless — so a marker
+> lagging a rebuild costs a lookup, not a mispriced order. The *price* is the part that
+> must be right automatically, and it is.
+>
+> Making the marker self-clearing would mean letting an update write
+> `variant_attribute_values` and tags — a real widening of a deliberately narrow payload,
+> and the 2.1 attribute shape has already caused one incident. Worth doing only on the
+> evidence of a live API check, and not urgent.
+
+### Retail does not follow the promo
+
+`retail_price` stays `Cost/unit + $ 1.00` off the **regular** cost, so it still moves
+when the regular cost moves. Adjusting retail during a promo remains a manual act
+(*Promo pricing flow*, `bert-airtable-schema`).
+
+**Consequence, stated so it is not a surprise:** a hand-set promo retail in Lightspeed
+**will be rewritten** by the next sync. It is not silent — it shows as a before/after on
+the plan a person approves — but it is not preserved either.
 
 ---
 
@@ -232,11 +348,11 @@ them change.
 | **8. description ⭐** | POPULATED WITH ALL UNMAPPED SOURCE DATA — see Description rules below. |
 | **9. product_category** | = `[CATEGORY]`. All caps, space-slash-space separator. Full reference: `FLOORING / ENGINEERED HARDWOOD`, `FLOORING / SOLID HARDWOOD`, `FLOORING / VINYL / SPC`, `FLOORING / VINYL / WPC`, `FLOORING / LAMINATE`, `FLOORING / TILE`, `ACCESSORIES`. Vinyl subcategory is determined by the product's core (SPC or WPC), not its format (LVP or LVT). **Accessories (transitions, mouldings, stair treads/risers, underlay, glue, etc.) use the standalone `ACCESSORIES` category — not nested under FLOORING.** |
 | **10. variant_option_one_name ⭐** | **Conditional on variant group.** If 2+ rows share the same handle with different grades (true variant group) → "Grade". Otherwise (single-grade product, even if Grade has a value) → leave BLANK. |
-| **11. variant_option_one_value ⭐** | **Conditional on variant group, then on box-size uniformity.** Single-grade product → leave BLANK (grade and sf/b both go in the NAME). Variant group where all rows share one box size → grade AS-IS, nothing appended: "Character", "Select & Better", "Rustic" (sf/b sits in the shared name). Variant group with mixed box sizes → `[Grade] - [sfb]sf/b` using **this row's own** box size ("Select - 20.18sf/b" vs "Select & Better - 18.19sf/b"), formatted to two decimals. See *Load-bearing rule — every SKU must carry a readable sf/b*. |
+| **11. variant_option_one_value ⭐** | **Conditional on variant group, then on box-size uniformity.** Single-grade product → leave BLANK (grade and sf/b both go in the NAME). Variant group where all rows share one box size → grade AS-IS, nothing appended: "Character", "Select & Better", "Rustic" (sf/b sits in the shared name). Variant group with mixed box sizes → `[Grade] - [sfb]sf/b` using **this row's own** box size ("Select - 20.18sf/b" vs "Select & Better - 18.19sf/b"), formatted to two decimals, while the shared name carries the combined `18.19/20.18sf/b`. See *Load-bearing rule — every SKU must carry a readable sf/b*. |
 | **12–15. variant options 2 & 3** | Leave ALL BLANK. Not used. |
-| **16. tags** | Leave BLANK. |
-| **17. supply_price** | = Source **"Cost/unit"** column. Numeric only (no $ signs, no commas). See *Pricing field reflection rule* below. |
-| **18. retail_price** | = Source **"Retail price/unit"** column. Numeric only. See *Pricing field reflection rule* below. |
+| **16. tags** | `PROMO` when the row's `Promo cost ($/sf)` is populated, otherwise BLANK. This is the machine-readable half of the promo marker — see *Marking a promo* below. |
+| **17. supply_price** | = the row's **`Promo cost ($/sf)`** when populated, otherwise **`Cost/unit`**. `supply_price` is what Titan actually pays, and during a promo that is the promo cost. Numeric only (no $ signs, no commas). See *Marking a promo* and *Pricing field reflection rule* below. |
+| **18. retail_price** | = Source **"Retail price/unit"** column — **always the regular `Cost/unit` + `$ 1.00`, never derived from the promo cost.** Numeric only. See *Pricing field reflection rule* below. |
 | **19–22. loyalty & account codes** | Leave ALL BLANK. |
 | **23. brand_name** | = `[BRAND]`. Read from source sheet "Brand" column. |
 | **24. supplier_name** | = `[SUPPLIER]`. Always read from the source "Supplier" column, never from "Brand". For a single-brand supplier the two strings coincide; for a distributor they must not be conflated — a Canadian Standard row carrying BOEN flooring is `brand_name` BOEN, `supplier_name` Canadian Standard. |
@@ -288,7 +404,7 @@ Components:
   and every pre-existing LS name uses it. Copy the field verbatim, including its
   unit; do not normalize `1520mm` to inches or `RL` to a measurement.
 - `[Veneer]` = source "Veneer / top layer (mm)" + "mm top" (only if non-empty)
-- `[BoxSize]` = source "Box size (sf)" + "sf/b". Include for single-grade and no-grade products, **and for variant groups where every row shares the same box size** — the name stays identical across the group, so LS is satisfied. Omit **only** for variant groups with mixed box sizes; on those rows sf/b moves to **column 11** alongside the grade (`Character - 24.18sf/b`). Never omit it from both.
+- `[BoxSize]` = source "Box size (sf)" + "sf/b", on **every** flooring row. Single-grade, no-grade, and uniform variant groups carry the row's own value (`24.18sf/b`) — the name stays identical across a uniform group, so LS is satisfied. A variant group with **mixed** box sizes carries the combined value instead (`18.19/20.18sf/b`, every distinct value in the group, two decimals, ascending, unit once), which is likewise identical on every row, and *additionally* puts this row's own value in **column 11** alongside the grade (`Select - 20.18sf/b`). Never omit it from the name.
 - `[Grade]` = source "Grade" AS-IS, appended at the end after " - " — **ONLY for single-grade products** (products NOT part of a variant group). Omit entirely if the row is part of a variant group OR if Grade is empty.
 
 ### Name deduplication rule
@@ -348,18 +464,19 @@ if Install AND NOT should_drop_install(Collection, Install): middle += Install
 
 > **Grade and box size placement:**
 > - **Variant group, uniform box size (the common case):** Grade goes in `variant_option_one_value` (column 11) alone. Box size stays in the NAME — every row has the same one, so the names remain identical and LS is satisfied. Grade is not in the name.
-> - **Variant group, mixed box sizes:** Box size cannot sit in the name without breaking name identity, so grade and box size go together in column 11 as `[Grade] - [sfb]sf/b`. Neither appears in the name.
+> - **Variant group, mixed box sizes:** the NAME carries the **combined** value (`18.19/20.18sf/b`) — identical on every row, so name identity holds — and column 11 carries `[Grade] - [sfb]sf/b` with **this row's own** box size. Both, not either. Grade is still not in the name.
 > - **Single-grade product (only 1 row per handle):** Grade goes at the END of the name after the box size. Box size is in the name. Columns 10–11 are BLANK.
 > - **No-grade product (Grade is empty):** Grade is nowhere. Box size is in the name. Columns 10–11 are BLANK.
 >
-> In every case sf/b ends up readable in Lightspeed. If a build produces a row where sf/b appears in neither the name nor column 11, that row is wrong — see the load-bearing rule above.
+> So sf/b is in the name on **every** flooring row, without exception; the mixed case adds a second, per-row copy in column 11 rather than moving it. If a build produces a flooring row with no sf/b in its name, that row is wrong — see the load-bearing rule above.
 
 **Examples:**
 
 - Variant group, uniform box size — sf/b in the shared name, grade alone in column 11: `GRNTENG - Elegance White Oak (Lecce) T&G | 6" x 19mm x RL - 3mm top - 28.42sf/b`
   - …with column 11 across the group: `Character`, `Select`, `Select & Better`
-- Variant group, mixed box sizes — sf/b out of the name, into column 11: `VIDENG - HB 5 American White Oak (Macaroon) T&G | 5" x 18mm x RL - 3mm top`
+- Variant group, mixed box sizes — combined sf/b in the shared name, exact sf/b in column 11: `VIDENG - HB 5 American White Oak (Macaroon) T&G | 5" x 18mm x RL - 3mm top - 18.19/20.18sf/b`
   - …with column 11 across the group: `Select - 20.18sf/b`, `Select - 18.19sf/b`, `Select & Better - 18.19sf/b`
+  - the `18.19/20.18` in the name is a standing question for the supplier, not a spec — see *The mixed-box-size case* above
 - Single-grade product (sf/b then grade at end): `GRNDENG - Continental European White Oak (Pennsylvania) Click | 7" x 6mm x RL - 23.62sf/b - ABCD`
 - No-grade product (sf/b at end, no grade): `GRNDLAM - Continental (Pennsylvania) Click | 7" x 6mm x RL - 23.62sf/b`
 
@@ -389,7 +506,7 @@ This is unconditional and overrides the "empty and false fields are excluded" de
 
 **This supersedes the previous rule**, which excluded box size from the description whenever it was already in the name. It is no longer conditional on placement.
 
-**Why the duplication is safe here.** The load-bearing rule says "do not put sf/b in both places" — that is about **name vs column 11**, where the choice is forced by LS's name-identity constraint on variant groups, and picking both breaks the group. The description is a third, always-present location, and every one of them is generated from the same Airtable `Box size (sf)` field on each build. They cannot drift apart as long as the file is **regenerated** rather than hand-patched. Hand-editing one copy of a generated file is what makes duplicates go stale — so don't do that; rebuild.
+**Why the duplication is safe here.** The load-bearing rule restricts repeating sf/b across **name and column 11 on a uniform group**, where it would be one number printed twice. The description is a third, always-present location, and every copy — including the two a mixed group deliberately carries — is generated from the same Airtable `Box size (sf)` field on each build. They cannot drift apart as long as the file is **regenerated** rather than hand-patched. Hand-editing one copy of a generated file is what makes duplicates go stale — so don't do that; rebuild.
 
 **Why it is worth the duplication.** The description is the searchable, always-visible field at the POS. The name can be truncated in some views, a column-11 variant value only surfaces at the point of selection, and neither is guaranteed to be where a staff member is looking when they need to convert boxes to square feet. The description is the one place that is always there.
 
@@ -411,7 +528,7 @@ This is unconditional and overrides the "empty and false fields are excluded" de
 | Scenario | Columns 10–11 | Grade in name? | sf/b lives in |
 |----------|---------------|----------------|---------------|
 | 2+ rows share handle, different grades, **same box size** | "Grade" / `[Grade]` | NO | **name** |
-| 2+ rows share handle, different grades, **different box sizes** | "Grade" / `[Grade] - [sfb]sf/b` | NO | **column 11** |
+| 2+ rows share handle, different grades, **different box sizes** | "Grade" / `[Grade] - [sfb]sf/b` | NO | **name (combined) AND column 11 (this row's)** |
 | 1 row per handle, has a grade | BLANK | YES (at end after box size) | **name** |
 | 1 row per handle, no grade | BLANK | NO | **name** |
 
@@ -422,7 +539,7 @@ This is unconditional and overrides the "empty and false fields are excluded" de
 If a single-grade product later gets a second grade added (converting it from a standalone product into a variant group), this is handled **manually, case-by-case** rather than through automated migration:
 
 1. Compare the new grade's box size to the existing row's.
-2. Rename the existing product to strip the trailing ` - [Grade]` from the name. **If the two box sizes match, leave the box size in the name.** If they differ, strip ` - [BoxSize]sf/b` as well — it now has to move into column 11 on both rows.
+2. Rename the existing product to strip the trailing ` - [Grade]` from the name. **If the two box sizes match, leave the box size in the name.** If they differ, replace the single ` - [BoxSize]sf/b` with the combined form (` - 18.19/20.18sf/b`) on both rows — it stays in the name, and a per-row copy is added to column 11.
 3. Populate columns 10–11 on the existing row (`variant_option_one_name` = "Grade", `variant_option_one_value` = `[Grade]`, or `[Grade] - [sfb]sf/b` in the mixed case).
 4. Add the new grade as a second row sharing the same handle, following the same placement.
 5. Re-upload both rows together. Lightspeed will merge them into a variant group under the existing handle.
@@ -678,7 +795,7 @@ When 2+ tile rows share an LS Handle with different sizes, they form a variant g
 
 For tile variant rows, `variant_option_one_value` (column 11) carries **both the size AND the box size**, formatted as `[size] - [sfb]sf/b`. This puts the box-size info at point of selection in the POS so staff can see it without drilling into the product.
 
-> Tile variant groups are always the "mixed" case by definition — the variant dimension *is* size, so box sizes differ across the group and the shared name cannot carry sf/b. Flooring variant groups reach column 11 only when their box sizes genuinely differ; when every grade boxes the same, sf/b stays in the name. Same principle, different frequency. See *Load-bearing rule — every SKU must carry a readable sf/b*.
+> **Tile is the one group type whose name carries no sf/b at all.** The variant dimension *is* size, so box sizes differ across the group by construction — a six-size family would put six numbers in its name, and there is nothing to query the supplier about because the box size follows from the size the customer already picked. Column 11 alone. A **flooring grade group** with mixed box sizes is the opposite case: same plank, so the difference is an anomaly, and the combined value goes in the shared name *as well as* column 11 precisely to raise it. See *Load-bearing rule — every SKU must carry a readable sf/b*.
 
 | Source row | LS column 11 value |
 |---|---|

@@ -1,0 +1,5578 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "Grandeur",
+ "run_at": "2026-09-10T01:30:27.124527-04:00",
+ "status": "ok",
+ "inputs": [
+  {
+   "file": "ingest/2026-09-03/grandeur_airtable_upload_2026-09-03.csv",
+   "rows": 231
+  },
+  {
+   "file": "ingest/2026-09-10/lightspeed-products.json",
+   "products": 14525,
+   "run_at": "2026-09-10T00:30:02.734321-04:00"
+  },
+  {
+   "file": "ingest/2026-09-03/grandeur_airtable_existing.json",
+   "records": 239
+  }
+ ],
+ "cost_basis": null,
+ "summary": {
+  "airtable_upsert": 231,
+  "actions_total": 231,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 0,
+  "warnings": 102,
+  "rows_in": 231
+ },
+ "actions": [
+  {
+   "id": "cat-11fa9eeb853e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0001",
+   "airtable_rec_id": "recV4VUS7cqqTnyDJ",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b63420110",
+   "handle": "GRND65EWOBORABORA",
+   "fields": {
+    "Retail price/unit": "4.69",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b63420110"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 1
+  },
+  {
+   "id": "cat-0f1a2faa50a5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0002",
+   "airtable_rec_id": "rec3rf57zqs0qtgdX",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6c33a689",
+   "handle": "GRND65EWOSANTORINI",
+   "fields": {
+    "Retail price/unit": "4.69",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6c33a689"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 2
+  },
+  {
+   "id": "cat-e76773d3121d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0003",
+   "airtable_rec_id": "recyY67qhu0dJtLpp",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6c7dd82d",
+   "handle": "GRND65EWOSTLUCIA",
+   "fields": {
+    "Retail price/unit": "4.69",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6c7dd82d"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 3
+  },
+  {
+   "id": "cat-553abf7b7b08",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0004",
+   "airtable_rec_id": "recobIv3JsQo55MFB",
+   "ls_id": "56647347-cc50-4eac-b402-4b7c4ac8a568",
+   "handle": "GRND65EWOBARBADOS",
+   "fields": {
+    "Retail price/unit": "4.69",
+    "Lightspeed ID": "56647347-cc50-4eac-b402-4b7c4ac8a568"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 4
+  },
+  {
+   "id": "cat-d270fb412ab4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0005",
+   "airtable_rec_id": "recjcchm9PeLYFCH5",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6c4f4912",
+   "handle": "GRND65EWOSARDINIA",
+   "fields": {
+    "Retail price/unit": "4.69",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6c4f4912"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 5
+  },
+  {
+   "id": "cat-b57f548056d3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0006",
+   "airtable_rec_id": "rec4CAulQKU11pPJU",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6ce6634b",
+   "handle": "GRND65EWOTAHITI",
+   "fields": {
+    "Retail price/unit": "4.69",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6ce6634b"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 6
+  },
+  {
+   "id": "cat-db461a172b58",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0007",
+   "airtable_rec_id": "recLO6yHFPPYvyds0",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6d4e7c57",
+   "handle": "GRND65EWOWHITEISLAND",
+   "fields": {
+    "Retail price/unit": "4.69",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6d4e7c57"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 7
+  },
+  {
+   "id": "cat-7d9586ec578c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0008",
+   "airtable_rec_id": "recpcAoksKZkaeoV7",
+   "ls_id": "c8645e67-b982-4d9f-a8a8-f90ea5da608a",
+   "handle": "GRND6EWOLAGUNABEACH",
+   "fields": {
+    "Retail price/unit": "5.69",
+    "Lightspeed ID": "c8645e67-b982-4d9f-a8a8-f90ea5da608a"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 8
+  },
+  {
+   "id": "cat-b0cd0d8f9d2a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0009",
+   "airtable_rec_id": "rectMrUUZcGqaBwlJ",
+   "ls_id": "06b7f4bc-c974-45cb-a8a5-82514af41d1e",
+   "handle": "GRND6EWOSANTACRUZ",
+   "fields": {
+    "Retail price/unit": "5.69",
+    "Lightspeed ID": "06b7f4bc-c974-45cb-a8a5-82514af41d1e"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 9
+  },
+  {
+   "id": "cat-146ca21a4386",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0012",
+   "airtable_rec_id": "reczStyLrlyhpScG1",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b61b6b476",
+   "handle": "GRND65NAHNATURAL",
+   "fields": {
+    "Product name": "Grandeur 6.5\" HIC \u2014 Natural (ABCD)",
+    "Retail price/unit": "4.99",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b61b6b476"
+   },
+   "before": {
+    "Product name": "Grandeur 6.5\" NAH \u2014 Natural (ABCD)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 10
+  },
+  {
+   "id": "cat-aa7ca7b033d3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0014",
+   "airtable_rec_id": "reck5zXnzUDH3rl90",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b617662c4",
+   "handle": "GRND65NAHHARVEST",
+   "fields": {
+    "Product name": "Grandeur 6.5\" HIC \u2014 Harvest (ABCD)",
+    "Retail price/unit": "4.99",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b617662c4"
+   },
+   "before": {
+    "Product name": "Grandeur 6.5\" NAH \u2014 Harvest (ABCD)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 11
+  },
+  {
+   "id": "cat-436ff520a48e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0015",
+   "airtable_rec_id": "recH1Px2N8IuzEkSt",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b61a226dc",
+   "handle": "GRND65NAHMANE",
+   "fields": {
+    "Product name": "Grandeur 6.5\" HIC \u2014 Mane (ABCD)",
+    "Retail price/unit": "4.99",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b61a226dc"
+   },
+   "before": {
+    "Product name": "Grandeur 6.5\" NAH \u2014 Mane (ABCD)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 12
+  },
+  {
+   "id": "cat-16103e941c44",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0016",
+   "airtable_rec_id": "recl8HeeCAyfimQy6",
+   "ls_id": "40a9301e-9c7a-41fc-be3d-d11d66ae7569",
+   "handle": "GRND65NAHNORTHWEST",
+   "fields": {
+    "Product name": "Grandeur 6.5\" HIC \u2014 Northwest (ABCD)",
+    "Retail price/unit": "4.99",
+    "Lightspeed ID": "40a9301e-9c7a-41fc-be3d-d11d66ae7569"
+   },
+   "before": {
+    "Product name": "Grandeur 6.5\" NAH \u2014 Northwest (ABCD)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 13
+  },
+  {
+   "id": "cat-4050fa1d0bd4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0017",
+   "airtable_rec_id": "recJAqKth3qlRIXfg",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b61cf6d25",
+   "handle": "GRND65NAHOWL",
+   "fields": {
+    "Product name": "Grandeur 6.5\" HIC \u2014 Owl (ABCD)",
+    "Retail price/unit": "4.99",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b61cf6d25"
+   },
+   "before": {
+    "Product name": "Grandeur 6.5\" NAH \u2014 Owl (ABCD)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 14
+  },
+  {
+   "id": "cat-5ce4908e6c64",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0018",
+   "airtable_rec_id": "recmRcirQyNypbRhi",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b62d22f3f",
+   "handle": "GRND6HMRUM",
+   "fields": {
+    "Product name": "Grandeur 6\" MPL \u2014 Rum (ABCD)",
+    "Retail price/unit": "3.99",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b62d22f3f"
+   },
+   "before": {
+    "Product name": "Grandeur 6\" HM \u2014 Rum (ABCD)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 15
+  },
+  {
+   "id": "cat-6566b5ec21aa",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0020",
+   "airtable_rec_id": "recMuTbvT66bH8EVB",
+   "ls_id": "db9b4e9d-1752-42e7-a611-da00a9e2a415",
+   "handle": "GRND75AOHONEYCOMB",
+   "fields": {
+    "Retail price/unit": "5.59",
+    "Lightspeed ID": "db9b4e9d-1752-42e7-a611-da00a9e2a415"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 16
+  },
+  {
+   "id": "cat-70d6ccc3c5fb",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0021",
+   "airtable_rec_id": "rec57a5rh4YJaBS6O",
+   "ls_id": "200259e8-37e1-4713-885d-bd9cd8a43d46",
+   "handle": "GRND75AOSANDYSILK",
+   "fields": {
+    "Retail price/unit": "5.59",
+    "Lightspeed ID": "200259e8-37e1-4713-885d-bd9cd8a43d46"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 17
+  },
+  {
+   "id": "cat-04431131a4fc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0022",
+   "airtable_rec_id": "recemCWQAxqeZ7Ozt",
+   "ls_id": "67b2f64b-4ae5-490f-a64a-bd8129b7581d",
+   "handle": "GRND6EWOCOCOABEACH",
+   "fields": {
+    "Retail price/unit": "5.89",
+    "Lightspeed ID": "67b2f64b-4ae5-490f-a64a-bd8129b7581d"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 18
+  },
+  {
+   "id": "cat-793984fc8b18",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0023",
+   "airtable_rec_id": "recvBL5tcUkb3d8BT",
+   "ls_id": "1c035705-7d40-4c57-8dba-2f9f55ca585b",
+   "handle": "GRND6EWOCLEARWATER",
+   "fields": {
+    "Retail price/unit": "5.89",
+    "Lightspeed ID": "1c035705-7d40-4c57-8dba-2f9f55ca585b"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 19
+  },
+  {
+   "id": "cat-d5dc41321a19",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0024",
+   "airtable_rec_id": "rec7ZKRL8HeQX37If",
+   "ls_id": "98e682df-4574-41ea-87c7-c9a3ca49f42a",
+   "handle": "GRND6EWODESTIN",
+   "fields": {
+    "Retail price/unit": "5.89",
+    "Lightspeed ID": "98e682df-4574-41ea-87c7-c9a3ca49f42a"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 20
+  },
+  {
+   "id": "cat-934d89867aec",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0025",
+   "airtable_rec_id": "recowSCK0yTOmRldq",
+   "ls_id": "6eb7ac42-78e3-4868-b687-ea155c8b0b86",
+   "handle": "GRND6EWOKEYWEST",
+   "fields": {
+    "Retail price/unit": "5.89",
+    "Lightspeed ID": "6eb7ac42-78e3-4868-b687-ea155c8b0b86"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 21
+  },
+  {
+   "id": "cat-0b7b8e717d81",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0026",
+   "airtable_rec_id": "recrkstD4OPQqTQ3O",
+   "ls_id": "8463d341-bdd0-4248-8130-746c36055773",
+   "handle": "GRND6EWOMIAMI",
+   "fields": {
+    "Retail price/unit": "5.89",
+    "Lightspeed ID": "8463d341-bdd0-4248-8130-746c36055773"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 22
+  },
+  {
+   "id": "cat-26816b5f46db",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0027",
+   "airtable_rec_id": "recjYP72KaXhttg5e",
+   "ls_id": "65377fd3-16f6-4b03-a262-0d7ede025402",
+   "handle": "GRND6EWOPANAMACITY",
+   "fields": {
+    "Retail price/unit": "5.89",
+    "Lightspeed ID": "65377fd3-16f6-4b03-a262-0d7ede025402"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 23
+  },
+  {
+   "id": "cat-4e2c34a67f27",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0031",
+   "airtable_rec_id": "recY6cnUW5RFRcTXA",
+   "ls_id": "15a6a2ec-8d78-48a7-8423-58dcc1b23f62",
+   "handle": "GRND75EWOMORAINE",
+   "fields": {
+    "Cost/unit": "3.99",
+    "Retail price/unit": "4.99",
+    "Lightspeed ID": "15a6a2ec-8d78-48a7-8423-58dcc1b23f62"
+   },
+   "before": {
+    "Cost/unit": "4.89"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 24
+  },
+  {
+   "id": "cat-3020679c4b5c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0033",
+   "airtable_rec_id": "rec7aTuiDyoHjwL4b",
+   "ls_id": "6d6b4916-ec07-48a1-89d8-d2e107070a57",
+   "handle": "GRND75EWOBLUEMOUNTAIN",
+   "fields": {
+    "Cost/unit": "3.99",
+    "Retail price/unit": "4.99",
+    "Lightspeed ID": "6d6b4916-ec07-48a1-89d8-d2e107070a57"
+   },
+   "before": {
+    "Cost/unit": "4.89"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 25
+  },
+  {
+   "id": "cat-53ea48d61999",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0035",
+   "airtable_rec_id": "rec4RaOUxSDdqk4y1",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6109aac9",
+   "handle": "GRND75NAHALPINE",
+   "fields": {
+    "Product name": "Grandeur 7.5\" HIC \u2014 Alpine (ABCD)",
+    "Retail price/unit": "5.89",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6109aac9"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" NAH \u2014 Alpine (ABCD)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 26
+  },
+  {
+   "id": "cat-00b2845f9a3d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0036",
+   "airtable_rec_id": "recFRBe7ZXGsGytJl",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6133d236",
+   "handle": "GRND75NAHCROWN",
+   "fields": {
+    "Product name": "Grandeur 7.5\" HIC \u2014 Crown (ABCD)",
+    "Retail price/unit": "5.89",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6133d236"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" NAH \u2014 Crown (ABCD)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 27
+  },
+  {
+   "id": "cat-e3b8427fafe9",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0037",
+   "airtable_rec_id": "recP7eLGk09wpbfq1",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b618c2b12",
+   "handle": "GRND75NAHICEFALL",
+   "fields": {
+    "Product name": "Grandeur 7.5\" HIC \u2014 Icefall (ABCD)",
+    "Retail price/unit": "5.89",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b618c2b12"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" NAH \u2014 Icefall (ABCD)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 28
+  },
+  {
+   "id": "cat-15bc5cff6420",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0038",
+   "airtable_rec_id": "recYO5qwzXD7gUVlZ",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b61e688ac",
+   "handle": "GRND75NAHSUMMIT",
+   "fields": {
+    "Product name": "Grandeur 7.5\" HIC \u2014 Summit (ABCD)",
+    "Retail price/unit": "5.89",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b61e688ac"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" NAH \u2014 Summit (ABCD)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 29
+  },
+  {
+   "id": "cat-7b195df3fb4a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0040",
+   "airtable_rec_id": "recHlRL08VZ8w7xEd",
+   "ls_id": "10a44829-7326-45a8-8704-b35c3011ba01",
+   "handle": "GRND75NAHNIMBUS",
+   "fields": {
+    "Product name": "Grandeur 7.5\" HIC \u2014 Nimbus (ABCD)",
+    "Retail price/unit": "5.89",
+    "Lightspeed ID": "10a44829-7326-45a8-8704-b35c3011ba01"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" NAH \u2014 Nimbus (ABCD)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 30
+  },
+  {
+   "id": "cat-88d4742bbdfd",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0041",
+   "airtable_rec_id": "recWW2Mx383ZKkK8I",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b61fca894",
+   "handle": "GRND75HMARIES",
+   "fields": {
+    "Product name": "Grandeur 7.5\" MPL \u2014 Aries (ABCD)",
+    "Retail price/unit": "5.89",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b61fca894"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" HM \u2014 Aries (ABCD)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 31
+  },
+  {
+   "id": "cat-c4832d6112a2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0042",
+   "airtable_rec_id": "recmbZW4KfgIiDhwt",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6211d1c9",
+   "handle": "GRND75HMLEO",
+   "fields": {
+    "Product name": "Grandeur 7.5\" MPL \u2014 Leo (ABCD)",
+    "Retail price/unit": "5.89",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6211d1c9"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" HM \u2014 Leo (ABCD)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 32
+  },
+  {
+   "id": "cat-d751725b1508",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0043",
+   "airtable_rec_id": "rech5HHte9DpIc1FJ",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6226c360",
+   "handle": "GRND75HMLIBRA",
+   "fields": {
+    "Product name": "Grandeur 7.5\" MPL \u2014 Libra (ABCD)",
+    "Retail price/unit": "5.89",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6226c360"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" HM \u2014 Libra (ABCD)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 33
+  },
+  {
+   "id": "cat-7a29c203414c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0044",
+   "airtable_rec_id": "recPLxBPuIp4ShUzV",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6257f2a5",
+   "handle": "GRND75HMTAURUS",
+   "fields": {
+    "Product name": "Grandeur 7.5\" MPL \u2014 Taurus (ABCD)",
+    "Retail price/unit": "5.89",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6257f2a5"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" HM \u2014 Taurus (ABCD)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 34
+  },
+  {
+   "id": "cat-7f3a82cff0e8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0045",
+   "airtable_rec_id": "reczw6QoXkdGMIpcH",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6243683e",
+   "handle": "GRND75HMSCORPIO",
+   "fields": {
+    "Product name": "Grandeur 7.5\" MPL \u2014 Scorpio (ABCD)",
+    "Retail price/unit": "5.89",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6243683e"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" HM \u2014 Scorpio (ABCD)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 35
+  },
+  {
+   "id": "cat-3b2fc9c897c9",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0046",
+   "airtable_rec_id": "recW9DF0ONezbBXT3",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b626fc2c5",
+   "handle": "GRND75HMTHUNDERCLOUD",
+   "fields": {
+    "Product name": "Grandeur 7.5\" MPL \u2014 Thunder Cloud (ABCD)",
+    "Retail price/unit": "5.89",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b626fc2c5"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" HM \u2014 Thunder Cloud (ABCD)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 36
+  },
+  {
+   "id": "cat-68e10bc80231",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0047",
+   "airtable_rec_id": "recccHtX6HCdB3hgc",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b63b07cb4",
+   "handle": "GRND75EWOCLIFF",
+   "fields": {
+    "Retail price/unit": "6.89",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b63b07cb4"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 37
+  },
+  {
+   "id": "cat-c43d94cce747",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0048",
+   "airtable_rec_id": "recrDEm9SKKDRdH0S",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6bceaf92",
+   "handle": "GRND75EWOPETRICHOR",
+   "fields": {
+    "Retail price/unit": "6.89",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6bceaf92"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 38
+  },
+  {
+   "id": "cat-33a4aec69ebe",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0049",
+   "airtable_rec_id": "rec2Nw4bOwpYj4pB2",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6cb0f2a1",
+   "handle": "GRND75EWOSTRATUS",
+   "fields": {
+    "Retail price/unit": "6.89",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6cb0f2a1"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 39
+  },
+  {
+   "id": "cat-ea04e1e81a00",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0050",
+   "airtable_rec_id": "reccc1KaMtXjAZUgq",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6aeba2b8",
+   "handle": "GRND75EWOLAGOM",
+   "fields": {
+    "Retail price/unit": "6.89",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6aeba2b8"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 40
+  },
+  {
+   "id": "cat-74a0b56f2743",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0051",
+   "airtable_rec_id": "recU1iy6tJ8UCHeND",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6bb5fa1a",
+   "handle": "GRND75EWONORDICSAND",
+   "fields": {
+    "Retail price/unit": "6.89",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6bb5fa1a"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 41
+  },
+  {
+   "id": "cat-494fa4f7110d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0052",
+   "airtable_rec_id": "recfr7LFYZ6SGI54n",
+   "ls_id": "7f10b490-b11d-4b8a-8e59-f5287afebce8",
+   "handle": "GRND75EWOPANDO",
+   "fields": {
+    "Retail price/unit": "6.89",
+    "Lightspeed ID": "7f10b490-b11d-4b8a-8e59-f5287afebce8"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 42
+  },
+  {
+   "id": "cat-b14fe914a4dc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0053",
+   "airtable_rec_id": "recioIeirkqlQufUk",
+   "ls_id": "367bd8a8-1208-4179-8636-da9581066c56",
+   "handle": "GRND75EWOTUNDRA",
+   "fields": {
+    "Retail price/unit": "6.89",
+    "Lightspeed ID": "367bd8a8-1208-4179-8636-da9581066c56"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 43
+  },
+  {
+   "id": "cat-b7e32996a2c9",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0054",
+   "airtable_rec_id": "recvWKnECA0TM1IMi",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6ab8bc59",
+   "handle": "GRND75EWOKINGSLANDING",
+   "fields": {
+    "Retail price/unit": "6.89",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6ab8bc59"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 44
+  },
+  {
+   "id": "cat-bddd9d0399c5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0055",
+   "airtable_rec_id": "rec8DD6k0xiTO1EOL",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6ccbd9e8",
+   "handle": "GRND75EWOSUNSPEAR",
+   "fields": {
+    "Retail price/unit": "6.89",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6ccbd9e8"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 45
+  },
+  {
+   "id": "cat-13ea09edfbcc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0056",
+   "airtable_rec_id": "recvO3jbq9ZxWaDKp",
+   "ls_id": "b0a10424-5180-44ca-b723-56287f9a7eb4",
+   "handle": "GRND5EWOLAGOMHB",
+   "fields": {
+    "Retail price/unit": "7.09",
+    "Lightspeed ID": "b0a10424-5180-44ca-b723-56287f9a7eb4"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 46
+  },
+  {
+   "id": "cat-32c4c5f8222d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0057",
+   "airtable_rec_id": "recl4vvGDFjjQp4wT",
+   "ls_id": "b5435607-932a-4edd-8928-c0f3a7a1b1b9",
+   "handle": "GRND5EWONORDICSANDHB",
+   "fields": {
+    "Retail price/unit": "7.09",
+    "Lightspeed ID": "b5435607-932a-4edd-8928-c0f3a7a1b1b9"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 47
+  },
+  {
+   "id": "cat-eb8a4d057674",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0058",
+   "airtable_rec_id": "recHby5PmGX4EcM9R",
+   "ls_id": "ba8ac852-510a-4c92-bc61-07388c06623f",
+   "handle": "GRND5EWOPANDOHB",
+   "fields": {
+    "Retail price/unit": "7.09",
+    "Lightspeed ID": "ba8ac852-510a-4c92-bc61-07388c06623f"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 48
+  },
+  {
+   "id": "cat-bebb8161adee",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0059",
+   "airtable_rec_id": "recENSL6XA7o5bqDM",
+   "ls_id": "a58b68fd-1818-446b-be88-69886b779ddb",
+   "handle": "GRND5EWOTUNDRAHB",
+   "fields": {
+    "Retail price/unit": "7.09",
+    "Lightspeed ID": "a58b68fd-1818-446b-be88-69886b779ddb"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 49
+  },
+  {
+   "id": "cat-990761e5f876",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0060",
+   "airtable_rec_id": "rec8qIS5GbTbsNTpE",
+   "ls_id": "1927955a-c997-4c30-a113-51cfa6d1cd63",
+   "handle": "GRND6EWONAPAVALLEYCHEVRON",
+   "fields": {
+    "Retail price/unit": "8.59",
+    "Lightspeed ID": "1927955a-c997-4c30-a113-51cfa6d1cd63"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 50
+  },
+  {
+   "id": "cat-d16a48a37830",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0061",
+   "airtable_rec_id": "recOyszODJ2Gb4jbQ",
+   "ls_id": "490a8512-5096-4a04-bfe4-d9b1dbdf13a3",
+   "handle": "GRND95EWOBANFF",
+   "fields": {
+    "Retail price/unit": "7.89",
+    "Lightspeed ID": "490a8512-5096-4a04-bfe4-d9b1dbdf13a3"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 51
+  },
+  {
+   "id": "cat-5b687001ded3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0062",
+   "airtable_rec_id": "rec2dCVugoy6SVmMC",
+   "ls_id": "0b926671-55cd-4cfd-bd1c-389daf725375",
+   "handle": "GRND95EWOCAPEBRETON",
+   "fields": {
+    "Retail price/unit": "7.89",
+    "Lightspeed ID": "0b926671-55cd-4cfd-bd1c-389daf725375"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 52
+  },
+  {
+   "id": "cat-927a37ba3596",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0063",
+   "airtable_rec_id": "rectOV4YtmMPmtLtp",
+   "ls_id": "5dd57066-d105-4667-acda-b0300bb772b1",
+   "handle": "GRND95EWOMONTTREMBLANT",
+   "fields": {
+    "Retail price/unit": "7.89",
+    "Lightspeed ID": "5dd57066-d105-4667-acda-b0300bb772b1"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 53
+  },
+  {
+   "id": "cat-6395c39d1040",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0064",
+   "airtable_rec_id": "recrMxRXow9gnjj0s",
+   "ls_id": "8f5c9008-3c44-41c1-923b-271d0c5151da",
+   "handle": "GRND95EWOPACIFICRIM",
+   "fields": {
+    "Retail price/unit": "7.89",
+    "Lightspeed ID": "8f5c9008-3c44-41c1-923b-271d0c5151da"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 54
+  },
+  {
+   "id": "cat-cd49c3971f4b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0065",
+   "airtable_rec_id": "rec5wHCyumqqqUaZ2",
+   "ls_id": "988f35d4-190b-48f8-adcc-350e71de3940",
+   "handle": "GRND95EWOWHISTLER",
+   "fields": {
+    "Retail price/unit": "7.89",
+    "Lightspeed ID": "988f35d4-190b-48f8-adcc-350e71de3940"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 55
+  },
+  {
+   "id": "cat-12e81ea4b46d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0066",
+   "airtable_rec_id": "recq8zYjWbpIZkRWd",
+   "ls_id": "a1d9916b-ed0e-4ec3-9373-de7b96db73cf",
+   "handle": "GRND95EWOYOHO",
+   "fields": {
+    "Retail price/unit": "7.89",
+    "Lightspeed ID": "a1d9916b-ed0e-4ec3-9373-de7b96db73cf"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 56
+  },
+  {
+   "id": "cat-a23934fe49c4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0069",
+   "airtable_rec_id": "rec5DMsOWZXnpiqVt",
+   "ls_id": "6f1a2c8f-508a-40bd-a581-15abbd829603",
+   "handle": "GRND75EWOANACAPRI",
+   "fields": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Anacapri (7.5\") (AB)",
+    "Cost/unit": "6.99",
+    "Retail price/unit": "7.99",
+    "Lightspeed ID": "6f1a2c8f-508a-40bd-a581-15abbd829603"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Anacapri (AB)",
+    "Cost/unit": "6.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 57
+  },
+  {
+   "id": "cat-05379126ecbd",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0070",
+   "airtable_rec_id": "rec6yYynTfTgr4Js2",
+   "ls_id": "468e7a95-81c3-4604-a380-a945f3bb43f9",
+   "handle": "GRND75EWOMILAN",
+   "fields": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Milan (7.5\") (ABC)",
+    "Cost/unit": "6.79",
+    "Retail price/unit": "7.79",
+    "Lightspeed ID": "468e7a95-81c3-4604-a380-a945f3bb43f9"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Milan (ABC)",
+    "Cost/unit": "6.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 58
+  },
+  {
+   "id": "cat-a3a8e217eb9b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0071",
+   "airtable_rec_id": "rec6xHThpe9i4sVux",
+   "ls_id": "92442d0a-a66c-46b8-bcb1-dfe91b0a2faf",
+   "handle": "GRND75EWOSANDBAR",
+   "fields": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Sandbar (7.5\") (ABC)",
+    "Retail price/unit": "7.29",
+    "Lightspeed ID": "92442d0a-a66c-46b8-bcb1-dfe91b0a2faf"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Sandbar (ABC)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 59
+  },
+  {
+   "id": "cat-17b1c843b303",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0072",
+   "airtable_rec_id": "recrgrGzGOAuMU4IF",
+   "ls_id": "e7c32a4a-16f6-4b26-8370-eb3cae759bf1",
+   "handle": "GRND75EWOSILVA",
+   "fields": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Silva (7.5\") (ABC)",
+    "Retail price/unit": "7.29",
+    "Lightspeed ID": "e7c32a4a-16f6-4b26-8370-eb3cae759bf1"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Silva (ABC)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 60
+  },
+  {
+   "id": "cat-15be7fce47f4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0073",
+   "airtable_rec_id": "rec6l7tsFUidrXZQs",
+   "ls_id": "af8d627b-4fa0-47da-8922-d915093ff448",
+   "handle": "GRND75EWOAZURECOAST",
+   "fields": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Azure Coast (7.5\") (ABC)",
+    "Cost/unit": "5.79",
+    "Retail price/unit": "6.79",
+    "Lightspeed ID": "af8d627b-4fa0-47da-8922-d915093ff448"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Azure Coast (ABC)",
+    "Cost/unit": "6.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 61
+  },
+  {
+   "id": "cat-c9b6a05a22e3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0074",
+   "airtable_rec_id": "recdxuD6iP0RZXriG",
+   "ls_id": "e13ac32d-2843-4154-b111-1865909596f9",
+   "handle": "GRND75EWOMOROCCOSAND",
+   "fields": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Morocco Sand (7.5\") (ABC)",
+    "Cost/unit": "5.79",
+    "Retail price/unit": "6.79",
+    "Lightspeed ID": "e13ac32d-2843-4154-b111-1865909596f9"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Morocco Sand (ABC)",
+    "Cost/unit": "6.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 62
+  },
+  {
+   "id": "cat-91ae385bd17b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0075",
+   "airtable_rec_id": "recyyAL9tTZULI15J",
+   "ls_id": "f6c32fba-09c6-47b7-a14e-bca71e03fd2e",
+   "handle": "GRND6EWOMOROCCOSAND",
+   "fields": {
+    "Product name": "Grandeur 6\" EWO \u2014 Morocco Sand (6\") (ABCD)",
+    "Retail price/unit": "4.99",
+    "Lightspeed ID": "f6c32fba-09c6-47b7-a14e-bca71e03fd2e"
+   },
+   "before": {
+    "Product name": "Grandeur 6\" EWO \u2014 Morocco Sand (ABCD)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 63
+  },
+  {
+   "id": "cat-82e59106fe48",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0076",
+   "airtable_rec_id": "recfMCLAfUHMITcOJ",
+   "ls_id": "4ddb1936-73fb-4f83-8032-ab92085605be",
+   "handle": "GRND6EWOBAROSSA",
+   "fields": {
+    "Product name": "Grandeur 6\" EWO \u2014 Barossa (6\") (AB)",
+    "Retail price/unit": "7.79",
+    "Lightspeed ID": "4ddb1936-73fb-4f83-8032-ab92085605be"
+   },
+   "before": {
+    "Product name": "Grandeur 6\" EWO \u2014 Barossa (AB)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 64
+  },
+  {
+   "id": "cat-a9325a64d327",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0077",
+   "airtable_rec_id": "recE8fcQMenQgy9nC",
+   "ls_id": "db38c309-f3b2-41fb-81b3-ea53b734bcdd",
+   "handle": "GRND6EWOBURGUNDY",
+   "fields": {
+    "Product name": "Grandeur 6\" EWO \u2014 Burgundy (6\") (AB)",
+    "Retail price/unit": "7.79",
+    "Lightspeed ID": "db38c309-f3b2-41fb-81b3-ea53b734bcdd"
+   },
+   "before": {
+    "Product name": "Grandeur 6\" EWO \u2014 Burgundy (AB)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 65
+  },
+  {
+   "id": "cat-f512040db7f5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0078",
+   "airtable_rec_id": "rece1qC7ekum7jbPQ",
+   "ls_id": "48280127-6dfe-49dd-8ab8-78ee9b372d5a",
+   "handle": "GRND6EWONAPAVALLEY",
+   "fields": {
+    "Product name": "Grandeur 6\" EWO \u2014 Napa Valley (6\") (AB)",
+    "Retail price/unit": "7.79",
+    "Lightspeed ID": "48280127-6dfe-49dd-8ab8-78ee9b372d5a"
+   },
+   "before": {
+    "Product name": "Grandeur 6\" EWO \u2014 Napa Valley (AB)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 66
+  },
+  {
+   "id": "cat-89926260ec50",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0079",
+   "airtable_rec_id": "recopArVtH3EsiT3h",
+   "ls_id": "a0714599-ef55-45fe-921d-2e8b2477513b",
+   "handle": "GRND6EWOSONOMA",
+   "fields": {
+    "Product name": "Grandeur 6\" EWO \u2014 Sonoma (6\") (AB)",
+    "Retail price/unit": "7.79",
+    "Lightspeed ID": "a0714599-ef55-45fe-921d-2e8b2477513b"
+   },
+   "before": {
+    "Product name": "Grandeur 6\" EWO \u2014 Sonoma (AB)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 67
+  },
+  {
+   "id": "cat-639f47b11adb",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0080",
+   "airtable_rec_id": "recGAMmF7fXCnX0mu",
+   "ls_id": "e90bc176-ca39-4836-af23-6f09ad637ccb",
+   "handle": "GRND75EWOBAROSSA",
+   "fields": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Barossa (7.5\") (AB)",
+    "Retail price/unit": "8.59",
+    "Lightspeed ID": "e90bc176-ca39-4836-af23-6f09ad637ccb"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Barossa (AB)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 68
+  },
+  {
+   "id": "cat-8d31ae360740",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0081",
+   "airtable_rec_id": "recVLY1ltYASjMNH1",
+   "ls_id": "8abb3a36-9990-4021-bad3-66c525e2d5f7",
+   "handle": "GRND75EWOBURGUNDY",
+   "fields": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Burgundy (7.5\") (AB)",
+    "Retail price/unit": "8.59",
+    "Lightspeed ID": "8abb3a36-9990-4021-bad3-66c525e2d5f7"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Burgundy (AB)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 69
+  },
+  {
+   "id": "cat-c68ff8cc78e5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0082",
+   "airtable_rec_id": "recjxE4E1ytHQudWG",
+   "ls_id": "19caaaf1-b12e-4c09-9dd7-695dc2301548",
+   "handle": "GRND75EWONAPAVALLEY",
+   "fields": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Napa Valley (7.5\") (AB)",
+    "Retail price/unit": "8.59",
+    "Lightspeed ID": "19caaaf1-b12e-4c09-9dd7-695dc2301548"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Napa Valley (AB)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 70
+  },
+  {
+   "id": "cat-60999bb30ce3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0083",
+   "airtable_rec_id": "recANpOyJTXSRtEmP",
+   "ls_id": "9273de7e-d9ca-4f81-8f48-cc00e7455c54",
+   "handle": "GRND75EWOSONOMA",
+   "fields": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Sonoma (7.5\") (AB)",
+    "Retail price/unit": "8.59",
+    "Lightspeed ID": "9273de7e-d9ca-4f81-8f48-cc00e7455c54"
+   },
+   "before": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Sonoma (AB)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 71
+  },
+  {
+   "id": "cat-0c69089b2e86",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0084",
+   "airtable_rec_id": "rec1ImzgiQHXtltx4",
+   "ls_id": "f2720f86-36ea-499c-a25f-ef801ddd292f",
+   "handle": "GRND6EWOBAROSSAHB",
+   "fields": {
+    "Retail price/unit": "8.59",
+    "Lightspeed ID": "f2720f86-36ea-499c-a25f-ef801ddd292f"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 72
+  },
+  {
+   "id": "cat-1da19cce08bc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0085",
+   "airtable_rec_id": "reco4PsH4XFZGKbDB",
+   "ls_id": "557f1487-663a-427e-9c02-9dc34439d011",
+   "handle": "GRND6EWOBURGUNDYHB",
+   "fields": {
+    "Retail price/unit": "8.59",
+    "Lightspeed ID": "557f1487-663a-427e-9c02-9dc34439d011"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 73
+  },
+  {
+   "id": "cat-e9fbf76d4719",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0086",
+   "airtable_rec_id": "recZkh8hsWRQKpRIi",
+   "ls_id": "b3a00a4a-0e95-4ed6-9af5-d45e4a2e91e3",
+   "handle": "GRND6EWONAPAVALLEYHB",
+   "fields": {
+    "Retail price/unit": "8.59",
+    "Lightspeed ID": "b3a00a4a-0e95-4ed6-9af5-d45e4a2e91e3"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 74
+  },
+  {
+   "id": "cat-6313bf08dccc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0087",
+   "airtable_rec_id": "recnb6n9H5Yy1ySzT",
+   "ls_id": "fe500b63-e2bd-4c71-b9ad-a542c0aa5897",
+   "handle": "GRND6EWOSONOMAHB",
+   "fields": {
+    "Retail price/unit": "8.59",
+    "Lightspeed ID": "fe500b63-e2bd-4c71-b9ad-a542c0aa5897"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 75
+  },
+  {
+   "id": "cat-0ac8736ff6b6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0091",
+   "airtable_rec_id": "recSQSHDfAheVBlYd",
+   "ls_id": "5ae28880-418b-46ce-9cb1-b33434d2e69c",
+   "handle": "GRND75AOROSEDALE",
+   "fields": {
+    "Retail price/unit": "6.89",
+    "Lightspeed ID": "5ae28880-418b-46ce-9cb1-b33434d2e69c"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 76
+  },
+  {
+   "id": "cat-c7f117ecd95f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0094",
+   "airtable_rec_id": "reclc44VA0WIZb8FA",
+   "ls_id": "e0bd75ab-1037-4001-8923-7a8f769854c5",
+   "handle": "GRND5WOASPEN",
+   "fields": {
+    "Retail price/unit": "4.69",
+    "Lightspeed ID": "e0bd75ab-1037-4001-8923-7a8f769854c5"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 77
+  },
+  {
+   "id": "cat-f347aac50682",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0095",
+   "airtable_rec_id": "recn8gFvjHu3L0X6H",
+   "ls_id": "b9f666a2-d314-4fd4-bd7d-260208cdad98",
+   "handle": "GRND5WOELM",
+   "fields": {
+    "Retail price/unit": "4.69",
+    "Lightspeed ID": "b9f666a2-d314-4fd4-bd7d-260208cdad98"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 78
+  },
+  {
+   "id": "cat-4014fb512590",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0096",
+   "airtable_rec_id": "recD126B8LyUIyvCI",
+   "ls_id": "f55ad67d-6b03-4473-a7fc-c0c5e06a7ed8",
+   "handle": "GRND5WOHEMLOCK",
+   "fields": {
+    "Retail price/unit": "4.69",
+    "Lightspeed ID": "f55ad67d-6b03-4473-a7fc-c0c5e06a7ed8"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 79
+  },
+  {
+   "id": "cat-297b21bf41eb",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0097",
+   "airtable_rec_id": "recOINE0AOuUGKSpu",
+   "ls_id": "864fcdbd-658b-40b5-b9ae-ae6019ed19be",
+   "handle": "GRND5WOSYCAMORE",
+   "fields": {
+    "Retail price/unit": "4.69",
+    "Lightspeed ID": "864fcdbd-658b-40b5-b9ae-ae6019ed19be"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 80
+  },
+  {
+   "id": "cat-fc14275edd3b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0098",
+   "airtable_rec_id": "recYXJ4NR4d4EC2sS",
+   "ls_id": "d6f96d1b-f923-4dcf-b69c-3518f64b726a",
+   "handle": "GRND75WOBRONZEDUST",
+   "fields": {
+    "Retail price/unit": "6.89",
+    "Lightspeed ID": "d6f96d1b-f923-4dcf-b69c-3518f64b726a"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 81
+  },
+  {
+   "id": "cat-9c3968b2a480",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0099",
+   "airtable_rec_id": "rectITu7Lvdsw0NZd",
+   "ls_id": "4ac3d94a-0fc0-40a9-a347-95181631957b",
+   "handle": "GRND75WOCARRARA",
+   "fields": {
+    "Retail price/unit": "6.89",
+    "Lightspeed ID": "4ac3d94a-0fc0-40a9-a347-95181631957b"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 82
+  },
+  {
+   "id": "cat-86e1706e3e84",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0100",
+   "airtable_rec_id": "recqAw5bAaIuBXPDu",
+   "ls_id": "2267d47f-7487-4ea9-bc58-caf0621f9715",
+   "handle": "GRND75WOCLAYBORN",
+   "fields": {
+    "Retail price/unit": "6.89",
+    "Lightspeed ID": "2267d47f-7487-4ea9-bc58-caf0621f9715"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 83
+  },
+  {
+   "id": "cat-bf8b6599914e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0101",
+   "airtable_rec_id": "recf2rwzPba5pfr4B",
+   "ls_id": "8133ed4c-d624-434d-b87d-d6bc27f7a7ba",
+   "handle": "GRND75WOTERRACOTTA",
+   "fields": {
+    "Retail price/unit": "6.89",
+    "Lightspeed ID": "8133ed4c-d624-434d-b87d-d6bc27f7a7ba"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 84
+  },
+  {
+   "id": "cat-3586633bf85a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0102",
+   "airtable_rec_id": "recs0E5o3qmkZtxl5",
+   "ls_id": "c2b3e992-e3dd-426f-84b1-e32cb7f589c5",
+   "handle": "GRND75AOCASCADE",
+   "fields": {
+    "Retail price/unit": "5.59",
+    "Lightspeed ID": "c2b3e992-e3dd-426f-84b1-e32cb7f589c5"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 85
+  },
+  {
+   "id": "cat-3fa1921ed118",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0103",
+   "airtable_rec_id": null,
+   "ls_id": "14a5f967-59df-443f-97ed-4c52450b0d15",
+   "handle": "GRND6EWOVENETO",
+   "fields": {
+    "Product name": "Grandeur 6\" EWO \u2014 Veneto (6\") (AB)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "6.79",
+    "Retail price/unit": "7.79",
+    "Lightspeed ID": "14a5f967-59df-443f-97ed-4c52450b0d15"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 86
+  },
+  {
+   "id": "cat-caddcadcc518",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0104",
+   "airtable_rec_id": null,
+   "ls_id": "b6b405d6-b44d-4ba2-947c-5fddf472ae7c",
+   "handle": "GRND75EWOVENETO",
+   "fields": {
+    "Product name": "Grandeur 7.5\" EWO \u2014 Veneto (7.5\") (AB)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "7.59",
+    "Retail price/unit": "8.59",
+    "Lightspeed ID": "b6b405d6-b44d-4ba2-947c-5fddf472ae7c"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 87
+  },
+  {
+   "id": "cat-7584abaddad8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0105",
+   "airtable_rec_id": null,
+   "ls_id": "c8bc9851-e56c-4368-b540-96c41f4fd7cb",
+   "handle": "GRND6WOCAMBRIDGEWILLOW",
+   "fields": {
+    "Product name": "Grandeur 6\" WO \u2014 Cambridge Willow (6\") (ABC)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "5.29",
+    "Retail price/unit": "6.29",
+    "Lightspeed ID": "c8bc9851-e56c-4368-b540-96c41f4fd7cb"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 88
+  },
+  {
+   "id": "cat-d242e5233bd4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0106",
+   "airtable_rec_id": null,
+   "ls_id": "546233ca-e605-4efd-9b0d-ac34d6e595c4",
+   "handle": "GRND6WOGLASGOWROCKS",
+   "fields": {
+    "Product name": "Grandeur 6\" WO \u2014 Glasgow Rocks (6\") (ABC)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "5.29",
+    "Retail price/unit": "6.29",
+    "Lightspeed ID": "546233ca-e605-4efd-9b0d-ac34d6e595c4"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 89
+  },
+  {
+   "id": "cat-8b7961c9886c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0107",
+   "airtable_rec_id": null,
+   "ls_id": "2de8e683-e80c-42f0-8eb1-baf6b94f5c0e",
+   "handle": "GRND6WOLONDONFOG",
+   "fields": {
+    "Product name": "Grandeur 6\" WO \u2014 London Fog (6\") (ABC)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "5.29",
+    "Retail price/unit": "6.29",
+    "Lightspeed ID": "2de8e683-e80c-42f0-8eb1-baf6b94f5c0e"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 90
+  },
+  {
+   "id": "cat-21cb5ba740b1",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0108",
+   "airtable_rec_id": null,
+   "ls_id": "6293a053-fecb-444e-8dd7-82f9b3cd5d0e",
+   "handle": "GRND6WOOXFORDSTONE",
+   "fields": {
+    "Product name": "Grandeur 6\" WO \u2014 Oxford Stone (6\") (ABC)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "5.29",
+    "Retail price/unit": "6.29",
+    "Lightspeed ID": "6293a053-fecb-444e-8dd7-82f9b3cd5d0e"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 91
+  },
+  {
+   "id": "cat-39740ba40d0c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0109",
+   "airtable_rec_id": null,
+   "ls_id": "ee57d05a-0988-47c1-8ccb-3373fe42c96c",
+   "handle": "GRND75WOCAMBRIDGEWILLOW",
+   "fields": {
+    "Product name": "Grandeur 7.5\" WO \u2014 Cambridge Willow (7.5\") (ABC)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "6.09",
+    "Retail price/unit": "7.09",
+    "Lightspeed ID": "ee57d05a-0988-47c1-8ccb-3373fe42c96c"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 92
+  },
+  {
+   "id": "cat-1b9429213b2e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0110",
+   "airtable_rec_id": null,
+   "ls_id": "38a3b670-53b7-422a-abf1-3394b054a969",
+   "handle": "GRND75WOGLASGOWROCKS",
+   "fields": {
+    "Product name": "Grandeur 7.5\" WO \u2014 Glasgow Rocks (7.5\") (ABC)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "6.09",
+    "Retail price/unit": "7.09",
+    "Lightspeed ID": "38a3b670-53b7-422a-abf1-3394b054a969"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 93
+  },
+  {
+   "id": "cat-ad8e438a7203",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0111",
+   "airtable_rec_id": null,
+   "ls_id": "fab8c3ee-0c9b-4da4-8ad4-bd1e76ebe5b9",
+   "handle": "GRND75WOLONDONFOG",
+   "fields": {
+    "Product name": "Grandeur 7.5\" WO \u2014 London Fog (7.5\") (ABC)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "6.09",
+    "Retail price/unit": "7.09",
+    "Lightspeed ID": "fab8c3ee-0c9b-4da4-8ad4-bd1e76ebe5b9"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 94
+  },
+  {
+   "id": "cat-0e9258bf187d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GRAN-0112",
+   "airtable_rec_id": null,
+   "ls_id": "ae51e8ed-beee-4ba0-b2c8-1b5c973c9d39",
+   "handle": "GRND75WOOXFORDSTONE",
+   "fields": {
+    "Product name": "Grandeur 7.5\" WO \u2014 Oxford Stone (7.5\") (ABC)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "6.09",
+    "Retail price/unit": "7.09",
+    "Lightspeed ID": "ae51e8ed-beee-4ba0-b2c8-1b5c973c9d39"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 95
+  },
+  {
+   "id": "cat-d679f42470f7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HWD-GRAN-0001",
+   "airtable_rec_id": "recJEAui04CEgvXk1",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6e0344e6",
+   "handle": "GRND425NAROAMARETTO",
+   "fields": {
+    "Product name": "Grandeur 4.25\" RO \u2014 Amaretto (Select Grade)",
+    "Retail price/unit": "6.49",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6e0344e6"
+   },
+   "before": {
+    "Product name": "Grandeur 4.25\" NARO \u2014 Amaretto (Select)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 96
+  },
+  {
+   "id": "cat-e0343d418a14",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HWD-GRAN-0002",
+   "airtable_rec_id": "recg1PrBGLH0yGOSP",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6e1c8bac",
+   "handle": "GRND425NAROGUNSTOCK",
+   "fields": {
+    "Product name": "Grandeur 4.25\" RO \u2014 Gunstock (Select Grade)",
+    "Retail price/unit": "6.49",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6e1c8bac"
+   },
+   "before": {
+    "Product name": "Grandeur 4.25\" NARO \u2014 Gunstock (Select)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 97
+  },
+  {
+   "id": "cat-79317769c3dd",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HWD-GRAN-0003",
+   "airtable_rec_id": "recGdy9BlOqgcHKjt",
+   "ls_id": "946f5afb-4bb6-495b-bf01-2d8a36ad672a",
+   "handle": "GRND425NAROLATTE",
+   "fields": {
+    "Product name": "Grandeur 4.25\" RO \u2014 Latte (Select Grade)",
+    "Retail price/unit": "6.49",
+    "Lightspeed ID": "946f5afb-4bb6-495b-bf01-2d8a36ad672a"
+   },
+   "before": {
+    "Product name": "Grandeur 4.25\" NARO \u2014 Latte (Select)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 98
+  },
+  {
+   "id": "cat-647b5708bb55",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HWD-GRAN-0004",
+   "airtable_rec_id": "recStjq9Q4MDWhdMm",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6e725224",
+   "handle": "GRND425NAROMOKA",
+   "fields": {
+    "Product name": "Grandeur 4.25\" RO \u2014 Moka (Select Grade)",
+    "Retail price/unit": "6.49",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6e725224"
+   },
+   "before": {
+    "Product name": "Grandeur 4.25\" NARO \u2014 Moka (Select)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 99
+  },
+  {
+   "id": "cat-698ea980e5d6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HWD-GRAN-0005",
+   "airtable_rec_id": "rec9h3qlnQmOCA6PJ",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b6e8abb9b",
+   "handle": "GRND425NAROTREEBARK",
+   "fields": {
+    "Product name": "Grandeur 4.25\" RO \u2014 Tree Bark (Select Grade)",
+    "Retail price/unit": "6.49",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b6e8abb9b"
+   },
+   "before": {
+    "Product name": "Grandeur 4.25\" NARO \u2014 Tree Bark (Select)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 100
+  },
+  {
+   "id": "cat-e2a203f261f2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HWD-GRAN-0006",
+   "airtable_rec_id": "recw6LxynLxHtJn4Z",
+   "ls_id": "1cdf4689-1d69-42da-a680-20e49f9d6bfb",
+   "handle": "GRND425NAROWALNUT",
+   "fields": {
+    "Product name": "Grandeur 4.25\" RO \u2014 Walnut (Select Grade)",
+    "Retail price/unit": "6.49",
+    "Lightspeed ID": "1cdf4689-1d69-42da-a680-20e49f9d6bfb"
+   },
+   "before": {
+    "Product name": "Grandeur 4.25\" NARO \u2014 Walnut (Select)"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 101
+  },
+  {
+   "id": "cat-cbee0f54672a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0001",
+   "airtable_rec_id": "recixZwavXI4kvp8H",
+   "ls_id": "4c6a39de-71fb-4cb8-bfdf-c57e02ae0cd1",
+   "handle": "GRND12MM12COLLECTIONARLESNATURAL",
+   "fields": {
+    "Retail price/unit": "3.59",
+    "Lightspeed ID": "4c6a39de-71fb-4cb8-bfdf-c57e02ae0cd1"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 102
+  },
+  {
+   "id": "cat-8ffe4c93282a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0003",
+   "airtable_rec_id": "recos0lzPMNAzKJUH",
+   "ls_id": "1da3161b-1388-43c1-891d-96ea6c5a9880",
+   "handle": "GRND12MM12COLLECTIONFADOGAVIA",
+   "fields": {
+    "Retail price/unit": "3.59",
+    "Lightspeed ID": "1da3161b-1388-43c1-891d-96ea6c5a9880"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 103
+  },
+  {
+   "id": "cat-50fa6367ea28",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0004",
+   "airtable_rec_id": "recNe4Ke0sRJjEIUN",
+   "ls_id": "63ca2876-8e3e-4539-9588-e4fa05915b37",
+   "handle": "GRND12MM12COLLECTIONFADOSOTAVENTO",
+   "fields": {
+    "Retail price/unit": "3.59",
+    "Lightspeed ID": "63ca2876-8e3e-4539-9588-e4fa05915b37"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 104
+  },
+  {
+   "id": "cat-d01a71941860",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0005",
+   "airtable_rec_id": "recEmHVn1vNGpvCDt",
+   "ls_id": "8fa820bd-016f-4d13-8a67-66484c08ad21",
+   "handle": "GRND12MM12COLLECTIONKALASALBAR",
+   "fields": {
+    "Retail price/unit": "3.59",
+    "Lightspeed ID": "8fa820bd-016f-4d13-8a67-66484c08ad21"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 105
+  },
+  {
+   "id": "cat-7d82d09b5dd1",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0006",
+   "airtable_rec_id": "recDEJ8hKH3DnbB7d",
+   "ls_id": "d4821c00-fa71-4b27-9d96-25c9eab72776",
+   "handle": "GRND12MM12COLLECTIONKALMARGRIS",
+   "fields": {
+    "Retail price/unit": "3.59",
+    "Lightspeed ID": "d4821c00-fa71-4b27-9d96-25c9eab72776"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 106
+  },
+  {
+   "id": "cat-9576ff308394",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0007",
+   "airtable_rec_id": "recphjAQEHoPoZCOn",
+   "ls_id": "e894d55a-4aeb-4347-af4e-823e6cd6c89e",
+   "handle": "GRND12MM12COLLECTIONKALASNOZ",
+   "fields": {
+    "Retail price/unit": "3.59",
+    "Lightspeed ID": "e894d55a-4aeb-4347-af4e-823e6cd6c89e"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 107
+  },
+  {
+   "id": "cat-b311bf2c4df8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0008",
+   "airtable_rec_id": "recOTYmFCscDPrdhL",
+   "ls_id": "26be438f-5a00-4070-9f32-21c32cbc57ac",
+   "handle": "GRND12MM12COLLECTIONROBLETWILIGHT",
+   "fields": {
+    "Retail price/unit": "3.59",
+    "Lightspeed ID": "26be438f-5a00-4070-9f32-21c32cbc57ac"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 108
+  },
+  {
+   "id": "cat-20c25e7dacc3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0009",
+   "airtable_rec_id": "recGwoBfFjXuxCQfL",
+   "ls_id": "7ecc043a-a328-4c2f-9d9f-76d41b3131f5",
+   "handle": "GRND12MM12COLLECTIONVIENADORADO",
+   "fields": {
+    "Retail price/unit": "3.59",
+    "Lightspeed ID": "7ecc043a-a328-4c2f-9d9f-76d41b3131f5"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 109
+  },
+  {
+   "id": "cat-09977346d205",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0010",
+   "airtable_rec_id": "recvIP7CSzUgMcTYC",
+   "ls_id": "af323a25-3573-4aa2-8591-be9a4dc945b2",
+   "handle": "GRND12MM12COLLECTIONWEXFORDTOSTADO",
+   "fields": {
+    "Retail price/unit": "3.59",
+    "Lightspeed ID": "af323a25-3573-4aa2-8591-be9a4dc945b2"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 110
+  },
+  {
+   "id": "cat-f2d562ee5ed6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0011",
+   "airtable_rec_id": "recHIY8f8NM83xQ6H",
+   "ls_id": "bf45a1e2-c25a-455d-ac66-a1ad76055c4d",
+   "handle": "GRND12MMXXLANETO",
+   "fields": {
+    "Product name": "Grandeur 12mm XXL Collection \u2014 Aneto",
+    "Retail price/unit": "3.79",
+    "Lightspeed ID": "bf45a1e2-c25a-455d-ac66-a1ad76055c4d"
+   },
+   "before": {
+    "Product name": "Grandeur 12mm XXL \u2014 Aneto"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 111
+  },
+  {
+   "id": "cat-29ed64ea0b3e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0012",
+   "airtable_rec_id": "recNeuvucASNCxU25",
+   "ls_id": "09d9ea1d-4b58-48be-9d22-be86a4b09c95",
+   "handle": "GRND12MMXXLCERVINO",
+   "fields": {
+    "Product name": "Grandeur 12mm XXL Collection \u2014 Cervino",
+    "Retail price/unit": "3.79",
+    "Lightspeed ID": "09d9ea1d-4b58-48be-9d22-be86a4b09c95"
+   },
+   "before": {
+    "Product name": "Grandeur 12mm XXL \u2014 Cervino"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 112
+  },
+  {
+   "id": "cat-2f4a8bab6672",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0013",
+   "airtable_rec_id": "reced2KFqtKVsxzdV",
+   "ls_id": "647cc626-ecd3-4247-a410-bc4b450e16c6",
+   "handle": "GRND12MMXXLDENALI",
+   "fields": {
+    "Product name": "Grandeur 12mm XXL Collection \u2014 Denali",
+    "Retail price/unit": "3.79",
+    "Lightspeed ID": "647cc626-ecd3-4247-a410-bc4b450e16c6"
+   },
+   "before": {
+    "Product name": "Grandeur 12mm XXL \u2014 Denali"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 113
+  },
+  {
+   "id": "cat-2e60061b2333",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0014",
+   "airtable_rec_id": "recjbM4UyEhKMwOLH",
+   "ls_id": "93467ac7-fe31-4438-b7af-9e61813b38fb",
+   "handle": "GRND12MMXXLELGON",
+   "fields": {
+    "Product name": "Grandeur 12mm XXL Collection \u2014 Elgon",
+    "Retail price/unit": "3.79",
+    "Lightspeed ID": "93467ac7-fe31-4438-b7af-9e61813b38fb"
+   },
+   "before": {
+    "Product name": "Grandeur 12mm XXL \u2014 Elgon"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 114
+  },
+  {
+   "id": "cat-38e47b863363",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0015",
+   "airtable_rec_id": "recXNSfawycS25hoF",
+   "ls_id": "338fca1f-b24c-4639-8080-05e48ef69a0e",
+   "handle": "GRND12MMXXLEVEREST",
+   "fields": {
+    "Product name": "Grandeur 12mm XXL Collection \u2014 Everest",
+    "Retail price/unit": "3.79",
+    "Lightspeed ID": "338fca1f-b24c-4639-8080-05e48ef69a0e"
+   },
+   "before": {
+    "Product name": "Grandeur 12mm XXL \u2014 Everest"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 115
+  },
+  {
+   "id": "cat-4bb9e4e8cc42",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0016",
+   "airtable_rec_id": "recxTVxeHsbLfXnDI",
+   "ls_id": "50d6240e-7385-4d3f-bd60-4a0ae4b39b5e",
+   "handle": "GRND12MMXXLFUJI",
+   "fields": {
+    "Product name": "Grandeur 12mm XXL Collection \u2014 Fuji",
+    "Retail price/unit": "3.79",
+    "Lightspeed ID": "50d6240e-7385-4d3f-bd60-4a0ae4b39b5e"
+   },
+   "before": {
+    "Product name": "Grandeur 12mm XXL \u2014 Fuji"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 116
+  },
+  {
+   "id": "cat-52bc35f5d644",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0017",
+   "airtable_rec_id": "reclV39UW8z6Fr7b5",
+   "ls_id": "1d5d34e6-5333-45ee-bd21-a40387493d72",
+   "handle": "GRND12MMXXLKILIMANJARO",
+   "fields": {
+    "Product name": "Grandeur 12mm XXL Collection \u2014 Kilimanjaro",
+    "Retail price/unit": "3.79",
+    "Lightspeed ID": "1d5d34e6-5333-45ee-bd21-a40387493d72"
+   },
+   "before": {
+    "Product name": "Grandeur 12mm XXL \u2014 Kilimanjaro"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 117
+  },
+  {
+   "id": "cat-e7817d6ab904",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0018",
+   "airtable_rec_id": "recrwjXZn0gEtnkQc",
+   "ls_id": "ed8e65a6-0a53-434b-9eed-81fc631d4be3",
+   "handle": "GRND12MMXXLKINGPEAK",
+   "fields": {
+    "Product name": "Grandeur 12mm XXL Collection \u2014 King Peak",
+    "Retail price/unit": "3.79",
+    "Lightspeed ID": "ed8e65a6-0a53-434b-9eed-81fc631d4be3"
+   },
+   "before": {
+    "Product name": "Grandeur 12mm XXL \u2014 King Peak"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 118
+  },
+  {
+   "id": "cat-f2d05310645a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0019",
+   "airtable_rec_id": "recrD3o0gbn4a0efH",
+   "ls_id": "d4ea4b8e-4285-454d-880c-fcef82976d66",
+   "handle": "GRND12MMXXLLOGAN",
+   "fields": {
+    "Product name": "Grandeur 12mm XXL Collection \u2014 Logan",
+    "Retail price/unit": "3.79",
+    "Lightspeed ID": "d4ea4b8e-4285-454d-880c-fcef82976d66"
+   },
+   "before": {
+    "Product name": "Grandeur 12mm XXL \u2014 Logan"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 119
+  },
+  {
+   "id": "cat-ca45f6759698",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0020",
+   "airtable_rec_id": "recUf1v4hYV2NSv2u",
+   "ls_id": "cca6201f-baa3-43fd-9d9a-e1252127d132",
+   "handle": "GRND12MMXXLMONTBLANC",
+   "fields": {
+    "Product name": "Grandeur 12mm XXL Collection \u2014 Mont Blanc",
+    "Retail price/unit": "3.79",
+    "Lightspeed ID": "cca6201f-baa3-43fd-9d9a-e1252127d132"
+   },
+   "before": {
+    "Product name": "Grandeur 12mm XXL \u2014 Mont Blanc"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 120
+  },
+  {
+   "id": "cat-c735fb8d56a1",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0021",
+   "airtable_rec_id": "recVe2VycDGeaEu6D",
+   "ls_id": "9a41372f-3d13-47f1-808e-9addf592b8d5",
+   "handle": "GRND12MMAQUAMATEADELAIDE",
+   "fields": {
+    "Retail price/unit": "2.99",
+    "Lightspeed ID": "9a41372f-3d13-47f1-808e-9addf592b8d5"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 121
+  },
+  {
+   "id": "cat-ffbe72d06743",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0022",
+   "airtable_rec_id": "rec3dgvUu8ud9fZK3",
+   "ls_id": "aca0fdd0-7677-4449-a9d4-d3f937d41a49",
+   "handle": "GRND12MMAQUAMATEALICESPRINGS",
+   "fields": {
+    "Retail price/unit": "2.99",
+    "Lightspeed ID": "aca0fdd0-7677-4449-a9d4-d3f937d41a49"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 122
+  },
+  {
+   "id": "cat-8c9980cdfb51",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0023",
+   "airtable_rec_id": "recWdHn7oGPphqPMX",
+   "ls_id": "f5f15bea-e4bf-400d-9244-a24bb56d9546",
+   "handle": "GRND12MMAQUAMATEBRISBANE",
+   "fields": {
+    "Retail price/unit": "2.99",
+    "Lightspeed ID": "f5f15bea-e4bf-400d-9244-a24bb56d9546"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 123
+  },
+  {
+   "id": "cat-2be54fb90bed",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0024",
+   "airtable_rec_id": "recjXy03aTyBpgPrf",
+   "ls_id": "18f2e9b5-73eb-4178-852e-e5a68b4305de",
+   "handle": "GRND12MMAQUAMATECAIRNS",
+   "fields": {
+    "Retail price/unit": "2.99",
+    "Lightspeed ID": "18f2e9b5-73eb-4178-852e-e5a68b4305de"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 124
+  },
+  {
+   "id": "cat-644b885f1fa6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0025",
+   "airtable_rec_id": "recN08dH2KlFUfu6B",
+   "ls_id": "19b2fdae-5ef1-432a-8574-7b930dccffbe",
+   "handle": "GRND12MMAQUAMATECANBERRA",
+   "fields": {
+    "Retail price/unit": "2.99",
+    "Lightspeed ID": "19b2fdae-5ef1-432a-8574-7b930dccffbe"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 125
+  },
+  {
+   "id": "cat-1cb381171ff8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0026",
+   "airtable_rec_id": "recsXn0EAT6EptTef",
+   "ls_id": "94b8492b-5c24-41ad-84d8-f687a1a6d215",
+   "handle": "GRND12MMAQUAMATEDARWIN",
+   "fields": {
+    "Retail price/unit": "2.99",
+    "Lightspeed ID": "94b8492b-5c24-41ad-84d8-f687a1a6d215"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 126
+  },
+  {
+   "id": "cat-a01eb94e046d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0027",
+   "airtable_rec_id": "reczwlvhIikBRkGSY",
+   "ls_id": "b172256c-158a-4c0b-8770-968029069c6a",
+   "handle": "GRND12MMAQUAMATEHOBART",
+   "fields": {
+    "Retail price/unit": "2.99",
+    "Lightspeed ID": "b172256c-158a-4c0b-8770-968029069c6a"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 127
+  },
+  {
+   "id": "cat-dd25b307c6ae",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0028",
+   "airtable_rec_id": "rec5XmPqgRJR4892s",
+   "ls_id": "c0ec0244-b58d-469b-9efc-3cfc96a47001",
+   "handle": "GRND12MMAQUAMATEMELBOURNE",
+   "fields": {
+    "Retail price/unit": "2.99",
+    "Lightspeed ID": "c0ec0244-b58d-469b-9efc-3cfc96a47001"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 128
+  },
+  {
+   "id": "cat-5a3caa2dc237",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-GRAN-0029",
+   "airtable_rec_id": "recLg1CS4SRjYIUNg",
+   "ls_id": "ccf820a0-b109-4db9-9cb5-dacf2bcfcbe6",
+   "handle": "GRND12MMAQUAMATEPERTH",
+   "fields": {
+    "Retail price/unit": "2.99",
+    "Lightspeed ID": "ccf820a0-b109-4db9-9cb5-dacf2bcfcbe6"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 129
+  },
+  {
+   "id": "cat-5444c72acfd7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0001",
+   "airtable_rec_id": "rec3jappVHVdnycoI",
+   "ls_id": "c63cbf8b-7eac-4320-a411-194fbd5a0096",
+   "handle": "GRND7ESSENTIALALGONQUIN",
+   "fields": {
+    "Retail price/unit": "2.74",
+    "Lightspeed ID": "c63cbf8b-7eac-4320-a411-194fbd5a0096"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 130
+  },
+  {
+   "id": "cat-5df13fddf941",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0003",
+   "airtable_rec_id": "rec8Hvo3iQM1RvBql",
+   "ls_id": "4f7a74af-ba15-43dc-9a03-c0026e07af0f",
+   "handle": "GRND7ESSENTIALGEORGIANBAY",
+   "fields": {
+    "Retail price/unit": "2.74",
+    "Lightspeed ID": "4f7a74af-ba15-43dc-9a03-c0026e07af0f"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 131
+  },
+  {
+   "id": "cat-3c03381efcd8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0004",
+   "airtable_rec_id": "recKxfnH3TM8baOJo",
+   "ls_id": "0f0b562c-dfca-43d0-ae21-f882b8882415",
+   "handle": "GRND7ESSENTIALKAWARTHA",
+   "fields": {
+    "Retail price/unit": "2.74",
+    "Lightspeed ID": "0f0b562c-dfca-43d0-ae21-f882b8882415"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 132
+  },
+  {
+   "id": "cat-2414f657971f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0005",
+   "airtable_rec_id": "recyqvpSUSmV6J1DO",
+   "ls_id": "b7d2c0ea-ff34-4eba-9d00-94683304a6c0",
+   "handle": "GRND7ESSENTIALLAKESIMCOE",
+   "fields": {
+    "Retail price/unit": "2.74",
+    "Lightspeed ID": "b7d2c0ea-ff34-4eba-9d00-94683304a6c0"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 133
+  },
+  {
+   "id": "cat-f7cd33c8bb80",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0006",
+   "airtable_rec_id": "recKoS6qTpmIuP40v",
+   "ls_id": "17f13329-a8e6-444b-93c8-54901d98e7f1",
+   "handle": "GRND7ESSENTIALMUSKOKA",
+   "fields": {
+    "Retail price/unit": "2.74",
+    "Lightspeed ID": "17f13329-a8e6-444b-93c8-54901d98e7f1"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 134
+  },
+  {
+   "id": "cat-f0da63a02ded",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0007",
+   "airtable_rec_id": "reccTohivsG8UOfhR",
+   "ls_id": "6e7fe265-0a69-46d0-b502-334f963a0524",
+   "handle": "GRND7ESSENTIALSANDBANKS",
+   "fields": {
+    "Retail price/unit": "2.74",
+    "Lightspeed ID": "6e7fe265-0a69-46d0-b502-334f963a0524"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 135
+  },
+  {
+   "id": "cat-17248a9fa6c9",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0008",
+   "airtable_rec_id": "recH4l1uM1IpipeK0",
+   "ls_id": "c42ddacd-bef2-4281-b50d-968c742503f3",
+   "handle": "GRND24ESSENTIALFLAGSTONE",
+   "fields": {
+    "Category": "LVT",
+    "Retail price/unit": "2.74",
+    "Lightspeed ID": "c42ddacd-bef2-4281-b50d-968c742503f3"
+   },
+   "before": {
+    "Category": "LVP"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 136
+  },
+  {
+   "id": "cat-1fa6a0ba76e0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0009",
+   "airtable_rec_id": "recmgj2QXGFoMStkw",
+   "ls_id": "20b510e0-fd47-4f6d-8913-0952fc0107cf",
+   "handle": "GRND24ESSENTIALHEARTHSTONE",
+   "fields": {
+    "Category": "LVT",
+    "Retail price/unit": "2.74",
+    "Lightspeed ID": "20b510e0-fd47-4f6d-8913-0952fc0107cf"
+   },
+   "before": {
+    "Category": "LVP"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 137
+  },
+  {
+   "id": "cat-0cd140780949",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0010",
+   "airtable_rec_id": "recmZ50VNRUkOwsyj",
+   "ls_id": "41a5a4d3-367a-4d57-9314-1646997a6fd2",
+   "handle": "GRND24ESSENTIALTOUCHSTONE",
+   "fields": {
+    "Category": "LVT",
+    "Retail price/unit": "2.74",
+    "Lightspeed ID": "41a5a4d3-367a-4d57-9314-1646997a6fd2"
+   },
+   "before": {
+    "Category": "LVP"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 138
+  },
+  {
+   "id": "cat-a4a9db45fbd9",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0011",
+   "airtable_rec_id": "reckBgUB2MUJ565z7",
+   "ls_id": "091f95e3-9aee-4b70-817b-cbd930752b0d",
+   "handle": "GRND7ENTREPRENEURCANVASLIGHT",
+   "fields": {
+    "Retail price/unit": "2.99",
+    "Lightspeed ID": "091f95e3-9aee-4b70-817b-cbd930752b0d"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 139
+  },
+  {
+   "id": "cat-083dc96a9331",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0012",
+   "airtable_rec_id": "recfhg7wmcuYxN90w",
+   "ls_id": "8e70dfbd-b3d9-41a5-b902-1d2476f5d581",
+   "handle": "GRND7ENTREPRENEURCHROMADRIFT",
+   "fields": {
+    "Retail price/unit": "2.99",
+    "Lightspeed ID": "8e70dfbd-b3d9-41a5-b902-1d2476f5d581"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 140
+  },
+  {
+   "id": "cat-d86fbdb99c5c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0013",
+   "airtable_rec_id": "recxTuhw5xZNin11E",
+   "ls_id": "6548de12-95e4-4d66-866b-672a165aca9b",
+   "handle": "GRND7ENTREPRENEURFEATHERGRASS",
+   "fields": {
+    "Retail price/unit": "2.99",
+    "Lightspeed ID": "6548de12-95e4-4d66-866b-672a165aca9b"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 141
+  },
+  {
+   "id": "cat-be9af03834bc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0014",
+   "airtable_rec_id": "recM1psdOt5QO93hK",
+   "ls_id": "ad49e30c-695a-4034-892d-6be1c16a6dec",
+   "handle": "GRND7ENTREPRENEURRAINMOOR",
+   "fields": {
+    "Retail price/unit": "2.99",
+    "Lightspeed ID": "ad49e30c-695a-4034-892d-6be1c16a6dec"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 142
+  },
+  {
+   "id": "cat-76648d581753",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0015",
+   "airtable_rec_id": "recwgLW2k3BTVFPwP",
+   "ls_id": "cca5474f-8a76-4574-b848-b2d019389b70",
+   "handle": "GRND7ENTREPRENEURSTONEVEIL",
+   "fields": {
+    "Retail price/unit": "2.99",
+    "Lightspeed ID": "cca5474f-8a76-4574-b848-b2d019389b70"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 143
+  },
+  {
+   "id": "cat-8424ee061ff7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0016",
+   "airtable_rec_id": "recO6q2AEFDQvNwNB",
+   "ls_id": "7f41ed68-c48a-4022-b49c-e440b886ba7e",
+   "handle": "GRND7ENTREPRENEURWOODMERE",
+   "fields": {
+    "Retail price/unit": "2.99",
+    "Lightspeed ID": "7f41ed68-c48a-4022-b49c-e440b886ba7e"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 144
+  },
+  {
+   "id": "cat-4120256155d8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0017",
+   "airtable_rec_id": "recwNVofiRfE3zjFf",
+   "ls_id": "41d3aed6-793d-4da8-a710-49ba3e2a2fe0",
+   "handle": "GRND7TIMELESSACACIA",
+   "fields": {
+    "Retail price/unit": "3.44",
+    "Lightspeed ID": "41d3aed6-793d-4da8-a710-49ba3e2a2fe0"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 145
+  },
+  {
+   "id": "cat-d6ec48101bd2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0018",
+   "airtable_rec_id": "recByr2x0TAfQ7jkF",
+   "ls_id": "95ca80de-00ef-420d-af53-476ed24968f1",
+   "handle": "GRND7TIMELESSAPPALACHIANMOUNTAINS",
+   "fields": {
+    "Retail price/unit": "3.44",
+    "Lightspeed ID": "95ca80de-00ef-420d-af53-476ed24968f1"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 146
+  },
+  {
+   "id": "cat-1e3f1efce9f8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0019",
+   "airtable_rec_id": "rec0K3vUMnwyV1U9A",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b1f0c0e39",
+   "handle": "GRND7TIMELESSBARNBOARD",
+   "fields": {
+    "Retail price/unit": "3.44",
+    "Lightspeed ID": "0a6f6e36-8b89-11eb-f3d6-7e8b1f0c0e39"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 147
+  },
+  {
+   "id": "cat-c1eff300f49b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0020",
+   "airtable_rec_id": "recUH0cbXi9i2brIw",
+   "ls_id": "c6236040-bdce-49da-887e-b20d54fe4347",
+   "handle": "GRND7TIMELESSCLOUDYSKY",
+   "fields": {
+    "Retail price/unit": "3.44",
+    "Lightspeed ID": "c6236040-bdce-49da-887e-b20d54fe4347"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 148
+  },
+  {
+   "id": "cat-eb10baa55a04",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0021",
+   "airtable_rec_id": "recDXT0aXGjOuQMBd",
+   "ls_id": "dc884c17-07d5-4d83-82a7-185243800de0",
+   "handle": "GRND7TIMELESSEXOTICWALNUT",
+   "fields": {
+    "Retail price/unit": "3.44",
+    "Lightspeed ID": "dc884c17-07d5-4d83-82a7-185243800de0"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 149
+  },
+  {
+   "id": "cat-521756bfe980",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0022",
+   "airtable_rec_id": "recnAfEHG1PG3rwJE",
+   "ls_id": "e4fbe49e-44bb-4e45-9f33-0e303f565314",
+   "handle": "GRND7TIMELESSHAZE",
+   "fields": {
+    "Retail price/unit": "3.44",
+    "Lightspeed ID": "e4fbe49e-44bb-4e45-9f33-0e303f565314"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 150
+  },
+  {
+   "id": "cat-f14adc1a2f2a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0023",
+   "airtable_rec_id": "reccNCN7Jkcyub7vT",
+   "ls_id": "1c8046e4-3772-4a4c-ba75-afe195e090f7",
+   "handle": "GRND7TIMELESSHAZELNUT",
+   "fields": {
+    "Retail price/unit": "3.44",
+    "Lightspeed ID": "1c8046e4-3772-4a4c-ba75-afe195e090f7"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 151
+  },
+  {
+   "id": "cat-f796465fd7e3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0024",
+   "airtable_rec_id": "recIwHaohMShCTlAx",
+   "ls_id": "efcc8b00-e172-465f-a1c6-b6c4c04f6779",
+   "handle": "GRND7TIMELESSNORTHERNOAK",
+   "fields": {
+    "Retail price/unit": "3.44",
+    "Lightspeed ID": "efcc8b00-e172-465f-a1c6-b6c4c04f6779"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 152
+  },
+  {
+   "id": "cat-0db7ab1d8f32",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0025",
+   "airtable_rec_id": "recACBkC1gG2L26g2",
+   "ls_id": "db2ff98c-bd4d-4a13-9fb3-587f3801af9e",
+   "handle": "GRND7TIMELESSSMOKEDOAK",
+   "fields": {
+    "Retail price/unit": "3.44",
+    "Lightspeed ID": "db2ff98c-bd4d-4a13-9fb3-587f3801af9e"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 153
+  },
+  {
+   "id": "cat-5a5f3fb0a543",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0026",
+   "airtable_rec_id": "recXrpBwn3TmGsZ7m",
+   "ls_id": "659cdd77-6ffa-4151-94a0-5e78de73404b",
+   "handle": "GRND7TIMELESSWEATHEREDOAK",
+   "fields": {
+    "Retail price/unit": "3.44",
+    "Lightspeed ID": "659cdd77-6ffa-4151-94a0-5e78de73404b"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 154
+  },
+  {
+   "id": "cat-ca0f46f6f24a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0027",
+   "airtable_rec_id": "recEt2kt00mmcnQE4",
+   "ls_id": "a14fe2ac-7795-4112-af8f-4ba3f709e0ec",
+   "handle": "GRND7ULTIMATEFRIDAYHARBOR",
+   "fields": {
+    "Retail price/unit": "4.04",
+    "Lightspeed ID": "a14fe2ac-7795-4112-af8f-4ba3f709e0ec"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 155
+  },
+  {
+   "id": "cat-e98c4162867a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0028",
+   "airtable_rec_id": "rec0GNSBpT7rcWuob",
+   "ls_id": "2e2a3059-6889-4404-ad37-3923342f6c4b",
+   "handle": "GRND7ULTIMATEHUMBERBAY",
+   "fields": {
+    "Retail price/unit": "4.04",
+    "Lightspeed ID": "2e2a3059-6889-4404-ad37-3923342f6c4b"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 156
+  },
+  {
+   "id": "cat-79c58089206d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0029",
+   "airtable_rec_id": "rectGtZphApMR0vMs",
+   "ls_id": "c236a9ad-b17a-4cdb-8671-5793137e8b58",
+   "handle": "GRND7ULTIMATEHIGHPARK",
+   "fields": {
+    "Retail price/unit": "4.04",
+    "Lightspeed ID": "c236a9ad-b17a-4cdb-8671-5793137e8b58"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 157
+  },
+  {
+   "id": "cat-4f0ec5f0bb73",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0030",
+   "airtable_rec_id": "recPSHw8KpwJf1sqf",
+   "ls_id": "bab57cfe-2a3b-411d-822e-3a9b4d2dc6c9",
+   "handle": "GRND7ULTIMATELAKESHOREBLVD",
+   "fields": {
+    "Retail price/unit": "4.04",
+    "Lightspeed ID": "bab57cfe-2a3b-411d-822e-3a9b4d2dc6c9"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 158
+  },
+  {
+   "id": "cat-34f94bcb9a7c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0031",
+   "airtable_rec_id": "recus505aLyhFyHUe",
+   "ls_id": "ec1fd64e-e983-409f-b84f-afcca3b8bf93",
+   "handle": "GRND7ULTIMATELAKEVIEW",
+   "fields": {
+    "Retail price/unit": "4.04",
+    "Lightspeed ID": "ec1fd64e-e983-409f-b84f-afcca3b8bf93"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 159
+  },
+  {
+   "id": "cat-d91f547395d2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0032",
+   "airtable_rec_id": "recwzM02dBHKaYY0Z",
+   "ls_id": "aef103e4-ccae-4294-a0a2-c30c92c65c0c",
+   "handle": "GRND7ULTIMATEPIER17",
+   "fields": {
+    "Retail price/unit": "4.04",
+    "Lightspeed ID": "aef103e4-ccae-4294-a0a2-c30c92c65c0c"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 160
+  },
+  {
+   "id": "cat-a41c581e92fa",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0033",
+   "airtable_rec_id": "rec5OKPLXUaRyw10f",
+   "ls_id": "f184bf18-c17e-4ae5-a643-7f5131508727",
+   "handle": "GRND7ULTIMATESUNNYSIDE",
+   "fields": {
+    "Retail price/unit": "4.04",
+    "Lightspeed ID": "f184bf18-c17e-4ae5-a643-7f5131508727"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 161
+  },
+  {
+   "id": "cat-b595ab7949d7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0034",
+   "airtable_rec_id": "recePcHRuCJUzG0WQ",
+   "ls_id": "81264d25-47f1-4b97-b69a-057b0b87123a",
+   "handle": "GRND7ULTIMATESUMMERWHARF",
+   "fields": {
+    "Retail price/unit": "4.04",
+    "Lightspeed ID": "81264d25-47f1-4b97-b69a-057b0b87123a"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 162
+  },
+  {
+   "id": "cat-43c1e2fdd297",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0035",
+   "airtable_rec_id": "recMzzVRk9KkuHWdx",
+   "ls_id": "2f89c497-fd75-4511-883a-05cd91767932",
+   "handle": "GRND12ULTIMATEARCHBRIDGE",
+   "fields": {
+    "Category": "LVT",
+    "Retail price/unit": "4.04",
+    "Lightspeed ID": "2f89c497-fd75-4511-883a-05cd91767932"
+   },
+   "before": {
+    "Category": "LVP"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 163
+  },
+  {
+   "id": "cat-a73edadd9130",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0036",
+   "airtable_rec_id": "rec2hTiV4pyd2YLF5",
+   "ls_id": "2af1d997-ee2f-40f6-b0ae-931a12ab915d",
+   "handle": "GRND12ULTIMATESKYLINE",
+   "fields": {
+    "Category": "LVT",
+    "Retail price/unit": "4.04",
+    "Lightspeed ID": "2af1d997-ee2f-40f6-b0ae-931a12ab915d"
+   },
+   "before": {
+    "Category": "LVP"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 164
+  },
+  {
+   "id": "cat-987828df43ea",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0037",
+   "airtable_rec_id": null,
+   "ls_id": "2ea6d5b9-d0c8-439d-b5e8-bdaabf6e4237",
+   "handle": "GRND7INOV8COVEISLAND",
+   "fields": {
+    "Product name": "Grandeur 7\" Inov8 \u2014 Cove Island",
+    "Category": "LVP",
+    "Cost/unit": "2.69",
+    "Retail price/unit": "3.69",
+    "Lightspeed ID": "2ea6d5b9-d0c8-439d-b5e8-bdaabf6e4237"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 165
+  },
+  {
+   "id": "cat-b348d2124644",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0038",
+   "airtable_rec_id": null,
+   "ls_id": "0b2e5c51-313f-44f3-8372-030ee1e4b5b6",
+   "handle": "GRND7INOV8SAUBLEBEACH",
+   "fields": {
+    "Product name": "Grandeur 7\" Inov8 \u2014 Sauble Beach",
+    "Category": "LVP",
+    "Cost/unit": "2.69",
+    "Retail price/unit": "3.69",
+    "Lightspeed ID": "0b2e5c51-313f-44f3-8372-030ee1e4b5b6"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 166
+  },
+  {
+   "id": "cat-99ab2ebd87df",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0039",
+   "airtable_rec_id": null,
+   "ls_id": "70a9538e-3cb9-4501-862c-478f868e9c8b",
+   "handle": "GRND7BEACONCAVENDISH",
+   "fields": {
+    "Product name": "Grandeur 7\" Beacon \u2014 Cavendish",
+    "Category": "LVP",
+    "Cost/unit": "3.29",
+    "Retail price/unit": "4.29",
+    "Lightspeed ID": "70a9538e-3cb9-4501-862c-478f868e9c8b"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 167
+  },
+  {
+   "id": "cat-3929710a47f9",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0040",
+   "airtable_rec_id": null,
+   "ls_id": "3ecff178-6312-4175-9cf3-7999ae251dba",
+   "handle": "GRND7BEACONHOPEWELL",
+   "fields": {
+    "Product name": "Grandeur 7\" Beacon \u2014 Hopewell",
+    "Category": "LVP",
+    "Cost/unit": "3.29",
+    "Retail price/unit": "4.29",
+    "Lightspeed ID": "3ecff178-6312-4175-9cf3-7999ae251dba"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 168
+  },
+  {
+   "id": "cat-5966595bd10c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0041",
+   "airtable_rec_id": null,
+   "ls_id": "b5cf76be-eeb4-4b99-b811-6d460b2b5cc3",
+   "handle": "GRND7BEACONLIGHTHOUSE",
+   "fields": {
+    "Product name": "Grandeur 7\" Beacon \u2014 Light House",
+    "Category": "LVP",
+    "Cost/unit": "3.29",
+    "Retail price/unit": "4.29",
+    "Lightspeed ID": "b5cf76be-eeb4-4b99-b811-6d460b2b5cc3"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 169
+  },
+  {
+   "id": "cat-a51b98920e88",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0042",
+   "airtable_rec_id": null,
+   "ls_id": "715452d9-ad70-435d-b98f-f2c4bd809305",
+   "handle": "GRND7BEACONLUNENBURG",
+   "fields": {
+    "Product name": "Grandeur 7\" Beacon \u2014 Lunenburg",
+    "Category": "LVP",
+    "Cost/unit": "3.29",
+    "Retail price/unit": "4.29",
+    "Lightspeed ID": "715452d9-ad70-435d-b98f-f2c4bd809305"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 170
+  },
+  {
+   "id": "cat-4608dc9b2f42",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0043",
+   "airtable_rec_id": null,
+   "ls_id": "5a96aac0-a16f-44c3-b37a-9fe34136fe0c",
+   "handle": "GRND7BEACONSEAGLASS",
+   "fields": {
+    "Product name": "Grandeur 7\" Beacon \u2014 Sea Glass",
+    "Category": "LVP",
+    "Cost/unit": "3.29",
+    "Retail price/unit": "4.29",
+    "Lightspeed ID": "5a96aac0-a16f-44c3-b37a-9fe34136fe0c"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 171
+  },
+  {
+   "id": "cat-3262fa8dd6c1",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-GRAN-0044",
+   "airtable_rec_id": null,
+   "ls_id": "4e6c2e43-af51-4f25-9ed8-ac63b64aeea4",
+   "handle": "GRND7BEACONSINGINGSANDS",
+   "fields": {
+    "Product name": "Grandeur 7\" Beacon \u2014 Singing Sands",
+    "Category": "LVP",
+    "Cost/unit": "3.29",
+    "Retail price/unit": "4.29",
+    "Lightspeed ID": "4e6c2e43-af51-4f25-9ed8-ac63b64aeea4"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 172
+  },
+  {
+   "id": "cat-aff92443db45",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0001",
+   "airtable_rec_id": "rec71K5yB4qVmqrnm",
+   "ls_id": "3f1ed949-8615-4feb-b12c-ec27fcec7287",
+   "handle": "GRND7ATLANTICGF8936",
+   "fields": {
+    "Retail price/unit": "2.59",
+    "Lightspeed ID": "3f1ed949-8615-4feb-b12c-ec27fcec7287"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 173
+  },
+  {
+   "id": "cat-1d52b1134393",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0003",
+   "airtable_rec_id": "recGGICeEf2UhHchV",
+   "ls_id": "c02e1829-666a-4129-8bfe-77985e67786b",
+   "handle": "GRND7ATLANTICCDW3402",
+   "fields": {
+    "Retail price/unit": "2.59",
+    "Lightspeed ID": "c02e1829-666a-4129-8bfe-77985e67786b"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 174
+  },
+  {
+   "id": "cat-a4efc4486c8f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0005",
+   "airtable_rec_id": "rechqmOXjzBv2XT0x",
+   "ls_id": "6874cb7d-df57-47d5-a139-2c3cd9a350a8",
+   "handle": "GRND7CONTINENTALPENNSYLVANIA",
+   "fields": {
+    "Product name": "Grandeur 7\" Continental \u2014 Pennsylvania (6.0mm)",
+    "Retail price/unit": "2.69",
+    "Lightspeed ID": "6874cb7d-df57-47d5-a139-2c3cd9a350a8"
+   },
+   "before": {
+    "Product name": "Grandeur 7\" Continental \u2014 Pennsylvania"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 175
+  },
+  {
+   "id": "cat-99ec162417c5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0007",
+   "airtable_rec_id": "rec4iGhXwJqPMTCDz",
+   "ls_id": "8dfbeb18-83a7-427f-8c23-dbb4ef538ec7",
+   "handle": "GRND7CONTINENTALCONNECTICUT",
+   "fields": {
+    "Product name": "Grandeur 7\" Continental \u2014 Connecticut (7.0mm)",
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "8dfbeb18-83a7-427f-8c23-dbb4ef538ec7"
+   },
+   "before": {
+    "Product name": "Grandeur 7\" Continental \u2014 Connecticut"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 176
+  },
+  {
+   "id": "cat-a70beb808a6d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0009",
+   "airtable_rec_id": "recAlS3YvS63oICP7",
+   "ls_id": "2c094a3a-b444-426c-a3fa-cc121b33e13c",
+   "handle": "GRND7CONTINENTALIOWA",
+   "fields": {
+    "Product name": "Grandeur 7\" Continental \u2014 Iowa (7.0mm)",
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "2c094a3a-b444-426c-a3fa-cc121b33e13c"
+   },
+   "before": {
+    "Product name": "Grandeur 7\" Continental \u2014 Iowa"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 177
+  },
+  {
+   "id": "cat-d97d5cf3df23",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0010",
+   "airtable_rec_id": "recyYOdijo7wSjDAg",
+   "ls_id": "51ba985f-1f85-4450-b499-6d6e5742650c",
+   "handle": "GRND7CONTINENTALKENTUCKY",
+   "fields": {
+    "Product name": "Grandeur 7\" Continental \u2014 Kentucky (7.0mm)",
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "51ba985f-1f85-4450-b499-6d6e5742650c"
+   },
+   "before": {
+    "Product name": "Grandeur 7\" Continental \u2014 Kentucky"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 178
+  },
+  {
+   "id": "cat-ecbd4adc0089",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0011",
+   "airtable_rec_id": "reciqcd1jZcULQyrj",
+   "ls_id": "a9ee6ae7-f1b9-427d-93f8-3c493ce31c2b",
+   "handle": "GRND7CONTINENTALMICHIGAN",
+   "fields": {
+    "Product name": "Grandeur 7\" Continental \u2014 Michigan (7.0mm)",
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "a9ee6ae7-f1b9-427d-93f8-3c493ce31c2b"
+   },
+   "before": {
+    "Product name": "Grandeur 7\" Continental \u2014 Michigan"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 179
+  },
+  {
+   "id": "cat-0cec73913fe6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0012",
+   "airtable_rec_id": "recfuQBPr6rK86r1E",
+   "ls_id": "dea28770-f1a7-42da-8c24-24bfe7ce00ff",
+   "handle": "GRND7CONTINENTALNEWJERSEY",
+   "fields": {
+    "Product name": "Grandeur 7\" Continental \u2014 New Jersey (7.0mm)",
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "dea28770-f1a7-42da-8c24-24bfe7ce00ff"
+   },
+   "before": {
+    "Product name": "Grandeur 7\" Continental \u2014 New Jersey"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 180
+  },
+  {
+   "id": "cat-b5cab0f247c7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0013",
+   "airtable_rec_id": "recylRp2uAuslvGKT",
+   "ls_id": "644efc0a-0f3e-41c0-a3da-f27bbc2c1e62",
+   "handle": "GRND7CONTINENTALNEWYORK",
+   "fields": {
+    "Product name": "Grandeur 7\" Continental \u2014 New York (7.0mm)",
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "644efc0a-0f3e-41c0-a3da-f27bbc2c1e62"
+   },
+   "before": {
+    "Product name": "Grandeur 7\" Continental \u2014 New York"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 181
+  },
+  {
+   "id": "cat-b79dcb36138a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0014",
+   "airtable_rec_id": "reckvSQshct09aUre",
+   "ls_id": "40f05451-8bdd-40f4-8fb2-580e6790f9d7",
+   "handle": "GRND7CONTINENTALWISCONSIN",
+   "fields": {
+    "Product name": "Grandeur 7\" Continental \u2014 Wisconsin (7.0mm)",
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "40f05451-8bdd-40f4-8fb2-580e6790f9d7"
+   },
+   "before": {
+    "Product name": "Grandeur 7\" Continental \u2014 Wisconsin"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 182
+  },
+  {
+   "id": "cat-4fcf984f3df2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0015",
+   "airtable_rec_id": "rec00Qc64m4JB0T13",
+   "ls_id": "8d3f2ab3-47c1-49c1-b8ec-7fb80d1a3fa5",
+   "handle": "GRND7PACIFICCANTERBURY",
+   "fields": {
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "8d3f2ab3-47c1-49c1-b8ec-7fb80d1a3fa5"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 183
+  },
+  {
+   "id": "cat-56b0cf3f52c1",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0016",
+   "airtable_rec_id": "reciiK1kWu3uBYLIb",
+   "ls_id": "97183f72-210b-4c0d-a373-7e9308718f87",
+   "handle": "GRND7PACIFICGOLDENBAY",
+   "fields": {
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "97183f72-210b-4c0d-a373-7e9308718f87"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 184
+  },
+  {
+   "id": "cat-0682fce12d76",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0017",
+   "airtable_rec_id": "reczWaFbpwD9vBNL2",
+   "ls_id": "b3cbf076-151f-4b0c-a4d4-dd6f2ba103a1",
+   "handle": "GRND7PACIFICQUEENSTOWN",
+   "fields": {
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "b3cbf076-151f-4b0c-a4d4-dd6f2ba103a1"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 185
+  },
+  {
+   "id": "cat-243fc6ce538c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0018",
+   "airtable_rec_id": "rec4ShCF5XTP5huyT",
+   "ls_id": "6205d42d-6b91-4233-8ed1-06689c1cb76f",
+   "handle": "GRND7PACIFICWELLINGTON",
+   "fields": {
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "6205d42d-6b91-4233-8ed1-06689c1cb76f"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 186
+  },
+  {
+   "id": "cat-33484a2d6ec1",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0019",
+   "airtable_rec_id": "recbj5Mgifa59GstW",
+   "ls_id": "f5c4314f-3e85-44f9-b149-056fe1da7e45",
+   "handle": "GRND7PACIFIC880062",
+   "fields": {
+    "Supplier SKU": "88006-2",
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "f5c4314f-3e85-44f9-b149-056fe1da7e45"
+   },
+   "before": {
+    "Supplier SKU": null
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 187
+  },
+  {
+   "id": "cat-e161966f4eea",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0020",
+   "airtable_rec_id": "recFz1qz2mRaVij6U",
+   "ls_id": "d7166002-eb03-47c3-8a80-b91918d6a625",
+   "handle": "GRND7ANCHOR7BATTERYPOINT",
+   "fields": {
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "d7166002-eb03-47c3-8a80-b91918d6a625"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 188
+  },
+  {
+   "id": "cat-b7961c3ab443",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0021",
+   "airtable_rec_id": "recmrIhE42brJel2B",
+   "ls_id": "de01fba1-041c-4110-9035-2c64f7e2025b",
+   "handle": "GRND7ANCHOR7NORTHHEAD",
+   "fields": {
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "de01fba1-041c-4110-9035-2c64f7e2025b"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 189
+  },
+  {
+   "id": "cat-3ab0404740a7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0022",
+   "airtable_rec_id": "recvqPnb8yTI0BfrM",
+   "ls_id": "e3a643ed-2fdc-4c67-93a3-af7baaff19fd",
+   "handle": "GRND7ANCHOR7OAKISLAND",
+   "fields": {
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "e3a643ed-2fdc-4c67-93a3-af7baaff19fd"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 190
+  },
+  {
+   "id": "cat-9a248dca0d32",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0023",
+   "airtable_rec_id": "recNR5bTsYqU3JFnv",
+   "ls_id": "74953b54-82b4-4e71-9081-aaabd0616a54",
+   "handle": "GRND7ANCHOR7PEGGYSCOVE",
+   "fields": {
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "74953b54-82b4-4e71-9081-aaabd0616a54"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 191
+  },
+  {
+   "id": "cat-9efe90e1b32e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0024",
+   "airtable_rec_id": "recVONp06BMwvPVGh",
+   "ls_id": "dbb06d24-ac53-44c7-a67e-b28371fa0a8e",
+   "handle": "GRND7ANCHOR7POINTREYES",
+   "fields": {
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "dbb06d24-ac53-44c7-a67e-b28371fa0a8e"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 192
+  },
+  {
+   "id": "cat-fbff3d92cd48",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0025",
+   "airtable_rec_id": "reclcUhm8RJsjN6dN",
+   "ls_id": "bfc0b7c0-d6cc-41de-b515-cb3f88a59d5f",
+   "handle": "GRND7ANCHOR7SAMBRO",
+   "fields": {
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "bfc0b7c0-d6cc-41de-b515-cb3f88a59d5f"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 193
+  },
+  {
+   "id": "cat-a0c36ebb9e28",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0026",
+   "airtable_rec_id": "recJ5HdyzhknYtZaH",
+   "ls_id": "9be8b504-13c0-47ef-9dbd-079403167f0f",
+   "handle": "GRND7ANCHOR7WINDPOINT",
+   "fields": {
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "9be8b504-13c0-47ef-9dbd-079403167f0f"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 194
+  },
+  {
+   "id": "cat-82ebd17d0f89",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0027",
+   "airtable_rec_id": "recC3pQSi0k7U46H1",
+   "ls_id": "a5a43a51-979e-41b2-8621-5de2ad9c58ae",
+   "handle": "GRND7WONDER7ALEXANDRIA",
+   "fields": {
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "a5a43a51-979e-41b2-8621-5de2ad9c58ae"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 195
+  },
+  {
+   "id": "cat-65d296c0afce",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0028",
+   "airtable_rec_id": "recVzN0jtL0m8ysNf",
+   "ls_id": "4a42af64-7f68-4d0e-aeb0-2c3a624a658f",
+   "handle": "GRND7WONDER7BABYLON",
+   "fields": {
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "4a42af64-7f68-4d0e-aeb0-2c3a624a658f"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 196
+  },
+  {
+   "id": "cat-4b3ccf14ccab",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0029",
+   "airtable_rec_id": "recDaWz18B3lGR8fN",
+   "ls_id": "92de1677-ce49-436d-8242-b6b05429051b",
+   "handle": "GRND7WONDER7COLISEUM",
+   "fields": {
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "92de1677-ce49-436d-8242-b6b05429051b"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 197
+  },
+  {
+   "id": "cat-36eecad00132",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0030",
+   "airtable_rec_id": "recCxmoCulKie7E4n",
+   "ls_id": "5d3e9397-b057-4727-a98a-1f2367aaedb8",
+   "handle": "GRND7WONDER7GIZA",
+   "fields": {
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "5d3e9397-b057-4727-a98a-1f2367aaedb8"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 198
+  },
+  {
+   "id": "cat-97e85488677c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0031",
+   "airtable_rec_id": "recEtSpI6rr4dTP3C",
+   "ls_id": "70a85fa5-db40-488f-a6be-a4726afb61ad",
+   "handle": "GRND7WONDER7OLYMPIA",
+   "fields": {
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "70a85fa5-db40-488f-a6be-a4726afb61ad"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 199
+  },
+  {
+   "id": "cat-066675771358",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0032",
+   "airtable_rec_id": "recO6yaDrmfGi02qw",
+   "ls_id": "1148ed5a-b219-4103-9d79-7fa556a926ea",
+   "handle": "GRND7WONDER7PETRA",
+   "fields": {
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "1148ed5a-b219-4103-9d79-7fa556a926ea"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 200
+  },
+  {
+   "id": "cat-944d6e20d139",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0033",
+   "airtable_rec_id": "reclvKtnbxRrxGjkh",
+   "ls_id": "ff729b58-9ead-416a-9fd2-30b9922cbcd8",
+   "handle": "GRND7WONDER7RHODES",
+   "fields": {
+    "Retail price/unit": "2.94",
+    "Lightspeed ID": "ff729b58-9ead-416a-9fd2-30b9922cbcd8"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 201
+  },
+  {
+   "id": "cat-1bcc0a5f9246",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0034",
+   "airtable_rec_id": "recxvcVRcTZ0w4CvC",
+   "ls_id": "849bf0d3-5502-46e5-9bef-39ea2806be0e",
+   "handle": "GRND7INOV8FLOWERPOTISLAND",
+   "fields": {
+    "Retail price/unit": "3.69",
+    "Lightspeed ID": "849bf0d3-5502-46e5-9bef-39ea2806be0e"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 202
+  },
+  {
+   "id": "cat-9f3d10c710ca",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0035",
+   "airtable_rec_id": "recvU9Vc3x2OiJcqr",
+   "ls_id": "14a768e0-b279-4809-bb10-34f3382d21d7",
+   "handle": "GRND7INOV8LIONSHEAD",
+   "fields": {
+    "Retail price/unit": "3.69",
+    "Lightspeed ID": "14a768e0-b279-4809-bb10-34f3382d21d7"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 203
+  },
+  {
+   "id": "cat-6bb6dea78a75",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0036",
+   "airtable_rec_id": "recU13NQTpGUA9Gem",
+   "ls_id": "564e0079-9e09-42b6-809f-ca2533d59498",
+   "handle": "GRND7INOV8MANITOULIN",
+   "fields": {
+    "Retail price/unit": "3.69",
+    "Lightspeed ID": "564e0079-9e09-42b6-809f-ca2533d59498"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 204
+  },
+  {
+   "id": "cat-21344ddf5911",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0037",
+   "airtable_rec_id": "recA91war83tQQKbe",
+   "ls_id": "48174a6a-6f6e-4f37-8d86-fc23a238a0d0",
+   "handle": "GRND7INOV8MERMAIDSCOVE",
+   "fields": {
+    "Retail price/unit": "3.69",
+    "Lightspeed ID": "48174a6a-6f6e-4f37-8d86-fc23a238a0d0"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 205
+  },
+  {
+   "id": "cat-939abea16fe2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0038",
+   "airtable_rec_id": "recKM0qQWU5KcGIfj",
+   "ls_id": "387ff3e5-fa0b-4dbb-91b0-4eab2b3a6841",
+   "handle": "GRND7INOV8PENINSULA",
+   "fields": {
+    "Retail price/unit": "3.69",
+    "Lightspeed ID": "387ff3e5-fa0b-4dbb-91b0-4eab2b3a6841"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 206
+  },
+  {
+   "id": "cat-d23bba4f26f1",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0039",
+   "airtable_rec_id": "recMxdq9bbPsfEwI8",
+   "ls_id": "89293851-0188-4e07-b336-436f6887852d",
+   "handle": "GRND7INOV8TOBERMORY",
+   "fields": {
+    "Retail price/unit": "3.69",
+    "Lightspeed ID": "89293851-0188-4e07-b336-436f6887852d"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 207
+  },
+  {
+   "id": "cat-5221abd37105",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0040",
+   "airtable_rec_id": "recxOnanu2CHdNU92",
+   "ls_id": "c1b533bf-70df-41e7-86c2-feb6e6af1c28",
+   "handle": "GRND5DESIGNERALEXANDRIAHB",
+   "fields": {
+    "Retail price/unit": "3.59",
+    "Lightspeed ID": "c1b533bf-70df-41e7-86c2-feb6e6af1c28"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 208
+  },
+  {
+   "id": "cat-f1bf447efe6b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0041",
+   "airtable_rec_id": "recxpYaOxL9PKBQZH",
+   "ls_id": "9b07aae7-e965-47ed-9f0e-ca56abac892a",
+   "handle": "GRND5DESIGNERNORTHHEADHB",
+   "fields": {
+    "Retail price/unit": "3.59",
+    "Lightspeed ID": "9b07aae7-e965-47ed-9f0e-ca56abac892a"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 209
+  },
+  {
+   "id": "cat-d49128330428",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0042",
+   "airtable_rec_id": "recITHU2LntCuZEiR",
+   "ls_id": "e89a4c08-17b3-4557-a409-37e23d5457ac",
+   "handle": "GRND5DESIGNERRHODESHB",
+   "fields": {
+    "Retail price/unit": "3.59",
+    "Lightspeed ID": "e89a4c08-17b3-4557-a409-37e23d5457ac"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 210
+  },
+  {
+   "id": "cat-c0369ce4f787",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0043",
+   "airtable_rec_id": "recJHoLiF7devVscq",
+   "ls_id": "6b5d0150-1fac-48f7-9762-ee16e9d56c81",
+   "handle": "GRND5DESIGNERRICELAKEHB",
+   "fields": {
+    "Retail price/unit": "3.59",
+    "Lightspeed ID": "6b5d0150-1fac-48f7-9762-ee16e9d56c81"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 211
+  },
+  {
+   "id": "cat-221462070efe",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0044",
+   "airtable_rec_id": "rec47JplaDywtVU9O",
+   "ls_id": "ff91b7bd-620f-4704-a833-a68ec47e2b71",
+   "handle": "GRND5DESIGNERSAMBROHB",
+   "fields": {
+    "Retail price/unit": "3.59",
+    "Lightspeed ID": "ff91b7bd-620f-4704-a833-a68ec47e2b71"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 212
+  },
+  {
+   "id": "cat-b8ecb5c30af5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-GRAN-0045",
+   "airtable_rec_id": "recU6UY3cxOWks21O",
+   "ls_id": "f1d38e8a-2241-496b-8bd2-7669898dde31",
+   "handle": "GRND5DESIGNERWINDPOINTHB",
+   "fields": {
+    "Retail price/unit": "3.59",
+    "Lightspeed ID": "f1d38e8a-2241-496b-8bd2-7669898dde31"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 213
+  },
+  {
+   "id": "cat-ccfc91eb2b36",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "WPC-GRAN-0001",
+   "airtable_rec_id": "rec8o5Mn4vXRXTNRf",
+   "ls_id": "5018185a-74ee-4255-9065-c33b658a5b4c",
+   "handle": "GRND9BLISSAUGUSTDUSK",
+   "fields": {
+    "Retail price/unit": "3.89",
+    "Lightspeed ID": "5018185a-74ee-4255-9065-c33b658a5b4c"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 214
+  },
+  {
+   "id": "cat-6fabf69c53e3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "WPC-GRAN-0002",
+   "airtable_rec_id": "recQlaLqXrmoTi5TB",
+   "ls_id": "13173d91-2eee-414b-9b01-859ab06e32b9",
+   "handle": "GRND9BLISSCAMPFIRE",
+   "fields": {
+    "Retail price/unit": "3.89",
+    "Lightspeed ID": "13173d91-2eee-414b-9b01-859ab06e32b9"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 215
+  },
+  {
+   "id": "cat-b74db41b917e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "WPC-GRAN-0003",
+   "airtable_rec_id": "recw4Pms75zWKmI7L",
+   "ls_id": "16cf1a1e-c8db-43b4-9973-7959c6aefac6",
+   "handle": "GRND9BLISSGAZEBO",
+   "fields": {
+    "Retail price/unit": "3.89",
+    "Lightspeed ID": "16cf1a1e-c8db-43b4-9973-7959c6aefac6"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 216
+  },
+  {
+   "id": "cat-12b03b04c03e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "WPC-GRAN-0004",
+   "airtable_rec_id": "recIzsrlBsr2AcQ8Q",
+   "ls_id": "3cf270f5-cc7d-4974-8bd6-24977744da96",
+   "handle": "GRND9BLISSHIKINGTRAIL",
+   "fields": {
+    "Retail price/unit": "3.89",
+    "Lightspeed ID": "3cf270f5-cc7d-4974-8bd6-24977744da96"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 217
+  },
+  {
+   "id": "cat-12706fe9d1a3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "WPC-GRAN-0005",
+   "airtable_rec_id": "reccUpBuMvlcXpMgF",
+   "ls_id": "ee0a8158-7317-4f17-bcc5-03ba29a7c48f",
+   "handle": "GRND9BLISSMORNINGDEW",
+   "fields": {
+    "Retail price/unit": "3.89",
+    "Lightspeed ID": "ee0a8158-7317-4f17-bcc5-03ba29a7c48f"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 218
+  },
+  {
+   "id": "cat-f4e478628c45",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "WPC-GRAN-0006",
+   "airtable_rec_id": "recLLK1mQHb2sANAF",
+   "ls_id": "db9409fa-3929-4460-902b-778ce3e12490",
+   "handle": "GRND9BLISSSTARLIGHT",
+   "fields": {
+    "Retail price/unit": "3.89",
+    "Lightspeed ID": "db9409fa-3929-4460-902b-778ce3e12490"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 219
+  },
+  {
+   "id": "cat-44d3791a10ac",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "WPC-GRAN-0007",
+   "airtable_rec_id": "rechZGJvASvnajmZV",
+   "ls_id": "f8bab8e3-c075-43f4-92e7-bdad59fccd27",
+   "handle": "GRND9BLISSSEABREEZE",
+   "fields": {
+    "Retail price/unit": "3.89",
+    "Lightspeed ID": "f8bab8e3-c075-43f4-92e7-bdad59fccd27"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 220
+  },
+  {
+   "id": "cat-9cdd1ee9e11e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "WPC-GRAN-0008",
+   "airtable_rec_id": "recFKC1rizNol3yrH",
+   "ls_id": "386ec63f-deac-476a-b932-89f32cc7517b",
+   "handle": "GRND9BLISSSUMMERSHADE",
+   "fields": {
+    "Retail price/unit": "3.89",
+    "Lightspeed ID": "386ec63f-deac-476a-b932-89f32cc7517b"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 221
+  },
+  {
+   "id": "cat-c528c0584fa7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "WPC-GRAN-0009",
+   "airtable_rec_id": "reccAKVf30QaaHPii",
+   "ls_id": "7e167c3a-279f-4d44-b109-fd7d91a35e7e",
+   "handle": "GRND9BLISSTREEHOUSE",
+   "fields": {
+    "Retail price/unit": "3.89",
+    "Lightspeed ID": "7e167c3a-279f-4d44-b109-fd7d91a35e7e"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 222
+  },
+  {
+   "id": "cat-c2ba425481b0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "WPC-GRAN-0010",
+   "airtable_rec_id": "recTYdjQoDCArbjpe",
+   "ls_id": "222edac6-cbfb-42f4-8822-a3e97b606672",
+   "handle": "GRND9BLISSWOODLAND",
+   "fields": {
+    "Retail price/unit": "3.89",
+    "Lightspeed ID": "222edac6-cbfb-42f4-8822-a3e97b606672"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 223
+  },
+  {
+   "id": "cat-2af7b39e5ac4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "WPC-GRAN-0011",
+   "airtable_rec_id": "recJkbO8jFw9fYc04",
+   "ls_id": "e60b1cd8-66bf-4964-a412-cccf82e2a99e",
+   "handle": "GRND9SUPREMEXAUTUMNBLAZE",
+   "fields": {
+    "Retail price/unit": "4.29",
+    "Lightspeed ID": "e60b1cd8-66bf-4964-a412-cccf82e2a99e"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 224
+  },
+  {
+   "id": "cat-770801c247c5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "WPC-GRAN-0012",
+   "airtable_rec_id": "rec0sVrmvPxCUzrfy",
+   "ls_id": "9716055a-a906-484f-a293-564aada58aa7",
+   "handle": "GRND9SUPREMEXARCTICWHISPER",
+   "fields": {
+    "Retail price/unit": "4.29",
+    "Lightspeed ID": "9716055a-a906-484f-a293-564aada58aa7"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 225
+  },
+  {
+   "id": "cat-c29fc9b40c6d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "WPC-GRAN-0013",
+   "airtable_rec_id": "rectao3BcElSfydMc",
+   "ls_id": "a6d7c9f3-4638-4286-a4dc-b770d8730ae7",
+   "handle": "GRND9SUPREMEXBUTTERCUP",
+   "fields": {
+    "Retail price/unit": "4.29",
+    "Lightspeed ID": "a6d7c9f3-4638-4286-a4dc-b770d8730ae7"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 226
+  },
+  {
+   "id": "cat-a0433e0be179",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "WPC-GRAN-0014",
+   "airtable_rec_id": "rec2kipBkHHQxDqiD",
+   "ls_id": "a20f5a86-b71f-47e2-9d84-b59c86b300a7",
+   "handle": "GRND9SUPREMEXCITRUSLEAF",
+   "fields": {
+    "Retail price/unit": "4.29",
+    "Lightspeed ID": "a20f5a86-b71f-47e2-9d84-b59c86b300a7"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 227
+  },
+  {
+   "id": "cat-a294213130ea",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "WPC-GRAN-0016",
+   "airtable_rec_id": "recvUIicFLX98mx4H",
+   "ls_id": "13781b1b-4d4c-4f8b-b91a-d591c45e1119",
+   "handle": "GRND9SUPREMEXEBONYECLIPSE",
+   "fields": {
+    "Retail price/unit": "4.29",
+    "Lightspeed ID": "13781b1b-4d4c-4f8b-b91a-d591c45e1119"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 228
+  },
+  {
+   "id": "cat-967b0df3a1b7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "WPC-GRAN-0017",
+   "airtable_rec_id": "recKX7qKX35XULr1S",
+   "ls_id": "1f8de4e2-9a21-4d1c-8f98-8f4a5adf168e",
+   "handle": "GRND9SUPREMEXLEMONZEST",
+   "fields": {
+    "Retail price/unit": "4.29",
+    "Lightspeed ID": "1f8de4e2-9a21-4d1c-8f98-8f4a5adf168e"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 229
+  },
+  {
+   "id": "cat-e0de4a1aabfb",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "WPC-GRAN-0019",
+   "airtable_rec_id": "recyaBxIDI6tCQ2yL",
+   "ls_id": "8ee7ec39-1166-42b4-b66c-f4cf0fc2edaf",
+   "handle": "GRND9SUPREMEXSUNBEAM",
+   "fields": {
+    "Retail price/unit": "4.29",
+    "Lightspeed ID": "8ee7ec39-1166-42b4-b66c-f4cf0fc2edaf"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 230
+  },
+  {
+   "id": "cat-74451033bc51",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "WPC-GRAN-0020",
+   "airtable_rec_id": "rec0qYvvbR6abpuxg",
+   "ls_id": "97983729-319d-44ed-9d2f-365c9969b892",
+   "handle": "GRND9SUPREMEXTOFFEEAPPLE",
+   "fields": {
+    "Retail price/unit": "4.29",
+    "Lightspeed ID": "97983729-319d-44ed-9d2f-365c9969b892"
+   },
+   "before": {},
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Lightspeed ID",
+    "Retail price/unit"
+   ],
+   "seq": 231
+  }
+ ],
+ "blocked": [],
+ "warnings": [
+  {
+   "sku": "SPC-GRAN-0003",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0007",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0009",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0010",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0011",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0012",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0013",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0014",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0015",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0016",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0017",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0018",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0019",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0020",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0021",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0022",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0023",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0024",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0025",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0026",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0027",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0028",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0029",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0030",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0031",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0032",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0033",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0037",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0034",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0035",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0036",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0037",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0038",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0038",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0039",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0040",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0041",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0042",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0043",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0044",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-GRAN-0045",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "WPC-GRAN-0001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "WPC-GRAN-0002",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "WPC-GRAN-0003",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "WPC-GRAN-0004",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "WPC-GRAN-0005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "WPC-GRAN-0006",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "WPC-GRAN-0007",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "WPC-GRAN-0008",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "WPC-GRAN-0009",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "WPC-GRAN-0010",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0039",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0040",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0041",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0042",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0043",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0044",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "WPC-GRAN-0011",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "WPC-GRAN-0012",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "WPC-GRAN-0013",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "WPC-GRAN-0014",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "WPC-GRAN-0016",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "WPC-GRAN-0017",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "WPC-GRAN-0019",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "WPC-GRAN-0020",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0003",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0004",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0006",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0007",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0008",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVT' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0009",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVT' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0010",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVT' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0011",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0012",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0013",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0014",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0015",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0016",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0017",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0018",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0019",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0020",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0021",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0022",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0023",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0024",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0025",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0026",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0027",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0028",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0029",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0030",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0031",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0032",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0033",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0034",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0035",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVT' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GRAN-0036",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVT' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  }
+ ]
+}

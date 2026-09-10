@@ -1,0 +1,79 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "Lee Flooring",
+ "run_at": "2026-09-10T01:30:26.896755-04:00",
+ "status": "ok",
+ "inputs": [
+  {
+   "file": "ingest/2026-09-09/lee_airtable_upload_2026-09-09.csv",
+   "rows": 84
+  },
+  {
+   "file": "ingest/2026-09-10/lightspeed-products.json",
+   "products": 14525,
+   "run_at": "2026-09-10T00:30:02.734321-04:00"
+  }
+ ],
+ "cost_basis": null,
+ "summary": {
+  "actions_total": 0,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 0,
+  "warnings": 10,
+  "rows_in": 84
+ },
+ "actions": [],
+ "blocked": [],
+ "warnings": [
+  {
+   "sku": null,
+   "reason": "airtable_side_not_planned",
+   "detail": "No live Airtable snapshot was supplied, so this plan contains NO Airtable actions. The upload CSV records the base as it stood when the price list was processed, not now \u2014 on 2026-09-10 planning from it claimed 50 Lee rows needed a Lightspeed ID when the live base was missing 5. Pass --airtable-existing with a snapshot exported through the Airtable MCP tools; the Lightspeed side below is unaffected, since it is reconciled against the live catalogue pull."
+  },
+  {
+   "sku": "LVP-LEEF-0001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-LEEF-0002",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-LEEF-0003",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-LEEF-0004",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-LEEF-0005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-LEEF-0006",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-LEEF-0007",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-LEEF-0008",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-LEEF-0009",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  }
+ ]
+}

@@ -200,6 +200,14 @@ Build this as a Python script in the scratchpad directory. Use `openpyxl` to **r
 LS export when it arrives as `.xlsx`, and the stdlib `csv` module for both reading and
 writing the Airtable file. Nothing this skill writes uses `openpyxl`.
 
+> **Never pass `read_only=True` to `load_workbook` on an LS export.** That mode trusts
+> the worksheet dimension the file declares, and LS exports declare it wrong: both
+> committed exports (`ingest/2026-09-03/grandeur_ls_product_export_2026-09-03.xlsx` and
+> `canadian_standard_...`) are 33 columns x 267/311 rows but read back as **1 column and
+> 0 data rows** in read-only mode. It fails silently — you get an empty match set, not an
+> error. A plain `load_workbook(path, data_only=True)` reads them correctly; the files are
+> under 100 KB, so there is nothing to optimise. Found 2026-09-10.
+
 ```python
 from openpyxl import load_workbook   # LS export only, when it is .xlsx
 import csv, re

@@ -40,6 +40,36 @@ or delete prior entries. If the file doesn't exist, create it with an empty `ent
 | `result` | `executed`, `failed`, `skipped_duplicate`, or `refused`. |
 | `error` | String when result is `failed`, else null. |
 | `raw_ref` | Platform-side ID of the created record when available. |
+| `raw_ref_action_id` | Optional. The plan action `id` this entry executed. Present on catalogue-sync entries; that is what makes resume work. |
+
+## Type vocabulary
+
+Each value belongs to exactly one agent's allowed-actions table.
+
+| type | Agent |
+|---|---|
+| `send_sms`, `send_email`, `move_stage`, `add_tag`, `remove_tag`, `create_task` | `ghl-actions-agent` |
+| `notion_create_task`, `notion_update_task`, `notion_create_page` | `.claude/commands/notion-sync.md`, `project-status-meeting-processor` |
+| `lightspeed_create_product`, `lightspeed_update_product` | `lightspeed-actions-agent` |
+| `airtable_upsert_product`, `airtable_backfill_ls_id`, `airtable_create_price_history` | `airtable-actions-agent` |
+
+There is deliberately **no delete or deactivate value for any platform**. Removing a
+product from the POS or a record from the catalogue is a person's decision made in
+that platform's UI, so no agent has a type for it and none may be added.
+
+## Resume, for the catalogue sync
+
+The catalogue-sync agents are the first to run batches large enough that a run can be
+interrupted part-way — by a Lightspeed rate limit, or by the stop-the-batch rule
+after one bad row. They need no separate state file:
+
+- A plan action `id` is a stable hash of supplier + sku + target system + op, so the
+  same logical change gets the same id on every re-run.
+- A writer records that id in `raw_ref_action_id`.
+- Before executing, a writer reads today's log and skips any id already `executed`.
+
+So resuming is just running the command again. This is the same idempotency rule the
+GHL agent already follows, keyed on an id instead of on target + content.
 
 ## Why this exists
 

@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "entries": [
+    {
+      "logged_at": "2026-09-08T09:00:00-04:00",
+      "agent": "notion-sync",
+      "type": "notion_create_task",
+      "target": "Tactical Tasks List (team destination, collection://238596a4-505f-8137-af13-000bde205213) — dedupe query ahead of writing 19 GHL high-priority candidates",
+      "content_summary": "notion-task-schema.md step 5a's mandatory dedupe query (open rows with Tags containing \"ghl\") could not be run this scheduled/unattended sync — per the contract's Failure policy (\"Dedupe query fails → Stop before any writes\"), no team-destination rows were created or updated this run to avoid producing duplicates. No private-destination writes were attempted either — this run has no live human present and write_policy: approval_required forbids auto-write regardless.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "failed",
+      "error": "mcp__Notion__notion-query-data-sources returned \"Your workspace has reached the usage limit for Query Data Source\" on three consecutive attempts (SQL mode, rows/structured-filter mode, SQL mode retry) against collection://238596a4-505f-8137-af13-000bde205213. This is a workspace-level plan quota cap, not a transient network error — retrying immediately did not clear it.",
+      "raw_ref": null
+    }
+  ]
+}

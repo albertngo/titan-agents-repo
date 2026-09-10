@@ -29,10 +29,67 @@ No ingester reads another ingester's raw platform data.
 | `meta-ads-ingest-agent` | Meta Ads (spend, leads, CPL, delivery health) | `meta-ads.json` |
 
 | `ghl-actions-agent` | GoHighLevel (write: replies, stages, tags) | appends to `actions-log.json` |
+| `lightspeed-actions-agent` | Lightspeed Retail X-Series (write: product create/update ONLY) | appends to `actions-log.json` |
+| `airtable-actions-agent` | Airtable catalogue (write: upsert, LS-ID backfill, price history) | appends to `actions-log.json` |
 | `vault-writer-agent` | titan-vault Obsidian repo (write) | vault notes per its CONVENTIONS.md — runs automatically in `/daily-ingest`, bound to its whitelist. See Vault writes. |
 
 `.claude/commands/notion-sync.md` runs automatically at the end of `/daily-ingest` too,
 but is a command, not an agent — see Notion writes below for why.
+
+### The price-list / catalogue pipeline
+
+Not part of `/daily-ingest`. Triggered per price list, and it is the only flow that
+writes to two platforms:
+
+```
+Make 4381438  ->  Notion Price Lists row  ->  /process-price-list  (produces 2 CSVs, writes no platform)
+                                                     |
+                                   /catalog-sync <notionID>  — steps 1-6
+                                                     |
+              scripts/lightspeed_pull.py  ------>  scripts/catalog_reconcile.py
+              (read-only catalogue pull)          (one reviewable diff, writes no platform)
+                                                     |
+                                          [ a person approves action ids ]
+                                                     |
+                      lightspeed-actions-agent  +  airtable-actions-agent
+```
+
+**`/catalog-sync` is the entry point** (`.claude/commands/catalog-sync.md` — the
+authoritative procedure; `methods/catalog-sync-routine-prompt.md` holds the scheduled
+routine's stored text and its rationale).
+
+**Its routine runs steps 1–3 only, and that is deliberate.** An unattended run pulls,
+reconciles, produces a plan and stops; the writes are human-triggered. `*-actions`
+agents are never scheduled and never autonomous, so the automation covers walking a
+14,000-product catalogue and catching identity collisions, and asks a person only for
+the yes. **A run that ends at the approval gate has SUCCEEDED.**
+
+**Lightspeed is written before Airtable** — the reverse of `forced_downstream_order` in
+`pricelist-sources.json`, which describes the manual CSV flow. `POST /api/2.0/products`
+returns the new UUID, so the Lightspeed create is what mints the id the Airtable write
+needs.
+
+Contracts: `catalog-plan-schema.md` (the diff and the approval file),
+`actions-log-schema.md` (every write). Ids live in `platform-settings/lightspeed.json`,
+`airtable-destinations.json` and `pricelist-sources.json` — never in a prompt.
+
+The Notion row carries the state. `Extraction Status` says *that* a human must look;
+**`Review Reason`** (multi-select) says *why* — `New Supplier`, `Ambiguous Pricing`,
+`Ambiguous Naming`, `Unmapped Category`, `Unmapped Grade`, `Spec Gap` — written
+additively by both runs and cleared only by the reviewer. `Airtable Sync`, `LS Upload`
+and `UUID Backfill` are stage indicators for **whoever ran the stage**: the manual CSV
+path stays available and writes the same fields the sync does.
+
+> **⚠️ Not yet safe to schedule (2026-09-10).** The routine scopes on
+> `Extraction Status = Extracted [Ready to Upload]`, and that option no longer exists on
+> the live property — so the filter matches zero rows, silently. Restore it or name a
+> replacement signal first; loosening the filter to `Airtable Sync is Pending` alone
+> sweeps in unreviewed rows and inverts the pipeline's order. `/catalog-sync` has also
+> never been run end to end — do one interactively before scheduling anything.
+
+**Only two files can change the POS**: `scripts/lightspeed_write.py` and
+`scripts/lightspeed_push.py`. The read path contains no write verb and a test
+enforces that. Neither system has a delete or deactivate action type, deliberately.
 
 Add a new agent = add one file in `.claude/agents/` + conform to the matching contract
 (`ingest-schema.md` for ingesters, `actions-log-schema.md` for actions agents).
@@ -63,6 +120,22 @@ It spawns each ingester as a subagent in parallel, waits, then synthesizes
 
 Both run every time `/daily-ingest` runs, including unattended/scheduled runs. Neither
 can affect `DAILY-BRIEF.md` — it's already written before either starts.
+
+**The catalogue pipeline is separate and has its own two routines** — neither is part of
+`/daily-ingest`, and neither touches the brief:
+
+1. **"Process New Pricing Files from OneDrive"** — fires on Make 4381438's
+   `{"notionID": …}`, runs `/process-price-list`, attaches two CSVs, writes no platform.
+   Canonical text: `methods/pricelist-routine-prompt.md`.
+2. **"Sync Approved Price Lists to Airtable and Lightspeed"** — drains the rows the
+   first leaves owing by running `/catalog-sync` steps 1–3, read-only, stopping at the
+   approval gate. Canonical text: `methods/catalog-sync-routine-prompt.md`. **Not yet
+   safe to schedule** — see the pipeline section above.
+
+Both routines store a *pointer* to their command file rather than a copy of the
+procedure. On 2026-09-03 the extraction routine fired carrying a procedure that had gone
+stale on 09-01 and reported success against an instruction set missing five of its seven
+steps. A pointer has nothing in it to fall behind.
 
 ## Analyses
 

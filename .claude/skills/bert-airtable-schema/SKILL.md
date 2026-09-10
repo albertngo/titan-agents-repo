@@ -357,7 +357,17 @@ When processing a supplier price list, some products are marked as SALE items wi
 
 2. **Previous price list** — if no regular price exists in the current price list, check the most recent previous price list from the same supplier. Use that cost as the original Cost/unit. The SALE cost goes into Promo cost ($/sf).
 
-3. **Use promo cost as original** — if neither source provides an original cost, use the SALE cost as Cost/unit. Retail price/unit = SALE cost + $ 1.00. The SALE cost still goes into Promo cost ($/sf) as well. When Cost and Promo cost show the same value, this signals that the original cost was not available and the promo cost was used as a placeholder.
+3. **Carry the stored regular cost forward** — where neither of the above resolves, keep the `Cost/unit` already on the record. A promo does not change what the price reverts to, so the stored value still stands and re-stating it is not a guess.
+
+   Steps 1 and 2 are preferred over it in that order because both read a price the supplier *published*: a sibling in the sheet in front of you is this cycle's regular price, and the previous list is at least a price they once printed. The stored value is whatever we last recorded, which may predate a change neither document shows. Where step 1 matches on a *near* spec rather than an exact one, take it but flag `Review Reason: Ambiguous Pricing` and name the source SKU in `Notes`.
+
+**Never write the SALE cost into `Cost/unit`** (corrected 2026-09-10, Albert). This file
+previously said to do exactly that when no original cost was available, contradicting
+*Promo and sale costs* below — *"never the promo price into `Cost/unit`, which would make
+a temporary discount look like a permanent cost drop and lose the reversion price."* That
+reversion price is the entire reason `Cost/unit` and `Promo cost ($/sf)` are separate
+fields. If all three steps fail, leave `Cost/unit` blank and flag it. A blank is honest; a promo price wearing a regular cost's clothes is
+not, and it reverts to nothing when the promo ends.
 
 In all cases, Promo cost ($/sf) = the supplier's SALE cost as-is. The regular Retail price/unit = Cost + $ 1.00. Retail adjustment during a promo is done manually.
 
@@ -655,6 +665,27 @@ Standard row values: `Change date` = date recorded; `Supplier` = the supplier; `
 **Decided 2026-09-03 (Albert): every export is a `.csv`.** One format for both the
 Airtable and the Lightspeed upload, so there is nothing to convert before importing and
 no question about which file is which.
+
+> **Reaffirmed and widened 2026-09-09 (Albert): "make sure Notion files are csv always."**
+> The rule is about **every file attached to a Notion row's `Extracted Files`**, not only
+> the two upload files. `.xlsx` never goes on a row — not as a second copy, not as a
+> "review copy," not alongside the CSV.
+>
+> **This is the loophole that produced the violation, so it is worth naming.** The rule
+> above says "every *export*"; the 2026-09-09 Gracious backfill attached a `.xlsx`
+> *review* copy beside each CSV, reasoning that a review artifact was not an export and
+> that the yellow highlighting justified it. It was still a file on the row, and it still
+> made "which file is which" a question. **A second format is not a second opinion.**
+>
+> **This binds the backfill too**, which is where it was broken: write the
+> `ls-id-backfill` output as CSV like everything else. Nothing is lost that matters —
+> the match-status and match-notes columns are real columns and survive the CSV; only
+> the row highlighting does not, and a reviewer filters or sorts on the status column
+> instead. `ls-id-backfill` now says the same thing in its own words, so the two agree;
+> if they ever drift, this rule is the one that governs what goes on a Notion row.
+>
+> An LS export *arriving* as `.xlsx` is fine — that is input, and Lightspeed exports a
+> workbook. The rule is about what we write and what we attach.
 
 Four settings, each of which fails silently if you get it wrong:
 
@@ -1027,26 +1058,34 @@ The general flow for any supplier ingest:
 
 ---
 
-### ⚠️ Cost basis — ask once, then write it down forever
+### ⚠️ Cost basis — default to the printed price, flag the exceptions
 
-**Rule (Albert, 2026-09-03).** The cost basis is the one assumption that moves every row
-in a file at once, and no amount of staring at a PDF settles it. So it is **asked, not
-inferred** — and the answer is **recorded in that supplier's subsection**, so it is asked
-exactly once per supplier and never again.
+**Rule (Albert, 2026-09-10 — supersedes the blocking version of 2026-09-03).** There is
+now a **default**, and it applies unless a supplier's subsection says otherwise:
 
-**Stop and ask Albert before continuing when either is true:**
+> **The price list's printed prices are the COST.** `Retail price/unit = Cost/unit + $ 1.00`.
+> A column printed as **MSRP**, suggested retail or suggested price goes to
+> **`MAP price ($/sf)`** and never touches `Cost/unit`.
 
-1. **The supplier is new** — always ask. There is no subsection to inherit from.
+Apply it and keep going. **Do not stop to ask which number is the cost.** The old rule
+made this a blocking question on every new supplier, which held whole files behind one
+answer; the default settles the common case, and the exceptions get flagged instead.
+
+**Flag for human review — do not stop, and never guess — when:**
+
+1. **The supplier is new.** Flag the whole file: there is no subsection to inherit from,
+   nothing has been reconciled against a live record, and **every detail needs a human
+   check before upload**. Spec confidence and cost confidence are separate questions and
+   neither is earned yet.
 2. **The sheet has more than one candidate cost column**, or a number whose role is not
    stated, on *any* supplier — a second price beside the first, an "MSRP"/"list"/"retail"
    column, a promo price beside a regular one, or a per-piece figure next to a per-sq-ft
    one. Ambiguity on an existing supplier means the *format changed*; the stored note may
    no longer describe the file in front of you.
 
-Ask him to look at the file and confirm **before** the supplier and its costs go any
-further. Put it to him concretely — name the columns as printed and say which one you
-would otherwise take as cost. This is a **blocking** question: the extraction may proceed
-so he has data to look at, but the import does not.
+Flag concretely: name the columns as printed, say which one you took as cost under the
+default, and name the SKUs affected. Extraction proceeds; the **import** is what waits on
+the human. An ambiguity absorbed silently is the one failure nothing downstream detects.
 
 **Then write the answer into the supplier's subsection under a `#### Cost column`
 heading.** That is what makes it a one-time cost. A future run reads the subsection,
@@ -3421,6 +3460,266 @@ reconciled in — see *Lee is already in Lightspeed* above.
 
 ---
 
+### Gracious (trading as "Amazing Flooring")
+
+Gracious is both the supplier and the brand. Contact on file is `sammygracious18@gmail.com`;
+the price lists arrive as a set of untitled "Fwd: PRICE LIST" emails, one PDF per range
+rather than one combined book. **First ingested 2026-09-09 from three PDFs emailed
+2026-06-30 — 248 rows (244 tile, 4 vinyl/laminate). Not yet imported.**
+
+**Amazing = Gracious** (Albert, 2026-09-09). The vinyl/laminate sheet's own header reads
+`AMAZING FLOORING`; the supplier of record is `Gracious`. Whether *Amazing* is a distinct
+**brand** on that range is still open — the first run set `Brand = Gracious` on every row
+and flagged it.
+
+#### Identity
+
+| Field | Value |
+|---|---|
+| **Supplier** (single-select) | `Gracious` — **does not exist in the Airtable select yet**; created on first import |
+| **Brand** | `Gracious` — **unconfirmed on the vinyl/laminate range**, whose sheet is headed `AMAZING FLOORING` |
+| **SKU supplier code** | `GRAC` — 4-char suffix. **Proposed on the first run, not yet confirmed by Albert.** |
+| **Internal SKU format** | Sequential per category: `TIL-GRAC-####`, `LVP-GRAC-####`, `LAM-GRAC-####`. Gracious publishes no product codes on the tile lists — the "names" there (`EUT-33`, `AWT-01`, `TOPGL-005`) are colour identifiers within a range, not standalone product codes. |
+| **Supplier SKU** | Leave blank. See above — do not promote a colour identifier to a product code. |
+| **Notion `Company`** | `GRACIOUS` (ALL CAPS, already an option) |
+
+#### Cost column
+
+**SETTLED (Albert, 2026-09-09): the single printed price is Titan's dealer cost. No
+multiplier, on any of the three ranges.**
+
+The vinyl/laminate sheet heads its price column **`STORE PRICE`** and Albert's ruling
+was literally *"Store Price is Dealer Cost"*. The two tile sheets print one price column
+with no usable header at all (`Column2`, or nothing), and the same basis applies.
+
+- Printed price → `Cost/unit` **as-is**.
+- **No MSRP, no suggested-retail, no list price and no terms page anywhere in the three
+  documents.** `MAP price ($/sf)` stays blank. That absence is a finding, not an
+  omission — do not go hunting for a second column on the next list. If one ever
+  appears, that is a format change: stop and re-confirm.
+- `Pallet price ($/sf)` blank — no pallet rate is printed.
+
+#### Markup — the tile tier is OPEN
+
+Flooring takes the schema default `Retail = Cost + $ 1.00`, applied on the vinyl and
+laminate rows.
+
+**The tile rows also carry `Cost + $ 1.00`, and that is the unconfirmed part.** Both
+other tile suppliers in the base run a supplier-specific tier (CIF `+$ 2.00` field tile /
+`+$ 5.00` mosaic; Olympia the same), and both subsections say explicitly that those
+overrides do **not** generalize. So the default was applied rather than a borrowed tier —
+but on a $ 1.29/sf tile a flat +$ 1.00 is a very different business than +$ 2.00, and
+Albert has not ruled. **Escalated 2026-09-09; replace this block with the settled tier
+when he answers.**
+
+No accessories, trims or consumables appear on any of the three sheets, so the
+cross-supplier accessory markups do not come into play yet.
+
+#### Scope of ingest
+
+Everything the three sheets contain: **TIL** (porcelain/ceramic field tile) and **LVP** +
+**LAM**. There are no mosaics, no stone, no trims and no adhesives on the current lists.
+
+#### Collections
+
+The tile sheets have almost no series naming — the section headers are mostly a size and
+a finish. Collections were therefore kept minimal so that **size variants of one colour
+group under a single LS handle** (the CIF convention):
+
+| Sheet | Printed section header | Collection |
+|---|---|---|
+| Tiles (named colours) | `TILES - 12*24` / `TILES - (24*24 POLISHED)` / `TILES - (24*48 POLISHED)` | `Tiles` |
+| " | `TILES 24*24 - ITALIAN SERIES(GLOSSY)` / `TILES 24*48 - ITALIAN SERIES(GLOSSY)` | `Italian Series` |
+| " | `TILES 24*48 - DESIGNER SERIES` | `Designer Series` |
+| Tiles (coded colours) | `TILES 24*24 -` / `TILES - (24*48 POLISHED CHINA)` / `MATTE FINISH 248*48` | `Tiles` |
+| Vinyl / laminate | `CS/DE SERIES 6.8MM`, `GS SERIES 7.8MM`, `NP SERIES 8.6MM` | `KS/DE Series`, `GS Series`, `NP Series` |
+| " | `WATERPROOF LAMINIATE 8mm+3.5mm` | `Waterproof Laminate 72HR` |
+
+**The size stays out of the collection name deliberately** — it lives in the `Size`
+segment of `Product name` and in `Width (in)` / `Length`, which is what lets one colour
+carry several sizes as LS variants.
+
+#### Product name
+
+Tile follows the CIF four-segment em-dash contract verbatim — **including the redundant
+colour segment**, since breaking it silently produces blank LS variant sizes:
+
+```
+[Collection] — [Colour] — [Size] ([Finish])
+```
+
+e.g. `Tiles — Amaretto Grey Matt — 12 x 24 (Matte)`, `Italian Series — VSK-02 Matt — 24 x 48 (Matte)`.
+The finish parenthetical is dropped only where neither the row nor its section states one.
+
+Vinyl and laminate have **no colours at all** on the sheet, so each series is one record:
+`Gracious 6.8mm KS/DE Series SPC Vinyl`, `Gracious 11.5mm Waterproof Laminate 9.37" (72HR)`.
+
+#### LS Handle format
+
+`GRAC` + alnum(Collection) + alnum(Colour) + alnum(Finish), uppercase, **colour never
+truncated** (the CIF/Olympia rule — truncation collides `TOPGL-003` with `TOPGL-004`).
+e.g. `GRACTILESAMARETTOGREYMATTMATTE`, `GRACITALIANSERIESVSK02MATTMATTE`, `GRACLVPKSDESERIES`.
+
+Finish is part of the handle, so the same colour code at a stated finish and at an unknown
+one lands in two groups — see the truncated-header quirk below.
+
+#### Category / Material type
+
+- **Tile** → `Tile / Stone`. **`Material type` is left BLANK on all 244 tile rows** — the
+  lists never say porcelain or ceramic, and neither does any header. Do not infer it from
+  the format; large-format polished is *probably* porcelain and probably is not good
+  enough. `Tile format` also blank (defaults to floor); no mosaics on these lists.
+- **KS/DE, GS, NP series** → `LVP` + `SPC core`. The sheet does not name the core;
+  `SPC core` is the global default for unlabelled rigid vinyl. `Waterproof = TRUE`.
+- **Waterproof Laminate 72HR** → `Laminate` + `Water-Resistant Core`, `Waterproof = TRUE`
+  per the Triforest precedent for hour-rated waterproof laminate (72HR/120HR). Note this
+  differs from Purelux Betten and Vizion Epic, which are printed as *water-resistant* and
+  are FALSE.
+
+#### Vinyl thickness is core + pad + wear layer
+
+The series headline thickness reconciles only when the wear layer is included, which is
+worth knowing before anyone "corrects" it:
+
+| Series | Printed composition | Headline | Check |
+|---|---|---|---|
+| KS/DE | `5+1.5mm` core+pad, `0.3` / 12 mil wear | 6.8mm | 5 + 1.5 + 0.3 = 6.8 ✓ |
+| GS | `5.5+2mm`, `0.3` / 12 mil | 7.8mm | 5.5 + 2 + 0.3 = 7.8 ✓ |
+| NP | `6+2mm`, `0.5` / 20 mil | 8.6mm | 6 + 2 + 0.5 = 8.5 — 0.1mm unaccounted for |
+
+Store the headline value. Attached pad is present on all three (`Underpad included = TRUE`)
+but **never named — `IXPE` assumed** per the global SPC default; flag it. The laminate's
+3.5mm pad is left with a blank `Underpad type`.
+
+`Pet friendly` follows the global ≥ 20 mil rule: FALSE on KS/DE and GS (12 mil), TRUE on NP.
+
+#### Fields Gracious does not provide
+
+**Tile:** material type, thickness, box size, pieces per box, sf/piece, country of origin,
+certifications, warranty, IIC/STC, traffic rating, slip rating, suitability of any kind.
+The tile sheets are literally two columns — a name and a price.
+
+**Vinyl / laminate:** colour names, colour codes, plank width and length (except the
+laminate's `1515*238`), locking system, install profile, certifications, warranty,
+IIC/STC, radiant heat.
+
+Provides: colour identifier, price, and — on the vinyl/laminate sheet only — sf/box,
+thickness composition, wear layer, and the EIR/embossed finish.
+
+#### Parsing quirks / known soft spots
+
+- **Blank name cells beside a real price.** Four rows across the two tile sheets have an
+  empty name cell with a price ($ 1.69 ×2 and $ 2.19 on the named sheet, $ 1.89 on the
+  coded sheet). They are genuinely empty in the source, not an extraction dropout —
+  verified against `extract_tables()`. Dropped and flagged; ask the rep what belongs there.
+- **A price on the `NAME` header row.** On the Designer Series page the column header
+  carries `$ 2.19`. It is a header, not a product — drop it.
+- **`TILES 24*24 -` is truncated in the source**, ending at the dash with no series name
+  and no finish. Those rows therefore carry a blank `Finish type`, which puts the same
+  colour code in a different LS handle group from its 24*48 twin (`EUT-33/34/35/47`,
+  `AWT-01/02/03`). Blank is the honest value — the section demonstrably mixes finishes
+  (`GL-005` glossy sits beside `GL-008 MATT`) — but confirm the finish before an LS upload.
+- **`MATTE FINISH 248*48`** — read as a typo for `24*48`; the $ 1.89 prices match the
+  24*48 group exactly.
+- **Sizes stated per row override the section size.** `EUT-02 12*24` inside the 24*24
+  section, `TOPGL-003 32*32`, `AWT 24*24-01`. Strip the size out of the colour token —
+  `AWT 24*24-01` becomes colour `AWT-01` at size `24 x 24`, not `AWT -01`.
+- **`(SUGAR FINISH)`** is a finish, not part of the colour — moves to `Finish type = Sugar`.
+- **Duplicate rows.** `UNICORN 5 GL` is printed twice at $ 1.39 in the same 24*24 section.
+  Deduped to one record.
+- **Suspected source typos, kept verbatim** (escalate, never silently edit): `IM6482D`
+  where every sibling is `JX`/`JM`/`JBM`-prefixed; `JM10482D-36` in a `-36` group that
+  otherwise mirrors the 24*24 codes; `CS/DE SERIES` in a header whose product row says
+  `KS/DE SERIES`; `WATERPROOF LAMINIATE`; `pianted` for painted; `syco` for sync.
+- **Colour casing.** The sheets are ALL CAPS. Title-case only words of 4+ letters —
+  short all-caps tokens are abbreviations (`SS 3633`, `XL Grey`, `Thasos White POL`,
+  `Atlanta WT`, `Unicorn 5 GL`) and anything containing a digit is a code, both left
+  exactly as printed.
+- **No effective date anywhere on any of the three PDFs.** Use the email date
+  (2026-06-30 on the first set) as `Last price update`, and record it in
+  `Price list reference` when logging to Price History Log v2.
+
+#### Stock status & promo
+
+Leave `Stock status` blank; `Active = TRUE`. None of the three sheets carries SALE,
+promo, clearance or expiry language, and there is no second price column — all three rows
+are `Regular List`. Never populate `Promo cost ($/sf)` / `Promo end date` from these
+lists; if a future one adds promos, fall back to the global promo logic.
+
+#### Gracious ingest output format
+
+One file per emailed PDF, since each arrives on its own Notion row — all 57 schema columns
+plus helper columns 58–59, written to `ingest/YYYY-MM-DD/`:
+`gracious_tiles_named_airtable_upload_[YYYY-MM-DD].csv`,
+`gracious_tiles_coded_airtable_upload_[YYYY-MM-DD].csv`,
+`gracious_vinyl_laminate_airtable_upload_[YYYY-MM-DD].csv`.
+
+**No Lightspeed file until the Airtable import happens** — the LS `id`/`handle`/`sku` columns
+are copied from the Airtable state, and no Gracious record exists in the catalogue yet. But that
+is a statement about *Airtable*, not about Lightspeed — see below.
+
+#### Gracious IS already live in Lightspeed — the third state
+
+> **Corrected 2026-09-09**, same day, from a `GRACIOUS` LS product export Albert supplied.
+> The first run concluded "Gracious has no Lightspeed presence" by inferring it from the
+> **absence of Gracious records in Airtable**. That inference was wrong. **Lightspeed holds
+> 207 Gracious products** — 110 tile, 42 laminate, 39 vinyl, plus shower niches, wall panels
+> and two hardwood lines.
+
+This is exactly the **third state** documented under RULE 0a: *new to Airtable, already live in
+Lightspeed* (the Canadian Standard pattern, 292 of 336 rows). Such rows are legitimately
+`MatchStatus: new` **and** carry a `Lightspeed ID`.
+
+**The general lesson: an empty catalogue query tells you nothing about Lightspeed.** The two
+systems are populated independently, and a supplier that has been selling for years can be
+absent from Airtable and fully present in the POS. Ask for an LS export before declaring a
+supplier LS-absent.
+
+**LS name format for Gracious** — worth knowing, because it carries facts the price lists don't:
+
+```
+[(P) ]GRACTIL -  - [Porcelain|Ceramic] ([Colour][ (Finish)])  | #[code] |  - [1224|2424|2448] - pc/b - [N]sf/b
+GRACLAM - [Series] -  ([Colour])  | #[code] | AC[N] - [L]x[W]x[T]mm ([W]") - [N]sf/b
+GRACVIN -  -  ()  | #[code] | SPC - [T]mm x [L]" x [W]" - [N]sf/b
+```
+
+- Name prefixes: `GRACTIL` / `GRACLAM` / `GRACVIN` / `GRAENG-`. A leading **`(P)` marks a
+  promo row**, not a colour — skip it when parsing.
+- **The LS name is the authority for `Material type`** (`Porcelain` vs `Ceramic`), which the
+  price lists never state. The 2026-09-09 backfill filled it on all 35 matched rows (all
+  Porcelain) from this field.
+- Size is the bare `1224` / `2424` / `2448` token — map to `12 x 24` / `24 x 24` / `24 x 48`.
+- LS tile colours carry their own spelling: `Satuvario` (vs the list's `Satvario`),
+  `Antartica Ice`, `Diana Antic Light` (vs `Diana Antique Light`), `Marquiry`. Match through
+  the drift; **never "correct" either side**.
+
+**Backfill matching** — the bridge is **colour + size**, never SKU (LS SKUs are `20026`,
+`GRA.T.P.RodBia.1224`, `5012` — a different namespace from `TIL-GRAC-####`):
+
+- Strip the finish token from both sides before comparing (`Unicorn 5 GL` ↔ `Unicorn 5 Glossy`),
+  then use finish only as a confirming detail.
+- **Digits inside a colour token are identity and must be identical for a spelling-drift
+  match.** `Unicorn 3` and `Unicorn 5` are one edit apart and are different products; so are
+  `Tropical Grey` and `Tropical Grey 2`. A drift matcher without this rule silently collapses
+  them — it did, on the first pass of the 2026-09-09 backfill, and produced a false contention
+  for one UUID.
+- A **size mismatch disqualifies** a tile candidate outright: the same colour genuinely exists
+  at several sizes as separate LS products, and the right one for that size usually also exists.
+- **Cost disagreement is expected and is not a conflict worth blocking on.** Every matched row
+  showed the new list *below* the LS supply price ($1.29 vs $1.39, $1.39 vs $1.49, $1.69 vs
+  $2.29) — that is the price drop the list exists to deliver. Flag it in the note; it actually
+  confirms the match direction.
+
+**The SPC colour range is in Lightspeed** — this answers the open question the first run raised.
+LS carries the vinyl as individual colour SKUs where the price sheet gives only a series:
+`KS-01`…`KS-13` + `KS-20`, `GS-01`…`GS-13` + `GS-20`, `TS01`…`TS10` (a series not on the new
+list), and a single `Vinyl Code NP8-13 | 8.6mm`. **So the three series-level Airtable records
+are the wrong shape** — each should become per-colour records keyed on those LS codes, after
+which the backfill resolves them one-to-one. Until then they stay `NOT_FOUND` with a blank
+`Lightspeed ID`; one record cannot hold fourteen UUIDs.
+
+---
+
 ### New supplier onboarding — checklist
 
 When a new supplier is added, gather this information before processing their first price list, and add a subsection above following the FAW template:
@@ -3428,12 +3727,13 @@ When a new supplier is added, gather this information before processing their fi
 1. **Supplier name** (exact string for Airtable single-select)
 2. **Brand(s)** — is the supplier also the brand, or do they distribute multiple brands?
 3. **4-char SKU suffix** (e.g. FAWK, VIDR, GRAN)
-4. **Cost basis — ASK ALBERT, do not infer.** Which printed column is `Cost/unit`,
-   any multiplier, and whether the supplier publishes an MSRP at all. This is the one
-   answer that moves every row in the file, and a PDF rarely states it. See
-   *Cost basis — ask once, then write it down forever* at the top of this section, and
-   **write the answer into the new subsection under `#### Cost column`** so it is never
-   asked twice.
+4. **Cost basis — apply the default, flag if the sheet is ambiguous.** The printed
+   price is the cost and `Retail = Cost + $ 1.00` unless the sheet gives you more than
+   one candidate cost column or a number whose role is not stated — then flag it,
+   naming the columns and which one you took. See *Cost basis — default to the printed
+   price, flag the exceptions* at the top of this section, and **write what you applied
+   into the new subsection under `#### Cost column`** so the next run inherits it rather
+   than re-deriving it.
 5. **Does the supplier assign product codes?** If yes, populate Supplier SKU. If no, leave blank.
 6. **Categories in scope** (ENG, LVP, LVT, HWD, LAM, TIL, CAR, ACC)
 7. **Markup overrides** — any category where `Retail = Cost + $ 1` doesn't apply (e.g. stair products, accessories, clearance)
@@ -3468,6 +3768,35 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
 
 ### Changelog
 
+- **2026-09-09** — **"Gracious has no Lightspeed presence" was wrong, and the way it was
+  reached is the reusable lesson.** The first Gracious run queried the Master Flooring
+  Catalogue, found no Gracious records, and inferred from that empty result that the supplier
+  was absent from Lightspeed too. An LS product export Albert supplied the same day shows
+  **207 live Gracious products**. Airtable and Lightspeed are populated independently — an
+  empty catalogue query is evidence about Airtable only, and a supplier selling for years can
+  be absent from one and complete in the other. **Ask for an LS export before declaring a
+  supplier LS-absent.** The backfill that followed matched 35 of 248 rows on colour + size and
+  also recovered `Material type` (Porcelain) for those rows from the LS name, a field the price
+  lists never state. Recorded in the Gracious subsection: the LS name format, the `(P)` promo
+  prefix, the LS-side colour spellings, and the rule that **digits inside a colour token are
+  identity and may not change across a spelling-drift match** — without it `Unicorn 3` and
+  `Unicorn 5` collapse into one product, which they did on the first pass.
+
+- **2026-09-09** — Added the **Gracious** supplier subsection from three PDFs emailed
+  2026-06-30 (248 rows: 156 + 88 tile, 4 vinyl/laminate; first ingest, not yet imported).
+  Its `#### Cost column` is **settled on arrival** — Albert supplied the basis with the
+  request (*"Store Price is Dealer Cost"*, and *Amazing = Gracious as the supplier*), so
+  the one question that normally blocks a new supplier never had to be asked. What is
+  **open** instead is the **tile markup tier**: `Retail = Cost + $ 1.00` (the global
+  default) was applied, deliberately *not* the CIF/Olympia `+$ 2.00` field-tile tier,
+  because both of those subsections state their overrides do not generalize — but a flat
+  `+$ 1.00` on a $ 1.29/sf tile is a materially different business and Albert has not
+  ruled. Also open: whether *Amazing* is a distinct `Brand` on the vinyl/laminate range.
+  Recorded from the run: the tile sheets are two columns wide (name + price) and state no
+  material, so `Material type` is blank on all 244 tile rows rather than inferred; four
+  rows have a genuinely empty name cell beside a real price and were dropped; and the
+  vinyl series' headline thickness only reconciles once the wear layer is added to the
+  core+pad figure.
 - **2026-09-09** — **Lee Flooring onboarded, and its cost basis settled on the first
   run.** Albert confirmed the printed `PRICE/SQ.FT` is Titan's dealer cost as-is, no
   multiplier, `Retail = Cost + $ 1.00`, and that Lee publishes no MSRP — recorded under
@@ -3495,7 +3824,9 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
 - **2026-09-09** — Added the **Vizion** supplier subsection from the 2026/07/01 list
   (52 rows, first ingest, not yet imported). Its `#### Cost column` is deliberately
   **open**: the sheet prints one unlabelled price column with no terms page and no MSRP,
-  so the basis was escalated to Albert rather than inferred, per *Cost basis — ask once*.
+  so the basis was escalated to Albert rather than inferred, under the blocking rule in
+  force at the time (superseded 2026-09-10 — a sheet like this now takes the printed
+  price as cost and is flagged, not held).
   Found independently on the Vizion run, alongside the status-name defect above.
 - **2026-09-08** — **Promo/new-product matching strengthened.** "Promo product not
   found in catalogue" now requires checking the live base for a same-colour+width+

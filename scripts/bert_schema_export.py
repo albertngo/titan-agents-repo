@@ -70,6 +70,15 @@ def load_merged(names_path: Path, config_path: Path) -> list[dict]:
     return merged
 
 
+REPO_ROOT = Path(__file__).resolve().parent.parent
+REGISTRY = REPO_ROOT / "platform-settings" / "airtable-destinations.json"
+
+
+def base_id():
+    """The base this snapshot describes. Single source: the registry."""
+    return json.loads(REGISTRY.read_text())["base_id"]
+
+
 def style_header(ws, ncols: int) -> None:
     for c in range(1, ncols + 1):
         cell = ws.cell(row=1, column=c)
@@ -113,7 +122,7 @@ def build(tables: list[dict], out: Path) -> dict:
         ws.append([t["name"], t["id"], len(t["fields"]), n_opts, primary,
                    t["description"]])
     ws.append([])
-    ws.append(["Base", "appWHOVZ0QCS0xQ3M"])
+    ws.append(["Base", base_id()])
     ws.append(["Snapshot taken", date.today().isoformat()])
     ws.append(["Source", "Airtable MCP: list_tables_for_base + get_table_schema"])
     style_header(ws, 6)
@@ -191,7 +200,7 @@ def main() -> int:
     if args.snapshot:
         args.snapshot.parent.mkdir(parents=True, exist_ok=True)
         args.snapshot.write_text(json.dumps(
-            {"base": "appWHOVZ0QCS0xQ3M",
+            {"base": base_id(),
              "snapshot_date": date.today().isoformat(),
              "tables": tables}, indent=1) + "\n")
 

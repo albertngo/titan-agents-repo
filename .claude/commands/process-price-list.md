@@ -12,6 +12,11 @@ The full method, with the rationale behind every rule below, is
 `methods/pricelist-extraction.md`. The canonical prompt text this command mirrors is
 `methods/pricelist-routine-prompt.md` — **change those two and this file together.**
 
+Read `platform-settings/pricelist-sources.json` and
+`platform-settings/airtable-destinations.json` in full before doing anything below —
+they hold the ids, property names and option strings this command must not re-derive
+or guess. Every id referenced as *(registry)* comes from there.
+
 Load the **bert-airtable-schema** skill (supplier rules, 57-column schema, RULE 0/0a)
 and, for step 5, the **ls-upload-instructions** skill. Load them as references; never
 pass them arguments.
@@ -20,11 +25,11 @@ pass them arguments.
 
 ## 1. Read the row
 
-Fetch the page. It is a row in the **Price Lists** data source
-`collection://e2dc37bc-63da-42e9-b6c0-63ff48d72e6b`. (Not
-`13b596a4505f80fc816aceefcd0de7c4` — that is the parent PAGE, not the database.)
+Fetch the page. It is a row in the **Price Lists** data source — `price_lists.data_source`
+*(registry)*. The registry also records the parent PAGE id under
+`_parent_page_not_the_database`, so that mistake is never re-made.
 
-Take `Files & media`, `Email Subject`, `Sender`, `Email Date`, `Company`, `Tags`. The
+Read the properties named in `price_lists.read_properties` *(registry)*. The
 file property is a `file://{...}` URL-encoded JSON envelope — decode it and take
 `.source` for the SharePoint share link.
 
@@ -62,7 +67,12 @@ not pick a nearest match: the option list has near-collisions (BALTIC/NORTHWAY,
 FLOORDI/UMBRELLAR) and a wrong value looks authoritative.
 
 Casing differs per system and is not to be "fixed": Notion `Company` is ALL CAPS
-(`GREENTOUCH`), Airtable `Supplier` keeps its own mixed case (`GreenTouch`).
+(`GREENTOUCH`), Airtable `Supplier` keeps its own mixed case (`GreenTouch`). **And in
+several cases it is not casing at all but a different name** — `FAW` → `Floors At Work`,
+`LEE` → `Lee Flooring`, `OLYMPIA` → `Olympia Tile`, `CIF (FAOILA)` → `CIF Distributors`,
+`BELLA` → `Bella Flooring Plus`. Cross the two with the `supplier_aliases` lookup
+*(registry)*, never with a case transform. A Notion `Company` with no entry there is the
+**new supplier** signal, not an error.
 
 ## 4. Tag the row — `Regular List` or `Promo`
 
@@ -99,7 +109,8 @@ Otherwise, **in this order — it is a dependency, not a preference**:
 1. **Extract** into the 57 canonical columns (exact documented order). **Always attempt
    `Length`** (column 17) — text, so `RL` / `48"` / `20" - 83"` are all valid; blank only
    when the supplier never states one.
-2. **Read the live catalogue** (`appWHOVZ0QCS0xQ3M` / `tblfLXD3zkSdNQGbS`) filtered to
+2. **Read the live catalogue** (`base_id` / `tables.master_flooring_catalogue.table_id`,
+   *(registry)*) filtered to
    that supplier, and match every extracted row: internal `SKU` → `Supplier SKU`
    (partial/fuzzy) → specifications, principally `Product name`. Stop at the first tier
    that resolves cleanly.
@@ -156,7 +167,14 @@ does both imports from the attached files. Never report either as imported.
 ## 6. Attach both files, then set the row's state
 
 `Extracted Files` is a Notion **`file`** property — upload natively, do not paste a
-link:
+link.
+
+**Every file on the row is a `.csv`. Always** (Albert, 2026-09-09). No `.xlsx` on a
+Notion row — not as a second copy, not as a highlighted "review copy" beside the CSV.
+That includes an `ls-id-backfill` output — its match-status and match-notes columns
+survive fine as CSV, and only row highlighting is lost. An LS export *arriving* as
+`.xlsx` is fine; that is input. Hand a workbook to the person directly if they ask
+for one; never attach it to the row.
 
 ```bash
 # 1. create-file-upload -> gives upload_url + auth header
@@ -181,6 +199,23 @@ just that field. Read the option list off the data source if a write is rejected
 - `Airtable Sync` = `Pending` — always; the run produced a file Airtable does not reflect
 - `New Products` = count of `MatchStatus = new` (`0` if none)
 - `UUID Backfill` = `Pending` if that count ≥ 1, else `Not needed`
+- `Review Reason` = **every reason this row needs a human check**, from
+  `price_lists.status_values.review_reason`. `Extraction Status` says *that* a review is
+  needed; this says *why*, and it is the only one of the two you can filter a worklist
+  on. Multi-select — set all that apply, a file routinely trips several:
+  - **`New Supplier`** — the catalogue read returned **zero rows** for this supplier.
+    Always set it. Nothing on the file has been reconciled against a live record, so
+    **every detail needs a human check before upload** — spec confidence and cost
+    confidence are separate questions and neither is earned yet.
+  - **`Ambiguous Pricing`** — more than one candidate cost column, or a number whose
+    role is not printed. The default still applies (printed price = cost,
+    `Retail = Cost + $ 1.00`); say in `Notes` which column you took.
+  - **`Ambiguous Naming`** — a row that did not resolve 1:1 (`MatchStatus: ambiguous`).
+  - **`Unmapped Category`** / **`Unmapped Grade`** / **`Spec Gap`** — no LS leaf maps;
+    grade shorthand with no canonical mapping; a flooring row with no `Box size (sf)`.
+
+  **Add, never clear.** The catalogue-sync run adds to this property too, and only the
+  reviewer removes an option, as each one is resolved.
 - `Notes` = **the flag line, or leave empty.** Write it only when the reviewer must know
   something before importing: a cost basis assumed rather than confirmed, a placeholder
   price, a schema field the base lacks, specs copied from a sibling, or a conflict with
@@ -190,10 +225,17 @@ just that field. Read the option list off the data source if a write is rejected
   `New Products` and the trackers. It does not replace the escalation task (step 7); it
   is the pointer visible when scanning the database.
 
-**Never write `Done` to any of the three trackers, and never touch `LS Upload`** — the person (later, the
-agent) who does the import, the upload or the backfill writes those. The downstream order
-is forced: `Airtable Sync: Done` → `LS Upload: Done` → `UUID Backfill: Done`, because a new product
-has no Lightspeed ID until the POS upload creates one.
+**Never write a completion value to any of the three trackers, and never touch
+`LS Upload`** — the person (later, the agent) who does the import, the upload or the
+backfill writes those. The downstream order is forced: `Airtable Sync` completes →
+`LS Upload: Done` → `UUID Backfill: Done`, because a new product has no Lightspeed ID
+until the POS upload creates one.
+
+**`Airtable Sync` has no plain `Done` option** (verified live 2026-09-10; the prose here
+said otherwise until then). Its completion values are `Done: Updated` and
+`Done: New List UUID`. Take every tracker's option list from
+`price_lists.status_values` *(registry)* rather than from memory — a status or select
+property rejects an option it does not have and takes the whole call down with it.
 
 **If the run cannot finish — the download failed, the file is not a parseable price
 document, `Company` or `Tags` could not be determined, an attachment upload or a
@@ -224,12 +266,11 @@ as printed, say which you would otherwise take as cost, and ask Albert to look a
 file. Extraction may proceed; the import waits. Record his answer in the supplier's
 `#### Cost column` subsection so the next run inherits it.
 
-Create a row in the **✅ Tactical Tasks List**
-(`collection://238596a4-505f-8137-af13-000bde205213`) assigned to Albert
-(`c39aa5d3-c87c-4152-92ef-5ed13d9c4605`), with `Priority: high`,
-`Tags: ["price list"]`, `Verification: Needs Verification`, `url` pointing at the Price
-Lists row, and Notes recording what you tried and what the document showed. Send a
-PushNotification as well — the task is the durable record, the push is the alert.
+Create a row in the **✅ Tactical Tasks List** using `escalation` *(registry)* — its
+`data_source`, `assignee_notion_person_id` and `defaults` (`Priority`, `Tags`,
+`Verification`) — with `url` pointing at the Price Lists row, and Notes recording what
+you tried and what the document showed. Send a PushNotification as well — the task is
+the durable record, the push is the alert.
 
 ## 8. Report
 
