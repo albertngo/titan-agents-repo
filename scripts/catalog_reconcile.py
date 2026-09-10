@@ -417,6 +417,15 @@ def ls_update_fields(row):
 
     So an update moves prices, which are verified 315/315, and leaves every field
     whose correct value this script cannot construct alone.
+
+    The API reference vindicates this exactly. Updates go to PUT /api/2.1/products/{id}
+    with a `common` section (fields shared by a whole variant family — name,
+    description) and a `details` section (fields belonging to one product — prices,
+    product codes). This payload is `details` alone, so an update touches nothing
+    family-wide. And `name` turns out to be worse than a rename: the reference states
+    that name IS what groups a variant family, and that two products can only share a
+    name if they are in the same family. Writing Airtable's name onto a Lightspeed
+    product could therefore merge unrelated products into one family.
     """
     return {k: v for k, v in (
         ("supply_price", as_number(row.get("Cost/unit"))),
