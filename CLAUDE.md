@@ -29,10 +29,36 @@ No ingester reads another ingester's raw platform data.
 | `meta-ads-ingest-agent` | Meta Ads (spend, leads, CPL, delivery health) | `meta-ads.json` |
 
 | `ghl-actions-agent` | GoHighLevel (write: replies, stages, tags) | appends to `actions-log.json` |
+| `lightspeed-actions-agent` | Lightspeed Retail X-Series (write: product create/update ONLY) | appends to `actions-log.json` |
+| `airtable-actions-agent` | Airtable catalogue (write: upsert, LS-ID backfill, price history) | appends to `actions-log.json` |
 | `vault-writer-agent` | titan-vault Obsidian repo (write) | vault notes per its CONVENTIONS.md — runs automatically in `/daily-ingest`, bound to its whitelist. See Vault writes. |
 
 `.claude/commands/notion-sync.md` runs automatically at the end of `/daily-ingest` too,
 but is a command, not an agent — see Notion writes below for why.
+
+### The price-list / catalogue pipeline
+
+Not part of `/daily-ingest`. Triggered per price list, and it is the only flow that
+writes to two platforms:
+
+```
+Make 4381438  ->  Notion Price Lists row  ->  /process-price-list  (produces 2 CSVs, writes no platform)
+                                                     |
+              scripts/lightspeed_pull.py  ------>  scripts/catalog_reconcile.py
+              (read-only catalogue pull)          (one reviewable diff, writes no platform)
+                                                     |
+                                          [ a person approves action ids ]
+                                                     |
+                      lightspeed-actions-agent  +  airtable-actions-agent
+```
+
+Contracts: `catalog-plan-schema.md` (the diff and the approval file),
+`actions-log-schema.md` (every write). Ids live in `platform-settings/lightspeed.json`,
+`airtable-destinations.json` and `pricelist-sources.json` — never in a prompt.
+
+**Only two files can change the POS**: `scripts/lightspeed_write.py` and
+`scripts/lightspeed_push.py`. The read path contains no write verb and a test
+enforces that. Neither system has a delete or deactivate action type, deliberately.
 
 Add a new agent = add one file in `.claude/agents/` + conform to the matching contract
 (`ingest-schema.md` for ingesters, `actions-log-schema.md` for actions agents).

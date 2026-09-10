@@ -1,0 +1,445 @@
+{
+  "_comment": "Registry for Lightspeed Retail X-Series. Holds the API connection config, the outlet name that is baked into three CSV column headers, the category vocabulary, and the rate-limit tuning. It does NOT duplicate the LS upload column mapping \u2014 that stays in the ls-upload-instructions skill, which is the single source for column ORDER and name construction. Consumed by scripts/lightspeed_client.py, scripts/lightspeed_pull.py and (from Phase 4) .claude/agents/lightspeed-actions-agent.md. Titan is on X-Series, confirmed live 2026-09-10 against flooru.retail.lightspeed.app. NOT R-Series.",
+  "_maintenance": "api_version is pinned deliberately. Lightspeed is deprecating semantic API versions (2.0) in favour of date-based versioning (e.g. 2026-01); 2.0 receives no new features. When migrating, change it here and re-run scripts/lightspeed_pull.py --probe, then --compare-export against the two committed LS workbooks, before any write runs. domain_prefix and the personal token come from .env \u2014 see .env.example. VERIFIED LIVE 2026-09-10: the pagination envelope, the version cursor and the rate-limit numbers below are measured, not assumed. api_shape records what a product actually looks like \u2014 it differs from the CSV import/export columns in three ways that matter, all noted there.",
+  "config_version": "1",
+  "api": {
+    "_comment": "Base URL is per-retailer. domain_prefix is the <prefix> in <prefix>.retail.lightspeed.app and comes from LIGHTSPEED_DOMAIN_PREFIX; it is not a secret but is account-identifying, so it is not hardcoded here.",
+    "base_url_template": "https://{domain_prefix}.retail.lightspeed.app",
+    "api_version": "2.0",
+    "_api_version_note": "Pinned. See _maintenance \u2014 2.0 is deprecated in favour of date-based versioning.",
+    "endpoints": {
+      "products": "/api/2.0/products",
+      "variant_attributes": "/api/2.0/variant_attributes",
+      "product_update": "/api/2.1/products/{id}",
+      "product_family": "/api/3.0/products/{id}",
+      "variant_add": "/api/2.1/products/"
+    },
+    "auth": {
+      "scheme": "Bearer",
+      "env_var": "LIGHTSPEED_PERSONAL_TOKEN",
+      "_token_note": "A personal token grants the SAME DATA ACCESS AS AN ADMIN USER and is NOT scopable \u2014 there is no read-only variant. Generate it at Setup > Personal tokens > Generate personal token, always WITH an expiry. It lives in .env only. Cloud env vars are not a secrets store (see .env.example). The read-only guarantee on the pull side is structural, not permission-based: scripts/lightspeed_pull.py has no write code path.",
+      "_scoped_alternative": "A genuinely scoped credential requires building an OAuth Add-on with products:read / products:write. Judged not worth it for a single-retailer internal tool; revisit if this ever runs for anyone but Titan."
+    },
+    "pagination": {
+      "_comment": "Cursor pagination on the `version` attribute carried by every collection resource. Pass the last seen version as `after`; page until fewer than page_size records come back.",
+      "cursor_param": "after",
+      "page_size_param": "page_size",
+      "page_size": 1000,
+      "cursor_field": "version",
+      "_verified": "Confirmed live 2026-09-10. Response is {\"data\": [...], \"version\": {\"min\": N, \"max\": N}}; `version.max` is the next `after`, and every record carries its own `version`. 15 pages of 1000 walked the catalogue with the cursor advancing monotonically and no repeats."
+    },
+    "_no_bulk_endpoint": "There is no bulk product create/update endpoint \u2014 bulk import is UI/CSV only. Every product is one HTTP call. This is why the sync runs as a script rather than a Make scenario metered per operation.",
+    "_no_supplier_filter": "The products endpoint has no server-side supplier filter. The pull walks the whole catalogue once, caches it, and filters locally.",
+    "_versions": {
+      "_comment": "Version sprawl is real and per-operation. Confirmed against the API reference 2026-09-10. Do not assume one version covers everything.",
+      "list_products": "2.0  GET /api/2.0/products \u2014 what scripts/lightspeed_pull.py uses.",
+      "create_product": "2.0  POST /api/2.0/products \u2014 creates a product or a whole variant family.",
+      "update_product": "2.1  PUT /api/2.1/products/{id} \u2014 `common` + `details` sections. The 2.1 update CANNOT create variants.",
+      "read_family": "3.0  GET /api/3.0/products/{id} \u2014 returns the family with a `variants` array.",
+      "current_dated": "The reference now publishes as date-versioned `2026-07`, served at /api/2026-07. 2.0/2.1/3.0 are the legacy semantic versions. Migrate deliberately; re-verify with --probe and --compare-export first.",
+      "add_variant_to_family": "2.1  POST /api/2.1/products/ \u2014 adds a variant to an EXISTING family. Distinct from the 2.0 POST that creates a family, and from the 2.1 PUT that updates one and explicitly cannot create variants."
+    }
+  },
+  "rate_limits": {
+    "_comment": "Two independent limiters. The primary is a leaky bucket sized by the retailer's register count. The secondary is a BURST limiter on 1-second fixed windows, which means a minimum interval between requests matters more than average throughput. Both surface via headers when they block.",
+    "retry_after_header": "Retry-After",
+    "limiter_type_header": "X-LS-API-RateLimit-Type",
+    "limiter_types": [
+      "api-leaky-bucket",
+      "api-burst-limiter"
+    ],
+    "min_interval_ms": 250,
+    "max_retries": 5,
+    "backoff": "honour Retry-After when present; otherwise exponential from min_interval_ms",
+    "_observed": {
+      "measured_at": "2026-09-10",
+      "catalogue_size": 14525,
+      "page_size_used": 1000,
+      "requests": 15,
+      "wall_clock_seconds": 87,
+      "throttle_events": 0,
+      "note": "A full walk at page_size 1000 with min_interval_ms 250 never tripped either limiter. 1000 is accepted and returns full pages. There is headroom, but nothing downstream needs a faster read \u2014 the walk is cached per day."
+    },
+    "_observed_note": "Populate from the first live pull: the actual bucket size, the burst window allowance, and whether min_interval_ms of 250 ever trips the burst limiter.",
+    "_abort_policy": "On repeated 429 or any 5xx, STOP THE BATCH, log, report \u2014 the house rule for actions agents. Resume is re-running the command: every completed action is already in the day's actions-log.json and is skipped."
+  },
+  "outlet": {
+    "_comment": "Read live from GET /api/2.0/outlets 2026-09-10. There is exactly one outlet, and it is NOT named 'Titan Flooring' \u2014 this file previously said it was, inferred from the LS upload CSV column suffixes.",
+    "id": "02dcd191-ae2b-11e8-ed44-690eeeb7340d",
+    "name": "Mississauga Outlet",
+    "display_prices": "exclusive",
+    "_display_prices_note": "Authoritative confirmation of the tax-exclusive model that api_shape.prices established empirically.",
+    "default_tax_id": "02dcd191-ae89-11e8-ed44-942183bc97f2",
+    "default_tax_name": "Default",
+    "taxes": {
+      "No Tax": "02dcd191-ae2b-11e8-ed44-690eeeb1e1f3",
+      "Default": "02dcd191-ae89-11e8-ed44-942183bc97f2",
+      "Credit Tax": "02dcd191-ae89-11e8-ed44-9427436ca11f"
+    },
+    "_csv_column_mismatch": "WORTH CHECKING. The LS upload CSV built by ls-upload-instructions uses the column headers outlet_tax_Titan Flooring, inventory_Titan Flooring, reorder_point_Titan Flooring and restock_level_Titan Flooring. The skill states the suffix must match the outlet name exactly, and the outlet is named 'Mississauga Outlet'. Those four columns have therefore most likely been ignored on every CSV import to date. Little practical harm \u2014 products fall back to the outlet default tax, and the inventory columns are documented as left blank anyway \u2014 but the headers are wrong and the API path should use the id above rather than any name."
+  },
+  "product_categories": {
+    "_comment": "LS requires a LEAF category \u2014 an intermediate node is rejected with 'A product can only be assigned to a leaf category'. 42 Grandeur rows were rejected on this in July 2026. Format is all caps, space-slash-space separated.",
+    "leaves": [
+      "FLOORING / ENGINEERED HARDWOOD",
+      "FLOORING / SOLID HARDWOOD",
+      "FLOORING / VINYL / SPC",
+      "FLOORING / VINYL / WPC",
+      "FLOORING / LAMINATE",
+      "FLOORING / TILE",
+      "ACCESSORIES"
+    ],
+    "not_leaves_never_write": [
+      "FLOORING",
+      "FLOORING / VINYL"
+    ],
+    "_vinyl_note": "The vinyl subcategory is decided by the product's CORE (SPC or WPC), never by its format (LVP or LVT).",
+    "_accessories_note": "Accessories (transitions, mouldings, stair treads/risers, underlay, glue) use the standalone ACCESSORIES category \u2014 not nested under FLOORING.",
+    "_unmapped_policy": "A product whose category does not resolve to one of `leaves` is BLOCKED, never guessed.",
+    "_csv_vs_api": "The `leaves` list below is the CSV-IMPORTER form. The API returns leaf names alone \u2014 see api_shape.category. Keep both straight: a write path built on the API cannot reuse this list unchanged."
+  },
+  "write_rules": {
+    "_comment": "The invariants any write path must respect. Full detail and the name-construction rules live in the ls-upload-instructions skill.",
+    "id_semantics": "A populated `id` is an UPDATE; a blank `id` is a CREATE. A blank id on a row that already exists in Lightspeed creates a DUPLICATE instead of updating. Grandeur 2026-09-03: a colour-only backfill gave 7 UUIDs to 16 rows and LS rejected 9 with 'handle already exists for your retailer, sku already exists for your retailer'.",
+    "identified_by": "NAME, not handle. Two products may not share a name.",
+    "handle_is_the_variant_key": "Rows sharing a handle become variants of one parent. Letters and numbers only.",
+    "sku_no_commas": "LS rejects commas in a SKU.",
+    "never": [
+      "delete a product",
+      "deactivate a product",
+      "write a row whose match is ambiguous or duplicate"
+    ],
+    "constants": {
+      "active": "1",
+      "track_inventory": "1"
+    },
+    "_variants_unverified": "OPEN QUESTION, gates all writes. The CSV importer takes one row per variant sharing a handle. The API creates a variant family as ONE POST carrying a `variants` array plus `variant_definitions`; adding a variant to an EXISTING family is a different call. Row-by-row POST will not reproduce importer behaviour. Must be settled by the Phase 3 spike against throwaway SKUs before any production write. Do not assume either shape until this key is replaced with the measured answer."
+  },
+  "make_scenarios": {
+    "_comment": "What Make does and does not do for Lightspeed, recorded so it is not re-litigated.",
+    "intake_trigger": {
+      "id": 4381438,
+      "name": "Price Lists",
+      "role": "Outlook attachment -> OneDrive -> anonymous share link -> Notion Price Lists row -> webhook {notionID}. UNCHANGED by this pipeline; it stays in Make.",
+      "active": true
+    },
+    "superseded_draft": {
+      "id": 4911227,
+      "name": "DRAFT - Lightspeed Product Upsert (from LS upload CSV)",
+      "active": false,
+      "why_superseded": "Row-by-row vend:MakeAPICall POST with no connection, no error handling, no UUID capture. Make's `vend` app has no Update a Product module, so updates would be hand-written API JSON inside Make anyway \u2014 the API path minus version control, tests and dry-run. Also meters per row against a 40,000 ops/month Core plan already carrying ~25 scenarios."
+    },
+    "_blueprint_editing_warning": "Do NOT edit large Make blueprints through scenarios_update. Stripping `metadata` to fit the token limit FAILS SILENTLY: the runtime needs metadata.expect, and without it the module executes, consumes an operation, makes a real round-trip, drops the payload, writes nothing, and returns SUCCESS. Edit in the Make UI. See methods/pricelist-extraction.md."
+  },
+  "api_shape": {
+    "_comment": "What a product actually looks like on the API, measured over all 14,525 products 2026-09-10. Recorded because the API and the CSV import/export are DIFFERENT vocabularies for the same catalogue \u2014 the ls-upload-instructions skill describes the CSV, and anything talking to the API needs the mapping below.",
+    "join_key": {
+      "field": "sku",
+      "_why": "The only safe join. Unique and always present: 0 blanks and 0 duplicates across 14,525 products. This is also what --compare-export proved, reconciling 267/267 Grandeur and 311/311 Canadian Standard UUIDs against the hand-made exports."
+    },
+    "identity": {
+      "id": "uuid, assigned by LS on create",
+      "handle": "variant grouping key, shared across a family",
+      "sku": "unique per product"
+    },
+    "supplier": {
+      "path": "supplier.name (object), falling back to product_suppliers[].supplier_name",
+      "present_on": 13079,
+      "only_via_product_suppliers": 6,
+      "absent_on": 1440,
+      "_do_not_join_on_this": "116 distinct supplier names live in LS against 24 Airtable supplier choices, and several real suppliers are split across more than one LS record: OLYMPIA (292) beside Olympia Tile (2926), LEE (2) beside Lee Flooring (84), UMB beside Umbrellar, MARMOCA beside MARMOCA TILE, CIF Distributors beside CIF LTD. Casing is inconsistent too. Supplier is a reporting field; join on sku.",
+      "_third_namespace": "Notion Company is ALL CAPS, Airtable Supplier is mixed case, and LS is its own thing again \u2014 mostly upper but not always. Three namespaces, none aligned. Airtable <-> Notion is in airtable-destinations.json supplier_aliases; LS is deliberately not mapped, because it does not need to be once the join is on sku."
+    },
+    "prices": {
+      "_verified": "Confirmed 2026-09-10 against every row of the Grandeur and Lee uploads that exists in Lightspeed \u2014 315/315 on both fields, no exceptions.",
+      "supply_price": "Airtable `Cost/unit`. 231/231 Grandeur and 84/84 Lee.",
+      "price_excluding_tax": "Airtable `Retail price/unit`. THIS is the retail price. 231/231 and 84/84.",
+      "price_including_tax": "DEPENDS ON THE ENDPOINT, and this corrects an earlier claim in this file. On the 2.0 LIST endpoint it mirrors price_excluding_tax on every product, which is why a survey of that endpoint found no 1.13x anywhere. The 3.0 FAMILY read computes it properly: ENG-VIDR-0038 reads tax_exclusive 6.79 / tax_inclusive 7.6727, which is exactly x1.13. Ontario HST is real and is applied on read; the 2.0 list simply does not compute it. Still never write it.",
+      "_write_rule": "Set supply_price and price_excluding_tax. Never write price_including_tax.",
+      "_no_retail_price_field": "The API has NO `retail_price` key \u2014 0 of 14,525 products carry one. That name belongs to the CSV importer only; it maps to price_excluding_tax.",
+      "_tax_exclusive": "Products are STORED tax-exclusive \u2014 the outlet reports display_prices 'exclusive'. The inclusive figure is derived at 13% by endpoints that compute it. A stored price that looks 13% low against a customer quote is correct."
+    },
+    "category": {
+      "path": "product_category.name (object), null on 482 of 14,525",
+      "form": "LEAF NAME ONLY \u2014 'SPC', 'TILE', 'ENGINEERED HARDWOOD', 'LAMINATE', 'ACCESSORIES'",
+      "_differs_from_the_csv": "No API value contains ' / '. The product_categories.leaves list below is the CSV-importer path form ('FLOORING / VINYL / SPC') and is NOT what the API returns or, presumably, accepts. 58 distinct leaf names exist live, well beyond the 7 the CSV path form covers \u2014 the catalogue carries PLUMBING, VANITY, HVAC, GROUT, INTERIOR DOORS and more.",
+      "live_leaf_names_top": [
+        "TILE",
+        "ENGINEERED HARDWOOD",
+        "VINYL",
+        "SPC",
+        "LAMINATE",
+        "ENGINEERED",
+        "TREAD",
+        "ACCESSORIES",
+        "OTHER",
+        "HARDWOOD"
+      ]
+    },
+    "variants": {
+      "_comment": "The variant data model, established by reading the live catalogue 2026-09-10. This settles WHAT a family looks like. What a CREATE request must send to produce one is still unverified \u2014 see _create_shape_unknown.",
+      "grouping_key": "family_id",
+      "_family_id": "The true grouping key, and it is on EVERY product \u2014 all 14,525 carry one. A standalone product is simply a family of one, so there is no separate 'simple product' shape to handle. 856 families have more than one member.",
+      "family_structure": {
+        "parent": "has_variants=true, variant_parent_id=null. Exactly one per family.",
+        "children": "has_variants=false, variant_parent_id=<parent id>.",
+        "_parent_is_itself_a_variant": "Not an abstract container. The parent carries its own sku, own price and its own variant_options value. ENG-VIDR-0187 is the parent AND the 'Rustic' grade.",
+        "variant_count": "On the parent only. Counts the whole family INCLUDING the parent.",
+        "button_order": "Sequences the family, 1 for the parent."
+      },
+      "shared_across_a_family": [
+        "handle",
+        "family_id",
+        "name",
+        "product_category",
+        "supplier",
+        "brand",
+        "type",
+        "product_type_id"
+      ],
+      "differs_per_member": [
+        "id",
+        "sku",
+        "variant_options[].value",
+        "variant_name",
+        "supply_price",
+        "price_excluding_tax",
+        "button_order",
+        "version"
+      ],
+      "variant_options": {
+        "shape": "[{id, name, value}]",
+        "_id_is_the_option_definition": "Shared across every member \u2014 02dcd191-ae89-11e8-ed44-946d1db08121 is 'Grade' throughout. Only `value` varies.",
+        "names_in_use": {
+          "Size": 1885,
+          "Length": 811,
+          "Thickness": 770,
+          "Depth": 769,
+          "Grade": 301,
+          "Title": 290,
+          "Color": 88,
+          "BATCH": 68
+        },
+        "_grade_is_titans_convention": "301 products group on Grade \u2014 Character / Select / Select & Better / Rustic \u2014 which is exactly the grade-variant convention in ls-upload-instructions."
+      },
+      "variant_name": "name + ' / ' + option value. Derived by Lightspeed; do not write it.",
+      "worked_example": {
+        "family_id": "4549357c-37a2-4381-8fe8-b6c91370ba93",
+        "handle": "videng---7-european-white-oak-clear-tg--75-x-18mm-x-rl---3mm-top---2456sfb",
+        "members": [
+          {
+            "sku": "ENG-VIDR-0187",
+            "role": "parent",
+            "grade": "Rustic",
+            "price": 4.49,
+            "order": 1
+          },
+          {
+            "sku": "ENG-VIDR-0056",
+            "role": "child",
+            "grade": "Character",
+            "price": 5.99,
+            "order": 2
+          },
+          {
+            "sku": "ENG-VIDR-0057",
+            "role": "child",
+            "grade": "Select",
+            "price": 6.79,
+            "order": 3
+          },
+          {
+            "sku": "ENG-VIDR-0058",
+            "role": "child",
+            "grade": "Select & Better",
+            "price": 7.99,
+            "order": 4
+          }
+        ]
+      },
+      "_create_shape_unknown": null,
+      "create": {
+        "_verified": "From the API reference and the live account, 2026-09-10. No test write was needed.",
+        "endpoint": "POST /api/2.0/products",
+        "required": [
+          "name"
+        ],
+        "_family_is_grouped_by_name": "THE critical fact. Quoting the reference: \"The `name` is the field that groups a variant family. The only way products can have the same name is if they are in the same variant family.\" So writing a name that collides with an existing product does not merely rename it \u2014 it pulls the two into one family. This is why an update never writes `name`.",
+        "family_level_fields": [
+          "name",
+          "handle",
+          "description",
+          "product_category_id",
+          "brand_id",
+          "supplier_id",
+          "tag_ids",
+          "account_code_sale",
+          "account_code_purchase"
+        ],
+        "per_variant_fields": [
+          "sku",
+          "supply_price",
+          "price_excluding_tax",
+          "product_codes",
+          "product_suppliers",
+          "variant_definitions",
+          "inventory",
+          "outlet_taxes"
+        ],
+        "variant_definitions": {
+          "shape": "[{attribute_id, value}]",
+          "max_attributes_per_family": 3
+        },
+        "max_variants_per_family": 200,
+        "_tax_fields": "Titan is a TAX-EXCLUSIVE store, so use `outlet_taxes` (per outlet_id/tax_id). `all_outlets_tax` is for tax-inclusive stores only.",
+        "response": {
+          "shape": "{\"data\": [\"uuid\", \"uuid\", ...]}",
+          "_trap": "A FLAT ARRAY OF IDS, in the order Lightspeed sorts the family by attribute value \u2014 NOT keyed by sku and not necessarily your payload order. Never map ids back to SKUs positionally. Always send an explicit `sku` per variant and re-read the family to pair them. Getting this wrong reproduces Grandeur exactly."
+        },
+        "_sku_is_generated_if_omitted": "Lightspeed mints one from your sku sequence. Titan must ALWAYS supply its own \u2014 RULE 0 makes the Airtable SKU the source of truth."
+      },
+      "update": {
+        "endpoint": "PUT /api/2.1/products/{id}",
+        "_any_member_id_works": "In 2.1 any id in the family is accepted; the parent is resolved for you.",
+        "common": "Fields shared by the whole family \u2014 name, description. Writing these hits every member.",
+        "details": "Fields belonging to one variant \u2014 product_codes, price. Updates the id in the URL.",
+        "_maps_onto_our_write_rule": "The `details` section is exactly the prices-only payload catalog_reconcile.py already emits, so an update needs no `common` section at all. That is the safe shape, not a limitation.",
+        "_cannot_create": "The update endpoints cannot add a variant to a family. Creates go through 2.0."
+      },
+      "read_only_attributes": {
+        "fields": [
+          "variant_parent_id",
+          "has_variants"
+        ],
+        "_note": "Read-only per the reference. They cannot be written to move a product between families or to promote a child to parent."
+      },
+      "inheritance": {
+        "_comment": "Children do not hold all their own data; these come from the parent.",
+        "inherited_from_parent": [
+          "name",
+          "handle",
+          "description",
+          "has_inventory",
+          "source",
+          "tags",
+          "product_categories",
+          "suppliers",
+          "brand",
+          "account_code_sales",
+          "account_code_purchase"
+        ],
+        "own_to_each_variant": [
+          "product_codes",
+          "pricing"
+        ]
+      },
+      "_orphans_explained": "The reference warns that a product not in a variant family can still carry populated variant_options \u2014 it used to be a variant and was turned back into a simple product. That is exactly the 215 products found carrying a Grade option with no parent. Never infer variant-ness from variant_options; use variant_parent_id and has_variants.",
+      "add_to_existing_family": {
+        "_comment": "Fills the gap flagged earlier. There IS an API path for adding a variant to a family that already exists \u2014 it is a third endpoint again, and it is a POST to the 2.1 collection, not the 2.0 one used to create a family from scratch.",
+        "endpoint": "POST /api/2.1/products",
+        "shape": {
+          "common": {
+            "name": "<the EXISTING family name, verbatim>"
+          },
+          "details": {
+            "product_codes": [
+              {
+                "code": "<sku>",
+                "type": "CUSTOM"
+              }
+            ],
+            "variant_attribute_values": [
+              {
+                "attribute_id": "...",
+                "attribute_value": "..."
+              }
+            ],
+            "price_including_tax": "..."
+          }
+        },
+        "_joins_by_name": "`common.name` is how the new variant finds its family \u2014 more confirmation that name is the family key on the API side.",
+        "_must_match_the_family_dimensions": "variant_attribute_values must cover EVERY attribute the family uses. A family on Color and Size needs both.",
+        "_and_must_not_duplicate_a_combination": "Two members with the same attribute values are a Duplicate Variants rejection.",
+        "_verified_live": "Executed 2026-09-10, adding ENG-VIDR-0195 (Character) to the family of ENG-VIDR-0038 (Select). Three corrections to the documented shape came out of doing it.",
+        "_no_trailing_slash": "The docs write it as /api/2.1/products/ with a trailing slash. That returns 404 'page not found'. Drop the slash.",
+        "_supply_price_is_not_a_field": "`supply_price` is rejected with 422 'Unknown field in payload'. In 2.1 the supply price lives on product_suppliers[].price alongside supplier_id. price_excluding_tax IS accepted.",
+        "response": {
+          "shape": "{\"data\": \"<single id string>\"}",
+          "_differs_from_2_0": "The 2.0 family create returns an ARRAY of ids; this returns ONE id as a bare string. Do not assume a list."
+        },
+        "worked_payload": {
+          "common": {
+            "name": "<existing family name, verbatim>"
+          },
+          "details": {
+            "is_active": true,
+            "product_codes": [
+              {
+                "code": "<sku>",
+                "type": "CUSTOM"
+              }
+            ],
+            "variant_attribute_values": [
+              {
+                "attribute_id": "<attr id>",
+                "attribute_value": "<value>"
+              }
+            ],
+            "price_excluding_tax": 5.79,
+            "product_suppliers": [
+              {
+                "supplier_id": "<supplier id>",
+                "price": 4.79
+              }
+            ]
+          }
+        }
+      },
+      "read_family_key_names": {
+        "_comment": "Three names for one concept across three endpoints. Reading the wrong one returns nothing, silently.",
+        "2.0_list": "variant_options \u2014 [{id, name, value}]",
+        "3.0_family_read": "variant_definitions \u2014 [{attribute_id, name, value}]",
+        "2.1_write": "variant_attribute_values \u2014 [{attribute_id, attribute_value}]",
+        "sku_on_a_3_0_variant": "primary_sku_code, NOT sku. Also present as the CUSTOM entry in product_codes, which is the authoritative one."
+      }
+    },
+    "active": {
+      "fields": [
+        "active",
+        "is_active"
+      ],
+      "_note": "The two always agreed: 12,934 true, 1,591 false. deleted_at was null on every product."
+    },
+    "handles": {
+      "_comment": "Handle format is NOT consistent across the catalogue, which matters because it is shared across a family and is what the upload CSV keys grouping on.",
+      "titan_minted": "Uppercase alphanumeric, supplied explicitly \u2014 GRND65EWOBORABORA, LEEFACCTMOULD. This is the format ls-upload-instructions specifies.",
+      "lightspeed_generated": "Lowercase slug derived from the product name when no handle is supplied \u2014 videng---7-european-white-oak-clear-tg--75-x-18mm-x-rl---3mm-top---2456sfb. The whole Vidar range is this shape.",
+      "_implication": "Never assume a handle matches the minted format when reading. 856 handles are shared by more than one product, which is correct \u2014 that is a family."
+    },
+    "variant_attributes": {
+      "_comment": "Attributes must exist before a variant referencing them can be created. Titan's account already has 28. Read live: GET /api/2.0/variant_attributes.",
+      "grade": {
+        "id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "name": "Grade",
+        "_note": "Already exists and is already in use on 301 products with Character / Select / Select & Better / Rustic. Titan's grade-variant convention needs NO attribute creation."
+      },
+      "other_real_ones": {
+        "Size": "02dcd191-ae89-11e8-ed44-a5b5268c7875",
+        "Length": "02dcd191-ae89-11e8-ed44-9ab063390c40",
+        "Thickness": "02dcd191-ae89-11e9-ed44-2a2d8a79162b",
+        "Depth": "02dcd191-ae89-11e9-ed44-2a216f280f0c",
+        "Colour": "02dcd191-ae89-11e8-ed44-9fefd3a9eb44",
+        "Color": "02dcd191-ae89-11e9-ed44-19a758b69456"
+      },
+      "_junk_present": "Several attributes are clearly accidental \u2014 'Red Oak', '31/2\"*7', '5-1/4\" STEP', \"10'\", '____ BATCH'. Note both 'Colour' and 'Color' exist. Never create an attribute automatically; pick from the live list or stop."
+    },
+    "categories_are_product_types": "product_category and product_type are the same thing \u2014 the reference says 'Product types are now product categories', and on a live product product_type_id equals product_category.id. Resolve names via GET /api/2.0/product_types; 63 exist, flat, e.g. ENGINEERED HARDWOOD, SPC, GLUE DOWN, LOOSE LAY, ACCESSORIES.",
+    "handle_vs_name": {
+      "_comment": "Worth stating plainly because the two entry points differ and both beliefs are half right.",
+      "csv_import": "Handle is the grouping key YOU supply \u2014 rows sharing a handle become variants of one product. This is why Airtable carries LS Handle / Parent ID.",
+      "api": "`name` is what Lightspeed identifies a family by. A create passes a `variants` array, so array membership does the grouping and handle is optional (Lightspeed slugs one from the name if omitted). Adding to an existing family joins it by common.name.",
+      "_they_must_agree": "The ls-upload-instructions skill already states the reconciliation: every row sharing a name must share one handle. In the live catalogue that holds \u2014 family members share both.",
+      "_practical_rule": "Read identity from variant_parent_id / has_variants, join products on sku, and treat handle as the CSV-side grouping key it is."
+    }
+  }
+}

@@ -4,3 +4,7 @@ __pycache__/
 *.pyc
 analysis/cache/
 .venv/
+
+# Lightspeed product bodies: regenerable from the API, ~9-41 MB per run.
+# The committed record of a pull is the -summary.json beside them.
+ingest/*/lightspeed-products.json
