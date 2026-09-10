@@ -154,26 +154,87 @@
       ]
     },
     "variants": {
-      "_comment": "Direct evidence for the Phase 3 spike. The API models a family as a parent product with has_variants=true and children carrying variant_parent_id, each with a variant_options array of {name, value}. Children share the parent's handle.",
-      "parents_has_variants_true": 1228,
-      "children_with_variant_parent_id": 2370,
-      "products_with_variant_options": 3598,
-      "option_names_in_use": {
-        "Size": 1885,
-        "Length": 811,
-        "Thickness": 770,
-        "Depth": 769,
-        "Grade": 301,
-        "Title": 290,
-        "Color": 88,
-        "BATCH": 68
+      "_comment": "The variant data model, established by reading the live catalogue 2026-09-10. This settles WHAT a family looks like. What a CREATE request must send to produce one is still unverified \u2014 see _create_shape_unknown.",
+      "grouping_key": "family_id",
+      "_family_id": "The true grouping key, and it is on EVERY product \u2014 all 14,525 carry one. A standalone product is simply a family of one, so there is no separate 'simple product' shape to handle. 856 families have more than one member.",
+      "family_structure": {
+        "parent": "has_variants=true, variant_parent_id=null. Exactly one per family.",
+        "children": "has_variants=false, variant_parent_id=<parent id>.",
+        "_parent_is_itself_a_variant": "Not an abstract container. The parent carries its own sku, own price and its own variant_options value. ENG-VIDR-0187 is the parent AND the 'Rustic' grade.",
+        "variant_count": "On the parent only. Counts the whole family INCLUDING the parent.",
+        "button_order": "Sequences the family, 1 for the parent."
       },
-      "_grade_already_in_use": "301 products already group on a 'Grade' option \u2014 which is exactly Titan's grade-variant convention. The spike still has to establish how a family is CREATED through the API versus the CSV importer, but the data model itself is no longer an unknown.",
-      "largest_handle_groups": {
-        "newopenitems": 133,
-        "Custom1sord": 128,
-        "Custom1sosq": 128
-      }
+      "shared_across_a_family": [
+        "handle",
+        "family_id",
+        "name",
+        "product_category",
+        "supplier",
+        "brand",
+        "type",
+        "product_type_id"
+      ],
+      "differs_per_member": [
+        "id",
+        "sku",
+        "variant_options[].value",
+        "variant_name",
+        "supply_price",
+        "price_excluding_tax",
+        "button_order",
+        "version"
+      ],
+      "variant_options": {
+        "shape": "[{id, name, value}]",
+        "_id_is_the_option_definition": "Shared across every member \u2014 02dcd191-ae89-11e8-ed44-946d1db08121 is 'Grade' throughout. Only `value` varies.",
+        "names_in_use": {
+          "Size": 1885,
+          "Length": 811,
+          "Thickness": 770,
+          "Depth": 769,
+          "Grade": 301,
+          "Title": 290,
+          "Color": 88,
+          "BATCH": 68
+        },
+        "_grade_is_titans_convention": "301 products group on Grade \u2014 Character / Select / Select & Better / Rustic \u2014 which is exactly the grade-variant convention in ls-upload-instructions."
+      },
+      "variant_name": "name + ' / ' + option value. Derived by Lightspeed; do not write it.",
+      "worked_example": {
+        "family_id": "4549357c-37a2-4381-8fe8-b6c91370ba93",
+        "handle": "videng---7-european-white-oak-clear-tg--75-x-18mm-x-rl---3mm-top---2456sfb",
+        "members": [
+          {
+            "sku": "ENG-VIDR-0187",
+            "role": "parent",
+            "grade": "Rustic",
+            "price": 4.49,
+            "order": 1
+          },
+          {
+            "sku": "ENG-VIDR-0056",
+            "role": "child",
+            "grade": "Character",
+            "price": 5.99,
+            "order": 2
+          },
+          {
+            "sku": "ENG-VIDR-0057",
+            "role": "child",
+            "grade": "Select",
+            "price": 6.79,
+            "order": 3
+          },
+          {
+            "sku": "ENG-VIDR-0058",
+            "role": "child",
+            "grade": "Select & Better",
+            "price": 7.99,
+            "order": 4
+          }
+        ]
+      },
+      "_create_shape_unknown": "STILL GATES ALL WRITES. Whether a family is created by POSTing a parent carrying a `variants` array, or by POSTing members individually with variant_parent_id, cannot be determined by reading existing products. Resolve from the API reference at x-series-api.lightspeedhq.com (currently egress-blocked; only flooru.retail.lightspeed.app is allowlisted) or by one throwaway create. Do not guess."
     },
     "active": {
       "fields": [
@@ -181,6 +242,12 @@
         "is_active"
       ],
       "_note": "The two always agreed: 12,934 true, 1,591 false. deleted_at was null on every product."
+    },
+    "handles": {
+      "_comment": "Handle format is NOT consistent across the catalogue, which matters because it is shared across a family and is what the upload CSV keys grouping on.",
+      "titan_minted": "Uppercase alphanumeric, supplied explicitly \u2014 GRND65EWOBORABORA, LEEFACCTMOULD. This is the format ls-upload-instructions specifies.",
+      "lightspeed_generated": "Lowercase slug derived from the product name when no handle is supplied \u2014 videng---7-european-white-oak-clear-tg--75-x-18mm-x-rl---3mm-top---2456sfb. The whole Vidar range is this shape.",
+      "_implication": "Never assume a handle matches the minted format when reading. 856 handles are shared by more than one product, which is correct \u2014 that is a family."
     }
   }
 }
