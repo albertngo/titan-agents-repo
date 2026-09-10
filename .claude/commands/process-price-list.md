@@ -167,7 +167,14 @@ does both imports from the attached files. Never report either as imported.
 ## 6. Attach both files, then set the row's state
 
 `Extracted Files` is a Notion **`file`** property — upload natively, do not paste a
-link:
+link.
+
+**Every file on the row is a `.csv`. Always** (Albert, 2026-09-09). No `.xlsx` on a
+Notion row — not as a second copy, not as a highlighted "review copy" beside the CSV.
+That includes an `ls-id-backfill` output — its match-status and match-notes columns
+survive fine as CSV, and only row highlighting is lost. An LS export *arriving* as
+`.xlsx` is fine; that is input. Hand a workbook to the person directly if they ask
+for one; never attach it to the row.
 
 ```bash
 # 1. create-file-upload -> gives upload_url + auth header
