@@ -14,6 +14,12 @@ files now state these rules; **change them together**:
 | `methods/pricelist-routine-prompt.md` | this file — the scheduled routine's prompt |
 | `.claude/commands/process-price-list.md` | the manual entry point |
 
+Ids, property names and option strings are **not** in any of the three. They live in
+`platform-settings/pricelist-sources.json` (the Notion row, its properties, the
+escalation target) and `platform-settings/airtable-destinations.json` (base, tables,
+field ids, the Notion→Airtable supplier alias map). A renamed property or a newly
+onboarded supplier is a one-line data edit there, never a prose edit here.
+
 ## The live routine now carries a pointer, not the procedure
 
 **Changed 2026-09-03 (Albert).** The stored routine prompt is the short text in
@@ -99,11 +105,12 @@ given.**
 
 ### 1. Read the row
 
-Fetch the page. `<id>` is a page in the **Price Lists** data source
-`collection://e2dc37bc-63da-42e9-b6c0-63ff48d72e6b`. (Do not look it up under
-`13b596a4505f80fc816aceefcd0de7c4` — that is the parent PAGE, not the database.)
+Fetch the page. `<id>` is a page in the **Price Lists** data source —
+`price_lists.data_source` in `platform-settings/pricelist-sources.json`. That file also
+records the parent PAGE id under `_parent_page_not_the_database`, which is not the
+database and must not be queried as one.
 
-Take `Files & media`, `Email Subject`, `Sender`, `Email Date`, `Company`, `Tags`.
+Read the properties named in `price_lists.read_properties`.
 The file property is a `file://{...}` URL-encoded JSON envelope — decode it and
 take `.source` for the SharePoint share link.
 
@@ -222,8 +229,9 @@ escalated (step 6), never edited — see RULE 0 in the `bert-airtable-schema` sk
 This holds even though this routine writes nothing: the file you attach must obey it,
 because a person will import it.
 
-Still **read** the Master Flooring Catalogue (`appWHOVZ0QCS0xQ3M` /
-`tblfLXD3zkSdNQGbS`) filtered to that supplier — the read decides what the Airtable
+Still **read** the Master Flooring Catalogue (`base_id` /
+`tables.master_flooring_catalogue.table_id` in
+`platform-settings/airtable-destinations.json`) filtered to that supplier — the read decides what the Airtable
 file must contain, even though nothing is written:
 
 - **Rows returned** → the file is an **UPDATE sheet**. Reconcile each extracted row
@@ -243,10 +251,9 @@ job.
 
 ### 6. Escalate anything you could not determine
 
-Create a row in the **✅ Tactical Tasks List**
-(`collection://238596a4-505f-8137-af13-000bde205213`) assigned to Albert
-(`c39aa5d3-c87c-4152-92ef-5ed13d9c4605`), with `Priority: high`,
-`Tags: ["price list"]`, `Verification: Needs Verification`, `url` pointing at the
+Create a row in the **✅ Tactical Tasks List** using `escalation`
+(`platform-settings/pricelist-sources.json`) — its `data_source`,
+`assignee_notion_person_id` and `defaults` — with `url` pointing at the
 Price Lists row, and Notes recording what you tried and what the document showed.
 Send a PushNotification as well — the task is the durable record, the push is the
 alert.
@@ -287,19 +294,24 @@ These are the two things a run leaves owing, each its own worklist filter:
 `UUID Backfill is Pending` (new products whose Lightspeed IDs are not back yet). The LS
 backfill is **batched** — one LS export covers several lists — so it lags by design.
 
-**A run never writes `Done` to either tracker, and never touches `LS Upload`** (the checkbox
+**A run never writes a completion value to either tracker, and never touches `LS Upload`** (the checkbox
 marking that the LS file has been pushed to the POS). Only the person — later, the
 agent — who performs the import, the upload or the backfill does. Getting
 `New Products` right matters: it says how many UUIDs should come back, so an incomplete
 backfill is visible.
 
 The three downstream actions are ordered by dependency —
-`Airtable Sync: Done` → `LS Upload: Done` → `UUID Backfill: Done` — because a new product has no
+`Airtable Sync: Done: *` → `LS Upload: Done` → `UUID Backfill: Done` — because a new product has no
 Lightspeed ID until the POS upload creates one.
 
-`Airtable Sync = Done` means Airtable *currently mirrors the attached file* — so if
+**`Airtable Sync` has no plain `Done` option** (verified live 2026-09-10): its completion
+values are `Done: Updated` and `Done: New List UUID`. Every tracker's option list is in
+`price_lists.status_values` — take it from there, since a rejected option fails the whole
+`update-page` call.
+
+A `Done: *` value on `Airtable Sync` means Airtable *currently mirrors the attached file* — so if
 that file is edited and re-attached, it returns to `Pending`. `Extraction Status = Extracted [All Uploaded]` only
-once both trackers read `Done` or `Not needed`. Full state model:
+once both trackers read a completion value (`Done: *` / `Done`) or `Not needed`. Full state model:
 `methods/pricelist-extraction.md`.
 
 Two traps in the upload itself — the recipe and both failure signatures are in

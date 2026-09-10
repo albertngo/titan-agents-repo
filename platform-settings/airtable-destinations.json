@@ -1,0 +1,116 @@
+{
+  "_comment": "Registry for the Airtable side of the flooring catalogue: base, tables, field ids, the upsert merge key, batch caps, and the Notion-Company -> Airtable-Supplier alias map. Consumed by .claude/commands/process-price-list.md, .claude/commands/catalog-sync.md, .claude/agents/pricelist-processor.md and (from Phase 4) .claude/agents/airtable-actions-agent.md. Source: live base schema, verified via Airtable MCP 2026-09-10. Field IDS are stable across renames; field NAMES are not — prefer the id wherever the API accepts one.",
+  "_maintenance": "Goes stale silently when a field is added or a select option is introduced for a newly onboarded supplier. Re-verify with list_tables_for_base (names + ids + types) and get_table_schema (select choices) — bert_schema_export.py merges both because neither is sufficient alone. Last full snapshot: analysis/output/bert-airtable-schema-2026-09-01.json (predates the Length field, added 2026-09-03).",
+
+  "config_version": "1",
+
+  "base_id": "appWHOVZ0QCS0xQ3M",
+
+  "tables": {
+    "master_flooring_catalogue": {
+      "_comment": "Source of truth for every Titan flooring product. 62 fields live; the canonical upload CSV is the first 57 in documented order (the 5 excluded are Price History Log, Price List URL, Internal notes, Attachments, Attachment Summary, Price History Log v2).",
+      "table_id": "tblfLXD3zkSdNQGbS",
+      "primary_field_id": "fldx3byCOht5HbKmH",
+      "merge_field_id": "fldx3byCOht5HbKmH",
+      "_merge_field_note": "RULE 0. Upsert with fieldIdsToMergeOn: ['fldx3byCOht5HbKmH']. The SKU is immutable and the source of truth — it is NEVER included in the write payload, and no automated process may mint, reformat or 'correct' a stored one. A SKU that looks wrong is escalated, never edited.",
+      "batch_cap": 50,
+      "fields": {
+        "SKU": "fldx3byCOht5HbKmH",
+        "Product name": "fldPSbURaP3wp0Tce",
+        "Brand": "fldUnNZptVhSQYp4h",
+        "Supplier": "fldRZJ5JW4G6Yig8x",
+        "Supplier SKU": "fldLOrMqh4aBftjtu",
+        "Lightspeed ID": "fldQhbI35Ng2ZxNKL",
+        "LS Handle / Parent ID": "fldPV7HD44LsBZbTa",
+        "Collection": "fldL8miCdB55TWmfJ",
+        "Width (in)": "fldb9VH0GrYL2y8OK",
+        "Length": "fldnx613WYktJTVpT",
+        "Thickness (mm)": "fldEevOqBS3QngAGu",
+        "Grade": "fld42aGNM67nKH2hp",
+        "Species": "fldvWLfeSvsMnd1vL",
+        "Cost/unit": "flduJqOhE4YuX3Bmq",
+        "Retail price/unit": "fldpH6d7GlytLLh7Q",
+        "MAP price ($/sf)": "fldBXJ01HkGU9j0jc",
+        "Pallet price ($/sf)": "fldbYjaqpOY2XQWhY",
+        "Promo cost ($/sf)": "fldB21dDwkG60NEAS",
+        "Promo end date": "fldluA0eeTCwfton7",
+        "Last price update": "fld67650y8QClqoMc",
+        "Price last changed by": "fldow6H8DTr7jg5nb",
+        "Box size (sf)": "fldFXyeHxIVYjWM4R",
+        "Stock status": "fld0sft4ZRTMHt5Hi",
+        "Active": "fldPsKISM495IjaWU"
+      },
+      "_fields_note": "Identity, pricing and matching fields only — the ones automation reads or writes by id. The full 62-field list is in the live schema; the canonical 57-column CSV order is in the bert-airtable-schema skill, which stays the single source for column ORDER.",
+      "identity_fields": ["SKU", "LS Handle / Parent ID", "Lightspeed ID"],
+      "_identity_note": "Written verbatim from the live record on every matched row. On a NEW row: minted SKU, minted handle, and a deliberately BLANK Lightspeed ID — Lightspeed generates that on create. Never invent or placeholder one. A blank Lightspeed ID is a defect on a `matched` row and correct on a `new` row.",
+      "helper_columns": ["MatchedRecId", "MatchStatus", "LS Match status", "LS Match notes"],
+      "_helper_note": "Appended to the upload CSV for the reviewer, deleted before import. MatchStatus answers 'does this row create or update an Airtable record'; LS Match status answers 'did we find this product in Lightspeed'. They are independent — a row can legitimately be MatchStatus: new AND LS Match status: OK (Canadian Standard 2026-09-03: 292 of 336 rows).",
+      "match_status_values": ["matched", "new", "ambiguous"],
+      "stock_status_values": ["In stock", "Low stock", "Special order", "Discontinued", "Clearance"]
+    },
+
+    "price_history_log_v2": {
+      "_comment": "Append-only pricing audit trail. The ORIGINAL Price History Log (tbl1Af1yC6n2KvL7C) was never populated and is superseded — do not write to it.",
+      "table_id": "tbly2em2cMuQs9eqK",
+      "primary_field_id": "fldloZ7vUSUkRYXEo",
+      "batch_cap": 10,
+      "superseded_table_id": "tbl1Af1yC6n2KvL7C",
+      "fields": {
+        "SKU": "fldloZ7vUSUkRYXEo",
+        "Product name": "fldMZ7i0jTwX71YWl",
+        "Entry type": "fldDOuZeRRadd8PRu",
+        "Previous cost ($/sf)": "fldEFgoDQsXQ9C4MI",
+        "New cost ($/sf)": "fldFLf37Opt6NY9g2",
+        "Promo cost ($/sf)": "fldbHk8XlG6ecpJrP",
+        "Promo end date": "fldLVdhTu0NpovGrQ",
+        "Change date": "fldJlqHXkqBvwqUlr",
+        "Supplier": "fldM5b11sIi2IV6pN",
+        "Changed by": "fldEEIkFXiKGC1OPP",
+        "Price list reference": "fldQTDIDUStJe6EWW",
+        "Notes": "fldHkqE47Q1bjGtEi"
+      },
+      "entry_type_values": ["Regular price change", "Promo applied", "Promo cleared"],
+      "changed_by_values": ["Manual", "Cowork"]
+    }
+  },
+
+  "supplier_aliases": {
+    "_comment": "Notion `Company` option (ALL CAPS) -> Airtable `Supplier` select choice. Several are NOT casing differences but genuinely different names, which is why this must be a lookup and never a case transform: FAW -> Floors At Work, BELLA -> Bella Flooring Plus, CIF (FAOILA) -> CIF Distributors, OLYMPIA -> Olympia Tile, LEE -> Lee Flooring. Verified 2026-09-10 against the live Notion Company options (50) and the live Airtable Supplier choices (24).",
+    "_maintenance": "A Notion Company option with no entry here is a supplier not yet onboarded to Airtable — that is the NEW SUPPLIER signal, not an error. Add the pair here when the supplier is onboarded. Never invent an Airtable choice: writing an unknown select value creates a duplicate choice silently.",
+    "BIYORK": "Biyork",
+    "CANADIAN STANDARD": "Canadian Standard",
+    "CIF (FAOILA)": "CIF Distributors",
+    "DRAGONA": "Dragona",
+    "EVERGREEN": "Evergreen",
+    "FAW": "Floors At Work",
+    "FLOORDI": "Floordi",
+    "GRACIOUS": "Gracious",
+    "GRANDEUR": "Grandeur",
+    "GREENTOUCH": "GreenTouch",
+    "BELLA": "Bella Flooring Plus",
+    "LEE": "Lee Flooring",
+    "OLYMPIA": "Olympia Tile",
+    "PURELUX": "Purelux",
+    "SIMBA": "Simba",
+    "SUNSHINY": "Sunshiny",
+    "TOSCA": "Tosca",
+    "TRIFOREST": "Triforest",
+    "UMBRELLAR": "Umbrellar",
+    "VIDAR": "Vidar",
+    "VIZION": "Vizion",
+    "WEISS": "Weiss",
+    "WODEN": "Woden"
+  },
+
+  "_placeholder_choices": {
+    "_comment": "Two literal placeholder values exist in the live base and are NOT real values: `Supplier` as a Supplier choice, and `Stock status` as a Stock status choice. Never write either; treat reading one as a data defect worth flagging.",
+    "supplier": "Supplier",
+    "stock_status": "Stock status"
+  },
+
+  "access": {
+    "_comment": "How automation reaches this base today.",
+    "current": "Airtable MCP tools only (mcp__Airtable__*). No API token, no AIRTABLE_* env var, no script calls api.airtable.com.",
+    "planned": "AIRTABLE_PAT scoped to this base alone, added when the write side lands (Phase 4), so batched writes can be idempotent and resumable outside a model turn."
+  }
+}

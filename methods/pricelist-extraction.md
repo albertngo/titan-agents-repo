@@ -120,7 +120,8 @@ Not writing does **not** remove the need to read the catalogue first — see bel
 
 ## Check the supplier exists first
 
-Query the Master Flooring Catalogue (`appWHOVZ0QCS0xQ3M` / `tblfLXD3zkSdNQGbS`)
+Query the Master Flooring Catalogue (`base_id` /
+`tables.master_flooring_catalogue.table_id` in `platform-settings/airtable-destinations.json`)
 filtered to that supplier. The answer decides what the exported file *is*:
 
 - **Rows returned** → the file is an **update sheet** and must carry the existing
@@ -180,22 +181,27 @@ is tracked on the row, because it happens later and (for now) by hand.
 | `Extraction Status` | run, then whoever finishes it | `Extracted [Needs Review]` after the files land, or `Extracted [Error]` if the run could not finish. `Extracted [Ready to Upload]` / `Extracted [All Uploaded]` / `Not Needed` are the reviewer's, never a run's. **The property key is `Extraction Status`; writing `Status`, or an option name the property does not have, fails the whole `update-page` call** — corrected 2026-09-09, the names in this file used to be wrong. |
 | ~~`Extracted`~~ | — | **Removed from the data source 2026-09-03.** It duplicated `Extraction Status = Extracted [Needs Review]`. Writing it now fails the whole `update-page` call with a `validation_error`, so do not reintroduce it. |
 | `New Products` | the run | count of `MatchStatus = new` rows, `0` if none |
-| `Airtable Sync` | run, then importer | `Pending` · `Done` · `Not needed` |
+| `Airtable Sync` | run, then importer | `Pending` · `Done: Updated` · `Done: New List UUID` · `Not needed`. **There is no plain `Done`** — corrected 2026-09-10 against the live data source; this file said `Done` until then. `Done: Updated` = the import updated existing records; `Done: New List UUID` = it created records still awaiting Lightspeed UUIDs. |
 | `LS Upload` (select) | whoever uploads to Lightspeed | `Pending` = not pushed to the POS yet · `Done` = pushed · `Not needed` = no LS file for this run |
 | `UUID Backfill` | run, then backfill | `Pending` · `Done` · `Not needed` |
 
 **The run always leaves `Airtable Sync = Pending`** — it has produced a file Airtable
 does not yet reflect. It sets `UUID Backfill = Pending` when it minted ≥1 new product,
-else `Not needed`. **A run never writes `Done` to either, and never touches `LS Upload`** —
-it does not upload anything.
+else `Not needed`. **A run never writes a completion value to either, and never touches
+`LS Upload`** — it does not upload anything.
 
 ### The three actions happen in this order, and the order is forced
 
 ```
-Airtable Sync: Done  →  LS Upload: Done  →  UUID Backfill: Done
-   import the file      push LS file    export from LS, write
-   into Airtable        to the POS      the UUIDs back
+Airtable Sync: Done: *  →  LS Upload: Done  →  UUID Backfill: Done
+   import the file        push LS file      export from LS, write
+   into Airtable          to the POS        the UUIDs back
 ```
+
+Option strings are exact-match and live in `price_lists.status_values`
+(`platform-settings/pricelist-sources.json`). Take them from there, not from memory:
+a select or status property rejects an option it does not have and fails the whole
+`update-page` call, so one stale string loses every field in that write.
 
 Not a convention — a dependency:
 
@@ -220,7 +226,7 @@ should yield, so a partial backfill shows up instead of passing silently.
 
 ### `Airtable Sync` can go backwards — that is the point
 
-`Airtable Sync = Done` means **Airtable currently mirrors the file attached to this
+A `Done: *` value on `Airtable Sync` means **Airtable currently mirrors the file attached to this
 row**. It is a statement about agreement between two things, not a step that was once
 completed.
 
@@ -307,8 +313,12 @@ before trusting it** — the skill is not authoritative about what is actually s
 - Fields that changed, `Last price update`, `Price last changed by` = **`Cowork`**,
   and the Price History Log v2 rows are all still the *reviewer's* import job — the
   routine no longer performs them. Keep the values correct in the exported sheet.
-- Lightspeed has no API in this environment. Produce the ls-upload file; never
-  report it as imported.
+- **This routine still writes no platform.** Produce the ls-upload file; never report
+  it as imported. (Until 2026-09-10 this line read "Lightspeed has no API in this
+  environment" — that is no longer true. Titan is on X-Series, whose REST API is
+  configured in `platform-settings/lightspeed.json`. The API is reached by the separate
+  catalogue-sync path, deliberately, so that extraction stays a read-and-produce step
+  with no write credentials in reach.)
 
 ## Verify before writing, and after
 
@@ -374,10 +384,9 @@ incomplete.
 
 ### Escalation when the company can't be determined
 
-Create a row in the **✅ Tactical Tasks List**
-(`collection://238596a4-505f-8137-af13-000bde205213`) assigned to Albert
-(`c39aa5d3-c87c-4152-92ef-5ed13d9c4605`), `Priority: high`,
-`Tags: ["price list"]`, `Verification: Needs Verification`, `url` pointing at the
+Create a row in the **✅ Tactical Tasks List** using `escalation`
+(`platform-settings/pricelist-sources.json`) — its `data_source`,
+`assignee_notion_person_id` and `defaults` — with `url` pointing at the
 Price Lists row, and Notes recording what was tried and what the document showed.
 Send a PushNotification as well — the task is the durable record, the push is the
 alert. Assigning Albert matches what scenario 4381438 already does for its

@@ -1,0 +1,98 @@
+{
+  "_comment": "Registry for Lightspeed Retail X-Series. Holds the API connection config, the outlet name that is baked into three CSV column headers, the category vocabulary, and the rate-limit tuning. It does NOT duplicate the LS upload column mapping — that stays in the ls-upload-instructions skill, which is the single source for column ORDER and name construction. Consumed by scripts/lightspeed_client.py, scripts/lightspeed_pull.py and (from Phase 4) .claude/agents/lightspeed-actions-agent.md. Titan is on X-Series (evidence: outlet-suffixed CSV columns, and Make's `vend` app), NOT R-Series.",
+  "_maintenance": "api_version is pinned deliberately. Lightspeed is deprecating semantic API versions (2.0) in favour of date-based versioning (e.g. 2026-01); 2.0 receives no new features. When migrating, change it here and re-run the Phase 1 pull against a known export before any write runs. domain_prefix and the personal token come from .env — see .env.example. The rate-limit numbers below are conservative starting values, NOT measured: tune min_interval_ms from the headers observed on the first live pull and record the observed values in _observed.",
+
+  "config_version": "1",
+
+  "api": {
+    "_comment": "Base URL is per-retailer. domain_prefix is the <prefix> in <prefix>.retail.lightspeed.app and comes from LIGHTSPEED_DOMAIN_PREFIX; it is not a secret but is account-identifying, so it is not hardcoded here.",
+    "base_url_template": "https://{domain_prefix}.retail.lightspeed.app",
+    "api_version": "2.0",
+    "_api_version_note": "Pinned. See _maintenance — 2.0 is deprecated in favour of date-based versioning.",
+    "endpoints": {
+      "products": "/api/2.0/products"
+    },
+    "auth": {
+      "scheme": "Bearer",
+      "env_var": "LIGHTSPEED_PERSONAL_TOKEN",
+      "_token_note": "A personal token grants the SAME DATA ACCESS AS AN ADMIN USER and is NOT scopable — there is no read-only variant. Generate it at Setup > Personal tokens > Generate personal token, always WITH an expiry. It lives in .env only. Cloud env vars are not a secrets store (see .env.example). The read-only guarantee on the pull side is structural, not permission-based: scripts/lightspeed_pull.py has no write code path.",
+      "_scoped_alternative": "A genuinely scoped credential requires building an OAuth Add-on with products:read / products:write. Judged not worth it for a single-retailer internal tool; revisit if this ever runs for anyone but Titan."
+    },
+    "pagination": {
+      "_comment": "Cursor pagination on the `version` attribute carried by every collection resource. Pass the last seen version as `after`; page until fewer than page_size records come back.",
+      "cursor_param": "after",
+      "page_size_param": "page_size",
+      "page_size": 1000,
+      "cursor_field": "version"
+    },
+    "_no_bulk_endpoint": "There is no bulk product create/update endpoint — bulk import is UI/CSV only. Every product is one HTTP call. This is why the sync runs as a script rather than a Make scenario metered per operation.",
+    "_no_supplier_filter": "The products endpoint has no server-side supplier filter. The pull walks the whole catalogue once, caches it, and filters locally."
+  },
+
+  "rate_limits": {
+    "_comment": "Two independent limiters. The primary is a leaky bucket sized by the retailer's register count. The secondary is a BURST limiter on 1-second fixed windows, which means a minimum interval between requests matters more than average throughput. Both surface via headers when they block.",
+    "retry_after_header": "Retry-After",
+    "limiter_type_header": "X-LS-API-RateLimit-Type",
+    "limiter_types": ["api-leaky-bucket", "api-burst-limiter"],
+    "min_interval_ms": 250,
+    "max_retries": 5,
+    "backoff": "honour Retry-After when present; otherwise exponential from min_interval_ms",
+    "_observed": null,
+    "_observed_note": "Populate from the first live pull: the actual bucket size, the burst window allowance, and whether min_interval_ms of 250 ever trips the burst limiter.",
+    "_abort_policy": "On repeated 429 or any 5xx, STOP THE BATCH, log, report — the house rule for actions agents. Resume is re-running the command: every completed action is already in the day's actions-log.json and is skipped."
+  },
+
+  "outlet": {
+    "_comment": "The outlet name is baked verbatim into three LS import column headers: outlet_tax_<name>, inventory_<name>, reorder_point_<name>, restock_level_<name>. Renaming the outlet in Lightspeed silently breaks every upload file.",
+    "name": "Titan Flooring",
+    "default_tax": "Default Tax"
+  },
+
+  "product_categories": {
+    "_comment": "LS requires a LEAF category — an intermediate node is rejected with 'A product can only be assigned to a leaf category'. 42 Grandeur rows were rejected on this in July 2026. Format is all caps, space-slash-space separated.",
+    "leaves": [
+      "FLOORING / ENGINEERED HARDWOOD",
+      "FLOORING / SOLID HARDWOOD",
+      "FLOORING / VINYL / SPC",
+      "FLOORING / VINYL / WPC",
+      "FLOORING / LAMINATE",
+      "FLOORING / TILE",
+      "ACCESSORIES"
+    ],
+    "not_leaves_never_write": ["FLOORING", "FLOORING / VINYL"],
+    "_vinyl_note": "The vinyl subcategory is decided by the product's CORE (SPC or WPC), never by its format (LVP or LVT).",
+    "_accessories_note": "Accessories (transitions, mouldings, stair treads/risers, underlay, glue) use the standalone ACCESSORIES category — not nested under FLOORING.",
+    "_unmapped_policy": "A product whose category does not resolve to one of `leaves` is BLOCKED, never guessed."
+  },
+
+  "write_rules": {
+    "_comment": "The invariants any write path must respect. Full detail and the name-construction rules live in the ls-upload-instructions skill.",
+    "id_semantics": "A populated `id` is an UPDATE; a blank `id` is a CREATE. A blank id on a row that already exists in Lightspeed creates a DUPLICATE instead of updating. Grandeur 2026-09-03: a colour-only backfill gave 7 UUIDs to 16 rows and LS rejected 9 with 'handle already exists for your retailer, sku already exists for your retailer'.",
+    "identified_by": "NAME, not handle. Two products may not share a name.",
+    "handle_is_the_variant_key": "Rows sharing a handle become variants of one parent. Letters and numbers only.",
+    "sku_no_commas": "LS rejects commas in a SKU.",
+    "never": ["delete a product", "deactivate a product", "write a row whose match is ambiguous or duplicate"],
+    "constants": {
+      "active": "1",
+      "track_inventory": "1"
+    },
+    "_variants_unverified": "OPEN QUESTION, gates all writes. The CSV importer takes one row per variant sharing a handle. The API creates a variant family as ONE POST carrying a `variants` array plus `variant_definitions`; adding a variant to an EXISTING family is a different call. Row-by-row POST will not reproduce importer behaviour. Must be settled by the Phase 3 spike against throwaway SKUs before any production write. Do not assume either shape until this key is replaced with the measured answer."
+  },
+
+  "make_scenarios": {
+    "_comment": "What Make does and does not do for Lightspeed, recorded so it is not re-litigated.",
+    "intake_trigger": {
+      "id": 4381438,
+      "name": "Price Lists",
+      "role": "Outlook attachment -> OneDrive -> anonymous share link -> Notion Price Lists row -> webhook {notionID}. UNCHANGED by this pipeline; it stays in Make.",
+      "active": true
+    },
+    "superseded_draft": {
+      "id": 4911227,
+      "name": "DRAFT - Lightspeed Product Upsert (from LS upload CSV)",
+      "active": false,
+      "why_superseded": "Row-by-row vend:MakeAPICall POST with no connection, no error handling, no UUID capture. Make's `vend` app has no Update a Product module, so updates would be hand-written API JSON inside Make anyway — the API path minus version control, tests and dry-run. Also meters per row against a 40,000 ops/month Core plan already carrying ~25 scenarios."
+    },
+    "_blueprint_editing_warning": "Do NOT edit large Make blueprints through scenarios_update. Stripping `metadata` to fit the token limit FAILS SILENTLY: the runtime needs metadata.expect, and without it the module executes, consumes an operation, makes a real round-trip, drops the payload, writes nothing, and returns SUCCESS. Edit in the Make UI. See methods/pricelist-extraction.md."
+  }
+}

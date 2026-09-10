@@ -1,0 +1,105 @@
+{
+  "_comment": "Registry for the supplier price-list pipeline: the Notion Price Lists row that triggers it, the property names a run reads and writes, and the escalation target. Consumed by .claude/commands/process-price-list.md, .claude/commands/catalog-sync.md and .claude/agents/pricelist-processor.md. Every id and property/option string that was previously duplicated in prose across the co-versioned trio (the command, methods/pricelist-extraction.md, methods/pricelist-routine-prompt.md) lives here instead. Source: live Notion data source, verified via Notion MCP 2026-09-10.",
+  "_maintenance": "Notion property names and select/status option strings are EXACT MATCH. A status or select property REJECTS an unknown option and takes the whole update_properties call down with it, so one stale string loses the entire state write, not just that field. Re-verify with notion-fetch on the data_source url whenever a property write is rejected. VERIFIED DRIFT 2026-09-10: `Airtable Sync` no longer has a plain `Done` option — it was split into `Done: Updated` and `Done: New List UUID`. The repo prose still said `Done` (process-price-list.md:195). `LS Upload` and `UUID Backfill` do still carry plain `Done`.",
+
+  "config_version": "1",
+
+  "price_lists": {
+    "_comment": "The row a run is invoked on. The trigger is Make scenario 4381438, which posts {\"notionID\": \"<page id>\"} and nothing else — every other input comes off this row.",
+    "data_source": "collection://e2dc37bc-63da-42e9-b6c0-63ff48d72e6b",
+    "_parent_page_not_the_database": "13b596a4505f80fc816aceefcd0de7c4",
+    "_parent_page_note": "This is the parent PAGE. Fetching it instead of the data_source above returns a page, not the database — a recurring mistake, recorded here so it is never re-derived.",
+
+    "read_properties": {
+      "_comment": "`Files & media` is a file property holding a file://{...} URL-encoded JSON envelope — decode it and take .source for the SharePoint share link. `Email Subject` is the title property.",
+      "file": "Files & media",
+      "title": "Email Subject",
+      "sender": "Sender",
+      "email_date": "Email Date",
+      "company": "Company",
+      "tags": "Tags"
+    },
+
+    "write_properties": {
+      "extraction_status": "Extraction Status",
+      "airtable_sync": "Airtable Sync",
+      "ls_upload": "LS Upload",
+      "uuid_backfill": "UUID Backfill",
+      "new_products": "New Products",
+      "notes": "Notes",
+      "extracted_files": "Extracted Files"
+    },
+
+    "_write_key_trap": "The extraction state key is `Extraction Status`, NOT `Status`. Writing `Status` returns 400 validation_error.",
+
+    "status_values": {
+      "extraction_status": {
+        "_type": "status",
+        "_all": ["Not started", "Extracting", "Extracted [Needs Review]", "Extracted [Ready to Upload]", "Extracted [Error]", "Extracted [All Uploaded]", "Not Needed"],
+        "_writable_by_a_run": ["Extracted [Needs Review]", "Extracted [Error]"],
+        "_owned_by_the_person_doing_the_import": ["Extracted [Ready to Upload]", "Extracted [All Uploaded]", "Not Needed"],
+        "_never_leave_at": ["Extracting"]
+      },
+      "airtable_sync": {
+        "_type": "select",
+        "_all": ["Pending", "Done: Updated", "Done: New List UUID", "Not needed"],
+        "_writable_by_an_extraction_run": ["Pending"],
+        "_note": "No plain `Done` option exists on this property (verified live 2026-09-10). A writer completing an Airtable sync picks `Done: Updated` when it updated existing records, `Done: New List UUID` when the list created new records that still need Lightspeed UUIDs."
+      },
+      "ls_upload": {
+        "_type": "select",
+        "_all": ["Pending", "Done", "Not needed"],
+        "_writable_by_an_extraction_run": [],
+        "_note": "An extraction run NEVER touches this property."
+      },
+      "uuid_backfill": {
+        "_type": "select",
+        "_all": ["Pending", "Done", "Not needed"],
+        "_writable_by_an_extraction_run": ["Pending", "Not needed"]
+      },
+      "tags": {
+        "_type": "select",
+        "_all": ["Regular List", "Promo"]
+      }
+    },
+
+    "forced_downstream_order": ["airtable_sync", "ls_upload", "uuid_backfill"],
+    "_forced_order_why": "A new product has no Lightspeed ID until the POS upload creates one, so the backfill cannot precede the upload, and the upload cannot precede the Airtable import that mints the SKU and handle.",
+
+    "actionable_backfill_filter": {
+      "_comment": "The set a backfill run may act on.",
+      "uuid_backfill": "Pending",
+      "ls_upload": "Done"
+    },
+
+    "company_property": {
+      "_comment": "Read the option list LIVE off the data source each run; never hardcode it here — options are added as suppliers are onboarded. Recorded only as the near-collision warning, which is what a run actually needs.",
+      "casing": "ALL CAPS in Notion. Airtable `Supplier` keeps its own mixed case and in several cases a different name entirely — see airtable-destinations.json supplier_aliases. Never normalise one to the other.",
+      "near_collisions": [["BALTIC", "NORTHWAY"], ["FLOORDI", "UMBRELLAR"], ["OMC", "OMC TOOLS"]],
+      "_near_collision_rule": "If none of document-header / email-subject / sender-domain is confident, leave Company blank and escalate. Never pick a nearest match — a wrong value looks authoritative."
+    }
+  },
+
+  "escalation": {
+    "_comment": "Where a run raises anything it could not determine (unconfirmed cost basis, unparseable document, ambiguous Company). The task is the durable record; the PushNotification is the alert.",
+    "data_source": "collection://238596a4-505f-8137-af13-000bde205213",
+    "database_id": "238596a4-505f-81f2-8eb0-c7599aa1745a",
+    "assignee_notion_person_id": "c39aa5d3-c87c-4152-92ef-5ed13d9c4605",
+    "assignee_name": "Albert",
+    "defaults": {
+      "Priority": "high",
+      "Tags": ["price list"],
+      "Verification": "Needs Verification"
+    },
+    "url_property_points_at": "the Price Lists row that triggered the run"
+  },
+
+  "outputs": {
+    "_comment": "Where a run writes its files. Committed to the repo, and attached back to the row's Extracted Files property as native Notion uploads (never a pasted link).",
+    "dir": "ingest/{date}",
+    "airtable_upload": "{supplier_slug}_airtable_upload_{date}.csv",
+    "ls_upload": "{supplier_slug}_ls_upload_{date}.csv",
+    "attachment_mime": "text/csv",
+    "_attachment_note": "Notion 400s on a content-type mismatch — the multipart upload must carry ;type=text/csv. api.notion.com must be allowed by the environment egress policy (it is, since 2026-09-03)."
+  }
+}
