@@ -1,0 +1,645 @@
+{
+  "contract_version": "plan-1",
+  "source": "planner",
+  "run_at": "2026-09-10T00:00:00-04:00",
+  "status": "ok",
+  "error": null,
+  "inputs": [
+    { "file": "ingest/2026-08-31/ghl.json", "run_at": "2026-08-31T08:24:05-04:00" }
+  ],
+  "actions": [
+    {
+      "id": "plan-r3-EgzPlPLMnTSuqnBfYiLs",
+      "rank": 1,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Bash Saqr",
+        "ghl_contact_id": "IEjKUdfas5otZd7BNX2f",
+        "ghl_opportunity_id": "EgzPlPLMnTSuqnBfYiLs"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-EgzPlPLMnTSuqnBfYiLs",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "*Meeting (Scheduled)* CCAM|GHL",
+        "days_overdue": 85.7
+      },
+      "note": "386% of the 30-day Meeting-scheduled threshold, no stale_lead tag. Untagged, so the R3 unqualified tier (70%) fired. Same record also carries a categorization_miss finding that did not fit the action cap."
+    },
+    {
+      "id": "plan-r3-nmNDbMjdTnq3Ac5ZroVO",
+      "rank": 2,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Tina Tran",
+        "ghl_contact_id": "6OiJXQzAkMKbUqxacN7W",
+        "ghl_opportunity_id": "nmNDbMjdTnq3Ac5ZroVO"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-nmNDbMjdTnq3Ac5ZroVO",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "*Meeting (Scheduled)* CCAM|GHL",
+        "days_overdue": 80.9
+      },
+      "note": "370% of threshold on a $12,000 quote. Read this one before acting: the contact is tagged lead: lost while the opportunity is still open, and lead: lost is not a row in the R3 tier table (planned under the unqualified fallback). May be a data-hygiene fix rather than a call."
+    },
+    {
+      "id": "plan-r3-UoVH9lauuyshCqQJPGTE",
+      "rank": 3,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Rav Gill",
+        "ghl_contact_id": "KfX3CAp4j6boL9qOy8Gq",
+        "ghl_opportunity_id": "UoVH9lauuyshCqQJPGTE"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-UoVH9lauuyshCqQJPGTE",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Far Out (Cold)",
+        "days_overdue": 215.7
+      },
+      "note": "340% of the 90-day Far Out threshold, cold tag, so the 80% cold tier fired. 306 days in stage at exactly the 340% the 93-record bulk-timestamp cohort reports — the day count may not be a real stage entry. See needs_attention."
+    },
+    {
+      "id": "plan-r3-Erie2z9AnxQuiawVUWLA",
+      "rank": 4,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "MB",
+        "ghl_contact_id": "WoyMhImQRJazdpkBiV7N",
+        "ghl_opportunity_id": "Erie2z9AnxQuiawVUWLA"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-Erie2z9AnxQuiawVUWLA",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Far Out (Cold)",
+        "days_overdue": 210.7
+      },
+      "note": "334% of the 90-day Far Out threshold, cold tier. 301 days in stage, adjacent to the bulk-timestamp cohort; no value on the record and the contact name is two letters."
+    },
+    {
+      "id": "plan-r3-GZ42TRMSYOTwiThypSGi",
+      "rank": 5,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Rey Natividad",
+        "ghl_contact_id": "FwEYVbiLbGmsKwFMSg4K",
+        "ghl_opportunity_id": "GZ42TRMSYOTwiThypSGi"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-GZ42TRMSYOTwiThypSGi",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Far Out (Cold)",
+        "days_overdue": 209.8
+      },
+      "note": "333% of threshold, cold tier, 300 days in stage. Same bulk-timestamp caveat as ranks 3-7."
+    },
+    {
+      "id": "plan-r3-h2ywNV5oL5Aa3w8COPn2",
+      "rank": 6,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Nazim bhai",
+        "ghl_contact_id": "RbyzKXbL4tjBJGHl0lNN",
+        "ghl_opportunity_id": "h2ywNV5oL5Aa3w8COPn2"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-h2ywNV5oL5Aa3w8COPn2",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Far Out (Cold)",
+        "days_overdue": 208.9
+      },
+      "note": "332% of threshold, cold tier, 299 days in stage. Same bulk-timestamp caveat as ranks 3-7."
+    },
+    {
+      "id": "plan-r3-cyrR3pQLW2MKlEsBV7G6",
+      "rank": 7,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Lalit Bhushan",
+        "ghl_contact_id": "gAWLTgC1BgaQnq2N1Dvc",
+        "ghl_opportunity_id": "cyrR3pQLW2MKlEsBV7G6"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-cyrR3pQLW2MKlEsBV7G6",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Far Out (Cold)",
+        "days_overdue": 205.8
+      },
+      "note": "329% of threshold, cold tier, 296 days in stage. Same bulk-timestamp caveat as ranks 3-7."
+    },
+    {
+      "id": "plan-r3-plDAaaMcaOhZYIsIpyC4",
+      "rank": 8,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Maria Wildfang",
+        "ghl_contact_id": "LhXVwRvJY4ExDCcWZJW3",
+        "ghl_opportunity_id": "plDAaaMcaOhZYIsIpyC4"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-plDAaaMcaOhZYIsIpyC4",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "*Meeting (Scheduled)* CCAM|GHL",
+        "days_overdue": 45.9
+      },
+      "note": "253% of the 30-day Meeting-scheduled threshold on the largest open quote in the file, $41,150. Warm tag, 60% tier. Ingest's own straggler list ranks this 5th; the plan ranks it 8th because pct_of_threshold is value-blind."
+    },
+    {
+      "id": "plan-r3-Yc3KfHQMlrwYLQp18fKD",
+      "rank": 9,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Karan Thakar",
+        "ghl_contact_id": "OjeBj4waKCfeKpsWRqJg",
+        "ghl_opportunity_id": "Yc3KfHQMlrwYLQp18fKD"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-Yc3KfHQMlrwYLQp18fKD",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "*Meeting (Scheduled)* CCAM|GHL",
+        "days_overdue": 45.8
+      },
+      "note": "253% of threshold on a $3,466.68 quote, tagged lead: hot, so any stale_approaching finding fires R3. Also one of the 7 records carrying the undocumented abandoned-stale tag."
+    },
+    {
+      "id": "plan-r3-yIe1ry47XGGmXJwDuKzq",
+      "rank": 10,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Mona Tayal",
+        "ghl_contact_id": "T0nd090u2K86TwwFpAYf",
+        "ghl_opportunity_id": "yIe1ry47XGGmXJwDuKzq"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-yIe1ry47XGGmXJwDuKzq",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "*Meeting (Scheduled)* CCAM|GHL",
+        "days_overdue": 43.9
+      },
+      "note": "246% of threshold on an $11,210 quote, warm tag, 60% tier."
+    },
+    {
+      "id": "plan-r3-4gPXisJKRMHGxdAwCNZL",
+      "rank": 11,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Silviya Jardany",
+        "ghl_contact_id": "GByNBlYcqJFQuA20EMdc",
+        "ghl_opportunity_id": "4gPXisJKRMHGxdAwCNZL"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-4gPXisJKRMHGxdAwCNZL",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "*Meeting (Scheduled)* CCAM|GHL",
+        "days_overdue": 41.8
+      },
+      "note": "239% of threshold on a $6,500 quote, untagged, 70% tier. This same opportunity also generated a meeting_no_followup finding (effective window -9 days) and a categorization_miss; neither fit the action cap, so the plan shows only the call."
+    },
+    {
+      "id": "plan-r3-lNrXKin7I6CVLp060lnu",
+      "rank": 12,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Fareeda Chand",
+        "ghl_contact_id": "kQxiUK8760N7We26mBS0",
+        "ghl_opportunity_id": "lNrXKin7I6CVLp060lnu"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-lNrXKin7I6CVLp060lnu",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "*Meeting (Scheduled)* CCAM|GHL",
+        "days_overdue": 41.7
+      },
+      "note": "239% of threshold on a $14,690 quote, cold tag, 80% tier. Her R1 meeting_no_followup finding (67 days, zero contact since the Jun 25 visit) is the single most overdue in that class and did not fit the cap."
+    },
+    {
+      "id": "plan-r3-krIaRdXKfcA07XQzLPDL",
+      "rank": 13,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Mizanur Bhuiyan",
+        "ghl_contact_id": "qn7dYid4tIpjLYe2qENY",
+        "ghl_opportunity_id": "krIaRdXKfcA07XQzLPDL"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-krIaRdXKfcA07XQzLPDL",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "*Meeting (Scheduled)* CCAM|GHL",
+        "days_overdue": 37.7
+      },
+      "note": "226% of threshold on a $15,234.15 quote, warm tag, 60% tier."
+    },
+    {
+      "id": "plan-r3-MolpMZu8CMhoEWjWqHVH",
+      "rank": 14,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Mukesh h Patel",
+        "ghl_contact_id": "Su4dUxFTPd8c7zJqujmx",
+        "ghl_opportunity_id": "MolpMZu8CMhoEWjWqHVH"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-MolpMZu8CMhoEWjWqHVH",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Far Out (Cold)",
+        "days_overdue": 112.8
+      },
+      "note": "225% of the 90-day Far Out threshold, 203 days in stage. Untagged, so the 70% tier fired even though the stage says cold; the matching categorization_miss finding did not fit the cap."
+    },
+    {
+      "id": "plan-r3-Xg2C2ZM4mlOzyMc0Ha9l",
+      "rank": 15,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Wilfredo Comendador",
+        "ghl_contact_id": "ewDMC7tNrZDJF6ZaJrcm",
+        "ghl_opportunity_id": "Xg2C2ZM4mlOzyMc0Ha9l"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-Xg2C2ZM4mlOzyMc0Ha9l",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Far Out (Cold)",
+        "days_overdue": 109.6
+      },
+      "note": "222% of threshold, 200 days in stage, untagged (70% tier). Same stage-without-tag divergence as rank 14."
+    },
+    {
+      "id": "plan-r3-O0Hxx7lyVRCE2u9XGojJ",
+      "rank": 16,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Darrell Ramos",
+        "ghl_contact_id": "bt4UIf04ZQ3L7sh6llib",
+        "ghl_opportunity_id": "O0Hxx7lyVRCE2u9XGojJ"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-O0Hxx7lyVRCE2u9XGojJ",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Far Out (Cold)",
+        "days_overdue": 98.9
+      },
+      "note": "210% of threshold, 189 days in stage, cold tag (80% tier). Finding is inside the +43 rollup, not itemized; basis.item_id reconstructed."
+    },
+    {
+      "id": "plan-r3-34uD0cnC0seTsDdXgYiM",
+      "rank": 17,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Gigi Tolentino",
+        "ghl_contact_id": "QDgbI58Rsi5vXNQoUzLz",
+        "ghl_opportunity_id": "34uD0cnC0seTsDdXgYiM"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-34uD0cnC0seTsDdXgYiM",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Far Out (Cold)",
+        "days_overdue": 98.6
+      },
+      "note": "210% of threshold, cold tier. Tied with rank 18 at 2.096; the documented first_contact tie-break does not exist in the ingest, so emission order decided it. See needs_attention."
+    },
+    {
+      "id": "plan-r3-IW7Y3ereJYFiVK4zuiGz",
+      "rank": 18,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Anujan Kumaranathan Kumaranathan",
+        "ghl_contact_id": "sMUDqteOvsXi0MX4CTlm",
+        "ghl_opportunity_id": "IW7Y3ereJYFiVK4zuiGz"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-IW7Y3ereJYFiVK4zuiGz",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Later Date (Warm)",
+        "days_overdue": 43.8
+      },
+      "note": "210% of the 40-day Later Date threshold, 84 days in stage, warm tag (60% tier). Tie with rank 17 resolved by emission order."
+    },
+    {
+      "id": "plan-r3-6kgrmLti15NTv8bliraP",
+      "rank": 19,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Biplab Ghosh",
+        "ghl_contact_id": "9et4LUnHmetxVT1xRep3",
+        "ghl_opportunity_id": "6kgrmLti15NTv8bliraP"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-6kgrmLti15NTv8bliraP",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "*Meeting (Scheduled)* CCAM|GHL",
+        "days_overdue": 31.9
+      },
+      "note": "206% of threshold on a $5,182 quote, cold tag (80% tier). The appointment was cancelled, so the record cannot leave Meeting (Scheduled) without a manual touch; his R1 finding did not fit the cap."
+    },
+    {
+      "id": "plan-r3-TR5CehdmI5lp3EFZoKny",
+      "rank": 20,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "maq",
+        "ghl_contact_id": "lT0tz4fVrIDg24kBu6Dz",
+        "ghl_opportunity_id": "TR5CehdmI5lp3EFZoKny"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-TR5CehdmI5lp3EFZoKny",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Later Date (Warm)",
+        "days_overdue": 41.7
+      },
+      "note": "204% of the 40-day Later Date threshold on a $4,335 opportunity, warm tag (60% tier)."
+    },
+    {
+      "id": "plan-r3-d1hq59ls2qnwli0X5nJ3",
+      "rank": 21,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Pooja Srivastava",
+        "ghl_contact_id": "zDYiF7FEu4nR4QVrv5Ko",
+        "ghl_opportunity_id": "d1hq59ls2qnwli0X5nJ3"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-d1hq59ls2qnwli0X5nJ3",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0c. ASAP (Hot)",
+        "days_overdue": 7.0
+      },
+      "note": "199% of the 7-day ASAP threshold — 14 days in a stage meant to turn over in a week, tagged lead: hot, so R3 fires on any finding. Only 7 days overdue in absolute terms, which is why a percentage-ranked list puts it below 300-day cold records."
+    },
+    {
+      "id": "plan-r3-8lVbE6kXysWuEj2gEbMY",
+      "rank": 22,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Shahid Khan",
+        "ghl_contact_id": "TAPx6WmRYKKV9zHk7Q1Y",
+        "ghl_opportunity_id": "8lVbE6kXysWuEj2gEbMY"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-8lVbE6kXysWuEj2gEbMY",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "*Meeting (Scheduled)* CCAM|GHL",
+        "days_overdue": 28.8
+      },
+      "note": "196% of threshold on a $10,385 quote, warm tag (60% tier). This contact has a second, separate stale_approaching finding on opportunity 10zuagZJvDpALlRC8Vqn in 0b. Later Date (Warm) at 132%, which fell into overflow — two open opportunities on one contact."
+    },
+    {
+      "id": "plan-r3-bncGJOBODCXong8B2oMz",
+      "rank": 23,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Richard Harris",
+        "ghl_contact_id": "BgwPscQTeFeLe4stlifY",
+        "ghl_opportunity_id": "bncGJOBODCXong8B2oMz"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-bncGJOBODCXong8B2oMz",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Later Date (Warm)",
+        "days_overdue": 33.9
+      },
+      "note": "185% of the 40-day Later Date threshold, 74 days in stage, warm tag (60% tier), no value on the record."
+    },
+    {
+      "id": "plan-r3-Ufc8dvahN4cRyk22Khk6",
+      "rank": 24,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Sheena Jain",
+        "ghl_contact_id": "Pg2DpnoVAN8u6Gx0bjn5",
+        "ghl_opportunity_id": "Ufc8dvahN4cRyk22Khk6"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-Ufc8dvahN4cRyk22Khk6",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0c. ASAP (Hot)",
+        "days_overdue": 5.7
+      },
+      "note": "181% of the 7-day ASAP threshold on a $2,087.40 opportunity, tagged lead: hot. Unassigned in GHL."
+    },
+    {
+      "id": "plan-r3-rC7i0cWpvS3oJnQtgaT6",
+      "rank": 25,
+      "rank_basis": "pct_of_threshold",
+      "business": "project",
+      "entity": {
+        "name": "Tenzin Sangmo",
+        "ghl_contact_id": "hPgilyNdzeo8agGzN43c",
+        "ghl_opportunity_id": "rC7i0cWpvS3oJnQtgaT6"
+      },
+      "basis": {
+        "file": "ingest/2026-08-31/ghl.json",
+        "item_id": "ghl-drift-stale_approaching-rC7i0cWpvS3oJnQtgaT6",
+        "drift_type": "stale_approaching"
+      },
+      "action_type": "call",
+      "rule_id": "R3_stale_approaching",
+      "requires_write": false,
+      "params": {
+        "stage": "0b. Far Out (Cold)",
+        "days_overdue": 61.6
+      },
+      "note": "168% of the 90-day Far Out threshold, 152 days in stage, cold tag (80% tier). Last action inside the 25-action cap."
+    }
+  ],
+  "metrics": {
+    "actions_total": 25,
+    "requires_write_count": 0,
+    "by_business": { "project": 25, "store": 0 },
+    "by_action_type": {
+      "call": 25,
+      "draft_followup": 0,
+      "apply_tag": 0,
+      "stage_move": 0,
+      "schedule_review": 0,
+      "escalate_to_albert": 0
+    }
+  },
+  "needs_attention": [
+    "BACKTEST RUN, NOT FOR EXECUTION. Generated 2026-09-10 against the 2026-08-31 ingest as evidence for un-parking criteria 1 and 2. No approvals.json exists for this date and none should be written for it. run_at carries the run date; the planner has no clock (Read/Write only), so the time component is a placeholder.",
+    "Action cap reached: 72 rule-matched findings, 25 planned, 47 in overflow. Top 5 overflow items by name and percentage: Muhammad Alams 161%, Denish Gandhi 155%, Pratik Raval 154%, Joana Reid 154%, Gopichand Manubolu 154%.",
+    "THE BIGGEST FINDING FOR CRITERION 1 — class-ordered ranking plus the 25-action cap gave every slot to one rule. Ranking runs R3, then R1, then R2/R4/R5, and R3 alone has 58 findings, so all 25 actions are stale_approaching calls and every R1, R4 and R5 action fell into overflow: 5 meeting_no_followup drafts, Zinat Hirji's abandonment escalation (82 days past the 180-day auto-abandon point), and 8 categorization_miss reviews. The rule as written produces this; flagged rather than silently rebalanced. A per-class quota, or a cap applied after interleaving, is the decision to make before criterion 1 can close.",
+    "SECOND BIGGEST — the plan is blind to today's actual urgency. All four act_immediately conversations produce no action at all, because the rule table keys only on workflow_drift and none of these is a drift finding: Gina Martino (won, deposit paid) needs a baseboard delivery date before the Sept 8 install; Munsif (lead: hot, live quote) called and texted asking if the store was open; the (416) 433-9872 voicemail has sat 21 hours unreturned; Sam Dickie is four days into waiting on a levelling quote. Ingest ranks these 1-4 in its own straggler list. The plan's rank 1 is a 116-day-stale untagged record.",
+    "Ranking by pct_of_threshold is value-blind. Maria Wildfang's $41,150 open quote ranks 8th, below five $0-value Far Out (Cold) records whose only distinction is age. Ingest's straggler list ranks her 5th.",
+    "Ranks 3-7 (Rav Gill 340%, MB 334%, Rey Natividad 333%, Nazim bhai 332%, Lalit Bhushan 329%) are all 0b. Far Out (Cold) records at 296-306 days, and ingest explicitly says the 93-record bulk-timestamp cohort reads at 340% of the 90-day threshold with day counts that are not real per-lead staleness. The aggregate finding names no member IDs, so the planner cannot tell whether these five are inside that cohort. Five of the top seven actions may be ranked on migration artifacts.",
+    "One stale_approaching finding produced no action: the aggregate far_out_bulk_20251029_aggregate (93 Far Out (Cold) records on one timestamp). It has no entity source ID and no pct_of_threshold, so it can be neither addressed as a single contact nor ranked on the R3 yardstick, and ingest itself says verify the cohort before acting on its day counts. Excluded from the 47 overflow count.",
+    "R2 produced zero actions even though metrics.untagged_in_queue reads 12. Ingest suppresses all 12 as findings via drift_excluded_by_stage (0a. New Lead), so there is nothing for the rule to match. R2 is currently unreachable, and the plan cannot see the live call queue at all.",
+    "R6 produced zero actions — no followup_not_fired findings in today's ingest.",
+    "R3's tier table did nothing today. Ingest emits no stale_approaching finding below 75% of threshold and the lowest today is 76%, so all 58 individual findings cleared their tier regardless of tag; the warm/cold/unqualified thresholds (60/80/70%) filtered out nothing. R3 is an emission-floor pass-through, not a filter.",
+    "R3's tier table has no row for lead: lost or lead: rate-shopper. Tina Tran (rank 2, 370%, $12,000) carries lead: lost on an open opportunity and was planned under the no-tag/unqualified fallback. Calling a lead marked lost is a plausible veto-on-sight; the tier table needs an explicit row or an explicit exclusion.",
+    "Ranking tie-break `first_contact` does not exist anywhere in the ingest contract. Two ties were hit (Gigi Tolentino / Anujan Kumaranathan at 210%, Pratik Raval / Joana Reid at 154%) and both were broken by workflow_drift emission order — deterministic and stable across re-runs, but not the rule as written.",
+    "Action ids are a deterministic composite (`plan-<rule>-<finding ref>`), not a hash as contracts/plan-schema.md specifies. The planner's tool grant is Read and Write with no Bash, so it has no way to compute one. The stability property the contract cares about holds — same finding, same id on re-run — but the ids are legible rather than opaque. Either the contract should permit a deterministic composite or the planner needs a hashing step.",
+    "10 of the 25 actions (ranks 16-25) trace to findings that exist only in extensions.ghl.workflow_drift and are covered by the '+43 further stale_approaching findings not itemized' rollup. Those findings carry no explicit id field, so basis.item_id was reconstructed as `ghl-drift-stale_approaching-<ref>` from the convention the itemized siblings use. Ingest should emit ids for rolled-up findings, or the contract should state the reconstruction rule.",
+    "Ingest's drift item_id convention is not uniform: categorization_miss ids key on contact_id (ghl-drift-categorization_miss-GByNBlYcqJFQuA20EMdc) while meeting_no_followup, abandonment_next and stale_approaching key on the opportunity ref. Reconstructing an R5 item_id by the wrong half of that convention would produce an id that joins to nothing.",
+    "Three contacts appear once in the plan but carry two or three findings each: Silviya Jardany (stale_approaching planned; meeting_no_followup and categorization_miss in overflow), Bash Saqr, Biplab Ghosh, Harry, Mukesh h Patel, Wilfredo Comendador, Zinat Hirji. The rule table has no notion of one action per entity, so at a larger cap the same person would appear two or three times in one ranked list.",
+    "All 25 actions are business: project. STORE: Material Pipeline generated no findings — ingest defines no stale thresholds for it and excludes its 49 untagged records from categorization_miss by design. Store is absent from this plan, not zeroed by counting.",
+    "All entity source IDs are 20-char alphanumeric as expected; no dashed UUID or 24-char hex leaked into a contact or opportunity field."
+  ]
+}

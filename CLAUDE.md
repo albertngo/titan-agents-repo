@@ -105,8 +105,12 @@ Nothing else changes.
 | Output | Overwrites `<source>.json` (idempotent) | Appends to `actions-log.json` (audit trail) |
 | Failure mode | Writes `status: "error"`, never blocks siblings | Stops the batch, logs, reports |
 
-The flow is always: **ingest → decide (Albert or orchestrator) → act**. No agent
-does all three steps.
+The flow is always: **ingest → decide (Albert, a department lead, or the
+orchestrator) → act**. No agent does all three steps.
+
+A third class, `*-lead`, occupies the decide step: read-only against contract
+files (`tools: Read, Write`, no `Bash`, no `mcp__*`), writes exactly one plan,
+originates no platform write. See Departments below.
 
 ## Orchestration
 
@@ -136,6 +140,45 @@ Both routines store a *pointer* to their command file rather than a copy of the
 procedure. On 2026-09-03 the extraction routine fired carrying a procedure that had gone
 stale on 09-01 and reported success against an instruction set missing five of its seven
 steps. A pointer has nothing in it to fall behind.
+
+## Departments
+
+A third layer sits between ingest and act: `/route` takes a request from wherever
+it arrives, decides which department owns it, and spawns that department's lead.
+The lead reads its own sources and writes ONE plan — it proposes, it never
+executes. Full shape in `methods/departments.md`; ownership is data in
+`platform-settings/departments.json`.
+
+| Department | Owns | Lead | Status |
+|---|---|---|---|
+| Sales | `ghl` | `planner-agent` | active — the reference build |
+| Operations | `notion` (5 sub-sources) | — | spec: source live, no rule table yet |
+| Catalogue | Airtable · Lightspeed · price lists | `/catalog-sync` | active — complete before this layer existed |
+| Marketing | `meta-ads` | — | registry_only: needs a framework doc + thresholds first |
+| Finance | `bookkeeper` | — | **blocked — the source has never worked** |
+| General | `outlook` | — (`/route` answers inline) | active — the fallback lane |
+
+**A lead cannot spawn a subagent** (harness constraint), so it names specialists
+in its plan's `dispatch[]` and `/route` runs them. `dispatch[]` may name only
+read-only specialists; an `*-actions` agent is reachable solely through an
+approval file naming exact action ids — enforced by
+`tests/test_departments_registry.py` and by `contracts/dept-plan-schema.md`.
+
+**Ownership keys on source, never platform.** `owns.sources[]` must be a
+partition of the ingest sources in the table above: owned twice routes
+non-deterministically, owned by nobody falls silently to General.
+
+**A department is not a sensitivity boundary** — provenance decides (Albert,
+2026-08-02). The layer adds no routing axis; the one new rule is a filter, that a
+`private` item is never returned to a `staff`-tier requester
+(`platform-settings/requesters.json`).
+
+**Cross-department ranking is banned.** Plans render side by side in the
+registry's `escalation_order`; there is no company-wide priority number, for the
+same reason project and STORE pipelines are never summed.
+
+`/daily-ingest` is unchanged and stays that way — the layer is additive, and a
+department failing must never touch `DAILY-BRIEF.md`.
 
 ## Analyses
 

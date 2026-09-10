@@ -81,6 +81,7 @@ Same shape as the ingest envelope (`contracts/ingest-schema.md`), plus `inputs`:
 {
   "id": "plan-a1b2c3d4",
   "rank": 1,
+  "rank_basis": "pct_of_threshold",
   "business": "project",
   "entity": {
     "name": "Silviya Jardany",
@@ -104,8 +105,9 @@ Same shape as the ingest envelope (`contracts/ingest-schema.md`), plus `inputs`:
 
 | Field | Rules |
 |---|---|
-| `id` | **Stable across re-runs.** A hash of `(entity source ID + rule_id + finding id)` — not a counter, not a random value. Two runs of the planner against the same underlying finding must produce the same `id`, so `approvals.json` and dedup survive regeneration. Prefixed `plan-`. |
-| `rank` | `1..n`, descending priority, unique. Ordered by **percentage of stage threshold consumed** — never raw days, per the same rule `ghl-ingest-agent` uses for `stale_approaching` / `importance_rank`. `Meeting-scheduled` actions rank on the **appointment-date anchor** (`effective_window_days`), not stage-entry, matching how `ghl-ingest-agent` computes `meeting_no_followup`. |
+| `id` | **Stable across re-runs.** A *deterministic, reproducible function* of `(entity source ID + rule_id + finding id)` — not a counter, not a random value. Two runs against the same underlying finding must produce the same `id`, so approvals and dedup survive regeneration. Prefixed `plan-`. **Stability is the property that matters, not opacity.** A hash is the obvious implementation but not a requirement: a lead's `tools:` grant is `Read, Write` with no `Bash` and no hashing primitive, deliberately, so a lead that "hashes" is fabricating hex it cannot reproduce next run — which breaks the exact guarantee this rule exists to give. A readable composite such as `plan-<rule_id>-<opportunity_id>` satisfies it. (Amended 2026-09-10: all three backtest runs independently hit this and flagged it rather than inventing a hash.) |
+| `rank` | `1..n`, descending priority, unique. Ordered by **percentage of stage threshold consumed** — never raw days, per the same rule `ghl-ingest-agent` uses for `stale_approaching` / `importance_rank`. That percentage lives on `extensions.ghl.opportunities[]` and is joined to a drift finding on `workflow_drift[].ref == opportunities[].opportunity_id`; it is **not** a field on the `workflow_drift` entry, which this contract previously implied (corrected 2026-09-10 against a real run). Ranking is also not admission — see `.claude/agents/planner-agent.md` § Admission, where class-first truncation was found to starve every rare rule class. `Meeting-scheduled` actions rank on the **appointment-date anchor** (`effective_window_days`), not stage-entry, matching how `ghl-ingest-agent` computes `meeting_no_followup`. |
+| `rank_basis` | **Optional in `plan-1`** (additive — no `contract_version` bump, same precedent as `extensions` in `ingest-schema.md`); **required** in `contracts/dept-plan-schema.md`. One of `pct_of_threshold`, `effective_window_days`, `severity_tier`, `manual` — which yardstick produced this action's `rank`. Emit it: the ranks in one plan are not commensurable — `stale_approaching` ranks on a real percentage, `meeting_no_followup` on `effective_window_days`, and the rest on a severity tier (`contracts/dept-plan-schema.md` § Ranking states the full rule) — and a consumer that cannot tell rank 1 from rank 7 apart by measure will compare them as if they were. Same reasoning as `methods/architecture.md`'s `visit_type` note — when a value is produced two ways that can disagree, say which produced it. |
 | `business` | `"project"` or `"store"`. One ranked list — `rank` interleaves both — but see Metrics: the two are **never summed**, anywhere, in any aggregate. |
 | `entity` | `{ name, ghl_contact_id?, ghl_opportunity_id? }`. Source IDs are **required per the Identity rule** (titan-vault `CONVENTIONS.md`, note rule 5) whenever the underlying finding has one — omit only when the source record genuinely has none, and say so rather than leaving the field silently absent. `name` is display only; the ID fields are what a consumer joins on. These are copied verbatim from the ingest record, not regenerated — see ID format note below. |
 | `basis` | `{ file, item_id, drift_type? }`. **Every action MUST trace to an ingest finding.** `file` is the ingest contract file the finding came from (must appear in the envelope's `inputs`), `item_id` is that finding's stable ID within it. `drift_type` is set when `item_id` refers to a `workflow_drift` finding — carries the same six-value vocabulary `ghl-ingest-agent` uses. No finding, no action: the planner does not originate action items from its own judgment. |
@@ -219,3 +221,9 @@ the other 9 stay pending, `ghl-actions-agent` executes only what's explicitly
   without a `rule_id`.
 - Sum `business: "project"` and `business: "store"` figures anywhere in `metrics`
   or `needs_attention`.
+- Merge this plan with another department's plan, or rank an action against one
+  in another department's plan. Cross-department ranking is banned outright —
+  across departments what is needed is an ordering of *departments*, which is the
+  human-set `escalation_order` in `platform-settings/departments.json`, not a
+  computed score. Plans render side by side in that order. Same principle as
+  project vs. store, one level up; see `contracts/dept-plan-schema.md` § Ranking.

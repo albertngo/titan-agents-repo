@@ -5,18 +5,21 @@ Written 2026-07-26. If this drifts from `CLAUDE.md`, `CLAUDE.md` wins.
 
 ---
 
-## The three lanes
+## The four lanes
 
-|  | **1. Ingest** | **2. Analysis** | **3. Decide & act** |
-|---|---|---|---|
-| Cadence | Daily, unattended | On demand, one-off | Per decision |
-| Trigger | `/daily-ingest` | `/won-analysis` | `/manager-dashboard` → approval |
-| Who works | subagents | Python script | `ghl-actions-agent` |
-| Writes to | `ingest/<date>/` | `analysis/output/` + `ingest/analysis/` | `plans/<date>/`, `actions-log.json` |
-| Governed by | `contracts/ingest-schema.md` | `methods/*-framework.md` | `contracts/plan-schema.md` |
-| Re-runnable? | Yes — overwrites | Yes — cached | **No** — appends (audit trail) |
+|  | **1. Ingest** | **2. Analysis** | **3. Decide** | **4. Act** |
+|---|---|---|---|---|
+| Cadence | Daily, unattended | On demand, one-off | Per request | Per decision |
+| Trigger | `/daily-ingest` | `/won-analysis` | `/route` | approval file |
+| Who works | `*-ingest` subagents | Python script | `*-lead` subagents | `*-actions` agents |
+| Writes to | `ingest/<date>/` | `analysis/output/` + `ingest/analysis/` | `plans/<date>/`, `requests/<date>/` | `actions-log.json` |
+| Governed by | `contracts/ingest-schema.md` | `methods/*-framework.md` | `plan-schema.md`, `dept-plan-schema.md`, `request-schema.md` | `contracts/actions-log-schema.md` |
+| Re-runnable? | Yes — overwrites | Yes — cached | Yes — overwrites | **No** — appends (audit trail) |
 
 Flow is always **ingest → decide → act**. No agent does all three.
+
+Lane 3 was a parked spec until 2026-09-10 — see `methods/departments.md` for the
+department layer that fills it, and why a lead plans rather than delegates.
 
 ---
 
@@ -36,6 +39,9 @@ ingest/               output of every run
   ├─ SAMPLE/          reference structure, [FILL:] placeholders
   └─ analysis/        one-off reports + PII records
 plans/<date>/         proposed actions + your approvals
+                      (heterogeneous: plan.json, dept-plan-*, catalog-plan-*,
+                       and their approval files — match on PREFIX, never *.json)
+requests/<date>/      what /route was asked, and how it routed it
 ```
 
 The map is ordered roughly as you'd read it to understand the system — define
@@ -115,6 +121,12 @@ The folder is created for you on every run — don't hand-make it.
 → New `*-ingest-agent` in `.claude/agents/`, conform to `ingest-schema.md`,
   add to the spawn list in `daily-ingest.md` + the table in `CLAUDE.md`. Done.
 
+**1b. A whole area of the business, with its own recurring decisions?**
+→ A department. Entry in `platform-settings/departments.json` first; a lead agent
+  only once it has a rule table. See `methods/departments.md` — and note the bar:
+  no rule table means no lead, because a lead that improvises is what *"the
+  planner invents nothing"* exists to prevent.
+
 **2. One-off / periodic deep dive?**
 → New command in `.claude/commands/`. Then add only what you actually need:
 
@@ -146,6 +158,7 @@ ingest/analysis/supplier-margin-<date>.md    the readable report
 | Kind | Pattern | Example |
 |---|---|---|
 | Agent | `<thing>-agent` | `ghl-ingest-agent` |
+| Department lead | `<dept>-lead-agent` | `ops-lead-agent` |
 | Command | plain, no suffix | `daily-ingest` → `/daily-ingest` |
 | Contract | `<thing>-schema.md` | `ingest-schema.md` |
 | Method doc | `<thing>-framework.md` | `ghl-analysis-framework.md` |
@@ -202,9 +215,17 @@ history as a deliberate, accepted tradeoff for the build phase. `analysis/cache/
 remains ignored — it is a regenerable network cache, not analysis. **Revisit all
 of this when the agents and contracts mature.**
 
-Still open:
-- **`outlook-ingest-agent` and `bookkeeper-ingest-agent` cannot run.** Their
-  frontmatter `tools:` lists no MCP tools, so they can't reach any connector —
-  they will write `status: "error"` every run regardless of credentials.
-- **`planner-agent` and `vault-writer-agent` are parked.** Specs, not behavior.
-  Un-parking criteria are at the bottom of each file.
+Still open (revised 2026-09-10):
+- **`bookkeeper-ingest-agent` cannot run.** No Intuit QuickBooks MCP server is
+  configured in `.mcp.json` and there is no `scripts/bookkeeper_pull.py`. It has
+  written `status: "error"` on every recorded run since 2026-07-26 — sixteen
+  consecutive failures, a standing setup gap rather than an outage. This is what
+  blocks the Finance department.
+- ~~`outlook-ingest-agent` cannot run.~~ **Fixed.** It reaches Graph through
+  `scripts/outlook_pull.py` — deliberately, because a claude.ai connector is
+  session-attached and dies on scheduled runs.
+- ~~`vault-writer-agent` is parked.~~ **Un-parked 2026-07-27**, wired as step 7
+  of `/daily-ingest`, bound to its whitelist.
+- ~~`planner-agent` is parked.~~ **Un-parked 2026-09-10** as the Sales department
+  lead. It runs; its output is not yet trusted for execution until Albert reviews
+  three backtest days. See the Status section in its file.
