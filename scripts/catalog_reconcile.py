@@ -76,6 +76,7 @@ DIFF_FIELDS = {
     LS_ID: ("LightspeedID", "Lightspeed ID"),
 }
 PRICE_FIELDS = ("Cost/unit", "Retail price/unit")
+PROMO_COST = "Promo cost ($/sf)"
 
 # MatchStatus / LS Match status values that must never reach a write.
 AMBIGUOUS = {"ambiguous", "AMBIGUOUS", "DUPLICATE"}
@@ -552,9 +553,45 @@ def ls_update_fields(row):
     that name IS what groups a variant family, and that two products can only share a
     name if they are in the same family. Writing Airtable's name onto a Lightspeed
     product could therefore merge unrelated products into one family.
+
+    Which cost, though, depends on whether a promo is running (Albert, 2026-09-10):
+
+      supply_price        = `Promo cost ($/sf)` when populated, else `Cost/unit`
+      price_excluding_tax = `Retail price/unit`, always
+
+    `supply_price` is what Titan actually pays, and during a promo that is the promo
+    cost. `Cost/unit` still holds the regular cost — it is what the price reverts to
+    when the promo ends, and a populated `Promo cost` clearing itself on
+    `Promo end date` is what puts supply_price back without a second decision.
+
+    Retail deliberately does NOT follow the promo. It stays `Cost/unit + $ 1.00` off
+    the REGULAR cost, so a change in the regular cost still moves it. Adjusting retail
+    during a promo remains a manual act. The consequence, stated so nobody is
+    surprised: a hand-set promo retail in Lightspeed WILL be rewritten by the next
+    sync. That is visible rather than silent — it appears as a before/after on the
+    plan a person approves — but it is not preserved.
+
+    ## Known gap: the API sync moves the promo PRICE, not the promo MARKER
+
+    An update writes prices and nothing else, so it cannot set or clear the two
+    visible promo markers — `tags: PROMO` (column 16) and the `(P)` prefix on
+    `variant_option_one_value` (column 11). On an existing product those reach
+    Lightspeed only through a rebuilt CSV import.
+
+    So today: `supply_price` follows `Promo cost ($/sf)` automatically in both
+    directions, and the marker does not. A product whose promo ended has the right
+    cost and a stale `(P)` until its file is rebuilt and imported.
+
+    Closing it means letting an update write `variant_attribute_values` and tags.
+    That is a real widening of a payload kept deliberately narrow, and the 2.1
+    attribute shape has already bitten once (a guard read the wrong key and returned
+    [] where a `Select` existed). It needs a live check against the API before it is
+    written, not a guess — the credential was dead when this was authored.
     """
+    promo = as_number(row.get(PROMO_COST))
+    cost = as_number(row.get("Cost/unit"))
     return {k: v for k, v in (
-        ("supply_price", as_number(row.get("Cost/unit"))),
+        ("supply_price", promo if promo is not None else cost),
         ("price_excluding_tax", as_number(row.get("Retail price/unit"))),
     ) if v is not None}
 
@@ -577,6 +614,10 @@ def ls_create_fields(row, ls_upload_row):
         # The CSV column is `retail_price`; the API field is price_excluding_tax.
         "price_excluding_tax": as_number(ls_upload_row.get("retail_price")),
     }
+    # `tags` (CSV column 16, `PROMO`) is deliberately NOT carried yet. The API field
+    # name and whether it wants names or resolved tag ids are unverified — the
+    # credential was dead when this was written — and an unverified key 422s the whole
+    # create. See the promo-marker gap in ls_update_fields.
     for csv_col, api_key in (("description", "description"),
                              ("product_category", "product_category"),
                              ("brand_name", "brand_name"),

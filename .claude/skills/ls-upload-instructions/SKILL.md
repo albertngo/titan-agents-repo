@@ -149,6 +149,75 @@ So the mixed case is **both**, never either-or. Dropping the name half loses the
 
 ---
 
+## Marking a promo — `(P)` and the `PROMO` tag
+
+**Rule (Albert, 2026-09-10).** A row whose `Promo cost ($/sf)` is populated is on
+promo, and the LS file marks it in two places:
+
+| Where | What | Why |
+|---|---|---|
+| **Column 16 `tags`** | `PROMO` | Machine-readable. Filterable at the POS, and the thing an automated sweep can flip off when the promo ends. |
+| **Column 11 `variant_option_one_value`** — variant rows | `(P) ` **prefixed** to the existing value: `(P) Select - 20.18sf/b`, `(P) Character` | Visible to staff at the point of selection. |
+| **The name** — singleton / no-grade rows only (columns 10–11 blank) | `(P) ` prefixed to the whole name | A singleton has no variant value to carry it. |
+
+**The `(P)` goes in the variant value, never in a variant family's shared name.** This
+is the whole reason the marker works, and it is worth being explicit about why:
+
+- Lightspeed requires every row in a variant family to share an identical `name`. A
+  promo almost always covers a **subset** of a family — two grades out of five. Putting
+  `(P)` in the shared name is therefore impossible for the normal case: it would either
+  mark all five (three of them falsely, at full price) or break name identity and get
+  the group rejected.
+- Column 11 is **per-row**. It can differ across the group, which is exactly what a
+  subset promo needs.
+- The name is also Lightspeed's **identity key** (see *LS identifies a product by NAME*).
+  A promo marker has to go on and come off; churning the identity field twice per promo,
+  across hundreds of rows, is the surface the Grandeur incident lived on. The variant
+  value carries no identity.
+
+**It does not collide with sf/b.** `(P)` is a prefix, so a mixed-box-size group still
+reads `(P) Select - 20.18sf/b` and the box size is still exposed. The two rules stack.
+
+**It cannot cause a Duplicate Variants rejection.** Marking some rows in a group makes
+their column 11 values *more* distinct, never less.
+
+### Coming off is part of the rule
+
+**A stale `(P)` is worse than no marker** — staff quote a discount that expired. The
+marker's lifetime is `Promo cost ($/sf)`:
+
+- **Populated** → `tags: PROMO`, `(P)` prefix, `supply_price` = the promo cost.
+- **Cleared** (Cowork clears it on `Promo end date`) → the next build emits no tag, no
+  `(P)`, and `supply_price` back to `Cost/unit`.
+
+This only holds because **the file is regenerated, not hand-edited**. Every promo marker
+is derived from the Airtable field on each build, so it cannot go stale on its own — but
+a row that never gets rebuilt after its promo ends keeps the marker until it does.
+
+> **⚠️ Known gap (2026-09-10): the API sync moves the promo PRICE, not the promo MARKER.**
+> `/catalog-sync`'s Lightspeed update writes prices and nothing else, by design. So on an
+> existing product `supply_price` follows `Promo cost ($/sf)` automatically in both
+> directions, while `tags` and the `(P)` prefix reach Lightspeed **only through a rebuilt
+> CSV import**. A product whose promo has ended will carry the correct cost and a stale
+> `(P)` until its file is rebuilt and re-imported.
+>
+> Until that is closed, **a promo ending is a rebuild-and-import, not just a date passing.**
+> Closing it means letting an update write `variant_attribute_values` and tags — a real
+> widening of a deliberately narrow payload, and the 2.1 attribute shape has already caused
+> one incident, so it needs a live API check first rather than a guess.
+
+### Retail does not follow the promo
+
+`retail_price` stays `Cost/unit + $ 1.00` off the **regular** cost, so it still moves
+when the regular cost moves. Adjusting retail during a promo remains a manual act
+(*Promo pricing flow*, `bert-airtable-schema`).
+
+**Consequence, stated so it is not a surprise:** a hand-set promo retail in Lightspeed
+**will be rewritten** by the next sync. It is not silent — it shows as a before/after on
+the plan a person approves — but it is not preserved either.
+
+---
+
 ## Brand configuration
 
 Before generating an upload, identify these brand-specific values from the source data sheet. Every rule below uses these variables.
@@ -252,9 +321,9 @@ them change.
 | **10. variant_option_one_name ⭐** | **Conditional on variant group.** If 2+ rows share the same handle with different grades (true variant group) → "Grade". Otherwise (single-grade product, even if Grade has a value) → leave BLANK. |
 | **11. variant_option_one_value ⭐** | **Conditional on variant group, then on box-size uniformity.** Single-grade product → leave BLANK (grade and sf/b both go in the NAME). Variant group where all rows share one box size → grade AS-IS, nothing appended: "Character", "Select & Better", "Rustic" (sf/b sits in the shared name). Variant group with mixed box sizes → `[Grade] - [sfb]sf/b` using **this row's own** box size ("Select - 20.18sf/b" vs "Select & Better - 18.19sf/b"), formatted to two decimals, while the shared name carries the combined `18.19/20.18sf/b`. See *Load-bearing rule — every SKU must carry a readable sf/b*. |
 | **12–15. variant options 2 & 3** | Leave ALL BLANK. Not used. |
-| **16. tags** | Leave BLANK. |
-| **17. supply_price** | = Source **"Cost/unit"** column. Numeric only (no $ signs, no commas). See *Pricing field reflection rule* below. |
-| **18. retail_price** | = Source **"Retail price/unit"** column. Numeric only. See *Pricing field reflection rule* below. |
+| **16. tags** | `PROMO` when the row's `Promo cost ($/sf)` is populated, otherwise BLANK. This is the machine-readable half of the promo marker — see *Marking a promo* below. |
+| **17. supply_price** | = the row's **`Promo cost ($/sf)`** when populated, otherwise **`Cost/unit`**. `supply_price` is what Titan actually pays, and during a promo that is the promo cost. Numeric only (no $ signs, no commas). See *Marking a promo* and *Pricing field reflection rule* below. |
+| **18. retail_price** | = Source **"Retail price/unit"** column — **always the regular `Cost/unit` + `$ 1.00`, never derived from the promo cost.** Numeric only. See *Pricing field reflection rule* below. |
 | **19–22. loyalty & account codes** | Leave ALL BLANK. |
 | **23. brand_name** | = `[BRAND]`. Read from source sheet "Brand" column. |
 | **24. supplier_name** | = `[SUPPLIER]`. Always read from the source "Supplier" column, never from "Brand". For a single-brand supplier the two strings coincide; for a distributor they must not be conflated — a Canadian Standard row carrying BOEN flooring is `brand_name` BOEN, `supplier_name` Canadian Standard. |
