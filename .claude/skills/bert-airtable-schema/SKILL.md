@@ -3017,6 +3017,59 @@ price) and was escalated via Tactical Task before any Lightspeed write. Do not a
 
 ---
 
+### Weiss
+
+Weiss is a **new supplier** onboarded 2026-09-08/09 from the Weiss price list valid
+from Aug 1 2026, covering engineered hardwood, vinyl plank, laminate, and accessories
+(transitions, stairnoses, underlay rolls).
+
+#### Cost column
+
+**CONFIRMED 2026-09-10 by Albert: the list's single "Price / SF" column is Titan's
+dealer cost, as printed, no multiplier.** This was the working assumption used during
+extraction (62 rows) — it is now confirmed. Do not ask again.
+
+- Printed "Price / SF" → `Cost/unit` **as-is**. Never apply a multiplier.
+- Retail markup is category-specific, already applied per row and recorded in each
+  record's `Salesperson notes`: vinyl stairboard sets use the FAW vinyl stair-step
+  markup (+$20); stairnoses and most other per-piece accessories use the cross-supplier
+  accessory markup (+$15); underlay rolls use the cross-supplier underlayment markup
+  (+$20/roll). Flooring (engineered, vinyl plank, laminate) uses the schema default
+  `Retail = Cost + $1.00` unless a row's notes say otherwise.
+- Rigid vinyl core construction is unstated on the list; defaults to SPC per the global
+  rule. Underpad material is unstated on the attached-pad vinyl lines; IXPE assumed —
+  verify with Weiss if it matters.
+- "Select Plus" (used on some Oak colourways) is Weiss's own grade wording, stored
+  verbatim per the grade translation rule — it sits between Select and Select & Better
+  on their sheet but is not formally mapped to either; confirm the equivalence with
+  Weiss if it becomes load-bearing.
+
+### Vizion
+
+Vizion is a **new supplier** onboarded 2026-09-08/09 from the Vizion Floor Price List
+dated 2026-07-01 (6 pages: engineered vinyl plank, laminate, accessories/stair
+components).
+
+#### Cost column
+
+**CONFIRMED 2026-09-10 by Albert: the printed price is Titan's dealer cost, as-is, no
+multiplier.** The sheet prints exactly one unlabelled "> PRICE" column with no terms
+page, no stated discount, and no MSRP column — genuinely ambiguous on first ingest
+(precedent runs three ways across other suppliers), so it was escalated via Tactical
+Task before any import. This was the working assumption used during extraction
+(52 rows) — it is now confirmed. Do not ask again.
+
+- Printed "> PRICE" → `Cost/unit` **as-is**. Never apply a multiplier.
+- `Retail = Cost + $1.00` — the schema default, applied uniformly.
+- Core construction is unstated for the vinyl lines; SPC assumed per the global rule
+  for unlabelled rigid vinyl.
+- SKU supplier code: `VIZN` — Vizion's own product codes are unique per product and are
+  used verbatim as the 4-char suffix (e.g. `LVP-VIZN-V7001`).
+- Stair/accessory items are priced per piece (Stair Board per set); dimensions as
+  printed go in the accessory name's `[Dimensions]` segment per the transitions format.
+
+---
+
 ### New supplier onboarding — checklist
 
 When a new supplier is added, gather this information before processing their first price list, and add a subsection above following the FAW template:
