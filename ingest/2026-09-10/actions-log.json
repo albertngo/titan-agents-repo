@@ -1,0 +1,60 @@
+{
+ "contract_version": "1",
+ "entries": [
+  {
+   "logged_at": "2026-09-10T01:02:10-04:00",
+   "agent": "session (no airtable-actions-agent exists yet \u2014 Phase 4)",
+   "type": "airtable_backfill_ls_id",
+   "target": "Master Flooring Catalogue recq6MNsdcAPuZlRY (ACC-LEEF-0001)",
+   "content_summary": "Wrote Lightspeed ID ac20ac77-1877-4bf8-a80e-2c60c92652f2 into the previously empty field. Sourced from the live Lightspeed X-Series API pull (ingest/2026-09-10/lightspeed-products.json), matched on sku; the LS handle LEEFACCTMOULD matched Airtable's LS Handle / Parent ID independently. Updated by record id, so no merge key was used and no record could be created; SKU was never in the payload (RULE 0). No other field touched.",
+   "approved_by": "Albert 2026-09-10, in chat: \"backfill the lee directly from LS API\"",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "ac20ac77-1877-4bf8-a80e-2c60c92652f2"
+  },
+  {
+   "logged_at": "2026-09-10T01:02:10-04:00",
+   "agent": "session (no airtable-actions-agent exists yet \u2014 Phase 4)",
+   "type": "airtable_backfill_ls_id",
+   "target": "Master Flooring Catalogue recSWXa81pwfPvCRK (ACC-LEEF-0002)",
+   "content_summary": "Wrote Lightspeed ID 39f5a3e9-9d92-416c-a242-03f739c02003 into the previously empty field. Sourced from the live Lightspeed X-Series API pull (ingest/2026-09-10/lightspeed-products.json), matched on sku; the LS handle LEEFACCREDUCER matched Airtable's LS Handle / Parent ID independently. Updated by record id, so no merge key was used and no record could be created; SKU was never in the payload (RULE 0). No other field touched.",
+   "approved_by": "Albert 2026-09-10, in chat: \"backfill the lee directly from LS API\"",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "39f5a3e9-9d92-416c-a242-03f739c02003"
+  },
+  {
+   "logged_at": "2026-09-10T01:02:10-04:00",
+   "agent": "session (no airtable-actions-agent exists yet \u2014 Phase 4)",
+   "type": "airtable_backfill_ls_id",
+   "target": "Master Flooring Catalogue recTuux02J4YGOltV (ACC-LEEF-0003)",
+   "content_summary": "Wrote Lightspeed ID c9866d19-aac6-408a-b50f-dd5cf077c5ae into the previously empty field. Sourced from the live Lightspeed X-Series API pull (ingest/2026-09-10/lightspeed-products.json), matched on sku; the LS handle LEEFACCSTAIRNOSING matched Airtable's LS Handle / Parent ID independently. Updated by record id, so no merge key was used and no record could be created; SKU was never in the payload (RULE 0). No other field touched.",
+   "approved_by": "Albert 2026-09-10, in chat: \"backfill the lee directly from LS API\"",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "c9866d19-aac6-408a-b50f-dd5cf077c5ae"
+  },
+  {
+   "logged_at": "2026-09-10T01:02:10-04:00",
+   "agent": "session (no airtable-actions-agent exists yet \u2014 Phase 4)",
+   "type": "airtable_backfill_ls_id",
+   "target": "Master Flooring Catalogue recBBf095xIQFQ3m4 (ACC-LEEF-0004)",
+   "content_summary": "Wrote Lightspeed ID e4fb0e27-89a1-4e51-ade3-2fa2df82951a into the previously empty field. Sourced from the live Lightspeed X-Series API pull (ingest/2026-09-10/lightspeed-products.json), matched on sku; the LS handle LEEFACCUNDERLAYSILVERFOAM matched Airtable's LS Handle / Parent ID independently. Updated by record id, so no merge key was used and no record could be created; SKU was never in the payload (RULE 0). No other field touched.",
+   "approved_by": "Albert 2026-09-10, in chat: \"backfill the lee directly from LS API\"",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "e4fb0e27-89a1-4e51-ade3-2fa2df82951a"
+  },
+  {
+   "logged_at": "2026-09-10T01:02:10-04:00",
+   "agent": "session (no airtable-actions-agent exists yet \u2014 Phase 4)",
+   "type": "airtable_backfill_ls_id",
+   "target": "Master Flooring Catalogue rec4sessC1H3QaNNH (ACC-LEEF-0005)",
+   "content_summary": "Wrote Lightspeed ID 4238fe01-36c4-4c65-b3db-ceb48963f7b0 into the previously empty field. Sourced from the live Lightspeed X-Series API pull (ingest/2026-09-10/lightspeed-products.json), matched on sku; the LS handle LEEFACCUNDERLAYEVARUBBER matched Airtable's LS Handle / Parent ID independently. Updated by record id, so no merge key was used and no record could be created; SKU was never in the payload (RULE 0). No other field touched.",
+   "approved_by": "Albert 2026-09-10, in chat: \"backfill the lee directly from LS API\"",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "4238fe01-36c4-4c65-b3db-ceb48963f7b0"
+  }
+ ]
+}

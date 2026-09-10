@@ -171,6 +171,15 @@ because Ontario HST is applied at checkout by the outlet's Default Tax rule.
 | Reason | What it means |
 |---|---|
 | `category_unresolved` | The Airtable `Category` does not correspond to a Lightspeed leaf on its own |
+| `airtable_state_unverified` | The plan was built without a live Airtable snapshot, so its Airtable side may propose work already done |
+
+`airtable_state_unverified` is the one warning that should stop an approval. The
+upload CSV records Airtable as it stood when the price list was processed, not now.
+On 2026-09-10 the Lee plan claimed 50 rows needing a `Lightspeed ID` backfill when
+the live base was missing only 5 — the other 45 had been filled in since the CSV was
+written. Overstating by 10x on exactly the case the plan exists to catch is not a
+footnote, so the reconciler says so in the plan and on stdout. Pass
+`--airtable-existing`.
 
 `category_unresolved` is a warning rather than a block because the mapping is
 genuinely unsettled, not because it is unimportant. `LVP` and `LVT` name a

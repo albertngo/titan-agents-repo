@@ -528,6 +528,24 @@ def main():
     actions, blocked, warnings = reconcile(rows, ls, existing, supplier, categories,
                                           ls_upload)
 
+    # Without a live Airtable snapshot the Airtable side is guesswork: the upload CSV
+    # records what Airtable looked like when the price list was processed, not now.
+    # Verified 2026-09-10 — the Lee plan claimed 50 rows needing a Lightspeed ID
+    # backfill when the live base was missing only 5, because 45 had been filled in
+    # since the CSV was written. Overstating by 10x on exactly the case this is meant
+    # to catch is not a footnote.
+    airtable_actions = [a for a in actions if a["target_system"] == "airtable"]
+    if airtable_actions and not args.airtable_existing:
+        warnings.insert(0, {
+            "sku": None,
+            "reason": "airtable_state_unverified",
+            "detail": (f"{len(airtable_actions)} Airtable actions were derived from the "
+                       "upload CSV, not from live Airtable. The CSV shows the base as it "
+                       "was when the price list was processed; anything filled in since "
+                       "will be proposed again. Re-run with --airtable-existing pointing "
+                       "at a live snapshot before approving any Airtable write."),
+        })
+
     kinds = Counter(f"{a['target_system']}_{a['op']}" for a in actions)
     recovered = len({a["sku"] for a in actions if a.get("uuid_source") == "recovered_by_sku"})
     plan = {
@@ -575,6 +593,9 @@ def main():
         print(f"  warnings   {len(warnings)}")
         for reason, n in Counter(w["reason"] for w in warnings).most_common():
             print(f"    {reason:28} {n}")
+    if any(w["reason"] == "airtable_state_unverified" for w in warnings):
+        print("\n  NOT APPROVABLE for Airtable writes: the Airtable side came from the "
+              "upload\n  CSV, not the live base. Pass --airtable-existing.")
     if blocked:
         print("\n  Blocked rows are NOT approvable and never reach a write. Fix the data "
               "and re-run.")

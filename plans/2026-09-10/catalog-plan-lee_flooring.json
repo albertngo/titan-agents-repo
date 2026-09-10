@@ -1,7 +1,7 @@
 {
  "contract_version": "catalog-plan-1",
  "supplier": "Lee Flooring",
- "run_at": "2026-09-10T00:49:23.949075-04:00",
+ "run_at": "2026-09-10T01:02:30.439146-04:00",
  "status": "ok",
  "inputs": [
   {
@@ -20,7 +20,7 @@
   "actions_total": 84,
   "uuid_recovered_by_sku": 50,
   "blocked": 0,
-  "warnings": 9,
+  "warnings": 10,
   "rows_in": 84
  },
  "actions": [
@@ -1737,6 +1737,11 @@
  ],
  "blocked": [],
  "warnings": [
+  {
+   "sku": null,
+   "reason": "airtable_state_unverified",
+   "detail": "84 Airtable actions were derived from the upload CSV, not from live Airtable. The CSV shows the base as it was when the price list was processed; anything filled in since will be proposed again. Re-run with --airtable-existing pointing at a live snapshot before approving any Airtable write."
+  },
   {
    "sku": "LVP-LEEF-0001",
    "reason": "category_unresolved",
