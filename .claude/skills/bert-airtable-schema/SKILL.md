@@ -120,6 +120,19 @@ back-filled before `LS Upload` is `Done`. The actionable backfill set is therefo
 `UUID Backfill is Pending` **and** `LS Upload: Done` — a `Pending` row with `LS Upload` not yet `Done`
 is waiting to be uploaded, not waiting for you to backfill it.
 
+#### Resolving a duplicate-record collision — the tie-break rule
+
+**Ruling (Albert, 2026-09-10):** when two Airtable records appear to describe the same
+product and a backfill or matching pass can't tell which one is live, **the record that
+already carries both a `SKU` and a `Lightspeed ID` is the correct one.** A record missing
+either — most often a broken record with a blank `SKU` — is the duplicate, not a second
+real product, and gets deleted once the correct sibling is confirmed. Applied 2026-09-10
+to a broken null-SKU Biyork record (`reciBkT8xnBBshiZr`) colliding with the properly-SKU'd
+`ENG-BIYK-BYKN5AOEM`, which already held the right Lightspeed ID from a prior upload — the
+broken record was deleted. This is a tie-break for an already-ambiguous collision, not
+permission to delete a record just because a match failed; RULE 0's "escalate, don't
+guess" still governs every case that isn't this clean-cut.
+
 `New Products` is the check on the backfill: it says how many UUIDs that row should
 have produced, so a short count is visible rather than silent.
 
@@ -2755,6 +2768,26 @@ Biyork is both the supplier and the brand. Biyork Materials Canada (Markham, ON)
 | **Supplier SKU** | Always populated with the Biyork code printed on the price list, on its own (e.g. `BYKENWA18NA`). Same string as the internal SKU's suffix. |
 
 Accessory SKUs follow the same rule: `ACC-BIYK-[Biyork code]`, Supplier SKU = the Biyork code. Nouveau wood accessories ("available in all Nouveau colours") have no per-colour code → use sequential `ACC-BIYK-0001` and leave Supplier SKU blank.
+
+#### Lightspeed name prefix — CONFIRMED 2026-09-10 against the live export
+
+Verified against a full live Biyork Lightspeed export (416 products). The PL-325 build's derived prefixes were checked and are **correct as built** — no renaming was needed, this section exists so the next run doesn't have to re-derive them:
+
+| Product type | Prefix / convention | Live example |
+|---|---|---|
+| Engineered hardwood | `BIYKENG` | `BIYKENG - Nouveau 5 American Oak (Abode) \| 5" x 19.05mm x RL up to 6ft - 25.08sf/b` |
+| LVP (vinyl plank) | `BIYKLVP-SPC` | `BIYKLVP-SPC - Hydrogen 5 (Cashmere) \| 7" x 5mm x 48" - 26.43sf/b` |
+| LVT (vinyl tile) | `BIYKLVT-SPC` | `BIYKLVT-SPC - Hydrogen 6 Tile (Bourbon) Click \| 24" x 6mm x RL - 19.38sf/b` |
+| Laminate | `BIYKLAM` | `BIYKLAM - Riptide (Black Pearl) \| 7.5" x 12mm x 48" - 15.39sf/b` |
+| **Accessories** | **Not** the generic cross-supplier `[Supplier] - Transition \| ...` format, and **not** an abbreviated `BIYKACC` prefix (that pattern exists on ~33 older records but is legacy, not current). Current convention (191 live records) is the full spelled-out `Biyork [Collection] [Type] — [Colour]`, which is exactly what Airtable's `Product name` already stores for Biyork accessories — copy it verbatim, same as the Weiss/Vizion accessory rule. | `Biyork Hydrogen 5 Reducer — Cashmere`, `Biyork Riptide Overlap Stairnose — Black Pearl`, `Biyork Hydrogen 6 Tile Stairnose — Combed Cotton` |
+
+A handful of legacy Nouveau 6/7/8 European Oak records (7 total) use an older `BIYENG` (no K) prefix with a different `#code` name format — that's historical, not the convention for new imports.
+
+#### Re-code quirk — Biyork periodically reprints the same colour under a new internal code
+
+**Ruling (Albert, 2026-09-10):** when a later Biyork price list shows a colour/collection that already exists live under a different Biyork product code, **the old SKU stays the live product — do not create a new one.** The two price lists this has now been seen on (May 22 2026 and July 15 2026, both for Hydrogen 6 Plank/Tile colours: Lily Canvas, Midday Sunrise, Raw, Dusty, Chalk, Combed Cotton + their T-Moulding/Stairnose accessories) showed no real product change — the "new" entry differs from the old live record's name at most cosmetically (e.g. `Biyork Hydrogen 6 Plank 7.0" — Lily Canvas` → `Biyork Hydrogen 6 Plank — Lily Canvas`, dropping the width token that's already captured in `Width (in)`); the 3 accessory pairs checked had **identical** names already.
+
+**Handling:** flag these `MatchStatus: ambiguous` at extraction time as before (never silently treat as `new`), but once confirmed a re-print rather than a real change, do not create a parallel Airtable record — the PL-325 run's 9 such rows were deleted 2026-09-10 after this confirmation, since the corresponding old SKUs (`LVP-BIYK-BYKHY6HP50LC/MS/50RA/50DU`, `LVT-BIYK-BYKRCET50CH`, `LVT-BIYK-BYKHY6HT50CO`, `ACC-BIYK-BYKH6TISTCC/STCH/TITMCH`) were already live and correct. Only update the old record's `Product name`/description if the later list actually adds real information — a dropped width digit is not that.
 
 #### Cost column
 
