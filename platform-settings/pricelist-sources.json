@@ -1,15 +1,12 @@
 {
   "_comment": "Registry for the supplier price-list pipeline: the Notion Price Lists row that triggers it, the property names a run reads and writes, and the escalation target. Consumed by .claude/commands/process-price-list.md, .claude/commands/catalog-sync.md and .claude/agents/pricelist-processor.md. Every id and property/option string that was previously duplicated in prose across the co-versioned trio (the command, methods/pricelist-extraction.md, methods/pricelist-routine-prompt.md) lives here instead. Source: live Notion data source, verified via Notion MCP 2026-09-10.",
   "_maintenance": "Notion property names and select/status option strings are EXACT MATCH. A status or select property REJECTS an unknown option and takes the whole update_properties call down with it, so one stale string loses the entire state write, not just that field. Re-verify with notion-fetch on the data_source url whenever a property write is rejected. VERIFIED DRIFT 2026-09-10: `Airtable Sync` no longer has a plain `Done` option — it was split into `Done: Updated` and `Done: New List UUID`. The repo prose still said `Done` (process-price-list.md:195). `LS Upload` and `UUID Backfill` do still carry plain `Done`.",
-
   "config_version": "1",
-
   "price_lists": {
     "_comment": "The row a run is invoked on. The trigger is Make scenario 4381438, which posts {\"notionID\": \"<page id>\"} and nothing else — every other input comes off this row.",
     "data_source": "collection://e2dc37bc-63da-42e9-b6c0-63ff48d72e6b",
     "_parent_page_not_the_database": "13b596a4505f80fc816aceefcd0de7c4",
     "_parent_page_note": "This is the parent PAGE. Fetching it instead of the data_source above returns a page, not the database — a recurring mistake, recorded here so it is never re-derived.",
-
     "read_properties": {
       "_comment": "`Files & media` is a file property holding a file://{...} URL-encoded JSON envelope — decode it and take .source for the SharePoint share link. `Email Subject` is the title property.",
       "file": "Files & media",
@@ -19,7 +16,6 @@
       "company": "Company",
       "tags": "Tags"
     },
-
     "write_properties": {
       "extraction_status": "Extraction Status",
       "airtable_sync": "Airtable Sync",
@@ -27,59 +23,142 @@
       "uuid_backfill": "UUID Backfill",
       "new_products": "New Products",
       "notes": "Notes",
+      "review_reason": "Review Reason",
       "extracted_files": "Extracted Files"
     },
-
     "_write_key_trap": "The extraction state key is `Extraction Status`, NOT `Status`. Writing `Status` returns 400 validation_error.",
-
     "status_values": {
       "extraction_status": {
         "_type": "status",
-        "_all": ["Not started", "Extracting", "Extracted [Needs Review]", "Extracted [Ready to Upload]", "Extracted [Error]", "Extracted [All Uploaded]", "Not Needed"],
-        "_writable_by_a_run": ["Extracted [Needs Review]", "Extracted [Error]"],
-        "_owned_by_the_person_doing_the_import": ["Extracted [Ready to Upload]", "Extracted [All Uploaded]", "Not Needed"],
-        "_never_leave_at": ["Extracting"]
+        "_all": [
+          "Not started",
+          "Extracting",
+          "Extracted [Needs Review]",
+          "Extracted [Error]",
+          "Extracted [All Uploaded]",
+          "Not Needed"
+        ],
+        "_writable_by_a_run": [
+          "Extracted [Needs Review]",
+          "Extracted [Error]"
+        ],
+        "_owned_by_the_person_doing_the_import": [
+          "Extracted [All Uploaded]",
+          "Not Needed"
+        ],
+        "_never_leave_at": [
+          "Extracting"
+        ],
+        "_ready_to_upload_option_is_MISSING": "Verified absent on the live data source 2026-09-10. It WAS present earlier the same day. Nothing in this repo removed it — the only schema statements run were ADD COLUMN 'Review Reason' and ALTER COLUMN on the three select trackers, and Extraction Status is a status property untouched by those. It was most likely removed in the Notion UI. RECORDED RATHER THAN RESTORED because this is a shared team database and the removal may be deliberate. IT MATTERS: it was the reviewer's 'I have checked this, go' signal — the only thing separating a reviewed row from an unreviewed one — and the catalogue-sync routine scoped on it. With the option gone that filter matches nothing, forever, silently. See _catalog_sync_scope below.",
+        "_catalog_sync_scope": "Until Extracted [Ready to Upload] is restored or replaced, the catalogue-sync routine has NO safe scope filter and must not run unattended: 'Airtable Sync is Pending' alone would sweep in rows nobody has reviewed, which inverts the pipeline's whole order. Restore the option, or name a replacement signal, before scheduling the routine."
       },
       "airtable_sync": {
         "_type": "select",
-        "_all": ["Pending", "Done: Updated", "Done: New List UUID", "Not needed"],
-        "_writable_by_an_extraction_run": ["Pending"],
-        "_note": "No plain `Done` option exists on this property (verified live 2026-09-10). A writer completing an Airtable sync picks `Done: Updated` when it updated existing records, `Done: New List UUID` when the list created new records that still need Lightspeed UUIDs."
+        "_all": [
+          "Pending",
+          "Partial",
+          "Done: Updated",
+          "Done: New List UUID",
+          "Not needed"
+        ],
+        "_writable_by_an_extraction_run": [
+          "Pending"
+        ],
+        "_note": "No plain `Done` option exists on this property (verified live 2026-09-10). A writer completing an Airtable sync picks `Done: Updated` when it updated existing records, `Done: New List UUID` when the list created new records that still need Lightspeed UUIDs.",
+        "_partial": "Added 2026-09-10. Approving 222 of 231 rows is explicitly normal under contracts/catalog-plan-schema.md, and that row is then neither Pending nor Done — marking it either way states something false. It did not arise on the manual path, where you either imported the file or you did not."
       },
       "ls_upload": {
         "_type": "select",
-        "_all": ["Pending", "Done", "Not needed"],
+        "_all": [
+          "Pending",
+          "Partial",
+          "Done",
+          "Not needed"
+        ],
         "_writable_by_an_extraction_run": [],
-        "_note": "An extraction run NEVER touches this property."
+        "_note": "An extraction run NEVER touches this property.",
+        "_partial": "Added 2026-09-10. Approving 222 of 231 rows is explicitly normal under contracts/catalog-plan-schema.md, and that row is then neither Pending nor Done — marking it either way states something false. It did not arise on the manual path, where you either imported the file or you did not."
       },
       "uuid_backfill": {
         "_type": "select",
-        "_all": ["Pending", "Done", "Not needed"],
-        "_writable_by_an_extraction_run": ["Pending", "Not needed"]
+        "_all": [
+          "Pending",
+          "Partial",
+          "Done",
+          "Not needed"
+        ],
+        "_writable_by_an_extraction_run": [
+          "Pending",
+          "Not needed"
+        ],
+        "_partial": "Added 2026-09-10. Approving 222 of 231 rows is explicitly normal under contracts/catalog-plan-schema.md, and that row is then neither Pending nor Done — marking it either way states something false. It did not arise on the manual path, where you either imported the file or you did not."
       },
       "tags": {
         "_type": "select",
-        "_all": ["Regular List", "Promo"]
+        "_all": [
+          "Regular List",
+          "Promo"
+        ]
+      },
+      "review_reason": {
+        "_type": "multi_select",
+        "_comment": "Added 2026-09-10 (Albert). WHY a row needs a human check, beside Extraction Status, which only says THAT it does. Multi-select because one file routinely trips several at once — a new supplier's list is usually New Supplier + Ambiguous Pricing + Unmapped Grade. This is the filterable half; `Notes` carries the specifics (which SKUs, which columns as printed).",
+        "_all": [
+          "New Supplier",
+          "Ambiguous Pricing",
+          "Ambiguous Naming",
+          "Unmapped Category",
+          "Unmapped Grade",
+          "Spec Gap"
+        ],
+        "_meanings": {
+          "New Supplier": "Zero existing Airtable rows for this supplier. Nothing on the file has been reconciled against a live record, so EVERY detail needs a human check before upload — spec confidence and cost confidence are both unearned. Such a row also gets no Lightspeed file, so it carries one CSV and cannot reach the sync's write steps until a person has done the Airtable import.",
+          "Ambiguous Pricing": "More than one candidate cost column, or a number whose role is not printed. The default (printed price = cost, Retail = Cost + $ 1.00) was still applied; Notes says which column was taken as cost.",
+          "Ambiguous Naming": "Collection / colour / width / layout did not resolve 1:1 against the live catalogue. The Grandeur 2026-09-03 failure mode.",
+          "Unmapped Category": "No Lightspeed leaf category maps. LVP/LVT are formats, not leaves.",
+          "Unmapped Grade": "Supplier shorthand with no canonical mapping ('A' alone, 'BC', 'Prime' with no context). Grade left blank, supplier wording preserved.",
+          "Spec Gap": "A flooring row missing something the upload cannot invent — most often a blank `Box size (sf)` on a plank or tile SKU."
+        },
+        "_written_by": "Either run, additively. The extraction run sets it first, since that is where most reasons surface; the catalogue-sync run ADDS when the reconciler finds more. A run never removes another run's reasons.",
+        "_cleared_by": "The reviewer, in the UI, as each one is resolved. A run never clears it.",
+        "_why_not_just_notes": "`Notes` is prose, overwritten every run, and cannot be filtered. Every other piece of state on this row is a filterable property because it drives a worklist. `Extraction Status is Extracted [Needs Review] AND Review Reason contains New Supplier` is the full-check queue; without this property that queue cannot exist."
       }
     },
-
-    "forced_downstream_order": ["airtable_sync", "ls_upload", "uuid_backfill"],
-    "_forced_order_why": "A new product has no Lightspeed ID until the POS upload creates one, so the backfill cannot precede the upload, and the upload cannot precede the Airtable import that mints the SKU and handle.",
-
+    "forced_downstream_order": [
+      "airtable_sync",
+      "ls_upload",
+      "uuid_backfill"
+    ],
+    "_forced_order_why": "THE CSV PATH ONLY. A new product has no Lightspeed ID until the POS upload creates one, so the backfill cannot precede the upload, and the upload cannot precede the Airtable import that mints the SKU and handle.",
+    "_forced_order_is_reversed_on_the_api_path": "Corrected 2026-09-10. /catalog-sync writes LIGHTSPEED FIRST, then Airtable — the opposite of the order above. POST /api/2.0/products returns the new product's UUID in its response, so the Lightspeed create is what mints the id the Airtable write needs. The CSV path had to import Airtable first because that is where the SKU and handle came from; on the API path /process-price-list has already minted both into the upload file before either write happens, so nothing gates Lightspeed. Read this order as a description of the manual CSV flow, not as a constraint on the sync.",
+    "_all_three_trackers_are_kept": "Decided 2026-09-10 (Albert). The three trackers stay, and BOTH paths write the same three fields. They are stage indicators, not a queue owned by the automation: Albert can run any stage by hand and mark it, and /catalog-sync marks the same field when it runs the same stage. One vocabulary, either operator. This is why none of them is retired even though the API collapses the stages in time.",
+    "_what_uuid_backfill_means_on_each_path": "CSV path: a real waiting period. The backfill was deliberately BATCHED because one hand-made Lightspeed export covered several price lists (Albert, 2026-09-03), so a row could sit Pending for days. API path: the same stage, but it completes seconds after the Lightspeed write, because POST /api/2.0/products returns the UUID and scripts/lightspeed_push.py writes plans/<date>/catalog-backfill-<supplier>.json in the same run. The stage still happens and is still worth marking — it just no longer lags. It reads Pending only when a run stopped between the Lightspeed write and the Airtable write, which is exactly the state worth seeing.",
+    "_actionable_backfill_filter_is_csv_path_only": "uuid_backfill: Pending AND ls_upload: Done is the queue for the BATCHED export. On the API path a row in that state is a half-finished run to investigate, not a batch to pick up.",
     "actionable_backfill_filter": {
       "_comment": "The set a backfill run may act on.",
       "uuid_backfill": "Pending",
       "ls_upload": "Done"
     },
-
     "company_property": {
       "_comment": "Read the option list LIVE off the data source each run; never hardcode it here — options are added as suppliers are onboarded. Recorded only as the near-collision warning, which is what a run actually needs.",
       "casing": "ALL CAPS in Notion. Airtable `Supplier` keeps its own mixed case and in several cases a different name entirely — see airtable-destinations.json supplier_aliases. Never normalise one to the other.",
-      "near_collisions": [["BALTIC", "NORTHWAY"], ["FLOORDI", "UMBRELLAR"], ["OMC", "OMC TOOLS"]],
+      "near_collisions": [
+        [
+          "BALTIC",
+          "NORTHWAY"
+        ],
+        [
+          "FLOORDI",
+          "UMBRELLAR"
+        ],
+        [
+          "OMC",
+          "OMC TOOLS"
+        ]
+      ],
       "_near_collision_rule": "If none of document-header / email-subject / sender-domain is confident, leave Company blank and escalate. Never pick a nearest match — a wrong value looks authoritative."
     }
   },
-
   "escalation": {
     "_comment": "Where a run raises anything it could not determine (unconfirmed cost basis, unparseable document, ambiguous Company). The task is the durable record; the PushNotification is the alert.",
     "data_source": "collection://238596a4-505f-8137-af13-000bde205213",
@@ -88,12 +167,13 @@
     "assignee_name": "Albert",
     "defaults": {
       "Priority": "high",
-      "Tags": ["price list"],
+      "Tags": [
+        "price list"
+      ],
       "Verification": "Needs Verification"
     },
     "url_property_points_at": "the Price Lists row that triggered the run"
   },
-
   "outputs": {
     "_comment": "Where a run writes its files. Committed to the repo, and attached back to the row's Extracted Files property as native Notion uploads (never a pasted link).",
     "dir": "ingest/{date}",

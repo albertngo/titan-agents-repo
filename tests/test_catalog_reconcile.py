@@ -427,6 +427,83 @@ class TestMixedBoxSizeGroup(unittest.TestCase):
         self.assertEqual(blocked, [])
 
 
+class TestPromoPricing(unittest.TestCase):
+    """supply_price follows the promo; retail does not (Albert, 2026-09-10).
+
+    `Cost/unit` keeps the REGULAR cost — it is what the price reverts to — so the
+    promo cost reaches Lightspeed through supply_price only, and clearing
+    `Promo cost ($/sf)` on `Promo end date` puts supply_price back with no second
+    decision needed.
+    """
+
+    def test_promo_cost_becomes_supply_price(self):
+        out = cr.ls_update_fields({"Cost/unit": "4.20", "Retail price/unit": "5.20",
+                                   "Promo cost ($/sf)": "3.15"})
+        self.assertEqual(out["supply_price"], 3.15)
+
+    def test_retail_stays_off_the_regular_cost(self):
+        """Retail is Cost + $ 1.00 on the REGULAR cost, not the promo cost."""
+        out = cr.ls_update_fields({"Cost/unit": "4.20", "Retail price/unit": "5.20",
+                                   "Promo cost ($/sf)": "3.15"})
+        self.assertEqual(out["price_excluding_tax"], 5.20)
+        self.assertNotEqual(out["price_excluding_tax"], 4.15,
+                            "retail must not be derived from the promo cost")
+
+    def test_no_promo_uses_the_regular_cost(self):
+        out = cr.ls_update_fields({"Cost/unit": "4.20", "Retail price/unit": "5.20"})
+        self.assertEqual(out["supply_price"], 4.20)
+
+    def test_a_cleared_promo_reverts_supply_price(self):
+        """Blank means genuinely empty, so the promo simply stops applying."""
+        for blank in ("", "   ", None):
+            out = cr.ls_update_fields({"Cost/unit": "4.20", "Retail price/unit": "5.20",
+                                       "Promo cost ($/sf)": blank})
+            self.assertEqual(out["supply_price"], 4.20, f"blank={blank!r}")
+
+    def test_update_still_writes_only_prices(self):
+        """A promo must not widen the payload — no name, no supplier, no category."""
+        out = cr.ls_update_fields({"Cost/unit": "4.20", "Retail price/unit": "5.20",
+                                   "Promo cost ($/sf)": "3.15",
+                                   "Product name": "X", "Supplier": "Y",
+                                   "Category": "Z"})
+        self.assertEqual(set(out), {"supply_price", "price_excluding_tax"})
+
+
+class TestPromoMarkerAndSfb(unittest.TestCase):
+    """The `(P YYYY-MM-DD)` prefix lives in column 11 and must not disturb sf/b.
+
+    The date is inside the marker so a stale one exposes its own staleness — the
+    marker is a prompt to verify, not a claim the sale is live (Albert, 2026-09-10).
+    """
+
+    def test_p_prefix_does_not_hide_sfb_in_a_mixed_group(self):
+        rows = [row(SKU=f"A-{i}", **{"Lightspeed ID": "", "Box size (sf)": b,
+                                     "LS Handle / Parent ID": "HX1"})
+                for i, b in ((1, "20.18"), (2, "18.19"))]
+        ls_rows = {
+            f"A-{i}": {"sku": f"A-{i}", "handle": "HX1",
+                       "name": 'VIDENG - HB 5 AWO (Macaroon) T&G | 5" x 18mm x RL'
+                               " - 18.19/20.18sf/b",
+                       "variant_option_one_name": "Grade",
+                       "variant_option_one_value": v,
+                       "supply_price": "1", "retail_price": "2",
+                       "product_category": "FLOORING / ENGINEERED HARDWOOD"}
+            for i, v in ((1, "(P 2026-10-31) Select - 20.18sf/b"),
+                         (2, "Select & Better - 18.19sf/b"))}
+        _, blocked, _ = run(rows, [], ls_upload=ls_rows)
+        self.assertEqual(blocked, [],
+                         "a dated (P ...) variant value still exposes its box size")
+
+    def test_p_prefix_on_a_singleton_name_keeps_sfb_readable(self):
+        rows = [row(SKU="A-1", **{"Lightspeed ID": "", "Box size (sf)": "25.32"})]
+        _, blocked, _ = run(rows, [], ls_upload={"A-1": {
+            "sku": "A-1", "handle": "HX1",
+            "name": '(P 2026-10-31) VIDENG - 7 AWO (X) T&G | 7.5" x 3mm x RL - 25.32sf/b',
+            "variant_option_one_value": "", "supply_price": "1", "retail_price": "2",
+            "product_category": "FLOORING / ENGINEERED HARDWOOD"}})
+        self.assertEqual(blocked, [])
+
+
 class TestAirtableSnapshotRequired(unittest.TestCase):
     """Planning Airtable writes from the upload CSV is not allowed.
 

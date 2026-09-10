@@ -75,8 +75,60 @@ Three of those are load-bearing:
   records the base as it stood when the price list was processed, not now.
 - **`--ls-upload`** carries the skill-built name and category. A row new to Lightspeed
   cannot be created without it and is blocked `ls_payload_unavailable`.
-- **`--cost-basis`** is recorded, never inferred. For a **new supplier** it is a human
-  stop: dealer cost vs MSRP × multiplier — precedent runs three different ways. Ask.
+- **`--cost-basis`** records what was assumed. **Assume, do not stop** (Albert,
+  2026-09-10): the price list's printed prices are the **cost**, and
+  `Retail price/unit = Cost/unit + $ 1.00`. A column printed as **MSRP**, suggested
+  retail or suggested price goes to **`MAP price ($/sf)`** and never touches
+  `Cost/unit`. Pass `--cost-basis printed-as-cost` unless a recorded supplier
+  subsection says otherwise.
+
+## 2a. New supplier, and anything the defaults do not cover
+
+**A supplier with zero existing Airtable rows is a NEW SUPPLIER, and every detail on
+every row needs a human check before upload.** Say it in those words, first, in
+whatever you report. Nothing on that file has been reconciled against a live record,
+so spec confidence and cost confidence are both unearned — a plausible-looking row is
+not a verified one.
+
+Two structural facts make this self-enforcing rather than a matter of discipline:
+
+- A new supplier gets **no Lightspeed file** — LS columns 1–3 are copied from Airtable
+  state that does not exist yet. So the row carries **one** CSV, not two.
+- This command needs both. A new supplier therefore **cannot reach the write steps**
+  until a person has imported the Airtable file and the catalogue read returns rows.
+
+New suppliers are a deliberate two-pass flow. Report the row, say it is new, and stop.
+
+**Everything else the defaults do not cover is flagged, not stopped and not guessed:**
+
+| Situation | Do |
+|---|---|
+| More than one candidate cost column, or a number whose role is not printed | Flag, naming the columns as printed and which you took as cost |
+| Grade shorthand with no canonical mapping (`A`, `BC`, `Prime` with no context) | Leave `Grade` blank, preserve the supplier's wording, flag |
+| Category that maps to no Lightspeed leaf | Flag — the reconciler warns `category_unresolved` |
+| A supplier quirk with no recorded subsection | Apply the global rules, record the choice as an explicit assumption, flag |
+| A flooring row with a blank `Box size (sf)` | Flag as a data defect — the file cannot invent one |
+
+Flagging means three places, every time:
+
+1. **The plan** — as a `blocked` entry or a `warning`.
+2. **`Review Reason`** on the Notion row — the multi-select in
+   `price_lists.status_values.review_reason`. **Add to it; never clear it.** Both runs
+   write it and only the reviewer clears it, one option at a time as each is resolved.
+3. **`Notes`** — the specifics: which SKUs, which columns as printed, which value you
+   took. `Review Reason` says what kind of problem; `Notes` says which rows.
+
+`Extraction Status` says *that* a human must look. `Review Reason` says *why*, and is
+what makes "sit down and check everything" a filterable queue rather than a judgment
+made row by row:
+
+```
+Extraction Status is Extracted [Needs Review]
+  AND Review Reason contains New Supplier
+```
+
+**Never invent a mapping to avoid a flag.** An ambiguity absorbed silently is the one
+failure this pipeline cannot detect later.
 
 Output: `plans/YYYY-MM-DD/catalog-plan-<supplier-slug>.json`, per
 `contracts/catalog-plan-schema.md`.

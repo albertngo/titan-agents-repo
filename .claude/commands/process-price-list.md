@@ -199,6 +199,23 @@ just that field. Read the option list off the data source if a write is rejected
 - `Airtable Sync` = `Pending` — always; the run produced a file Airtable does not reflect
 - `New Products` = count of `MatchStatus = new` (`0` if none)
 - `UUID Backfill` = `Pending` if that count ≥ 1, else `Not needed`
+- `Review Reason` = **every reason this row needs a human check**, from
+  `price_lists.status_values.review_reason`. `Extraction Status` says *that* a review is
+  needed; this says *why*, and it is the only one of the two you can filter a worklist
+  on. Multi-select — set all that apply, a file routinely trips several:
+  - **`New Supplier`** — the catalogue read returned **zero rows** for this supplier.
+    Always set it. Nothing on the file has been reconciled against a live record, so
+    **every detail needs a human check before upload** — spec confidence and cost
+    confidence are separate questions and neither is earned yet.
+  - **`Ambiguous Pricing`** — more than one candidate cost column, or a number whose
+    role is not printed. The default still applies (printed price = cost,
+    `Retail = Cost + $ 1.00`); say in `Notes` which column you took.
+  - **`Ambiguous Naming`** — a row that did not resolve 1:1 (`MatchStatus: ambiguous`).
+  - **`Unmapped Category`** / **`Unmapped Grade`** / **`Spec Gap`** — no LS leaf maps;
+    grade shorthand with no canonical mapping; a flooring row with no `Box size (sf)`.
+
+  **Add, never clear.** The catalogue-sync run adds to this property too, and only the
+  reviewer removes an option, as each one is resolved.
 - `Notes` = **the flag line, or leave empty.** Write it only when the reviewer must know
   something before importing: a cost basis assumed rather than confirmed, a placeholder
   price, a schema field the base lacks, specs copied from a sibling, or a conflict with

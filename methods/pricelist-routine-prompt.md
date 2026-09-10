@@ -73,8 +73,17 @@ It covers, in order: reading the row; downloading the actual PDF bytes; assignin
 Company and Tags; extracting against the live Airtable catalogue and reconciling SKUs,
 handles and Lightspeed IDs; producing the Airtable upload file and, for an existing
 supplier, the Lightspeed upload file; attaching them to the row's Extracted Files; and
-setting Status, Airtable Sync, New Products, UUID Backfill and Notes (the row's flag
-line — anything blocking or needing verification, else left empty).
+setting Status, Airtable Sync, New Products, UUID Backfill, Review Reason and Notes
+(the row's flag line — anything blocking or needing verification, else left empty).
+
+Pricing has a default: the printed prices are the COST, Retail = Cost + $ 1.00, and
+an MSRP / suggested-retail column goes to MAP price ($/sf) and never to Cost/unit.
+Apply it and keep going — do not stop to ask which number is the cost.
+
+Set Review Reason for every reason a human must check this row, taking the options
+from price_lists.status_values.review_reason. A supplier whose catalogue read
+returned ZERO rows is a NEW SUPPLIER: set New Supplier, and say in the summary that
+every detail needs a human check before upload. Add to Review Reason; never clear it.
 
 **Finish**
 Commit and push the two generated files to the repo.

@@ -88,8 +88,30 @@ It covers: pulling the live Lightspeed catalogue read-only; taking a live Airtab
 snapshot for the supplier; reconciling both against the two CSVs into one plan at
 plans/YYYY-MM-DD/catalog-plan-<supplier>.json; and stopping.
 
-The cost basis for a NEW supplier is a human stop — dealer cost vs MSRP x
-multiplier. Never infer it. Leave the row unprocessed and say why.
+**Pricing — assume, do not stop.** Take the price list's printed prices as the
+COST. Retail price/unit = Cost/unit + $ 1.00. A column printed as MSRP,
+suggested retail or suggested price goes to MAP price ($/sf) and never touches
+Cost/unit. Apply these defaults and keep going; they are the rule, not a guess.
+
+**Flag, do not stop, for anything the defaults do not cover** — more than one
+candidate cost column, a number whose role is not printed, a grade or category
+that maps to nothing, a supplier quirk with no recorded subsection.
+
+Flag in three places: the plan, the Notion row's Review Reason multi-select, and
+Notes. Take the Review Reason options from price_lists.status_values.review_reason
+in platform-settings/pricelist-sources.json — never type one that is not listed, a
+rejected option fails the whole update-page call. ADD to Review Reason; never
+clear it, and never remove an option another run set. Notes carries the specifics
+— which SKUs, which columns as printed, which value you took as cost.
+Never invent a mapping to avoid flagging.
+
+**A NEW supplier is always flagged.** Zero existing Airtable rows for that
+supplier means every field on every row is unverified and nothing has been
+reviewed against a live record. Set Review Reason to include New Supplier, and
+say "NEW SUPPLIER — every detail needs a human check before upload" in the
+notification, in those words, and say it first. A new supplier's row carries only
+ONE CSV, so it falls outside your scope anyway (see Scope) — report it, do not
+plan it.
 
 If the Lightspeed host is unreachable or a credential is missing, report the exact
 host or variable name and stop. Never route around a blocked host, never disable
@@ -116,6 +138,25 @@ Four deliberate inclusions:
    looked at the extraction yet; planning writes off unreviewed data inverts the
    pipeline's whole order. Three rows keeps one bad run small.
 
+## ⚠️ Do not schedule this yet — its scope filter is broken
+
+**`Extracted [Ready to Upload]` no longer exists on the live `Extraction Status`
+property** (verified 2026-09-10; it was present earlier the same day). The Scope
+section above filters on it, so as written **this routine matches zero rows, silently,
+forever** — the failure mode this repo has already been bitten by twice.
+
+Nothing in the repo removed it. The only schema statements run were `ADD COLUMN
+"Review Reason"` and `ALTER COLUMN` on the three select trackers; `Extraction Status`
+is a status property and none of those touch it. Most likely it was removed in the
+Notion UI.
+
+It is not a cosmetic option. It was the reviewer's *"I have checked this, go"* signal —
+the only thing distinguishing a reviewed row from an unreviewed one. Loosening the
+filter to `Airtable Sync is Pending` alone is **not** the fix: that sweeps in rows
+nobody has looked at, which inverts the pipeline's whole order.
+
+**Restore the option, or name a replacement signal, before this routine is scheduled.**
+
 ## Schedule
 
 Daily is enough, and the pull caches per day. The rows this drains are created by the
@@ -131,7 +172,11 @@ There is no value in a tighter interval, and each run walks the full catalogue.
   re-running the reconcile — never editing the plan.
 - **Touch `LS Upload` or any Notion completion tracker.** Those record work that
   actually happened; this routine's work is a proposal.
-- **Infer a cost basis.** Asked, never inferred, for every new supplier.
+- **Stop on a pricing question.** Superseded 2026-09-10 (Albert). The printed price
+  is the cost, `Retail = Cost + $ 1.00`, MSRP → `MAP price ($/sf)`. The old rule
+  blocked the whole run on a question; this one produces the work and flags it.
+- **Silently absorb an ambiguity.** Anything the defaults do not cover is flagged
+  with its SKUs — never resolved by inventing a mapping.
 
 ## Changelog
 
