@@ -450,6 +450,27 @@ Step 2 is the easy one to get wrong: leaving a box size in the name when the two
 
 This is expected to be rare. The name-embedded approach optimizes for the common case (one grade per handle) at the cost of a small rename operation when a second grade is eventually added.
 
+**Step 5 is not reliable — confirmed 2026-09-08 (Vidar Sept promo).** Re-uploading the
+existing row (real id) alongside the new row (blank id) under the shared handle produced
+mixed results in the same batch: Silver Stone's conversion succeeded (both rows
+imported), but Wheat Berry, Joffre Lake, Honey Wheat, and Yukon all rejected the new row
+with **"Handle already exists"** — including two cases (Joffre Lake, Yukon) where the
+handle was *already* an established multi-grade group, not even a single-grade-to-group
+conversion. Whatever internal Lightspeed state makes the difference (some prior
+variant-option scaffolding on the existing product, apparently) isn't visible from
+Airtable or from the CSV being submitted, so it can't be predicted in advance.
+
+**Treat step 5 as "try it, then check the ignored-products file."** Submit the pair as
+described above, but do not assume success. When the new row comes back rejected with
+"Handle already exists": give the new grade **its own standalone handle** instead (append
+a grade abbreviation, e.g. `VIDR75AWOWHEATBERRY` → `VIDR75AWOWHEATBERRYCHAR`) and rebuild
+it as a single-grade product (grade back in the name, columns 10–11 blank). Leave the
+existing row's handle and grouping alone — if it already succeeded (as all four existing
+rows did in this run, even the four whose new sibling was rejected), it does not need
+touching. This mirrors the fix used for GreenTouch's Lucca/Lecce legacy products
+(2026-09-06), where two independently-created LS products could not be merged into one
+variant family via CSV at all — same underlying constraint, same fix.
+
 ---
 
 ## Accessories — transitions and mouldings
