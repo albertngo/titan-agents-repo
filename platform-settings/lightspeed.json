@@ -154,10 +154,10 @@
       "_verified": "Confirmed 2026-09-10 against every row of the Grandeur and Lee uploads that exists in Lightspeed \u2014 315/315 on both fields, no exceptions.",
       "supply_price": "Airtable `Cost/unit`. 231/231 Grandeur and 84/84 Lee.",
       "price_excluding_tax": "Airtable `Retail price/unit`. THIS is the retail price. 231/231 and 84/84.",
-      "price_including_tax": "Read-only in practice. Equals price_excluding_tax on 100% of the 12,548 active priced products \u2014 never 1.13x. Ontario HST is applied at checkout by the outlet's Default Tax rule, not stored on the product.",
+      "price_including_tax": "DEPENDS ON THE ENDPOINT, and this corrects an earlier claim in this file. On the 2.0 LIST endpoint it mirrors price_excluding_tax on every product, which is why a survey of that endpoint found no 1.13x anywhere. The 3.0 FAMILY read computes it properly: ENG-VIDR-0038 reads tax_exclusive 6.79 / tax_inclusive 7.6727, which is exactly x1.13. Ontario HST is real and is applied on read; the 2.0 list simply does not compute it. Still never write it.",
       "_write_rule": "Set supply_price and price_excluding_tax. Never write price_including_tax.",
       "_no_retail_price_field": "The API has NO `retail_price` key \u2014 0 of 14,525 products carry one. That name belongs to the CSV importer only; it maps to price_excluding_tax.",
-      "_tax_exclusive": "Products are stored tax-exclusive throughout. A price that looks 13% low against a customer quote is correct, not a bug."
+      "_tax_exclusive": "Products are STORED tax-exclusive \u2014 the outlet reports display_prices 'exclusive'. The inclusive figure is derived at 13% by endpoints that compute it. A stored price that looks 13% low against a customer quote is correct."
     },
     "category": {
       "path": "product_category.name (object), null on 482 of 14,525",
@@ -336,7 +336,7 @@
       "_orphans_explained": "The reference warns that a product not in a variant family can still carry populated variant_options \u2014 it used to be a variant and was turned back into a simple product. That is exactly the 215 products found carrying a Grade option with no parent. Never infer variant-ness from variant_options; use variant_parent_id and has_variants.",
       "add_to_existing_family": {
         "_comment": "Fills the gap flagged earlier. There IS an API path for adding a variant to a family that already exists \u2014 it is a third endpoint again, and it is a POST to the 2.1 collection, not the 2.0 one used to create a family from scratch.",
-        "endpoint": "POST /api/2.1/products/",
+        "endpoint": "POST /api/2.1/products",
         "shape": {
           "common": {
             "name": "<the EXISTING family name, verbatim>"
@@ -359,7 +359,48 @@
         },
         "_joins_by_name": "`common.name` is how the new variant finds its family \u2014 more confirmation that name is the family key on the API side.",
         "_must_match_the_family_dimensions": "variant_attribute_values must cover EVERY attribute the family uses. A family on Color and Size needs both.",
-        "_and_must_not_duplicate_a_combination": "Two members with the same attribute values are a Duplicate Variants rejection."
+        "_and_must_not_duplicate_a_combination": "Two members with the same attribute values are a Duplicate Variants rejection.",
+        "_verified_live": "Executed 2026-09-10, adding ENG-VIDR-0195 (Character) to the family of ENG-VIDR-0038 (Select). Three corrections to the documented shape came out of doing it.",
+        "_no_trailing_slash": "The docs write it as /api/2.1/products/ with a trailing slash. That returns 404 'page not found'. Drop the slash.",
+        "_supply_price_is_not_a_field": "`supply_price` is rejected with 422 'Unknown field in payload'. In 2.1 the supply price lives on product_suppliers[].price alongside supplier_id. price_excluding_tax IS accepted.",
+        "response": {
+          "shape": "{\"data\": \"<single id string>\"}",
+          "_differs_from_2_0": "The 2.0 family create returns an ARRAY of ids; this returns ONE id as a bare string. Do not assume a list."
+        },
+        "worked_payload": {
+          "common": {
+            "name": "<existing family name, verbatim>"
+          },
+          "details": {
+            "is_active": true,
+            "product_codes": [
+              {
+                "code": "<sku>",
+                "type": "CUSTOM"
+              }
+            ],
+            "variant_attribute_values": [
+              {
+                "attribute_id": "<attr id>",
+                "attribute_value": "<value>"
+              }
+            ],
+            "price_excluding_tax": 5.79,
+            "product_suppliers": [
+              {
+                "supplier_id": "<supplier id>",
+                "price": 4.79
+              }
+            ]
+          }
+        }
+      },
+      "read_family_key_names": {
+        "_comment": "Three names for one concept across three endpoints. Reading the wrong one returns nothing, silently.",
+        "2.0_list": "variant_options \u2014 [{id, name, value}]",
+        "3.0_family_read": "variant_definitions \u2014 [{attribute_id, name, value}]",
+        "2.1_write": "variant_attribute_values \u2014 [{attribute_id, attribute_value}]",
+        "sku_on_a_3_0_variant": "primary_sku_code, NOT sku. Also present as the CUSTOM entry in product_codes, which is the authoritative one."
       }
     },
     "active": {

@@ -101,6 +101,40 @@ class LightspeedWriter(LightspeedClient):
             raise LightspeedError(f"unexpected create response: {json.dumps(body)[:300]}")
         return ids
 
+    def add_variant(self, family_name, sku, variant_attribute_values, details=None):
+        """Add one variant to a family that ALREADY exists.
+
+        A third endpoint again: POST /api/2.1/products/, distinct from the 2.0 POST
+        that creates a family and from the 2.1 PUT that updates one and cannot
+        create variants at all.
+
+        The family is found by `common.name` — more confirmation that name, not
+        handle, is the family key on the API side. `variant_attribute_values` must
+        cover every attribute the family uses, and must not repeat a combination
+        another member already holds, or Lightspeed rejects it as a duplicate
+        variant.
+        """
+        if not family_name:
+            raise LightspeedError("add_variant needs the EXISTING family name; that is "
+                                  "how Lightspeed finds the family to join")
+        if not sku:
+            raise LightspeedError("add_variant needs an explicit sku — Lightspeed would "
+                                  "otherwise mint one, and RULE 0 forbids that")
+        if not variant_attribute_values:
+            raise LightspeedError("add_variant needs variant_attribute_values covering "
+                                  "every attribute the family uses")
+
+        body = {
+            "common": {"name": family_name},
+            "details": {
+                "product_codes": [{"code": sku, "type": "CUSTOM"}],
+                "variant_attribute_values": variant_attribute_values,
+                **(details or {}),
+            },
+        }
+        resp = self._send("POST", self.cfg["api"]["endpoints"]["variant_add"], body=body)
+        return None if resp.get("dry_run") else resp
+
     # -- updates -----------------------------------------------------------
 
     def update_variant(self, product_id, details, common=None, allow_common_reason=None):
@@ -115,10 +149,12 @@ class LightspeedWriter(LightspeedClient):
                 "refusing to write a `common` section: it updates EVERY member of the "
                 "variant family, and `name` in particular regroups families. Pass "
                 "allow_common_reason=... if this is genuinely intended.")
-        if not details:
+        if not details and not common:
             raise LightspeedError("update_variant called with nothing to write")
 
-        payload = {"details": details}
+        payload = {}
+        if details:
+            payload["details"] = details
         if common:
             payload["common"] = common
         path = self.cfg["api"]["endpoints"]["product_update"].format(id=product_id)
@@ -134,17 +170,43 @@ class LightspeedWriter(LightspeedClient):
         return body.get("data", body)
 
     def family_by_sku(self, product_id):
-        """{sku: variant} for a family. The only safe way to learn what was created."""
+        """{sku: variant} for a family. The only safe way to learn what was created.
+
+        The 3.0 family read names things differently from the 2.0 product list: a
+        variant carries `primary_sku_code`, not `sku`, and the authoritative code is
+        the CUSTOM entry in `product_codes`. Verified against a live family
+        2026-09-10 — reading `sku` alone returns nothing at all.
+        """
         data = self.read_family(product_id)
         out = {}
         for v in (data.get("variants") or []):
-            sku = v.get("sku") or v.get("sku_number")
+            sku = v.get("primary_sku_code") or v.get("sku") or v.get("sku_number")
             for code in (v.get("product_codes") or []):
                 if code.get("type") == "CUSTOM" and code.get("code"):
                     sku = code["code"]
                     break
             if sku:
                 out[str(sku).strip()] = v
+        return out
+
+    def family_attribute_values(self, product_id):
+        """[{attribute_id, name, value}] already used by each member of a family.
+
+        Needed before adding a variant: repeating a combination another member holds
+        is a Duplicate Variants rejection. The 3.0 read calls this
+        `variant_definitions` — NOT `variant_attribute_values` (the write-side name)
+        and NOT `variant_options` (the 2.0 read-side name). Three names for one
+        concept; reading the wrong one silently returns an empty list, which would
+        make a duplicate check pass when it should fail.
+        """
+        data = self.read_family(product_id)
+        out = {}
+        for v in (data.get("variants") or []):
+            defs = v.get("variant_definitions") or v.get("variant_options") or []
+            out[v.get("id")] = [{"attribute_id": d.get("attribute_id"),
+                                 "name": d.get("name"),
+                                 "value": d.get("value") or d.get("attribute_value")}
+                                for d in defs]
         return out
 
     def write_stats(self):

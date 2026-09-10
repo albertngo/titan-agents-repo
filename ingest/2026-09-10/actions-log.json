@@ -539,6 +539,72 @@
    "result": "refused",
    "error": "sku not present in Lightspeed",
    "raw_ref": null
+  },
+  {
+   "logged_at": "2026-09-10T01:54:23-04:00",
+   "agent": "session \u2014 NOT airtable-actions-agent, which refuses deletes under any instruction. Executed directly on Albert's explicit override.",
+   "type": "airtable_delete_product",
+   "target": "Master Flooring Catalogue recArhWyx2fEdExTc (ENG-VIDR-0111)",
+   "content_summary": "HARD DELETE, irreversible. Handle VIDRHB5AWOMACAROON is held in Lightspeed by ENG-VIDR-0097/0098, named 'VIDENG - R&Q American White Oak (Macaroon) T&G | 5\" x 4mm x RL'. 0111 and 0097 are both grade Select on that handle, differing only in box size (20.18 vs 18.19). Flagged to Albert that ls-upload-instructions documents this as the one legitimate mixed-box-size group in the Vidar catalogue; he chose deletion anyway. Record carried no Lightspeed ID and no Price History Log link, so nothing downstream referenced it. Full field values preserved here as the only surviving copy: {\"rec\": \"recArhWyx2fEdExTc\", \"sku\": \"ENG-VIDR-0111\", \"name\": \"Vidar HB 5\\\" AWO \u2014 Macaroon (Select)\", \"handle\": \"VIDRHB5AWOMACAROON\", \"grade\": \"Select\", \"cost\": 4.99, \"retail\": 5.99, \"box_sf\": 20.18, \"width_in\": 5, \"thickness_mm\": 18, \"veneer_mm\": 3, \"collection\": \"Herringbone Collection\", \"species\": \"American White Oak\", \"install\": \"T&G\", \"layout\": \"Herringbone\", \"finish\": \"Matte UV\", \"category\": \"Engineered hardwood\", \"material\": \"Hardwood plywood\", \"last_price_update\": \"2026-04-01\", \"active\": true, \"lightspeed_id\": null}",
+   "approved_by": "Albert 2026-09-10, in chat: \"ENG-VIDR-0148 Delete / ENG-VIDR-0111 Delete / ENG-WODN-0050 Delete\", reaffirmed as a hard delete after being offered archiving via the Active checkbox instead",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "recArhWyx2fEdExTc"
+  },
+  {
+   "logged_at": "2026-09-10T01:54:23-04:00",
+   "agent": "session \u2014 NOT airtable-actions-agent, which refuses deletes under any instruction. Executed directly on Albert's explicit override.",
+   "type": "airtable_delete_product",
+   "target": "Master Flooring Catalogue recELmgzwN72ju5Ei (ENG-VIDR-0148)",
+   "content_summary": "HARD DELETE, irreversible. Duplicate of ENG-VIDR-0149 (recFpPQctvwxAzRvX): identical handle, grade Character, width 9, box size 20.8. 0149 is live in Lightspeed as 8fceac7b-ae0b-4f49-9e7c-d849e07fd531; 0148 never was. Creating it would have been a Duplicate Variants rejection. Record carried no Lightspeed ID and no Price History Log link, so nothing downstream referenced it. Full field values preserved here as the only surviving copy: {\"rec\": \"recELmgzwN72ju5Ei\", \"sku\": \"ENG-VIDR-0148\", \"name\": \"Vidar 9\\\" ABW \u2014 Natural (Character)\", \"handle\": \"VIDR9ABWNATURAL\", \"grade\": \"Character\", \"cost\": 5.99, \"retail\": 6.99, \"box_sf\": 20.8, \"width_in\": 9, \"thickness_mm\": 18, \"veneer_mm\": 3, \"collection\": \"Black Walnut Collection\", \"species\": \"American Black Walnut\", \"install\": \"T&G\", \"finish\": \"Matte UV\", \"category\": \"Engineered hardwood\", \"material\": \"Hardwood plywood\", \"last_price_update\": \"2026-04-01\", \"active\": true, \"lightspeed_id\": null}",
+   "approved_by": "Albert 2026-09-10, in chat: \"ENG-VIDR-0148 Delete / ENG-VIDR-0111 Delete / ENG-WODN-0050 Delete\", reaffirmed as a hard delete after being offered archiving via the Active checkbox instead",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "recELmgzwN72ju5Ei"
+  },
+  {
+   "logged_at": "2026-09-10T01:54:23-04:00",
+   "agent": "session \u2014 NOT airtable-actions-agent, which refuses deletes under any instruction. Executed directly on Albert's explicit override.",
+   "type": "airtable_delete_product",
+   "target": "Master Flooring Catalogue recGl3BIlSOrwliWs (ENG-WODN-0050)",
+   "content_summary": "HARD DELETE, irreversible. Width, Box size (sf), Collection and Species all blank \u2014 ls-upload-instructions treats a flooring row with no box size as a data defect that cannot be uploaded. Lightspeed separately holds WOD.E.WO.IriTea.6 ('WODENG - ELITE - White Oak (Irish Tea) T&G | ... 6-1/2\"'), possibly the same floor. Record carried no Lightspeed ID and no Price History Log link, so nothing downstream referenced it. Full field values preserved here as the only surviving copy: {\"rec\": \"recGl3BIlSOrwliWs\", \"sku\": \"ENG-WODN-0050\", \"name\": \"Woden Engineered White Oak 2mm top \u2014 Irish Tea\", \"handle\": \"WODNENGIRISHTEA\", \"grade\": null, \"cost\": 0.99, \"retail\": 1.99, \"box_sf\": null, \"width_in\": null, \"thickness_mm\": 19.05, \"veneer_mm\": 2, \"collection\": null, \"species\": null, \"install\": \"Click\", \"category\": \"Engineered hardwood\", \"material\": \"Hardwood plywood\", \"stock_status\": \"Clearance\", \"last_price_update\": \"2026-08-17\", \"active\": true, \"lightspeed_id\": null}",
+   "approved_by": "Albert 2026-09-10, in chat: \"ENG-VIDR-0148 Delete / ENG-VIDR-0111 Delete / ENG-WODN-0050 Delete\", reaffirmed as a hard delete after being offered archiving via the Active checkbox instead",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "recGl3BIlSOrwliWs"
+  },
+  {
+   "logged_at": "2026-09-10T01:58:52-04:00",
+   "agent": "session \u2014 first Lightspeed write; lightspeed-actions-agent not spawned",
+   "type": "lightspeed_update_product",
+   "target": "ENG-VIDR-0038 (701c72fc-c5e5-42e5-a959-f6da0e6867e7)",
+   "content_summary": "Renamed the family from 'VIDENG - 7 American White Oak (Snowwhite) T&G | 7.5\" x 3mm x RL - Select' to the same string without the trailing \" - Select\". A `common` write, which the writer refuses without an explicit reason: converting a single-grade product into a variant group requires the grade to come out of the name first (ls-upload-instructions, Handling future grade additions). Box sizes match at 25.32 so nothing else moved. Verified beforehand that no other Lightspeed product held the new name \u2014 a collision would have merged families.",
+   "approved_by": "Albert 2026-09-10, in chat: option 1 \"Ok\" \u2014 rename ENG-VIDR-0038 and add ENG-VIDR-0195",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "701c72fc-c5e5-42e5-a959-f6da0e6867e7"
+  },
+  {
+   "logged_at": "2026-09-10T01:58:52-04:00",
+   "agent": "session \u2014 first Lightspeed write; lightspeed-actions-agent not spawned",
+   "type": "lightspeed_create_product",
+   "target": "ENG-VIDR-0195 in family 'VIDENG - 7 American White Oak (Snowwhite) T&G | 7.5\" x 3mm x RL'",
+   "content_summary": "Added as the Character variant via POST /api/2.1/products. Lightspeed assigned fce88792-6d4f-4281-b2fc-12c3d89cf078. Confirmed by re-reading the family and matching on sku, not by trusting the returned id. Family now has 2 members: 0038 Select at 6.79 ex, 0195 Character at 5.79 ex. Two failed attempts preceded it and neither wrote anything: a 404 from the documented trailing slash, then a 422 rejecting `supply_price`, which in 2.1 belongs on product_suppliers[].price.",
+   "approved_by": "Albert 2026-09-10, in chat: option 1 \"Ok\" \u2014 rename ENG-VIDR-0038 and add ENG-VIDR-0195",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "fce88792-6d4f-4281-b2fc-12c3d89cf078"
+  },
+  {
+   "logged_at": "2026-09-10T01:58:52-04:00",
+   "agent": "session \u2014 first Lightspeed write; lightspeed-actions-agent not spawned",
+   "type": "airtable_backfill_ls_id",
+   "target": "Master Flooring Catalogue recwNeIoZEivJhpNx (ENG-VIDR-0195)",
+   "content_summary": "Wrote Lightspeed ID fce88792-6d4f-4281-b2fc-12c3d89cf078, captured at create time rather than from a later export. This is the round-trip the whole design exists to collapse: created and mirrored in one run, no LS export, no file merge, no re-import.",
+   "approved_by": "Albert 2026-09-10, in chat: option 1 \"Ok\" \u2014 rename ENG-VIDR-0038 and add ENG-VIDR-0195",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "fce88792-6d4f-4281-b2fc-12c3d89cf078"
   }
  ]
 }

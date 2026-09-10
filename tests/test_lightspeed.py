@@ -155,6 +155,16 @@ class TestWriter(unittest.TestCase):
         with self.assertRaises(lsc.LightspeedError):
             w.update_variant("id-1", {})
 
+    def test_a_pure_rename_sends_common_only(self):
+        """Renaming a family has no per-variant details, and that is legitimate."""
+        w = self.writer()
+        seen = {}
+        w._send = lambda m, p, params=None, body=None: (seen.update(body=body), {})[1]
+        w.update_variant("id-1", {}, common={"name": "New Family Name"},
+                         allow_common_reason="converting a singleton into a variant group")
+        self.assertEqual(seen["body"], {"common": {"name": "New Family Name"}})
+        self.assertNotIn("details", seen["body"])
+
     def test_update_payload_shape(self):
         w = self.writer()
         seen = {}
@@ -167,6 +177,54 @@ class TestWriter(unittest.TestCase):
         self.assertEqual(seen["body"], {"details": {"supply_price": 3.5,
                                                     "price_excluding_tax": 4.5}})
         self.assertNotIn("common", seen["body"])
+
+    def test_add_variant_targets_the_2_1_collection_and_joins_by_name(self):
+        w = self.writer()
+        seen = {}
+        w._send = lambda m, p, params=None, body=None: (seen.update(method=m, path=p, body=body), {})[1]
+        w.add_variant("VIDENG - 7 AWO (Snowwhite) T&G", "ENG-VIDR-0195",
+                      [{"attribute_id": "grade-id", "attribute_value": "Character"}],
+                      details={"price_excluding_tax": 5.79})
+        self.assertEqual(seen["method"], "POST")
+        self.assertEqual(seen["path"], "/api/2.1/products/")
+        self.assertEqual(seen["body"]["common"], {"name": "VIDENG - 7 AWO (Snowwhite) T&G"})
+        d = seen["body"]["details"]
+        self.assertEqual(d["product_codes"], [{"code": "ENG-VIDR-0195", "type": "CUSTOM"}])
+        self.assertEqual(d["variant_attribute_values"][0]["attribute_value"], "Character")
+        self.assertEqual(d["price_excluding_tax"], 5.79)
+
+    def test_add_variant_refuses_incomplete_input(self):
+        w = self.writer(dry_run=True)
+        vals = [{"attribute_id": "g", "attribute_value": "Character"}]
+        for args in ((None, "SKU-1", vals), ("Fam", None, vals), ("Fam", "SKU-1", [])):
+            with self.subTest(args=args), self.assertRaises(lsc.LightspeedError):
+                w.add_variant(*args)
+
+    def test_add_variant_is_intercepted_by_dry_run(self):
+        sent = []
+        w = self.writer(dry_run=True, capture=sent)
+        w.add_variant("Fam", "SKU-1", [{"attribute_id": "g", "attribute_value": "C"}])
+        self.assertEqual(sent, [])
+        self.assertEqual(len(w.planned), 1)
+
+    def test_family_read_uses_the_3_0_key_names(self):
+        """Three names for one concept; reading the wrong one fails silently."""
+        w = self.writer()
+        fam = {"variants": [{"id": "v1", "primary_sku_code": "ENG-VIDR-0038",
+                             "product_codes": [{"type": "CUSTOM", "code": "ENG-VIDR-0038"}],
+                             "variant_definitions": [{"attribute_id": "g", "name": "Grade",
+                                                      "value": "Select"}]}]}
+        w.read_family = lambda pid: fam
+        self.assertEqual(list(w.family_by_sku("x")), ["ENG-VIDR-0038"])
+        vals = w.family_attribute_values("x")
+        self.assertEqual(vals["v1"], [{"attribute_id": "g", "name": "Grade", "value": "Select"}])
+
+    def test_family_attribute_values_survives_the_2_0_spelling(self):
+        w = self.writer()
+        w.read_family = lambda pid: {"variants": [
+            {"id": "v1", "variant_options": [{"attribute_id": "g", "name": "Grade",
+                                              "value": "Character"}]}]}
+        self.assertEqual(w.family_attribute_values("x")["v1"][0]["value"], "Character")
 
     def test_there_is_no_delete_capability(self):
         w = self.writer(dry_run=True)
