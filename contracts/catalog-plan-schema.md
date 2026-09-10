@@ -101,6 +101,45 @@ worth reading: on the Lee 2026-09-09 file, 50 of 84 rows carry no UUID because t
 Lightspeed import that created them happened after the backfill ran. Re-running
 that file without this repair would create 50 duplicates.
 
+## What a write may set
+
+Narrower than it looks, and deliberately so.
+
+**A Lightspeed `update` writes prices and nothing else** — `supply_price` and
+`price_excluding_tax`. The wider payload is destructive:
+
+- `name` is **not** Airtable's `Product name`. Lightspeed holds a constructed name
+  (`GRNDENG - Scandinavia European White Oak (Bora Bora) T&G | 6.5" x 19.05mm x RL
+  - 1.2mm top - 20.83sf/b - Select`) built by the ls-upload-instructions skill from
+  a dozen columns, against Airtable's `Grandeur 6.5" EWO — Bora Bora (ABC)`.
+  Writing the Airtable value would rename every product in the POS — and Lightspeed
+  identifies products *by name*.
+- `supplier_name` is not safe either. Airtable says `Grandeur`, Lightspeed says
+  `GRANDEUR`, and the live account already holds 116 supplier names for far fewer
+  real suppliers. Writing it risks renaming or forking one.
+- `product_category` is unresolved — see `category_unresolved` above.
+
+**A Lightspeed `create` takes its payload from the skill-built LS upload CSV**,
+keyed by `sku`, because the name and category cannot be derived from the Airtable
+columns. Without that file the row is blocked as `ls_payload_unavailable` rather
+than guessed.
+
+### Price mapping
+
+Verified against every row of the Grandeur and Lee uploads present in Lightspeed —
+315/315 on both fields, 2026-09-10:
+
+| Airtable | Lightspeed API |
+|---|---|
+| `Cost/unit` | `supply_price` |
+| `Retail price/unit` | `price_excluding_tax` |
+
+There is no `retail_price` field on the API; that name belongs to the CSV importer
+alone. Prices are stored **tax-exclusive** — `price_including_tax` equals
+`price_excluding_tax` on 100% of the 12,548 active priced products, never 1.13×,
+because Ontario HST is applied at checkout by the outlet's Default Tax rule.
+**Never write `price_including_tax`.**
+
 ## Execution order
 
 `seq` follows the forced dependency order, which is not a convention:
@@ -122,7 +161,8 @@ that file without this repair would create 50 duplicates.
 | `uuid_not_in_lightspeed` | The row carries a UUID Lightspeed does not know |
 | `handle_collision_on_create` | A create whose handle is already held by a different SKU |
 | `ambiguous_match` | `MatchStatus: ambiguous`, or `LS Match status: AMBIGUOUS` / `DUPLICATE` |
-| `sku_missing` | No SKU. Nothing can be joined on |
+| `sku_missing` | No SKU. Usually a new product still awaiting one — under RULE 0 Titan mints the SKU at record creation and no automated process may generate it |
+| `ls_payload_unavailable` | The SKU is new to Lightspeed and no skill-built `<supplier>_ls_upload_<date>.csv` row was supplied — see **What a write may set** |
 
 ## `warnings`
 
@@ -160,5 +200,18 @@ Neither check is possible from the upload file alone; both need the live catalog
 pulled first. `tests/test_catalog_reconcile.py` asserts all of it against the
 committed evidence.
 
-**A blocked row never reaches the write phase.** Partial execution is correct and
-expected: 222 good rows go, 9 stop, and the 9 come back as a Tactical Task.
+**A blocked row never reaches the write phase**, and produces no action at all.
+Every row yields actions *or* a block — never both, never neither. That invariant
+is easy to break, since an Airtable action can be emitted before a later
+Lightspeed check decides the row is unwritable, leaving a half-executed row inside
+an approved plan; `TestRowInvariant` asserts the partition holds.
+
+Partial execution is correct and expected: 222 good rows go, 9 stop, and the 9
+come back as a Tactical Task.
+
+## An action only exists if it changes something
+
+A Lightspeed update whose prices already match the live product is not emitted. On
+the Grandeur file every price already agreed, so the plan proposes 0 Lightspeed
+writes and only the Airtable work that is genuinely outstanding. A plan is a list
+of changes, not a list of rows.

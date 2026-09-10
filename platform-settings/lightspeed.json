@@ -128,10 +128,13 @@
       "_third_namespace": "Notion Company is ALL CAPS, Airtable Supplier is mixed case, and LS is its own thing again \u2014 mostly upper but not always. Three namespaces, none aligned. Airtable <-> Notion is in airtable-destinations.json supplier_aliases; LS is deliberately not mapped, because it does not need to be once the join is on sku."
     },
     "prices": {
-      "supply_price": "cost. Same concept as the CSV supply_price column.",
-      "price_including_tax": "float, present on every product",
-      "price_excluding_tax": "float, present on every product",
-      "_no_retail_price_field": "The API has NO `retail_price` key \u2014 0 of 14,525 products carry one. The CSV importer's retail_price column has no direct API equivalent; a write path must decide explicitly which of the two tax-qualified fields it means. Settle this in the Phase 3 spike alongside variants."
+      "_verified": "Confirmed 2026-09-10 against every row of the Grandeur and Lee uploads that exists in Lightspeed \u2014 315/315 on both fields, no exceptions.",
+      "supply_price": "Airtable `Cost/unit`. 231/231 Grandeur and 84/84 Lee.",
+      "price_excluding_tax": "Airtable `Retail price/unit`. THIS is the retail price. 231/231 and 84/84.",
+      "price_including_tax": "Read-only in practice. Equals price_excluding_tax on 100% of the 12,548 active priced products \u2014 never 1.13x. Ontario HST is applied at checkout by the outlet's Default Tax rule, not stored on the product.",
+      "_write_rule": "Set supply_price and price_excluding_tax. Never write price_including_tax.",
+      "_no_retail_price_field": "The API has NO `retail_price` key \u2014 0 of 14,525 products carry one. That name belongs to the CSV importer only; it maps to price_excluding_tax.",
+      "_tax_exclusive": "Products are stored tax-exclusive throughout. A price that looks 13% low against a customer quote is correct, not a bug."
     },
     "category": {
       "path": "product_category.name (object), null on 482 of 14,525",

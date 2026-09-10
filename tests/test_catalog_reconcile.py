@@ -47,8 +47,17 @@ def fake_ls(products):
     return cr.load_lightspeed(fh.name)
 
 
-def run(rows, products, existing=None, supplier="Test"):
-    return cr.reconcile(rows, fake_ls(products), existing or {}, supplier, LEAVES)
+def run(rows, products, existing=None, supplier="Test", ls_upload=None):
+    return cr.reconcile(rows, fake_ls(products), existing or {}, supplier, LEAVES,
+                        ls_upload)
+
+
+def ls_upload_row(sku="NEW-1", handle="HNEW", name="BUILT NAME | 7\" x 6mm"):
+    """A row as /process-price-list's ls_upload CSV would carry it."""
+    return {sku: {"sku": sku, "handle": handle, "name": name,
+                  "supply_price": "1.00", "retail_price": "2.00",
+                  "product_category": "FLOORING / LAMINATE",
+                  "brand_name": "B", "supplier_name": "S", "description": "d"}}
 
 
 def row(**kw):
@@ -137,7 +146,7 @@ class TestUuidRecovery(unittest.TestCase):
 
     def test_genuinely_new_sku_creates_and_queues_a_backfill(self):
         rows = [row(SKU="NEW-1", MatchStatus="new", **{"LS Handle / Parent ID": "HNEW"})]
-        actions, blocked, _ = run(rows, [])
+        actions, blocked, _ = run(rows, [], ls_upload=ls_upload_row())
         self.assertEqual(blocked, [])
         ops = [(a["target_system"], a["op"]) for a in actions]
         self.assertIn(("lightspeed", "create"), ops)
@@ -145,12 +154,28 @@ class TestUuidRecovery(unittest.TestCase):
         create = next(a for a in actions if a["op"] == "create")
         self.assertIsNone(create["ls_id"], "LS mints the UUID; never invent one")
 
+    def test_create_without_the_ls_upload_file_is_blocked(self):
+        """A create needs the skill-built name; it is never derived or guessed."""
+        rows = [row(SKU="NEW-1", MatchStatus="new", **{"LS Handle / Parent ID": "HNEW"})]
+        actions, blocked, _ = run(rows, [])
+        self.assertEqual([b["reason"] for b in blocked], ["ls_payload_unavailable"])
+        self.assertEqual(actions, [])
+
+    def test_create_payload_comes_from_the_skill_built_row(self):
+        rows = [row(SKU="NEW-1", MatchStatus="new",
+                    **{"LS Handle / Parent ID": "HNEW", "Product name": "Airtable Name"})]
+        actions, _, _ = run(rows, [], ls_upload=ls_upload_row())
+        create = next(a for a in actions if a["op"] == "create")
+        self.assertEqual(create["fields"]["name"], 'BUILT NAME | 7" x 6mm')
+        self.assertNotEqual(create["fields"]["name"], "Airtable Name")
+        self.assertEqual(create["fields"]["price_excluding_tax"], 2.0)
+
 
 class TestOrderingAndIds(unittest.TestCase):
 
     def test_forced_dependency_order(self):
         rows = [row(SKU="NEW-1", MatchStatus="new", **{"LS Handle / Parent ID": "HN"})]
-        actions, _, _ = run(rows, [])
+        actions, _, _ = run(rows, [], ls_upload=ls_upload_row(handle="HN"))
         rank = [a["target_system"] + ":" + a["op"] for a in actions]
         self.assertLess(rank.index("airtable:upsert"), rank.index("lightspeed:create"))
         self.assertLess(rank.index("lightspeed:create"), rank.index("airtable:backfill_ls_id"))
@@ -217,6 +242,125 @@ class TestCategoryIsAWarningNotABlock(unittest.TestCase):
                 _, _, warnings = run([row(Category=cat, **{"Lightspeed ID": "u-1"})],
                                      [product(id="u-1")])
                 self.assertEqual(warnings, [])
+
+
+class TestRowInvariant(unittest.TestCase):
+    """Every row yields actions OR a block, never both and never neither.
+
+    The contract states this and it is easy to break: an early Airtable action can
+    be emitted before a later Lightspeed check decides the row is unwritable,
+    leaving a half-executed row in an approved plan.
+    """
+
+    def assert_partitioned(self, rows, actions, blocked):
+        acted = {a["sku"] for a in actions}
+        stopped = {b["sku"] for b in blocked if b["sku"]}
+        self.assertFalse(acted & stopped,
+                         f"rows both acted on and blocked: {sorted(acted & stopped)}")
+        seen = acted | stopped
+        for r in rows:
+            sku = cr.clean(r.get("SKU"))
+            if sku:
+                self.assertIn(sku, seen, f"{sku} produced neither an action nor a block")
+
+    def test_create_without_payload_emits_nothing_for_that_row(self):
+        rows = [row(SKU="NEW-1", MatchStatus="new", **{"LS Handle / Parent ID": "HNEW"})]
+        actions, blocked, _ = run(rows, [])
+        self.assert_partitioned(rows, actions, blocked)
+
+    def test_mixed_batch_stays_partitioned(self):
+        rows = [
+            row(SKU="OK-1", **{"Lightspeed ID": "u1"}),                      # clean update
+            row(SKU="NEW-1", MatchStatus="new", **{"LS Handle / Parent ID": "HNEW"}),
+            row(SKU="BAD-1", **{"Lightspeed ID": "u-elsewhere"}),            # wrong owner
+            row(SKU="AMB-1", MatchStatus="ambiguous"),
+        ]
+        ls = [product(id="u1", sku="OK-1", handle="HOK"),
+              product(id="u-elsewhere", sku="SOMEONE-ELSE", handle="HSE")]
+        actions, blocked, _ = run(rows, ls, ls_upload=ls_upload_row())
+        self.assert_partitioned(rows, actions, blocked)
+        self.assertEqual({b["sku"] for b in blocked}, {"BAD-1", "AMB-1"})
+
+    def test_grandeur_broken_file_stays_partitioned(self):
+        pull = REPO_ROOT / "ingest/2026-09-10/lightspeed-products.json"
+        if not (GRANDEUR_UPLOAD.exists() and pull.exists()):
+            self.skipTest("missing fixture")
+        products = json.loads(pull.read_text())["products"]
+        with open(GRANDEUR_IGNORED, newline="", encoding="utf-8") as fh:
+            bad = {r["sku"]: r["id"] for r in csv.DictReader(fh)}
+        with open(GRANDEUR_UPLOAD, newline="", encoding="utf-8") as fh:
+            rows = [dict(r) for r in csv.DictReader(fh)]
+        for r in rows:
+            if r["SKU"] in bad:
+                r["Lightspeed ID"] = bad[r["SKU"]]
+        actions, blocked, _ = cr.reconcile(rows, fake_ls(products), {}, "Grandeur", LEAVES)
+        self.assert_partitioned(rows, actions, blocked)
+
+
+class TestPriceMapping(unittest.TestCase):
+    """Airtable -> Lightspeed price fields, verified against every matched row."""
+
+    @classmethod
+    def setUpClass(cls):
+        pull = REPO_ROOT / "ingest/2026-09-10/lightspeed-products.json"
+        if not pull.exists():
+            raise unittest.SkipTest("no Lightspeed pull")
+        cls.ls = {p["sku"]: p for p in json.loads(pull.read_text())["products"]}
+
+    def test_payload_uses_the_verified_field_names(self):
+        fields = cr.ls_update_fields(row(**{"Cost/unit": "3.69", "Retail price/unit": "4.69"}))
+        self.assertEqual(fields["supply_price"], 3.69)
+        self.assertEqual(fields["price_excluding_tax"], 4.69)
+        self.assertNotIn("retail_price", fields,
+                         "the API has no retail_price field; that name is CSV-only")
+        self.assertNotIn("price_including_tax", fields,
+                         "inclusive price is derived at checkout, never written")
+
+    def test_an_update_never_writes_name_or_supplier(self):
+        """The destructive payload. LS holds a constructed name and its own
+        supplier spelling; writing Airtable's would rename products in the POS."""
+        fields = cr.ls_update_fields(row(**{"Product name": "Grandeur 6.5\" EWO",
+                                            "Supplier": "Grandeur", "Brand": "Grandeur",
+                                            "Category": "Engineered hardwood"}))
+        for forbidden in ("name", "supplier_name", "brand_name", "product_category",
+                          "handle", "sku"):
+            self.assertNotIn(forbidden, fields)
+        self.assertEqual(set(fields), {"supply_price", "price_excluding_tax"})
+
+    def test_mapping_holds_across_every_matched_row(self):
+        checked = 0
+        for path in (GRANDEUR_UPLOAD, LEE_UPLOAD):
+            if not path.exists():
+                continue
+            with open(path, newline="", encoding="utf-8") as fh:
+                for r in csv.DictReader(fh):
+                    live = self.ls.get(r["SKU"])
+                    if not live or live.get("price_excluding_tax") is None:
+                        continue
+                    try:
+                        cost = round(float(r["Cost/unit"]), 2)
+                        retail = round(float(r["Retail price/unit"]), 2)
+                    except (ValueError, TypeError, KeyError):
+                        continue
+                    self.assertEqual(round(live["supply_price"], 2), cost, r["SKU"])
+                    self.assertEqual(round(live["price_excluding_tax"], 2), retail, r["SKU"])
+                    checked += 1
+        self.assertGreaterEqual(checked, 300, "expected ~315 comparable rows")
+
+    def test_prices_are_stored_tax_exclusive(self):
+        """HST is applied at checkout by the outlet rule, not held on the product.
+
+        If this ever fails, Lightspeed has started storing an inclusive price and
+        the write rule in platform-settings/lightspeed.json needs revisiting.
+        """
+        priced = [p for p in self.ls.values()
+                  if p.get("active") and p.get("price_excluding_tax")]
+        inclusive = [p for p in priced
+                     if p.get("price_including_tax") is not None
+                     and abs(p["price_including_tax"] / p["price_excluding_tax"] - 1.13) < 0.0005]
+        self.assertGreater(len(priced), 10000)
+        self.assertEqual(inclusive, [],
+                         f"{len(inclusive)} products now carry a tax-inclusive price")
 
 
 class TestGrandeurRegression(unittest.TestCase):
