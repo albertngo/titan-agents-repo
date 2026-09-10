@@ -16,10 +16,12 @@ products silently rather than raising.
 
 import importlib.util
 import json
+import os
 import sys
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
+from unittest import mock
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
@@ -143,9 +145,26 @@ class TestPagination(unittest.TestCase):
 class TestCredentials(unittest.TestCase):
 
     def test_missing_credentials_names_the_variable(self):
-        with self.assertRaises(lsc.LightspeedError) as cm:
-            lsc.LightspeedClient(domain_prefix=None, token=None, config=lsc.load_config())
+        # The client falls back to os.environ, so this must run with the real
+        # variables cleared — otherwise it silently stops testing anything the
+        # moment a developer has credentials configured, which is everyone now.
+        with mock.patch.dict(os.environ, {}, clear=True):
+            with self.assertRaises(lsc.LightspeedError) as cm:
+                lsc.LightspeedClient(domain_prefix=None, token=None, config=lsc.load_config())
         self.assertIn("LIGHTSPEED_DOMAIN_PREFIX", str(cm.exception))
+
+    def test_env_is_used_when_arguments_are_omitted(self):
+        with mock.patch.dict(os.environ,
+                             {"LIGHTSPEED_DOMAIN_PREFIX": "envprefix",
+                              "LIGHTSPEED_PERSONAL_TOKEN": "envtoken"}, clear=True):
+            c = lsc.LightspeedClient(config=lsc.load_config())
+        self.assertEqual(c.base_url, "https://envprefix.retail.lightspeed.app")
+
+    def test_api_version_override(self):
+        with mock.patch.dict(os.environ,
+                             {"LIGHTSPEED_DOMAIN_PREFIX": "p", "LIGHTSPEED_PERSONAL_TOKEN": "t",
+                              "LIGHTSPEED_API_VERSION": "2026-01"}, clear=True):
+            self.assertEqual(lsc.LightspeedClient(config=lsc.load_config()).api_version, "2026-01")
 
 
 class TestSupplierExtraction(unittest.TestCase):
@@ -157,6 +176,23 @@ class TestSupplierExtraction(unittest.TestCase):
         self.assertIsNone(lp.supplier_of({"supplier": {"id": "abc"}}))
         self.assertIsNone(lp.supplier_of({"supplier_name": "   "}))
         self.assertIsNone(lp.supplier_of({}))
+
+    def test_supplier_falls_back_to_product_suppliers(self):
+        """6 of 14,525 live products carry a supplier only here."""
+        rec = {"supplier": None,
+               "product_suppliers": [{"supplier_id": "x", "supplier_name": "WINCA / OLYMPIA"}]}
+        self.assertEqual(lp.supplier_of(rec), "WINCA / OLYMPIA")
+        self.assertIsNone(lp.supplier_of({"supplier": None, "product_suppliers": []}))
+        self.assertIsNone(lp.supplier_of({"supplier": None,
+                                          "product_suppliers": [{"supplier_id": None}]}))
+
+    def test_category_is_an_object_on_the_api(self):
+        """product_category comes back as {name: ...}, leaf name only, or null."""
+        self.assertEqual(lp.category_of({"product_category": {"name": "SPC"}}), "SPC")
+        self.assertEqual(lp.category_of({"product_category": "TILE"}), "TILE")
+        self.assertIsNone(lp.category_of({"product_category": None}))
+        self.assertIsNone(lp.category_of({"product_category": {"id": "x"}}))
+        self.assertIsNone(lp.category_of({}))
 
     def test_dig_survives_non_dicts(self):
         self.assertIsNone(lp.dig({"a": "scalar"}, ("a", "b")))

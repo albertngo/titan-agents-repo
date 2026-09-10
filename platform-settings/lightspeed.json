@@ -1,21 +1,19 @@
 {
-  "_comment": "Registry for Lightspeed Retail X-Series. Holds the API connection config, the outlet name that is baked into three CSV column headers, the category vocabulary, and the rate-limit tuning. It does NOT duplicate the LS upload column mapping — that stays in the ls-upload-instructions skill, which is the single source for column ORDER and name construction. Consumed by scripts/lightspeed_client.py, scripts/lightspeed_pull.py and (from Phase 4) .claude/agents/lightspeed-actions-agent.md. Titan is on X-Series (evidence: outlet-suffixed CSV columns, and Make's `vend` app), NOT R-Series.",
-  "_maintenance": "api_version is pinned deliberately. Lightspeed is deprecating semantic API versions (2.0) in favour of date-based versioning (e.g. 2026-01); 2.0 receives no new features. When migrating, change it here and re-run the Phase 1 pull against a known export before any write runs. domain_prefix and the personal token come from .env — see .env.example. The rate-limit numbers below are conservative starting values, NOT measured: tune min_interval_ms from the headers observed on the first live pull and record the observed values in _observed.",
-
+  "_comment": "Registry for Lightspeed Retail X-Series. Holds the API connection config, the outlet name that is baked into three CSV column headers, the category vocabulary, and the rate-limit tuning. It does NOT duplicate the LS upload column mapping \u2014 that stays in the ls-upload-instructions skill, which is the single source for column ORDER and name construction. Consumed by scripts/lightspeed_client.py, scripts/lightspeed_pull.py and (from Phase 4) .claude/agents/lightspeed-actions-agent.md. Titan is on X-Series, confirmed live 2026-09-10 against flooru.retail.lightspeed.app. NOT R-Series.",
+  "_maintenance": "api_version is pinned deliberately. Lightspeed is deprecating semantic API versions (2.0) in favour of date-based versioning (e.g. 2026-01); 2.0 receives no new features. When migrating, change it here and re-run scripts/lightspeed_pull.py --probe, then --compare-export against the two committed LS workbooks, before any write runs. domain_prefix and the personal token come from .env \u2014 see .env.example. VERIFIED LIVE 2026-09-10: the pagination envelope, the version cursor and the rate-limit numbers below are measured, not assumed. api_shape records what a product actually looks like \u2014 it differs from the CSV import/export columns in three ways that matter, all noted there.",
   "config_version": "1",
-
   "api": {
     "_comment": "Base URL is per-retailer. domain_prefix is the <prefix> in <prefix>.retail.lightspeed.app and comes from LIGHTSPEED_DOMAIN_PREFIX; it is not a secret but is account-identifying, so it is not hardcoded here.",
     "base_url_template": "https://{domain_prefix}.retail.lightspeed.app",
     "api_version": "2.0",
-    "_api_version_note": "Pinned. See _maintenance — 2.0 is deprecated in favour of date-based versioning.",
+    "_api_version_note": "Pinned. See _maintenance \u2014 2.0 is deprecated in favour of date-based versioning.",
     "endpoints": {
       "products": "/api/2.0/products"
     },
     "auth": {
       "scheme": "Bearer",
       "env_var": "LIGHTSPEED_PERSONAL_TOKEN",
-      "_token_note": "A personal token grants the SAME DATA ACCESS AS AN ADMIN USER and is NOT scopable — there is no read-only variant. Generate it at Setup > Personal tokens > Generate personal token, always WITH an expiry. It lives in .env only. Cloud env vars are not a secrets store (see .env.example). The read-only guarantee on the pull side is structural, not permission-based: scripts/lightspeed_pull.py has no write code path.",
+      "_token_note": "A personal token grants the SAME DATA ACCESS AS AN ADMIN USER and is NOT scopable \u2014 there is no read-only variant. Generate it at Setup > Personal tokens > Generate personal token, always WITH an expiry. It lives in .env only. Cloud env vars are not a secrets store (see .env.example). The read-only guarantee on the pull side is structural, not permission-based: scripts/lightspeed_pull.py has no write code path.",
       "_scoped_alternative": "A genuinely scoped credential requires building an OAuth Add-on with products:read / products:write. Judged not worth it for a single-retailer internal tool; revisit if this ever runs for anyone but Titan."
     },
     "pagination": {
@@ -23,33 +21,42 @@
       "cursor_param": "after",
       "page_size_param": "page_size",
       "page_size": 1000,
-      "cursor_field": "version"
+      "cursor_field": "version",
+      "_verified": "Confirmed live 2026-09-10. Response is {\"data\": [...], \"version\": {\"min\": N, \"max\": N}}; `version.max` is the next `after`, and every record carries its own `version`. 15 pages of 1000 walked the catalogue with the cursor advancing monotonically and no repeats."
     },
-    "_no_bulk_endpoint": "There is no bulk product create/update endpoint — bulk import is UI/CSV only. Every product is one HTTP call. This is why the sync runs as a script rather than a Make scenario metered per operation.",
+    "_no_bulk_endpoint": "There is no bulk product create/update endpoint \u2014 bulk import is UI/CSV only. Every product is one HTTP call. This is why the sync runs as a script rather than a Make scenario metered per operation.",
     "_no_supplier_filter": "The products endpoint has no server-side supplier filter. The pull walks the whole catalogue once, caches it, and filters locally."
   },
-
   "rate_limits": {
     "_comment": "Two independent limiters. The primary is a leaky bucket sized by the retailer's register count. The secondary is a BURST limiter on 1-second fixed windows, which means a minimum interval between requests matters more than average throughput. Both surface via headers when they block.",
     "retry_after_header": "Retry-After",
     "limiter_type_header": "X-LS-API-RateLimit-Type",
-    "limiter_types": ["api-leaky-bucket", "api-burst-limiter"],
+    "limiter_types": [
+      "api-leaky-bucket",
+      "api-burst-limiter"
+    ],
     "min_interval_ms": 250,
     "max_retries": 5,
     "backoff": "honour Retry-After when present; otherwise exponential from min_interval_ms",
-    "_observed": null,
+    "_observed": {
+      "measured_at": "2026-09-10",
+      "catalogue_size": 14525,
+      "page_size_used": 1000,
+      "requests": 15,
+      "wall_clock_seconds": 87,
+      "throttle_events": 0,
+      "note": "A full walk at page_size 1000 with min_interval_ms 250 never tripped either limiter. 1000 is accepted and returns full pages. There is headroom, but nothing downstream needs a faster read \u2014 the walk is cached per day."
+    },
     "_observed_note": "Populate from the first live pull: the actual bucket size, the burst window allowance, and whether min_interval_ms of 250 ever trips the burst limiter.",
-    "_abort_policy": "On repeated 429 or any 5xx, STOP THE BATCH, log, report — the house rule for actions agents. Resume is re-running the command: every completed action is already in the day's actions-log.json and is skipped."
+    "_abort_policy": "On repeated 429 or any 5xx, STOP THE BATCH, log, report \u2014 the house rule for actions agents. Resume is re-running the command: every completed action is already in the day's actions-log.json and is skipped."
   },
-
   "outlet": {
     "_comment": "The outlet name is baked verbatim into three LS import column headers: outlet_tax_<name>, inventory_<name>, reorder_point_<name>, restock_level_<name>. Renaming the outlet in Lightspeed silently breaks every upload file.",
     "name": "Titan Flooring",
     "default_tax": "Default Tax"
   },
-
   "product_categories": {
-    "_comment": "LS requires a LEAF category — an intermediate node is rejected with 'A product can only be assigned to a leaf category'. 42 Grandeur rows were rejected on this in July 2026. Format is all caps, space-slash-space separated.",
+    "_comment": "LS requires a LEAF category \u2014 an intermediate node is rejected with 'A product can only be assigned to a leaf category'. 42 Grandeur rows were rejected on this in July 2026. Format is all caps, space-slash-space separated.",
     "leaves": [
       "FLOORING / ENGINEERED HARDWOOD",
       "FLOORING / SOLID HARDWOOD",
@@ -59,26 +66,32 @@
       "FLOORING / TILE",
       "ACCESSORIES"
     ],
-    "not_leaves_never_write": ["FLOORING", "FLOORING / VINYL"],
+    "not_leaves_never_write": [
+      "FLOORING",
+      "FLOORING / VINYL"
+    ],
     "_vinyl_note": "The vinyl subcategory is decided by the product's CORE (SPC or WPC), never by its format (LVP or LVT).",
-    "_accessories_note": "Accessories (transitions, mouldings, stair treads/risers, underlay, glue) use the standalone ACCESSORIES category — not nested under FLOORING.",
-    "_unmapped_policy": "A product whose category does not resolve to one of `leaves` is BLOCKED, never guessed."
+    "_accessories_note": "Accessories (transitions, mouldings, stair treads/risers, underlay, glue) use the standalone ACCESSORIES category \u2014 not nested under FLOORING.",
+    "_unmapped_policy": "A product whose category does not resolve to one of `leaves` is BLOCKED, never guessed.",
+    "_csv_vs_api": "The `leaves` list below is the CSV-IMPORTER form. The API returns leaf names alone \u2014 see api_shape.category. Keep both straight: a write path built on the API cannot reuse this list unchanged."
   },
-
   "write_rules": {
     "_comment": "The invariants any write path must respect. Full detail and the name-construction rules live in the ls-upload-instructions skill.",
     "id_semantics": "A populated `id` is an UPDATE; a blank `id` is a CREATE. A blank id on a row that already exists in Lightspeed creates a DUPLICATE instead of updating. Grandeur 2026-09-03: a colour-only backfill gave 7 UUIDs to 16 rows and LS rejected 9 with 'handle already exists for your retailer, sku already exists for your retailer'.",
     "identified_by": "NAME, not handle. Two products may not share a name.",
     "handle_is_the_variant_key": "Rows sharing a handle become variants of one parent. Letters and numbers only.",
     "sku_no_commas": "LS rejects commas in a SKU.",
-    "never": ["delete a product", "deactivate a product", "write a row whose match is ambiguous or duplicate"],
+    "never": [
+      "delete a product",
+      "deactivate a product",
+      "write a row whose match is ambiguous or duplicate"
+    ],
     "constants": {
       "active": "1",
       "track_inventory": "1"
     },
     "_variants_unverified": "OPEN QUESTION, gates all writes. The CSV importer takes one row per variant sharing a handle. The API creates a variant family as ONE POST carrying a `variants` array plus `variant_definitions`; adding a variant to an EXISTING family is a different call. Row-by-row POST will not reproduce importer behaviour. Must be settled by the Phase 3 spike against throwaway SKUs before any production write. Do not assume either shape until this key is replaced with the measured answer."
   },
-
   "make_scenarios": {
     "_comment": "What Make does and does not do for Lightspeed, recorded so it is not re-litigated.",
     "intake_trigger": {
@@ -91,8 +104,80 @@
       "id": 4911227,
       "name": "DRAFT - Lightspeed Product Upsert (from LS upload CSV)",
       "active": false,
-      "why_superseded": "Row-by-row vend:MakeAPICall POST with no connection, no error handling, no UUID capture. Make's `vend` app has no Update a Product module, so updates would be hand-written API JSON inside Make anyway — the API path minus version control, tests and dry-run. Also meters per row against a 40,000 ops/month Core plan already carrying ~25 scenarios."
+      "why_superseded": "Row-by-row vend:MakeAPICall POST with no connection, no error handling, no UUID capture. Make's `vend` app has no Update a Product module, so updates would be hand-written API JSON inside Make anyway \u2014 the API path minus version control, tests and dry-run. Also meters per row against a 40,000 ops/month Core plan already carrying ~25 scenarios."
     },
     "_blueprint_editing_warning": "Do NOT edit large Make blueprints through scenarios_update. Stripping `metadata` to fit the token limit FAILS SILENTLY: the runtime needs metadata.expect, and without it the module executes, consumes an operation, makes a real round-trip, drops the payload, writes nothing, and returns SUCCESS. Edit in the Make UI. See methods/pricelist-extraction.md."
+  },
+  "api_shape": {
+    "_comment": "What a product actually looks like on the API, measured over all 14,525 products 2026-09-10. Recorded because the API and the CSV import/export are DIFFERENT vocabularies for the same catalogue \u2014 the ls-upload-instructions skill describes the CSV, and anything talking to the API needs the mapping below.",
+    "join_key": {
+      "field": "sku",
+      "_why": "The only safe join. Unique and always present: 0 blanks and 0 duplicates across 14,525 products. This is also what --compare-export proved, reconciling 267/267 Grandeur and 311/311 Canadian Standard UUIDs against the hand-made exports."
+    },
+    "identity": {
+      "id": "uuid, assigned by LS on create",
+      "handle": "variant grouping key, shared across a family",
+      "sku": "unique per product"
+    },
+    "supplier": {
+      "path": "supplier.name (object), falling back to product_suppliers[].supplier_name",
+      "present_on": 13079,
+      "only_via_product_suppliers": 6,
+      "absent_on": 1440,
+      "_do_not_join_on_this": "116 distinct supplier names live in LS against 24 Airtable supplier choices, and several real suppliers are split across more than one LS record: OLYMPIA (292) beside Olympia Tile (2926), LEE (2) beside Lee Flooring (84), UMB beside Umbrellar, MARMOCA beside MARMOCA TILE, CIF Distributors beside CIF LTD. Casing is inconsistent too. Supplier is a reporting field; join on sku.",
+      "_third_namespace": "Notion Company is ALL CAPS, Airtable Supplier is mixed case, and LS is its own thing again \u2014 mostly upper but not always. Three namespaces, none aligned. Airtable <-> Notion is in airtable-destinations.json supplier_aliases; LS is deliberately not mapped, because it does not need to be once the join is on sku."
+    },
+    "prices": {
+      "supply_price": "cost. Same concept as the CSV supply_price column.",
+      "price_including_tax": "float, present on every product",
+      "price_excluding_tax": "float, present on every product",
+      "_no_retail_price_field": "The API has NO `retail_price` key \u2014 0 of 14,525 products carry one. The CSV importer's retail_price column has no direct API equivalent; a write path must decide explicitly which of the two tax-qualified fields it means. Settle this in the Phase 3 spike alongside variants."
+    },
+    "category": {
+      "path": "product_category.name (object), null on 482 of 14,525",
+      "form": "LEAF NAME ONLY \u2014 'SPC', 'TILE', 'ENGINEERED HARDWOOD', 'LAMINATE', 'ACCESSORIES'",
+      "_differs_from_the_csv": "No API value contains ' / '. The product_categories.leaves list below is the CSV-importer path form ('FLOORING / VINYL / SPC') and is NOT what the API returns or, presumably, accepts. 58 distinct leaf names exist live, well beyond the 7 the CSV path form covers \u2014 the catalogue carries PLUMBING, VANITY, HVAC, GROUT, INTERIOR DOORS and more.",
+      "live_leaf_names_top": [
+        "TILE",
+        "ENGINEERED HARDWOOD",
+        "VINYL",
+        "SPC",
+        "LAMINATE",
+        "ENGINEERED",
+        "TREAD",
+        "ACCESSORIES",
+        "OTHER",
+        "HARDWOOD"
+      ]
+    },
+    "variants": {
+      "_comment": "Direct evidence for the Phase 3 spike. The API models a family as a parent product with has_variants=true and children carrying variant_parent_id, each with a variant_options array of {name, value}. Children share the parent's handle.",
+      "parents_has_variants_true": 1228,
+      "children_with_variant_parent_id": 2370,
+      "products_with_variant_options": 3598,
+      "option_names_in_use": {
+        "Size": 1885,
+        "Length": 811,
+        "Thickness": 770,
+        "Depth": 769,
+        "Grade": 301,
+        "Title": 290,
+        "Color": 88,
+        "BATCH": 68
+      },
+      "_grade_already_in_use": "301 products already group on a 'Grade' option \u2014 which is exactly Titan's grade-variant convention. The spike still has to establish how a family is CREATED through the API versus the CSV importer, but the data model itself is no longer an unknown.",
+      "largest_handle_groups": {
+        "newopenitems": 133,
+        "Custom1sord": 128,
+        "Custom1sosq": 128
+      }
+    },
+    "active": {
+      "fields": [
+        "active",
+        "is_active"
+      ],
+      "_note": "The two always agreed: 12,934 true, 1,591 false. deleted_at was null on every product."
+    }
   }
 }

@@ -47,9 +47,12 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 CACHE_DIR = REPO_ROOT / "analysis" / "cache"
 TZ = ZoneInfo("America/Toronto")
 
-# Where a supplier name might live on an LS product record. The API shape is not
-# verified against the live account yet — --probe prints the real keys. Ordered
-# most- to least-likely; the first hit wins.
+# Where a supplier name lives on an LS product record. Verified against the live
+# catalogue 2026-09-10 (14,525 products): `supplier` is an object carrying `name`
+# on 13,079 of them, 1,440 carry no supplier at all, and 6 have it only under
+# `product_suppliers[].supplier_name`. The two never disagreed where both were
+# present. A flat `supplier_name` key does not exist on the API (it is a CSV
+# import/export column) but is kept first as a cheap no-op.
 SUPPLIER_PATHS = (("supplier_name",), ("supplier", "name"), ("supplier",))
 
 
@@ -70,12 +73,67 @@ def dig(record, path):
 
 
 def supplier_of(record):
-    """The supplier name on an LS product, or None if it carries none."""
+    """The supplier name on an LS product, or None if it carries none.
+
+    Note for anything joining on this: LS supplier names are their OWN namespace,
+    neither Notion's nor Airtable's, and they are not one-to-one. The live
+    catalogue holds 116 distinct names against 24 Airtable supplier choices, with
+    several real suppliers split across more than one LS record — OLYMPIA (292)
+    beside Olympia Tile (2,926), LEE (2) beside Lee Flooring (84), UMB beside
+    Umbrellar, MARMOCA beside MARMOCA TILE, CIF Distributors beside CIF LTD.
+    Join products on `sku` instead; it is unique and always present (verified:
+    0 blanks and 0 duplicates across all 14,525). Supplier is for reporting.
+    """
     for path in SUPPLIER_PATHS:
         value = dig(record, path)
         if isinstance(value, str) and value.strip():
             return value.strip()
+    for entry in (record.get("product_suppliers") or []):
+        if isinstance(entry, dict):
+            name = entry.get("supplier_name")
+            if isinstance(name, str) and name.strip():
+                return name.strip()
     return None
+
+
+def category_of(record):
+    """The LS category leaf name, or None.
+
+    `product_category` comes back as an object carrying `name` (14,043 of 14,525;
+    the rest are null), and the name is the LEAF ALONE — 'SPC', 'TILE',
+    'ENGINEERED HARDWOOD' — never the ' / '-separated path the CSV importer
+    takes. The two are different vocabularies for the same concept; see
+    product_categories in platform-settings/lightspeed.json.
+    """
+    cat = record.get("product_category")
+    if isinstance(cat, dict):
+        name = cat.get("name")
+        return name.strip() if isinstance(name, str) and name.strip() else None
+    if isinstance(cat, str) and cat.strip():
+        return cat.strip()
+    return None
+
+
+# The fields anything downstream actually reads. A raw product carries 56 fields
+# and the full catalogue is ~41 MB of JSON — images, product_codes, descriptions
+# and nested supplier/category objects are most of it. The slim projection is
+# ~9 MB and is what gets written by default; --full keeps every field.
+SLIM_FIELDS = ("id", "sku", "handle", "name", "variant_name", "supply_price",
+               "price_including_tax", "price_excluding_tax", "active", "has_variants",
+               "variant_parent_id", "variant_options", "variant_count", "version",
+               "updated_at")
+
+
+def slim(record):
+    """One product, reduced to what the catalogue sync needs.
+
+    `supplier_name` and `category` are flattened here so downstream never has to
+    know that the API nests them in objects while the CSV keeps them flat.
+    """
+    out = {k: record.get(k) for k in SLIM_FIELDS}
+    out["supplier_name"] = supplier_of(record)
+    out["category"] = category_of(record)
+    return out
 
 
 def probe(client, page_size):
@@ -227,6 +285,9 @@ def main():
                     help="Reconcile the pull against a hand-exported LS .xlsx.")
     ap.add_argument("--max-pages", type=int, help="Stop after N pages (testing).")
     ap.add_argument("--page-size", type=int, help="Override api.pagination.page_size.")
+    ap.add_argument("--full", action="store_true",
+                    help="Write every API field instead of the slim projection. "
+                         "~41 MB for the whole catalogue against ~9 MB slim.")
     ap.add_argument("--verbose", action="store_true", help="Log each page to stderr.")
     args = ap.parse_args()
 
@@ -268,13 +329,12 @@ def main():
         else:
             suppliers[name] = suppliers.get(name, 0) + 1
 
-    out = args.out or (REPO_ROOT / "ingest" / today() / "lightspeed-products.json")
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps({
+    envelope = {
         "source": "lightspeed",
         "pulled_at": datetime.now(TZ).isoformat(),
         "api_version": client.api_version,
         "from_cache": from_cache,
+        "full_records": args.full,
         "supplier_filter": sorted(wanted) or None,
         "counts": {
             "catalogue_total": len(products),
@@ -283,12 +343,26 @@ def main():
             "by_supplier": dict(sorted(suppliers.items())),
         },
         "stats": client.stats(),
-        "products": selected,
-    }, indent=1) + "\n")
+    }
+
+    out = args.out or (REPO_ROOT / "ingest" / today() / "lightspeed-products.json")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(
+        {**envelope, "products": selected if args.full else [slim(p) for p in selected]},
+        indent=1) + "\n")
+
+    # The product bodies are gitignored: ~9 MB slim, ~41 MB full, regenerable from
+    # the API, and an input to the sync rather than a record of a decision. The
+    # summary beside them is the committed audit trail — counts, stats and any
+    # throttling, a couple of KB.
+    summary = out.with_name(out.stem.replace("-products", "") + "-summary.json")
+    summary.write_text(json.dumps(envelope, indent=1) + "\n")
 
     print(f"{out.relative_to(REPO_ROOT)} — {len(selected)} of {len(products)} products"
+          + (" (full records)" if args.full else " (slim)")
           + (f", filtered to {sorted(wanted)}" if wanted else "")
           + (f", {no_supplier} carry no supplier" if no_supplier else ""))
+    print(f"{summary.relative_to(REPO_ROOT)} — counts and stats (committed)")
     if wanted and not selected:
         print(f"  no products matched. Suppliers present in the catalogue: "
               f"{sorted({supplier_of(p) for p in products if supplier_of(p)})}", file=sys.stderr)
