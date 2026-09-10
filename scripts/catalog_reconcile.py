@@ -80,6 +80,8 @@ PRICE_FIELDS = ("Cost/unit", "Retail price/unit")
 # MatchStatus / LS Match status values that must never reach a write.
 AMBIGUOUS = {"ambiguous", "AMBIGUOUS", "DUPLICATE"}
 
+BOX_SIZE = "Box size (sf)"
+
 
 def today():
     return datetime.now(TZ).date().isoformat()
@@ -270,6 +272,15 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
                       f"{', '.join(sorted(clean(p.get('sku')) or '?' for p in clash)[:4])}")
                 continue
 
+        # sf/b must be readable in Lightspeed on every row that has a box size.
+        # Enforced always, including variant groups (Albert, 2026-09-10). The rule
+        # was already written in ls-upload-instructions; nothing checked it, and
+        # ENG-VIDR-0038 sat in Lightspeed for months with no sf/b in its name.
+        sfb_problem = sfb_not_exposed(row, ls_upload.get(sku))
+        if sfb_problem:
+            block(sku, "sfb_not_exposed", sfb_problem)
+            continue
+
         category = clean(row.get("Category"))
         if category and not category_resolves(category, categories):
             warn(sku, "category_unresolved",
@@ -383,6 +394,44 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
             })
 
     return order(actions), blocked, warnings
+
+
+def sfb_not_exposed(upload_row, ls_row):
+    """Return a reason string if this row's sf/b would be invisible in Lightspeed.
+
+    The invariant, from ls-upload-instructions: every row carrying a `Box size (sf)`
+    must expose it somewhere a person can read at the POS. Where it goes is forced by
+    Lightspeed's name-identity constraint, so it is one place or the other and never
+    both:
+
+      singleton / no-grade / uniform variant group -> the shared name
+      mixed-box-size variant group                 -> variant_option_one_value
+
+    Per-piece items — accessories, STONE, mosaics — legitimately have no box size and
+    are exempt. A FLOORING row with no box size is a data defect, but that is caught
+    upstream in extraction, not here.
+
+    Checked against the skill-built LS row, since that is what actually gets sent.
+    Without one there is nothing to check and nothing to send.
+    """
+    box = clean(upload_row.get(BOX_SIZE))
+    if box is None or ls_row is None:
+        return None
+    try:
+        needle = f"{float(box):.2f}"
+    except (TypeError, ValueError):
+        return None
+    name = clean(ls_row.get("name")) or ""
+    value = clean(ls_row.get("variant_option_one_value")) or ""
+    if needle in name.replace(" ", "") or needle in name:
+        return None
+    if needle in value.replace(" ", "") or needle in value:
+        return None
+    return (f"Box size (sf) is {box}, but {needle}sf/b appears in neither the Lightspeed "
+            f"name ({name[:60]!r}) nor the variant value ({value!r}). Staff convert boxes "
+            "to square feet off one of those two, so a row exposing it in neither is "
+            "unusable at the POS. Uniform groups and singletons carry it in the name; "
+            "mixed-box-size groups carry it in the variant value.")
 
 
 def category_resolves(category, leaves):

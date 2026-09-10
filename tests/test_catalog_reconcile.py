@@ -297,6 +297,51 @@ class TestRowInvariant(unittest.TestCase):
         self.assert_partitioned(rows, actions, blocked)
 
 
+class TestSfbAlwaysExposed(unittest.TestCase):
+    """Enforced always, variant groups included (Albert, 2026-09-10)."""
+
+    def upload(self, **kw):
+        base = {"sku": "A-1", "handle": "HX1",
+                "name": 'VIDENG - 7 AWO (X) T&G | 7.5" x 3mm x RL - 25.32sf/b',
+                "variant_option_one_value": "", "supply_price": "1", "retail_price": "2",
+                "product_category": "FLOORING / ENGINEERED HARDWOOD"}
+        base.update(kw)
+        return {"A-1": base}
+
+    def test_sfb_in_the_name_passes(self):
+        rows = [row(SKU="A-1", **{"Lightspeed ID": "", "Box size (sf)": "25.32"})]
+        _, blocked, _ = run(rows, [], ls_upload=self.upload())
+        self.assertEqual(blocked, [])
+
+    def test_sfb_in_the_variant_value_passes(self):
+        """The mixed-box-size group case — name cannot carry it."""
+        rows = [row(SKU="A-1", **{"Lightspeed ID": "", "Box size (sf)": "20.18"})]
+        _, blocked, _ = run(rows, [], ls_upload=self.upload(
+            name='VIDENG - HB 5 AWO (Macaroon) T&G | 5" x 18mm x RL - 3mm top',
+            variant_option_one_value="Select - 20.18sf/b"))
+        self.assertEqual(blocked, [])
+
+    def test_sfb_in_neither_is_blocked(self):
+        """Exactly the ENG-VIDR-0038 defect: a uniform group with no sf/b anywhere."""
+        rows = [row(SKU="A-1", **{"Lightspeed ID": "", "Box size (sf)": "25.32"})]
+        actions, blocked, _ = run(rows, [], ls_upload=self.upload(
+            name='VIDENG - 7 AWO (Snowwhite) T&G | 7.5" x 3mm x RL'))
+        self.assertEqual([b["reason"] for b in blocked], ["sfb_not_exposed"])
+        self.assertEqual(actions, [], "a blocked row must emit no action")
+
+    def test_per_piece_items_are_exempt(self):
+        """Accessories and STONE legitimately have no box size."""
+        rows = [row(SKU="A-1", **{"Lightspeed ID": "", "Box size (sf)": ""})]
+        _, blocked, _ = run(rows, [], ls_upload=self.upload(
+            name="Vidar - Transition | Nosing | SPC"))
+        self.assertEqual(blocked, [])
+
+    def test_a_wrong_box_size_in_the_name_is_still_caught(self):
+        rows = [row(SKU="A-1", **{"Lightspeed ID": "", "Box size (sf)": "18.19"})]
+        _, blocked, _ = run(rows, [], ls_upload=self.upload())  # name says 25.32
+        self.assertEqual([b["reason"] for b in blocked], ["sfb_not_exposed"])
+
+
 class TestAirtableSnapshotRequired(unittest.TestCase):
     """Planning Airtable writes from the upload CSV is not allowed.
 

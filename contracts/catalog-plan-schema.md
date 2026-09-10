@@ -147,6 +147,27 @@ worth reading: on the Lee 2026-09-09 file, 50 of 84 rows carry no UUID because t
 Lightspeed import that created them happened after the backfill ran. Re-running
 that file without this repair would create 50 duplicates.
 
+### `sfb_not_exposed`, and why it blocks
+
+Every row carrying a `Box size (sf)` must expose it somewhere a person can read at the
+POS. Staff convert boxes to square feet off that number constantly, and a row that
+shows it nowhere is unusable at the counter — but the gap is invisible until someone
+needs it and can't find it.
+
+Where it goes is forced by Lightspeed's name-identity constraint, so it is one place
+or the other and never both:
+
+| Row | sf/b lives in |
+|---|---|
+| Singleton, no-grade, or a variant group whose members all box the same | the shared **name** |
+| Variant group with **mixed** box sizes | **`variant_option_one_value`** — the name cannot differ across the group |
+
+**Enforced always, variant groups included** (Albert, 2026-09-10). The rule was
+already written in `ls-upload-instructions`; nothing checked it, and
+`ENG-VIDR-0038` sat live in Lightspeed named
+`… | 7.5" x 3mm x RL` with no sf/b at all. Per-piece items — accessories, STONE,
+mosaics — legitimately have no box size and are exempt.
+
 ## What a write may set
 
 Narrower than it looks, and deliberately so.
@@ -208,6 +229,7 @@ because Ontario HST is applied at checkout by the outlet's Default Tax rule.
 | `handle_collision_on_create` | A create whose handle is already held by a different SKU |
 | `ambiguous_match` | `MatchStatus: ambiguous`, or `LS Match status: AMBIGUOUS` / `DUPLICATE` |
 | `sku_missing` | No SKU. Usually a new product still awaiting one — under RULE 0 Titan mints the SKU at record creation and no automated process may generate it |
+| `sfb_not_exposed` | The row has a `Box size (sf)` that would be readable nowhere in Lightspeed — neither the name nor the variant value |
 | `ls_payload_unavailable` | The SKU is new to Lightspeed and no skill-built `<supplier>_ls_upload_<date>.csv` row was supplied — see **What a write may set** |
 
 ## `warnings`
