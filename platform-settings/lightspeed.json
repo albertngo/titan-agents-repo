@@ -11,7 +11,8 @@
       "products": "/api/2.0/products",
       "variant_attributes": "/api/2.0/variant_attributes",
       "product_update": "/api/2.1/products/{id}",
-      "product_family": "/api/3.0/products/{id}"
+      "product_family": "/api/3.0/products/{id}",
+      "variant_add": "/api/2.1/products/"
     },
     "auth": {
       "scheme": "Bearer",
@@ -35,7 +36,8 @@
       "create_product": "2.0  POST /api/2.0/products \u2014 creates a product or a whole variant family.",
       "update_product": "2.1  PUT /api/2.1/products/{id} \u2014 `common` + `details` sections. The 2.1 update CANNOT create variants.",
       "read_family": "3.0  GET /api/3.0/products/{id} \u2014 returns the family with a `variants` array.",
-      "current_dated": "The reference now publishes as date-versioned `2026-07`, served at /api/2026-07. 2.0/2.1/3.0 are the legacy semantic versions. Migrate deliberately; re-verify with --probe and --compare-export first."
+      "current_dated": "The reference now publishes as date-versioned `2026-07`, served at /api/2026-07. 2.0/2.1/3.0 are the legacy semantic versions. Migrate deliberately; re-verify with --probe and --compare-export first.",
+      "add_variant_to_family": "2.1  POST /api/2.1/products/ \u2014 adds a variant to an EXISTING family. Distinct from the 2.0 POST that creates a family, and from the 2.1 PUT that updates one and explicitly cannot create variants."
     }
   },
   "rate_limits": {
@@ -331,7 +333,34 @@
           "pricing"
         ]
       },
-      "_orphans_explained": "The reference warns that a product not in a variant family can still carry populated variant_options \u2014 it used to be a variant and was turned back into a simple product. That is exactly the 215 products found carrying a Grade option with no parent. Never infer variant-ness from variant_options; use variant_parent_id and has_variants."
+      "_orphans_explained": "The reference warns that a product not in a variant family can still carry populated variant_options \u2014 it used to be a variant and was turned back into a simple product. That is exactly the 215 products found carrying a Grade option with no parent. Never infer variant-ness from variant_options; use variant_parent_id and has_variants.",
+      "add_to_existing_family": {
+        "_comment": "Fills the gap flagged earlier. There IS an API path for adding a variant to a family that already exists \u2014 it is a third endpoint again, and it is a POST to the 2.1 collection, not the 2.0 one used to create a family from scratch.",
+        "endpoint": "POST /api/2.1/products/",
+        "shape": {
+          "common": {
+            "name": "<the EXISTING family name, verbatim>"
+          },
+          "details": {
+            "product_codes": [
+              {
+                "code": "<sku>",
+                "type": "CUSTOM"
+              }
+            ],
+            "variant_attribute_values": [
+              {
+                "attribute_id": "...",
+                "attribute_value": "..."
+              }
+            ],
+            "price_including_tax": "..."
+          }
+        },
+        "_joins_by_name": "`common.name` is how the new variant finds its family \u2014 more confirmation that name is the family key on the API side.",
+        "_must_match_the_family_dimensions": "variant_attribute_values must cover EVERY attribute the family uses. A family on Color and Size needs both.",
+        "_and_must_not_duplicate_a_combination": "Two members with the same attribute values are a Duplicate Variants rejection."
+      }
     },
     "active": {
       "fields": [
@@ -363,6 +392,13 @@
       },
       "_junk_present": "Several attributes are clearly accidental \u2014 'Red Oak', '31/2\"*7', '5-1/4\" STEP', \"10'\", '____ BATCH'. Note both 'Colour' and 'Color' exist. Never create an attribute automatically; pick from the live list or stop."
     },
-    "categories_are_product_types": "product_category and product_type are the same thing \u2014 the reference says 'Product types are now product categories', and on a live product product_type_id equals product_category.id. Resolve names via GET /api/2.0/product_types; 63 exist, flat, e.g. ENGINEERED HARDWOOD, SPC, GLUE DOWN, LOOSE LAY, ACCESSORIES."
+    "categories_are_product_types": "product_category and product_type are the same thing \u2014 the reference says 'Product types are now product categories', and on a live product product_type_id equals product_category.id. Resolve names via GET /api/2.0/product_types; 63 exist, flat, e.g. ENGINEERED HARDWOOD, SPC, GLUE DOWN, LOOSE LAY, ACCESSORIES.",
+    "handle_vs_name": {
+      "_comment": "Worth stating plainly because the two entry points differ and both beliefs are half right.",
+      "csv_import": "Handle is the grouping key YOU supply \u2014 rows sharing a handle become variants of one product. This is why Airtable carries LS Handle / Parent ID.",
+      "api": "`name` is what Lightspeed identifies a family by. A create passes a `variants` array, so array membership does the grouping and handle is optional (Lightspeed slugs one from the name if omitted). Adding to an existing family joins it by common.name.",
+      "_they_must_agree": "The ls-upload-instructions skill already states the reconciliation: every row sharing a name must share one handle. In the live catalogue that holds \u2014 family members share both.",
+      "_practical_rule": "Read identity from variant_parent_id / has_variants, join products on sku, and treat handle as the CSV-side grouping key it is."
+    }
   }
 }
