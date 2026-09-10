@@ -82,7 +82,9 @@
     },
 
     "forced_downstream_order": ["airtable_sync", "ls_upload", "uuid_backfill"],
-    "_forced_order_why": "A new product has no Lightspeed ID until the POS upload creates one, so the backfill cannot precede the upload, and the upload cannot precede the Airtable import that mints the SKU and handle.",
+    "_forced_order_why": "THE CSV PATH ONLY. A new product has no Lightspeed ID until the POS upload creates one, so the backfill cannot precede the upload, and the upload cannot precede the Airtable import that mints the SKU and handle.",
+    "_forced_order_is_reversed_on_the_api_path": "Corrected 2026-09-10. /catalog-sync writes LIGHTSPEED FIRST, then Airtable — the opposite of the order above. POST /api/2.0/products returns the new product's UUID in its response, so the Lightspeed create is what mints the id the Airtable write needs. The CSV path had to import Airtable first because that is where the SKU and handle came from; on the API path /process-price-list has already minted both into the upload file before either write happens, so nothing gates Lightspeed. Read this order as a description of the manual CSV flow, not as a constraint on the sync.",
+    "_uuid_backfill_is_vestigial_on_the_api_path": "The backfill was a separate, deliberately BATCHED stage because one hand-made Lightspeed export covered several price lists (Albert, 2026-09-03). The API returns the UUID at create time and scripts/lightspeed_push.py writes plans/<date>/catalog-backfill-<supplier>.json in the same run, so there is no export, no batch and no lag to track. See actionable_backfill_filter below, which is the queue for a stage that no longer has a gap in it.",
 
     "actionable_backfill_filter": {
       "_comment": "The set a backfill run may act on.",
