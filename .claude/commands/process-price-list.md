@@ -160,9 +160,10 @@ link.
 
 **Every file on the row is a `.csv`. Always** (Albert, 2026-09-09). No `.xlsx` on a
 Notion row — not as a second copy, not as a highlighted "review copy" beside the CSV.
-That includes an `ls-id-backfill` output, whose skill asks for a workbook: on a Notion
-row this rule wins, and `Match status` / `Match notes` survive fine as CSV columns.
-Hand a workbook to the person directly if they ask for one; never attach it.
+That includes an `ls-id-backfill` output — its match-status and match-notes columns
+survive fine as CSV, and only row highlighting is lost. An LS export *arriving* as
+`.xlsx` is fine; that is input. Hand a workbook to the person directly if they ask
+for one; never attach it to the row.
 
 ```bash
 # 1. create-file-upload -> gives upload_url + auth header

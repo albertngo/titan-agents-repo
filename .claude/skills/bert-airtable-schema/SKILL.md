@@ -120,6 +120,19 @@ back-filled before `LS Upload` is `Done`. The actionable backfill set is therefo
 `UUID Backfill is Pending` **and** `LS Upload: Done` — a `Pending` row with `LS Upload` not yet `Done`
 is waiting to be uploaded, not waiting for you to backfill it.
 
+#### Resolving a duplicate-record collision — the tie-break rule
+
+**Ruling (Albert, 2026-09-10):** when two Airtable records appear to describe the same
+product and a backfill or matching pass can't tell which one is live, **the record that
+already carries both a `SKU` and a `Lightspeed ID` is the correct one.** A record missing
+either — most often a broken record with a blank `SKU` — is the duplicate, not a second
+real product, and gets deleted once the correct sibling is confirmed. Applied 2026-09-10
+to a broken null-SKU Biyork record (`reciBkT8xnBBshiZr`) colliding with the properly-SKU'd
+`ENG-BIYK-BYKN5AOEM`, which already held the right Lightspeed ID from a prior upload — the
+broken record was deleted. This is a tie-break for an already-ambiguous collision, not
+permission to delete a record just because a match failed; RULE 0's "escalate, don't
+guess" still governs every case that isn't this clean-cut.
+
 `New Products` is the check on the backfill: it says how many UUIDs that row should
 have produced, so a short count is visible rather than silent.
 
@@ -296,13 +309,45 @@ When a supplier posts a promotional cost:
 
 When scanning a supplier promo sheet, a promoted grade or colour may not exist as a record in the Master Flooring Catalogue. In this case:
 
+**Rule (Albert, 2026-09-08): always check the live Airtable for matching products before
+deciding a promo/price-list item is "new" — for every list, not just when something looks
+ambiguous.** A promo sheet routinely lists only colour + grade + price, with no box size,
+thickness, or veneer — that is a gap in the *document*, not proof the product is absent
+from the catalogue. The Vidar Sept 2026 promo run first marked 12 grade/colour combos as
+new-with-unknown-specs; checking the live base found that 8 of them had the same
+colour+width+species (and veneer, where the sheet differentiates by veneer thickness) as
+an existing record at a *different* grade, or the width+species collection was uniform
+enough across every other colour to use as a default. Only 4 were genuinely absent from
+the catalogue at any grade or veneer.
+
+**Match cascade before creating anything new**, in order:
+
+1. **Exact colour + width + species + grade already exists** → this isn't new at all,
+   it's a tier-3 match (see the matching cascade above) that the initial pass missed.
+   Route it through the normal matched-row path, not creation.
+2. **Same colour + width + species, matching veneer where the sheet states one** (a
+   sheet that prints "(2mm)"/"(3mm)" per colour is telling you veneer is a distinguishing
+   spec, not a footnote — a 3mm sibling is not a safe template for a 2mm promo line) →
+   copy box size, thickness, veneer, collection, install profile/method, finish type,
+   certifications, warranty, and radiant-heat/suitability flags from that sibling
+   verbatim. This is the common case — most promo colours are grade variants of a plank
+   Titan already stocks in some other grade.
+3. **No colour match, but every other record of that width + species (+ veneer, if the
+   sheet differentiates) shares one box size / thickness / veneer value** → that's a
+   collection-level default, not a guess. Safe to copy.
+4. **No width + species precedent exists at all** (nothing else in the catalogue shares
+   the width and species, at any colour or veneer) → this is the only case that is
+   genuinely new-with-unknown-specs. Leave Box size / Thickness / Veneer blank, flag to
+   the team, and stop there — do not invent a spec by analogy across species or width.
+
+Whichever tier resolves it:
+
 - **Do not apply the promo cost to an incorrect grade** (e.g. do not put a Character promo on a Select record)
-- **Create a new product record** for the missing grade, copying all available specs from the closest matching record (same colour, same width, different grade)
-- Set **Cost/unit = Promo cost ($/sf)** — since no original cost is available, the promo cost is used as a placeholder per the Sale item pricing logic rule 3
+- Set **Cost/unit = Promo cost ($/sf)** — since no original cost is available, the promo cost is used as a placeholder per the Sale item pricing logic rule 3
 - Set **Retail price/unit = Cost + $ 1.00**
 - Set **Promo cost ($/sf)** and **Promo end date** as per the promo sheet
-- For fields that cannot be confirmed from existing records (e.g. Collection), **leave blank** rather than guessing — do not copy fields that may differ by grade
-- Flag the new record to the team so specs can be verified with the supplier
+- **Colour / tone is aesthetic, not a spec** — leave it blank rather than guessing from the colour name, even when every other field copied cleanly from a sibling
+- Flag the new record's cost basis to the team (placeholder, not a confirmed dealer cost) even when the specs themselves are fully verified — spec confidence and cost confidence are separate questions
 
 ### Sale item pricing logic
 
@@ -622,12 +667,15 @@ no question about which file is which.
 > that the yellow highlighting justified it. It was still a file on the row, and it still
 > made "which file is which" a question. **A second format is not a second opinion.**
 >
-> **The `ls-id-backfill` skill tells you to produce a highlighted `.xlsx`. On a Notion
-> row, this rule wins.** Write the backfill output as CSV like everything else. Nothing
-> is lost that matters: `Match status` and `Match notes` are real columns and survive the
-> CSV; only the row highlighting does not, and a reviewer filters or sorts on
-> `Match status` instead. If someone explicitly asks for a highlighted workbook, hand it
-> to them directly — never by attaching it to the row.
+> **This binds the backfill too**, which is where it was broken: write the
+> `ls-id-backfill` output as CSV like everything else. Nothing is lost that matters —
+> the match-status and match-notes columns are real columns and survive the CSV; only
+> the row highlighting does not, and a reviewer filters or sorts on the status column
+> instead. `ls-id-backfill` now says the same thing in its own words, so the two agree;
+> if they ever drift, this rule is the one that governs what goes on a Notion row.
+>
+> An LS export *arriving* as `.xlsx` is fine — that is input, and Lightspeed exports a
+> workbook. The rule is about what we write and what we attach.
 
 Four settings, each of which fails silently if you get it wrong:
 
@@ -2768,6 +2816,26 @@ Biyork is both the supplier and the brand. Biyork Materials Canada (Markham, ON)
 
 Accessory SKUs follow the same rule: `ACC-BIYK-[Biyork code]`, Supplier SKU = the Biyork code. Nouveau wood accessories ("available in all Nouveau colours") have no per-colour code → use sequential `ACC-BIYK-0001` and leave Supplier SKU blank.
 
+#### Lightspeed name prefix — CONFIRMED 2026-09-10 against the live export
+
+Verified against a full live Biyork Lightspeed export (416 products). The PL-325 build's derived prefixes were checked and are **correct as built** — no renaming was needed, this section exists so the next run doesn't have to re-derive them:
+
+| Product type | Prefix / convention | Live example |
+|---|---|---|
+| Engineered hardwood | `BIYKENG` | `BIYKENG - Nouveau 5 American Oak (Abode) \| 5" x 19.05mm x RL up to 6ft - 25.08sf/b` |
+| LVP (vinyl plank) | `BIYKLVP-SPC` | `BIYKLVP-SPC - Hydrogen 5 (Cashmere) \| 7" x 5mm x 48" - 26.43sf/b` |
+| LVT (vinyl tile) | `BIYKLVT-SPC` | `BIYKLVT-SPC - Hydrogen 6 Tile (Bourbon) Click \| 24" x 6mm x RL - 19.38sf/b` |
+| Laminate | `BIYKLAM` | `BIYKLAM - Riptide (Black Pearl) \| 7.5" x 12mm x 48" - 15.39sf/b` |
+| **Accessories** | **Not** the generic cross-supplier `[Supplier] - Transition \| ...` format, and **not** an abbreviated `BIYKACC` prefix (that pattern exists on ~33 older records but is legacy, not current). Current convention (191 live records) is the full spelled-out `Biyork [Collection] [Type] — [Colour]`, which is exactly what Airtable's `Product name` already stores for Biyork accessories — copy it verbatim, same as the Weiss/Vizion accessory rule. | `Biyork Hydrogen 5 Reducer — Cashmere`, `Biyork Riptide Overlap Stairnose — Black Pearl`, `Biyork Hydrogen 6 Tile Stairnose — Combed Cotton` |
+
+A handful of legacy Nouveau 6/7/8 European Oak records (7 total) use an older `BIYENG` (no K) prefix with a different `#code` name format — that's historical, not the convention for new imports.
+
+#### Re-code quirk — Biyork periodically reprints the same colour under a new internal code
+
+**Ruling (Albert, 2026-09-10):** when a later Biyork price list shows a colour/collection that already exists live under a different Biyork product code, **the old SKU stays the live product — do not create a new one.** The two price lists this has now been seen on (May 22 2026 and July 15 2026, both for Hydrogen 6 Plank/Tile colours: Lily Canvas, Midday Sunrise, Raw, Dusty, Chalk, Combed Cotton + their T-Moulding/Stairnose accessories) showed no real product change — the "new" entry differs from the old live record's name at most cosmetically (e.g. `Biyork Hydrogen 6 Plank 7.0" — Lily Canvas` → `Biyork Hydrogen 6 Plank — Lily Canvas`, dropping the width token that's already captured in `Width (in)`); the 3 accessory pairs checked had **identical** names already.
+
+**Handling:** flag these `MatchStatus: ambiguous` at extraction time as before (never silently treat as `new`), but once confirmed a re-print rather than a real change, do not create a parallel Airtable record — the PL-325 run's 9 such rows were deleted 2026-09-10 after this confirmation, since the corresponding old SKUs (`LVP-BIYK-BYKHY6HP50LC/MS/50RA/50DU`, `LVT-BIYK-BYKRCET50CH`, `LVT-BIYK-BYKHY6HT50CO`, `ACC-BIYK-BYKH6TISTCC/STCH/TITMCH`) were already live and correct. Only update the old record's `Product name`/description if the later list actually adds real information — a dropped width digit is not that.
+
 #### Cost column
 
 Biyork prints **`MSRP/SF`** and **`Your Price`**.
@@ -3001,6 +3069,95 @@ VANNTETT PLUS and VANNTETTPRO trims are the same part and are listed once.
 
 ---
 
+### Dragona (Dragona Flooring, house brand Falcon Floors)
+
+Dragona is a **new supplier** onboarded 2026-09-08 from the "Dragona Flooring Pricing
+Program — Store Program" (Aug 1 2026), a 15-page PDF spanning flooring, tile, carpet,
+underlayment, and building materials.
+
+#### Identity
+
+| Field | Value |
+|---|---|
+| **Supplier** (single-select) | `Dragona` |
+| **Brand** | `Dragona` for its own lines; `Falcon Floors` for the house-brand laminate/vinyl |
+| **SKU supplier code** | `DRAG` — 4-char suffix |
+| **Internal SKU format** | `[CAT]-DRAG-####` — sequential, since the sheet prints no per-product codes for flooring |
+
+#### Cost column
+
+**CONFIRMED 2026-09-09 by Albert: STORE PRICING is Titan's dealer cost, as printed, no
+multiplier.** The sheet prints exactly one price column, headed "STORE PRICING" — this
+was genuinely ambiguous on first ingest (could have read as Dragona's own retail shelf
+price) and was escalated via Tactical Task before any Lightspeed write. Do not ask again.
+
+- Printed STORE PRICING → `Cost/unit` **as-is**. Never apply a multiplier.
+- Where the sheet prints two tiers (flooring), CUT ORDER → `Cost/unit`, SKID ORDER →
+  `Pallet price ($/sf)`, both tiers noted in `Volume pricing notes`.
+- `Retail = Cost + $ 1.00` — the schema default — **except** where noted below under
+  Parsing quirks; several pricing units have no markup rule yet and are intentionally
+  left blank pending Albert (carpet per sqyd/per linear yard, per-linear-foot unfinished
+  hardwood mouldings, per-piece stair parts and registers). Do not guess a markup for
+  these; ask before writing one.
+
+#### Parsing quirks
+
+- **Rolls (underlayment) are converted to per-roll cost** from the printed per-SF price
+  (e.g. $0.13/SF × 200 SF roll → $26.00/roll), so the +$20 underlayment markup applies on
+  the same basis as other suppliers' roll pricing (Woden precedent).
+- **Carpet is priced per SQYD (tile) or per linear YRD (roll on a 12 ft width)**, not per
+  sf. `Cost/unit` holds the as-printed per-sqyd/per-linear-yard figure; `Box size (sf)`
+  for carpet tile is converted from the printed SQYD box size. No carpet markup rule
+  exists yet — `Retail price/unit` stays blank until Albert sets one.
+- **Unfinished hardwood mouldings are priced per linear foot** on random-length stock;
+  the standard +$10/+$15 per-piece accessory tiers do not transfer to a per-linear-foot
+  cost — `Retail price/unit` stays blank until Albert sets a rule.
+- **Hardwood/register stair parts are priced per piece**, not per sq ft — matches the FAW
+  precedent for stair treads: store the per-piece cost, leave retail blank until a
+  hardwood-stair markup is set.
+- **Core construction is unstated for rigid vinyl** — defaults to SPC per the global
+  rule. Underpad material is unstated — IXPE assumed; verify with Dragona if it matters.
+- **Pro-7mm vinyl click prices below the standard 7mm line** despite an identical printed
+  construction (5.5mm + 1.5mm condo pad, 18.9 sf/box) — flagged on the affected rows as a
+  possible sheet error, not corrected.
+- **Subway tile (3x6/4x12/4x16 white) is stored as Porcelain**, following the printed
+  section header, though this format is normally ceramic wall tile — confirm with
+  Dragona if it matters.
+- Building materials (drywall, framing, insulation, doors, plumbing, lumber, MDF/pine
+  millwork, tile edge, lighting, consumables) — roughly half the document — are **excluded**
+  from the catalogue.
+
+---
+
+### Weiss
+
+Weiss is a **new supplier** onboarded 2026-09-08/09 from the Weiss price list valid
+from Aug 1 2026, covering engineered hardwood, vinyl plank, laminate, and accessories
+(transitions, stairnoses, underlay rolls).
+
+#### Cost column
+
+**CONFIRMED 2026-09-10 by Albert: the list's single "Price / SF" column is Titan's
+dealer cost, as printed, no multiplier.** This was the working assumption used during
+extraction (62 rows) — it is now confirmed. Do not ask again.
+
+- Printed "Price / SF" → `Cost/unit` **as-is**. Never apply a multiplier.
+- Retail markup is category-specific, already applied per row and recorded in each
+  record's `Salesperson notes`: vinyl stairboard sets use the FAW vinyl stair-step
+  markup (+$20); stairnoses and most other per-piece accessories use the cross-supplier
+  accessory markup (+$15); underlay rolls use the cross-supplier underlayment markup
+  (+$20/roll). Flooring (engineered, vinyl plank, laminate) uses the schema default
+  `Retail = Cost + $1.00` unless a row's notes say otherwise.
+- Rigid vinyl core construction is unstated on the list; defaults to SPC per the global
+  rule. Underpad material is unstated on the attached-pad vinyl lines; IXPE assumed —
+  verify with Weiss if it matters.
+- "Select Plus" (used on some Oak colourways) is Weiss's own grade wording, stored
+  verbatim per the grade translation rule — it sits between Select and Select & Better
+  on their sheet but is not formally mapped to either; confirm the equivalence with
+  Weiss if it becomes load-bearing.
+
+---
+
 ### Vizion (Vizion Floor)
 
 Vizion Floor (toronto@vizionfloor.com, 647-802-6868, 1195 Clark Blvd, Brampton ON L6T 3W4
@@ -3024,29 +3181,21 @@ Accessories carry no codes → sequential `ACC-VIZN-0001`, `Supplier SKU` blank.
 
 #### Cost column
 
-**⚠️ OPEN — ASKED, NOT YET ANSWERED (2026-09-09).** Do not treat the values below as
-settled; they are what the first run assumed so it could produce a file.
+**CONFIRMED 2026-09-10 by Albert: the printed price is Titan's dealer cost, as-is, no
+multiplier.** The sheet prints exactly one unlabelled "> PRICE" column with no terms
+page, no stated discount, and no MSRP column — genuinely ambiguous on first ingest
+(precedent runs three ways across other suppliers), so it was escalated via Tactical
+Task before any import. This was the working assumption used during extraction
+(52 rows) — it is now confirmed. Do not ask again.
 
-The list prints **exactly one price column, headed only `> PRICE`**, one price per
-collection rather than per row. There is **no terms page, no stated discount off list,
-and no MSRP or suggested-retail column anywhere in the document** — the only commercial
-terms printed are a returns window and a past-due service charge, neither of which
-implies a multiplier.
-
-That is genuinely ambiguous for a new supplier, and precedent runs three ways (Canadian
-Standard prints dealer cost as-is; CIF and Olympia print a list price with the discount
-in the terms; Biyork prints both columns), so it was escalated to Albert per
-*Cost basis — ask once, then write it down forever* rather than inferred.
-
-| | Assumed by the first run | Status |
-|---|---|---|
-| `Cost/unit` | the printed price **as-is, no multiplier** | **unconfirmed** |
-| `Retail price/unit` | `Cost + $ 1.00` (schema default) | follows from the above |
-| `MAP price ($/sf)` | blank — no MSRP column is published | confident; the absence is a real finding |
-| `Pallet price ($/sf)` | blank — the sheet gives a boxes-per-pallet **count**, not a per-sf pallet rate | confident |
-
-**When Albert answers, replace this block with the settled basis** so the next run
-inherits it and stops asking.
+- Printed "> PRICE" → `Cost/unit` **as-is**. Never apply a multiplier.
+- `Retail = Cost + $1.00` — the schema default, applied uniformly.
+- Core construction is unstated for the vinyl lines; SPC assumed per the global rule
+  for unlabelled rigid vinyl.
+- SKU supplier code: `VIZN` — Vizion's own product codes are unique per product and are
+  used verbatim as the 4-char suffix (e.g. `LVP-VIZN-V7001`).
+- Stair/accessory items are priced per piece (Stair Board per set); dimensions as
+  printed go in the accessory name's `[Dimensions]` segment per the transitions format.
 
 #### Markup overrides (accessories)
 
@@ -3139,6 +3288,157 @@ price per collection, and accessory dimensions.
 58–59 on a routine run), written to `ingest/YYYY-MM-DD/`. **No Lightspeed file until the
 Airtable import happens** — Vizion has no LS presence, so there are no ids or handles to
 copy from.
+
+---
+
+### Lee Flooring (Lee Flooring Canada)
+
+Lee Flooring Canada (145 Gibson Dr, Markham ON L3R 3K7 — 289-378-8888 —
+info@leeflooring.ca) is both the supplier and the brand. The price list arrives as a
+**multi-tab `.xlsx`, not a PDF** — four tabs (`LANINATE `, `VINYL`, `ENG WOOD`,
+`SOILD & 3mm`; the typos are Lee's and the laminate tab name has a trailing space).
+First ingested 2026-09-09 from the 2026-06-12 list: 84 rows (79 flooring, 5 accessories).
+
+#### Cost column
+
+**Settled by Albert 2026-09-09. Do not ask again.**
+
+Lee prints **exactly one price column, headed `PRICE/SQ.FT`** (column G on every tab;
+there is nothing beyond column G). **That printed price IS Titan's dealer cost — take it
+as-is, no multiplier** — and `Retail = Cost + $ 1.00`, the schema default.
+
+| | |
+|---|---|
+| `Cost/unit` | the printed `PRICE/SQ.FT`, verbatim |
+| `Retail price/unit` | `Cost + $ 1.00` (flooring); accessories per the cross-supplier markups below |
+| `MAP price ($/sf)` | **blank — Lee publishes no MSRP or suggested-retail column at all** |
+| `Pallet price ($/sf)` | blank — Lee gives a boxes-per-skid *count*, not a per-sf pallet rate |
+
+There is **no terms page and no discount off list** anywhere in the workbook; the only
+commercial terms printed are a 30-day return window, a 25% restocking fee, and "All
+Promoted Orders are Final Sales and COD." So Lee is the Canadian Standard shape (dealer
+cost printed directly), **not** the CIF/Olympia shape (list price with the discount in
+the terms). If a future Lee list ever prints a second price column, that is a format
+change — stop and re-confirm rather than assuming which is cost.
+
+The price cell carries its own label: `SALE: $ 1.39`, `PRICE: $ 2.99`, or a bare `1.19`.
+**`PRICE:` is just a label on the regular cost — it is not a promo marker.** Only `SALE:`
+means promo.
+
+#### Identity
+
+| Field | Value |
+|---|---|
+| **Supplier** (single-select) | `Lee Flooring` — **proposed on the first run, not yet confirmed**; the option does not exist in Airtable yet |
+| **Brand** | `Lee Flooring` (supplier is the brand) |
+| **SKU supplier code** | `LEEF` — **proposed, not yet confirmed** |
+| **Notion `Company`** | `LEE` (ALL CAPS, per the per-system casing rule — do not "fix" either side) |
+
+**Lee assigns product codes on laminate only.** `T01`–`T10` (72-hour), `R01`–`R09`+`R11`
+(24-hour) and `98001`–`98013` (SOHO) are unique across the whole list; vinyl, engineered,
+solid and accessories carry no codes at all. The first run therefore used the code
+verbatim as the SKU suffix on laminate (`LAM-LEEF-T01`) and sequential numbering
+elsewhere (`LVP-LEEF-0001`, `ENG-LEEF-0001`, `HWD-LEEF-0001`, `ACC-LEEF-0001`), with
+`Supplier SKU` populated on laminate and blank everywhere else. **That split is proposed,
+not confirmed — settle it before the first import, because RULE 0 makes it permanent.**
+
+#### Lee is already in Lightspeed
+
+**36 Lee products were live in Lightspeed before Lee existed in Airtable** — the RULE 0a
+third state. A Lee ingest is therefore `MatchStatus: new` on every row (it creates
+Airtable records) while a large share also carry a `Lightspeed ID` and must **update**
+rather than create on the POS. Always run `ls-id-backfill` against an LS export before
+building any Lee LS file.
+
+**Lee's LS skus are its own product codes**, so the laminate rows join exactly on
+`Supplier SKU` ↔ LS `sku` (`98001`, `T01`…). That is a stronger bridge than colour
+matching and should be tried first for Lee. The legacy LS names are inconsistent
+(`LEE ENG - Color: BRENTON`, `LEEENG - 7' 3mm Veneer - Hickory (Barnwood)`,
+`LEELAM - 7 Series - ()`), and the LS catalogue predates the current list, so expect
+cost and width to disagree — the price list is authoritative.
+
+Two known duplicates to clean up in Lightspeed: `LEE.T03` duplicates `T03`, and
+`LEE.E.H.Bar.7` (Barnwood 7" / 26.2 sf) is superseded by `11237` (6.5" / 27.5 sf).
+
+#### Collections (use verbatim)
+
+Laminate: `72 Hours Water-Resistant Laminate`, `24 Hours Water-Resistant Laminate`,
+`SOHO Laminate`. Vinyl: `7mm SPC`. Engineered: `Heritage Hills` (American Oak),
+`Solvara` (European Oak), `Hybrid`, `3mm Veneer Engineered`. Solid: `Solid Handscraped`.
+
+#### Category / Material type
+
+| Section | Category | Material type |
+|---|---|---|
+| 72HR / 24HR laminate | `Laminate` | `Water-Resistant Core` |
+| SOHO laminate | `Laminate` | `HDF core` (no water-resistance claimed) |
+| 7mm SPC | `LVP` | `SPC core` |
+| Heritage Hills / Solvara / Hybrid / 3mm Veneer | `Engineered hardwood` | `Hardwood plywood` |
+| Solid Handscraped | `Solid hardwood` | *(blank)* |
+
+`Waterproof = TRUE` on the SPC only — the laminates are water-**resistant**, not
+waterproof. `Pet friendly = TRUE` on the SPC (22 mil ≥ 20). `Radiant heat compatible`
+blank throughout; Lee states nothing.
+
+#### Grade
+
+`SELECT & BETTER` (Heritage Hills) → `Select & Better`; `SELECT GRADE` (Solvara) →
+`Select`. Nothing else states a grade — Hybrid, vinyl and laminate stay blank.
+**`HANDSCRAPED` on the solid tab is a finish, not a grade** — `Grade` blank,
+`Finish type = Hand scraped`.
+
+#### Parsing quirks — the workbook is merge-driven
+
+**Read the merged-cell ranges; do not forward-fill by eye.** Lee states dimensions,
+sf/box, packaging and price **once per group** and merges the cell down the rows it
+covers, and the group boundaries **do not line up between columns**. On the 72HR tab
+`E8:E13` (sf/box 20.8) and `F13:F17` (40 boxes/skid) split one row apart, so `T06` is
+20.8 sf at 40/skid — correct, and invisible to a naive fill.
+
+- **Multi-spec groups under one header.** Hybrid runs 7¾"/20.97 sf, 7¾"/23.98 sf and
+  9½"/26.08 sf under a single heading, with the price merged across a different span again.
+- **Sequence gaps are real**: `R10` and `98010` are absent, and the accessory rows
+  contradict themselves about the range (`R01-R10` vs `R01-R11`). Extract what is printed.
+- **`WARM EMBER (WALNUT)`** sits inside the American Oak collection at $ 4.49 against
+  $ 2.99 — set `Species = Walnut`. Confirm whether it is American Black Walnut; if so
+  `Radiant heat compatible = FALSE` per the global rule.
+- **Length** is in the description, not the dimension string: `UP TO 6 FOOT` →
+  `RL (up to 6')`, `UP TO 4 FOOT` → `RL (up to 4')`. Laminate and vinyl are a fixed `48"`.
+- **`5 + 2 MM EVA`** on the vinyl = 5mm SPC + 2mm EVA pad, 7mm total, `Underpad
+  included = TRUE`, `Underpad type = EVA` (Lee names the material, so no assumption).
+  The tab header's `ICC 74` is a typo for `IIC 74`.
+
+#### Fields Lee does not provide
+
+Install profile, install method, locking system, AC rating, certifications, warranties,
+traffic rating, pieces per box, colour/tone, veneer cut type, and STC. Leave all blank —
+`Click`/`Float` was assumed on laminate and vinyl per the Evergreen precedent and left
+blank on all 48 hardwood rows. Request a spec sheet from the rep if Bert lookups need them.
+
+#### SALE items
+
+Lee marks promos as `SALE:` in the price cell and **prints no end dates** — apply the
+global month-end default (the list's own month), and note that a Lee list can arrive
+months stale, in which case its promos are already expired on receipt.
+
+Both laminate collections are wholly on sale with no regular price printed anywhere, so
+they fall to **Sale rule 3** (`Cost = Promo = SALE price`, a placeholder). Hybrid is the
+instructive one: it prints three regular colours at $ 2.99 and seven at `SALE: $ 2.55`
+across two widths. The four 7¾" sale colours share specs exactly with the regular 7¾"
+Chicago, so **rule 1** applies (`Cost` $ 2.99, `Promo` $ 2.55); the three 9½" colours have
+no same-spec regular price and fall to **rule 3**. Match specs, not just the collection.
+
+#### Accessories
+
+Priced per piece / per roll on the laminate tab. Standard cross-supplier markups:
+T-Moulding and Reducer `Cost + $10`, Stair Nosing `Cost + $15`, Underlayment `Cost + $20`.
+Lee gives no trim material or profile detail beyond the matching-colour list.
+
+#### Lee ingest output format
+
+`lee_airtable_upload_[YYYY-MM-DD].csv`, all 57 schema columns plus helpers, written to
+`ingest/YYYY-MM-DD/`. No Lightspeed file until the Airtable import happens and LS ids are
+reconciled in — see *Lee is already in Lightspeed* above.
 
 ---
 
@@ -3462,6 +3762,7 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
   prefix, the LS-side colour spellings, and the rule that **digits inside a colour token are
   identity and may not change across a spelling-drift match** — without it `Unicorn 3` and
   `Unicorn 5` collapse into one product, which they did on the first pass.
+
 - **2026-09-09** — Added the **Gracious** supplier subsection from three PDFs emailed
   2026-06-30 (248 rows: 156 + 88 tile, 4 vinyl/laminate; first ingest, not yet imported).
   Its `#### Cost column` is **settled on arrival** — Albert supplied the basis with the
@@ -3477,6 +3778,19 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
   rows have a genuinely empty name cell beside a real price and were dropped; and the
   vinyl series' headline thickness only reconciles once the wear layer is added to the
   core+pad figure.
+- **2026-09-09** — **Lee Flooring onboarded, and its cost basis settled on the first
+  run.** Albert confirmed the printed `PRICE/SQ.FT` is Titan's dealer cost as-is, no
+  multiplier, `Retail = Cost + $ 1.00`, and that Lee publishes no MSRP — recorded under
+  Lee's `#### Cost column` so it is never asked again. Two things this supplier teaches
+  that generalize: (1) a price list can arrive as a **multi-tab .xlsx** whose specs are
+  **merged-cell groups that do not align between columns**, so the merge ranges must be
+  read rather than forward-filled by eye; (2) a supplier can be **absent from Airtable
+  while already live in Lightspeed** — 36 Lee products were — which is RULE 0a's third
+  state and means `ls-id-backfill` must run before any LS file is built. Lee's LS skus
+  are its own product codes, so laminate joins exactly on `Supplier SKU` ↔ LS `sku`,
+  a stronger bridge than colour matching. Supplier option `Lee Flooring`, suffix `LEEF`
+  and the laminate-code-as-SKU-suffix split remain **proposed, not confirmed**.
+
 - **2026-09-09** — **Price Lists status option names corrected against the live data
   source.** The documented values `Extracted [Pending Review]`, `Error: Needs attention`
   and a bare `Done` do not exist; the real ones are `Extracted [Needs Review]`,
@@ -3493,7 +3807,13 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
   **open**: the sheet prints one unlabelled price column with no terms page and no MSRP,
   so the basis was escalated to Albert rather than inferred, per *Cost basis — ask once*.
   Found independently on the Vizion run, alongside the status-name defect above.
-
+- **2026-09-08** — **Promo/new-product matching strengthened.** "Promo product not
+  found in catalogue" now requires checking the live base for a same-colour+width+
+  species(+veneer) sibling, or a uniform width+species collection default, before
+  treating a promo line as new-with-unknown-specs. Vidar's Sept 2026 promo run had
+  flagged 12 grade/colour combos this way; live-base checking resolved specs for 8
+  of them (only 4 were genuinely new). A promo sheet omitting box size/thickness is
+  a document gap, not evidence the product is missing from Airtable.
 - **2026-09-03** — **Grandeur SKU format corrected.** The subsection claimed the
   internal SKU prefix was `GRND` (`GRNDENG-0001`); the base actually holds
   `[CAT]-GRAN-####` (`ENG-GRAN-0030`, `SPC-GRAN-0015`). `GRND…` is the *Lightspeed*

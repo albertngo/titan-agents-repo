@@ -70,9 +70,10 @@ An earlier draft of step 7 said to paste a OneDrive share link into it; that doe
 match the schema.
 
 **Reaffirmed 2026-09-09 (Albert): every file on a Notion row is a `.csv`, always.** No
-`.xlsx` on a row — including the highlighted workbook `ls-id-backfill` asks for. Its
-`Match status` / `Match notes` are ordinary columns and survive the CSV; only the row
-shading does not, and that is not worth a second file format on the row.
+`.xlsx` on a row, in any role — including an `ls-id-backfill` output, whose match-status
+and match-notes columns survive the CSV; only the row shading does not, and that is not
+worth a second file format on the row. An LS export *arriving* as `.xlsx` is fine — that
+is input.
 
 ### The upload recipe (two traps, both resolved 2026-09-03)
 
