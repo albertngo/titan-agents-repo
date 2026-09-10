@@ -1189,32 +1189,35 @@ not today.
 Biyork (MSRP). Zero CIF or Olympia records, which is **correct**: neither publishes an
 MSRP or suggested-price column, and their printed list price is a cost-side input.
 
-#### Tile markup — `Cost + $ 2.00`, every supplier, going forward
+#### Tile and mosaic markup — `Cost + $ 2.00` / `Cost + $ 5.00`, every supplier, going forward
 
-**Ruling (Albert, 2026-09-10): field tile is priced at `Retail = Cost + $ 2.00` across
-every supplier, not just CIF and Olympia.** This supersedes the flooring-wide
-`Cost + $ 1.00` default for tile specifically — the schema now carries two flat
-markups, not one: `+$ 1.00` for flooring, `+$ 2.00` for tile.
+**Ruling (Albert, 2026-09-10, extended same day): field tile is priced at
+`Retail = Cost + $ 2.00` and mosaic at `Retail = Cost + $ 5.00`, across every
+supplier, not just CIF and Olympia.** This supersedes the flooring-wide
+`Cost + $ 1.00` default for both — the schema now carries three flat markups:
+`+$ 1.00` for flooring, `+$ 2.00` for field tile, `+$ 5.00` for mosaic.
 
 **Scope — what changed and what did not:**
 
 | Product | Markup | Status |
 |---|---|---|
-| **Field tile** (`Category = Tile / Stone`, `Tile format` ≠ Mosaic — porcelain, ceramic, wall tile, subway tile, field slabs, regardless of supplier) | `Retail = Cost + $ 2.00` | **Now the global default.** No longer a CIF/Olympia-only override — every current and future tile supplier uses it unless a future ruling says otherwise. |
-| **Mosaic** (`Tile format = Mosaic`) | Unchanged | Explicitly **left as-is** by the same ruling. CIF and Olympia keep their existing `Cost + $ 5.00` mosaic tier; a supplier with no documented mosaic override keeps using the flooring `+$ 1.00` default for its mosaic rows. Do not apply `+$ 2.00` to mosaics. |
-| **Ceramic trims** (Olympia's bullnose/cove base/pencil/listello, `Product type = Moulding`) | Unchanged | Stays at `Cost + $10.00`, per Olympia's existing subsection. |
+| **Field tile** (`Category = Tile / Stone`, `Tile format` ≠ Mosaic — porcelain, ceramic, wall tile, subway tile, field slabs, regardless of supplier) | `Retail = Cost + $ 2.00` | **The global default.** No longer a CIF/Olympia-only override — every current and future tile supplier uses it unless a future ruling says otherwise. |
+| **Mosaic** (`Tile format = Mosaic`, any supplier) | `Retail = Cost + $ 5.00` | **Also the global default**, same as field tile — the same rule CIF and Olympia already used is now every supplier's mosaic rule, not theirs alone. |
+| **Ceramic trims** (Olympia's bullnose/cove base/pencil/listello, `Product type = Moulding`) | Unchanged | Stays at `Cost + $10.00`, per Olympia's existing subsection. Not extended to other suppliers by this ruling. |
 | **STONE** (`Category = STONE` — thresholds, jambs, sills, benches, niches) | Unchanged | Stays open — `Retail price/unit = 0`, pending a separate ruling. Explicitly **not** covered by this update. |
 
 **Going forward only.** This does not retroactively reprice CIF's or Olympia's
-already-imported tile records (which have carried `+$ 2.00` since before this ruling and
-are unaffected either way), and it does not trigger a bulk repricing pass on any other
-supplier's existing catalogue. It governs extraction from this date on — any tile row in
-a Price Lists CSV not yet imported should use `+$ 2.00`.
+already-imported tile/mosaic records (which have carried these values since before
+this ruling and are unaffected either way), and it does not trigger a bulk repricing
+pass on any other supplier's existing catalogue — e.g. Gracious's live mosaic rows,
+backfilled at the old flooring default before this ruling, are not touched. It
+governs extraction from this date on — any tile or mosaic row in a Price Lists CSV
+not yet imported should use `+$ 2.00` / `+$ 5.00` as applicable.
 
-Because this is now the tile-wide default rather than a per-supplier override, the CIF
-and Olympia subsections' own markup tables are retained for their mosaic/STONE (and
-Olympia's trim/vinyl) specifics, but no longer describe field tile as *their* override —
-see the note in each.
+Because tile and mosaic are now both tile-wide defaults rather than per-supplier
+overrides, the CIF and Olympia subsections' own markup tables are retained for their
+STONE (and Olympia's trim/vinyl) specifics, but no longer describe field tile or
+mosaic as *their* override — see the note in each.
 
 ---
 
@@ -2552,9 +2555,10 @@ tiers apply:
 
 | Product type | Markup | Notes |
 |---|---|---|
-| Tile (porcelain, ceramic field tile, slabs) | `Retail = Cost + $ 2.00` | Applies to floor and wall tile, regardless of size or material. **No longer CIF-specific** — this is the tile-wide default for every supplier, per *Tile markup — Cost + $ 2.00, every supplier* above (2026-09-10). Kept here because CIF is where it originated. |
-| Mosaic (anything `Tile format = Mosaic`, including hex mosaics, listellos, pencils, decors) | `Retail = Cost + $ 5.00` | Higher markup reflects accent-product positioning. **Still CIF-specific** — explicitly left unchanged by the 2026-09-10 ruling; do not apply this tier to another supplier's mosaics without its own ruling. |
+| Tile (porcelain, ceramic field tile, slabs) | `Retail = Cost + $ 2.00` | Applies to floor and wall tile, regardless of size or material. **No longer CIF-specific** — this is the tile-wide default for every supplier, per *Tile and mosaic markup* above (2026-09-10). Kept here because CIF is where it originated. |
+| Mosaic (anything `Tile format = Mosaic`, including hex mosaics, listellos, pencils, decors) | `Retail = Cost + $ 5.00` | Higher markup reflects accent-product positioning. **No longer CIF-specific either** — also promoted to the tile-wide mosaic default the same day, per *Tile and mosaic markup* above. |
 | STONE (marble/quartz thresholds, jambs, benches — Category = `STONE`) | `Retail = 0` (leave at zero) | Markup rule unsettled; leave `Retail price/unit = 0` and flag for Albert to set. Do not infer. |
+
 #### Scope of ingest
 
 **In scope:**
@@ -2768,8 +2772,8 @@ with CIF:
 
 | Product type | Markup | Applies to |
 |---|---|---|
-| Field tile (porcelain, ceramic, granite, marble, limestone, quartzite, travertine, slate field tile, agglomerated slabs) | `Retail = Cost + $ 2.00` | `Category = Tile / Stone`, `Tile format` ≠ Mosaic. **No longer Olympia/CIF-specific** — this is the tile-wide default for every supplier, per *Tile markup — Cost + $ 2.00, every supplier* above (2026-09-10). |
-| Mosaic (anything `Tile format = Mosaic` — glazed porcelain mosaics, mother of pearl, metal/aluminum mosaic, riverstone, sheet-format glass) | `Retail = Cost + $ 5.00` | `Tile format = Mosaic`. **Still Olympia/CIF-specific** — explicitly left unchanged by the 2026-09-10 ruling. |
+| Field tile (porcelain, ceramic, granite, marble, limestone, quartzite, travertine, slate field tile, agglomerated slabs) | `Retail = Cost + $ 2.00` | `Category = Tile / Stone`, `Tile format` ≠ Mosaic. **No longer Olympia/CIF-specific** — the tile-wide default for every supplier, per *Tile and mosaic markup* above (2026-09-10). |
+| Mosaic (anything `Tile format = Mosaic` — glazed porcelain mosaics, mother of pearl, metal/aluminum mosaic, riverstone, sheet-format glass) | `Retail = Cost + $ 5.00` | `Tile format = Mosaic`. **No longer Olympia/CIF-specific either** — also promoted to the tile-wide mosaic default the same day, per *Tile and mosaic markup* above. |
 | Ceramic Trims (bullnose, cove base, pencil, listello — the Trims section) | `Retail = Cost + $10.00` | `Product type = Moulding`, `Category = Tile / Stone`. Unaffected by the 2026-09-10 ruling. |
 | SPC / LVT vinyl flooring (Chimestone, Chimewood) | `Retail = Cost + $ 1.00` | `Category = LVP / LVT`, `Product type = Flooring` |
 | Vinyl reducer (Chimewood reducer) | `Retail = Cost + $10.00` | cross-supplier accessory markup |
@@ -3807,18 +3811,18 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
 
 ### Changelog
 
-- **2026-09-10** — **Tile markup unified to `Cost + $ 2.00` across every supplier**,
-  superseding CIF and Olympia's own `+$ 2.00` tile tier as a supplier-specific thing —
-  it's now the tile-wide default, documented once under *Tile markup* in the global
-  cost-basis section rather than repeated per subsection. Mosaic (`+$ 5.00`, CIF/Olympia
-  only), Olympia's ceramic trims (`+$10.00`), and STONE (`Retail = 0`, unsettled) were
-  explicitly left untouched by the same ruling — a tile supplier does not inherit a
-  mosaic premium just because it inherits the tile default. Applies going forward only;
-  no retroactive repricing of CIF's or Olympia's already-imported tile records. Also
-  added the general precedence rule this makes explicit: **global rules apply by
-  default — pricing, naming, anything — unless a supplier's own subsection states
-  otherwise**, and an override binds only the supplier that states it, never a
-  neighbour by inference.
+- **2026-09-10** — **Tile AND mosaic markup unified to `Cost + $ 2.00` / `Cost + $ 5.00`
+  across every supplier**, superseding CIF and Olympia's own tiers as a
+  supplier-specific thing — both are now tile-wide defaults, documented once under
+  *Tile and mosaic markup* in the global cost-basis section rather than repeated per
+  subsection. (First recorded as tile-only, with mosaic explicitly staying
+  CIF/Olympia-specific; extended to mosaic the same day.) Olympia's ceramic trims
+  (`+$10.00`) and STONE (`Retail = 0`, unsettled) remain untouched. Applies going
+  forward only; no retroactive repricing of CIF's, Olympia's or Gracious's
+  already-imported tile/mosaic records. Also added the general precedence rule this
+  makes explicit: **global rules apply by default — pricing, naming, anything —
+  unless a supplier's own subsection states otherwise**, and an override binds only
+  the supplier that states it, never a neighbour by inference.
 - **2026-09-09** — **"Gracious has no Lightspeed presence" was wrong, and the way it was
   reached is the reusable lesson.** The first Gracious run queried the Master Flooring
   Catalogue, found no Gracious records, and inferred from that empty result that the supplier
