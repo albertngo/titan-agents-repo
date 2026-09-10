@@ -3763,6 +3763,114 @@ which the backfill resolves them one-to-one. Until then they stay `NOT_FOUND` wi
 
 ---
 
+### Northway (Northway Building Supplies)
+
+**New supplier — first ingested 2026-09-10 from Notion Price Lists row PL-278, a
+10-page PDF.** Confirmed genuinely new via `platform-settings/airtable-destinations.json`
+`supplier_aliases` (no entry) before minting a prefix. Sourced 66 in-scope rows across
+seven sections; a lighting section is out of scope entirely.
+
+#### Identity
+
+| Field | Value |
+|---|---|
+| **Supplier** (single-select) | `Northway` — new to the Airtable select |
+| **Brand** | `Northway` (supplier is the brand) |
+| **SKU supplier code** | `NORT` |
+| **Internal SKU format** | `TIL-NORT-####` for everything under `Category = Tile / Stone` (field tile, mosaics); `STN-NORT-####` for the two STONE sections (Shower Jamb & Sill, Shower Niche) |
+
+#### Cost column
+
+**SETTLED (Albert, 2026-09-10): the smallest-volume tier is Titan's ordering tier and
+is Cost/unit, uniformly across every section** — `1 Box` on the three sqft-priced tile
+sections, `1 Piece` on the two per-piece mosaic/matching-mosaic sections and the two
+STONE sections. No multiplier; the printed price at that tier goes to `Cost/unit` as-is.
+The two heavier tiers on each section (`1/2 Pallet`, `1 Pallet`, `3 Pallets`, `10 Pieces`,
+`Crate`, …) are recorded in `Volume pricing notes` for reference but never used as
+`Cost/unit`. This was the open item on the PL-278 Tactical Task; ruling now applied to
+all 66 rows, so no repricing is needed going forward on this basis.
+
+#### Markup
+
+No Northway-specific override. Applies the global rules as-is (Precedence rule, above):
+
+- Field tile (Porcelain Subway Tile, Ceramic Wall Tile, Porcelain Tile sections) →
+  `Retail = Cost + $ 2.00`, per *Tile and mosaic markup* in the global cost-basis section.
+- Mosaic (Porcelain Mosaic, Porcelain Tile Matching Mosaics) → `Retail = Cost + $ 5.00`,
+  same global rule.
+- STONE (Shower Jamb & Sill, Shower Niche) → **OPEN.** Left at `Retail = 0` per the
+  global STONE default, same as every other supplier's STONE rows. Not yet ruled
+  Northway-specific or otherwise — do not set a Northway STONE markup without asking.
+
+#### Scope of ingest
+
+| Section | Rows | Pricing | Tiers | Category / notes |
+|---|---|---|---|---|
+| Porcelain Subway Tile | 1–6 | $/sf | 1 Box / 1/2 Pallet / 1 Pallet | Tile / Stone, field tile |
+| Ceramic Wall Tile | 7–13 | $/sf | 1 Box / 1/2 Pallet / 1 Pallet | Tile / Stone, field tile |
+| Porcelain Mosaic | 14–39 | $/pc | 1 Box / 1/2 Pallet / 1 Pallet | Tile / Stone, `Tile format = Mosaic`; spans PDF pages 3–5 |
+| Porcelain Tile | 40–48 | $/sf | 1 Box / 1 Pallet / 3 Pallets | Tile / Stone, field tile — **tier labels differ from the other two sqft-priced sections** (no `1/2 Pallet`; `3 Pallets` instead of `1 Pallet` as the top tier) |
+| Porcelain Tile Matching Mosaics | 49–50 | $/pc | 1 Box / 1/2 Pallet / 1 Pallet | Tile / Stone, `Tile format = Mosaic` |
+| Shower Jamb & Sill | 51–59 | $/pc | 1 Piece / 1 Crate | **STONE**, 2-tier only |
+| Shower Niche | 60–66 | $/pc | 1 Piece / 10 Pieces / 1 Pallet | **STONE**, 3-tier |
+| LED Gimbal Recessed Lights | 67–68 | — | — | **Excluded** — lighting, out of scope for the flooring catalogue |
+
+#### Packing Info / Sqft Info column mapping
+
+Each section prints two small tables per row — **Packing Info** and **Sqft Info** —
+whose column counts vary by section. Recorded here since the schema fields they feed
+aren't self-evident from the column headers alone:
+
+| PDF column | Table | Airtable field | Notes |
+|---|---|---|---|
+| `Pcs/Ctn` | Packing Info | `Pieces per box` | |
+| `Ctns/Pallet` | Packing Info | `Boxes per skid` | |
+| `Pcs/Pallet` | Packing Info | `Pieces per pallet` | Printed on every section, **including Porcelain Tile** — the first build missed it there (see below) |
+| `Sqft/Pc` | Sqft Info | *(not stored)* | Per-piece coverage; used only to sanity-check `Sqft/Ctn` against `Pcs/Ctn`, not written to any field |
+| `Sqft/Ctn` | Sqft Info | `Box size (sf)` | |
+| `Sqft/Pallet` | Sqft Info | *(not stored)* | Derivable from `Box size (sf) × Boxes per skid`; not written to any field |
+
+**The Porcelain Tile section (rows 40–48) prints a 2-column Sqft Info table, not 3** —
+it omits `Sqft/Pc` and gives only `Sqft/Ctn` and `Sqft/Pallet`. That's a genuine
+structural difference from the other sqft-priced sections, not a parsing gap, and it's
+why `Box size (sf)` is still populated there (`Sqft/Ctn` is present) even though
+per-piece coverage isn't stated. Its Packing Info table is the normal 3 columns, and
+`Pcs/Pallet` = `Pcs/Ctn × Ctns/Pallet` (e.g. row 40: `8 × 40 = 320`).
+
+**Fixed 2026-09-10:** the original build script's Porcelain Tile section handling
+captured `Pieces per box` and `Boxes per skid` but not `Pieces per pallet`, even though
+the source PDF prints it — 9 rows (`NTL12501`, `NTL12501M`, `NTL22601`, `NTL22601M`,
+`NTL24129`, `NTL22611M`, `NTL22625`, `NTL22311`, `NTL22609`) were affected and have
+been backfilled as `Pieces per box × Boxes per skid`.
+
+#### Northway IS already live in Lightspeed for 3 SKUs — the third state
+
+Read-only pull of the live Lightspeed catalogue (14,612 products, 2026-09-10) found
+**3 of the 66 extracted rows already live**: `TIL-NORT-IDB0011` (id
+`895afa67-7933-4e1a-8d11-85ade4b808ad`), `TIL-NORT-IDB0085` (id
+`31cfda24-6e86-414e-96fc-072db6e90739`), `TIL-NORT-RIT48CARARA` (id
+`fd90e372-c731-4e5a-ad15-19f3d605980f`) — matched on spec, not on SKU (Northway has no
+Airtable presence to match SKUs against). Handles copied verbatim from the live API
+response (lowercase, hyphenated auto-generated slugs — see RULE 0a and
+`platform-settings/lightspeed.json`: **never** transform an existing handle to the
+uppercase/alnum minted-format convention). This is RULE 0a's third state (new to
+Airtable, already live in Lightspeed) — same pattern as Canadian Standard and Gracious.
+The other 63 rows are genuinely new to both systems; `Lightspeed ID` stays blank on
+those until an LS upload creates one.
+
+#### Northway ingest output format
+
+Single file, all 57 schema columns plus helper columns 58–59, `MatchStatus = new` on
+every row (per RULE 0a, judged by Airtable presence, not by whether `Lightspeed ID` is
+populated): `ingest/2026-09-10/northway_airtable_upload_2026-05-04.csv`.
+
+**No Lightspeed file** — per *New supplier, and anything the defaults do not cover*
+(`/catalog-sync` §2a) and the process-price-list new-supplier flow, a supplier with no
+existing Airtable rows gets no LS file; those columns are copied from Airtable state
+that doesn't exist yet. This is a one-CSV supplier until a human imports it.
+
+---
+
 ### New supplier onboarding — checklist
 
 When a new supplier is added, gather this information before processing their first price list, and add a subsection above following the FAW template:
@@ -3811,6 +3919,14 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
 
 ### Changelog
 
+- **2026-09-10** — **Northway cost basis settled**: the smallest-volume tier (`1 Box` /
+  `1 Piece`) is Titan's ordering tier and `Cost/unit`, uniformly across all seven
+  in-scope sections, closing the open item on the PL-278 Tactical Task. Added the new
+  `### Northway` subsection, including the Packing Info / Sqft Info column-to-field
+  mapping (`Pcs/Ctn`→`Pieces per box`, `Ctns/Pallet`→`Boxes per skid`,
+  `Pcs/Pallet`→`Pieces per pallet`, `Sqft/Ctn`→`Box size (sf)`; `Sqft/Pc` and
+  `Sqft/Pallet` are not stored) and the Porcelain Tile section's 2-column Sqft Info
+  table (no `Sqft/Pc`). STONE markup stays open — not yet ruled.
 - **2026-09-10** — **Tile AND mosaic markup unified to `Cost + $ 2.00` / `Cost + $ 5.00`
   across every supplier**, superseding CIF and Olympia's own tiers as a
   supplier-specific thing — both are now tile-wide defaults, documented once under
