@@ -147,7 +147,7 @@ live data source on 2026-09-03:
 |---|---|---|
 | `LS Backfill` | **`UUID Backfill`** | select — `Pending` / `Done` / `Not needed` |
 | `POS` (checkbox) | **`LS Upload`** | select — `Pending` / `Done` / `Not needed` |
-| `Status` | displays as **`Extraction Status`** | status — `Not started` / `Extracting` / `Extracted [Pending Review]` / `Done` |
+| `Status` | **`Extraction Status`** — write this key, not `Status` | status — `Not started` / `Extracting` / `Extracted [Needs Review]` / `Extracted [Ready to Upload]` / `Extracted [Error]` / `Extracted [All Uploaded]` / `Not Needed` |
 | `Wordpress` | **removed** | — |
 
 Two things worth knowing:
@@ -155,9 +155,30 @@ Two things worth knowing:
 - **`LS Upload` is a select now, not a checkbox.** "Check `POS`" became
   "set `LS Upload = Done`", and `Not needed` is a real third state — a promo run that
   produces no LS file should say so rather than sit at `Pending` forever.
-- **The status property displays as `Extraction Status`, but page updates still take
-  the key `Status`** (verified by writing it successfully on two rows the same day).
-  Write `Status`; expect to *see* `Extraction Status` in the UI.
+- **The status property's key IS `Extraction Status`, and so are its option names.**
+  Corrected 2026-09-09: an earlier note here said page updates took the key `Status` and
+  listed options (`Extracted [Pending Review]`, `Error: Needs attention`, a bare `Done`)
+  that **do not exist on the live data source**. Writing an option a status property does
+  not have is rejected, and the whole `update_properties` call fails with it. The live
+  option set, read off `collection://e2dc37bc-63da-42e9-b6c0-63ff48d72e6b` and written
+  successfully the same day. Confirmed from the other direction too — writing the key
+  `Status` returns `400 validation_error`: *"Property \"Status\" not found in the data
+  source"*, followed by the full list of editable keys. That error message is the fastest
+  way to re-derive this table if it ever drifts again:
+
+  | Option | Who sets it |
+  |---|---|
+  | `Not started` | the row's default before a run |
+  | `Extracting` | in-flight only — **never the state a run ends in** |
+  | `Extracted [Needs Review]` | **the run**, when files are attached |
+  | `Extracted [Ready to Upload]` | the reviewer, once the file is cleared for import |
+  | `Extracted [Error]` | **the run**, when it could not finish |
+  | `Extracted [All Uploaded]` | whoever closes out the imports |
+  | `Not Needed` | a human, for a row that will never be extracted |
+
+  **A run only ever writes `Extracted [Needs Review]` or `Extracted [Error]`.** The three
+  downstream states belong to the person doing the import, the same way `Airtable Sync`,
+  `LS Upload` and `UUID Backfill` never receive `Done` from a run.
 
 #### `Notes` — the row's own flag line (Albert, 2026-09-03)
 
@@ -194,25 +215,30 @@ a re-run overwrites this field and a stale note is worse than none:
 **Overwrite, don't append.** It describes the current state of the row, not its history —
 the repo commits and `Salesperson notes` carry the history.
 
-#### `Error: Needs attention` — the status that pairs with `Notes`
+#### `Extracted [Error]` — the status that pairs with `Notes`
 
-**Added on Albert's instruction 2026-09-03.** A run that cannot finish sets
-**`Status = Error: Needs attention`** and puts the reason in **`Notes`**. The two always
-travel together: the status makes the row findable in a view, `Notes` says what happened.
+**Added on Albert's instruction 2026-09-03; renamed to the live option name 2026-09-09.**
+A run that cannot finish sets **`Extraction Status = Extracted [Error]`** and puts the
+reason in **`Notes`**. The two always travel together: the status makes the row findable
+in a view, `Notes` says what happened.
 
-| Outcome | `Status` | `Notes` |
+| Outcome | `Extraction Status` | `Notes` |
 |---|---|---|
-| Ran, files attached, nothing blocking | `Extracted [Pending Review]` | empty |
-| Ran, files attached, caveats a reviewer must clear | `Extracted [Pending Review]` | the flag lines |
-| **Could not finish** | **`Error: Needs attention`** | **what failed, at which step, and what it needs** |
+| Ran, files attached, nothing blocking | `Extracted [Needs Review]` | empty |
+| Ran, files attached, caveats a reviewer must clear | `Extracted [Needs Review]` | the flag lines |
+| **Could not finish** | **`Extracted [Error]`** | **what failed, at which step, and what it needs** |
 
-`Error: Needs attention` is for a run that did not produce what it was meant to:
+Both completed-run outcomes are `Extracted [Needs Review]`; only `Notes` distinguishes
+them, and neither is ever `Extracted [Ready to Upload]` — that is the reviewer's to set
+once the file is cleared for import.
+
+`Extracted [Error]` is for a run that did not produce what it was meant to:
 the download failed, the file is not a parseable price document, `Company` or `Tags`
 could not be determined, the attachment upload failed, a write was rejected. It is
 **not** for a completed run carrying assumptions — that is
-`Extracted [Pending Review]` with a populated `Notes`.
+`Extracted [Needs Review]` with a populated `Notes`.
 
-This replaces the older "leave `Status` at `Extracting` and say why" rule, which left a
+This replaces the older "leave the status at `Extracting` and say why" rule, which left a
 failed run indistinguishable from one still in flight. **A row must never sit at
 `Extracting` after a run ends.**
 
@@ -233,7 +259,7 @@ The 400's message lists every editable key, which is how these were found.
 **`Airtable Sync = Done` is a claim about agreement, not a completed step:** it means
 Airtable *currently* mirrors the file attached to that row. Edit the file and re-attach
 it and the row returns to `Pending` — a corrected file is a new pending change, and
-leaving it `Done` is how the base drifts from what the row claims. `Status = Done` only
+leaving it `Done` is how the base drifts from what the row claims. `Extraction Status = Extracted [All Uploaded]` only
 once both trackers read `Done` or `Not needed`.
 
 Until a row reaches `Done` its products are incomplete, and the failure is delayed and
@@ -2812,8 +2838,8 @@ In scope: **ENG** (Nouveau lines), **LVP/LVT** (Hydrogen + Traktion), **LAM** (R
 
 #### Collections (use verbatim)
 
-Engineered hardwood (Nouveau): `Nouveau 6`, `Nouveau 6 American Oak`, `Nouveau 6 Clic`, `Nouveau 7 Prelude`, `Nouveau 7`, `Nouveau 7 Bespoke (Plank)`, `Nouveau 7 Bespoke (Herringbone)`, `Nouveau 8`.
-Vinyl: `Hydrogen PRO 2mm`, `Hydrogen PRO Tile 2mm`, `Hydrogen PRO 3mm`, `Hydrogen PRO Tile 3mm`, `Hydrogen 5`, `Hydrogen 6 Plank`, `Hydrogen 6 Tile`, `Hydrogen 7`, `Hydrogen 8`, `Traktion`.
+Engineered hardwood (Nouveau): `Nouveau 5 American Oak` (new on the May 22 2026 list), `Nouveau 6`, `Nouveau 6 American Oak`, `Nouveau 6 Clic`, `Nouveau 7 Prelude`, `Nouveau 7`, `Nouveau 7 Bespoke (Plank)`, `Nouveau 7 Bespoke (Herringbone)`, `Nouveau 8`.
+Vinyl: `Hydrogen PRO 2mm`, `Hydrogen PRO Tile 2mm`, `Hydrogen PRO 3mm`, `Hydrogen PRO Tile 3mm`, `Hydrogen 5`, `Hydrogen 6 Plank`, `Hydrogen 6 Tile`, `Hydrogen 7`, `Hydrogen 7 Angle & Angle` (new on the May 22 2026 list; 9" × 60" × 7mm, Angle/Angle — a separate collection from `Hydrogen 7`), `Hydrogen 8`, `Traktion`.
 Laminate: `Riptide`.
 
 #### Category / Material type mapping
@@ -2836,14 +2862,46 @@ Laminate: `Riptide`.
 
 #### Parsing quirks / known soft spots
 
-- **Hydrogen 8 price inversion:** the plank `Your Price` ($ 6.63) **exceeds** `MSRP/SF` ($ 6.34), and Hydrogen 8 accessory `Your Price` equals MSRP exactly (no dealer discount). Ingest the values as-is (Cost = `Your Price`) per flag-don't-block, and tag both in `Salesperson notes` for review. Almost certainly a typo on Biyork's sheet — confirm with the rep.
-- **Multi-size groups under one header:** Nouveau 7 splits Hickory into Wirebrush vs Handscraped finishes (different finish, same price). Hydrogen 6 Plank has two size groups (7"×48" box 23.64 and 7"×60" box 23.25) under one collection. Create records for every sub-group with its specific box size/finish.
+- **⚠️ Recurring defect — blocks of rows where `Your Price` ≥ `MSRP/SF`.** Biyork's sheet
+  intermittently ships a block with the dealer column filled from the MSRP column, or higher.
+  **Titan's real discount runs 33-57% of MSRP on every other line**, so the test is arithmetic,
+  not judgement: compute `Your Price / MSRP` per price block and flag any block ≥ 1.0. Ingest as
+  printed (Cost = `Your Price`) per flag-don't-block, tag in `Salesperson notes`, and confirm with
+  the rep before the import.
+  - **Jul 2025 list:** Hydrogen 8 plank ($ 6.63 vs MSRP $ 6.34) and Hydrogen 8 accessories
+    (`Your Price` = MSRP exactly). **Both corrected on the May 22 2026 list** — H8 plank is now
+    $ 3.22 (ratio 0.508) and its accessories $23.27 / $37.05.
+  - **May 22 2026 list:** three fresh blocks, 30 flooring SKUs — Nouveau 6 Clic ($ 8.20 vs MSRP
+    $ 7.89, ratio 1.039, against a stored cost of $ 4.12), Hydrogen 7 ($ 6.29 vs $ 5.71,
+    ratio 1.102, stored $ 3.04) and Nouveau 7 Bespoke Plank + Herringbone ($14.65 = MSRP exactly,
+    stored $ 7.84). Each is roughly double the stored cost with the MSRP unchanged — the
+    signature of a mis-filled dealer column, not a real increase.
+- **Biyork re-codes products without renaming them.** On the May 22 2026 list Hydrogen 6 Plank
+  shortened `BYKHY6HP50xx` / `BYKRCEH50xx` → `BYKHY6Pxx`; Hydrogen 6 Tile changed Chalk `CH` → `CK`
+  and moved Combed Cotton from `BYKHY6HT50CO` → `BYKRCET50CO`; the Hydrogen 6 Tile stairnose codes
+  gained an `86` suffix. Tiers 1 and 2 both miss, so these resolve at **tier 3 (collection +
+  colour)**. Mark them `MatchStatus: ambiguous` and have a human confirm — never let them fall
+  through to `new`, which duplicates a live product in both Airtable and Lightspeed.
+- **Multi-size groups under one header:** Nouveau 7 splits Hickory into Wirebrush vs Handscraped finishes (different finish, same price). Hydrogen 6 Plank had two size groups (7"×48" box 23.64 and 7"×60" box 23.25) on the Jul 2025 list; the May 22 2026 list collapses it to one 7" × 60" group at box 23.64. Create records for every sub-group with its specific box size/finish.
 - **Tile lines inside vinyl collections:** Hydrogen PRO Tile and Hydrogen 6 Tile are vinyl tile (`LVT`), not porcelain — keep `Material type = SPC core`.
 - **Nouveau 6 Clic** is engineered hardwood with a Uniclic float system → `Install profile = Click`, `Locking system = Uniclic`, thickness 1/2" (12.7mm).
 
 #### Stock status & promo
 
 Leave `Stock status` blank for all Biyork rows; set `Active = TRUE`. The regular pricelist carries no SALE/promo pricing — never populate `Promo cost ($/sf)` / `Promo end date` from a standard Biyork ingest. If a future list adds promos, fall back to the global promo logic.
+
+#### LS name prefix — derived, NOT yet confirmed by Albert
+
+`ls-upload-instructions` carries no Biyork brand-config row, so the 2026-09-09 run derived the
+prefix from the documented convention (`[4-char supplier abbrev][3-char type abbrev]`):
+`BIYKENG` / `BIYKLVP-SPC` / `BIYKLVT-SPC` / `BIYKLAM`, with mouldings on the spelled-out
+`Biyork - Transition | …` / `Biyork - Sundry | …` accessory format.
+
+**Confirm it against a Lightspeed product export before importing any Biyork LS file.** If the
+live products carry a different prefix, the file renames every existing Biyork product on the
+POS. The `id` is populated, so it is an update rather than a duplicate — but a visible rename of
+~276 products is not something to discover after the fact. Record the confirmed prefix here and
+in the LS skill's brand-config table.
 
 #### Biyork ingest output format
 
@@ -3077,11 +3135,28 @@ extraction (62 rows) — it is now confirmed. Do not ask again.
   on their sheet but is not formally mapped to either; confirm the equivalence with
   Weiss if it becomes load-bearing.
 
-### Vizion
+---
 
-Vizion is a **new supplier** onboarded 2026-09-08/09 from the Vizion Floor Price List
-dated 2026-07-01 (6 pages: engineered vinyl plank, laminate, accessories/stair
-components).
+### Vizion (Vizion Floor)
+
+Vizion Floor (toronto@vizionfloor.com, 647-802-6868, 1195 Clark Blvd, Brampton ON L6T 3W4
+— vizionfloor.com) is both the supplier and the brand. The price list is a short
+multi-page PDF (6 pages on the 2026/07/01 list) with a cover page, then one collection
+per page: a header bar, a two-column item/colour table, a single spec block, a single
+price, and a per-page accessory strip beneath. **First ingested 2026-09-09 from the
+2026/07/01 list — 52 rows (41 flooring, 11 accessories). Not yet imported.**
+
+#### Identity
+
+| Field | Value |
+|---|---|
+| **Supplier** (single-select) | `Vizion` — **does not exist in the Airtable select yet**; it is created on first import |
+| **Brand** | `Vizion` (supplier is the brand; Marvelous and Epic are collection names, not brands) |
+| **SKU supplier code** | `VIZN` — 4-char suffix. **Proposed on the first run, not yet confirmed by Albert.** |
+| **Internal SKU format** | `[CAT]-VIZN-[Vizion code]` — the code used **verbatim** as the suffix, per the per-product unique-code pattern (like Biyork and Triforest). e.g. `LVP-VIZN-V7001`, `LAM-VIZN-LV321`, `LVP-VIZN-VL501`. |
+| **Supplier SKU** | Always populated with the Vizion code on its own (`V7001`, `V8001`, `VL501`, `LV321`, `LV221`). Verified unique across the whole list. |
+
+Accessories carry no codes → sequential `ACC-VIZN-0001`, `Supplier SKU` blank.
 
 #### Cost column
 
@@ -3100,6 +3175,249 @@ Task before any import. This was the working assumption used during extraction
   used verbatim as the 4-char suffix (e.g. `LVP-VIZN-V7001`).
 - Stair/accessory items are priced per piece (Stair Board per set); dimensions as
   printed go in the accessory name's `[Dimensions]` segment per the transitions format.
+
+#### Markup overrides (accessories)
+
+Accessories are per piece (stair boards per set). Standard cross-supplier markups:
+Reducer and T-Moulding `Cost + $10`; any nosing `Cost + $15`. **Stair Board sets have no
+dedicated standard** — the Stair Nose/Tread `+$15` rule was applied as the closest match,
+the same call made for the Woden square-return set; confirm with Albert.
+
+#### Scope of ingest
+
+In scope: **LVP** (Marvelous 7MM, 8MM, and 5MM Loose Lay) and **LAM** (Epic 120 HR at
+both thicknesses), plus their trims.
+
+**Out of scope: Adhesive Zeromono 2GL (12KG pail, $68.00/pail, p.4)** — excluded as a
+jobsite consumable, matching how Biyork and Olympia adhesives are treated. Flagged to
+Albert; revisit if he wants consumables catalogued.
+
+#### Collections
+
+Use verbatim: `Marvelous 7MM Luxury Vinyl`, `Marvelous 8MM Luxury Vinyl`,
+`Marvelous 5MM Loose Lay`.
+
+**The two laminate groups print the identical collection name at different specs**, so
+the thickness is appended to disambiguate (the Evergreen precedent for tier-named
+collections): `Epic 120 HR Water Resistant Laminate With Underlayment (14.3mm)` and
+`... (12.3mm)`. Their colour sets are disjoint (Whistler/Aspen/… vs Nile/Yangtze/…), so
+nothing collides beyond the name itself.
+
+| Collection | Spec | Box | Boxes/pallet | Printed price |
+|---|---|---|---|---|
+| Marvelous 7MM Luxury Vinyl | 7.2" × 60.8" × 7mm | 24.35 sf | 50 | $ 1.69 |
+| Marvelous 8MM Luxury Vinyl | 7.2" × 60.8" × 8mm | 21.31 sf | 45 | $ 1.89 |
+| Marvelous 5MM Loose Lay | 9.14" × 60.32" × 5mm | 30.61 sf | 40 | $ 2.39 |
+| Epic 120 HR … (14.3mm) | 7.7" × 60.8" × 14.3mm | 19.28 sf | 55 | $ 1.89 |
+| Epic 120 HR … (12.3mm) | 7.7" × 48" × 12.3mm | 20.48 sf | 50 | $ 1.69 |
+
+#### Category / Material type mapping
+
+- **Marvelous 7MM / 8MM** → `LVP`. **The core is never stated** — `SPC core` assumed per
+  the global rule for unlabelled rigid vinyl. Re-confirm if a future line looks flexible
+  or glue-down.
+- **Marvelous 5MM Loose Lay** → `LVP` + `Loose-lay vinyl`, `Install profile` and
+  `Install method` = `Loose lay` (stated). Do **not** collapse this to `SPC core`.
+- **Epic 120 HR** → `Laminate` + `Water-Resistant Core`. `Waterproof = FALSE` — 120 HR
+  water-*resistant* is not waterproof (the Purelux Betten / Evergreen distinction).
+  "With Underlayment" is in the collection name → `Underpad included = TRUE`,
+  `Underpad type` blank (material not stated), exactly as FAW's Waterproof Laminate Pro.
+
+#### LS Handle format
+
+Brand-first, alphanumeric only, colour never truncated:
+`VIZN[LVP7|LVP8|LVPLL5|LAM143|LAM123][COLOUR]` — e.g. `VIZNLVP7ACADIA`,
+`VIZNLAM143WHISTLER`. Accessories append the printed dimensions, because two vinyl
+nosings differ **only** by size and collide otherwise:
+`VIZNACC[TYPE][MATERIAL][DIMS]`.
+
+Note `Revelstoke` appears twice on the list — as `VL501` (5mm loose lay) and `LV330`
+(14.3mm laminate). Different products; the category token keeps the handles apart.
+
+#### Fields Vizion does not provide
+
+**Wear layer, AC rating, install profile and locking system (except Loose Lay), veneer,
+species, grade, finish type, colour/tone, IIC/STC, certifications, warranty, pieces per
+box, trim material.** None appear anywhere in the document — leave all blank. Spec
+coverage is thin; request a full spec sheet from the rep if Bert lookups need it.
+
+Provides: item code, colour name, plank size (W × L × T), sf/box, boxes/pallet, one
+price per collection, and accessory dimensions.
+
+#### Known soft spots
+
+- **Laminate Reducer and T-Moulding are printed twice at conflicting prices** —
+  $ 8.00/pc in the 14.3mm section (p.5) and $12.00/pc in the 12.3mm section (p.6), with
+  **identical dimensions** (`15 × 45 × 2400 mm` and `12 × 45 × 2400 mm`). Either the
+  dimension string is reused sloppily across two real parts, or one price is a typo.
+  The first run kept **both rows** so neither price is lost — merge to one SKU if Vizion
+  confirms one part. The Stair Board is printed in both sections at the same $28.00 and
+  is correctly one row.
+- **One price per collection, not per row.** The price token sits vertically centred
+  beside the colour block, so a naive row-wise parse will orphan it. Verified
+  positionally on the first run.
+- **The vinyl accessory strip repeats identically** under both the 7MM and 8MM sections
+  at the same prices — one SKU each, not two (the Canadian Standard trim rule).
+- **Colour names are place names** (Acadia, Banff, Whistler, Nile…) and carry no tone
+  information — `Colour / tone` stays blank.
+
+#### Vizion ingest output format
+
+`vizion_airtable_upload_[YYYY-MM-DD].csv`, all 57 schema columns (plus helper columns
+58–59 on a routine run), written to `ingest/YYYY-MM-DD/`. **No Lightspeed file until the
+Airtable import happens** — Vizion has no LS presence, so there are no ids or handles to
+copy from.
+
+---
+
+### Lee Flooring (Lee Flooring Canada)
+
+Lee Flooring Canada (145 Gibson Dr, Markham ON L3R 3K7 — 289-378-8888 —
+info@leeflooring.ca) is both the supplier and the brand. The price list arrives as a
+**multi-tab `.xlsx`, not a PDF** — four tabs (`LANINATE `, `VINYL`, `ENG WOOD`,
+`SOILD & 3mm`; the typos are Lee's and the laminate tab name has a trailing space).
+First ingested 2026-09-09 from the 2026-06-12 list: 84 rows (79 flooring, 5 accessories).
+
+#### Cost column
+
+**Settled by Albert 2026-09-09. Do not ask again.**
+
+Lee prints **exactly one price column, headed `PRICE/SQ.FT`** (column G on every tab;
+there is nothing beyond column G). **That printed price IS Titan's dealer cost — take it
+as-is, no multiplier** — and `Retail = Cost + $ 1.00`, the schema default.
+
+| | |
+|---|---|
+| `Cost/unit` | the printed `PRICE/SQ.FT`, verbatim |
+| `Retail price/unit` | `Cost + $ 1.00` (flooring); accessories per the cross-supplier markups below |
+| `MAP price ($/sf)` | **blank — Lee publishes no MSRP or suggested-retail column at all** |
+| `Pallet price ($/sf)` | blank — Lee gives a boxes-per-skid *count*, not a per-sf pallet rate |
+
+There is **no terms page and no discount off list** anywhere in the workbook; the only
+commercial terms printed are a 30-day return window, a 25% restocking fee, and "All
+Promoted Orders are Final Sales and COD." So Lee is the Canadian Standard shape (dealer
+cost printed directly), **not** the CIF/Olympia shape (list price with the discount in
+the terms). If a future Lee list ever prints a second price column, that is a format
+change — stop and re-confirm rather than assuming which is cost.
+
+The price cell carries its own label: `SALE: $ 1.39`, `PRICE: $ 2.99`, or a bare `1.19`.
+**`PRICE:` is just a label on the regular cost — it is not a promo marker.** Only `SALE:`
+means promo.
+
+#### Identity
+
+| Field | Value |
+|---|---|
+| **Supplier** (single-select) | `Lee Flooring` — **proposed on the first run, not yet confirmed**; the option does not exist in Airtable yet |
+| **Brand** | `Lee Flooring` (supplier is the brand) |
+| **SKU supplier code** | `LEEF` — **proposed, not yet confirmed** |
+| **Notion `Company`** | `LEE` (ALL CAPS, per the per-system casing rule — do not "fix" either side) |
+
+**Lee assigns product codes on laminate only.** `T01`–`T10` (72-hour), `R01`–`R09`+`R11`
+(24-hour) and `98001`–`98013` (SOHO) are unique across the whole list; vinyl, engineered,
+solid and accessories carry no codes at all. The first run therefore used the code
+verbatim as the SKU suffix on laminate (`LAM-LEEF-T01`) and sequential numbering
+elsewhere (`LVP-LEEF-0001`, `ENG-LEEF-0001`, `HWD-LEEF-0001`, `ACC-LEEF-0001`), with
+`Supplier SKU` populated on laminate and blank everywhere else. **That split is proposed,
+not confirmed — settle it before the first import, because RULE 0 makes it permanent.**
+
+#### Lee is already in Lightspeed
+
+**36 Lee products were live in Lightspeed before Lee existed in Airtable** — the RULE 0a
+third state. A Lee ingest is therefore `MatchStatus: new` on every row (it creates
+Airtable records) while a large share also carry a `Lightspeed ID` and must **update**
+rather than create on the POS. Always run `ls-id-backfill` against an LS export before
+building any Lee LS file.
+
+**Lee's LS skus are its own product codes**, so the laminate rows join exactly on
+`Supplier SKU` ↔ LS `sku` (`98001`, `T01`…). That is a stronger bridge than colour
+matching and should be tried first for Lee. The legacy LS names are inconsistent
+(`LEE ENG - Color: BRENTON`, `LEEENG - 7' 3mm Veneer - Hickory (Barnwood)`,
+`LEELAM - 7 Series - ()`), and the LS catalogue predates the current list, so expect
+cost and width to disagree — the price list is authoritative.
+
+Two known duplicates to clean up in Lightspeed: `LEE.T03` duplicates `T03`, and
+`LEE.E.H.Bar.7` (Barnwood 7" / 26.2 sf) is superseded by `11237` (6.5" / 27.5 sf).
+
+#### Collections (use verbatim)
+
+Laminate: `72 Hours Water-Resistant Laminate`, `24 Hours Water-Resistant Laminate`,
+`SOHO Laminate`. Vinyl: `7mm SPC`. Engineered: `Heritage Hills` (American Oak),
+`Solvara` (European Oak), `Hybrid`, `3mm Veneer Engineered`. Solid: `Solid Handscraped`.
+
+#### Category / Material type
+
+| Section | Category | Material type |
+|---|---|---|
+| 72HR / 24HR laminate | `Laminate` | `Water-Resistant Core` |
+| SOHO laminate | `Laminate` | `HDF core` (no water-resistance claimed) |
+| 7mm SPC | `LVP` | `SPC core` |
+| Heritage Hills / Solvara / Hybrid / 3mm Veneer | `Engineered hardwood` | `Hardwood plywood` |
+| Solid Handscraped | `Solid hardwood` | *(blank)* |
+
+`Waterproof = TRUE` on the SPC only — the laminates are water-**resistant**, not
+waterproof. `Pet friendly = TRUE` on the SPC (22 mil ≥ 20). `Radiant heat compatible`
+blank throughout; Lee states nothing.
+
+#### Grade
+
+`SELECT & BETTER` (Heritage Hills) → `Select & Better`; `SELECT GRADE` (Solvara) →
+`Select`. Nothing else states a grade — Hybrid, vinyl and laminate stay blank.
+**`HANDSCRAPED` on the solid tab is a finish, not a grade** — `Grade` blank,
+`Finish type = Hand scraped`.
+
+#### Parsing quirks — the workbook is merge-driven
+
+**Read the merged-cell ranges; do not forward-fill by eye.** Lee states dimensions,
+sf/box, packaging and price **once per group** and merges the cell down the rows it
+covers, and the group boundaries **do not line up between columns**. On the 72HR tab
+`E8:E13` (sf/box 20.8) and `F13:F17` (40 boxes/skid) split one row apart, so `T06` is
+20.8 sf at 40/skid — correct, and invisible to a naive fill.
+
+- **Multi-spec groups under one header.** Hybrid runs 7¾"/20.97 sf, 7¾"/23.98 sf and
+  9½"/26.08 sf under a single heading, with the price merged across a different span again.
+- **Sequence gaps are real**: `R10` and `98010` are absent, and the accessory rows
+  contradict themselves about the range (`R01-R10` vs `R01-R11`). Extract what is printed.
+- **`WARM EMBER (WALNUT)`** sits inside the American Oak collection at $ 4.49 against
+  $ 2.99 — set `Species = Walnut`. Confirm whether it is American Black Walnut; if so
+  `Radiant heat compatible = FALSE` per the global rule.
+- **Length** is in the description, not the dimension string: `UP TO 6 FOOT` →
+  `RL (up to 6')`, `UP TO 4 FOOT` → `RL (up to 4')`. Laminate and vinyl are a fixed `48"`.
+- **`5 + 2 MM EVA`** on the vinyl = 5mm SPC + 2mm EVA pad, 7mm total, `Underpad
+  included = TRUE`, `Underpad type = EVA` (Lee names the material, so no assumption).
+  The tab header's `ICC 74` is a typo for `IIC 74`.
+
+#### Fields Lee does not provide
+
+Install profile, install method, locking system, AC rating, certifications, warranties,
+traffic rating, pieces per box, colour/tone, veneer cut type, and STC. Leave all blank —
+`Click`/`Float` was assumed on laminate and vinyl per the Evergreen precedent and left
+blank on all 48 hardwood rows. Request a spec sheet from the rep if Bert lookups need them.
+
+#### SALE items
+
+Lee marks promos as `SALE:` in the price cell and **prints no end dates** — apply the
+global month-end default (the list's own month), and note that a Lee list can arrive
+months stale, in which case its promos are already expired on receipt.
+
+Both laminate collections are wholly on sale with no regular price printed anywhere, so
+they fall to **Sale rule 3** (`Cost = Promo = SALE price`, a placeholder). Hybrid is the
+instructive one: it prints three regular colours at $ 2.99 and seven at `SALE: $ 2.55`
+across two widths. The four 7¾" sale colours share specs exactly with the regular 7¾"
+Chicago, so **rule 1** applies (`Cost` $ 2.99, `Promo` $ 2.55); the three 9½" colours have
+no same-spec regular price and fall to **rule 3**. Match specs, not just the collection.
+
+#### Accessories
+
+Priced per piece / per roll on the laminate tab. Standard cross-supplier markups:
+T-Moulding and Reducer `Cost + $10`, Stair Nosing `Cost + $15`, Underlayment `Cost + $20`.
+Lee gives no trim material or profile detail beyond the matching-colour list.
+
+#### Lee ingest output format
+
+`lee_airtable_upload_[YYYY-MM-DD].csv`, all 57 schema columns plus helpers, written to
+`ingest/YYYY-MM-DD/`. No Lightspeed file until the Airtable import happens and LS ids are
+reconciled in — see *Lee is already in Lightspeed* above.
 
 ---
 
@@ -3150,6 +3468,35 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
 
 ### Changelog
 
+- **2026-09-09** — **Lee Flooring onboarded, and its cost basis settled on the first
+  run.** Albert confirmed the printed `PRICE/SQ.FT` is Titan's dealer cost as-is, no
+  multiplier, `Retail = Cost + $ 1.00`, and that Lee publishes no MSRP — recorded under
+  Lee's `#### Cost column` so it is never asked again. Two things this supplier teaches
+  that generalize: (1) a price list can arrive as a **multi-tab .xlsx** whose specs are
+  **merged-cell groups that do not align between columns**, so the merge ranges must be
+  read rather than forward-filled by eye; (2) a supplier can be **absent from Airtable
+  while already live in Lightspeed** — 36 Lee products were — which is RULE 0a's third
+  state and means `ls-id-backfill` must run before any LS file is built. Lee's LS skus
+  are its own product codes, so laminate joins exactly on `Supplier SKU` ↔ LS `sku`,
+  a stronger bridge than colour matching. Supplier option `Lee Flooring`, suffix `LEEF`
+  and the laminate-code-as-SKU-suffix split remain **proposed, not confirmed**.
+
+- **2026-09-09** — **Price Lists status option names corrected against the live data
+  source.** The documented values `Extracted [Pending Review]`, `Error: Needs attention`
+  and a bare `Done` do not exist; the real ones are `Extracted [Needs Review]`,
+  `Extracted [Error]` and `Extracted [All Uploaded]`, and the write key is
+  `Extraction Status`, not `Status`. Because a status property rejects an unknown option
+  and takes the whole `update_properties` call down with it, every run following the old
+  names would have lost its entire state write — the same failure mode as the renamed
+  properties above. Fixed here, in `.claude/commands/process-price-list.md`, and in both
+  `methods/pricelist-*.md`. Also recorded: the three downstream states
+  (`Extracted [Ready to Upload]`, `Extracted [All Uploaded]`, `Not Needed`) belong to the
+  reviewer, never to a run. Found on the Biyork 2026-09-09 run.
+- **2026-09-09** — Added the **Vizion** supplier subsection from the 2026/07/01 list
+  (52 rows, first ingest, not yet imported). Its `#### Cost column` is deliberately
+  **open**: the sheet prints one unlabelled price column with no terms page and no MSRP,
+  so the basis was escalated to Albert rather than inferred, per *Cost basis — ask once*.
+  Found independently on the Vizion run, alongside the status-name defect above.
 - **2026-09-08** — **Promo/new-product matching strengthened.** "Promo product not
   found in catalogue" now requires checking the live base for a same-colour+width+
   species(+veneer) sibling, or a uniform width+species collection default, before
