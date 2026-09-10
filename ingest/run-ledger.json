@@ -491,5 +491,18 @@
     },
     "brief": true,
     "note": "scheduled run; local branch ledger last showed 2026-09-02, but all 5 ingesters cross-checked unmerged session branches and vault 01_daily notes and confirmed real runs happened through 2026-09-07 (branch-isolation artifact, not a real gap) -- no catch-up widening needed; bookkeeper still has no QBO/Intuit MCP connector (10th consecutive failed run since 2026-07-26)"
+  },
+  {
+    "date": "2026-09-10",
+    "run_at": "2026-09-10T08:16:47-04:00",
+    "sources": {
+      "ghl": "error",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "partial",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; local ledger last showed 2026-09-08, but 2026-09-09 confirmed via the vault's own 01_daily/2026-09-09.md (and corroborated by today's outlook/meta-ads/notion ingest notes) to be a real run stranded on an unmerged session branch -- branch-isolation artifact, not a missed day; no catch-up widening applied. ghl failed on a session tool-provisioning gap (mcp__ghl__* tools not bound, credentials/config fine) -- same class as 2026-08-15/18/19/24. bookkeeper still has no QBO/Intuit MCP connector (11th consecutive failed run since 2026-07-26). notion partial: Tactical Tasks List hit a Notion query usage-limit error after 150 of 193 open rows; all other Notion sources completed fully. Notion's dedupe baseline fell back to ingest/2026-09-08/notion.json (09-09's file unmerged), so most of today's Notion items overlap what's already in the vault's 2026-09-09 daily note -- flagged for vault-writer-agent to dedupe against, not re-log."
   }
 ]
