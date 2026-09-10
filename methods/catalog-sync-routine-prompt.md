@@ -138,6 +138,25 @@ Four deliberate inclusions:
    looked at the extraction yet; planning writes off unreviewed data inverts the
    pipeline's whole order. Three rows keeps one bad run small.
 
+## ⚠️ Do not schedule this yet — its scope filter is broken
+
+**`Extracted [Ready to Upload]` no longer exists on the live `Extraction Status`
+property** (verified 2026-09-10; it was present earlier the same day). The Scope
+section above filters on it, so as written **this routine matches zero rows, silently,
+forever** — the failure mode this repo has already been bitten by twice.
+
+Nothing in the repo removed it. The only schema statements run were `ADD COLUMN
+"Review Reason"` and `ALTER COLUMN` on the three select trackers; `Extraction Status`
+is a status property and none of those touch it. Most likely it was removed in the
+Notion UI.
+
+It is not a cosmetic option. It was the reviewer's *"I have checked this, go"* signal —
+the only thing distinguishing a reviewed row from an unreviewed one. Loosening the
+filter to `Airtable Sync is Pending` alone is **not** the fix: that sweeps in rows
+nobody has looked at, which inverts the pipeline's whole order.
+
+**Restore the option, or name a replacement signal, before this routine is scheduled.**
+
 ## Schedule
 
 Daily is enough, and the pull caches per day. The rows this drains are created by the
