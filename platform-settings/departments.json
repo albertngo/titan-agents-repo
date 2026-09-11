@@ -215,18 +215,23 @@
       "escalation_order": 5,
       "owns": {
         "sources": [
-          "bookkeeper"
+          "bookkeeper",
+          "ls-sales"
         ],
         "sub_sources": [],
         "platforms": [
           "quickbooks",
-          "qbo"
+          "qbo",
+          "pos",
+          "register",
+          "closeout"
         ],
         "commands": []
       },
       "specialists": {
         "readonly": [
-          "bookkeeper-ingest-agent"
+          "bookkeeper-ingest-agent",
+          "ls-sales-ingest-agent"
         ],
         "actions": []
       },
@@ -244,7 +249,17 @@
         "reconcile",
         "profit",
         "p&l",
-        "cash"
+        "cash",
+        "layaway",
+        "on account",
+        "on-account",
+        "closeout",
+        "register",
+        "pos",
+        "margin",
+        "gross margin",
+        "reconciliation",
+        "period close"
       ],
       "blocked_reason": "bookkeeper-ingest-agent has written status: \"error\" on every recorded run from 2026-07-26 through 2026-09-08 — sixteen consecutive failures — because no Intuit QuickBooks MCP server is configured in .mcp.json and there is no scripts/bookkeeper_pull.py equivalent to scripts/outlook_pull.py. The AGENT has no access path. CORRECTED 2026-09-11: this entry previously said the source \"has never worked\", which is false. The QBO read path DID work — Make scenario 4822446 pulled 102 real chart-of-accounts records and 4822687 pulled two full P&L reports on 2026-07-11 and 2026-07-12, and those artifacts are still in Make data stores 88653 and 88661 against a connection valid to 2026-11-01. The real blocker is narrower: the working read path lives in Make, every bookkeeper scenario there is on-demand with no trigger so nothing has re-run in two months, and nothing bridges Make to ingest/<date>/bookkeeper.json. See platform-settings/quickbooks.json for the connection facts and the defects in those scenarios.",
       "unblock_criteria": [
@@ -256,7 +271,7 @@
         "notion:master_payments_log",
         "airtable:company_gross_data/project_log"
       ],
-      "_note": "partial_answer_sources is what route.md may fall back to for a finance-shaped question, ALWAYS labelled as partial. A Notion payments-log figure is not bookkeeping and must never be presented as if it were. GHL value_cents is deliberately not listed — it is pipeline value, not money received. airtable:company_gross_data/project_log is added 2026-09-11 as a second partial source: it is the only MACHINE-READABLE copy of the Notion Project Financials figures, because every money property on Project Financials is a formula or rollup that the Notion MCP returns as an opaque reference rather than a number. It is a mirror of unknown freshness, so it is a partial answer, never the book.",
+      "_note": "partial_answer_sources is what route.md may fall back to for a finance-shaped question, ALWAYS labelled as partial. A Notion payments-log figure is not bookkeeping and must never be presented as if it were. GHL value_cents is deliberately not listed — it is pipeline value, not money received. airtable:company_gross_data/project_log is added 2026-09-11 as a second partial source: it is the only MACHINE-READABLE copy of the Notion Project Financials figures, because every money property on Project Financials is a formula or rollup that the Notion MCP returns as an opaque reference rather than a number. It is a mirror of unknown freshness, so it is a partial answer, never the book. ls-sales is owned here, NOT by Catalogue, because ownership keys on SOURCE and this source is the sales ledger rather than the product catalogue. The bare platform string `lightspeed` deliberately stays with Catalogue so routing precedence step 3 still resolves to exactly one department; Finance takes `pos`, `register` and `closeout` instead. A request naming `lightspeed` alone is a catalogue request.",
       "known_defects_blocking_automation": [
         "Make 4824368 Register Closure Watchdog filters MetaData.CreateTime > '2027-01-01', a future date, so its alarm ALWAYS fires. Do not schedule it until the literal is dynamic.",
         "Make 4822687 Pull P&L has a hardcoded 2026-01-01..2026-07-13 range and cannot produce a current P&L.",

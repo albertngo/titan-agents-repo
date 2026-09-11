@@ -1,12 +1,9 @@
 {
   "_comment": "Routing/property registry for the Notion task sync (.claude/commands/notion-sync.md, contracts/notion-task-schema.md). All Notion ids, property names, and vocabulary strings live here so a renamed property or a new source is a one-line data edit, never a code change. Source: Albert's live Notion workspace, verified 2026-07-27.",
   "_maintenance": "Notion property/status strings are EXACT MATCH (e.g. 'Not started' lowercase s). If someone renames a property or status option in Notion, this file goes stale silently — the sync will start failing writes. Re-verify against the live schema (notion-fetch on the data_source url) whenever a write starts erroring on an unknown property/option.",
-
   "config_version": "1",
-
   "ghl_location_id": "4BwjVRlyDCR4ZRdcSrFR",
   "_ghl_location_id_comment": "Used to CONSTRUCT the url property for every created row: https://app.gohighlevel.com/v2/location/<ghl_location_id>/contacts/detail/<contactId>. Never copy item.link verbatim — message-type items link to /conversations/conversations/, not /contacts/detail/.",
-
   "destinations": {
     "team": {
       "_comment": "Shared 'Tactical Tasks List' database, Titan Flooring HQ teamspace. Auto-write.",
@@ -27,11 +24,31 @@
         "assign_to": "Assign To",
         "due_date": "Due Date"
       },
-      "status_values": ["On Hold", "Not started", "In progress", "Dropped", "Done"],
-      "open_statuses": ["On Hold", "Not started", "In progress"],
-      "closed_statuses": ["Dropped", "Done"],
-      "priority_values": ["high", "medium", "low"],
-      "verification_values": ["Needs Verification", "Verified"]
+      "status_values": [
+        "On Hold",
+        "Not started",
+        "In progress",
+        "Dropped",
+        "Done"
+      ],
+      "open_statuses": [
+        "On Hold",
+        "Not started",
+        "In progress"
+      ],
+      "closed_statuses": [
+        "Dropped",
+        "Done"
+      ],
+      "priority_values": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "verification_values": [
+        "Needs Verification",
+        "Verified"
+      ]
     },
     "private": {
       "_comment": "Reuses Albert's existing personal 'to-do' database (under 'to-do list (personal)' page, Albert's Notion Directory > PERSONAL), filtered by its 'Private To Do' view. NOT a new database. Notes/url/Source properties were added 2026-07-27 to support this sync; Status/Priority/tags/Assignee/Due Date/Task already existed and are unchanged. Approval-gated: the sync must always propose-and-stop for this destination, never auto-write.",
@@ -50,14 +67,31 @@
         "assignee": "Assignee",
         "due_date": "Due Date"
       },
-      "status_values": ["Not started", "In progress", "Done"],
-      "open_statuses": ["Not started", "In progress"],
-      "closed_statuses": ["Done"],
-      "source_values": ["bookkeeper", "outlook", "ghl-escalated", "other"],
-      "priority_values": ["high", "medium", "low"]
+      "status_values": [
+        "Not started",
+        "In progress",
+        "Done"
+      ],
+      "open_statuses": [
+        "Not started",
+        "In progress"
+      ],
+      "closed_statuses": [
+        "Done"
+      ],
+      "source_values": [
+        "bookkeeper",
+        "outlook",
+        "ghl-escalated",
+        "other"
+      ],
+      "priority_values": [
+        "high",
+        "medium",
+        "low"
+      ]
     }
   },
-
   "project_status_meeting_processor": {
     "_comment": "Registry for .claude/skills/project-status-meeting-processor. All Notion database/collection ids, template ids, and property names that skill uses live here, never hardcoded in SKILL.md or its references/ files. Source: titan_context.md uploaded by Albert 2026-09-02.",
     "_write_policy_note": "This skill's Notion writes are 'auto' (task/CII creation and note-appends happen without a per-item approval prompt) per Albert's explicit direction 2026-09-02, and are logged to the day's actions-log.json for audit, same as the notion-sync command's auto destination. Unlike notion-sync's GHL-sourced candidates, an owner/due-date named here comes from an explicit spoken assignment in a meeting Albert runs, not an inference — see SKILL.md's 'Setting Assign To / Due Date' note for the narrower rule that still applies (unambiguous + explicitly stated only).",
@@ -93,8 +127,18 @@
         "priority": "Priority",
         "project_status_meetings_relation": "Project Status Meetings"
       },
-      "initiative_name_values": ["Marketing", "Funnel-Sales", "Inventory Improvement", "Operations", "Reporting-Analytics"],
-      "priority_values": ["High", "Medium", "Low"],
+      "initiative_name_values": [
+        "Marketing",
+        "Funnel-Sales",
+        "Inventory Improvement",
+        "Operations",
+        "Reporting-Analytics"
+      ],
+      "priority_values": [
+        "High",
+        "Medium",
+        "Low"
+      ],
       "_never_link_to_meeting": "Per Albert's directive: never populate the Project Status Meetings relation on a CII at creation or on append, even though the property exists. CIIs are scoped above any single meeting."
     },
     "titan_projects": {
@@ -106,23 +150,44 @@
       "_comment": "Row titles: PP-XXX_ClientName | City (Financials). Search client name + 'Financials', not PP-ID alone. Read-only for this skill."
     }
   },
-
   "source_defaults": {
     "_comment": "Default destination per ingest source. A new *-ingest source needs only one line here — no writer code change. An item's own `sensitivity` field (contracts/ingest-schema.md) may escalate team -> private, never the reverse. This table also feeds vault-writer-agent's `visibility` mapping (team -> staff, private -> admin — see the Visibility section of titan-vault CONVENTIONS.md); an unknown source reads as private/admin. `notion` is team because the five ingested databases are staff-shared tables; admin-grade sub-sources (e.g. Project Financials, if ever ingested) are escalated per-item at ingest via notion-ingest-sources.json.",
     "ghl": "team",
     "bookkeeper": "private",
     "outlook": "private",
     "notion": "team",
-    "meta-ads": "private"
+    "meta-ads": "private",
+    "ls-sales": "private",
+    "_ls_sales_note": "private, on provenance not caution: the pull carries per-line cost_cents, so it is margin data, and a cashier-tier Lightspeed user does not see supply price. Ordinary sale FACTS are staff-visible in Lightspeed; the cost attached to them is not."
   },
-
   "people": {
     "_comment": "Reference registry of human identities across platforms — Notion person IDs behind the Tactical Tasks List per-person views, and (as of 2026-08-09) GHL user IDs for the ghl_owner: reference line in Notes (contracts/notion-task-schema.md). The sync NEVER sets Assign To and never auto-routes off ghl_user_id (contracts/notion-task-schema.md rule 4) — this table exists for reference/reporting only, not for the sync to assign into.",
     "_ghl_user_id_comment": "There is no MCP tool that resolves a GHL user ID to a name (confirmed 2026-08-09 against the live account's full tool catalog and a direct /users/ pull) — this is a hand-maintained mapping of GHL's entire 5-user roster. Re-verify if Titan's GHL user list changes; a `ghl_owner: unmapped (<id>)` line in a synced task's Notes is the signal that a new ID needs adding here.",
-    "albert": {"name": "Albert", "notion_person_id": "c39aa5d3-c87c-4152-92ef-5ed13d9c4605", "ghl_user_id": "ooPNab06Ka04uZ1yQ4w6"},
-    "pourya": {"name": "Pourya", "notion_person_id": "1f4d872b-594c-8101-b28a-00020fc13998", "ghl_user_id": "rAMFCiXbAjJOEjtyyvmn"},
-    "mike": {"name": "Mike", "notion_person_id": "22ad872b-594c-8164-bc5c-00025c1b0f2c", "ghl_user_id": "GH0XAA6gD38CEMR9oREm"},
-    "front_desk": {"name": "Front Desk", "notion_person_id": "2165565e-ec9a-4260-b684-89c3da94f996", "ghl_user_id": "edv6p75Y79cYsPS0jPv0"},
-    "mark_bot": {"name": "Mark Bot", "notion_person_id": null, "ghl_user_id": "CvW3gPWmxP0OkyUiFmhT", "_note": "GHL-only automation/bot account, not a staff member — no Notion person mapped. Kept here so its ID resolves to a label instead of showing as unmapped."}
+    "albert": {
+      "name": "Albert",
+      "notion_person_id": "c39aa5d3-c87c-4152-92ef-5ed13d9c4605",
+      "ghl_user_id": "ooPNab06Ka04uZ1yQ4w6"
+    },
+    "pourya": {
+      "name": "Pourya",
+      "notion_person_id": "1f4d872b-594c-8101-b28a-00020fc13998",
+      "ghl_user_id": "rAMFCiXbAjJOEjtyyvmn"
+    },
+    "mike": {
+      "name": "Mike",
+      "notion_person_id": "22ad872b-594c-8164-bc5c-00025c1b0f2c",
+      "ghl_user_id": "GH0XAA6gD38CEMR9oREm"
+    },
+    "front_desk": {
+      "name": "Front Desk",
+      "notion_person_id": "2165565e-ec9a-4260-b684-89c3da94f996",
+      "ghl_user_id": "edv6p75Y79cYsPS0jPv0"
+    },
+    "mark_bot": {
+      "name": "Mark Bot",
+      "notion_person_id": null,
+      "ghl_user_id": "CvW3gPWmxP0OkyUiFmhT",
+      "_note": "GHL-only automation/bot account, not a staff member — no Notion person mapped. Kept here so its ID resolves to a label instead of showing as unmapped."
+    }
   }
 }

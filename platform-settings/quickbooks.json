@@ -1,10 +1,7 @@
 {
   "_comment": "Registry for QuickBooks Online. Connection facts, the Make scenarios that currently hold the only working QBO read path, and the known defects in them. Consumed by scripts/bookkeeper_pull.py, .claude/agents/bookkeeper-ingest-agent.md and (from Phase 5) .claude/agents/qbo-actions-agent.md. Method: methods/finance-reconciliation.md.",
-
   "_correction_2026_09_11": "The repo previously recorded that the bookkeeper source 'has never worked'. THAT IS WRONG and has been corrected in departments.json. The QBO read path DID work: Make scenario 4822446 pulled 102 real chart-of-accounts records and 4822687 pulled two full P&L reports, on 2026-07-11 and 2026-07-12. The artifacts are still in Make data stores 88653 and 88661. What is true is narrower and more fixable: the ingest AGENT has no access path (no MCP server, no script), and every Make bookkeeper scenario is on-demand with no trigger, so nothing has re-run in about two months.",
-
   "config_version": "1",
-
   "company": {
     "legal_name": "Titan Flooring Inc.",
     "country": "CA",
@@ -12,7 +9,6 @@
     "fiscal_year_end": "09-30",
     "_fiscal_note": "QBO carries its own fiscal-year setting. Confirm it is set to September 30 in QBO so its 'this fiscal year to date' P&L agrees with finance/periods/*.json. Two disagreeing YTD figures is the failure this pipeline exists to prevent."
   },
-
   "access": {
     "_comment": "There is NO direct QBO API client in this repo and NO Intuit MCP server in .mcp.json. The only working path today is through Make, using the connection below.",
     "make_connection_id": "4820024",
@@ -27,11 +23,9 @@
     },
     "_direct_api_note": "A direct read-only client (scripts/qbo_client.py, mirroring scripts/lightspeed_client.py) is the eventual target: no per-operation metering, and the no-write-verb guarantee becomes structural and testable. It needs an Intuit app plus OAuth refresh handling, and no QBO credentials are present in the environment today. Decide deliberately; do not half-build both."
   },
-
   "make_scenarios": {
     "_comment": "Organization 1154376 (Titan Flooring Inc.), team 459654, folder 323841 'Titan Bookkeeper'. Make log retention is 30 days, so July execution records have expired — the data stores are the evidence these ran.",
     "_all_parked": "All five are isActive: true but scheduled on-demand with nextExec: null and hookId: null. They will NEVER fire on their own. Functionally parked.",
-
     "4822446": {
       "name": "Sync Chart of Accounts",
       "direction": "read",
@@ -70,29 +64,144 @@
       "status": "highest-risk to run blind; never touches the QBO API"
     }
   },
-
   "make_data_stores": {
-    "88653": { "name": "QBO Chart of Accounts", "records": 102, "written_by": "4822446" },
-    "88661": { "name": "QBO Reports", "records": 15, "written_by": "4822687, 4824058",
-               "_note": "Doing double duty: P&L chunks plus the acct173 probe. pl_2..pl_6 and py_2..py_6 are empty strings because each report fits inside the first 12,000-char slice." }
+    "88653": {
+      "name": "QBO Chart of Accounts",
+      "records": 102,
+      "written_by": "4822446"
+    },
+    "88661": {
+      "name": "QBO Reports",
+      "records": 15,
+      "written_by": "4822687, 4824058",
+      "_note": "Doing double duty: P&L chunks plus the acct173 probe. pl_2..pl_6 and py_2..py_6 are empty strings because each report fits inside the first 12,000-char slice."
+    }
   },
-
   "observed_pl": {
     "_comment": "Pulled from data store 88661 on 2026-09-11; the report itself was generated 2026-07-12. Recorded here because it is the strongest available evidence for the Lightspeed->QBO gap, and because it must NOT be quoted as current.",
     "_stale": "Covers Jan 1 - Jul 13 2026 only. Do not present as a current figure.",
-    "ytd_2026_partial": { "income": 58734014, "cogs": 61277815, "expenses": 16025908, "net_profit": -18569709 },
-    "fy2025_full":      { "income": 122928120, "cogs": 59049997, "expenses": 59227879, "net_profit": 4650244 },
+    "ytd_2026_partial": {
+      "income": 58734014,
+      "cogs": 61277815,
+      "expenses": 16025908,
+      "net_profit": -18569709
+    },
+    "fy2025_full": {
+      "income": 122928120,
+      "cogs": 59049997,
+      "expenses": 59227879,
+      "net_profit": 4650244
+    },
     "_finding": "COGS EXCEEDS INCOME in the 2026 partial year. That is the signature of sales not posting to QBO, not of a business selling below cost — and it is the same gap the register-closure watchdog was built to catch. Corroborated independently: no Lightspeed sale in 55,820 carries an accounts_transaction_id. NOT PROVEN; confirm the Lightspeed->QBO sync state in the Lightspeed admin before treating it as established.",
     "_units": "Integer cents CAD, per CLAUDE.md conventions."
   },
-
   "accounts": {
-    "_comment": "QBO account ids the reconciler needs. Fill from data store 88653 (102 accounts already pulled) rather than by hand.",
-    "accounts_receivable": null,
-    "accounts_payable": null,
-    "undeposited_funds": null,
-    "layaway_liability": null,
-    "_layaway_note": "A customer-deposit liability account for layaway MAY NOT EXIST in the chart of accounts yet — Lightspeed layaway has never posted to QBO, so nothing would have created one. Check before assuming, and treat creating it as an accounting decision for Albert and his bookkeeper, not a pipeline step.",
-    "sales_income_by_line": { "project": null, "store": null, "other": null }
+    "_comment": "QBO account ids the reconciler needs. RESOLVED 2026-09-11 from Make data store 88653 (102 accounts, live balances as at the 2026-07 pull). Balances are recorded for context only — they are a July snapshot and must never be quoted as current.",
+    "accounts_receivable": {
+      "qbo_id": "61",
+      "name": "Accounts Receivable (A/R)",
+      "balance_at_pull_cents": -2010075,
+      "_finding": "NEGATIVE A/R against 27 open ONACCOUNT sales in Lightspeed. A receivable asset should not be negative; this is Gap B showing up on the balance sheet. Surface it, do not correct it silently."
+    },
+    "accounts_payable": {
+      "qbo_id": "60",
+      "name": "Accounts Payable (A/P)",
+      "balance_at_pull_cents": -877734
+    },
+    "undeposited_funds": {
+      "qbo_id": "5",
+      "name": "Undeposited Funds",
+      "balance_at_pull_cents": -57949
+    },
+    "layaway_liability": {
+      "qbo_id": "169",
+      "name": "Revenue Received in Advance - Lightspeed X",
+      "classification": "Liability",
+      "account_type": "Other Current Liability",
+      "balance_at_pull_cents": 0,
+      "_finding": "GAP A, CONFIRMED FROM THE QBO SIDE. A liability account named explicitly for Lightspeed X deferred revenue exists — precisely the customer-deposit account layaway needs — and it holds EXACTLY ZERO. This is a balance-sheet account, so unlike an income account a zero here is meaningful rather than a period reset. The container was created and nothing has ever been posted into it, while 3 LAYBY sales sit open in Lightspeed. This is the destination for every layaway adjusting entry Phase 5 proposes."
+    },
+    "store_credit_liability": {
+      "qbo_id": "134",
+      "name": "Store Credit Liability",
+      "balance_at_pull_cents": -126000
+    },
+    "inventory_asset": {
+      "qbo_id": "136",
+      "name": "Inventory Asset",
+      "balance_at_pull_cents": 35872166
+    },
+    "sales_income_by_line": {
+      "_comment": "Income accounts carry current_balance 0 in the Account entity because QBO resets P&L accounts — a zero here is NOT evidence of no activity, unlike account 169 above. Which account each business line posts to must be confirmed against a real closeout before the reconciler relies on it.",
+      "product": {
+        "qbo_id": "1",
+        "name": "Product Sales",
+        "_also": "57 'Sales of Product Income' also exists; determine which Lightspeed actually posts to."
+      },
+      "labour": {
+        "qbo_id": "170",
+        "name": "Labor Sales"
+      },
+      "project": {
+        "qbo_id": null,
+        "_unresolved": "No project-specific income account exists in the chart of accounts. Project revenue is presumably landing in Product Sales or Labor Sales undifferentiated — which is part of why project margin cannot be read from QBO at all."
+      }
+    },
+    "cogs_shrinkage": {
+      "qbo_id": "172",
+      "name": "Inventory Shrinkage",
+      "balance_at_pull_cents": 0
+    },
+    "bank": {
+      "_comment": "For the dashboard cash tile. July snapshot.",
+      "166": {
+        "name": "BMO - Titan Flooring",
+        "balance_at_pull_cents": 12133522
+      },
+      "167": {
+        "name": "BMO - HoldCo",
+        "balance_at_pull_cents": 3200000
+      },
+      "54": {
+        "name": "TD - Titan Flooring",
+        "balance_at_pull_cents": 1636434
+      },
+      "128": {
+        "name": "Cash",
+        "balance_at_pull_cents": 21999
+      },
+      "1150040001": {
+        "name": "GIC Account",
+        "balance_at_pull_cents": 15000000,
+        "account_type": "Other Asset"
+      },
+      "168": {
+        "name": "Checking (7788)",
+        "balance_at_pull_cents": -9192065,
+        "_flag": "NEGATIVE. Confirm whether this is a real overdraft or an unreconciled feed before it reaches any cash tile."
+      },
+      "53": {
+        "name": "TD - Credit card (1462)",
+        "balance_at_pull_cents": -1014535,
+        "account_type": "Credit Card"
+      },
+      "173": {
+        "name": "BMO - Credit Card (0610)",
+        "balance_at_pull_cents": -2099300,
+        "account_type": "Credit Card"
+      }
+    },
+    "uncategorized": {
+      "_comment": "The opex data-quality signal in contracts/finance-period-schema.md counts against these.",
+      "expense": {
+        "qbo_id": "2",
+        "name": "Miscellaneous:Uncategorized Expense"
+      },
+      "asset": {
+        "qbo_id": "3",
+        "name": "Uncategorized Asset",
+        "balance_at_pull_cents": -36137
+      }
+    }
   }
 }

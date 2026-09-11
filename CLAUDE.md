@@ -27,6 +27,7 @@ No ingester reads another ingester's raw platform data.
 | `bookkeeper-ingest-agent` | QuickBooks / receipts | `bookkeeper.json` |
 | `notion-ingest-agent` | Notion (projects, work orders, payments, meetings) | `notion.json` |
 | `meta-ads-ingest-agent` | Meta Ads (spend, leads, CPL, delivery health) | `meta-ads.json` |
+| `ls-sales-ingest-agent` | Lightspeed Retail X-Series (sales, layaway, on-account) | `ls-sales.json` |
 
 | `ghl-actions-agent` | GoHighLevel (write: replies, stages, tags) | appends to `actions-log.json` |
 | `lightspeed-actions-agent` | Lightspeed Retail X-Series (write: product create/update ONLY) | appends to `actions-log.json` |

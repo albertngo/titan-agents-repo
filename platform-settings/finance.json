@@ -62,7 +62,7 @@
       "resolves_to": "Notion Titan Projects `userDefined:ID` (auto_increment), mirrored as `Project ID` on the Airtable Project Log table.",
       "_confirmed_overlap": "PP-447 and PP-449 appear both in Lightspeed sale notes and in Airtable Project Log rows. The join is real and it works."
     },
-    "_coverage_warning": "ONLY 20 SALES IN THE ENTIRE 55,820-SALE HISTORY CARRY A PP-### NOTE, 19 distinct projects, and EVERY ONE IS DATED 2026 — almost all on 2026-09-09 and 2026-09-10. This convention is about two days old. It is the right join key going forward; it attributes essentially NO historical project revenue. Any backfill before 2026-09-09 needs a different method, or an accepted gap.",
+    "_coverage_warning": "CORRECTED 2026-09-11 (second pass). An earlier reading of a truncated sample said this convention was 'about two days old'. It is not. Measured over the full cached history: 21 PP-tagged sales — 1 in 2026-07 ($5,460.92), 9 in 2026-08 ($39,797.39), 11 in 2026-09 ($43,164.17). So attribution works from JULY 2026, roughly three months, not two days. It is still thin — 21 sales out of 55,822 — and attributes nothing before July 2026, but a period close for August 2026 has real project coverage rather than none.",
     "_poreus_finding": "Albert described project sales being rung 'under the Poreus account'. No Lightspeed CUSTOMER named Poreus/Porous exists — all 2,779 customers were scanned. There IS a Lightspeed USER 'Pourya' (57c18364-4307-455f-8942-f18f61e4b555, cashier, pourya@titanfloors.ca), who is also the `Sales Person` on the Airtable project rows, so 'Poreus' is very likely 'Pourya'. BUT Pourya has rung only 2 sales in all of Lightspeed history, one of them on 2026-09-10. So user_id is NOT a usable project-sale marker today. ASK ALBERT what 'the Poreus account' refers to before encoding anything here.",
     "user_account": {
       "lightspeed_user_id": "57c18364-4307-455f-8942-f18f61e4b555",
@@ -73,7 +73,26 @@
     "observed_statuses_on_project_sales": "Of the 12 most recent PP-tagged sales: 4 ONACCOUNT, 2 LAYBY_CLOSED, 1 LAYBY, 4 CLOSED, 1 SAVED. Project sales sit squarely in the layaway and on-account gaps — they are not an edge case in this reconciliation, they are most of it.",
     "_zero_value_sales": "PP-416 carries total_price_incl 0.00. Zero-value sales exist and must not be assumed to be errors — check whether they are pack/fulfilment records before treating them as revenue or as bugs.",
     "unmatched_policy": "flag_never_drop",
-    "_unmatched_note": "An LS sale carrying a PP-### that matches no project is unattributed revenue: it goes to needs_attention, is never dropped, and is never silently left in the store line."
+    "_unmatched_note": "An LS sale carrying a PP-### that matches no project is unattributed revenue: it goes to needs_attention, is never dropped, and is never silently left in the store line.",
+    "measured_coverage": {
+      "total_pp_tagged_sales": 21,
+      "first_month": "2026-07",
+      "by_month": {
+        "2026-07": {
+          "sales": 1,
+          "value_cents": 546092
+        },
+        "2026-08": {
+          "sales": 9,
+          "value_cents": 3979739
+        },
+        "2026-09": {
+          "sales": 11,
+          "value_cents": 4316417
+        }
+      },
+      "_as_of": "2026-09-11, full-history walk of 55,822 sales"
+    }
   },
   "variance_types": {
     "_comment": "Closed vocabulary. Adding a value is an edit to this file, methods/finance-reconciliation.md AND contracts/finance-period-schema.md in the same change. `expected: false` types always produce a needs_attention entry — they mean something is wrong, as opposed to the system working as designed.",
@@ -184,5 +203,37 @@
     "missing_costs": "Project Costs contains explicit gap markers such as 'Labor Missing For 616' with a null Cost. A null cost is an UNKNOWN margin, never a high one — see data_quality[] in contracts/finance-period-schema.md.",
     "undocumented_select_field": "Master Payments Log has a `Select` field (TA/B/T/S/R/SC/C) populated on every sampled row with no recorded meaning. Ask before using it for anything.",
     "not_in_notion": "There is NO invoices, expenses, purchase-order, supplier-bill, quote, deposit, or chart-of-accounts database in Notion. Do not assume one exists."
+  },
+  "measured_positions": {
+    "_comment": "Measured from the live Lightspeed walk 2026-09-11. These are BALANCES (as-of, all dates), not period figures — see contracts/finance-period-schema.md. Recorded as the baseline the first reconciliation run is checked against; they move, so re-measure rather than quoting these.",
+    "open_layaway": {
+      "count": 3,
+      "deposits_held_cents": 1321745,
+      "eventual_value_cents": 1671871,
+      "_gap_a": "$13,217.45 of customer money is held against open layaways. QBO account 169 'Revenue Received in Advance - Lightspeed X' — the account built for exactly this — holds $0.00. That is Gap A, quantified from both sides."
+    },
+    "open_on_account": {
+      "count": 32,
+      "charged_cents": 3173380,
+      "paid_cents": 150000,
+      "outstanding_cents": 3023380,
+      "oldest": "2025-08-01",
+      "_gap_b": "Lightspeed says customers owe $30,233.80 across 32 open on-account sales, the oldest from August 2025. QBO Accounts Receivable (account 61) reads MINUS $20,100.75. The two do not merely differ in size, they differ in SIGN. Per the authority table Lightspeed wins on AR; QBO is the mirror to be corrected."
+    },
+    "august_2026_reference": {
+      "_comment": "A worked period, for the acceptance test in the plan.",
+      "closeout_gross_incl_cents": 9523770,
+      "tendered_cents": 9549306,
+      "revenue_ex_tax_cents": 8427193,
+      "cogs_cents": 5835940,
+      "implied_gross_margin_pct": 30.7,
+      "sales_counted": 221,
+      "sales_all_statuses": 272,
+      "excluded": {
+        "SAVED": 33,
+        "VOIDED": 10
+      },
+      "_tender_variance": "Tendered EXCEEDS closeout gross by $255.36. Not an error on its face — layaway payments against sales opened in an earlier month land as cash in August — but it is precisely the kind of residual the identity has to type rather than absorb."
+    }
   }
 }

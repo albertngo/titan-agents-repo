@@ -1,0 +1,83 @@
+{
+  "source": "lightspeed-sales",
+  "pulled_at": "2026-09-11T10:33:38.325310-04:00",
+  "window": "last 3d",
+  "period": null,
+  "cursor": 55766410362,
+  "count": 32,
+  "stats": {
+    "closeouts": [
+      {
+        "date": "2026-09-09",
+        "register_id": "02dcd191-ae2b-11e8-ed44-690eeeb88354",
+        "sales": 1,
+        "total_incl_cents": 7378,
+        "paid_cents": 7378
+      },
+      {
+        "date": "2026-09-09",
+        "register_id": "02dcd191-ae89-11e8-ed44-c5872920d965",
+        "sales": 16,
+        "total_incl_cents": 2658397,
+        "paid_cents": 2658665
+      },
+      {
+        "date": "2026-09-10",
+        "register_id": "02dcd191-ae89-11e8-ed44-c5872920d965",
+        "sales": 4,
+        "total_incl_cents": 29024,
+        "paid_cents": 29024
+      },
+      {
+        "date": "2026-09-11",
+        "register_id": "02dcd191-ae89-11e8-ed44-c5872920d965",
+        "sales": 2,
+        "total_incl_cents": 10353,
+        "paid_cents": 10353
+      }
+    ],
+    "open_layaway": {
+      "count": 3,
+      "deposits_cents": 1321745,
+      "eventual_value_cents": 1671871
+    },
+    "open_on_account": {
+      "count": 32,
+      "charged_cents": 3173380,
+      "paid_cents": 150000
+    },
+    "_balances_are_as_of_not_period": "open_layaway and open_on_account count EVERY open position regardless of `period`. They are balances, not period events. The closeouts array is period-scoped.",
+    "excluded": {
+      "SAVED": 3
+    },
+    "by_status": {
+      "CLOSED": 22,
+      "LAYBY": 1,
+      "ONACCOUNT": 5,
+      "LAYBY_CLOSED": 1,
+      "SAVED": 3
+    },
+    "project_sales": {
+      "count": 11,
+      "total_incl_cents": 4316417,
+      "refs": [
+        "402",
+        "416",
+        "418",
+        "422",
+        "424",
+        "426",
+        "429",
+        "446",
+        "447",
+        "449",
+        "461"
+      ]
+    },
+    "sync_signals": {
+      "has_unsynced_on_account_payments_true": 0,
+      "accounts_transaction_id_present": 0,
+      "_note": "Both were ZERO across all 55,820 sales on 2026-09-11. If the Lightspeed-to-QuickBooks accounts integration were running and stamping the sale record, something would be non-zero. Read alongside the QBO P&L. Not proof on its own."
+    }
+  }
+}

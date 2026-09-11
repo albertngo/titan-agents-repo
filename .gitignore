@@ -8,3 +8,10 @@ analysis/cache/
 # Lightspeed product bodies: regenerable from the API, ~9-41 MB per run.
 # The committed record of a pull is the -summary.json beside them.
 ingest/*/lightspeed-products.json
+
+# Lightspeed sale bodies: regenerable from the API, and ~108 MB for a full walk.
+# They also carry per-line cost, customer ids and notes with real customer names —
+# and this repo is public (platform-settings/requesters.json _privacy_note). The
+# committed record of a pull is the -summary.json beside them, which carries totals
+# and balances and no per-sale detail.
+ingest/*/lightspeed-sales.json

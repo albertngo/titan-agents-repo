@@ -197,6 +197,15 @@ Two independent observations, both from 2026-09-11:
   \$587,340** — cost of goods *exceeding* revenue, against a FY2025 that looked
   ordinary. That is the signature of sales not posting, not of selling below cost.
 
+Measured on 2026-09-11, and the sizes are not marginal:
+
+- **Open layaway: 3 sales, \$13,217.45 of customer deposits held.** QBO account
+  `169`, *Revenue Received in Advance – Lightspeed X* — built for precisely this —
+  holds **\$0.00**. Gap A, quantified from both sides.
+- **Open on-account: 32 sales, \$30,233.80 outstanding**, oldest from August 2025.
+  QBO Accounts Receivable (account `61`) reads **−\$20,100.75**. The two figures
+  differ in *sign*, not just magnitude.
+
 **Not proven** — the sync may post through a channel that never touches the sale
 record. Confirm in the Lightspeed admin before treating it as established, and do
 not state it as fact in any brief. But it is the first thing to check, because if
@@ -235,11 +244,13 @@ resolves to Notion Titan Projects' auto-increment `ID`, mirrored as `Project ID`
 on the Airtable Project Log. PP-447 and PP-449 were confirmed present on both
 sides, so the join works.
 
-> **It attributes almost no history.** Only **20 sales out of 55,820** carry a
-> `PP-###` note — 19 distinct projects, every one dated 2026, nearly all on
-> 2026-09-09 and 2026-09-10. **The convention is about two days old.** It is the
-> right key going forward and it attributes essentially zero historical project
-> revenue. A backfill needs a different method or an accepted, stated gap.
+> **It attributes little history, but more than first thought.** Measured over the
+> full cached walk: **21 PP-tagged sales out of 55,822**, starting in **July 2026**
+> — 1 in July, 9 in August ($39,797), 11 in September ($43,164). An earlier pass
+> read a truncated sample and concluded the convention was "two days old"; it is
+> roughly three months old. Still thin, and it attributes nothing before July 2026,
+> but an August close has real project coverage rather than none. Everything
+> earlier is an accepted, stated gap — no fuzzy backfill.
 
 ### "The Poreus account" did not survive contact with the data
 
