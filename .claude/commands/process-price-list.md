@@ -115,20 +115,40 @@ Otherwise, **in this order — it is a dependency, not a preference**:
    (partial/fuzzy) → specifications, principally `Product name`. Stop at the first tier
    that resolves cleanly.
    - **Rows returned** → this is an **update sheet**.
-   - **No rows** → **new supplier. Still produce the Airtable export** — the canonical
-     columns, every row `MatchStatus = new`, `Lightspeed ID` and `MatchedRecId` blank —
-     and stop before any import. The onboarding checklist gates the *import*, not the
-     extraction, and it is easier to answer with the data in hand. A missing supplier
-     subsection means "invent no supplier-specific rules", not "produce nothing": apply
-     the global rules and record every choice you had to make as an explicit assumption,
-     the **cost basis first — and for that one, ASK rather than assume** (step 7). It
-     changes every row and precedent runs three ways: dealer-cost-only (Canadian
-     Standard), MSRP needing a multiplier (CIF ×0.60, Olympia ×0.564), or both columns
-     printed (Biyork). **Once Albert answers, write it into that supplier's subsection
-     in bert-airtable-schema under `#### Cost column`** so the question is never asked
-     again.
+   - **No rows** → **new supplier to Airtable. Still produce the Airtable export** — the
+     canonical columns, every row `MatchStatus = new` — and stop before any import. The
+     onboarding checklist gates the *import*, not the extraction, and it is easier to
+     answer with the data in hand.
+     **Zero rows in Airtable does not mean zero rows in Lightspeed — check LS before
+     assuming `Lightspeed ID` is blank** (Albert, 2026-09-11, after Oakel/Golden Choice
+     both turned out to already be live at the POS). Pull the live catalogue filtered to
+     this supplier:
+     `python3 scripts/lightspeed_pull.py --supplier "<Notion Company value>"`. If that
+     returns nothing, **try again with just the first word** — Titan's LS
+     `supplier_name` is frequently shorter than or different from the Notion `Company` /
+     Airtable `Supplier` string (`GOLDEN CHOICE` is stored in LS as `GOLDEN`; a plain
+     substring filter misses it). If LS returns products, reconcile every extracted row
+     against them — colour + item#/collection + spec (width, thickness, grade, box
+     sf) per the `ls-id-backfill` algorithm — and backfill `Lightspeed ID` and
+     `LS Handle / Parent ID` wherever a live match exists, **before** attaching the file
+     or setting the row's Notion state. `MatchStatus` still reads `new` for every one of
+     these rows (they are new to *Airtable*) — only the LS identity columns are
+     affected; see the third state in step 3 below. Note whichever LS `supplier_name`
+     resolved the pull in `Salesperson notes` and flag it to Albert as a candidate for
+     `supplier_aliases` if it isn't an obvious casing match.
+     A missing supplier subsection means "invent no supplier-specific rules", not
+     "produce nothing": apply the global rules and record every choice you had to make
+     as an explicit assumption.
+     **Cost basis is not, by itself, a reason to escalate on a new supplier** — see
+     *Cost basis* in bert-airtable-schema: a single obvious printed `$/sf` column is the
+     cost, new supplier or not; only ask Albert (step 7) for the genuine special cases
+     (more than one candidate cost column, or an explicit MSRP/Recommended/Suggested
+     column needing a multiplier). **Once Albert answers a special case, write it into
+     that supplier's subsection in bert-airtable-schema under `#### Cost column`** so
+     the question is never asked again for that supplier.
      **Skip the Lightspeed file** only while the products are new to Lightspeed too —
-     if `Lightspeed ID`s have been reconciled in from an LS export, build it. See 5.4.
+     if `Lightspeed ID`s have been reconciled in (from the LS check above, or from a
+     separate LS export), build it. See 5.4.
    - **Verify the supplier's documented SKU format against the base before generating
      any SKU.** The skill has been wrong about this (Grandeur, 2026-09-03).
 3. **Write the identity fields into the Airtable sheet**, verbatim from the live record
@@ -259,9 +279,14 @@ the import, exactly as `Done` on the three trackers does.
 digit is consumed as a positional argument when this command runs, and the token is
 replaced by the caller's text. Keep a space after every `$` in prose.)
 
-**The cost basis is always one of these on a new supplier, and on any supplier whose
-sheet shows more than one candidate cost column.** Do not infer it from the numbers —
-a range like $ 1.69–$ 6.99/sf reads equally well as dealer cost or as budget retail. Name the columns
+**Cost basis is escalated only for the genuine special cases** (bert-airtable-schema,
+*Cost basis*): more than one candidate cost column on any supplier — new or established
+— or a column explicitly labelled MSRP/Recommended/Suggested that needs a multiplier
+not yet on file. **A new supplier with one obvious printed `$/sf` column is not, by
+itself, a reason to ask** — flooring is priced per square foot by convention, and a
+sheet states a genuine retail price only when it says so. Do not infer the special-case
+answer from the numbers alone, though — a range like $ 1.69–$ 6.99/sf reads equally well
+as dealer cost or as budget retail when two columns really are in play. Name the columns
 as printed, say which you would otherwise take as cost, and ask Albert to look at the
 file. Extraction may proceed; the import waits. Record his answer in the supplier's
 `#### Cost column` subsection so the next run inherits it.

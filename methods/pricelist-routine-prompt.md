@@ -78,12 +78,22 @@ setting Status, Airtable Sync, New Products, UUID Backfill, Review Reason and No
 
 Pricing has a default: the printed prices are the COST, Retail = Cost + $ 1.00, and
 an MSRP / suggested-retail column goes to MAP price ($/sf) and never to Cost/unit.
-Apply it and keep going — do not stop to ask which number is the cost.
+Apply it and keep going — do not stop to ask which number is the cost, new supplier
+or not. Only escalate the cost basis for the genuine special cases: more than one
+candidate cost column, or an explicit MSRP/Recommended/Suggested column needing a
+multiplier not yet on file for this supplier.
 
-Set Review Reason for every reason a human must check this row, taking the options
-from price_lists.status_values.review_reason. A supplier whose catalogue read
-returned ZERO rows is a NEW SUPPLIER: set New Supplier, and say in the summary that
-every detail needs a human check before upload. Add to Review Reason; never clear it.
+If the catalogue read returns ZERO rows, this is a NEW SUPPLIER to Airtable — set
+Review Reason: New Supplier and say in the summary that every detail needs a human
+check before upload. **Zero rows in Airtable does not mean zero rows in Lightspeed**
+— pull the LS catalogue filtered to this supplier before assuming Lightspeed ID is
+blank (`scripts/lightspeed_pull.py --supplier "<name>"`, retry with just the first
+word if the full name returns nothing), reconcile every row against whatever comes
+back, and backfill Lightspeed ID / LS Handle wherever a live match exists.
+
+Set Review Reason for every other reason a human must check this row, taking the
+options from price_lists.status_values.review_reason. Add to Review Reason; never
+clear it.
 
 **Finish**
 Commit and push the two generated files to the repo.
@@ -251,8 +261,13 @@ file must contain, even though nothing is written:
   duplicates the catalogue instead of updating it. Append two helper columns,
   `MatchedRecId` and `MatchStatus` (`matched` / `new` / `ambiguous`), so the reviewer
   can see what resolved and what did not; they are removed before import.
-- **No rows** → new supplier. The file is a fresh import sheet, and the
+- **No rows** → new supplier to Airtable. The file is a fresh import sheet, and the
   new-supplier onboarding checklist has to be settled before it is worth importing.
+  **Check Lightspeed too before leaving `Lightspeed ID` blank** — a supplier absent
+  from Airtable can already be live at the POS (`scripts/lightspeed_pull.py
+  --supplier "<name>"`, retry with just the first word if the full name misses).
+  Reconcile against whatever LS returns and backfill `Lightspeed ID` / `LS Handle`
+  wherever a match exists; `MatchStatus` still reads `new` either way.
 
 Cross-check the extracted SKU→price pairs against pdfplumber's own text before
 attaching. Never report either file as imported — producing the file is the whole

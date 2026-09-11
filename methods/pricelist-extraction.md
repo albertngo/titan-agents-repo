@@ -132,9 +132,19 @@ filtered to that supplier. The answer decides what the exported file *is*:
 
 - **Rows returned** → the file is an **update sheet** and must carry the existing
   SKUs. See the cascade below.
-- **No rows** → the file is a fresh import sheet. The supplier's select option, SKU
-  suffix, cost column and markup overrides have to be settled first — see the skill's
-  new-supplier onboarding checklist.
+- **No rows** → the file is new to **Airtable**, but check **Lightspeed too**
+  (`scripts/lightspeed_pull.py --supplier "<name>"`, retrying with just the first word
+  if the full Notion `Company` string returns nothing — Titan's LS `supplier_name` is
+  often shorter or different, e.g. `GOLDEN CHOICE` → `GOLDEN`) before assuming
+  `Lightspeed ID` is blank across the board. A supplier can be new to the catalogue
+  while already live at the POS (Canadian Standard; Oakel and Golden Choice,
+  2026-09-10) — see the command's step 5.2/5.3 for the full reconciliation. The
+  supplier's select option and SKU suffix still have to be settled first — see the
+  skill's new-supplier onboarding checklist. **The cost column does not need settling
+  before proceeding** unless the sheet shows the genuine special case (more than one
+  candidate column, or an explicit MSRP/Recommended column) — see *Cost basis* in the
+  skill. A single obvious `$/sf` price is the cost on a new supplier exactly as on an
+  established one.
 
 ## Order of operations — reconcile before you build anything
 

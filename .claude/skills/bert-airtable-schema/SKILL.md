@@ -1084,17 +1084,32 @@ Apply it and keep going. **Do not stop to ask which number is the cost.** The ol
 made this a blocking question on every new supplier, which held whole files behind one
 answer; the default settles the common case, and the exceptions get flagged instead.
 
-**Flag for human review — do not stop, and never guess — when:**
+**"New supplier" and "cost basis needs asking" are separate questions (Albert,
+2026-09-11 — a new supplier's cost is not, by itself, a reason to escalate).** Flooring
+price lists are priced per square foot as a matter of trade convention: a single printed
+`$/sf` column with nothing else competing for the role **is** the cost, on a brand-new
+supplier exactly as on an established one. A supplier states a genuine retail/MSRP price
+only when the sheet itself says so (`MSRP`, `Recommended`, `Suggested Retail` or
+equivalent) — absent that label, a printed number is a regular cost/sf, or a promo
+cost/sf when the file is tagged `Promo` (never a retail figure by default). Apply the
+default and keep going; do not create an escalation task or wait on Albert just because
+the supplier is new.
 
-1. **The supplier is new.** Flag the whole file: there is no subsection to inherit from,
-   nothing has been reconciled against a live record, and **every detail needs a human
-   check before upload**. Spec confidence and cost confidence are separate questions and
-   neither is earned yet.
-2. **The sheet has more than one candidate cost column**, or a number whose role is not
-   stated, on *any* supplier — a second price beside the first, an "MSRP"/"list"/"retail"
+**Flag the whole file for general review on a new supplier regardless** (Review Reason:
+`New Supplier`) — there is no subsection to inherit from and nothing has been reconciled
+against a live record, so specs, matching and everything else still need a human look.
+That flag is not, on its own, a hold on the cost figure.
+
+**Escalate — do not stop, and never guess — only for the genuine special cases:**
+
+1. **The sheet has more than one candidate cost column**, or a number whose role is not
+   stated, on *any* supplier (new or established) — a second price beside the first (e.g.
+   a Box price and a Skid price both marked "For Dealer"), an "MSRP"/"list"/"retail"
    column, a promo price beside a regular one, or a per-piece figure next to a per-sq-ft
    one. Ambiguity on an existing supplier means the *format changed*; the stored note may
    no longer describe the file in front of you.
+2. **A column is explicitly labelled MSRP/Recommended/Suggested** and needs a multiplier
+   that isn't yet on file for this supplier (CIF ×0.60, Olympia ×0.564 precedent).
 
 Flag concretely: name the columns as printed, say which one you took as cost under the
 default, and name the SKUs affected. Extraction proceeds; the **import** is what waits on
