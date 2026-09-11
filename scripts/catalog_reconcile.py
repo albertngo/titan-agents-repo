@@ -390,15 +390,21 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
 
         # ---- Lightspeed side ----
         if uuid:
-            ls_fields_out = ls_update_fields(row)
             live = ls_by_id or ls_by_sku
             before = ls_before(live)
-            if before and all(
-                    comparable(k, ls_fields_out.get(k)) == comparable(k, before.get(k))
-                    for k in ls_fields_out):
-                pass  # prices already agree; no Lightspeed write needed
+            ls_fields_out = ls_update_fields(row, live_sku=clean(before.get("sku")) if before else None)
+            # `product_codes` (the SKU rename) has no analog in ls_before()'s flat
+            # `sku` snapshot, so it is compared by presence, not value: it is only
+            # ever IN ls_fields_out when ls_update_fields() already determined the
+            # SKU differs from live (see live_sku above) — so its mere presence
+            # means "write", independent of whether prices also agree.
+            prices_agree = before is not None and all(
+                comparable(k, ls_fields_out.get(k)) == comparable(k, before.get(k))
+                for k in ls_fields_out if k != "product_codes")
+            if prices_agree and "product_codes" not in ls_fields_out:
+                pass  # nothing changed; no Lightspeed write needed
             else:
-                sku_changed = before is not None and comparable("sku", before.get("sku")) != comparable("sku", ls_fields_out.get("sku"))
+                sku_changed = "product_codes" in ls_fields_out
                 reason = "sku_rename_and_price_change" if (ls_sku_rename and sku_changed and len(ls_fields_out) > 1) \
                     else "sku_rename" if (ls_sku_rename and sku_changed) \
                     else "price_change"
@@ -550,24 +556,31 @@ def category_resolves(category, leaves):
     return any(want == leaf.split("/")[-1].strip().lower() for leaf in leaves)
 
 
-def ls_update_fields(row):
+def ls_update_fields(row, live_sku=None):
     """What a Lightspeed UPDATE writes: `sku`, prices, and nothing else.
 
     Deliberately minimal, because the obvious wider payload is destructive.
 
-    `sku` was added 2026-09-11 (Albert): "It is always my intention to use the
-    newly minted SKU to replace the existing SKU in LS... the products must
-    match from the LS ids." Unlike `name` below, a SKU carries no variant-family
-    grouping semantics in the Lightspeed API — renaming it does not merge or
-    split anything — so it is safe to include unconditionally. It is included
-    on every update (not just renames): when it already agrees with the live
-    value the before/after comparison a few lines down finds no change and
-    nothing is written differently; when it differs (a product this pipeline is
-    seeing for the first time, already live under its own Lightspeed-native
-    SKU), this is what actually performs the rename. The reconciler only
-    reaches this path once the row has already matched by live Lightspeed ID —
-    see the `ls_sku_rename` comment above — so the identity is never in doubt,
-    only the SKU string.
+    SKU renames were added 2026-09-11 (Albert): "It is always my intention to
+    use the newly minted SKU to replace the existing SKU in LS... the products
+    must match from the LS ids." Unlike `name` below, a SKU carries no
+    variant-family grouping semantics in the Lightspeed API — renaming it does
+    not merge or split anything — so it is safe whenever the row has matched by
+    live Lightspeed ID (see the `ls_sku_rename` comment above; identity is
+    never in doubt, only the SKU string).
+
+    **The field is `product_codes`, not `sku` (corrected 2026-09-11, live).**
+    The first real Oakel push 422'd: "Unknown field in payload" / `"sku"`. The
+    api_shape reference already said so (`update.details`: "product_codes,
+    price") but nobody had actually executed an update carrying a SKU change
+    before, so it went unverified. The 2.1 PUT `details` section wants
+    `product_codes: [{"code": "<sku>", "type": "CUSTOM"}]` — the same shape
+    `add_to_existing_family` already documented for a different endpoint. Only
+    included when the SKU genuinely differs from the live value (the caller
+    passes `live_sku`) — unlike price fields, an unconditional `product_codes`
+    would make the before/after comparison a few lines down never agree (its
+    key doesn't exist in `ls_before()`'s flat `sku` snapshot), turning every
+    ordinary price-only update, on every supplier, into a same-value "rename".
 
     `name` is NOT Airtable's `Product name`. Lightspeed holds a constructed name —
     "GRNDENG - Scandinavia European White Oak (Bora Bora) T&G | 6.5" x 19.05mm x RL
@@ -634,11 +647,14 @@ def ls_update_fields(row):
     """
     promo = as_number(row.get(PROMO_COST))
     cost = as_number(row.get("Cost/unit"))
-    return {k: v for k, v in (
-        ("sku", clean(row.get(SKU))),
+    fields = {k: v for k, v in (
         ("supply_price", promo if promo is not None else cost),
         ("price_excluding_tax", as_number(row.get("Retail price/unit"))),
     ) if v is not None}
+    new_sku = clean(row.get(SKU))
+    if new_sku and new_sku != live_sku:
+        fields["product_codes"] = [{"code": new_sku, "type": "CUSTOM"}]
+    return fields
 
 
 def ls_create_fields(row, ls_upload_row):

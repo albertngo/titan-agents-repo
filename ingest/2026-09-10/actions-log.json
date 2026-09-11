@@ -2792,6 +2792,30 @@
    "result": "executed",
    "error": null,
    "raw_ref": "2bfbef24-c1dc-4479-bf37-6fc103b3d1d4"
+  },
+  {
+   "logged_at": "2026-09-10T22:19:34-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "batch for Oakel",
+   "content_summary": "Batch stopped: HTTP 422 on https://flooru.retail.lightspeed.app/api/2.1/products/f56aac7a-502c-41e0-ae64-afe1e7b1d334: {\n  \"error\": \"Unknown field in payload\",\n  \"fields\": {\n    \"fields\": \" \\\"sku\\\"\"\n  }\n}",
+   "approved_by": "Albert (chat, 2026-09-11) -- Lightspeed UPDATE actions only, creates held pending category-mapping fix via catalog-approval-oakel-updates-only.json",
+   "result": "failed",
+   "error": "HTTP 422 on https://flooru.retail.lightspeed.app/api/2.1/products/f56aac7a-502c-41e0-ae64-afe1e7b1d334: {\n  \"error\": \"Unknown field in payload\",\n  \"fields\": {\n    \"fields\": \" \\\"sku\\\"\"\n  }\n}",
+   "raw_ref": null,
+   "raw_ref_action_id": null
+  },
+  {
+   "logged_at": "2026-09-10T22:22:35-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "batch for Oakel",
+   "content_summary": "Batch stopped: HTTP 422 on https://flooru.retail.lightspeed.app/api/2.1/products/f56aac7a-502c-41e0-ae64-afe1e7b1d334: {\n  \"error\": \"Unknown field in payload\",\n  \"fields\": {\n    \"fields\": \" \\\"supply_price\\\"\"\n  }\n}",
+   "approved_by": "Albert (chat, 2026-09-11) -- single test action before full batch via test_one_approval.json",
+   "result": "failed",
+   "error": "HTTP 422 on https://flooru.retail.lightspeed.app/api/2.1/products/f56aac7a-502c-41e0-ae64-afe1e7b1d334: {\n  \"error\": \"Unknown field in payload\",\n  \"fields\": {\n    \"fields\": \" \\\"supply_price\\\"\"\n  }\n}",
+   "raw_ref": null,
+   "raw_ref_action_id": null
   }
  ]
 }

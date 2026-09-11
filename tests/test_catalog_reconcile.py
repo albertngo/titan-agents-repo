@@ -142,7 +142,8 @@ class TestSkuRename(unittest.TestCase):
         actions, blocked, _ = run(rows, ls)
         self.assertEqual(blocked, [])
         update = next(a for a in actions if a["target_system"] == "lightspeed")
-        self.assertEqual(update["fields"]["sku"], "ENG-OAKL-0002")
+        self.assertEqual(update["fields"]["product_codes"],
+                         [{"code": "ENG-OAKL-0002", "type": "CUSTOM"}])
         self.assertIn("sku_rename", update["reason"])
 
     def test_unverified_match_still_blocks(self):
@@ -608,16 +609,24 @@ class TestPriceMapping(unittest.TestCase):
         """The destructive payload. LS holds a constructed name and its own
         supplier spelling; writing Airtable's would rename products in the POS.
 
-        `sku` is the one deliberate exception (Albert, 2026-09-11) — see
-        TestSkuRename below for why it is safe where those are not: it carries
-        no variant-family grouping semantics, unlike `name`."""
+        `product_codes` (SKU) is the one deliberate exception (Albert,
+        2026-09-11) — see TestSkuRename below for why it is safe where those
+        are not: it carries no variant-family grouping semantics, unlike
+        `name`. Only appears when it actually changed (no `live_sku` passed
+        here, so the row's SKU counts as new)."""
         fields = cr.ls_update_fields(row(**{"Product name": "Grandeur 6.5\" EWO",
                                             "Supplier": "Grandeur", "Brand": "Grandeur",
                                             "Category": "Engineered hardwood"}))
         for forbidden in ("name", "supplier_name", "brand_name", "product_category",
-                          "handle"):
+                          "handle", "sku"):
             self.assertNotIn(forbidden, fields)
-        self.assertEqual(set(fields), {"sku", "supply_price", "price_excluding_tax"})
+        self.assertEqual(set(fields), {"product_codes", "supply_price", "price_excluding_tax"})
+        self.assertEqual(fields["product_codes"], [{"code": "X-1", "type": "CUSTOM"}])
+
+    def test_an_unchanged_sku_omits_product_codes(self):
+        """The common case, every other supplier: no rename in flight."""
+        fields = cr.ls_update_fields(row(SKU="X-1"), live_sku="X-1")
+        self.assertNotIn("product_codes", fields)
 
     def test_mapping_holds_across_every_matched_row(self):
         checked = 0
