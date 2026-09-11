@@ -491,5 +491,18 @@
     },
     "brief": true,
     "note": "scheduled run; local branch ledger last showed 2026-09-02, but all 5 ingesters cross-checked unmerged session branches and vault 01_daily notes and confirmed real runs happened through 2026-09-07 (branch-isolation artifact, not a real gap) -- no catch-up widening needed; bookkeeper still has no QBO/Intuit MCP connector (10th consecutive failed run since 2026-07-26)"
+  },
+  {
+    "date": "2026-09-11",
+    "run_at": "2026-09-11T08:15:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "error",
+      "bookkeeper": "error",
+      "notion": "error",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; local branch ledger last showed 2026-09-08, but titan-vault's 01_daily/2026-09-09.md and 2026-09-10.md (read directly from the vault repo) confirm real five-source daily-ingest runs happened both days -- same branch-isolation artifact as prior entries, not a real gap. outlook: this session's egress proxy returned 403 on CONNECT to login.microsoftonline.com before any token request completed (org policy denial, not an expired credential) -- unscanned since 2026-09-08, now a 3-day gap to catch up. notion: query_data_sources is plan_required/full_version_required workspace-wide (confirmed via self-diagnostic fetch) -- a billing/plan gate, distinct from the 2026-07-28 rate-limit outage; dedupe snapshot carried forward unchanged from 2026-09-08. bookkeeper: still no QBO/Intuit MCP connector (11th consecutive failed run since 2026-07-26)."
   }
 ]
