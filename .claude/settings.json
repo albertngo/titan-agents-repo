@@ -29,6 +29,12 @@
             "command": "git -C \"${CLAUDE_PROJECT_DIR:-.}\" pull --ff-only 2>&1 || echo 'git pull --ff-only failed (offline or diverged) — continuing with local state'",
             "timeout": 30,
             "statusMessage": "Pulling latest from GitHub…"
+          },
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/session-start.sh",
+            "timeout": 15,
+            "statusMessage": "Populating .env from environment credentials…"
           }
         ]
       }

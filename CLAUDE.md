@@ -351,3 +351,17 @@ to). If a required credential is only present as a cloud env var, treat it as
 missing: report the exact variable name and stop, per the consuming command's
 "Before you start" section (e.g. `/catalog-sync`'s Lightspeed check) — never fall
 back to the cloud var to get past it.
+
+**Superseded for cloud/VM sessions (2026-09-11, Albert).** `.claude/hooks/session-start.sh`
+runs on every `SessionStart` (remote only, gated on `$CLAUDE_CODE_REMOTE`) and copies any
+`.env.example`-documented key from the environment's own env vars into `.env`, whenever
+`.env` doesn't already hold a non-empty value for that key — it never overwrites a value
+someone set deliberately. This is a conscious, explicit trade against the paragraph above:
+Albert decided the friction of re-confirming a cloud-provisioned credential every run
+wasn't earning its keep, and chose to have the environment provision `.env` automatically
+instead of stopping to ask each time. The check above ("confirm it actually comes from
+`.env`") still holds literally — by the time any command or agent runs, the value really is
+in `.env` — but the human-in-the-loop step it used to force is now a one-time decision made
+here, not a per-run one. If a credential still reads as missing after this hook has run,
+it is genuinely absent from the environment (not just cloud-only) — report the variable name
+and stop, same as before.
