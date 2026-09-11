@@ -1,7 +1,7 @@
 {
  "contract_version": "catalog-plan-1",
  "supplier": "Golden Choice",
- "run_at": "2026-09-10T22:22:27.551207-04:00",
+ "run_at": "2026-09-10T22:52:07.201824-04:00",
  "status": "partial",
  "inputs": [
   {
@@ -26,6 +26,7 @@
   "value": "dealer-ambiguous",
   "confirmed_by": "ESCALATED - Net Box Price taken as placeholder pending Albert (Box vs Skid)"
  },
+ "ls_supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
  "summary": {
   "airtable_backfill_ls_id": 92,
   "airtable_upsert": 183,
@@ -3736,7 +3737,12 @@
    "ls_id": "88db372e-cd99-422e-9bfc-5e57af947289",
    "handle": "gollam---laminate-t-mould-laminate-1000s---gollmtm-----8ft--piece---sfb",
    "fields": {
-    "supply_price": 17.0,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 17.0
+     }
+    ],
     "price_excluding_tax": 18.0,
     "product_codes": [
      {
@@ -3769,7 +3775,12 @@
    "ls_id": "2415d61a-7c39-446f-9a5f-b9afaea27949",
    "handle": "gollam---laminate-reducer-laminate-1000s---gollmred-----8ft--piece---sfb",
    "fields": {
-    "supply_price": 17.0,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 17.0
+     }
+    ],
     "price_excluding_tax": 18.0,
     "product_codes": [
      {
@@ -3802,7 +3813,12 @@
    "ls_id": "159875a4-5cc9-4cea-a00c-8ed7e694fc9e",
    "handle": "gollam---laminate-nosing-laminate-1000s---gollmns-----8ft--piece---sfb",
    "fields": {
-    "supply_price": 20.0,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 20.0
+     }
+    ],
     "price_excluding_tax": 21.0,
     "product_codes": [
      {
@@ -3835,7 +3851,12 @@
    "ls_id": "3c83d21a-f14d-46bb-9de7-1c5c1f7e67a9",
    "handle": "golvin---vinyl-t-mould-vinyl-2000s---golvtm-----8ft--piece---sfb",
    "fields": {
-    "supply_price": 20.0,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 20.0
+     }
+    ],
     "price_excluding_tax": 21.0,
     "product_codes": [
      {
@@ -3868,7 +3889,12 @@
    "ls_id": "1b6e7ae9-6d8b-4a09-a299-6a757a0ab5e3",
    "handle": "golvin---vinyl-reducer-vinyl-2000s---golvred-----8ft--piece---sfb",
    "fields": {
-    "supply_price": 20.0,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 20.0
+     }
+    ],
     "price_excluding_tax": 21.0,
     "product_codes": [
      {
@@ -3901,7 +3927,12 @@
    "ls_id": "5f28fe96-97b8-40ba-b5bc-8ce17a32866c",
    "handle": "golvin---vinyl-nosing-vinyl-2000s---golvns-----8ft--piece---sfb",
    "fields": {
-    "supply_price": 23.0,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 23.0
+     }
+    ],
     "price_excluding_tax": 24.0,
     "product_codes": [
      {
@@ -4601,7 +4632,12 @@
    "ls_id": "a244e429-77eb-44ba-9818-e4e5a332ae0a",
    "handle": "55546959",
    "fields": {
-    "supply_price": 3.59,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.59
+     }
+    ],
     "price_excluding_tax": 4.59,
     "product_codes": [
      {
@@ -4634,7 +4670,12 @@
    "ls_id": "e37510f1-9de4-49c9-9dea-8c6e1a045b26",
    "handle": "55546948",
    "fields": {
-    "supply_price": 3.59,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.59
+     }
+    ],
     "price_excluding_tax": 4.59,
     "product_codes": [
      {
@@ -4667,7 +4708,12 @@
    "ls_id": "bdd18fb0-fe15-4e89-bd02-f8a231247c64",
    "handle": "55546965",
    "fields": {
-    "supply_price": 3.59,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.59
+     }
+    ],
     "price_excluding_tax": 4.59,
     "product_codes": [
      {
@@ -4700,7 +4746,12 @@
    "ls_id": "4e7f8e37-cbea-429a-b011-78befc3302ab",
    "handle": "55546961",
    "fields": {
-    "supply_price": 3.59,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.59
+     }
+    ],
     "price_excluding_tax": 4.59,
     "product_codes": [
      {
@@ -4733,7 +4784,12 @@
    "ls_id": "a7eed9bc-810b-4f23-ac6e-ebfac8a55cb4",
    "handle": "55546949",
    "fields": {
-    "supply_price": 3.59,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.59
+     }
+    ],
     "price_excluding_tax": 4.59,
     "product_codes": [
      {
@@ -4766,7 +4822,12 @@
    "ls_id": "43374c15-1370-4c69-9ecb-df021a29f94d",
    "handle": "55546954",
    "fields": {
-    "supply_price": 3.59,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.59
+     }
+    ],
     "price_excluding_tax": 4.59,
     "product_codes": [
      {
@@ -4799,7 +4860,12 @@
    "ls_id": "3c57fb8e-40ae-49a6-b299-fe6249c39c28",
    "handle": "55546950",
    "fields": {
-    "supply_price": 3.79,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.79
+     }
+    ],
     "price_excluding_tax": 4.79,
     "product_codes": [
      {
@@ -4832,7 +4898,12 @@
    "ls_id": "4d8cfc19-0faa-41c6-bc65-a134c87a4658",
    "handle": "55546960",
    "fields": {
-    "supply_price": 3.79,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.79
+     }
+    ],
     "price_excluding_tax": 4.79,
     "product_codes": [
      {
@@ -4865,7 +4936,12 @@
    "ls_id": "c431adb3-b350-4687-8d4f-e2dd6e7f599a",
    "handle": "55546967",
    "fields": {
-    "supply_price": 3.79,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.79
+     }
+    ],
     "price_excluding_tax": 4.79,
     "product_codes": [
      {
@@ -4898,7 +4974,12 @@
    "ls_id": "0fa41da1-b7a1-4483-bf72-e6cb894dc734",
    "handle": "55546955",
    "fields": {
-    "supply_price": 3.79,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.79
+     }
+    ],
     "price_excluding_tax": 4.79,
     "product_codes": [
      {
@@ -4931,7 +5012,12 @@
    "ls_id": "de731516-b0ab-424a-b88f-74cf8039dfe5",
    "handle": "55546963",
    "fields": {
-    "supply_price": 3.79,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.79
+     }
+    ],
     "price_excluding_tax": 4.79,
     "product_codes": [
      {
@@ -4964,7 +5050,12 @@
    "ls_id": "7b74043d-216e-4e81-9c3b-06be582d6056",
    "handle": "55546952",
    "fields": {
-    "supply_price": 3.79,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.79
+     }
+    ],
     "price_excluding_tax": 4.79,
     "product_codes": [
      {
@@ -4997,7 +5088,12 @@
    "ls_id": "e3544475-e628-4ec1-b1a5-5dab95ea7cf7",
    "handle": "55546969",
    "fields": {
-    "supply_price": 3.79,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.79
+     }
+    ],
     "price_excluding_tax": 4.79,
     "product_codes": [
      {
@@ -5030,7 +5126,12 @@
    "ls_id": "2463f5b1-a0f5-4cea-8d6d-4da7cb16c7b6",
    "handle": "55546956",
    "fields": {
-    "supply_price": 3.79,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.79
+     }
+    ],
     "price_excluding_tax": 4.79,
     "product_codes": [
      {
@@ -5063,7 +5164,12 @@
    "ls_id": "f3f6c52c-3bb6-4e15-9b98-78cda3a6d593",
    "handle": "55546945",
    "fields": {
-    "supply_price": 3.59,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.59
+     }
+    ],
     "price_excluding_tax": 4.59,
     "product_codes": [
      {
@@ -5096,7 +5202,12 @@
    "ls_id": "d926c8e5-3082-4164-8e33-76ed986e035a",
    "handle": "55546947",
    "fields": {
-    "supply_price": 3.59,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.59
+     }
+    ],
     "price_excluding_tax": 4.59,
     "product_codes": [
      {
@@ -5129,7 +5240,12 @@
    "ls_id": "a9d6bbe9-15b3-4bd2-9894-1741a950372a",
    "handle": "55546962",
    "fields": {
-    "supply_price": 3.59,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.59
+     }
+    ],
     "price_excluding_tax": 4.59,
     "product_codes": [
      {
@@ -5162,7 +5278,12 @@
    "ls_id": "c4fd38e0-efd5-4365-a642-56405212517f",
    "handle": "55546951",
    "fields": {
-    "supply_price": 3.59,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.59
+     }
+    ],
     "price_excluding_tax": 4.59,
     "product_codes": [
      {
@@ -5195,7 +5316,12 @@
    "ls_id": "306c7adf-4d45-4da6-9806-ed313d444d68",
    "handle": "55546976",
    "fields": {
-    "supply_price": 4.05,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 4.05
+     }
+    ],
     "price_excluding_tax": 5.05,
     "product_codes": [
      {
@@ -5228,7 +5354,12 @@
    "ls_id": "68b445a7-2655-4013-9bcd-b463a2421319",
    "handle": "55546973",
    "fields": {
-    "supply_price": 4.05,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 4.05
+     }
+    ],
     "price_excluding_tax": 5.05,
     "product_codes": [
      {
@@ -5261,7 +5392,12 @@
    "ls_id": "e67660a2-6902-457a-ab67-1a1ae23a5604",
    "handle": "55546964",
    "fields": {
-    "supply_price": 3.59,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.59
+     }
+    ],
     "price_excluding_tax": 4.59,
     "product_codes": [
      {
@@ -5294,7 +5430,12 @@
    "ls_id": "dce99d03-134e-40c5-a0aa-a44061aa3d9e",
    "handle": "55546946",
    "fields": {
-    "supply_price": 3.59,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.59
+     }
+    ],
     "price_excluding_tax": 4.59,
     "product_codes": [
      {
@@ -5327,7 +5468,12 @@
    "ls_id": "edb1aeae-f0f1-4fb2-83f0-b2f690346ce2",
    "handle": "55546944",
    "fields": {
-    "supply_price": 3.59,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.59
+     }
+    ],
     "price_excluding_tax": 4.59,
     "product_codes": [
      {
@@ -5360,7 +5506,12 @@
    "ls_id": "a8a9bcef-70ad-4cc8-b0d7-63fac87ba3a8",
    "handle": "55546978",
    "fields": {
-    "supply_price": 3.65,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.65
+     }
+    ],
     "price_excluding_tax": 4.65,
     "product_codes": [
      {
@@ -5393,7 +5544,12 @@
    "ls_id": "5481ebd2-4f97-429d-9fb0-7f8bf4a93d78",
    "handle": "55546977",
    "fields": {
-    "supply_price": 4.09,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 4.09
+     }
+    ],
     "price_excluding_tax": 5.09,
     "product_codes": [
      {
@@ -5426,7 +5582,12 @@
    "ls_id": "948b3f0a-5b2c-4b44-9204-4f9a3661b3a1",
    "handle": "55546975",
    "fields": {
-    "supply_price": 3.59,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 3.59
+     }
+    ],
     "price_excluding_tax": 4.59,
     "product_codes": [
      {
@@ -5459,7 +5620,12 @@
    "ls_id": "dbc95b94-b11e-41f0-886b-aba18d18afc2",
    "handle": "55546974",
    "fields": {
-    "supply_price": 4.89,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 4.89
+     }
+    ],
     "price_excluding_tax": 5.89,
     "product_codes": [
      {
@@ -5492,7 +5658,12 @@
    "ls_id": "51102c03-98b1-4283-833a-d074425f0267",
    "handle": "gollam----universal-oak---gc1010--ac3---48-x-5-x-123mm---1993--1997sfb",
    "fields": {
-    "supply_price": 1.29,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.29
+     }
+    ],
     "price_excluding_tax": 2.29,
     "product_codes": [
      {
@@ -5525,7 +5696,12 @@
    "ls_id": "265ffb0b-b60c-43ac-b7cf-a35b1d7b5662",
    "handle": "gollam----solar-oak---gc1011--ac3---48-x-5-x-123mm---1993--1997sfb",
    "fields": {
-    "supply_price": 1.29,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.29
+     }
+    ],
     "price_excluding_tax": 2.29,
     "product_codes": [
      {
@@ -5558,7 +5734,12 @@
    "ls_id": "aa00b71f-9a66-4969-9b73-4873d58db630",
    "handle": "gollam----terra-oak---gc1015--ac3---48-x-5-x-123mm---1993--1997sfb",
    "fields": {
-    "supply_price": 1.29,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.29
+     }
+    ],
     "price_excluding_tax": 2.29,
     "product_codes": [
      {
@@ -5591,7 +5772,12 @@
    "ls_id": "850c2669-e12a-4e66-9f6a-8ba054e125f2",
    "handle": "gollam----kona-oak---gc1020--ac3---48-x-566-x-123mm---1883sfb",
    "fields": {
-    "supply_price": 1.49,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.49
+     }
+    ],
     "price_excluding_tax": 2.49,
     "product_codes": [
      {
@@ -5624,7 +5810,12 @@
    "ls_id": "73274692-0553-4c58-a7d7-dcbf7a46a82a",
    "handle": "gollam----rustic-oak---gc1022--ac3---48-x-566-x-123mm---1883sfb",
    "fields": {
-    "supply_price": 1.49,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.49
+     }
+    ],
     "price_excluding_tax": 2.49,
     "product_codes": [
      {
@@ -5657,7 +5848,12 @@
    "ls_id": "c6ad448e-69c5-4ffd-8c3f-d4a03b787b5a",
    "handle": "gollam----stone-trend---gc1023--ac3---48-x-566-x-123mm---1883sfb",
    "fields": {
-    "supply_price": 1.49,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.49
+     }
+    ],
     "price_excluding_tax": 2.49,
     "product_codes": [
      {
@@ -5690,7 +5886,12 @@
    "ls_id": "dd64034d-18a9-4611-af9b-4402f88f109b",
    "handle": "gollam----ivory-traver---gc1030--ac3---48-x-65-x-123mm---2158sfb",
    "fields": {
-    "supply_price": 1.49,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.49
+     }
+    ],
     "price_excluding_tax": 2.49,
     "product_codes": [
      {
@@ -5723,7 +5924,12 @@
    "ls_id": "0329e3bb-b45d-4eb1-89e0-d5052edeaa37",
    "handle": "gollam----universal-oak---gc1031--ac3---48-x-65-x-123mm---2158sfb",
    "fields": {
-    "supply_price": 1.49,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.49
+     }
+    ],
     "price_excluding_tax": 2.49,
     "product_codes": [
      {
@@ -5756,7 +5962,12 @@
    "ls_id": "167ce783-0e48-4148-a5bf-75169bb5eb16",
    "handle": "gollam----puro-grey---gc1032--ac3---48-x-65-x-123mm---2158sfb",
    "fields": {
-    "supply_price": 1.49,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.49
+     }
+    ],
     "price_excluding_tax": 2.49,
     "product_codes": [
      {
@@ -5789,7 +6000,12 @@
    "ls_id": "076fb4c3-4840-48c5-9eb6-8541aa19ba4c",
    "handle": "gollam----herringbone---gc1040--ac3---244872-x-767-x-123mm---2292sfb",
    "fields": {
-    "supply_price": 1.59,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.59
+     }
+    ],
     "price_excluding_tax": 2.59,
     "product_codes": [
      {
@@ -5822,7 +6038,12 @@
    "ls_id": "9736651e-b34d-4280-a920-870f2fbce451",
    "handle": "gollam----thermo-ash---gc1042--ac3---244872-x-767-x-123mm---2292sfb",
    "fields": {
-    "supply_price": 1.59,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.59
+     }
+    ],
     "price_excluding_tax": 2.59,
     "product_codes": [
      {
@@ -6246,7 +6467,12 @@
    "ls_id": "ff7cb7d2-678f-44f4-b979-3659651d3364",
    "handle": "golden-choice--light-mist--laminate--2250sfb",
    "fields": {
-    "supply_price": 2.02,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 2.02
+     }
+    ],
     "price_excluding_tax": 3.02,
     "product_codes": [
      {
@@ -6302,7 +6528,12 @@
    "ls_id": "cf40739d-7526-4fbf-a0b8-3b6634ba3f4d",
    "handle": "golvin----teak-manilla---gc2010-----48-x-708-x-7mm---2364sfb",
    "fields": {
-    "supply_price": 2.09,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 2.09
+     }
+    ],
     "price_excluding_tax": 3.09,
     "product_codes": [
      {
@@ -6335,7 +6566,12 @@
    "ls_id": "183f185a-5c10-4d7b-ae73-c807aa1891fc",
    "handle": "golvin----torino-oak---gc2011-----48-x-708-x-7mm---2364sfb",
    "fields": {
-    "supply_price": 2.09,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 2.09
+     }
+    ],
     "price_excluding_tax": 3.09,
     "product_codes": [
      {
@@ -6368,7 +6604,12 @@
    "ls_id": "ed48df49-a398-47c2-99cb-9971f33c8fff",
    "handle": "golvin----rusty-sand---gc2012-----48-x-708-x-7mm---2364sfb",
    "fields": {
-    "supply_price": 2.09,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 2.09
+     }
+    ],
     "price_excluding_tax": 3.09,
     "product_codes": [
      {
@@ -6401,7 +6642,12 @@
    "ls_id": "e9ea458c-91c5-4124-809e-c966f77be760",
    "handle": "golvin----bianco-zen---gc2015-----48-x-708-x-7mm---2364sfb",
    "fields": {
-    "supply_price": 2.09,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 2.09
+     }
+    ],
     "price_excluding_tax": 3.09,
     "product_codes": [
      {
@@ -6457,7 +6703,12 @@
    "ls_id": "e410d9d8-722d-4d54-88fc-63704a50ffc3",
    "handle": "golvin----parma-oak---gc2020-----48-x-717-x-4mm---239sfb",
    "fields": {
-    "supply_price": 1.25,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.25
+     }
+    ],
     "price_excluding_tax": 2.25,
     "product_codes": [
      {
@@ -6490,7 +6741,12 @@
    "ls_id": "3b99f8d3-5cb7-44d7-98f4-ce5547f7f132",
    "handle": "golvin----black-zen---gc2021-----48-x-717-x-4mm---239sfb",
    "fields": {
-    "supply_price": 1.25,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.25
+     }
+    ],
     "price_excluding_tax": 2.25,
     "product_codes": [
      {
@@ -6523,7 +6779,12 @@
    "ls_id": "e445b054-4ec0-4f54-b133-e73e27802b06",
    "handle": "golvin----black-zen---gc2021-55-----717-x-48-x-55mm---239sfb",
    "fields": {
-    "supply_price": 1.49,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.49
+     }
+    ],
     "price_excluding_tax": 2.49,
     "product_codes": [
      {
@@ -6556,7 +6817,12 @@
    "ls_id": "65ebad22-6c45-48aa-8db9-755d19c64685",
    "handle": "golvin----paprino-oak---gc2022-----717-x-48-x-55mm---239sfb",
    "fields": {
-    "supply_price": 1.49,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.49
+     }
+    ],
     "price_excluding_tax": 2.49,
     "product_codes": [
      {
@@ -6589,7 +6855,12 @@
    "ls_id": "2c1d8c83-5ede-40b8-8ce7-8aa6a530f5cb",
    "handle": "golvin----majestic-brown---gc2023-----717-x-48-x-55mm---239sfb",
    "fields": {
-    "supply_price": 1.49,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.49
+     }
+    ],
     "price_excluding_tax": 2.49,
     "product_codes": [
      {
@@ -6622,7 +6893,12 @@
    "ls_id": "240377dd-47fa-4fc0-a5d0-a83b4f4c8294",
    "handle": "golvin----allure-grey---gc2026-55-----717-x-48-x-55mm---239sfb",
    "fields": {
-    "supply_price": 1.49,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.49
+     }
+    ],
     "price_excluding_tax": 2.49,
     "product_codes": [
      {
@@ -6655,7 +6931,12 @@
    "ls_id": "06207d81-3626-4ac4-aca5-9b56654f63ae",
    "handle": "golvin----vega-nero---gc2030-----48-x-717-x-5mm---156sfb",
    "fields": {
-    "supply_price": 1.43,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.43
+     }
+    ],
     "price_excluding_tax": 2.43,
     "product_codes": [
      {
@@ -6688,7 +6969,12 @@
    "ls_id": "ac12a95d-daa2-46ca-b37f-6c2163762a71",
    "handle": "golvin----vega-nero---gc2030-65-----717-x-48-x-65mm---2151sfb",
    "fields": {
-    "supply_price": 1.69,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.69
+     }
+    ],
     "price_excluding_tax": 2.69,
     "product_codes": [
      {
@@ -6721,7 +7007,12 @@
    "ls_id": "8aa7ce99-871e-45b0-bfc0-b394fc80479d",
    "handle": "golvin----crema-zen---gc2031-----717-x-48-x-65mm---2151sfb",
    "fields": {
-    "supply_price": 1.69,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.69
+     }
+    ],
     "price_excluding_tax": 2.69,
     "product_codes": [
      {
@@ -6754,7 +7045,12 @@
    "ls_id": "fa768477-8515-4798-ae85-f7437a9b25ca",
    "handle": "golvin----lisbon-oak---gc2032-----717-x-48-x-65mm---2151sfb",
    "fields": {
-    "supply_price": 1.69,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.69
+     }
+    ],
     "price_excluding_tax": 2.69,
     "product_codes": [
      {
@@ -6787,7 +7083,12 @@
    "ls_id": "6e44bbbc-d1ea-464f-b4a4-dd4be93504b6",
    "handle": "golvin----mono-serra---gc2033-----717-x-48-x-65mm---2151sfb",
    "fields": {
-    "supply_price": 1.69,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.69
+     }
+    ],
     "price_excluding_tax": 2.69,
     "product_codes": [
      {
@@ -6820,7 +7121,12 @@
    "ls_id": "feba0456-5ae2-4de4-a3ff-da0154aa6920",
    "handle": "golvin----grey-oak---gc2036-----717-x-48-x-65mm---2151sfb",
    "fields": {
-    "supply_price": 1.69,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.69
+     }
+    ],
     "price_excluding_tax": 2.69,
     "product_codes": [
      {
@@ -6853,7 +7159,12 @@
    "ls_id": "0f1a1475-5210-4642-af4a-dbd3c0b52aa9",
    "handle": "golvin----onyx-grey---gc2040-----122-x-24--x-5mm---2035sfb",
    "fields": {
-    "supply_price": 1.43,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.43
+     }
+    ],
     "price_excluding_tax": 2.43,
     "product_codes": [
      {
@@ -6978,7 +7289,12 @@
    "ls_id": "955080ab-eea1-4b3f-ba20-c592f0a0842b",
    "handle": "golvin----marble-grey---gc2045-----609mm-x-3048mm-x-5mm---1999sfb",
    "fields": {
-    "supply_price": 1.46,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.46
+     }
+    ],
     "price_excluding_tax": 2.46,
     "product_codes": [
      {
@@ -7011,7 +7327,12 @@
    "ls_id": "c69838d0-8ca5-467c-894c-c3ee6abba296",
    "handle": "golvin----slate-grey---gc2046-----609mm-x-3048mm-x-5mm---1999sfb",
    "fields": {
-    "supply_price": 1.46,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.46
+     }
+    ],
     "price_excluding_tax": 2.46,
     "product_codes": [
      {
@@ -7044,7 +7365,12 @@
    "ls_id": "5983967e-bd9c-49e4-9ccb-923c28a66d66",
    "handle": "golvin----nature-slate---gc2047-----609mm-x-3048mm-x-5mm---1999sfb",
    "fields": {
-    "supply_price": 1.46,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.46
+     }
+    ],
     "price_excluding_tax": 2.46,
     "product_codes": [
      {
@@ -7077,7 +7403,12 @@
    "ls_id": "707f00c3-2960-4fd1-9198-f03ab567752f",
    "handle": "golvin----midland-stone---gc2048-----609mm-x-3048mm-x-5mm---1999sfb",
    "fields": {
-    "supply_price": 1.46,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.46
+     }
+    ],
     "price_excluding_tax": 2.46,
     "product_codes": [
      {
@@ -7110,7 +7441,12 @@
    "ls_id": "8bfbc55f-0534-478e-b749-187fc59c737c",
    "handle": "golvin-------gc2050-----725-x-48-x-2mm---48334sfb",
    "fields": {
-    "supply_price": 1.03,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.03
+     }
+    ],
     "price_excluding_tax": 2.03,
     "product_codes": [
      {
@@ -7143,7 +7479,12 @@
    "ls_id": "966953d3-a492-4462-a57c-c1cdf629b868",
    "handle": "golvin-------gc2051-----725-x-48-x-2mm---48334sfb",
    "fields": {
-    "supply_price": 1.03,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.03
+     }
+    ],
     "price_excluding_tax": 2.03,
     "product_codes": [
      {
@@ -7176,7 +7517,12 @@
    "ls_id": "5c284ee4-b652-454d-b6a1-313526218441",
    "handle": "golvin-------gc2052-----725-x-48-x-2mm---48334sfb",
    "fields": {
-    "supply_price": 1.03,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.03
+     }
+    ],
     "price_excluding_tax": 2.03,
     "product_codes": [
      {
@@ -7209,7 +7555,12 @@
    "ls_id": "45e511c6-3685-4a1c-8d90-82f0680d43d1",
    "handle": "golvin-------gc2053-----725-x-48-x-2mm---48334sfb",
    "fields": {
-    "supply_price": 1.03,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.03
+     }
+    ],
     "price_excluding_tax": 2.03,
     "product_codes": [
      {
@@ -7265,7 +7616,12 @@
    "ls_id": "e3c96fa5-0087-46f1-a1fc-8f9586496990",
    "handle": "golvin----charm-oak-snow---gc2061-----717-x-48-x-5mm---26--2898sfb",
    "fields": {
-    "supply_price": 1.43,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.43
+     }
+    ],
     "price_excluding_tax": 2.43,
     "product_codes": [
      {
@@ -7321,7 +7677,12 @@
    "ls_id": "92c3f944-2e97-43b2-b537-b818591da599",
    "handle": "golvin----mediterian-oak---gc2062-----717-x-48-x-5mm---26--2898sfb",
    "fields": {
-    "supply_price": 1.43,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.43
+     }
+    ],
     "price_excluding_tax": 2.43,
     "product_codes": [
      {
@@ -7377,7 +7738,12 @@
    "ls_id": "0a4bc3ff-e1de-4101-aea4-6d411e95a006",
    "handle": "golvin----cerused-oak-brown---gc2063-----717-x-48-x-5mm---26--2898sfb",
    "fields": {
-    "supply_price": 1.43,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.43
+     }
+    ],
     "price_excluding_tax": 2.43,
     "product_codes": [
      {
@@ -7433,7 +7799,12 @@
    "ls_id": "57daef76-041a-49a2-a82b-7eb7c8e14b20",
    "handle": "golvin----brio-oak---gc2066-----717-x-48-x-5mm---26--2898sfb",
    "fields": {
-    "supply_price": 1.43,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.43
+     }
+    ],
     "price_excluding_tax": 2.43,
     "product_codes": [
      {
@@ -7489,7 +7860,12 @@
    "ls_id": "6d8aa7e5-76ec-4ff5-9f04-ee69405101fa",
    "handle": "golvin----vertmont-grey---gc2067-----717-x-48-x-5mm---26--2898sfb",
    "fields": {
-    "supply_price": 1.43,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.43
+     }
+    ],
     "price_excluding_tax": 2.43,
     "product_codes": [
      {
@@ -7545,7 +7921,12 @@
    "ls_id": "85a27d53-d365-4fa4-8478-fe89afd1ea6c",
    "handle": "golvin----venezia-grey---gc2068-----717-x-48-x-5mm---26--2898sfb",
    "fields": {
-    "supply_price": 1.43,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.43
+     }
+    ],
     "price_excluding_tax": 2.43,
     "product_codes": [
      {
@@ -7624,7 +8005,12 @@
    "ls_id": "28c1857c-d151-42e4-ab90-bfeb6b2537d5",
    "handle": "golvin-------gc2072-----187mm-x-1228mm-x-5mm---2095sfb",
    "fields": {
-    "supply_price": 2.49,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 2.49
+     }
+    ],
     "price_excluding_tax": 3.49,
     "product_codes": [
      {
@@ -7657,7 +8043,12 @@
    "ls_id": "9e6d86cf-a767-4778-ab90-8f0edf8dcc47",
    "handle": "golvin-------gc2073-----187mm-x-1228mm-x-5mm---2095sfb",
    "fields": {
-    "supply_price": 2.49,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 2.49
+     }
+    ],
     "price_excluding_tax": 3.49,
     "product_codes": [
      {
@@ -7690,7 +8081,12 @@
    "ls_id": "f40d553f-fe87-4d14-871f-9d4c2989e379",
    "handle": "golvin-------gc2075-----187mm-x-1228mm-x-5mm---2095sfb",
    "fields": {
-    "supply_price": 2.49,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 2.49
+     }
+    ],
     "price_excluding_tax": 3.49,
     "product_codes": [
      {
@@ -7861,7 +8257,12 @@
    "ls_id": "535658d2-5313-41d6-b4a4-46ac431e3eec",
    "handle": "golvin----amber-glow---gc7011-----717-x-48-x-5mm---26sfb",
    "fields": {
-    "supply_price": 1.43,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.43
+     }
+    ],
     "price_excluding_tax": 2.43,
     "product_codes": [
      {
@@ -7917,7 +8318,12 @@
    "ls_id": "516e1b88-1e4b-4182-abe7-09a8fca4b75e",
    "handle": "golvin----friddle-brown---gc7012-----717-x-48-x-5mm---26sfb",
    "fields": {
-    "supply_price": 1.43,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.43
+     }
+    ],
     "price_excluding_tax": 2.43,
     "product_codes": [
      {
@@ -7973,7 +8379,12 @@
    "ls_id": "618a4e02-9d7b-4ea1-821a-05b08be0643b",
    "handle": "golvin----rustic-harmony---gc7016-----717-x-48-x-5mm---26sfb",
    "fields": {
-    "supply_price": 1.43,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.43
+     }
+    ],
     "price_excluding_tax": 2.43,
     "product_codes": [
      {
@@ -8029,7 +8440,12 @@
    "ls_id": "062bc6e5-b76d-4309-af87-bca0ce80ecc6",
    "handle": "golvin----weathered-grey---gc7017-----717-x-48-x-5mm---26sfb",
    "fields": {
-    "supply_price": 1.43,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.43
+     }
+    ],
     "price_excluding_tax": 2.43,
     "product_codes": [
      {
@@ -8108,7 +8524,12 @@
    "ls_id": "9112c503-c251-4a46-a71a-c429bf25b03e",
    "handle": "golvin-------gc7020-----7-x-180-x-1220mm---168sfb",
    "fields": {
-    "supply_price": 1.69,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.69
+     }
+    ],
     "price_excluding_tax": 2.69,
     "product_codes": [
      {
@@ -8141,7 +8562,12 @@
    "ls_id": "5764b6a6-35ef-4f61-a62a-5c37eaa46a4b",
    "handle": "golvin-------gc7021-----7-x-180-x-1220mm---168sfb",
    "fields": {
-    "supply_price": 1.69,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.69
+     }
+    ],
     "price_excluding_tax": 2.69,
     "product_codes": [
      {
@@ -8174,7 +8600,12 @@
    "ls_id": "fff3c882-c47e-4dab-b214-eb2841d3d2b9",
    "handle": "golvin-------gc7022-----7-x-180-x-1220mm---168sfb",
    "fields": {
-    "supply_price": 1.69,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.69
+     }
+    ],
     "price_excluding_tax": 2.69,
     "product_codes": [
      {
@@ -8207,7 +8638,12 @@
    "ls_id": "d94ea1d5-0507-4ecd-a6c3-f20d083a92ff",
    "handle": "golvin-------gc7023-----7-x-180-x-1220mm---168sfb",
    "fields": {
-    "supply_price": 1.69,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.69
+     }
+    ],
     "price_excluding_tax": 2.69,
     "product_codes": [
      {
@@ -8240,7 +8676,12 @@
    "ls_id": "2be9f94c-118a-4274-a25f-821f70aab985",
    "handle": "golvin-------gc7025-----7-x-180-x-1220mm---168sfb",
    "fields": {
-    "supply_price": 1.69,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.69
+     }
+    ],
     "price_excluding_tax": 2.69,
     "product_codes": [
      {
@@ -8273,7 +8714,12 @@
    "ls_id": "e5b3990f-8b28-40bc-8aeb-07839577b4d1",
    "handle": "golvin-------gc7026-----7-x-180-x-1220mm---168sfb",
    "fields": {
-    "supply_price": 1.69,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.69
+     }
+    ],
     "price_excluding_tax": 2.69,
     "product_codes": [
      {
@@ -8306,7 +8752,12 @@
    "ls_id": "f119ee93-0f67-492f-bfdc-35d88240534a",
    "handle": "golvin-------gc7027-----7-x-180-x-1220mm---168sfb",
    "fields": {
-    "supply_price": 1.69,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.69
+     }
+    ],
     "price_excluding_tax": 2.69,
     "product_codes": [
      {
@@ -8339,7 +8790,12 @@
    "ls_id": "019498a2-2465-4077-8a17-05581a20ed9a",
    "handle": "golvin-------gc7028-----7-x-180-x-1220mm---168sfb",
    "fields": {
-    "supply_price": 1.69,
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 1.69
+     }
+    ],
     "price_excluding_tax": 2.69,
     "product_codes": [
      {

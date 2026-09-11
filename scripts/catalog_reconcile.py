@@ -179,7 +179,7 @@ def live_value(record, field):
 
 
 def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
-              airtable_snapshot=True):
+              airtable_snapshot=True, ls_supplier_id=None):
     """Every row -> an action or a block. Never both, never neither.
 
     Warnings are separate: things worth a reader's attention that are not a
@@ -392,29 +392,50 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
         if uuid:
             live = ls_by_id or ls_by_sku
             before = ls_before(live)
-            ls_fields_out = ls_update_fields(row, live_sku=clean(before.get("sku")) if before else None)
-            # `product_codes` (the SKU rename) has no analog in ls_before()'s flat
-            # `sku` snapshot, so it is compared by presence, not value: it is only
-            # ever IN ls_fields_out when ls_update_fields() already determined the
-            # SKU differs from live (see live_sku above) — so its mere presence
-            # means "write", independent of whether prices also agree.
-            prices_agree = before is not None and all(
-                comparable(k, ls_fields_out.get(k)) == comparable(k, before.get(k))
-                for k in ls_fields_out if k != "product_codes")
-            if prices_agree and "product_codes" not in ls_fields_out:
-                pass  # nothing changed; no Lightspeed write needed
-            else:
-                sku_changed = "product_codes" in ls_fields_out
-                reason = "sku_rename_and_price_change" if (ls_sku_rename and sku_changed and len(ls_fields_out) > 1) \
-                    else "sku_rename" if (ls_sku_rename and sku_changed) \
-                    else "price_change"
-                actions.append({
-                    "id": action_id(supplier, sku, "lightspeed", "update"),
-                    "target_system": "lightspeed", "op": "update", "sku": sku,
-                    "airtable_rec_id": rec_id, "ls_id": uuid, "handle": handle,
-                    "fields": ls_fields_out, "before": before,
-                    "reason": reason, "uuid_source": uuid_source,
-                })
+            try:
+                ls_fields_out = ls_update_fields(
+                    row, live_sku=clean(before.get("sku")) if before else None,
+                    supplier_id=ls_supplier_id)
+            except ValueError as e:
+                warn(sku, "ls_supplier_id_required", str(e))
+                ls_fields_out = None
+
+            if ls_fields_out is not None:
+                # `product_codes` (the SKU rename) has no analog in ls_before()'s
+                # flat `sku` snapshot, so it is compared by presence, not value:
+                # it is only ever IN ls_fields_out when ls_update_fields() already
+                # determined the SKU differs from live (see live_sku above) — so
+                # its mere presence means "write", independent of whether prices
+                # also agree. `product_suppliers[0].price` (write) is
+                # `supply_price` (read/before) — same read/write name split as
+                # sku/product_codes; see ls_update_fields. A field not emitted
+                # (e.g. no cost on the row) is simply not compared, matching the
+                # old behaviour.
+                cost_agree = True
+                if "product_suppliers" in ls_fields_out:
+                    cost_agree = (before is not None and
+                                  ls_fields_out["product_suppliers"][0]["price"] ==
+                                  as_number(before.get("supply_price")))
+                retail_agree = True
+                if "price_excluding_tax" in ls_fields_out:
+                    retail_agree = (before is not None and
+                                    ls_fields_out["price_excluding_tax"] ==
+                                    as_number(before.get("price_excluding_tax")))
+                prices_agree = cost_agree and retail_agree
+                if prices_agree and "product_codes" not in ls_fields_out:
+                    pass  # nothing changed; no Lightspeed write needed
+                else:
+                    sku_changed = "product_codes" in ls_fields_out
+                    reason = "sku_rename_and_price_change" if (ls_sku_rename and sku_changed and not prices_agree) \
+                        else "sku_rename" if (ls_sku_rename and sku_changed) \
+                        else "price_change"
+                    actions.append({
+                        "id": action_id(supplier, sku, "lightspeed", "update"),
+                        "target_system": "lightspeed", "op": "update", "sku": sku,
+                        "airtable_rec_id": rec_id, "ls_id": uuid, "handle": handle,
+                        "fields": ls_fields_out, "before": before,
+                        "reason": reason, "uuid_source": uuid_source,
+                    })
         else:
             actions.append({
                 "id": action_id(supplier, sku, "lightspeed", "create"),
@@ -556,7 +577,7 @@ def category_resolves(category, leaves):
     return any(want == leaf.split("/")[-1].strip().lower() for leaf in leaves)
 
 
-def ls_update_fields(row, live_sku=None):
+def ls_update_fields(row, live_sku=None, supplier_id=None):
     """What a Lightspeed UPDATE writes: `sku`, prices, and nothing else.
 
     Deliberately minimal, because the obvious wider payload is destructive.
@@ -581,6 +602,25 @@ def ls_update_fields(row, live_sku=None):
     would make the before/after comparison a few lines down never agree (its
     key doesn't exist in `ls_before()`'s flat `sku` snapshot), turning every
     ordinary price-only update, on every supplier, into a same-value "rename".
+
+    **The cost field is nested `product_suppliers: [{supplier_id, price}]`
+    (corrected 2026-09-11, live, third attempt).** Three earlier guesses all
+    422'd on the same real Oakel product: flat `supply_price`, flat `price`,
+    and `suppliers: [{"id", "price"}]` (the shape a `/api/3.0/products/{id}`
+    GET happens to render cost in on READ) — all "Unknown field in payload".
+    What finally matched is what this same file's `api_shape.add_to_existing_family`
+    section already had, verified live 2026-09-10 against a *different* 2.1
+    endpoint (`POST /api/2.1/products`, adding a variant to a family): its
+    `worked_payload.details.product_suppliers` is
+    `[{"supplier_id": "<supplier id>", "price": 4.79}]`. The plain 2.1 PUT
+    update apparently shares that same nested shape and key spelling —
+    `supplier_id`, not `id`. `supplier_id` here is the live Lightspeed
+    supplier UUID this whole file's cost belongs to — resolved and verified
+    by hand once per supplier (never guessed; see the CLI's
+    `--ls-supplier-id`) — because a wrong id would silently attach the cost to
+    the wrong supplier record rather than error. A cost value present with no
+    `supplier_id` given raises rather than emitting a payload with
+    `"supplier_id": None`.
 
     `name` is NOT Airtable's `Product name`. Lightspeed holds a constructed name —
     "GRNDENG - Scandinavia European White Oak (Bora Bora) T&G | 6.5" x 19.05mm x RL
@@ -647,10 +687,22 @@ def ls_update_fields(row, live_sku=None):
     """
     promo = as_number(row.get(PROMO_COST))
     cost = as_number(row.get("Cost/unit"))
-    fields = {k: v for k, v in (
-        ("supply_price", promo if promo is not None else cost),
-        ("price_excluding_tax", as_number(row.get("Retail price/unit"))),
-    ) if v is not None}
+    cost_value = promo if promo is not None else cost
+    fields = {}
+    if cost_value is not None:
+        if not supplier_id:
+            raise ValueError(
+                "a cost value is present but no supplier_id was given. The real "
+                "update API nests cost under product_suppliers: [{supplier_id, "
+                "price}] (verified live 2026-09-11 — supply_price, plain price, "
+                "and suppliers: [{id, price}] all 422 as unknown fields); "
+                "writing it without a verified supplier id would either 422 or, "
+                "worse, attach the cost to the wrong supplier record. Pass the "
+                "live supplier UUID from /api/2.0/suppliers via --ls-supplier-id.")
+        fields["product_suppliers"] = [{"supplier_id": supplier_id, "price": cost_value}]
+    retail = as_number(row.get("Retail price/unit"))
+    if retail is not None:
+        fields["price_excluding_tax"] = retail
     new_sku = clean(row.get(SKU))
     if new_sku and new_sku != live_sku:
         fields["product_codes"] = [{"code": new_sku, "type": "CUSTOM"}]
@@ -732,6 +784,14 @@ def main():
                          "Lightspeed: a create needs the skill-built name and "
                          "category, which cannot be derived from the Airtable columns.")
     ap.add_argument("--supplier", help="Override the Supplier read from the CSV")
+    ap.add_argument("--ls-supplier-id",
+                    help="The live Lightspeed supplier UUID (from /api/2.0/suppliers) "
+                         "this whole file's cost belongs to. The update API nests cost "
+                         "under suppliers: [{id, price}] (verified live 2026-09-11), and "
+                         "this script never guesses which supplier record to attach it "
+                         "to. Without it, any row that would otherwise carry a price "
+                         "change is warned and its Lightspeed update is skipped rather "
+                         "than sent with a guessed or missing id.")
     ap.add_argument("--out", type=Path)
     ap.add_argument("--cost-basis", help="e.g. 'dealer'. Recorded, never inferred.")
     ap.add_argument("--confirmed-by", help="Who confirmed the cost basis, and when")
@@ -773,7 +833,8 @@ def main():
 
     have_snapshot = bool(args.airtable_existing)
     actions, blocked, warnings = reconcile(rows, ls, existing, supplier, categories,
-                                          ls_upload, airtable_snapshot=have_snapshot)
+                                          ls_upload, airtable_snapshot=have_snapshot,
+                                          ls_supplier_id=args.ls_supplier_id)
 
     if not have_snapshot:
         warnings.insert(0, {
@@ -804,6 +865,7 @@ def main():
              if args.ls_upload else []),
         "cost_basis": ({"value": args.cost_basis, "confirmed_by": args.confirmed_by}
                        if args.cost_basis else None),
+        "ls_supplier_id": args.ls_supplier_id,
         "summary": {**dict(sorted(kinds.items())),
                     "actions_total": len(actions),
                     "uuid_recovered_by_sku": recovered,
@@ -844,6 +906,10 @@ def main():
     if plan["cost_basis"] is None and any(a["reason"] == "new_product" for a in actions):
         print("\n  This plan creates products and carries no cost basis. Pass --cost-basis "
               "once Albert confirms it; it is never inferred.")
+    if any(w["reason"] == "ls_supplier_id_required" for w in warnings):
+        print("\n  Some rows carry a cost change but no --ls-supplier-id was given, so "
+              "their Lightspeed update was skipped rather than guessed. Pass the live "
+              "supplier UUID from /api/2.0/suppliers and re-run.")
     return 0
 
 

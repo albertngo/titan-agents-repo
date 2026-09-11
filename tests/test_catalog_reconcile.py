@@ -47,9 +47,10 @@ def fake_ls(products):
     return cr.load_lightspeed(fh.name)
 
 
-def run(rows, products, existing=None, supplier="Test", ls_upload=None):
+def run(rows, products, existing=None, supplier="Test", ls_upload=None,
+        ls_supplier_id="s-test"):
     return cr.reconcile(rows, fake_ls(products), existing or {}, supplier, LEAVES,
-                        ls_upload)
+                        ls_upload, ls_supplier_id=ls_supplier_id)
 
 
 def ls_upload_row(sku="NEW-1", handle="HNEW", name="BUILT NAME | 7\" x 6mm"):
@@ -482,35 +483,43 @@ class TestPromoPricing(unittest.TestCase):
 
     def test_promo_cost_becomes_supply_price(self):
         out = cr.ls_update_fields({"Cost/unit": "4.20", "Retail price/unit": "5.20",
-                                   "Promo cost ($/sf)": "3.15"})
-        self.assertEqual(out["supply_price"], 3.15)
+                                   "Promo cost ($/sf)": "3.15"}, supplier_id="s-1")
+        self.assertEqual(out["product_suppliers"], [{"supplier_id": "s-1", "price": 3.15}])
 
     def test_retail_stays_off_the_regular_cost(self):
         """Retail is Cost + $ 1.00 on the REGULAR cost, not the promo cost."""
         out = cr.ls_update_fields({"Cost/unit": "4.20", "Retail price/unit": "5.20",
-                                   "Promo cost ($/sf)": "3.15"})
+                                   "Promo cost ($/sf)": "3.15"}, supplier_id="s-1")
         self.assertEqual(out["price_excluding_tax"], 5.20)
         self.assertNotEqual(out["price_excluding_tax"], 4.15,
                             "retail must not be derived from the promo cost")
 
     def test_no_promo_uses_the_regular_cost(self):
-        out = cr.ls_update_fields({"Cost/unit": "4.20", "Retail price/unit": "5.20"})
-        self.assertEqual(out["supply_price"], 4.20)
+        out = cr.ls_update_fields({"Cost/unit": "4.20", "Retail price/unit": "5.20"},
+                                  supplier_id="s-1")
+        self.assertEqual(out["product_suppliers"], [{"supplier_id": "s-1", "price": 4.20}])
 
     def test_a_cleared_promo_reverts_supply_price(self):
         """Blank means genuinely empty, so the promo simply stops applying."""
         for blank in ("", "   ", None):
             out = cr.ls_update_fields({"Cost/unit": "4.20", "Retail price/unit": "5.20",
-                                       "Promo cost ($/sf)": blank})
-            self.assertEqual(out["supply_price"], 4.20, f"blank={blank!r}")
+                                       "Promo cost ($/sf)": blank}, supplier_id="s-1")
+            self.assertEqual(out["product_suppliers"], [{"supplier_id": "s-1", "price": 4.20}], f"blank={blank!r}")
 
     def test_update_still_writes_only_prices(self):
         """A promo must not widen the payload — no name, no supplier, no category."""
         out = cr.ls_update_fields({"Cost/unit": "4.20", "Retail price/unit": "5.20",
                                    "Promo cost ($/sf)": "3.15",
                                    "Product name": "X", "Supplier": "Y",
-                                   "Category": "Z"})
-        self.assertEqual(set(out), {"supply_price", "price_excluding_tax"})
+                                   "Category": "Z"}, supplier_id="s-1")
+        self.assertEqual(set(out), {"product_suppliers", "price_excluding_tax"})
+
+    def test_a_cost_with_no_supplier_id_raises_rather_than_guesses(self):
+        """Never send product_suppliers: [{"supplier_id": None, ...}] -- that
+        silently attaches cost to nothing, or worse, whatever id the API
+        defaults to."""
+        with self.assertRaises(ValueError):
+            cr.ls_update_fields({"Cost/unit": "4.20", "Retail price/unit": "5.20"})
 
 
 class TestPromoMarkerAndSfb(unittest.TestCase):
@@ -561,7 +570,7 @@ class TestAirtableSnapshotRequired(unittest.TestCase):
         rows = [row(SKU="A-1", **{"Lightspeed ID": "u-1", "Cost/unit": "9.99"})]
         ls = [product(id="u-1", sku="A-1", supply_price=1.0, price_excluding_tax=2.0)]
         actions, blocked, _ = cr.reconcile(rows, fake_ls(ls), {}, "T", LEAVES,
-                                           airtable_snapshot=False)
+                                           airtable_snapshot=False, ls_supplier_id="s-test")
         self.assertEqual([a for a in actions if a["target_system"] == "airtable"], [])
         self.assertEqual(blocked, [])
 
@@ -570,7 +579,7 @@ class TestAirtableSnapshotRequired(unittest.TestCase):
         rows = [row(SKU="A-1", **{"Lightspeed ID": "u-1", "Cost/unit": "9.99"})]
         ls = [product(id="u-1", sku="A-1", supply_price=1.0, price_excluding_tax=2.0)]
         actions, _, _ = cr.reconcile(rows, fake_ls(ls), {}, "T", LEAVES,
-                                     airtable_snapshot=False)
+                                     airtable_snapshot=False, ls_supplier_id="s-test")
         ls_actions = [a for a in actions if a["target_system"] == "lightspeed"]
         self.assertEqual([a["op"] for a in ls_actions], ["update"])
 
@@ -597,13 +606,40 @@ class TestPriceMapping(unittest.TestCase):
         cls.ls = {p["sku"]: p for p in json.loads(pull.read_text())["products"]}
 
     def test_payload_uses_the_verified_field_names(self):
-        fields = cr.ls_update_fields(row(**{"Cost/unit": "3.69", "Retail price/unit": "4.69"}))
-        self.assertEqual(fields["supply_price"], 3.69)
+        fields = cr.ls_update_fields(row(**{"Cost/unit": "3.69", "Retail price/unit": "4.69"}),
+                                     supplier_id="s-1")
+        self.assertEqual(fields["product_suppliers"], [{"supplier_id": "s-1", "price": 3.69}])
         self.assertEqual(fields["price_excluding_tax"], 4.69)
+        self.assertNotIn("supply_price", fields,
+                         "supply_price is the LIST-READ field name; the update "
+                         "endpoint nests cost under product_suppliers: "
+                         "[{supplier_id, price}] (verified live 2026-09-11 — "
+                         "supply_price, plain price, and suppliers: [{id, "
+                         "price}] all 422 as unknown fields)")
+        self.assertNotIn("price", fields,
+                         "a flat price field also 422s live; cost is nested")
+        self.assertNotIn("suppliers", fields,
+                         "suppliers: [{id, price}] is the READ-side shape "
+                         "(a /api/3.0 GET); it also 422s on write — the write "
+                         "key is product_suppliers with supplier_id")
         self.assertNotIn("retail_price", fields,
                          "the API has no retail_price field; that name is CSV-only")
         self.assertNotIn("price_including_tax", fields,
                          "inclusive price is derived at checkout, never written")
+
+    def test_unchanged_price_produces_no_lightspeed_update(self):
+        """The write field is nested `product_suppliers: [{supplier_id, price}]`,
+        but change detection must still compare against the read-side flat
+        `supply_price` (regression guard for the 2026-09-11 fix: a naive
+        comparison would flag every row as changed, since `product_suppliers`
+        never appears in ls_before()'s snapshot)."""
+        rows = [row(SKU="A-1", **{"Lightspeed ID": "u-1", "Cost/unit": "1.00",
+                                  "Retail price/unit": "2.00"})]
+        ls = [product(id="u-1", sku="A-1", supply_price=1.0, price_excluding_tax=2.0)]
+        actions, blocked, _ = run(rows, ls)
+        self.assertEqual(blocked, [])
+        ls_actions = [a for a in actions if a["target_system"] == "lightspeed"]
+        self.assertEqual(ls_actions, [], "no real price change should produce no action")
 
     def test_an_update_never_writes_name_or_supplier(self):
         """The destructive payload. LS holds a constructed name and its own
@@ -616,16 +652,18 @@ class TestPriceMapping(unittest.TestCase):
         here, so the row's SKU counts as new)."""
         fields = cr.ls_update_fields(row(**{"Product name": "Grandeur 6.5\" EWO",
                                             "Supplier": "Grandeur", "Brand": "Grandeur",
-                                            "Category": "Engineered hardwood"}))
+                                            "Category": "Engineered hardwood"}),
+                                     supplier_id="s-1")
         for forbidden in ("name", "supplier_name", "brand_name", "product_category",
-                          "handle", "sku"):
+                          "handle", "sku", "supply_price"):
             self.assertNotIn(forbidden, fields)
-        self.assertEqual(set(fields), {"product_codes", "supply_price", "price_excluding_tax"})
+        self.assertEqual(set(fields), {"product_codes", "product_suppliers", "price_excluding_tax"})
         self.assertEqual(fields["product_codes"], [{"code": "X-1", "type": "CUSTOM"}])
+        self.assertEqual(fields["product_suppliers"], [{"supplier_id": "s-1", "price": 1.0}])
 
     def test_an_unchanged_sku_omits_product_codes(self):
         """The common case, every other supplier: no rename in flight."""
-        fields = cr.ls_update_fields(row(SKU="X-1"), live_sku="X-1")
+        fields = cr.ls_update_fields(row(SKU="X-1"), live_sku="X-1", supplier_id="s-1")
         self.assertNotIn("product_codes", fields)
 
     def test_mapping_holds_across_every_matched_row(self):
