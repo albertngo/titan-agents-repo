@@ -76,13 +76,10 @@ lists were handled before.
 It downloads the PDF, assigns Company and Tags, extracts against the live Airtable
 catalogue, produces the Airtable and Lightspeed upload CSVs, attaches them to the
 row, and sets Extraction Status to Extracted [Needs Review] (or Extracted [Error] on
-failure) — never higher. Pricing default: printed price = cost, Retail = Cost + $
-1.00, MSRP / suggested-retail -> MAP price, never Cost/unit. Apply it and keep going.
-
-Set Review Reason (from price_lists.status_values.review_reason) for every reason a
-human must check the row; a supplier whose catalogue read returned zero rows is a
-NEW SUPPLIER — set it, and say in the summary that every detail needs a human check
-before upload. Add to Review Reason; never clear it.
+failure) — never higher. Follow that command's pricing, tagging, and Review Reason
+rules exactly as written there. Do not restate them here, do not apply a remembered
+version of them, and if this file and that command ever seem to disagree, the command
+wins, always — it is the one place those rules are allowed to live.
 
 Extracted [Ready to Upload] is never written by a run. That status is Albert's alone
 to set once he has reviewed the row — Stage 1 stops at Needs Review, always.
@@ -109,7 +106,11 @@ stage writes nothing, so there is no blast radius to limit by throttling it.
 For every eligible row, run /catalog-sync with that row's notionID, stopping at
 step 3 (the approval gate). If the slash command does not resolve in this session,
 read .claude/commands/catalog-sync.md from the titan-agents-repo checkout and follow
-steps 1-3 exactly — it is the authoritative procedure. Do not improvise.
+steps 1-3 exactly — it is the authoritative procedure, including its pricing
+defaults (step 2) and its flagging rules for anything those defaults don't cover
+(step 2a, which also covers a new supplier). Do not restate any of those rules here
+and do not apply a remembered version of them — if this file and that command ever
+seem to disagree, the command wins, always.
 
 You do NOT write to Airtable or Lightspeed, do NOT create an approval file, and do
 NOT invoke lightspeed-actions-agent or airtable-actions-agent. Absence of an
@@ -117,20 +118,9 @@ approval file means nothing is approved. A run that ends at the approval gate ha
 SUCCEEDED — say so plainly, do not apologise for it, and do not look for a way to
 finish the writes.
 
-Pricing and flagging rules are identical to Stage 1's: printed price = cost, Retail
-= Cost + $ 1.00, MSRP -> MAP price; anything the defaults don't cover (ambiguous cost
-column, unmapped grade/category, undocumented supplier quirk, blank box size) is
-flagged in three places — the plan, the Notion row's Review Reason (add, never
-clear), and Notes — never silently resolved.
-
-A NEW supplier is always flagged, and reported rather than planned — say "NEW
-SUPPLIER — every detail needs a human check before upload" first, in those words. A
-new supplier's row carries only one CSV, so it falls outside this stage's scope
-anyway.
-
-If the Lightspeed host is unreachable or a credential is missing, report the exact
-host or variable name and stop. Never route around a blocked host, never disable TLS
-verification.
+If the Lightspeed host is unreachable or a credential is missing, follow that
+command's "Before you start" section: report the exact host or variable name and
+stop. Never route around a blocked host, never disable TLS verification.
 
 Commit and push every plan and Airtable snapshot produced this run to the repo.
 
@@ -158,6 +148,14 @@ Five deliberate inclusions:
 5. **Stage 2 has no row cap; Stage 1 is inherently one row per fire** (the payload
    names exactly one). Batch approval (`/catalog-sync` step 3a) is what makes a wide
    Stage 2 sweep reviewable in one sitting.
+6. **No business rules restated in-line — pricing, tagging, flagging, Review Reason,
+   the new-supplier check, the blocked-host message.** Every one of those lives only
+   in `/process-price-list` or `/catalog-sync` and this file points at them instead of
+   quoting them. Restating a rule here would be exactly the failure this file's own
+   pointer rationale exists to prevent: the pricing default itself changed once
+   already (2026-09-10, stop-and-ask → assume-and-flag), and a routine prompt that had
+   inlined the old wording would have kept enforcing it, silently, with nothing to
+   flag the drift.
 
 ## Wiring this outside the repo
 
@@ -193,6 +191,13 @@ to change.
 
 ## Changelog
 
+- **2026-09-11 (Albert)** — Removed the inlined pricing default, the Review Reason /
+  new-supplier reporting language, and the blocked-host message from both stages'
+  stored text; each is now a pointer to the command section that already states it.
+  Albert's objection: a business rule quoted into the prompt is a second copy of
+  something the repo already states once, and a second copy is exactly what this
+  file's own pointer-not-copy design is supposed to prevent — it can drift out from
+  under the command file it's supposed to mirror without anything catching it.
 - **2026-09-11 (Albert)** — Created. Merges the two prior routines into one,
   branching on the fire payload's shape rather than maintaining two stored prompts
   that were always going to be triggered in lockstep with each other's outputs.
