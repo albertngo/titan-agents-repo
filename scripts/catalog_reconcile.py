@@ -256,10 +256,32 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
                   f"row carries {uuid}, which Lightspeed does not hold")
             continue
 
-        if uuid and clean(ls_by_id.get("sku")) != sku:
+        # A row matched by Lightspeed ID whose SKU differs from what Lightspeed
+        # currently holds is a SKU RENAME, not a collision — but ONLY when the
+        # match itself is verified (Albert, 2026-09-11): "It is always my
+        # intention to use the newly minted SKU to replace the existing SKU in
+        # LS... the products must match from the LS ids." That condition is
+        # `LS Match status == "OK"` — the multi-factor (colour/item#/spec, one-
+        # to-one resolved) match the ls-id-backfill algorithm produces, as
+        # distinct from a bare `Lightspeed ID` value with no recorded
+        # provenance. This is the same distinction the Grandeur incident turned
+        # on: that backfill matched on colour alone with no confirmation
+        # tracking, and every one of its wrong matches carried a UUID belonging
+        # to a different SKU with no `LS Match status: OK` to vouch for it — so
+        # gating on that column keeps those rows correctly blocked while
+        # unblocking Oakel/Golden Choice's actually-verified ones. A row with a
+        # `Lightspeed ID` but no `LS Match status: OK` (older suppliers whose
+        # pipeline never populated that column, or a hand-entered id) still
+        # gets the old, safe treatment: blocked as uuid_belongs_to_other_sku.
+        ls_sku_rename = (uuid and clean(ls_by_id.get("sku")) != sku
+                         and clean(row.get(LS_MATCH_STATUS)) == "OK")
+
+        if uuid and clean(ls_by_id.get("sku")) != sku and not ls_sku_rename:
             block(sku, "uuid_belongs_to_other_sku",
                   f"{uuid} belongs to {clean(ls_by_id.get('sku'))} "
-                  f"({clean(ls_by_id.get('name')) or ''}) — writing it would overwrite that product")
+                  f"({clean(ls_by_id.get('name')) or ''}) — writing it would overwrite that "
+                  "product, and this row has no LS Match status: OK to vouch for the match "
+                  "(see ls-id-backfill) — the Grandeur incident's exact failure mode")
             continue
 
         # A blank UUID whose SKU already lives in Lightspeed: repairable, and the
@@ -376,12 +398,16 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
                     for k in ls_fields_out):
                 pass  # prices already agree; no Lightspeed write needed
             else:
+                sku_changed = before is not None and comparable("sku", before.get("sku")) != comparable("sku", ls_fields_out.get("sku"))
+                reason = "sku_rename_and_price_change" if (ls_sku_rename and sku_changed and len(ls_fields_out) > 1) \
+                    else "sku_rename" if (ls_sku_rename and sku_changed) \
+                    else "price_change"
                 actions.append({
                     "id": action_id(supplier, sku, "lightspeed", "update"),
                     "target_system": "lightspeed", "op": "update", "sku": sku,
                     "airtable_rec_id": rec_id, "ls_id": uuid, "handle": handle,
                     "fields": ls_fields_out, "before": before,
-                    "reason": "price_change", "uuid_source": uuid_source,
+                    "reason": reason, "uuid_source": uuid_source,
                 })
         else:
             actions.append({
@@ -525,9 +551,23 @@ def category_resolves(category, leaves):
 
 
 def ls_update_fields(row):
-    """What a Lightspeed UPDATE writes: prices, and nothing else.
+    """What a Lightspeed UPDATE writes: `sku`, prices, and nothing else.
 
     Deliberately minimal, because the obvious wider payload is destructive.
+
+    `sku` was added 2026-09-11 (Albert): "It is always my intention to use the
+    newly minted SKU to replace the existing SKU in LS... the products must
+    match from the LS ids." Unlike `name` below, a SKU carries no variant-family
+    grouping semantics in the Lightspeed API — renaming it does not merge or
+    split anything — so it is safe to include unconditionally. It is included
+    on every update (not just renames): when it already agrees with the live
+    value the before/after comparison a few lines down finds no change and
+    nothing is written differently; when it differs (a product this pipeline is
+    seeing for the first time, already live under its own Lightspeed-native
+    SKU), this is what actually performs the rename. The reconciler only
+    reaches this path once the row has already matched by live Lightspeed ID —
+    see the `ls_sku_rename` comment above — so the identity is never in doubt,
+    only the SKU string.
 
     `name` is NOT Airtable's `Product name`. Lightspeed holds a constructed name —
     "GRNDENG - Scandinavia European White Oak (Bora Bora) T&G | 6.5" x 19.05mm x RL
@@ -595,6 +635,7 @@ def ls_update_fields(row):
     promo = as_number(row.get(PROMO_COST))
     cost = as_number(row.get("Cost/unit"))
     return {k: v for k, v in (
+        ("sku", clean(row.get(SKU))),
         ("supply_price", promo if promo is not None else cost),
         ("price_excluding_tax", as_number(row.get("Retail price/unit"))),
     ) if v is not None}

@@ -127,6 +127,49 @@ class TestBlockReasons(unittest.TestCase):
             self.assertNotIn("id", entry)
 
 
+class TestSkuRename(unittest.TestCase):
+    """New-to-Airtable-but-already-in-Lightspeed products (Albert, 2026-09-11):
+    "It is always my intention to use the newly minted SKU to replace the
+    existing SKU in LS... the products must match from the LS ids." Gated on
+    `LS Match status: OK` — the ls-id-backfill algorithm's verified, one-to-one,
+    multi-factor match — so an unverified `Lightspeed ID` (a Grandeur-style
+    colour-only guess) still blocks exactly as before."""
+
+    def test_verified_match_renames_instead_of_blocking(self):
+        rows = [row(SKU="ENG-OAKL-0002", **{"Lightspeed ID": "u-other",
+                                             "LS Match status": "OK"})]
+        ls = [product(id="u-other", sku="OAK.E.EO.EriOak.1.4", handle="HB2")]
+        actions, blocked, _ = run(rows, ls)
+        self.assertEqual(blocked, [])
+        update = next(a for a in actions if a["target_system"] == "lightspeed")
+        self.assertEqual(update["fields"]["sku"], "ENG-OAKL-0002")
+        self.assertIn("sku_rename", update["reason"])
+
+    def test_unverified_match_still_blocks(self):
+        """No LS Match status at all -- the old, safe default holds."""
+        rows = [row(SKU="A-1", **{"Lightspeed ID": "u-other"})]
+        ls = [product(id="u-other", sku="B-2", handle="HB2")]
+        actions, blocked, _ = run(rows, ls)
+        self.assertEqual(self.reasons(blocked), {"uuid_belongs_to_other_sku"})
+        self.assertEqual(actions, [])
+
+    def test_a_match_status_other_than_ok_still_blocks(self):
+        """NOT_FOUND, a lowercase near-miss, or blank are not a green light —
+        exactly "OK" is the only value that unblocks a rename. (AMBIGUOUS and
+        DUPLICATE are covered separately: they block earlier, as
+        ambiguous_match, before this check even runs.)"""
+        for status in ("NOT_FOUND", "ok", ""):
+            with self.subTest(status=status):
+                rows = [row(SKU="A-1", **{"Lightspeed ID": "u-other",
+                                          "LS Match status": status})]
+                ls = [product(id="u-other", sku="B-2", handle="HB2")]
+                _, blocked, _ = run(rows, ls)
+                self.assertEqual(self.reasons(blocked), {"uuid_belongs_to_other_sku"})
+
+    def reasons(self, blocked):
+        return {b["reason"] for b in blocked}
+
+
 class TestUuidRecovery(unittest.TestCase):
     """A blank UUID whose SKU is already in LS is repairable, not a create."""
 
@@ -563,14 +606,18 @@ class TestPriceMapping(unittest.TestCase):
 
     def test_an_update_never_writes_name_or_supplier(self):
         """The destructive payload. LS holds a constructed name and its own
-        supplier spelling; writing Airtable's would rename products in the POS."""
+        supplier spelling; writing Airtable's would rename products in the POS.
+
+        `sku` is the one deliberate exception (Albert, 2026-09-11) — see
+        TestSkuRename below for why it is safe where those are not: it carries
+        no variant-family grouping semantics, unlike `name`."""
         fields = cr.ls_update_fields(row(**{"Product name": "Grandeur 6.5\" EWO",
                                             "Supplier": "Grandeur", "Brand": "Grandeur",
                                             "Category": "Engineered hardwood"}))
         for forbidden in ("name", "supplier_name", "brand_name", "product_category",
-                          "handle", "sku"):
+                          "handle"):
             self.assertNotIn(forbidden, fields)
-        self.assertEqual(set(fields), {"supply_price", "price_excluding_tax"})
+        self.assertEqual(set(fields), {"sku", "supply_price", "price_excluding_tax"})
 
     def test_mapping_holds_across_every_matched_row(self):
         checked = 0
