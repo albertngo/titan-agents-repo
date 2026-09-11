@@ -1,0 +1,4043 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "Oakel",
+ "run_at": "2026-09-10T21:30:14.240643-04:00",
+ "status": "partial",
+ "inputs": [
+  {
+   "file": "ingest/2026-09-10/oakel_airtable_upload_2026-04-01.csv",
+   "rows": 139
+  },
+  {
+   "file": "ingest/2026-09-10/ls_pull_oakel_gc.json",
+   "products": 260,
+   "run_at": "2026-09-10T17:53:09.367883-04:00"
+  },
+  {
+   "file": "ingest/2026-09-10/oakel_airtable_existing.json",
+   "records": 0
+  },
+  {
+   "file": "ingest/2026-09-10/oakel_ls_upload_2026-04-01.csv",
+   "rows": 139
+  }
+ ],
+ "cost_basis": {
+  "value": "printed-as-cost",
+  "confirmed_by": "policy default 2026-09-11 (single obvious $/sf column, no MSRP)"
+ },
+ "summary": {
+  "airtable_backfill_ls_id": 56,
+  "airtable_upsert": 56,
+  "lightspeed_create": 56,
+  "actions_total": 168,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 83,
+  "warnings": 31,
+  "rows_in": 139
+ },
+ "actions": [
+  {
+   "id": "cat-845d47a34a87",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-OAKL-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel - Engineered Collection Accessories - Monosil P adhesive",
+    "Category": "Accessory",
+    "Cost/unit": "68.0",
+    "Retail price/unit": "69.0"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 1
+  },
+  {
+   "id": "cat-2bb9a3f0586a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-OAKL-0002",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel - Engineered Collection Accessories - Monosil 600 adhesive",
+    "Category": "Accessory",
+    "Cost/unit": "160.0",
+    "Retail price/unit": "161.0"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 2
+  },
+  {
+   "id": "cat-079850a1c4ca",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-OAKL-0003",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel - DESTINY Aqua Expert - Flush Round Nosing",
+    "Category": "Accessory",
+    "Cost/unit": "18.0",
+    "Retail price/unit": "19.0"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 3
+  },
+  {
+   "id": "cat-3a4ef15a9544",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-OAKL-0004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel - DESTINY Aqua Expert - Flush Square Nosing",
+    "Category": "Accessory",
+    "Cost/unit": "22.0",
+    "Retail price/unit": "23.0"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 4
+  },
+  {
+   "id": "cat-7c60f4c6dd4c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-OAKL-0005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel - DESTINY Aqua Expert - Stair Riser",
+    "Category": "Accessory",
+    "Cost/unit": "8.0",
+    "Retail price/unit": "9.0"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 5
+  },
+  {
+   "id": "cat-58e4f3c088a4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-OAKL-0006",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel - DESTINY Aqua Expert - Stair Board",
+    "Category": "Accessory",
+    "Cost/unit": "25.0",
+    "Retail price/unit": "26.0"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 6
+  },
+  {
+   "id": "cat-45e343b15d1b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-OAKL-0007",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel - DESTINY Aqua Expert - Reducer",
+    "Category": "Accessory",
+    "Cost/unit": "15.0",
+    "Retail price/unit": "16.0"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 7
+  },
+  {
+   "id": "cat-395f9c187943",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-OAKL-0008",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel - DESTINY Aqua Expert - T-Moulding",
+    "Category": "Accessory",
+    "Cost/unit": "15.0",
+    "Retail price/unit": "16.0"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 8
+  },
+  {
+   "id": "cat-b25a6b0c6b02",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-OAKL-0009",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel - Master Step - Flush Square Nosing",
+    "Category": "Accessory",
+    "Cost/unit": "25.0",
+    "Retail price/unit": "26.0"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 9
+  },
+  {
+   "id": "cat-aee6ebf4988d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-OAKL-0010",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel - Master Step - Stair Board",
+    "Category": "Accessory",
+    "Cost/unit": "25.0",
+    "Retail price/unit": "26.0"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 10
+  },
+  {
+   "id": "cat-754dbe24d684",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-OAKL-0011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel - Master Step - Reducer",
+    "Category": "Accessory",
+    "Cost/unit": "15.0",
+    "Retail price/unit": "16.0"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 11
+  },
+  {
+   "id": "cat-f34c8135b539",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-OAKL-0012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel - Master Step - T-Moulding",
+    "Category": "Accessory",
+    "Cost/unit": "15.0",
+    "Retail price/unit": "16.0"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 12
+  },
+  {
+   "id": "cat-a715cba5bb72",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-OAKL-0013",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel - Master Step Luxury Vinyl 86 - Flush Square Nosing",
+    "Category": "Accessory",
+    "Cost/unit": "25.0",
+    "Retail price/unit": "26.0"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 13
+  },
+  {
+   "id": "cat-4246901f6dac",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-OAKL-0014",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel - Master Step Luxury Vinyl 86 - Stair Riser",
+    "Category": "Accessory",
+    "Cost/unit": "10.0",
+    "Retail price/unit": "11.0"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 14
+  },
+  {
+   "id": "cat-758d6f3a7f4f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-OAKL-0015",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel - Master Step Luxury Vinyl 86 - Stair Board",
+    "Category": "Accessory",
+    "Cost/unit": "49.0",
+    "Retail price/unit": "50.0"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 15
+  },
+  {
+   "id": "cat-7db11487b6fd",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-OAKL-0016",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel - Master Step Luxury Vinyl 86 - Reducer",
+    "Category": "Accessory",
+    "Cost/unit": "18.0",
+    "Retail price/unit": "19.0"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 16
+  },
+  {
+   "id": "cat-4bbc881f5f26",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-OAKL-0017",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel - Master Step Luxury Vinyl 86 - T-Moulding",
+    "Category": "Accessory",
+    "Cost/unit": "18.0",
+    "Retail price/unit": "19.0"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 17
+  },
+  {
+   "id": "cat-12e6a9637271",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-OAKL-0018",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel - Waterproof Laminate Accessories - 3mm EVA Underpad",
+    "Category": "Accessory",
+    "Cost/unit": "21.0",
+    "Retail price/unit": "22.0"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 18
+  },
+  {
+   "id": "cat-12175a873ad7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-OAKL-0019",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel - Waterproof Laminate Accessories - 3mm IXPE Underpad",
+    "Category": "Accessory",
+    "Cost/unit": "23.0",
+    "Retail price/unit": "24.0"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 19
+  },
+  {
+   "id": "cat-20d7b879f6fd",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak 3-Ply 7 Series \u2014 Camel (Select)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "3.29",
+    "Retail price/unit": "4.29"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 20
+  },
+  {
+   "id": "cat-208dbde40058",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak 3-Ply 7 Series \u2014 Fiorano (Select & Better)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.99",
+    "Retail price/unit": "5.99"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 21
+  },
+  {
+   "id": "cat-cd012eca0f9e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0010",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak 3-Ply 7 Series \u2014 Imola (Select & Better)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.09",
+    "Retail price/unit": "5.09"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 22
+  },
+  {
+   "id": "cat-496baea8f3ee",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak 3-Ply 7 Series \u2014 Indy (Select & Better)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.39",
+    "Retail price/unit": "5.39"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 23
+  },
+  {
+   "id": "cat-358f111e7880",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak 3-Ply 7 Series \u2014 La Men (Select & Better)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.39",
+    "Retail price/unit": "5.39"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 24
+  },
+  {
+   "id": "cat-40e02b491885",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0013",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak 3-Ply 7 Series \u2014 Mocha (Select)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.29",
+    "Retail price/unit": "5.29"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 25
+  },
+  {
+   "id": "cat-d7b7c0f0532a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0014",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak 3-Ply 7 Series \u2014 Monaco (Select & Better)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.39",
+    "Retail price/unit": "5.39"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 26
+  },
+  {
+   "id": "cat-251d75f76e74",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0018",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak 3-Ply 7 Series \u2014 Nue (Select)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.39",
+    "Retail price/unit": "5.39"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 27
+  },
+  {
+   "id": "cat-48c61acc1b21",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0019",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak 3-Ply 7 Series \u2014 Nurburgring (Select & Better)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.39",
+    "Retail price/unit": "5.39"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 28
+  },
+  {
+   "id": "cat-4d398138879e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0024",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak 3-Ply 7 Series \u2014 Spa (Select & Better)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.09",
+    "Retail price/unit": "5.09"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 29
+  },
+  {
+   "id": "cat-9dcd7b0cc29d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0044",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "American Oak 3-Ply 7 Series \u2014 Area (Select & Better)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "5.19",
+    "Retail price/unit": "6.19"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 30
+  },
+  {
+   "id": "cat-32e6acbfda17",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0045",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "American Oak 3-Ply 7 Series \u2014 Bearyl (Select & Better)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "5.19",
+    "Retail price/unit": "6.19"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 31
+  },
+  {
+   "id": "cat-50e464e49f96",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0046",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "American Oak 3-Ply 7 Series \u2014 Monza (Select & Better)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "5.19",
+    "Retail price/unit": "6.19"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 32
+  },
+  {
+   "id": "cat-21f3a2c0ec94",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0050",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak Multi-Ply Herringbone \u2014 Harrison (Select & Better)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.79",
+    "Retail price/unit": "5.79"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 33
+  },
+  {
+   "id": "cat-9b75a534aad5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0051",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak Multi-Ply Herringbone \u2014 Maillard (Character)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "3.29",
+    "Retail price/unit": "4.29"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 34
+  },
+  {
+   "id": "cat-929dcfe7cdbe",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0052",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak Multi-Ply Herringbone \u2014 Paradise (Select & Better)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.79",
+    "Retail price/unit": "5.79"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 35
+  },
+  {
+   "id": "cat-37070bf2fd9b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0053",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak Multi-Ply Herringbone \u2014 Portobello (Select)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "3.99",
+    "Retail price/unit": "4.99"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 36
+  },
+  {
+   "id": "cat-48531095b694",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0054",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak 3-Ply 7 Series \u2014 Amber (Select)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.59",
+    "Retail price/unit": "5.59"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 37
+  },
+  {
+   "id": "cat-5182e0bd201d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0055",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak 3-Ply 7 Series \u2014 Amber (Character)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.09",
+    "Retail price/unit": "5.09"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 38
+  },
+  {
+   "id": "cat-3efe2a022439",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0059",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak 3-Ply 7 Series \u2014 Gloden Prime (Select & Better)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.09",
+    "Retail price/unit": "5.09"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 39
+  },
+  {
+   "id": "cat-f1d3a1e8eb5a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0060",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak 3-Ply 7 Series \u2014 Latte (Select)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.09",
+    "Retail price/unit": "5.09"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 40
+  },
+  {
+   "id": "cat-e16c6b60b8b3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0085",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak 3-Ply 10 Series \u2014 Nue (Character)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "3.99",
+    "Retail price/unit": "4.99"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 41
+  },
+  {
+   "id": "cat-03cd5f86ab10",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0086",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak Multi-Ply Herringbone \u2014 Erin Oak (Select & Better)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.29",
+    "Retail price/unit": "5.29"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 42
+  },
+  {
+   "id": "cat-bb55d4c1cbb3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0087",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak Multi-Ply Chevron \u2014 Harrison (Select & Better)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.49",
+    "Retail price/unit": "5.49"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 43
+  },
+  {
+   "id": "cat-4cf8474e69e4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-OAKL-0088",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "European Oak Multi-Ply Chevron \u2014 Paradise (Select & Better)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.49",
+    "Retail price/unit": "5.49"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 44
+  },
+  {
+   "id": "cat-5503f6fababa",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-OAKL-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Master Step Luxury Vinyl 86 \u2014 Orion",
+    "Supplier SKU": "MS8601",
+    "Category": "LVP",
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 45
+  },
+  {
+   "id": "cat-f490f60ff0ac",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-OAKL-0002",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Master Step Luxury Vinyl 86 \u2014 Perseus",
+    "Supplier SKU": "MS8602",
+    "Category": "LVP",
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 46
+  },
+  {
+   "id": "cat-f3b26404350e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-OAKL-0003",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Master Step Luxury Vinyl 86 \u2014 Lynx",
+    "Supplier SKU": "MS8603",
+    "Category": "LVP",
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 47
+  },
+  {
+   "id": "cat-ff8ec519e193",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-OAKL-0004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Master Step Luxury Vinyl 86 \u2014 Pavo",
+    "Supplier SKU": "MS8605",
+    "Category": "LVP",
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 48
+  },
+  {
+   "id": "cat-226923f91389",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-OAKL-0005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Master Step Luxury Vinyl 86 \u2014 Norma",
+    "Supplier SKU": "MS8607",
+    "Category": "LVP",
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 49
+  },
+  {
+   "id": "cat-5fdf948df1e1",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-OAKL-0006",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Master Step Luxury Vinyl 86 \u2014 Crux",
+    "Supplier SKU": "MS8608",
+    "Category": "LVP",
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 50
+  },
+  {
+   "id": "cat-935fe933e573",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-OAKL-0007",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Master Step Luxury Vinyl 86 \u2014 Vela",
+    "Supplier SKU": "MS8609",
+    "Category": "LVP",
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 51
+  },
+  {
+   "id": "cat-e579d216134f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-OAKL-0008",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Master Step Luxury Vinyl 86 \u2014 Grus",
+    "Supplier SKU": "MS8610",
+    "Category": "LVP",
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 52
+  },
+  {
+   "id": "cat-c13f57e22d6c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-OAKL-0009",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel Luxury Vinyl LS50 Series \u2014 Ariel",
+    "Supplier SKU": "LS5001",
+    "Category": "LVP",
+    "Cost/unit": "2.39",
+    "Retail price/unit": "3.39"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 53
+  },
+  {
+   "id": "cat-a8b2619f0774",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-OAKL-0010",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel Luxury Vinyl LS50 Series \u2014 Portia",
+    "Supplier SKU": "LS5002",
+    "Category": "LVP",
+    "Cost/unit": "2.39",
+    "Retail price/unit": "3.39"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 54
+  },
+  {
+   "id": "cat-75e598bf7b58",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-OAKL-0011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel Luxury Vinyl LS50 Series \u2014 Polaris",
+    "Supplier SKU": "LS5006",
+    "Category": "LVP",
+    "Cost/unit": "2.39",
+    "Retail price/unit": "3.39"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 55
+  },
+  {
+   "id": "cat-f38ca83b6de6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-OAKL-0012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Oakel Luxury Vinyl LS50 Series \u2014 Callisto",
+    "Supplier SKU": "LS5008",
+    "Category": "LVP",
+    "Cost/unit": "2.39",
+    "Retail price/unit": "3.39"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 56
+  },
+  {
+   "id": "cat-054c7d7210a4",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-OAKL-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ACC-OAKL-0001",
+    "handle": "OAKEL11",
+    "name": "Oakel - Trim | Oakel - Engineered Collection Accessories - Monosil P adhesive",
+    "supply_price": 68.0,
+    "price_excluding_tax": 69.0,
+    "description": "Volume pricing notes: Oakel single printed price $68.00/bucket -- no volume tiers on this sheet. | Sold per piece | Salesperson notes: Spec as printed: 12kg, covers 60-80 sqft/gallon. Sold per bucket. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
+    "product_category": "ACCESSORIES",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 57
+  },
+  {
+   "id": "cat-50522747c1b5",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-OAKL-0002",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ACC-OAKL-0002",
+    "handle": "OAKEL22",
+    "name": "Oakel - Trim | Oakel - Engineered Collection Accessories - Monosil 600 adhesive",
+    "supply_price": 160.0,
+    "price_excluding_tax": 161.0,
+    "description": "Volume pricing notes: Oakel single printed price $160.00/box -- no volume tiers on this sheet. | Sold per piece | Salesperson notes: Spec as printed: 600ml, 20 pieces/box. Sold per box. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
+    "product_category": "ACCESSORIES",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 58
+  },
+  {
+   "id": "cat-777edabd7096",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-OAKL-0003",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ACC-OAKL-0003",
+    "handle": "OAKEL33",
+    "name": "Oakel - Trim | Oakel - DESTINY Aqua Expert - Flush Round Nosing",
+    "supply_price": 18.0,
+    "price_excluding_tax": 19.0,
+    "description": "Volume pricing notes: Oakel single printed price $18.00/pc -- no volume tiers on this sheet. | Sold per piece | Salesperson notes: Spec as printed: 24*115*2400mm. Sold per pc. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
+    "product_category": "ACCESSORIES",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 59
+  },
+  {
+   "id": "cat-44e6ca3744ad",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-OAKL-0004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ACC-OAKL-0004",
+    "handle": "OAKEL44",
+    "name": "Oakel - Trim | Oakel - DESTINY Aqua Expert - Flush Square Nosing",
+    "supply_price": 22.0,
+    "price_excluding_tax": 23.0,
+    "description": "Volume pricing notes: Oakel single printed price $22.00/pc -- no volume tiers on this sheet. | Sold per piece | Salesperson notes: Spec as printed: 24*115*2400mm. Sold per pc. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
+    "product_category": "ACCESSORIES",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 60
+  },
+  {
+   "id": "cat-5fc8bcfbbec3",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-OAKL-0005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ACC-OAKL-0005",
+    "handle": "OAKEL55",
+    "name": "Oakel - Trim | Oakel - DESTINY Aqua Expert - Stair Riser",
+    "supply_price": 8.0,
+    "price_excluding_tax": 9.0,
+    "description": "Volume pricing notes: Oakel single printed price $8.00/pc -- no volume tiers on this sheet. | Sold per piece | Salesperson notes: Spec as printed: 8*12*1200mm. Sold per pc. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
+    "product_category": "ACCESSORIES",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 61
+  },
+  {
+   "id": "cat-c6a4845004b5",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-OAKL-0006",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ACC-OAKL-0006",
+    "handle": "OAKEL66",
+    "name": "Oakel - Trim | Oakel - DESTINY Aqua Expert - Stair Board",
+    "supply_price": 25.0,
+    "price_excluding_tax": 26.0,
+    "description": "Volume pricing notes: Oakel single printed price $25.00/set -- no volume tiers on this sheet. | Sold per piece | Salesperson notes: Spec as printed: 24*115*2400mm. Sold per set. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
+    "product_category": "ACCESSORIES",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 62
+  },
+  {
+   "id": "cat-49614d20d075",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-OAKL-0007",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ACC-OAKL-0007",
+    "handle": "OAKEL77",
+    "name": "Oakel - Trim | Oakel - DESTINY Aqua Expert - Reducer",
+    "supply_price": 15.0,
+    "price_excluding_tax": 16.0,
+    "description": "Volume pricing notes: Oakel single printed price $15.00/pc -- no volume tiers on this sheet. | Sold per piece | Salesperson notes: Spec as printed: 15*45*2400mm. Sold per pc. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
+    "product_category": "ACCESSORIES",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 63
+  },
+  {
+   "id": "cat-591d54d78589",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-OAKL-0008",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ACC-OAKL-0008",
+    "handle": "OAKEL88",
+    "name": "Oakel - Trim | Oakel - DESTINY Aqua Expert - T-Moulding",
+    "supply_price": 15.0,
+    "price_excluding_tax": 16.0,
+    "description": "Volume pricing notes: Oakel single printed price $15.00/pc -- no volume tiers on this sheet. | Sold per piece | Salesperson notes: Spec as printed: 12*45*2400mm. Sold per pc. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
+    "product_category": "ACCESSORIES",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 64
+  },
+  {
+   "id": "cat-b8e76350ef8f",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-OAKL-0009",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ACC-OAKL-0009",
+    "handle": "OAKEL99",
+    "name": "Oakel - Trim | Oakel - Master Step - Flush Square Nosing",
+    "supply_price": 25.0,
+    "price_excluding_tax": 26.0,
+    "description": "Volume pricing notes: Oakel single printed price $25.00/pc -- no volume tiers on this sheet. | Sold per piece | Salesperson notes: Spec as printed: 27*115*2400mm. Sold per pc. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
+    "product_category": "ACCESSORIES",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 65
+  },
+  {
+   "id": "cat-e84cac79d0f9",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-OAKL-0010",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ACC-OAKL-0010",
+    "handle": "OAKEL1010",
+    "name": "Oakel - Trim | Oakel - Master Step - Stair Board",
+    "supply_price": 25.0,
+    "price_excluding_tax": 26.0,
+    "description": "Volume pricing notes: Oakel single printed price $25.00/set -- no volume tiers on this sheet. | Sold per piece | Salesperson notes: Spec as printed: 42*300/1200mm. Sold per set. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
+    "product_category": "ACCESSORIES",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 66
+  },
+  {
+   "id": "cat-1a716e9f4461",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-OAKL-0011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ACC-OAKL-0011",
+    "handle": "OAKEL1111",
+    "name": "Oakel - Trim | Oakel - Master Step - Reducer",
+    "supply_price": 15.0,
+    "price_excluding_tax": 16.0,
+    "description": "Volume pricing notes: Oakel single printed price $15.00/pc -- no volume tiers on this sheet. | Sold per piece | Salesperson notes: Spec as printed: 15*45*2400mm. Sold per pc. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
+    "product_category": "ACCESSORIES",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 67
+  },
+  {
+   "id": "cat-5b5f987f925e",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-OAKL-0012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ACC-OAKL-0012",
+    "handle": "OAKEL1212",
+    "name": "Oakel - Trim | Oakel - Master Step - T-Moulding",
+    "supply_price": 15.0,
+    "price_excluding_tax": 16.0,
+    "description": "Volume pricing notes: Oakel single printed price $15.00/pc -- no volume tiers on this sheet. | Sold per piece | Salesperson notes: Spec as printed: 12*45*2400mm. Sold per pc. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
+    "product_category": "ACCESSORIES",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 68
+  },
+  {
+   "id": "cat-dc8a35630b99",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-OAKL-0013",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ACC-OAKL-0013",
+    "handle": "OAKEL1313",
+    "name": "Oakel - Trim | Oakel - Master Step Luxury Vinyl 86 - Flush Square Nosing",
+    "supply_price": 25.0,
+    "price_excluding_tax": 26.0,
+    "description": "Volume pricing notes: Oakel single printed price $25.00/pc -- no volume tiers on this sheet. | Sold per piece | Salesperson notes: Spec as printed: 24*115*2400mm. Sold per pc. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
+    "product_category": "ACCESSORIES",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 69
+  },
+  {
+   "id": "cat-9e267118409d",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-OAKL-0014",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ACC-OAKL-0014",
+    "handle": "OAKEL1414",
+    "name": "Oakel - Trim | Oakel - Master Step Luxury Vinyl 86 - Stair Riser",
+    "supply_price": 10.0,
+    "price_excluding_tax": 11.0,
+    "description": "Volume pricing notes: Oakel single printed price $10.00/pc -- no volume tiers on this sheet. | Sold per piece | Salesperson notes: Spec as printed: 8*200*1200mm. Sold per pc. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
+    "product_category": "ACCESSORIES",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 70
+  },
+  {
+   "id": "cat-fabd26fada62",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-OAKL-0015",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ACC-OAKL-0015",
+    "handle": "OAKEL1515",
+    "name": "Oakel - Trim | Oakel - Master Step Luxury Vinyl 86 - Stair Board",
+    "supply_price": 49.0,
+    "price_excluding_tax": 50.0,
+    "description": "Volume pricing notes: Oakel single printed price $49.00/set -- no volume tiers on this sheet. | Sold per piece | Salesperson notes: Spec as printed: 40*300*1200mm. Sold per set. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
+    "product_category": "ACCESSORIES",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 71
+  },
+  {
+   "id": "cat-8cae7187fbed",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-OAKL-0016",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ACC-OAKL-0016",
+    "handle": "OAKEL1616",
+    "name": "Oakel - Trim | Oakel - Master Step Luxury Vinyl 86 - Reducer",
+    "supply_price": 18.0,
+    "price_excluding_tax": 19.0,
+    "description": "Volume pricing notes: Oakel single printed price $18.00/pc -- no volume tiers on this sheet. | Sold per piece | Salesperson notes: Spec as printed: 8*45*2400mm. Sold per pc. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
+    "product_category": "ACCESSORIES",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 72
+  },
+  {
+   "id": "cat-a802042cae22",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-OAKL-0017",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ACC-OAKL-0017",
+    "handle": "OAKEL1717",
+    "name": "Oakel - Trim | Oakel - Master Step Luxury Vinyl 86 - T-Moulding",
+    "supply_price": 18.0,
+    "price_excluding_tax": 19.0,
+    "description": "Volume pricing notes: Oakel single printed price $18.00/pc -- no volume tiers on this sheet. | Sold per piece | Salesperson notes: Spec as printed: 8*45*2400mm. Sold per pc. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
+    "product_category": "ACCESSORIES",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 73
+  },
+  {
+   "id": "cat-fb914c52ed63",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-OAKL-0018",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ACC-OAKL-0018",
+    "handle": "OAKEL1818",
+    "name": "Oakel - Trim | Oakel - Waterproof Laminate Accessories - 3mm EVA Underpad - 200.00sf/b",
+    "supply_price": 21.0,
+    "price_excluding_tax": 22.0,
+    "description": "IIC rating: 74 | STC rating: 73 | Volume pricing notes: Oakel tiered pricing: <50 roll $21.00 / >=50 roll $19.00. Cost/unit set to the smallest-volume tier, consistent with the Northway precedent (Albert, 2026-09-10). | Box size (sf): 200 | Salesperson notes: 200 sqft/roll. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
+    "product_category": "ACCESSORIES",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 74
+  },
+  {
+   "id": "cat-acb594d94f93",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-OAKL-0019",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ACC-OAKL-0019",
+    "handle": "OAKEL1919",
+    "name": "Oakel - Trim | Oakel - Waterproof Laminate Accessories - 3mm IXPE Underpad - 200.00sf/b",
+    "supply_price": 23.0,
+    "price_excluding_tax": 24.0,
+    "description": "IIC rating: 77 | STC rating: 78 | Volume pricing notes: Oakel tiered pricing: <50 roll $23.00 / >=50 roll $20.00. Cost/unit set to the smallest-volume tier, consistent with the Northway precedent (Albert, 2026-09-10). | Box size (sf): 200 | Salesperson notes: 200 sqft/roll. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
+    "product_category": "ACCESSORIES",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 75
+  },
+  {
+   "id": "cat-33d9d80e313b",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0001",
+    "handle": "OAKENG748CAMELSELECT1",
+    "name": "OAKENG - European Oak 3-Ply 7 Series (Camel) | 7.48\" x 18mm x RL - 3mm top - 23.32sf/b - Select",
+    "supply_price": 3.29,
+    "price_excluding_tax": 4.29,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Camel | Volume pricing notes: Oakel single printed price $3.29/sf -- no volume tiers on this sheet. | Box size (sf): 23.32 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 76
+  },
+  {
+   "id": "cat-78407d88128c",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0005",
+    "handle": "OAKENG748FIORANOSELECTBETTER2",
+    "name": "OAKENG - European Oak 3-Ply 7 Series (Fiorano) | 7.48\" x 18mm x RL - 3mm top - 23.32sf/b - Select & Better",
+    "supply_price": 4.99,
+    "price_excluding_tax": 5.99,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Fiorano | Volume pricing notes: Oakel single printed price $4.99/sf -- no volume tiers on this sheet. | Box size (sf): 23.32 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 77
+  },
+  {
+   "id": "cat-0cbaab5f5986",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0010",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0010",
+    "handle": "OAKENG748IMOLASELECTBETTER3",
+    "name": "OAKENG - European Oak 3-Ply 7 Series (Imola) | 7.48\" x 18mm x RL - 3mm top - 23.32sf/b - Select & Better",
+    "supply_price": 4.09,
+    "price_excluding_tax": 5.09,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Imola | Volume pricing notes: Oakel single printed price $4.09/sf -- no volume tiers on this sheet. | Box size (sf): 23.32 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 78
+  },
+  {
+   "id": "cat-ae5ef50f8656",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0011",
+    "handle": "OAKENG748INDYSELECTBETTER4",
+    "name": "OAKENG - European Oak 3-Ply 7 Series (Indy) | 7.48\" x 18mm x RL - 3mm top - 23.32sf/b - Select & Better",
+    "supply_price": 4.39,
+    "price_excluding_tax": 5.39,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Indy | Volume pricing notes: Oakel single printed price $4.39/sf -- no volume tiers on this sheet. | Box size (sf): 23.32 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 79
+  },
+  {
+   "id": "cat-e72795f4c799",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0012",
+    "handle": "OAKENG748LAMENSELECTBETTER5",
+    "name": "OAKENG - European Oak 3-Ply 7 Series (La Men) | 7.48\" x 18mm x RL - 3mm top - 23.32sf/b - Select & Better",
+    "supply_price": 4.39,
+    "price_excluding_tax": 5.39,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: La Men | Volume pricing notes: Oakel single printed price $4.39/sf -- no volume tiers on this sheet. | Box size (sf): 23.32 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 80
+  },
+  {
+   "id": "cat-4ea8b52b4e52",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0013",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0013",
+    "handle": "OAKENG748MOCHASELECT6",
+    "name": "OAKENG - European Oak 3-Ply 7 Series (Mocha) | 7.48\" x 18mm x RL - 3mm top - 23.32sf/b - Select",
+    "supply_price": 4.29,
+    "price_excluding_tax": 5.29,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Mocha | Volume pricing notes: Oakel single printed price $4.29/sf -- no volume tiers on this sheet. | Box size (sf): 23.32 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 81
+  },
+  {
+   "id": "cat-4e906a5edb45",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0014",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0014",
+    "handle": "OAKENG748MONACOSELECTBETTER7",
+    "name": "OAKENG - European Oak 3-Ply 7 Series (Monaco) | 7.48\" x 18mm x RL - 3mm top - 23.32sf/b - Select & Better",
+    "supply_price": 4.39,
+    "price_excluding_tax": 5.39,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Monaco | Volume pricing notes: Oakel single printed price $4.39/sf -- no volume tiers on this sheet. | Box size (sf): 23.32 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 82
+  },
+  {
+   "id": "cat-fb183e3bbbe3",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0018",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0018",
+    "handle": "OAKENG748NUESELECT8",
+    "name": "OAKENG - European Oak 3-Ply 7 Series (Nue) | 7.48\" x 18mm x RL - 3mm top - 23.32sf/b - Select",
+    "supply_price": 4.39,
+    "price_excluding_tax": 5.39,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Nue | Volume pricing notes: Oakel single printed price $4.39/sf -- no volume tiers on this sheet. | Box size (sf): 23.32 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 83
+  },
+  {
+   "id": "cat-13ebdcd8a67f",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0019",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0019",
+    "handle": "OAKENG748NURBURGRINGSELECTBETTER9",
+    "name": "OAKENG - European Oak 3-Ply 7 Series (Nurburgring) | 7.48\" x 18mm x RL - 3mm top - 23.32sf/b - Select & Better",
+    "supply_price": 4.39,
+    "price_excluding_tax": 5.39,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Nurburgring | Volume pricing notes: Oakel single printed price $4.39/sf -- no volume tiers on this sheet. | Box size (sf): 23.32 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 84
+  },
+  {
+   "id": "cat-cfb889d6759e",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0024",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0024",
+    "handle": "OAKENG748SPASELECTBETTER10",
+    "name": "OAKENG - European Oak 3-Ply 7 Series (Spa) | 7.48\" x 18mm x RL - 3mm top - 23.32sf/b - Select & Better",
+    "supply_price": 4.09,
+    "price_excluding_tax": 5.09,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Spa | Volume pricing notes: Oakel single printed price $4.09/sf -- no volume tiers on this sheet. | Box size (sf): 23.32 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 85
+  },
+  {
+   "id": "cat-abc5bab55d88",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0044",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0044",
+    "handle": "OAKENG748AREASELECTBETTER11",
+    "name": "OAKENG - American Oak 3-Ply 7 Series (Area) | 7.48\" x 19mm x RL - 4mm top - 23.32sf/b - Select & Better",
+    "supply_price": 5.19,
+    "price_excluding_tax": 6.19,
+    "description": "Material type: Hardwood plywood | Species: American Oak | Colour / tone: Area | Volume pricing notes: Oakel single printed price $5.19/sf -- no volume tiers on this sheet. | Box size (sf): 23.32 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 86
+  },
+  {
+   "id": "cat-ac3b0b1147b1",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0045",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0045",
+    "handle": "OAKENG748BEARYLSELECTBETTER12",
+    "name": "OAKENG - American Oak 3-Ply 7 Series (Bearyl) | 7.48\" x 19mm x RL - 4mm top - 23.32sf/b - Select & Better",
+    "supply_price": 5.19,
+    "price_excluding_tax": 6.19,
+    "description": "Material type: Hardwood plywood | Species: American Oak | Colour / tone: Bearyl | Volume pricing notes: Oakel single printed price $5.19/sf -- no volume tiers on this sheet. | Box size (sf): 23.32 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 87
+  },
+  {
+   "id": "cat-bb09b74f336e",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0046",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0046",
+    "handle": "OAKENG748MONZASELECTBETTER13",
+    "name": "OAKENG - American Oak 3-Ply 7 Series (Monza) | 7.48\" x 19mm x RL - 4mm top - 23.32sf/b - Select & Better",
+    "supply_price": 5.19,
+    "price_excluding_tax": 6.19,
+    "description": "Material type: Hardwood plywood | Species: American Oak | Colour / tone: Monza | Volume pricing notes: Oakel single printed price $5.19/sf -- no volume tiers on this sheet. | Box size (sf): 23.32 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 88
+  },
+  {
+   "id": "cat-e0ace2e3b7ad",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0050",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0050",
+    "handle": "OAKENG492HARRISONSELECTBETTER14",
+    "name": "OAKENG - European Oak Multi-Ply Herringbone (Harrison) | 4.92\" x 18mm x 625mm - 3mm top - 10.10sf/b - Select & Better",
+    "supply_price": 4.79,
+    "price_excluding_tax": 5.79,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Harrison | Volume pricing notes: Oakel single printed price $4.79/sf -- no volume tiers on this sheet. | Box size (sf): 10.1 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 89
+  },
+  {
+   "id": "cat-df8a80195b92",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0051",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0051",
+    "handle": "OAKENG492MAILLARDCHARACTER15",
+    "name": "OAKENG - European Oak Multi-Ply Herringbone (Maillard) | 4.92\" x 18mm x 625mm - 3mm top - 10.10sf/b - Character",
+    "supply_price": 3.29,
+    "price_excluding_tax": 4.29,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Maillard | Volume pricing notes: Oakel single printed price $3.29/sf -- no volume tiers on this sheet. | Box size (sf): 10.1 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 90
+  },
+  {
+   "id": "cat-1bef997be289",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0052",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0052",
+    "handle": "OAKENG492PARADISESELECTBETTER16",
+    "name": "OAKENG - European Oak Multi-Ply Herringbone (Paradise) | 4.92\" x 18mm x 625mm - 3mm top - 10.10sf/b - Select & Better",
+    "supply_price": 4.79,
+    "price_excluding_tax": 5.79,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Paradise | Volume pricing notes: Oakel single printed price $4.79/sf -- no volume tiers on this sheet. | Box size (sf): 10.1 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 91
+  },
+  {
+   "id": "cat-5e7614716020",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0053",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0053",
+    "handle": "OAKENG492PORTOBELLOSELECT17",
+    "name": "OAKENG - European Oak Multi-Ply Herringbone (Portobello) | 4.92\" x 18mm x 625mm - 3mm top - 10.10sf/b - Select",
+    "supply_price": 3.99,
+    "price_excluding_tax": 4.99,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Portobello | Volume pricing notes: Oakel single printed price $3.99/sf -- no volume tiers on this sheet. | Box size (sf): 10.1 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 92
+  },
+  {
+   "id": "cat-ce7cb5e45a96",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0054",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0054",
+    "handle": "OAKENG748AMBERSELECT18",
+    "name": "OAKENG - European Oak 3-Ply 7 Series (Amber) | 7.48\" x 18mm x RL - 3mm top - 23.32sf/b - Select",
+    "supply_price": 4.59,
+    "price_excluding_tax": 5.59,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Amber | Stock status: Clearance | Volume pricing notes: Oakel single printed price $4.59/sf -- no volume tiers on this sheet. | Box size (sf): 23.32 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). Clearance: 2088 boxes (AB tier)/1086 boxes (ABC tier) remaining. STOCK STATUS = CLEARANCE per the sheet's own 'Clearance' section header.",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 93
+  },
+  {
+   "id": "cat-e8e1c31a70dc",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0055",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0055",
+    "handle": "OAKENG748AMBERCHARACTER19",
+    "name": "OAKENG - European Oak 3-Ply 7 Series (Amber) | 7.48\" x 18mm x RL - 3mm top - 23.32sf/b - Character",
+    "supply_price": 4.09,
+    "price_excluding_tax": 5.09,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Amber | Stock status: Clearance | Volume pricing notes: Oakel single printed price $4.09/sf -- no volume tiers on this sheet. | Box size (sf): 23.32 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). Clearance: 2088 boxes (AB tier)/1086 boxes (ABC tier) remaining. STOCK STATUS = CLEARANCE per the sheet's own 'Clearance' section header.",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 94
+  },
+  {
+   "id": "cat-e651be630fbb",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0059",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0059",
+    "handle": "OAKENG748GLODENPRIMESELECTBETTER20",
+    "name": "OAKENG - European Oak 3-Ply 7 Series (Gloden Prime) | 7.48\" x 18mm x RL - 3mm top - 23.32sf/b - Select & Better",
+    "supply_price": 4.09,
+    "price_excluding_tax": 5.09,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Gloden Prime | Stock status: Clearance | Volume pricing notes: Oakel single printed price $4.09/sf -- no volume tiers on this sheet. | Box size (sf): 23.32 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). Clearance: 13 boxes remaining. 'Gloden' is printed verbatim on the sheet -- likely a typo for 'Golden', kept as-is per RULE 0 (never silently correct supplier text). STOCK STATUS = CLEARANCE per the sheet's own 'Clearance' section header.",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 95
+  },
+  {
+   "id": "cat-136843522958",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0060",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0060",
+    "handle": "OAKENG748LATTESELECT21",
+    "name": "OAKENG - European Oak 3-Ply 7 Series (Latte) | 7.48\" x 18mm x RL - 3mm top - 23.32sf/b - Select",
+    "supply_price": 4.09,
+    "price_excluding_tax": 5.09,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Latte | Stock status: Clearance | Volume pricing notes: Oakel single printed price $4.09/sf -- no volume tiers on this sheet. | Box size (sf): 23.32 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). Clearance: 801 boxes remaining. STOCK STATUS = CLEARANCE per the sheet's own 'Clearance' section header.",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 96
+  },
+  {
+   "id": "cat-0c7b1b9a8d4a",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0085",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0085",
+    "handle": "OAKENG1024NUECHARACTER22",
+    "name": "OAKENG - European Oak 3-Ply 10 Series (Nue) | 10.24\" x 18mm x RL - 3mm top - 36.94sf/b - Character",
+    "supply_price": 3.99,
+    "price_excluding_tax": 4.99,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Nue | Stock status: Clearance | Volume pricing notes: Oakel single printed price $3.99/sf -- no volume tiers on this sheet. | Box size (sf): 36.94 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). Clearance: 109 boxes remaining. This 10 Series line only appears in the Clearance section -- not offered in the regular price list. STOCK STATUS = CLEARANCE per the sheet's own 'Clearance' section header.",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 97
+  },
+  {
+   "id": "cat-2d6239e116d0",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0086",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0086",
+    "handle": "OAKENG492ERINOAKSELECTBETTER23",
+    "name": "OAKENG - European Oak Multi-Ply Herringbone (Erin Oak) | 4.92\" x 18mm x 625mm - 3mm top - 10.10sf/b - Select & Better",
+    "supply_price": 4.29,
+    "price_excluding_tax": 5.29,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Erin Oak | Stock status: Clearance | Volume pricing notes: Oakel single printed price $4.29/sf -- no volume tiers on this sheet. | Box size (sf): 10.1 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). Clearance: 97 boxes remaining. STOCK STATUS = CLEARANCE per the sheet's own 'Clearance' section header.",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 98
+  },
+  {
+   "id": "cat-c42e157229dd",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0087",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0087",
+    "handle": "OAKENG50HARRISONSELECTBETTER24",
+    "name": "OAKENG - European Oak Multi-Ply Chevron (Harrison) | 5.0\" x 18mm x 609mm - 3mm top - 10.50sf/b - Select & Better",
+    "supply_price": 4.49,
+    "price_excluding_tax": 5.49,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Harrison | Stock status: Clearance | Volume pricing notes: Oakel single printed price $4.49/sf -- no volume tiers on this sheet. | Box size (sf): 10.5 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). Clearance: 1608 boxes remaining. Printed under a 'Herringbone' sub-label but the section header says Chevron; box spec (127mm width, 609mm length) differs from the true Herringbone line (125x625mm) -- kept as a distinct Chevron product per the section title. STOCK STATUS = CLEARANCE per the sheet's own 'Clearance' section header.",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 99
+  },
+  {
+   "id": "cat-b48d94143862",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-OAKL-0088",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "ENG-OAKL-0088",
+    "handle": "OAKENG50PARADISESELECTBETTER25",
+    "name": "OAKENG - European Oak Multi-Ply Chevron (Paradise) | 5.0\" x 18mm x 609mm - 3mm top - 10.50sf/b - Select & Better",
+    "supply_price": 4.49,
+    "price_excluding_tax": 5.49,
+    "description": "Material type: Hardwood plywood | Species: European Oak | Colour / tone: Paradise | Stock status: Clearance | Volume pricing notes: Oakel single printed price $4.49/sf -- no volume tiers on this sheet. | Box size (sf): 10.5 | Salesperson notes: Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy). Clearance: 1405 boxes remaining. STOCK STATUS = CLEARANCE per the sheet's own 'Clearance' section header.",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 100
+  },
+  {
+   "id": "cat-c8bc6d97ca17",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-OAKL-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "LVP-OAKL-0001",
+    "handle": "OAKENG717ORIONMS86011",
+    "name": "OAKENG - Master Step Luxury Vinyl 86 (Orion) | 7.17\" x 8mm x 1220mm - 19.12sf/b",
+    "supply_price": 1.89,
+    "price_excluding_tax": 2.89,
+    "description": "Material type: SPC core | Colour / tone: Orion | Locking system: 5Gi | Waterproof: TRUE | Volume pricing notes: Oakel single printed price $1.89/sf -- no volume tiers on this sheet. | Box size (sf): 19.12 | Salesperson notes: SPC rigid-core vinyl, 5Gi click lock. Waterproof assumed TRUE per the global SPC default (not stated on the sheet). Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 101
+  },
+  {
+   "id": "cat-a5e9db3c91e9",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-OAKL-0002",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "LVP-OAKL-0002",
+    "handle": "OAKENG717PERSEUSMS86022",
+    "name": "OAKENG - Master Step Luxury Vinyl 86 (Perseus) | 7.17\" x 8mm x 1220mm - 19.12sf/b",
+    "supply_price": 1.89,
+    "price_excluding_tax": 2.89,
+    "description": "Material type: SPC core | Colour / tone: Perseus | Locking system: 5Gi | Waterproof: TRUE | Volume pricing notes: Oakel single printed price $1.89/sf -- no volume tiers on this sheet. | Box size (sf): 19.12 | Salesperson notes: SPC rigid-core vinyl, 5Gi click lock. Waterproof assumed TRUE per the global SPC default (not stated on the sheet). Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 102
+  },
+  {
+   "id": "cat-0d64b7e85e00",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-OAKL-0003",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "LVP-OAKL-0003",
+    "handle": "OAKENG717LYNXMS86033",
+    "name": "OAKENG - Master Step Luxury Vinyl 86 (Lynx) | 7.17\" x 8mm x 1220mm - 19.12sf/b",
+    "supply_price": 1.89,
+    "price_excluding_tax": 2.89,
+    "description": "Material type: SPC core | Colour / tone: Lynx | Locking system: 5Gi | Waterproof: TRUE | Volume pricing notes: Oakel single printed price $1.89/sf -- no volume tiers on this sheet. | Box size (sf): 19.12 | Salesperson notes: SPC rigid-core vinyl, 5Gi click lock. Waterproof assumed TRUE per the global SPC default (not stated on the sheet). Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 103
+  },
+  {
+   "id": "cat-5caf8cf227cc",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-OAKL-0004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "LVP-OAKL-0004",
+    "handle": "OAKENG717PAVOMS86054",
+    "name": "OAKENG - Master Step Luxury Vinyl 86 (Pavo) | 7.17\" x 8mm x 1220mm - 19.12sf/b",
+    "supply_price": 1.89,
+    "price_excluding_tax": 2.89,
+    "description": "Material type: SPC core | Colour / tone: Pavo | Locking system: 5Gi | Waterproof: TRUE | Volume pricing notes: Oakel single printed price $1.89/sf -- no volume tiers on this sheet. | Box size (sf): 19.12 | Salesperson notes: SPC rigid-core vinyl, 5Gi click lock. Waterproof assumed TRUE per the global SPC default (not stated on the sheet). Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 104
+  },
+  {
+   "id": "cat-0a4938d1c157",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-OAKL-0005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "LVP-OAKL-0005",
+    "handle": "OAKENG717NORMAMS86075",
+    "name": "OAKENG - Master Step Luxury Vinyl 86 (Norma) | 7.17\" x 8mm x 1220mm - 19.12sf/b",
+    "supply_price": 1.89,
+    "price_excluding_tax": 2.89,
+    "description": "Material type: SPC core | Colour / tone: Norma | Locking system: 5Gi | Waterproof: TRUE | Volume pricing notes: Oakel single printed price $1.89/sf -- no volume tiers on this sheet. | Box size (sf): 19.12 | Salesperson notes: SPC rigid-core vinyl, 5Gi click lock. Waterproof assumed TRUE per the global SPC default (not stated on the sheet). Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 105
+  },
+  {
+   "id": "cat-ad3d1b37e1d3",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-OAKL-0006",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "LVP-OAKL-0006",
+    "handle": "OAKENG717CRUXMS86086",
+    "name": "OAKENG - Master Step Luxury Vinyl 86 (Crux) | 7.17\" x 8mm x 1220mm - 19.12sf/b",
+    "supply_price": 1.89,
+    "price_excluding_tax": 2.89,
+    "description": "Material type: SPC core | Colour / tone: Crux | Locking system: 5Gi | Waterproof: TRUE | Volume pricing notes: Oakel single printed price $1.89/sf -- no volume tiers on this sheet. | Box size (sf): 19.12 | Salesperson notes: SPC rigid-core vinyl, 5Gi click lock. Waterproof assumed TRUE per the global SPC default (not stated on the sheet). Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 106
+  },
+  {
+   "id": "cat-53c621d2a270",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-OAKL-0007",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "LVP-OAKL-0007",
+    "handle": "OAKENG717VELAMS86097",
+    "name": "OAKENG - Master Step Luxury Vinyl 86 (Vela) | 7.17\" x 8mm x 1220mm - 19.12sf/b",
+    "supply_price": 1.89,
+    "price_excluding_tax": 2.89,
+    "description": "Material type: SPC core | Colour / tone: Vela | Locking system: 5Gi | Waterproof: TRUE | Volume pricing notes: Oakel single printed price $1.89/sf -- no volume tiers on this sheet. | Box size (sf): 19.12 | Salesperson notes: SPC rigid-core vinyl, 5Gi click lock. Waterproof assumed TRUE per the global SPC default (not stated on the sheet). Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 107
+  },
+  {
+   "id": "cat-a38c1e5e645d",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-OAKL-0008",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "LVP-OAKL-0008",
+    "handle": "OAKENG717GRUSMS86108",
+    "name": "OAKENG - Master Step Luxury Vinyl 86 (Grus) | 7.17\" x 8mm x 1220mm - 19.12sf/b",
+    "supply_price": 1.89,
+    "price_excluding_tax": 2.89,
+    "description": "Material type: SPC core | Colour / tone: Grus | Locking system: 5Gi | Waterproof: TRUE | Volume pricing notes: Oakel single printed price $1.89/sf -- no volume tiers on this sheet. | Box size (sf): 19.12 | Salesperson notes: SPC rigid-core vinyl, 5Gi click lock. Waterproof assumed TRUE per the global SPC default (not stated on the sheet). Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 108
+  },
+  {
+   "id": "cat-3181226536f5",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-OAKL-0009",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "LVP-OAKL-0009",
+    "handle": "OAKENG925ARIELLS50019",
+    "name": "OAKENG - Luxury Vinyl LS50 Series (Ariel) | 9.25\" x 5mm x 1530mm - 23.22sf/b",
+    "supply_price": 2.39,
+    "price_excluding_tax": 3.39,
+    "description": "Material type: SPC core | Colour / tone: Ariel | Waterproof: TRUE | Volume pricing notes: Oakel single printed price $2.39/sf -- no volume tiers on this sheet. | Box size (sf): 23.22 | Salesperson notes: The sheet repeats the 'Master Step Luxury Vinyl 86 Collection' header for this block, but the code prefix (LS50xx, not MS86xx), thickness (5mm not 8mm) and dimensions all differ from the block above -- this is a distinct collection the sheet mislabels. Named 'Luxury Vinyl LS50 Series' here as the closest honest label; confirm the real collection name with Oakel. Material type/core construction not stated -- SPC core assumed per the global default for unlabelled rigid vinyl. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 109
+  },
+  {
+   "id": "cat-b7cc7b053ce5",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-OAKL-0010",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "LVP-OAKL-0010",
+    "handle": "OAKENG925PORTIALS500210",
+    "name": "OAKENG - Luxury Vinyl LS50 Series (Portia) | 9.25\" x 5mm x 1530mm - 23.22sf/b",
+    "supply_price": 2.39,
+    "price_excluding_tax": 3.39,
+    "description": "Material type: SPC core | Colour / tone: Portia | Waterproof: TRUE | Volume pricing notes: Oakel single printed price $2.39/sf -- no volume tiers on this sheet. | Box size (sf): 23.22 | Salesperson notes: The sheet repeats the 'Master Step Luxury Vinyl 86 Collection' header for this block, but the code prefix (LS50xx, not MS86xx), thickness (5mm not 8mm) and dimensions all differ from the block above -- this is a distinct collection the sheet mislabels. Named 'Luxury Vinyl LS50 Series' here as the closest honest label; confirm the real collection name with Oakel. Material type/core construction not stated -- SPC core assumed per the global default for unlabelled rigid vinyl. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 110
+  },
+  {
+   "id": "cat-68c01934567a",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-OAKL-0011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "LVP-OAKL-0011",
+    "handle": "OAKENG925POLARISLS500611",
+    "name": "OAKENG - Luxury Vinyl LS50 Series (Polaris) | 9.25\" x 5mm x 1530mm - 23.22sf/b",
+    "supply_price": 2.39,
+    "price_excluding_tax": 3.39,
+    "description": "Material type: SPC core | Colour / tone: Polaris | Waterproof: TRUE | Volume pricing notes: Oakel single printed price $2.39/sf -- no volume tiers on this sheet. | Box size (sf): 23.22 | Salesperson notes: The sheet repeats the 'Master Step Luxury Vinyl 86 Collection' header for this block, but the code prefix (LS50xx, not MS86xx), thickness (5mm not 8mm) and dimensions all differ from the block above -- this is a distinct collection the sheet mislabels. Named 'Luxury Vinyl LS50 Series' here as the closest honest label; confirm the real collection name with Oakel. Material type/core construction not stated -- SPC core assumed per the global default for unlabelled rigid vinyl. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 111
+  },
+  {
+   "id": "cat-75be60061a1f",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-OAKL-0012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "sku": "LVP-OAKL-0012",
+    "handle": "OAKENG925CALLISTOLS500812",
+    "name": "OAKENG - Luxury Vinyl LS50 Series (Callisto) | 9.25\" x 5mm x 1530mm - 23.22sf/b",
+    "supply_price": 2.39,
+    "price_excluding_tax": 3.39,
+    "description": "Material type: SPC core | Colour / tone: Callisto | Waterproof: TRUE | Volume pricing notes: Oakel single printed price $2.39/sf -- no volume tiers on this sheet. | Box size (sf): 23.22 | Salesperson notes: The sheet repeats the 'Master Step Luxury Vinyl 86 Collection' header for this block, but the code prefix (LS50xx, not MS86xx), thickness (5mm not 8mm) and dimensions all differ from the block above -- this is a distinct collection the sheet mislabels. Named 'Luxury Vinyl LS50 Series' here as the closest honest label; confirm the real collection name with Oakel. Material type/core construction not stated -- SPC core assumed per the global default for unlabelled rigid vinyl. Oakel is a new supplier; printed price/sf taken as cost per the flooring pricing default (single obvious $/sf column, no MSRP or second price printed -- no confirmation needed per 2026-09-11 policy).",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "Oakel",
+    "supplier_name": "Oakel"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 112
+  },
+  {
+   "id": "cat-a2a84119c8a6",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-OAKL-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 113
+  },
+  {
+   "id": "cat-c309c023d430",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-OAKL-0002",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 114
+  },
+  {
+   "id": "cat-5dce076ffad4",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-OAKL-0003",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 115
+  },
+  {
+   "id": "cat-30db4a748136",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-OAKL-0004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 116
+  },
+  {
+   "id": "cat-9308f6e3f6e1",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-OAKL-0005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 117
+  },
+  {
+   "id": "cat-dde9e4580c64",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-OAKL-0006",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 118
+  },
+  {
+   "id": "cat-82ff8e4b0714",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-OAKL-0007",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 119
+  },
+  {
+   "id": "cat-cea467463edf",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-OAKL-0008",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 120
+  },
+  {
+   "id": "cat-75b7784859fd",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-OAKL-0009",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 121
+  },
+  {
+   "id": "cat-df12da212952",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-OAKL-0010",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 122
+  },
+  {
+   "id": "cat-ea9042695a0a",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-OAKL-0011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 123
+  },
+  {
+   "id": "cat-9eb594b86f0d",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-OAKL-0012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 124
+  },
+  {
+   "id": "cat-3370e299b888",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-OAKL-0013",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 125
+  },
+  {
+   "id": "cat-8a59dc401290",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-OAKL-0014",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 126
+  },
+  {
+   "id": "cat-ca51b569e440",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-OAKL-0015",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 127
+  },
+  {
+   "id": "cat-9cf275b15bb0",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-OAKL-0016",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 128
+  },
+  {
+   "id": "cat-b5622ebf71d3",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-OAKL-0017",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 129
+  },
+  {
+   "id": "cat-5dca99ee2795",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-OAKL-0018",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 130
+  },
+  {
+   "id": "cat-2f5079c6d23e",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-OAKL-0019",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 131
+  },
+  {
+   "id": "cat-4ba40891a6bc",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 132
+  },
+  {
+   "id": "cat-e97b7973b40e",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 133
+  },
+  {
+   "id": "cat-adf6d5c8f780",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0010",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 134
+  },
+  {
+   "id": "cat-d5d1fc7dcfa5",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 135
+  },
+  {
+   "id": "cat-38ba12949e25",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 136
+  },
+  {
+   "id": "cat-2a0a67053d34",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0013",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 137
+  },
+  {
+   "id": "cat-e8df75735487",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0014",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 138
+  },
+  {
+   "id": "cat-2ceaa456d759",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0018",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 139
+  },
+  {
+   "id": "cat-2ecc6ee584b8",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0019",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 140
+  },
+  {
+   "id": "cat-a7d6059c1320",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0024",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 141
+  },
+  {
+   "id": "cat-b56f1772621a",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0044",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 142
+  },
+  {
+   "id": "cat-16aa69628115",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0045",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 143
+  },
+  {
+   "id": "cat-0285a0cb5f27",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0046",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 144
+  },
+  {
+   "id": "cat-5b74f31f4f2a",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0050",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 145
+  },
+  {
+   "id": "cat-09692d33dd97",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0051",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 146
+  },
+  {
+   "id": "cat-f662fd9a5cb0",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0052",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 147
+  },
+  {
+   "id": "cat-c3920e261aae",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0053",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 148
+  },
+  {
+   "id": "cat-8c0061586775",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0054",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 149
+  },
+  {
+   "id": "cat-034388cf9d3b",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0055",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 150
+  },
+  {
+   "id": "cat-b3413dd10e96",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0059",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 151
+  },
+  {
+   "id": "cat-657b63d1efab",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0060",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 152
+  },
+  {
+   "id": "cat-52ed7bf90849",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0085",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 153
+  },
+  {
+   "id": "cat-33191af171d4",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0086",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 154
+  },
+  {
+   "id": "cat-b626bd521726",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0087",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 155
+  },
+  {
+   "id": "cat-b9a3d0ae6047",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-OAKL-0088",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 156
+  },
+  {
+   "id": "cat-9b51656ff751",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-OAKL-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 157
+  },
+  {
+   "id": "cat-24f559794699",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-OAKL-0002",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 158
+  },
+  {
+   "id": "cat-868f95dc5db5",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-OAKL-0003",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 159
+  },
+  {
+   "id": "cat-0110b8c2ab5e",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-OAKL-0004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 160
+  },
+  {
+   "id": "cat-e339261cae12",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-OAKL-0005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 161
+  },
+  {
+   "id": "cat-1ef808adb99e",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-OAKL-0006",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 162
+  },
+  {
+   "id": "cat-6734f304edd8",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-OAKL-0007",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 163
+  },
+  {
+   "id": "cat-06ac6c5edc55",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-OAKL-0008",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 164
+  },
+  {
+   "id": "cat-7f2d8ce24eba",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-OAKL-0009",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 165
+  },
+  {
+   "id": "cat-51bd7e85e619",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-OAKL-0010",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 166
+  },
+  {
+   "id": "cat-ba783891b402",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-OAKL-0011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 167
+  },
+  {
+   "id": "cat-170ab834515f",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-OAKL-0012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 168
+  }
+ ],
+ "blocked": [
+  {
+   "sku": "ENG-OAKL-0002",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "f56aac7a-502c-41e0-ae64-afe1e7b1d334 belongs to OAK.E.EO.EriOak.1.4 (OAKENG - 7 Series - Collection A - European Oak (Erin Oak)  | #OAK.E.EO.EriOak.1.4 | ABC - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0003",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "0d668142-4856-4555-969a-b6bb624aebc2 belongs to OAK.E.EO.EriOak.1.5 (OAKENG - 7 Series - Collection A - European Oak (Erin Oak)  | #OAK.E.EO.EriOak.1.5 | ABCD - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0004",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "447c74e8-c80d-46b1-93b6-620d08a14ac8 belongs to OAK.E.EO.Ess.1.5 (OAKENG - 7 Series - Collection A - European Oak (Essence)  | #OAK.E.EO.Ess.1.5 | ABC - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0006",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "1ca5a16a-1919-49b5-a277-e1cf758593e5 belongs to OAK.E.EO.Fio.1 (OAKENG - 7 Series - Collection A - European Oak (Fiorano)  | #OAK.E.EO.Fio.1 | ABC - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0007",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "9d6f654a-f022-4dac-931f-bfd2a17fde29 belongs to OAK.E.EO.For.1.4 (OAKENG - 7 Series - Collection B - European Oak (Fortino)  | #OAK.E.EO.For.1.4 | AB - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0008",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "6c9f91a2-92c6-42b9-a34a-e03c0ef581e9 belongs to OAK.E.EO.For.1.3 (OAKENG - 7 Series - Collection B - European Oak (Fortino)  | #OAK.E.EO.For.1.3 | ABC - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0009",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "9ab205bb-d60d-49fd-bc37-13a6a3d80fcd belongs to OAK.E.EO.Har.1.5 (OAKENG - 7 Series - Collection A - European Oak (Harrison)  | #OAK.E.EO.Har.1.5 | ABC - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0015",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "054d9d72-318e-433a-abd3-682fc5555795 belongs to OAK.E.EO.Nat.1.3 (OAKENG - 7 Series - Collection A - European Oak (Natural)  | #OAK.E.EO.Nat.1.3 | AB - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0016",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "8bb57334-d5ac-4203-b8bf-f9e230d49eee belongs to OAK.E.EO.Nat.1.4 (OAKENG - 7 Series - Collection A - European Oak (Natural)  | #OAK.E.EO.Nat.1.4 | ABC - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0017",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "b2f4f5b0-0d4a-4dd3-9f79-e206f980aae7 belongs to OAK.E.EO.Nat.1.5 (OAKENG - 7 Series - Collection A - European Oak (Natural)  | #OAK.E.EO.Nat.1.5 | ABCD - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0020",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "4ff8a395-280d-4d7e-8b49-95d1b03d0152 belongs to OAK.E.EO.Par.1 (OAKENG - 7 Series - Collection A - European Oak (Paradise)  | #OAK.E.EO.Par.1 | AB - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0021",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "2169caa9-e8e9-48e8-b4fb-3951e6d3804e belongs to OAK.E.EO.Par.1.1 (OAKENG - 7 Series - Collection A - European Oak (Paradise)  | #OAK.E.EO.Par.1.1 | ABC - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0022",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "c028f2e2-2c70-49f1-838d-0ae81b66d752 belongs to OAK.E.EO.Por.1 (OAKENG - 7 Series - Collection B - European Oak (Portobello)  | #OAK.E.EO.Por.1 | ABC - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0023",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "264e8243-75f0-4705-9c24-0cbb94788c9f belongs to OAK.E.EO.Sno.1.1 (OAKENG - 7 Series - Collection B - European Oak (Snowflake)  | #OAK.E.EO.Sno.1.1 | ABC - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0025",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "40c0d452-a0b8-47e9-84c3-039bcc81b5c8 belongs to OAK.E.EO.Tof.1.1 (OAKENG - 7 Series - Collection B - European Oak (Tofino)  | #OAK.E.EO.Tof.1.1 | ABC - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0026",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "ad1233b1-e6b8-4c9e-a7b2-78ce1c623666 belongs to OAK.E.EO.Cam.1 (OAKENG - 6 Series - Collection B - European Oak (Camel)  | #OAK.E.EO.Cam.1 | ABC - 18/3mm x150xRL - 18.41sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0027",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "37900d20-dce9-4c98-a709-6e25d9a6ecf0 belongs to OAK.E.EO.Dri.1 (OAKENG - 6 Series - Collection B - European Oak (Driftwood)  | #OAK.E.EO.Dri.1 | AB - 18/3mm x150xRL - 18.41sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0028",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "8b8d7398-bd22-4426-8ebf-c266096e001f belongs to OAK.E.EO.Dri.1.1 (OAKENG - 6 Series - Collection B - European Oak (Driftwood)  | #OAK.E.EO.Dri.1.1 | ABC - 18/3mm x150xRL - 18.41sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0029",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "61f830fb-9206-4f3a-93ca-690984b18588 belongs to OAK.E.EO.For.1 (OAKENG - 6 Series - Collection B - European Oak (Fortino)  | #OAK.E.EO.For.1 | AB - 18/3mm x150xRL - 18.41sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0030",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "a88dc227-5258-4b3f-bebb-97c348b6db70 belongs to OAK.E.EO.For.1.1 (OAKENG - 6 Series - Collection B - European Oak (Fortino)  | #OAK.E.EO.For.1.1 | ABC - 18/3mm x150xRL - 18.41sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0031",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "1159224e-089e-4d45-9f67-758bf058e558 belongs to OAK.E.EO.Mai.1 (OAKENG - 6 Series - Collection B - European Oak (Maillard)  | #OAK.E.EO.Mai.1 | ABCD - 18/3mm x150xRL - 18.41sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0032",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "b6f37851-f7af-4e1c-aa16-8a9f17cdcf1a belongs to OAK.E.EO.NakOak.1 (OAKENG - 6 Series - Collection B - European Oak (Naked Oak)  | #OAK.E.EO.NakOak.1 | AB - 18/3mm x150xRL - 18.41sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0033",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "e45e6747-85fb-4cf7-a0b1-f8a223515b9b belongs to OAK.E.EO.NakOak.1.1 (OAKENG - 6 Series - Collection B - European Oak (Naked Oak)  | #OAK.E.EO.NakOak.1.1 | ABC - 18/3mm x150xRL - 18.41sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0034",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "5e9afc7b-2b9d-487f-b5c1-e81d6236de82 belongs to OAK.E.EO.Sno.1 (OAKENG - 6 Series - Collection B - European Oak (Snowflake)  | #OAK.E.EO.Sno.1 | ABC - 18/3mm x150xRL - 18.41sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0035",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "6b12bdd2-6baf-4cca-af6c-bca945de2b2b belongs to OAK.E.EO.EriOak.1.8 (OAKENG - 6 Series - Collection C - European Oak (Erin Oak)  | #OAK.E.EO.EriOak.1.8 | ABC - 18/2mm x150xRL - 18.41sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0036",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "369919ac-0f0d-4139-bb55-a78f4dd43e6f belongs to OAK.E.EO.Ess.1.3 (OAKENG - 6 Series - Collection C - European Oak (Essence)  | #OAK.E.EO.Ess.1.3 | ABC - 18/2mm x150xRL - 18.41sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0037",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "af28a448-de5c-47d3-ab3b-0c5109c7feca belongs to OAK.E.EO.Har.1.3 (OAKENG - 6 Series - Collection C - European Oak (Harrison)  | #OAK.E.EO.Har.1.3 | ABC - 18/2mm x150xRL - 18.41sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0038",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "4090a84c-2b62-4365-abea-f861c4b082ab belongs to OAK.E.AO.Lmo.1 (OAKENG - 6 Click Series - American Oak (Lmola)  | #OAK.E.AO.Lmo.1 | ABC - 12/2mm x150x1250mm - 12.11sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0039",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "b097211c-4850-452e-bf37-e3c0e7b6f266 belongs to OAK.E.AO.Ind.1 (OAKENG - 6 Click Series - American Oak (Indy)  | #OAK.E.AO.Ind.1 | ABC - 12/2mm x150x1250mm - 12.11sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0040",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "01905bef-b242-41a2-b857-0329a37e64f6 belongs to OAK.E.AO.LeMan.1 (OAKENG - 6 Click Series - American Oak (Le Man)  | #OAK.E.AO.LeMan.1 | ABC - 12/2mm x150x1250mm - 12.11sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0041",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "0c6eeec2-6f60-4729-b266-2e569e7008ea belongs to OAK.E.AO.Mon.1.1 (OAKENG - 6 Click Series - American Oak (Monaco)  | #OAK.E.AO.Mon.1.1 | ABC - 12/2mm x150x1250mm - 12.11sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0042",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "93dde32c-3b7a-4ed4-bdbf-4b1c9d1f5d60 belongs to OAK.E.AO.Nur.1 (OAKENG - 6 Click Series - American Oak (Nurburgring)  | #OAK.E.AO.Nur.1 | ABC - 12/2mm x150x1250mm - 12.11sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0043",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "8961d4dd-512b-48cd-947d-fb81edb82e38 belongs to OAK.E.AO.Spa.1 (OAKENG - 6 Click Series - American Oak (Spa)  | #OAK.E.AO.Spa.1 | ABC - 12/2mm x150x1250mm - 12.11sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0047",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "a852fcc9-554d-42bf-a019-675c7801b225 belongs to OAK.E.EO.Ess.1.6 (OAKENG - 9 Series - Collection A - European Oak (Essence)  | #OAK.E.EO.Ess.1.6 | AB - 18/3mm x235xRL - 28.84sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0048",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "35947595-d75f-4afd-af78-aa3c38cd9412 belongs to OAK.E.EO.LonFog.1.2 (OAKENG - 9 Series - Collection A - European Oak (London Fog)  | #OAK.E.EO.LonFog.1.2 | ABC - 18/3mm x235xRL - 28.84sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0049",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "1a88830f-835f-43d0-9b37-6f2a46394f5b belongs to OAK.E.EO.LonFog.1.3 (OAKENG - 9 Series - Collection A - European Oak (London Fog)  | #OAK.E.EO.LonFog.1.3 | ABCD - 18/3mm x235xRL - 28.84sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0056",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "9421bd8f-55f9-4344-a399-c3016c516d3f belongs to OAK.E.EO.Dri.1.2 (OAKENG - 7 Series - Collection B - European Oak (Driftwood)  | #OAK.E.EO.Dri.1.2 | ABC - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0057",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "7361267d-c565-4ae8-a128-ee60b5e44c1f belongs to OAK.E.EO.Dri.1.4 (OAKENG - 7 Series - Collection B - European Oak (Driftwood)  | #OAK.E.EO.Dri.1.4 | ABCD - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0058",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "c2febee6-8e63-4b12-84e1-ffaf9286ba47 belongs to OAK.E.EO.Inv.1.2 (OAKENG - 7 Series - Collection A - European Oak (Invisible)  | #OAK.E.EO.Inv.1.2 | ABCD - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0061",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "aa8e722b-0fde-4ac9-9fcc-dca069273a5c belongs to OAK.E.EO.LonFog.1 (OAKENG - 7 Series - Collection A - European Oak (London Fog)  | #OAK.E.EO.LonFog.1 | ABC - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0062",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "ede440e9-2d5a-4420-8d47-ae0a9f6b7214 belongs to OAK.E.EO.LonFog.1.1 (OAKENG - 7 Series - Collection A - European Oak (London Fog)  | #OAK.E.EO.LonFog.1.1 | ABCD - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0063",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "ffe89dbe-9eb8-4488-ab43-65735448d44b belongs to OAK.E.EO.NakOak.1.4 (OAKENG - 7 Series - Collection B - European Oak (Naked Oak)  | #OAK.E.EO.NakOak.1.4 | AB - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0064",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "a4e0674e-f0d4-43f6-be8c-6ea9aa8467dc belongs to OAK.E.EO.NakOak.1.3 (OAKENG - 7 Series - Collection B - European Oak (Naked Oak)  | #OAK.E.EO.NakOak.1.3 | ABC - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0065",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "aed45d06-7a46-44f7-8120-12f3661e8b30 belongs to OAK.E.EO.NakOak.1.5 (OAKENG - 7 Series - Collection B - European Oak (Naked Oak)  | #OAK.E.EO.NakOak.1.5 | ABCD - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0066",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "b21856d2-52fc-49cd-b055-b09946014d9b belongs to OAK.E.EO.Rom.1 (OAKENG - 7 Series - Collection A - European Oak (Roma)  | #OAK.E.EO.Rom.1 | ABC - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0067",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "8bae74ee-d5ee-4213-b88e-a06b388bc531 belongs to OAK.E.EO.Rom.1.1 (OAKENG - 7 Series - Collection A - European Oak (Roma)  | #OAK.E.EO.Rom.1.1 | ABCD - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0068",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "244e4cc8-dcb5-4200-899a-b48f1745b04c belongs to OAK.E.EO.SmoGre.1 (OAKENG - 7 Series - Collection B - European Oak (Smoke Grey)  | #OAK.E.EO.SmoGre.1 | ABC - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0069",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "c9dacd28-9d51-4bda-b045-31682ad17c2b belongs to OAK.E.EO.WinFly.1.3 (OAKENG - 7 Series - Collection B - European Oak (Winter Fly)  | #OAK.E.EO.WinFly.1.3 | AB - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0070",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "ed32ae54-95ab-404f-9837-fadb83641620 belongs to OAK.E.EO.WinFly.1.2 (OAKENG - 7 Series - Collection B - European Oak (Winter Fly)  | #OAK.E.EO.WinFly.1.2 | ABC - 18/3mm x190xRL - 23.32sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0071",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "df8c79d8-a26a-4271-9a11-d62808f72b81 belongs to OAK.E.EO.DaySuDaw.1 (OAKENG - 6 Series - Collection A - European Oak (Daybreak (Summer Dawn))  | #OAK.E.EO.DaySuDaw.1 | AB - 18/3mm x150xRL - 18.41sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0072",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "296218ef-8792-402d-bd35-191c11350063 belongs to OAK.E.EO.DaySuDaw.1.1 (OAKENG - 6 Series - Collection A - European Oak (Daybreak (Summer Dawn))  | #OAK.E.EO.DaySuDaw.1.1 | ABC - 18/3mm x150xRL - 18.41sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0073",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "3981fb5f-7a8b-4a2c-ab0a-c2ecdcc4f966 belongs to OAK.E.EO.SilSto.1.1 (OAKENG - 6 Series - Collection B - European Oak (Silver Stone)  | #OAK.E.EO.SilSto.1.1 | ABC - 18/3mm x150xRL - 18.41sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0074",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "e23ecae1-9037-4c78-b9f9-49abe9d025a7 belongs to OAK.E.EO.SmoGre.1.1 (OAKENG - 6 Series - Collection B - European Oak (Smoke Grey)  | #OAK.E.EO.SmoGre.1.1 | ABC - 18/3mm x150xRL - 18.41sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0075",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "90a3f497-c2dc-4bf2-a33b-b4812ed0b014 belongs to OAK.E.EO.SnoGre.1 (OAKENG - 6 Series - Collection B - European Oak (Snow Grey)  | #OAK.E.EO.SnoGre.1 | ABC - 18/3mm x150xRL - 18.41sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0076",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "17427d17-182a-4be7-aa7c-76cc45ab8239 belongs to OAK.E.EO.TylSky.1 (OAKENG - 6 Series - Collection B - European Oak (Tylor Sky)  | #OAK.E.EO.TylSky.1 | ABC - 18/3mm x150xRL - 18.41sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0077",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "72a0fdc5-4f06-4dc4-9c5a-e0f22e552fc4 belongs to OAK.E.EO.WinFly.1.1 (OAKENG - 6 Series - Collection B - European Oak (Winter Fly)  | #OAK.E.EO.WinFly.1.1 | ABC - 18/3mm x150xRL - 18.41sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0078",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "7f1dcef5-e029-49fa-b39d-6e69e28d3030 belongs to OAK.E.EO.UrbGre.1 (OAKENG - 6 Series - Collection B - European Oak (Urban Grey)  | #OAK.E.EO.UrbGre.1 | ABC - 18/3mm x150xRL - 18.41sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0079",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "10f77dfe-38a8-4243-b69a-6ec23eef72ec belongs to OAK.E.AO.Car.1 (OAKENG - 6 Click Series - American Oak (Cargo)  | #OAK.E.AO.Car.1 | ABC - 12/2mm x150x1250mm - 12.11sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0080",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "536bf5c3-b90b-430a-8e0c-d5d501131a18 belongs to OAK.E.EO.Har.1.6 (OAKENG - 9 Series - Collection A - European Oak (Harrison)  | #OAK.E.EO.Har.1.6 | AB - 18/3mm x235xRL - 28.84sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0081",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "4f88f811-a865-4f27-9998-b1bfa24daed1 belongs to OAK.E.EO.Rom.1.2 (OAKENG - 9 Series - Collection A - European Oak (Roma)  | #OAK.E.EO.Rom.1.2 | ABC - 18/3mm x235xRL - 28.84sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0082",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "f39f2ced-a780-475d-8ecf-fa3335dfb1c0 belongs to OAK.E.EO.NakOak.1.6 (OAKENG - 9 Series - Collection B - European Oak (Naked Oak)  | #OAK.E.EO.NakOak.1.6 | ABC - 18/3mm x235xRL - 28.84sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0083",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "8ef3aad3-9647-44e5-bc72-371ce0f0618b belongs to OAK.E.EO.SilSto.1.2 (OAKENG - 9 Series - Collection B - European Oak (Silver Stone)  | #OAK.E.EO.SilSto.1.2 | AB - 18/3mm x235xRL - 28.84sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-OAKL-0084",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "14693d6f-8776-4e19-8210-00ea527102e5 belongs to OAK.E.EO.SilSto.1 (OAKENG - 9 Series - Collection B - European Oak (Silver Stone)  | #OAK.E.EO.SilSto.1 | ABC - 18/3mm x235xRL - 28.84sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-OAKL-0001",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "a40b91bf-f105-41ad-9023-bff36b406e09 belongs to AE1201 (OAKENG - DESTINY Aqua Expert - 72 - Laminate (Monet)  | #AE1201 |  - 12*195*1215 mm - 15.79sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-OAKL-0002",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "6bf44f09-df71-4a15-9a11-051e1b5ad6eb belongs to AE1202 (OAKENG - DESTINY Aqua Expert - 72 - Laminate (Norway)  | #AE1202 |  - 12*195*1215 mm - 15.79sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-OAKL-0003",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "4ffc9371-7777-4790-801b-eee8b9ade6af belongs to AE1203 (OAKENG - DESTINY Aqua Expert - 72 - Laminate (Fernando)  | #AE1203 |  - 12*195*1215 mm - 15.79sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-OAKL-0004",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "8b616919-77ea-42b6-8ce2-9252150187b3 belongs to AE1205 (OAKENG - DESTINY Aqua Expert - 72 - Laminate (Lidia)  | #AE1205 |  - 12*195*1215 mm - 15.79sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-OAKL-0005",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "43b04c50-6554-4745-b4c8-7b0250fa3383 belongs to AE1206 (OAKENG - DESTINY Aqua Expert - 72 - Laminate (Riva)  | #AE1206 |  - 12*195*1215 mm - 15.79sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-OAKL-0006",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "3d415a85-12d1-4962-aa84-aa623b50537c belongs to AE1207 (OAKENG - DESTINY Aqua Expert - 72 - Laminate (Dublin)  | #AE1207 |  - 12*195*1215 mm - 15.79sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-OAKL-0007",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "b2ff5e8a-4a97-4aee-8d20-cb6309bcaa28 belongs to AE1208 (OAKENG - DESTINY Aqua Expert - 72 - Laminate (Dawn Grey)  | #AE1208 |  - 12*195*1215 mm - 15.79sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-OAKL-0008",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "bbe2c59f-bef2-4f12-823e-e97bc538bce7 belongs to AE1209 (OAKENG - DESTINY Aqua Expert - 72 - Laminate (Laguna)  | #AE1209 |  - 12*195*1215 mm - 15.79sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-OAKL-0009",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "3f20c7ed-2f01-489a-b4c9-391ef4c87535 belongs to MS7501 (OAKENG - Master Step 72 Hours - Laminate (Jasper)  | #MS7501 |  - 12*196*1513 mm - 19.15sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-OAKL-0010",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "7bf1445b-2528-43b0-98ff-9ef80d4b3907 belongs to MS7502 (OAKENG - Master Step 72 Hours - Laminate (Bella)  | #MS7502 |  - 12*196*1513 mm - 19.15sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-OAKL-0011",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "36824c2c-bef8-4eef-97e1-712733d6e1c7 belongs to MS7503 (OAKENG - Master Step 72 Hours - Laminate (Dolly)  | #MS7503 |  - 12*196*1513 mm - 19.15sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-OAKL-0012",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "d6df9e2a-778b-4b80-846c-405df5bd9d7d belongs to MS7505 (OAKENG - Master Step 72 Hours - Laminate (Atlanta)  | #MS7505 |  - 12*196*1513 mm - 19.15sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-OAKL-0013",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "05bf5baa-cec9-4f7a-a658-b0b246a9296b belongs to MS7506 (OAKENG - Master Step 72 Hours - Laminate (Monica)  | #MS7506 |  - 12*196*1513 mm - 19.15sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-OAKL-0014",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "293d8d9d-7bff-464a-b24c-f6cd796fff2a belongs to MS7507 (OAKENG - Master Step 72 Hours - Laminate (Curtis)  | #MS7507 |  - 12*196*1513 mm - 19.15sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-OAKL-0015",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "78d3b4f2-1949-40a0-ab0b-7b7def464a24 belongs to MS7508 (OAKENG - Master Step 72 Hours - Laminate (Kingston)  | #MS7508 |  - 12*196*1513 mm - 19.15sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-OAKL-0016",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "049a379c-3db8-4c6e-8b3f-f0daf5fe13d3 belongs to MS7509 (OAKENG - Master Step 72 Hours - Laminate (Elizabeth)  | #MS7509 |  - 12*196*1513 mm - 19.15sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-OAKL-0017",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "a866ebae-8451-4f11-9391-a16c73524b22 belongs to MS7510 (OAKENG - Master Step 72 Hours - Laminate (Horizon)  | #MS7510 |  - 12*196*1513 mm - 19.15sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-OAKL-0018",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "2e336875-c9af-4128-97ee-ae3c2182fa9d belongs to MS7511 (OAKENG - Master Step 72 Hours - Laminate (Pavard)  | #MS7511 |  - 12*196*1513 mm - 19.15sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-OAKL-0019",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "b9ef9cfa-ba14-41d3-9045-e9c81c970f63 belongs to MS7512 (OAKENG - Master Step 72 Hours - Laminate (Romeo)  | #MS7512 |  - 12*196*1513 mm - 19.15sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-OAKL-0020",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "de9025ed-fad9-4bdc-a74b-bfc7cdc16994 belongs to MS7517 (OAKENG - Master Step 72 Hours - Laminate (Teddy)  | #MS7517 |  - 12*196*1513 mm - 19.15sf/b) \u2014 writing it would overwrite that product"
+  }
+ ],
+ "warnings": [
+  {
+   "sku": "LVP-OAKL-0001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-OAKL-0002",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-OAKL-0003",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-OAKL-0004",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-OAKL-0005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-OAKL-0006",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-OAKL-0007",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-OAKL-0008",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-OAKL-0009",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-OAKL-0010",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-OAKL-0011",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-OAKL-0012",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-OAKL-0001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-OAKL-0002",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-OAKL-0003",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-OAKL-0004",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-OAKL-0005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-OAKL-0006",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-OAKL-0007",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-OAKL-0008",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-OAKL-0009",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-OAKL-0010",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-OAKL-0011",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-OAKL-0012",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-OAKL-0013",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-OAKL-0014",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-OAKL-0015",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-OAKL-0016",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-OAKL-0017",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-OAKL-0018",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-OAKL-0019",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  }
+ ]
+}
