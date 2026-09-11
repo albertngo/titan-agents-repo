@@ -141,10 +141,12 @@ Albert — previously two separately-triggered routines):
    new price list lands). Runs `/process-price-list`, attaches two CSVs, sets
    `Extraction Status` to `Extracted [Needs Review]` (or `[Error]`), writes no
    platform. Never sets `Ready to Upload` — that's Albert's alone.
-2. **Stage 2 — Sync.** Fires with no `notionID` (a periodic sweep). Sweeps every row
-   at `Extracted [Ready to Upload]`, runs `/catalog-sync` steps 1–3 per row —
-   read-only, stopping at the approval gate — and reports every plan as one digest.
-   **Not yet safe to rely on unattended** — see Scheduling status above.
+2. **Stage 2 — Sync.** Fires with no `notionID` (a periodic sweep). **Runs only when
+   the payload carries no notionID — a notionID present means this fire is Stage 1's,
+   and Stage 2 is skipped entirely.** Sweeps every row at `Extracted [Ready to
+   Upload]`, runs `/catalog-sync` steps 1–3 per row — read-only, stopping at the
+   approval gate — and reports every plan as one digest. **Not yet safe to rely on
+   unattended** — see Scheduling status above.
 
 Canonical text: `methods/pricelist-pipeline-routine-prompt.md`. It stores a *pointer*
 to `/process-price-list` and `/catalog-sync` rather than a copy of either procedure —
