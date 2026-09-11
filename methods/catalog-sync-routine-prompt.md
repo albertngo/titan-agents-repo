@@ -1,5 +1,13 @@
 # Routine prompt — "Sync Approved Price Lists to Airtable and Lightspeed"
 
+> **⚠️ Superseded 2026-09-11.** This is no longer the live routine text. Stage 2 of
+> `methods/pricelist-pipeline-routine-prompt.md` replaced it, merging this routine
+> and `pricelist-routine-prompt.md`'s into one identity that branches on whether the
+> fire payload carries a `notionID` (absent = this stage). Kept here for its
+> changelog, the batch-approval design, and rationale; `/catalog-sync`
+> (`.claude/commands/catalog-sync.md`) is still the authoritative procedure Stage 2
+> points to and is unaffected by the merge.
+
 The canonical text for the catalogue-sync routine. Kept here so it is versioned and
 diffable; the live copy is in the routine itself.
 

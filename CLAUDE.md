@@ -55,14 +55,15 @@ Make 4381438  ->  Notion Price Lists row  ->  /process-price-list  (produces 2 C
 ```
 
 **`/catalog-sync` is the entry point** (`.claude/commands/catalog-sync.md` — the
-authoritative procedure; `methods/catalog-sync-routine-prompt.md` holds the scheduled
-routine's stored text and its rationale).
+authoritative procedure; `methods/pricelist-pipeline-routine-prompt.md` holds the
+merged routine's stored text and its rationale, Stage 2 of it).
 
-**Its routine runs steps 1–3 only, and that is deliberate.** An unattended run pulls,
-reconciles, produces a plan and stops; the writes are human-triggered. `*-actions`
-agents are never scheduled and never autonomous, so the automation covers walking a
-14,000-product catalogue and catching identity collisions, and asks a person only for
-the yes. **A run that ends at the approval gate has SUCCEEDED.**
+**Stage 2 runs `/catalog-sync` steps 1–3 only, and that is deliberate.** An unattended
+sweep pulls, reconciles, produces a plan per row and stops; the writes are
+human-triggered. `*-actions` agents are never scheduled and never autonomous, so the
+automation covers walking a 14,000-product catalogue and catching identity
+collisions, and asks a person only for the yes — now one yes per batch, not one per
+row. **A run that ends at the approval gate has SUCCEEDED.**
 
 **Lightspeed is written before Airtable** — the reverse of `forced_downstream_order` in
 `pricelist-sources.json`, which describes the manual CSV flow. `POST /api/2.0/products`
@@ -80,12 +81,17 @@ additively by both runs and cleared only by the reviewer. `Airtable Sync`, `LS U
 and `UUID Backfill` are stage indicators for **whoever ran the stage**: the manual CSV
 path stays available and writes the same fields the sync does.
 
-> **⚠️ Not yet safe to schedule (2026-09-10).** The routine scopes on
-> `Extraction Status = Extracted [Ready to Upload]`, and that option no longer exists on
-> the live property — so the filter matches zero rows, silently. Restore it or name a
-> replacement signal first; loosening the filter to `Airtable Sync is Pending` alone
-> sweeps in unreviewed rows and inverts the pipeline's order. `/catalog-sync` has also
-> never been run end to end — do one interactively before scheduling anything.
+**Approval is batched, not removed (2026-09-11, Albert).** A Stage 2 sweep can cover
+every `Ready to Upload` row in one run and present every plan as one digest; one
+explicit reply approves across the batch. See `/catalog-sync` step 3a. Steps 4–6 are
+still never run unattended — that invariant did not move.
+
+> **⚠️ Scheduling status (2026-09-11).** The missing `Extraction Status =
+> Extracted [Ready to Upload]` option (broken 2026-09-10) is confirmed restored on the
+> live property. The remaining gate: **`/catalog-sync` has not been run end to end in
+> a recorded, verified interactive session** — do one, ideally the first real Stage 2
+> batch, before relying on the sweep on a schedule. Detail:
+> `methods/pricelist-pipeline-routine-prompt.md`.
 
 **Only two files can change the POS**: `scripts/lightspeed_write.py` and
 `scripts/lightspeed_push.py`. The read path contains no write verb and a test
@@ -125,21 +131,29 @@ It spawns each ingester as a subagent in parallel, waits, then synthesizes
 Both run every time `/daily-ingest` runs, including unattended/scheduled runs. Neither
 can affect `DAILY-BRIEF.md` — it's already written before either starts.
 
-**The catalogue pipeline is separate and has its own two routines** — neither is part of
-`/daily-ingest`, and neither touches the brief:
+**The catalogue pipeline is separate and has its own routine** — not part of
+`/daily-ingest`, and it never touches the brief.
 
-1. **"Process New Pricing Files from OneDrive"** — fires on Make 4381438's
-   `{"notionID": …}`, runs `/process-price-list`, attaches two CSVs, writes no platform.
-   Canonical text: `methods/pricelist-routine-prompt.md`.
-2. **"Sync Approved Price Lists to Airtable and Lightspeed"** — drains the rows the
-   first leaves owing by running `/catalog-sync` steps 1–3, read-only, stopping at the
-   approval gate. Canonical text: `methods/catalog-sync-routine-prompt.md`. **Not yet
-   safe to schedule** — see the pipeline section above.
+**One routine, two stages, branching on the fire payload** (merged 2026-09-11,
+Albert — previously two separately-triggered routines):
 
-Both routines store a *pointer* to their command file rather than a copy of the
-procedure. On 2026-09-03 the extraction routine fired carrying a procedure that had gone
-stale on 09-01 and reported success against an instruction set missing five of its seven
-steps. A pointer has nothing in it to fall behind.
+1. **Stage 1 — Extraction.** Fires with `{"notionID": …}` (Make 4381438, the moment a
+   new price list lands). Runs `/process-price-list`, attaches two CSVs, sets
+   `Extraction Status` to `Extracted [Needs Review]` (or `[Error]`), writes no
+   platform. Never sets `Ready to Upload` — that's Albert's alone.
+2. **Stage 2 — Sync.** Fires with no `notionID` (a periodic sweep). Sweeps every row
+   at `Extracted [Ready to Upload]`, runs `/catalog-sync` steps 1–3 per row —
+   read-only, stopping at the approval gate — and reports every plan as one digest.
+   **Not yet safe to rely on unattended** — see Scheduling status above.
+
+Canonical text: `methods/pricelist-pipeline-routine-prompt.md`. It stores a *pointer*
+to `/process-price-list` and `/catalog-sync` rather than a copy of either procedure —
+same reason as always: on 2026-09-03 the (then-separate) extraction routine fired
+carrying a procedure that had gone stale on 09-01 and reported success against an
+instruction set missing five of its seven steps. A pointer has nothing in it to fall
+behind. The two predecessor files (`methods/pricelist-routine-prompt.md`,
+`methods/catalog-sync-routine-prompt.md`) are superseded but kept for their
+changelogs.
 
 ## Departments
 
