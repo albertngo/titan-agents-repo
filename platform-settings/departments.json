@@ -246,15 +246,22 @@
         "p&l",
         "cash"
       ],
-      "blocked_reason": "bookkeeper-ingest-agent has written status: \"error\" on every recorded run from 2026-07-26 through 2026-09-08 — sixteen consecutive failures. No Intuit QuickBooks MCP server is configured in .mcp.json and there is no scripts/bookkeeper_pull.py equivalent to scripts/outlook_pull.py. A Finance lead would read an empty file every day and emit an empty plan.",
+      "blocked_reason": "bookkeeper-ingest-agent has written status: \"error\" on every recorded run from 2026-07-26 through 2026-09-08 — sixteen consecutive failures — because no Intuit QuickBooks MCP server is configured in .mcp.json and there is no scripts/bookkeeper_pull.py equivalent to scripts/outlook_pull.py. The AGENT has no access path. CORRECTED 2026-09-11: this entry previously said the source \"has never worked\", which is false. The QBO read path DID work — Make scenario 4822446 pulled 102 real chart-of-accounts records and 4822687 pulled two full P&L reports on 2026-07-11 and 2026-07-12, and those artifacts are still in Make data stores 88653 and 88661 against a connection valid to 2026-11-01. The real blocker is narrower: the working read path lives in Make, every bookkeeper scenario there is on-demand with no trigger so nothing has re-run in two months, and nothing bridges Make to ingest/<date>/bookkeeper.json. See platform-settings/quickbooks.json for the connection facts and the defects in those scenarios.",
       "unblock_criteria": [
+        "a working QBO read path reaches the agent — either scripts/bookkeeper_pull.py against a direct Intuit client, or the Make scenarios given typed interfaces and a trigger (platform-settings/quickbooks.json records both options)",
         "ingest/run-ledger.json shows three consecutive entries with bookkeeper: \"ok\"",
-        "then, and only then, write finance-lead-agent with a rule table derived from those three real days"
+        "then, and only then, write the Finance lead with a rule table derived from those three real days"
       ],
       "partial_answer_sources": [
-        "notion:master_payments_log"
+        "notion:master_payments_log",
+        "airtable:company_gross_data/project_log"
       ],
-      "_note": "partial_answer_sources is what route.md may fall back to for a finance-shaped question, ALWAYS labelled as partial. A Notion payments-log figure is not bookkeeping and must never be presented as if it were. GHL value_cents is deliberately not listed — it is pipeline value, not money received."
+      "_note": "partial_answer_sources is what route.md may fall back to for a finance-shaped question, ALWAYS labelled as partial. A Notion payments-log figure is not bookkeeping and must never be presented as if it were. GHL value_cents is deliberately not listed — it is pipeline value, not money received. airtable:company_gross_data/project_log is added 2026-09-11 as a second partial source: it is the only MACHINE-READABLE copy of the Notion Project Financials figures, because every money property on Project Financials is a formula or rollup that the Notion MCP returns as an opaque reference rather than a number. It is a mirror of unknown freshness, so it is a partial answer, never the book.",
+      "known_defects_blocking_automation": [
+        "Make 4824368 Register Closure Watchdog filters MetaData.CreateTime > '2027-01-01', a future date, so its alarm ALWAYS fires. Do not schedule it until the literal is dynamic.",
+        "Make 4822687 Pull P&L has a hardcoded 2026-01-01..2026-07-13 range and cannot produce a current P&L.",
+        "Make 4841468 Outlook->QBO Receipts has no dedupe store and moves messages only as its last step, so a mid-run failure duplicates receipts in QBO."
+      ]
     },
     "general": {
       "display_name": "General",

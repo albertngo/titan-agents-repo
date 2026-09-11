@@ -1,0 +1,98 @@
+{
+  "_comment": "Registry for QuickBooks Online. Connection facts, the Make scenarios that currently hold the only working QBO read path, and the known defects in them. Consumed by scripts/bookkeeper_pull.py, .claude/agents/bookkeeper-ingest-agent.md and (from Phase 5) .claude/agents/qbo-actions-agent.md. Method: methods/finance-reconciliation.md.",
+
+  "_correction_2026_09_11": "The repo previously recorded that the bookkeeper source 'has never worked'. THAT IS WRONG and has been corrected in departments.json. The QBO read path DID work: Make scenario 4822446 pulled 102 real chart-of-accounts records and 4822687 pulled two full P&L reports, on 2026-07-11 and 2026-07-12. The artifacts are still in Make data stores 88653 and 88661. What is true is narrower and more fixable: the ingest AGENT has no access path (no MCP server, no script), and every Make bookkeeper scenario is on-demand with no trigger, so nothing has re-run in about two months.",
+
+  "config_version": "1",
+
+  "company": {
+    "legal_name": "Titan Flooring Inc.",
+    "country": "CA",
+    "realm_id": "9130351973643696",
+    "fiscal_year_end": "09-30",
+    "_fiscal_note": "QBO carries its own fiscal-year setting. Confirm it is set to September 30 in QBO so its 'this fiscal year to date' P&L agrees with finance/periods/*.json. Two disagreeing YTD figures is the failure this pipeline exists to prevent."
+  },
+
+  "access": {
+    "_comment": "There is NO direct QBO API client in this repo and NO Intuit MCP server in .mcp.json. The only working path today is through Make, using the connection below.",
+    "make_connection_id": "4820024",
+    "make_connection_name": "QBO Connection",
+    "make_app": "quickbooks2",
+    "scope": "com.intuit.quickbooks.accounting",
+    "token_expires": "2026-11-01T18:42:30Z",
+    "_token_warning": "OAuth token expires 2026-11-01. Refresh before then or every scenario below stops silently.",
+    "duplicate_connections": {
+      "4820019": "Same app and realm, valid to 2026-10-20, ZERO scenario usages. Duplicate.",
+      "3803761": "QuickBooks (Legacy) app, no expiry, ZERO usages. Stale."
+    },
+    "_direct_api_note": "A direct read-only client (scripts/qbo_client.py, mirroring scripts/lightspeed_client.py) is the eventual target: no per-operation metering, and the no-write-verb guarantee becomes structural and testable. It needs an Intuit app plus OAuth refresh handling, and no QBO credentials are present in the environment today. Decide deliberately; do not half-build both."
+  },
+
+  "make_scenarios": {
+    "_comment": "Organization 1154376 (Titan Flooring Inc.), team 459654, folder 323841 'Titan Bookkeeper'. Make log retention is 30 days, so July execution records have expired — the data stores are the evidence these ran.",
+    "_all_parked": "All five are isActive: true but scheduled on-demand with nextExec: null and hookId: null. They will NEVER fire on their own. Functionally parked.",
+
+    "4822446": {
+      "name": "Sync Chart of Accounts",
+      "direction": "read",
+      "does": "quickbooks:SearchForAccounts 'select * from account maxresults 1000' -> data store 88653, keyed on QBO account id, overwrite true.",
+      "proven": "102 records in store 88653 (32,229 bytes) with real balances.",
+      "status": "works; needs a schedule"
+    },
+    "4822687": {
+      "name": "Pull P&L Report",
+      "direction": "read",
+      "does": "GET /reports/ProfitAndLoss -> JSON -> six 12,000-char slices into data store 88661 as pl_1..pl_6.",
+      "proven": "Two full reports stored, Header.Time 2026-07-11T04:41 and 2026-07-12T19:53.",
+      "defect": "DATE RANGE IS HARDCODED to start_date=2026-01-01 / end_date=2026-07-13. It can only ever re-fetch that window. Parameterize before any scheduled use.",
+      "status": "works but cannot produce a current P&L"
+    },
+    "4824058": {
+      "name": "Create New CoA Accounts (one-time)",
+      "direction": "read",
+      "does": "GetAccount on hardcoded id 173 -> one summary string into store 88661 under key acct173.",
+      "defect": "MISNAMED — it creates nothing. It is a single-account probe.",
+      "status": "works; rename or retire"
+    },
+    "4824368": {
+      "name": "Register Closure Watchdog",
+      "direction": "read QBO, write WhatsApp + Notion",
+      "does": "Counts QBO Invoices, and if zero sends WhatsApp and creates a high-priority 'Close Lightspeed register' Notion task.",
+      "defect": "CRITICAL — the query filters MetaData.CreateTime > '2027-01-01', a FUTURE date. totalCount is therefore always 0, the filter always passes, and the alarm always fires. Scheduling it as-is would send a WhatsApp message and create a duplicate Notion task on every single run. The literal was meant to be a rolling window and was never made dynamic.",
+      "also": "It never touches Lightspeed. It infers register closure indirectly by counting QBO invoices — which cannot distinguish 'register not closed' from 'sync not working'.",
+      "status": "DO NOT SCHEDULE until the date literal is fixed"
+    },
+    "4841468": {
+      "name": "Outlook INVOICE -> QBO Receipts",
+      "direction": "write, by email only",
+      "does": "Lists info@titanfloors.ca messages with attachments received >= 2025-10-01, forwards to titanflooring@qbodocs.com, then moves to a 'Sent to QBO' subfolder.",
+      "defect": "Unproven — no durable artifact shows it ever ran. limit 100 over a backdated filter with NO dedupe store; the move-to-folder step is the only dedupe and it runs LAST, so a mid-run failure leaves duplicates in QBO.",
+      "status": "highest-risk to run blind; never touches the QBO API"
+    }
+  },
+
+  "make_data_stores": {
+    "88653": { "name": "QBO Chart of Accounts", "records": 102, "written_by": "4822446" },
+    "88661": { "name": "QBO Reports", "records": 15, "written_by": "4822687, 4824058",
+               "_note": "Doing double duty: P&L chunks plus the acct173 probe. pl_2..pl_6 and py_2..py_6 are empty strings because each report fits inside the first 12,000-char slice." }
+  },
+
+  "observed_pl": {
+    "_comment": "Pulled from data store 88661 on 2026-09-11; the report itself was generated 2026-07-12. Recorded here because it is the strongest available evidence for the Lightspeed->QBO gap, and because it must NOT be quoted as current.",
+    "_stale": "Covers Jan 1 - Jul 13 2026 only. Do not present as a current figure.",
+    "ytd_2026_partial": { "income": 58734014, "cogs": 61277815, "expenses": 16025908, "net_profit": -18569709 },
+    "fy2025_full":      { "income": 122928120, "cogs": 59049997, "expenses": 59227879, "net_profit": 4650244 },
+    "_finding": "COGS EXCEEDS INCOME in the 2026 partial year. That is the signature of sales not posting to QBO, not of a business selling below cost — and it is the same gap the register-closure watchdog was built to catch. Corroborated independently: no Lightspeed sale in 55,820 carries an accounts_transaction_id. NOT PROVEN; confirm the Lightspeed->QBO sync state in the Lightspeed admin before treating it as established.",
+    "_units": "Integer cents CAD, per CLAUDE.md conventions."
+  },
+
+  "accounts": {
+    "_comment": "QBO account ids the reconciler needs. Fill from data store 88653 (102 accounts already pulled) rather than by hand.",
+    "accounts_receivable": null,
+    "accounts_payable": null,
+    "undeposited_funds": null,
+    "layaway_liability": null,
+    "_layaway_note": "A customer-deposit liability account for layaway MAY NOT EXIST in the chart of accounts yet — Lightspeed layaway has never posted to QBO, so nothing would have created one. Check before assuming, and treat creating it as an accounting decision for Albert and his bookkeeper, not a pipeline step.",
+    "sales_income_by_line": { "project": null, "store": null, "other": null }
+  }
+}

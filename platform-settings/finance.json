@@ -1,10 +1,7 @@
 {
   "_comment": "Registry for the Finance department. Holds the fiscal calendar, the business-line definitions, the project-sale exclusion rule, the variance vocabulary and the alert thresholds. Consumed by scripts/finance_reconcile.py, .claude/commands/finance-close.md and (from Phase 5) .claude/agents/qbo-actions-agent.md. Method: methods/finance-reconciliation.md. Output contract: contracts/finance-period-schema.md. QBO connection config lives separately in platform-settings/quickbooks.json; Lightspeed API config in platform-settings/lightspeed.json.",
-
   "_maintenance": "EVERY id in this file marked `null` with an `_unverified` note is a rule that MATCHES NOTHING until it is filled in. That failure is SILENT and it inflates the number it was meant to exclude — the same class of failure as the catalogue routine's `Extraction Status` filter on 2026-09-10, which matched zero rows without erroring. scripts/finance_reconcile.py MUST refuse to run while a required id is null rather than produce a plausible wrong answer. Re-verify against live data whenever a match count drops to zero unexpectedly.",
-
   "config_version": "1",
-
   "fiscal_calendar": {
     "_comment": "Titan's corporate year ends September 30. Months are the atom; quarters are derived, never stored. Fiscal is the default spine for anything that rolls up (YTD, quarters, bonus pools); calendar is carried so a renderer can offer that view without recomputing it.",
     "year_end_month": 9,
@@ -12,15 +9,30 @@
     "fiscal_year_label": "FY{year}",
     "_fiscal_year_rule": "A period belongs to the fiscal year whose September 30 year end it falls before or on. 2026-08 is FY2026; 2026-10 is FY2027.",
     "fiscal_quarters": {
-      "Q1": [10, 11, 12],
-      "Q2": [1, 2, 3],
-      "Q3": [4, 5, 6],
-      "Q4": [7, 8, 9]
+      "Q1": [
+        10,
+        11,
+        12
+      ],
+      "Q2": [
+        1,
+        2,
+        3
+      ],
+      "Q3": [
+        4,
+        5,
+        6
+      ],
+      "Q4": [
+        7,
+        8,
+        9
+      ]
     },
     "_never_print_bare_quarter": "\"Q1\" means Oct-Dec fiscally and Jan-Mar calendrically — a quarter apart. Every rendered label carries both the fiscal year and the month range: `FY26 Q2 (Jan-Mar)`. This is a hard rule for every consumer, not a style preference.",
     "primary_lens": "month_over_month"
   },
-
   "business_lines": {
     "_comment": "Each line names the ONE system authoritative for it (methods/finance-reconciliation.md, authority table). `basis` is copied onto every figure in the period file so two lines computed from different systems never look alike on a dashboard without saying so.",
     "project": {
@@ -40,38 +52,67 @@
     },
     "_never_summed": "Lines render side by side. company{} in the period file is computed independently from company-level revenue and cost, NEVER by summing or averaging these. Same refusal as project vs STORE pipeline value."
   },
-
   "project_sale_identification": {
-    "_comment": "The Poreus exclusion rule. A Lightspeed sale matching EITHER signal is a project sale: excluded from store gross margin and matched to its Notion project instead. Two independent signals are kept deliberately — a project sale rung without the customer account set, or against an ad-hoc product, would otherwise fall silently into retail and dilute its margin.",
-    "customer_account": {
-      "lightspeed_customer_id": null,
-      "name_hint": "Poreus",
-      "_unverified": "NOT CONFIRMED against live Lightspeed data as of 2026-09-11. The spelling came from Albert in conversation; the customer id has never been looked up. Pin both before trusting this rule."
+    "_comment": "How a Lightspeed sale is recognised as a project sale, so it can be excluded from store gross margin and attributed to its project instead.",
+    "_verified_2026_09_11": "Established by a full walk of all 55,820 Lightspeed sales. This REPLACES the earlier 'Poreus account' hypothesis, which did not survive contact with the data — see _poreus_finding.",
+    "join_key": {
+      "method": "project_reference_in_sale_note",
+      "pattern": "\\bPP[-\\s]?(\\d{2,5})\\b",
+      "example": "'@Pack Allen Giancomelli PP-416' -> project PP-416",
+      "resolves_to": "Notion Titan Projects `userDefined:ID` (auto_increment), mirrored as `Project ID` on the Airtable Project Log table.",
+      "_confirmed_overlap": "PP-447 and PP-449 appear both in Lightspeed sale notes and in Airtable Project Log rows. The join is real and it works."
     },
-    "product_sku_pattern": {
-      "pattern": null,
-      "_unverified": "NOT CONFIRMED. The project-product naming/SKU convention has not been observed in the live catalogue. Derive it from actual project sales during the first --probe run, do not invent it."
+    "_coverage_warning": "ONLY 20 SALES IN THE ENTIRE 55,820-SALE HISTORY CARRY A PP-### NOTE, 19 distinct projects, and EVERY ONE IS DATED 2026 — almost all on 2026-09-09 and 2026-09-10. This convention is about two days old. It is the right join key going forward; it attributes essentially NO historical project revenue. Any backfill before 2026-09-09 needs a different method, or an accepted gap.",
+    "_poreus_finding": "Albert described project sales being rung 'under the Poreus account'. No Lightspeed CUSTOMER named Poreus/Porous exists — all 2,779 customers were scanned. There IS a Lightspeed USER 'Pourya' (57c18364-4307-455f-8942-f18f61e4b555, cashier, pourya@titanfloors.ca), who is also the `Sales Person` on the Airtable project rows, so 'Poreus' is very likely 'Pourya'. BUT Pourya has rung only 2 sales in all of Lightspeed history, one of them on 2026-09-10. So user_id is NOT a usable project-sale marker today. ASK ALBERT what 'the Poreus account' refers to before encoding anything here.",
+    "user_account": {
+      "lightspeed_user_id": "57c18364-4307-455f-8942-f18f61e4b555",
+      "name": "Pourya",
+      "use_as_signal": false,
+      "_why_not": "2 sales in 55,820. Using it as an identifying signal would match essentially nothing, and a rule that matches nothing fails silently."
     },
-    "notion_link": {
-      "_comment": "How a project sale is matched to its Notion project. Albert records the link in the LS sale's note field.",
-      "source": "lightspeed_sale_note",
-      "_unverified": "The note format has not been sampled. Determine whether it carries an Opportunity ID, a Notion URL, or free text before writing a parser — free text means fuzzy matching, which needs its own confidence reporting."
-    },
+    "observed_statuses_on_project_sales": "Of the 12 most recent PP-tagged sales: 4 ONACCOUNT, 2 LAYBY_CLOSED, 1 LAYBY, 4 CLOSED, 1 SAVED. Project sales sit squarely in the layaway and on-account gaps — they are not an edge case in this reconciliation, they are most of it.",
+    "_zero_value_sales": "PP-416 carries total_price_incl 0.00. Zero-value sales exist and must not be assumed to be errors — check whether they are pack/fulfilment records before treating them as revenue or as bugs.",
     "unmatched_policy": "flag_never_drop",
-    "_unmatched_note": "An LS sale identified as a project sale but matching no Notion project is unattributed revenue. It goes to needs_attention. It is never dropped, and never silently left in the store line."
+    "_unmatched_note": "An LS sale carrying a PP-### that matches no project is unattributed revenue: it goes to needs_attention, is never dropped, and is never silently left in the store line."
   },
-
   "variance_types": {
     "_comment": "Closed vocabulary. Adding a value is an edit to this file, methods/finance-reconciliation.md AND contracts/finance-period-schema.md in the same change. `expected: false` types always produce a needs_attention entry — they mean something is wrong, as opposed to the system working as designed.",
-    "layaway_deposit":          { "expected": true,  "sign": "positive", "description": "Cash taken on a layaway not yet redeemed. Never synced to QBO. A liability, not revenue." },
-    "layaway_redemption":       { "expected": true,  "sign": "negative", "description": "Layaway closed, goods released. Revenue is recognised here, not at deposit." },
-    "on_account_charge":        { "expected": true,  "sign": "positive", "description": "AR created in Lightspeed; may or may not have reached QBO." },
-    "on_account_payment":       { "expected": true,  "sign": "negative", "description": "AR settled in Lightspeed." },
-    "on_account_edit_drift":    { "expected": false, "sign": "either",   "description": "LS and QBO both hold the sale and disagree. An LS edit never propagates to the QBO mirror, so nothing else will ever surface this." },
-    "external_project_payment": { "expected": true,  "sign": "negative", "description": "Project money that reached the bank without an LS sale — paid cash or externally." },
-    "unexplained":              { "expected": false, "sign": "either",   "description": "Residual after every other type is applied. Reported, never absorbed." }
+    "layaway_deposit": {
+      "expected": true,
+      "sign": "positive",
+      "description": "Cash taken on a layaway not yet redeemed. Never synced to QBO. A liability, not revenue."
+    },
+    "layaway_redemption": {
+      "expected": true,
+      "sign": "negative",
+      "description": "Layaway closed, goods released. Revenue is recognised here, not at deposit."
+    },
+    "on_account_charge": {
+      "expected": true,
+      "sign": "positive",
+      "description": "AR created in Lightspeed; may or may not have reached QBO."
+    },
+    "on_account_payment": {
+      "expected": true,
+      "sign": "negative",
+      "description": "AR settled in Lightspeed."
+    },
+    "on_account_edit_drift": {
+      "expected": false,
+      "sign": "either",
+      "description": "LS and QBO both hold the sale and disagree. An LS edit never propagates to the QBO mirror, so nothing else will ever surface this."
+    },
+    "external_project_payment": {
+      "expected": true,
+      "sign": "negative",
+      "description": "Project money that reached the bank without an LS sale — paid cash or externally."
+    },
+    "unexplained": {
+      "expected": false,
+      "sign": "either",
+      "description": "Residual after every other type is applied. Reported, never absorbed."
+    }
   },
-
   "authority": {
     "_comment": "Which system wins when two disagree. There is no midpoint and no average — the loser is corrected, not blended. Mirrors the table in methods/finance-reconciliation.md.",
     "accounts_receivable": "lightspeed",
@@ -83,7 +124,6 @@
     "project_payments_received": "notion:master_payments_log",
     "_payments_note": "A Notion payments-log figure is money received, NOT bookkeeping. departments.json already records it as a partial-answer source; that label must survive into every downstream render."
   },
-
   "thresholds": {
     "_comment": "What lands in needs_attention. Money in integer cents CAD.",
     "uncategorized_opex_cents": 100000,
@@ -96,17 +136,53 @@
     "project_margin_pct_floor": 15.0,
     "_margin_floor_note": "A completed project below this margin is surfaced for review. It is not an error — some jobs are deliberately thin — but it is always worth a look."
   },
-
   "opex_allocation": {
     "_comment": "Operating expenses are NOT allocated across business lines. Splitting shared overhead needs an arbitrary basis, and publishing the result as 'project net profit' would be false precision — a number that looks authoritative and is not.",
     "enabled": false,
     "basis": null,
     "_if_ever_enabled": "Requires a stated basis (e.g. revenue_share) AND a visible `allocated: true` flag on every figure derived from it. Never a silent default."
   },
-
   "paths": {
     "period_file": "finance/periods/{period}.json",
     "approval_file": "finance/approvals/{period}.json",
     "_namespace_note": "Approvals live under finance/, not plans/<date>/, because a period is not a day. plans/ is a day-scoped namespace and forcing a month into it would make the prefix-matching rule in contracts/dept-plan-schema.md ambiguous."
+  },
+  "project_financials_source": {
+    "_comment": "Where the computed project P&L is actually readable. This is the single most important constraint in the whole pipeline.",
+    "_blocker": "NOTION MONEY VALUES CANNOT BE READ VIA MCP. Every money property on Project Financials is a formula or rollup, and the Notion MCP returns those as opaque formulaResult:// / rollupResult:// URIs rather than numbers. Verified 2026-09-11 on a live page. The `financials-relation-sync` skill documents the same behaviour as '<omitted />'. Reading Project Financials directly is therefore NOT a viable path, and the plan that assumed it was is wrong.",
+    "primary": {
+      "system": "airtable",
+      "base_id": "appLRen9XOjNdlWyp",
+      "base_name": "Company Gross Data",
+      "table_id": "tblPVbruU6cJmyzIZ",
+      "table_name": "Project Log",
+      "rows_at_audit": 416,
+      "_why": "A flattened, machine-readable mirror of the same 416 Notion Project Financials rows, carrying real numbers where Notion carries formulas: Revenue, Total Project Profit, Overall Margin, Profit (Store Calcs), Labor Cost, NFM Cost, Other Costs, Flooring Material Revenue, Flooring Material Cost, Total Sqft Sold, and Project ID as PP-###.",
+      "_unknown": "HOW Project Log is kept in sync with Notion was NOT established. No Make scenario named for it was found. If it is a manual export, its freshness is a standing risk and the period file must carry the mirror's own as-of date, not the run date."
+    },
+    "fallback": {
+      "_comment": "Raw inputs that ARE readable from Notion, to recompute from if the Airtable mirror goes stale.",
+      "flooring_line_items": "collection://a84d8ff8-32c5-4174-b00c-ace45222f7cc — Sqft Sold, Cost Rate, Sold At Rate are plain numbers (254/275 populated).",
+      "project_costs": "collection://304596a4-505f-8197-b065-000bddcd731a — Cost is a plain number, precision 0 (1031/1045 populated). Category: Labor / Materials (Non-Flooring) / Disposal / Delivery / Other.",
+      "titan_projects": "collection://1b4596a4-505f-81ca-b1d5-000bb73ecbe1 — Value Approx is a plain number (431/436).",
+      "master_payments_log": "collection://26d596a4-505f-8073-a0ac-000b2a8d3a0e — Amount is a plain number (550/562)."
+    },
+    "notion_project_financials": {
+      "data_source": "collection://8afe9453-6580-414f-8215-1934d12a3d22",
+      "database_id": "f4f19f97-326e-4f27-ab66-4bb64b676b0e",
+      "sensitivity": "private",
+      "_role": "Authoritative for the DEFINITIONS (its formulas are the company's margin logic) but not machine-readable for VALUES. Read the formula descriptions here; read the numbers from Airtable."
+    }
+  },
+  "data_quality_findings": {
+    "_comment": "Measured 2026-09-11. Each is a real limit on what the period file can claim, and each belongs in needs_attention rather than being quietly absorbed.",
+    "unlinked_payments": "81 of 562 Master Payments Log rows (14%) have no project relation. That money is received but unattributable.",
+    "no_expense_data_since_2025_01": "The Airtable Expense Entries table (3,843 rows) stops at 2025-01-01. Both Monthly Expenses rollup tables are empty shells of zeros created in one batch on 2026-01-19 — which is why the old Airtable 'Total Net Profit' equals gross profit exactly. Operating expenses must come from QBO; there is no other source.",
+    "abandoned_airtable_rollups": "Monthly Rollup (89 rows) and its KPI/metrics stack stop at 2025-09-30. POS Flooring Data (Quarterly) stops at Q2 2025. Monthly Financial Performance Summary was designed and never populated. These are the manual consolidation this pipeline replaces — useful as a reference for WHAT was measured, not as a data source.",
+    "checkbox_signal_loss": "Costs Complete and Commission Paid Out are __YES__ on all 416 Project Financials rows. They carry no discriminating power and must not be used as filters.",
+    "relation_asymmetry": "Financials -> Flooring Line Items is 58% populated; the reverse relation on line items is 8%. The financials-relation-sync skill patches this MANUALLY, as a snapshot. Treat the reverse relation as unreliable.",
+    "missing_costs": "Project Costs contains explicit gap markers such as 'Labor Missing For 616' with a null Cost. A null cost is an UNKNOWN margin, never a high one — see data_quality[] in contracts/finance-period-schema.md.",
+    "undocumented_select_field": "Master Payments Log has a `Select` field (TA/B/T/S/R/SC/C) populated on every sampled row with no recorded meaning. Ask before using it for anything.",
+    "not_in_notion": "There is NO invoices, expenses, purchase-order, supplier-bill, quote, deposit, or chart-of-accounts database in Notion. Do not assume one exists."
   }
 }

@@ -104,9 +104,37 @@ Two things follow:
   zero-margin volume silently dilutes the retail figure — the more project work
   Titan does, the worse retail appears to perform, for no real reason. See the
   exclusion rule below.
-- **Project margin is computed from Notion, never from LS.** Project Financials
-  already carries the rollups (Total Flooring Material Cost / Revenue / Profit,
-  Total Labor Cost, Total Other Costs, Sqft).
+- **Project margin is computed from the Notion figures, never from LS.** Project
+  Financials already carries the rollups (Total Flooring Material Cost / Revenue
+  / Profit, Total Labor Cost, Total Other Costs, Sqft) — but see the constraint
+  immediately below, because they cannot be *read* from Notion.
+
+### The constraint that shapes Phase 3: Notion's money is unreadable
+
+**Every money property on Project Financials is a formula or a rollup, and the
+Notion MCP returns those as opaque `formulaResult://` / `rollupResult://`
+references rather than numbers.** Verified on a live page 2026-09-11; the
+`financials-relation-sync` skill documents the same behaviour as `<omitted />`.
+
+So the computed project P&L **cannot be read out of Notion at all**. The
+machine-readable copy is the Airtable **Project Log** table
+(`appLRen9XOjNdlWyp` / `tblPVbruU6cJmyzIZ`, 416 rows — the same 416 rows as the
+Notion table), which carries Revenue, Total Project Profit, Overall Margin,
+Labor Cost, NFM Cost, Other Costs, Flooring Material Revenue/Cost and Sqft as
+plain numbers, keyed by `PP-###`.
+
+The division of labour is therefore:
+
+| | Read from |
+|---|---|
+| The **definitions** — what "Service Profit" or "Commission Basis" means | Notion's formula descriptions |
+| The **values** | Airtable Project Log |
+| The **raw inputs**, if the mirror goes stale | Notion Flooring Line Items (`Sqft Sold`, `Cost Rate`, `Sold At Rate`) and Project Costs (`Cost`, `Category`) — these *are* plain numbers |
+
+> **How Project Log stays in sync with Notion was not established.** No Make
+> scenario for it was found. If it is a manual export, its freshness is a
+> standing risk: the period file must carry the mirror's own as-of date, not the
+> date the pipeline ran.
 
 There is a third wrinkle: part of a project's money arrives **outside LS
 entirely** — cash, or paid externally. That money hits the bank, and therefore
@@ -138,13 +166,41 @@ X-Series carries tender state on the sale record's own `status` field. The
 layaway and on-account partitions are therefore a **filter on a field**, not an
 inference from amounts or timing.
 
-> **Verify before relying on it.** The status vocabulary (expected to include
-> `CLOSED`, `LAYBY`, `ONACCOUNT`, `VOIDED` and closed variants) has **not** been
-> confirmed against Titan's live data. Run `lightspeed_sales_pull.py --probe`
-> and record what actually comes back in `platform-settings/lightspeed.json`,
-> the same discipline `lightspeed_pull.py` applied to the product shape before
-> the catalogue sync trusted it. Until then, treat the vocabulary here as a
-> hypothesis.
+**Verified 2026-09-11** against the live account — a full walk of 55,820 sales
+in 56 requests. The vocabulary, with full-history counts, is recorded in
+`platform-settings/lightspeed.json`:
+
+| status | count | open? | treatment |
+|---|---|---|---|
+| `CLOSED` | 51,976 | no | ordinary sale, expected in the closeout |
+| `VOIDED` | 1,438 | no | excluded from every revenue figure |
+| `SAVED` | 1,020 | yes | parked, not tendered — **neither revenue nor a receivable** |
+| `ONACCOUNT_CLOSED` | 843 | no | on-account since settled |
+| `LAYBY_CLOSED` | 506 | no | **layaway revenue is recognised here** |
+| `ONACCOUNT` | 31 | yes | open receivable — Gap B |
+| `LAYBY` | 3 | yes | open layaway — Gap A |
+| `PICKED_UP_CLOSED` | 2 | no | rare; treat as `CLOSED` |
+| `QUOTE` | 1 | yes | not a sale |
+
+27 `ONACCOUNT` and 3 `LAYBY` sales dated 2026 were open at the walk. **That live
+position exists nowhere in QuickBooks.**
+
+### The sync may not be running at all
+
+Two independent observations, both from 2026-09-11:
+
+- **No sale in 55,820 carries a non-null `accounts_transaction_id`**, and
+  `has_unsynced_on_account_payments` is `false` on every one. If the
+  Lightspeed→QBO accounts integration were running and stamping the sale record,
+  something would have been stamped.
+- The **QBO P&L for Jan 1 – Jul 13 2026 shows COGS of \$612,778 against income of
+  \$587,340** — cost of goods *exceeding* revenue, against a FY2025 that looked
+  ordinary. That is the signature of sales not posting, not of selling below cost.
+
+**Not proven** — the sync may post through a channel that never touches the sale
+record. Confirm in the Lightspeed admin before treating it as established, and do
+not state it as fact in any brief. But it is the first thing to check, because if
+it is true then every downstream figure inherits it.
 
 ### Variance types — closed vocabulary
 
@@ -167,28 +223,49 @@ on the dashboard.
 
 ---
 
-## The Poreus exclusion rule
+## Identifying a project sale
 
-LS sales identified as project sales are excluded from retail gross margin and
-matched to their Notion project instead.
+A project sale is excluded from retail gross margin and attributed to its Notion
+project instead. The identifier is **data, never a literal in a script** —
+`platform-settings/finance.json` holds it.
 
-Identification is **data, not a literal in a script** —
-`platform-settings/finance.json` holds the customer-account identifier and the
-project-product SKU pattern. Two independent signals are kept deliberately: a
-project sale rung without the account set, or against an ad-hoc product, would
-otherwise fall silently into retail.
+**The join key is the `PP-###` reference in the Lightspeed sale note.** Verified
+2026-09-11: notes read like `@Pack Allen Giancomelli PP-416`, and `PP-###`
+resolves to Notion Titan Projects' auto-increment `ID`, mirrored as `Project ID`
+on the Airtable Project Log. PP-447 and PP-449 were confirmed present on both
+sides, so the join works.
 
-> **Unverified.** The exact spelling and the LS customer id behind "the Poreus
-> account" have not been confirmed against live data, nor has the project-product
-> SKU convention. Both must be pinned before the exclusion can be trusted — an
-> exclusion rule that matches nothing fails *silently* and inflates retail
-> margin, which is exactly the failure mode the catalogue routine's
-> `Extraction Status` filter hit on 2026-09-10.
+> **It attributes almost no history.** Only **20 sales out of 55,820** carry a
+> `PP-###` note — 19 distinct projects, every one dated 2026, nearly all on
+> 2026-09-09 and 2026-09-10. **The convention is about two days old.** It is the
+> right key going forward and it attributes essentially zero historical project
+> revenue. A backfill needs a different method or an accepted, stated gap.
 
-A project sale that matches no Notion project is **not** dropped. It becomes a
-flagged item: revenue with nowhere to attribute it is a finding, not a rounding.
+### "The Poreus account" did not survive contact with the data
 
----
+Albert described project sales being rung "under the Poreus account". Checked
+directly:
+
+- **No Lightspeed customer** named Poreus or Porous exists — all 2,779 customers
+  were scanned.
+- There **is** a Lightspeed *user* **Pourya** (`pourya@titanfloors.ca`, cashier),
+  who is also the `Sales Person` on the Airtable project rows — so "Poreus" is
+  almost certainly "Pourya".
+- But **Pourya has rung 2 sales in the entire 55,820-sale history**, one of them
+  on 2026-09-10. As an identifying signal it matches nothing.
+
+So `user_id` is recorded in the registry with `use_as_signal: false`, and the
+question goes back to Albert rather than being guessed at. A rule that matches
+nothing fails *silently* and inflates the figure it was meant to exclude — the
+same failure mode as the catalogue routine's `Extraction Status` filter on
+2026-09-10.
+
+**Project sales are not an edge case in this reconciliation — they are most of
+it.** Of the twelve most recent PP-tagged sales: four `ONACCOUNT`, one `LAYBY`,
+two `LAYBY_CLOSED`, four `CLOSED`, one `SAVED`. They sit squarely in the gaps.
+
+A project sale matching no Notion project is **not** dropped. It becomes
+unattributed revenue in `needs_attention`.
 
 ## Coverage ratio — how accuracy gets stated
 
