@@ -37,7 +37,43 @@ the whole safety story:
 ## The approval file
 
 `plans/YYYY-MM-DD/catalog-approval-<supplier-slug>.json`. Written by a person (or by
-a command on a person's explicit yes), never by the reconciler.
+a command on a person's explicit yes), or by `/catalog-sync` itself under the
+narrow policy below — never by the reconciler.
+
+### Policy auto-approval (2026-09-11, Albert) — established suppliers only
+
+The human pause at step 3 is no longer required for an established supplier's clean
+actions. `/catalog-sync` may write this file itself, with no person's yes, for the
+subset of a plan's actions that meet **all** of:
+
+- The plan's `Review Reason` this run does **not** include `New Supplier`. A plan
+  touching a supplier with zero prior Airtable rows gets **no self-written approval,
+  for any row on it, ever** — section 2a's reasoning doesn't soften just because one
+  row looks clean: nothing on a new supplier's file has been reconciled against a
+  live record, so confidence there is never policy's to certify.
+- The action is in `actions[]`, never `blocked`. Unchanged — a `blocked` entry still
+  carries no `id` and stays exactly as unapprovable as before.
+- The action's `sku` carries none of **this run's own** `Review Reason` additions —
+  `Ambiguous Pricing`, `Ambiguous Naming`, `Unmapped Category`, `Unmapped Grade`,
+  `Spec Gap`. (A prior run's Review Reason on the same row, not yet cleared by the
+  reviewer, also disqualifies it — the flag exists until a person clears it, not
+  until this run stops repeating it.)
+- A `warnings` entry (`category_unresolved`, `airtable_side_not_planned`) does
+  **not** block auto-approval — warnings were already "never a reason to withhold a
+  write" before this policy existed, and that does not change here.
+
+Entries this produces look identical in shape to a person's (`"status": "approved"`),
+but every actions-log entry they lead to must set
+`"approved_by": "policy: high-confidence auto-approval (2026-09-11 routine)"` —
+never `"Albert"` or any person's name, so the log never overstates who looked at
+what. `raw_ref_action_id` is still set, same as any other execution.
+
+Anything not meeting this bar — every row on a New Supplier plan, any `blocked`
+entry, any row carrying a Review Reason this run added or left uncleared — gets
+**no id written by policy.** It surfaces in the run's report exactly as an
+unapproved row always has: `summary` counts, the `blocked` reasons, the
+`before`/`after` on price moves. A person can still add ids for those, the old way,
+into the same file — the two authorship paths write to one file, not two.
 
 ```json
 {
