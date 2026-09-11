@@ -74,10 +74,12 @@ it, and do not look for a way to finish the writes.
 Find Price Lists rows where Airtable Sync is Pending and Extraction Status is
 Extracted [Ready to Upload], with two CSVs in Extracted Files. Those are yours.
 A row still at Extracted [Needs Review] has not been reviewed — skip it.
-Process at most 3 rows per run, oldest first.
+No cap on row count — steps 1-3 write nothing, so there is no blast radius to limit
+by throttling the sweep. Process every eligible row, oldest first.
 
 **Task**
-Run /catalog-sync with that row's notionID, stopping at step 3.
+For every eligible row, run /catalog-sync with that row's notionID, stopping at step
+3. Do this for all of them before reporting — do not stop and notify after the first.
 
 If the slash command does not resolve in this session, read
 .claude/commands/catalog-sync.md from the titan-agents-repo checkout and follow
@@ -118,11 +120,14 @@ host or variable name and stop. Never route around a blocked host, never disable
 TLS verification.
 
 **Finish**
-Commit and push the plan and the Airtable snapshot to the repo.
+Commit and push every plan and Airtable snapshot produced this run to the repo.
 
-Send a PushNotification summarising, per row: the supplier, the action counts, and
-the blocked count with reasons. Say plainly that the plan awaits approval and that
-nothing has been written. Stay silent only if there were no rows to process.
+Send **one** PushNotification covering the whole run, not one per row: total rows
+processed, then per supplier — the action counts and the blocked count with reasons.
+Say plainly that every plan awaits approval and that nothing has been written. This
+digest is what a batch approval (see /catalog-sync step 3a) is given against — one
+explicit reply, in a session where the digest is reviewed, can approve across every
+plan in it. Stay silent only if there were no rows to process.
 ```
 
 Four deliberate inclusions:
@@ -134,28 +139,35 @@ Four deliberate inclusions:
    fire, and this works either way.
 3. **"Do not improvise an alternative"** — the 09-03 failure was not refusal. It was
    confident completion on a partial instruction set.
-4. **A row cap and a status filter.** `Extracted [Needs Review]` means a human has not
+4. **A status filter, no row cap.** `Extracted [Needs Review]` means a human has not
    looked at the extraction yet; planning writes off unreviewed data inverts the
-   pipeline's whole order. Three rows keeps one bad run small.
+   pipeline's whole order. The row cap this section once described (three per run) is
+   gone as of 2026-09-11 — see Changelog — because steps 1-3 never write, so a wider
+   sweep costs nothing a narrower one didn't already risk.
+5. **Batch approval, not batch writing.** The digest lets one reply clear every plan
+   in a run; it does not let the run clear itself. See `/catalog-sync` step 3a.
 
-## ⚠️ Do not schedule this yet — its scope filter is broken
+## ⚠️ Scheduling status
 
-**`Extracted [Ready to Upload]` no longer exists on the live `Extraction Status`
-property** (verified 2026-09-10; it was present earlier the same day). The Scope
-section above filters on it, so as written **this routine matches zero rows, silently,
-forever** — the failure mode this repo has already been bitten by twice.
+**`Extracted [Ready to Upload]` was missing from the live `Extraction Status` property
+from 2026-09-10 until sometime before 2026-09-11**, verified absent on 09-10 and
+verified **restored** on 09-11 (live Notion MCP check, same day this file's batch
+changes were made). While it was missing, the Scope filter above matched zero rows,
+silently, forever — the failure mode this repo has already been bitten by twice.
+Nothing in the repo removed it; the only schema statements run in that window were
+`ADD COLUMN "Review Reason"` and `ALTER COLUMN` on the three select trackers, neither
+of which touches `Extraction Status`. Most likely it was removed and restored in the
+Notion UI. If it goes missing again: loosening the filter to `Airtable Sync is
+Pending` alone is **not** the fix — that sweeps in rows nobody has reviewed, which
+inverts the pipeline's whole order. Restore the option or name a replacement signal.
 
-Nothing in the repo removed it. The only schema statements run were `ADD COLUMN
-"Review Reason"` and `ALTER COLUMN` on the three select trackers; `Extraction Status`
-is a status property and none of those touch it. Most likely it was removed in the
-Notion UI.
-
-It is not a cosmetic option. It was the reviewer's *"I have checked this, go"* signal —
-the only thing distinguishing a reviewed row from an unreviewed one. Loosening the
-filter to `Airtable Sync is Pending` alone is **not** the fix: that sweeps in rows
-nobody has looked at, which inverts the pipeline's whole order.
-
-**Restore the option, or name a replacement signal, before this routine is scheduled.**
+**Separately, still open as of 2026-09-11: `/catalog-sync` has not been run end to end
+in a recorded, verified interactive session.** CLAUDE.md's pipeline section asks for
+one such run before this routine is scheduled unattended. The batch-approval design in
+this file and in `/catalog-sync` step 3a is written and ready, but has not itself been
+exercised against a live approval yet. Run one interactively — ideally the first batch,
+so the digest and batch-approval flow gets validated at the same time — before relying
+on this routine on a schedule.
 
 ## Schedule
 
@@ -180,6 +192,16 @@ There is no value in a tighter interval, and each run walks the full catalogue.
 
 ## Changelog
 
+- **2026-09-11 (Albert)** — Batch approval. Albert wanted per-row approval sessions
+  removed; the alternative landed instead keeps the human decision but batches it: the
+  routine now sweeps every eligible row in one run (row cap removed — steps 1-3 never
+  write, so nothing was gained by throttling them), reports one consolidated digest
+  instead of a per-row notification, and `/catalog-sync` step 3a lets one explicit
+  reply approve across every plan in that digest. Steps 4-6 are unchanged and still
+  never run without an approval file naming exact ids. Same day, verified live that
+  `Extracted [Ready to Upload]` is back on the Notion property (see Scheduling status)
+  — the second scheduling blocker (no recorded interactive end-to-end run) is still
+  open.
 - **2026-09-10** — Created, alongside `.claude/commands/catalog-sync.md`, on the merge
   of the Airtable ↔ Lightspeed sync (PR #38). The pipeline's downstream half was five
   manual file operations before this; the API returns a product's UUID at create time,
