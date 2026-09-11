@@ -81,6 +81,17 @@ additively by both runs and cleared only by the reviewer. `Airtable Sync`, `LS U
 and `UUID Backfill` are stage indicators for **whoever ran the stage**: the manual CSV
 path stays available and writes the same fields the sync does.
 
+**Not every attachment is a price list (2026-09-11, Albert).** Stage 1 no longer just
+stops on a non-price-list file. If it has real content (a catalogue, spec sheet,
+marketing material), Stage 1 tags it freely — a gray, open-ended tag, never `Regular
+List`/`Promo` — and records what it shows about the company in
+`platform-settings/company-profiles.md`, the repo's new memory of what each company
+sells beyond its price lists. If it has no content at all (a bare logo, a blank
+file), and only on an untouched row, Stage 1 may archive the Notion page —
+Notion's own reversible soft-delete, never anything harder, and always reported.
+Full procedure: `methods/pricelist-extraction.md`, "When the file is not a price
+list at all."
+
 **Approval is batched, not removed (2026-09-11, Albert).** A Stage 2 sweep can cover
 every `Ready to Upload` row in one run and present every plan as one digest; one
 explicit reply approves across the batch. See `/catalog-sync` step 3a. Steps 4–6 are

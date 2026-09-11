@@ -27,6 +27,8 @@
       "extracted_files": "Extracted Files"
     },
     "_write_key_trap": "The extraction state key is `Extraction Status`, NOT `Status`. Writing `Status` returns 400 validation_error.",
+    "company_profiles_file": "platform-settings/company-profiles.md",
+    "_company_profiles_note": "Where a run records what a company's non-price-list attachment showed about their product lines. See methods/pricelist-extraction.md, 'When the file is not a price list at all'.",
     "status_values": {
       "extraction_status": {
         "_type": "status",
@@ -98,7 +100,9 @@
         "_all": [
           "Regular List",
           "Promo"
-        ]
+        ],
+        "_canonical": "Regular List and Promo are the two fixed values for an actual price list — set by process-price-list.md step 4 / methods/pricelist-extraction.md 'Tagging the row'. Their colours are configured and never touched by a run.",
+        "_open_ended_2026-09-11": "Decided 2026-09-11 (Albert). For a document that is not a price list at all, Tags is NOT forced into Regular List/Promo — coin a short descriptive tag freely (no fixed list; describe the document). Colour every such tag gray, and never touch Regular List's or Promo's existing colour. A brand-new value auto-creates as a select option on write (select behaves this way; status does not — do not assume the same for Extraction Status); its colour then needs a separate, narrowly-scoped schema update to gray — touch only the new option, never rewrite the property's full option list. Full procedure: methods/pricelist-extraction.md, 'When the file is not a price list at all'."
       },
       "review_reason": {
         "_type": "multi_select",
