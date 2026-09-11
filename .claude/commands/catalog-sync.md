@@ -150,6 +150,33 @@ reason, and the `before`/`after` on anything whose price moves. Then stop.
 On an explicit yes, write
 `plans/YYYY-MM-DD/catalog-approval-<supplier-slug>.json` naming the approved ids.
 
+## 3a. Batch approval — multiple plans, one decision
+
+**Decided 2026-09-11 (Albert).** When steps 1–2 have run across several rows in one
+sweep (see the routine's Scope), present every plan together as one digest instead of
+one at a time: total counts first, then each supplier's `summary`, every `blocked`
+entry with its reason, and price `before`/`after`. Then stop — same gate, wider view.
+
+- **One explicit reply can cover the whole digest** — "approve all," or naming
+  exceptions ("approve all except Biyork," "skip the 4 blocked Grandeur rows"). This
+  replaces running `/catalog-sync` once per supplier to get to the same decision; it
+  does not replace the decision itself.
+- Nothing about the gate changes per plan: absence of an approval file still means
+  that plan is not approved, partial approval within a supplier's plan is still
+  normal, `blocked` entries still carry no `id`, and a stale plan (past end of day)
+  is still re-derived rather than re-approved.
+- On the batch yes, write one `plans/YYYY-MM-DD/catalog-approval-<supplier-slug>.json`
+  per approved plan, in the same step. A supplier left out of the reply gets no
+  approval file — silence excludes, same as it always has.
+- Steps 4–6 then run per approved plan, each in the existing forced order
+  (Lightspeed → Airtable → Notion trackers). One supplier's write failing does not
+  block another's — log it and continue, same as any other run.
+
+This changes *how many plans reach the gate together and how many replies it takes to
+clear it* — never *whether* a human decision gates the write. Steps 4–6 are still not
+run unattended, ever, and this command still never invokes an actions agent without an
+approval file naming exact ids.
+
 ## 4. Lightspeed writes — this changes the live POS
 
 **Dry run first, every time:**

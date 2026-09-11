@@ -415,7 +415,10 @@ the title renders with a blank.
 ## Tagging the row: Regular List vs Promo
 
 **Decided 2026-09-03 (Albert).** The routine sets `Tags` on the Notion row as well
-as `Company`. The two options are exactly `Regular List` and `Promo` — no others.
+as `Company`. For an actual price list, the two canonical options are exactly
+`Regular List` and `Promo` — no others. (A file that turns out not to be a price
+list at all is a different case, not a third option here — see "When the file is
+not a price list at all," below.)
 
 **The file decides, not the email.** One email with several attachments becomes
 several rows, and they are tagged per attachment: 24 subjects in the database carry
@@ -488,6 +491,70 @@ price list`):
 Leave `Tags` blank and escalate on the same path as an unresolvable Company (below).
 A blank tag is visibly incomplete; a wrong one silently mis-files the document.
 Five rows already sit untagged, so blank is an existing state, not a new one.
+
+**This is a document the routine has confirmed is a price list, and the doubt is only
+which of the two it is.** A document that is not a price list at all does not belong
+in this decision — see the next section.
+
+## When the file is not a price list at all
+
+**Decided 2026-09-11 (Albert).** Different case from "genuinely unclear," above: the
+attachment isn't a Regular List or a Promo in any reading — it's something else
+entirely. Two sub-cases, and they are not handled the same way. Default to (A) on any
+doubt; (B) is narrow and rare.
+
+**A. The document has real content, just not pricing.** A product catalogue with no
+prices, a spec sheet, installation instructions, a marketing one-pager, a photo set
+with captions — anything that says something about what the company sells or does,
+without being a price list.
+
+- `Company` is already set (per "Assign Company before the parseability check,"
+  above) — unaffected by this.
+- `Tags` is not forced into `Regular List` or `Promo`. Coin a short, specific
+  descriptive tag for what the document actually is — `Product Catalog`, `Spec
+  Sheet`, `Installation Guide`, whatever fits. There is no fixed list here on
+  purpose: describe the document rather than force it into the two price-list
+  buckets. **Colour every non-price-list tag gray** so `Regular List`/`Promo` stay
+  visually distinct in the Notion view from everything else, at a glance. Their
+  existing colours are untouched — this is purely additive. Mechanics and the
+  auto-create-vs-status caveat: `platform-settings/pricelist-sources.json`,
+  `price_lists.status_values.tags._open_ended_2026-09-11`.
+- Read the document for what it says about the company's product lines and record it
+  in `platform-settings/company-profiles.md` (registry pointer:
+  `price_lists.company_profiles_file`), appending a dated entry under that company's
+  heading per that file's own entry format. Never rewrite a prior entry to make room
+  for a new one.
+- Set `Extraction Status` = `Extracted [Needs Review]` — still one of the two values
+  a run may write (`status_values.extraction_status._writable_by_a_run`) — with
+  `Notes` stating plainly that this row is not a price list, what it is instead, and
+  that it's tagged and logged in company-profiles.md rather than extracted. This is a
+  deliberate, narrow exception to "never leave a row reading `Extracted [Needs
+  Review]` with an empty `Extracted Files`" (`process-price-list.md` step 6): there is
+  no CSV to attach because there is no price data, and `Notes` says so rather than
+  leaving it silent.
+- **Do not set `Airtable Sync`.** A run may only write `Pending` to it
+  (`status_values.airtable_sync._writable_by_an_extraction_run`), and `Pending` would
+  state something false here — there is no upload file for Airtable to catch up to.
+  Leave it for Albert, who sets `Extraction Status` → `Not Needed` and `Airtable
+  Sync` → `Not needed` together once he's glanced at the row and confirmed the
+  classification — the same human-closes-the-loop pattern as `Ready to Upload`, just
+  landing somewhere else.
+
+**B. The document has no content at all** — a bare logo image, a blank or corrupted
+file, a decorative graphic carrying nothing product- or company-specific beyond what
+`Company`/`Sender`/`Email Subject` already have. Narrow; default to (A) on any doubt
+— a single product photo with a caption is (A), not this.
+
+- Only ever on a row still at `Extraction Status = Not started` — never one a human
+  or a prior run has touched, however lightly. If the row shows any prior activity,
+  this is off the table; fall back to (A) or escalate instead.
+- Archive the Notion page — Notion's own soft-delete, recoverable from Trash, not a
+  permanent purge. Never attempt anything harder than that.
+- **Never silent.** State plainly, in the run's report and its PushNotification,
+  which row was archived and why ("logo image only, no product or pricing content").
+  This is the one outcome in the whole extraction procedure that removes something
+  from Notion, so it is called out every time — never folded into a routine "nothing
+  outstanding" summary.
 
 ## Do not edit large Make blueprints through `scenarios_update`
 

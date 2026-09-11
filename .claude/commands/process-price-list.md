@@ -76,8 +76,13 @@ several cases it is not casing at all but a different name** — `FAW` → `Floo
 
 ## 4. Tag the row — `Regular List` or `Promo`
 
-`Tags` has exactly two options. **Classify the file in front of you, not the email** —
-one email with several attachments becomes several rows with different tags.
+**This step is for a document already confirmed to be a price list.** If it turns
+out not to be one at all, don't force it into either tag here — skip to step 5's
+classification, which covers what `Tags` gets instead.
+
+For an actual price list, `Tags` has exactly two canonical options. **Classify the
+file in front of you, not the email** — one email with several attachments becomes
+several rows with different tags.
 
 Tag `Promo` if the document shows any of: its own printed title says PROMOTION / PROMO /
 SPECIAL(S) / CLEARANCE / SALE / FLYER / OVERSTOCK / COMBO; two price columns (regular
@@ -101,8 +106,27 @@ Genuinely unclear → leave `Tags` blank and escalate (step 7).
 to it. Never regenerate, reformat or "correct" a stored SKU; a SKU that looks wrong is
 escalated, never edited.
 
-Confirm the file is a parseable price document. If not, stop here — `Company` and `Tags`
-are already set — and say only that it is not a supported price document.
+Confirm the file is a parseable price document — one that states unit prices for
+products. If it is, continue below, tagging per step 4.
+
+If it is not a price list at all, classify which case applies — full rationale in
+`methods/pricelist-extraction.md`, "When the file is not a price list at all":
+
+- **Has real content** (a catalogue, spec sheet, marketing material, anything
+  describing the company's products without pricing) — tag it freely (a short
+  descriptive tag, never `Regular List`/`Promo`), coloured gray; log what it shows
+  about the company into `platform-settings/company-profiles.md`; set
+  `Extraction Status = Extracted [Needs Review]` with `Notes` explaining there's no
+  price data and no CSVs are expected (a deliberate exception to the "never leave
+  Needs Review with empty Extracted Files" rule below — this is why); leave
+  `Airtable Sync` untouched, since a run may only write `Pending` to it and that
+  would be false here.
+- **Has no content at all** (bare logo, blank, decorative image), and only on a row
+  still at `Extraction Status = Not started` — archive the Notion page (soft-delete,
+  recoverable, never anything harder). Report this every time, never silently — the
+  one outcome here that removes something from Notion.
+
+Default to the first of those two on any doubt.
 
 Otherwise, **in this order — it is a dependency, not a preference**:
 
@@ -243,7 +267,9 @@ property write was rejected — set `Extraction Status` = `Extracted [Error]` an
 reason in `Notes`**, naming the step it failed at and what it needs to proceed. Never
 leave a row at `Extracting` after the run ends: that reads as still-in-flight and hides
 the failure. Never leave a row reading `Extracted [Needs Review]` with an empty
-`Extracted Files` — that claims there is something to review when there is not.
+`Extracted Files` — that claims there is something to review when there is not —
+**except the step 5 "not a price list, but has real content" case, where `Notes`
+says explicitly why there are no files instead of leaving that silent.**
 
 `Extracted [Error]` is for a run that did not produce what it should have. A run
 that finished but carries assumptions stays `Extracted [Needs Review]` with those
@@ -278,3 +304,8 @@ Row counts by `MatchStatus`; how many matched rows carry a `Lightspeed ID`; how 
 products await one (so whoever imports knows the backfill loop is open); SALE/promo items
 and how they were handled; anything flagged for Albert; and anything that did not fit the
 supplier's documented rules — report those rather than guessing.
+
+If step 5 classified the row as not a price list: say so plainly, name the tag
+applied and the company-profiles.md entry written, or — for the no-content case —
+that the Notion page was archived and why. Never fold either outcome into an
+otherwise-quiet "nothing outstanding" report; both are always stated.

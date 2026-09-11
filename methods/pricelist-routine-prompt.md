@@ -1,5 +1,12 @@
 # Routine prompt — "Process New Pricing Files from OneDrive"
 
+> **⚠️ Superseded 2026-09-11.** This is no longer the live routine text. Stage 1 of
+> `methods/pricelist-pipeline-routine-prompt.md` replaced it, merging this routine
+> and `catalog-sync-routine-prompt.md`'s into one identity that branches on whether
+> the fire payload carries a `notionID`. Kept here for its changelog and rationale;
+> `/process-price-list` (`.claude/commands/process-price-list.md`) is still the
+> authoritative procedure Stage 1 points to and is unaffected by the merge.
+
 The canonical text for the scheduled routine. Kept here so it is versioned and
 diffable; the live copy is in the routine itself. **The payload is unchanged and
 must stay unchanged** — Make sends `{"notionID": "<page id>"}` and nothing else.
