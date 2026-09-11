@@ -319,12 +319,21 @@ def main():
 
     if backfill:
         out = args.plan.with_name(f"catalog-backfill-{slug}.json")
+        # Merge, never overwrite: a supplier's creates can run across more than
+        # one invocation (a single test action before the batch, a resume after
+        # a rate limit) and each one calls main() fresh with no memory of the
+        # last. Overwriting here silently drops every earlier run's ids — this
+        # is not hypothetical, it happened 2026-09-11 (ACC-OAKL-0001, restored
+        # by hand from the actions-log after the fact).
+        existing = json.loads(out.read_text())["sku_to_lightspeed_id"] if out.exists() else {}
+        merged = {**existing, **backfill}
         out.write_text(json.dumps({
             "contract_version": "catalog-backfill-1",
             "supplier": supplier, "written_at": now(),
-            "plan": str(args.plan), "sku_to_lightspeed_id": backfill,
+            "plan": str(args.plan), "sku_to_lightspeed_id": merged,
         }, indent=1) + "\n")
-        print(f"\n{out.name} — {len(backfill)} new UUIDs for the Airtable backfill")
+        print(f"\n{out.name} — {len(backfill)} new UUIDs this run, {len(merged)} total "
+              "for the Airtable backfill")
 
     print(f"\n{json.dumps(writer.write_stats())}")
     if args.dry_run:

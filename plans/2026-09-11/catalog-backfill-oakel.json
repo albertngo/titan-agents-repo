@@ -3,7 +3,9 @@
  "supplier": "Oakel",
  "written_at": "2026-09-11T10:31:02-04:00",
  "plan": "plans/2026-09-11/catalog-plan-oakel.json",
+ "_note": "ACC-OAKL-0001 restored by hand 2026-09-11: it was created live by a single test action run separately from the 55-item batch, and lightspeed_push.py overwrites this file on each run rather than merging, so the batch run's write dropped it. Its id (7d88d5ac-996e-41f0-bcfb-2eeba107ce92) is the real one confirmed live at the time of that test create, not guessed.",
  "sku_to_lightspeed_id": {
+  "ACC-OAKL-0001": "7d88d5ac-996e-41f0-bcfb-2eeba107ce92",
   "ACC-OAKL-0002": "853a4f22-2a07-48c2-b7e2-16dd3d3c8a2f",
   "ACC-OAKL-0003": "6b7a310d-a276-45a6-8fbc-44dee9013191",
   "ACC-OAKL-0004": "e263bd92-a76c-42c8-bddb-4bcc0ad73c68",
