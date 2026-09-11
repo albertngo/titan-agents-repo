@@ -84,16 +84,34 @@
       "income": 58734014,
       "cogs": 61277815,
       "expenses": 16025908,
-      "net_profit": -18569709
+      "net_profit": -18569709,
+      "_ls_comparison": {
+        "ls_revenue_ex_tax_cents": 51243269,
+        "ls_cogs_cents": 39567520,
+        "revenue_diff_cents": 7490745,
+        "cogs_diff_cents": 21710295,
+        "ls_gross_margin_pct": 22.8,
+        "qbo_gross_margin_pct": -4.3
+      }
     },
     "fy2025_full": {
       "income": 122928120,
       "cogs": 59049997,
       "expenses": 59227879,
-      "net_profit": 4650244
+      "net_profit": 4650244,
+      "_ls_comparison": {
+        "ls_revenue_ex_tax_cents": 122555745,
+        "ls_cogs_cents": 86978574,
+        "revenue_diff_cents": 372375,
+        "cogs_diff_cents": -27928577,
+        "ls_gross_margin_pct": 29.0,
+        "qbo_gross_margin_pct": 52.0
+      }
     },
-    "_finding": "COGS EXCEEDS INCOME in the 2026 partial year. That is the signature of sales not posting to QBO, not of a business selling below cost — and it is the same gap the register-closure watchdog was built to catch. Corroborated independently: no Lightspeed sale in 55,820 carries an accounts_transaction_id. NOT PROVEN; confirm the Lightspeed->QBO sync state in the Lightspeed admin before treating it as established.",
-    "_units": "Integer cents CAD, per CLAUDE.md conventions."
+    "_finding": "CORRECTED 2026-09-11, replacing 'sales are substantially not posting'. Compared against Lightspeed over IDENTICAL periods, REVENUE RECONCILES: 2025 is 0.3% apart on $1.23M. The problem is COGS, and it misses in BOTH DIRECTIONS — QBO COGS is $279,286 BELOW Lightspeed's cost-of-goods-sold in 2025 and $217,103 ABOVE it in 2026 YTD. A figure that swings that way year over year is not a sync gap. It is the signature of COGS booked on a PURCHASE basis rather than a COST-OF-SALE basis: buy less than you sell and margin looks excellent (2025 showed 52%), buy more and you post a loss (2026 YTD shows -4.3%). Inventory Asset stands at $358,721.66. Lightspeed's own margin is stable and plausible every month — 19-30% through 2026, 29.0% for 2025 — and THAT is the real gross margin. The -$185,697 'loss' is an inventory-accounting artifact, not a business result, and no decision should rest on it. NOT CONFIRMED with the bookkeeper: whether purchases are expensed straight to COGS is a question for Albert and Prophecy Bookkeeping, not something this pipeline should infer.",
+    "_units": "Integer cents CAD, per CLAUDE.md conventions.",
+    "_gap_c_sized": "QBO income EXCEEDS Lightspeed revenue by $74,907 in 2026 YTD while matching within 0.3% in 2025. The project business formalised in 2026 (Notion Project Financials starts 2026-03-28). The likeliest reading is project revenue invoiced directly in QuickBooks, never rung through Lightspeed — exactly the Gap C behaviour Albert described, now with a number on it.",
+    "_margin_compression": "Lightspeed gross margin fell from 29.0% (2025) to 22.8% (2026 YTD). That is real compression in the trustworthy number, and it has been invisible under a P&L reporting 52% then -4%."
   },
   "accounts": {
     "_comment": "QBO account ids the reconciler needs. RESOLVED 2026-09-11 from Make data store 88653 (102 accounts, live balances as at the 2026-07 pull). Balances are recorded for context only — they are a July snapshot and must never be quoted as current.",

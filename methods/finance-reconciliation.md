@@ -185,50 +185,80 @@ in 56 requests. The vocabulary, with full-history counts, is recorded in
 27 `ONACCOUNT` and 3 `LAYBY` sales dated 2026 were open at the walk. **That live
 position exists nowhere in QuickBooks.**
 
-### The sync may not be running at all
+### What actually disagrees: COGS, not revenue
 
-Two independent observations, both from 2026-09-11:
+Two systems, identical periods, measured 2026-09-11:
 
-- **No sale in 55,820 carries a non-null `accounts_transaction_id`**, and
-  `has_unsynced_on_account_payments` is `false` on every one. If the
-  Lightspeed→QBO accounts integration were running and stamping the sale record,
-  something would have been stamped.
-- The **QBO P&L for Jan 1 – Jul 13 2026 shows COGS of \$612,778 against income of
-  \$587,340** — cost of goods *exceeding* revenue, against a FY2025 that looked
-  ordinary. That is the signature of sales not posting, not of selling below cost.
+| | LS revenue (ex-tax) | QBO income | LS COGS | QBO COGS | LS margin | QBO margin |
+|---|---|---|---|---|---|---|
+| 2025 full year | \$1,225,557 | \$1,229,281 | \$869,786 | \$590,500 | **29.0%** | 52.0% |
+| 2026 Jan 1–Jul 13 | \$512,433 | \$587,340 | \$395,675 | \$612,778 | **22.8%** | −4.3% |
 
-Measured on 2026-09-11, and the sizes are not marginal:
+**Revenue reconciles.** 2025 is **\$3,724 apart on \$1.23M — 0.3%**. Sales post to
+QuickBooks essentially correctly, and an earlier reading of this repo that said
+otherwise has been corrected. `accounts_transaction_id` being null on every sale
+means the integration does not *stamp* the sale record; it does not mean the
+integration is absent.
 
-- **Open layaway: 3 sales, \$13,217.45 of customer deposits held.** QBO account
-  `169`, *Revenue Received in Advance – Lightspeed X* — built for precisely this —
-  holds **\$0.00**. Gap A, quantified from both sides.
-- **Open on-account: 32 sales, \$30,233.80 outstanding**, oldest from August 2025.
-  QBO Accounts Receivable (account `61`) reads **−\$20,100.75**. The two figures
-  differ in *sign*, not just magnitude.
+**COGS does not reconcile, and it misses in both directions** — QBO \$279k *below*
+Lightspeed in 2025, \$217k *above* it in 2026. A number that swings that way year
+over year is not a sync gap. It is what COGS looks like when it is booked on a
+**purchase basis** rather than a **cost-of-sale basis**: buy less than you sell and
+margin looks excellent, buy more and you post a loss. Inventory Asset stands at
+\$358,722.
 
-**Not proven** — the sync may post through a channel that never touches the sale
-record. Confirm in the Lightspeed admin before treating it as established, and do
-not state it as fact in any brief. But it is the first thing to check, because if
-it is true then every downstream figure inherits it.
+> **Not confirmed with the bookkeeper.** Whether purchases are expensed straight to
+> COGS is a question for Albert and Prophecy Bookkeeping, not something this
+> pipeline may infer. The reconciler's job is to *measure* the difference and type
+> it `inventory_purchase_timing`, not to decide the accounting.
+
+**Lightspeed is authoritative for gross margin**, because its cost is captured per
+line at the moment of sale — which is what cost-of-*sales* means. Its margin is
+stable and plausible every month (19–30% through 2026, 29.0% in 2025). The QBO
+figure renders **beside** it with the difference named, never instead of it and
+never averaged with it.
+
+The \$185,697 "loss" on the 2026 partial-year P&L is an inventory-accounting
+artifact. No decision should rest on it.
+
+### Gap C, sized
+
+QBO income exceeds LS revenue by **\$74,907 in 2026** while matching within 0.3% in
+2025 — and the project business formalised in 2026. That is project work invoiced
+directly in QuickBooks, never rung through Lightspeed: typed
+`revenue_outside_lightspeed`, expected, not an error.
+
+### Margin compression, previously invisible
+
+LS gross margin fell from **29.0% (2025) to 22.8% (2026 YTD)**. Real, and hidden
+until now underneath a P&L that reported 52% and then −4%.
 
 ### Variance types — closed vocabulary
 
-Adding a value is a change to this file **and** to
-`contracts/finance-period-schema.md`, in the same edit.
+Restored and extended 2026-09-11. **`platform-settings/finance.json`
+`variance_types` is the authority** — this table is generated from it, and adding
+a value means editing that file, this section, and
+`contracts/finance-period-schema.md` in the same change.
 
 | Type | Meaning | Expected? |
 |---|---|---|
-| `layaway_deposit` | Cash taken on a layaway not yet redeemed | yes |
-| `layaway_redemption` | Layaway closed; revenue recognised now | yes |
-| `on_account_charge` | AR created in LS, may not be in QBO | yes |
-| `on_account_payment` | AR settled in LS | yes |
-| `on_account_edit_drift` | LS and QBO both hold the sale and disagree | **no — always flag** |
-| `external_project_payment` | Project money that reached the bank without an LS sale | yes |
-| `unexplained` | Residual after all of the above | **no — always flag** |
+| `layaway_deposit` | Cash taken on a layaway not yet redeemed. Never synced to QBO. A liability, not revenue. | yes |
+| `layaway_redemption` | Layaway closed, goods released. Revenue is recognised here, not at deposit. | yes |
+| `on_account_charge` | AR created in Lightspeed; may or may not have reached QBO. | yes |
+| `on_account_payment` | AR settled in Lightspeed. | yes |
+| `on_account_edit_drift` | LS and QBO both hold the sale and disagree. An LS edit never propagates to the QBO mirror, so nothing else will ever surface this. | **no — always flag** |
+| `external_project_payment` | Project money that reached the bank without an LS sale — paid cash or externally. | yes |
+| `unexplained` | Residual after every other type is applied. Reported, never absorbed. | **no — always flag** |
+| `inventory_purchase_timing` | QBO COGS differs from Lightspeed cost-of-goods-SOLD because stock was bought in a different period than it was sold. The largest variance in the whole reconciliation: -$279k in 2025, +$217k in 2026 YTD. | yes — and the **largest** variance |
+| `revenue_outside_lightspeed` | Income in QuickBooks with no Lightspeed sale behind it — project work invoiced directly. $74,907 in 2026 YTD against $3,724 in 2025. | yes |
 
-`on_account_edit_drift` and `unexplained` are the two that mean something is
-wrong. The rest are the system working as designed and must not read as errors
-on the dashboard.
+The two marked *always flag* — `on_account_edit_drift` and `unexplained` — are the
+ones that mean something is wrong. The rest are the system working as designed and
+must not render as errors on a dashboard.
+
+`inventory_purchase_timing` deserves its own note: it is expected, it is *large*
+(−$279k in 2025, +$217k in 2026 YTD), and it is the reason gross margin is read
+from Lightspeed rather than from the QBO P&L.
 
 ---
 

@@ -130,6 +130,16 @@
       "expected": false,
       "sign": "either",
       "description": "Residual after every other type is applied. Reported, never absorbed."
+    },
+    "inventory_purchase_timing": {
+      "expected": true,
+      "sign": "either",
+      "description": "QBO COGS differs from Lightspeed cost-of-goods-SOLD because stock was bought in a different period than it was sold. The largest variance in the whole reconciliation: -$279k in 2025, +$217k in 2026 YTD."
+    },
+    "revenue_outside_lightspeed": {
+      "expected": true,
+      "sign": "negative",
+      "description": "Income in QuickBooks with no Lightspeed sale behind it — project work invoiced directly. $74,907 in 2026 YTD against $3,724 in 2025."
     }
   },
   "authority": {
@@ -141,7 +151,9 @@
     "sale_detail_and_tender_state": "lightspeed",
     "project_cost_and_margin": "notion",
     "project_payments_received": "notion:master_payments_log",
-    "_payments_note": "A Notion payments-log figure is money received, NOT bookkeeping. departments.json already records it as a partial-answer source; that label must survive into every downstream render."
+    "_payments_note": "A Notion payments-log figure is money received, NOT bookkeeping. departments.json already records it as a partial-answer source; that label must survive into every downstream render.",
+    "gross_margin": "lightspeed",
+    "_gross_margin_note": "Lightspeed wins on gross margin because its cost is captured per line at the moment of sale, which is what cost-of-SALES means. The QBO COGS account does not currently behave as a cost-of-sales figure (see observed_pl in quickbooks.json). Render the QBO number BESIDE it with the difference named — never instead of it, and never averaged with it."
   },
   "thresholds": {
     "_comment": "What lands in needs_attention. Money in integer cents CAD.",

@@ -506,7 +506,7 @@
       "_comment": "Two fields on the sale record that bear directly on the LS->QBO gap. BOTH WERE EMPTY ACROSS ALL 55,820 SALES on 2026-09-11 — see _sync_finding.",
       "has_unsynced_on_account_payments": "Boolean. False on every sale in the full history.",
       "accounts_transaction_id": "Null on every sale in the full history.",
-      "_sync_finding": "If the Lightspeed->QuickBooks accounts integration were running and stamping these fields, some sale in 55,820 would carry a non-null accounts_transaction_id. None does. Read alongside the QBO P&L pulled 2026-07-12 (COGS 612,778 against Income 587,340 for Jan 1 - Jul 13 2026 — cost of goods EXCEEDING revenue), the likeliest reading is that sales are substantially not posting to QBO. NOT PROVEN: the sync may post by a channel that never stamps the sale record. Confirm in the Lightspeed admin before drawing a conclusion, and do not present this as established in any brief."
+      "_sync_finding": "CORRECTED 2026-09-11. An earlier reading of these two empty fields, alongside a QBO P&L showing COGS above income, concluded that sales were probably not posting to QuickBooks. THAT WAS WRONG. Comparing the two systems over identical periods: 2025 full year, Lightspeed revenue ex-tax $1,225,557 against QBO income $1,229,281 — 0.3% apart on $1.23M. Sales post essentially correctly. These fields being empty means the integration does not STAMP the sale record, not that it is absent. The real discrepancy is on the COGS line — see observed_pl in platform-settings/quickbooks.json."
     },
     "note_field": {
       "_comment": "The sale `note` is where Albert records context. Sampled 2026-09-11.",
