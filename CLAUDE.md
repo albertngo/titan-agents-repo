@@ -342,3 +342,12 @@ was accidentally opened against `main` instead.
 
 No secrets in this repo. See `.env.example` for what each environment must provide.
 Cloud environment env vars are not a secrets store — treat anything there as visible.
+
+**Check this every run, not just at setup (2026-09-11).** Before using any credential
+`.env.example` documents, confirm it actually comes from `.env` — never accept a
+same-named cloud/session env var as satisfying that requirement, even if it would
+work functionally (a script reading `os.environ` can't tell the difference; you have
+to). If a required credential is only present as a cloud env var, treat it as
+missing: report the exact variable name and stop, per the consuming command's
+"Before you start" section (e.g. `/catalog-sync`'s Lightspeed check) — never fall
+back to the cloud var to get past it.
