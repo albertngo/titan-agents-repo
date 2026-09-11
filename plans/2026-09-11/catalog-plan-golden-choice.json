@@ -1,8 +1,8 @@
 {
  "contract_version": "catalog-plan-1",
  "supplier": "Golden Choice",
- "run_at": "2026-09-10T22:52:07.201824-04:00",
- "status": "partial",
+ "run_at": "2026-09-11T10:28:43.175791-04:00",
+ "status": "ok",
  "inputs": [
   {
    "file": "ingest/2026-09-10/golden_choice_airtable_upload_2025-05-01.csv",
@@ -24,17 +24,17 @@
  ],
  "cost_basis": {
   "value": "dealer-ambiguous",
-  "confirmed_by": "ESCALATED - Net Box Price taken as placeholder pending Albert (Box vs Skid)"
+  "confirmed_by": "ESCALATED - Net Box Price taken as placeholder pending Albert (Box vs Skid); labeling clarified 2026-09-11, both cols already per-sf"
  },
  "ls_supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
  "summary": {
   "airtable_backfill_ls_id": 92,
-  "airtable_upsert": 183,
+  "airtable_upsert": 184,
   "lightspeed_create": 92,
-  "lightspeed_update": 91,
-  "actions_total": 458,
+  "lightspeed_update": 92,
+  "actions_total": 460,
   "uuid_recovered_by_sku": 0,
-  "blocked": 1,
+  "blocked": 0,
   "warnings": 126,
   "rows_in": 184
  },
@@ -1231,6 +1231,26 @@
    "seq": 61
   },
   {
+   "id": "cat-66748d354d9a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-GLDC-0027",
+   "airtable_rec_id": null,
+   "ls_id": "a4ad4c3b-9ee1-4ebd-b735-5f3c39154f95",
+   "handle": "55546971",
+   "fields": {
+    "Product name": "Golden Choice Engineered Hickory (NEW) \u2014 Medici",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.89",
+    "Retail price/unit": "5.89",
+    "Lightspeed ID": "a4ad4c3b-9ee1-4ebd-b735-5f3c39154f95"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 62
+  },
+  {
    "id": "cat-70d699ff4140",
    "target_system": "airtable",
    "op": "upsert",
@@ -1248,7 +1268,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 62
+   "seq": 63
   },
   {
    "id": "cat-8f87b1587c50",
@@ -1269,7 +1289,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 63
+   "seq": 64
   },
   {
    "id": "cat-5ff5655286a1",
@@ -1290,7 +1310,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 64
+   "seq": 65
   },
   {
    "id": "cat-6c3e0bd15175",
@@ -1311,7 +1331,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 65
+   "seq": 66
   },
   {
    "id": "cat-f332a9ae987d",
@@ -1332,7 +1352,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 66
+   "seq": 67
   },
   {
    "id": "cat-7f00c5389b85",
@@ -1353,7 +1373,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 67
+   "seq": 68
   },
   {
    "id": "cat-75421766fbda",
@@ -1374,7 +1394,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 68
+   "seq": 69
   },
   {
    "id": "cat-3b2d85ccc51e",
@@ -1395,7 +1415,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 69
+   "seq": 70
   },
   {
    "id": "cat-c13587fc73a8",
@@ -1416,7 +1436,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 70
+   "seq": 71
   },
   {
    "id": "cat-c57fdcc63e2e",
@@ -1437,7 +1457,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 71
+   "seq": 72
   },
   {
    "id": "cat-b010583054fe",
@@ -1458,7 +1478,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 72
+   "seq": 73
   },
   {
    "id": "cat-0ace088aaab5",
@@ -1479,7 +1499,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 73
+   "seq": 74
   },
   {
    "id": "cat-8844f8174caf",
@@ -1499,7 +1519,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 74
+   "seq": 75
   },
   {
    "id": "cat-0c4ed2566445",
@@ -1519,7 +1539,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 75
+   "seq": 76
   },
   {
    "id": "cat-c8283b876d1f",
@@ -1539,7 +1559,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 76
+   "seq": 77
   },
   {
    "id": "cat-014460d589b8",
@@ -1559,7 +1579,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 77
+   "seq": 78
   },
   {
    "id": "cat-056c927b15e2",
@@ -1579,7 +1599,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 78
+   "seq": 79
   },
   {
    "id": "cat-37440c6b153f",
@@ -1599,7 +1619,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 79
+   "seq": 80
   },
   {
    "id": "cat-edc49aeff607",
@@ -1619,7 +1639,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 80
+   "seq": 81
   },
   {
    "id": "cat-356507ba250c",
@@ -1639,7 +1659,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 81
+   "seq": 82
   },
   {
    "id": "cat-7ec75132b0f0",
@@ -1659,7 +1679,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 82
+   "seq": 83
   },
   {
    "id": "cat-91c3d3075556",
@@ -1679,7 +1699,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 83
+   "seq": 84
   },
   {
    "id": "cat-18c8bd0f7de2",
@@ -1699,7 +1719,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 84
+   "seq": 85
   },
   {
    "id": "cat-5b0a2dbb019e",
@@ -1719,7 +1739,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 85
+   "seq": 86
   },
   {
    "id": "cat-fbce78760ea5",
@@ -1739,7 +1759,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 86
+   "seq": 87
   },
   {
    "id": "cat-b5af84d6f0e7",
@@ -1759,7 +1779,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 87
+   "seq": 88
   },
   {
    "id": "cat-670fa0f9e559",
@@ -1779,7 +1799,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 88
+   "seq": 89
   },
   {
    "id": "cat-8fdd1026afb5",
@@ -1799,7 +1819,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 89
+   "seq": 90
   },
   {
    "id": "cat-94dbefe7418b",
@@ -1819,7 +1839,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 90
+   "seq": 91
   },
   {
    "id": "cat-a4d49f28b5f5",
@@ -1840,7 +1860,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 91
+   "seq": 92
   },
   {
    "id": "cat-211dffa330b9",
@@ -1860,7 +1880,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 92
+   "seq": 93
   },
   {
    "id": "cat-bdc1a0b60022",
@@ -1881,7 +1901,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 93
+   "seq": 94
   },
   {
    "id": "cat-a6353712a88e",
@@ -1902,7 +1922,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 94
+   "seq": 95
   },
   {
    "id": "cat-f6f09b95d2cc",
@@ -1923,7 +1943,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 95
+   "seq": 96
   },
   {
    "id": "cat-482a4bcf3103",
@@ -1944,7 +1964,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 96
+   "seq": 97
   },
   {
    "id": "cat-20391c394bad",
@@ -1964,7 +1984,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 97
+   "seq": 98
   },
   {
    "id": "cat-106e1cef4227",
@@ -1985,7 +2005,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 98
+   "seq": 99
   },
   {
    "id": "cat-7dfea410470d",
@@ -2006,7 +2026,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 99
+   "seq": 100
   },
   {
    "id": "cat-19810bd13ca4",
@@ -2027,7 +2047,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 100
+   "seq": 101
   },
   {
    "id": "cat-1d1816a624b4",
@@ -2048,7 +2068,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 101
+   "seq": 102
   },
   {
    "id": "cat-5b8326d1e9f8",
@@ -2069,7 +2089,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 102
+   "seq": 103
   },
   {
    "id": "cat-3a47208075ab",
@@ -2090,7 +2110,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 103
+   "seq": 104
   },
   {
    "id": "cat-27cb40993660",
@@ -2111,7 +2131,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 104
+   "seq": 105
   },
   {
    "id": "cat-ca9c2f6cfa62",
@@ -2132,7 +2152,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 105
+   "seq": 106
   },
   {
    "id": "cat-ed67c97b07d9",
@@ -2153,7 +2173,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 106
+   "seq": 107
   },
   {
    "id": "cat-bd3d49720d2d",
@@ -2174,7 +2194,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 107
+   "seq": 108
   },
   {
    "id": "cat-9354956ef360",
@@ -2195,7 +2215,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 108
+   "seq": 109
   },
   {
    "id": "cat-c92d52691809",
@@ -2216,7 +2236,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 109
+   "seq": 110
   },
   {
    "id": "cat-c90d86dcf36d",
@@ -2237,7 +2257,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 110
+   "seq": 111
   },
   {
    "id": "cat-cff3d7012a8a",
@@ -2257,7 +2277,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 111
+   "seq": 112
   },
   {
    "id": "cat-decd09ea1491",
@@ -2277,7 +2297,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 112
+   "seq": 113
   },
   {
    "id": "cat-2071f8bed39e",
@@ -2297,7 +2317,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 113
+   "seq": 114
   },
   {
    "id": "cat-e572f1cd314a",
@@ -2317,7 +2337,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 114
+   "seq": 115
   },
   {
    "id": "cat-c96bf7185a20",
@@ -2338,7 +2358,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 115
+   "seq": 116
   },
   {
    "id": "cat-82a8ab2b4252",
@@ -2359,7 +2379,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 116
+   "seq": 117
   },
   {
    "id": "cat-e33c15727f4c",
@@ -2380,7 +2400,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 117
+   "seq": 118
   },
   {
    "id": "cat-351b3deaacd6",
@@ -2401,7 +2421,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 118
+   "seq": 119
   },
   {
    "id": "cat-8008faa4b37b",
@@ -2422,7 +2442,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 119
+   "seq": 120
   },
   {
    "id": "cat-72317ef21d05",
@@ -2443,7 +2463,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 120
+   "seq": 121
   },
   {
    "id": "cat-3de6cd0be8f2",
@@ -2464,7 +2484,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 121
+   "seq": 122
   },
   {
    "id": "cat-b507e949d24c",
@@ -2485,7 +2505,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 122
+   "seq": 123
   },
   {
    "id": "cat-a94be5613a49",
@@ -2505,7 +2525,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 123
+   "seq": 124
   },
   {
    "id": "cat-c70403e99499",
@@ -2526,7 +2546,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 124
+   "seq": 125
   },
   {
    "id": "cat-00923db949ba",
@@ -2546,7 +2566,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 125
+   "seq": 126
   },
   {
    "id": "cat-349dfa38a55e",
@@ -2567,7 +2587,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 126
+   "seq": 127
   },
   {
    "id": "cat-54665f3fdb61",
@@ -2587,7 +2607,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 127
+   "seq": 128
   },
   {
    "id": "cat-44fa02d56d6e",
@@ -2608,7 +2628,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 128
+   "seq": 129
   },
   {
    "id": "cat-ebd942295dbd",
@@ -2628,7 +2648,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 129
+   "seq": 130
   },
   {
    "id": "cat-9ce01c030a2d",
@@ -2649,7 +2669,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 130
+   "seq": 131
   },
   {
    "id": "cat-91bb0397d606",
@@ -2669,7 +2689,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 131
+   "seq": 132
   },
   {
    "id": "cat-08ddc7226222",
@@ -2690,7 +2710,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 132
+   "seq": 133
   },
   {
    "id": "cat-22a7b2175fb8",
@@ -2710,7 +2730,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 133
+   "seq": 134
   },
   {
    "id": "cat-7d64347bf2c8",
@@ -2731,7 +2751,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 134
+   "seq": 135
   },
   {
    "id": "cat-270b9a753d6a",
@@ -2751,7 +2771,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 135
+   "seq": 136
   },
   {
    "id": "cat-8bb5d767db18",
@@ -2771,7 +2791,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 136
+   "seq": 137
   },
   {
    "id": "cat-6fd326060655",
@@ -2792,7 +2812,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 137
+   "seq": 138
   },
   {
    "id": "cat-aef62824bdea",
@@ -2813,7 +2833,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 138
+   "seq": 139
   },
   {
    "id": "cat-6b941b7563bc",
@@ -2834,7 +2854,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 139
+   "seq": 140
   },
   {
    "id": "cat-ce66fcd5256f",
@@ -2854,7 +2874,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 140
+   "seq": 141
   },
   {
    "id": "cat-322e98fdfc04",
@@ -2874,7 +2894,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 141
+   "seq": 142
   },
   {
    "id": "cat-ae11d685adab",
@@ -2894,7 +2914,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 142
+   "seq": 143
   },
   {
    "id": "cat-24e3032cddcf",
@@ -2914,7 +2934,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 143
+   "seq": 144
   },
   {
    "id": "cat-f4d70487c0c8",
@@ -2934,7 +2954,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 144
+   "seq": 145
   },
   {
    "id": "cat-38716abf5e4a",
@@ -2954,7 +2974,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 145
+   "seq": 146
   },
   {
    "id": "cat-3424cfd1633f",
@@ -2975,7 +2995,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 146
+   "seq": 147
   },
   {
    "id": "cat-450b979f8a5c",
@@ -2995,7 +3015,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 147
+   "seq": 148
   },
   {
    "id": "cat-547af3de051e",
@@ -3016,7 +3036,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 148
+   "seq": 149
   },
   {
    "id": "cat-7499713e75c3",
@@ -3036,7 +3056,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 149
+   "seq": 150
   },
   {
    "id": "cat-32d8a23857dc",
@@ -3057,7 +3077,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 150
+   "seq": 151
   },
   {
    "id": "cat-93ec76b5e1e4",
@@ -3077,7 +3097,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 151
+   "seq": 152
   },
   {
    "id": "cat-93ff56de1d21",
@@ -3098,7 +3118,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 152
+   "seq": 153
   },
   {
    "id": "cat-d70cae020d9f",
@@ -3118,7 +3138,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 153
+   "seq": 154
   },
   {
    "id": "cat-cd9322237ba5",
@@ -3138,7 +3158,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 154
+   "seq": 155
   },
   {
    "id": "cat-3a5413f83a35",
@@ -3159,7 +3179,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 155
+   "seq": 156
   },
   {
    "id": "cat-dbdc9be0f683",
@@ -3180,7 +3200,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 156
+   "seq": 157
   },
   {
    "id": "cat-86834e647a0e",
@@ -3201,7 +3221,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 157
+   "seq": 158
   },
   {
    "id": "cat-91bff9f209dd",
@@ -3222,7 +3242,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 158
+   "seq": 159
   },
   {
    "id": "cat-7543910f6832",
@@ -3243,7 +3263,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 159
+   "seq": 160
   },
   {
    "id": "cat-5163d95d9306",
@@ -3264,7 +3284,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 160
+   "seq": 161
   },
   {
    "id": "cat-a31e8d56caca",
@@ -3285,7 +3305,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 161
+   "seq": 162
   },
   {
    "id": "cat-fff07b26da60",
@@ -3306,7 +3326,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 162
+   "seq": 163
   },
   {
    "id": "cat-2c8438d1350b",
@@ -3326,7 +3346,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 163
+   "seq": 164
   },
   {
    "id": "cat-31290fb0910e",
@@ -3346,7 +3366,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 164
+   "seq": 165
   },
   {
    "id": "cat-bc2b1724eb4a",
@@ -3366,7 +3386,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 165
+   "seq": 166
   },
   {
    "id": "cat-da057e171b6f",
@@ -3386,7 +3406,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 166
+   "seq": 167
   },
   {
    "id": "cat-dbc4b6c95272",
@@ -3406,7 +3426,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 167
+   "seq": 168
   },
   {
    "id": "cat-09a4692cc328",
@@ -3426,7 +3446,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 168
+   "seq": 169
   },
   {
    "id": "cat-e0fa835dd7d6",
@@ -3446,7 +3466,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 169
+   "seq": 170
   },
   {
    "id": "cat-913072a05901",
@@ -3466,7 +3486,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 170
+   "seq": 171
   },
   {
    "id": "cat-5d2375d82cad",
@@ -3486,7 +3506,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 171
+   "seq": 172
   },
   {
    "id": "cat-3cc1e8caa6af",
@@ -3506,7 +3526,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 172
+   "seq": 173
   },
   {
    "id": "cat-79d1eac35047",
@@ -3526,7 +3546,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 173
+   "seq": 174
   },
   {
    "id": "cat-4308dbd1e69a",
@@ -3546,7 +3566,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 174
+   "seq": 175
   },
   {
    "id": "cat-713b47429b87",
@@ -3566,7 +3586,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 175
+   "seq": 176
   },
   {
    "id": "cat-88eb8d1c1476",
@@ -3586,7 +3606,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 176
+   "seq": 177
   },
   {
    "id": "cat-f280b41374a3",
@@ -3606,7 +3626,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 177
+   "seq": 178
   },
   {
    "id": "cat-40dab2a1f3d2",
@@ -3626,7 +3646,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 178
+   "seq": 179
   },
   {
    "id": "cat-759e8b1fae78",
@@ -3646,7 +3666,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 179
+   "seq": 180
   },
   {
    "id": "cat-adbeb6312cea",
@@ -3666,7 +3686,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 180
+   "seq": 181
   },
   {
    "id": "cat-0d39e9f59726",
@@ -3686,7 +3706,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 181
+   "seq": 182
   },
   {
    "id": "cat-a301d0822d23",
@@ -3706,7 +3726,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 182
+   "seq": 183
   },
   {
    "id": "cat-c26d71ad0d04",
@@ -3726,7 +3746,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 183
+   "seq": 184
   },
   {
    "id": "cat-c54060d44e67",
@@ -3764,7 +3784,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 184
+   "seq": 185
   },
   {
    "id": "cat-885766ad99e9",
@@ -3802,7 +3822,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 185
+   "seq": 186
   },
   {
    "id": "cat-27ae41287a4a",
@@ -3840,7 +3860,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 186
+   "seq": 187
   },
   {
    "id": "cat-e8fd9cc30a59",
@@ -3878,7 +3898,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 187
+   "seq": 188
   },
   {
    "id": "cat-9079fdbad3fd",
@@ -3916,7 +3936,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 188
+   "seq": 189
   },
   {
    "id": "cat-d061e187c295",
@@ -3954,7 +3974,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 189
+   "seq": 190
   },
   {
    "id": "cat-2920dedcf5e9",
@@ -3972,12 +3992,16 @@
     "price_excluding_tax": 61.0,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Made to order, minimum 7 business days (per sheet's '*' note). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0007"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 190
+   "seq": 191
   },
   {
    "id": "cat-9aab581cbc68",
@@ -3995,12 +4019,16 @@
     "price_excluding_tax": 61.0,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Made to order, minimum 7 business days (per sheet's '*' note). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0008"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 191
+   "seq": 192
   },
   {
    "id": "cat-2313bf4b4566",
@@ -4018,12 +4046,16 @@
     "price_excluding_tax": 101.0,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Made to order, minimum 7 business days (per sheet's '*' note). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0009"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 192
+   "seq": 193
   },
   {
    "id": "cat-16fee30ad486",
@@ -4041,12 +4073,16 @@
     "price_excluding_tax": 30.5,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Made to order, minimum 7 business days (per sheet's '*' note). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0010"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 193
+   "seq": 194
   },
   {
    "id": "cat-ea688f32a115",
@@ -4064,12 +4100,16 @@
     "price_excluding_tax": 30.5,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Made to order, minimum 7 business days (per sheet's '*' note). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0011"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 194
+   "seq": 195
   },
   {
    "id": "cat-8ad845799d61",
@@ -4087,12 +4127,16 @@
     "price_excluding_tax": 56.13,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Made to order, minimum 7 business days (per sheet's '*' note). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0012"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 195
+   "seq": 196
   },
   {
    "id": "cat-53fda94d72f4",
@@ -4110,12 +4154,16 @@
     "price_excluding_tax": 37.75,
     "description": "Colour / tone: Black | IIC rating: 72 | STC rating: 71 | Box size (sf): 200 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Unit = 1 roll (200 sqft coverage), not $/sf -- Box size (sf) here records roll coverage. 10 lbs/roll, all areas of use. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Black"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 196
+   "seq": 197
   },
   {
    "id": "cat-fe1eec23b594",
@@ -4133,12 +4181,16 @@
     "price_excluding_tax": 25.48,
     "description": "Colour / tone: White/silver | Box size (sf): 200 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Unit = 1 roll (200 sqft coverage), not $/sf -- Box size (sf) here records roll coverage. All areas of use. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "White/silver"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 197
+   "seq": 198
   },
   {
    "id": "cat-0fd6405ca491",
@@ -4156,12 +4208,16 @@
     "price_excluding_tax": 37.75,
     "description": "Colour / tone: Black | IIC rating: 72 | STC rating: 73 | Box size (sf): 200 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Unit = 1 roll (200 sqft coverage), not $/sf -- Box size (sf) here records roll coverage. Self tape, density 3.5lbs/cu.ft, all areas of use. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Black"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 198
+   "seq": 199
   },
   {
    "id": "cat-ea3fb1f51fc4",
@@ -4179,12 +4235,16 @@
     "price_excluding_tax": 58.0,
     "description": "Colour / tone: Grey | IIC rating: 80 | STC rating: 81 | Box size (sf): 200 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Unit = 1 roll (200 sqft coverage), not $/sf -- Box size (sf) here records roll coverage. Self tape, density 110kg/cu.m, all areas of use. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Grey"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 199
+   "seq": 200
   },
   {
    "id": "cat-e4c6cbedc6ad",
@@ -4202,12 +4262,16 @@
     "price_excluding_tax": 3.45,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Net price per lin ft is $0.31 -- Cost/unit stored here is the per-piece price, not per-lin-ft. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0017"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 200
+   "seq": 201
   },
   {
    "id": "cat-e2f9407c3ff4",
@@ -4225,12 +4289,16 @@
     "price_excluding_tax": 4.68,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Net price per lin ft is $0.37 -- Cost/unit stored here is the per-piece price, not per-lin-ft. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0018"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 201
+   "seq": 202
   },
   {
    "id": "cat-2b58d34ac0b6",
@@ -4248,12 +4316,16 @@
     "price_excluding_tax": 3.45,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Net price per lin ft is $0.35 -- Cost/unit stored here is the per-piece price, not per-lin-ft. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0019"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 202
+   "seq": 203
   },
   {
    "id": "cat-5bad4252028a",
@@ -4271,12 +4343,16 @@
     "price_excluding_tax": 3.88,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Net price per lin ft is $0.36 -- Cost/unit stored here is the per-piece price, not per-lin-ft. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0020"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 203
+   "seq": 204
   },
   {
    "id": "cat-5549516acbf9",
@@ -4294,12 +4370,16 @@
     "price_excluding_tax": 4.68,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Net price per lin ft is $0.37 -- Cost/unit stored here is the per-piece price, not per-lin-ft. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0021"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 204
+   "seq": 205
   },
   {
    "id": "cat-0613213e7be4",
@@ -4317,12 +4397,16 @@
     "price_excluding_tax": 12.03,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Net price per lin ft is $1.38 -- Cost/unit stored here is the per-piece price, not per-lin-ft. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0022"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 205
+   "seq": 206
   },
   {
    "id": "cat-346eeb828835",
@@ -4340,12 +4424,16 @@
     "price_excluding_tax": 5.29,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Net price per lin ft is $0.43 -- Cost/unit stored here is the per-piece price, not per-lin-ft. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0023"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 206
+   "seq": 207
   },
   {
    "id": "cat-29e1e4851064",
@@ -4363,12 +4451,16 @@
     "price_excluding_tax": 6.51,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Net price per lin ft is $0.79 -- Cost/unit stored here is the per-piece price, not per-lin-ft. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0024"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 207
+   "seq": 208
   },
   {
    "id": "cat-5c9c150bdf50",
@@ -4386,12 +4478,16 @@
     "price_excluding_tax": 10.8,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Net price per lin ft is $1.40 -- Cost/unit stored here is the per-piece price, not per-lin-ft. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0025"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 208
+   "seq": 209
   },
   {
    "id": "cat-a4bf3bb4f6e0",
@@ -4409,12 +4505,16 @@
     "price_excluding_tax": 11.41,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Net price per lin ft is $1.30 -- Cost/unit stored here is the per-piece price, not per-lin-ft. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0026"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 209
+   "seq": 210
   },
   {
    "id": "cat-91a3c5c9999e",
@@ -4432,12 +4532,16 @@
     "price_excluding_tax": 19.38,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Net price per lin ft is $1.53 -- Cost/unit stored here is the per-piece price, not per-lin-ft. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0027"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 210
+   "seq": 211
   },
   {
    "id": "cat-967cf5107be7",
@@ -4455,12 +4559,16 @@
     "price_excluding_tax": 16.93,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Net price per lin ft is $1.33 -- Cost/unit stored here is the per-piece price, not per-lin-ft. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0028"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 211
+   "seq": 212
   },
   {
    "id": "cat-c4e74b566942",
@@ -4478,12 +4586,16 @@
     "price_excluding_tax": 16.0,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Net price per lin ft is $1.50 -- Cost/unit stored here is the per-piece price, not per-lin-ft. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0029"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 212
+   "seq": 213
   },
   {
    "id": "cat-4272f92a6998",
@@ -4501,12 +4613,16 @@
     "price_excluding_tax": 11.05,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Net price per lin ft is $1.01 -- Cost/unit stored here is the per-piece price, not per-lin-ft. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0030"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 213
+   "seq": 214
   },
   {
    "id": "cat-8cd590be4b9e",
@@ -4524,12 +4640,16 @@
     "price_excluding_tax": 16.01,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Net price per lin ft is $1.25 -- Cost/unit stored here is the per-piece price, not per-lin-ft. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0031"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 214
+   "seq": 215
   },
   {
    "id": "cat-f64da261b68f",
@@ -4547,12 +4667,16 @@
     "price_excluding_tax": 15.09,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Net price per lin ft is $1.17 -- Cost/unit stored here is the per-piece price, not per-lin-ft. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0032"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 215
+   "seq": 216
   },
   {
    "id": "cat-83842ff5056d",
@@ -4570,12 +4694,16 @@
     "price_excluding_tax": 10.19,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Net price per lin ft is $0.92 -- Cost/unit stored here is the per-piece price, not per-lin-ft. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0033"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 216
+   "seq": 217
   },
   {
    "id": "cat-7e6fd24371c4",
@@ -4593,12 +4721,16 @@
     "price_excluding_tax": 12.03,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Net price per lin ft is $0.92 -- Cost/unit stored here is the per-piece price, not per-lin-ft. | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0034"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 217
+   "seq": 218
   },
   {
    "id": "cat-30b294e1f92b",
@@ -4616,12 +4748,16 @@
     "price_excluding_tax": 66.0,
     "description": "Sold per piece | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Applied the documented flat Retail = Cost + $1.00 markup rule to this per-piece/per-roll list price; flagging since that rule was demonstrated on $/sf flooring lines and may not be the right markup for a $10-100 accessory/trim/underlay item -- confirm with Albert whether accessories need a different (e.g. %-based) markup before uploading. Sold per quart; no per-lin-ft price applies (N/A on sheet). | Not in the ls-upload-instructions controlled Transition/Stair/Sundry vocabulary as a standalone family -- best-effort name, flag for review before real import.",
     "product_category": "ACCESSORIES",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "ACC-GLDC-0035"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 218
+   "seq": 219
   },
   {
    "id": "cat-51b0069890f9",
@@ -4659,7 +4795,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 219
+   "seq": 220
   },
   {
    "id": "cat-561093be0bb3",
@@ -4697,7 +4833,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 220
+   "seq": 221
   },
   {
    "id": "cat-7aff818f62fe",
@@ -4735,7 +4871,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 221
+   "seq": 222
   },
   {
    "id": "cat-98072f4e692c",
@@ -4773,7 +4909,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 222
+   "seq": 223
   },
   {
    "id": "cat-fd7ebbcb9049",
@@ -4811,7 +4947,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 223
+   "seq": 224
   },
   {
    "id": "cat-65ff51e903e6",
@@ -4849,7 +4985,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 224
+   "seq": 225
   },
   {
    "id": "cat-92019f11a1b3",
@@ -4887,7 +5023,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 225
+   "seq": 226
   },
   {
    "id": "cat-28683d2100f9",
@@ -4925,7 +5061,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 226
+   "seq": 227
   },
   {
    "id": "cat-e3aeaa7b3978",
@@ -4963,7 +5099,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 227
+   "seq": 228
   },
   {
    "id": "cat-13518c47e2cf",
@@ -5001,7 +5137,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 228
+   "seq": 229
   },
   {
    "id": "cat-11e2858cbc6e",
@@ -5039,7 +5175,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 229
+   "seq": 230
   },
   {
    "id": "cat-15c483347fe2",
@@ -5077,7 +5213,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 230
+   "seq": 231
   },
   {
    "id": "cat-0e3246a27e12",
@@ -5115,7 +5251,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 231
+   "seq": 232
   },
   {
    "id": "cat-0e538c11e7f8",
@@ -5153,7 +5289,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 232
+   "seq": 233
   },
   {
    "id": "cat-9127afd4478b",
@@ -5191,7 +5327,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 233
+   "seq": 234
   },
   {
    "id": "cat-151895f09a1d",
@@ -5229,7 +5365,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 234
+   "seq": 235
   },
   {
    "id": "cat-c413ead8f73f",
@@ -5267,7 +5403,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 235
+   "seq": 236
   },
   {
    "id": "cat-77428e6db834",
@@ -5305,7 +5441,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 236
+   "seq": 237
   },
   {
    "id": "cat-1f0f1faebb3d",
@@ -5343,7 +5479,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 237
+   "seq": 238
   },
   {
    "id": "cat-126567f0a161",
@@ -5381,7 +5517,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 238
+   "seq": 239
   },
   {
    "id": "cat-c90bbfd0ef92",
@@ -5419,7 +5555,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 239
+   "seq": 240
   },
   {
    "id": "cat-4a7544be21d2",
@@ -5457,7 +5593,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 240
+   "seq": 241
   },
   {
    "id": "cat-c67644c54d5e",
@@ -5495,7 +5631,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 241
+   "seq": 242
   },
   {
    "id": "cat-389cc21e3811",
@@ -5533,7 +5669,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 242
+   "seq": 243
   },
   {
    "id": "cat-32a8b1faddae",
@@ -5571,7 +5707,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 243
+   "seq": 244
   },
   {
    "id": "cat-e2c3aeea1727",
@@ -5609,7 +5745,45 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 244
+   "seq": 245
+  },
+  {
+   "id": "cat-a09c128a8d98",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-GLDC-0027",
+   "airtable_rec_id": null,
+   "ls_id": "a4ad4c3b-9ee1-4ebd-b735-5f3c39154f95",
+   "handle": "55546971",
+   "fields": {
+    "product_suppliers": [
+     {
+      "supplier_id": "77eb26ea-bab9-4a63-ab0c-cb3d6f9e456f",
+      "price": 4.89
+     }
+    ],
+    "price_excluding_tax": 5.89,
+    "product_codes": [
+     {
+      "code": "ENG-GLDC-0027",
+      "type": "CUSTOM"
+     }
+    ]
+   },
+   "before": {
+    "name": "GOLENG -  - Hickory (Medici) T&G | #GOL.E.H.Med.6 |  - 6-1/2\" x 3/4\" x RL - 22.39sf/b",
+    "handle": "55546971",
+    "sku": "GOL.E.H.Med.6",
+    "supply_price": 3.95,
+    "price_including_tax": 5.35,
+    "price_excluding_tax": 5.35,
+    "category": "ENGINEERED",
+    "supplier_name": "GOLDEN",
+    "active": true
+   },
+   "reason": "sku_rename_and_price_change",
+   "uuid_source": "upload",
+   "seq": 246
   },
   {
    "id": "cat-af0ce39bc250",
@@ -5647,7 +5821,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 245
+   "seq": 247
   },
   {
    "id": "cat-d8d05a047c86",
@@ -5685,7 +5859,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 246
+   "seq": 248
   },
   {
    "id": "cat-2be327ccd6f0",
@@ -5723,7 +5897,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 247
+   "seq": 249
   },
   {
    "id": "cat-f5fd9858f5aa",
@@ -5761,7 +5935,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 248
+   "seq": 250
   },
   {
    "id": "cat-9eee97fc8469",
@@ -5799,7 +5973,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 249
+   "seq": 251
   },
   {
    "id": "cat-c440b4d3b46e",
@@ -5837,7 +6011,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 250
+   "seq": 252
   },
   {
    "id": "cat-20a46f670a30",
@@ -5875,7 +6049,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 251
+   "seq": 253
   },
   {
    "id": "cat-bebe432f67d0",
@@ -5913,7 +6087,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 252
+   "seq": 254
   },
   {
    "id": "cat-e13c0c1e4206",
@@ -5951,7 +6125,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 253
+   "seq": 255
   },
   {
    "id": "cat-b3263f08827b",
@@ -5989,7 +6163,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 254
+   "seq": 256
   },
   {
    "id": "cat-cec1e4c6c21b",
@@ -6027,7 +6201,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 255
+   "seq": 257
   },
   {
    "id": "cat-5e99cfae8c0f",
@@ -6065,7 +6239,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 256
+   "seq": 258
   },
   {
    "id": "cat-12a7c5f10abf",
@@ -6083,12 +6257,16 @@
     "price_excluding_tax": 3.09,
     "description": "AC rating: AC4 | Waterproof: TRUE | Volume pricing notes: Net Box Price $2.09/sf vs Net Skid Price $1.99/sf -- Box taken as cost, see escalation note. | Box size (sf): 15.6 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Every price group on this sheet prints BOTH a Net Box Price and a Net Skid Price (both '+Tax', both under 'Note: For Dealer') -- Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no colour/finish name for this line -- only an item#. Flagged Spec Gap: cannot merchandise a product with no distinguishing name; ask Albert / the supplier for a colour legend before import.",
     "product_category": "FLOORING / LAMINATE",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "1060"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 257
+   "seq": 259
   },
   {
    "id": "cat-15a9530c3342",
@@ -6106,12 +6284,16 @@
     "price_excluding_tax": 3.09,
     "description": "AC rating: AC4 | Waterproof: TRUE | Volume pricing notes: Net Box Price $2.09/sf vs Net Skid Price $1.99/sf -- Box taken as cost, see escalation note. | Box size (sf): 15.6 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Every price group on this sheet prints BOTH a Net Box Price and a Net Skid Price (both '+Tax', both under 'Note: For Dealer') -- Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no colour/finish name for this line -- only an item#. Flagged Spec Gap: cannot merchandise a product with no distinguishing name; ask Albert / the supplier for a colour legend before import.",
     "product_category": "FLOORING / LAMINATE",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "1061"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 258
+   "seq": 260
   },
   {
    "id": "cat-474bef359267",
@@ -6129,12 +6311,16 @@
     "price_excluding_tax": 3.09,
     "description": "AC rating: AC4 | Waterproof: TRUE | Volume pricing notes: Net Box Price $2.09/sf vs Net Skid Price $1.99/sf -- Box taken as cost, see escalation note. | Box size (sf): 15.6 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Every price group on this sheet prints BOTH a Net Box Price and a Net Skid Price (both '+Tax', both under 'Note: For Dealer') -- Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no colour/finish name for this line -- only an item#. Flagged Spec Gap: cannot merchandise a product with no distinguishing name; ask Albert / the supplier for a colour legend before import.",
     "product_category": "FLOORING / LAMINATE",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "1062"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 259
+   "seq": 261
   },
   {
    "id": "cat-72ef31c9a89a",
@@ -6152,12 +6338,16 @@
     "price_excluding_tax": 3.09,
     "description": "AC rating: AC4 | Waterproof: TRUE | Volume pricing notes: Net Box Price $2.09/sf vs Net Skid Price $1.99/sf -- Box taken as cost, see escalation note. | Box size (sf): 15.6 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Every price group on this sheet prints BOTH a Net Box Price and a Net Skid Price (both '+Tax', both under 'Note: For Dealer') -- Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no colour/finish name for this line -- only an item#. Flagged Spec Gap: cannot merchandise a product with no distinguishing name; ask Albert / the supplier for a colour legend before import.",
     "product_category": "FLOORING / LAMINATE",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "1063"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 260
+   "seq": 262
   },
   {
    "id": "cat-2514794e3204",
@@ -6175,12 +6365,16 @@
     "price_excluding_tax": 3.09,
     "description": "AC rating: AC4 | Waterproof: TRUE | Volume pricing notes: Net Box Price $2.09/sf vs Net Skid Price $1.99/sf -- Box taken as cost, see escalation note. | Box size (sf): 15.6 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Every price group on this sheet prints BOTH a Net Box Price and a Net Skid Price (both '+Tax', both under 'Note: For Dealer') -- Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no colour/finish name for this line -- only an item#. Flagged Spec Gap: cannot merchandise a product with no distinguishing name; ask Albert / the supplier for a colour legend before import.",
     "product_category": "FLOORING / LAMINATE",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "1065"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 261
+   "seq": 263
   },
   {
    "id": "cat-3d2cc4d30fe4",
@@ -6198,12 +6392,16 @@
     "price_excluding_tax": 3.09,
     "description": "AC rating: AC4 | Waterproof: TRUE | Volume pricing notes: Net Box Price $2.09/sf vs Net Skid Price $1.99/sf -- Box taken as cost, see escalation note. | Box size (sf): 15.6 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Every price group on this sheet prints BOTH a Net Box Price and a Net Skid Price (both '+Tax', both under 'Note: For Dealer') -- Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no colour/finish name for this line -- only an item#. Flagged Spec Gap: cannot merchandise a product with no distinguishing name; ask Albert / the supplier for a colour legend before import.",
     "product_category": "FLOORING / LAMINATE",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "1066"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 262
+   "seq": 264
   },
   {
    "id": "cat-a7ad090e03b0",
@@ -6221,12 +6419,16 @@
     "price_excluding_tax": 2.35,
     "description": "Certifications: E1, Floorscore | AC rating: AC3 | Volume pricing notes: Net Box Price $1.35/sf vs Net Skid Price $1.25/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Every price group on this sheet prints BOTH a Net Box Price and a Net Skid Price (both '+Tax', both under 'Note: For Dealer') -- Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no colour/finish name for this line -- only an item#. Flagged Spec Gap: cannot merchandise a product with no distinguishing name; ask Albert / the supplier for a colour legend before import.",
     "product_category": "FLOORING / LAMINATE",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "1070"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 263
+   "seq": 265
   },
   {
    "id": "cat-adc70123dca9",
@@ -6244,12 +6446,16 @@
     "price_excluding_tax": 2.35,
     "description": "Certifications: E1, Floorscore | AC rating: AC3 | Volume pricing notes: Net Box Price $1.35/sf vs Net Skid Price $1.25/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Every price group on this sheet prints BOTH a Net Box Price and a Net Skid Price (both '+Tax', both under 'Note: For Dealer') -- Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no colour/finish name for this line -- only an item#. Flagged Spec Gap: cannot merchandise a product with no distinguishing name; ask Albert / the supplier for a colour legend before import.",
     "product_category": "FLOORING / LAMINATE",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "1071"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 264
+   "seq": 266
   },
   {
    "id": "cat-0939971d5138",
@@ -6267,12 +6473,16 @@
     "price_excluding_tax": 2.35,
     "description": "Certifications: E1, Floorscore | AC rating: AC3 | Volume pricing notes: Net Box Price $1.35/sf vs Net Skid Price $1.25/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Every price group on this sheet prints BOTH a Net Box Price and a Net Skid Price (both '+Tax', both under 'Note: For Dealer') -- Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no colour/finish name for this line -- only an item#. Flagged Spec Gap: cannot merchandise a product with no distinguishing name; ask Albert / the supplier for a colour legend before import.",
     "product_category": "FLOORING / LAMINATE",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "1072"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 265
+   "seq": 267
   },
   {
    "id": "cat-e39dbe03dc49",
@@ -6290,12 +6500,16 @@
     "price_excluding_tax": 2.35,
     "description": "Certifications: E1, Floorscore | AC rating: AC3 | Volume pricing notes: Net Box Price $1.35/sf vs Net Skid Price $1.25/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Every price group on this sheet prints BOTH a Net Box Price and a Net Skid Price (both '+Tax', both under 'Note: For Dealer') -- Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no colour/finish name for this line -- only an item#. Flagged Spec Gap: cannot merchandise a product with no distinguishing name; ask Albert / the supplier for a colour legend before import.",
     "product_category": "FLOORING / LAMINATE",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "1073"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 266
+   "seq": 268
   },
   {
    "id": "cat-b8fecbb69fc5",
@@ -6313,12 +6527,16 @@
     "price_excluding_tax": 2.35,
     "description": "Certifications: E1, Floorscore | AC rating: AC3 | Volume pricing notes: Net Box Price $1.35/sf vs Net Skid Price $1.25/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Every price group on this sheet prints BOTH a Net Box Price and a Net Skid Price (both '+Tax', both under 'Note: For Dealer') -- Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no colour/finish name for this line -- only an item#. Flagged Spec Gap: cannot merchandise a product with no distinguishing name; ask Albert / the supplier for a colour legend before import.",
     "product_category": "FLOORING / LAMINATE",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "1075"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 267
+   "seq": 269
   },
   {
    "id": "cat-393ae28a76c2",
@@ -6336,12 +6554,16 @@
     "price_excluding_tax": 2.35,
     "description": "Certifications: E1, Floorscore | AC rating: AC3 | Volume pricing notes: Net Box Price $1.35/sf vs Net Skid Price $1.25/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Every price group on this sheet prints BOTH a Net Box Price and a Net Skid Price (both '+Tax', both under 'Note: For Dealer') -- Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no colour/finish name for this line -- only an item#. Flagged Spec Gap: cannot merchandise a product with no distinguishing name; ask Albert / the supplier for a colour legend before import.",
     "product_category": "FLOORING / LAMINATE",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "1076"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 268
+   "seq": 270
   },
   {
    "id": "cat-656f96b4f77c",
@@ -6359,12 +6581,16 @@
     "price_excluding_tax": 2.35,
     "description": "Certifications: E1, Floorscore | AC rating: AC3 | Volume pricing notes: Net Box Price $1.35/sf vs Net Skid Price $1.25/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Every price group on this sheet prints BOTH a Net Box Price and a Net Skid Price (both '+Tax', both under 'Note: For Dealer') -- Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no colour/finish name for this line -- only an item#. Flagged Spec Gap: cannot merchandise a product with no distinguishing name; ask Albert / the supplier for a colour legend before import.",
     "product_category": "FLOORING / LAMINATE",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "1077"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 269
+   "seq": 271
   },
   {
    "id": "cat-9177ca1ece2f",
@@ -6382,12 +6608,16 @@
     "price_excluding_tax": 3.02,
     "description": "AC rating: AC4 | Waterproof: TRUE | Volume pricing notes: Net Box Price $2.02/sf vs Net Skid Price $1.92/sf -- Box taken as cost, see escalation note. | Box size (sf): 22.5 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Every price group on this sheet prints BOTH a Net Box Price and a Net Skid Price (both '+Tax', both under 'Note: For Dealer') -- Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no colour/finish name for this line -- only an item#. Flagged Spec Gap: cannot merchandise a product with no distinguishing name; ask Albert / the supplier for a colour legend before import.",
     "product_category": "FLOORING / LAMINATE",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "1080"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 270
+   "seq": 272
   },
   {
    "id": "cat-509189f4fa17",
@@ -6405,12 +6635,16 @@
     "price_excluding_tax": 3.02,
     "description": "AC rating: AC4 | Waterproof: TRUE | Volume pricing notes: Net Box Price $2.02/sf vs Net Skid Price $1.92/sf -- Box taken as cost, see escalation note. | Box size (sf): 22.5 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Every price group on this sheet prints BOTH a Net Box Price and a Net Skid Price (both '+Tax', both under 'Note: For Dealer') -- Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no colour/finish name for this line -- only an item#. Flagged Spec Gap: cannot merchandise a product with no distinguishing name; ask Albert / the supplier for a colour legend before import.",
     "product_category": "FLOORING / LAMINATE",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "1081"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 271
+   "seq": 273
   },
   {
    "id": "cat-e7d8d4c615d1",
@@ -6428,12 +6662,16 @@
     "price_excluding_tax": 3.02,
     "description": "AC rating: AC4 | Waterproof: TRUE | Volume pricing notes: Net Box Price $2.02/sf vs Net Skid Price $1.92/sf -- Box taken as cost, see escalation note. | Box size (sf): 22.5 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Every price group on this sheet prints BOTH a Net Box Price and a Net Skid Price (both '+Tax', both under 'Note: For Dealer') -- Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no colour/finish name for this line -- only an item#. Flagged Spec Gap: cannot merchandise a product with no distinguishing name; ask Albert / the supplier for a colour legend before import.",
     "product_category": "FLOORING / LAMINATE",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "1082"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 272
+   "seq": 274
   },
   {
    "id": "cat-f06e3c655a64",
@@ -6451,12 +6689,16 @@
     "price_excluding_tax": 3.02,
     "description": "AC rating: AC4 | Waterproof: TRUE | Volume pricing notes: Net Box Price $2.02/sf vs Net Skid Price $1.92/sf -- Box taken as cost, see escalation note. | Box size (sf): 22.5 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Every price group on this sheet prints BOTH a Net Box Price and a Net Skid Price (both '+Tax', both under 'Note: For Dealer') -- Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no colour/finish name for this line -- only an item#. Flagged Spec Gap: cannot merchandise a product with no distinguishing name; ask Albert / the supplier for a colour legend before import.",
     "product_category": "FLOORING / LAMINATE",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "1083"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 273
+   "seq": 275
   },
   {
    "id": "cat-eb5d0e2a8e84",
@@ -6494,7 +6736,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 274
+   "seq": 276
   },
   {
    "id": "cat-c06f6020b00c",
@@ -6512,12 +6754,16 @@
     "price_excluding_tax": 3.02,
     "description": "AC rating: AC4 | Waterproof: TRUE | Volume pricing notes: Net Box Price $2.02/sf vs Net Skid Price $1.92/sf -- Box taken as cost, see escalation note. | Box size (sf): 22.5 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Every price group on this sheet prints BOTH a Net Box Price and a Net Skid Price (both '+Tax', both under 'Note: For Dealer') -- Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no colour/finish name for this line -- only an item#. Flagged Spec Gap: cannot merchandise a product with no distinguishing name; ask Albert / the supplier for a colour legend before import.",
     "product_category": "FLOORING / LAMINATE",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "1086"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 275
+   "seq": 277
   },
   {
    "id": "cat-60fcb51fd4a8",
@@ -6555,7 +6801,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 276
+   "seq": 278
   },
   {
    "id": "cat-00e63c91106d",
@@ -6593,7 +6839,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 277
+   "seq": 279
   },
   {
    "id": "cat-a5da26ab1610",
@@ -6631,7 +6877,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 278
+   "seq": 280
   },
   {
    "id": "cat-f3ace65ff277",
@@ -6669,7 +6915,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 279
+   "seq": 281
   },
   {
    "id": "cat-8ce6b5a95e4b",
@@ -6687,12 +6933,16 @@
     "price_excluding_tax": 3.09,
     "description": "Material type: WPC | Colour / tone: Tonic | Install method: Click | Underpad included: No | Stock status: Discontinued | Volume pricing notes: Net Box Price $2.09/sf vs Net Skid Price $1.99/sf -- Box taken as cost, see escalation note. | Box size (sf): 23.64 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation).",
     "product_category": "FLOORING / VINYL / WPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Tonic"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 280
+   "seq": 282
   },
   {
    "id": "cat-9ea2ba6efe78",
@@ -6730,7 +6980,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 281
+   "seq": 283
   },
   {
    "id": "cat-b29b15977c36",
@@ -6768,7 +7018,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 282
+   "seq": 284
   },
   {
    "id": "cat-64f18f228770",
@@ -6806,7 +7056,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 283
+   "seq": 285
   },
   {
    "id": "cat-519132c34b14",
@@ -6844,7 +7094,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 284
+   "seq": 286
   },
   {
    "id": "cat-025ed15a8aaf",
@@ -6882,7 +7132,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 285
+   "seq": 287
   },
   {
    "id": "cat-e3deaa3f4f9a",
@@ -6920,7 +7170,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 286
+   "seq": 288
   },
   {
    "id": "cat-29df44cd2ac2",
@@ -6958,7 +7208,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 287
+   "seq": 289
   },
   {
    "id": "cat-5f37c6d6274c",
@@ -6996,7 +7246,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 288
+   "seq": 290
   },
   {
    "id": "cat-48bd76ff66b8",
@@ -7034,7 +7284,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 289
+   "seq": 291
   },
   {
    "id": "cat-0fcb73495bc9",
@@ -7072,7 +7322,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 290
+   "seq": 292
   },
   {
    "id": "cat-8d9ce61178e0",
@@ -7110,7 +7360,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 291
+   "seq": 293
   },
   {
    "id": "cat-7778c4169cb5",
@@ -7148,7 +7398,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 292
+   "seq": 294
   },
   {
    "id": "cat-6b75f06d2009",
@@ -7186,7 +7436,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 293
+   "seq": 295
   },
   {
    "id": "cat-75e71e1caaa2",
@@ -7204,12 +7454,16 @@
     "price_excluding_tax": 3.33,
     "description": "Material type: SPC | Colour / tone: Onyx Grey | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Tile format: 24\" | Stock status: Discontinued | Volume pricing notes: Net Box Price $2.33/sf vs Net Skid Price $2.23/sf -- Box taken as cost, see escalation note. | Box size (sf): 20.36 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation).",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Onyx Grey"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 294
+   "seq": 296
   },
   {
    "id": "cat-34e84f8c5e39",
@@ -7227,12 +7481,16 @@
     "price_excluding_tax": 3.33,
     "description": "Material type: SPC | Colour / tone: Carrara | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Tile format: 24\" | Stock status: Discontinued | Volume pricing notes: Net Box Price $2.33/sf vs Net Skid Price $2.23/sf -- Box taken as cost, see escalation note. | Box size (sf): 20.36 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation).",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Carrara"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 295
+   "seq": 297
   },
   {
    "id": "cat-c7607b9dba76",
@@ -7250,12 +7508,16 @@
     "price_excluding_tax": 3.33,
     "description": "Material type: SPC | Colour / tone: Turin | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Tile format: 24\" | Stock status: Discontinued | Volume pricing notes: Net Box Price $2.33/sf vs Net Skid Price $2.23/sf -- Box taken as cost, see escalation note. | Box size (sf): 20.36 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation).",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Turin"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 296
+   "seq": 298
   },
   {
    "id": "cat-f1bde1d0f281",
@@ -7273,12 +7535,16 @@
     "price_excluding_tax": 3.33,
     "description": "Material type: SPC | Colour / tone: Portlan | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Tile format: 24\" | Stock status: Discontinued | Volume pricing notes: Net Box Price $2.33/sf vs Net Skid Price $2.23/sf -- Box taken as cost, see escalation note. | Box size (sf): 20.36 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation).",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Portlan"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 297
+   "seq": 299
   },
   {
    "id": "cat-dfc5f551dafe",
@@ -7316,7 +7582,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 298
+   "seq": 300
   },
   {
    "id": "cat-d0d503f37a8c",
@@ -7354,7 +7620,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 299
+   "seq": 301
   },
   {
    "id": "cat-12a972b58d3d",
@@ -7392,7 +7658,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 300
+   "seq": 302
   },
   {
    "id": "cat-c98cb96443f6",
@@ -7430,7 +7696,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 301
+   "seq": 303
   },
   {
    "id": "cat-2c6c2ab3b8ef",
@@ -7468,7 +7734,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 302
+   "seq": 304
   },
   {
    "id": "cat-8d6de1ed960c",
@@ -7506,7 +7772,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 303
+   "seq": 305
   },
   {
    "id": "cat-c4f55ad34fa4",
@@ -7544,7 +7810,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 304
+   "seq": 306
   },
   {
    "id": "cat-1cae44b3a875",
@@ -7582,7 +7848,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 305
+   "seq": 307
   },
   {
    "id": "cat-7b598effcc04",
@@ -7600,12 +7866,16 @@
     "price_excluding_tax": 2.48,
     "description": "Material type: SPC | Colour / tone: legacy pine dark | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $1.48/sf vs Net Skid Price $1.38/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation).",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "legacy pine dark"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 306
+   "seq": 308
   },
   {
    "id": "cat-65bce0c87c02",
@@ -7643,7 +7913,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 307
+   "seq": 309
   },
   {
    "id": "cat-bac263e85059",
@@ -7661,12 +7931,16 @@
     "price_excluding_tax": 2.48,
     "description": "Material type: SPC | Colour / tone: Charm Oak Snow | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $1.48/sf vs Net Skid Price $1.38/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Item#s 2061/2062/2063/2066/2067/2068 with these same colour names also appear on the Discontinued Vinyl page as 'SPC 3.5+1.5mm Underlay attached' at a different price -- reads as a core-thickness upgrade (3.5mm->4.5mm) reusing the same item#s. Flagging for review.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Charm Oak Snow"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 308
+   "seq": 310
   },
   {
    "id": "cat-48070dbd809d",
@@ -7704,7 +7978,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 309
+   "seq": 311
   },
   {
    "id": "cat-790d8d7f90c0",
@@ -7722,12 +7996,16 @@
     "price_excluding_tax": 2.48,
     "description": "Material type: SPC | Colour / tone: Mediterian Oak | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $1.48/sf vs Net Skid Price $1.38/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Item#s 2061/2062/2063/2066/2067/2068 with these same colour names also appear on the Discontinued Vinyl page as 'SPC 3.5+1.5mm Underlay attached' at a different price -- reads as a core-thickness upgrade (3.5mm->4.5mm) reusing the same item#s. Flagging for review.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Mediterian Oak"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 310
+   "seq": 312
   },
   {
    "id": "cat-085c6a91f38d",
@@ -7765,7 +8043,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 311
+   "seq": 313
   },
   {
    "id": "cat-6cdc23d03fcc",
@@ -7783,12 +8061,16 @@
     "price_excluding_tax": 2.48,
     "description": "Material type: SPC | Colour / tone: Cerused Oak Brown | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $1.48/sf vs Net Skid Price $1.38/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Item#s 2061/2062/2063/2066/2067/2068 with these same colour names also appear on the Discontinued Vinyl page as 'SPC 3.5+1.5mm Underlay attached' at a different price -- reads as a core-thickness upgrade (3.5mm->4.5mm) reusing the same item#s. Flagging for review.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Cerused Oak Brown"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 312
+   "seq": 314
   },
   {
    "id": "cat-d132cc89047d",
@@ -7826,7 +8108,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 313
+   "seq": 315
   },
   {
    "id": "cat-eb3f4546fd85",
@@ -7844,12 +8126,16 @@
     "price_excluding_tax": 2.48,
     "description": "Material type: SPC | Colour / tone: Brio Oak | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $1.48/sf vs Net Skid Price $1.38/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Item#s 2061/2062/2063/2066/2067/2068 with these same colour names also appear on the Discontinued Vinyl page as 'SPC 3.5+1.5mm Underlay attached' at a different price -- reads as a core-thickness upgrade (3.5mm->4.5mm) reusing the same item#s. Flagging for review.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Brio Oak"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 314
+   "seq": 316
   },
   {
    "id": "cat-b8b6da544f85",
@@ -7887,7 +8173,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 315
+   "seq": 317
   },
   {
    "id": "cat-9727f7f9af43",
@@ -7905,12 +8191,16 @@
     "price_excluding_tax": 2.48,
     "description": "Material type: SPC | Colour / tone: Vertmont Grey | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $1.48/sf vs Net Skid Price $1.38/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Item#s 2061/2062/2063/2066/2067/2068 with these same colour names also appear on the Discontinued Vinyl page as 'SPC 3.5+1.5mm Underlay attached' at a different price -- reads as a core-thickness upgrade (3.5mm->4.5mm) reusing the same item#s. Flagging for review.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Vertmont Grey"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 316
+   "seq": 318
   },
   {
    "id": "cat-45c442b17ad9",
@@ -7948,7 +8238,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 317
+   "seq": 319
   },
   {
    "id": "cat-42b64535d536",
@@ -7966,12 +8256,16 @@
     "price_excluding_tax": 2.48,
     "description": "Material type: SPC | Colour / tone: Venezia Grey | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $1.48/sf vs Net Skid Price $1.38/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Item#s 2061/2062/2063/2066/2067/2068 with these same colour names also appear on the Discontinued Vinyl page as 'SPC 3.5+1.5mm Underlay attached' at a different price -- reads as a core-thickness upgrade (3.5mm->4.5mm) reusing the same item#s. Flagging for review.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Venezia Grey"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 318
+   "seq": 320
   },
   {
    "id": "cat-0fc35bf3ca44",
@@ -7989,12 +8283,16 @@
     "price_excluding_tax": 2.48,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $1.48/sf vs Net Skid Price $1.38/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 319
+   "seq": 321
   },
   {
    "id": "cat-aed26539897c",
@@ -8032,7 +8330,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 320
+   "seq": 322
   },
   {
    "id": "cat-4e120f68843a",
@@ -8070,7 +8368,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 321
+   "seq": 323
   },
   {
    "id": "cat-defa988f7550",
@@ -8108,7 +8406,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 322
+   "seq": 324
   },
   {
    "id": "cat-83c517312da0",
@@ -8126,12 +8424,16 @@
     "price_excluding_tax": 3.23,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $2.23/sf vs Net Skid Price $2.13/sf -- Box taken as cost, see escalation note. | Box size (sf): 15.36 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 323
+   "seq": 325
   },
   {
    "id": "cat-cc75ff605689",
@@ -8149,12 +8451,16 @@
     "price_excluding_tax": 3.23,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $2.23/sf vs Net Skid Price $2.13/sf -- Box taken as cost, see escalation note. | Box size (sf): 15.36 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 324
+   "seq": 326
   },
   {
    "id": "cat-96b30ee6ab21",
@@ -8172,12 +8478,16 @@
     "price_excluding_tax": 3.23,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $2.23/sf vs Net Skid Price $2.13/sf -- Box taken as cost, see escalation note. | Box size (sf): 15.36 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 325
+   "seq": 327
   },
   {
    "id": "cat-47a574b77510",
@@ -8195,12 +8505,16 @@
     "price_excluding_tax": 3.23,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $2.23/sf vs Net Skid Price $2.13/sf -- Box taken as cost, see escalation note. | Box size (sf): 15.36 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 326
+   "seq": 328
   },
   {
    "id": "cat-3cd8a7e720dd",
@@ -8218,12 +8532,16 @@
     "price_excluding_tax": 3.23,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $2.23/sf vs Net Skid Price $2.13/sf -- Box taken as cost, see escalation note. | Box size (sf): 15.36 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 327
+   "seq": 329
   },
   {
    "id": "cat-291da0f1a97a",
@@ -8241,12 +8559,16 @@
     "price_excluding_tax": 2.48,
     "description": "Material type: SPC | Colour / tone: Beige Ballad | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $1.48/sf vs Net Skid Price $1.38/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation).",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Beige Ballad"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 328
+   "seq": 330
   },
   {
    "id": "cat-4bdac72b56dd",
@@ -8284,7 +8606,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 329
+   "seq": 331
   },
   {
    "id": "cat-4d3884d8117c",
@@ -8302,12 +8624,16 @@
     "price_excluding_tax": 2.48,
     "description": "Material type: SPC | Colour / tone: Amber Glow | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $1.48/sf vs Net Skid Price $1.38/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Item#s 7011/7012/7016/7017 with these same colour names also appear on the Discontinued Vinyl page as 'SPC 3.5+1.5mm Underlay attached' at a different price -- reads as a core-thickness upgrade (3.5mm->4.5mm) reusing the same item#s. Flagging for review.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Amber Glow"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 330
+   "seq": 332
   },
   {
    "id": "cat-67e894654d36",
@@ -8345,7 +8671,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 331
+   "seq": 333
   },
   {
    "id": "cat-1c5d534da87d",
@@ -8363,12 +8689,16 @@
     "price_excluding_tax": 2.48,
     "description": "Material type: SPC | Colour / tone: Friddle Brown | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $1.48/sf vs Net Skid Price $1.38/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Item#s 7011/7012/7016/7017 with these same colour names also appear on the Discontinued Vinyl page as 'SPC 3.5+1.5mm Underlay attached' at a different price -- reads as a core-thickness upgrade (3.5mm->4.5mm) reusing the same item#s. Flagging for review.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Friddle Brown"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 332
+   "seq": 334
   },
   {
    "id": "cat-bcb8843987d4",
@@ -8406,7 +8736,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 333
+   "seq": 335
   },
   {
    "id": "cat-e09373fd077a",
@@ -8424,12 +8754,16 @@
     "price_excluding_tax": 2.48,
     "description": "Material type: SPC | Colour / tone: Rustic Harmony | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $1.48/sf vs Net Skid Price $1.38/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Item#s 7011/7012/7016/7017 with these same colour names also appear on the Discontinued Vinyl page as 'SPC 3.5+1.5mm Underlay attached' at a different price -- reads as a core-thickness upgrade (3.5mm->4.5mm) reusing the same item#s. Flagging for review.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Rustic Harmony"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 334
+   "seq": 336
   },
   {
    "id": "cat-47df7d40cb6b",
@@ -8467,7 +8801,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 335
+   "seq": 337
   },
   {
    "id": "cat-6b54b3f66d4f",
@@ -8485,12 +8819,16 @@
     "price_excluding_tax": 2.48,
     "description": "Material type: SPC | Colour / tone: Weathered Grey | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $1.48/sf vs Net Skid Price $1.38/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Item#s 7011/7012/7016/7017 with these same colour names also appear on the Discontinued Vinyl page as 'SPC 3.5+1.5mm Underlay attached' at a different price -- reads as a core-thickness upgrade (3.5mm->4.5mm) reusing the same item#s. Flagging for review.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Weathered Grey"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 336
+   "seq": 338
   },
   {
    "id": "cat-edf7dc427223",
@@ -8508,12 +8846,16 @@
     "price_excluding_tax": 2.48,
     "description": "Material type: SPC | Colour / tone: Carbonized Grey | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $1.48/sf vs Net Skid Price $1.38/sf -- Box taken as cost, see escalation note. | Box size (sf): 21.57 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation).",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Carbonized Grey"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 337
+   "seq": 339
   },
   {
    "id": "cat-91dd6b7711c0",
@@ -8551,7 +8893,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 338
+   "seq": 340
   },
   {
    "id": "cat-6dd772846fed",
@@ -8589,7 +8931,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 339
+   "seq": 341
   },
   {
    "id": "cat-37ea63f10c79",
@@ -8627,7 +8969,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 340
+   "seq": 342
   },
   {
    "id": "cat-839cc17f480e",
@@ -8665,7 +9007,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 341
+   "seq": 343
   },
   {
    "id": "cat-15c29da8bde0",
@@ -8703,7 +9045,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 342
+   "seq": 344
   },
   {
    "id": "cat-5717c9f49ddc",
@@ -8741,7 +9083,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 343
+   "seq": 345
   },
   {
    "id": "cat-34b9a1770793",
@@ -8779,7 +9121,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 344
+   "seq": 346
   },
   {
    "id": "cat-2e81f8a01496",
@@ -8817,7 +9159,7 @@
    },
    "reason": "sku_rename_and_price_change",
    "uuid_source": "upload",
-   "seq": 345
+   "seq": 347
   },
   {
    "id": "cat-9559bdb30023",
@@ -8835,12 +9177,16 @@
     "price_excluding_tax": 3.19,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $2.19/sf vs Net Skid Price $1.89/sf -- Box taken as cost, see escalation note. | Box size (sf): 23.12 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 346
+   "seq": 348
   },
   {
    "id": "cat-1215d90673a3",
@@ -8858,12 +9204,16 @@
     "price_excluding_tax": 3.19,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $2.19/sf vs Net Skid Price $1.89/sf -- Box taken as cost, see escalation note. | Box size (sf): 23.12 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 347
+   "seq": 349
   },
   {
    "id": "cat-2e407dbd5b17",
@@ -8881,12 +9231,16 @@
     "price_excluding_tax": 3.19,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $2.19/sf vs Net Skid Price $1.89/sf -- Box taken as cost, see escalation note. | Box size (sf): 23.12 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 348
+   "seq": 350
   },
   {
    "id": "cat-6be349389331",
@@ -8904,12 +9258,16 @@
     "price_excluding_tax": 3.19,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $2.19/sf vs Net Skid Price $1.89/sf -- Box taken as cost, see escalation note. | Box size (sf): 23.12 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 349
+   "seq": 351
   },
   {
    "id": "cat-5444ebea5b53",
@@ -8927,12 +9285,16 @@
     "price_excluding_tax": 3.19,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $2.19/sf vs Net Skid Price $1.89/sf -- Box taken as cost, see escalation note. | Box size (sf): 23.12 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 350
+   "seq": 352
   },
   {
    "id": "cat-94ee202d87b9",
@@ -8950,12 +9312,16 @@
     "price_excluding_tax": 3.19,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $2.19/sf vs Net Skid Price $1.89/sf -- Box taken as cost, see escalation note. | Box size (sf): 23.12 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 351
+   "seq": 353
   },
   {
    "id": "cat-76ea78d5cc43",
@@ -8973,12 +9339,16 @@
     "price_excluding_tax": 3.19,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $2.19/sf vs Net Skid Price $1.89/sf -- Box taken as cost, see escalation note. | Box size (sf): 23.12 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 352
+   "seq": 354
   },
   {
    "id": "cat-70b6e69966c3",
@@ -8996,12 +9366,16 @@
     "price_excluding_tax": 3.19,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $2.19/sf vs Net Skid Price $1.89/sf -- Box taken as cost, see escalation note. | Box size (sf): 23.12 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 353
+   "seq": 355
   },
   {
    "id": "cat-facd4f61b303",
@@ -9019,12 +9393,16 @@
     "price_excluding_tax": 3.23,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $2.23/sf vs Net Skid Price $2.13/sf -- Box taken as cost, see escalation note. | Box size (sf): 14.48 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 354
+   "seq": 356
   },
   {
    "id": "cat-4253f62eef1a",
@@ -9042,12 +9420,16 @@
     "price_excluding_tax": 3.23,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $2.23/sf vs Net Skid Price $2.13/sf -- Box taken as cost, see escalation note. | Box size (sf): 14.48 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 355
+   "seq": 357
   },
   {
    "id": "cat-b433b1a525b3",
@@ -9065,12 +9447,16 @@
     "price_excluding_tax": 3.23,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $2.23/sf vs Net Skid Price $2.13/sf -- Box taken as cost, see escalation note. | Box size (sf): 14.48 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 356
+   "seq": 358
   },
   {
    "id": "cat-820ef92908b0",
@@ -9088,12 +9474,16 @@
     "price_excluding_tax": 3.23,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $2.23/sf vs Net Skid Price $2.13/sf -- Box taken as cost, see escalation note. | Box size (sf): 14.48 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 357
+   "seq": 359
   },
   {
    "id": "cat-a3a629991140",
@@ -9111,12 +9501,16 @@
     "price_excluding_tax": 3.23,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $2.23/sf vs Net Skid Price $2.13/sf -- Box taken as cost, see escalation note. | Box size (sf): 14.48 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 358
+   "seq": 360
   },
   {
    "id": "cat-1d9ebbacf1ef",
@@ -9134,12 +9528,16 @@
     "price_excluding_tax": 3.23,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $2.23/sf vs Net Skid Price $2.13/sf -- Box taken as cost, see escalation note. | Box size (sf): 14.48 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 359
+   "seq": 361
   },
   {
    "id": "cat-cc6852ded4f5",
@@ -9157,12 +9555,16 @@
     "price_excluding_tax": 3.23,
     "description": "Material type: SPC | Colour / tone: N/A | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price $2.23/sf vs Net Skid Price $2.13/sf -- Box taken as cost, see escalation note. | Box size (sf): 14.48 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "N/A"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 360
+   "seq": 362
   },
   {
    "id": "cat-b1d19d28a7df",
@@ -9180,12 +9582,16 @@
     "price_excluding_tax": 2.69,
     "description": "Material type: SPC | Colour / tone: NEW | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price = 'N/A Skid program only' -- no Box price exists for this SKU, so Net Skid Price ($1.69/sf) is the only printed number and becomes cost by necessity, not by column choice. | Box size (sf): 19.745 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap. Colour is literally printed as 'NEW' on the sheet (not a real colour name) -- kept verbatim per RULE 0.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "NEW"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 361
+   "seq": 363
   },
   {
    "id": "cat-5d99660d4957",
@@ -9203,12 +9609,16 @@
     "price_excluding_tax": 2.69,
     "description": "Material type: SPC | Colour / tone: NEW | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price = 'N/A Skid program only' -- no Box price exists for this SKU, so Net Skid Price ($1.69/sf) is the only printed number and becomes cost by necessity, not by column choice. | Box size (sf): 19.745 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap. Colour is literally printed as 'NEW' on the sheet (not a real colour name) -- kept verbatim per RULE 0.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "NEW"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 362
+   "seq": 364
   },
   {
    "id": "cat-b753237e449a",
@@ -9226,12 +9636,16 @@
     "price_excluding_tax": 2.69,
     "description": "Material type: SPC | Colour / tone: NEW | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price = 'N/A Skid program only' -- no Box price exists for this SKU, so Net Skid Price ($1.69/sf) is the only printed number and becomes cost by necessity, not by column choice. | Box size (sf): 19.745 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap. Colour is literally printed as 'NEW' on the sheet (not a real colour name) -- kept verbatim per RULE 0.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "NEW"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 363
+   "seq": 365
   },
   {
    "id": "cat-aa1d1b9fa14c",
@@ -9249,12 +9663,16 @@
     "price_excluding_tax": 2.73,
     "description": "Material type: SPC | Colour / tone: NEW | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price = 'N/A Skid program only' -- no Box price exists for this SKU, so Net Skid Price ($1.73/sf) is the only printed number and becomes cost by necessity, not by column choice. | Box size (sf): 19.52 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap. Colour is literally printed as 'NEW' on the sheet (not a real colour name) -- kept verbatim per RULE 0.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "NEW"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 364
+   "seq": 366
   },
   {
    "id": "cat-ed2232643ed6",
@@ -9272,12 +9690,16 @@
     "price_excluding_tax": 2.73,
     "description": "Material type: SPC | Colour / tone: NEW | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price = 'N/A Skid program only' -- no Box price exists for this SKU, so Net Skid Price ($1.73/sf) is the only printed number and becomes cost by necessity, not by column choice. | Box size (sf): 19.52 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap. Colour is literally printed as 'NEW' on the sheet (not a real colour name) -- kept verbatim per RULE 0.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "NEW"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 365
+   "seq": 367
   },
   {
    "id": "cat-844c0101892b",
@@ -9295,12 +9717,16 @@
     "price_excluding_tax": 2.73,
     "description": "Material type: SPC | Colour / tone: NEW | Install method: Drop & Lock | Underpad included: Yes | Underpad type: 1.5mm attached | Volume pricing notes: Net Box Price = 'N/A Skid program only' -- no Box price exists for this SKU, so Net Skid Price ($1.73/sf) is the only printed number and becomes cost by necessity, not by column choice. | Box size (sf): 19.52 | Salesperson notes: Cost basis UNCONFIRMED -- Golden Choice is a new supplier. Net Box Price taken as cost per default (smaller unit = higher price = dealer cost), Albert to confirm which column is the true dealer cost (see escalation). Supplier sheet gives no real colour name for this line -- flagged Spec Gap. Colour is literally printed as 'NEW' on the sheet (not a real colour name) -- kept verbatim per RULE 0.",
     "product_category": "FLOORING / VINYL / SPC",
-    "supplier_name": "GOLDEN CHOICE"
+    "supplier_name": "GOLDEN CHOICE",
+    "variant_option": {
+     "name": "Colour",
+     "value": "NEW"
+    }
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 366
+   "seq": 368
   },
   {
    "id": "cat-810b9efe0e3d",
@@ -9318,7 +9744,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 367
+   "seq": 369
   },
   {
    "id": "cat-a1338d64f385",
@@ -9336,7 +9762,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 368
+   "seq": 370
   },
   {
    "id": "cat-a2010887d9e4",
@@ -9354,7 +9780,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 369
+   "seq": 371
   },
   {
    "id": "cat-ca2ba83a1350",
@@ -9372,7 +9798,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 370
+   "seq": 372
   },
   {
    "id": "cat-b0ecb264cad0",
@@ -9390,7 +9816,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 371
+   "seq": 373
   },
   {
    "id": "cat-a3f21cd7da6e",
@@ -9408,7 +9834,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 372
+   "seq": 374
   },
   {
    "id": "cat-fb89b7493669",
@@ -9426,7 +9852,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 373
+   "seq": 375
   },
   {
    "id": "cat-5ddd531325af",
@@ -9444,7 +9870,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 374
+   "seq": 376
   },
   {
    "id": "cat-4b3fdb8b030d",
@@ -9462,7 +9888,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 375
+   "seq": 377
   },
   {
    "id": "cat-ec3efc2225b3",
@@ -9480,7 +9906,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 376
+   "seq": 378
   },
   {
    "id": "cat-3a5ad2d44c07",
@@ -9498,7 +9924,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 377
+   "seq": 379
   },
   {
    "id": "cat-7dad98482261",
@@ -9516,7 +9942,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 378
+   "seq": 380
   },
   {
    "id": "cat-c57b268bdbe5",
@@ -9534,7 +9960,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 379
+   "seq": 381
   },
   {
    "id": "cat-f99da3763f15",
@@ -9552,7 +9978,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 380
+   "seq": 382
   },
   {
    "id": "cat-c1ad19226a62",
@@ -9570,7 +9996,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 381
+   "seq": 383
   },
   {
    "id": "cat-42660eb7ef7d",
@@ -9588,7 +10014,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 382
+   "seq": 384
   },
   {
    "id": "cat-43353ec1f53f",
@@ -9606,7 +10032,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 383
+   "seq": 385
   },
   {
    "id": "cat-f3fa88d436b7",
@@ -9624,7 +10050,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 384
+   "seq": 386
   },
   {
    "id": "cat-65566ab1cc03",
@@ -9642,7 +10068,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 385
+   "seq": 387
   },
   {
    "id": "cat-e0ee9dac3bae",
@@ -9660,7 +10086,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 386
+   "seq": 388
   },
   {
    "id": "cat-486a00e224e5",
@@ -9678,7 +10104,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 387
+   "seq": 389
   },
   {
    "id": "cat-211de33a648c",
@@ -9696,7 +10122,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 388
+   "seq": 390
   },
   {
    "id": "cat-0d179446a987",
@@ -9714,7 +10140,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 389
+   "seq": 391
   },
   {
    "id": "cat-e4ba5e1e5a57",
@@ -9732,7 +10158,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 390
+   "seq": 392
   },
   {
    "id": "cat-b57b0bfff00b",
@@ -9750,7 +10176,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 391
+   "seq": 393
   },
   {
    "id": "cat-a6c3c0b9faf7",
@@ -9768,7 +10194,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 392
+   "seq": 394
   },
   {
    "id": "cat-c4a04837ad2e",
@@ -9786,7 +10212,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 393
+   "seq": 395
   },
   {
    "id": "cat-838f128c64ae",
@@ -9804,7 +10230,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 394
+   "seq": 396
   },
   {
    "id": "cat-a90554b798fd",
@@ -9822,7 +10248,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 395
+   "seq": 397
   },
   {
    "id": "cat-d013a3d483ca",
@@ -9840,7 +10266,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 396
+   "seq": 398
   },
   {
    "id": "cat-8001a27012d7",
@@ -9858,7 +10284,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 397
+   "seq": 399
   },
   {
    "id": "cat-a812358b9af7",
@@ -9876,7 +10302,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 398
+   "seq": 400
   },
   {
    "id": "cat-31e9494c0d8d",
@@ -9894,7 +10320,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 399
+   "seq": 401
   },
   {
    "id": "cat-0c41e7d0f2a1",
@@ -9912,7 +10338,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 400
+   "seq": 402
   },
   {
    "id": "cat-bca365ba173a",
@@ -9930,7 +10356,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 401
+   "seq": 403
   },
   {
    "id": "cat-5880e9e3d942",
@@ -9948,7 +10374,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 402
+   "seq": 404
   },
   {
    "id": "cat-b8d8d907aaf0",
@@ -9966,7 +10392,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 403
+   "seq": 405
   },
   {
    "id": "cat-a1049602513d",
@@ -9984,7 +10410,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 404
+   "seq": 406
   },
   {
    "id": "cat-bb0addc1e9dd",
@@ -10002,7 +10428,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 405
+   "seq": 407
   },
   {
    "id": "cat-10a88b21744e",
@@ -10020,7 +10446,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 406
+   "seq": 408
   },
   {
    "id": "cat-fa9435b7ad26",
@@ -10038,7 +10464,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 407
+   "seq": 409
   },
   {
    "id": "cat-98aed9820a4c",
@@ -10056,7 +10482,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 408
+   "seq": 410
   },
   {
    "id": "cat-8fcc64956222",
@@ -10074,7 +10500,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 409
+   "seq": 411
   },
   {
    "id": "cat-37ecf1fdc845",
@@ -10092,7 +10518,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 410
+   "seq": 412
   },
   {
    "id": "cat-42c2aeea278f",
@@ -10110,7 +10536,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 411
+   "seq": 413
   },
   {
    "id": "cat-45dec546daf1",
@@ -10128,7 +10554,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 412
+   "seq": 414
   },
   {
    "id": "cat-ddb0605be7c5",
@@ -10146,7 +10572,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 413
+   "seq": 415
   },
   {
    "id": "cat-86b51a6bc5a9",
@@ -10164,7 +10590,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 414
+   "seq": 416
   },
   {
    "id": "cat-cd2894002d47",
@@ -10182,7 +10608,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 415
+   "seq": 417
   },
   {
    "id": "cat-de291c4e110e",
@@ -10200,7 +10626,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 416
+   "seq": 418
   },
   {
    "id": "cat-3de45d0fe351",
@@ -10218,7 +10644,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 417
+   "seq": 419
   },
   {
    "id": "cat-f4bef28716e7",
@@ -10236,7 +10662,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 418
+   "seq": 420
   },
   {
    "id": "cat-e9c7da094b9d",
@@ -10254,7 +10680,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 419
+   "seq": 421
   },
   {
    "id": "cat-7d7d916844a1",
@@ -10272,7 +10698,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 420
+   "seq": 422
   },
   {
    "id": "cat-fea54bd7809a",
@@ -10290,7 +10716,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 421
+   "seq": 423
   },
   {
    "id": "cat-d776b1b50e44",
@@ -10308,7 +10734,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 422
+   "seq": 424
   },
   {
    "id": "cat-8092c068705c",
@@ -10326,7 +10752,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 423
+   "seq": 425
   },
   {
    "id": "cat-f210eda7311f",
@@ -10344,7 +10770,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 424
+   "seq": 426
   },
   {
    "id": "cat-05f414d1b220",
@@ -10362,7 +10788,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 425
+   "seq": 427
   },
   {
    "id": "cat-cd8e0eb22e7c",
@@ -10380,7 +10806,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 426
+   "seq": 428
   },
   {
    "id": "cat-dab28ad10f20",
@@ -10398,7 +10824,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 427
+   "seq": 429
   },
   {
    "id": "cat-6bf873658bf3",
@@ -10416,7 +10842,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 428
+   "seq": 430
   },
   {
    "id": "cat-d964a34b6528",
@@ -10434,7 +10860,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 429
+   "seq": 431
   },
   {
    "id": "cat-462665d6eaf2",
@@ -10452,7 +10878,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 430
+   "seq": 432
   },
   {
    "id": "cat-2de4061d4163",
@@ -10470,7 +10896,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 431
+   "seq": 433
   },
   {
    "id": "cat-5c93b316758e",
@@ -10488,7 +10914,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 432
+   "seq": 434
   },
   {
    "id": "cat-e0c304624797",
@@ -10506,7 +10932,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 433
+   "seq": 435
   },
   {
    "id": "cat-5e9c4f97d325",
@@ -10524,7 +10950,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 434
+   "seq": 436
   },
   {
    "id": "cat-9dfe7b7c337a",
@@ -10542,7 +10968,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 435
+   "seq": 437
   },
   {
    "id": "cat-92d8c1841a35",
@@ -10560,7 +10986,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 436
+   "seq": 438
   },
   {
    "id": "cat-6d33cdbced79",
@@ -10578,7 +11004,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 437
+   "seq": 439
   },
   {
    "id": "cat-f87d9d0b8350",
@@ -10596,7 +11022,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 438
+   "seq": 440
   },
   {
    "id": "cat-5cbd8927f355",
@@ -10614,7 +11040,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 439
+   "seq": 441
   },
   {
    "id": "cat-e08eb541a392",
@@ -10632,7 +11058,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 440
+   "seq": 442
   },
   {
    "id": "cat-a2e2219da793",
@@ -10650,7 +11076,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 441
+   "seq": 443
   },
   {
    "id": "cat-90ff432fe3a8",
@@ -10668,7 +11094,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 442
+   "seq": 444
   },
   {
    "id": "cat-1de04516ced4",
@@ -10686,7 +11112,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 443
+   "seq": 445
   },
   {
    "id": "cat-6076ff912cd6",
@@ -10704,7 +11130,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 444
+   "seq": 446
   },
   {
    "id": "cat-7c9c77515793",
@@ -10722,7 +11148,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 445
+   "seq": 447
   },
   {
    "id": "cat-adc082e175a5",
@@ -10740,7 +11166,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 446
+   "seq": 448
   },
   {
    "id": "cat-319fe5133540",
@@ -10758,7 +11184,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 447
+   "seq": 449
   },
   {
    "id": "cat-51de0b389072",
@@ -10776,7 +11202,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 448
+   "seq": 450
   },
   {
    "id": "cat-4b1f61528916",
@@ -10794,7 +11220,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 449
+   "seq": 451
   },
   {
    "id": "cat-55a6359d2d1f",
@@ -10812,7 +11238,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 450
+   "seq": 452
   },
   {
    "id": "cat-dba1e592db8b",
@@ -10830,7 +11256,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 451
+   "seq": 453
   },
   {
    "id": "cat-340831de5d65",
@@ -10848,7 +11274,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 452
+   "seq": 454
   },
   {
    "id": "cat-53855570458b",
@@ -10866,7 +11292,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 453
+   "seq": 455
   },
   {
    "id": "cat-368d36493271",
@@ -10884,7 +11310,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 454
+   "seq": 456
   },
   {
    "id": "cat-acef33673c96",
@@ -10902,7 +11328,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 455
+   "seq": 457
   },
   {
    "id": "cat-dc821fe5f1d4",
@@ -10920,7 +11346,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 456
+   "seq": 458
   },
   {
    "id": "cat-6caa796210e1",
@@ -10938,7 +11364,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 457
+   "seq": 459
   },
   {
    "id": "cat-c4a55a7d1c18",
@@ -10956,16 +11382,10 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 458
+   "seq": 460
   }
  ],
- "blocked": [
-  {
-   "sku": "ENG-GLDC-0027",
-   "reason": "ambiguous_match",
-   "detail": "MatchStatus='new' LS Match status='AMBIGUOUS'; resolve by hand, never guess"
-  }
- ],
+ "blocked": [],
  "warnings": [
   {
    "sku": "LVP-GLDC-2010",

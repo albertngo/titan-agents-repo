@@ -128,6 +128,25 @@ class Lookups:
             self._cache[label] = index
         return self._cache[label]
 
+    def product_type_duplicates(self):
+        """Live leaf names that resolve to more than one id.
+
+        `_table()`'s cache is lossy by design (`setdefault` keeps the first id seen
+        per name) — fine for the common case, but silently wrong for a name that
+        genuinely has two live ids, since it picks whichever the API happened to
+        list first rather than a verified one. This reads the raw list separately
+        so `resolve_category` can tell the two situations apart.
+        """
+        if not hasattr(self, "_product_type_dupes"):
+            rows = self.c.get("/api/2.0/product_types").get("data", [])
+            by_name = defaultdict(list)
+            for r in rows:
+                name = (r.get("name") or "").strip()
+                if name:
+                    by_name[name].append(r["id"])
+            self._product_type_dupes = {n: ids for n, ids in by_name.items() if len(ids) > 1}
+        return self._product_type_dupes
+
     def resolve(self, kind, name):
         paths = {"product_type": ("/api/2.0/product_types", "product type"),
                  "brand": ("/api/2.0/brands", "brand"),
@@ -145,6 +164,35 @@ class Lookups:
         return got
 
 
+def resolve_category(name, lookups, cfg):
+    """CSV-importer slash form ('FLOORING / VINYL / SPC') -> live product_type id.
+
+    The live API's product_types are bare leaf names ('SPC', 'ENGINEERED HARDWOOD'),
+    never the ' / '-joined path platform-settings/lightspeed.json's
+    product_categories.leaves uses — see that file's `_csv_vs_api` note. Compare on
+    the final segment.
+
+    Some leaf names are genuinely ambiguous live — LAMINATE, TILE and VINYL each
+    carry two distinct ids in the account, a pre-existing duplicate-category defect
+    (verified 2026-09-11). `Lookups.resolve()` would silently pick whichever the API
+    happens to list first for a plain name lookup, which is never verified and can
+    change. Any such name MUST be pinned in `api_write_category_ids` before it can
+    be used here; an unpinned ambiguous name raises rather than guesses.
+    """
+    leaf = name.strip().split("/")[-1].strip()
+    pins = cfg.get("product_categories", {}).get("api_write_category_ids", {})
+    if leaf in pins:
+        return pins[leaf]
+    dupes = lookups.product_type_duplicates()
+    if leaf in dupes:
+        raise LightspeedError(
+            f"product type {leaf!r} has {len(dupes[leaf])} distinct live ids "
+            f"({dupes[leaf]}) and is not pinned in platform-settings/lightspeed.json's "
+            "product_categories.api_write_category_ids. Refusing to guess which one — "
+            "pin it there once the right id is confirmed.")
+    return lookups.resolve("product_type", leaf)
+
+
 def build_family_payload(actions, lookups, cfg):
     """One POST body for one variant family. Every id resolved or it raises."""
     first = actions[0]["fields"]
@@ -154,7 +202,7 @@ def build_family_payload(actions, lookups, cfg):
     if first.get("description"):
         payload["description"] = first["description"]
     if first.get("product_category"):
-        payload["product_type_id"] = lookups.resolve("product_type", first["product_category"])
+        payload["product_type_id"] = resolve_category(first["product_category"], lookups, cfg)
     if first.get("brand_name"):
         payload["brand_id"] = lookups.resolve("brand", first["brand_name"])
     if first.get("supplier_name"):

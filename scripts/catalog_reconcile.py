@@ -745,6 +745,20 @@ def ls_create_fields(row, ls_upload_row):
     # push step does the resolution — it must never invent an attribute.
     opt_name = clean(ls_upload_row.get("variant_option_one_name"))
     opt_value = clean(ls_upload_row.get("variant_option_one_value"))
+    if not (opt_name and opt_value):
+        # Every create needs at least one variant_definition — confirmed live
+        # 2026-09-10 (Northway): a product with none 422s "Each variant must have
+        # at least one variant definition", even a genuine one-off singleton.
+        # None of these rows have a real grade/size variant, so fall back to
+        # Colour — platform-settings/lightspeed.json's
+        # _create_requires_a_variant_definition note names it as the safe default
+        # attribute for a standalone product. Valued from the product's actual
+        # colour/tone where there is one, so it is a real fact about the product
+        # rather than a meaningless placeholder; accessories (no colour) fall
+        # back to Supplier SKU, then the SKU itself.
+        opt_name = "Colour"
+        opt_value = (clean(row.get("Colour / tone")) or clean(row.get("Supplier SKU"))
+                    or clean(row.get(SKU)))
     if opt_name and opt_value:
         fields["variant_option"] = {"name": opt_name, "value": opt_value}
     return {k: v for k, v in fields.items() if v is not None}

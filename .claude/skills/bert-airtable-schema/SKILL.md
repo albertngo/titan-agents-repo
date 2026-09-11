@@ -3999,6 +3999,51 @@ four ambiguous ties are excluded per the policy above, not merely flagged).
 
 ---
 
+### Golden Choice
+
+**New supplier, first ingested 2026-09-10** from Notion Price Lists row PL-252
+(effective 2025-05-01). 184 rows.
+
+#### Cost column — Box vs. Skid, still open; a labeling quirk resolved (Albert, 2026-09-11)
+
+Every price group on the sheet prints **two** columns, both marked "For Dealer" and
+"+Tax": **Net Box Price** and **Net Skid Price**, e.g. `$4.89/sf` vs `$4.79/sf` on the
+Hickory (Medici) line. **Which one is the true dealer cost is still unconfirmed and
+still escalated** — `Net Box Price` was taken as the placeholder (smaller order
+quantity → higher price → read as the more conservative "dealer cost" default), not
+because it's been confirmed.
+
+**What Albert did settle:** despite the "Box Price" / "Skid Price" naming, **both
+columns are already expressed in $/sf** — there is no unit-of-measure difference to
+convert between them. "Box" and "Skid" name the **order-quantity tier** the price
+applies to (buying by the individual box vs. a full skid earns a bulk discount), not a
+per-box-lump-sum vs. per-square-foot distinction. So a future run must not attempt any
+box→sf conversion on either column — take the printed number as-is, per-sf, for
+whichever tier turns out to be the confirmed cost basis. This resolves the *labeling*
+confusion; it does not resolve *which tier* is the dealer cost — that answer still
+belongs in the open Tactical Task, and once Albert confirms it this subsection should
+be updated with the settled basis, the same way HomesPro and Northway's were.
+
+#### Hickory (Medici) — a genuine LS duplicate, not an extraction error
+
+`ENG-GLDC-0027` (Golden Choice Engineered Hickory (NEW) — Medici) tied 1:1 against two
+live Lightspeed records that are the same product entered twice: `GOL.E.H.Med.6` and
+`GOL.E.H.Med.6.1`, identical name/spec/box size (22.39sf/b), created one second apart
+on 2025-06-26. Resolved by Albert 2026-09-11: kept `GOL.E.H.Med.6`
+(`a4ad4c3b-9ee1-4ebd-b735-5f3c39154f95`) as the match; `GOL.E.H.Med.6.1`
+(`aaff679c-8786-42c2-842e-f455ef3ba97f`) is a duplicate LS record for Albert to
+deactivate or delete by hand in the Lightspeed UI — this pipeline has no delete or
+deactivate action, deliberately (`CLAUDE.md`).
+
+#### Golden Choice ingest output format
+
+`ingest/2026-09-10/golden_choice_airtable_upload_2025-05-01.csv` (184 rows, 57 schema
+columns + helper columns) and `ingest/2026-09-10/golden_choice_ls_upload_2025-05-01.csv`
+(183 rows — the Hickory Medici tie above was excluded until resolved, then folded back
+in once matched).
+
+---
+
 ### New supplier onboarding — checklist
 
 When a new supplier is added, gather this information before processing their first price list, and add a subsection above following the FAW template:

@@ -96,7 +96,13 @@
     "_vinyl_note": "The vinyl subcategory is decided by the product's CORE (SPC or WPC), never by its format (LVP or LVT).",
     "_accessories_note": "Accessories (transitions, mouldings, stair treads/risers, underlay, glue) use the standalone ACCESSORIES category \u2014 not nested under FLOORING.",
     "_unmapped_policy": "A product whose category does not resolve to one of `leaves` is BLOCKED, never guessed.",
-    "_csv_vs_api": "The `leaves` list below is the CSV-IMPORTER form. The API returns leaf names alone \u2014 see api_shape.category. Keep both straight: a write path built on the API cannot reuse this list unchanged."
+    "_csv_vs_api": "The `leaves` list below is the CSV-IMPORTER form. The API returns leaf names alone \u2014 see api_shape.category. Keep both straight: a write path built on the API cannot reuse this list unchanged.",
+    "api_write_category_ids": {
+      "_comment": "Bare live /api/2.0/product_types ids, resolved 2026-09-11 against the live account, for the leaf names this pipeline has actually needed to write so far (Oakel/Golden Choice creates). A CREATE write must resolve a bare leaf name to a product_type_id, and `_csv_vs_api` above already says the CSV-importer slash form does not match the API's own vocabulary \u2014 so scripts/lightspeed_push.py's Lookups.resolve('product_type', ...) needs the bare final segment ('SPC', not 'FLOORING / VINYL / SPC'), which resolve() then looks up live by name.",
+      "_ambiguous_names_pinned_here": "ENGINEERED HARDWOOD, SOLID HARDWOOD, SPC, WPC and ACCESSORIES each have exactly one live id and need no pin \u2014 Lookups.resolve() finds them safely by name alone. LAMINATE, TILE and VINYL do NOT: each has TWO distinct live ids (487 vs 383 products on LAMINATE alone, confirmed 2026-09-11), a genuine pre-existing duplicate-category defect in the live account, not something this pipeline may unify. Lookups.resolve() would silently pick whichever the API lists first \u2014 non-deterministic and never verified. Any such name MUST be pinned here before a create write path may use it; an unpinned ambiguous name should block, never guess.",
+      "LAMINATE": "08f5e5d9-16e1-4fa0-8b64-78d71bbe55c5",
+      "_laminate_pin_rationale": "Two ids exist (02dcd191-ae89-11e8-ed44-9bffc29c1504: 487 products, most-recent update 2026-09-03; 08f5e5d9-16e1-4fa0-8b64-78d71bbe55c5: 383 products, most-recent update 2026-09-10 on LAM-FAWK-0035). Pinned to the second because it is the id this same pipeline's own recent creates already use \u2014 not because it is provably 'more correct'. Flagged for Albert; the live duplicate itself is unresolved infra debt."
+    }
   },
   "write_rules": {
     "_comment": "The invariants any write path must respect. Full detail and the name-construction rules live in the ls-upload-instructions skill.",

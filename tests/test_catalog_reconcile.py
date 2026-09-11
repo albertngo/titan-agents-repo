@@ -216,6 +216,41 @@ class TestUuidRecovery(unittest.TestCase):
         self.assertEqual(create["fields"]["price_excluding_tax"], 2.0)
 
 
+class TestCreateVariantDefinition(unittest.TestCase):
+    """Every create needs >=1 variant_definition or LS 422s "Each variant must
+    have at least one variant definition" (confirmed live, Northway). None of
+    these rows have a real grade/size variant, so Colour is the documented
+    safe default (platform-settings/lightspeed.json's
+    _create_requires_a_variant_definition) -- valued from a real fact about
+    the product rather than a meaningless placeholder."""
+
+    def test_uses_colour_tone_when_present(self):
+        fields = cr.ls_create_fields(
+            row(SKU="NEW-1", **{"Colour / tone": "Erin Oak", "Supplier SKU": "SUP-9"}),
+            ls_upload_row(sku="NEW-1")["NEW-1"])
+        self.assertEqual(fields["variant_option"], {"name": "Colour", "value": "Erin Oak"})
+
+    def test_falls_back_to_supplier_sku_when_no_colour(self):
+        fields = cr.ls_create_fields(
+            row(SKU="NEW-1", **{"Colour / tone": "", "Supplier SKU": "SUP-9"}),
+            ls_upload_row(sku="NEW-1")["NEW-1"])
+        self.assertEqual(fields["variant_option"], {"name": "Colour", "value": "SUP-9"})
+
+    def test_falls_back_to_sku_when_neither(self):
+        fields = cr.ls_create_fields(
+            row(SKU="NEW-1", **{"Colour / tone": "", "Supplier SKU": ""}),
+            ls_upload_row(sku="NEW-1")["NEW-1"])
+        self.assertEqual(fields["variant_option"], {"name": "Colour", "value": "NEW-1"})
+
+    def test_a_real_variant_option_is_never_overridden(self):
+        upload = ls_upload_row(sku="NEW-1")["NEW-1"]
+        upload["variant_option_one_name"] = "Grade"
+        upload["variant_option_one_value"] = "Select"
+        fields = cr.ls_create_fields(
+            row(SKU="NEW-1", **{"Colour / tone": "Erin Oak"}), upload)
+        self.assertEqual(fields["variant_option"], {"name": "Grade", "value": "Select"})
+
+
 class TestOrderingAndIds(unittest.TestCase):
 
     def test_forced_dependency_order(self):
