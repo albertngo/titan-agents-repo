@@ -1,0 +1,26 @@
+{
+  "contract_version": "1",
+  "source": "outlook",
+  "run_at": "2026-09-11T08:17:27-04:00",
+  "status": "error",
+  "error": "Graph OAuth token request failed before any mailbox could be pulled: outbound HTTPS to login.microsoftonline.com was rejected at this session's egress proxy with a 403 policy denial on the CONNECT itself ('gateway answered 403 to CONNECT (policy denial or upstream failure)', confirmed via the proxy status endpoint, two consecutive attempts). That is a network/infrastructure block in this run's environment, not a response from Microsoft -- GRAPH_TENANT_ID, GRAPH_CLIENT_ID and GRAPH_CLIENT_SECRET are all present, so this is not the 'missing credentials' case, and because no token response was ever returned it should not be read as 'credential expired/revoked' either (that hypothesis requires an actual 401/invalid_client from the token endpoint, which never happened here). scripts/outlook_pull.py could not proceed past get_token() for either the Inbox or SentItems pass, so zero mailboxes (albert@titanfloors.ca, info@titanfloors.ca, pourya@titanfloors.ca, mike@titanfloors.ca) were scanned.",
+  "items": [],
+  "metrics": {
+    "total_scanned": 0,
+    "customer": 0,
+    "supplier": 0,
+    "admin": 0,
+    "noise_skipped": 0,
+    "unanswered_customer": 0,
+    "bounces": 0,
+    "scanned_albert": 0,
+    "scanned_info": 0,
+    "scanned_pourya": 0,
+    "scanned_mike": 0
+  },
+  "needs_attention": [
+    "Outlook ingest did not run today: login.microsoftonline.com is being blocked by this session's outbound proxy policy (403 on CONNECT, not a Microsoft-side error) -- see /root/.ccr/README.md's '403/407 from the proxy' section, which says report the blocked host rather than retry or route around it. Needs the sandbox's egress allowlist widened to include login.microsoftonline.com and graph.microsoft.com before a scheduled run can succeed; this is a session/environment configuration gap, not an Outlook or Microsoft 365 outage.",
+    "The last successful outlook.json was 2026-09-08 (status: ok, run_at 2026-09-08T08:20:03-04:00) -- a roughly 72-hour gap per max_catchup_days=7 in platform-settings/outlook-ingest-sources.json. This run intended to widen to a ~76h Inbox window / ~100h SentItems window to cover it, but the pull never got off the ground, so 2026-09-09 through 2026-09-11 Titan mailbox activity (Inbox and Sent Items, all 4 mailboxes) is still completely unscanned and must be caught up on the next successful run -- do not let it silently narrow back to the default 24h window.",
+    "This is a setup/network-policy gap, not a crash: no partial data was retrieved from any mailbox, so no items could be classified or checked for unanswered customer/supplier threads this run."
+  ]
+}
