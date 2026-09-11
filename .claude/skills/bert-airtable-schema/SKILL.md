@@ -3886,6 +3886,119 @@ that doesn't exist yet. This is a one-CSV supplier until a human imports it.
 
 ---
 
+### HomesPro (Home's Pro Building Materials)
+
+**New supplier — first ingested 2026-09-11 from Notion Price Lists row PL-242**, a
+single-page PDF ("Floorings & Trims Price List", effective 2026-03-02). Confirmed new
+to Airtable via the live `Supplier` select (no HOMESPRO/HomesPro/Home's Pro choice
+exists) and via `airtable-destinations.json`'s `supplier_aliases` (no entry). Document's
+own printed name is "HOME'S PRO BUILDING MATERIALS" (122 Industry St, York, ON —
+orderdesktoronto@homespros.ca), consistent with Notion `Company = HOMESPRO` and the
+sender domain. 13 rows extracted: 5 SPC Vinyl, 2 Glue Down Vinyl, 1 waterproof laminate,
+2 underlayment rolls, 3 trim accessories (T-Moulding/Stair Nose/Reducer).
+
+#### Identity
+
+| Field | Value |
+|---|---|
+| **Supplier** (single-select) | `HomesPro` — **proposed on this run, not yet confirmed by Albert** (mirrors the camelCase convention of GreenTouch/Sunshiny) |
+| **Brand** | `HomesPro` (supplier is the brand) |
+| **SKU supplier code** | `HMSP` — **proposed, not yet confirmed** |
+| **Supplier SKU** | Blank — the price list assigns no product codes |
+
+#### Cost column — settled, no escalation needed
+
+The sheet prints exactly one `PER SQ. FT.` column per flooring line (and one flat
+per-roll / per-piece price for underlay and trims) — no MSRP, no suggested-retail, no
+second price anywhere. Per the 2026-09-11 policy (*Cost basis*, above), a single
+obvious printed cost column on a new supplier is **not** a reason to escalate: printed
+price → `Cost/unit` as-is, `Retail = Cost + $ 1.00` on flooring. Trims and underlay use
+the existing cross-supplier markups (`+$10` T-Moulding/Reducer, `+$15` Stair Nose,
+`+$20` Underlayment roll — the last also applied, as the closest analogous rule, to the
+non-underlay "Multi-Surface Protector" roll).
+
+#### HomesPro is already extensively live in Lightspeed — the third state, at scale
+
+**73 HomesPro products already exist in Lightspeed** (`supplier_name: "HOMESPRO"`,
+checked via `scripts/lightspeed_pull.py --supplier "Homespro"` before treating this as a
+plain new-supplier run — Oakel/Golden Choice, 2026-09-10, are why this check is now
+mandatory). This is RULE 0a's third state (new to Airtable, already live in Lightspeed),
+but at a scale the pattern hadn't shown before: the live catalogue spans 12 collections
+(BERLIN, MADRID, MONTREAL, MOSCOW, PARIS, ROME, SEOUL, SWEDEN, SYDNEY, TOKYO, VENICE,
+VICTORIA) across laminate, SPC, VSPC, LVT, Looselay and Dry Back — none of which this
+one-page PL-242 sheet is a complete picture of.
+
+**Three of PL-242's five SPC lines spec-match a live collection exactly, but every one
+is a genuine tie, not a clean 1:1 match — because the price list prices per *collection*,
+while Lightspeed carries per-*colour* SKUs:**
+
+| PL-242 line | Live LS collection | Spec match | Live colour SKUs (tied) |
+|---|---|---|---|
+| Venice (6.5mm, 1.5mm IXPE, 19.12sf/b) | VENICE | Exact | 11 — Baku, Cody, Dover, Gabon, Havana, Hawaii, Luka, Maine, Malta, Texas (×2), Troy |
+| Moscow (7mm, 1.5mm IXPE, 19.12sf/b) | MOSCOW | Exact | 6 — Bonjour, Hola, Marhaba, Namaste, Salve, Shalom |
+| Sydney (6mm Herringbone, 1.5mm Cork, 19.38sf/b) | SYDNEY | Exact | 4 — Birch Hills, Castletown, Divibeach, Sunderland |
+| Seoul (5mm, 19.76sf/b, listed as **Glue Down** on PL-242) | SEOUL | Exact on thickness+box size | 5 — Arish, Bursa, Pune, Seto, Tours, but LS labels the line **Looselay**, not Glue Down |
+
+**None of these four were backfilled a `Lightspeed ID`.** This is exactly the Gracious
+SPC-colour-range lesson (bert-airtable-schema, Gracious subsection): "one record cannot
+hold fourteen UUIDs." A collection-level Airtable row with no colour has nothing to
+disambiguate against a field of same-spec colour SKUs, so guessing any one of them would
+silently misattribute a UUID. Per the updated policy, a genuine tie between two or more
+candidates is excluded from the LS upload file entirely and flagged (`Review Reason:
+Ambiguous Naming`) rather than guessed. Seoul additionally carries an unresolved
+install-method conflict (Glue Down on the price list vs. Looselay in Lightspeed) that
+compounds the tie — flagged, not silently corrected either way.
+
+**Milan, Vancouver ("Long Plank"), Holland (Glue Down, marked NEW), Tuscany (72-Hour
+Waterproof Laminate, marked NEW), and both underlay rolls have no match anywhere in the
+73-product live catalogue** — genuinely new to both systems, and are the only PL-242
+rows that went into the LS upload file (blank `id`, minted handle).
+
+**The structural lesson, stated for the next HomesPro run:** this price list's
+collection-level pricing (one row, one price, per named line — no colour breakdown) is
+a *coarser* granularity than how HomesPro's own catalogue is actually built in
+Lightspeed (one SKU per colour). Extracting at the sheet's own granularity is correct
+for what the sheet says, but it means the extracted Venice/Moscow/Sydney/Seoul rows are
+the wrong shape to ever get a Lightspeed ID as-is — they would need to be expanded to
+per-colour records (keyed on the live LS `sku` values, e.g. `HOM.662`…`HOM.66B` for
+Venice) before a 1:1 backfill is possible, the same fix Gracious's SPC range is still
+waiting on.
+
+#### Naming
+
+Live HomesPro Lightspeed products use `HOMVIN` for every vinyl format (SPC, VSPC, LVT,
+Looselay, Dry Back all share the one prefix — HomesPro does not split by core/format
+the way the generic schema convention does) and `HOMLAM` for laminate. The five new-to-
+both-systems rows in the LS file (Milan, Vancouver, Holland, Tuscany, and the two
+underlay rolls plus three trims) follow those two prefixes for consistency with the
+live catalogue rather than the generic `[SUPP][TYPE]-[CORE]` convention. Minted handles
+are alphanumeric brand-first (`HMSP55MILAN`, `HMSP8VANCOUVER`, …) since none of these
+five have a stored handle to copy.
+
+**Trims (T-Moulding, Stair Nosing, Reducer) are priced identically across every
+compatible flooring line** ($19.50 / $24.50 / $19.50 regardless of which SPC or
+laminate line) and the sheet gives no dimensions to distinguish them by floor type.
+Rather than force the closed `[Material]` vocabulary (`SPC`/`Laminate`/`Wood`) into two
+SKUs per trim on no real evidence they're physically different pieces, each trim is a
+single `SPC`-tagged SKU (5 of 6 compatible lines are vinyl) with a Salesperson note
+naming every compatible line, including Tuscany (laminate) — flagged `Review Reason:
+Spec Gap` rather than guessed apart.
+
+#### Scope of ingest
+
+Everything on the one-page sheet: 5 SPC Vinyl, 2 Glue Down Vinyl, 1 waterproof
+laminate, 2 underlayment rolls (IXPE Underlay, Multi-Surface Protector), 3 trims. No
+out-of-scope sections — the whole document is flooring-adjacent product.
+
+#### HomesPro ingest output format
+
+Two files: `ingest/2026-09-11/homespro_airtable_upload_2026-03-02.csv` (all 13 rows,
+57 schema columns + helper columns 58–61 including `LS Match status` / `LS Match
+notes`) and `ingest/2026-09-11/homespro_ls_upload_2026-03-02.csv` (9 rows only — the
+four ambiguous ties are excluded per the policy above, not merely flagged).
+
+---
+
 ### New supplier onboarding — checklist
 
 When a new supplier is added, gather this information before processing their first price list, and add a subsection above following the FAW template:
@@ -3934,6 +4047,19 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
 
 ### Changelog
 
+- **2026-09-11** — **HomesPro onboarded (PL-242), and it is already extensively live in
+  Lightspeed — 73 products across 12 collections, checked via `lightspeed_pull.py`
+  before assuming new-supplier-to-Airtable meant new-supplier-to-Lightspeed (the
+  Oakel/Golden Choice mistake this check now exists to prevent). Three of the price
+  list's five SPC lines and one Glue Down line spec-match a live collection exactly on
+  thickness+box size, but every one is a genuine tie against several live colour SKUs
+  (11/6/4/5 candidates) rather than a resolvable 1:1 match, because this one-page sheet
+  prices per collection while Lightspeed carries per-colour SKUs — the Gracious
+  SPC-colour-range lesson recurring at a new supplier. None were backfilled a
+  Lightspeed ID; all four are excluded from the LS upload file and flagged
+  `Ambiguous Naming`, per the 2026-09-11 policy that a genuine tie is excluded, not
+  guessed. Cost basis needed no escalation (single obvious `$/sf` column, no MSRP).
+  Added the new `### HomesPro` subsection.
 - **2026-09-10** — **Northway cost basis settled**: the smallest-volume tier (`1 Box` /
   `1 Piece`) is Titan's ordering tier and `Cost/unit`, uniformly across all seven
   in-scope sections, closing the open item on the PL-278 Tactical Task. Added the new
