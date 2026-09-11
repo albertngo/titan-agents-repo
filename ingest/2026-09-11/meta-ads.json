@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-09-11T08:17:00-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $154.65 spend, 14 leads, $11.05 CPL — Flooring Problems Campaign",
+      "summary": "Window widened to 2026-09-08 through 2026-09-10 (3 days) because the last successful meta-ads run (2026-09-08) only covered through 2026-09-07 and no run happened on 2026-09-09 or 2026-09-10. Over that window Meta spent $154.65, all on the sole actively-delivering campaign, Flooring Problems Campaign, generating 14 leads at $11.05 CPL — below the 7-day baseline (2026-09-04 to 2026-09-10: $345.99 / 28 leads, ~$12.36 CPL), so no anomaly. Account is ACTIVE and no ads are flagged.",
+      "timestamp": "2026-09-10T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 15465,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 15465,
+    "impressions": 4313,
+    "clicks": 120,
+    "leads": 14,
+    "cpl_cents": 1105,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Window widened: the most recent prior meta-ads.json is 2026-09-08, covering spend through 2026-09-07 — no meta-ads run landed for 2026-09-09 or 2026-09-10. Per policy this run widened from the standard yesterday-only pull to 3 days (2026-09-08 through 2026-09-10, within the 7-day cap) to close the gap rather than missing those two days.",
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued at 14 in this window and 28 in the 7-day baseline, matching the counted leads exactly both times, same pattern flagged on 2026-08-31, 2026-09-02, and 2026-09-08). No discrepancy in the counted total so far, but this is a recurring hit across multiple runs — the script's lead-action set should be extended rather than continuing to hand-note it."
+  ]
+}
