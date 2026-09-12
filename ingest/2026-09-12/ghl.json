@@ -1,0 +1,63 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-09-12T08:11:32-04:00",
+  "status": "error",
+  "error": "No GHL MCP tool (mcp__ghl__*) was available in this run's tool set, so no GHL read calls could be made. .mcp.json declares the `ghl` server (https://services.leadconnectorhq.com/mcp/, auth via $GHL_PIT_TOKEN/$GHL_LOCATION_ID) and both env vars are present and non-empty in .env, so this is an MCP connectivity/session-wiring failure, not a missing-credential one. No contacts, opportunities, appointments, or conversations were pulled for the 2026-09-12 America/Toronto window. Per this agent's failure policy, writing status:\"error\" rather than fabricating GHL data or crashing.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest FAILED for 2026-09-12: no mcp__ghl__* tool was reachable this run despite valid-looking credentials in .env, so today's leads/opportunities/appointments/conversations/drift were not pulled. Re-run once GHL MCP connectivity is restored -- until then GHL is a missing source in the daily brief."
+  ],
+  "extensions": {
+    "ghl": {
+      "template_version": "3",
+      "reporting": {
+        "lead_count": null,
+        "exclusions": {
+          "_comment": "Not computed this run -- no GHL data was retrieved.",
+          "new_leads_raw": null,
+          "new_leads_excluded": {
+            "supplier-solicitation": null,
+            "spam likely": null
+          },
+          "unanswered_raw": null,
+          "unanswered_excluded": {
+            "missed-call-no-voicemail": null,
+            "automated-system-log": null
+          }
+        },
+        "store_wins_today": null,
+        "store_won_value_cents": null,
+        "leads_by_source": {},
+        "leads_by_tag": {},
+        "leads_by_stage": {},
+        "avg_days_in_stage": {},
+        "opportunity_status_counts": {},
+        "store_pipeline_note": "Not available -- run failed before any GHL data could be read.",
+        "stale_thresholds_used": {
+          "_comment": "Echoed from platform-settings/ghl-workflow.json (config was readable; only the GHL platform pull failed).",
+          "0c. ASAP (Hot)": 7,
+          "0a. New Lead": 14,
+          "0b. Later Date (Warm)": 40,
+          "0b. Far Out (Cold)": 90,
+          "*Meeting (Scheduled)* CCAM|GHL": 30,
+          "1b. Postponed ": 90
+        },
+        "meeting_window_summary": {
+          "contacts_in_stage": null,
+          "median_days_entry_to_appointment": null,
+          "median_effective_window_days": null,
+          "window_already_expired": null
+        }
+      },
+      "new_leads": [],
+      "opportunities": [],
+      "appointments_booked": [],
+      "conversations": [],
+      "workflow_drift": [],
+      "won_records": [],
+      "stragglers_ranked": []
+    }
+  }
+}
