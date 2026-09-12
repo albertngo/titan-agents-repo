@@ -35,6 +35,50 @@ file property is a `file://{...}` URL-encoded JSON envelope — decode it and ta
 
 ## 2. Download the actual bytes
 
+### 2.0 FIRST — verify pdfplumber, before anything else
+
+**Albert, 2026-09-12: pdfplumber is the only sanctioned way to read a price list.
+If it is unusable, flag and stop. Never substitute another method.**
+
+Run this before the download, before touching Notion state, before any extraction:
+
+```bash
+python3 -c "import pdfplumber; print(pdfplumber.__version__)"
+```
+
+If that fails, **this run is over.** Do all of the following and nothing else:
+
+- Set `Extraction Status` = `Extracted [Error]` (per step 6's write rules).
+- `Notes` = the exact failure, naming `pdfplumber` and the reason — a missing
+  module, or `host_not_allowed` on `pypi.org` if an install was attempted.
+- One row in the troubled CSV, `stage: extract`, `reason: pdf_tooling_unavailable`,
+  `disposition: held` — per `contracts/troubled-skus-schema.md`.
+- Send a PushNotification saying extraction could not run and why.
+- **Produce no upload CSVs. Attach nothing to `Extracted Files`. Do not continue to
+  `/catalog-sync`** — there is no input for it, and a sync on invented data is worse
+  than no sync.
+
+**Explicitly prohibited as substitutes**, however well any of them appears to work:
+reading the rendered PDF visually (a model reading the page image), the
+Microsoft-365 connector's `read_resource` text conversion, `pdftotext`/poppler,
+an LLM transcription of a screenshot, or retyping figures from the Notion `Notes` of
+a previous run. A price that reaches the POS must be traceable to a deterministic
+parse of the supplier's own bytes.
+
+**Why this is a hard gate and not a preference.** On 2026-09-01 the pdfplumber method
+was written into these docs from a session where it genuinely worked. On 2026-09-02 the
+import in `scripts/pricelist_fetch.py` was made lazy — "so fetching works without it
+installed" — and from 2026-09-03 to 09-09, 15 `airtable_upload` CSVs were committed by
+cloud sessions that had no way to run it, with no `requirements.txt` in the repo and
+`pypi.org` off the egress allowlist. The documented method and the executed method had
+silently diverged for ten days, and the output looked fine, so nothing caught it. This
+check is what makes that divergence impossible rather than merely discouraged.
+
+Dependency is declared in `requirements.txt`; installing it needs `pypi.org` and
+`files.pythonhosted.org` on the environment's network allowlist.
+
+### 2.1 Then download
+
 ```
 python3 scripts/pricelist_fetch.py "<share-link>" /tmp/pricelist.pdf
 ```
@@ -46,6 +90,66 @@ redirect chain sets a `FedAuth` cookie the final hop needs — plain `curl -L` g
 **Do not use the Microsoft-365 connector's `read_resource` for the source file.** It
 returns Graph's text conversion rather than bytes, which flattens table geometry. Use
 pdfplumber on the downloaded bytes.
+
+### 2.2 Extract via the script — two engines must agree
+
+**Do not call pdfplumber by hand. Run this:**
+
+```bash
+python3 scripts/pricelist_extract.py /tmp/pricelist.pdf --json /tmp/extract.json
+```
+
+It parses with pdfplumber and **cross-checks every monetary value against
+pypdfium2 (PDFium, Google's C library)** — a completely independent engine that
+shares no code with pdfminer.six, so the two fail differently. Exit codes:
+
+| Exit | Meaning | What to do |
+|---|---|---|
+| `0` | Both engines agree on every monetary value | Proceed |
+| `1` | **Disagreement** — pdfplumber produced a figure PDFium cannot see | **Stop.** Parse defect, see below |
+| `2` | pdfplumber or pypdfium2 missing | Stop, per step 2.0 |
+
+**On exit 1 the extraction is void.** Do not use any of its numbers, do not
+"pick the more likely one", and do not fall back to reading the page. Set
+`Extraction Status` = `Extracted [Error]`, put the disagreeing values in `Notes`,
+write one `cross_check_failed` row to the troubled CSV, notify, and stop.
+
+**Why the check compares value sets rather than rows.** The two engines
+legitimately disagree on *reading order* — that is layout, not data. On the
+HOMESPRO sheet PDFium places `$13/roll` away from "IXPE Underlay" because that
+cell is merged across the trim columns. Halting on that would block a correct
+extraction. So the halting condition is narrower and sharper: **every value
+pdfplumber extracted must exist somewhere in PDFium's text.** That catches a
+misread or manufactured price — which would be absent from the other engine —
+while ignoring layout differences. PDFium seeing *extra* values is normal and
+never halts; it reads page prose (phone numbers, addresses) that pdfplumber's
+table cells exclude.
+
+Verified on HOMESPRO 2026-09-12: 11 distinct values, both engines, full agreement.
+
+### 2.2a What the script handles for you, and why it must
+
+Verified on the HOMESPRO sheet, 2026-09-12, and it is the difference between a clean
+parse and a useless one.
+
+- **`extract_text()` can scramble reading order badly** on a designed/marketing-style
+  sheet. On HOMESPRO it returned prices detached from their products — `$1.65`
+  (Tuscany) and `$1.45` (Milan) landing adjacent, four lines from either name. Never
+  read prices from `extract_text()` output.
+- **`extract_tables()` uses geometry and got every row right** — product, spec string
+  and all four price columns correctly aligned, on a sheet with colour bands instead
+  of ruling lines.
+- **A whole-page catch-all "table 0" is normal and is junk.** HOMESPRO returned 5
+  tables: index 0 was the entire page jumbled into one cell, indices 1–4 were the
+  real sections (SPC / glue-down / laminate / underlay). Take the structured ones;
+  never parse table 0.
+- Expect **side labels to split across columns** — `LONG PLA` + `NK`,
+  `HERRINGBO` + `NE`. Cosmetic, and prices are unaffected, but rejoin them rather
+  than treating the fragment as data.
+
+Cross-check the two code paths against each other where both produce a figure: they
+are independent enough that disagreement is a real signal. That replaces the old
+"cross-check against pdfplumber's own text", which compared a parse against itself.
 
 ## 3. Assign `Company` — before checking parseability
 
