@@ -91,6 +91,30 @@ redirect chain sets a `FedAuth` cookie the final hop needs — plain `curl -L` g
 returns Graph's text conversion rather than bytes, which flattens table geometry. Use
 pdfplumber on the downloaded bytes.
 
+### 2.2 Use `extract_tables()`, not `extract_text()` — and skip table 0
+
+Verified on the HOMESPRO sheet, 2026-09-12, and it is the difference between a clean
+parse and a useless one.
+
+- **`extract_text()` can scramble reading order badly** on a designed/marketing-style
+  sheet. On HOMESPRO it returned prices detached from their products — `$1.65`
+  (Tuscany) and `$1.45` (Milan) landing adjacent, four lines from either name. Never
+  read prices from `extract_text()` output.
+- **`extract_tables()` uses geometry and got every row right** — product, spec string
+  and all four price columns correctly aligned, on a sheet with colour bands instead
+  of ruling lines.
+- **A whole-page catch-all "table 0" is normal and is junk.** HOMESPRO returned 5
+  tables: index 0 was the entire page jumbled into one cell, indices 1–4 were the
+  real sections (SPC / glue-down / laminate / underlay). Take the structured ones;
+  never parse table 0.
+- Expect **side labels to split across columns** — `LONG PLA` + `NK`,
+  `HERRINGBO` + `NE`. Cosmetic, and prices are unaffected, but rejoin them rather
+  than treating the fragment as data.
+
+Cross-check the two code paths against each other where both produce a figure: they
+are independent enough that disagreement is a real signal. That replaces the old
+"cross-check against pdfplumber's own text", which compared a parse against itself.
+
 ## 3. Assign `Company` — before checking parseability
 
 Read the `Company` select options live from the data source schema each run; never

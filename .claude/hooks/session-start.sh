@@ -52,8 +52,16 @@ done < <(grep -oE '^[A-Z][A-Z0-9_]*=' .env.example | sed 's/=$//')
 if python3 -c "import pdfplumber" 2>/dev/null; then
   :  # already present, nothing to do
 elif [ -f requirements.lock.txt ] && compgen -G "vendor/wheels/*.whl" >/dev/null 2>&1; then
+  # --ignore-installed is REQUIRED, not optional: `cryptography` ships as a
+  # Debian dpkg package with no pip RECORD file, so without it pip aborts with
+  # "Cannot uninstall cryptography 41.0.7, RECORD file not found" and leaves the
+  # transaction half-applied. Verified 2026-09-12. With it, pip installs into
+  # /usr/local/lib/python3.11/dist-packages, which precedes Debian's
+  # /usr/lib/python3/dist-packages on sys.path, so the vendored versions win and
+  # dpkg's copies are left untouched.
   if pip install --no-index --find-links vendor/wheels --only-binary=:all: \
-       --require-hashes -r requirements.lock.txt >/tmp/pip-vendor.log 2>&1; then
+       --require-hashes --ignore-installed -r requirements.lock.txt \
+       >/tmp/pip-vendor.log 2>&1; then
     echo "deps: installed from vendor/wheels ($(python3 -c 'import pdfplumber; print(pdfplumber.__version__)' 2>/dev/null))"
   else
     echo "deps: vendored install FAILED — see /tmp/pip-vendor.log"

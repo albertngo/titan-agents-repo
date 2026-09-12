@@ -38,8 +38,9 @@ pip hash vendor/wheels/*.whl > /tmp/hashes.txt
 python3 scripts/write_requirements_lock.py   # see that script for the format
 
 # 3. Verify the install works with the network OFF, exactly as a session will do it.
+#    --ignore-installed is MANDATORY — see "The dpkg conflict" below.
 pip install --no-index --find-links vendor/wheels --only-binary=:all: \
-    -r requirements.lock.txt
+    --require-hashes --ignore-installed -r requirements.lock.txt
 python3 -c "import pdfplumber; print(pdfplumber.__version__)"
 python3 -m unittest tests.test_pdf_tooling -v
 
@@ -52,6 +53,33 @@ git commit -m "vendor: pin pdfplumber <version> and its wheel tree"
 `cryptography` are the large ones. The repo was 3.24 MiB packed before this, so the
 wheels will dominate its size — a deliberate trade for never depending on the
 network at run time.
+
+## The dpkg conflict — why `--ignore-installed` is mandatory
+
+Discovered in practice 2026-09-12, first time the offline install was run for real.
+
+`cryptography` is present in the base image as a **Debian package** (41.0.7), installed
+by dpkg with no pip `RECORD` file. pip cannot uninstall what dpkg owns, so a plain
+install aborts partway:
+
+```
+ERROR: Cannot uninstall cryptography 41.0.7, RECORD file not found.
+       Hint: The package was installed by debian.
+```
+
+Worse, it is not atomic — that run had already uninstalled `charset-normalizer`
+before hitting the error, leaving the environment mid-transaction.
+
+`--ignore-installed` fixes it by never attempting an uninstall. pip writes to
+`/usr/local/lib/python3.11/dist-packages`, which precedes `/usr/lib/python3/dist-packages`
+on `sys.path`, so the vendored versions shadow dpkg's and the system copies are left
+alone. Verified: `cryptography.__file__` resolves to the vendored 50.0.1.
+
+**Do not "simplify" this by dropping `cryptography`/`cffi`/`pycparser` from the
+vendored set** and relying on Debian's. `pdfminer.six` only asks for
+`cryptography>=36.0.0`, so the system 41.0.7 would satisfy it today — but that makes
+extraction depend on the base image, which is the opposite of why any of this is
+vendored.
 
 ## Updating a version later
 
