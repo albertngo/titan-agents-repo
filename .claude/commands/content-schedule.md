@@ -37,12 +37,20 @@ This is the idempotency gate and it runs before anything else touches Drive.
 
 ### 2 — Resolve the media
 
-`scripts/content_media_resolve.py "<Link to Files>" --json`.
+`Link to Files` is a **folder**, not a file. Resolving it is two Drive listings with
+`scripts/content_media_select.py` deciding in between — the script does no I/O and
+holds no credential, so fetching is yours to do:
 
-Remember `Link to Files` is a **folder**. The resolver walks it to `03_FINAL` and
-refuses, rather than guessing, when there is more than one video, nothing at all, or
-no `03_FINAL`. **Pass its refusal straight through as a hold.** Do not pick a file
-to keep the run moving — which clip goes out is a person's decision.
+1. `search_files` with `parentId = '<content folder id>'` → pipe that JSON to
+   `content_media_select.py --mode find-final` → get the `03_FINAL` id.
+2. `search_files` with `parentId = '<03_FINAL id>'` → pipe to
+   `--mode select-media` → get the media and any cover.
+
+**Exit 2 is a refusal, not a crash.** It means two videos in `03_FINAL`, an empty or
+missing `03_FINAL`, or several images with no video. The reason is on stdout as JSON:
+**pass it straight through as a hold, verbatim.** Do not pick a file to keep the run
+moving — which clip goes out is a person's decision, and a posted clip cannot be
+unposted. Exit 1 is different: that is malformed input, i.e. a bug in this command.
 
 Then check the asset's Drive permissions. **No anyone-with-link grant means the post
 will fail at schedule time**, because Metricool fetches anonymously. Hold it with

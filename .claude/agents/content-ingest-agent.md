@@ -49,8 +49,11 @@ useful finding.
 
 ## Traps
 
-- **`Link to Files` is a folder, not a file.** Resolve it through
-  `scripts/content_media_resolve.py`; never assume the URL points at an asset.
+- **`Link to Files` is a folder, not a file.** List it with `search_files`
+  (`parentId = ...`) and decide with `scripts/content_media_select.py` — twice:
+  `--mode find-final`, then `--mode select-media`. Never assume the URL points at an
+  asset. The script exits 2 to refuse (two videos, empty `03_FINAL`, …); that is a
+  `post_blocked` item carrying the script's own reason, not an error to work around.
 - **Sharing is the failure nobody sees coming.** A Drive asset that opens fine for
   Albert (he is signed in) is invisible to Metricool, which fetches anonymously. If
   `get_file_permissions` shows no anyone-with-link grant, that is a `post_blocked`
