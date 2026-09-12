@@ -1,15 +1,12 @@
 {
   "_comment": "Metricool write registry for the social posting pipeline. Holds the brand id, the Notion 'Next: Post To' -> Metricool provider map, and the per-surface capability matrix that says what each network's API can and cannot actually do. Every id and vocabulary string lives here so a new surface is a one-line data edit, never a code change. Source: mcp__Metricool__getBrandSettings plus the createScheduledPost tool contract, both read live 2026-09-12.",
-  "_maintenance": "Two independent staleness risks. (1) Metricool's createScheduledPost contract is the authority for networkData shapes and the cover rules below — re-read the tool description when a write starts failing on an unknown field. (2) connected_networks reflects what was actually linked in Metricool at capture time; a network absent there cannot be posted to no matter what this file says. Re-run getBrandSettings after connecting anything new.",
-
+  "_maintenance": "Two independent staleness risks. (1) Metricool's createScheduledPost contract is the authority for networkData shapes and the cover rules below \u2014 re-read the tool description when a write starts failing on an unknown field. (2) connected_networks reflects what was actually linked in Metricool at capture time; a network absent there cannot be posted to no matter what this file says. Re-run getBrandSettings after connecting anything new.",
   "config_version": "1",
-
   "provider": "metricool",
   "blog_id": "3951085",
   "_blog_id_comment": "Metricool calls it blogId; it is the brand account id and is required on every write. Brand label 'titanflooring_inc', owner albertngo95@gmail.com.",
   "timezone": "America/Toronto",
-  "_timezone_comment": "IANA identifier, sent inside info.publicationDate as {dateTime, timezone}. Matches CLAUDE.md's America/Toronto convention — do not read the brand's joinDate timezone (Europe/Madrid), which is a Metricool account artifact, not Titan's.",
-
+  "_timezone_comment": "IANA identifier, sent inside info.publicationDate as {dateTime, timezone}. Matches CLAUDE.md's America/Toronto convention \u2014 do not read the brand's joinDate timezone (Europe/Madrid), which is a Metricool account artifact, not Titan's.",
   "connected_networks": {
     "_comment": "What getBrandSettings reported as actually linked on 2026-09-12. A surface whose network is not here CANNOT be written, regardless of its entry in surfaces below.",
     "facebook": "107246082119767",
@@ -17,16 +14,16 @@
     "tiktok": "titanflooring_inc",
     "youtube": "UCRqJ8RUwpirTnMbRqc1qlww",
     "linkedin": null,
-    "gmb": null,
-    "_gaps": "linkedin and gmb are NOT connected. Google Business Profile is the destination that decided this whole tool choice, so its absence blocks the main reason for picking Metricool. Both must be linked in Metricool before any surface routing to them can be enabled."
+    "gmb": "accounts/112083294050413715046/locations/7907972280686088665",
+    "_gaps": "linkedin is NOT connected -- LinkedIn's Metricool integration sits behind a higher tier and Albert declined it 2026-09-12. Its surface stays disabled; LinkedIn posts remain manual. Everything else is linked."
   },
-
   "surfaces": {
     "_comment": "Keyed on the exact Notion 'Next: Post To' select option string. auto_publishable=false means the API cannot do it unattended and the run must fall back to autoPublish:false (a push notification to Metricool's mobile app that a human taps) or hold the row entirely.",
-
     "Facebook Page": {
       "network": "facebook",
-      "network_data": { "type": "POST" },
+      "network_data": {
+        "type": "POST"
+      },
       "auto_publishable": true,
       "requires_media": false,
       "cover": "image_url",
@@ -34,7 +31,9 @@
     },
     "Instagram Reels": {
       "network": "instagram",
-      "network_data": { "type": "REEL" },
+      "network_data": {
+        "type": "REEL"
+      },
       "auto_publishable": true,
       "requires_media": "video",
       "cover": "image_url",
@@ -43,20 +42,32 @@
     },
     "YouTube - Shorts": {
       "network": "youtube",
-      "network_data": { "type": "short", "privacy": "public" },
+      "network_data": {
+        "type": "short",
+        "privacy": "public"
+      },
       "auto_publishable": true,
       "requires_media": "video",
-      "requires_fields": ["title", "madeForKids"],
+      "requires_fields": [
+        "title",
+        "madeForKids"
+      ],
       "cover": "image_url",
       "_cover_comment": "Only renders if the channel is phone-verified AND YouTube has enabled Shorts thumbnails on the account. Channel verified 2026-09-12; Shorts thumbnail availability unconfirmed.",
       "enabled": true
     },
     "YouTube - Long": {
       "network": "youtube",
-      "network_data": { "type": "video", "privacy": "public" },
+      "network_data": {
+        "type": "video",
+        "privacy": "public"
+      },
       "auto_publishable": true,
       "requires_media": "video",
-      "requires_fields": ["title", "madeForKids"],
+      "requires_fields": [
+        "title",
+        "madeForKids"
+      ],
       "cover": "image_url",
       "cover_required": true,
       "_cover_required_comment": "Policy, not an API rule: a default auto-thumbnail is a lasting CTR cost on long-form. A row with no cover is held, per the approval policy.",
@@ -64,7 +75,9 @@
     },
     "LinkedIn": {
       "network": "linkedin",
-      "network_data": { "type": "post" },
+      "network_data": {
+        "type": "post"
+      },
       "auto_publishable": true,
       "requires_media": false,
       "cover": "image_url",
@@ -73,55 +86,79 @@
     },
     "Google My Business": {
       "network": "gmb",
-      "network_data": { "type": "publication" },
+      "network_data": {
+        "type": "publication"
+      },
       "auto_publishable": true,
       "requires_media": false,
       "text_max_chars": 1500,
       "cover": "none",
-      "_video_trap": "gmbData.type 'publication' is a text update and CANNOT carry a video. 'photo' is the ONLY way to send a video to Google Business Profile, and a photo post carries no text of its own. A row with a video and a caption cannot be one GMB post — it is either a silent caption drop or a silent video drop. Hold and report rather than choosing.",
-      "enabled": false,
-      "_enabled_comment": "Google Business Profile is not connected in Metricool. This is the destination that decided the tool choice — connect it first."
+      "_video_trap": "gmbData.type 'publication' is a text update and CANNOT carry a video. 'photo' is the ONLY way to send a video to Google Business Profile, and a photo post carries no text of its own. A row with a video and a caption cannot be one GMB post \u2014 it is either a silent caption drop or a silent video drop. Hold and report rather than choosing.",
+      "enabled": true,
+      "location_id": "accounts/112083294050413715046/locations/7907972280686088665",
+      "_location_comment": "One Metricool brand maps to one GMB location. A second location would need a second brand and therefore a second blog_id -- this file assumes one."
     },
     "TikTok": {
       "network": "tiktok",
-      "network_data": { "privacyOption": "PUBLIC_TO_EVERYONE" },
+      "network_data": {
+        "privacyOption": "PUBLIC_TO_EVERYONE"
+      },
       "auto_publishable": true,
       "requires_media": true,
       "cover": "image_url",
-      "_cover_comment": "Silently ignored on personal TikTok accounts — only Business-connected accounts honour a custom cover. Unlike every other network this failure is silent, not an error.",
+      "_cover_comment": "Silently ignored on personal TikTok accounts \u2014 only Business-connected accounts honour a custom cover. Unlike every other network this failure is silent, not an error.",
       "enabled": true,
       "_enabled_comment": "Connected in Metricool. Still needs adding as an option on the Notion 'Next: Post To' property before a row can route here."
     }
   },
-
   "story_surfaces": {
     "_comment": "Stories are a variant of an existing surface, selected by the Notion 'Story Variant' property, not separate Next: Post To options.",
-    "Facebook Page": { "network": "facebook", "network_data": { "type": "STORY" }, "cover": "none" },
-    "Instagram Reels": { "network": "instagram", "network_data": { "type": "STORY" }, "cover": "none" },
+    "Facebook Page": {
+      "network": "facebook",
+      "network_data": {
+        "type": "STORY"
+      },
+      "cover": "none"
+    },
+    "Instagram Reels": {
+      "network": "instagram",
+      "network_data": {
+        "type": "STORY"
+      },
+      "cover": "none"
+    },
     "TikTok": {
       "supported": false,
-      "_comment": "TikTok's Content Posting API has no story format and Metricool exposes none. Not a tool gap — a platform one. Always Manual Required; never retry."
+      "_comment": "TikTok's Content Posting API has no story format and Metricool exposes none. Not a tool gap \u2014 a platform one. Always Manual Required; never retry."
     },
-    "_text_rule": "A Story has no caption of its own. If every provider on the post is a Story, do not send info.text at all — it publishes nowhere. If a Story rides alongside a non-Story network, the text belongs to that other network and the Story ignores it.",
+    "_text_rule": "A Story has no caption of its own. If every provider on the post is a Story, do not send info.text at all \u2014 it publishes nowhere. If a Story rides alongside a non-Story network, the text belongs to that other network and the Story ignores it.",
     "_decorated_rule": "Link stickers, polls, mentions, music and location tags cannot be set through Meta's API. A Decorated Story must be sent with autoPublish:false so Metricool pushes a notification for a human to complete by hand."
   },
-
   "cover_rules": {
     "_comment": "From the createScheduledPost contract. Getting these wrong rejects the WHOLE post, not just the cover.",
     "image_field": "videoThumbnailUrl",
     "frame_field": "videoCoverMilliseconds",
-    "accepted_formats": ["jpg", "jpeg", "png"],
+    "accepted_formats": [
+      "jpg",
+      "jpeg",
+      "png"
+    ],
     "requires_video_in_media": true,
-    "applicable_networks": ["instagram", "tiktok", "youtube", "linkedin", "facebook"],
+    "applicable_networks": [
+      "instagram",
+      "tiktok",
+      "youtube",
+      "linkedin",
+      "facebook"
+    ],
     "_hard_trap": "If a cover field is sent when the conditions are not met, the ENTIRE request is rejected with VIDEO_THUMBNAIL_NOT_APPLICABLE. Omit both fields rather than sending them speculatively. The one exception is a personal TikTok account, where the cover is silently dropped instead.",
     "_not_applicable": "Never send a cover for any Story (Facebook or Instagram) or for Google Business Profile."
   },
-
   "write_mode": {
     "_comment": "Staged rollout, Albert 2026-09-12. Every write goes out as a Metricool draft until this flips. Flipping it is a dated decision note in the vault, not a quiet edit.",
     "mode": "draft",
     "draft_flag": "info.draft",
-    "_mechanism": "info.draft:true is the draft switch. NOT createScheduledPostForReview — that is a different feature requiring a Metricool plan with team management and an explicit reviewer email list, which Pro does not include.",
-    "_auto_publish_flag": "info.autoPublish — true publishes via the API at the scheduled time; false sends a push notification to the Metricool mobile app for a human to publish by hand. This is the Decorated Story fallback, and it is independent of draft."
+    "_mechanism": "info.draft:true is the draft switch. NOT createScheduledPostForReview \u2014 that is a different feature requiring a Metricool plan with team management and an explicit reviewer email list, which Pro does not include.",
+    "_auto_publish_flag": "info.autoPublish \u2014 true publishes via the API at the scheduled time; false sends a push notification to the Metricool mobile app for a human to publish by hand. This is the Decorated Story fallback, and it is independent of draft."
   }
 }
