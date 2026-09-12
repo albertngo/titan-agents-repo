@@ -24,8 +24,10 @@
       "new_products": "New Products",
       "notes": "Notes",
       "review_reason": "Review Reason",
-      "extracted_files": "Extracted Files"
+      "extracted_files": "Extracted Files",
+      "troubled_files": "Troubled Files"
     },
+    "_troubled_files_note": "Added 2026-09-12 (Albert). A `file` property, separate from `Extracted Files` on purpose: Extracted Files holds the import artifacts, Troubled Files holds the exception report. Keeping them apart is what makes `Troubled Files is not empty` a usable worklist filter. Holds ONE csv per run, per contracts/troubled-skus-schema.md, and is left EMPTY on a clean run — never a headers-only file, which would make that filter meaningless.",
     "_write_key_trap": "The extraction state key is `Extraction Status`, NOT `Status`. Writing `Status` returns 400 validation_error.",
     "company_profiles_file": "platform-settings/company-profiles.md",
     "_company_profiles_note": "Where a run records what a company's non-price-list attachment showed about their product lines. See methods/pricelist-extraction.md, 'When the file is not a price list at all'.",
@@ -51,8 +53,8 @@
         "_never_leave_at": [
           "Extracting"
         ],
-        "_ready_to_upload_option_is_MISSING": "Verified absent on the live data source 2026-09-10. It WAS present earlier the same day. Nothing in this repo removed it — the only schema statements run were ADD COLUMN 'Review Reason' and ALTER COLUMN on the three select trackers, and Extraction Status is a status property untouched by those. It was most likely removed in the Notion UI. RECORDED RATHER THAN RESTORED because this is a shared team database and the removal may be deliberate. IT MATTERS: it was the reviewer's 'I have checked this, go' signal — the only thing separating a reviewed row from an unreviewed one — and the catalogue-sync routine scoped on it. With the option gone that filter matches nothing, forever, silently. See _catalog_sync_scope below.",
-        "_catalog_sync_scope": "Until Extracted [Ready to Upload] is restored or replaced, the catalogue-sync routine has NO safe scope filter and must not run unattended: 'Airtable Sync is Pending' alone would sweep in rows nobody has reviewed, which inverts the pipeline's whole order. Restore the option, or name a replacement signal, before scheduling the routine."
+        "_ready_to_upload_option_is_MISSING": "Broken 2026-09-10, confirmed restored live 2026-09-11 (see CLAUDE.md Scheduling status). Historical note only, kept for the incident record.",
+        "_catalog_sync_scope": "SUPERSEDED 2026-09-11 (Albert). The merged routine (methods/pricelist-pipeline-routine-prompt.md) no longer scopes on this option at all — sync now runs immediately after extraction, same session, same notionID, and never waits for a person to set Extracted [Ready to Upload] first. That status still exists for the manual CSV path only. The safety property this note used to describe is now enforced differently: /catalog-sync's own policy auto-approval rubric (contracts/catalog-plan-schema.md) decides what may write, not a pre-filter on which rows sync even looks at."
       },
       "airtable_sync": {
         "_type": "select",
@@ -183,6 +185,8 @@
     "dir": "ingest/{date}",
     "airtable_upload": "{supplier_slug}_airtable_upload_{date}.csv",
     "ls_upload": "{supplier_slug}_ls_upload_{date}.csv",
+    "troubled": "{supplier_slug}_troubled_{date}.csv",
+    "_troubled_note": "The exception report, per contracts/troubled-skus-schema.md. Attaches to `Troubled Files`, NOT `Extracted Files`. Written only when the run produced at least one troubled SKU; a clean run produces no file and attaches nothing. Both stages write into the same file before it is attached.",
     "attachment_mime": "text/csv",
     "_attachment_note": "Notion 400s on a content-type mismatch — the multipart upload must carry ;type=text/csv. api.notion.com must be allowed by the environment egress policy (it is, since 2026-09-03)."
   }

@@ -5,7 +5,10 @@ Multi-agent system for Titan Flooring, split into two agent classes:
 - **`*-ingest` agents** — read-only. Pull from one platform each, normalize to the
   shared contract, write dated output files. Safe to run unattended on a schedule.
 - **`*-actions` agents** — write. Execute explicit, pre-approved actions on a platform
-  and append to the daily actions log. Never scheduled, never autonomous.
+  and append to the daily actions log. Never scheduled, never autonomous — except a
+  narrow, dated 2026-09-11 exception for `lightspeed-actions-agent` and
+  `airtable-actions-agent` via `/catalog-sync`'s policy auto-approval; see Agent class
+  rules below.
 
 A daily orchestrator spawns the ingesters, reads their outputs, produces the daily
 brief, then hands off to `vault-writer-agent` (vault) and `.claude/commands/notion-sync.md`
@@ -42,28 +45,48 @@ Not part of `/daily-ingest`. Triggered per price list, and it is the only flow t
 writes to two platforms:
 
 ```
-Make 4381438  ->  Notion Price Lists row  ->  /process-price-list  (produces 2 CSVs, writes no platform)
+Make 4381438  ->  Notion Price Lists row  ->  /process-price-list  (produces 2 CSVs, commits them, writes no platform)
                                                      |
-                                   /catalog-sync <notionID>  — steps 1-6
+                                   /catalog-sync <notionID>  — steps 1-6, same session
                                                      |
               scripts/lightspeed_pull.py  ------>  scripts/catalog_reconcile.py
               (read-only catalogue pull)          (one reviewable diff, writes no platform)
                                                      |
-                                          [ a person approves action ids ]
+                      [ policy auto-approves what qualifies; a person approves the rest ]
                                                      |
                       lightspeed-actions-agent  +  airtable-actions-agent
 ```
 
 **`/catalog-sync` is the entry point** (`.claude/commands/catalog-sync.md` — the
 authoritative procedure; `methods/pricelist-pipeline-routine-prompt.md` holds the
-merged routine's stored text and its rationale, Stage 2 of it).
+merged routine's stored text and its rationale).
 
-**Stage 2 runs `/catalog-sync` steps 1–3 only, and that is deliberate.** An unattended
-sweep pulls, reconciles, produces a plan per row and stops; the writes are
-human-triggered. `*-actions` agents are never scheduled and never autonomous, so the
-automation covers walking a 14,000-product catalogue and catching identity
-collisions, and asks a person only for the yes — now one yes per batch, not one per
-row. **A run that ends at the approval gate has SUCCEEDED.**
+**`/catalog-sync` runs all six steps in one unattended session (2026-09-11, widened
+2026-09-12 — both Albert), immediately after `/process-price-list` on the same
+notionID.** Policy approves and executes everything except three carve-outs in
+`contracts/catalog-plan-schema.md` ("Policy auto-approval"):
+
+1. `blocked` entries — structural; no `id` exists to approve.
+2. Rows flagged `Ambiguous Pricing`.
+3. Every action on a plan whose `cost_basis` is `null`.
+
+`New Supplier` no longer holds a write (2026-09-12, reversing the previous day's
+rule). Neither do `Ambiguous Naming`, `Unmapped Grade`, `Unmapped Category` or
+`Spec Gap` — those write and are reported. The two pricing carve-outs remain because
+a wrong cost is the one error that is silent *and* monetary: it doesn't look broken,
+it just sells at the wrong margin, and a later correction doesn't recover the
+difference.
+
+`*-actions` agents still execute **only** an id that appears `approved` in the
+approval file; what changed is who writes that file.
+
+**The human checkpoint is now a report, not a gate.** Everything held, plus
+everything written carrying a flag, lands in a per-SKU CSV
+(`contracts/troubled-skus-schema.md`) attached to the row's **`Troubled Files`**
+property, with a mandatory PushNotification behind it.
+`Troubled Files is not empty` is the worklist. This is a deliberately weaker control
+than stopping — a wrong spec can go live and be found after — and that trade is
+recorded in `methods/pricelist-pipeline-routine-prompt.md` rather than left implicit.
 
 **Lightspeed is written before Airtable** — the reverse of `forced_downstream_order` in
 `pricelist-sources.json`, which describes the manual CSV flow. `POST /api/2.0/products`
@@ -92,17 +115,21 @@ Notion's own reversible soft-delete, never anything harder, and always reported.
 Full procedure: `methods/pricelist-extraction.md`, "When the file is not a price
 list at all."
 
-**Approval is batched, not removed (2026-09-11, Albert).** A Stage 2 sweep can cover
-every `Ready to Upload` row in one run and present every plan as one digest; one
-explicit reply approves across the batch. See `/catalog-sync` step 3a. Steps 4–6 are
-still never run unattended — that invariant did not move.
+**The human gate became a human report (2026-09-12, Albert — superseding both
+same-day-2026-09-11 notes above and below this one).** Policy clears everything but
+the three carve-outs; what it holds is reported per SKU in `Troubled Files` and
+pushed, not queued behind a stop. `/catalog-sync` step 3a still exists for clearing
+that residue in one reply, but on an unattended run it is a digest, not a wait.
+Nothing changed about an action needing an id in the approval file before an
+`*-actions` agent touches it.
 
-> **⚠️ Scheduling status (2026-09-11).** The missing `Extraction Status =
-> Extracted [Ready to Upload]` option (broken 2026-09-10) is confirmed restored on the
-> live property. The remaining gate: **`/catalog-sync` has not been run end to end in
-> a recorded, verified interactive session** — do one, ideally the first real Stage 2
-> batch, before relying on the sweep on a schedule. Detail:
-> `methods/pricelist-pipeline-routine-prompt.md`.
+> **⚠️ Scheduling status (2026-09-12).** **None of this has run end to end yet.**
+> `/catalog-sync` has never completed a recorded, verified session; the policy
+> auto-approval path has never executed a real write; and the troubled-SKUs CSV and
+> `Troubled Files` property have never been produced by a real run. The first fire
+> under this design writes to a live POS with no gate in front of it — watch it,
+> don't assume the docs are enough. Detail:
+> `methods/pricelist-pipeline-routine-prompt.md`, Still open.
 
 **Only two files can change the POS**: `scripts/lightspeed_write.py` and
 `scripts/lightspeed_push.py`. The read path contains no write verb and a test
@@ -122,8 +149,20 @@ Nothing else changes.
 | Output | Overwrites `<source>.json` (idempotent) | Appends to `actions-log.json` (audit trail) |
 | Failure mode | Writes `status: "error"`, never blocks siblings | Stops the batch, logs, reports |
 
-The flow is always: **ingest → decide (Albert, a department lead, or the
-orchestrator) → act**. No agent does all three steps.
+**"Explicit instruction + approval gate only" (2026-09-11 exception, Albert, widened
+2026-09-12):** for `lightspeed-actions-agent` and `airtable-actions-agent`
+specifically, invoked only via `/catalog-sync`, "approval" now includes the policy
+auto-approval in `contracts/catalog-plan-schema.md` as well as a person's yes — and
+since 2026-09-12 that policy clears everything but three carve-outs, so in practice
+most catalogue writes now happen with no person in the loop at all. The gate itself —
+an actions agent executes only an id that appears `approved` in an approval file,
+never originates a write on its own — did not move; only who satisfies it. Every
+other `*-actions` agent (`ghl-actions-agent` included) is unchanged: explicit
+instruction and a person's approval, still, always.
+
+The flow is always: **ingest → decide (Albert, a department lead, policy for the
+narrow catalogue slice above, or the orchestrator) → act**. No agent does all three
+steps.
 
 A third class, `*-lead`, occupies the decide step: read-only against contract
 files (`tools: Read, Write`, no `Bash`, no `mcp__*`), writes exactly one plan,
@@ -145,26 +184,43 @@ can affect `DAILY-BRIEF.md` — it's already written before either starts.
 **The catalogue pipeline is separate and has its own routine** — not part of
 `/daily-ingest`, and it never touches the brief.
 
-**One routine, two stages, branching on the fire payload** (merged 2026-09-11,
-Albert — previously two separately-triggered routines):
+**One routine, one shape, always keyed on a notionID** (re-merged 2026-09-11, Albert —
+collapses what was briefly "two stages branching on the fire payload" into a single
+continuous run per row):
 
-1. **Stage 1 — Extraction.** Fires with `{"notionID": …}` (Make 4381438, the moment a
-   new price list lands). Runs `/process-price-list`, attaches two CSVs, sets
-   `Extraction Status` to `Extracted [Needs Review]` (or `[Error]`), writes no
-   platform. Never sets `Ready to Upload` — that's Albert's alone.
-2. **Stage 2 — Sync.** Fires with no `notionID` (a periodic sweep). **Runs only when
-   the payload carries no notionID — a notionID present means this fire is Stage 1's,
-   and Stage 2 is skipped entirely.** Sweeps every row at `Extracted [Ready to
-   Upload]`, runs `/catalog-sync` steps 1–3 per row — read-only, stopping at the
-   approval gate — and reports every plan as one digest. **Not yet safe to rely on
-   unattended** — see Scheduling status above.
+Every fire carries `{"notionID": …}` (Make 4381438, the moment a new price list
+lands). One session, in order, on that one row:
+
+1. **Extract.** Runs `/process-price-list`. Downloads the PDF, assigns `Company` and
+   `Tags`, extracts against the live Airtable catalogue, produces and **commits** the
+   two upload CSVs to `ingest/YYYY-MM-DD/`, attaches them to the row, sets
+   `Extraction Status` to `Extracted [Needs Review]` (or `[Error]`). Writes no
+   platform.
+2. **Sync, immediately, same session.** Runs `/catalog-sync` on the same notionID,
+   reading the CSVs the previous step just committed — never a Notion re-download,
+   which is why the commit in step 1 is load-bearing now, not just tidy. Pulls
+   Lightspeed, reconciles, produces the plan, then applies policy auto-approval
+   (`contracts/catalog-plan-schema.md`) and writes everything but the three
+   carve-outs. Held rows and flagged writes go to the troubled CSV on `Troubled
+   Files`, and the run pushes a notification naming the counts.
+
+`Extracted [Ready to Upload]` is no longer a precondition this routine waits for —
+sync no longer waits on Albert manually promoting a row before it runs. The status
+still exists for the manual CSV path (whoever runs a stage by hand still uses it),
+per "all three trackers are kept" below.
+
+**A periodic no-`notionID` sweep can still exist as a backstop**, not the primary
+path: it would pick up any row where `Airtable Sync` is still `Pending`/`Partial`
+after its own fire should have cleared it (an interrupted run, a Lightspeed outage
+mid-session) and re-run `/catalog-sync` on it. Not wired up as of this edit — add it
+only if rows are actually observed getting stuck, not preemptively.
 
 Canonical text: `methods/pricelist-pipeline-routine-prompt.md`. It stores a *pointer*
 to `/process-price-list` and `/catalog-sync` rather than a copy of either procedure —
 same reason as always: on 2026-09-03 the (then-separate) extraction routine fired
 carrying a procedure that had gone stale on 09-01 and reported success against an
 instruction set missing five of its seven steps. A pointer has nothing in it to fall
-behind. The two predecessor files (`methods/pricelist-routine-prompt.md`,
+behind. The predecessor files (`methods/pricelist-routine-prompt.md`,
 `methods/catalog-sync-routine-prompt.md`) are superseded but kept for their
 changelogs.
 
