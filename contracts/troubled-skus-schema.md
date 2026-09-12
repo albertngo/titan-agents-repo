@@ -87,6 +87,7 @@ sentence a run improvised.
 | `spec_gap` | A flooring row missing something the upload cannot invent — most often a blank `Box size (sf)` |
 | `sku_format_mismatch` | The supplier's documented SKU format disagrees with the live base. The skill has been wrong about this before (Grandeur, 2026-09-03) — never silently reconciled |
 | `new_supplier` | Zero existing Airtable rows for this supplier. Row-level, so every SKU on the file carries it |
+| `pdf_tooling_unavailable` | `pdfplumber` could not be imported, so the price list could not be read by the only sanctioned method (Albert, 2026-09-12). **File-level, not SKU-level** — see below |
 
 ### Stage `sync`
 
@@ -108,6 +109,24 @@ warning that is SKU-scoped.
 `airtable_side_not_planned` is deliberately **not** here. It is plan-level, not
 SKU-level — it means the plan contains no Airtable actions at all — so it belongs in
 `Notes`, not in a file whose unit is one SKU.
+
+### `pdf_tooling_unavailable` — the one file-level row
+
+This reason is the exception to "one row per SKU", because when it fires there are no
+SKUs: nothing was read, so nothing was extracted. Write **exactly one row** with
+`sku` and `product_name` blank, `stage: extract`, `disposition: held`, and `detail`
+naming the concrete failure (`ModuleNotFoundError: pdfplumber`, or
+`host_not_allowed: pypi.org` if an install was attempted).
+
+That single row is the whole file, and it is the only case where the troubled CSV is
+written while `Extracted Files` stays empty — there are no upload CSVs to attach,
+by design. `Extraction Status` is `Extracted [Error]`, and `/catalog-sync` does not
+run: a sync needs an upload file, and inventing one is the failure this exists to
+prevent.
+
+**Never** resolve this reason by extracting the PDF some other way. See
+`/process-price-list` step 2.0 for the prohibited substitutes and why the list is
+explicit.
 
 ## Which reasons hold, and which write anyway
 

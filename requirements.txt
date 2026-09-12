@@ -1,0 +1,21 @@
+# Python dependencies for titan-agents-repo.
+#
+# Added 2026-09-12. The repo had NO dependency file for its first three months,
+# which is how `pdfplumber` came to be mandated in four documents while never
+# being installed anywhere — see methods/pricelist-extraction.md, "PDF tooling is
+# a hard precondition".
+#
+# EGRESS: installing these needs `pypi.org` and `files.pythonhosted.org` on the
+# environment's network allowlist. As of 2026-09-12 they are NOT, and the install
+# fails with `x-deny-reason: host_not_allowed`. Add them in the environment's
+# network egress settings (see https://code.claude.com/docs/en/claude-code-on-the-web).
+# Until then `/process-price-list` cannot run in a cloud session and is required
+# to flag and stop rather than substitute another extraction method.
+
+# PDF extraction — the ONLY sanctioned way to read a supplier price list.
+# Never substitute a rendered/visual read, Microsoft Graph's text conversion, or
+# any other method. Albert, 2026-09-12.
+pdfplumber>=0.11
+
+# Pinned transitively by pdfplumber, listed so a resolver failure is legible:
+#   pdfminer.six, pillow, charset-normalizer, cryptography

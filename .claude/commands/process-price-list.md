@@ -35,6 +35,50 @@ file property is a `file://{...}` URL-encoded JSON envelope — decode it and ta
 
 ## 2. Download the actual bytes
 
+### 2.0 FIRST — verify pdfplumber, before anything else
+
+**Albert, 2026-09-12: pdfplumber is the only sanctioned way to read a price list.
+If it is unusable, flag and stop. Never substitute another method.**
+
+Run this before the download, before touching Notion state, before any extraction:
+
+```bash
+python3 -c "import pdfplumber; print(pdfplumber.__version__)"
+```
+
+If that fails, **this run is over.** Do all of the following and nothing else:
+
+- Set `Extraction Status` = `Extracted [Error]` (per step 6's write rules).
+- `Notes` = the exact failure, naming `pdfplumber` and the reason — a missing
+  module, or `host_not_allowed` on `pypi.org` if an install was attempted.
+- One row in the troubled CSV, `stage: extract`, `reason: pdf_tooling_unavailable`,
+  `disposition: held` — per `contracts/troubled-skus-schema.md`.
+- Send a PushNotification saying extraction could not run and why.
+- **Produce no upload CSVs. Attach nothing to `Extracted Files`. Do not continue to
+  `/catalog-sync`** — there is no input for it, and a sync on invented data is worse
+  than no sync.
+
+**Explicitly prohibited as substitutes**, however well any of them appears to work:
+reading the rendered PDF visually (a model reading the page image), the
+Microsoft-365 connector's `read_resource` text conversion, `pdftotext`/poppler,
+an LLM transcription of a screenshot, or retyping figures from the Notion `Notes` of
+a previous run. A price that reaches the POS must be traceable to a deterministic
+parse of the supplier's own bytes.
+
+**Why this is a hard gate and not a preference.** On 2026-09-01 the pdfplumber method
+was written into these docs from a session where it genuinely worked. On 2026-09-02 the
+import in `scripts/pricelist_fetch.py` was made lazy — "so fetching works without it
+installed" — and from 2026-09-03 to 09-09, 15 `airtable_upload` CSVs were committed by
+cloud sessions that had no way to run it, with no `requirements.txt` in the repo and
+`pypi.org` off the egress allowlist. The documented method and the executed method had
+silently diverged for ten days, and the output looked fine, so nothing caught it. This
+check is what makes that divergence impossible rather than merely discouraged.
+
+Dependency is declared in `requirements.txt`; installing it needs `pypi.org` and
+`files.pythonhosted.org` on the environment's network allowlist.
+
+### 2.1 Then download
+
 ```
 python3 scripts/pricelist_fetch.py "<share-link>" /tmp/pricelist.pdf
 ```
