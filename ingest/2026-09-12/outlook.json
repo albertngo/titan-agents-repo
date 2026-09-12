@@ -1,0 +1,26 @@
+{
+  "contract_version": "1",
+  "source": "outlook",
+  "run_at": "2026-09-12T08:12:24-04:00",
+  "status": "error",
+  "error": "Microsoft Graph token request failed before reaching Microsoft: the egress proxy rejected the CONNECT to login.microsoftonline.com with 403 (recentRelayFailures kind: connect_rejected, detail: 'gateway answered 403 to CONNECT (policy denial or upstream failure)'). This is an organization egress-policy denial on this session's proxy, not a credential problem and not a per-mailbox Application Access Policy gap -- GRAPH_TENANT_ID/GRAPH_CLIENT_ID/GRAPH_CLIENT_SECRET/OUTLOOK_MAILBOXES are all present in .env. Per proxy guidance (/root/.ccr/README.md), 403/407 from the proxy must be reported, not retried or routed around. No token was obtained, so neither Inbox nor SentItems could be pulled for any of the 4 configured mailboxes (albert@titanfloors.ca, info@titanfloors.ca, pourya@titanfloors.ca, mike@titanfloors.ca) -- zero messages scanned. Matches the documented pattern from 2026-08-05..07 (outlook blocked at proxy CONNECT to graph.microsoft.com); this time the block is one hop earlier, at the OAuth token endpoint.",
+  "items": [],
+  "metrics": {
+    "total_scanned": 0,
+    "customer": 0,
+    "supplier": 0,
+    "admin": 0,
+    "noise_skipped": 0,
+    "unanswered_customer": 0,
+    "bounces": 0,
+    "scanned_albert": 0,
+    "scanned_info": 0,
+    "scanned_pourya": 0,
+    "scanned_mike": 0
+  },
+  "needs_attention": [
+    "Outlook ingest could not run today (2026-09-12): the session's egress proxy returned 403 on the CONNECT to login.microsoftonline.com, so no Graph token was obtained and no mailbox (albert@/info@/pourya@/mike@) was scanned. Ask Albert (or whoever manages this session's egress allowlist) to allow login.microsoftonline.com (and graph.microsoft.com) for this session -- same fix that unblocked the 2026-08-08 catch-up run after a similar block.",
+    "Last confirmed successful Outlook ingest was 2026-09-08 (run_at 2026-09-08T08:20:03-04:00). With today's failure, the un-scanned gap is now 2026-09-08 through 2026-09-12 (~4 days, ~96h) and growing -- still inside the 7-day max_catchup_days cap, but the NEXT successful run must widen its Inbox window to at least cover 2026-09-08T08:20:03-04:00 onward (plus unanswered_threshold_hours on the Sent Items side) rather than defaulting back to 24h, or mail from these 4 days is silently dropped for good.",
+    "No unanswered-customer or bounce detection could run this cycle since no messages were pulled -- treat the customer/supplier inbox as unaudited for 2026-09-08 through 2026-09-12 until the next successful run closes the gap."
+  ]
+}
