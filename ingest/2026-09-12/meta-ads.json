@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-09-12T08:12:32-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $201.10 spend, 16 leads, $12.57 CPL — Flooring Problems Campaign",
+      "summary": "The last meta-ads.json on this branch covered through 2026-09-07, so this run widened to a 4-day catch-up window (2026-09-08 to 2026-09-11) to close the gap. Across those 4 days Meta spent $201.10, all on the sole actively-delivering campaign, Flooring Problems Campaign, generating 16 leads at $12.57 CPL — in line with the 7-day baseline (2026-09-05 to 2026-09-11: $345.66 / 27 leads, ~$12.80 CPL), so no anomaly. Account is ACTIVE and no ads are flagged DISAPPROVED/WITH_ISSUES.",
+      "timestamp": "2026-09-11T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 20110,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 20110,
+    "impressions": 5393,
+    "clicks": 156,
+    "leads": 16,
+    "cpl_cents": 1257,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Last prior meta-ads.json visible on this branch is 2026-09-08 (window ending 2026-09-07); no evidence in ingest/ or run-ledger.json that 2026-09-08 through 2026-09-11 were ever pulled, so today's window was widened to 4 days (capped at 7) to cover the gap. This repo has a documented history of 'gaps' that were actually branch-isolation artifacts (real runs stranded on unmerged session branches, per run-ledger.json's 2026-08-29/09-03/09-08 notes) — this session had no other branches and no gh access to check, so the gap could not be ruled out as one of those; flagging rather than assuming either way.",
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued at 16 for this window and 27 for the 7-day baseline, exactly matching the counted lead totals both times, same as flagged on 2026-08-31, 09-02, and 09-07/09-08). No discrepancy in the counted total so far, but this is a recurring pattern across many consecutive runs — the script's lead-action set should be extended rather than continuing to hand-note it."
+  ]
+}
