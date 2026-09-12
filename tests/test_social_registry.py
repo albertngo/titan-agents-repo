@@ -131,6 +131,24 @@ class SocialRegistryCase(unittest.TestCase):
                              f"{conv['prefix']!r} is a substring of legacy {legacy!r} — "
                              "a half-migrated estate could match the wrong folder")
 
+    def test_registry_surfaces_match_the_notion_option_list(self):
+        """social-destinations surfaces and Notion's 'Next: Post To' options are two
+        halves of one mapping. A surface Notion cannot select is dead config; an
+        option with no surface routes nowhere and fails at plan time."""
+        registry = set(surfaces(self.dest))
+        notion = set(self.src["sources"]["titan_content_ideas"]["surface_values"])
+        self.assertEqual(registry, notion,
+                         "registry surfaces and Notion 'Next: Post To' options have drifted")
+
+    def test_pipeline_never_writes_the_planning_properties(self):
+        """Deciding what to post is a person's job. An agent that can rewrite
+        'Next: Post To' or 'Caption' has crossed from executing into originating."""
+        w = self.src["sources"]["titan_content_ideas"]["write_properties"]
+        written = {v for k, v in w.items() if not k.startswith("_")}
+        for forbidden in ("Status", "Next: Post To", "Caption", "Post Date", "Link to Files"):
+            self.assertNotIn(forbidden, written,
+                             f"{forbidden} must never be writable by the pipeline")
+
     def test_agent_action_types_are_in_the_log_vocabulary(self):
         """actions-log-schema.md's table is closed. An agent writing a type that is
         not in it produces a log entry nothing downstream can classify."""

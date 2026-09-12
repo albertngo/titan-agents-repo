@@ -26,7 +26,52 @@
         "Parent item",
         "Sub-item",
         "Project"
-      ]
+      ],
+      "_schema_verified": "2026-09-12: 8 properties added live, TikTok added to 'Next: Post To'. 14 rows carrying 'Instagram Reels' verified intact after the ALTER.",
+      "read_properties": [
+        "Content Name",
+        "userDefined:ID",
+        "Status",
+        "Post Date",
+        "Next: Post To",
+        "Story Variant",
+        "Caption",
+        "Cover Image URL",
+        "Cover Frame (ms)",
+        "Link to Files",
+        "Content Format",
+        "Content Type",
+        "Series"
+      ],
+      "write_properties": {
+        "_comment": "The ONLY properties any part of this pipeline may write. Everything else on the row is Albert's and the team's. Mirrors the read/write split in pricelist-sources.json.",
+        "post_status": "Post Status",
+        "metricool_post_id": "Metricool Post ID",
+        "live_url": "Live URL",
+        "media_direct_url": "Media Direct URL"
+      },
+      "post_status_values": [
+        "Queued",
+        "Scheduled",
+        "Posted",
+        "Failed",
+        "Manual Required"
+      ],
+      "story_variant_values": [
+        "Not a Story",
+        "Plain Story",
+        "Decorated Story"
+      ],
+      "surface_values": [
+        "Google My Business",
+        "Facebook Page",
+        "Instagram Reels",
+        "YouTube - Shorts",
+        "YouTube - Long",
+        "LinkedIn",
+        "TikTok"
+      ],
+      "_never_write": "Never write Status, Next: Post To, Caption, Post Date or Link to Files. Those are the plan; the pipeline reports against them and does not edit them. An agent that 'corrects' Next: Post To has decided what to post, which is the one thing it must never do."
     },
     "content_calendar_log": {
       "_comment": "Append-only posting history. One row per platform per content item \u2014 this is the fan-out record, not a duplicate of the idea.",
