@@ -91,7 +91,43 @@ redirect chain sets a `FedAuth` cookie the final hop needs — plain `curl -L` g
 returns Graph's text conversion rather than bytes, which flattens table geometry. Use
 pdfplumber on the downloaded bytes.
 
-### 2.2 Use `extract_tables()`, not `extract_text()` — and skip table 0
+### 2.2 Extract via the script — two engines must agree
+
+**Do not call pdfplumber by hand. Run this:**
+
+```bash
+python3 scripts/pricelist_extract.py /tmp/pricelist.pdf --json /tmp/extract.json
+```
+
+It parses with pdfplumber and **cross-checks every monetary value against
+pypdfium2 (PDFium, Google's C library)** — a completely independent engine that
+shares no code with pdfminer.six, so the two fail differently. Exit codes:
+
+| Exit | Meaning | What to do |
+|---|---|---|
+| `0` | Both engines agree on every monetary value | Proceed |
+| `1` | **Disagreement** — pdfplumber produced a figure PDFium cannot see | **Stop.** Parse defect, see below |
+| `2` | pdfplumber or pypdfium2 missing | Stop, per step 2.0 |
+
+**On exit 1 the extraction is void.** Do not use any of its numbers, do not
+"pick the more likely one", and do not fall back to reading the page. Set
+`Extraction Status` = `Extracted [Error]`, put the disagreeing values in `Notes`,
+write one `cross_check_failed` row to the troubled CSV, notify, and stop.
+
+**Why the check compares value sets rather than rows.** The two engines
+legitimately disagree on *reading order* — that is layout, not data. On the
+HOMESPRO sheet PDFium places `$13/roll` away from "IXPE Underlay" because that
+cell is merged across the trim columns. Halting on that would block a correct
+extraction. So the halting condition is narrower and sharper: **every value
+pdfplumber extracted must exist somewhere in PDFium's text.** That catches a
+misread or manufactured price — which would be absent from the other engine —
+while ignoring layout differences. PDFium seeing *extra* values is normal and
+never halts; it reads page prose (phone numbers, addresses) that pdfplumber's
+table cells exclude.
+
+Verified on HOMESPRO 2026-09-12: 11 distinct values, both engines, full agreement.
+
+### 2.2a What the script handles for you, and why it must
 
 Verified on the HOMESPRO sheet, 2026-09-12, and it is the difference between a clean
 parse and a useless one.

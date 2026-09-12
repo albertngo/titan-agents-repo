@@ -143,5 +143,83 @@ class TestPdfplumberAvailable(unittest.TestCase):
         )
 
 
+def _load_extract_module():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "pricelist_extract", REPO_ROOT / "scripts" / "pricelist_extract.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+class TestCrossCheckCatchesDisagreement(unittest.TestCase):
+    """The two-engine cross-check must FAIL when the engines disagree.
+
+    A check that has only ever been observed to pass is not a check. These cases
+    exercise the halting condition directly, because the real-PDF path cannot
+    produce a disagreement on demand.
+    """
+
+    def setUp(self):
+        self.m = _load_extract_module()
+
+    def test_value_pdfplumber_invented_is_caught(self):
+        """The failure that matters: a price PDFium cannot see anywhere."""
+        agreed, plumber_only, _ = self.m.compare_values(
+            ["$1.45", "$1.68", "$9.99"],   # 9.99 is the misparse
+            ["$1.45", "$1.68"],
+        )
+        self.assertEqual(plumber_only, ["9.99"])
+        self.assertEqual(agreed, ["1.45", "1.68"])
+
+    def test_pdfium_seeing_extra_values_is_not_a_failure(self):
+        """PDFium reads page prose too, so it legitimately sees more."""
+        agreed, plumber_only, fium_only = self.m.compare_values(
+            ["$1.45"],
+            ["$1.45", "$13", "$416"],      # phone numbers, footer text, etc.
+        )
+        self.assertEqual(plumber_only, [], "extra PDFium values must not halt")
+        self.assertEqual(fium_only, ["13", "416"])
+
+    def test_formatting_differences_are_not_disagreement(self):
+        """'$ 1,234.50' and '$1234.50' are the same value."""
+        _, plumber_only, _ = self.m.compare_values(
+            ["$ 1,234.50"], ["$1234.50"])
+        self.assertEqual(plumber_only, [])
+
+    def test_norm_strips_currency_formatting(self):
+        self.assertEqual(self.m.norm("$ 1,234.50"), "1234.50")
+        self.assertEqual(self.m.norm("$13"), "13")
+
+
+class TestCatchAllTableDetection(unittest.TestCase):
+    """pdfplumber emits a whole-page blob table that must be discarded.
+
+    Column count does not distinguish it — the HOMESPRO catch-all had 4 columns,
+    exactly like the real price tables. Cell length does.
+    """
+
+    def setUp(self):
+        self.m = _load_extract_module()
+
+    def test_whole_page_blob_is_dropped(self):
+        blob = [["TORONTO, ON " + "x" * 900, "", "", ""], ["", "", "", ""]]
+        self.assertTrue(self.m.is_catch_all(blob))
+
+    def test_real_price_table_is_kept(self):
+        real = [
+            [None, "", "PER SQ. FT.", "T-MOULDING"],
+            ["Milan\n(5.5mm, 12 mil, 1mm IXPE, 23.90 sq ft/ box)", "",
+             "$1.45", "$19.50"],
+            ["Vancouver\n(8mm, 22mil, 1.5mm IXPE, 17.92 sq ft/ box) LONG PLA",
+             "NK", "$1.98", "$19.50"],
+        ]
+        self.assertFalse(self.m.is_catch_all(real),
+                         "a real table's longest cell is ~60 chars and must survive")
+
+    def test_handles_none_cells(self):
+        self.assertFalse(self.m.is_catch_all([[None, None], [None, "$1.00"]]))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

@@ -16,6 +16,21 @@
 # (Albert, 2026-09-12.)
 pdfplumber
 
+# The cross-check engine — PDFium, Google's C library, via pypdfium2.
+# Declared DIRECTLY even though pdfplumber already pulls it in transitively:
+# scripts/pricelist_extract.py imports it by name, so if pdfplumber ever drops
+# the dependency the cross-check must fail loudly at install time rather than
+# silently at extraction time.
+#
+# Chosen 2026-09-12 after testing candidates on a real HOMESPRO sheet:
+#   pdfplumber extract_tables()  10/10 product->price pairs   MIT
+#   pypdfium2  raw text           9/10  (already vendored)    BSD-3/Apache-2.0
+#   PyMuPDF    find_tables()     10/10  but AGPL-3.0-or-paid  — not adopted
+#   camelot    stream/lattice    7/10 and 0/10, +127MB deps   — rejected
+# pypdfium2 wins on cost (already present), licence (permissive), and engine
+# independence (shares no code with pdfminer.six, so it fails differently).
+pypdfium2
+
 
 # ── STRICT BLOCK: pypdf ───────────────────────────────────────────────────────
 # `pypdf` (and its ancestor `PyPDF2`) must NEVER be added here, installed, or
