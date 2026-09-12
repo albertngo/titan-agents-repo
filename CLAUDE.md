@@ -370,6 +370,17 @@ Every write is logged to `actions-log.json` per `contracts/actions-log-schema.md
 retroactively affects `DAILY-BRIEF.md` — the sync runs after the brief is already
 written.
 
+## Website
+
+titanfloors.ca is being rebuilt off WordPress — decision, architecture, migration plan,
+and the site inventory/redirect map are in `methods/website-architecture.md` and
+`methods/website-inventory.md`. `platform-settings/website.json` mirrors the live
+site's facts (NAP, nav, known defects). **Phase 1 shows no SKU-level prices on the
+site** — this repo is public and publishes the retail markup formula, so a synced price
+list would expose every supplier's cost; see `methods/website-architecture.md` §"Why"
+before changing that. Nothing has been built yet; this is documentation and a read-only
+inventory only.
+
 ## Failure policy
 
 - One ingester failing must NOT block the others or the brief.

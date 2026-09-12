@@ -1,0 +1,91 @@
+{
+  "_comment": "Registry for titanfloors.ca — the public website. Mirrors facts about the live WordPress site and the planned replacement so they live in one place instead of scattered across prompts. Consumed by methods/website-architecture.md, analysis/website_inventory.py, and (once built) scripts/web_catalogue_build.py / web_publish_push.py. Snapshot taken 2026-09-12 via the WP Agent connector; the live site can drift from these numbers — re-run analysis/website_inventory.py before trusting them for a real migration.",
+  "_maintenance": "This file mirrors an external system (the live WordPress site) per methods/architecture.md's platform-settings rule — a stale value here is a correctness bug, not just tidiness. Re-verify live_site.counts and nav[] whenever website_inventory.py is re-run.",
+  "config_version": 1,
+
+  "live_site": {
+    "host": "SiteGround",
+    "cms": "WordPress 7.1 / PHP 8.2",
+    "theme": "Hello Elementor 3.4.3 + Elementor 4.2.3 + Elementor Pro 4.0.4",
+    "home_page_id": 3536,
+    "domain_registrar": "Squarespace Domains (migrated from Google Domains)",
+    "counts_as_of": "2026-09-12",
+    "counts": {
+      "pages_published": 147,
+      "posts_published": 133,
+      "woocommerce_products": 179,
+      "plugins_installed": 61,
+      "plugins_active": 25
+    },
+    "inventory_file": "analysis/output/website-inventory-2026-09-12.json",
+    "redirects_file": "analysis/output/website-redirects-2026-09-12.csv",
+    "known_defects": {
+      "nap_mismatch": "Contact page map embed points at 991 Matheson Blvd East (old address); page text already reads 1060 Britannia Rd East #2 (current showroom, per titan-vault).",
+      "slug_typos": [
+        "flooring-install/lamiante-flooring-mississauga",
+        "flooring-install/vinyl_flooring_oakville",
+        "stair-refinishing/vinyl-flooring-hamilton (serves a vinyl-flooring page under the stair-refinishing path)"
+      ],
+      "woocommerce_dead": "Active plugin, ~179 stale 2022-era products, USD currency (never set to CAD), zero orders and zero customers ever. SKUs (e.g. TF1122-F) do not match the Airtable CAT-SUPP-0001 scheme."
+    }
+  },
+
+  "canonical_nap": {
+    "name": "Titan Flooring Inc.",
+    "address": "1060 Britannia Rd East #2, Mississauga, ON L4W 4T1",
+    "phone": "905-282-1881",
+    "email": "info@titanfloors.ca",
+    "hours": "Mon-Fri 7:30am-6pm, Sat 8:30am-5pm, Sun closed",
+    "source": "titan-vault, confirmed against the contact page's own text (not its map embed)"
+  },
+
+  "nav": {
+    "_comment": "Main header menu (#352) as observed 2026-09-12 — the URLs a redirect map must preserve or explicitly retarget.",
+    "items": [
+      { "label": "Solid Hardwood", "url": "/product-category/solid-hardwood/" },
+      { "label": "Engineered Hardwood", "url": "/product-category/engineered-hardwood/" },
+      { "label": "Laminate", "url": "/product-category/laminate/" },
+      { "label": "Vinyl", "url": "/product-category/vinyl/" },
+      { "label": "Flooring Installation", "url": "/flooring-install/" },
+      { "label": "Stair Refinishing", "url": "/stair-refinishing/" },
+      { "label": "Blog", "url": "/blog/" },
+      { "label": "About", "url": "/about-us/" },
+      { "label": "Contact", "url": "/contact/" }
+    ]
+  },
+
+  "ghl": {
+    "source_literal": "website",
+    "note": "The literal value analysis/lead_funnel.py's normalize_source() already buckets 'website'/'src: online'/'direct traffic' into. Use this exact string — do not invent a new label.",
+    "form_id": "[FILL: once GHL forms are embedded]",
+    "calendar_id": "[FILL: once GHL calendar is embedded]"
+  },
+
+  "make_scenarios": {
+    "_comment": "The two form-intake scenarios currently feeding the live site, per titan-vault daily notes. Neither id was recorded anywhere before this file. Investigate and fix independently of the migration — see the queued task suggestion.",
+    "website_inquiry_ingester": {
+      "id": "[FILL]",
+      "erroring_since": "2026-08-19",
+      "status": "erroring, still running as of 2026-09-12 — possible silent lead loss"
+    },
+    "delivery_request_form": {
+      "id": "[FILL]",
+      "erroring_since": "2026-09-02",
+      "status": "erroring, still running as of 2026-09-12 — possible silent lead loss"
+    }
+  },
+
+  "pricing_display": {
+    "phase_1": "none",
+    "reason": "This repo is public and publishes Retail price/unit = Cost/unit + $ 1.00 plus per-supplier cost multipliers (bert-airtable-schema SKILL.md). A synced SKU-level price online would let any dealer back out Titan's cost. See methods/website-architecture.md.",
+    "map_semantics": {
+      "_comment": "MAP price ($/sf) holds either a real MAP (minimum advertised price) or a plain MSRP depending on supplier, with no field to distinguish them (SKILL.md:1171). Required before any 'from $' display ships. [FILL per supplier, e.g. Grandeur: MAP, Biyork: MSRP]"
+    }
+  },
+
+  "targets": {
+    "site_repo": "[FILL: titan-web, once created]",
+    "host": "Vercel",
+    "framework": "Next.js 16"
+  }
+}
