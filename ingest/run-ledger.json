@@ -491,5 +491,18 @@
     },
     "brief": true,
     "note": "scheduled run; local branch ledger last showed 2026-09-02, but all 5 ingesters cross-checked unmerged session branches and vault 01_daily notes and confirmed real runs happened through 2026-09-07 (branch-isolation artifact, not a real gap) -- no catch-up widening needed; bookkeeper still has no QBO/Intuit MCP connector (10th consecutive failed run since 2026-07-26)"
+  },
+  {
+    "date": "2026-09-12",
+    "run_at": "2026-09-12T08:10:25-04:00",
+    "sources": {
+      "ghl": "error",
+      "outlook": "error",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; last local-branch ledger entry was 2026-09-08, but vault 01_daily notes confirm real 5-source daily-ingest runs happened on 2026-09-09/10/11 on other unmerged session branches (branch-isolation artifact per the 2026-09-08 entry's precedent, not a real gap) -- no catch-up widening applied to the brief itself. GHL failed: mcp__ghl__* tools not connected anywhere in this session (confirmed via tool search), a session-wiring gap, not a credentials problem. Outlook failed: egress proxy 403 on CONNECT to login.microsoftonline.com, unscanned since 2026-09-08. Bookkeeper: still no QBO/Intuit MCP connector (11th consecutive failed run since 2026-07-26). Notion and Meta Ads both widened to 4-day catch-up windows (Sep 8-11) to close gaps since the last successful pull on this branch; both ok, no anomalies beyond items already noted in DAILY-BRIEF.md."
   }
 ]
