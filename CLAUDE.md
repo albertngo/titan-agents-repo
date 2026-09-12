@@ -30,10 +30,12 @@ No ingester reads another ingester's raw platform data.
 | `bookkeeper-ingest-agent` | QuickBooks / receipts | `bookkeeper.json` |
 | `notion-ingest-agent` | Notion (projects, work orders, payments, meetings) | `notion.json` |
 | `meta-ads-ingest-agent` | Meta Ads (spend, leads, CPL, delivery health) | `meta-ads.json` |
+| `content-ingest-agent` | Notion content calendar + Google Drive media | `content.json` |
 
 | `ghl-actions-agent` | GoHighLevel (write: replies, stages, tags) | appends to `actions-log.json` |
 | `lightspeed-actions-agent` | Lightspeed Retail X-Series (write: product create/update ONLY) | appends to `actions-log.json` |
 | `airtable-actions-agent` | Airtable catalogue (write: upsert, LS-ID backfill, price history) | appends to `actions-log.json` |
+| `social-actions-agent` | Metricool (write: schedule posts only — never edits or deletes a live post, never replies) | appends to `actions-log.json` |
 | `vault-writer-agent` | titan-vault Obsidian repo (write) | vault notes per its CONVENTIONS.md — runs automatically in `/daily-ingest`, bound to its whitelist. See Vault writes. |
 
 `.claude/commands/notion-sync.md` runs automatically at the end of `/daily-ingest` too,
@@ -237,7 +239,7 @@ executes. Full shape in `methods/departments.md`; ownership is data in
 | Sales | `ghl` | `planner-agent` | active — the reference build |
 | Operations | `notion` (5 sub-sources) | — | spec: source live, no rule table yet |
 | Catalogue | Airtable · Lightspeed · price lists | `/catalog-sync` | active — complete before this layer existed |
-| Marketing | `meta-ads` | — | registry_only: needs a framework doc + thresholds first |
+| Marketing | `meta-ads` · `content` | `/content-schedule` | active — content posting live (draft mode); ad reporting still needs a framework doc |
 | Finance | `bookkeeper` | — | **blocked — the source has never worked** |
 | General | `outlook` | — (`/route` answers inline) | active — the fallback lane |
 
