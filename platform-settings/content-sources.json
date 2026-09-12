@@ -1,9 +1,7 @@
 {
   "_comment": "Read registry for the social content pipeline. Maps the Notion content databases to the Google Drive media tree, and holds the folder-naming convention as data rather than as a literal buried in an automation. Consumed by content-ingest-agent, scripts/content_media_resolve.py and .claude/commands/content-schedule.md. Source: live Notion + Drive reads, 2026-09-12.",
-  "_maintenance": "Two things go stale independently. (1) Notion property names are EXACT MATCH — a rename in Notion silently breaks reads; re-verify with notion-fetch on the data_source url. (2) drive.root_folder_id is pinned deliberately: there are three folders in this account whose title contains 'Titan Flooring', one of them shared by an external agency (kim@socialestatesmarketing.com). NEVER resolve the root by title search — always by id.",
-
+  "_maintenance": "Two things go stale independently. (1) Notion property names are EXACT MATCH \u2014 a rename in Notion silently breaks reads; re-verify with notion-fetch on the data_source url. (2) drive.root_folder_id is pinned deliberately: there are three folders in this account whose title contains 'Titan Flooring', one of them shared by an external agency (kim@socialestatesmarketing.com). NEVER resolve the root by title search \u2014 always by id.",
   "config_version": "1",
-
   "sources": {
     "titan_content_ideas": {
       "_comment": "The planning database. One row per content item; 'Next: Post To' selects the platform for the next post, and Content Calendar Log records each post that went out.",
@@ -15,54 +13,84 @@
       "trigger_property": "Status",
       "trigger_value": "Ready To Post",
       "select_columns": [
-        "url", "Content Name", "userDefined:ID", "Status", "Post Date",
-        "Next: Post To", "Content Format", "Content Type", "Series",
-        "Link to Files", "Parent item", "Sub-item", "Project"
+        "url",
+        "Content Name",
+        "userDefined:ID",
+        "Status",
+        "Post Date",
+        "Next: Post To",
+        "Content Format",
+        "Content Type",
+        "Series",
+        "Link to Files",
+        "Parent item",
+        "Sub-item",
+        "Project"
       ]
     },
     "content_calendar_log": {
-      "_comment": "Append-only posting history. One row per platform per content item — this is the fan-out record, not a duplicate of the idea.",
+      "_comment": "Append-only posting history. One row per platform per content item \u2014 this is the fan-out record, not a duplicate of the idea.",
       "database_id": "38c596a4-505f-8073-a0b7-f68209176550",
       "data_source": "collection://38c596a4-505f-80b4-9b03-000bf7d7d77b",
       "sensitivity": "team",
-      "select_columns": ["url", "Content Name", "Post Date", "Post To", "Content Series"]
+      "select_columns": [
+        "url",
+        "Content Name",
+        "Post Date",
+        "Post To",
+        "Content Series"
+      ]
     }
   },
-
   "drive": {
     "_comment": "Google Drive is the media source of record as of 2026-09-12, replacing SharePoint/OneDrive. Chosen because Metricool auto-ingests Drive URLs natively: no Graph permission to widen, no pre-authenticated-URL expiry, and none of the FedAuth cookie problem that makes a raw SharePoint share link unusable to a third party (see scripts/pricelist_fetch.py).",
     "account": "albertngo95@gmail.com",
     "root_folder_id": "1rbFy6aNyb1PXjAEIvOhZyZNK4bvpUBCq",
     "root_path": "TITAN FLOORING/Titan Flooring Content",
     "parent_folder_id": "1qxUuFTNY43x5I2G-KQIv4kvs3tlAsn05",
-    "_sharing_requirement": "Every folder or asset the pipeline hands to Metricool MUST be shared anyone-with-link/viewer, or Metricool's fetch 404s. A link that opens fine in Albert's own browser proves nothing — he is signed in. Verify signed out. Drive permissions inherit, so setting this once on root_folder_id covers everything beneath it; prefer that over per-file sharing in the Make scenario.",
-    "_verified": "2026-09-12: root exists, owner albertngo95@gmail.com, permissions are owner-only — anyone-with-link is NOT yet set."
+    "_sharing_requirement": "Every asset handed to Metricool MUST be shared anyone-with-link/viewer, or the fetch 404s. A link that opens in Albert's signed-in browser proves nothing -- verify signed out.",
+    "_verified": "2026-09-12: root exists (owner albertngo95@gmail.com), permissions owner-only. Correct as-is -- the root is NOT meant to be link-shared.",
+    "share_scope": "media_dir_only",
+    "_share_scope_comment": "Share the 03_FINAL folder (or the individual asset), NEVER root_folder_id. Drive permissions inherit, so sharing the root would be simpler -- and would expose every 01_RAW folder, i.e. raw unedited footage inside clients' homes, to anyone holding the link. Finished assets are already destined for public social feeds, so link-sharing those costs nothing; raw footage is not, and was never consented to for publication. Narrower is correct here even though it means the Make scenario shares per item rather than once."
   },
-
   "folder_convention": {
-    "_comment": "The per-content-item scaffold. Created by the Make scenario on a new Notion row; read by the resolver. Holding the prefix here is the whole point of this block — it was previously a hardcoded literal inside a ~366KB Make blueprint, which is why changing it looked bigger than it was.",
+    "_comment": "The per-content-item scaffold. Created by the Make scenario on a new Notion row; read by the resolver. Holding the prefix here is the whole point of this block \u2014 it was previously a hardcoded literal inside a ~366KB Make blueprint, which is why changing it looked bigger than it was.",
     "prefix": "TC",
     "separator": "-",
     "name_template": "{prefix}{separator}{notion_id}_{content_name}",
-    "legacy_prefixes": ["TFC"],
+    "legacy_prefixes": [
+      "TFC"
+    ],
     "_legacy_comment": "Pre-2026-09-12 folders are TFC-<n>, and some are TFC<n> with no separator at all (TFC-168_VALUE.m4a alongside TFC167_VALUE.m4a). Both are normalised to TC-<n> during the migration. 'TC' is not a substring of 'TFC', so the two prefixes can never match each other by accident and a half-migrated estate stays unambiguous.",
     "match_on": "notion_id",
-    "_match_comment": "Resolve by the integer, tolerating any known prefix and an optional separator. Never match on the prefix itself — it is decoration and it is changing.",
-
+    "_match_comment": "Resolve by the integer, tolerating any known prefix and an optional separator. Never match on the prefix itself \u2014 it is decoration and it is changing.",
     "media_dir": "03_FINAL",
     "_media_dir_comment": "The single source of postable assets. The pipeline reads ONLY this. Raw footage in 01_RAW is 99.3% of the tree's bytes and is never touched.",
     "published_dir": "04_PUBLISHED",
     "photos_dir": "04_PHOTOS",
-    "cover_name_tokens": ["cover", "thumb", "thumbnail"],
-
-    "scaffold": [
-      "01_RAW", "02_EDIT", "02_SELECTS", "03_AUDIO", "03_FINAL", "04_PHOTOS",
-      "04_PUBLISHED", "10_BEFORE", "20_DEMO", "30_INSTALL", "40_FINISHED",
-      "50_INTERVIEW", "60_TALKINGHEAD", "70_VOICEOVERS"
+    "cover_name_tokens": [
+      "cover",
+      "thumb",
+      "thumbnail"
     ],
-    "_scaffold_comment": "Mirrors what Make 4803695 builds today. Not every item gets every subfolder — the scenario branches on Content Format/Type."
+    "scaffold": [
+      "01_RAW",
+      "02_EDIT",
+      "02_SELECTS",
+      "03_AUDIO",
+      "03_FINAL",
+      "04_PHOTOS",
+      "04_PUBLISHED",
+      "10_BEFORE",
+      "20_DEMO",
+      "30_INSTALL",
+      "40_FINISHED",
+      "50_INTERVIEW",
+      "60_TALKINGHEAD",
+      "70_VOICEOVERS"
+    ],
+    "_scaffold_comment": "Mirrors what Make 4803695 builds today. Not every item gets every subfolder \u2014 the scenario branches on Content Format/Type."
   },
-
   "migration": {
     "_comment": "One-time OneDrive -> Drive move, decided 2026-09-12 (Albert). Everything migrates: Drive is a 2TB plan, so 200GB is not a capacity constraint and a single source of truth beats a split archive.",
     "status": "not_started",

@@ -52,10 +52,24 @@ Each value belongs to exactly one agent's allowed-actions table.
 | `notion_create_task`, `notion_update_task`, `notion_create_page` | `.claude/commands/notion-sync.md`, `project-status-meeting-processor` |
 | `lightspeed_create_product`, `lightspeed_update_product` | `lightspeed-actions-agent` |
 | `airtable_upsert_product`, `airtable_backfill_ls_id`, `airtable_create_price_history` | `airtable-actions-agent` |
+| `social_schedule_post`, `social_update_post`, `social_flag_manual` | `social-actions-agent` |
 
 There is deliberately **no delete or deactivate value for any platform**. Removing a
 product from the POS or a record from the catalogue is a person's decision made in
 that platform's UI, so no agent has a type for it and none may be added.
+
+The same rule binds the social types, and binds harder. There is **no value for
+deleting or editing a live post, and none for replying to a comment or a DM** — a
+published post has already been seen, so an agent "fixing" one cannot undo that, and
+speaking to a customer under Titan's name is never a thing an agent originates.
+`social_update_post` exists only to amend a post that is still *scheduled or drafted*
+inside Metricool and has not gone out.
+
+`social_flag_manual` is the odd one: it records that a run deliberately did **not**
+publish something — a Decorated Story whose stickers the API cannot set, a TikTok
+story the API cannot post at all. It is logged with `result: "refused"` and is a
+success, not a failure. Without it, "we chose not to post this" and "we silently
+failed to post this" look identical in the log a week later.
 
 ## Resume, for the catalogue sync
 
