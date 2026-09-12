@@ -1,21 +1,29 @@
-# Python dependencies for titan-agents-repo.
+# Direct Python dependencies — the INTENT file. Edit this one by hand.
+#
+# What actually gets installed is `requirements.lock.txt`, which is GENERATED from
+# a real pip resolution (exact versions + wheel hashes for the whole transitive
+# tree). Never hand-write the lock: the dep tree comes from pip, not from memory.
+# Procedure: vendor/wheels/README.md.
 #
 # Added 2026-09-12. The repo had NO dependency file for its first three months,
-# which is how `pdfplumber` came to be mandated in four documents while never
-# being installed anywhere — see methods/pricelist-extraction.md, "PDF tooling is
-# a hard precondition".
-#
-# EGRESS: installing these needs `pypi.org` and `files.pythonhosted.org` on the
-# environment's network allowlist. As of 2026-09-12 they are NOT, and the install
-# fails with `x-deny-reason: host_not_allowed`. Add them in the environment's
-# network egress settings (see https://code.claude.com/docs/en/claude-code-on-the-web).
-# Until then `/process-price-list` cannot run in a cloud session and is required
-# to flag and stop rather than substitute another extraction method.
+# which is how `pdfplumber` came to be mandated in four documents while being
+# installed by none. See .claude/commands/process-price-list.md step 2.0.
 
 # PDF extraction — the ONLY sanctioned way to read a supplier price list.
-# Never substitute a rendered/visual read, Microsoft Graph's text conversion, or
-# any other method. Albert, 2026-09-12.
-pdfplumber>=0.11
+# Never substitute a rendered/visual read, Microsoft Graph's text conversion,
+# pdftotext, an LLM transcription of a screenshot, or figures retyped from a
+# previous run's Notes. If it is unavailable, extraction flags and STOPS.
+# (Albert, 2026-09-12.)
+pdfplumber
 
-# Pinned transitively by pdfplumber, listed so a resolver failure is legible:
-#   pdfminer.six, pillow, charset-normalizer, cryptography
+
+# ── STRICT BLOCK: pypdf ───────────────────────────────────────────────────────
+# `pypdf` (and its ancestor `PyPDF2`) must NEVER be added here, installed, or
+# imported anywhere in this repo. Albert, 2026-09-12: judged unreliable for this
+# use case, and a strict block rather than a preference. Enforced by
+# tests/test_pdf_tooling.py, which fails if either name appears in repo source.
+#
+# NOT the same thing, and NOT blocked: `pypdfium2`. Despite the similar name it
+# is a PDFium binding, unrelated to pypdf, and pdfplumber depends on it — so it
+# will legitimately appear in the lock file below. Do not "fix" that.
+# ──────────────────────────────────────────────────────────────────────────────
