@@ -140,9 +140,8 @@ Otherwise, **in this order — it is a dependency, not a preference**:
    that resolves cleanly.
    - **Rows returned** → this is an **update sheet**.
    - **No rows** → **new supplier. Still produce the Airtable export** — the canonical
-     columns, every row `MatchStatus = new`, `Lightspeed ID` and `MatchedRecId` blank —
-     and stop before any import. The onboarding checklist gates the *import*, not the
-     extraction, and it is easier to answer with the data in hand. A missing supplier
+     columns, every row `MatchStatus = new`, `Lightspeed ID` and `MatchedRecId` blank.
+     A missing supplier
      subsection means "invent no supplier-specific rules", not "produce nothing": apply
      the global rules and record every choice you had to make as an explicit assumption,
      the **cost basis first — and for that one, ASK rather than assume** (step 7). It
@@ -151,6 +150,10 @@ Otherwise, **in this order — it is a dependency, not a preference**:
      printed (Biyork). **Once Albert answers, write it into that supplier's subsection
      in bert-airtable-schema under `#### Cost column`** so the question is never asked
      again.
+     **This ask now has teeth (2026-09-12):** until that subsection exists,
+     `/catalog-sync` leaves `cost_basis` null, and carve-out 3 holds every action on
+     the plan. Flag the row `cost_basis_unconfirmed` in the troubled CSV (5a) so the
+     question is visible rather than only implied by nothing having been written.
      **Skip the Lightspeed file** only while the products are new to Lightspeed too —
      if `Lightspeed ID`s have been reconciled in from an LS export, build it. See 5.4.
    - **Verify the supplier's documented SKU format against the base before generating
@@ -185,8 +188,26 @@ Cross-check extracted SKU→price pairs against pdfplumber's own text before att
 Write both to `ingest/YYYY-MM-DD/` and commit them:
 `<supplier>_airtable_upload_YYYY-MM-DD.csv` and `<supplier>_ls_upload_YYYY-MM-DD.csv`.
 
-**This command writes no platform.** It does not touch Airtable or Lightspeed; a person
-does both imports from the attached files. Never report either as imported.
+**Committing them is load-bearing, not tidiness** (2026-09-12). `/catalog-sync` runs
+next in this same session and reads these files from the repo — never by downloading
+the Notion attachment back, which does not work across a session boundary. If the
+commit does not happen, the sync half of the run has no input.
+
+### 5a. Open the troubled CSV
+
+Every row you flag below also gets a line in
+`ingest/YYYY-MM-DD/<supplier_slug>_troubled_YYYY-MM-DD.csv` (`outputs.troubled`
+*(registry)*), `stage: extract`, per `contracts/troubled-skus-schema.md` — that
+contract is authoritative for columns, `reason` vocabulary and `disposition`.
+
+This command **opens** the file; `/catalog-sync` appends its own `stage: sync` rows
+and is what attaches it to `Troubled Files`. Do not attach it here — one file per
+row, written by both stages, attached once at the end.
+
+If this run produces no troubled SKUs, write no file at all.
+
+**This command writes no platform.** It does not touch Airtable or Lightspeed. Never
+report either as imported — `/catalog-sync`, running next, is what writes them.
 
 ## 6. Attach both files, then set the row's state
 
@@ -240,6 +261,10 @@ just that field. Read the option list off the data source if a write is rejected
 
   **Add, never clear.** The catalogue-sync run adds to this property too, and only the
   reviewer removes an option, as each one is resolved.
+
+  Every reason set here also produces a line in the troubled CSV (5a) naming the
+  specific SKUs. `Review Reason` is the filterable category at row level; the CSV is
+  the per-SKU detail behind it. Neither replaces the other.
 - `Notes` = **the flag line, or leave empty.** Write it only when the reviewer must know
   something before importing: a cost basis assumed rather than confirmed, a placeholder
   price, a schema field the base lacks, specs copied from a sibling, or a conflict with
@@ -275,9 +300,13 @@ says explicitly why there are no files instead of leaving that silent.**
 that finished but carries assumptions stays `Extracted [Needs Review]` with those
 assumptions in `Notes`.
 
-**A run writes only those two.** The data source also carries `Extracted [Ready to
-Upload]`, `Extracted [All Uploaded]` and `Not Needed` — those belong to the person doing
-the import, exactly as `Done` on the three trackers does.
+**This command writes only those two.** `Extracted [All Uploaded]` is `/catalog-sync`
+step 6's to write, once nothing on the plan is held. `Not Needed` stays a person's.
+
+`Extracted [Ready to Upload]` is now **vestigial on this path** (2026-09-12): sync runs
+immediately after this command in the same session and no longer waits for anyone to
+set it. It remains available for the manual CSV path, where a person running a stage
+by hand still marks it.
 
 ## 7. Escalate anything you could not determine
 

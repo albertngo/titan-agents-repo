@@ -24,8 +24,10 @@
       "new_products": "New Products",
       "notes": "Notes",
       "review_reason": "Review Reason",
-      "extracted_files": "Extracted Files"
+      "extracted_files": "Extracted Files",
+      "troubled_files": "Troubled Files"
     },
+    "_troubled_files_note": "Added 2026-09-12 (Albert). A `file` property, separate from `Extracted Files` on purpose: Extracted Files holds the import artifacts, Troubled Files holds the exception report. Keeping them apart is what makes `Troubled Files is not empty` a usable worklist filter. Holds ONE csv per run, per contracts/troubled-skus-schema.md, and is left EMPTY on a clean run — never a headers-only file, which would make that filter meaningless.",
     "_write_key_trap": "The extraction state key is `Extraction Status`, NOT `Status`. Writing `Status` returns 400 validation_error.",
     "company_profiles_file": "platform-settings/company-profiles.md",
     "_company_profiles_note": "Where a run records what a company's non-price-list attachment showed about their product lines. See methods/pricelist-extraction.md, 'When the file is not a price list at all'.",
@@ -183,6 +185,8 @@
     "dir": "ingest/{date}",
     "airtable_upload": "{supplier_slug}_airtable_upload_{date}.csv",
     "ls_upload": "{supplier_slug}_ls_upload_{date}.csv",
+    "troubled": "{supplier_slug}_troubled_{date}.csv",
+    "_troubled_note": "The exception report, per contracts/troubled-skus-schema.md. Attaches to `Troubled Files`, NOT `Extracted Files`. Written only when the run produced at least one troubled SKU; a clean run produces no file and attaches nothing. Both stages write into the same file before it is attached.",
     "attachment_mime": "text/csv",
     "_attachment_note": "Notion 400s on a content-type mismatch — the multipart upload must carry ;type=text/csv. api.notion.com must be allowed by the environment egress policy (it is, since 2026-09-03)."
   }

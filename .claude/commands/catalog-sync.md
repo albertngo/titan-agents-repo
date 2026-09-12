@@ -3,31 +3,34 @@
 Take one processed Price Lists row from two attached CSVs to a mirrored catalogue:
 Airtable and Lightspeed holding the same products with the same ids.
 
-Picks up exactly where `/process-price-list` stops — now automatically, same session,
+Picks up exactly where `/process-price-list` stops — automatically, same session,
 same notionID. That command produces files and writes no platform; this one writes
-both — **behind one approval gate in the middle, which a clean established-supplier
-action now clears itself.**
+both.
 
 ```
 /process-price-list  ->  2 CSVs on the Notion row, committed   (writes nothing)
                               |
         [1] pull  ->  [2] reconcile  ->  one plan              (writes nothing)
                               |
-     [3] POLICY APPROVES what qualifies; A PERSON APPROVES the rest
+     [3] POLICY APPROVES everything except 3 carve-outs; the rest is HELD
                               |
         [4] Lightspeed writes  ->  [5] Airtable writes  ->  [6] Notion trackers
+                              |
+              troubled CSV  ->  Troubled Files  ->  PushNotification
 ```
 
-**Steps 1–2 are always safe to run unattended.** Steps 4–6 now execute automatically
-too, but **only** for the slice of a plan that clears the auto-approval bar in
-`contracts/catalog-plan-schema.md` ("Policy auto-approval," 2026-09-11 Albert) —
-an established supplier (no `New Supplier` on this plan), a non-`blocked` action,
-no Review Reason this run added or left uncleared. Actions agents still execute
-**only** an id that appears `approved` in the approval file — that invariant did
-not move. What changed is who may write that file for a clean, established-supplier
-action: `/catalog-sync` itself may, under that rubric, instead of waiting on a
-person. Everything a New Supplier plan produces, and everything else a plan
-couldn't clear the bar on, still stops at step 3 and waits — same as before.
+**The whole command runs unattended, end to end.** Steps 1–2 are read-only. Steps
+4–6 execute for everything the auto-approval rubric in
+`contracts/catalog-plan-schema.md` clears — which, since 2026-09-12, is everything
+except three carve-outs: `blocked` entries, `Ambiguous Pricing` rows, and any plan
+whose `cost_basis` is `null`.
+
+Actions agents still execute **only** an id that appears `approved` in the approval
+file — that invariant did not move. What changed is who writes that file.
+
+Everything held lands in the run's troubled-SKUs CSV
+(`contracts/troubled-skus-schema.md`) and triggers a PushNotification. That file is
+the human checkpoint now — the run does not stop and wait for one.
 
 ## Before you start
 
@@ -96,22 +99,46 @@ Three of those are load-bearing:
   `Cost/unit`. Pass `--cost-basis printed-as-cost` unless a recorded supplier
   subsection says otherwise.
 
+  **Where "assume, do not stop" does NOT reach (2026-09-12).** That decision covers a
+  sheet with one obvious cost column. It was never meant to cover a **new supplier
+  with no recorded `#### Cost column` subsection**, where precedent genuinely runs
+  three ways — dealer-cost-only (Canadian Standard), MSRP × multiplier (CIF ×0.60,
+  Olympia ×0.564), both columns printed (Biyork) — and the choice changes every
+  price on the file. In that case pass **no** `--cost-basis`, leave it `null`, and
+  carve-out 3 holds the whole plan until someone records the answer.
+
+  This distinction is load-bearing now. Defaulting to `printed-as-cost` on a new
+  supplier would set `cost_basis` on every plan, so carve-out 3 would never fire and
+  a wrong cost basis would write 200 wrong prices unchallenged.
+
 ## 2a. New supplier, and anything the defaults do not cover
 
 **A supplier with zero existing Airtable rows is a NEW SUPPLIER, and every detail on
-every row needs a human check before upload.** Say it in those words, first, in
-whatever you report. Nothing on that file has been reconciled against a live record,
-so spec confidence and cost confidence are both unearned — a plausible-looking row is
-not a verified one.
+every row is unverified.** Say it in those words, first, in whatever you report.
+Nothing on that file has been reconciled against a live record, so spec confidence and
+cost confidence are both unearned — a plausible-looking row is not a verified one.
 
-Two structural facts make this self-enforcing rather than a matter of discipline:
+**This no longer stops the run (2026-09-12, Albert).** It used to: a new supplier was
+a two-pass flow and this command reported and halted. Policy now writes these rows,
+and the unverified-ness is reported through the troubled CSV as `new_supplier` /
+`wrote_flagged` instead of being prevented. The paragraph above still describes the
+real risk — read it before widening this further, and see
+`contracts/troubled-skus-schema.md`, "The `new_supplier` reversal".
 
-- A new supplier gets **no Lightspeed file** — LS columns 1–3 are copied from Airtable
-  state that does not exist yet. So the row carries **one** CSV, not two.
-- This command needs both. A new supplier therefore **cannot reach the write steps**
-  until a person has imported the Airtable file and the catalogue read returns rows.
+What still holds structurally, independent of policy:
 
-New suppliers are a deliberate two-pass flow. Report the row, say it is new, and stop.
+- A new supplier **new to Lightspeed too** gets **no Lightspeed file** — LS columns
+  1–3 are copied from Airtable state that does not exist yet, so the row carries
+  **one** CSV, not two. Its LS rows block as `ls_payload_unavailable` by
+  construction, which no policy can approve past. That case is still effectively a
+  two-pass flow; it just reaches that outcome by being blocked rather than by this
+  command stopping.
+- The **third state — new to Airtable, already live in Lightspeed** (Canadian
+  Standard 2026-09-03; HOMESPRO and IMPRESSIVE both) — carries two CSVs and is *not*
+  structurally blocked. Those rows write. This is the case the reversal actually
+  changes.
+- `cost_basis: null` still holds the entire plan, new supplier or not. A new supplier
+  whose cost basis nobody has recorded therefore still writes nothing at all.
 
 **Everything else the defaults do not cover is flagged, not stopped and not guessed:**
 
@@ -147,52 +174,56 @@ failure this pipeline cannot detect later.
 Output: `plans/YYYY-MM-DD/catalog-plan-<supplier-slug>.json`, per
 `contracts/catalog-plan-schema.md`.
 
-## 3. The approval gate — auto-clear what qualifies, stop for the rest
+## 3. Approve by policy, hold the carve-outs
 
-**2026-09-11 (Albert).** Apply the "Policy auto-approval" rubric in
-`contracts/catalog-plan-schema.md` to the plan before presenting anything:
+**2026-09-11 (Albert), widened 2026-09-12.** Apply the "Policy auto-approval" rubric
+in `contracts/catalog-plan-schema.md`. It is authoritative; what follows is how to
+run it.
 
-- Plan's `Review Reason` includes `New Supplier` → auto-approval is off for the
-  whole plan. Skip straight to presenting it below and stop — same as always.
-- Otherwise, for each action: not `blocked`, and its `sku` carries no Review Reason
-  this run added or left uncleared → write it into
-  `plans/YYYY-MM-DD/catalog-approval-<supplier-slug>.json` yourself now,
-  `"status": "approved"`, and continue that action to step 4 in this same session.
-  Every actions-log entry it produces sets
-  `"approved_by": "policy: high-confidence auto-approval (2026-09-11 routine)"`.
-- Everything left over — `blocked` entries, and any action whose `sku` carries a
-  Review Reason this run added or left uncleared — gets **no id written by
-  policy**. Present exactly those in chat/report: the `summary` counts, every
-  `blocked` entry with its reason, and the `before`/`after` on anything left whose
-  price moves. Then stop for those, the same way this step always has.
+Write every action that is **not** carved out into
+`plans/YYYY-MM-DD/catalog-approval-<supplier-slug>.json` yourself, `"status":
+"approved"`, and carry it through steps 4–6 in this same session. Every actions-log
+entry sets `"approved_by": "policy: auto-approval (2026-09-12 rubric)"`.
 
-The rest of the gate is unchanged:
+**Hold — do not approve — only these three:**
 
-- Nothing but this run, under the rubric above, may pre-populate the approval
-  file — the reconciler itself still never does.
-- **An action with no id in the approval file is still not approved** — not
-  "approve everything", not "ask again later".
-- **Partial approval — human or policy — is normal.** A plan auto-clearing 180 of
-  231 rows and leaving 51 for a person is an ordinary outcome, not a partial
-  failure.
+1. Any `blocked` entry. Structural: no `id` exists to approve.
+2. Any action whose `sku` carries `Ambiguous Pricing` — this run's or a prior run's
+   not yet cleared.
+3. Every action on the plan, if `cost_basis` is `null`.
+
+`New Supplier` no longer holds anything (2026-09-12, reversing 2a's stop). Neither
+does `Ambiguous Naming`, `Unmapped Grade`, `Unmapped Category`, `Spec Gap`, or any
+`warnings` entry — those write, and are reported as `wrote_flagged`.
+
+Everything held goes into the troubled CSV per `contracts/troubled-skus-schema.md`,
+`disposition: held`, with its reason and enough detail to act on. That file — not a
+chat message — is how a person finds this work. Write the `wrote_flagged` rows too:
+what went live carrying a flag matters as much as what didn't go live at all.
+
+The gate's mechanics are unchanged underneath:
+
+- **An action with no id in the approval file is still not approved.** Policy
+  approving most things does not make absence mean approval.
 - `blocked` entries carry no `id` and cannot be approved even by mistake. Unblocking
   means fixing the data and re-running step 2 — never editing the plan.
 - Plans expire at end of day. A stale plan is re-derived, never re-approved. Ids are
   stable across re-runs by design, so a writer compares `plan` paths, not ids.
+- A person can still approve anything held, the old way — naming ids in the same
+  file, next to whatever policy wrote. Re-run after, and the resolution loop in the
+  troubled-SKUs contract applies.
 
-A person can still approve anything policy left out, the old way — naming ids in
-the same file, next to whatever policy already wrote.
+## 3a. Batch approval — for the held residue only
 
-## 3a. Batch approval — multiple plans, one decision
+**Decided 2026-09-11 (Albert), narrowed 2026-09-12.** After step 3, what's left is
+only the three carve-outs — blocked rows and pricing-ambiguous ones. That residue is
+normally small. When several rows carry some, present it all as one digest rather
+than one at a time: total counts first, then each supplier's `summary`, every
+`blocked` entry with its reason, and price `before`/`after` on anything held.
 
-**Decided 2026-09-11 (Albert).** This now covers what's *left after* step 3's policy
-auto-approval, not a whole sweep's worth of untouched plans — most of an
-established-supplier run should already be cleared and writing by the time this
-step matters. When several rows still have something left over (New Supplier plans
-in full, or the blocked/flagged residue of an otherwise-cleared plan), present all
-of it together as one digest instead of one at a time: total counts first, then
-each supplier's `summary`, every `blocked` entry with its reason, and price
-`before`/`after`. Then stop — same gate, wider view.
+This is now a *report* in an unattended run, not a wait — the writes already
+happened for everything policy cleared. The digest exists so a person reviewing later
+(or in a live session) can clear the residue in one reply instead of per supplier.
 
 - **One explicit reply can cover the whole digest** — "approve all," or naming
   exceptions ("approve all except Biyork," "skip the 4 blocked Grandeur rows"). This
@@ -270,16 +301,37 @@ whole `update-page` call and loses every property in that write. `Airtable Sync`
 `Extraction Status = Extracted [All Uploaded]` only once both trackers read a
 completion value or `Not needed`.
 
-**Policy auto-approval routinely leaves a row partially written** — the clean actions
-executed this session, a `blocked` row or a Review-Reason-flagged row still waiting
-on a person. That is exactly what `Done: Updated`/`Done: New List UUID` vs `Partial`
-already distinguish (added 2026-09-10 for this same shape of outcome on the
-person-approval path) — use `Partial` on `Airtable Sync`/`LS Upload`/`UUID Backfill`
-whenever this run wrote some of a supplier's actions and left others for a person,
-and leave `Extraction Status` at `Extracted [Needs Review]` rather than advancing it
-to `Extracted [All Uploaded]` — the row genuinely still needs one. Only write
-`Extracted [All Uploaded]` once nothing on that plan is left outstanding, human or
-policy.
+**Policy auto-approval routinely leaves a row partially written** — most actions
+executed this session, a held row or two still needing a person. That is exactly
+what `Done: Updated`/`Done: New List UUID` vs `Partial` already distinguish (added
+2026-09-10 for this same shape of outcome) — use `Partial` on `Airtable Sync` /
+`LS Upload` / `UUID Backfill` whenever this run wrote some of a supplier's actions
+and held others, and leave `Extraction Status` at `Extracted [Needs Review]` rather
+than advancing it. Only write `Extracted [All Uploaded]` once nothing on that plan is
+held.
+
+## 6a. Write and attach the troubled CSV
+
+Per `contracts/troubled-skus-schema.md` — the contract is authoritative for columns,
+`reason` vocabulary and `disposition`.
+
+Collect every troubled SKU from **both** stages — `/process-price-list` opened this
+file earlier in the session with its `stage: extract` rows; append this command's
+`stage: sync` rows to the same file. Write it to
+`ingest/YYYY-MM-DD/<supplier_slug>_troubled_YYYY-MM-DD.csv`
+(`outputs.troubled` *(registry)*), commit it, and attach it natively to
+**`Troubled Files`** (`write_properties.troubled_files` *(registry)*) — the same
+upload recipe as `Extracted Files` in `/process-price-list` step 6, `;type=text/csv`
+and all.
+
+- **Not `Extracted Files`.** That property holds the import artifacts; this is the
+  exception report, and keeping them apart is what makes `Troubled Files is not
+  empty` a usable worklist filter.
+- **No troubled SKUs → no file, and nothing attached.** Never a headers-only CSV; an
+  empty property is the signal that the run was clean.
+- **Then send a PushNotification**, naming the supplier and the `held` /
+  `wrote_flagged` counts. Always, whenever the file exists. A file nobody is told
+  about is not a checkpoint.
 
 ## Done means
 
@@ -290,8 +342,11 @@ policy.
   `raw_ref_action_id` set.
 - Every new product carries a `Lightspeed ID` in Airtable.
 - The Notion trackers reflect reality, `Partial` included where that's what happened.
-- Blocked rows, and rows still waiting on a person, reported by SKU and reason —
-  never silently dropped, and never reported as if policy had cleared them.
+- **Every troubled SKU is in the CSV, attached to `Troubled Files`, and notified** —
+  `held` rows and `wrote_flagged` rows both. A held row that reaches nobody is the
+  one failure this design cannot detect later, because there is no longer a gate
+  standing behind it.
+- Nothing reported as cleared by policy that policy did not actually clear.
 
 Report honestly. If a step did not run, say which. Never mark a stage complete that
 isn't.

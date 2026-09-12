@@ -18,21 +18,25 @@ and `.claude/commands/catalog-sync.md` are the authoritative procedures for thei
 stage; `contracts/catalog-plan-schema.md` is authoritative for the auto-approval
 rubric. Change any of those there, not here.
 
-**What this changes from the previous (2026-09-11 morning) version of this file:**
-extraction no longer stops and waits for Albert to set `Extracted [Ready to
-Upload]` before sync runs — sync runs immediately, same session, on whatever
-extraction just produced. And sync no longer stops unconditionally at its approval
-gate — an established supplier's clean, unflagged, non-blocked actions write
-themselves through in that same session; only a New Supplier plan, a `blocked`
-entry, or a row still carrying an unresolved `Review Reason` waits for Albert.
+**Where this landed (2026-09-12).** Extraction no longer waits for Albert to set
+`Extracted [Ready to Upload]`; sync runs immediately, same session, on what
+extraction just produced. And sync no longer waits at its approval gate for anything
+but three carve-outs — `blocked` entries, `Ambiguous Pricing` rows, and any plan with
+a null `cost_basis`. Everything else writes, `New Supplier` included.
 
-**What this still does not change:** a New Supplier plan (zero prior Airtable rows
-for that company) never auto-approves, any row at all — 2a's reasoning holds exactly
-as before. `blocked` entries never get an id, ever, by policy or by a person.
+**The human checkpoint moved rather than disappearing.** It used to be a gate: the
+run stopped, and nothing happened until a person looked. It is now a report: the run
+proceeds, and everything it could not do cleanly lands in a per-SKU CSV on the Notion
+row (`Troubled Files`) with a PushNotification behind it. That is a weaker control —
+a wrong spec can now go live and be found afterwards instead of being caught before —
+and it is the trade Albert chose, deliberately, on 2026-09-12. The two pricing
+carve-outs exist because a wrong *cost* is the one failure that is both silent and
+monetary, and a later correction does not recover the margin lost in between.
+
+**What did not change:** `blocked` entries never get an id, by policy or by a person.
 `*-actions` agents still execute only an id that appears `approved` in the approval
-file — nothing about that check changed, only that `/catalog-sync` itself may now
-write that file for the narrow slice the rubric covers. Neither Lightspeed nor
-Airtable has a delete/deactivate action type, and this change adds no path to one.
+file — only who writes that file changed. Neither Lightspeed nor Airtable has a
+delete/deactivate action type, and none of this adds a path to one.
 
 ---
 
@@ -101,27 +105,25 @@ work across a session boundary (confirmed 2026-09-11: the only available downloa
 tool serves files this session's own integration uploaded, and these were not), and
 inside one session you already have them on disk from step 1 regardless.
 
-Apply the auto-approval rubric exactly as contracts/catalog-plan-schema.md states it:
+Apply the auto-approval rubric exactly as contracts/catalog-plan-schema.md states it.
+Approve and execute everything except its three carve-outs: blocked entries,
+Ambiguous Pricing rows, and every action on a plan whose cost_basis is null. Write
+those approved ids into the approval file yourself, carry them through steps 4-6 in
+this same session, and set every resulting actions-log approved_by to
+"policy: auto-approval (2026-09-12 rubric)" — never a person's name.
 
-- Plan's Review Reason includes New Supplier → nothing on this plan auto-approves.
-  Report the plan, stop, same as the gate always has.
-- Otherwise, an action auto-approves if it is not blocked and its sku carries no
-  Review Reason this run added or left uncleared. Write those ids into the approval
-  file yourself, execute steps 4-6 for them in this same session, and set every
-  resulting actions-log approved_by to
-  "policy: high-confidence auto-approval (2026-09-11 routine)" — never a person's
-  name.
-- Everything else — blocked entries, flagged rows, the whole of any New Supplier
-  plan — gets no id from you. Report it exactly as the gate always has: summary
-  counts, every blocked reason, before/after on price moves. That is this run's
-  successful, complete outcome for those rows, not a stall — a person approves them
-  later, the same way they always could.
+New Supplier does NOT hold a write any more, and neither does Ambiguous Naming,
+Unmapped Grade, Unmapped Category or Spec Gap. Those write, and are reported as
+wrote_flagged. Do not reintroduce a stop for them.
+
+Everything held, and everything written carrying a flag, goes into the troubled CSV
+per contracts/troubled-skus-schema.md — that contract is authoritative for columns,
+reason vocabulary and disposition. Do not restate its rules here or apply a
+remembered version of them.
 
 Set the Notion trackers to match what actually happened: Partial where some of a
-supplier's actions wrote and others are still waiting on a person, the completion
-values where nothing is left outstanding. Leave Extraction Status at
-Extracted [Needs Review] rather than advancing it while anything on the plan is
-still waiting on a person.
+supplier's actions wrote and others are held, the completion values where nothing is
+held. Leave Extraction Status at Extracted [Needs Review] while anything is held.
 
 If the Lightspeed host is unreachable or a credential is missing, follow that
 command's "Before you start" section: report the exact host or variable name and
@@ -133,17 +135,18 @@ treat a cloud/session env var as satisfying that check in place of .env.
 Report and notify
 
 Report honestly, one run covering both steps: what extraction produced, what policy
-auto-approved and actually wrote (by supplier, with action counts), and what is
-still sitting at the gate waiting on Albert (by supplier, with blocked/flagged
-reasons). Never describe a policy-cleared write as if a person reviewed it, and
-never describe a gate-held row as if it were written.
+approved and actually wrote (with counts), and what was held (with reasons). Never
+describe a policy-cleared write as if a person reviewed it, and never describe a held
+row as if it were written.
 
-Send a PushNotification whenever this run needs Albert: anything still at the gate,
-anything escalated, any step that could not complete, or new products created that
-still need attention (a Lightspeed ID backfill, for instance, though the sync step
-mostly closes that loop itself now). Stay silent only if the run completed cleanly —
-extraction produced files, sync ran, everything on the plan either wrote
-successfully by policy or there was nothing left to hold back.
+Send a PushNotification whenever the troubled CSV exists — naming the supplier and
+the held / wrote_flagged counts — and whenever any step could not complete or
+anything was escalated. The CSV is durable but passive; the notification is what
+makes anyone look at it, and there is no longer an approval gate standing behind it
+to catch what gets missed.
+
+Stay silent only on a fully clean run: extraction produced files, sync wrote
+everything, no troubled CSV.
 ```
 
 Six deliberate inclusions:
@@ -198,11 +201,16 @@ blocker rather than guessing. That failure is exactly why extraction now commits
 CSVs to the repo as a load-bearing step and sync now reads them from there instead of
 from Notion (see above) — it should not recur under this version.
 
-**The auto-approval path itself has never run, at all, on a real plan.** Everything
-in this file about it is design, not a verified behavior. The first real run under it
-should be watched closely — read what it actually auto-approved and wrote, not just
-whether it reported success — before trusting it to run fully unattended on a
-schedule.
+**The auto-approval path has never run, at all, on a real plan — and neither has the
+troubled CSV.** Everything in this file about both is design, not verified behavior.
+As of 2026-09-12 there is no gate in front of the writes, so the first real fire puts
+product prices into a live POS on the strength of documentation alone. Watch that
+run: read what it actually approved and wrote, and check the troubled CSV against
+the plan JSON, rather than trusting a "completed successfully" report.
+
+Worth doing once before relying on it: a fire against a supplier with a small,
+well-understood file, so the blast radius of a wrong rubric reading is a handful of
+rows rather than 220.
 
 **HOMESPRO and IMPRESSIVE are still stuck.** Their CSVs exist only as Notion
 attachments this session cannot read and were never committed to the repo (they
@@ -224,6 +232,16 @@ only when the flow itself or the stored text needs to change.
 
 ## Changelog
 
+- **2026-09-12 (Albert, in chat).** Removed the approval gate for everything but
+  three carve-outs (blocked, `Ambiguous Pricing`, null `cost_basis`), reversing the
+  previous day's `New Supplier` exemption. Added the troubled-SKUs CSV
+  (`contracts/troubled-skus-schema.md`) on a new `Troubled Files` Notion property as
+  the replacement checkpoint, with a mandatory PushNotification behind it. Albert's
+  reasoning: a gate nobody reaches on an unattended run is not a control, and a
+  filterable per-SKU exception report he can actually work through is worth more than
+  a stop that just accumulates unreviewed rows. Chose a single CSV with `stage`,
+  `reason` and `disposition` columns over splitting by type or stage, so any split is
+  recoverable by sorting and no combination is lost at write time.
 - **2026-09-11 (Albert, in chat).** Collapsed the two-trigger-shape version below
   back into one always-notionID flow, and removed the human pause between extraction
   and sync for actions that clear the new auto-approval rubric

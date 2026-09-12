@@ -40,40 +40,50 @@ the whole safety story:
 a command on a person's explicit yes), or by `/catalog-sync` itself under the
 narrow policy below — never by the reconciler.
 
-### Policy auto-approval (2026-09-11, Albert) — established suppliers only
+### Policy auto-approval (2026-09-11, Albert; widened 2026-09-12)
 
-The human pause at step 3 is no longer required for an established supplier's clean
-actions. `/catalog-sync` may write this file itself, with no person's yes, for the
-subset of a plan's actions that meet **all** of:
+The human pause at step 3 is no longer required. `/catalog-sync` writes this file
+itself, with no person's yes, for every action in a plan **except** the three
+carve-outs below. Everything it does not clear lands in the run's troubled-SKUs CSV
+(`contracts/troubled-skus-schema.md`) as `held`, which is how a person finds it.
 
-- The plan's `Review Reason` this run does **not** include `New Supplier`. A plan
-  touching a supplier with zero prior Airtable rows gets **no self-written approval,
-  for any row on it, ever** — section 2a's reasoning doesn't soften just because one
-  row looks clean: nothing on a new supplier's file has been reconciled against a
-  live record, so confidence there is never policy's to certify.
-- The action is in `actions[]`, never `blocked`. Unchanged — a `blocked` entry still
-  carries no `id` and stays exactly as unapprovable as before.
-- The action's `sku` carries none of **this run's own** `Review Reason` additions —
-  `Ambiguous Pricing`, `Ambiguous Naming`, `Unmapped Category`, `Unmapped Grade`,
-  `Spec Gap`. (A prior run's Review Reason on the same row, not yet cleared by the
-  reviewer, also disqualifies it — the flag exists until a person clears it, not
-  until this run stops repeating it.)
-- A `warnings` entry (`category_unresolved`, `airtable_side_not_planned`) does
-  **not** block auto-approval — warnings were already "never a reason to withhold a
-  write" before this policy existed, and that does not change here.
+**The carve-outs — an action is never auto-approved if:**
+
+1. **It is `blocked`.** Structural, not policy: a `blocked` entry carries no `id` and
+   the reconciler emits no action for it, so there is nothing that could be written
+   even in principle. Unchanged from the beginning.
+2. **Its `sku` carries `Ambiguous Pricing`** — this run's, or a prior run's not yet
+   cleared by the reviewer. The flag holds until a person clears it, not until a run
+   stops repeating it.
+3. **The plan's `cost_basis` is `null`.** Nothing on that plan auto-approves. If
+   nobody has recorded what the sheet's printed numbers mean, every price on it is a
+   guess, and precedent runs three ways (dealer-cost-only, MSRP × multiplier, both
+   columns printed).
+
+Carve-outs 2 and 3 are both the same failure — a wrong cost — caught at two
+different points. It is the one error that is silent *and* monetary: it does not look
+broken, it just sells at the wrong margin until someone notices, and the margin lost
+in the meantime is not recoverable by a later correction. Every other flag produces a
+visible, fixable defect, so it writes and is reported instead.
+
+**`New Supplier` no longer withholds a write (2026-09-12, Albert — reversing the
+2026-09-11 rule directly above it).** A plan for a supplier with zero prior Airtable
+rows auto-approves like any other, subject only to the three carve-outs. `/catalog-sync`
+2a's reasoning — that nothing on such a file has been reconciled against a live record,
+so spec confidence is unearned — still describes a real risk, and that risk is now
+accepted and managed after the fact through the troubled CSV rather than prevented by
+stopping. Note what still protects it: carve-out 3 means a new supplier whose cost
+basis nobody has recorded writes *nothing at all*, which is the expensive case.
 
 Entries this produces look identical in shape to a person's (`"status": "approved"`),
 but every actions-log entry they lead to must set
-`"approved_by": "policy: high-confidence auto-approval (2026-09-11 routine)"` —
-never `"Albert"` or any person's name, so the log never overstates who looked at
-what. `raw_ref_action_id` is still set, same as any other execution.
+`"approved_by": "policy: auto-approval (2026-09-12 rubric)"` — never `"Albert"` or
+any person's name, so the log never overstates who looked at what.
+`raw_ref_action_id` is still set, same as any other execution.
 
-Anything not meeting this bar — every row on a New Supplier plan, any `blocked`
-entry, any row carrying a Review Reason this run added or left uncleared — gets
-**no id written by policy.** It surfaces in the run's report exactly as an
-unapproved row always has: `summary` counts, the `blocked` reasons, the
-`before`/`after` on price moves. A person can still add ids for those, the old way,
-into the same file — the two authorship paths write to one file, not two.
+A person can still add ids by hand for anything held, the old way, into this same
+file — the two authorship paths write to one file, not two. Nothing can approve a
+`blocked` row, by either path.
 
 ```json
 {
