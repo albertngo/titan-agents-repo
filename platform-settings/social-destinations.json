@@ -160,5 +160,14 @@
     "draft_flag": "info.draft",
     "_mechanism": "info.draft:true is the draft switch. NOT createScheduledPostForReview \u2014 that is a different feature requiring a Metricool plan with team management and an explicit reviewer email list, which Pro does not include.",
     "_auto_publish_flag": "info.autoPublish \u2014 true publishes via the API at the scheduled time; false sends a push notification to the Metricool mobile app for a human to publish by hand. This is the Decorated Story fallback, and it is independent of draft."
+  },
+  "media_source": {
+    "_comment": "Where Metricool fetches media from. Google Drive as of 2026-09-12, replacing SharePoint/OneDrive.",
+    "provider": "google_drive",
+    "registry": "platform-settings/content-sources.json",
+    "_why": "Metricool's createScheduledPost contract names Google Drive and Dropbox as external sources it auto-uploads; OneDrive/SharePoint is NOT among them. A raw SharePoint share link also cannot be handed to a third party at all -- it needs ?download=1 plus a FedAuth cookie jar (see scripts/pricelist_fetch.py), and Metricool has no cookie jar, so it would 403.",
+    "_metricool_drive_link_required": "Google Drive must be linked inside the Metricool account for Drive URLs to be ingested. Linked 2026-09-12.",
+    "_sharing_required": "Assets must be shared anyone-with-link/viewer. A link that opens in Albert's signed-in browser proves nothing -- verify signed out.",
+    "_ingest_timing": "Metricool uploads external media to itself AT SCHEDULE TIME, not at publish time. This is why a short-lived URL was survivable and why a scheduled post does not depend on the source staying reachable until publication."
   }
 }

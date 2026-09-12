@@ -1,0 +1,85 @@
+{
+  "_comment": "Read registry for the social content pipeline. Maps the Notion content databases to the Google Drive media tree, and holds the folder-naming convention as data rather than as a literal buried in an automation. Consumed by content-ingest-agent, scripts/content_media_resolve.py and .claude/commands/content-schedule.md. Source: live Notion + Drive reads, 2026-09-12.",
+  "_maintenance": "Two things go stale independently. (1) Notion property names are EXACT MATCH — a rename in Notion silently breaks reads; re-verify with notion-fetch on the data_source url. (2) drive.root_folder_id is pinned deliberately: there are three folders in this account whose title contains 'Titan Flooring', one of them shared by an external agency (kim@socialestatesmarketing.com). NEVER resolve the root by title search — always by id.",
+
+  "config_version": "1",
+
+  "sources": {
+    "titan_content_ideas": {
+      "_comment": "The planning database. One row per content item; 'Next: Post To' selects the platform for the next post, and Content Calendar Log records each post that went out.",
+      "database_id": "1ef596a4-505f-815d-a9c1-000b59bcedac",
+      "data_source": "collection://1ef596a4-505f-815d-a9c1-000b59bcedac",
+      "sensitivity": "team",
+      "id_property": "userDefined:ID",
+      "_id_property_comment": "Auto-increment. This integer is the join key to the Drive folder (ID 170 <-> folder TC-170_...), which is why no extra cross-reference field is needed.",
+      "trigger_property": "Status",
+      "trigger_value": "Ready To Post",
+      "select_columns": [
+        "url", "Content Name", "userDefined:ID", "Status", "Post Date",
+        "Next: Post To", "Content Format", "Content Type", "Series",
+        "Link to Files", "Parent item", "Sub-item", "Project"
+      ]
+    },
+    "content_calendar_log": {
+      "_comment": "Append-only posting history. One row per platform per content item — this is the fan-out record, not a duplicate of the idea.",
+      "database_id": "38c596a4-505f-8073-a0b7-f68209176550",
+      "data_source": "collection://38c596a4-505f-80b4-9b03-000bf7d7d77b",
+      "sensitivity": "team",
+      "select_columns": ["url", "Content Name", "Post Date", "Post To", "Content Series"]
+    }
+  },
+
+  "drive": {
+    "_comment": "Google Drive is the media source of record as of 2026-09-12, replacing SharePoint/OneDrive. Chosen because Metricool auto-ingests Drive URLs natively: no Graph permission to widen, no pre-authenticated-URL expiry, and none of the FedAuth cookie problem that makes a raw SharePoint share link unusable to a third party (see scripts/pricelist_fetch.py).",
+    "account": "albertngo95@gmail.com",
+    "root_folder_id": "1rbFy6aNyb1PXjAEIvOhZyZNK4bvpUBCq",
+    "root_path": "TITAN FLOORING/Titan Flooring Content",
+    "parent_folder_id": "1qxUuFTNY43x5I2G-KQIv4kvs3tlAsn05",
+    "_sharing_requirement": "Every folder or asset the pipeline hands to Metricool MUST be shared anyone-with-link/viewer, or Metricool's fetch 404s. A link that opens fine in Albert's own browser proves nothing — he is signed in. Verify signed out. Drive permissions inherit, so setting this once on root_folder_id covers everything beneath it; prefer that over per-file sharing in the Make scenario.",
+    "_verified": "2026-09-12: root exists, owner albertngo95@gmail.com, permissions are owner-only — anyone-with-link is NOT yet set."
+  },
+
+  "folder_convention": {
+    "_comment": "The per-content-item scaffold. Created by the Make scenario on a new Notion row; read by the resolver. Holding the prefix here is the whole point of this block — it was previously a hardcoded literal inside a ~366KB Make blueprint, which is why changing it looked bigger than it was.",
+    "prefix": "TC",
+    "separator": "-",
+    "name_template": "{prefix}{separator}{notion_id}_{content_name}",
+    "legacy_prefixes": ["TFC"],
+    "_legacy_comment": "Pre-2026-09-12 folders are TFC-<n>, and some are TFC<n> with no separator at all (TFC-168_VALUE.m4a alongside TFC167_VALUE.m4a). Both are normalised to TC-<n> during the migration. 'TC' is not a substring of 'TFC', so the two prefixes can never match each other by accident and a half-migrated estate stays unambiguous.",
+    "match_on": "notion_id",
+    "_match_comment": "Resolve by the integer, tolerating any known prefix and an optional separator. Never match on the prefix itself — it is decoration and it is changing.",
+
+    "media_dir": "03_FINAL",
+    "_media_dir_comment": "The single source of postable assets. The pipeline reads ONLY this. Raw footage in 01_RAW is 99.3% of the tree's bytes and is never touched.",
+    "published_dir": "04_PUBLISHED",
+    "photos_dir": "04_PHOTOS",
+    "cover_name_tokens": ["cover", "thumb", "thumbnail"],
+
+    "scaffold": [
+      "01_RAW", "02_EDIT", "02_SELECTS", "03_AUDIO", "03_FINAL", "04_PHOTOS",
+      "04_PUBLISHED", "10_BEFORE", "20_DEMO", "30_INSTALL", "40_FINISHED",
+      "50_INTERVIEW", "60_TALKINGHEAD", "70_VOICEOVERS"
+    ],
+    "_scaffold_comment": "Mirrors what Make 4803695 builds today. Not every item gets every subfolder — the scenario branches on Content Format/Type."
+  },
+
+  "migration": {
+    "_comment": "One-time OneDrive -> Drive move, decided 2026-09-12 (Albert). Everything migrates: Drive is a 2TB plan, so 200GB is not a capacity constraint and a single source of truth beats a split archive.",
+    "status": "not_started",
+    "source_drive_id": "b!WgDUiebAk067YyFBoHcpgaKBXdDsG4JHgE5-bBed-T-At80r5bVwTZjvCbFAKnZi",
+    "source_folder_id": "01VFDJTKYKP5HHENTC6ZGY7QAGRMTQ3FKK",
+    "source_path": "MEDIA FILES/Titan Content Files",
+    "measured_2026_09_12": {
+      "top_level_folders": 32,
+      "total_bytes": 215370000000,
+      "total_gb_approx": 200.6,
+      "folders_over_1gb": 11,
+      "bytes_in_those_11_pct": 99.3,
+      "largest": "TFC-149_Tim Gilbert, 51GB",
+      "empty_or_unexported": 12
+    },
+    "_risk": "Throughput, not cost. A 51GB folder through Drive's API will throttle. The job must be resumable and idempotent, keyed on notion_id, reporting per row rather than going silent for hours.",
+    "_safety": "Nothing is deleted from OneDrive until Albert confirms the Drive copy is complete and correct. Reversible-by-inaction is the only safe shape at this volume.",
+    "_notion_rewrite": "Every migrated row's 'Link to Files' must be rewritten to the Drive link in the same pass. A moved folder whose Notion row still points at OneDrive is a broken row."
+  }
+}
