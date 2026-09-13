@@ -3760,13 +3760,46 @@ actually confirmed it, then was corrected to an open question when that overreac
 was caught. Kept in this file's history rather than smoothed over, since the same
 mistake is easy to repeat on the next new supplier.)
 
+#### SKU / handle / name prefix — CONFIRMED, 2026-09-13 (Albert): `HMPR`
+
+Onboarding a brand-new supplier requires confirming these before anything is minted
+— `bert-airtable-schema` "Before importing a new supplier" and `ls-upload-instructions`
+line 1079 both gate on it explicitly. Albert confirmed a single token for all three:
+
+| Token | Value | Used for |
+|---|---|---|
+| SKU prefix | `HMPR` | Titan's internal Airtable SKU — `LVP-HMPR-0001`, `ACC-HMPR-0001`, etc. |
+| Handle prefix | `HMPR` | `LS Handle / Parent ID`, e.g. `HMPR55MILAN` |
+| Name prefix | `HMPR` | The constructed Lightspeed display name |
+
+`Sequential 0001 format` per Supplier SKU policy — the sheet carries no per-product
+supplier code, so `Supplier SKU` stays blank on every HOMESPRO record.
+
+#### Category mapping — derived from existing schema precedent, not confirmed with Albert
+
+Resolved from rules already recorded elsewhere in this file rather than invented:
+
+- **Click/floating SPC** (Milan, Venice, Moscow, Vancouver, Sydney) → `Category = LVP`,
+  `Material type = SPC core`, `Install method = Click` — the Chimestone precedent.
+- **Glue-down vinyl** (Holland, Seoul) → `Category = LVT`, `Material type = SPC core`,
+  `Install method = Glue down` — the Chimewood "Glued Down" precedent (glue-down vinyl
+  is `LVT`, not `LVP`, regardless of core).
+- **Laminate** (Tuscany) → `Category = Laminate`, `AC rating = AC4`.
+- **T-Moulding / Stair Nose / Reducer** → `SKU prefix = ACC`, `Product type = Moulding`.
+  These three price identically ($19.50/$24.50/$19.50) across both the SPC and
+  laminate lines — shared accessories, not per-collection variants. `Category = LVP`
+  assigned as the majority case; flagged rather than silently decided, since a trim
+  genuinely serving two categories has no clean single answer.
+- **IXPE Underlay / Multi-Surface Protector** → `SKU prefix = ACC`,
+  `Product type = Underpad`, `Category` left blank — no flooring-format category
+  applies to an underlayment roll, and none of the documented Category options fit.
+
 #### Not yet recorded
 
-SKU supplier code, brand, collection naming and material-type defaults are **not**
-established here. Derive them from the live Lightspeed records rather than inventing
-them — the products exist there, so the real convention is readable from data. Verify
-any SKU format against the live base before generating a SKU (the Grandeur 2026-09-03
-trap), and flag `sku_format_mismatch` rather than reconciling a disagreement silently.
+Collection naming and material-type defaults beyond the mapping above are still
+**not** established. Verify any SKU format against the live base before generating
+a SKU (the Grandeur 2026-09-03 trap), and flag `sku_format_mismatch` rather than
+reconciling a disagreement silently.
 
 ### IMPRESSIVE (MG Impressive / Impressive Floors)
 
