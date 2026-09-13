@@ -90,14 +90,16 @@
   "drive": {
     "_comment": "Google Drive is the media source of record as of 2026-09-12, replacing SharePoint/OneDrive. Chosen because Metricool auto-ingests Drive URLs natively: no Graph permission to widen, no pre-authenticated-URL expiry, and none of the FedAuth cookie problem that makes a raw SharePoint share link unusable to a third party (see scripts/pricelist_fetch.py).",
     "account": "albertngo95@gmail.com",
-    "root_folder_id": "1rbFy6aNyb1PXjAEIvOhZyZNK4bvpUBCq",
+    "root_folder_id": "1l6jmDaRNIyUvnypcVFylS5caBFnNCgUl",
     "root_path": "TITAN FLOORING/Titan Flooring Content",
     "parent_folder_id": "1qxUuFTNY43x5I2G-KQIv4kvs3tlAsn05",
     "_sharing_requirement": "Every asset handed to Metricool MUST be shared anyone-with-link/viewer, or the fetch 404s. A link that opens in Albert's signed-in browser proves nothing -- verify signed out.",
-    "_verified": "2026-09-12: root exists (owner albertngo95@gmail.com), permissions owner-only. Correct as-is -- the root is NOT meant to be link-shared.",
+    "_verified": "2026-09-13: root confirmed as the folder Make writes into, holding TC-165_QA How Much Does Flooring Installation Cost in the GTA.",
     "share_scope": "media_dir_only",
     "_share_scope_comment": "Share the 03_FINAL folder (or the individual asset), NEVER root_folder_id. Drive permissions inherit, so sharing the root would be simpler -- and would expose every 01_RAW folder, i.e. raw unedited footage inside clients' homes, to anyone holding the link. Finished assets are already destined for public social feeds, so link-sharing those costs nothing; raw footage is not, and was never consented to for publication. Narrower is correct here even though it means the Make scenario shares per item rather than once.",
-    "_no_credential": "This repo holds NO Google credential and needs none. Drive reads go through the user-delegated Drive MCP connector, held by /content-schedule and content-ingest-agent. scripts/content_media_select.py deliberately does no I/O -- it takes a folder listing and returns a choice or a refusal. A service account was considered and rejected: it would not see Albert's personal My Drive without per-file sharing, so it would add a credential to guard without removing any work."
+    "_no_credential": "This repo holds NO Google credential and needs none. Drive reads go through the user-delegated Drive MCP connector, held by /content-schedule and content-ingest-agent. scripts/content_media_select.py deliberately does no I/O -- it takes a folder listing and returns a choice or a refusal. A service account was considered and rejected: it would not see Albert's personal My Drive without per-file sharing, so it would add a credential to guard without removing any work.",
+    "_root_folder_id_comment": "REPOINTED 2026-09-13. TWO folders named 'Titan Flooring Content' exist under TITAN FLOORING, created ten minutes apart: 1rbFy6aNyb1PXjAEIvOhZyZNK4bvpUBCq (20:02, empty) and this one (20:12). The Make scenario writes into THIS one -- TC-165_... is here. The registry originally pinned the empty duplicate: the id was taken from a title search at a moment when only one existed, which is why pinning an id is necessary but not sufficient when the NAME is ambiguous at pin time. Verify a pinned id still holds what you expect, do not just check that it is an id. Albert to delete the empty duplicate so this cannot recur.",
+    "_duplicate_to_delete": "1rbFy6aNyb1PXjAEIvOhZyZNK4bvpUBCq"
   },
   "folder_convention": {
     "_comment": "The per-content-item scaffold. Created by the Make scenario on a new Notion row; read by the resolver. Holding the prefix here is the whole point of this block \u2014 it was previously a hardcoded literal inside a ~366KB Make blueprint, which is why changing it looked bigger than it was.",
