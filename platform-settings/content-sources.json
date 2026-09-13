@@ -124,20 +124,40 @@
     "scaffold": [
       "01_RAW",
       "02_EDIT",
-      "02_SELECTS",
-      "03_AUDIO",
       "03_FINAL",
-      "04_PHOTOS",
-      "04_PUBLISHED",
+      "04_PUBLISHED"
+    ],
+    "_scaffold_comment": "UNIFORM for every Content Format (Albert, 2026-09-13), replacing the old per-format branching. Content Format is an EDITABLE property: a row switched from Shortform to Carasoul after its folders exist would leave a tree that no longer matches, and nothing reconciles it. Making the scaffold a function of nothing means it cannot drift. It also removes the format branch from the Make scenario, which is most of why the old one needed 28 createAFolder modules. Cost accepted: an Image row gets 30_INSTALL it will never use.",
+    "raw_subfolders": [
       "10_BEFORE",
       "20_DEMO",
       "30_INSTALL",
       "40_FINISHED",
       "50_INTERVIEW",
       "60_TALKINGHEAD",
-      "70_VOICEOVERS"
+      "70_VOICEOVER",
+      "80_PHOTOS",
+      "90_GRAPHICS"
     ],
-    "_scaffold_comment": "Mirrors what Make 4803695 builds today. Not every item gets every subfolder \u2014 the scenario branches on Content Format/Type."
+    "_dropped_from_the_old_scaffold": {
+      "02_SELECTS": "chosen clips are an editing artifact -> 02_EDIT",
+      "03_AUDIO": "same material as voiceover, and it is source -> 01_RAW/70_VOICEOVER",
+      "04_PHOTOS": "photos are captured, so they are raw -> 01_RAW/80_PHOTOS"
+    },
+    "_final_dir_is_flat": "03_FINAL takes no subfolders, ever. content_media_select.py reads files directly from it and would refuse a subfoldered one as empty_final_dir. This is a contract, not a preference.",
+    "carousel": {
+      "_comment": "Several images and no video in 03_FINAL is a carousel. Slide order must be declared in the filenames -- alphabetical is wrong ('10.jpg' sorts before '9.jpg'), creation time is wrong (slides get re-exported), and guessing publishes the sequence wrong in a way that reads as a design choice rather than a bug, so nobody reports it.",
+      "order_from": "filename_prefix",
+      "prefix_pattern": "^(\\d+)[\\s_.-]+",
+      "example": [
+        "01_hook.jpg",
+        "02_before.jpg",
+        "03_after.jpg"
+      ],
+      "max_slides": 10,
+      "_refusals": "carousel_unordered (any slide unnumbered), carousel_gap (gap or two slides claiming one position), carousel_too_long (over max_slides)",
+      "_no_cover": "A carousel never carries a cover: the first slide is the cover, and Metricool's cover fields apply only to video -- sending one rejects the entire post."
+    }
   },
   "migration": {
     "_comment": "One-time OneDrive -> Drive move, decided 2026-09-12 (Albert). Everything migrates: Drive is a 2TB plan, so 200GB is not a capacity constraint and a single source of truth beats a split archive.",

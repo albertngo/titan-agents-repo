@@ -105,16 +105,93 @@ class SelectMediaCase(unittest.TestCase):
             select_media(normalize([f("notes.txt"), f("project.prproj")]))
         self.assertEqual(cm.exception.reason, "no_postable_asset")
 
-    def test_multiple_images_no_video_refuses(self):
-        """Carousel order is a human decision, not alphabetical."""
+    def test_unnumbered_images_refuse_as_a_carousel(self):
+        """Several images and no video is a carousel — but only if order is declared."""
         with self.assertRaises(Refusal) as cm:
-            select_media(normalize([f("1.jpg"), f("2.jpg"), f("3.jpg")]))
-        self.assertEqual(cm.exception.reason, "multiple_images_no_video")
+            select_media(normalize([f("hook.jpg"), f("after.jpg"), f("cta.jpg")]))
+        self.assertEqual(cm.exception.reason, "carousel_unordered")
 
     def test_subfolders_do_not_count_as_assets(self):
         with self.assertRaises(Refusal) as cm:
             select_media(normalize([f("old", folder=True)]))
         self.assertEqual(cm.exception.reason, "empty_final_dir")
+
+
+class CarouselCase(unittest.TestCase):
+    """Several images, no video. The order is the entire problem.
+
+    Getting it wrong publishes a story told in the wrong sequence, which reads as a
+    design choice rather than a bug — so nobody reports it and it never gets fixed.
+    """
+
+    def test_numbered_slides_come_back_in_order(self):
+        r = select_media(normalize([f("03_after.jpg"), f("01_hook.jpg"), f("02_before.jpg")]))
+        self.assertEqual([e["name"] for e in r["carousel"]],
+                         ["01_hook.jpg", "02_before.jpg", "03_after.jpg"])
+
+    def test_order_is_numeric_not_alphabetical(self):
+        """The case that makes this worth doing: "10" sorts before "9" as text."""
+        files = [f(f"{i}_slide.jpg") for i in range(1, 11)]
+        r = select_media(normalize(files))
+        self.assertEqual([int(e["name"].split("_")[0]) for e in r["carousel"]],
+                         list(range(1, 11)))
+
+    def test_media_is_the_first_slide(self):
+        r = select_media(normalize([f("02_b.jpg"), f("01_a.jpg", "first")]))
+        self.assertEqual(r["media"]["id"], "first")
+
+    def test_clean_carousel_carries_no_cover(self):
+        """Metricool's cover fields apply only to video; sending one rejects the
+        entire post. The first slide is already the cover."""
+        r = select_media(normalize([f("01_a.jpg"), f("02_b.jpg")]))
+        self.assertIsNone(r["cover"])
+
+    def test_a_stray_cover_file_refuses_rather_than_guessing(self):
+        """Is cover.jpg slide 3, or a cover? Covers do not apply to carousels, but
+        an unnumbered image among numbered ones is genuinely ambiguous — and picking
+        either reading silently changes what gets published."""
+        with self.assertRaises(Refusal) as cm:
+            select_media(normalize([f("01_a.jpg"), f("02_b.jpg"), f("cover.jpg")]))
+        self.assertEqual(cm.exception.reason, "carousel_unordered")
+        self.assertIn("cover.jpg", cm.exception.detail)
+
+    def test_gap_refuses(self):
+        with self.assertRaises(Refusal) as cm:
+            select_media(normalize([f("01_a.jpg"), f("03_c.jpg")]))
+        self.assertEqual(cm.exception.reason, "carousel_gap")
+
+    def test_duplicate_position_refuses(self):
+        """Two slides claiming position 1 means one of them is in the wrong place."""
+        with self.assertRaises(Refusal) as cm:
+            select_media(normalize([f("01_a.jpg"), f("01_b.jpg")]))
+        self.assertEqual(cm.exception.reason, "carousel_gap")
+
+    def test_partially_numbered_refuses_and_names_the_offenders(self):
+        with self.assertRaises(Refusal) as cm:
+            select_media(normalize([f("01_a.jpg"), f("bonus.jpg")]))
+        self.assertEqual(cm.exception.reason, "carousel_unordered")
+        self.assertIn("bonus.jpg", cm.exception.detail)
+
+    def test_over_the_platform_ceiling_refuses(self):
+        with self.assertRaises(Refusal) as cm:
+            select_media(normalize([f(f"{i:02d}_x.jpg") for i in range(1, 13)]))
+        self.assertEqual(cm.exception.reason, "carousel_too_long")
+
+    def test_separators_are_flexible(self):
+        for sep in ("_", "-", ".", " "):
+            r = select_media(normalize([f(f"1{sep}a.jpg"), f(f"2{sep}b.jpg")]))
+            self.assertEqual(len(r["carousel"]), 2, sep)
+
+    def test_a_single_image_is_still_not_a_carousel(self):
+        r = select_media(normalize([f("promo.jpg", "i1")]))
+        self.assertEqual(r["media"]["id"], "i1")
+        self.assertNotIn("carousel", r)
+
+    def test_a_video_wins_over_images(self):
+        """A numbered still beside a video is a cover candidate, not a carousel."""
+        r = select_media(normalize([f("clip.mp4", "v1"), f("01_cover.jpg")]))
+        self.assertEqual(r["media"]["id"], "v1")
+        self.assertNotIn("carousel", r)
 
 
 class CoverCase(unittest.TestCase):

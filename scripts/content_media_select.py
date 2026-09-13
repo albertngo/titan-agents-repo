@@ -46,6 +46,12 @@ COVER_TOKENS = ("cover", "thumb", "thumbnail")
 # post -- so it is never silently chosen.
 COVER_EXT = {".jpg", ".jpeg", ".png"}
 
+# A carousel's slide order is a human decision and is NOT alphabetical -- "10.jpg"
+# sorts before "9.jpg", and "final_v2" before "final_v10". So order must be declared
+# explicitly, with a leading number: 01_hook.jpg, 02_before.jpg, 03_after.jpg.
+CAROUSEL_PREFIX = re.compile(r"^(\d+)[\s_.\-]+")
+CAROUSEL_MAX = 10  # Instagram's ceiling; Metricool rejects more
+
 FOLDER_MIME = "application/vnd.google-apps.folder"
 
 
@@ -143,10 +149,7 @@ def select_media(entries: list[dict]) -> dict:
     elif len(images) == 1:
         media = images[0]
     elif len(images) > 1:
-        names = ", ".join(sorted(e["name"] for e in images))
-        raise Refusal("multiple_images_no_video",
-                      f"{len(images)} images and no video ({names}) -- a carousel's order "
-                      "is a human decision. Resolve by hand.")
+        return _carousel(images, unknown)
     else:
         raise Refusal("no_postable_asset",
                       f"no video or image in {FINAL_DIR}/ ({len(unknown)} other file(s)).")
@@ -157,6 +160,52 @@ def select_media(entries: list[dict]) -> dict:
                         + ", ".join(sorted(e['name'] for e in unknown)))
 
     return {"media": media, "cover": cover, "warnings": warnings}
+
+
+def _carousel(images: list[dict], unknown: list[dict]) -> dict:
+    """Several images and no video: a carousel, if and only if the order is declared.
+
+    Ordering is the whole problem. Alphabetical is wrong ("10.jpg" sorts before
+    "9.jpg"), creation time is wrong (slides get re-exported), and picking for the
+    user silently publishes a story told in the wrong sequence -- which looks like a
+    design choice, not a bug, so nobody reports it. So the order must be written down,
+    in the filenames, where whoever arranges the slides can see it.
+    """
+    numbered, bare = [], []
+    for e in images:
+        m = CAROUSEL_PREFIX.match(e["name"])
+        (numbered if m else bare).append((int(m.group(1)), e) if m else e)
+
+    if bare:
+        names = ", ".join(sorted(e["name"] for e in bare))
+        raise Refusal(
+            "carousel_unordered",
+            f"{len(images)} images and no video, but {len(bare)} carry no slide number "
+            f"({names}). Prefix every slide: 01_, 02_, 03_. Alphabetical order is not "
+            "slide order, and guessing publishes the sequence wrong.")
+
+    if len(numbered) > CAROUSEL_MAX:
+        raise Refusal("carousel_too_long",
+                      f"{len(numbered)} slides; the platform ceiling is {CAROUSEL_MAX}.")
+
+    numbered.sort(key=lambda t: t[0])
+    seen = [n for n, _ in numbered]
+    expected = list(range(1, len(seen) + 1))
+    if seen != expected:
+        raise Refusal(
+            "carousel_gap",
+            f"slide numbers are {seen}, expected {expected}. A gap or a duplicate means "
+            "a slide is missing or two claim the same position -- either way the order "
+            "is not what someone intended.")
+
+    slides = [e for _, e in numbered]
+    warnings = []
+    if unknown:
+        warnings.append(f"{len(unknown)} unrecognised file(s) ignored: "
+                        + ", ".join(sorted(e["name"] for e in unknown)))
+    # No cover: a carousel's first slide IS its cover, and Metricool's cover fields
+    # apply only to video -- sending one here rejects the whole post.
+    return {"media": slides[0], "carousel": slides, "cover": None, "warnings": warnings}
 
 
 def _pick_cover(images: list[dict], media: dict) -> tuple[dict | None, list[str]]:
