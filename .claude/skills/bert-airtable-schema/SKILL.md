@@ -3739,22 +3739,26 @@ printed-as-cost case, recorded here so the question is not re-asked and so
 Albert confirmed the **cost column** on 2026-09-12. He did not confirm a markup —
 see the next subsection, which is still open.
 
-#### Markup override — OPEN QUESTION, do not assume the global rule
+#### Markup override — RESOLVED, 2026-09-12 (Albert): global rule applies
 
-**Observed 2026-09-12 from the live Lightspeed catalogue: all 73 live HOMESPRO
-products carry `retail = cost + $ 1.40`, with zero exceptions.** Not one sits at the
-global `+ $ 1.00`.
+**Albert confirmed `+ $ 1.00` — the global rule, not the live pattern.** Retail =
+Cost/unit + $ 1.00, same as every other supplier without a recorded override.
 
-73/73 is not noise; it reads as a deliberate supplier-specific markup that was never
-recorded here. **Until Albert rules on it, do not apply either value to this
-supplier** — flag the rows and let the plan hold. Applying the global `+ $ 1.00`
-would cut retail by roughly `$ 1.00`/sf against live on every matched product, on
-top of whatever the cost change already does.
+This is a deliberate cut against where HOMESPRO's 27 already-live, name-matched
+SKUs (Venice, Moscow, Sydney, Seoul) currently sit — all 73 live HOMESPRO products
+in Lightspeed carry `retail = cost + $ 1.40`, zero exceptions, so this decision
+both drops the markup AND applies the sheet's 26-30% cost cut on top. The combined
+effect on those 27 SKUs is roughly $0.58-$1.18/sf below current live retail. Recorded
+here so the size of the move is never mistaken for a rounding difference.
 
-An earlier draft of this subsection asserted the global `+ $ 1.00` for HOMESPRO. That
-was wrong — it extended Albert's cost-column answer into a markup answer he had not
-given. Recorded here rather than quietly deleted, because the same overreach is easy
-to repeat on the next new supplier.
+The $1.40 pattern in the live catalogue is not being adopted going forward — it
+reflects the account's prior state, not a supplier-specific rule Titan is choosing
+to continue.
+
+(An earlier draft of this subsection asserted the global rule before Albert had
+actually confirmed it, then was corrected to an open question when that overreach
+was caught. Kept in this file's history rather than smoothed over, since the same
+mistake is easy to repeat on the next new supplier.)
 
 #### Not yet recorded
 
