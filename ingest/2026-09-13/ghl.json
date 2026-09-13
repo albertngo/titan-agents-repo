@@ -1,0 +1,91 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-09-13T08:13:32-04:00",
+  "status": "error",
+  "error": "GHL MCP server unreachable this run: .mcp.json declares the 'ghl' HTTP MCP server (https://services.leadconnectorhq.com/mcp/), and GHL_PIT_TOKEN/GHL_LOCATION_ID are present in .env, but `claude mcp list` reports the server as '⏸ Pending approval (run `claude` to approve)' — a project-scoped MCP server requires a one-time interactive approval via the `claude` REPL before any tool calls are permitted, and no such approval has been recorded for this project (checked /root/.claude.json: no per-project MCP approval state exists). This is a non-interactive ingest session, so that approval step could not be completed, and per this agent's own read-only mandate it is not this agent's place to grant itself MCP access by editing permission/settings files. No contacts, opportunities, conversations, appointments, or notes tools were called; zero GHL data was read this run. Every field below is a placeholder (0/empty), not a real measurement. Action needed: a human must run `claude` interactively in this project once and approve the 'ghl' MCP server (or otherwise pre-approve it via the permission system) before the next scheduled /daily-ingest run.",
+  "items": [],
+  "metrics": {
+    "lead_count": 0,
+    "new_leads": 0,
+    "untagged_in_queue": 0,
+    "unanswered_conversations": 0,
+    "appointments_booked": 0,
+    "pipeline_moves": 0,
+    "won_today": 0,
+    "won_value_cents": 0,
+    "drift_findings": 0,
+    "leads_hot": 0,
+    "leads_warm": 0,
+    "leads_cold": 0,
+    "leads_unqualified": 0,
+    "leads_stale": 0
+  },
+  "needs_attention": [
+    "GHL ingest produced ZERO data today (2026-09-13) — the 'ghl' MCP server is configured in .mcp.json but sits at 'Pending approval' and was never connected this run. No new leads, opportunities, appointments, or conversations were read. Every metric in this file is a placeholder, not a real count. Approve the MCP server interactively (run `claude` in this project and accept the prompt) before the next run, otherwise the daily brief will keep going blind on GHL, which is the primary driver of that brief."
+  ],
+  "extensions": {
+    "ghl": {
+      "template_version": "3",
+      "reporting": {
+        "lead_count": 0,
+        "exclusions": {
+          "new_leads_raw": 0,
+          "new_leads_excluded": {
+            "supplier-solicitation": 0,
+            "spam likely": 0
+          },
+          "unanswered_raw": 0,
+          "unanswered_excluded": {
+            "missed-call-no-voicemail": 0,
+            "automated-system-log": 0
+          }
+        },
+        "store_wins_today": 0,
+        "store_won_value_cents": 0,
+        "leads_by_source": {},
+        "leads_by_tag": {
+          "lead: hot": 0,
+          "lead: warm": 0,
+          "lead: cold": 0,
+          "lead: unqualified": 0,
+          "lead: lost": 0,
+          "lead: rate-shopper": 0,
+          "stale_lead": 0,
+          "untagged": 0
+        },
+        "leads_by_stage": {},
+        "avg_days_in_stage": {},
+        "opportunity_status_counts": {
+          "open": 0,
+          "won": 0,
+          "lost": 0,
+          "abandoned": 0
+        },
+        "store_pipeline_note": "Not available this run — GHL MCP server was unreachable (pending approval), so STORE: Material Pipeline could not be queried.",
+        "stale_thresholds_used": {
+          "0c. ASAP (Hot)": 7,
+          "0a. New Lead": 14,
+          "0b. Later Date (Warm)": 40,
+          "0b. Far Out (Cold)": 90,
+          "*Meeting (Scheduled)* CCAM|GHL": 30,
+          "1b. Postponed ": 90
+        },
+        "meeting_window_summary": {
+          "contacts_in_stage": 0,
+          "median_days_entry_to_appointment": null,
+          "median_effective_window_days": null,
+          "window_already_expired": 0
+        },
+        "exclusions_note": "drift_excluded_by_stage and drift_excluded_by_stage_and_tag are omitted (not zero-filled) because no records were read this run to exclude — there is no underlying pull to reconcile against."
+      },
+      "new_leads": [],
+      "opportunities": [],
+      "appointments_booked": [],
+      "conversations": [],
+      "workflow_drift": [],
+      "won_records": [],
+      "stragglers_ranked": []
+    }
+  }
+}

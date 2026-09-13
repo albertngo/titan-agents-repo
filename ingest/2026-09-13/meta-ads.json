@@ -1,0 +1,36 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-09-13T08:13:22-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $44.85 spend, 3 leads, $14.95 CPL — Flooring Problems Campaign",
+      "summary": "Yesterday (2026-09-12) Meta spent $44.85, all on the sole actively-delivering campaign, Flooring Problems Campaign, generating 3 leads at $14.95 CPL. That's close to the 7-day baseline (2026-09-06 to 2026-09-12: $349.68 / 26 leads, ~$13.45 CPL) — no anomaly; account is ACTIVE and no ads are flagged.",
+      "timestamp": "2026-09-12T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 4485,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 4485,
+    "impressions": 1106,
+    "clicks": 36,
+    "leads": 3,
+    "cpl_cents": 1495,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued at 3, matching the counted leads exactly; same pattern in the 7-day baseline window at value 26). This has now recurred across essentially every run since 2026-08-31 (08-31, 09-02, 09-07, 09-08, and now 09-12/09-13) with no discrepancy in the counted total — the script's lead-action set should be extended to include these rather than continuing to hand-note it each run.",
+    "Gap check: this branch's local ingest/ history has no meta-ads.json between 2026-09-08 and today (branch-isolation artifact noted previously, not a real missed pull) — the vault's 2026-09-12 daily note confirms the last CONFIRMED Meta Ads run window ended 2026-09-11. Today's standard 1-day window (2026-09-12) picks up exactly where that window ended, so no widening was needed and no day is uncovered.",
+    "The 7-day baseline call (--days 7) failed once with an HTTP 502 from Meta before succeeding on an immediate retry — transient, not a rate limit (codes 4/17/32) or a credential issue; noted for visibility only, both pulls ultimately returned status ok."
+  ]
+}

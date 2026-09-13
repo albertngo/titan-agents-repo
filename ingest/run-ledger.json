@@ -491,5 +491,18 @@
     },
     "brief": true,
     "note": "scheduled run; local branch ledger last showed 2026-09-02, but all 5 ingesters cross-checked unmerged session branches and vault 01_daily notes and confirmed real runs happened through 2026-09-07 (branch-isolation artifact, not a real gap) -- no catch-up widening needed; bookkeeper still has no QBO/Intuit MCP connector (10th consecutive failed run since 2026-07-26)"
+  },
+  {
+    "date": "2026-09-13",
+    "run_at": "2026-09-13T08:45:00-04:00",
+    "sources": {
+      "ghl": "error",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "partial",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; this branch's ledger last showed 2026-09-08, but vault 01_daily notes exist through 2026-09-12 (confirmed real daily-ingest runs on other session branches) -- same branch-isolation artifact documented on 2026-09-08's entry, no real gap, no catch-up widening needed on the ledger side (individual ingesters widened their own pull windows per source). ghl newly failing: mcp__ghl__* MCP server stuck at Pending approval, never connected (distinct from bookkeeper's missing-connector failure, needs interactive claude approval). bookkeeper still has no QBO/Intuit MCP connector (11th consecutive failed run since 2026-07-26). notion partial: project_status_meetings hit a Notion API usage-limit error after the other 4 sub-source queries."
   }
 ]
