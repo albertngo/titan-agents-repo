@@ -110,6 +110,16 @@ def load_approval(path, plan_path):
                       if d.get("status") == "approved"}
 
 
+def _flatten_category(name):
+    """The plan stores the CSV-importer's hierarchical path ('FLOORING / VINYL /
+    SPC'); the live product_types API only knows flat leaf names ('SPC'). This
+    mismatch is already documented in platform-settings/lightspeed.json
+    (api.category._differs_from_the_csv) — take the last path segment. A no-op
+    for a name with no '/', so plain leaves like 'ACCESSORIES' pass through.
+    """
+    return (name or "").split("/")[-1].strip()
+
+
 class Lookups:
     """Name -> id, read live. Never creates anything."""
 
@@ -123,8 +133,28 @@ class Lookups:
             index = {}
             for r in rows:
                 name = (r.get("name") or "").strip()
-                if name:
-                    index.setdefault(name.casefold(), r["id"])
+                if not name:
+                    continue
+                key = name.casefold()
+                if label != "product_type":
+                    index.setdefault(key, (r["id"], 0))
+                    continue
+                # This account carries duplicate leaf names: a legacy root-level
+                # category tree alongside a newer one nested under FLOORING /
+                # HARDWARE. Confirmed live 2026-09-14 by reading actual product
+                # records rather than guessing — a product Lightspeed created
+                # 2026-09-11 carries the FLOORING-nested LAMINATE id, a 2021
+                # product carries the root one. Never index a non-leaf row (the
+                # nested VINYL row is an intermediate node — SPC/WPC are its
+                # real leaves — and the account rejects a non-leaf write).
+                # Among same-named leaves, prefer the more deeply nested one:
+                # that's the one live evidence shows is current.
+                if not r.get("leaf_category", True):
+                    continue
+                depth = len(r.get("category_path") or [None])
+                existing = index.get(key)
+                if existing is None or depth > existing[1]:
+                    index[key] = (r["id"], depth)
             self._cache[label] = index
         return self._cache[label]
 
@@ -134,6 +164,8 @@ class Lookups:
                  "supplier": ("/api/2.0/suppliers", "supplier"),
                  "attribute": ("/api/2.0/variant_attributes", "variant attribute")}
         path, label = paths[kind]
+        if kind == "product_type":
+            name = _flatten_category(name)
         index = self._table(path, kind)
         got = index.get((name or "").strip().casefold())
         if got is None:
@@ -142,7 +174,7 @@ class Lookups:
                 f"one — {label}s are added by a person, deliberately. Known values "
                 f"include: {sorted(list(index))[:8]}"
             )
-        return got
+        return got[0]
 
 
 def build_family_payload(actions, lookups, cfg):
