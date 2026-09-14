@@ -97,7 +97,8 @@ def normalize(listing) -> list[dict]:
             "id": e.get("id") or e.get("fileId") or "",
             "name": name,
             "mime_type": e.get("mimeType") or e.get("mime_type") or "",
-            "size": e.get("size"),
+            # Graph says "size", the Drive connector says "fileSize" (as a string).
+            "size": e.get("size") or e.get("fileSize"),
             "is_folder": (e.get("mimeType") or e.get("mime_type") or "") == FOLDER_MIME
                          or bool(e.get("folder")),
         })
