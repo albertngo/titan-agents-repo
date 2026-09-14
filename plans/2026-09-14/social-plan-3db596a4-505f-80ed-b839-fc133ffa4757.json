@@ -1,19 +1,41 @@
 {
   "contract_version": "social-plan-1",
-  "generated_at": "2026-09-14T22:05:00-04:00",
+  "generated_at": "2026-09-14T22:40:00-04:00",
   "notion_id": 86,
   "content_name": "Staircase Transformation (Demo + Install — merged)",
   "blog_id": "3951085",
   "write_mode": "live",
-  "actions": [],
-  "held": [
+  "actions": [
     {
-      "reason": "duplicate_action_id",
-      "detail": "This row's action id (deterministic hash of notion_id=86 + surface='Instagram Reels' + story_variant='Not a Story' + scheduled_at='2026-09-15T20:00:00') computes to 44896fe6 -- verified by reproducing the contract's hash rule against the two other ids already in plans/2026-09-14/. That id is ALREADY present in plans/2026-09-14/social-approval.json with status 'approved', but it belongs to a DIFFERENT, unrelated Content Calendar Log row (page 3db596a4-505f-801c-ab0b-c3ddd1f02bd8, the 'Test caption 123' placeholder draft Albert used to test the schedule/reschedule mechanics this morning). That row was subsequently rescheduled off the 2026-09-15T20:00 slot to 2026-09-16T20:00 (action 3aa05063), which is presumably why this row's Post Date landed on the now-vacated 2026-09-15T20:00 slot. The stable-id scheme assumes one Notion row per (idea, surface, story_variant, scheduled_at) tuple and was never designed for two physically different rows to collide on it -- writing this row's real action under id 44896fe6 risks social-actions-agent finding that id already 'approved' in the accumulating approval file and executing this row's real caption/media as if it had cleared today's policy check, when the actual approval on file was for unrelated placeholder content. This is the first live (non-draft) write this pipeline would ever make (write_mode flipped from draft to live earlier today, per social-destinations.json and the vault decision it cites) -- not the moment to resolve an id collision by guessing. Holding for a person to either (a) delete/void the stale 44896fe6 entry's relevance (e.g. by confirming the 09-16 test draft in Metricool is harmless and this row should get a distinguishing id), or (b) pick a different Post Date for this row so it no longer collides, or (c) approve this exact action by hand with an id that cannot be confused with the earlier test run's."
+      "id": "44896fe6",
+      "type": "social_schedule_post",
+      "surface": "Instagram Reels",
+      "network": "instagram",
+      "network_data": {
+        "type": "REEL"
+      },
+      "story_variant": "Not a Story",
+      "caption": "We didn't rebuild this staircase. We transformed it. 🔥\nCarpet off, red oak cappings on, metal spindles locked in! Same structure, completely new look.\nGot stairs like the \"before\"? Lets change that\n\n#staircasemakeover #stairrenovation #carpetremoval #redoak #metalspindles #beforeandafter #mississauga #gta",
+      "media_url": "https://drive.google.com/file/d/1paOFjUT8YuXJV7hwZKgXfIKHQ_cTU5Lo/view?usp=drivesdk",
+      "row_fields": {
+        "First Comment": "Guess how many staples we pulled out of these stairs 👇",
+        "AI Disclosure": "No"
+      },
+      "cover": {
+        "mode": "frame_offset",
+        "value": 1000
+      },
+      "scheduled_at": {
+        "dateTime": "2026-09-15T20:00:00",
+        "timezone": "America/Toronto"
+      },
+      "notion_page_url": "https://app.notion.com/p/3db596a4505f80edb839fc133ffa4757"
     }
   ],
+  "held": [],
   "warnings": [
-    "Row content is otherwise ready: Caption present (real caption + hashtag block), First Comment present ('Guess how many staples we pulled out of these stairs'), media resolved to Drive file 1paOFjUT8YuXJV7hwZKgXfIKHQ_cTU5Lo (MT_STAIRS_ARTIGA_31082026.mp4, anyone-with-link: writer, so schedule-time fetch would succeed), no cover in 03_FINAL so cover would resolve via frame_offset fallback (idea's Cover Frame (ms) = 1000). None of that is what is blocking this row.",
-    "This idea (TC-86) now has THREE Content Calendar Log rows all targeting Instagram Reels for the same underlying video: this row (Queued, 2026-09-15 20:00), page ...c3ddd1f02bd8 (Scheduled, draft, placeholder caption, now at 2026-09-16 20:00), and page ...52a5e927daa (Scheduled, draft, real caption without hashtags, at 2026-09-14 20:00 -- already past due but harmless while it stays a draft since write_mode was still draft when it was created). A person should confirm which of these are intended to actually go out and clean up the rest before any more of them reach write_mode=live."
+    "SUPERSEDES the earlier hold on this same row (same generated_at day): this action's id (44896fe6) is the same deterministic hash as an approval entry already present in plans/2026-09-14/social-approval.json from this morning's test-caption post on the same idea/surface/slot. That test post (Metricool uuid -4953304537857768451) and the other stray test row have both been deleted -- Albert confirmed in session and it was independently verified here: getScheduledPosts for brand 3951085 across 2026-09-01..2026-10-15 now returns zero posts, and the Content Calendar Log for TC-86 now contains exactly this one row. Per the contract's own id semantics ('same logical post, same id, on every re-run'), reusing 44896fe6 for the real content is the intended resume behaviour now that the prior artifact under that id is gone, not a fresh collision. The new social-approval.json entry for this id supersedes the stale one; see its reason field.",
+    "No cover file in 03_FINAL (only the one video) -- cover resolved via the frame_offset fallback using the idea's Cover Frame (ms) = 1000, per cover_rules.frame_fallback.",
+    "This is the first live (non-draft) write this pipeline will execute -- write_mode flipped from draft to live earlier today (2026-09-14, Albert)."
   ]
 }

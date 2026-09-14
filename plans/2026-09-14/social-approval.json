@@ -20,6 +20,12 @@
       "status": "approved",
       "approved_by": "policy",
       "reason": "Clears every policy condition in contracts/social-plan-schema.md: surface 'Instagram Reels' is enabled and instagram appears in connected_networks; feed post ('Not a Story'), not a Decorated Story; caption, media_url, scheduled_at and surface all present and non-empty; no text_max_chars set for this surface; cover situation unambiguous (no cover file in 03_FINAL, and Instagram Reels does not require one). write_mode is draft, so this lands as a Metricool draft. See the plan's warnings for a flagged pre-existing test draft on the same idea/surface that this action does not touch."
+    },
+    {
+      "id": "44896fe6",
+      "status": "approved",
+      "approved_by": "policy",
+      "reason": "2026-09-14T22:41:00-04:00. SUPERSEDES the earlier 44896fe6 entry above (14:20, that morning's 'Test caption 123' placeholder draft on this same idea/surface/slot, Metricool uuid -4953304537857768451). That test draft and the other stray Content Calendar Log test row for TC-86 have both been deleted -- Albert confirmed in this session and it was independently re-verified before this approval: getScheduledPosts for brand 3951085 across 2026-09-01..2026-10-15 returns zero posts, and the Content Calendar Log for TC-86 now contains exactly one row (3db596a4-505f-80ed-b839-fc133ffa4757, the one this approval covers). This is a fresh policy clearance for THAT row's real content (see plans/2026-09-14/social-plan-3db596a4-505f-80ed-b839-fc133ffa4757.json), not a reuse of the morning's clearance: surface 'Instagram Reels' is enabled and instagram appears in connected_networks; feed post ('Not a Story'), not a Decorated Story; caption, media_url, scheduled_at and surface all present and non-empty; no text_max_chars set for this surface; cover situation unambiguous (no cover file in 03_FINAL, resolved via the frame_offset fallback -- idea's Cover Frame (ms) = 1000). write_mode is now 'live' (flipped earlier today), so this is the first non-draft write this pipeline executes -- verify the resulting Metricool post directly after execution rather than trusting a 200 response."
     }
   ]
 }
