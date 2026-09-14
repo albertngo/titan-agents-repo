@@ -58,6 +58,9 @@ DEFAULT_GRACE_MINUTES = 30
 # plausible explanation and it reads as stuck.
 DEFAULT_STUCK_HOURS = 6
 
+# How close to firing a post may be before drift stops being auto-resolvable.
+DEFAULT_IMMINENT_HOURS = 1
+
 FMT = "%Y-%m-%dT%H:%M:%S"
 
 # Verdicts that call for a Notion write, and the Post Status each one sets.
@@ -80,7 +83,8 @@ WRITES = {
 # date out. That is not a cosmetic error: it reports date_drift on every correctly
 # scheduled row, and it moves every deadline four hours early, so the sweep can call
 # a post published before it has gone anywhere. Found on the first real row.
-LOCAL_TZ = ZoneInfo("America/Toronto")
+TIMEZONE = "America/Toronto"   # repo convention; see CLAUDE.md Conventions
+LOCAL_TZ = ZoneInfo(TIMEZONE)
 HAS_ZONE = re.compile(r"(?:Z|[+-]\d{2}:?\d{2})$")
 
 
@@ -130,6 +134,34 @@ def end_of_day(dt):
     return dt.replace(hour=23, minute=59, second=59)
 
 
+def drift_block(target, live_due, now, imminent):
+    """Why this drift must NOT be auto-resolved, or '' if it may be.
+
+    Notion owns Post Date, so resolving drift is mechanical in the ordinary case. Two
+    situations where it is not, and where the right move is to tell a person instead:
+
+    1. The row's date is in the PAST. That is a stale row somebody stopped maintaining,
+       not an instruction to move a post backwards. Rescheduling into the past either
+       publishes immediately or is rejected.
+    2. Either side is about to fire. Moving a post minutes before it goes out is a
+       surprise, and the race is real -- the post can publish while the update is in
+       flight, at which point the update applies to nothing and the row is wrong.
+    """
+    if target <= now:
+        return (f"NOT auto-resolved: Notion's date {target:%Y-%m-%d %H:%M} is in the past. "
+                "A stale row is not an instruction to move a post backwards. Set a real "
+                "date, or mark the row Manual Required.")
+    window = timedelta(hours=imminent)
+    if live_due - now <= window:
+        return (f"NOT auto-resolved: the post fires at {live_due:%Y-%m-%d %H:%M}, within "
+                f"{imminent}h. It could publish while the update is in flight, leaving the "
+                "update applied to nothing and the row wrong. Decide by hand.")
+    if target - now <= window:
+        return (f"NOT auto-resolved: Notion's date {target:%Y-%m-%d %H:%M} is within "
+                f"{imminent}h. Moving a post to fire imminently is a surprise. Decide by hand.")
+    return ""
+
+
 def scheduled_index(posts):
     """uuid -> post, from a getScheduledPosts response."""
     if isinstance(posts, dict) and "data" in posts:
@@ -139,8 +171,19 @@ def scheduled_index(posts):
     return {str(p.get("uuid")): p for p in posts if p.get("uuid")}
 
 
-def classify(row, index, now, grace, stuck, draft_mode, window):
-    """One row -> (verdict, detail). See the module docstring for the reasoning."""
+def classify(row, index, now, grace, stuck, draft_mode, window,
+             imminent=DEFAULT_IMMINENT_HOURS):
+    """One row -> (verdict, detail, extra).
+
+    `extra` carries a `proposed_action` on a resolvable date_drift and is empty
+    otherwise. Normalised here rather than at each return so that adding a verdict
+    cannot accidentally change the arity callers depend on.
+    """
+    out = _classify(row, index, now, grace, stuck, draft_mode, window, imminent)
+    return out if len(out) == 3 else (out[0], out[1], {})
+
+
+def _classify(row, index, now, grace, stuck, draft_mode, window, imminent):
     uuid = (row.get("Metricool UUID") or "").strip()
     raw_due = row.get("Post Date")
     due = parse_dt(raw_due)
@@ -151,7 +194,7 @@ def classify(row, index, now, grace, stuck, draft_mode, window):
             "row is Scheduled but carries no Metricool UUID. A write died between "
             "Metricool and Notion, so this row's post cannot be identified -- check "
             "the planner by hand before re-running, or it will be scheduled twice."
-        )
+        ), {}
 
     post = index.get(uuid)
 
@@ -164,12 +207,24 @@ def classify(row, index, now, grace, stuck, draft_mode, window):
             due.date() != live_due.date() if date_only else due != live_due
         )
         if drifted:
-            return "date_drift", (
-                f"Notion says {due:%Y-%m-%d %H:%M}, Metricool says {live_due:%Y-%m-%d %H:%M}. "
-                "The row was edited after scheduling and never rescheduled. Fix with "
-                "/content-schedule <logID> --reschedule; this sweep does not guess "
-                "which date is the intended one."
-            )
+            base = (f"Notion says {due:%Y-%m-%d %H:%M}, Metricool says "
+                    f"{live_due:%Y-%m-%d %H:%M}. The row was edited after scheduling "
+                    "and never rescheduled. ")
+            target = end_of_day(due) if date_only else due
+            blocked = drift_block(target, live_due, now, imminent)
+            if blocked:
+                return "date_drift", base + blocked, {}
+            return "date_drift", base + (
+                "Notion is the source of truth for Post Date (Albert, 2026-09-14), so "
+                "the fix is to move the post to Notion's date."
+            ), {"proposed_action": {
+                    "type": "social_reschedule_post",
+                    "metricool_uuid": uuid,
+                    "metricool_post_id": str(post.get("id")) if post.get("id") else None,
+                    "surface": row.get("Post To"),
+                    "from": {"dateTime": live_due.strftime(FMT), "timezone": TIMEZONE},
+                    "scheduled_at": {"dateTime": target.strftime(FMT), "timezone": TIMEZONE},
+                    "notion_page_url": row.get("url")}}
         if live_due and now - live_due > timedelta(hours=stuck):
             return "stuck_past_due", (
                 f"due {live_due:%Y-%m-%d %H:%M}, still sitting in the scheduled set "
@@ -177,7 +232,7 @@ def classify(row, index, now, grace, stuck, draft_mode, window):
                 "planner for a delivery error -- a network disconnect and an expired "
                 "token both look like this."
             )
-        return "still_scheduled", f"due {live_due:%Y-%m-%d %H:%M}" if live_due else "pending"
+        return "still_scheduled", (f"due {live_due:%Y-%m-%d %H:%M}" if live_due else "pending")
 
     # --- absent from the scheduled set: the ambiguous case ---
 
@@ -186,20 +241,20 @@ def classify(row, index, now, grace, stuck, draft_mode, window):
             f"due {due:%Y-%m-%d %H:%M}, outside the queried range "
             f"{window[0]:%Y-%m-%d}..{window[1]:%Y-%m-%d}. Absence here means nothing. "
             "Widen the window and re-run rather than reading this as published."
-        )
+        ), {}
 
     if draft_mode:
         return "vanished_in_draft_mode", (
             "gone from the scheduled set while write_mode is 'draft'. A draft does not "
             "publish, so this CANNOT be a publication -- somebody deleted it in the "
             "planner. Not marked Posted."
-        )
+        ), {}
 
     if due is None:
         return "vanished_no_date", (
             "gone from the scheduled set, and the row has no Post Date to reason "
             "from. Cannot tell a publish from a deletion. Check the planner."
-        )
+        ), {}
 
     # For a date-only row the post could legitimately be scheduled any time that day,
     # so nothing before the day is out proves it published.
@@ -210,14 +265,14 @@ def classify(row, index, now, grace, stuck, draft_mode, window):
             f"{' (end of a date-only row)' if date_only else ''}. "
             "A post cannot publish before its time, so this is a deletion or a move "
             "made in the planner. Not marked Posted."
-        )
+        ), {}
 
     return "published", (
         f"due {deadline:%Y-%m-%d %H:%M}, no longer in the scheduled set "
         f"{_ago(now - deadline)} later. getScheduledPosts returns only unpublished posts, "
         "so it has published. Live URL is NOT recoverable from this endpoint -- it "
         "stays blank until somebody fills it or an analytics lookup is built."
-    )
+    ), {}
 
 
 def _ago(delta):
@@ -229,11 +284,13 @@ def _ago(delta):
     return f"{hours / 24:.0f}d"
 
 
-def sweep(rows, posts, now, grace, stuck, draft_mode, window=None):
+def sweep(rows, posts, now, grace, stuck, draft_mode, window=None,
+          imminent=DEFAULT_IMMINENT_HOURS):
     index = scheduled_index(posts)
     results, counts = [], {}
     for row in rows:
-        verdict, detail = classify(row, index, now, grace, stuck, draft_mode, window)
+        verdict, detail, extra = classify(row, index, now, grace, stuck,
+                                          draft_mode, window, imminent)
         counts[verdict] = counts.get(verdict, 0) + 1
         entry = {
             "notion_page_url": row.get("url"),
@@ -245,6 +302,7 @@ def sweep(rows, posts, now, grace, stuck, draft_mode, window=None):
         }
         if verdict in WRITES:
             entry["set_post_status"] = WRITES[verdict]
+        entry.update(extra)
         results.append(entry)
 
     return {
@@ -273,6 +331,8 @@ def main() -> int:
                     help="from social-destinations.json write_mode.mode — never guess it")
     ap.add_argument("--grace-minutes", type=int, default=DEFAULT_GRACE_MINUTES)
     ap.add_argument("--stuck-hours", type=int, default=DEFAULT_STUCK_HOURS)
+    ap.add_argument("--imminent-hours", type=int, default=DEFAULT_IMMINENT_HOURS,
+                    help="drift is not auto-resolved this close to either fire time")
     ap.add_argument("--window", nargs=2, metavar=("FROM", "TO"),
                     help="the range passed to getScheduledPosts, so a row outside it "
                          "is reported as unknowable rather than published")
@@ -295,7 +355,7 @@ def main() -> int:
             rows, posts,
             parse_dt(args.now) or datetime.now(),
             args.grace_minutes, args.stuck_hours,
-            args.write_mode == "draft", window,
+            args.write_mode == "draft", window, args.imminent_hours,
         )
     except (OSError, ValueError) as exc:
         print(f"bad input: {exc}", file=sys.stderr)

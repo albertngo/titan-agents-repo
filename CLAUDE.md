@@ -274,8 +274,27 @@ demands absence **and** a passed due time **and** a wide enough query window **a
 `write_mode.mode` not being `draft` before writing `Posted`. In draft mode it marks
 nothing posted at all — a draft does not publish, so a vanished one was deleted by a
 person. **Not wired into `/daily-ingest`**: that would add a platform write to the
-orchestrator, which is Albert's call, so it runs by hand for now. `Live URL` is not
-recoverable from this endpoint and stays blank.
+orchestrator, which is Albert's call, so it runs by hand for now.
+
+**Publication is then CONFIRMED against analytics, not inferred** (2026-09-14).
+`scripts/social_publish_reconcile.py` matches each candidate to a real published post
+via `getAnalyticsDataByMetrics`, which is also the only source for `Live URL`,
+`Posted Caption` and `Posted At` — a published post is gone from `getScheduledPosts`
+entirely. Per-surface metric ids are data in `social-destinations.json` → `analytics`,
+captured live. Three things that are limits rather than gaps: YouTube exposes a title
+and no description, so `Posted Caption` stays blank there; Google Business Profile
+exposes no permalink, so `Live URL` stays blank there; and the join is by surface and
+time-proximity, not by id, because Metricool's planner uuid and a network's own post id
+never map to each other. Two candidates in one window are refused, never guessed.
+
+**Notion is the source of truth for `Post Date`** (Albert, 2026-09-14). Drift between
+the two systems is therefore resolvable, and the sweep emits a `social_reschedule_post`
+**proposal** — which still goes through the plan, approval file and actions log like any
+other platform write. It withholds the proposal when Notion's date is in the past or
+when either side fires imminently. Captions are the other way round: they may be edited
+in Metricool (better previews) and are read back afterwards, with `Caption Override` on
+a log row as the per-surface escape hatch, because "link in bio" and hashtag blocks do
+not travel between Instagram, YouTube and a Google listing.
 
 ## Analyses
 

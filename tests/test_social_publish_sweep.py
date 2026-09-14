@@ -179,6 +179,59 @@ class DateOnlyRowCase(unittest.TestCase):
         self.assertEqual(v, "date_drift")
 
 
+class DriftResolutionCase(unittest.TestCase):
+    """Notion owns Post Date, so ordinary drift is mechanically resolvable — but the
+    sweep proposes a reschedule, it never writes one. The proposal goes through the
+    same plan/approval/actions-log gate as every other platform write."""
+
+    NOW = datetime(2026, 9, 14, 12, 0)
+
+    def classify3(self, notion_due, live_due, now=None, imminent=1):
+        index = scheduled_index(scheduled(due=live_due))
+        return classify(row(due=notion_due), index, now or self.NOW, 30, 6, False, None, imminent)
+
+    def test_ordinary_drift_proposes_a_reschedule_to_notions_date(self):
+        v, _, extra = self.classify3("2026-09-16T20:00:00", "2026-09-15T20:00:00")
+        self.assertEqual(v, "date_drift")
+        a = extra["proposed_action"]
+        self.assertEqual(a["type"], "social_reschedule_post")
+        self.assertEqual(a["scheduled_at"]["dateTime"], "2026-09-16T20:00:00")
+        self.assertEqual(a["from"]["dateTime"], "2026-09-15T20:00:00")
+        self.assertEqual(a["metricool_uuid"], UUID)
+
+    def test_a_date_only_row_proposes_end_of_that_day(self):
+        """A date names a day; the only unambiguous instant in it is its end."""
+        _, _, extra = self.classify3("2026-09-16", "2026-09-15T20:00:00")
+        self.assertEqual(extra["proposed_action"]["scheduled_at"]["dateTime"],
+                         "2026-09-16T23:59:59")
+
+    def test_a_past_notion_date_is_never_auto_resolved(self):
+        """A stale row is not an instruction to move a post backwards."""
+        v, detail, extra = self.classify3("2026-09-01T20:00:00", "2026-09-15T20:00:00")
+        self.assertEqual(v, "date_drift")
+        self.assertEqual(extra, {})
+        self.assertIn("in the past", detail)
+
+    def test_an_imminent_live_post_is_never_auto_resolved(self):
+        """The post can publish while the update is in flight."""
+        v, detail, extra = self.classify3("2026-09-20T20:00:00", "2026-09-14T12:30:00")
+        self.assertEqual(extra, {})
+        self.assertIn("in flight", detail)
+
+    def test_moving_a_post_to_fire_imminently_is_never_auto_resolved(self):
+        v, detail, extra = self.classify3("2026-09-14T12:30:00", "2026-09-20T20:00:00")
+        self.assertEqual(extra, {})
+        self.assertIn("surprise", detail)
+
+    def test_the_sweep_still_writes_nothing_for_drift(self):
+        """A proposal is not a write. date_drift carries no set_post_status."""
+        rows = [row(due="2026-09-16T20:00:00")]
+        report = sweep(rows, scheduled(due="2026-09-15T20:00:00"), self.NOW, 30, 6, False)
+        entry = report["results"][0]
+        self.assertNotIn("set_post_status", entry)
+        self.assertIn("proposed_action", entry)
+
+
 class SweepCase(unittest.TestCase):
     def test_counts_and_write_targets_are_reported_per_row(self):
         rows = [row(), row(uuid="other-uuid", name="CC: Second")]

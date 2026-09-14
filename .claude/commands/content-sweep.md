@@ -71,13 +71,60 @@ The verdicts, and what each one means:
 | Verdict | Meaning | Write |
 |---|---|---|
 | `still_scheduled` | Present, dates agree, not yet due. Healthy. | — |
-| `date_drift` | Present, but Notion and Metricool disagree on the date. The row was edited after scheduling. | — (fix with `--reschedule`) |
-| `published` | Absent, due time passed, live mode. | `Posted` |
+| `date_drift` | Present, but Notion and Metricool disagree on the date. | — (carries a `proposed_action`; see 3b) |
+| `published` | Absent, due time passed, live mode. **A candidate — confirm in 3a.** | `Posted`, after 3a |
 | `vanished_in_draft_mode` | Absent while drafting. Cannot be a publish — somebody deleted it. | `Manual Required` |
 | `vanished_before_due` | Absent but not yet due. Nothing publishes early. | `Manual Required` |
 | `stuck_past_due` | Still scheduled hours after its slot. Metricool did not publish it. | `Failed` |
 | `missing_uuid` | `Scheduled` with no uuid — a write died mid-run. **Re-running would double-post.** | `Manual Required` |
 | `outside_window` / `vanished_no_date` | Not enough information to judge. | — |
+
+### 3a — Confirm every candidate publication against analytics
+
+**A `published` verdict from step 3 is a candidate, not a conclusion.** It rests on an
+absence, and absence is ambiguous. Analytics is an independent second source that
+turns it into an observation — and it is also where `Live URL` and `Posted Caption`
+come from, because a published post is gone from `getScheduledPosts` entirely.
+
+For each surface with candidates:
+
+1. Get the ordered metric ids — never hardcode them:
+   ```
+   python3 scripts/social_publish_reconcile.py --surface 'Instagram Reels' \
+       --rows /dev/null --analytics /dev/null --print-metrics
+   ```
+2. `getAnalyticsDataByMetrics` for brand `3951085` with exactly those metrics, in that
+   order, over a window comfortably wider than the candidates' dates.
+3. Pipe rows and response back through the script (without `--print-metrics`).
+
+**The response is positional arrays with no field names**, so the request order and
+the unpack order must both come from the registry's `analytics.surfaces.<surface>.fields`.
+Reorder one without the other and columns transpose silently: a caption lands in
+`Live URL`, well-formed, erroring nowhere.
+
+Verdicts: `published_confirmed` (write `Posted`, `Posted At`, and whichever of
+`Live URL` / `Posted Caption` that surface exposes), `not_published` (it left the
+scheduled set without publishing — deleted or failed; **analytics also lags**, so
+re-run before acting on a row that only just vanished), `ambiguous_match` (two posts
+in the window — refused, because a wrong match writes another post's URL and caption
+onto this row undetectably).
+
+Two surfaces are permanently partial, and this is a platform limit, not a gap to fill:
+**YouTube** exposes a title, not a description, so `Posted Caption` stays blank — a
+title is never written there as if it were a caption. **Google Business Profile**
+exposes no per-post permalink, so `Live URL` stays blank.
+
+### 3b — Drift proposes a reschedule, it does not perform one
+
+A `date_drift` row now carries a `proposed_action`. Notion owns `Post Date`, so the
+fix is mechanical — but it is a platform write, so it goes through the normal plan,
+approval file and actions log as a `social_reschedule_post`, exactly like a manual
+reschedule. The sweep itself still writes nothing for drift.
+
+The sweep withholds the proposal, and says so, when Notion's date is in the **past**
+(a stale row is not an instruction to move a post backwards) or when either side
+fires within `--imminent-hours` (the post can publish while the update is in flight,
+leaving the update applied to nothing and the row wrong).
 
 `orphans` lists Metricool posts no row claims — posted from the planner by hand, or a
 row deleted after scheduling. **Report them; never action them.** This pipeline does not
@@ -89,9 +136,10 @@ Only `Post Status`, only on the Calendar Log, only for verdicts carrying
 `set_post_status`. Log each one to `ingest/<date>/actions-log.json` as
 `notion_update_task` with the verdict in the entry.
 
-`Live URL` is **not** recoverable here — a published post is gone from this endpoint,
-and it carries no permalink while scheduled. Leave it blank rather than inventing one.
-Filling it needs an analytics lookup that does not exist yet.
+`Live URL`, `Posted Caption` and `Posted At` come from step 3a, never from
+`getScheduledPosts` — a published post is gone from it, and carries no permalink while
+scheduled. Where a surface exposes no such field, leave it blank rather than
+substituting something adjacent.
 
 ### 5 — Report
 
@@ -112,6 +160,13 @@ Not part of `/daily-ingest` — adding a write to the orchestrator is Albert's c
 `/daily-ingest` is deliberately stable. Run it by hand, or schedule it separately, until
 that decision is made.
 
-**The `published` verdict has never fired against a real publication**, because nothing
-has published through this pipeline yet. It is reasoned from the endpoint contract, not
-observed. Watch the first live one.
+**Nothing has published through this pipeline yet**, so the confirmation path in step
+3a has never run against a real publication. The metric ids are read from the live API
+and the unpacking is pinned by a test against a verbatim response, but the MATCH itself
+— a published post to the row that scheduled it — has only been exercised on fixtures.
+Watch the first live one.
+
+The join is also a heuristic, not a key: Metricool's planner uuid and the network's own
+post id are different namespaces with nothing mapping between them, so a post is matched
+to its row by surface and time-proximity. That is sound at a few posts a week and would
+not be at thirty a day.

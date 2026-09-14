@@ -47,6 +47,15 @@ Fetch the Calendar Log page by `<logID>`. Take `Content Name`, `Post Date`, `Pos
 Those rollups are why one fetch is enough — the caption and the Drive content folder
 arrive with the row. Do not fetch the idea separately unless something is missing.
 
+**Caption resolution: `Caption Override` on the row wins; otherwise the `Caption`
+rollup.** One shared caption cannot serve every surface, and the reason is idiom
+rather than length. "Link in bio" is Instagram and TikTok only — on Facebook, YouTube
+and Google Business Profile a real URL is possible, so the phrase ships a dead
+instruction. A thirty-hashtag block is native on Instagram, renders three deep on
+YouTube, and reads as spam on a Google listing. GBP also caps at 1500 characters, so
+an Instagram-shaped caption can make a GBP row unpostable through no fault of that
+row. Leave the override blank and the shared caption applies; set it and it wins.
+
 `Post To` must match a surface key in `social-destinations.json` **character for
 character**. A miss is a silent lookup failure, not an error, so treat an unmatched
 value as a hold and name the value you got.

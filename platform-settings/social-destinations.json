@@ -178,5 +178,79 @@
     "_the_important_part": "Metricool does not hotlink the Drive file -- it DOWNLOADS it at schedule time and re-hosts it on its own CDN. Two consequences. (1) The whole reason for moving storage to Drive holds: there is no separate upload step. (2) The Drive file only has to be publicly readable AT THE MOMENT OF SCHEDULING, not forever -- so sharing can be narrowed or made temporary without breaking posts that are already queued.",
     "prerequisite": "Google Drive must be linked inside the Metricool account (done, Phase A). Metricool's own tool contract states this.",
     "_test_method": "A 2.4MB mp4 was copied into an existing (already public) 03_FINAL folder, scheduled as a draft with autoPublish false and a date in late December, then the Drive copy was trashed. The draft itself cannot be removed from here -- the Metricool MCP exposes create/update but no delete -- so it must be deleted in the planner UI."
+  },
+  "analytics": {
+    "_comment": "Per-surface mapping for the PUBLISH RECONCILIATION path: once a post publishes it disappears from getScheduledPosts, and these metrics are the only way to read back what actually went out. Consumed by scripts/social_publish_reconcile.py via getAnalyticsDataByMetrics. Captured live 2026-09-14 from getAnalyticsAvailableMetrics -- every fieldId below was read off the API, none inferred.",
+    "_response_shape": "getAnalyticsDataByMetrics returns {\"rows\": [[v1, v2, ...]]} -- POSITIONAL arrays with no field names. The column order IS the order the metrics were requested in. So the request list and the unpacking must be built from the same ordered mapping or the columns silently transpose: a caption lands in the URL field and nothing errors. That is why `fields` below is an ordered object, read once and used for both.",
+    "_timestamp_format": "The 'with time' metrics return a compact YYYYMMDDHHMMSS string, e.g. '20260806033114', and it appears to be UTC -- that sample is 03:31, which as America/Toronto local would be a strange hour to post and as UTC is 23:31 the previous evening. NOT CONFIRMED. Because it is unconfirmed, the matcher deliberately does not depend on it: it uses a wide tolerance window rather than exact times, so a timezone error costs nothing. Confirm it against a post whose publish time we set ourselves, then tighten.",
+    "_lag": "Analytics is not instant. A post can be gone from getScheduledPosts before it appears here. That gap is not a deletion -- the reconciler reports awaiting_analytics rather than concluding anything.",
+    "surfaces": {
+      "Instagram Reels": {
+        "network": "instagram",
+        "connector": "reels",
+        "fields": {
+          "posted_at": "IGRE02",
+          "text": "IGRE03",
+          "post_id": "IGRE04",
+          "url": "IGRE06"
+        }
+      },
+      "Facebook Page": {
+        "network": "facebook",
+        "connector": "posts",
+        "fields": {
+          "posted_at": "FBPO02",
+          "text": "FBPO03",
+          "post_id": "FBPO04",
+          "url": "FBPO06"
+        }
+      },
+      "TikTok": {
+        "network": "tiktok",
+        "connector": "posts",
+        "_field_name_note": "TikTok calls the caption 'description' (TKPO05), not text. Same role.",
+        "fields": {
+          "posted_at": "TKPO02",
+          "text": "TKPO05",
+          "url": "TKPO03"
+        }
+      },
+      "YouTube - Shorts": {
+        "network": "youtube",
+        "connector": "all videos",
+        "_no_description": "YouTube analytics exposes the TITLE (YTVV17) but NOT the video description, so Posted Caption cannot be recovered for a YouTube row -- only its title. Recorded rather than worked around: a title is not a caption and must not be written into Posted Caption as if it were.",
+        "_deprecated_connector": "Do NOT use the 'videos' connector (YTVI*). Every one of its fields is labelled 'Deprecated ... Do not use' by the API. 'all videos' (YTVV*) is the live one.",
+        "fields": {
+          "posted_at": "YTVV02",
+          "title": "YTVV17",
+          "post_id": "YTVV04",
+          "url": "YTVV05"
+        }
+      },
+      "YouTube - Long": {
+        "network": "youtube",
+        "connector": "all videos",
+        "_same_as_shorts": "YouTube analytics does not separate Shorts from long-form here; both surfaces read the same connector and are told apart by the log row's Post To, not by the data.",
+        "fields": {
+          "posted_at": "YTVV02",
+          "title": "YTVV17",
+          "post_id": "YTVV04",
+          "url": "YTVV05"
+        }
+      },
+      "Google Business Profile": {
+        "network": "googleBusinessProfile",
+        "connector": "posts",
+        "_no_permalink": "GBP analytics exposes no per-post permalink. GMPO05 is the MEDIA url and GMPO08 the OWNER profile url -- neither is a link to the post. So Live URL stays blank for a GBP row, permanently, and that is a platform limit rather than a gap to fill.",
+        "fields": {
+          "posted_at": "GMPO02",
+          "text": "GMPO10"
+        }
+      },
+      "LinkedIn": {
+        "_unavailable": "LinkedIn is not connected in Metricool (Albert declined the tier, 2026-09-12), so there is no analytics to read. Fill this in if connected_networks.linkedin ever stops being null."
+      }
+    },
+    "_field_order_is_load_bearing": "The order of `fields` IS the order the metrics are requested in, and the order the positional response is unpacked in. Both come from this one mapping, so they cannot disagree -- but only while nothing reorders it by hand. Reordering these keys without reordering the request transposes columns SILENTLY: a caption lands in Live URL, a url in Posted Caption, both well-formed, no error anywhere. That exact mistake was made here on 2026-09-14 while writing this block and was caught only because a test asserted against a verbatim live response. Keep a test pinned to real captured rows."
   }
 }
