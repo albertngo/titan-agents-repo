@@ -2,10 +2,16 @@
 description: Schedule one Notion content row into Metricool. Builds a reviewable plan, applies policy, and writes only what is approved. Draft mode until deliberately flipped.
 ---
 
-# /content-schedule `<notionID>`
+# /content-schedule `<logID>`
 
-Takes one row from **Titan Content Ideas** and turns it into a scheduled Metricool
-post — or explains, per surface, why it did not.
+Takes one row from **Content Calendar Log** and turns it into a scheduled Metricool
+post — or explains why it did not.
+
+**`<logID>` is a Content Calendar Log page id, not a Titan Content Ideas id.** The
+Calendar Log row *is* the post: one row, one platform, one Metricool id. Albert's
+**Publish Content** button on an idea creates the row, and that creation is the
+trigger. Pointing this command at an idea row is a category error — an idea fans out
+to many posts and has no single id to write back.
 
 Authoritative procedure. `contracts/social-plan-schema.md` defines the plan and the
 approval file; `platform-settings/social-destinations.json` and
@@ -27,13 +33,23 @@ Check these in order and **stop on the first failure** — do not proceed part-w
 
 ### 1 — Read the row
 
-Fetch the Notion page by `<notionID>`. Take `Content Name`, `Caption`, `Post Date`,
-`Next: Post To`, `Story Variant`, `Cover Image URL`, `Cover Frame (ms)`,
-`Link to Files`, `Post Status`, `Metricool Post ID`.
+Fetch the Calendar Log page by `<logID>`. Take `Content Name`, `Post Date`, `Post To`,
+`Post Status`, `Metricool Post ID`, `Live URL`, and the three rollups that ride on the
+`Content Series` relation: `Caption`, `Content ID`, `Link to Files`.
+
+Those rollups are why one fetch is enough — the caption and the Drive content folder
+arrive with the row. Do not fetch the idea separately unless something is missing.
+
+`Post To` must match a surface key in `social-destinations.json` **character for
+character**. A miss is a silent lookup failure, not an error, so treat an unmatched
+value as a hold and name the value you got.
 
 If `Post Status` is already `Posted`, or `Metricool Post ID` is set and
 `getScheduledPosts` confirms that post exists — **stop, report, change nothing.**
-This is the idempotency gate and it runs before anything else touches Drive.
+This is the idempotency gate and it runs before anything else touches Drive. It is
+per-row, which is the point of keying on the Calendar Log: the same idea posting to a
+second platform is a different row with its own id, and must not be mistaken for a
+repeat.
 
 ### 2 — Resolve the media
 
@@ -58,7 +74,7 @@ that reason rather than discovering it as a Metricool error later.
 
 ### 3 — Build the plan
 
-Write `plans/<date>/social-plan-<notionID>.json` per `contracts/social-plan-schema.md`.
+Write `plans/<date>/social-plan-<logID>.json` per `contracts/social-plan-schema.md`.
 
 Apply the holds in that contract. The three that are easiest to get wrong:
 
@@ -68,7 +84,10 @@ Apply the holds in that contract. The three that are easiest to get wrong:
 - **Stories.** A Story has no caption of its own. If every provider on the post is a
   Story, do not send `info.text` at all.
 - **Google Business Profile.** A row with both a video and a caption is not
-  expressible as one GMB post. Hold it; do not choose a half to discard.
+  expressible as one GMB post. Hold it; do not choose a half to discard. Also note the
+  caption is a **rollup shared with every other platform on that idea**, so it can
+  arrive over GMB's 1500-character limit through no fault of this row. Hold it — never
+  truncate, which would publish a sentence nobody wrote.
 
 ### 4 — Approve
 
@@ -86,9 +105,11 @@ stops the batch on the first failure.
 
 ### 6 — Write back
 
-For each executed action, update the Notion row: `Post Status`, `Metricool Post ID`,
-and `Live URL` once known. For each held row, set `Post Status` to `Manual Required`
-and say why in the report.
+Update the **Calendar Log row**, never the idea: `Post Status`, `Metricool Post ID`,
+and `Live URL` once known. Those three are the whole write surface — `Post Date`,
+`Post To`, `Content Series` and `Content Name` are the plan, and editing them would be
+deciding what to post. If the row was held, set `Post Status` to `Manual Required` and
+say why in the report.
 
 Then push a notification naming the counts: scheduled, held, failed.
 
@@ -103,4 +124,6 @@ against a real row, before trusting any of the above.
 - A plan file exists and is readable by a person.
 - Every executed action appears in the actions log with `approved_by` non-blank.
 - Every held row has a reason a person can act on — not "not ready".
-- The Notion row reflects what actually happened, including when nothing did.
+- The Calendar Log row reflects what actually happened, including when nothing did.
+- Nothing was written to Titan Content Ideas. The idea is the plan; the log is the
+  record.

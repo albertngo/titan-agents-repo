@@ -103,7 +103,7 @@ class SocialRegistryCase(unittest.TestCase):
 
     def test_gmb_records_the_video_text_split(self):
         """publication cannot carry video; photo carries no text. Silent data loss."""
-        gmb = surfaces(self.dest)["Google My Business"]
+        gmb = surfaces(self.dest)["Google Business Profile"]
         self.assertIn("_video_trap", gmb,
                       "the GMB publication/photo split must stay documented in the registry")
 
@@ -165,6 +165,28 @@ class SocialRegistryCase(unittest.TestCase):
         self.assertIn("never", text)
         self.assertTrue("comment" in text and "dm" in text,
                         "the agent must explicitly refuse comment/DM replies")
+
+    def test_surface_keys_match_the_notion_post_to_options_exactly(self):
+        """Content Calendar Log's `Post To` is how a human picks a destination, and
+        the pipeline looks the chosen value up in social-destinations.json by exact
+        string. A mismatch is a silent lookup miss -- no error, just a row that never
+        posts.
+
+        Four were misaligned on 2026-09-14 (YouTube/Youtube, LinkedIn/Linkedin,
+        Google My Business/Google Business Profile) and nothing caught it, because
+        the old test only checked the registry against itself. These names are pinned
+        from the live Notion schema; if someone renames an option there, this fails.
+        """
+        notion_post_to = {
+            "Facebook Page",
+            "Instagram Reels",
+            "Youtube - Shorts",
+            "Youtube - Long",
+            "Linkedin",
+            "TikTok",
+            "Google Business Profile",
+        }
+        self.assertEqual(set(surfaces(self.dest)), notion_post_to)
 
 
 if __name__ == "__main__":

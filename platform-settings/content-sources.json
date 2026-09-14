@@ -63,28 +63,51 @@
         "Decorated Story"
       ],
       "surface_values": [
-        "Google My Business",
+        "Google Business Profile",
         "Facebook Page",
         "Instagram Reels",
-        "YouTube - Shorts",
-        "YouTube - Long",
-        "LinkedIn",
+        "Youtube - Shorts",
+        "Youtube - Long",
+        "Linkedin",
         "TikTok"
       ],
       "_never_write": "Never write Status, Next: Post To, Caption, Post Date or Link to Files. Those are the plan; the pipeline reports against them and does not edit them. An agent that 'corrects' Next: Post To has decided what to post, which is the one thing it must never do."
     },
     "content_calendar_log": {
-      "_comment": "Append-only posting history. One row per platform per content item — this is the fan-out record, not a duplicate of the idea.",
+      "_comment": "THE POSTING UNIT. One row per platform per content item -- this is the fan-out record, not a duplicate of the idea. Albert's 'Publish Content' button on a Titan Content Ideas row creates a row here; that creation is what starts the posting pipeline.",
+      "_why_the_per_post_fields_live_here": "Corrected 2026-09-14 (Albert). Metricool Post ID, Live URL and Post Status were originally put on Titan Content Ideas, which cannot work: one idea fans out to many posts, and a single field can only hold one post's id. Worse, it would make the idempotency check wrong -- a second platform would look 'already posted'. One row here = one Metricool post = one id.",
       "database_id": "38c596a4-505f-8073-a0b7-f68209176550",
       "data_source": "collection://38c596a4-505f-80b4-9b03-000bf7d7d77b",
       "sensitivity": "team",
+      "row_naming": "CC: <Content Name>",
+      "relation_to_idea": "Content Series",
+      "_relation_comment": "Relation back to Titan Content Ideas. Three rollups ride on it and save the pipeline a second fetch: Content ID (the idea's TC number), Link to Files (the Drive content folder) and Caption.",
       "select_columns": [
         "url",
         "Content Name",
         "Post Date",
         "Post To",
-        "Content Series"
-      ]
+        "Content Series",
+        "Caption",
+        "Content ID",
+        "Link to Files",
+        "Post Status",
+        "Metricool Post ID",
+        "Live URL"
+      ],
+      "destination_property": "Post To",
+      "_destination_comment": "Its option names MUST match the surface keys in social-destinations.json character for character -- a mismatch is a silent lookup miss, not an error. Four were misaligned on 2026-09-14 (YouTube vs Youtube, LinkedIn vs Linkedin, Google My Business vs Google Business Profile); the registry was renamed to match Notion, because Notion is where a human picks.",
+      "caption_source": "rollup from the idea (Content Series -> Caption)",
+      "_caption_comment": "Albert's choice, 2026-09-14: one caption per idea, shared by every platform it fans out to. Simple and nothing to maintain. Known cost: Google Business Profile caps a 'publication' at 1500 characters, so a long shared caption makes a GMB row unpostable. The pipeline HOLDS that row (hold reason: caption over the platform limit) rather than truncating -- truncating would publish a sentence nobody wrote.",
+      "write_properties": [
+        "Post Status",
+        "Metricool Post ID",
+        "Live URL"
+      ],
+      "_write_comment": "The only three properties this pipeline may write, and it writes them HERE, never on the idea. Post Date, Post To, Content Series and Content Name are the plan -- the pipeline reports against them and never edits them.",
+      "idempotency_key": "Metricool Post ID",
+      "_idempotency_comment": "Set on this row once the post exists in Metricool. A re-fire with this field set, confirmed by getScheduledPosts, stops before anything touches Drive or Metricool.",
+      "_no_story_destination_yet": "Post To has no Story option, so the Plain/Decorated Story handling in social-destinations.json story_surfaces is unreachable from this path. Story Variant still lives on the idea and is currently unused by the posting pipeline. Add a Story destination here before expecting stories to post."
     }
   },
   "drive": {

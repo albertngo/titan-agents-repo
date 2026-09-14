@@ -40,7 +40,7 @@
       "_cover_comment": "Meta center-crops the 9:16 cover to a 1080x1080 square on the profile grid. Compose covers with the subject centred vertically or the grid decapitates them.",
       "enabled": true
     },
-    "YouTube - Shorts": {
+    "Youtube - Shorts": {
       "network": "youtube",
       "network_data": {
         "type": "short",
@@ -56,7 +56,7 @@
       "_cover_comment": "Only renders if the channel is phone-verified AND YouTube has enabled Shorts thumbnails on the account. Channel verified 2026-09-12; Shorts thumbnail availability unconfirmed.",
       "enabled": true
     },
-    "YouTube - Long": {
+    "Youtube - Long": {
       "network": "youtube",
       "network_data": {
         "type": "video",
@@ -73,7 +73,7 @@
       "_cover_required_comment": "Policy, not an API rule: a default auto-thumbnail is a lasting CTR cost on long-form. A row with no cover is held, per the approval policy.",
       "enabled": true
     },
-    "LinkedIn": {
+    "Linkedin": {
       "network": "linkedin",
       "network_data": {
         "type": "post"
@@ -84,7 +84,7 @@
       "enabled": false,
       "_enabled_comment": "LinkedIn is not connected in Metricool. Connect it, re-run getBrandSettings, then flip this."
     },
-    "Google My Business": {
+    "Google Business Profile": {
       "network": "gmb",
       "network_data": {
         "type": "publication"
