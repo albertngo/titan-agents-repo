@@ -97,6 +97,24 @@ def parse_dt(value):
     return None
 
 
+def is_date_only(value):
+    """True when Notion gave a DATE, not a datetime.
+
+    Notion's Post Date is a date property whose `is_datetime` flag is per-row: a row
+    can say '2026-09-15' with no time at all, and the first real row through this
+    pipeline (TC-86) did exactly that. That is not midnight -- it is an unspecified
+    time, and the two must not be confused. Treating it as 00:00 would (a) flag
+    date_drift forever against a post scheduled at 20:00 the same day, and (b) make
+    the row look overdue from 00:30, so a sweep could call it published twenty hours
+    before it was due.
+    """
+    return bool(value) and "T" not in str(value).strip()
+
+
+def end_of_day(dt):
+    return dt.replace(hour=23, minute=59, second=59)
+
+
 def scheduled_index(posts):
     """uuid -> post, from a getScheduledPosts response."""
     if isinstance(posts, dict) and "data" in posts:
@@ -109,7 +127,9 @@ def scheduled_index(posts):
 def classify(row, index, now, grace, stuck, draft_mode, window):
     """One row -> (verdict, detail). See the module docstring for the reasoning."""
     uuid = (row.get("Metricool UUID") or "").strip()
-    due = parse_dt(row.get("Post Date"))
+    raw_due = row.get("Post Date")
+    due = parse_dt(raw_due)
+    date_only = is_date_only(raw_due)
 
     if not uuid:
         return "missing_uuid", (
@@ -122,7 +142,13 @@ def classify(row, index, now, grace, stuck, draft_mode, window):
 
     if post is not None:
         live_due = parse_dt((post.get("publicationDate") or {}).get("dateTime"))
-        if due and live_due and due != live_due:
+        # A date-only row names a DAY, so only the day can disagree. Comparing its
+        # implicit midnight against a real scheduled time reports drift on every
+        # correctly-scheduled row.
+        drifted = bool(due and live_due) and (
+            due.date() != live_due.date() if date_only else due != live_due
+        )
+        if drifted:
             return "date_drift", (
                 f"Notion says {due:%Y-%m-%d %H:%M}, Metricool says {live_due:%Y-%m-%d %H:%M}. "
                 "The row was edited after scheduling and never rescheduled. Fix with "
@@ -160,16 +186,20 @@ def classify(row, index, now, grace, stuck, draft_mode, window):
             "from. Cannot tell a publish from a deletion. Check the planner."
         )
 
-    if now < due + timedelta(minutes=grace):
+    # For a date-only row the post could legitimately be scheduled any time that day,
+    # so nothing before the day is out proves it published.
+    deadline = end_of_day(due) if date_only else due
+    if now < deadline + timedelta(minutes=grace):
         return "vanished_before_due", (
-            f"gone from the scheduled set but not due until {due:%Y-%m-%d %H:%M}. "
+            f"gone from the scheduled set but not due until {deadline:%Y-%m-%d %H:%M}"
+            f"{' (end of a date-only row)' if date_only else ''}. "
             "A post cannot publish before its time, so this is a deletion or a move "
             "made in the planner. Not marked Posted."
         )
 
     return "published", (
-        f"due {due:%Y-%m-%d %H:%M}, no longer in the scheduled set "
-        f"{_ago(now - due)} later. getScheduledPosts returns only unpublished posts, "
+        f"due {deadline:%Y-%m-%d %H:%M}, no longer in the scheduled set "
+        f"{_ago(now - deadline)} later. getScheduledPosts returns only unpublished posts, "
         "so it has published. Live URL is NOT recoverable from this endpoint -- it "
         "stays blank until somebody fills it or an analytics lookup is built."
     )

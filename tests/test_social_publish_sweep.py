@@ -21,7 +21,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
 from social_publish_sweep import (  # noqa: E402
-    WRITES, classify, parse_dt, scheduled_index, sweep,
+    WRITES, classify, is_date_only, parse_dt, scheduled_index, sweep,
 )
 
 SCRIPT = REPO_ROOT / "scripts" / "social_publish_sweep.py"
@@ -56,6 +56,12 @@ class ParseCase(unittest.TestCase):
     def test_blank_and_nonsense_are_none_not_an_exception(self):
         for value in (None, "", "not a date"):
             self.assertIsNone(parse_dt(value))
+
+    def test_date_only_is_distinguished_from_midnight(self):
+        """Both parse to 00:00, but they mean different things — see DateOnlyRowCase."""
+        self.assertTrue(is_date_only("2026-09-15"))
+        self.assertFalse(is_date_only("2026-09-15T00:00:00"))
+        self.assertFalse(is_date_only(None))
 
 
 class StillScheduledCase(unittest.TestCase):
@@ -119,6 +125,39 @@ class AbsenceCase(unittest.TestCase):
     def test_row_without_a_uuid_is_flagged_not_swept(self):
         self.assertEqual(verdict(r=row(uuid="")), "missing_uuid")
         self.assertEqual(WRITES["missing_uuid"], "Manual Required")
+
+
+class DateOnlyRowCase(unittest.TestCase):
+    """Notion's Post Date can be a DATE with no time — TC-86, the first real row
+    through this pipeline, was exactly that. A date names a day, not midnight."""
+
+    DATE_ONLY = "2026-09-15"
+    LIVE = "2026-09-15T20:00:00"
+
+    def test_a_date_only_row_scheduled_that_evening_is_not_drift(self):
+        v = verdict(r=row(due=self.DATE_ONLY), posts=scheduled(due=self.LIVE),
+                    now=datetime(2026, 9, 15, 9, 0))
+        self.assertEqual(v, "still_scheduled")
+
+    def test_a_date_only_row_on_a_different_day_is_still_drift(self):
+        v = verdict(r=row(due=self.DATE_ONLY), posts=scheduled(due="2026-09-18T20:00:00"),
+                    now=datetime(2026, 9, 15, 9, 0))
+        self.assertEqual(v, "date_drift")
+
+    def test_absence_mid_day_is_not_read_as_published(self):
+        """The bug this guards: midnight + 30min grace would call a row due at 20:00
+        'published' at 00:30 — twenty hours early, and unrecoverably wrong."""
+        v = verdict(r=row(due=self.DATE_ONLY), now=datetime(2026, 9, 15, 0, 30))
+        self.assertEqual(v, "vanished_before_due")
+
+    def test_absence_after_the_day_is_out_is_published(self):
+        v = verdict(r=row(due=self.DATE_ONLY), now=datetime(2026, 9, 16, 1, 0))
+        self.assertEqual(v, "published")
+
+    def test_a_timed_row_still_compares_to_the_minute(self):
+        v = verdict(r=row(due="2026-09-15T20:00:00"), posts=scheduled(due="2026-09-15T18:00:00"),
+                    now=datetime(2026, 9, 15, 9, 0))
+        self.assertEqual(v, "date_drift")
 
 
 class SweepCase(unittest.TestCase):
