@@ -157,7 +157,47 @@
       "_posted_at": "Actual publication time from analytics, which is not always the scheduled time.",
       "_platform_input_columns": "Added 2026-09-14 (Albert: 'whatever the platform NEEDS, please make a column, so we can filter it based on platform and then fill those in'). Each maps to a Metricool field; the mapping lives per surface in social-destinations.json -> surfaces.<surface>.row_fields, NOT here, so there is one place that says what a platform needs. Two are REQUIRED and hold the row when blank: Video Title on either YouTube surface, and GBP Post Type on Google Business Profile.",
       "_what_earns_a_column": "It must VARY per post. Anything constant for every Titan post stays registry config -- madeForKids (always false; flooring is not children's content), TikTok privacyOption, YouTube privacy. A column for an invariant is friction on every row forever and one more thing to leave blank.",
-      "_ready_to_queue": "Notion FORMULA, not a pipeline field. Renders '✓ ready' or the name of the first missing required property for that row's Post To, so the log can be filtered by platform and the gaps filled before anything is Queued. It duplicates checks /content-schedule also makes -- deliberately: the formula catches them while Albert is editing, the command catches them at the gate, and a person seeing '⚠ Video Title' in a table beats a run held an hour later. If a required field is added to row_fields, update this formula too; nothing enforces that they agree."
+      "_ready_to_queue": "Notion FORMULA, not a pipeline field. Renders '✓ ready' or the name of the first missing required property for that row's Post To, so the log can be filtered by platform and the gaps filled before anything is Queued. It duplicates checks /content-schedule also makes -- deliberately: the formula catches them while Albert is editing, the command catches them at the gate, and a person seeing '⚠ Video Title' in a table beats a run held an hour later. If a required field is added to row_fields, update this formula too; nothing enforces that they agree.",
+      "views": {
+        "_comment": "Views created 2026-09-14 (Albert: 'create the filters needed as well'). The five platform views are the fill-in workflow: each filters Post To to one surface and SHOWS only the columns that surface actually uses, so a YouTube row is not a wall of Instagram fields and vice versa. Recorded here because a renamed Post To option breaks a view's filter silently -- the view simply goes empty, which reads as 'nothing to do'.",
+        "_the_fragile_coupling": "'⚠ Needs Info' filters on the formula OUTPUT containing the character ⚠. If the Ready To Queue formula's wording changes, that filter matches nothing and the view goes empty -- indistinguishable from everything being ready. Same class of silent miss as destination_vocabulary: an exact string shared by two places that nothing checks. Change the formula and this filter together, or neither.",
+        "needs_info": {
+          "url": "view://3db596a4-505f-8104-94ab-000c04bc060f",
+          "purpose": "THE worklist. Unsent rows whose Ready To Queue reports a missing required field, grouped by platform."
+        },
+        "instagram": {
+          "url": "view://3db596a4-505f-8102-9f11-000c1d1b584c",
+          "purpose": "Caption Override, First Comment, Collaborators, AI Disclosure, Media Alt Text."
+        },
+        "youtube": {
+          "url": "view://3db596a4-505f-814f-9387-000cc72dba3d",
+          "purpose": "Both YouTube surfaces. Video Title (required), Tags, Category, Privacy, AI Disclosure."
+        },
+        "tiktok": {
+          "url": "view://3db596a4-505f-81fb-ae11-000c621c7652",
+          "purpose": "Video Title, Branded Content (compliance), AI Disclosure, Privacy."
+        },
+        "facebook": {
+          "url": "view://3db596a4-505f-8147-9674-000c514bcb07",
+          "purpose": "Caption Override, Video Title (video posts only), First Comment."
+        },
+        "google_business": {
+          "url": "view://3db596a4-505f-8193-8ace-000c13ec64ca",
+          "purpose": "GBP Post Type (required) -- the column that resolves the video/caption trap."
+        },
+        "in_flight": {
+          "url": "view://3db596a4-505f-8194-a811-000cec3a4c9d",
+          "purpose": "Queued/Scheduled/Failed/Manual Required, with the uuid and id. What /content-sweep reasons about."
+        },
+        "posted": {
+          "url": "view://3db596a4-505f-8196-b6b1-000c23aa5c22",
+          "purpose": "Live URL, Posted Caption and Posted At -- the analytics write-back. Empty until something publishes."
+        },
+        "calendar": {
+          "url": "view://3db596a4-505f-812d-9730-000c7e2c5c68",
+          "purpose": "Post Date calendar. NOTE: dragging a row here fires a Post Date edit per drop, which is exactly what the date-edit webhook would need to debounce."
+        }
+      }
     }
   },
   "drive": {
