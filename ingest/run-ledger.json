@@ -491,5 +491,18 @@
     },
     "brief": true,
     "note": "scheduled run; local branch ledger last showed 2026-09-02, but all 5 ingesters cross-checked unmerged session branches and vault 01_daily notes and confirmed real runs happened through 2026-09-07 (branch-isolation artifact, not a real gap) -- no catch-up widening needed; bookkeeper still has no QBO/Intuit MCP connector (10th consecutive failed run since 2026-07-26)"
+  },
+  {
+    "date": "2026-09-14",
+    "run_at": "2026-09-14T08:45:00-04:00",
+    "sources": {
+      "ghl": "error",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "partial",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run (Albert's clone/run-brief/push request); no ledger entry existed for 2026-09-09 through 2026-09-13, but this is branch isolation, not a real gap -- titan-vault 01_daily/ notes exist for all five dates and both ghl-ingest-agent and notion-ingest-agent confirmed via git log --all that real daily-ingest runs happened on those days, stranded on unmerged claude/adoring-mendel-* session branches never merged to main-agents (same pattern as the 08-29/08-31/09-03 recoveries -- recommend merging those branches). ghl failed today because mcp__ghl__* MCP tools were not bound to this session (provisioning gap, recurrence of 08-15/18/19/24, not a confirmed GHL outage), leaving a ~5.5-day GHL coverage gap open. bookkeeper still has no QBO/Intuit MCP connector configured (11th+ consecutive failed run since 2026-07-26). notion partial: Tactical Tasks List second query batch hit Notion's workspace usage limit for Query Data Source twice, ~97 of 197 open rows unverified. outlook/meta-ads both ran clean with widened catch-up windows (144h/168h and 6 days respectively) covering the gap since 09-08."
   }
 ]

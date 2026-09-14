@@ -1,0 +1,31 @@
+## Daily Brief — 2026-09-14
+
+**Needs attention today**
+1. **[Peachtree Lane, Oakville](https://outlook.office365.com/owa/?ItemID=AAMkADliNWJmMjVmLTA2YzctNGRlMC1iMmVlLTkyNjdhZjBmYzUwZABGAAAAAABHf1EfuF%2FiToI4%2BcF0d6pDBwDbPhKQg8c%2FRp%2Bc7qfEdjkNAAAAAAEMAADbPhKQg8c%2FRp%2Bc7qfEdjkNAAK4Q5jQAAA%3D&exvsurl=1&viewmodel=ReadMessageItem) — customer paid in full, 12 days with no completion date communicated. Confirm the repair-scheduling issue is actually closed.
+2. **[Warranty complaint thread (NaveenHelena2025)](https://outlook.office365.com/owa/?ItemID=AQMkAGUwZmIwNGUzLTFjYmUtNDkyMC05ZWM4LTFjNGNkNWE3MzU2NABGAAADVDF%2BvOlcfUWouzaiZMo9EgcAnxwx6GogQ0C6e3q5wrzPwgAAAgEMAAAAnxwx6GogQ0C6e3q5wrzPwgABPe7fgAAAAA%3D%3D&exvsurl=1&viewmodel=ReadMessageItem)** — 3-day back-and-forth on resolution options, still unresolved per last customer reply (09-10).
+3. **[MetCredit collections notice](https://outlook.office365.com/owa/?ItemID=AAMkADliNWJmMjVmLTA2YzctNGRlMC1iMmVlLTkyNjdhZjBmYzUwZABGAAAAAABHf1EfuF%2FiToI4%2BcF0d6pDBwDbPhKQg8c%2FRp%2Bc7qfEdjkNAAAAAAEMAADbPhKQg8c%2FRp%2Bc7qfEdjkNAAK42RxkAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)** — Titan reportedly owes Rogers $449.77 + accruing interest, no reply on file. Pay or dispute this week.
+4. **[titanfloors.ca WordPress email-change request](https://outlook.office365.com/owa/?ItemID=AAMkADliNWJmMjVmLTA2YzctNGRlMC1iMmVlLTkyNjdhZjBmYzUwZABGAAAAAABHf1EfuF%2FiToI4%2BcF0d6pDBwDbPhKQg8c%2FRp%2Bc7qfEdjkNAAAAAAEMAADbPhKQg8c%2FRp%2Bc7qfEdjkNAAK6RQ5MAAA%3D&exvsurl=1&viewmodel=ReadMessageItem)** (09-12) — unclear if staff-initiated. Verify before the confirmation link is used by anyone else.
+5. **[Boyne V Construction](https://outlook.office365.com/owa/?ItemID=AQMkAGUwZmIwNGUzLTFjYmUtNDkyMC05ZWM4LTFjNGNkNWE3MzU2NABGAAADVDF%2BvOlcfUWouzaiZMo9EgcAnxwx6GogQ0C6e3q5wrzPwgAAAgEMAAAAnxwx6GogQ0C6e3q5wrzPwgABPLx4SwAAAA%3D%3D&exvsurl=1&viewmodel=ReadMessageItem)** — paid the South Millway balance, says more owing on a second project; no reply found since 09-08.
+6. **GHL is completely blind today** — `mcp__ghl__*` tools weren't bound to this session (provisioning gap, not a confirmed outage; recurrence of 08-15/18/19/24). Sales pipeline, leads, conversations, and workflow-drift checks are all unreported; coverage gap now ~5.5 days since the last good pull (09-08).
+7. **Notion Tactical Tasks backlog** — 197 open rows, ≥100 confirmed stale (likely ~109), oldest 161 days (since 04-06). Flagged repeatedly since 07-31 with no triage pass.
+
+**Numbers**
+- GHL: error — no data (MCP tools not bound this session).
+- Outlook: 29 items (8 customer, 11 supplier, 10 admin), 1 unanswered customer, 0 bounces. 144h/168h catch-up window.
+- Bookkeeper: error — no data (QuickBooks/QBO connector still not configured).
+- Notion: partial — 6 payments ($10,374.03 total, $4,988.04 net-new), 0 new won projects, 0 work orders, 100+ stale tactical tasks (query-limited, ~109 likely), 0 new meetings.
+- Meta Ads: $315.87 spend, 24 leads, $13.16 CPL, 1 active campaign, 0 flagged ads. 6-day catch-up window (09-08–09-13).
+
+**By source**
+- **GHL** — Total failure today: `mcp__ghl__*` MCP tools were never exposed to this session even though credentials and `.mcp.json` config look correct — a session tool-provisioning gap, not a confirmed GHL outage. Zero contacts, opportunities, conversations, or appointments could be read; sales-pipeline visibility and drift-detection are fully blind. Restore tool bindings (may need interactive `claude mcp approve`) and re-run with a ~132h catch-up window.
+- **Outlook** — All 4 mailboxes (albert@, info@, pourya@, mike@) pulled cleanly over a widened 144h/168h window covering the gap since 09-08 (142 scanned, 82 filtered as noise). Two high-priority customer complaints stand out — the stalled Peachtree Lane repair and the unresolved NaveenHelena2025 warranty thread — plus one unanswered customer (Boyne V Construction) and two admin flags: the MetCredit/Rogers collections notice and an unverified WordPress email-change request.
+- **Bookkeeper** — No data again. The QuickBooks/QBO MCP connector remains unconfigured in this environment; Finance has been blocked since tracking began on 2026-07-26. Cash-in and invoice visibility stay fully blind.
+- **Notion** — Titan Projects, QA Work Orders, Master Payments Log, and Project Status Meetings all completed cleanly (a quiet day: 0 new won projects, 0 work orders, 0 new meetings). The Tactical Tasks List's second query batch (~97 newer rows) hit Notion's workspace query-limit twice and was abandoned — 100 stale tasks are a confirmed floor, not the true count (likely ~109 of 197 open). 3 of today's 6 payments duplicate the prior stranded 09-13 run's window; net-new payments total $4,988.04 (Gustavo Galvis $3,000, 14680286 Canada Inc $1,750, Connie Quach $238.04).
+- **Meta Ads** — Clean run, no anomalies. $315.87 spend over a widened 6-day catch-up window (09-08–09-13) produced 24 leads at $13.16 CPL, close to the 7-day trailing baseline ($12.55). Sole active campaign is Flooring Problems Campaign; the other three stay paused, no ads flagged.
+
+**Sources missing today**
+- GHL: `error` — `mcp__ghl__*` MCP tools not bound to this session (provisioning gap, not a confirmed platform outage); zero data.
+- Bookkeeper: `error` — QuickBooks/QBO MCP connector still not configured in this environment (blocked since 2026-07-26).
+- Notion: `partial` — Tactical Tasks List's second query batch failed twice on Notion's workspace query-limit; ~97 of 197 open rows could not be re-verified today.
+
+No run at all on: 2026-09-09, 2026-09-10, 2026-09-11, 2026-09-12, 2026-09-13 (per `run-ledger.json`, last entry before today was 2026-09-08). **These are not true missed days**: titan-vault's `01_daily/` notes exist for all five dates, and both the ghl-ingest-agent and notion-ingest-agent independently confirmed via `git log --all` that real daily-ingest runs happened on those days — their ingest JSON just landed on unmerged `claude/adoring-mendel-*` session branches and never made it into `main-agents`. This is the same branch-isolation pattern recorded in the ledger's 2026-08-29/08-31/09-03 recovery notes. Recommend merging those stranded branches into `main-agents` so the ledger and `ingest/` history reflect what actually ran, rather than repeating this investigation on the next run.
