@@ -8,10 +8,17 @@ Takes one row from **Content Calendar Log** and turns it into a scheduled Metric
 post — or explains why it did not.
 
 **`<logID>` is a Content Calendar Log page id, not a Titan Content Ideas id.** The
-Calendar Log row *is* the post: one row, one platform, one Metricool id. Albert's
-**Publish Content** button on an idea creates the row, and that creation is the
-trigger. Pointing this command at an idea row is a category error — an idea fans out
-to many posts and has no single id to write back.
+Calendar Log row *is* the post: one row, one platform, one Metricool id. Pointing this
+command at an idea row is a category error — an idea fans out to many posts and has no
+single id to write back.
+
+**The trigger is `Post Status` → `Queued`, not row creation** (Albert, 2026-09-14).
+The **Publish Content** button creates the row; Albert then adjusts the date and
+anything else. Scheduling on creation would put a post in Metricool before its date
+was settled, and every later edit would need an `updateScheduledPost` round-trip to
+stay in sync. `Queued` is a person saying *this one is final* — the same
+ingest → decide → act shape as the rest of the repo. Registry:
+`content-sources.json` → `sources.content_calendar_log.trigger`.
 
 Authoritative procedure. `contracts/social-plan-schema.md` defines the plan and the
 approval file; `platform-settings/social-destinations.json` and
@@ -43,6 +50,10 @@ arrive with the row. Do not fetch the idea separately unless something is missin
 `Post To` must match a surface key in `social-destinations.json` **character for
 character**. A miss is a silent lookup failure, not an error, so treat an unmatched
 value as a hold and name the value you got.
+
+If `Post Status` is blank or anything other than `Queued`, **stop** — the row is still
+being edited and nobody has declared it final. Say which status you found. (An
+explicitly re-run `Failed` row is the one exception: say so and proceed.)
 
 If `Post Status` is already `Posted`, or `Metricool Post ID` is set and
 `getScheduledPosts` confirms that post exists — **stop, report, change nothing.**

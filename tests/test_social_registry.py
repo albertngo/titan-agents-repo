@@ -136,7 +136,7 @@ class SocialRegistryCase(unittest.TestCase):
         halves of one mapping. A surface Notion cannot select is dead config; an
         option with no surface routes nowhere and fails at plan time."""
         registry = set(surfaces(self.dest))
-        notion = set(self.src["sources"]["titan_content_ideas"]["surface_values"])
+        notion = set(self.src["destination_vocabulary"]["names"])
         self.assertEqual(registry, notion,
                          "registry surfaces and Notion 'Next: Post To' options have drifted")
 
@@ -187,6 +187,36 @@ class SocialRegistryCase(unittest.TestCase):
             "Google Business Profile",
         }
         self.assertEqual(set(surfaces(self.dest)), notion_post_to)
+
+    def test_the_vocabulary_block_is_the_same_seven_names(self):
+        """content-sources.json carries the canonical list; social-destinations.json
+        keys on it. Both Notion databases were ALTERed onto it on 2026-09-14.
+
+        Four places have to agree and only two of them are files, so the files at
+        least must agree with each other -- otherwise a rename lands in one and the
+        drift is invisible until a row silently stops posting.
+        """
+        self.assertEqual(
+            set(self.src["destination_vocabulary"]["names"]),
+            set(surfaces(self.dest)),
+        )
+
+    def test_the_vocabulary_is_not_copied_a_third_time(self):
+        """titan_content_ideas.surface_values used to duplicate the list. Three copies
+        of a list that must match exactly is three chances to update two of them."""
+        self.assertIsInstance(
+            self.src["sources"]["titan_content_ideas"]["surface_values"], str,
+            "surface_values must be a pointer to destination_vocabulary.names, not a copy",
+        )
+
+    def test_a_disabled_surface_stays_selectable(self):
+        """Linkedin is in the vocabulary (a human can plan a LinkedIn post) but is not
+        connected in Metricool, so it must be present and disabled -- never dropped.
+        Dropping it would make the option in Notion an unmatched string, which is the
+        silent-miss failure this whole family of tests exists to prevent."""
+        self.assertIn("Linkedin", surfaces(self.dest))
+        self.assertFalse(surfaces(self.dest)["Linkedin"]["enabled"])
+        self.assertIsNone(self.dest["connected_networks"]["linkedin"])
 
 
 if __name__ == "__main__":

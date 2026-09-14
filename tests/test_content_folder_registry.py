@@ -37,6 +37,14 @@ class ContentFolderRegistryTest(unittest.TestCase):
         cls.registry = json.loads(SOURCES.read_text())
         cls.scenario = cls.registry["make_scenario"]
         cls.datastore = cls.scenario["datastore"]
+        cls.snapshot = json.loads(SNAPSHOT.read_text())
+
+    @classmethod
+    def _module(cls, module_id: int) -> dict:
+        for m in cls.snapshot["blueprint"]["flow"]:
+            if m["id"] == module_id:
+                return m
+        raise AssertionError(f"module {module_id} is not in the blueprint snapshot")
 
     def test_hardcoded_content_root_matches_the_pinned_drive_root(self):
         """Module 4 hardcodes a root folder id in its ifempty fallback.
@@ -50,26 +58,54 @@ class ContentFolderRegistryTest(unittest.TestCase):
             self.registry["drive"]["root_folder_id"],
         )
 
-    def test_sharing_stays_narrow(self):
-        """The OneDrive predecessor shared as `writer` on a folder above 01_RAW --
-        raw unedited footage inside clients' homes, editable by anyone holding the
-        link. That fix must survive any future rewrite."""
-        share = self.scenario["share"]
-        self.assertEqual(share["folder"], "03_FINAL")
-        self.assertEqual(share["role"], "reader")
+    def test_the_documented_share_posture_matches_the_blueprint(self):
+        """The registry must describe the scenario that exists, not one I built.
 
-    def test_the_shared_folder_is_a_real_scaffold_folder(self):
-        """Sharing a folder the scaffold never creates would silently share nothing."""
-        self.assertIn(
-            self.scenario["share"]["folder"],
-            self.registry["folder_convention"]["scaffold"],
-        )
+        This test previously asserted share.folder == "03_FINAL" and role ==
+        "reader" -- against the registry, which is where those strings were
+        written. It checked this file against itself and passed while both claims
+        were false: module 10 shares {{4.id}}, the CONTENT folder, as `writer`.
+
+        So read the blueprint. A documentation test that never opens the artifact
+        it documents is worse than no test, because it converts a wrong document
+        into a green one.
+        """
+        share_module = self._module(10)
+        self.assertEqual(share_module["module"], "google-drive:shareAFileFolder")
+        mapper = share_module["mapper"]
+        self.assertEqual(mapper["role"], self.scenario["share"]["role"])
+        self.assertEqual(mapper["type"], self.scenario["share"]["type"])
+        # It shares the content folder module 4 created, not a scaffold subfolder.
+        self.assertEqual(mapper["folder"], "{{4.id}}")
+        self.assertIn("{{4.id}}", self.scenario["share"]["folder"])
+
+    def test_the_raw_footage_exposure_stays_on_the_record(self):
+        """anyone/writer on the content folder inherits down to 01_RAW: raw footage
+        shot inside clients' homes, deletable by any link-holder, with those links
+        published on ~45 Notion rows.
+
+        The scenario is frozen by decision, so this is not a failing build -- it is
+        an open risk that must not quietly disappear from the registry the next time
+        someone tidies it.
+        """
+        share = self.scenario["share"]
+        self.assertEqual(share["role"], "writer", "if this changed, update the risk note")
+        self.assertTrue(share["_OPEN_RISK_raw_footage_is_publicly_writable"].strip())
+
+    def test_the_link_is_written_from_the_shared_folder(self):
+        """Link to Files comes from {{10.shareLink}}, so the row's link and the
+        thing that got shared are the same folder by construction. If module 11 is
+        ever repointed at {{4.webViewLink}} without re-narrowing module 10, the row
+        would link to a folder nobody shared and open for nobody."""
+        notion_module = self._module(11)
+        link_key = self.scenario["notion_link_field_key"]
+        self.assertEqual(notion_module["mapper"]["fields"][link_key], "{{10.shareLink}}")
 
     def test_known_behaviours_stay_documented(self):
         """Each was found by tracing a live run, and each looks like a fresh bug to
         whoever meets it next. Losing the note costs that tracing again."""
         behaviours = self.scenario["known_behaviours"]
-        for key in ("re_fire_blocked_FIXED", "link_points_at_03_final",
+        for key in ("re_fire_blocked_FIXED", "link_points_at_the_content_folder",
                     "datastore_holds_titles", "writes_post_date"):
             self.assertIn(key, behaviours)
             self.assertTrue(behaviours[key].strip())

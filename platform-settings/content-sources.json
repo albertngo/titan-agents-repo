@@ -2,6 +2,22 @@
   "_comment": "Read registry for the social content pipeline. Maps the Notion content databases to the Google Drive media tree, and holds the folder-naming convention as data rather than as a literal buried in an automation. Consumed by content-ingest-agent, scripts/content_media_select.py and .claude/commands/content-schedule.md. Source: live Notion + Drive reads, 2026-09-12.",
   "_maintenance": "Two things go stale independently. (1) Notion property names are EXACT MATCH — a rename in Notion silently breaks reads; re-verify with notion-fetch on the data_source url. (2) drive.root_folder_id is pinned deliberately: there are three folders in this account whose title contains 'Titan Flooring', one of them shared by an external agency (kim@socialestatesmarketing.com). NEVER resolve the root by title search — always by id.",
   "config_version": "1",
+  "destination_vocabulary": {
+    "_comment": "ONE list of destination names, shared by four places: Titan Content Ideas 'Next: Post To', Content Calendar Log 'Post To', the surface keys in social-destinations.json, and the lookup /content-schedule does between them. All four now carry these exact seven strings (aligned 2026-09-14, Albert: 'make all options available and match in wording'). Metricool imposes nothing here -- its own network ids are lowercase (facebook, instagram, youtube, tiktok, gmb, linkedin) and social-destinations.json maps each name onto one.",
+    "_why_exact_match_matters": "The lookup is an exact string key. A mismatch is a silent miss -- the row resolves to no surface and is skipped or held, with no error anywhere to notice. That is exactly what happened on 2026-09-14: four of seven names differed only in capitalisation (YouTube/Youtube, LinkedIn/Linkedin) or wording (Google My Business/Google Business Profile).",
+    "names": [
+      "Facebook Page",
+      "Instagram Reels",
+      "Youtube - Shorts",
+      "Youtube - Long",
+      "Linkedin",
+      "TikTok",
+      "Google Business Profile"
+    ],
+    "_spelling_note": "'Youtube' and 'Linkedin' are not the brands' own capitalisation. The Content Calendar Log already carried them, that database is the posting unit, and a rename is cheap but a mismatch is silent -- so the log's spelling won and everything else was moved onto it. Rename all four places together or none.",
+    "_linkedin_is_not_postable": "Linkedin is a valid option in both databases but is NOT connected in Metricool (Albert declined the tier, 2026-09-12). social-destinations.json holds it disabled; a row selecting it is held as Manual Required rather than failing. The option stays visible on purpose -- the plan can record an intent the pipeline cannot execute.",
+    "_stories_are_not_destinations": "Story Variant on the idea selects a story variant OF a surface; there is no Story entry here and there must not be one. See social-destinations.json story_surfaces."
+  },
   "sources": {
     "titan_content_ideas": {
       "_comment": "The planning database. One row per content item; 'Next: Post To' selects the platform for the next post, and Content Calendar Log records each post that went out.",
@@ -27,7 +43,8 @@
         "Sub-item",
         "Project"
       ],
-      "_schema_verified": "2026-09-12: 8 properties added live, TikTok added to 'Next: Post To'. 14 rows carrying 'Instagram Reels' verified intact after the ALTER.",
+      "_schema_verified": "2026-09-14: 'Next: Post To' re-ALTERed onto destination_vocabulary.names (was 'Google My Business', 'YouTube - Shorts', 'YouTube - Long', 'LinkedIn'). Renames preserve values and the only option in use was Instagram Reels; 12 rows verified intact afterwards, 48 rows null. Earlier, 2026-09-12: 8 properties added live, TikTok added.",
+      "_next_post_to_is_the_plan_not_the_post": "'Next: Post To' says which surface the NEXT post for this idea targets. It is a planning hint on the idea; the authoritative per-post destination is 'Post To' on the Content Calendar Log row. Same vocabulary, different jobs -- do not read this one when scheduling.",
       "read_properties": [
         "Content Name",
         "userDefined:ID",
@@ -62,15 +79,7 @@
         "Plain Story",
         "Decorated Story"
       ],
-      "surface_values": [
-        "Google Business Profile",
-        "Facebook Page",
-        "Instagram Reels",
-        "Youtube - Shorts",
-        "Youtube - Long",
-        "Linkedin",
-        "TikTok"
-      ],
+      "surface_values": "see destination_vocabulary.names -- one list, four consumers. Do not copy it here again.",
       "_never_write": "Never write Status, Next: Post To, Caption, Post Date or Link to Files. Those are the plan; the pipeline reports against them and does not edit them. An agent that 'corrects' Next: Post To has decided what to post, which is the one thing it must never do."
     },
     "content_calendar_log": {
@@ -96,7 +105,7 @@
         "Live URL"
       ],
       "destination_property": "Post To",
-      "_destination_comment": "Its option names MUST match the surface keys in social-destinations.json character for character -- a mismatch is a silent lookup miss, not an error. Four were misaligned on 2026-09-14 (YouTube vs Youtube, LinkedIn vs Linkedin, Google My Business vs Google Business Profile); the registry was renamed to match Notion, because Notion is where a human picks.",
+      "_destination_comment": "The authoritative per-post destination. Its option names are destination_vocabulary.names, character for character, and so are the surface keys in social-destinations.json and 'Next: Post To' on the idea. See that block for why an exact match is load-bearing.",
       "caption_source": "rollup from the idea (Content Series -> Caption)",
       "_caption_comment": "Albert's choice, 2026-09-14: one caption per idea, shared by every platform it fans out to. Simple and nothing to maintain. Known cost: Google Business Profile caps a 'publication' at 1500 characters, so a long shared caption makes a GMB row unpostable. The pipeline HOLDS that row (hold reason: caption over the platform limit) rather than truncating -- truncating would publish a sentence nobody wrote.",
       "write_properties": [
@@ -107,7 +116,16 @@
       "_write_comment": "The only three properties this pipeline may write, and it writes them HERE, never on the idea. Post Date, Post To, Content Series and Content Name are the plan -- the pipeline reports against them and never edits them.",
       "idempotency_key": "Metricool Post ID",
       "_idempotency_comment": "Set on this row once the post exists in Metricool. A re-fire with this field set, confirmed by getScheduledPosts, stops before anything touches Drive or Metricool.",
-      "_no_story_destination_yet": "Post To has no Story option, so the Plain/Decorated Story handling in social-destinations.json story_surfaces is unreachable from this path. Story Variant still lives on the idea and is currently unused by the posting pipeline. Add a Story destination here before expecting stories to post."
+      "trigger": {
+      "_question": "Albert, 2026-09-14: 'Should I make the actual publishing on the log side? When the idea is ready to post a version of it goes to log. and then from log I can fiddle around with dates, and other things.'",
+      "_answer": "Yes -- publish from the log. The idea is the plan, the log row is the post: it is the only object that maps one-to-one onto a Metricool id, and it already carries Post Date, Post To and the Post Status vocabulary. Nothing about publishing belongs on the idea.",
+      "fires_on": "Post Status -> Queued",
+      "_fires_on_comment": "NOT on row creation. Albert explicitly wants to fiddle with dates after the row lands, and creation-triggered scheduling would put a post in Metricool before the date is settled -- every subsequent edit then needs an updateScheduledPost round-trip to stay in sync, and any edit made while that round-trip is in flight silently disagrees with the live post. An explicit Queued is a person saying 'this one is final', which is the same gate the rest of the repo uses: ingest -> decide -> act. Queued already exists in both databases' Post Status; nothing new is needed.",
+      "state_machine": "(blank, editable) -> Queued (Albert, final) -> Scheduled (pipeline wrote it, id in Metricool Post ID) -> Posted | Failed | Manual Required",
+      "_after_scheduled": "Once a row is Scheduled it holds a Metricool Post ID and the idempotency check stops a re-fire. Changing Post Date after that is NOT a re-schedule -- it needs updateScheduledPost against the stored id. Out of scope today: /content-schedule only creates. Until it does, a date change after Queued means cancelling in Metricool by hand.",
+      "_publish_content_button": "The 'Publish Content' button on Titan Content Ideas creates the log row. Its Notion description currently reads 'This means the post has been Scheduled, and Logs to the posting history', which overstates what it does under this design -- it logs an intent, it does not schedule. Worth rewording; not changed here, because the button is Albert's."
+    },
+    "_no_story_destination_yet": "Post To has no Story option, so the Plain/Decorated Story handling in social-destinations.json story_surfaces is unreachable from this path. Story Variant still lives on the idea and is currently unused by the posting pipeline. Add a Story destination here before expecting stories to post."
     }
   },
   "drive": {
@@ -219,7 +237,7 @@
       "4  Drive: create TC-<n>_<name>       under ifempty(3.contentID; <content root>)",
       "5-8  Drive: create 01_RAW / 02_EDIT / 03_FINAL / 04_PUBLISHED",
       "9  Datastore: add record             key = TC-<n>, contentID = the row's Content Name",
-      "10 Drive: share 03_FINAL             reader / anyone",
+      "10 Drive: share the CONTENT folder   writer / anyone  ({{4.id}}, not 03_FINAL)",
       "11 Notion: update the row            Link to Files = 10.shareLink, plus Post Date",
       "12 Iterator -> 13  Drive: create the nine 01_RAW children"
     ],
@@ -228,7 +246,8 @@
     "known_behaviours": {
       "_comment": "Recorded so they are not rediscovered as surprises. These are consequences of the current design, not a to-do list -- Albert has chosen to keep it as-is.",
       "re_fire_blocked_FIXED": "FIXED 2026-09-14T00:52:26Z (Albert, in the UI). Module 3's filter previously read {{2.exists}}; the module's output field is `exist`, singular, so the condition never resolved and the already-built guard never blocked -- every re-fire built another full tree. Verified by live runs either side of the change: builds before it cost 21 operations, the three runs after it cost 2 (webhook + ExistRecord, then blocked). Keep the singular spelling.",
-      "link_points_at_03_final": "Module 11 writes Link to Files from {{10.shareLink}} -- module 10 shares 03_FINAL, so the row's link opens that SUBFOLDER, not the content folder. The Drive app also emits shareLink in the non-standard https://drive.google.com/folder/d/<id> form rather than the canonical /drive/folders/<id>. The content folder's own webViewLink ({{4.webViewLink}}) is the correct source if this is ever revisited.",
+      "link_points_at_the_content_folder": "Module 11 writes Link to Files from {{10.shareLink}}, and module 10 shares {{4.id}} -- the content folder. So the row's link opens the TC-<n>_<name> folder, which is what Albert wants (stated explicitly 2026-09-14: 'I purposefully wanted the Root folder and not FINAL as the Link to Files'). The Drive app emits shareLink in the non-standard https://drive.google.com/folder/d/<id> form rather than the canonical /drive/folders/<id>; both open.",
+      "_correction_2026_09_14": "An earlier version of this block claimed module 10 shared 03_FINAL as reader, and that the link therefore pointed at a subfolder. Both were wrong. They were written from the parent-aware version I had built, not from the frozen scenario, and the test that 'verified' the share posture asserted this file against itself, so it passed. Every claim here is now read off platform-settings/blueprints/content-folder-scenario-4918320.json, and the test reads the snapshot too. Check documentation against the artifact, never against the documentation.",
       "datastore_holds_titles": "Module 9 stores the row's Content Name in `contentID`, a field whose only consumer (module 4's folderId) needs a Drive folder id. Harmless while nesting is off, because nothing reads it back successfully.",
       "writes_post_date": "Module 11 also writes Post Date (key Ns%3Az). Note sources.titan_content_ideas._never_write lists Post Date as off-limits to the POSTING pipeline; that rule binds the agents and commands, not this scenario."
     },
@@ -253,10 +272,13 @@
       "_content_root_comment": "Hardcoded in module 4's ifempty fallback. Must match drive.root_folder_id below."
     },
     "share": {
-      "folder": "03_FINAL",
-      "role": "reader",
+      "folder": "the content folder ({{4.id}})",
+      "role": "writer",
       "type": "anyone",
-      "_comment": "The OneDrive predecessor shared as `writer` on a folder above 01_RAW -- raw footage inside clients' homes, editable by anyone with the link. This shares 03_FINAL, read-only. That improvement survives in the live scenario."
+      "allowFileDiscovery": false,
+      "_comment": "Read off the blueprint snapshot, module 10. NOT 03_FINAL, and NOT reader -- an earlier version of this block claimed both.",
+      "_OPEN_RISK_raw_footage_is_publicly_writable": "Drive permissions inherit, so sharing the content folder anyone/writer makes 01_RAW -- raw unedited footage shot inside clients' homes -- readable, editable and DELETABLE by anyone holding the link. Those links are published on ~45 Notion rows. drive._share_scope_comment says to share 03_FINAL or the asset and never a folder above 01_RAW; the live scenario does not honour that, and the scenario is frozen by decision. The narrowest fix that keeps Albert's stated requirement (Link to Files must open the content folder, not 03_FINAL) is to share 03_FINAL as `reader` in module 10 and write Link to Files from {{4.webViewLink}} instead of {{10.shareLink}} -- the link then still opens the content folder, and only finished assets are exposed. NOT APPLIED: the scenario is hand-edited in the UI and frozen; this needs Albert's yes. Raised 2026-09-14, unanswered.",
+      "_why_it_matters_even_though_assets_are_public_anyway": "Finished assets are destined for public feeds, so link-sharing 03_FINAL costs nothing. Raw footage was never consented to for publication, and `writer` adds deletion on top of exposure -- an anonymous link-holder can destroy source material that exists nowhere else."
     },
     "_superseded": {
       "scenario_id": 4803695,
