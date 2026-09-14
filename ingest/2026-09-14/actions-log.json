@@ -24,6 +24,18 @@
       "error": null,
       "raw_ref": "Metricool post uuid -4953304537857768451; new post id 375727387 (previous id 375710371); previous date 2026-09-15T20:00:00 America/Toronto",
       "raw_ref_action_id": "3aa05063"
+    },
+    {
+      "logged_at": "2026-09-14T18:50:00-04:00",
+      "agent": "social-actions-agent",
+      "type": "social_schedule_post",
+      "target": "Metricool brand 3951085 (titanflooring_inc) — Instagram Reels, intended draft for 2026-09-14T16:00:00 America/Toronto",
+      "content_summary": "Attempted to schedule the approved Instagram Reel draft 'Staircase Transformation (Demo + Install — merged)' (Notion TC-86, real caption, plan action id 17a4860e). Write not attempted against Metricool because the mcp__Metricool_Social_Media_Management__createScheduledPost tool (and its sibling read/update tools) this agent's own definition requires were not present among the tools actually available in this session -- only Read, Write and Bash were wired in. No API call was made, no post was created or modified, and no credential was substituted to work around the missing tool.",
+      "approved_by": "policy",
+      "result": "failed",
+      "error": "mcp__Metricool_Social_Media_Management__createScheduledPost (and getScheduledPosts/getBrandSettings) not available as callable tools in this execution session -- cannot confirm write_mode against the live registry via getBrandSettings, cannot check getScheduledPosts for a prior partial write, and cannot call createScheduledPost. Refusing to guess or fabricate a result per the agent's own rule against resolving ambiguity by guessing.",
+      "raw_ref": null,
+      "raw_ref_action_id": "17a4860e"
     }
   ]
 }
