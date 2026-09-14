@@ -69,10 +69,23 @@ class ContentFolderRegistryTest(unittest.TestCase):
         """Each was found by tracing a live run, and each looks like a fresh bug to
         whoever meets it next. Losing the note costs that tracing again."""
         behaviours = self.scenario["known_behaviours"]
-        for key in ("re_fire_duplicates", "link_points_at_03_final",
+        for key in ("re_fire_blocked_FIXED", "link_points_at_03_final",
                     "datastore_holds_titles", "writes_post_date"):
             self.assertIn(key, behaviours)
             self.assertTrue(behaviours[key].strip())
+
+    def test_the_already_built_guard_uses_the_singular_field_name(self):
+        """`datastore:ExistRecord` outputs `exist`. A filter on `{{N.exists}}` never
+        resolves, so the guard silently stops blocking and every re-fire builds
+        another full folder tree -- with no error anywhere.
+
+        That exact typo shipped once and survived two green runs before anyone
+        noticed. It is checkable against the committed snapshot, so check it.
+        """
+        snap = json.loads(SNAPSHOT.read_text())
+        filters = json.dumps([m.get("filter") for m in snap["blueprint"]["flow"]])
+        self.assertIn("{{2.exist}}", filters)
+        self.assertNotIn("{{2.exists}}", filters)
 
     def test_registry_does_not_claim_nesting(self):
         """The parent-aware build is in git history, not in the live scenario.

@@ -186,7 +186,7 @@
     "hook_id": 2819947,
     "webhook_url": "https://hook.us1.make.com/yhp4ssw9v7av0bzfmqpu8n88la52ngs1",
     "isActive": true,
-    "snapshot_of": "2026-09-14T00:24:57Z",
+    "snapshot_of": "2026-09-14T00:52:26Z",
     "edited_in": "the Make UI",
     "_edited_in_comment": "This scenario is hand-edited in the UI. Do not push blueprints at it from here without asking -- API pushes and UI edits overwrote each other repeatedly on 2026-09-13. Re-snapshot the blueprint file after any UI change.",
     "shape": [
@@ -204,7 +204,7 @@
     "_nesting_comment": "The parent-aware version (a router plus two self-calling HTTP modules that re-queued the webhook until the parent existed) was built and is described in git history around commit 0026a89. It is NOT in the live scenario. Module 3 still looks a parent up by PAGE ID while module 9 files records under TC-<n>, so the lookup can never match and module 4 always falls through to the content root.",
     "known_behaviours": {
       "_comment": "Recorded so they are not rediscovered as surprises. These are consequences of the current design, not a to-do list -- Albert has chosen to keep it as-is.",
-      "re_fire_duplicates": "Module 3's filter reads {{2.exists}}; the module's output field is `exist` (singular), so the condition never resolves and the already-built guard does not block. Every re-fire of a row creates ANOTHER full folder tree. Observed live: restoring 10 rows to Planning on 2026-09-14 produced 10 new trees and 10 new Link to Files values.",
+      "re_fire_blocked_FIXED": "FIXED 2026-09-14T00:52:26Z (Albert, in the UI). Module 3's filter previously read {{2.exists}}; the module's output field is `exist`, singular, so the condition never resolved and the already-built guard never blocked -- every re-fire built another full tree. Verified by live runs either side of the change: builds before it cost 21 operations, the three runs after it cost 2 (webhook + ExistRecord, then blocked). Keep the singular spelling.",
       "link_points_at_03_final": "Module 11 writes Link to Files from {{10.shareLink}} -- module 10 shares 03_FINAL, so the row's link opens that SUBFOLDER, not the content folder. The Drive app also emits shareLink in the non-standard https://drive.google.com/folder/d/<id> form rather than the canonical /drive/folders/<id>. The content folder's own webViewLink ({{4.webViewLink}}) is the correct source if this is ever revisited.",
       "datastore_holds_titles": "Module 9 stores the row's Content Name in `contentID`, a field whose only consumer (module 4's folderId) needs a Drive folder id. Harmless while nesting is off, because nothing reads it back successfully.",
       "writes_post_date": "Module 11 also writes Post Date (key Ns%3Az). Note sources.titan_content_ideas._never_write lists Post Date as off-limits to the POSTING pipeline; that rule binds the agents and commands, not this scenario."

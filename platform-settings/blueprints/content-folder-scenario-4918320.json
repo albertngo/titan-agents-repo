@@ -1,10 +1,10 @@
 {
-  "_comment": "Verbatim snapshot of Make scenario 4918320 as it stood at the lastEdit below, taken 2026-09-14 on Albert's instruction to keep whatever was live at that moment. This file is a RECORD, not a source of truth to push from -- the scenario is edited in the Make UI. Re-snapshot after any UI change.",
+  "_comment": "Verbatim snapshot of Make scenario 4918320 at the lastEdit below. A RECORD, not a source to push from -- the scenario is edited in the Make UI. Re-snapshot after any UI change.",
   "scenario_id": 4918320,
   "name": "Content Status -> Create Drive Folders (v2)",
   "hook_id": 2819947,
   "isActive": true,
-  "lastEdit": "2026-09-14T00:24:57.686Z",
+  "lastEdit": "2026-09-14T00:52:26.455Z",
   "snapshot_taken": "2026-09-14",
   "blueprint": {
     "flow": [
@@ -100,7 +100,7 @@
           "conditions": [
             [
               {
-                "a": "{{2.exists}}",
+                "a": "{{2.exist}}",
                 "b": "false",
                 "o": "boolean:equal"
               }

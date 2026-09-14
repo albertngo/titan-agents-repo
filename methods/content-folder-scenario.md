@@ -34,10 +34,14 @@ without asking.
 Consequences of the current design, recorded so they don't get rediscovered as surprises.
 Not a to-do list.
 
-**Re-firing a row builds another tree.** Module 3's filter reads `{{2.exists}}`, but the
-module's output field is `exist` — singular. The condition never resolves, so the already-built
-guard never blocks. Observed live: restoring ten rows to `Planning` on 2026-09-14 produced ten
-new folder trees and ten new `Link to Files` values.
+**Re-firing a row is correctly blocked** — fixed 2026-09-14T00:52:26Z, in the UI. Module 3's
+filter read `{{2.exists}}`, but the module's output field is `exist`, singular. The condition
+never resolved, so the already-built guard never blocked and every re-fire built another full
+tree; restoring ten rows to `Planning` earlier that night produced ten new trees and ten new
+`Link to Files` values. Confirmed fixed by live runs either side of the change: builds before it
+cost **21 operations**, the three runs after it cost **2** — webhook, ExistRecord, blocked.
+**Keep the singular spelling.** The typo shipped once and survived two green runs unnoticed,
+which is why `tests/test_content_folder_registry.py` now asserts it against the snapshot.
 
 **The row's link opens `03_FINAL`, not the content folder.** Module 11 writes
 `{{10.shareLink}}`, and module 10 shares `03_FINAL`. The Drive app also returns `shareLink` in
