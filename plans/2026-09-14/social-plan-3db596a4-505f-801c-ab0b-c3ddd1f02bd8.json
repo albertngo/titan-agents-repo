@@ -1,0 +1,38 @@
+{
+  "contract_version": "social-plan-1",
+  "generated_at": "2026-09-14T14:20:00-04:00",
+  "notion_id": 86,
+  "content_name": "Staircase Transformation (Demo + Install — merged)",
+  "blog_id": "3951085",
+  "write_mode": "draft",
+  "actions": [
+    {
+      "id": "44896fe6",
+      "type": "social_schedule_post",
+      "surface": "Instagram Reels",
+      "network": "instagram",
+      "network_data": {
+        "type": "REEL"
+      },
+      "story_variant": "Not a Story",
+      "caption": "Test caption 123",
+      "media_url": "https://drive.google.com/file/d/1paOFjUT8YuXJV7hwZKgXfIKHQ_cTU5Lo/view?usp=drivesdk",
+      "cover": {
+        "mode": "image_url",
+        "value": "https://drive.google.com/file/d/1ekJSnhYDt7qug4_wV-KmyO1b5kmlAace/view?usp=sharing"
+      },
+      "scheduled_at": {
+        "dateTime": "2026-09-15T20:00:00",
+        "timezone": "America/Toronto"
+      },
+      "notion_page_url": "https://app.notion.com/p/3db596a4505f801cab0bc3ddd1f02bd8"
+    }
+  ],
+  "held": [],
+  "warnings": [
+    "Post Date on the row is DATE-ONLY (is_datetime 0). The 20:00 time was chosen by Albert in session, not read from Notion. The row still says '2026-09-15' with no time, so Notion and Metricool will not match exactly -- set the time on the row.",
+    "Cover Frame (ms)=1050 AND Cover Image URL are both set on TC-86. The registry's cover mode for Instagram Reels is image_url, so the frame offset is unused. Clear one.",
+    "Caption is the placeholder 'Test caption 123'; the polished caption lives only in the idea's page body. Deliberate for this run (draft mode) -- fix before flipping write_mode to live.",
+    "Instagram centre-crops a 9:16 cover to a square on the profile grid."
+  ]
+}

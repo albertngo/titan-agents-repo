@@ -27,7 +27,7 @@ CLAUDE_MD = REPO_ROOT / "CLAUDE.md"
 # The ingest sources named in CLAUDE.md's agent table. Kept as a literal so a
 # source added there without a department entry fails loudly here, rather than
 # being discovered by a misrouted request.
-INGEST_SOURCES = {"ghl", "outlook", "bookkeeper", "notion", "meta-ads"}
+INGEST_SOURCES = {"ghl", "outlook", "bookkeeper", "notion", "meta-ads", "content"}
 
 
 class RegistryCase(unittest.TestCase):

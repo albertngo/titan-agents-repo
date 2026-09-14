@@ -1,0 +1,445 @@
+{
+  "_comment": "Metricool write registry for the social posting pipeline. Holds the brand id, the Notion 'Next: Post To' -> Metricool provider map, and the per-surface capability matrix that says what each network's API can and cannot actually do. Every id and vocabulary string lives here so a new surface is a one-line data edit, never a code change. Source: mcp__Metricool__getBrandSettings plus the createScheduledPost tool contract, both read live 2026-09-12.",
+  "_maintenance": "Two independent staleness risks. (1) Metricool's createScheduledPost contract is the authority for networkData shapes and the cover rules below — re-read the tool description when a write starts failing on an unknown field. (2) connected_networks reflects what was actually linked in Metricool at capture time; a network absent there cannot be posted to no matter what this file says. Re-run getBrandSettings after connecting anything new.",
+  "config_version": "1",
+  "provider": "metricool",
+  "blog_id": "3951085",
+  "_blog_id_comment": "Metricool calls it blogId; it is the brand account id and is required on every write. Brand label 'titanflooring_inc', owner albertngo95@gmail.com.",
+  "timezone": "America/Toronto",
+  "_timezone_comment": "IANA identifier, sent inside info.publicationDate as {dateTime, timezone}. Matches CLAUDE.md's America/Toronto convention — do not read the brand's joinDate timezone (Europe/Madrid), which is a Metricool account artifact, not Titan's.",
+  "connected_networks": {
+    "_comment": "What getBrandSettings reported as actually linked on 2026-09-12. A surface whose network is not here CANNOT be written, regardless of its entry in surfaces below.",
+    "facebook": "107246082119767",
+    "instagram": "titanflooring_inc",
+    "tiktok": "titanflooring_inc",
+    "youtube": "UCRqJ8RUwpirTnMbRqc1qlww",
+    "linkedin": null,
+    "gmb": "accounts/112083294050413715046/locations/7907972280686088665",
+    "_gaps": "linkedin is NOT connected -- LinkedIn's Metricool integration sits behind a higher tier and Albert declined it 2026-09-12. Its surface stays disabled; LinkedIn posts remain manual. Everything else is linked."
+  },
+  "surfaces": {
+    "_comment": "Keyed on the exact Notion 'Next: Post To' select option string. auto_publishable=false means the API cannot do it unattended and the run must fall back to autoPublish:false (a push notification to Metricool's mobile app that a human taps) or hold the row entirely.",
+    "Facebook Page": {
+      "network": "facebook",
+      "network_data": {
+        "type": "POST"
+      },
+      "auto_publishable": true,
+      "requires_media": false,
+      "cover": "image_url",
+      "enabled": true,
+      "row_fields": [
+        {
+          "notion_property": "First Comment",
+          "metricool_path": "info.firstCommentText",
+          "required": false,
+          "_note": "Titan actively uses a pinned first comment as an engagement hook ('Guess how many staples we pulled'). It lives in the idea body today; this column is where it becomes postable."
+        },
+        {
+          "notion_property": "Media Alt Text",
+          "metricool_path": "info.mediaAltText",
+          "required": false,
+          "_note": "Accessibility. Sent as a list parallel to media."
+        },
+        {
+          "notion_property": "Video Title",
+          "metricool_path": "networkData.facebookData.title",
+          "required": false,
+          "_note": "Facebook video posts only, and separate from the caption. Ignored on a non-video post."
+        }
+      ]
+    },
+    "Instagram Reels": {
+      "network": "instagram",
+      "network_data": {
+        "type": "REEL"
+      },
+      "auto_publishable": true,
+      "requires_media": "video",
+      "cover": "image_url",
+      "_cover_comment": "Meta center-crops the 9:16 cover to a 1080x1080 square on the profile grid. Compose covers with the subject centred vertically or the grid decapitates them.",
+      "enabled": true,
+      "row_fields": [
+        {
+          "notion_property": "First Comment",
+          "metricool_path": "info.firstCommentText",
+          "required": false,
+          "_note": "Titan actively uses a pinned first comment as an engagement hook ('Guess how many staples we pulled'). It lives in the idea body today; this column is where it becomes postable."
+        },
+        {
+          "notion_property": "Media Alt Text",
+          "metricool_path": "info.mediaAltText",
+          "required": false,
+          "_note": "Accessibility. Sent as a list parallel to media."
+        },
+        {
+          "notion_property": "Collaborators",
+          "metricool_path": "networkData.instagramData.collaborators",
+          "required": false,
+          "_note": "Comma-separated IG handles. Collab posts appear on both accounts -- worth it for client and supplier tags."
+        },
+        {
+          "notion_property": "AI Disclosure",
+          "metricool_path": "networkData.instagramData.isAiGenerated",
+          "required": false,
+          "_note": "Instagram REQUIRES this declaration when content is AI-generated or significantly altered. Blank is treated as No."
+        }
+      ]
+    },
+    "YouTube - Shorts": {
+      "network": "youtube",
+      "network_data": {
+        "type": "short",
+        "privacy": "public",
+        "madeForKids": false
+      },
+      "auto_publishable": true,
+      "requires_media": "video",
+      "requires_fields": [
+        "title",
+        "madeForKids"
+      ],
+      "cover": "image_url",
+      "_cover_comment": "Only renders if the channel is phone-verified AND YouTube has enabled Shorts thumbnails on the account. Channel verified 2026-09-12; Shorts thumbnail availability unconfirmed.",
+      "enabled": true,
+      "row_fields": [
+        {
+          "notion_property": "First Comment",
+          "metricool_path": "info.firstCommentText",
+          "required": false,
+          "_note": "Titan actively uses a pinned first comment as an engagement hook ('Guess how many staples we pulled'). It lives in the idea body today; this column is where it becomes postable."
+        },
+        {
+          "notion_property": "Media Alt Text",
+          "metricool_path": "info.mediaAltText",
+          "required": false,
+          "_note": "Accessibility. Sent as a list parallel to media."
+        },
+        {
+          "notion_property": "Video Title",
+          "metricool_path": "networkData.youtubeData.title",
+          "required": true,
+          "_note": "REQUIRED by YouTube. Max ~100 characters, and it is NOT the caption -- YouTube shows the title, not info.text."
+        },
+        {
+          "notion_property": "YouTube Tags",
+          "metricool_path": "networkData.youtubeData.tags",
+          "required": false,
+          "_note": "Comma-separated."
+        },
+        {
+          "notion_property": "YouTube Category",
+          "metricool_path": "networkData.youtubeData.category",
+          "required": false
+        },
+        {
+          "notion_property": "Privacy",
+          "metricool_path": "networkData.youtubeData.privacy",
+          "required": false,
+          "_note": "Blank uses the registry default (public). Public/Unlisted/Private map to lowercase."
+        },
+        {
+          "notion_property": "AI Disclosure",
+          "metricool_path": "networkData.youtubeData.isAiGeneratedContent",
+          "required": false,
+          "_note": "YouTube requires the channel owner to declare realistic synthetic content."
+        }
+      ],
+      "_made_for_kids_is_a_constant": "YouTube REQUIRES madeForKids on every upload. It is false for every piece of content Titan makes -- flooring installation is not children's content -- so it is a registry constant rather than a column. If Titan ever makes something genuinely child-directed, this becomes a column; until then a per-row field would be ten seconds of friction on every single post to express a value that never varies."
+    },
+    "YouTube - Long": {
+      "network": "youtube",
+      "network_data": {
+        "type": "video",
+        "privacy": "public",
+        "madeForKids": false
+      },
+      "auto_publishable": true,
+      "requires_media": "video",
+      "requires_fields": [
+        "title",
+        "madeForKids"
+      ],
+      "cover": "image_url",
+      "cover_required": true,
+      "_cover_required_comment": "Policy, not an API rule: a default auto-thumbnail is a lasting CTR cost on long-form. A row with no cover is held, per the approval policy.",
+      "enabled": true,
+      "row_fields": [
+        {
+          "notion_property": "First Comment",
+          "metricool_path": "info.firstCommentText",
+          "required": false,
+          "_note": "Titan actively uses a pinned first comment as an engagement hook ('Guess how many staples we pulled'). It lives in the idea body today; this column is where it becomes postable."
+        },
+        {
+          "notion_property": "Media Alt Text",
+          "metricool_path": "info.mediaAltText",
+          "required": false,
+          "_note": "Accessibility. Sent as a list parallel to media."
+        },
+        {
+          "notion_property": "Video Title",
+          "metricool_path": "networkData.youtubeData.title",
+          "required": true,
+          "_note": "REQUIRED by YouTube. Max ~100 characters, and it is NOT the caption -- YouTube shows the title, not info.text."
+        },
+        {
+          "notion_property": "YouTube Tags",
+          "metricool_path": "networkData.youtubeData.tags",
+          "required": false,
+          "_note": "Comma-separated."
+        },
+        {
+          "notion_property": "YouTube Category",
+          "metricool_path": "networkData.youtubeData.category",
+          "required": false
+        },
+        {
+          "notion_property": "Privacy",
+          "metricool_path": "networkData.youtubeData.privacy",
+          "required": false,
+          "_note": "Blank uses the registry default (public). Public/Unlisted/Private map to lowercase."
+        },
+        {
+          "notion_property": "AI Disclosure",
+          "metricool_path": "networkData.youtubeData.isAiGeneratedContent",
+          "required": false,
+          "_note": "YouTube requires the channel owner to declare realistic synthetic content."
+        }
+      ],
+      "_made_for_kids_is_a_constant": "YouTube REQUIRES madeForKids on every upload. It is false for every piece of content Titan makes -- flooring installation is not children's content -- so it is a registry constant rather than a column. If Titan ever makes something genuinely child-directed, this becomes a column; until then a per-row field would be ten seconds of friction on every single post to express a value that never varies."
+    },
+    "LinkedIn": {
+      "network": "linkedin",
+      "network_data": {
+        "type": "post"
+      },
+      "auto_publishable": true,
+      "requires_media": false,
+      "cover": "image_url",
+      "enabled": false,
+      "_enabled_comment": "LinkedIn is not connected in Metricool. Connect it, re-run getBrandSettings, then flip this.",
+      "row_fields": []
+    },
+    "Google Business Profile": {
+      "network": "gmb",
+      "network_data": {
+        "type": "publication"
+      },
+      "auto_publishable": true,
+      "requires_media": false,
+      "text_max_chars": 1500,
+      "cover": "none",
+      "_video_trap": "gmbData.type 'publication' is a text update and CANNOT carry a video. 'photo' is the ONLY way to send a video to Google Business Profile, and a photo post carries no text of its own. A row with a video and a caption cannot be one GMB post — it is either a silent caption drop or a silent video drop. Hold and report rather than choosing.",
+      "enabled": true,
+      "location_id": "accounts/112083294050413715046/locations/7907972280686088665",
+      "_location_comment": "One Metricool brand maps to one GMB location. A second location would need a second brand and therefore a second blog_id -- this file assumes one.",
+      "row_fields": [
+        {
+          "notion_property": "GBP Post Type",
+          "metricool_path": "networkData.gmbData.type",
+          "required": true,
+          "_note": "REQUIRED, and it is the field that resolves the video trap recorded in _video_trap above: 'Publication' is a text update that CANNOT carry video; 'Photo' carries media and NO text of its own. A row with both a video and a caption is not expressible as one GBP post, so this column is where a person says which half matters. Without it the row is held."
+        },
+        {
+          "notion_property": "First Comment",
+          "metricool_path": "info.firstCommentText",
+          "required": false,
+          "_note": "Not applicable to a GBP publication; ignored."
+        }
+      ]
+    },
+    "TikTok": {
+      "network": "tiktok",
+      "network_data": {
+        "privacyOption": "PUBLIC_TO_EVERYONE"
+      },
+      "auto_publishable": true,
+      "requires_media": true,
+      "cover": "image_url",
+      "_cover_comment": "Silently ignored on personal TikTok accounts — only Business-connected accounts honour a custom cover. Unlike every other network this failure is silent, not an error.",
+      "enabled": true,
+      "_enabled_comment": "Connected in Metricool. Still needs adding as an option on the Notion 'Next: Post To' property before a row can route here.",
+      "row_fields": [
+        {
+          "notion_property": "First Comment",
+          "metricool_path": "info.firstCommentText",
+          "required": false,
+          "_note": "Titan actively uses a pinned first comment as an engagement hook ('Guess how many staples we pulled'). It lives in the idea body today; this column is where it becomes postable."
+        },
+        {
+          "notion_property": "Media Alt Text",
+          "metricool_path": "info.mediaAltText",
+          "required": false,
+          "_note": "Accessibility. Sent as a list parallel to media."
+        },
+        {
+          "notion_property": "Video Title",
+          "metricool_path": "networkData.tiktokData.title",
+          "required": false
+        },
+        {
+          "notion_property": "Branded Content",
+          "metricool_path": "networkData.tiktokData.commercialContent*",
+          "required": false,
+          "_note": "'Own brand' sets commercialContentOwnBrand, 'Third party' sets commercialContentThirdParty, 'Both' sets both. TikTok requires this disclosure for paid or partnership content -- it is a compliance field, not a preference."
+        },
+        {
+          "notion_property": "AI Disclosure",
+          "metricool_path": "networkData.tiktokData.isAigc",
+          "required": false,
+          "_note": "Silently ignored on photo-only TikTok posts; TikTok does not support the declaration there."
+        },
+        {
+          "notion_property": "Privacy",
+          "metricool_path": "networkData.tiktokData.privacyOption",
+          "required": false,
+          "_note": "Blank uses the registry default PUBLIC_TO_EVERYONE."
+        }
+      ]
+    }
+  },
+  "story_surfaces": {
+    "_comment": "Stories are a variant of an existing surface, selected by the Notion 'Story Variant' property, not separate Next: Post To options.",
+    "Facebook Page": {
+      "network": "facebook",
+      "network_data": {
+        "type": "STORY"
+      },
+      "cover": "none"
+    },
+    "Instagram Reels": {
+      "network": "instagram",
+      "network_data": {
+        "type": "STORY"
+      },
+      "cover": "none"
+    },
+    "TikTok": {
+      "supported": false,
+      "_comment": "TikTok's Content Posting API has no story format and Metricool exposes none. Not a tool gap — a platform one. Always Manual Required; never retry."
+    },
+    "_text_rule": "A Story has no caption of its own. If every provider on the post is a Story, do not send info.text at all — it publishes nowhere. If a Story rides alongside a non-Story network, the text belongs to that other network and the Story ignores it.",
+    "_decorated_rule": "Link stickers, polls, mentions, music and location tags cannot be set through Meta's API. A Decorated Story must be sent with autoPublish:false so Metricool pushes a notification for a human to complete by hand."
+  },
+  "cover_rules": {
+    "_comment": "From the createScheduledPost contract. Getting these wrong rejects the WHOLE post, not just the cover.",
+    "image_field": "videoThumbnailUrl",
+    "frame_field": "videoCoverMilliseconds",
+    "accepted_formats": [
+      "jpg",
+      "jpeg",
+      "png"
+    ],
+    "requires_video_in_media": true,
+    "applicable_networks": [
+      "instagram",
+      "tiktok",
+      "youtube",
+      "linkedin",
+      "facebook"
+    ],
+    "_hard_trap": "If a cover field is sent when the conditions are not met, the ENTIRE request is rejected with VIDEO_THUMBNAIL_NOT_APPLICABLE. Omit both fields rather than sending them speculatively. The one exception is a personal TikTok account, where the cover is silently dropped instead.",
+    "_not_applicable": "Never send a cover for any Story (Facebook or Instagram) or for Google Business Profile."
+  },
+  "write_mode": {
+    "_comment": "Staged rollout, Albert 2026-09-12. Every write goes out as a Metricool draft until this flips. Flipping it is a dated decision note in the vault, not a quiet edit.",
+    "mode": "draft",
+    "draft_flag": "info.draft",
+    "_mechanism": "info.draft:true is the draft switch. NOT createScheduledPostForReview — that is a different feature requiring a Metricool plan with team management and an explicit reviewer email list, which Pro does not include.",
+    "_auto_publish_flag": "info.autoPublish — true publishes via the API at the scheduled time; false sends a push notification to the Metricool mobile app for a human to publish by hand. This is the Decorated Story fallback, and it is independent of draft."
+  },
+  "media_source": {
+    "_comment": "Where Metricool fetches media from. Google Drive as of 2026-09-12, replacing SharePoint/OneDrive.",
+    "provider": "google_drive",
+    "registry": "platform-settings/content-sources.json",
+    "_why": "Metricool's createScheduledPost contract names Google Drive and Dropbox as external sources it auto-uploads; OneDrive/SharePoint is NOT among them. A raw SharePoint share link also cannot be handed to a third party at all -- it needs ?download=1 plus a FedAuth cookie jar (see scripts/pricelist_fetch.py), and Metricool has no cookie jar, so it would 403.",
+    "_metricool_drive_link_required": "Google Drive must be linked inside the Metricool account for Drive URLs to be ingested. Linked 2026-09-12.",
+    "_sharing_required": "Assets must be shared anyone-with-link/viewer. A link that opens in Albert's signed-in browser proves nothing -- verify signed out.",
+    "_ingest_timing": "Metricool uploads external media to itself AT SCHEDULE TIME, not at publish time. This is why a short-lived URL was survivable and why a scheduled post does not depend on the source staying reachable until publication."
+  },
+  "_drive_ingest_verified": {
+    "verified": "2026-09-14",
+    "result": "CONFIRMED by a live draft post (Metricool post id 375382755, Facebook, draft).",
+    "what_was_sent": "https://drive.google.com/file/d/<id>/view?usp=drivesdk -- the plain Drive sharing URL, exactly as the Drive API returns it in viewUrl. No /uc?export=download form needed, no composing.",
+    "what_came_back": "media rewritten to https://static.metricool.com/planner/<yyyymm>/<blogId>-file-<n>.mp4",
+    "_the_important_part": "Metricool does not hotlink the Drive file -- it DOWNLOADS it at schedule time and re-hosts it on its own CDN. Two consequences. (1) The whole reason for moving storage to Drive holds: there is no separate upload step. (2) The Drive file only has to be publicly readable AT THE MOMENT OF SCHEDULING, not forever -- so sharing can be narrowed or made temporary without breaking posts that are already queued.",
+    "prerequisite": "Google Drive must be linked inside the Metricool account (done, Phase A). Metricool's own tool contract states this.",
+    "_test_method": "A 2.4MB mp4 was copied into an existing (already public) 03_FINAL folder, scheduled as a draft with autoPublish false and a date in late December, then the Drive copy was trashed. The draft itself cannot be removed from here -- the Metricool MCP exposes create/update but no delete -- so it must be deleted in the planner UI."
+  },
+  "analytics": {
+    "_comment": "Per-surface mapping for the PUBLISH RECONCILIATION path: once a post publishes it disappears from getScheduledPosts, and these metrics are the only way to read back what actually went out. Consumed by scripts/social_publish_reconcile.py via getAnalyticsDataByMetrics. Captured live 2026-09-14 from getAnalyticsAvailableMetrics -- every fieldId below was read off the API, none inferred.",
+    "_response_shape": "getAnalyticsDataByMetrics returns {\"rows\": [[v1, v2, ...]]} -- POSITIONAL arrays with no field names. The column order IS the order the metrics were requested in. So the request list and the unpacking must be built from the same ordered mapping or the columns silently transpose: a caption lands in the URL field and nothing errors. That is why `fields` below is an ordered object, read once and used for both.",
+    "_timestamp_format": "The 'with time' metrics return a compact YYYYMMDDHHMMSS string, e.g. '20260806033114', and it appears to be UTC -- that sample is 03:31, which as America/Toronto local would be a strange hour to post and as UTC is 23:31 the previous evening. NOT CONFIRMED. Because it is unconfirmed, the matcher deliberately does not depend on it: it uses a wide tolerance window rather than exact times, so a timezone error costs nothing. Confirm it against a post whose publish time we set ourselves, then tighten.",
+    "_lag": "Analytics is not instant. A post can be gone from getScheduledPosts before it appears here. That gap is not a deletion -- the reconciler reports awaiting_analytics rather than concluding anything.",
+    "surfaces": {
+      "Instagram Reels": {
+        "network": "instagram",
+        "connector": "reels",
+        "fields": {
+          "posted_at": "IGRE02",
+          "text": "IGRE03",
+          "post_id": "IGRE04",
+          "url": "IGRE06"
+        }
+      },
+      "Facebook Page": {
+        "network": "facebook",
+        "connector": "posts",
+        "fields": {
+          "posted_at": "FBPO02",
+          "text": "FBPO03",
+          "post_id": "FBPO04",
+          "url": "FBPO06"
+        }
+      },
+      "TikTok": {
+        "network": "tiktok",
+        "connector": "posts",
+        "_field_name_note": "TikTok calls the caption 'description' (TKPO05), not text. Same role.",
+        "fields": {
+          "posted_at": "TKPO02",
+          "text": "TKPO05",
+          "url": "TKPO03"
+        }
+      },
+      "YouTube - Shorts": {
+        "network": "youtube",
+        "connector": "all videos",
+        "_no_description": "YouTube analytics exposes the TITLE (YTVV17) but NOT the video description, so Posted Caption cannot be recovered for a YouTube row -- only its title. Recorded rather than worked around: a title is not a caption and must not be written into Posted Caption as if it were.",
+        "_deprecated_connector": "Do NOT use the 'videos' connector (YTVI*). Every one of its fields is labelled 'Deprecated ... Do not use' by the API. 'all videos' (YTVV*) is the live one.",
+        "fields": {
+          "posted_at": "YTVV02",
+          "title": "YTVV17",
+          "post_id": "YTVV04",
+          "url": "YTVV05"
+        }
+      },
+      "YouTube - Long": {
+        "network": "youtube",
+        "connector": "all videos",
+        "_same_as_shorts": "YouTube analytics does not separate Shorts from long-form here; both surfaces read the same connector and are told apart by the log row's Post To, not by the data.",
+        "fields": {
+          "posted_at": "YTVV02",
+          "title": "YTVV17",
+          "post_id": "YTVV04",
+          "url": "YTVV05"
+        }
+      },
+      "Google Business Profile": {
+        "network": "googleBusinessProfile",
+        "connector": "posts",
+        "_no_permalink": "GBP analytics exposes no per-post permalink. GMPO05 is the MEDIA url and GMPO08 the OWNER profile url -- neither is a link to the post. So Live URL stays blank for a GBP row, permanently, and that is a platform limit rather than a gap to fill.",
+        "fields": {
+          "posted_at": "GMPO02",
+          "text": "GMPO10"
+        }
+      },
+      "LinkedIn": {
+        "_unavailable": "LinkedIn is not connected in Metricool (Albert declined the tier, 2026-09-12), so there is no analytics to read. Fill this in if connected_networks.linkedin ever stops being null."
+      }
+    },
+    "_field_order_is_load_bearing": "The order of `fields` IS the order the metrics are requested in, and the order the positional response is unpacked in. Both come from this one mapping, so they cannot disagree -- but only while nothing reorders it by hand. Reordering these keys without reordering the request transposes columns SILENTLY: a caption lands in Live URL, a url in Posted Caption, both well-formed, no error anywhere. That exact mistake was made here on 2026-09-14 while writing this block and was caught only because a test asserted against a verbatim live response. Keep a test pinned to real captured rows."
+  },
+  "_row_fields_comment": "Per-surface mapping from a Content Calendar Log COLUMN to the Metricool field it fills. Added 2026-09-14 (Albert: 'whatever the platform NEEDS, make a column, so we can filter by platform and fill those in'). `required: true` means /content-schedule HOLDS the row when it is blank -- the post would be rejected or malformed without it. The dividing line for adding a column at all: it must VARY per post. Anything constant for every Titan post (madeForKids, TikTok privacyOption, YouTube privacy) stays registry config, because a column for an invariant is pure friction on every row forever."
+}

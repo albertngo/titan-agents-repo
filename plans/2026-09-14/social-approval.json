@@ -1,0 +1,19 @@
+{
+  "contract_version": "social-plan-1",
+  "approved_at": "2026-09-14T14:20:00-04:00",
+  "_comment": "One approval file per DAY, accumulating. Every action approved on this date appears here; an actions agent executes an id only if it is present with status 'approved'. Append, never replace -- a later run that overwrites this file erases the authorisation record for everything approved earlier the same day, and would let a resumed earlier run find its own id missing.",
+  "approvals": [
+    {
+      "id": "44896fe6",
+      "status": "approved",
+      "approved_by": "policy",
+      "reason": "Clears every policy condition in contracts/social-plan-schema.md: surface 'Instagram Reels' is enabled and instagram appears in connected_networks; feed post, not a Decorated Story; caption, media_url, scheduled_at and surface all present and non-empty; no text_max_chars set for this surface; cover mode is unambiguous (registry declares image_url for Instagram Reels). Albert supplied the 20:00 time in session and chose to keep the placeholder caption for this run. write_mode is draft, so this lands as a Metricool draft."
+    },
+    {
+      "id": "3aa05063",
+      "status": "approved",
+      "approved_by": "policy",
+      "reason": "Reschedule policy in contracts/social-plan-schema.md: the rebuild script returned a payload (no refusal); the live post is still a draft while write_mode is draft; only publicationDate differs; the new date is in the future. Albert confirmed the 16th in session."
+    }
+  ]
+}

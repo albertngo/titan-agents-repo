@@ -1,0 +1,378 @@
+{
+  "_comment": "Read registry for the social content pipeline. Maps the Notion content databases to the Google Drive media tree, and holds the folder-naming convention as data rather than as a literal buried in an automation. Consumed by content-ingest-agent, scripts/content_media_select.py and .claude/commands/content-schedule.md. Source: live Notion + Drive reads, 2026-09-12.",
+  "_maintenance": "Two things go stale independently. (1) Notion property names are EXACT MATCH — a rename in Notion silently breaks reads; re-verify with notion-fetch on the data_source url. (2) drive.root_folder_id is pinned deliberately: there are three folders in this account whose title contains 'Titan Flooring', one of them shared by an external agency (kim@socialestatesmarketing.com). NEVER resolve the root by title search — always by id.",
+  "config_version": "1",
+  "destination_vocabulary": {
+    "_comment": "ONE list of destination names, shared by four places: Titan Content Ideas 'Next: Post To', Content Calendar Log 'Post To', the surface keys in social-destinations.json, and the lookup /content-schedule does between them. All four now carry these exact seven strings (aligned 2026-09-14, Albert: 'make all options available and match in wording'). Metricool imposes nothing here -- its own network ids are lowercase (facebook, instagram, youtube, tiktok, gmb, linkedin) and social-destinations.json maps each name onto one.",
+    "_why_exact_match_matters": "The lookup is an exact string key. A mismatch is a silent miss -- the row resolves to no surface and is skipped or held, with no error anywhere to notice. That is exactly what happened on 2026-09-14: four of seven names differed only in capitalisation (the databases disagreed on the 'T' in YouTube and the 'I' in LinkedIn) or in wording (Google My Business vs Google Business Profile).",
+    "names": [
+      "Facebook Page",
+      "Instagram Reels",
+      "YouTube - Shorts",
+      "YouTube - Long",
+      "LinkedIn",
+      "TikTok",
+      "Google Business Profile"
+    ],
+    "_spelling_note": "These are the brands' own names. The first pass at this (earlier the same day) standardised on the Content Calendar Log's existing spelling, which rendered YouTube and LinkedIn with a lowercase second word; Albert asked for the correct spelling instead, so all four places moved together. That is the rule: rename all four together or none. A rename is cheap -- Notion select renames carry existing values, verified on the one log row holding this value -- but a partial rename is a silent miss.",
+    "_linkedin_is_not_postable": "LinkedIn is a valid option in both databases but is NOT connected in Metricool (Albert declined the tier, 2026-09-12). social-destinations.json holds it disabled; a row selecting it is held as Manual Required rather than failing. The option stays visible on purpose -- the plan can record an intent the pipeline cannot execute.",
+    "_stories_are_not_destinations": "Story Variant on the idea selects a story variant OF a surface; there is no Story entry here and there must not be one. See social-destinations.json story_surfaces."
+  },
+  "sources": {
+    "titan_content_ideas": {
+      "_comment": "The planning database. One row per content item; 'Next: Post To' selects the platform for the next post, and Content Calendar Log records each post that went out.",
+      "database_id": "1ef596a4-505f-815d-a9c1-000b59bcedac",
+      "data_source": "collection://1ef596a4-505f-815d-a9c1-000b59bcedac",
+      "sensitivity": "team",
+      "id_property": "userDefined:ID",
+      "_id_property_comment": "Auto-increment. This integer is the join key to the Drive folder (ID 170 <-> folder TC-170_...), which is why no extra cross-reference field is needed.",
+      "trigger_property": "Status",
+      "trigger_value": "Ready To Post",
+      "select_columns": [
+        "url",
+        "Content Name",
+        "userDefined:ID",
+        "Status",
+        "Post Date",
+        "Next: Post To",
+        "Content Format",
+        "Content Type",
+        "Series",
+        "Link to Files",
+        "Parent item",
+        "Sub-item",
+        "Project"
+      ],
+      "_schema_verified": "2026-09-14, twice. First ALTER moved 'Next: Post To' off 'Google My Business' and onto the log's spelling; the second moved BOTH databases onto destination_vocabulary.names as it stands now (Albert chose the brands' own capitalisation). Only Instagram Reels was in use here -- 12 rows, verified intact, 48 null. On the log, one row held the renamed YouTube long-form value and came through the rename carrying it, so Notion select renames do preserve values. Earlier, 2026-09-12: 8 properties added live, TikTok added.",
+      "_next_post_to_is_the_plan_not_the_post": "'Next: Post To' says which surface the NEXT post for this idea targets. It is a planning hint on the idea; the authoritative per-post destination is 'Post To' on the Content Calendar Log row. Same vocabulary, different jobs -- do not read this one when scheduling.",
+      "read_properties": [
+        "Content Name",
+        "userDefined:ID",
+        "Status",
+        "Post Date",
+        "Next: Post To",
+        "Story Variant",
+        "Caption",
+        "Cover Image URL",
+        "Cover Frame (ms)",
+        "Link to Files",
+        "Content Format",
+        "Content Type",
+        "Series"
+      ],
+      "write_properties": {
+        "_comment": "The ONLY properties any part of this pipeline may write. Everything else on the row is Albert's and the team's. Mirrors the read/write split in pricelist-sources.json.",
+        "post_status": "Post Status",
+        "metricool_post_id": "Metricool Post ID",
+        "live_url": "Live URL",
+        "media_direct_url": "Media Direct URL"
+      },
+      "post_status_values": [
+        "Queued",
+        "Scheduled",
+        "Posted",
+        "Failed",
+        "Manual Required"
+      ],
+      "story_variant_values": [
+        "Not a Story",
+        "Plain Story",
+        "Decorated Story"
+      ],
+      "surface_values": "see destination_vocabulary.names -- one list, four consumers. Do not copy it here again.",
+      "_never_write": "Never write Status, Next: Post To, Caption, Post Date or Link to Files. Those are the plan; the pipeline reports against them and does not edit them. An agent that 'corrects' Next: Post To has decided what to post, which is the one thing it must never do.",
+      "page_template": {
+        "url": "https://app.notion.com/p/3db596a4505f81dcad13e36eec8c21cf",
+        "name": "Content Item Template v2 — shared core + platform tails",
+        "parent": "Content Creation (not the Ideas database)",
+        "_shape": "CORE written once (big idea, hook options, beat structure, SHARED CAPTION CORE, shoot prep, shot list), then one section per platform mapping directly onto Content Calendar Log columns, then a table of what travels between platforms and what does not.",
+        "_why_the_core_caption_carries_no_hashtags_or_link_in_bio": "Those are the two things that provably do not travel. 'Link in bio' is Instagram/TikTok idiom and is a dead instruction on Facebook, YouTube and a Google listing, where a real URL is possible. A hashtag block is native on Instagram, renders three deep on YouTube and reads as spam on a business listing -- and pushes a caption toward GBP's 1500-character cap, which can make that row unpostable. Keeping them out of the core is what makes the core inheritable.",
+        "_not_a_notion_template_yet": "Notion cannot create DATABASE TEMPLATES through the API, so this is a source page, not a template. Promote it by hand: Titan Content Ideas -> New ▾ -> New template, then paste the body. Left outside the Ideas database deliberately -- a template row living in the database would show up in views and read as a real idea."
+      }
+    },
+    "content_calendar_log": {
+      "_comment": "THE POSTING UNIT. One row per platform per content item -- this is the fan-out record, not a duplicate of the idea. Albert's 'Publish Content' button on a Titan Content Ideas row creates a row here; that creation is what starts the posting pipeline.",
+      "_why_the_per_post_fields_live_here": "Corrected 2026-09-14 (Albert). Metricool Post ID, Live URL and Post Status were originally put on Titan Content Ideas, which cannot work: one idea fans out to many posts, and a single field can only hold one post's id. Worse, it would make the idempotency check wrong -- a second platform would look 'already posted'. One row here = one Metricool post = one id.",
+      "database_id": "38c596a4-505f-8073-a0b7-f68209176550",
+      "data_source": "collection://38c596a4-505f-80b4-9b03-000bf7d7d77b",
+      "sensitivity": "team",
+      "row_naming": "CC: <Content Name>",
+      "relation_to_idea": "Content Series",
+      "_relation_comment": "Relation back to Titan Content Ideas. Three rollups ride on it and save the pipeline a second fetch: Content ID (the idea's TC number), Link to Files (the Drive content folder) and Caption.",
+      "select_columns": [
+        "url",
+        "Content Name",
+        "Post Date",
+        "Post To",
+        "Content Series",
+        "Caption",
+        "Content ID",
+        "Link to Files",
+        "Post Status",
+        "Metricool Post ID",
+        "Metricool UUID",
+        "Live URL",
+        "Posted Caption",
+        "Posted At",
+        "Video Title",
+        "First Comment",
+        "Media Alt Text",
+        "GBP Post Type",
+        "AI Disclosure",
+        "Collaborators",
+        "YouTube Tags",
+        "YouTube Category",
+        "Branded Content",
+        "Privacy",
+        "Ready To Queue"
+      ],
+      "destination_property": "Post To",
+      "_destination_comment": "The authoritative per-post destination. Its option names are destination_vocabulary.names, character for character, and so are the surface keys in social-destinations.json and 'Next: Post To' on the idea. See that block for why an exact match is load-bearing.",
+      "_post_date_needs_a_time": "Notion's Post Date is a date property and its `is_datetime` flag is PER ROW -- a row can carry '2026-09-15' with no time at all, and TC-86, the first real row through this pipeline, did. Metricool's publicationDate requires a wall-clock time, so a date-only row does not say when to post and /content-schedule HOLDS it: defaulting to midnight would publish a Reel at 00:00, and choosing any other hour is a marketing decision the pipeline must not originate. Set the time on the row. Downstream, scripts/social_publish_sweep.py treats a date-only row as naming a DAY rather than midnight -- otherwise it reports date_drift against every correctly-scheduled row, and would read absence at 00:30 as a publication twenty hours early.",
+      "caption_source": "Caption -- a TEXT property on this row",
+      "_caption_comment": "Albert's choice, 2026-09-14: one caption per idea, shared by every platform it fans out to. Simple and nothing to maintain. Known cost: Google Business Profile caps a 'publication' at 1500 characters, so a long shared caption makes a GMB row unpostable. The pipeline HOLDS that row (hold reason: caption over the platform limit) rather than truncating -- truncating would publish a sentence nobody wrote.",
+      "write_properties": [
+        "Post Status",
+        "Metricool Post ID",
+        "Metricool UUID",
+        "Live URL",
+        "Posted Caption",
+        "Posted At"
+      ],
+      "_write_comment": "The only six properties this pipeline may write, and it writes them HERE, never on the idea. Post Date, Post To, Caption, Content Series and Content Name are the plan -- the pipeline reports against them and never edits them. Caption is now editable per row, which does NOT make it writable by the pipeline: what to say is still a person's decision.",
+      "idempotency_key": "Metricool UUID",
+      "_idempotency_comment": "Set on this row once the post exists in Metricool. A re-fire with this field set, confirmed by getScheduledPosts, stops before anything touches Drive or Metricool.",
+      "_why_uuid_and_not_post_id": "CHANGED 2026-09-14 after a live test. updateScheduledPost does NOT update in place: it returns the post under a NEW id with the uuid unchanged and a fresh creationDate. Verified -- post 375382755 came back as 375680540, uuid -5728278742307617912 both times, and a follow-up getScheduledPosts showed ONE post, not two. So Metricool's `id` identifies a VERSION and `uuid` identifies the POST. Keying idempotency on the id would break the first time a post is rescheduled: the stored id matches nothing, the row reads as never-scheduled, and a re-fire schedules it a second time. That failure is silent and it double-posts -- the one outcome this pipeline exists to prevent. Metricool Post ID is still written, for the planner deep link and the audit trail, but nothing keys on it.",
+      "metricool_uuid_property": "Metricool UUID",
+      "_metricool_uuid_added": "2026-09-14, rich text. Added live to the Calendar Log; no existing row carried a value.",
+      "trigger": {
+        "_question": "Albert, 2026-09-14: 'Should I make the actual publishing on the log side? When the idea is ready to post a version of it goes to log. and then from log I can fiddle around with dates, and other things.'",
+        "_answer": "Yes -- publish from the log. The idea is the plan, the log row is the post: it is the only object that maps one-to-one onto a Metricool id, and it already carries Post Date, Post To and the Post Status vocabulary. Nothing about publishing belongs on the idea.",
+        "fires_on": "Post Status -> Queued",
+        "_fires_on_comment": "NOT on row creation. Albert explicitly wants to fiddle with dates after the row lands, and creation-triggered scheduling would put a post in Metricool before the date is settled -- every subsequent edit then needs an updateScheduledPost round-trip to stay in sync, and any edit made while that round-trip is in flight silently disagrees with the live post. An explicit Queued is a person saying 'this one is final', which is the same gate the rest of the repo uses: ingest -> decide -> act. Queued already exists in both databases' Post Status; nothing new is needed.",
+        "state_machine": "(blank, editable) -> Queued (Albert, final) -> Scheduled (pipeline wrote it, uuid in Metricool UUID) -> Posted | Failed | Manual Required",
+        "_who_sets_posted": "/content-sweep, and only it. Nothing else can: getScheduledPosts returns ONLY unpublished posts, so a post leaves the one endpoint this repo queries at the exact moment it succeeds. Without a daily sweep a row sits at Scheduled forever. The sweep infers publication from a uuid's ABSENCE -- which is ambiguous (published / deleted in the planner / outside the queried window all look identical), so it requires absence AND a passed due time AND a wide enough window AND draft mode being off before it writes Posted. While write_mode.mode is 'draft' it marks nothing Posted at all: a draft does not publish when its time comes, so a vanished draft was deleted by a person. Logic and reasoning: scripts/social_publish_sweep.py.",
+        "_live_url_is_not_recoverable": "The sweep can set Posted but CANNOT fill Live URL. A published post is gone from getScheduledPosts, and while scheduled it carries no permalink -- so there is nowhere to read the URL from. It stays blank until somebody fills it by hand or an analytics lookup is built. Do not synthesise one.",
+        "_after_scheduled": "Once a row is Scheduled it holds a Metricool UUID and the idempotency check stops a re-fire. Changing Post Date after that is NOT a re-schedule -- it is an updateScheduledPost against the stored uuid, which /content-schedule now supports as `--reschedule` (see .claude/commands/content-schedule.md, step R). Nothing fires it automatically yet: the date-edit webhook is designed but NOT wired up, so today a date change after Queued still needs the command run by hand.",
+        "_reschedule_is_a_full_overwrite": "updateScheduledPost takes no partial payload -- its contract requires 'the full original content ... modifying only the new information'. Omitted fields are wiped from a post that is already scheduled, with no confirmation and no undo. The full original content is read back from getScheduledPosts rather than from any copy this repo keeps, and scripts/social_post_rebuild.py does the rebuild. See that script's docstring for why reading it live beats storing a payload -- chiefly that `media` comes back rewritten to static.metricool.com, so a reschedule never re-fetches from Drive and keeps working after the Drive asset is unshared or deleted.",
+        "_publish_content_button": "The 'Publish Content' button on Titan Content Ideas creates the log row. Its Notion description currently reads 'This means the post has been Scheduled, and Logs to the posting history', which overstates what it does under this design -- it logs an intent, it does not schedule. Worth rewording; not changed here, because the button is Albert's."
+      },
+      "_no_story_destination_yet": "Post To has no Story option, so the Plain/Decorated Story handling in social-destinations.json story_surfaces is unreachable from this path. Story Variant still lives on the idea and is currently unused by the posting pipeline. Add a Story destination here before expecting stories to post.",
+      "_caption_resolution": "CHANGED 2026-09-14 (Albert). Caption is now its OWN TEXT FIELD on the log row, copied from the idea when the row is created. It was a rollup; it is not any more, and `Caption Override` has been deleted as redundant -- an editable per-row field IS the override. Read Caption on the row. There is no fallback and no resolution order left to get wrong.",
+      "_posted_caption": "What the post ACTUALLY published, read back from analytics after publication. Immutable, per post, written once by /content-sweep. Distinct from Caption (the plan) on purpose: the diff between them is what a caption gained once somebody could see it rendered. NOT available on YouTube -- its analytics exposes a title, not a description, and a title must never be written here as if it were a caption. See social-destinations.json analytics.",
+      "_why_posted_caption_is_not_written_back_to_the_idea": "SUPERSEDED 2026-09-14 by Caption becoming a per-row copy. The original hazard was that writing a refined caption back into the idea's Caption would retroactively change what every already-posted row APPEARED to have published, because the rollup was live. A copy cannot do that. Posted Caption is still a separate field and still worth having: it records what Metricool actually published, which can differ from the row's Caption if it was edited in the planner.",
+      "_posted_at": "Actual publication time from analytics, which is not always the scheduled time.",
+      "_platform_input_columns": "Added 2026-09-14 (Albert: 'whatever the platform NEEDS, please make a column, so we can filter it based on platform and then fill those in'). Each maps to a Metricool field; the mapping lives per surface in social-destinations.json -> surfaces.<surface>.row_fields, NOT here, so there is one place that says what a platform needs. Two are REQUIRED and hold the row when blank: Video Title on either YouTube surface, and GBP Post Type on Google Business Profile.",
+      "_what_earns_a_column": "It must VARY per post. Anything constant for every Titan post stays registry config -- madeForKids (always false; flooring is not children's content), TikTok privacyOption, YouTube privacy. A column for an invariant is friction on every row forever and one more thing to leave blank.",
+      "_ready_to_queue": "Notion FORMULA, not a pipeline field. Renders '✓ ready' or the name of the first missing required property for that row's Post To, so the log can be filtered by platform and the gaps filled before anything is Queued. It duplicates checks /content-schedule also makes -- deliberately: the formula catches them while Albert is editing, the command catches them at the gate, and a person seeing '⚠ Video Title' in a table beats a run held an hour later. If a required field is added to row_fields, update this formula too; nothing enforces that they agree.",
+      "views": {
+        "_comment": "Views created 2026-09-14 (Albert: 'create the filters needed as well'). The five platform views are the fill-in workflow: each filters Post To to one surface and SHOWS only the columns that surface actually uses, so a YouTube row is not a wall of Instagram fields and vice versa. Recorded here because a renamed Post To option breaks a view's filter silently -- the view simply goes empty, which reads as 'nothing to do'.",
+        "_the_fragile_coupling": "'⚠ Needs Info' filters on the formula OUTPUT containing the character ⚠. If the Ready To Queue formula's wording changes, that filter matches nothing and the view goes empty -- indistinguishable from everything being ready. Same class of silent miss as destination_vocabulary: an exact string shared by two places that nothing checks. Change the formula and this filter together, or neither.",
+        "needs_info": {
+          "url": "view://3db596a4-505f-8104-94ab-000c04bc060f",
+          "purpose": "THE worklist. Unsent rows whose Ready To Queue reports a missing required field, grouped by platform."
+        },
+        "instagram": {
+          "url": "view://3db596a4-505f-8102-9f11-000c1d1b584c",
+          "purpose": "Caption Override, First Comment, Collaborators, AI Disclosure, Media Alt Text."
+        },
+        "youtube": {
+          "url": "view://3db596a4-505f-814f-9387-000cc72dba3d",
+          "purpose": "Both YouTube surfaces. Video Title (required), Tags, Category, Privacy, AI Disclosure."
+        },
+        "tiktok": {
+          "url": "view://3db596a4-505f-81fb-ae11-000c621c7652",
+          "purpose": "Video Title, Branded Content (compliance), AI Disclosure, Privacy."
+        },
+        "facebook": {
+          "url": "view://3db596a4-505f-8147-9674-000c514bcb07",
+          "purpose": "Caption Override, Video Title (video posts only), First Comment."
+        },
+        "google_business": {
+          "url": "view://3db596a4-505f-8193-8ace-000c13ec64ca",
+          "purpose": "GBP Post Type (required) -- the column that resolves the video/caption trap."
+        },
+        "in_flight": {
+          "url": "view://3db596a4-505f-8194-a811-000cec3a4c9d",
+          "purpose": "Queued/Scheduled/Failed/Manual Required, with the uuid and id. What /content-sweep reasons about."
+        },
+        "posted": {
+          "url": "view://3db596a4-505f-8196-b6b1-000c23aa5c22",
+          "purpose": "Live URL, Posted Caption and Posted At -- the analytics write-back. Empty until something publishes."
+        },
+        "calendar": {
+          "url": "view://3db596a4-505f-812d-9730-000c7e2c5c68",
+          "purpose": "Post Date calendar. NOTE: dragging a row here fires a Post Date edit per drop, which is exactly what the date-edit webhook would need to debounce."
+        },
+        "all_fields": {
+          "url": "view://3db596a4-505f-81d1-abe9-000c9ddc33a0",
+          "purpose": "Every editable field in one place, ordered CORE (name, surface, date, status, readiness) -> CROSSOVER (caption override, first comment, alt text, video title, AI disclosure) -> PLATFORM-SPECIFIC (GBP type, YouTube tags/category/privacy, collaborators, branded content) -> PIPELINE OUTPUT (uuid, id, live url, posted caption, posted at). That grouping is the 'template layout' -- crossover fields first, platform tails after, machine-written fields last."
+        },
+        "_caption_rollup_not_addable": "The Caption ROLLUP cannot be added to a view through the API -- SHOW \"Caption\" returns 'Could not find property with name or id'. Formula properties (Ready To Queue) work fine; rollups do not. Add that column by hand in the Notion UI if a view needs it."
+      },
+      "_property_order_is_not_api_settable": "The DDL supports ADD/DROP/RENAME/ALTER COLUMN but not MOVE, so the database's canonical property order -- which is what an opened ROW shows -- cannot be set from here. Columns land in creation order. The '🗂 All Fields' view carries the intended grouping instead; matching the row layout to it is a one-time drag in the Notion UI, using that view's column order as the target.",
+      "_why_a_copy_beats_a_rollup_here": "A rollup is LIVE: every row sees the idea's current caption, so editing one idea silently rewrites what every row for it appears to say -- including rows that already posted. A copy diverges the moment it is made, which is what you want when the whole point is that captions must differ by platform. 'Link in bio' is Instagram idiom and dead on a Google listing; a 30-hashtag block is native on Instagram and spam on LinkedIn; GBP caps at 1500 characters. Under a rollup those needed an override field to escape. Under a copy, per-platform captions are simply the default and nothing needs escaping.",
+      "_caption_still_starts_from_the_idea": "The inheritance Albert wanted is preserved, it just happens ONCE, at row creation, instead of continuously. Whatever copies the idea's caption into a new log row owns that -- today the 'Publish Content' button. A row created without a caption has nothing to fall back on, so that copy is load-bearing, not a convenience."
+    }
+  },
+  "drive": {
+    "_comment": "Google Drive is the media source of record as of 2026-09-12, replacing SharePoint/OneDrive. Chosen because Metricool auto-ingests Drive URLs natively: no Graph permission to widen, no pre-authenticated-URL expiry, and none of the FedAuth cookie problem that makes a raw SharePoint share link unusable to a third party (see scripts/pricelist_fetch.py).",
+    "account": "albertngo95@gmail.com",
+    "root_folder_id": "1l6jmDaRNIyUvnypcVFylS5caBFnNCgUl",
+    "root_path": "TITAN FLOORING/Titan Flooring Content",
+    "parent_folder_id": "1qxUuFTNY43x5I2G-KQIv4kvs3tlAsn05",
+    "_sharing_requirement": "Every asset handed to Metricool MUST be shared anyone-with-link/viewer, or the fetch 404s. A link that opens in Albert's signed-in browser proves nothing -- verify signed out.",
+    "_verified": "2026-09-13: root confirmed as the folder Make writes into, holding TC-165_QA How Much Does Flooring Installation Cost in the GTA.",
+    "share_scope": "media_dir_only",
+    "_share_scope_comment": "Share the 03_FINAL folder (or the individual asset), NEVER root_folder_id. Drive permissions inherit, so sharing the root would be simpler -- and would expose every 01_RAW folder, i.e. raw unedited footage inside clients' homes, to anyone holding the link. Finished assets are already destined for public social feeds, so link-sharing those costs nothing; raw footage is not, and was never consented to for publication. Narrower is correct here even though it means the Make scenario shares per item rather than once.",
+    "_no_credential": "This repo holds NO Google credential and needs none. Drive reads go through the user-delegated Drive MCP connector, held by /content-schedule and content-ingest-agent. scripts/content_media_select.py deliberately does no I/O -- it takes a folder listing and returns a choice or a refusal. A service account was considered and rejected: it would not see Albert's personal My Drive without per-file sharing, so it would add a credential to guard without removing any work.",
+    "_root_folder_id_comment": "REPOINTED 2026-09-13. TWO folders named 'Titan Flooring Content' exist under TITAN FLOORING, created ten minutes apart: 1rbFy6aNyb1PXjAEIvOhZyZNK4bvpUBCq (20:02, empty) and this one (20:12). The Make scenario writes into THIS one -- TC-165_... is here. The registry originally pinned the empty duplicate: the id was taken from a title search at a moment when only one existed, which is why pinning an id is necessary but not sufficient when the NAME is ambiguous at pin time. Verify a pinned id still holds what you expect, do not just check that it is an id. Albert to delete the empty duplicate so this cannot recur.",
+    "_duplicate_to_delete": "1rbFy6aNyb1PXjAEIvOhZyZNK4bvpUBCq"
+  },
+  "folder_convention": {
+    "_comment": "The per-content-item scaffold. Created by the Make scenario on a new Notion row; read by the resolver. Holding the prefix here is the whole point of this block — it was previously a hardcoded literal inside a ~366KB Make blueprint, which is why changing it looked bigger than it was.",
+    "prefix": "TC",
+    "separator": "-",
+    "name_template": "{prefix}{separator}{notion_id}_{content_name}",
+    "legacy_prefixes": [
+      "TFC"
+    ],
+    "_legacy_comment": "Pre-2026-09-12 folders are TFC-<n>, and some are TFC<n> with no separator at all (TFC-168_VALUE.m4a alongside TFC167_VALUE.m4a). Both are normalised to TC-<n> during the migration. 'TC' is not a substring of 'TFC', so the two prefixes can never match each other by accident and a half-migrated estate stays unambiguous.",
+    "match_on": "notion_id",
+    "_match_comment": "Resolve by the integer, tolerating any known prefix and an optional separator. Never match on the prefix itself — it is decoration and it is changing.",
+    "media_dir": "03_FINAL",
+    "_media_dir_comment": "The single source of postable assets. The pipeline reads ONLY this. Raw footage in 01_RAW is 99.3% of the tree's bytes and is never touched.",
+    "published_dir": "04_PUBLISHED",
+    "photos_dir": "04_PHOTOS",
+    "cover_name_tokens": [
+      "cover",
+      "thumb",
+      "thumbnail"
+    ],
+    "scaffold": [
+      "01_RAW",
+      "02_EDIT",
+      "03_FINAL",
+      "04_PUBLISHED"
+    ],
+    "_scaffold_comment": "UNIFORM for every Content Format (Albert, 2026-09-13), replacing the old per-format branching. Content Format is an EDITABLE property: a row switched from Shortform to Carasoul after its folders exist would leave a tree that no longer matches, and nothing reconciles it. Making the scaffold a function of nothing means it cannot drift. It also removes the format branch from the Make scenario, which is most of why the old one needed 28 createAFolder modules. Cost accepted: an Image row gets 30_INSTALL it will never use.",
+    "raw_subfolders": [
+      "10_BEFORE",
+      "20_DEMO",
+      "30_INSTALL",
+      "40_FINISHED",
+      "50_INTERVIEW",
+      "60_TALKINGHEAD",
+      "70_VOICEOVER",
+      "80_PHOTOS",
+      "90_GRAPHICS"
+    ],
+    "_dropped_from_the_old_scaffold": {
+      "02_SELECTS": "chosen clips are an editing artifact -> 02_EDIT",
+      "03_AUDIO": "same material as voiceover, and it is source -> 01_RAW/70_VOICEOVER",
+      "04_PHOTOS": "photos are captured, so they are raw -> 01_RAW/80_PHOTOS"
+    },
+    "_final_dir_is_flat": "03_FINAL takes no subfolders, ever. content_media_select.py reads files directly from it and would refuse a subfoldered one as empty_final_dir. This is a contract, not a preference.",
+    "carousel": {
+      "_comment": "Several images and no video in 03_FINAL is a carousel. Slide order must be declared in the filenames -- alphabetical is wrong ('10.jpg' sorts before '9.jpg'), creation time is wrong (slides get re-exported), and guessing publishes the sequence wrong in a way that reads as a design choice rather than a bug, so nobody reports it.",
+      "order_from": "filename_prefix",
+      "prefix_pattern": "^(\\d+)[\\s_.-]+",
+      "example": [
+        "01_hook.jpg",
+        "02_before.jpg",
+        "03_after.jpg"
+      ],
+      "max_slides": 10,
+      "_refusals": "carousel_unordered (any slide unnumbered), carousel_gap (gap or two slides claiming one position), carousel_too_long (over max_slides)",
+      "_no_cover": "A carousel never carries a cover: the first slide is the cover, and Metricool's cover fields apply only to video -- sending one rejects the entire post."
+    }
+  },
+  "migration": {
+    "_comment": "One-time OneDrive -> Drive move, decided 2026-09-12 (Albert). Everything migrates: Drive is a 2TB plan, so 200GB is not a capacity constraint and a single source of truth beats a split archive.",
+    "status": "not_started",
+    "source_drive_id": "b!WgDUiebAk067YyFBoHcpgaKBXdDsG4JHgE5-bBed-T-At80r5bVwTZjvCbFAKnZi",
+    "source_folder_id": "01VFDJTKYKP5HHENTC6ZGY7QAGRMTQ3FKK",
+    "source_path": "MEDIA FILES/Titan Content Files",
+    "measured_2026_09_12": {
+      "top_level_folders": 32,
+      "total_bytes": 215370000000,
+      "total_gb_approx": 200.6,
+      "folders_over_1gb": 11,
+      "bytes_in_those_11_pct": 99.3,
+      "largest": "TFC-149_Tim Gilbert, 51GB",
+      "empty_or_unexported": 12
+    },
+    "_risk": "Throughput, not cost. A 51GB folder through Drive's API will throttle. The job must be resumable and idempotent, keyed on notion_id, reporting per row rather than going silent for hours.",
+    "_safety": "Nothing is deleted from OneDrive until Albert confirms the Drive copy is complete and correct. Reversible-by-inaction is the only safe shape at this volume.",
+    "_notion_rewrite": "Every migrated row's 'Link to Files' must be rewritten to the Drive link in the same pass. A moved folder whose Notion row still points at OneDrive is a broken row."
+  },
+  "make_scenario": {
+    "_comment": "The Make scenario that builds a content item's Drive scaffold and writes a link back to the Notion row. FROZEN AS-IS on Albert's instruction, 2026-09-14: whatever was live at that moment is what we keep. A verbatim blueprint snapshot lives at platform-settings/blueprints/content-folder-scenario-4918320.json.",
+    "scenario_id": 4918320,
+    "name": "Content Status -> Create Drive Folders (v2)",
+    "team_id": 459654,
+    "hook_id": 2819947,
+    "webhook_url": "https://hook.us1.make.com/yhp4ssw9v7av0bzfmqpu8n88la52ngs1",
+    "isActive": true,
+    "snapshot_of": "2026-09-14T00:52:26Z",
+    "edited_in": "the Make UI",
+    "_edited_in_comment": "This scenario is hand-edited in the UI. Do not push blueprints at it from here without asking -- API pushes and UI edits overwrote each other repeatedly on 2026-09-13. Re-snapshot the blueprint file after any UI change.",
+    "shape": [
+      "1  Webhook (2819947)",
+      "2  Datastore: does a record exist?   key = TC-<n>   [filter: Status is Planning or Filming]",
+      "3  Datastore: get a record           key = Parent item page id, else \"__no_parent__\"",
+      "4  Drive: create TC-<n>_<name>       under ifempty(3.contentID; <content root>)",
+      "5-8  Drive: create 01_RAW / 02_EDIT / 03_FINAL / 04_PUBLISHED",
+      "9  Datastore: add record             key = TC-<n>, contentID = the row's Content Name",
+      "10 Drive: share the CONTENT folder   writer / anyone  ({{4.id}}, not 03_FINAL)",
+      "11 Notion: update the row            Link to Files = 10.shareLink, plus Post Date",
+      "12 Iterator -> 13  Drive: create the nine 01_RAW children"
+    ],
+    "nesting": "NONE. Every content folder is created at the Drive root.",
+    "_nesting_comment": "The parent-aware version (a router plus two self-calling HTTP modules that re-queued the webhook until the parent existed) was built and is described in git history around commit 0026a89. It is NOT in the live scenario. Module 3 still looks a parent up by PAGE ID while module 9 files records under TC-<n>, so the lookup can never match and module 4 always falls through to the content root.",
+    "known_behaviours": {
+      "_comment": "Recorded so they are not rediscovered as surprises. These are consequences of the current design, not a to-do list -- Albert has chosen to keep it as-is.",
+      "re_fire_blocked_FIXED": "FIXED 2026-09-14T00:52:26Z (Albert, in the UI). Module 3's filter previously read {{2.exists}}; the module's output field is `exist`, singular, so the condition never resolved and the already-built guard never blocked -- every re-fire built another full tree. Verified by live runs either side of the change: builds before it cost 21 operations, the three runs after it cost 2 (webhook + ExistRecord, then blocked). Keep the singular spelling.",
+      "link_points_at_the_content_folder": "Module 11 writes Link to Files from {{10.shareLink}}, and module 10 shares {{4.id}} -- the content folder. So the row's link opens the TC-<n>_<name> folder, which is what Albert wants (stated explicitly 2026-09-14: 'I purposefully wanted the Root folder and not FINAL as the Link to Files'). The Drive app emits shareLink in the non-standard https://drive.google.com/folder/d/<id> form rather than the canonical /drive/folders/<id>; both open.",
+      "_correction_2026_09_14": "An earlier version of this block claimed module 10 shared 03_FINAL as reader, and that the link therefore pointed at a subfolder. Both were wrong. They were written from the parent-aware version I had built, not from the frozen scenario, and the test that 'verified' the share posture asserted this file against itself, so it passed. Every claim here is now read off platform-settings/blueprints/content-folder-scenario-4918320.json, and the test reads the snapshot too. Check documentation against the artifact, never against the documentation.",
+      "datastore_holds_titles": "Module 9 stores the row's Content Name in `contentID`, a field whose only consumer (module 4's folderId) needs a Drive folder id. Harmless while nesting is off, because nothing reads it back successfully.",
+      "writes_post_date": "Module 11 also writes Post Date (key Ns%3Az). Note sources.titan_content_ideas._never_write lists Post Date as off-limits to the POSTING pipeline; that rule binds the agents and commands, not this scenario."
+    },
+    "drive_connection_id": 4863617,
+    "notion_connection_id": 3862963,
+    "notion_data_source": "1ef596a4-505f-815d-a9c1-000b59bcedac",
+    "notion_link_field_key": "dO%3Fb",
+    "trigger_statuses": [
+      "Planning",
+      "Filming"
+    ],
+    "datastore": {
+      "datastore_id": 88000,
+      "datastructure_id": 283786,
+      "key": "TC-<n>",
+      "fields": {
+        "contentID": "the row's Content Name (see known_behaviours)",
+        "label": "unused by the live scenario"
+      },
+      "_root_sentinel": "A '__ROOT__' record was seeded for the parent-aware design and has since been removed. The live module 3 uses the sentinel string '__no_parent__' instead, which has no record, so the lookup misses and module 4 falls back to its hardcoded root folder id.",
+      "content_root_folder_id": "1l6jmDaRNIyUvnypcVFylS5caBFnNCgUl",
+      "_content_root_comment": "Hardcoded in module 4's ifempty fallback. Must match drive.root_folder_id below."
+    },
+    "share": {
+      "folder": "the content folder ({{4.id}})",
+      "role": "writer",
+      "type": "anyone",
+      "allowFileDiscovery": false,
+      "_comment": "Read off the blueprint snapshot, module 10. NOT 03_FINAL, and NOT reader -- an earlier version of this block claimed both.",
+      "_OPEN_RISK_raw_footage_is_publicly_writable": "Drive permissions inherit, so sharing the content folder anyone/writer makes 01_RAW -- raw unedited footage shot inside clients' homes -- readable, editable and DELETABLE by anyone holding the link. Those links are published on ~45 Notion rows. drive._share_scope_comment says to share 03_FINAL or the asset and never a folder above 01_RAW; the live scenario does not honour that, and the scenario is frozen by decision. The narrowest fix that keeps Albert's stated requirement (Link to Files must open the content folder, not 03_FINAL) is to share 03_FINAL as `reader` in module 10 and write Link to Files from {{4.webViewLink}} instead of {{10.shareLink}} -- the link then still opens the content folder, and only finished assets are exposed. NOT APPLIED: the scenario is hand-edited in the UI and frozen; this needs Albert's yes. Raised 2026-09-14, unanswered.",
+      "_why_it_matters_even_though_assets_are_public_anyway": "Finished assets are destined for public feeds, so link-sharing 03_FINAL costs nothing. Raw footage was never consented to for publication, and `writer` adds deletion on top of exposure -- an anonymous link-holder can destroy source material that exists nowhere else."
+    },
+    "_superseded": {
+      "scenario_id": 4803695,
+      "hook_id": 2758244,
+      "name": "Create Google Drive Content Folder",
+      "_comment": "The unrolled 28-createAFolder predecessor, ~366KB. Inactive. Retire in the Make UI -- never via scenarios_update, which fails silently on a large blueprint (platform-settings/lightspeed.json:132)."
+    },
+    "_status": "LIVE and firing. Creates a flat, unnested folder tree per row and links the row to its 03_FINAL subfolder. Frozen by decision, 2026-09-14."
+  }
+}
