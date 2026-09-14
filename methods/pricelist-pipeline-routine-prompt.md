@@ -72,6 +72,15 @@ titan-agents-repo checkout and follow it exactly, start to finish — it is the
 authoritative procedure. Do not improvise, and do not work from memory of how price
 lists were handled before.
 
+Its step 2.0 is a hard gate: pdfplumber is the ONLY sanctioned way to read a price
+list, and if it cannot be imported this run flags and stops — Extraction Status
+Extracted [Error], one pdf_tooling_unavailable row in the troubled CSV, a
+PushNotification, no upload CSVs, and NO continuation to step 2 below. Do not
+substitute a rendered/visual read of the PDF, a Graph text conversion, pdftotext, or
+figures retyped from a previous run's Notes. That prohibition is the whole point of
+the gate; a plausible-looking substitute is exactly how the documented method and the
+executed method silently diverged for ten days in September 2026.
+
 It downloads the PDF, assigns Company and Tags, extracts against the live Airtable
 catalogue, produces the Airtable and Lightspeed upload CSVs, commits them to
 ingest/YYYY-MM-DD/ in the same step (load-bearing now — step 2 reads them from the
@@ -232,6 +241,19 @@ only when the flow itself or the stored text needs to change.
 
 ## Changelog
 
+- **2026-09-12 (Albert, in chat).** pdfplumber is now a hard precondition, not a
+  recommendation: `/process-price-list` step 2.0 verifies it before any download and
+  flags-and-stops if it is missing, with an explicit list of prohibited substitutes.
+  Added `requirements.txt` (the repo had none for three months) and the
+  `pdf_tooling_unavailable` troubled reason. Found while attempting the first real
+  HOMESPRO run: pdfplumber is absent from this container and `pypi.org` is off the
+  environment's egress allowlist (`x-deny-reason: host_not_allowed`). Git history
+  shows this was first hit on 2026-09-02 — the import in `pricelist_fetch.py` was
+  made lazy that day "so fetching works without it installed" — after which 15
+  `airtable_upload` CSVs were committed by cloud sessions with no way to run the
+  mandated tool. The documented and executed methods had diverged silently for ten
+  days because nothing verified the tool was present. Same failure class as
+  2026-09-03: confident completion against an instruction set not actually in force.
 - **2026-09-12 (Albert, in chat).** Removed the approval gate for everything but
   three carve-outs (blocked, `Ambiguous Pricing`, null `cost_basis`), reversing the
   previous day's `New Supplier` exemption. Added the troubled-SKUs CSV

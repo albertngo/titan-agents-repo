@@ -1,0 +1,44 @@
+# Direct Python dependencies — the INTENT file. Edit this one by hand.
+#
+# What actually gets installed is `requirements.lock.txt`, which is GENERATED from
+# a real pip resolution (exact versions + wheel hashes for the whole transitive
+# tree). Never hand-write the lock: the dep tree comes from pip, not from memory.
+# Procedure: vendor/wheels/README.md.
+#
+# Added 2026-09-12. The repo had NO dependency file for its first three months,
+# which is how `pdfplumber` came to be mandated in four documents while being
+# installed by none. See .claude/commands/process-price-list.md step 2.0.
+
+# PDF extraction — the ONLY sanctioned way to read a supplier price list.
+# Never substitute a rendered/visual read, Microsoft Graph's text conversion,
+# pdftotext, an LLM transcription of a screenshot, or figures retyped from a
+# previous run's Notes. If it is unavailable, extraction flags and STOPS.
+# (Albert, 2026-09-12.)
+pdfplumber
+
+# The cross-check engine — PDFium, Google's C library, via pypdfium2.
+# Declared DIRECTLY even though pdfplumber already pulls it in transitively:
+# scripts/pricelist_extract.py imports it by name, so if pdfplumber ever drops
+# the dependency the cross-check must fail loudly at install time rather than
+# silently at extraction time.
+#
+# Chosen 2026-09-12 after testing candidates on a real HOMESPRO sheet:
+#   pdfplumber extract_tables()  10/10 product->price pairs   MIT
+#   pypdfium2  raw text           9/10  (already vendored)    BSD-3/Apache-2.0
+#   PyMuPDF    find_tables()     10/10  but AGPL-3.0-or-paid  — not adopted
+#   camelot    stream/lattice    7/10 and 0/10, +127MB deps   — rejected
+# pypdfium2 wins on cost (already present), licence (permissive), and engine
+# independence (shares no code with pdfminer.six, so it fails differently).
+pypdfium2
+
+
+# ── STRICT BLOCK: pypdf ───────────────────────────────────────────────────────
+# `pypdf` (and its ancestor `PyPDF2`) must NEVER be added here, installed, or
+# imported anywhere in this repo. Albert, 2026-09-12: judged unreliable for this
+# use case, and a strict block rather than a preference. Enforced by
+# tests/test_pdf_tooling.py, which fails if either name appears in repo source.
+#
+# NOT the same thing, and NOT blocked: `pypdfium2`. Despite the similar name it
+# is a PDFium binding, unrelated to pypdf, and pdfplumber depends on it — so it
+# will legitimately appear in the lock file below. Do not "fix" that.
+# ──────────────────────────────────────────────────────────────────────────────

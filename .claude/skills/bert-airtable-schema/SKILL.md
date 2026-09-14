@@ -3720,6 +3720,98 @@ which the backfill resolves them one-to-one. Until then they stay `NOT_FOUND` wi
 
 ---
 
+### HOMESPRO
+
+Zero Airtable records as of 2026-09-12 — **new to the catalogue, but already live in
+Lightspeed** (73 products / 12 collections observed on the 2026-09-11 extraction run).
+That is the third state in RULE 0a: legitimately `MatchStatus: new` on the Airtable side
+while carrying a real `Lightspeed ID`.
+
+#### Cost column
+
+**Confirmed by Albert, 2026-09-12.** The sheet carries a **single `$/sf` column and no
+MSRP column**. Take that column as `Cost/unit` directly.
+
+No multiplier, no tier selection, nothing to disambiguate — this is the plain
+printed-as-cost case, recorded here so the question is not re-asked and so
+`/catalog-sync` can pass `--cost-basis` rather than holding the plan.
+
+Albert confirmed the **cost column** on 2026-09-12. He did not confirm a markup —
+see the next subsection, which is still open.
+
+#### Markup override — OPEN QUESTION, do not assume the global rule
+
+**Observed 2026-09-12 from the live Lightspeed catalogue: all 73 live HOMESPRO
+products carry `retail = cost + $ 1.40`, with zero exceptions.** Not one sits at the
+global `+ $ 1.00`.
+
+73/73 is not noise; it reads as a deliberate supplier-specific markup that was never
+recorded here. **Until Albert rules on it, do not apply either value to this
+supplier** — flag the rows and let the plan hold. Applying the global `+ $ 1.00`
+would cut retail by roughly `$ 1.00`/sf against live on every matched product, on
+top of whatever the cost change already does.
+
+An earlier draft of this subsection asserted the global `+ $ 1.00` for HOMESPRO. That
+was wrong — it extended Albert's cost-column answer into a markup answer he had not
+given. Recorded here rather than quietly deleted, because the same overreach is easy
+to repeat on the next new supplier.
+
+#### Not yet recorded
+
+SKU supplier code, brand, collection naming and material-type defaults are **not**
+established here. Derive them from the live Lightspeed records rather than inventing
+them — the products exist there, so the real convention is readable from data. Verify
+any SKU format against the live base before generating a SKU (the Grandeur 2026-09-03
+trap), and flag `sku_format_mismatch` rather than reconciling a disagreement silently.
+
+### IMPRESSIVE (MG Impressive / Impressive Floors)
+
+Zero Airtable records as of 2026-09-12 — **new to the catalogue, already live in
+Lightspeed** (169 products under `supplier_name` IMPRESSIVE observed 2026-09-11). Same
+third state as HOMESPRO above. Observed to have **zero LS variant families** — every
+live handle is unique to one SKU — so width × grade combinations are built as
+independent singletons, not a shared-handle group.
+
+#### Cost column
+
+**Confirmed by Albert, 2026-09-12.** The sheet is a **three-tier volume schedule** —
+`Open Skid` / `Skid` / `Above 3 Skids`. Take the **`Above 3 Skids` bulk tier as
+`Cost/unit`**, throughout, on every line. Apply the global
+`Retail price/unit = Cost/unit + $ 1.00`.
+
+Keep the full three-tier schedule per row in `Volume pricing notes` — the other two
+tiers are real prices Titan pays at lower volumes and are worth retaining, they are
+just not the cost basis.
+
+This tier choice is a **business decision, not a parsing detail**: picking `Open Skid`
+instead would raise `Cost/unit` on every row and change every retail price. It is
+recorded here so no run re-derives it.
+
+**The 2026-09-11 run's reading matched this** — it took `Above 3 Skids` and verified it
+against 24 live vinyl/laminate SKUs in Lightspeed. That agreement is corroboration, not
+the source of the rule; Albert's confirmation is.
+
+#### Introductory / promotional sections are not `Promo`
+
+Page 8's "New Prefinished Collection — Introductory Special Promotional Price" carries
+**no separate regular price and no expiry**, so it fails the `Promo` test in
+`/process-price-list` step 4 (a promo needs a regular price beside it, or a validity
+window). Treat it as an ordinary two-tier cost sheet — its `Above 2 Skids` tier is the
+cost — and leave `Promo cost` blank.
+
+#### Out of scope
+
+Page 10 (MDF casing / baseboard) is interior trim, excluded — consistent with the
+FAW / Olympia / Dragona precedent above.
+
+#### Not yet recorded
+
+SKU supplier code, brand and collection naming are **not** established here. Derive
+from live Lightspeed records, same as HOMESPRO, and flag `sku_format_mismatch` on any
+disagreement rather than reconciling it silently.
+
+---
+
 ### New supplier onboarding — checklist
 
 When a new supplier is added, gather this information before processing their first price list, and add a subsection above following the FAW template:
