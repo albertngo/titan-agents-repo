@@ -123,6 +123,17 @@ Then check the asset's Drive permissions. **No anyone-with-link grant means the 
 will fail at schedule time**, because Metricool fetches anonymously. Hold it with
 that reason rather than discovering it as a Metricool error later.
 
+**No cover image found (2026-09-14).** When `select-media` returns no cover — not an
+Exit 2 refusal, just an empty `cover` — do not simply omit the cover key for a surface
+whose registry `cover` is `image_url`. Fetch the idea (via the Log row's `Content
+Series` relation) and read `Cover Frame (ms)`
+(`platform-settings/content-sources.json` → `sources.titan_content_ideas.read_properties`).
+Use that value if set; default to `0` if blank. This is the plan's `frame_offset`
+cover — see `contracts/social-plan-schema.md` and `social-destinations.json` →
+`cover_rules.frame_fallback`. Still applies only where a cover applies at all: a
+surface whose `cover` mode is `none` (a Story, Google Business Profile) gets nothing,
+same as before.
+
 ### 3 — Build the plan
 
 Write `plans/<date>/social-plan-<logID>.json` per `contracts/social-plan-schema.md`.

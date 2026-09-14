@@ -72,8 +72,8 @@ the pipeline declining to guess. Held rows are reported per row, with the reason
 | `tiktok_story_impossible` | TikTok's Content Posting API has no story format. Nothing to retry, ever. |
 | `missing_caption` / `missing_media` | An empty caption posts an empty caption. There is no safe default. |
 | `caption_too_long` | Truncation changes the meaning of the last sentence, which is usually the call to action. |
-| `youtube_long_no_cover` | Policy, not an API rule. A default auto-thumbnail is a lasting click-through cost on long-form, and the cover is a *second* API call that can fail on its own. |
-| `cover_not_applicable` | A cover was supplied for a surface whose `cover` mode is `none` or `frame_offset`. Sending it rejects the **entire post** with `VIDEO_THUMBNAIL_NOT_APPLICABLE` — so this is reported, never silently dropped. |
+| `youtube_long_no_cover` | Superseded in practice by the frame-offset fallback (2026-09-14) — a YouTube - Long row with no Drive cover image now resolves `frame_offset` (the idea's `Cover Frame (ms)`, default `0`) instead of holding. Still fires only if the video itself fails YouTube's own cover conditions (channel not verified, or Shorts/cover thumbnails not enabled on the account) — at that point neither `image_url` nor `frame_offset` is applicable, and the row holds rather than let YouTube auto-generate a thumbnail. |
+| `cover_not_applicable` | A cover of either kind (`image_url` or `frame_offset`) was resolved for a surface whose registry `cover` mode is `none` (any Story, Google Business Profile), or one whose Metricool-side applicability conditions aren't met (no video in `media`; an unverified YouTube channel; a non-Business TikTok account, where it is silently dropped instead of rejected). Sending it anyway rejects the **entire post** with `VIDEO_THUMBNAIL_NOT_APPLICABLE` — so this is reported, never silently dropped. |
 | `gmb_video_with_caption` | `gmbData.type: "publication"` is text-only and cannot carry video; `"photo"` carries a video and no text. The row is not expressible as one GMB post, and choosing a half to discard is a person's call. |
 | `surface_disabled` | The surface is off (LinkedIn) or its network was never connected. Writing anyway produces a confusing Metricool error rather than an honest hold. |
 | `missing_required_field` | A `row_fields` entry marked `required` is blank for this surface — `Video Title` on YouTube, `GBP Post Type` on Google Business Profile. The post would be rejected or malformed. Named by its Notion column so the fix is one edit. |
@@ -125,6 +125,18 @@ typo fix should not create a second post.
 key is omitted entirely** — not set to `null`, not set to an empty string. The agent
 must be able to tell "no cover" from "a cover I failed to resolve", because sending
 the latter rejects the whole post.
+
+**Frame-offset fallback (Albert, 2026-09-14).** For any surface whose registry
+`cover` is `image_url`, a resolved cover image from Drive's `03_FINAL` still wins —
+but where `content_media_select.py` returns no cover, the plan now falls back to
+`{ "mode": "frame_offset", "value": <ms> }` instead of omitting cover. `value` is the
+idea's `Cover Frame (ms)` property (fetched via the Log row's `Content Series`
+relation — see `platform-settings/social-destinations.json` → `cover_rules.frame_fallback`),
+defaulting to `0` when unset. `image_url` and `frame_offset` are alternatives, never
+sent together — Metricool's contract for `videoCoverMilliseconds` calls it explicitly
+"Alternative to videoThumbnailUrl". This changes nothing about surfaces whose `cover`
+mode is `none` (Stories, Google Business Profile): they still get no cover of either
+kind, and `cover_not_applicable` below still holds a row that supplies one anyway.
 
 ## Reschedule action
 
