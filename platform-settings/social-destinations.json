@@ -1,12 +1,12 @@
 {
   "_comment": "Metricool write registry for the social posting pipeline. Holds the brand id, the Notion 'Next: Post To' -> Metricool provider map, and the per-surface capability matrix that says what each network's API can and cannot actually do. Every id and vocabulary string lives here so a new surface is a one-line data edit, never a code change. Source: mcp__Metricool__getBrandSettings plus the createScheduledPost tool contract, both read live 2026-09-12.",
-  "_maintenance": "Two independent staleness risks. (1) Metricool's createScheduledPost contract is the authority for networkData shapes and the cover rules below \u2014 re-read the tool description when a write starts failing on an unknown field. (2) connected_networks reflects what was actually linked in Metricool at capture time; a network absent there cannot be posted to no matter what this file says. Re-run getBrandSettings after connecting anything new.",
+  "_maintenance": "Two independent staleness risks. (1) Metricool's createScheduledPost contract is the authority for networkData shapes and the cover rules below — re-read the tool description when a write starts failing on an unknown field. (2) connected_networks reflects what was actually linked in Metricool at capture time; a network absent there cannot be posted to no matter what this file says. Re-run getBrandSettings after connecting anything new.",
   "config_version": "1",
   "provider": "metricool",
   "blog_id": "3951085",
   "_blog_id_comment": "Metricool calls it blogId; it is the brand account id and is required on every write. Brand label 'titanflooring_inc', owner albertngo95@gmail.com.",
   "timezone": "America/Toronto",
-  "_timezone_comment": "IANA identifier, sent inside info.publicationDate as {dateTime, timezone}. Matches CLAUDE.md's America/Toronto convention \u2014 do not read the brand's joinDate timezone (Europe/Madrid), which is a Metricool account artifact, not Titan's.",
+  "_timezone_comment": "IANA identifier, sent inside info.publicationDate as {dateTime, timezone}. Matches CLAUDE.md's America/Toronto convention — do not read the brand's joinDate timezone (Europe/Madrid), which is a Metricool account artifact, not Titan's.",
   "connected_networks": {
     "_comment": "What getBrandSettings reported as actually linked on 2026-09-12. A surface whose network is not here CANNOT be written, regardless of its entry in surfaces below.",
     "facebook": "107246082119767",
@@ -93,7 +93,7 @@
       "requires_media": false,
       "text_max_chars": 1500,
       "cover": "none",
-      "_video_trap": "gmbData.type 'publication' is a text update and CANNOT carry a video. 'photo' is the ONLY way to send a video to Google Business Profile, and a photo post carries no text of its own. A row with a video and a caption cannot be one GMB post \u2014 it is either a silent caption drop or a silent video drop. Hold and report rather than choosing.",
+      "_video_trap": "gmbData.type 'publication' is a text update and CANNOT carry a video. 'photo' is the ONLY way to send a video to Google Business Profile, and a photo post carries no text of its own. A row with a video and a caption cannot be one GMB post — it is either a silent caption drop or a silent video drop. Hold and report rather than choosing.",
       "enabled": true,
       "location_id": "accounts/112083294050413715046/locations/7907972280686088665",
       "_location_comment": "One Metricool brand maps to one GMB location. A second location would need a second brand and therefore a second blog_id -- this file assumes one."
@@ -106,7 +106,7 @@
       "auto_publishable": true,
       "requires_media": true,
       "cover": "image_url",
-      "_cover_comment": "Silently ignored on personal TikTok accounts \u2014 only Business-connected accounts honour a custom cover. Unlike every other network this failure is silent, not an error.",
+      "_cover_comment": "Silently ignored on personal TikTok accounts — only Business-connected accounts honour a custom cover. Unlike every other network this failure is silent, not an error.",
       "enabled": true,
       "_enabled_comment": "Connected in Metricool. Still needs adding as an option on the Notion 'Next: Post To' property before a row can route here."
     }
@@ -129,9 +129,9 @@
     },
     "TikTok": {
       "supported": false,
-      "_comment": "TikTok's Content Posting API has no story format and Metricool exposes none. Not a tool gap \u2014 a platform one. Always Manual Required; never retry."
+      "_comment": "TikTok's Content Posting API has no story format and Metricool exposes none. Not a tool gap — a platform one. Always Manual Required; never retry."
     },
-    "_text_rule": "A Story has no caption of its own. If every provider on the post is a Story, do not send info.text at all \u2014 it publishes nowhere. If a Story rides alongside a non-Story network, the text belongs to that other network and the Story ignores it.",
+    "_text_rule": "A Story has no caption of its own. If every provider on the post is a Story, do not send info.text at all — it publishes nowhere. If a Story rides alongside a non-Story network, the text belongs to that other network and the Story ignores it.",
     "_decorated_rule": "Link stickers, polls, mentions, music and location tags cannot be set through Meta's API. A Decorated Story must be sent with autoPublish:false so Metricool pushes a notification for a human to complete by hand."
   },
   "cover_rules": {
@@ -158,8 +158,8 @@
     "_comment": "Staged rollout, Albert 2026-09-12. Every write goes out as a Metricool draft until this flips. Flipping it is a dated decision note in the vault, not a quiet edit.",
     "mode": "draft",
     "draft_flag": "info.draft",
-    "_mechanism": "info.draft:true is the draft switch. NOT createScheduledPostForReview \u2014 that is a different feature requiring a Metricool plan with team management and an explicit reviewer email list, which Pro does not include.",
-    "_auto_publish_flag": "info.autoPublish \u2014 true publishes via the API at the scheduled time; false sends a push notification to the Metricool mobile app for a human to publish by hand. This is the Decorated Story fallback, and it is independent of draft."
+    "_mechanism": "info.draft:true is the draft switch. NOT createScheduledPostForReview — that is a different feature requiring a Metricool plan with team management and an explicit reviewer email list, which Pro does not include.",
+    "_auto_publish_flag": "info.autoPublish — true publishes via the API at the scheduled time; false sends a push notification to the Metricool mobile app for a human to publish by hand. This is the Decorated Story fallback, and it is independent of draft."
   },
   "media_source": {
     "_comment": "Where Metricool fetches media from. Google Drive as of 2026-09-12, replacing SharePoint/OneDrive.",
@@ -169,5 +169,14 @@
     "_metricool_drive_link_required": "Google Drive must be linked inside the Metricool account for Drive URLs to be ingested. Linked 2026-09-12.",
     "_sharing_required": "Assets must be shared anyone-with-link/viewer. A link that opens in Albert's signed-in browser proves nothing -- verify signed out.",
     "_ingest_timing": "Metricool uploads external media to itself AT SCHEDULE TIME, not at publish time. This is why a short-lived URL was survivable and why a scheduled post does not depend on the source staying reachable until publication."
+  },
+  "_drive_ingest_verified": {
+    "verified": "2026-09-14",
+    "result": "CONFIRMED by a live draft post (Metricool post id 375382755, Facebook, draft).",
+    "what_was_sent": "https://drive.google.com/file/d/<id>/view?usp=drivesdk -- the plain Drive sharing URL, exactly as the Drive API returns it in viewUrl. No /uc?export=download form needed, no composing.",
+    "what_came_back": "media rewritten to https://static.metricool.com/planner/<yyyymm>/<blogId>-file-<n>.mp4",
+    "_the_important_part": "Metricool does not hotlink the Drive file -- it DOWNLOADS it at schedule time and re-hosts it on its own CDN. Two consequences. (1) The whole reason for moving storage to Drive holds: there is no separate upload step. (2) The Drive file only has to be publicly readable AT THE MOMENT OF SCHEDULING, not forever -- so sharing can be narrowed or made temporary without breaking posts that are already queued.",
+    "prerequisite": "Google Drive must be linked inside the Metricool account (done, Phase A). Metricool's own tool contract states this.",
+    "_test_method": "A 2.4MB mp4 was copied into an existing (already public) 03_FINAL folder, scheduled as a draft with autoPublish false and a date in late December, then the Drive copy was trashed. The draft itself cannot be removed from here -- the Metricool MCP exposes create/update but no delete -- so it must be deleted in the planner UI."
   }
 }
