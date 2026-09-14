@@ -3849,6 +3849,59 @@ disagreement rather than reconciling it silently.
 
 ---
 
+### JL Tile
+
+Zero Airtable records as of 2026-09-14 — new to the catalogue, but already live in
+Lightspeed (161 products under `supplier_name` JLTILE observed on the 2026-09-14
+extraction run). Same RULE 0a third state as HOMESPRO/IMPRESSIVE. Sheet arrives as
+`PL-372`, "Important Notice: Price Adjustment Notification & Updated Price List".
+
+#### Cost column — CONFIRMED, 2026-09-14 (Albert): `Your cut order price`
+
+The sheet prints two columns per row, **`$/sf (Regular dealer Price)`** and
+**`Your cut order price`** (always the lower of the two, no terms page states which
+is cost). The 2026-09-14 extraction run defaulted to Regular dealer Price and flagged
+it, per the "assume, do not stop" rule — **Albert corrected this**: `Your cut order
+price` is Titan's actual cost. `Cost/unit = Your cut order price`, `Retail =
+Cost/unit + $ 1.00`. `Regular dealer Price` is not an MSRP (nothing on the sheet
+frames it as a suggested retail) — keep it in `Volume pricing notes` as the higher
+reference tier, the mirror image of the Vidar cut-order convention rather than a
+match to it.
+
+This reverses the run's own default, so the already-extracted Airtable/LS upload
+CSVs for PL-372 needed rebuilding with the corrected cost column before import — the
+run's first guess is not authoritative once Albert answers; this subsection is.
+
+#### SKU / handle / name prefix — CONFIRMED, 2026-09-14 (Albert): `JLTI`
+
+| Token | Value | Used for |
+|---|---|---|
+| SKU prefix | `JLTI` | Titan's internal Airtable SKU — `TIL-JLTI-DN36331`, etc. |
+| Handle prefix (new products) | `JLTI` | `LS Handle / Parent ID` for genuinely new-to-LS rows, e.g. `JLTITILDN36331` |
+| Name prefix | `JLTITIL` | The constructed Lightspeed display name — `[SUPPLIER]TIL` per the tile-family convention in `ls-upload-instructions` |
+
+**Matched rows (161 live products) keep their existing stored handle verbatim** —
+these are long auto-generated-looking slugs from a prior CSV import, not the `JLTI`
+convention, and RULE 0a says a stored handle is never regenerated or normalized to
+match another convention. `JLTI` governs new records only.
+
+**Supplier / Brand — still proposed, not yet confirmed**: `JL Tile` (the doc header
+prints "J&L TILE", Notion `Company` is "JL TILE" ALL CAPS, no existing Airtable
+Supplier option). Confirm before the Airtable import — an unconfirmed Supplier value
+risks minting a select option nobody chose deliberately, the same trap the Airtable
+actions agent already refuses to walk into unprompted.
+
+#### Not yet recorded
+
+Collection/material defaults were derived at extraction time from section headers
+(Essential/Elegant Collection → Porcelain; Isabella 3D Collection → Ceramic, Wall) —
+apply the same defaults on the next JL Tile list unless the sheet's section headers
+say otherwise. Not yet recorded: a per-collection markup override (using the global
+`Retail = Cost + $ 1.00` for now), any SALE/promo convention (the 2026-09-14 sheet
+carried none), and confirmation of the Supplier/Brand string above.
+
+---
+
 ### New supplier onboarding — checklist
 
 When a new supplier is added, gather this information before processing their first price list, and add a subsection above following the FAW template:
