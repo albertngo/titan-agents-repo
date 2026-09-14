@@ -304,24 +304,40 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
         live = existing.get(sku) if airtable_snapshot else None
         is_new_in_airtable = (match_status == "new") or (live is None and match_status != "matched")
         fields, before, unreadable = {}, {}, []
-        for field in DIFF_FIELDS:
-            new = clean(row.get(field))
-            if new is None:
-                continue
-            if live is None:
-                old, readable = None, False
-            else:
-                raw, readable = live_value(live, field)
-                old = clean(raw)
-            if not readable:
-                # No prior value to compare against, so write it and say so rather
-                # than implying it was empty.
-                fields[field] = new
-                unreadable.append(field)
-                continue
-            if comparable(field, new) != comparable(field, old):
-                fields[field] = new
-                before[field] = old
+        if is_new_in_airtable:
+            # There is no live record to diff against, so DIFF_FIELDS (which
+            # exists to write only what actually changed on an UPDATE) does not
+            # apply here — it would leave a brand-new record with ~5 of 57
+            # columns populated and everything else blank. A create writes the
+            # whole row: every non-empty column from the upload CSV except the
+            # merge key and the reviewer helper columns, neither of which is a
+            # real field. Found 2026-09-13: this path had never been exercised
+            # against a genuine new-to-Airtable supplier before HOMESPRO.
+            for field, new_raw in row.items():
+                if field in (SKU, MATCH_STATUS, MATCHED_REC, LS_MATCH_STATUS):
+                    continue
+                new = clean(new_raw)
+                if new is not None:
+                    fields[field] = new
+        else:
+            for field in DIFF_FIELDS:
+                new = clean(row.get(field))
+                if new is None:
+                    continue
+                if live is None:
+                    old, readable = None, False
+                else:
+                    raw, readable = live_value(live, field)
+                    old = clean(raw)
+                if not readable:
+                    # No prior value to compare against, so write it and say so
+                    # rather than implying it was empty.
+                    fields[field] = new
+                    unreadable.append(field)
+                    continue
+                if comparable(field, new) != comparable(field, old):
+                    fields[field] = new
+                    before[field] = old
 
         if recovered:
             fields[LS_ID] = recovered

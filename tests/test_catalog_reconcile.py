@@ -171,6 +171,85 @@ class TestUuidRecovery(unittest.TestCase):
         self.assertEqual(create["fields"]["price_excluding_tax"], 2.0)
 
 
+class TestNewToAirtableWritesTheFullRow(unittest.TestCase):
+    """Found 2026-09-13, HOMESPRO: the first genuine new-to-Airtable supplier
+    this reconciler was ever run against for real. DIFF_FIELDS exists to write
+    only what changed on an UPDATE and is correct there; applied to a CREATE
+    (no live record to diff against) it silently produced an Airtable upsert
+    with ~5 of 57 columns populated and everything else blank — Supplier,
+    Brand, Material type, Install method, Box size, Waterproof, and so on,
+    simply never written. A create has to write the whole row instead."""
+
+    def test_create_writes_every_non_blank_column_not_just_the_diff_set(self):
+        # Box size (sf) deliberately omitted here — exposing it correctly is
+        # TestSfbAlwaysExposed's concern, not this test's.
+        rows = [row(SKU="NEW-1", MatchStatus="new", **{
+            "LS Handle / Parent ID": "HNEW",
+            "Brand": "Acme", "Material type": "SPC core",
+            "Install method": "Click", "Waterproof": "TRUE",
+            "Salesperson notes": "Sells well.",
+        })]
+        actions, blocked, _ = run(rows, [], ls_upload=ls_upload_row(sku="NEW-1"))
+        self.assertEqual(blocked, [])
+        upsert = next(a for a in actions if a["op"] == "upsert")
+        for field, expected in {
+            "Brand": "Acme", "Material type": "SPC core",
+            "Install method": "Click", "Waterproof": "TRUE",
+            "Salesperson notes": "Sells well.",
+        }.items():
+            self.assertEqual(upsert["fields"].get(field), expected,
+                             f"{field} missing from a create's payload — this "
+                             f"is the DIFF_FIELDS-on-create gap")
+
+    def test_sku_is_never_in_the_create_payload(self):
+        """RULE 0: the SKU is the merge key and immutable — never in the write."""
+        rows = [row(SKU="NEW-1", MatchStatus="new",
+                    **{"LS Handle / Parent ID": "HNEW"})]
+        actions, _, _ = run(rows, [], ls_upload=ls_upload_row(sku="NEW-1"))
+        upsert = next(a for a in actions if a["op"] == "upsert")
+        self.assertNotIn("SKU", upsert["fields"])
+
+    def test_blank_columns_are_excluded_not_written_as_empty_strings(self):
+        rows = [row(SKU="NEW-1", MatchStatus="new", **{
+            "LS Handle / Parent ID": "HNEW", "Brand": "",
+            "Salesperson notes": "   ",
+        })]
+        actions, _, _ = run(rows, [], ls_upload=ls_upload_row(sku="NEW-1"))
+        upsert = next(a for a in actions if a["op"] == "upsert")
+        self.assertNotIn("Brand", upsert["fields"])
+        self.assertNotIn("Salesperson notes", upsert["fields"])
+
+    def test_helper_columns_never_reach_the_payload(self):
+        """MatchStatus/MatchedRecId/LS Match status are reviewer scratch columns,
+        never real Airtable fields — RULE 0a and process-price-list step 3."""
+        rows = [row(SKU="NEW-1", MatchStatus="new", **{
+            "LS Handle / Parent ID": "HNEW", "MatchedRecId": "recABC123",
+            "LS Match status": "MATCHED",
+        })]
+        actions, _, _ = run(rows, [], ls_upload=ls_upload_row(sku="NEW-1"))
+        upsert = next(a for a in actions if a["op"] == "upsert")
+        self.assertNotIn("MatchedRecId", upsert["fields"])
+        self.assertNotIn("MatchStatus", upsert["fields"])
+        self.assertNotIn("LS Match status", upsert["fields"])
+
+    def test_update_path_is_unaffected_still_writes_only_the_diff(self):
+        """Regression guard: an existing, MATCHED record must still only get
+        the narrow DIFF_FIELDS treatment — this fix must not widen updates."""
+        rows = [row(SKU="A-1", MatchStatus="matched", **{
+            "Lightspeed ID": "u-1", "Cost/unit": "5.00",
+            "Salesperson notes": "New note that changed too.",
+        })]
+        ls = [product(id="u-1", sku="A-1", supply_price=1.0)]
+        existing = {"A-1": {"SKU": "A-1", "ProductName": "Thing", "Cost": 1.0,
+                            "Retail price/unit": "2.00", "Category": "Laminate"}}
+        actions, _, _ = run(rows, ls, existing)
+        upsert = next(a for a in actions if a["op"] == "upsert")
+        self.assertIn("Cost/unit", upsert["fields"])
+        self.assertNotIn("Salesperson notes", upsert["fields"],
+                         "an update must still write only DIFF_FIELDS, not the "
+                         "whole row — that widening is create-only")
+
+
 class TestOrderingAndIds(unittest.TestCase):
 
     def test_forced_dependency_order(self):
