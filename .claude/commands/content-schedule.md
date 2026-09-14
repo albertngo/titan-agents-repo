@@ -135,6 +135,9 @@ diagnostic.
 
 Then push a notification naming the counts: scheduled, held, failed.
 
+This command never sets `Posted` — it cannot know. A post leaves `getScheduledPosts`
+the moment it publishes, so detecting that is `/content-sweep`'s job, run daily.
+
 ## Step R — reschedule an already-scheduled post
 
 `/content-schedule <logID> --reschedule` moves a post that is already in Metricool to

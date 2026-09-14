@@ -239,7 +239,7 @@ executes. Full shape in `methods/departments.md`; ownership is data in
 | Sales | `ghl` | `planner-agent` | active — the reference build |
 | Operations | `notion` (5 sub-sources) | — | spec: source live, no rule table yet |
 | Catalogue | Airtable · Lightspeed · price lists | `/catalog-sync` | active — complete before this layer existed |
-| Marketing | `meta-ads` · `content` | `/content-schedule` | active — content posting live (draft mode); ad reporting still needs a framework doc |
+| Marketing | `meta-ads` · `content` | `/content-schedule` | active — content posting built (draft mode), never run end to end; ad reporting still needs a framework doc |
 | Finance | `bookkeeper` | — | **blocked — the source has never worked** |
 | General | `outlook` | — (`/route` answers inline) | active — the fallback lane |
 
@@ -264,6 +264,18 @@ same reason project and STORE pipelines are never summed.
 
 `/daily-ingest` is unchanged and stays that way — the layer is additive, and a
 department failing must never touch `DAILY-BRIEF.md`.
+
+**The content pipeline needs a daily `/content-sweep`** (`.claude/commands/content-sweep.md`).
+`getScheduledPosts` returns only posts that have NOT published, so a post leaves the
+one endpoint this repo queries at the moment it succeeds — nothing else can ever set
+`Post Status = Posted`, and without the sweep every row sits at `Scheduled`
+permanently. It infers publication from a uuid's absence, which is ambiguous, so it
+demands absence **and** a passed due time **and** a wide enough query window **and**
+`write_mode.mode` not being `draft` before writing `Posted`. In draft mode it marks
+nothing posted at all — a draft does not publish, so a vanished one was deleted by a
+person. **Not wired into `/daily-ingest`**: that would add a platform write to the
+orchestrator, which is Albert's call, so it runs by hand for now. `Live URL` is not
+recoverable from this endpoint and stays blank.
 
 ## Analyses
 
