@@ -48,6 +48,18 @@
       "error": "All four required tools (mcp__Metricool-Social-Media-Management__getBrandSettings, __getScheduledPosts, __createScheduledPost, __updateScheduledPost) returned 'No such tool available' despite the corrected hyphenated name matching this agent's own tools: frontmatter exactly. Cannot confirm brand 3951085 live, cannot check for a prior partial write, cannot create the post. The tool-wiring gap is not resolved; it has moved from 'wrong name' to 'right name, still not exposed to this session'.",
       "raw_ref": null,
       "raw_ref_action_id": "17a4860e"
+    },
+    {
+      "logged_at": "2026-09-14T21:12:00-04:00",
+      "agent": "social-actions-agent",
+      "type": "social_schedule_post",
+      "target": "Metricool brand 3951085 (titanflooring_inc) — Instagram Reels, draft for 2026-09-14T16:00:00 America/Toronto",
+      "content_summary": "Third attempt on the same approved action (plan action id 17a4860e), this session confirming the Metricool tools resolve correctly under mcp__Metricool-Social-Media-Management__* (createScheduledPost, updateScheduledPost, getScheduledPosts, getBrandSettings all callable). Re-checked getBrandSettings (brand 3951085 reachable, instagram connected as titanflooring_inc) and getScheduledPosts across all of September 2026 myself before writing (returned zero results -- no prior partial write for this action, matching the invoking session's own prior read) rather than trusting that read secondhand. Scheduled Instagram Reel draft 'Staircase Transformation (Demo + Install — merged)' (Notion TC-86, real caption, plan action id 17a4860e) with info.draft:true per write_mode.mode=draft in platform-settings/social-destinations.json (not raised), instagramData.type REEL, story_variant Not a Story so caption sent as info.text, media from the Drive URL in the plan (Metricool re-hosted it to its own CDN at schedule time, confirming Drive ingest worked), no cover fields sent (plan warnings: no cover file in 03_FINAL, and Instagram Reels does not require one -- omitted per cover_rules rather than sent speculatively). Verified by a fresh getScheduledPosts read after the write showing exactly one post at 2026-09-14T16:00 America/Toronto, draft true, caption/media/uuid matching what was created. Separately noted: the TC-86 test draft (post id 375727387, uuid -4953304537857768451, previously verified at 2026-09-16T20:00 per the 10:43 log entry) no longer appears in a September-wide getScheduledPosts read -- not investigated per instruction, and not the post this action created or touched.",
+      "approved_by": "policy",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "Metricool post id 375881320, uuid 5269439770982826597, plannerUrl https://app.metricool.com/planner/calendar?blogId=3951085&openWithPostUuid=5269439770982826597",
+      "raw_ref_action_id": "17a4860e"
     }
   ]
 }

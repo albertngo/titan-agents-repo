@@ -340,11 +340,19 @@
       "facebook"
     ],
     "_hard_trap": "If a cover field is sent when the conditions are not met, the ENTIRE request is rejected with VIDEO_THUMBNAIL_NOT_APPLICABLE. Omit both fields rather than sending them speculatively. The one exception is a personal TikTok account, where the cover is silently dropped instead.",
-    "_not_applicable": "Never send a cover for any Story (Facebook or Instagram) or for Google Business Profile."
+    "_not_applicable": "Never send a cover for any Story (Facebook or Instagram) or for Google Business Profile.",
+    "frame_fallback": {
+      "_comment": "Albert, 2026-09-14. Before this, a row with no cover image in Drive's 03_FINAL simply sent no cover at all (image_field and frame_field both omitted). Now the frame_field is the fallback instead of nothing, on every surface whose cover mode below is image_url -- Facebook Page, Instagram Reels, YouTube - Shorts, YouTube - Long, TikTok, and LinkedIn if it's ever enabled. image_field and frame_field are ALTERNATIVES per the createScheduledPost contract ('Alternative to videoThumbnailUrl'), never sent together.",
+      "priority": "image_url always wins when content_media_select.py resolves a cover image from 03_FINAL. frame_field applies ONLY when that resolution comes back with no cover.",
+      "source": "Titan Content Ideas -> 'Cover Frame (ms)' (platform-settings/content-sources.json sources.titan_content_ideas.read_properties). Fetch the idea via the Calendar Log row's Content Series relation -- the Log row itself carries no such property.",
+      "default_ms": 0,
+      "_default_comment": "0 is the first frame, not a considered choice -- it is what 'the idea didn't set one' means. A row that cares about the exact frame sets 'Cover Frame (ms)' on the idea; this is the unattended fallback for one that doesn't, not a recommendation.",
+      "_applicability_unchanged": "The frame_field is still bound by the same applicability as image_field -- video present in media, and per network the same conditions as videoThumbnailUrl (YouTube: verified channel + Shorts thumbnails enabled; TikTok: Business-connected account, silently ignored otherwise). A surface whose cover mode is 'none' (any Story, Google Business Profile) gets no cover of either kind, ever -- this fallback does not change that."
+    }
   },
   "write_mode": {
-    "_comment": "Staged rollout, Albert 2026-09-12. Every write goes out as a Metricool draft until this flips. Flipping it is a dated decision note in the vault, not a quiet edit.",
-    "mode": "draft",
+    "_comment": "Staged rollout, Albert 2026-09-12, flipped live 2026-09-14 (Albert, explicit instruction in session -- see titan-vault decisions/2026-09-14-social-write-mode-live.md). Every write now goes out live; it no longer carries info.draft:true by default.",
+    "mode": "live",
     "draft_flag": "info.draft",
     "_mechanism": "info.draft:true is the draft switch. NOT createScheduledPostForReview — that is a different feature requiring a Metricool plan with team management and an explicit reviewer email list, which Pro does not include.",
     "_auto_publish_flag": "info.autoPublish — true publishes via the API at the scheduled time; false sends a push notification to the Metricool mobile app for a human to publish by hand. This is the Decorated Story fallback, and it is independent of draft."
