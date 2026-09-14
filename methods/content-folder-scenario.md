@@ -1,172 +1,86 @@
 # Content folder scenario (Make 4918320)
 
 Creates a content item's Google Drive scaffold when its Notion status becomes `Planning` or
-`Filming`, **nests it under its Notion parent**, and writes the folder's browse link back to
-`Link to Files`.
+`Filming`, and writes a link back to the row's `Link to Files`.
 
-Ids, connections, the scaffold arrays and every tunable are **data** in
-`platform-settings/content-sources.json` (`make_scenario` + `folder_convention`). Nothing here
-repeats them — a pointer has nothing in it to fall behind.
+**Frozen as-is on 2026-09-14** (Albert): whatever was live at that moment is what we keep. The
+blueprint is snapshotted verbatim at
+`platform-settings/blueprints/content-folder-scenario-4918320.json`; ids and behaviours are data
+in `platform-settings/content-sources.json` (`make_scenario`).
 
-## Why it was rebuilt
+**It is edited in the Make UI, not from here.** On 2026-09-13 API pushes and UI edits repeatedly
+overwrote each other. Re-snapshot the blueprint file after any UI change; don't push at it
+without asking.
 
-The predecessor (**4803695**, OneDrive) was undebuggable because it was *unrolled*: 28
-`createAFolder` modules, one per folder per format branch, in a ~366 KB blueprint. Every
-structural change meant editing 28 places, and the blueprint is large enough that
-`scenarios_update` on it **fails silently — writes nothing, returns success**
-(`platform-settings/lightspeed.json:132`). So it is retired in the UI, never edited through the
-API.
+## What it does
 
-Three things it got wrong, all fixed here:
+```
+1  Webhook (2819947)
+2  Datastore: record exists?     key TC-<n>      [filter: Status is Planning or Filming]
+3  Datastore: get a record       key = Parent item page id, else "__no_parent__"
+4  Drive: create TC-<n>_<name>   under ifempty(3.contentID; <content root>)
+5-8   Drive: 01_RAW / 02_EDIT / 03_FINAL / 04_PUBLISHED
+9  Datastore: add record         key TC-<n>, contentID = the row's Content Name
+10 Drive: share 03_FINAL         reader / anyone
+11 Notion: Link to Files = 10.shareLink, and Post Date
+12 Iterator -> 13  the nine 01_RAW children
+```
+
+**Folders are flat.** Every content folder is created at the Drive root; Notion's
+`Parent item` / `Sub-item` tree is not mirrored.
+
+## Behaviours to expect
+
+Consequences of the current design, recorded so they don't get rediscovered as surprises.
+Not a to-do list.
+
+**Re-firing a row builds another tree.** Module 3's filter reads `{{2.exists}}`, but the
+module's output field is `exist` — singular. The condition never resolves, so the already-built
+guard never blocks. Observed live: restoring ten rows to `Planning` on 2026-09-14 produced ten
+new folder trees and ten new `Link to Files` values.
+
+**The row's link opens `03_FINAL`, not the content folder.** Module 11 writes
+`{{10.shareLink}}`, and module 10 shares `03_FINAL`. The Drive app also returns `shareLink` in
+the non-standard `https://drive.google.com/folder/d/<id>` form rather than the canonical
+`/drive/folders/<id>`. If this is ever revisited, `{{4.webViewLink}}` is the content folder's
+own link and comes back in the correct form.
+
+**The datastore stores titles.** Module 9 puts the row's `Content Name` into `contentID`, whose
+only consumer — module 4's `folderId` — needs a Drive folder id. Harmless while nesting is off,
+because nothing reads it back successfully.
+
+**Nesting cannot work in this shape**, for the record: module 3 looks a parent up by **page id**
+(what Notion's relation returns) while module 9 files records under **`TC-<n>`**. The two key
+spaces never meet, so module 4 always falls through to the root. A parent-aware version — a
+router plus two self-calling HTTP modules that re-queued the webhook until the parent existed —
+was built and proven to fire (both calls returned `200 Accepted`); it is in git history around
+commit `0026a89` and is not in the live scenario.
+
+## What survived from the OneDrive predecessor's problems
+
+4803695 was 28 unrolled `createAFolder` modules in a ~366 KB blueprint that `scenarios_update`
+silently refuses to write (`platform-settings/lightspeed.json:132`). Two of its three defects
+are fixed here and should stay fixed:
 
 | | 4803695 | 4918320 |
 |---|---|---|
 | Sharing role | `writer` — anyone with the link could **edit or delete** | `reader` |
 | Shared folder | above `01_RAW` — raw footage inside clients' homes | `03_FINAL` only |
-| Notion link | composed `https://drive.google.com/folder/d/<id>`, not a Drive URL form, pointing at the `04_PUBLISHED` **subfolder** | the content folder's own `webViewLink` |
+| Notion link | `04_PUBLISHED`, composed URL | `03_FINAL`, `shareLink` |
 
-## Nesting, and why the shape is what it is
+The scaffold is also one array plus an iterator rather than structure spread across the canvas,
+so adding a folder is one string in `content-sources.json`.
 
-Notion rows form a tree through `Parent item` / `Sub-item`, and Drive mirrors it: a child's
-content folder sits directly inside its parent's. If the parent has no folder yet, the parent's
-is built first — however deep the chain. A real three-level chain exists today (TC-48 *1060
-Britannia* → TC-51 *Warehouse Layout* → *Shortform: Satisfying All Parties + Myself*), so a
-fixed two-level unroll was never sufficient.
+## Make gotchas learned the hard way
 
-**Make has no loop or recursion primitive**, and a blocking filter stops the *whole* downstream
-branch — so "look up the parent, build it if missing, then carry on" cannot be written inline.
-The scenario therefore drives its own recursion by **re-firing its own webhook**.
+Worth keeping whatever the scenario looks like later:
 
-The obvious alternative — call your own webhook and *wait* for the folder id — was rejected. It
-holds *depth + 2* executions open simultaneously, every one of them idle-waiting on a nested
-call, and it cannot be serialised without deadlocking, because an execution would be waiting on
-a nested one that can never start. Recursion wants concurrency; deduplication wants
-serialisation; those two cannot both be had while anything blocks.
-
-Firing and forgetting dissolves the conflict. Nothing waits, so `sequential: true` is safe — and
-that is precisely what makes the sibling race impossible. The price is that a deep chain
-resolves over several queued fires across a few seconds rather than in one nested call, which
-nobody is watching for.
-
-## Shape — 18 modules
-
-```
-1  Webhook (2819947)
-2  Datastore: does a record exist?   filter: self-call OR Status is Planning/Filming
-3  Notion: get a database item       filter: not already built AND attempt < max_attempts
-4  Datastore: get the parent record  key = Parent item[1].id, else "__ROOT__"   [Resume on error]
-5  Router
-   ├─ parent NOT known → POST self {data:{id: parent}}
-   │                   → POST self {data:{id: me}, attempt+1}     then stop
-   └─ parent known     → create TC-<n>_<name> under the parent's folder
-                       → AddRecord
-                       → 01_RAW / 02_EDIT / 03_FINAL / 04_PUBLISHED
-                       → share 03_FINAL (reader/anyone)
-                       → Notion: Link to Files
-                       → iterator → the nine 01_RAW children
-```
-
-Self-calls deliberately mimic the Notion payload (`{"data": {"id": …}}`), so `{{1.data.id}}` is
-the only identity expression anywhere in the scenario.
-
-Structural decisions worth keeping:
-
-**The recursion's base case is data, not a branch.** A parentless row looks up the seeded
-`__ROOT__` record, which answers with the Drive root folder id like any other parent lookup.
-Without it, "has a parent" and "has no parent" are two router branches — and since a filter
-stops everything downstream, each branch would need its own copy of the whole build chain. That
-is the 28-module unrolling, reintroduced. It also keeps the root folder id out of the blueprint.
-
-**Four explicit scaffold creates, one iterator for the nine RAW children.** A pure iterator
-collapses the bundle stream and makes `03_FINAL`'s id unreachable for the share step without
-`map()` gymnastics over an aggregator.
-
-**The scaffold is one array, not canvas structure.** Adding `05_CAPTIONS` is one string in
-`content-sources.json`.
-
-## The datastore key is a Notion page id. It cannot be TC-<n>.
-
-This has been hand-changed to `TC-<n>` three times, and each time it silently disabled nesting,
-so the reasoning is recorded here rather than left to be re-derived.
-
-Notion's `Parent item` relation returns **page ids**. A child therefore knows its parent's page
-id and nothing else -- learning the parent's `TC-<n>` would need a second Notion fetch per level.
-A datastore keyed on `TC-<n>` can never be found by the child that needs it.
-
-`contentID` has the same constraint from the other direction: it is passed straight into *Create
-a Folder* as `folderId`, so it must be a Drive folder id. A row title there is not a folder.
-
-**The failure is silent and oddly partial**, which is why it survives a casual test:
-
-| | With TC-<n> keys |
-|---|---|
-| Row with no parent | still builds, at the root -- resolves the `__ROOT__` sentinel |
-| Re-firing a built row | still correctly skipped -- the exist-check and the write agree with each other |
-| Row **with** a parent | never gets a folder. Burns `max_attempts` re-queues and stops. No error. |
-
-Verified live 2026-09-13: TC-152 resolved its parent correctly to page id `35b596a4-...`, missed a
-datastore holding `TC-59`, and re-queued itself -- exactly as predicted.
-
-**If the motive is readability** -- and a bare UUID genuinely is unreadable in the datastore UI --
-the answer is the `label` field on datastructure 283786, written from the created folder's own
-name. Legible record, working lookup, nothing reads it.
-
-## Two invariants a future editor will otherwise re-learn the hard way
-
-**The Status gate is entry-only.** `Planning`/`Filming` filters calls arriving *from Notion*. A
-self-call carries an `attempt` field and bypasses it, because a **parent must be buildable
-regardless of its own Status** — otherwise a parent still in `Idea` never gets a folder and
-every chain through it stalls. This looks like an artifact of where the filter sits. It is not.
-
-**`sequential: true` is the race fix, and it is only safe because nothing blocks.** Two siblings
-of the same unbuilt parent, flipped a second apart, would otherwise both find the parent missing
-and both create it — two identically-named folders, one child in each, the datastore pointing at
-whichever finished last. Nothing errors. Nobody notices until someone goes looking for footage.
-Never pair this flag with a design that waits on a nested call.
-
-## Defects found 2026-09-13, after the first fires
-
-This is the section worth reading: a scenario with two green 21-operation runs was not, in fact,
-working.
-
-1. **Make's filter `conditions` is an OR of ANDs** — the outer array is OR, the inner is AND.
-   Written inverted, `[[Planning, Filming]]` means "Planning **and** Filming", which can never be
-   true. The scenario silently processed nothing; the signature is a run consuming exactly **1
-   operation**. Fixed by hand in the UI before anyone noticed the cause.
-2. **`datastore:ExistRecord` outputs `exist`, not `exists`.** A filter on `{{N.exists}}` never
-   resolves, so the already-built guard never blocks and **every re-fire duplicates the entire
-   folder tree**. Confirmed against the module schema and a run sample (`{"exist": false}`).
-3. **A hand-edit** had `AddRecord` keying on `TC-<n>` while the parent lookup keyed on page id —
-   the two can never match — and storing the row's *title* in `contentID` where a Drive folder id
-   belongs. It never executed.
-4. **`AddRecord` moved ahead of the scaffold.** If a scaffold create fails, the folder and the
-   record both exist, so a re-fire is a no-op. Recording afterwards leaves a folder with no
-   record, and the next fire builds a duplicate.
-
-Two earlier unknowns are now closed rather than hedged: `createAFolder` does output
-`webViewLink`, in the correct `/drive/folders/<id>` form; and `properties_value.ID` is the object
-`{prefix, number}`. Note that `getADatabaseItem`'s property shape **differs** from the raw
-webhook payload's — `properties_value.ID.number` against `properties.ID.unique_id.number`.
-
-Never map the share module's `shareLink`: the Drive app still emits it in the malformed
-`/folder/d/<id>` form that caused the predecessor's bug.
-
-## Status
-
-**Built and verified as a blueprint. Never fired under this design.** `isActive: false`.
-Do not describe it as working until a real fire is observed.
-
-The order that proves it:
-
-1. A parentless row — folder at the content root, `Link to Files` opens the `TC-<n>_…` folder and
-   **not a subfolder**.
-2. **Re-fire the same row** — exactly one folder must exist afterwards. The direct test of
-   defect 2.
-3. A three-level chain, cold — three folders correctly nested, resolving over several queued
-   fires.
-4. Two siblings of an unbuilt parent, one second apart — exactly one parent folder.
-5. A chain stops at `max_attempts` rather than looping.
-
-Watch on the first *nested* fire: hook 2819947 has no data structure attached, so Make infers the
-payload shape. If `attempt` is stripped, a self-call is blocked at module 2 — no folders created,
-and the chain stalls visibly in the execution log rather than misfiling anything.
+- **`filter.conditions` is an OR of ANDs** — the outer array is OR, the inner is AND. Written
+  inverted, `[[Planning, Filming]]` means "Planning **and** Filming" and can never be true. The
+  signature is a run consuming exactly **1 operation**.
+- **`datastore:ExistRecord` outputs `exist`, not `exists`.**
+- **`app-module_get` hides advanced fields** unless `includeAdvancedFields: true`. They are
+  `required` with defaults, filled in silently by the UI and absent via the API — a module built
+  through the API without them fails at runtime with `BundleValidationError`, not at save time.
+- **`organizationId` is not the team id.** Passing the team id returns "Insufficient rights,
+  admin permission organization view is needed", which reads like a permissions wall and isn't.

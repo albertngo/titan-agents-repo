@@ -1,0 +1,2520 @@
+{
+  "_comment": "Verbatim snapshot of Make scenario 4918320 as it stood at the lastEdit below, taken 2026-09-14 on Albert's instruction to keep whatever was live at that moment. This file is a RECORD, not a source of truth to push from -- the scenario is edited in the Make UI. Re-snapshot after any UI change.",
+  "scenario_id": 4918320,
+  "name": "Content Status -> Create Drive Folders (v2)",
+  "hook_id": 2819947,
+  "isActive": true,
+  "lastEdit": "2026-09-14T00:24:57.686Z",
+  "snapshot_taken": "2026-09-14",
+  "blueprint": {
+    "flow": [
+      {
+        "id": 1,
+        "mapper": {},
+        "module": "gateway:CustomWebHook",
+        "version": 1,
+        "metadata": {
+          "restore": {
+            "parameters": {
+              "hook": {
+                "data": {
+                  "editable": "true"
+                },
+                "label": "Content Status -> Create Drive Folders (v2)"
+              }
+            }
+          },
+          "designer": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "parameters": {
+          "hook": 2819947,
+          "maxResults": 1
+        }
+      },
+      {
+        "id": 2,
+        "filter": {
+          "name": "Status is Planning or Filming",
+          "conditions": [
+            [
+              {
+                "a": "{{1.data.properties.Status.status.name}}",
+                "b": "Planning",
+                "o": "text:equal"
+              }
+            ],
+            [
+              {
+                "a": "{{1.data.properties.Status.status.name}}",
+                "b": "Filming",
+                "o": "text:equal"
+              }
+            ]
+          ]
+        },
+        "mapper": {
+          "key": "{{1.data.properties.ID.unique_id.prefix}}-{{1.data.properties.ID.unique_id.number}}"
+        },
+        "module": "datastore:ExistRecord",
+        "version": 1,
+        "metadata": {
+          "expect": [
+            {
+              "name": "key",
+              "type": "text",
+              "label": "Key",
+              "required": true
+            }
+          ],
+          "restore": {
+            "parameters": {
+              "datastore": {
+                "label": "Content Folder IDs"
+              }
+            }
+          },
+          "designer": {
+            "x": 300,
+            "y": 0
+          },
+          "parameters": [
+            {
+              "name": "datastore",
+              "type": "datastore",
+              "label": "Data store",
+              "required": true
+            }
+          ]
+        },
+        "parameters": {
+          "datastore": 88000
+        }
+      },
+      {
+        "id": 3,
+        "filter": {
+          "name": "Not already built",
+          "conditions": [
+            [
+              {
+                "a": "{{2.exists}}",
+                "b": "false",
+                "o": "boolean:equal"
+              }
+            ]
+          ]
+        },
+        "mapper": {
+          "key": "{{ifempty(1.data.properties.`Parent item`.relation[].id; \"__no_parent__\")}}"
+        },
+        "module": "datastore:GetRecord",
+        "onerror": [
+          {
+            "id": 14,
+            "mapper": {},
+            "module": "builtin:Resume",
+            "version": 1,
+            "metadata": {
+              "designer": {
+                "x": 600,
+                "y": 452
+              }
+            }
+          }
+        ],
+        "version": 1,
+        "metadata": {
+          "designer": {
+            "x": 600,
+            "y": 0
+          }
+        },
+        "parameters": {
+          "datastore": 88000
+        }
+      },
+      {
+        "id": 4,
+        "mapper": {
+          "name": "{{1.data.properties.ID.unique_id.prefix}}-{{1.data.properties.ID.unique_id.number}}_{{trim(replace(1.data.properties.`Content Name`.title[].plain_text; \"/[^a-zA-Z0-9 _-]+/g\"; emptystring))}}",
+          "shared": false,
+          "folderId": "{{ifempty(3.contentID; \"1l6jmDaRNIyUvnypcVFylS5caBFnNCgUl\")}}",
+          "destination": "drive"
+        },
+        "module": "google-drive:createAFolder",
+        "version": 4,
+        "metadata": {
+          "designer": {
+            "x": 900,
+            "y": 0
+          }
+        },
+        "parameters": {
+          "__IMTCONN__": 4863617
+        }
+      },
+      {
+        "id": 5,
+        "mapper": {
+          "name": "01_RAW",
+          "shared": false,
+          "folderId": "{{4.id}}",
+          "destination": "drive"
+        },
+        "module": "google-drive:createAFolder",
+        "version": 4,
+        "metadata": {
+          "expect": [
+            {
+              "name": "destination",
+              "type": "select",
+              "label": "New Drive Location",
+              "required": true,
+              "validate": {
+                "enum": [
+                  "drive",
+                  "share",
+                  "team"
+                ]
+              }
+            },
+            {
+              "name": "folderId",
+              "type": "folder",
+              "label": "New Folder Location",
+              "required": true
+            },
+            {
+              "name": "name",
+              "type": "text",
+              "label": "New Folder's Name"
+            },
+            {
+              "name": "shared",
+              "type": "boolean",
+              "label": "Share Folder",
+              "required": true
+            }
+          ],
+          "restore": {
+            "expect": {
+              "folderId": {
+                "mode": "edit",
+                "path": [
+                  "{{4.id}}"
+                ]
+              },
+              "destination": {
+                "label": "My Drive"
+              }
+            },
+            "parameters": {
+              "__IMTCONN__": {
+                "data": {
+                  "scoped": "true",
+                  "connection": "google-drive"
+                },
+                "label": "Albert's Google Drive connection (albertngo95@gmail.com)"
+              }
+            }
+          },
+          "designer": {
+            "x": 1200,
+            "y": 0
+          },
+          "parameters": [
+            {
+              "name": "__IMTCONN__",
+              "type": "account:google-restricted,google-drive",
+              "label": "Connection",
+              "required": true
+            }
+          ]
+        },
+        "parameters": {
+          "__IMTCONN__": 4863617
+        }
+      },
+      {
+        "id": 6,
+        "mapper": {
+          "name": "02_EDIT",
+          "shared": false,
+          "folderId": "{{4.id}}",
+          "destination": "drive"
+        },
+        "module": "google-drive:createAFolder",
+        "version": 4,
+        "metadata": {
+          "expect": [
+            {
+              "name": "destination",
+              "type": "select",
+              "label": "New Drive Location",
+              "required": true,
+              "validate": {
+                "enum": [
+                  "drive",
+                  "share",
+                  "team"
+                ]
+              }
+            },
+            {
+              "name": "folderId",
+              "type": "folder",
+              "label": "New Folder Location",
+              "required": true
+            },
+            {
+              "name": "name",
+              "type": "text",
+              "label": "New Folder's Name"
+            },
+            {
+              "name": "shared",
+              "type": "boolean",
+              "label": "Share Folder",
+              "required": true
+            }
+          ],
+          "restore": {
+            "expect": {
+              "folderId": {
+                "mode": "edit",
+                "path": [
+                  "{{4.id}}"
+                ]
+              },
+              "destination": {
+                "label": "My Drive"
+              }
+            },
+            "parameters": {
+              "__IMTCONN__": {
+                "data": {
+                  "scoped": "true",
+                  "connection": "google-drive"
+                },
+                "label": "Albert's Google Drive connection (albertngo95@gmail.com)"
+              }
+            }
+          },
+          "designer": {
+            "x": 1500,
+            "y": 0
+          },
+          "parameters": [
+            {
+              "name": "__IMTCONN__",
+              "type": "account:google-restricted,google-drive",
+              "label": "Connection",
+              "required": true
+            }
+          ]
+        },
+        "parameters": {
+          "__IMTCONN__": 4863617
+        }
+      },
+      {
+        "id": 7,
+        "mapper": {
+          "name": "03_FINAL",
+          "shared": false,
+          "folderId": "{{4.id}}",
+          "destination": "drive"
+        },
+        "module": "google-drive:createAFolder",
+        "version": 4,
+        "metadata": {
+          "expect": [
+            {
+              "name": "destination",
+              "type": "select",
+              "label": "New Drive Location",
+              "required": true,
+              "validate": {
+                "enum": [
+                  "drive",
+                  "share",
+                  "team"
+                ]
+              }
+            },
+            {
+              "name": "folderId",
+              "type": "folder",
+              "label": "New Folder Location",
+              "required": true
+            },
+            {
+              "name": "name",
+              "type": "text",
+              "label": "New Folder's Name"
+            },
+            {
+              "name": "shared",
+              "type": "boolean",
+              "label": "Share Folder",
+              "required": true
+            }
+          ],
+          "restore": {
+            "expect": {
+              "folderId": {
+                "mode": "edit",
+                "path": [
+                  "{{4.id}}"
+                ]
+              },
+              "destination": {
+                "label": "My Drive"
+              }
+            },
+            "parameters": {
+              "__IMTCONN__": {
+                "data": {
+                  "scoped": "true",
+                  "connection": "google-drive"
+                },
+                "label": "Albert's Google Drive connection (albertngo95@gmail.com)"
+              }
+            }
+          },
+          "designer": {
+            "x": 1800,
+            "y": 0
+          },
+          "parameters": [
+            {
+              "name": "__IMTCONN__",
+              "type": "account:google-restricted,google-drive",
+              "label": "Connection",
+              "required": true
+            }
+          ]
+        },
+        "parameters": {
+          "__IMTCONN__": 4863617
+        }
+      },
+      {
+        "id": 8,
+        "mapper": {
+          "name": "04_PUBLISHED",
+          "shared": false,
+          "folderId": "{{4.id}}",
+          "destination": "drive"
+        },
+        "module": "google-drive:createAFolder",
+        "version": 4,
+        "metadata": {
+          "expect": [
+            {
+              "name": "destination",
+              "type": "select",
+              "label": "New Drive Location",
+              "required": true,
+              "validate": {
+                "enum": [
+                  "drive",
+                  "share",
+                  "team"
+                ]
+              }
+            },
+            {
+              "name": "folderId",
+              "type": "folder",
+              "label": "New Folder Location",
+              "required": true
+            },
+            {
+              "name": "name",
+              "type": "text",
+              "label": "New Folder's Name"
+            },
+            {
+              "name": "shared",
+              "type": "boolean",
+              "label": "Share Folder",
+              "required": true
+            }
+          ],
+          "restore": {
+            "expect": {
+              "folderId": {
+                "mode": "edit",
+                "path": [
+                  "{{4.id}}"
+                ]
+              },
+              "destination": {
+                "label": "My Drive"
+              }
+            },
+            "parameters": {
+              "__IMTCONN__": {
+                "data": {
+                  "scoped": "true",
+                  "connection": "google-drive"
+                },
+                "label": "Albert's Google Drive connection (albertngo95@gmail.com)"
+              }
+            }
+          },
+          "designer": {
+            "x": 2100,
+            "y": 0
+          },
+          "parameters": [
+            {
+              "name": "__IMTCONN__",
+              "type": "account:google-restricted,google-drive",
+              "label": "Connection",
+              "required": true
+            }
+          ]
+        },
+        "parameters": {
+          "__IMTCONN__": 4863617
+        }
+      },
+      {
+        "id": 9,
+        "mapper": {
+          "key": "{{1.data.properties.ID.unique_id.prefix}}-{{1.data.properties.ID.unique_id.number}}",
+          "data": {
+            "label": "",
+            "contentID": "{{1.data.properties.`Content Name`.title[].text.content}}"
+          },
+          "overwrite": true
+        },
+        "module": "datastore:AddRecord",
+        "version": 1,
+        "metadata": {
+          "expect": [
+            {
+              "name": "key",
+              "type": "text",
+              "label": "Key"
+            },
+            {
+              "name": "overwrite",
+              "type": "boolean",
+              "label": "Overwrite an existing record",
+              "required": true
+            },
+            {
+              "name": "data",
+              "spec": [
+                {
+                  "name": "contentID",
+                  "type": "text",
+                  "label": "Drive folder ID"
+                },
+                {
+                  "name": "label",
+                  "type": "text",
+                  "label": "Label (TC-<n>_<name>)"
+                }
+              ],
+              "type": "collection",
+              "label": "Record"
+            }
+          ],
+          "restore": {
+            "expect": {
+              "data": {
+                "nested": {
+                  "label": {
+                    "collapsed": true
+                  }
+                }
+              },
+              "overwrite": {
+                "mode": "chose"
+              }
+            },
+            "parameters": {
+              "datastore": {
+                "label": "Content Folder IDs"
+              }
+            }
+          },
+          "designer": {
+            "x": 2400,
+            "y": 0
+          },
+          "parameters": [
+            {
+              "name": "datastore",
+              "type": "datastore",
+              "label": "Data store",
+              "required": true
+            }
+          ]
+        },
+        "parameters": {
+          "datastore": 88000
+        }
+      },
+      {
+        "id": 10,
+        "mapper": {
+          "role": "writer",
+          "type": "anyone",
+          "folder": "{{4.id}}",
+          "select": "folder",
+          "destination": "drive",
+          "allowFileDiscovery": false
+        },
+        "module": "google-drive:shareAFileFolder",
+        "version": 4,
+        "metadata": {
+          "expect": [
+            {
+              "name": "destination",
+              "type": "select",
+              "label": "Choose a Drive",
+              "required": true,
+              "validate": {
+                "enum": [
+                  "drive",
+                  "share",
+                  "team"
+                ]
+              }
+            },
+            {
+              "name": "select",
+              "type": "select",
+              "label": "Select",
+              "required": true,
+              "validate": {
+                "enum": [
+                  "file",
+                  "folder"
+                ]
+              }
+            },
+            {
+              "name": "role",
+              "type": "select",
+              "label": "Role",
+              "required": true,
+              "validate": {
+                "enum": [
+                  "owner",
+                  "writer",
+                  "commenter",
+                  "reader"
+                ]
+              }
+            },
+            {
+              "name": "type",
+              "type": "select",
+              "label": "Type",
+              "required": true,
+              "validate": {
+                "enum": [
+                  "user",
+                  "group",
+                  "domain",
+                  "anyone"
+                ]
+              }
+            },
+            {
+              "mode": "edit",
+              "name": "folder",
+              "type": "folder",
+              "label": "Folder ID",
+              "required": true
+            },
+            {
+              "name": "allowFileDiscovery",
+              "type": "boolean",
+              "label": "Allow File Discovery",
+              "required": true
+            }
+          ],
+          "restore": {
+            "expect": {
+              "role": {
+                "mode": "chose",
+                "label": "Writer"
+              },
+              "type": {
+                "mode": "chose",
+                "label": "Anyone"
+              },
+              "folder": {
+                "mode": "edit",
+                "path": []
+              },
+              "select": {
+                "label": "Folder"
+              },
+              "destination": {
+                "label": "My Drive"
+              },
+              "allowFileDiscovery": {
+                "mode": "chose"
+              }
+            },
+            "parameters": {
+              "__IMTCONN__": {
+                "data": {
+                  "scoped": "true",
+                  "connection": "google-drive"
+                },
+                "label": "Albert's Google Drive connection (albertngo95@gmail.com)"
+              }
+            }
+          },
+          "designer": {
+            "x": 2700,
+            "y": 0
+          },
+          "interface": [
+            {
+              "name": "fileId",
+              "type": "text",
+              "label": "File ID"
+            },
+            {
+              "name": "kind",
+              "type": "text",
+              "label": "Kind"
+            },
+            {
+              "name": "id",
+              "type": "text",
+              "label": "Permission ID"
+            },
+            {
+              "name": "type",
+              "type": "text",
+              "label": "Type"
+            },
+            {
+              "name": "shareLink",
+              "type": "url",
+              "label": "Share Link"
+            },
+            {
+              "name": "emailAddress",
+              "type": "text",
+              "label": "Email Address"
+            },
+            {
+              "name": "domain",
+              "type": "text",
+              "label": "Domain"
+            },
+            {
+              "name": "role",
+              "type": "text",
+              "label": "Role"
+            },
+            {
+              "name": "allowFileDiscovery",
+              "type": "boolean",
+              "label": "Allow File Discovery"
+            },
+            {
+              "name": "displayName",
+              "type": "text",
+              "label": "Display Name"
+            },
+            {
+              "name": "photoLink",
+              "type": "text",
+              "label": "Photo Link"
+            },
+            {
+              "name": "expirationTime",
+              "type": "date",
+              "label": "Expiration Time"
+            },
+            {
+              "name": "teamDrivePermissionDetails",
+              "spec": {
+                "spec": [
+                  {
+                    "name": "teamDrivePermissionType",
+                    "type": "text",
+                    "label": "Team Drive Permission Type"
+                  },
+                  {
+                    "name": "role",
+                    "type": "text",
+                    "label": "Role"
+                  },
+                  {
+                    "name": "inheritedFrom",
+                    "type": "text",
+                    "label": "Inherited From"
+                  },
+                  {
+                    "name": "inherited",
+                    "type": "boolean",
+                    "label": "Inherited"
+                  }
+                ],
+                "type": "collection"
+              },
+              "type": "array",
+              "label": "Team Drive Permission Details"
+            },
+            {
+              "name": "permissionDetails",
+              "spec": {
+                "spec": [
+                  {
+                    "name": "permissionType",
+                    "type": "text",
+                    "label": "Permission Type"
+                  },
+                  {
+                    "name": "role",
+                    "type": "text",
+                    "label": "Role"
+                  },
+                  {
+                    "name": "inheritedFrom",
+                    "type": "text",
+                    "label": "Inherited From"
+                  },
+                  {
+                    "name": "inherited",
+                    "type": "boolean",
+                    "label": "Inherited"
+                  }
+                ],
+                "type": "collection"
+              },
+              "type": "array",
+              "label": "Permission Details"
+            },
+            {
+              "name": "deleted",
+              "type": "boolean",
+              "label": "Deleted"
+            },
+            {
+              "name": "pendingOwner",
+              "type": "boolean",
+              "label": "Pending Owner"
+            }
+          ],
+          "parameters": [
+            {
+              "name": "__IMTCONN__",
+              "type": "account:google-restricted,google-drive",
+              "label": "Connection",
+              "required": true
+            }
+          ]
+        },
+        "parameters": {
+          "__IMTCONN__": 4863617
+        }
+      },
+      {
+        "id": 11,
+        "mapper": {
+          "page": "{{1.data.id}}",
+          "fields": {
+            "Ns%3Az": {
+              "includeTime": false
+            },
+            "dO%3Fb": "{{10.shareLink}}"
+          },
+          "select": "list",
+          "updateBy": "data_source",
+          "data_source": "1ef596a4-505f-815d-a9c1-000b59bcedac"
+        },
+        "module": "notion:updateADatabaseItem",
+        "version": 1,
+        "metadata": {
+          "expect": [
+            {
+              "name": "updateBy",
+              "type": "select",
+              "label": "Update By",
+              "required": true,
+              "validate": {
+                "enum": [
+                  "data_source",
+                  "database"
+                ]
+              }
+            },
+            {
+              "name": "select",
+              "type": "select",
+              "label": "Enter a Data Source ID",
+              "required": true,
+              "validate": {
+                "enum": [
+                  "map",
+                  "list"
+                ]
+              }
+            },
+            {
+              "name": "data_source",
+              "type": "text",
+              "label": "Data Source ID",
+              "required": true
+            },
+            {
+              "mode": "edit",
+              "name": "page",
+              "type": "select",
+              "label": "Data Source Item ID",
+              "required": true
+            },
+            {
+              "name": "fields",
+              "spec": [
+                {
+                  "name": "title",
+                  "type": "text",
+                  "label": "Content Name",
+                  "metadata": {
+                    "type": "title"
+                  }
+                },
+                {
+                  "name": "%3E%3Byp",
+                  "type": "url",
+                  "label": "Live URL",
+                  "metadata": {
+                    "type": "url"
+                  }
+                },
+                {
+                  "name": "%3FHWk",
+                  "type": "select",
+                  "label": "Parent item",
+                  "metadata": {
+                    "type": "relation"
+                  },
+                  "multiple": true
+                },
+                {
+                  "name": "A%3Am_",
+                  "type": "select",
+                  "label": "Content Format",
+                  "metadata": {
+                    "type": "select"
+                  }
+                },
+                {
+                  "name": "GnEV",
+                  "type": "select",
+                  "label": "Content Type",
+                  "metadata": {
+                    "type": "select"
+                  }
+                },
+                {
+                  "name": "J%3A%3D%3B",
+                  "type": "text",
+                  "label": "Caption",
+                  "metadata": {
+                    "type": "rich_text"
+                  }
+                },
+                {
+                  "name": "Ns%3Az",
+                  "spec": [
+                    {
+                      "name": "start",
+                      "type": "date",
+                      "label": "Start Time"
+                    },
+                    {
+                      "name": "end",
+                      "type": "date",
+                      "label": "End Time"
+                    },
+                    {
+                      "name": "includeTime",
+                      "type": "select",
+                      "label": "Include Time",
+                      "validate": {
+                        "enum": [
+                          true,
+                          false
+                        ]
+                      }
+                    }
+                  ],
+                  "type": "collection",
+                  "label": "Post Date"
+                },
+                {
+                  "name": "OPI%7D",
+                  "type": "number",
+                  "label": "Cover Frame (ms)",
+                  "metadata": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "SppQ",
+                  "type": "url",
+                  "label": "Media Direct URL",
+                  "metadata": {
+                    "type": "url"
+                  }
+                },
+                {
+                  "name": "SsIg",
+                  "type": "select",
+                  "label": "Content Log",
+                  "metadata": {
+                    "type": "relation"
+                  },
+                  "multiple": true
+                },
+                {
+                  "name": "%5DJ_R",
+                  "type": "select",
+                  "label": "Story Variant",
+                  "metadata": {
+                    "type": "select"
+                  }
+                },
+                {
+                  "name": "dO%3Fb",
+                  "type": "url",
+                  "label": "Link to Files",
+                  "metadata": {
+                    "type": "url"
+                  }
+                },
+                {
+                  "name": "e%7Bc_",
+                  "type": "select",
+                  "label": "Weight",
+                  "metadata": {
+                    "type": "select"
+                  }
+                },
+                {
+                  "name": "e%7Bhq",
+                  "type": "select",
+                  "label": "Project",
+                  "metadata": {
+                    "type": "relation"
+                  },
+                  "multiple": true
+                },
+                {
+                  "name": "f%3Cxs",
+                  "type": "select",
+                  "label": "Series",
+                  "metadata": {
+                    "type": "multi_select"
+                  },
+                  "multiple": true
+                },
+                {
+                  "name": "fcry",
+                  "type": "select",
+                  "label": "Next: Post To",
+                  "metadata": {
+                    "type": "select"
+                  }
+                },
+                {
+                  "name": "g%5D%7Dg",
+                  "type": "url",
+                  "label": "Cover Image URL",
+                  "metadata": {
+                    "type": "url"
+                  }
+                },
+                {
+                  "name": "sAG%7B",
+                  "type": "select",
+                  "label": "Status",
+                  "metadata": {
+                    "type": "status"
+                  },
+                  "validate": {
+                    "enum": [
+                      "--",
+                      "Not started",
+                      "Uploading",
+                      "Planning",
+                      "Filming",
+                      "Editing",
+                      "Review",
+                      "Ready To Post"
+                    ]
+                  }
+                },
+                {
+                  "name": "vDcM",
+                  "type": "text",
+                  "label": "Metricool Post ID",
+                  "metadata": {
+                    "type": "rich_text"
+                  }
+                },
+                {
+                  "name": "z%5EUN",
+                  "type": "select",
+                  "label": "Post Status",
+                  "metadata": {
+                    "type": "select"
+                  }
+                },
+                {
+                  "name": "%7DdvO",
+                  "type": "select",
+                  "label": "Sub-item",
+                  "metadata": {
+                    "type": "relation"
+                  },
+                  "multiple": true
+                }
+              ],
+              "type": "collection",
+              "label": "Fields"
+            }
+          ],
+          "restore": {
+            "expect": {
+              "page": {
+                "mode": "edit"
+              },
+              "fields": {
+                "nested": {
+                  "GnEV": {
+                    "mode": "chose",
+                    "label": "Empty"
+                  },
+                  "SsIg": {
+                    "mode": "chose"
+                  },
+                  "fcry": {
+                    "mode": "chose",
+                    "label": "Empty"
+                  },
+                  "%3FHWk": {
+                    "mode": "chose"
+                  },
+                  "%5DJ_R": {
+                    "mode": "chose",
+                    "label": "Empty"
+                  },
+                  "%7DdvO": {
+                    "mode": "chose"
+                  },
+                  "A%3Am_": {
+                    "mode": "chose",
+                    "label": "Empty"
+                  },
+                  "Ns%3Az": {
+                    "nested": {
+                      "includeTime": {
+                        "mode": "chose",
+                        "label": "No"
+                      }
+                    }
+                  },
+                  "e%7Bc_": {
+                    "mode": "chose",
+                    "label": "Empty"
+                  },
+                  "e%7Bhq": {
+                    "mode": "chose"
+                  },
+                  "f%3Cxs": {
+                    "mode": "chose"
+                  },
+                  "sAG%7B": {
+                    "mode": "chose",
+                    "label": "Empty"
+                  },
+                  "z%5EUN": {
+                    "mode": "chose",
+                    "label": "Empty"
+                  }
+                }
+              },
+              "select": {
+                "label": "Select from the list"
+              },
+              "updateBy": {
+                "mode": "chose",
+                "label": "Data SourceThis must be used if your database has multiple data sources."
+              }
+            },
+            "parameters": {
+              "__IMTCONN__": {
+                "data": {
+                  "scoped": "true",
+                  "connection": "notion2"
+                },
+                "label": "My Notion Public connection (Titan Flooring Inc.)"
+              }
+            }
+          },
+          "designer": {
+            "x": 3000,
+            "y": 0
+          },
+          "interface": [
+            {
+              "name": "object",
+              "type": "text",
+              "label": "Object"
+            },
+            {
+              "name": "id",
+              "type": "text",
+              "label": "Database Item ID"
+            },
+            {
+              "name": "created_time",
+              "type": "date",
+              "label": "Created Time"
+            },
+            {
+              "name": "last_edited_time",
+              "type": "date",
+              "label": "Last Edited Time"
+            },
+            {
+              "name": "created_by",
+              "spec": [
+                {
+                  "name": "object",
+                  "type": "text",
+                  "label": "Object"
+                },
+                {
+                  "name": "id",
+                  "type": "text",
+                  "label": "ID"
+                }
+              ],
+              "type": "collection",
+              "label": "Created By"
+            },
+            {
+              "name": "last_edited_by",
+              "spec": [
+                {
+                  "name": "object",
+                  "type": "text",
+                  "label": "Object"
+                },
+                {
+                  "name": "id",
+                  "type": "text",
+                  "label": "ID"
+                }
+              ],
+              "type": "collection",
+              "label": "Last Edited By"
+            },
+            {
+              "name": "icon",
+              "spec": [
+                {
+                  "name": "type",
+                  "type": "text",
+                  "label": "Type"
+                },
+                {
+                  "name": "emoji",
+                  "type": "text",
+                  "label": "Emoji"
+                }
+              ],
+              "type": "collection",
+              "label": "Icon"
+            },
+            {
+              "name": "cover",
+              "spec": [
+                {
+                  "name": "type",
+                  "type": "text",
+                  "label": "Type"
+                },
+                {
+                  "name": "external",
+                  "spec": [
+                    {
+                      "name": "url",
+                      "type": "text",
+                      "label": "URL"
+                    }
+                  ],
+                  "type": "collection",
+                  "label": "External"
+                }
+              ],
+              "type": "collection",
+              "label": "Cover"
+            },
+            {
+              "name": "url",
+              "type": "text",
+              "label": "URL"
+            },
+            {
+              "name": "parent",
+              "spec": [
+                {
+                  "name": "type",
+                  "type": "text",
+                  "label": "Type"
+                },
+                {
+                  "name": "workspace",
+                  "type": "boolean",
+                  "label": "Workspace"
+                },
+                {
+                  "name": "page_id",
+                  "type": "text",
+                  "label": "Page ID"
+                },
+                {
+                  "name": "database_id",
+                  "type": "text",
+                  "label": "Database ID"
+                },
+                {
+                  "name": "data_source_id",
+                  "type": "text",
+                  "label": "Data Source ID"
+                }
+              ],
+              "type": "collection",
+              "label": "Parent"
+            },
+            {
+              "name": "archived",
+              "type": "boolean",
+              "label": "Archived"
+            },
+            {
+              "name": "in_trash",
+              "type": "boolean",
+              "label": "In Trash"
+            },
+            {
+              "name": "properties",
+              "spec": {
+                "spec": [
+                  {
+                    "name": "id",
+                    "type": "text",
+                    "label": "ID"
+                  },
+                  {
+                    "name": "type",
+                    "type": "text",
+                    "label": "Type"
+                  },
+                  {
+                    "name": "people",
+                    "spec": {
+                      "spec": [
+                        {
+                          "name": "object",
+                          "type": "text",
+                          "label": "Object"
+                        },
+                        {
+                          "name": "id",
+                          "type": "text",
+                          "label": "ID"
+                        },
+                        {
+                          "name": "name",
+                          "type": "text",
+                          "label": "Name"
+                        },
+                        {
+                          "name": "avatar_url",
+                          "type": "text",
+                          "label": "Avatar URL"
+                        },
+                        {
+                          "name": "type",
+                          "type": "text",
+                          "label": "Type"
+                        },
+                        {
+                          "name": "person",
+                          "spec": [
+                            {
+                              "name": "email",
+                              "type": "text",
+                              "label": "Email"
+                            }
+                          ],
+                          "type": "collection",
+                          "label": "Person"
+                        }
+                      ],
+                      "type": "collection"
+                    },
+                    "type": "array",
+                    "label": "People"
+                  },
+                  {
+                    "name": "url",
+                    "type": "text",
+                    "label": "URL"
+                  },
+                  {
+                    "name": "text",
+                    "spec": {
+                      "spec": [
+                        {
+                          "name": "type",
+                          "type": "text",
+                          "label": "Type"
+                        },
+                        {
+                          "name": "text",
+                          "spec": [
+                            {
+                              "name": "content",
+                              "type": "text",
+                              "label": "Content"
+                            },
+                            {
+                              "name": "link",
+                              "type": "text",
+                              "label": "Link"
+                            }
+                          ],
+                          "type": "collection",
+                          "label": "Text"
+                        },
+                        {
+                          "name": "annotations",
+                          "spec": [
+                            {
+                              "name": "bold",
+                              "type": "boolean",
+                              "label": "Bold"
+                            },
+                            {
+                              "name": "italic",
+                              "type": "boolean",
+                              "label": "Italic"
+                            },
+                            {
+                              "name": "strikethrough",
+                              "type": "boolean",
+                              "label": "Strikethrough"
+                            },
+                            {
+                              "name": "underline",
+                              "type": "boolean",
+                              "label": "Underline"
+                            },
+                            {
+                              "name": "code",
+                              "type": "boolean",
+                              "label": "Code"
+                            },
+                            {
+                              "name": "color",
+                              "type": "text",
+                              "label": "Color"
+                            }
+                          ],
+                          "type": "collection",
+                          "label": "Annotations"
+                        },
+                        {
+                          "name": "plain_text",
+                          "type": "text",
+                          "label": "Plain Text"
+                        },
+                        {
+                          "name": "href",
+                          "type": "text",
+                          "label": "HREF"
+                        }
+                      ],
+                      "type": "collection"
+                    },
+                    "type": "array",
+                    "label": "Text"
+                  },
+                  {
+                    "name": "select",
+                    "spec": [
+                      {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                      },
+                      {
+                        "name": "name",
+                        "type": "text",
+                        "label": "Name"
+                      },
+                      {
+                        "name": "color",
+                        "type": "text",
+                        "label": "Color"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "Select"
+                  },
+                  {
+                    "name": "email",
+                    "type": "text",
+                    "label": "Email"
+                  },
+                  {
+                    "name": "phone_number",
+                    "type": "text",
+                    "label": "Phone Number"
+                  },
+                  {
+                    "name": "multi_select",
+                    "spec": {
+                      "spec": [
+                        {
+                          "name": "id",
+                          "type": "text",
+                          "label": "ID"
+                        },
+                        {
+                          "name": "name",
+                          "type": "text",
+                          "label": "Name"
+                        },
+                        {
+                          "name": "color",
+                          "type": "text",
+                          "label": "Color"
+                        }
+                      ],
+                      "type": "collection"
+                    },
+                    "type": "array",
+                    "label": "Multi Select"
+                  },
+                  {
+                    "name": "date",
+                    "spec": [
+                      {
+                        "name": "start",
+                        "type": "text",
+                        "label": "Start"
+                      },
+                      {
+                        "name": "end",
+                        "type": "text",
+                        "label": "End"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "Date"
+                  },
+                  {
+                    "name": "checkbox",
+                    "type": "boolean",
+                    "label": "Checkbox"
+                  },
+                  {
+                    "name": "number",
+                    "type": "number",
+                    "label": "Number"
+                  },
+                  {
+                    "name": "files",
+                    "spec": {
+                      "spec": [
+                        {
+                          "name": "name",
+                          "type": "text",
+                          "label": "Name"
+                        }
+                      ],
+                      "type": "collection"
+                    },
+                    "type": "array",
+                    "label": "Files"
+                  },
+                  {
+                    "name": "title",
+                    "spec": {
+                      "spec": [
+                        {
+                          "name": "type",
+                          "type": "text",
+                          "label": "Type"
+                        },
+                        {
+                          "name": "text",
+                          "spec": [
+                            {
+                              "name": "content",
+                              "type": "text",
+                              "label": "Content"
+                            },
+                            {
+                              "name": "link",
+                              "type": "text",
+                              "label": "Link"
+                            }
+                          ],
+                          "type": "collection",
+                          "label": "Text"
+                        },
+                        {
+                          "name": "annotations",
+                          "spec": [
+                            {
+                              "name": "bold",
+                              "type": "boolean",
+                              "label": "Bold"
+                            },
+                            {
+                              "name": "italic",
+                              "type": "boolean",
+                              "label": "Italic"
+                            },
+                            {
+                              "name": "strikethrough",
+                              "type": "boolean",
+                              "label": "Strikethrough"
+                            },
+                            {
+                              "name": "underline",
+                              "type": "boolean",
+                              "label": "Underline"
+                            },
+                            {
+                              "name": "code",
+                              "type": "boolean",
+                              "label": "Code"
+                            },
+                            {
+                              "name": "color",
+                              "type": "text",
+                              "label": "Color"
+                            }
+                          ],
+                          "type": "collection",
+                          "label": "Annotations"
+                        },
+                        {
+                          "name": "plain_text",
+                          "type": "text",
+                          "label": "Plain Text"
+                        },
+                        {
+                          "name": "href",
+                          "type": "text",
+                          "label": "Href"
+                        }
+                      ],
+                      "type": "collection"
+                    },
+                    "type": "array",
+                    "label": "Title"
+                  },
+                  {
+                    "name": "last_edited_time",
+                    "time": true,
+                    "type": "date",
+                    "label": "Last Edited Time"
+                  },
+                  {
+                    "name": "created_time",
+                    "time": true,
+                    "type": "date",
+                    "label": "Created Time"
+                  },
+                  {
+                    "name": "last_edited_by",
+                    "spec": [
+                      {
+                        "name": "object",
+                        "type": "text",
+                        "label": "Object"
+                      },
+                      {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                      },
+                      {
+                        "name": "name",
+                        "type": "text",
+                        "label": "Name"
+                      },
+                      {
+                        "name": "avatar_url",
+                        "type": "text",
+                        "label": "Avatar URL"
+                      },
+                      {
+                        "name": "type",
+                        "type": "text",
+                        "label": "Type"
+                      },
+                      {
+                        "name": "person",
+                        "spec": [
+                          {
+                            "name": "email",
+                            "type": "text",
+                            "label": "Email"
+                          }
+                        ],
+                        "type": "collection",
+                        "label": "Person"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "Last Edited By"
+                  },
+                  {
+                    "name": "created_by",
+                    "spec": [
+                      {
+                        "name": "object",
+                        "type": "text",
+                        "label": "Object"
+                      },
+                      {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                      },
+                      {
+                        "name": "name",
+                        "type": "text",
+                        "label": "Name"
+                      },
+                      {
+                        "name": "avatar_url",
+                        "type": "text",
+                        "label": "Avatar URL"
+                      },
+                      {
+                        "name": "type",
+                        "type": "text",
+                        "label": "Type"
+                      },
+                      {
+                        "name": "person",
+                        "spec": [
+                          {
+                            "name": "email",
+                            "type": "text",
+                            "label": "Email"
+                          }
+                        ],
+                        "type": "collection",
+                        "label": "Person"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "Created By"
+                  },
+                  {
+                    "name": "formula",
+                    "spec": [
+                      {
+                        "name": "type",
+                        "type": "text",
+                        "label": "Type"
+                      },
+                      {
+                        "name": "string",
+                        "type": "text",
+                        "label": "String"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "Formula"
+                  },
+                  {
+                    "name": "relation",
+                    "spec": {
+                      "spec": [
+                        {
+                          "name": "id",
+                          "type": "text",
+                          "label": "ID"
+                        }
+                      ],
+                      "type": "collection"
+                    },
+                    "type": "array",
+                    "label": "Relation"
+                  },
+                  {
+                    "name": "label",
+                    "type": "text",
+                    "label": "Label"
+                  }
+                ],
+                "type": "collection"
+              },
+              "type": "array",
+              "label": "Properties"
+            },
+            {
+              "name": "public_url",
+              "type": "text",
+              "label": "Public URL"
+            },
+            {
+              "name": "request_id",
+              "type": "text",
+              "label": "Request ID"
+            },
+            {
+              "name": "properties_value",
+              "spec": [
+                {
+                  "name": "Live URL",
+                  "type": "text",
+                  "label": "Live URL"
+                },
+                {
+                  "name": "Parent item",
+                  "spec": [
+                    {
+                      "name": "id",
+                      "type": "text",
+                      "label": "ID"
+                    }
+                  ],
+                  "type": "array",
+                  "label": "Parent item"
+                },
+                {
+                  "name": "Content Format",
+                  "spec": [
+                    {
+                      "name": "id",
+                      "type": "text",
+                      "label": "ID"
+                    },
+                    {
+                      "name": "name",
+                      "type": "text",
+                      "label": "Name"
+                    },
+                    {
+                      "name": "color",
+                      "type": "text",
+                      "label": "Color"
+                    }
+                  ],
+                  "type": "collection",
+                  "label": "Content Format"
+                },
+                {
+                  "name": "ID",
+                  "type": "any",
+                  "label": "ID"
+                },
+                {
+                  "name": "Content Type",
+                  "spec": [
+                    {
+                      "name": "id",
+                      "type": "text",
+                      "label": "ID"
+                    },
+                    {
+                      "name": "name",
+                      "type": "text",
+                      "label": "Name"
+                    },
+                    {
+                      "name": "color",
+                      "type": "text",
+                      "label": "Color"
+                    }
+                  ],
+                  "type": "collection",
+                  "label": "Content Type"
+                },
+                {
+                  "name": "Caption",
+                  "spec": [
+                    {
+                      "name": "type",
+                      "type": "text",
+                      "label": "Type"
+                    },
+                    {
+                      "name": "text",
+                      "spec": [
+                        {
+                          "name": "content",
+                          "type": "text",
+                          "label": "Content"
+                        },
+                        {
+                          "name": "link",
+                          "type": "text",
+                          "label": "Link"
+                        }
+                      ],
+                      "type": "collection",
+                      "label": "Text"
+                    },
+                    {
+                      "name": "annotations",
+                      "spec": [
+                        {
+                          "name": "bold",
+                          "type": "boolean",
+                          "label": "Bold"
+                        },
+                        {
+                          "name": "italic",
+                          "type": "boolean",
+                          "label": "Italic"
+                        },
+                        {
+                          "name": "strikethrough",
+                          "type": "boolean",
+                          "label": "Strikethrough"
+                        },
+                        {
+                          "name": "underline",
+                          "type": "boolean",
+                          "label": "Underline"
+                        },
+                        {
+                          "name": "code",
+                          "type": "boolean",
+                          "label": "Code"
+                        },
+                        {
+                          "name": "color",
+                          "type": "text",
+                          "label": "Color"
+                        }
+                      ],
+                      "type": "collection",
+                      "label": "Annotations"
+                    },
+                    {
+                      "name": "plain_text",
+                      "type": "text",
+                      "label": "Plain Text"
+                    },
+                    {
+                      "name": "href",
+                      "type": "text",
+                      "label": "Href"
+                    }
+                  ],
+                  "type": "array",
+                  "label": "Caption"
+                },
+                {
+                  "name": "Post Date",
+                  "spec": [
+                    {
+                      "name": "start",
+                      "type": "date",
+                      "label": "Start"
+                    },
+                    {
+                      "name": "end",
+                      "type": "date",
+                      "label": "End"
+                    },
+                    {
+                      "name": "time_zone",
+                      "type": "text",
+                      "label": "Time Zone"
+                    }
+                  ],
+                  "type": "collection",
+                  "label": "Post Date"
+                },
+                {
+                  "name": "Cover Frame (ms)",
+                  "type": "number",
+                  "label": "Cover Frame (ms)"
+                },
+                {
+                  "name": "Media Direct URL",
+                  "type": "text",
+                  "label": "Media Direct URL"
+                },
+                {
+                  "name": "Content Log",
+                  "spec": [
+                    {
+                      "name": "id",
+                      "type": "text",
+                      "label": "ID"
+                    }
+                  ],
+                  "type": "array",
+                  "label": "Content Log"
+                },
+                {
+                  "name": "Story Variant",
+                  "spec": [
+                    {
+                      "name": "id",
+                      "type": "text",
+                      "label": "ID"
+                    },
+                    {
+                      "name": "name",
+                      "type": "text",
+                      "label": "Name"
+                    },
+                    {
+                      "name": "color",
+                      "type": "text",
+                      "label": "Color"
+                    }
+                  ],
+                  "type": "collection",
+                  "label": "Story Variant"
+                },
+                {
+                  "name": "Link to Files",
+                  "type": "text",
+                  "label": "Link to Files"
+                },
+                {
+                  "name": "Weight",
+                  "spec": [
+                    {
+                      "name": "id",
+                      "type": "text",
+                      "label": "ID"
+                    },
+                    {
+                      "name": "name",
+                      "type": "text",
+                      "label": "Name"
+                    },
+                    {
+                      "name": "color",
+                      "type": "text",
+                      "label": "Color"
+                    }
+                  ],
+                  "type": "collection",
+                  "label": "Weight"
+                },
+                {
+                  "name": "Project",
+                  "spec": [
+                    {
+                      "name": "id",
+                      "type": "text",
+                      "label": "ID"
+                    }
+                  ],
+                  "type": "array",
+                  "label": "Project"
+                },
+                {
+                  "name": "Series",
+                  "spec": [
+                    {
+                      "name": "id",
+                      "type": "text",
+                      "label": "ID"
+                    },
+                    {
+                      "name": "name",
+                      "type": "text",
+                      "label": "Name"
+                    },
+                    {
+                      "name": "color",
+                      "type": "text",
+                      "label": "Color"
+                    }
+                  ],
+                  "type": "array",
+                  "label": "Series"
+                },
+                {
+                  "name": "Next: Post To",
+                  "spec": [
+                    {
+                      "name": "id",
+                      "type": "text",
+                      "label": "ID"
+                    },
+                    {
+                      "name": "name",
+                      "type": "text",
+                      "label": "Name"
+                    },
+                    {
+                      "name": "color",
+                      "type": "text",
+                      "label": "Color"
+                    }
+                  ],
+                  "type": "collection",
+                  "label": "Next: Post To"
+                },
+                {
+                  "name": "Cover Image URL",
+                  "type": "text",
+                  "label": "Cover Image URL"
+                },
+                {
+                  "name": "Publish Content",
+                  "type": "any",
+                  "label": "Publish Content"
+                },
+                {
+                  "name": "Status",
+                  "spec": [
+                    {
+                      "name": "id",
+                      "type": "text",
+                      "label": "ID"
+                    },
+                    {
+                      "name": "name",
+                      "type": "text",
+                      "label": "Name"
+                    },
+                    {
+                      "name": "color",
+                      "type": "text",
+                      "label": "Color"
+                    }
+                  ],
+                  "type": "collection",
+                  "label": "Status"
+                },
+                {
+                  "name": "Metricool Post ID",
+                  "spec": [
+                    {
+                      "name": "type",
+                      "type": "text",
+                      "label": "Type"
+                    },
+                    {
+                      "name": "text",
+                      "spec": [
+                        {
+                          "name": "content",
+                          "type": "text",
+                          "label": "Content"
+                        },
+                        {
+                          "name": "link",
+                          "type": "text",
+                          "label": "Link"
+                        }
+                      ],
+                      "type": "collection",
+                      "label": "Text"
+                    },
+                    {
+                      "name": "annotations",
+                      "spec": [
+                        {
+                          "name": "bold",
+                          "type": "boolean",
+                          "label": "Bold"
+                        },
+                        {
+                          "name": "italic",
+                          "type": "boolean",
+                          "label": "Italic"
+                        },
+                        {
+                          "name": "strikethrough",
+                          "type": "boolean",
+                          "label": "Strikethrough"
+                        },
+                        {
+                          "name": "underline",
+                          "type": "boolean",
+                          "label": "Underline"
+                        },
+                        {
+                          "name": "code",
+                          "type": "boolean",
+                          "label": "Code"
+                        },
+                        {
+                          "name": "color",
+                          "type": "text",
+                          "label": "Color"
+                        }
+                      ],
+                      "type": "collection",
+                      "label": "Annotations"
+                    },
+                    {
+                      "name": "plain_text",
+                      "type": "text",
+                      "label": "Plain Text"
+                    },
+                    {
+                      "name": "href",
+                      "type": "text",
+                      "label": "Href"
+                    }
+                  ],
+                  "type": "array",
+                  "label": "Metricool Post ID"
+                },
+                {
+                  "name": "Post Status",
+                  "spec": [
+                    {
+                      "name": "id",
+                      "type": "text",
+                      "label": "ID"
+                    },
+                    {
+                      "name": "name",
+                      "type": "text",
+                      "label": "Name"
+                    },
+                    {
+                      "name": "color",
+                      "type": "text",
+                      "label": "Color"
+                    }
+                  ],
+                  "type": "collection",
+                  "label": "Post Status"
+                },
+                {
+                  "name": "Posted Platforms",
+                  "spec": [
+                    {
+                      "name": "type",
+                      "type": "text",
+                      "label": "Type"
+                    },
+                    {
+                      "name": "array",
+                      "spec": {
+                        "spec": [
+                          {
+                            "name": "type",
+                            "type": "text",
+                            "label": "Type"
+                          },
+                          {
+                            "name": "title",
+                            "spec": {
+                              "spec": [
+                                {
+                                  "name": "type",
+                                  "type": "text",
+                                  "label": "Type"
+                                },
+                                {
+                                  "name": "text",
+                                  "spec": [
+                                    {
+                                      "name": "content",
+                                      "type": "text",
+                                      "label": "Content"
+                                    },
+                                    {
+                                      "name": "link",
+                                      "type": "text",
+                                      "label": "Link"
+                                    }
+                                  ],
+                                  "type": "collection",
+                                  "label": "Text"
+                                },
+                                {
+                                  "name": "annotations",
+                                  "spec": [
+                                    {
+                                      "name": "bold",
+                                      "type": "boolean",
+                                      "label": "Bold"
+                                    },
+                                    {
+                                      "name": "italic",
+                                      "type": "boolean",
+                                      "label": "Italic"
+                                    },
+                                    {
+                                      "name": "strikethrough",
+                                      "type": "boolean",
+                                      "label": "Strikethrough"
+                                    },
+                                    {
+                                      "name": "underline",
+                                      "type": "boolean",
+                                      "label": "Underline"
+                                    },
+                                    {
+                                      "name": "code",
+                                      "type": "boolean",
+                                      "label": "Code"
+                                    },
+                                    {
+                                      "name": "color",
+                                      "type": "text",
+                                      "label": "Color"
+                                    }
+                                  ],
+                                  "type": "collection",
+                                  "label": "Annotations"
+                                },
+                                {
+                                  "name": "plain_text",
+                                  "type": "text",
+                                  "label": "Plain Text"
+                                },
+                                {
+                                  "name": "href",
+                                  "type": "text",
+                                  "label": "Href"
+                                }
+                              ],
+                              "type": "collection"
+                            },
+                            "type": "array",
+                            "label": "Title"
+                          }
+                        ],
+                        "type": "collection"
+                      },
+                      "type": "array",
+                      "label": "Array"
+                    },
+                    {
+                      "name": "function",
+                      "type": "text",
+                      "label": "Function"
+                    }
+                  ],
+                  "type": "collection",
+                  "label": "Posted Platforms"
+                },
+                {
+                  "name": "Sub-item",
+                  "spec": [
+                    {
+                      "name": "id",
+                      "type": "text",
+                      "label": "ID"
+                    }
+                  ],
+                  "type": "array",
+                  "label": "Sub-item"
+                },
+                {
+                  "name": "Content Name",
+                  "spec": [
+                    {
+                      "name": "type",
+                      "type": "text",
+                      "label": "Type"
+                    },
+                    {
+                      "name": "text",
+                      "spec": [
+                        {
+                          "name": "content",
+                          "type": "text",
+                          "label": "Content"
+                        },
+                        {
+                          "name": "link",
+                          "type": "text",
+                          "label": "Link"
+                        }
+                      ],
+                      "type": "collection",
+                      "label": "Text"
+                    },
+                    {
+                      "name": "annotations",
+                      "spec": [
+                        {
+                          "name": "bold",
+                          "type": "boolean",
+                          "label": "Bold"
+                        },
+                        {
+                          "name": "italic",
+                          "type": "boolean",
+                          "label": "Italic"
+                        },
+                        {
+                          "name": "strikethrough",
+                          "type": "boolean",
+                          "label": "Strikethrough"
+                        },
+                        {
+                          "name": "underline",
+                          "type": "boolean",
+                          "label": "Underline"
+                        },
+                        {
+                          "name": "code",
+                          "type": "boolean",
+                          "label": "Code"
+                        },
+                        {
+                          "name": "color",
+                          "type": "text",
+                          "label": "Color"
+                        }
+                      ],
+                      "type": "collection",
+                      "label": "Annotations"
+                    },
+                    {
+                      "name": "plain_text",
+                      "type": "text",
+                      "label": "Plain Text"
+                    },
+                    {
+                      "name": "href",
+                      "type": "text",
+                      "label": "Href"
+                    }
+                  ],
+                  "type": "array",
+                  "label": "Content Name"
+                }
+              ],
+              "type": "collection",
+              "label": "Properties Value"
+            }
+          ],
+          "parameters": [
+            {
+              "name": "__IMTCONN__",
+              "type": "account:notion2,notion3",
+              "label": "Connection",
+              "required": true
+            }
+          ]
+        },
+        "parameters": {
+          "__IMTCONN__": 3862963
+        }
+      },
+      {
+        "id": 12,
+        "mapper": {
+          "array": "{{split(\"10_BEFORE,20_DEMO,30_INSTALL,40_FINISHED,50_INTERVIEW,60_TALKINGHEAD,70_VOICEOVER,80_PHOTOS,90_GRAPHICS\"; \",\")}}"
+        },
+        "module": "builtin:BasicFeeder",
+        "version": 1,
+        "metadata": {
+          "expect": [
+            {
+              "mode": "edit",
+              "name": "array",
+              "spec": [],
+              "type": "array",
+              "label": "Array"
+            }
+          ],
+          "restore": {
+            "expect": {
+              "array": {
+                "mode": "edit"
+              }
+            }
+          },
+          "designer": {
+            "x": 3300,
+            "y": 0
+          }
+        },
+        "parameters": {}
+      },
+      {
+        "id": 13,
+        "mapper": {
+          "name": "{{12.value}}",
+          "shared": false,
+          "folderId": "{{5.id}}",
+          "destination": "drive"
+        },
+        "module": "google-drive:createAFolder",
+        "version": 4,
+        "metadata": {
+          "designer": {
+            "x": 3600,
+            "y": 0
+          }
+        },
+        "parameters": {
+          "__IMTCONN__": 4863617
+        }
+      }
+    ],
+    "name": "Content Status -> Create Drive Folders (v2)",
+    "metadata": {
+      "instant": true,
+      "version": 1,
+      "designer": {
+        "orphans": []
+      },
+      "scenario": {
+        "dlq": false,
+        "slots": null,
+        "dataloss": false,
+        "maxErrors": 3,
+        "autoCommit": true,
+        "roundtrips": 1,
+        "sequential": false,
+        "confidential": false,
+        "autoCommitTriggerLast": true
+      }
+    },
+    "scheduling": {
+      "type": "immediately",
+      "maximum_runs_per_minute": 100
+    },
+    "interface": {
+      "input": [],
+      "output": []
+    }
+  }
+}

@@ -179,74 +179,68 @@
     "_notion_rewrite": "Every migrated row's 'Link to Files' must be rewritten to the Drive link in the same pass. A moved folder whose Notion row still points at OneDrive is a broken row."
   },
   "make_scenario": {
-    "_comment": "The Make scenario that builds a content item's Drive scaffold, nests it under its Notion parent, and writes the folder link back to the row. ONE scenario -- it drives its own recursion by re-firing its own webhook. Ids live here, never in a blueprint or a prompt.",
+    "_comment": "The Make scenario that builds a content item's Drive scaffold and writes a link back to the Notion row. FROZEN AS-IS on Albert's instruction, 2026-09-14: whatever was live at that moment is what we keep. A verbatim blueprint snapshot lives at platform-settings/blueprints/content-folder-scenario-4918320.json.",
     "scenario_id": 4918320,
     "name": "Content Status -> Create Drive Folders (v2)",
     "team_id": 459654,
     "hook_id": 2819947,
     "webhook_url": "https://hook.us1.make.com/yhp4ssw9v7av0bzfmqpu8n88la52ngs1",
-    "_shape": "webhook -> datastore Exist -> Notion get item -> datastore Get parent -> Router{ parent unknown: POST self for the parent, POST self again with attempt+1, stop | parent known: create TC-<n>_<name> under it, AddRecord, scaffold x4, share 03_FINAL, write Link to Files, iterate the nine 01_RAW children }",
-    "_why_queue_and_refire": "Make has no loop or recursion primitive, and a blocking filter stops the WHOLE downstream branch, so 'look up the parent, build it if missing, then carry on' is not expressible inline. The obvious answer -- call your own webhook and WAIT for the folder id -- holds depth+2 executions open at once, all idle-waiting, and cannot be serialised without deadlocking (an execution would wait on a nested one that can never start). Firing and forgetting instead means nothing ever waits on anything, which is what makes sequential processing safe, which is what makes the sibling race impossible. The cost is that a deep chain resolves over several queued fires across a few seconds instead of in one call.",
-    "sequential": true,
-    "_sequential_comment": "MUST stay true. Two sibling rows firing at once would both find their shared parent missing and both create it, leaving two identically-named parent folders with one child in each and the datastore pointing at whichever finished last -- silent, and nobody notices until someone goes looking for footage. Serialising removes the race outright. It is only safe because no execution blocks on another; do not combine it with a design that waits.",
-    "max_attempts": 6,
-    "_max_attempts_comment": "Runaway guard. Each re-fire of a row carries attempt+1; past this the row is dropped at the filter instead of queueing again, so a relation cycle cannot loop forever. The deepest real chain in Notion today is 3 levels (TC-48 '1060 Britannia' -> TC-51 'Warehouse Layout' -> 'Shortform: Satisfying All Parties + Myself'), which is why a fixed depth-2 unroll was never an option.",
-    "trigger_statuses": [
-      "Planning",
-      "Filming"
+    "isActive": true,
+    "snapshot_of": "2026-09-14T00:24:57Z",
+    "edited_in": "the Make UI",
+    "_edited_in_comment": "This scenario is hand-edited in the UI. Do not push blueprints at it from here without asking -- API pushes and UI edits overwrote each other repeatedly on 2026-09-13. Re-snapshot the blueprint file after any UI change.",
+    "shape": [
+      "1  Webhook (2819947)",
+      "2  Datastore: does a record exist?   key = TC-<n>   [filter: Status is Planning or Filming]",
+      "3  Datastore: get a record           key = Parent item page id, else \"__no_parent__\"",
+      "4  Drive: create TC-<n>_<name>       under ifempty(3.contentID; <content root>)",
+      "5-8  Drive: create 01_RAW / 02_EDIT / 03_FINAL / 04_PUBLISHED",
+      "9  Datastore: add record             key = TC-<n>, contentID = the row's Content Name",
+      "10 Drive: share 03_FINAL             reader / anyone",
+      "11 Notion: update the row            Link to Files = 10.shareLink, plus Post Date",
+      "12 Iterator -> 13  Drive: create the nine 01_RAW children"
     ],
-    "_status_gate_is_entry_only": "LOAD-BEARING, and non-obvious. The Planning/Filming gate applies ONLY to calls originating from Notion. A self-call is recognised by carrying an `attempt` field and bypasses it, because a PARENT must be buildable regardless of its own Status -- otherwise a parent still in 'Idea' can never get a folder and every chain through it stalls.",
-    "nesting": {
-      "_comment": "Drive mirrors Notion's Parent item / Sub-item tree. A child's content folder sits DIRECTLY inside its parent's content folder, alongside 01_RAW..04_PUBLISHED -- so a parent's folder holds a mix of scaffold folders and child folders. Intended.",
-      "parent_relation": "Parent item",
-      "child_relation": "Sub-item",
-      "_same_data_source": "Parent item is a SELF-relation on Titan Content Ideas, so a parent is always a row in the same data source and always has its own ID/Content Name. No out-of-database ancestor is reachable, so no data-source check is needed. Verified 2026-09-13: the apparent 'hub page' TC-48 '1060 Britannia' is an ordinary content row with 7 sub-items.",
-      "_implicit_parents": "A parent created because a child fired first gets IDENTICAL treatment to one triggered directly: full scaffold, 03_FINAL shared, Link to Files written.",
-      "_multiple_parents": "Parent item is an array. Every row today has exactly one; the build takes the first. A second parent would be silently ignored."
+    "nesting": "NONE. Every content folder is created at the Drive root.",
+    "_nesting_comment": "The parent-aware version (a router plus two self-calling HTTP modules that re-queued the webhook until the parent existed) was built and is described in git history around commit 0026a89. It is NOT in the live scenario. Module 3 still looks a parent up by PAGE ID while module 9 files records under TC-<n>, so the lookup can never match and module 4 always falls through to the content root.",
+    "known_behaviours": {
+      "_comment": "Recorded so they are not rediscovered as surprises. These are consequences of the current design, not a to-do list -- Albert has chosen to keep it as-is.",
+      "re_fire_duplicates": "Module 3's filter reads {{2.exists}}; the module's output field is `exist` (singular), so the condition never resolves and the already-built guard does not block. Every re-fire of a row creates ANOTHER full folder tree. Observed live: restoring 10 rows to Planning on 2026-09-14 produced 10 new trees and 10 new Link to Files values.",
+      "link_points_at_03_final": "Module 11 writes Link to Files from {{10.shareLink}} -- module 10 shares 03_FINAL, so the row's link opens that SUBFOLDER, not the content folder. The Drive app also emits shareLink in the non-standard https://drive.google.com/folder/d/<id> form rather than the canonical /drive/folders/<id>. The content folder's own webViewLink ({{4.webViewLink}}) is the correct source if this is ever revisited.",
+      "datastore_holds_titles": "Module 9 stores the row's Content Name in `contentID`, a field whose only consumer (module 4's folderId) needs a Drive folder id. Harmless while nesting is off, because nothing reads it back successfully.",
+      "writes_post_date": "Module 11 also writes Post Date (key Ns%3Az). Note sources.titan_content_ideas._never_write lists Post Date as off-limits to the POSTING pipeline; that rule binds the agents and commands, not this scenario."
     },
     "drive_connection_id": 4863617,
     "notion_connection_id": 3862963,
     "notion_data_source": "1ef596a4-505f-815d-a9c1-000b59bcedac",
     "notion_link_field_key": "dO%3Fb",
+    "trigger_statuses": [
+      "Planning",
+      "Filming"
+    ],
     "datastore": {
       "datastore_id": 88000,
-      "key": "notion_page_id",
-      "field": "contentID",
-      "_key_comment": "Keyed on the Notion PAGE ID, not TC-<n>. The Parent item relation hands back the parent's page id directly, so a parent lookup is one datastore read with no extra Notion fetch. Page ids are immutable, where the ID prefix has already changed once (TFC -> TC). contentID stores the Drive FOLDER ID, so a record answers *where*, not just *whether*.",
-      "root_sentinel_key": "__ROOT__",
-      "root_sentinel_value": "1l6jmDaRNIyUvnypcVFylS5caBFnNCgUl",
-      "_root_sentinel_comment": "LOAD-BEARING DATA, not test junk -- do not delete it, and re-seed it after any 'delete all records'. This one record is the recursion's base case: a row with no parent looks up '__ROOT__' and the datastore answers with the Drive root folder id, exactly like any other parent lookup. Without it, 'has a parent' and 'has no parent' become two router branches, and because a Make filter stops everything downstream, EACH branch would need its own copy of the whole build chain -- the 28-module unrolling that made the predecessor undebuggable. It also keeps the root folder id out of the blueprint entirely. root_sentinel_value MUST equal drive.root_folder_id; if they drift, every folder is created in the wrong place and nothing errors.",
-      "_sentinel_cannot_collide": "'__ROOT__' is not a valid Notion page id (those are 8-4-4-4-12 hex UUIDs), so the sentinel can never be mistaken for a real row.",
-      "_ordering_invariant": "AddRecord runs IMMEDIATELY after the content-folder create, before the scaffold. If a scaffold create fails later, the folder exists AND the record exists, so a re-fire is a no-op. Recording after the scaffold would leave a folder with no record, and the next fire would build a duplicate.",
       "datastructure_id": 283786,
+      "key": "TC-<n>",
       "fields": {
-        "contentID": "Drive folder ID of this row's content folder",
-        "label": "human-readable TC-<n>_<name>; nothing reads it"
+        "contentID": "the row's Content Name (see known_behaviours)",
+        "label": "unused by the live scenario"
       },
-      "_label_field_comment": "Added 2026-09-14. The key is a Notion page id, which is unreadable at a glance, and that unreadability led to the key being hand-changed to TC-<n> three times -- each time silently disabling nesting. `label` gives the record a legible name WITHOUT touching the key. It is written from the created folder's own name ({{8.name}}) and read by nobody.",
-      "_why_the_key_cannot_be_TC_n": "Notion's `Parent item` relation returns PAGE IDS. A child has no way to learn its parent's TC-<n> without a second Notion fetch, so a datastore keyed on TC-<n> can never be found by the child that needs it. The failure is silent and specific: parentless rows still build at the root and the duplicate guard still works -- only nested rows break, burning max_attempts passes each and ending with no folder and no error. Verified live 2026-09-13: TC-152 correctly resolved its parent to page id 35b596a4-..., missed a datastore holding 'TC-59', and re-queued itself."
+      "_root_sentinel": "A '__ROOT__' record was seeded for the parent-aware design and has since been removed. The live module 3 uses the sentinel string '__no_parent__' instead, which has no record, so the lookup misses and module 4 falls back to its hardcoded root folder id.",
+      "content_root_folder_id": "1l6jmDaRNIyUvnypcVFylS5caBFnNCgUl",
+      "_content_root_comment": "Hardcoded in module 4's ifempty fallback. Must match drive.root_folder_id below."
     },
     "share": {
       "folder": "03_FINAL",
       "role": "reader",
       "type": "anyone",
-      "_comment": "The predecessor shared with role 'writer' -- anyone holding the link could edit or delete -- on a folder above 01_RAW, which is raw unedited footage inside clients' homes. Share 03_FINAL only, read-only."
-    },
-    "_defects_fixed_2026_09_13": [
-      "Make's filter `conditions` is an OR of ANDs: the OUTER array is OR, the INNER is AND. Written inverted, [[Planning, Filming]] meant 'Planning AND Filming' and could never be true -- the scenario silently processed nothing (a run consuming exactly 1 operation is the signature).",
-      "datastore:ExistRecord outputs `exist`, NOT `exists`. A filter on {{N.exists}} never resolves, so the already-built guard never blocks and every re-fire duplicates the entire folder tree.",
-      "A hand-edit had AddRecord keying on TC-<n> while the lookup keyed on page id, and storing the row's TITLE in contentID where a Drive folder id belongs. Never executed."
-    ],
-    "_confirmed_not_assumed": {
-      "createAFolder_webViewLink": "Confirmed present in the module output schema AND in a live run sample, in the correct https://drive.google.com/drive/folders/<id> form. Never map the share module's `shareLink`, which the Drive app emits in the malformed /folder/d/<id> form.",
-      "properties_value_ID": "notion:getADatabaseItem exposes named properties under `properties_value`, and ID is the object {prefix, number} -- so the folder name reads .prefix and .number. Note this shape DIFFERS from the raw webhook payload's properties.ID.unique_id.number."
+      "_comment": "The OneDrive predecessor shared as `writer` on a folder above 01_RAW -- raw footage inside clients' homes, editable by anyone with the link. This shares 03_FINAL, read-only. That improvement survives in the live scenario."
     },
     "_superseded": {
       "scenario_id": 4803695,
       "hook_id": 2758244,
       "name": "Create Google Drive Content Folder",
-      "_comment": "The unrolled 28-createAFolder predecessor, ~366KB of blueprint. Inactive. Retire it in the Make UI -- never via scenarios_update, which fails silently on a large blueprint (platform-settings/lightspeed.json:132)."
+      "_comment": "The unrolled 28-createAFolder predecessor, ~366KB. Inactive. Retire in the Make UI -- never via scenarios_update, which fails silently on a large blueprint (platform-settings/lightspeed.json:132)."
     },
-    "_status": "BUILT AND VERIFIED AS A BLUEPRINT, NEVER FIRED under this design. isActive: false as of 2026-09-13. Do not describe it as working until a real fire is observed -- in particular the re-fire test, which is the direct check on the exist/exists defect above."
+    "_status": "LIVE and firing. Creates a flat, unnested folder tree per row and links the row to its 03_FINAL subfolder. Frozen by decision, 2026-09-14."
   }
 }
