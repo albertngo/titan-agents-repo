@@ -1,0 +1,14 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-09-14T08:15:52-04:00",
+  "status": "error",
+  "error": "GHL MCP server tools (mcp__ghl__*) were not registered/bound to this ingest session — a session tool-provisioning gap, not a confirmed GHL-platform outage. GHL_PIT_TOKEN and GHL_LOCATION_ID are both present in .env (lengths 40 and 20 chars respectively, consistent with real values), and .mcp.json correctly declares the 'ghl' HTTP MCP server pointing at https://services.leadconnectorhq.com/mcp/ — but no mcp__ghl__* function was exposed to this agent's tool set, so zero calls could be attempted (contacts, opportunities, conversations, calendars, pipelines all unreachable). This matches prior recurrences of the same failure mode logged in ingest/run-ledger.json (2026-08-15, 2026-08-18, 2026-08-19, 2026-08-24). No GHL data was read or written; per contracts/ingest-schema.md and CLAUDE.md Failure policy, this ingester writes status:\"error\" rather than crashing or fabricating data, and must not block sibling ingesters or DAILY-BRIEF.md. CATCH-UP GAP: last known-good ghl.json is ingest/2026-09-08/ghl.json (run_at 2026-09-08T08:45:00-04:00, status ok). No daily-ingest ghl.json exists for 2026-09-09 through 2026-09-13 (those days' ingest/ folders contain only price-list/catalog-sync artifacts, not daily-ingest output) — so GHL has an uncovered window of roughly 2026-09-08 08:45 through now (~5.5 days) once tool access is restored. This run could not attempt any catch-up pull (no data plane access at all), so the gap remains fully open. RECOMMENDED ACTION: restore mcp__ghl__* tool bindings for the ghl-ingest-agent subagent (may require interactive `claude mcp approve` per the 2026-08-24 ledger note, or a session tool-grant fix) and re-run this ingester with a widened catch-up window (~132h) to cover 2026-09-08 onward, within this agent's normal catch-up caps.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest could not run today (2026-09-14) — mcp__ghl__* MCP tools were not available to this session, a provisioning gap seen before (2026-08-15/18/19/24), not a confirmed GHL outage.",
+    "GHL coverage gap is now ~5.5 days: last successful ghl.json is 2026-09-08; no daily-ingest GHL output exists for 2026-09-09 through 2026-09-13. Re-run with a widened catch-up window once tool bindings are restored.",
+    "Sales-pipeline visibility (leads, drift findings, appointments, conversations, won records) is completely blind for today's brief — treat GHL as a missing source in DAILY-BRIEF.md, not as \"nothing happened\"."
+  ]
+}
