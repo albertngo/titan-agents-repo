@@ -30,6 +30,13 @@ Unchanged from the catalogue pipeline, and enforced harder here:
   `plans/YYYY-MM-DD/social-approval.json` with `status: "approved"`.
 - Plans expire at end of day. A stale plan is re-derived, never re-approved.
 - `held` entries carry no `id` and are unapprovable by construction.
+- **One approval file per day, and it ACCUMULATES.** There are many plan files a day
+  — one per log row, plus a reschedule plan per move — but exactly one
+  `social-approval.json`, and a later run appends to it rather than replacing it.
+  Overwriting erases the authorisation record for everything approved earlier that
+  day, and a resumed earlier run would then find its own id missing and stop.
+  Learned the hard way on 2026-09-14: the reschedule approval replaced the schedule
+  approval an hour after it executed.
 
 ### Why this one is stricter than the catalogue's
 
