@@ -47,11 +47,30 @@ def verdict(r=None, posts=None, now=NOW, draft=False, window=None, grace=30, stu
 
 
 class ParseCase(unittest.TestCase):
+    """Notion and Metricool express the same moment differently. Every value below is
+    a real wire format observed on the TC-86 run, not an invented one."""
+
+    def test_notion_utc_and_metricool_local_resolve_to_the_same_moment(self):
+        """THE bug this guards. Notion returns Post Date as an instant in UTC;
+        Metricool returns a local wall clock. 8pm Toronto is '2026-09-16T00:00:00.000Z'
+        to one and '2026-09-15T20:00:00' to the other. Stripping the Z instead of
+        converting puts them four hours and one DAY apart — permanent false drift."""
+        notion = parse_dt("2026-09-16T00:00:00.000Z")
+        metricool = parse_dt("2026-09-15T20:00:00")
+        self.assertEqual(notion, metricool)
+        self.assertEqual(notion, datetime(2026, 9, 15, 20, 0))
+
+    def test_dst_is_handled_not_assumed(self):
+        """EDT in September (-04:00), EST in December (-05:00). A fixed offset would
+        be right half the year."""
+        self.assertEqual(parse_dt("2026-07-01T00:00:00.000Z"), datetime(2026, 6, 30, 20, 0))
+        self.assertEqual(parse_dt("2026-12-24T14:00:00.000Z"), datetime(2026, 12, 24, 9, 0))
+
     def test_accepts_the_shapes_notion_and_metricool_emit(self):
         self.assertEqual(parse_dt("2026-12-24T09:00:00"), datetime(2026, 12, 24, 9, 0))
         self.assertEqual(parse_dt("2026-12-24"), datetime(2026, 12, 24, 0, 0))
         self.assertEqual(parse_dt("2026-12-24T09:00:00-05:00"), datetime(2026, 12, 24, 9, 0))
-        self.assertEqual(parse_dt("2026-12-24T09:00:00Z"), datetime(2026, 12, 24, 9, 0))
+        self.assertEqual(parse_dt("2026-09-15T20:00:00.000"), datetime(2026, 9, 15, 20, 0))
 
     def test_blank_and_nonsense_are_none_not_an_exception(self):
         for value in (None, "", "not a date"):

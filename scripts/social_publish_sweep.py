@@ -47,6 +47,7 @@ import re
 import sys
 from datetime import datetime, timedelta
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 # How long after its due time a post may still legitimately appear as scheduled.
 # Metricool publishes on a queue, not on the second; a post read at 10:00:30 for a
@@ -69,27 +70,41 @@ WRITES = {
 }
 
 
-# A trailing UTC offset or fractional seconds, both of which Notion emits and
-# Metricool does not. Notion's Post Date comes back as 2026-12-24T09:00:00.000-05:00;
-# Metricool's publicationDate as a bare 2026-12-24T09:00:00 plus a separate timezone
-# field. Both describe the same local wall-clock time in America/Toronto, so the
-# offset is redundant here -- and matching only '+' silently dropped every Notion
-# date in the western hemisphere.
-OFFSET = re.compile(r"(?:\.\d+)?(?:Z|[+-]\d{2}:?\d{2})$")
+# THE TWO SYSTEMS SPEAK DIFFERENT TIME. Notion's API returns Post Date as an
+# INSTANT, normalised to UTC: 8pm Toronto comes back as "2026-09-16T00:00:00.000Z".
+# Metricool returns publicationDate as a LOCAL WALL CLOCK plus a separate timezone
+# field: the same moment is "2026-09-15T20:00:00" + "America/Toronto".
+#
+# So an offset-bearing value must be CONVERTED, never just stripped. Stripping "Z"
+# off the Notion value above yields midnight on the wrong day -- four hours and one
+# date out. That is not a cosmetic error: it reports date_drift on every correctly
+# scheduled row, and it moves every deadline four hours early, so the sweep can call
+# a post published before it has gone anywhere. Found on the first real row.
+LOCAL_TZ = ZoneInfo("America/Toronto")
+HAS_ZONE = re.compile(r"(?:Z|[+-]\d{2}:?\d{2})$")
 
 
-def parse_dt(value):
-    """Accept a bare local timestamp, an offset-bearing one, or a date.
+def parse_dt(value, tz=LOCAL_TZ):
+    """Return the local wall-clock time as a naive datetime, or None.
 
-    Returns a naive datetime (local wall-clock) or None. Naive is deliberate: every
-    time in this pipeline is America/Toronto by convention, Metricool sends the zone
-    as a separate field, and mixing naive and aware datetimes raises at comparison
-    time -- in a sweep that would fail exactly when a row needed judging.
+    Naive-local is the pipeline's internal currency: the repo's convention is
+    America/Toronto throughout, Metricool sends the zone separately, and mixing naive
+    and aware datetimes raises at comparison time -- in a sweep that would blow up
+    exactly when a row needed judging. So anything aware is converted to `tz` first
+    and then flattened; anything already naive is taken as local.
     """
     if not value:
         return None
-    text = OFFSET.sub("", str(value).strip())
-    for fmt in (FMT, "%Y-%m-%dT%H:%M", "%Y-%m-%d"):
+    text = str(value).strip()
+
+    if HAS_ZONE.search(text):
+        try:
+            aware = datetime.fromisoformat(text.replace("Z", "+00:00"))
+        except ValueError:
+            return None
+        return aware.astimezone(tz).replace(tzinfo=None)
+
+    for fmt in (FMT, "%Y-%m-%dT%H:%M:%S.%f", "%Y-%m-%dT%H:%M", "%Y-%m-%d"):
         try:
             return datetime.strptime(text, fmt)
         except ValueError:
