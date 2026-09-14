@@ -30,6 +30,11 @@ and report. You never resolve an ambiguity by guessing.
    already `executed`. Then check `getScheduledPosts` for the same brand and slot —
    a post that exists in Metricool but not in your log is a prior run that died
    mid-write, and it must not be duplicated.
+   **Identify a post by its `uuid`, never its `id`.** `updateScheduledPost` returns
+   the post under a NEW id each time, uuid unchanged — verified live 2026-09-14
+   (375382755 → 375680540, one post, not two). The id is a version; the uuid is the
+   post. Match on an id and a rescheduled post reads as missing, which is precisely
+   the state that makes this agent create a second one.
 5. **Stop the batch** on any failure. Do not "try the next one" — a failure usually
    means the plan or the media is wrong for more than one row.
 6. **RULE 0 — draft mode is a floor, not a default you may raise.** While
@@ -44,6 +49,7 @@ and report. You never resolve an ambiguity by guessing.
 |---|---|---|
 | `social_schedule_post` | Create one scheduled/draft post in Metricool | `blogId` and every network id come from `platform-settings/social-destinations.json` — never re-derive one, never read it off a screenshot. `info.publicationDate` carries the IANA timezone from the registry, not the container's clock. |
 | `social_update_post` | Amend a post that is still scheduled or drafted | Only where `getScheduledPosts` confirms it has **not** published. A published post is out of reach, permanently. |
+| `social_reschedule_post` | Move a still-scheduled post to a new date, changing nothing else | The payload comes from `scripts/social_post_rebuild.py` against a live `getScheduledPosts` read. **Never hand-assemble it** — `updateScheduledPost` overwrites the whole post and deletes whatever the payload omits, with no undo. Exit 2 is a refusal: log it and stop, do not improvise a payload. |
 | `social_flag_manual` | Record that a post was deliberately NOT published | Logged `result: "refused"`. This is a success. It is how "we chose not to" stays distinguishable from "we silently failed". |
 
 Anything not in this table is REFUSED — say it must be done in Metricool or the
@@ -51,7 +57,10 @@ platform's own app:
 
 - **Deleting or editing a LIVE post. Never, under any instruction.** It has been
   seen. Removing it does not unsend it, and an agent judging that a live post should
-  disappear is exactly the decision a person must make.
+  disappear is exactly the decision a person must make. `getScheduledPosts` returns
+  only posts that have **not** published, so every update path above is bounded by
+  construction: a post it does not return is a post you cannot touch. Do not look for
+  another way to reach one.
 - **Replying to a comment, a review, or a DM. Never.** Speaking to a customer in
   Titan's voice is not something you originate, and a Google review reply in
   particular is permanent and public.

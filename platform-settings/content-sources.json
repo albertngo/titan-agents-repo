@@ -102,6 +102,7 @@
         "Link to Files",
         "Post Status",
         "Metricool Post ID",
+        "Metricool UUID",
         "Live URL"
       ],
       "destination_property": "Post To",
@@ -111,18 +112,23 @@
       "write_properties": [
         "Post Status",
         "Metricool Post ID",
+        "Metricool UUID",
         "Live URL"
       ],
-      "_write_comment": "The only three properties this pipeline may write, and it writes them HERE, never on the idea. Post Date, Post To, Content Series and Content Name are the plan -- the pipeline reports against them and never edits them.",
-      "idempotency_key": "Metricool Post ID",
+      "_write_comment": "The only four properties this pipeline may write, and it writes them HERE, never on the idea. Post Date, Post To, Content Series and Content Name are the plan -- the pipeline reports against them and never edits them.",
+      "idempotency_key": "Metricool UUID",
       "_idempotency_comment": "Set on this row once the post exists in Metricool. A re-fire with this field set, confirmed by getScheduledPosts, stops before anything touches Drive or Metricool.",
+      "_why_uuid_and_not_post_id": "CHANGED 2026-09-14 after a live test. updateScheduledPost does NOT update in place: it returns the post under a NEW id with the uuid unchanged and a fresh creationDate. Verified -- post 375382755 came back as 375680540, uuid -5728278742307617912 both times, and a follow-up getScheduledPosts showed ONE post, not two. So Metricool's `id` identifies a VERSION and `uuid` identifies the POST. Keying idempotency on the id would break the first time a post is rescheduled: the stored id matches nothing, the row reads as never-scheduled, and a re-fire schedules it a second time. That failure is silent and it double-posts -- the one outcome this pipeline exists to prevent. Metricool Post ID is still written, for the planner deep link and the audit trail, but nothing keys on it.",
+      "metricool_uuid_property": "Metricool UUID",
+      "_metricool_uuid_added": "2026-09-14, rich text. Added live to the Calendar Log; no existing row carried a value.",
       "trigger": {
       "_question": "Albert, 2026-09-14: 'Should I make the actual publishing on the log side? When the idea is ready to post a version of it goes to log. and then from log I can fiddle around with dates, and other things.'",
       "_answer": "Yes -- publish from the log. The idea is the plan, the log row is the post: it is the only object that maps one-to-one onto a Metricool id, and it already carries Post Date, Post To and the Post Status vocabulary. Nothing about publishing belongs on the idea.",
       "fires_on": "Post Status -> Queued",
       "_fires_on_comment": "NOT on row creation. Albert explicitly wants to fiddle with dates after the row lands, and creation-triggered scheduling would put a post in Metricool before the date is settled -- every subsequent edit then needs an updateScheduledPost round-trip to stay in sync, and any edit made while that round-trip is in flight silently disagrees with the live post. An explicit Queued is a person saying 'this one is final', which is the same gate the rest of the repo uses: ingest -> decide -> act. Queued already exists in both databases' Post Status; nothing new is needed.",
       "state_machine": "(blank, editable) -> Queued (Albert, final) -> Scheduled (pipeline wrote it, id in Metricool Post ID) -> Posted | Failed | Manual Required",
-      "_after_scheduled": "Once a row is Scheduled it holds a Metricool Post ID and the idempotency check stops a re-fire. Changing Post Date after that is NOT a re-schedule -- it needs updateScheduledPost against the stored id. Out of scope today: /content-schedule only creates. Until it does, a date change after Queued means cancelling in Metricool by hand.",
+      "_after_scheduled": "Once a row is Scheduled it holds a Metricool UUID and the idempotency check stops a re-fire. Changing Post Date after that is NOT a re-schedule -- it is an updateScheduledPost against the stored uuid, which /content-schedule now supports as `--reschedule` (see .claude/commands/content-schedule.md, step R). Nothing fires it automatically yet: the date-edit webhook is designed but NOT wired up, so today a date change after Queued still needs the command run by hand.",
+      "_reschedule_is_a_full_overwrite": "updateScheduledPost takes no partial payload -- its contract requires 'the full original content ... modifying only the new information'. Omitted fields are wiped from a post that is already scheduled, with no confirmation and no undo. The full original content is read back from getScheduledPosts rather than from any copy this repo keeps, and scripts/social_post_rebuild.py does the rebuild. See that script's docstring for why reading it live beats storing a payload -- chiefly that `media` comes back rewritten to static.metricool.com, so a reschedule never re-fetches from Drive and keeps working after the Drive asset is unshared or deleted.",
       "_publish_content_button": "The 'Publish Content' button on Titan Content Ideas creates the log row. Its Notion description currently reads 'This means the post has been Scheduled, and Logs to the posting history', which overstates what it does under this design -- it logs an intent, it does not schedule. Worth rewording; not changed here, because the button is Albert's."
     },
     "_no_story_destination_yet": "Post To has no Story option, so the Plain/Decorated Story handling in social-destinations.json story_surfaces is unreachable from this path. Story Variant still lives on the idea and is currently unused by the posting pipeline. Add a Story destination here before expecting stories to post."

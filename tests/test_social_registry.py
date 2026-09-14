@@ -153,8 +153,19 @@ class SocialRegistryCase(unittest.TestCase):
         """actions-log-schema.md's table is closed. An agent writing a type that is
         not in it produces a log entry nothing downstream can classify."""
         schema = ACTIONS_LOG_SCHEMA.read_text()
-        for t in ("social_schedule_post", "social_update_post", "social_flag_manual"):
+        for t in ("social_schedule_post", "social_update_post", "social_reschedule_post",
+                  "social_flag_manual"):
             self.assertIn(t, schema, f"{t} missing from the actions-log vocabulary")
+
+    def test_idempotency_keys_on_the_uuid_not_the_post_id(self):
+        """Verified live 2026-09-14: updateScheduledPost returns the post under a NEW
+        id with the uuid unchanged (375382755 -> 375680540, one post, not two). The id
+        is a version; the uuid is the post. A gate keyed on the id passes silently the
+        first time a post is rescheduled — and the row gets posted twice."""
+        log = self.src["sources"]["content_calendar_log"]
+        self.assertEqual(log["idempotency_key"], "Metricool UUID")
+        self.assertIn("Metricool UUID", log["write_properties"])
+        self.assertIn("Metricool UUID", log["select_columns"])
 
     def test_agent_refuses_live_post_edits_and_replies(self):
         """The two refusals that matter most, pinned so a later edit cannot quietly

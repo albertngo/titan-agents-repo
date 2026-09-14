@@ -52,7 +52,7 @@ Each value belongs to exactly one agent's allowed-actions table.
 | `notion_create_task`, `notion_update_task`, `notion_create_page` | `.claude/commands/notion-sync.md`, `project-status-meeting-processor` |
 | `lightspeed_create_product`, `lightspeed_update_product` | `lightspeed-actions-agent` |
 | `airtable_upsert_product`, `airtable_backfill_ls_id`, `airtable_create_price_history` | `airtable-actions-agent` |
-| `social_schedule_post`, `social_update_post`, `social_flag_manual` | `social-actions-agent` |
+| `social_schedule_post`, `social_update_post`, `social_reschedule_post`, `social_flag_manual` | `social-actions-agent` |
 
 There is deliberately **no delete or deactivate value for any platform**. Removing a
 product from the POS or a record from the catalogue is a person's decision made in

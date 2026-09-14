@@ -55,12 +55,19 @@ If `Post Status` is blank or anything other than `Queued`, **stop** — the row 
 being edited and nobody has declared it final. Say which status you found. (An
 explicitly re-run `Failed` row is the one exception: say so and proceed.)
 
-If `Post Status` is already `Posted`, or `Metricool Post ID` is set and
+If `Post Status` is already `Posted`, or `Metricool UUID` is set and
 `getScheduledPosts` confirms that post exists — **stop, report, change nothing.**
 This is the idempotency gate and it runs before anything else touches Drive. It is
 per-row, which is the point of keying on the Calendar Log: the same idea posting to a
-second platform is a different row with its own id, and must not be mistaken for a
+second platform is a different row with its own post, and must not be mistaken for a
 repeat.
+
+**Key on `Metricool UUID`, never `Metricool Post ID`.** `updateScheduledPost` returns
+the post under a **new id** each time — verified live 2026-09-14, uuid unchanged, one
+post not two. So the id identifies a version and the uuid identifies the post. A gate
+keyed on the id passes silently the first time a post is rescheduled, and the row gets
+scheduled twice. The id is still stored, for the audit trail and the planner link, but
+nothing decides anything on it.
 
 ### 2 — Resolve the media
 
@@ -116,13 +123,69 @@ stops the batch on the first failure.
 
 ### 6 — Write back
 
-Update the **Calendar Log row**, never the idea: `Post Status`, `Metricool Post ID`,
-and `Live URL` once known. Those three are the whole write surface — `Post Date`,
-`Post To`, `Content Series` and `Content Name` are the plan, and editing them would be
-deciding what to post. If the row was held, set `Post Status` to `Manual Required` and
-say why in the report.
+Update the **Calendar Log row**, never the idea: `Post Status`, `Metricool UUID`,
+`Metricool Post ID`, and `Live URL` once known. Those four are the whole write
+surface — `Post Date`, `Post To`, `Content Series` and `Content Name` are the plan,
+and editing them would be deciding what to post. If the row was held, set
+`Post Status` to `Manual Required` and say why in the report.
+
+Write the uuid **first**. If the run dies between the Metricool write and the Notion
+write, the uuid is what stops the next run double-posting; the id is only ever
+diagnostic.
 
 Then push a notification naming the counts: scheduled, held, failed.
+
+## Step R — reschedule an already-scheduled post
+
+`/content-schedule <logID> --reschedule` moves a post that is already in Metricool to
+the row's current `Post Date`. It changes the date and nothing else.
+
+Use it when a row is `Scheduled` and the date has since changed. It is **not** a
+re-run of the schedule path: that path would create a second post.
+
+1. **Read the row.** It must be `Scheduled` and carry a `Metricool UUID`. Anything
+   else — blank uuid, `Posted`, `Failed` — is a hold, not a reschedule. A `Posted` row
+   has nothing left to move.
+2. **Read the live post.** `getScheduledPosts` over a window wide enough to contain
+   both the old and the new date. It returns only posts that are still pending, so a
+   post that is missing has published (or was deleted in the planner) — hold and say
+   which.
+3. **Rebuild the payload.**
+
+   ```
+   <getScheduledPosts json> | python3 scripts/social_post_rebuild.py \
+       --post-uuid '<Metricool UUID>' --post-id '<Metricool Post ID>' \
+       --new-date '<Post Date, local, no offset>' --timezone America/Toronto \
+       --require-draft        # while write_mode.mode is draft
+   ```
+
+   **Never hand-assemble this payload.** `updateScheduledPost` overwrites the entire
+   post; whatever the payload omits is deleted, immediately, with no undo. The script
+   exists because the live response cannot be echoed back verbatim either — it carries
+   `networkData` for networks the post does not target (the live Facebook-only draft
+   returns `twitterData` and `instagramData`), and `providers` decorated with delivery
+   status the write must not assert.
+
+   **Exit 2 is a refusal** — same rule as the media selector: pass it through as a
+   hold, verbatim. Exit 0 with `"noop": true` means the date already matches; emit no
+   action and report that nothing needed doing.
+
+4. **Plan and approve** as `social_reschedule_post`, per the contract. Policy may
+   clear it; a refusal never is.
+5. **Execute** via `social-actions-agent`, logged as `social_reschedule_post` with the
+   previous date in the entry — the log is the only place the old date survives.
+6. **Write back the NEW `Metricool Post ID`** the update returned, keeping
+   `Metricool UUID` as it was. Skipping this leaves a stale id on the row; it breaks
+   nothing that decides anything, but it makes the audit trail point at a version that
+   no longer exists.
+
+### Not wired to anything yet
+
+A Notion webhook on `Post Date` could fire this automatically. It is **designed, not
+built** — deliberately, until the path has run by hand a few times. When it is built
+it needs: a guard so it fires only on `Post Status = Scheduled` with a `Metricool UUID`
+set, debouncing (dragging a row in calendar view fires an edit per drop), and handling
+for the race where the post publishes between the edit and the webhook landing.
 
 ## Dry run
 

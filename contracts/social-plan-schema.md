@@ -118,6 +118,68 @@ key is omitted entirely** — not set to `null`, not set to an empty string. The
 must be able to tell "no cover" from "a cover I failed to resolve", because sending
 the latter rejects the whole post.
 
+## Reschedule action
+
+A second action type, `social_reschedule_post`, moves a post that is **already
+scheduled and not yet published** to a new date. Nothing else about the post changes.
+
+```json
+{
+  "id": "7b21d0af",
+  "type": "social_reschedule_post",
+  "surface": "Facebook Page",
+  "metricool_uuid": "-5728278742307617912",
+  "metricool_post_id": "375382755",
+  "from": { "dateTime": "2026-12-31T10:00:00", "timezone": "America/Toronto" },
+  "scheduled_at": { "dateTime": "2026-12-24T09:00:00", "timezone": "America/Toronto" },
+  "notion_page_url": "https://www.notion.so/…"
+}
+```
+
+`id` is a stable hash of `metricool_uuid + scheduled_at` — the same move re-planned
+gets the same id, so a retry cannot apply it twice.
+
+**`metricool_uuid` is the key, not `metricool_post_id`.** Verified live 2026-09-14:
+`updateScheduledPost` returns the post under a **new id** with the uuid unchanged, and
+a follow-up read shows one post rather than two. The id identifies a version; the uuid
+identifies the post. `metricool_post_id` is carried for the audit trail and the planner
+deep link, and the agent writes the **new** id back to Notion after each update.
+
+The payload is **never** hand-assembled and never taken from a stored copy. It is
+`scripts/social_post_rebuild.py` applied to a live `getScheduledPosts` response —
+`updateScheduledPost` overwrites the whole post, so anything the payload omits is
+deleted from a post that is already scheduled. The script's refusals are part of this
+contract:
+
+| Refusal | Meaning |
+|---|---|
+| `post_not_found` | Already published, deleted, or outside the queried window. A published post cannot be moved — there is nothing left to reschedule. |
+| `not_a_draft` | `write_mode.mode` is `draft` but the live post is not one. It was created outside this pipeline; find out by whom before editing it. |
+| `date_in_past` | Metricool would publish it immediately or reject it. Neither is what moving a post means. |
+| `no_providers` / `malformed_providers` / `unknown_network` | The live post cannot be rebuilt faithfully. Refusing beats sending a post whose networks we guessed. |
+| `missing_uuid` | Not updatable through the API at all; only in the planner UI. |
+
+A `date_unchanged` result is a **no-op, not an action** — see "An action only exists
+if it changes something" below.
+
+### Policy auto-approval for a reschedule
+
+A reschedule clears policy when **all** of:
+
+- the script returned a payload (any refusal is a hold, verbatim);
+- the live post is still a draft while `write_mode.mode` is `draft`;
+- only `publicationDate` differs from the live post;
+- the new date is in the future.
+
+It is deliberately cleared more readily than a first schedule: moving a draft nobody
+has seen is a smaller act than publishing one. The brake that matters — a post
+reaching a feed — is unchanged, because `draft` and `autoPublish` are echoed from the
+live post and this path can never raise either.
+
+**Warnings are not holds, but they are never silent.** `unrecognised field(s) in the
+live post` means Metricool has added something the script does not carry, and the
+reschedule would drop it. Report it and add it to `CARRY_FIELDS`.
+
 ## `held`
 
 Same shape as an action, minus `id`, plus:

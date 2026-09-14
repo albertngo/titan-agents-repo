@@ -35,7 +35,7 @@ No ingester reads another ingester's raw platform data.
 | `ghl-actions-agent` | GoHighLevel (write: replies, stages, tags) | appends to `actions-log.json` |
 | `lightspeed-actions-agent` | Lightspeed Retail X-Series (write: product create/update ONLY) | appends to `actions-log.json` |
 | `airtable-actions-agent` | Airtable catalogue (write: upsert, LS-ID backfill, price history) | appends to `actions-log.json` |
-| `social-actions-agent` | Metricool (write: schedule posts only — never edits or deletes a live post, never replies) | appends to `actions-log.json` |
+| `social-actions-agent` | Metricool (write: schedule posts, and move a still-scheduled one to a new date — never edits or deletes a LIVE post, never replies) | appends to `actions-log.json` |
 | `vault-writer-agent` | titan-vault Obsidian repo (write) | vault notes per its CONVENTIONS.md — runs automatically in `/daily-ingest`, bound to its whitelist. See Vault writes. |
 
 `.claude/commands/notion-sync.md` runs automatically at the end of `/daily-ingest` too,
