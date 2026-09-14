@@ -80,7 +80,15 @@
         "Decorated Story"
       ],
       "surface_values": "see destination_vocabulary.names -- one list, four consumers. Do not copy it here again.",
-      "_never_write": "Never write Status, Next: Post To, Caption, Post Date or Link to Files. Those are the plan; the pipeline reports against them and does not edit them. An agent that 'corrects' Next: Post To has decided what to post, which is the one thing it must never do."
+      "_never_write": "Never write Status, Next: Post To, Caption, Post Date or Link to Files. Those are the plan; the pipeline reports against them and does not edit them. An agent that 'corrects' Next: Post To has decided what to post, which is the one thing it must never do.",
+      "page_template": {
+        "url": "https://app.notion.com/p/3db596a4505f81dcad13e36eec8c21cf",
+        "name": "Content Item Template v2 — shared core + platform tails",
+        "parent": "Content Creation (not the Ideas database)",
+        "_shape": "CORE written once (big idea, hook options, beat structure, SHARED CAPTION CORE, shoot prep, shot list), then one section per platform mapping directly onto Content Calendar Log columns, then a table of what travels between platforms and what does not.",
+        "_why_the_core_caption_carries_no_hashtags_or_link_in_bio": "Those are the two things that provably do not travel. 'Link in bio' is Instagram/TikTok idiom and is a dead instruction on Facebook, YouTube and a Google listing, where a real URL is possible. A hashtag block is native on Instagram, renders three deep on YouTube and reads as spam on a business listing -- and pushes a caption toward GBP's 1500-character cap, which can make that row unpostable. Keeping them out of the core is what makes the core inheritable.",
+        "_not_a_notion_template_yet": "Notion cannot create DATABASE TEMPLATES through the API, so this is a source page, not a template. Promote it by hand: Titan Content Ideas -> New ▾ -> New template, then paste the body. Left outside the Ideas database deliberately -- a template row living in the database would show up in views and read as a real idea."
+      }
     },
     "content_calendar_log": {
       "_comment": "THE POSTING UNIT. One row per platform per content item -- this is the fan-out record, not a duplicate of the idea. Albert's 'Publish Content' button on a Titan Content Ideas row creates a row here; that creation is what starts the posting pipeline.",
@@ -196,8 +204,14 @@
         "calendar": {
           "url": "view://3db596a4-505f-812d-9730-000c7e2c5c68",
           "purpose": "Post Date calendar. NOTE: dragging a row here fires a Post Date edit per drop, which is exactly what the date-edit webhook would need to debounce."
-        }
-      }
+        },
+        "all_fields": {
+          "url": "view://3db596a4-505f-81d1-abe9-000c9ddc33a0",
+          "purpose": "Every editable field in one place, ordered CORE (name, surface, date, status, readiness) -> CROSSOVER (caption override, first comment, alt text, video title, AI disclosure) -> PLATFORM-SPECIFIC (GBP type, YouTube tags/category/privacy, collaborators, branded content) -> PIPELINE OUTPUT (uuid, id, live url, posted caption, posted at). That grouping is the 'template layout' -- crossover fields first, platform tails after, machine-written fields last."
+        },
+        "_caption_rollup_not_addable": "The Caption ROLLUP cannot be added to a view through the API -- SHOW \"Caption\" returns 'Could not find property with name or id'. Formula properties (Ready To Queue) work fine; rollups do not. Add that column by hand in the Notion UI if a view needs it."
+      },
+      "_property_order_is_not_api_settable": "The DDL supports ADD/DROP/RENAME/ALTER COLUMN but not MOVE, so the database's canonical property order -- which is what an opened ROW shows -- cannot be set from here. Columns land in creation order. The '🗂 All Fields' view carries the intended grouping instead; matching the row layout to it is a one-time drag in the Notion UI, using that view's column order as the target."
     }
   },
   "drive": {
