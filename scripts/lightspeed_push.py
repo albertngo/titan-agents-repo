@@ -289,7 +289,34 @@ def main():
 
     try:
         for a in sorted(updates, key=lambda a: a["seq"]):
-            writer.update_variant(a["ls_id"], details=a["fields"])
+            # ls_update_fields() (catalog_reconcile.py) emits a semantic
+            # `supply_price` -- what Titan pays -- not a literal API field name.
+            # Verified live 2026-09-14 against x-series-api.lightspeedhq.com/
+            # reference/updateproduct: PUT /api/2.1/products/{id} has no
+            # supply_price or cost field in `details` at all; cost is set via
+            # `details.product_suppliers[].price`, keyed by supplier_id. (The
+            # 2.0 POST create endpoint genuinely does take supply_price at the
+            # top level -- confirmed live during HOMESPRO -- so this is a real
+            # difference between the two endpoints, not a copy-paste mismatch.)
+            # IMPRESSIVE (2026-09-14) was the first supplier with any update
+            # action ever executed against the live API; every prior run
+            # (HOMESPRO, and this same file's own dry-run) only exercised
+            # creates, so a 422 on this exact shape had no chance to surface
+            # before now.
+            details = dict(a["fields"])
+            if "supply_price" in details:
+                cost = details.pop("supply_price")
+                supplier_name = (a.get("before") or {}).get("supplier_name")
+                if not supplier_name:
+                    raise LightspeedError(
+                        f"{a['sku']} ({a['ls_id']}): update carries a supply_price "
+                        "but the plan's `before` snapshot has no supplier_name to "
+                        "resolve a supplier_id against -- cost cannot be written "
+                        "without one, and guessing which supplier owns it is worse "
+                        "than stopping.")
+                supplier_id = lookups.resolve("supplier", supplier_name)
+                details["product_suppliers"] = [{"supplier_id": supplier_id, "price": cost}]
+            writer.update_variant(a["ls_id"], details=details)
             if not args.dry_run:
                 log.append(a["id"], "lightspeed_update_product",
                            f"{a['sku']} ({a['ls_id']})",

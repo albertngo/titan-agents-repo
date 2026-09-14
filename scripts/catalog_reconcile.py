@@ -248,15 +248,30 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
             block(sku, "uuid_collision", detail, rows=collided[uuid])
             continue
 
+        # A row's Lightspeed identity is normally its Airtable SKU: that's what a
+        # CREATE writes into Lightspeed's own `sku` field (ls_create_fields), so
+        # for anything this pipeline minted, LS sku == Airtable SKU. IMPRESSIVE
+        # (2026-09-14) exposed the case that invariant does not cover: RULE 0a's
+        # "third state" (new to Airtable, already live in Lightspeed) where the
+        # live product predates this pipeline and Lightspeed's own sku field is
+        # still the supplier's raw code — the exact value /process-price-list
+        # matched against and recorded in `Supplier SKU`, never the Airtable SKU.
+        # Accept either as valid identity; this stays an exact-match check (no
+        # fuzzy join is reintroduced), so it does not touch what the Grandeur
+        # regression guards against — a UUID that belongs to a genuinely
+        # different product, under either identifier.
+        supplier_sku = clean(row.get("Supplier SKU"))
+        sku_candidates = {sku} | ({supplier_sku} if supplier_sku else set())
+
         ls_by_id = ls["by_id"].get(uuid) if uuid else None
-        ls_by_sku = ls["by_sku"].get(sku)
+        ls_by_sku = ls["by_sku"].get(sku) or (ls["by_sku"].get(supplier_sku) if supplier_sku else None)
 
         if uuid and ls_by_id is None:
             block(sku, "uuid_not_in_lightspeed",
                   f"row carries {uuid}, which Lightspeed does not hold")
             continue
 
-        if uuid and clean(ls_by_id.get("sku")) != sku:
+        if uuid and clean(ls_by_id.get("sku")) not in sku_candidates:
             block(sku, "uuid_belongs_to_other_sku",
                   f"{uuid} belongs to {clean(ls_by_id.get('sku'))} "
                   f"({clean(ls_by_id.get('name')) or ''}) — writing it would overwrite that product")
@@ -282,11 +297,21 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
         # Enforced always, including variant groups (Albert, 2026-09-10). The rule
         # was already written in ls-upload-instructions; nothing checked it, and
         # ENG-VIDR-0038 sat in Lightspeed for months with no sf/b in its name.
-        sfb_problem = sfb_not_exposed(row, ls_upload.get(sku),
-                                      group_boxes.get(handle) if handle else None)
-        if sfb_problem:
-            block(sku, "sfb_not_exposed", sfb_problem)
-            continue
+        #
+        # Only on a CREATE (uuid still blank here): an UPDATE never writes `name`
+        # (ls_update_fields — "prices, and nothing else"), so the skill-built
+        # ls_upload row's name is never sent for a matched product and checking
+        # it proves nothing about what a person sees at the POS. IMPRESSIVE
+        # (2026-09-14) was the first supplier with matched/update rows to reach
+        # this check and it blocked 187 of 220 on that never-sent placeholder
+        # name — every existing test for this function uses a blank Lightspeed
+        # ID (create), so this gap had no coverage either.
+        if not uuid:
+            sfb_problem = sfb_not_exposed(row, ls_upload.get(sku),
+                                          group_boxes.get(handle) if handle else None)
+            if sfb_problem:
+                block(sku, "sfb_not_exposed", sfb_problem)
+                continue
 
         category = clean(row.get("Category"))
         if category and not category_resolves(category, categories):

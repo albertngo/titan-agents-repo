@@ -106,6 +106,8 @@ warning that is SKU-scoped.
 | `sfb_not_exposed` | The row's `Box size (sf)` would be unreadable in Lightspeed |
 | `ls_payload_unavailable` | New to Lightspeed with no skill-built LS upload row to create it from |
 | `category_unresolved` | Carried over from the plan's `warnings`. Always `wrote_flagged` — a warning never withheld a write, before this file existed or after |
+| `brand_missing` | The row's Lightspeed `create` needs a Brand with no live entity. Brand creation is a person's decision, never automated (Albert, 2026-09-13, after a duplicate "Home's Pro" supplier was created without checking first) — `lightspeed_push.py` refuses rather than mint one. Added 2026-09-14 (IMPRESSIVE), the first supplier to reach a Lightspeed create whose brand had no live match |
+| `supplier_option_missing` | The row's Airtable write names a `Supplier` value with no live select-option match. `airtable-actions-agent` refuses rather than silently mint one — see "Creating a select option" in bert-airtable-schema. Added 2026-09-14 (IMPRESSIVE), the first supplier whose Airtable side reached execution before its Supplier value was confirmed |
 
 `airtable_side_not_planned` is deliberately **not** here. It is plan-level, not
 SKU-level — it means the plan contains no Airtable actions at all — so it belongs in
