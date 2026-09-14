@@ -123,6 +123,23 @@ class ContentFolderRegistryTest(unittest.TestCase):
         status = self.scenario["_status"].lower()
         self.assertIn("never fired", status)
 
+    def test_datastore_key_is_the_notion_page_id(self):
+        """Keyed on TC-<n> instead, nesting silently dies.
+
+        Notion's Parent item relation returns page ids, so a child can only ever
+        look its parent up by page id. This has been hand-changed three times; the
+        reasoning is pinned in the registry so it survives the next edit.
+        """
+        self.assertEqual(self.datastore["key"], "notion_page_id")
+        self.assertIn("_why_the_key_cannot_be_TC_n", self.datastore)
+
+    def test_label_field_exists_so_the_key_does_not_have_to_be_readable(self):
+        """The readable-label escape hatch. Without it the pressure lands on the
+        key, which is the one field that cannot absorb it."""
+        fields = self.datastore["fields"]
+        self.assertIn("label", fields)
+        self.assertIn("contentID", fields)
+
 
 if __name__ == "__main__":
     unittest.main()

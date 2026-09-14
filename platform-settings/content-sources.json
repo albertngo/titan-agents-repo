@@ -217,7 +217,14 @@
       "root_sentinel_value": "1l6jmDaRNIyUvnypcVFylS5caBFnNCgUl",
       "_root_sentinel_comment": "LOAD-BEARING DATA, not test junk -- do not delete it, and re-seed it after any 'delete all records'. This one record is the recursion's base case: a row with no parent looks up '__ROOT__' and the datastore answers with the Drive root folder id, exactly like any other parent lookup. Without it, 'has a parent' and 'has no parent' become two router branches, and because a Make filter stops everything downstream, EACH branch would need its own copy of the whole build chain -- the 28-module unrolling that made the predecessor undebuggable. It also keeps the root folder id out of the blueprint entirely. root_sentinel_value MUST equal drive.root_folder_id; if they drift, every folder is created in the wrong place and nothing errors.",
       "_sentinel_cannot_collide": "'__ROOT__' is not a valid Notion page id (those are 8-4-4-4-12 hex UUIDs), so the sentinel can never be mistaken for a real row.",
-      "_ordering_invariant": "AddRecord runs IMMEDIATELY after the content-folder create, before the scaffold. If a scaffold create fails later, the folder exists AND the record exists, so a re-fire is a no-op. Recording after the scaffold would leave a folder with no record, and the next fire would build a duplicate."
+      "_ordering_invariant": "AddRecord runs IMMEDIATELY after the content-folder create, before the scaffold. If a scaffold create fails later, the folder exists AND the record exists, so a re-fire is a no-op. Recording after the scaffold would leave a folder with no record, and the next fire would build a duplicate.",
+      "datastructure_id": 283786,
+      "fields": {
+        "contentID": "Drive folder ID of this row's content folder",
+        "label": "human-readable TC-<n>_<name>; nothing reads it"
+      },
+      "_label_field_comment": "Added 2026-09-14. The key is a Notion page id, which is unreadable at a glance, and that unreadability led to the key being hand-changed to TC-<n> three times -- each time silently disabling nesting. `label` gives the record a legible name WITHOUT touching the key. It is written from the created folder's own name ({{8.name}}) and read by nobody.",
+      "_why_the_key_cannot_be_TC_n": "Notion's `Parent item` relation returns PAGE IDS. A child has no way to learn its parent's TC-<n> without a second Notion fetch, so a datastore keyed on TC-<n> can never be found by the child that needs it. The failure is silent and specific: parentless rows still build at the root and the duplicate guard still works -- only nested rows break, burning max_attempts passes each and ending with no folder and no error. Verified live 2026-09-13: TC-152 correctly resolved its parent to page id 35b596a4-..., missed a datastore holding 'TC-59', and re-queued itself."
     },
     "share": {
       "folder": "03_FINAL",

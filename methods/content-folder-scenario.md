@@ -84,6 +84,33 @@ collapses the bundle stream and makes `03_FINAL`'s id unreachable for the share 
 **The scaffold is one array, not canvas structure.** Adding `05_CAPTIONS` is one string in
 `content-sources.json`.
 
+## The datastore key is a Notion page id. It cannot be TC-<n>.
+
+This has been hand-changed to `TC-<n>` three times, and each time it silently disabled nesting,
+so the reasoning is recorded here rather than left to be re-derived.
+
+Notion's `Parent item` relation returns **page ids**. A child therefore knows its parent's page
+id and nothing else -- learning the parent's `TC-<n>` would need a second Notion fetch per level.
+A datastore keyed on `TC-<n>` can never be found by the child that needs it.
+
+`contentID` has the same constraint from the other direction: it is passed straight into *Create
+a Folder* as `folderId`, so it must be a Drive folder id. A row title there is not a folder.
+
+**The failure is silent and oddly partial**, which is why it survives a casual test:
+
+| | With TC-<n> keys |
+|---|---|
+| Row with no parent | still builds, at the root -- resolves the `__ROOT__` sentinel |
+| Re-firing a built row | still correctly skipped -- the exist-check and the write agree with each other |
+| Row **with** a parent | never gets a folder. Burns `max_attempts` re-queues and stops. No error. |
+
+Verified live 2026-09-13: TC-152 resolved its parent correctly to page id `35b596a4-...`, missed a
+datastore holding `TC-59`, and re-queued itself -- exactly as predicted.
+
+**If the motive is readability** -- and a bare UUID genuinely is unreadable in the datastore UI --
+the answer is the `label` field on datastructure 283786, written from the created folder's own
+name. Legible record, working lookup, nothing reads it.
+
 ## Two invariants a future editor will otherwise re-learn the hard way
 
 **The Status gate is entry-only.** `Planning`/`Filming` filters calls arriving *from Notion*. A
