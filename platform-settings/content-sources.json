@@ -4,18 +4,18 @@
   "config_version": "1",
   "destination_vocabulary": {
     "_comment": "ONE list of destination names, shared by four places: Titan Content Ideas 'Next: Post To', Content Calendar Log 'Post To', the surface keys in social-destinations.json, and the lookup /content-schedule does between them. All four now carry these exact seven strings (aligned 2026-09-14, Albert: 'make all options available and match in wording'). Metricool imposes nothing here -- its own network ids are lowercase (facebook, instagram, youtube, tiktok, gmb, linkedin) and social-destinations.json maps each name onto one.",
-    "_why_exact_match_matters": "The lookup is an exact string key. A mismatch is a silent miss -- the row resolves to no surface and is skipped or held, with no error anywhere to notice. That is exactly what happened on 2026-09-14: four of seven names differed only in capitalisation (YouTube/Youtube, LinkedIn/Linkedin) or wording (Google My Business/Google Business Profile).",
+    "_why_exact_match_matters": "The lookup is an exact string key. A mismatch is a silent miss -- the row resolves to no surface and is skipped or held, with no error anywhere to notice. That is exactly what happened on 2026-09-14: four of seven names differed only in capitalisation (the databases disagreed on the 'T' in YouTube and the 'I' in LinkedIn) or in wording (Google My Business vs Google Business Profile).",
     "names": [
       "Facebook Page",
       "Instagram Reels",
-      "Youtube - Shorts",
-      "Youtube - Long",
-      "Linkedin",
+      "YouTube - Shorts",
+      "YouTube - Long",
+      "LinkedIn",
       "TikTok",
       "Google Business Profile"
     ],
-    "_spelling_note": "'Youtube' and 'Linkedin' are not the brands' own capitalisation. The Content Calendar Log already carried them, that database is the posting unit, and a rename is cheap but a mismatch is silent -- so the log's spelling won and everything else was moved onto it. Rename all four places together or none.",
-    "_linkedin_is_not_postable": "Linkedin is a valid option in both databases but is NOT connected in Metricool (Albert declined the tier, 2026-09-12). social-destinations.json holds it disabled; a row selecting it is held as Manual Required rather than failing. The option stays visible on purpose -- the plan can record an intent the pipeline cannot execute.",
+    "_spelling_note": "These are the brands' own names. The first pass at this (earlier the same day) standardised on the Content Calendar Log's existing spelling, which rendered YouTube and LinkedIn with a lowercase second word; Albert asked for the correct spelling instead, so all four places moved together. That is the rule: rename all four together or none. A rename is cheap -- Notion select renames carry existing values, verified on the one log row holding this value -- but a partial rename is a silent miss.",
+    "_linkedin_is_not_postable": "LinkedIn is a valid option in both databases but is NOT connected in Metricool (Albert declined the tier, 2026-09-12). social-destinations.json holds it disabled; a row selecting it is held as Manual Required rather than failing. The option stays visible on purpose -- the plan can record an intent the pipeline cannot execute.",
     "_stories_are_not_destinations": "Story Variant on the idea selects a story variant OF a surface; there is no Story entry here and there must not be one. See social-destinations.json story_surfaces."
   },
   "sources": {
@@ -43,7 +43,7 @@
         "Sub-item",
         "Project"
       ],
-      "_schema_verified": "2026-09-14: 'Next: Post To' re-ALTERed onto destination_vocabulary.names (was 'Google My Business', 'YouTube - Shorts', 'YouTube - Long', 'LinkedIn'). Renames preserve values and the only option in use was Instagram Reels; 12 rows verified intact afterwards, 48 rows null. Earlier, 2026-09-12: 8 properties added live, TikTok added.",
+      "_schema_verified": "2026-09-14, twice. First ALTER moved 'Next: Post To' off 'Google My Business' and onto the log's spelling; the second moved BOTH databases onto destination_vocabulary.names as it stands now (Albert chose the brands' own capitalisation). Only Instagram Reels was in use here -- 12 rows, verified intact, 48 null. On the log, one row held the renamed YouTube long-form value and came through the rename carrying it, so Notion select renames do preserve values. Earlier, 2026-09-12: 8 properties added live, TikTok added.",
       "_next_post_to_is_the_plan_not_the_post": "'Next: Post To' says which surface the NEXT post for this idea targets. It is a planning hint on the idea; the authoritative per-post destination is 'Post To' on the Content Calendar Log row. Same vocabulary, different jobs -- do not read this one when scheduling.",
       "read_properties": [
         "Content Name",

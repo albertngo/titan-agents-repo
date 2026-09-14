@@ -172,17 +172,18 @@ class SocialRegistryCase(unittest.TestCase):
         string. A mismatch is a silent lookup miss -- no error, just a row that never
         posts.
 
-        Four were misaligned on 2026-09-14 (YouTube/Youtube, LinkedIn/Linkedin,
-        Google My Business/Google Business Profile) and nothing caught it, because
-        the old test only checked the registry against itself. These names are pinned
-        from the live Notion schema; if someone renames an option there, this fails.
+        Four were misaligned on 2026-09-14 -- the two databases disagreed on the "T"
+        in YouTube and the "I" in LinkedIn, and on Google My Business vs Google
+        Business Profile -- and nothing caught it, because the old test only checked
+        the registry against itself. These names are pinned from the live Notion
+        schema; if someone renames an option there, this fails.
         """
         notion_post_to = {
             "Facebook Page",
             "Instagram Reels",
-            "Youtube - Shorts",
-            "Youtube - Long",
-            "Linkedin",
+            "YouTube - Shorts",
+            "YouTube - Long",
+            "LinkedIn",
             "TikTok",
             "Google Business Profile",
         }
@@ -210,12 +211,12 @@ class SocialRegistryCase(unittest.TestCase):
         )
 
     def test_a_disabled_surface_stays_selectable(self):
-        """Linkedin is in the vocabulary (a human can plan a LinkedIn post) but is not
+        """LinkedIn is in the vocabulary (a human can plan a LinkedIn post) but is not
         connected in Metricool, so it must be present and disabled -- never dropped.
         Dropping it would make the option in Notion an unmatched string, which is the
         silent-miss failure this whole family of tests exists to prevent."""
-        self.assertIn("Linkedin", surfaces(self.dest))
-        self.assertFalse(surfaces(self.dest)["Linkedin"]["enabled"])
+        self.assertIn("LinkedIn", surfaces(self.dest))
+        self.assertFalse(surfaces(self.dest)["LinkedIn"]["enabled"])
         self.assertIsNone(self.dest["connected_networks"]["linkedin"])
 
 
