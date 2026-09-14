@@ -292,9 +292,12 @@ the two systems is therefore resolvable, and the sweep emits a `social_reschedul
 **proposal** — which still goes through the plan, approval file and actions log like any
 other platform write. It withholds the proposal when Notion's date is in the past or
 when either side fires imminently. Captions are the other way round: they may be edited
-in Metricool (better previews) and are read back afterwards, with `Caption Override` on
-a log row as the per-surface escape hatch, because "link in bio" and hashtag blocks do
-not travel between Instagram, YouTube and a Google listing.
+in Metricool (better previews) and are read back afterwards. `Caption` is a per-row
+TEXT field copied from the idea at row creation (2026-09-14, Albert — it was a rollup;
+`Caption Override` is gone as redundant), so per-platform captions are the default
+rather than an escape hatch. That matters because "link in bio" and hashtag blocks do
+not travel between Instagram, YouTube and a Google listing — and because a live rollup
+would retroactively rewrite what already-posted rows appear to have said.
 
 ## Analyses
 
