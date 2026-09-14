@@ -75,6 +75,53 @@ def is_catch_all(table) -> bool:
     return False
 
 
+def _is_catch_all_row(row) -> bool:
+    return any(cell and len(cell) > CATCH_ALL_CELL_CHARS for cell in row)
+
+
+_HEADER_HINTS = ("sku", "product name")
+
+
+def _looks_like_header_row(row) -> bool:
+    for cell in row:
+        if not cell:
+            continue
+        low = cell.strip().lower()
+        if any(hint in low for hint in _HEADER_HINTS):
+            return True
+    return False
+
+
+def strip_leading_catch_all(table):
+    """Drop leading letterhead/prose rows, keep a genuine table body after them.
+
+    A page's letterhead and order instructions can land in the SAME pdfplumber
+    table object as the real product grid when there is no line-geometry break
+    between them — JL TILE page 1, 2026-09-14, one 44-row table where rows 0-2
+    are header/contact prose (one cell over 700 chars) and rows 3-43 are a
+    clean, line-bounded product grid identical in shape to every other page's
+    table. The old whole-table `is_catch_all` check discarded all 44 rows for
+    the 2 junk ones.
+
+    A no-op unless the table actually contains an oversized cell somewhere —
+    an ordinary table with a header on row 0 is returned unchanged. When it
+    does, look for a recognizable header row ("Sku#", "Product name") and keep
+    everything from there on, not just past the oversized cell itself: the
+    junk block routinely spans several short rows around it too (a blank
+    spacer row, a one-line letterhead row under the length threshold) that a
+    length check alone would miss. No header row found -> drop the lot,
+    exactly as before.
+
+    Returns (kept_rows, n_dropped).
+    """
+    if not any(_is_catch_all_row(row) for row in table):
+        return table, 0
+    for i, row in enumerate(table):
+        if _looks_like_header_row(row):
+            return table[i:], i
+    return [], len(table)
+
+
 def compare_values(plumber_tokens, fium_tokens):
     """Compare two engines' monetary tokens by VALUE, ignoring reading order.
 
@@ -116,11 +163,23 @@ def main() -> int:
     with pdfplumber.open(args.pdf) as pdf:
         for pno, page in enumerate(pdf.pages, 1):
             tables = page.extract_tables()
-            structured = [t for t in tables if t and not is_catch_all(t)]
+            structured = []
+            dropped_tables = 0
+            dropped_rows = 0
+            for t in tables:
+                if not t:
+                    continue
+                trimmed, n_dropped = strip_leading_catch_all(t)
+                if not trimmed or is_catch_all(trimmed):
+                    dropped_tables += 1
+                    continue
+                dropped_rows += n_dropped
+                structured.append(trimmed)
             pages.append({
                 "page": pno,
                 "tables": structured,
-                "dropped_catch_all": len(tables) - len(structured),
+                "dropped_catch_all": dropped_tables,
+                "dropped_catch_all_rows": dropped_rows,
                 "text": page.extract_text() or "",
             })
 
@@ -146,8 +205,12 @@ def main() -> int:
     if not args.quiet:
         print(f"{args.pdf.name}: {len(pages)} page(s)")
         for p in pages:
-            note = (f", {p['dropped_catch_all']} catch-all table(s) dropped"
-                    if p["dropped_catch_all"] else "")
+            notes = []
+            if p["dropped_catch_all"]:
+                notes.append(f"{p['dropped_catch_all']} catch-all table(s) dropped")
+            if p["dropped_catch_all_rows"]:
+                notes.append(f"{p['dropped_catch_all_rows']} leading junk row(s) trimmed")
+            note = f", {', '.join(notes)}" if notes else ""
             print(f"  page {p['page']}: {len(p['tables'])} structured table(s){note}")
         print(f"\npdfplumber found {len(a)} distinct monetary values")
         print(f"pypdfium2  found {len(b)} distinct monetary values")
