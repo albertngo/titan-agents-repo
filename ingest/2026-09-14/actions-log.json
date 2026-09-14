@@ -60,6 +60,18 @@
       "error": null,
       "raw_ref": "Metricool post id 375881320, uuid 5269439770982826597, plannerUrl https://app.metricool.com/planner/calendar?blogId=3951085&openWithPostUuid=5269439770982826597",
       "raw_ref_action_id": "17a4860e"
+    },
+    {
+      "logged_at": "2026-09-14T21:45:00-04:00",
+      "agent": "social-actions-agent",
+      "type": "social_reschedule_post",
+      "target": "Metricool brand 3951085 (titanflooring_inc) — Instagram Reels, live post moved from 2026-09-15T20:00:00 to 2026-09-15T16:00:00 America/Toronto",
+      "content_summary": "Executed /content-sweep date_drift action f92b31bd (plan plans/2026-09-14/social-plan-reschedule-3db596a4505f80edb839fc133ffa4757.json, content 'CC: Staircase Transformation (Demo + Install — merged)', Notion TC-86). write_mode.mode is 'live' (flipped 2026-09-14); confirmed the tool available in this session before writing rather than trusting a stored payload. Read the live post fresh via getScheduledPosts (uuid 5430001733968808383, id 375984209, publicationDate 2026-09-15T20:00:00 America/Toronto, draft:false, autoPublish:true, real caption/firstCommentText/videoCoverMilliseconds:1000/instagramData REEL) -- no prior partial write for this action found at either the old or new date. Rebuilt the payload with scripts/social_post_rebuild.py (no --require-draft, since write_mode is live not draft) against that live read: exit 0, only publicationDate changed, all other fields (text, media, mediaAltText, autoPublish:true, draft:false, firstCommentText, videoCoverMilliseconds, instagramData) echoed unchanged -- draft/autoPublish neither raised nor lowered, matching the live post exactly. Script dropped twitterData (network this post does not target); no unrecognised fields. Called updateScheduledPost with that exact payload, new date 2026-09-15T16:00:00 America/Toronto. Metricool minted a new post id (375984209 -> 376002938) with the uuid unchanged, as expected. Verified by a fresh getScheduledPosts read afterward: exactly one post for this uuid, id 376002938, publicationDate 2026-09-15T16:00:00 America/Toronto, draft:false, autoPublish:true, caption/media/firstCommentText/videoCoverMilliseconds/instagramData all intact. No Notion write-back performed (invoking session's job, not this agent's).",
+      "approved_by": "policy",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "Metricool post uuid 5430001733968808383; new post id 376002938 (previous id 375984209); previous date 2026-09-15T20:00:00 America/Toronto",
+      "raw_ref_action_id": "f92b31bd"
     }
   ]
 }

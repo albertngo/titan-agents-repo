@@ -1,0 +1,33 @@
+{
+  "contract_version": "social-plan-1",
+  "generated_at": "2026-09-14T19:30:00-04:00",
+  "notion_id": "3db596a4-505f-80ed-b839-fc133ffa4757",
+  "content_name": "CC: Staircase Transformation (Demo + Install — merged)",
+  "blog_id": "3951085",
+  "write_mode": "live",
+  "actions": [
+    {
+      "id": "f92b31bd",
+      "type": "social_reschedule_post",
+      "surface": "Instagram Reels",
+      "metricool_uuid": "5430001733968808383",
+      "metricool_post_id": "375984209",
+      "from": {
+        "dateTime": "2026-09-15T20:00:00",
+        "timezone": "America/Toronto"
+      },
+      "scheduled_at": {
+        "dateTime": "2026-09-15T16:00:00",
+        "timezone": "America/Toronto"
+      },
+      "notion_page_url": "https://app.notion.com/3db596a4505f80edb839fc133ffa4757"
+    }
+  ],
+  "held": [],
+  "warnings": [
+    "Source: /content-sweep date_drift verdict, 2026-09-14 run. Notion Post Date reads 2026-09-15T16:00 America/Toronto (converted from the UTC instant Notion returns); the live Metricool post is scheduled 2026-09-15T20:00 America/Toronto. Notion is the source of truth for Post Date (Albert, 2026-09-14), so this proposes moving the Metricool post to match.",
+    "scripts/social_post_rebuild.py confirms only publicationDate differs; text, media, firstCommentText, instagramData, autoPublish and draft are all echoed unchanged from the live read. Dropped networkData for a network this post does not target: twitterData (Metricool returns it on read; not sent back).",
+    "write_mode.mode is now 'live' (flipped 2026-09-14, per platform-settings/social-destinations.json). The live post already carries draft:false, autoPublish:true — unchanged by this rebuild. This reschedule only moves the date; it does not raise draft or autoPublish, which the rebuild script can never do.",
+    "New date (2026-09-15T16:00 America/Toronto) is in the future relative to sweep time (2026-09-14T19:29 America/Toronto) and outside the 1-hour imminent window on both the old and new date, so drift_block did not withhold the proposal."
+  ]
+}
