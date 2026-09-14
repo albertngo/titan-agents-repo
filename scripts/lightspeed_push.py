@@ -178,7 +178,24 @@ class Lookups:
 
 
 def build_family_payload(actions, lookups, cfg):
-    """One POST body for one variant family. Every id resolved or it raises."""
+    """One POST body for one variant family. Every id resolved or it raises.
+
+    Verified against the live API 2026-09-14 (x-series-api.lightspeedhq.com/
+    reference/createproduct — platform-settings/lightspeed.json's
+    `_variants_unverified` flagged this shape as an open question gating all
+    writes, and a first live attempt confirmed it: sending a single, ungrouped
+    SKU inside a `variants` array 422s with "Each variant must have at least
+    one variant definition"). `variant_definitions` is only a real concept
+    inside `ProductAddVariantPayload` — it is how a group of 2+ variants is
+    told apart. A single SKU with no grouping isn't a variant family at all,
+    and `ProductCreateBody` accepts sku/price/tax fields directly at the top
+    level for exactly that case; nesting it under `variants` is what forced
+    Lightspeed to demand a definition that does not exist for it.
+
+    So: one action, no `variant_option` -> flat top-level product, no
+    `variants` key. Two or more actions, or an explicit `variant_option` ->
+    the real variant-family shape, unchanged.
+    """
     first = actions[0]["fields"]
     payload = {"name": first["name"]}
     if first.get("handle"):
@@ -193,15 +210,28 @@ def build_family_payload(actions, lookups, cfg):
         payload["supplier_id"] = lookups.resolve("supplier", first["supplier_name"])
 
     outlet = cfg["outlet"]
+    is_standalone = len(actions) == 1 and not first.get("variant_option")
+
+    def price_fields(f):
+        out = {}
+        for k in ("supply_price", "price_excluding_tax"):
+            if f.get(k) is not None:
+                out[k] = f[k]
+        return out
+
+    if is_standalone:
+        payload["sku"] = first["sku"]
+        # Titan is a tax-exclusive store, so outlet_taxes, never all_outlets_tax.
+        payload["outlet_taxes"] = [{"outlet_id": outlet["id"], "tax_id": outlet["default_tax_id"]}]
+        payload.update(price_fields(first))
+        return payload
+
     variants = []
     for a in actions:
         f = a["fields"]
         v = {"sku": f["sku"],
-             # Titan is a tax-exclusive store, so outlet_taxes, never all_outlets_tax.
              "outlet_taxes": [{"outlet_id": outlet["id"], "tax_id": outlet["default_tax_id"]}]}
-        for k in ("supply_price", "price_excluding_tax"):
-            if f.get(k) is not None:
-                v[k] = f[k]
+        v.update(price_fields(f))
         opt = f.get("variant_option")
         if opt:
             v["variant_definitions"] = [

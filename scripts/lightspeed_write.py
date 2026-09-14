@@ -176,10 +176,15 @@ class LightspeedWriter(LightspeedClient):
         variant carries `primary_sku_code`, not `sku`, and the authoritative code is
         the CUSTOM entry in `product_codes`. Verified against a live family
         2026-09-10 — reading `sku` alone returns nothing at all.
+
+        A standalone (non-variant) product's 3.0 read carries its own sku directly
+        (`sku_number` + a CUSTOM product_codes entry) and an empty `variants` array
+        — verified live 2026-09-14 reading an existing single-item product. Nothing
+        to iterate there, so fall back to the family record itself as the one member.
         """
         data = self.read_family(product_id)
         out = {}
-        for v in (data.get("variants") or []):
+        for v in (data.get("variants") or [data]):
             sku = v.get("primary_sku_code") or v.get("sku") or v.get("sku_number")
             for code in (v.get("product_codes") or []):
                 if code.get("type") == "CUSTOM" and code.get("code"):
