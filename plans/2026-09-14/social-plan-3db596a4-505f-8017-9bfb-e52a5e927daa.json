@@ -1,0 +1,32 @@
+{
+  "contract_version": "social-plan-1",
+  "generated_at": "2026-09-14T14:41:00-04:00",
+  "notion_id": 86,
+  "content_name": "Staircase Transformation (Demo + Install — merged)",
+  "blog_id": "3951085",
+  "write_mode": "draft",
+  "actions": [
+    {
+      "id": "17a4860e",
+      "type": "social_schedule_post",
+      "surface": "Instagram Reels",
+      "network": "instagram",
+      "network_data": {
+        "type": "REEL"
+      },
+      "story_variant": "Not a Story",
+      "caption": "We didn't rebuild this staircase. We transformed it. 🔥\nCarpet off, red oak cappings on, metal spindles locked in! Same structure, completely new look.\nGot stairs like the \"before\"? Lets change that",
+      "media_url": "https://drive.google.com/file/d/1paOFjUT8YuXJV7hwZKgXfIKHQ_cTU5Lo/view?usp=drivesdk",
+      "scheduled_at": {
+        "dateTime": "2026-09-14T16:00:00",
+        "timezone": "America/Toronto"
+      },
+      "notion_page_url": "https://app.notion.com/p/3db596a4505f80179bfbe52a5e927daa"
+    }
+  ],
+  "held": [],
+  "warnings": [
+    "No cover found in 03_FINAL for this content folder (only the one video). Cover key omitted entirely, per contract -- Instagram Reels cover is optional, not required, so this does not block the write.",
+    "This idea (TC-86) already has a SEPARATE Content Calendar Log row (page 3db596a4-505f-801c-ab0b-c3ddd1f02bd8) targeting the same surface (Instagram Reels), currently Scheduled for 2026-09-16 20:00 America/Toronto with a placeholder 'Test caption 123' caption -- that row was Albert testing the schedule/reschedule mechanics interactively earlier the same day, per its plan/approval files in this same plans/2026-09-14/ directory. This row (the one this plan covers) is a separate, independently Queued row with the real caption from the idea. Proceeding per the per-row idempotency gate in .claude/commands/content-schedule.md, which is deliberately per-row so the same idea can post more than once -- but two Instagram Reels drafts now exist for the same underlying video (2026-09-14 16:00 real caption vs 2026-09-16 20:00 test caption). Flagging for a person to confirm the 09-16 test draft should be deleted in the Metricool planner before write_mode ever leaves draft, so it does not go out as a duplicate."
+  ]
+}

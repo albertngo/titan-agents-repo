@@ -14,6 +14,12 @@
       "status": "approved",
       "approved_by": "policy",
       "reason": "Reschedule policy in contracts/social-plan-schema.md: the rebuild script returned a payload (no refusal); the live post is still a draft while write_mode is draft; only publicationDate differs; the new date is in the future. Albert confirmed the 16th in session."
+    },
+    {
+      "id": "17a4860e",
+      "status": "approved",
+      "approved_by": "policy",
+      "reason": "Clears every policy condition in contracts/social-plan-schema.md: surface 'Instagram Reels' is enabled and instagram appears in connected_networks; feed post ('Not a Story'), not a Decorated Story; caption, media_url, scheduled_at and surface all present and non-empty; no text_max_chars set for this surface; cover situation unambiguous (no cover file in 03_FINAL, and Instagram Reels does not require one). write_mode is draft, so this lands as a Metricool draft. See the plan's warnings for a flagged pre-existing test draft on the same idea/surface that this action does not touch."
     }
   ]
 }

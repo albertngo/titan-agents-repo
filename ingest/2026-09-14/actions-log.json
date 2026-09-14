@@ -24,6 +24,30 @@
       "error": null,
       "raw_ref": "Metricool post uuid -4953304537857768451; new post id 375727387 (previous id 375710371); previous date 2026-09-15T20:00:00 America/Toronto",
       "raw_ref_action_id": "3aa05063"
+    },
+    {
+      "logged_at": "2026-09-14T18:50:00-04:00",
+      "agent": "social-actions-agent",
+      "type": "social_schedule_post",
+      "target": "Metricool brand 3951085 (titanflooring_inc) — Instagram Reels, intended draft for 2026-09-14T16:00:00 America/Toronto",
+      "content_summary": "Attempted to schedule the approved Instagram Reel draft 'Staircase Transformation (Demo + Install — merged)' (Notion TC-86, real caption, plan action id 17a4860e). Write not attempted against Metricool because the mcp__Metricool_Social_Media_Management__createScheduledPost tool (and its sibling read/update tools) this agent's own definition requires were not present among the tools actually available in this session -- only Read, Write and Bash were wired in. No API call was made, no post was created or modified, and no credential was substituted to work around the missing tool.",
+      "approved_by": "policy",
+      "result": "failed",
+      "error": "mcp__Metricool_Social_Media_Management__createScheduledPost (and getScheduledPosts/getBrandSettings) not available as callable tools in this execution session -- cannot confirm write_mode against the live registry via getBrandSettings, cannot check getScheduledPosts for a prior partial write, and cannot call createScheduledPost. Refusing to guess or fabricate a result per the agent's own rule against resolving ambiguity by guessing.",
+      "raw_ref": null,
+      "raw_ref_action_id": "17a4860e"
+    },
+    {
+      "logged_at": "2026-09-14T20:05:00-04:00",
+      "agent": "social-actions-agent",
+      "type": "social_schedule_post",
+      "target": "Metricool brand 3951085 (titanflooring_inc) — Instagram Reels, intended draft for 2026-09-14T16:00:00 America/Toronto",
+      "content_summary": "Retry of the previous 18:50 attempt for the same approved action (plan action id 17a4860e), after the invoking session reported the tool allowlist in .claude/agents/social-actions-agent.md had been fixed (underscored Metricool tool names corrected to the hyphenated connector name mcp__Metricool-Social-Media-Management__*). Tried all four tools by their exact corrected names -- getBrandSettings, getScheduledPosts, createScheduledPost, updateScheduledPost -- one at a time. Every call returned 'No such tool available ... MCP server Metricool-Social-Media-Management is connected but does not offer this tool here.' The server connection exists at session level (per its MCP instructions block) but none of the four specific tools this agent needs resolved under the corrected name either. No write was attempted with fabricated or guessed parameters; no alternate/invented tool name was tried. Refusing to guess per the agent's own rule.",
+      "approved_by": "policy",
+      "result": "failed",
+      "error": "All four required tools (mcp__Metricool-Social-Media-Management__getBrandSettings, __getScheduledPosts, __createScheduledPost, __updateScheduledPost) returned 'No such tool available' despite the corrected hyphenated name matching this agent's own tools: frontmatter exactly. Cannot confirm brand 3951085 live, cannot check for a prior partial write, cannot create the post. The tool-wiring gap is not resolved; it has moved from 'wrong name' to 'right name, still not exposed to this session'.",
+      "raw_ref": null,
+      "raw_ref_action_id": "17a4860e"
     }
   ]
 }
