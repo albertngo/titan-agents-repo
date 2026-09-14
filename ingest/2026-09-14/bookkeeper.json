@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "source": "bookkeeper",
+  "run_at": "2026-09-14T08:15:22-04:00",
+  "status": "error",
+  "error": "Intuit QuickBooks MCP connector is not available in this environment — no QBO MCP tool is registered and no QuickBooks credentials are defined in .env.example/.env. This source has a long-standing history of no QBO connector being configured (see CLAUDE.md: Finance department is 'blocked — the source has never worked'). No data pulled; read-only, nothing was written to QBO.",
+  "items": [],
+  "metrics": {
+    "payments_received_cents": 0,
+    "overdue_invoices": 0,
+    "uncategorized_txns": 0
+  },
+  "needs_attention": [
+    "QuickBooks/QBO connector unreachable — bookkeeper ingest could not run today. No QBO MCP connector configured in this environment (no credentials, no MCP tool available)."
+  ]
+}
