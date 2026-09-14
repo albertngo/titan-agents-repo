@@ -60,6 +60,18 @@
       "error": null,
       "raw_ref": "Metricool post id 375881320, uuid 5269439770982826597, plannerUrl https://app.metricool.com/planner/calendar?blogId=3951085&openWithPostUuid=5269439770982826597",
       "raw_ref_action_id": "17a4860e"
+    },
+    {
+      "logged_at": "2026-09-14T22:45:00-04:00",
+      "agent": "social-actions-agent",
+      "type": "social_schedule_post",
+      "target": "Metricool brand 3951085 (titanflooring_inc) — Instagram Reels, LIVE post for 2026-09-15T20:00:00 America/Toronto",
+      "content_summary": "Executed plan action 44896fe6 from plans/2026-09-14/social-plan-3db596a4-505f-80ed-b839-fc133ffa4757.json (Notion TC-86, real caption 'We didn't rebuild this staircase...'). This is a FRESH execution against the superseding approval entry (2026-09-14T22:41:00-04:00, last entry for id 44896fe6 in plans/2026-09-14/social-approval.json), not a resume of the 10:17 log entry under the same id -- that earlier entry scheduled the morning's now-deleted 'Test caption 123' placeholder draft (uuid -4953304537857768451, subsequently rescheduled to the 16th and confirmed deleted by both Albert and an independent getScheduledPosts read per the plan's own warnings), which is different, now-nonexistent content at a different write_mode. Before writing: read today's actions-log (only prior 44896fe6 entry was the unrelated deleted test post, not treated as already-executed for this content) and called getScheduledPosts myself for brand 3951085 across 2026-09-01..2026-10-15 America/Toronto, which returned zero posts -- confirming no live post already occupied this slot. write_mode.mode is now 'live' in platform-settings/social-destinations.json (flipped from draft earlier today) -- this is the first non-draft write this pipeline has executed for real, so info.draft was sent as false (not omitted-as-true) and info.autoPublish left at its true default. Sent: info.text = plan caption, info.firstCommentText = row_fields['First Comment'] ('Guess how many staples we pulled out of these stairs'), networkData.instagramData = {type: REEL, isAiGenerated: false} per row_fields['AI Disclosure']='No', media = the plan's Drive URL (Metricool re-hosted it to static.metricool.com at schedule time, confirming Drive ingest worked), videoCoverMilliseconds = 1000 per cover.mode='frame_offset' value=1000 in the plan (no videoThumbnailUrl sent, per cover_rules -- image_url and frame_field are alternatives), publicationDate = {2026-09-15T20:00:00, America/Toronto} exactly as in the plan. Verified by a fresh getScheduledPosts read immediately after the write: exactly one post at this brand/slot, draft:false, autoPublish:true, providers=[{network:instagram,status:PENDING}], caption/firstComment/videoCoverMilliseconds/instagramData all matching what was sent.",
+      "approved_by": "policy",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "Metricool post id 375984209, uuid 5430001733968808383, plannerUrl https://app.metricool.com/planner/calendar?blogId=3951085&openWithPostUuid=5430001733968808383",
+      "raw_ref_action_id": "44896fe6"
     }
   ]
 }
