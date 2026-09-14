@@ -12,6 +12,18 @@
       "error": null,
       "raw_ref": "Metricool post id 375710371, uuid -4953304537857768451",
       "raw_ref_action_id": "44896fe6"
+    },
+    {
+      "logged_at": "2026-09-14T10:43:00-04:00",
+      "agent": "social-actions-agent",
+      "type": "social_reschedule_post",
+      "target": "Metricool brand 3951085 (titanflooring_inc) — Instagram Reels, draft moved from 2026-09-15T20:00:00 to 2026-09-16T20:00:00 America/Toronto",
+      "content_summary": "Rescheduled Instagram Reel draft 'Staircase Transformation (Demo + Install — merged)' (Notion TC-86). Previous publication date 2026-09-15T20:00:00 America/Toronto; new publication date 2026-09-16T20:00:00 America/Toronto. Date only — caption 'Test caption 123', media, videoThumbnailUrl cover, instagramData (REEL) and draft:true all echoed unchanged from the live read. Payload built by scripts/social_post_rebuild.py (exit 0, --require-draft), which dropped twitterData returned on the read for a network this post does not target. Resolves the date_drift the 2026-09-14 sweep found; Notion is the source of truth for Post Date and says the 16th. Metricool minted a new post id (375710371 -> 375727387) with the uuid unchanged, as expected; verified by a fresh getScheduledPosts showing exactly one post at 2026-09-16T20:00, draft true, caption/media/cover intact. No Notion write-back performed (Albert handles it).",
+      "approved_by": "policy",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "Metricool post uuid -4953304537857768451; new post id 375727387 (previous id 375710371); previous date 2026-09-15T20:00:00 America/Toronto",
+      "raw_ref_action_id": "3aa05063"
     }
   ]
 }
