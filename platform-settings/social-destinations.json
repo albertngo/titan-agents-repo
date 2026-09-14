@@ -27,7 +27,27 @@
       "auto_publishable": true,
       "requires_media": false,
       "cover": "image_url",
-      "enabled": true
+      "enabled": true,
+      "row_fields": [
+        {
+          "notion_property": "First Comment",
+          "metricool_path": "info.firstCommentText",
+          "required": false,
+          "_note": "Titan actively uses a pinned first comment as an engagement hook ('Guess how many staples we pulled'). It lives in the idea body today; this column is where it becomes postable."
+        },
+        {
+          "notion_property": "Media Alt Text",
+          "metricool_path": "info.mediaAltText",
+          "required": false,
+          "_note": "Accessibility. Sent as a list parallel to media."
+        },
+        {
+          "notion_property": "Video Title",
+          "metricool_path": "networkData.facebookData.title",
+          "required": false,
+          "_note": "Facebook video posts only, and separate from the caption. Ignored on a non-video post."
+        }
+      ]
     },
     "Instagram Reels": {
       "network": "instagram",
@@ -38,13 +58,40 @@
       "requires_media": "video",
       "cover": "image_url",
       "_cover_comment": "Meta center-crops the 9:16 cover to a 1080x1080 square on the profile grid. Compose covers with the subject centred vertically or the grid decapitates them.",
-      "enabled": true
+      "enabled": true,
+      "row_fields": [
+        {
+          "notion_property": "First Comment",
+          "metricool_path": "info.firstCommentText",
+          "required": false,
+          "_note": "Titan actively uses a pinned first comment as an engagement hook ('Guess how many staples we pulled'). It lives in the idea body today; this column is where it becomes postable."
+        },
+        {
+          "notion_property": "Media Alt Text",
+          "metricool_path": "info.mediaAltText",
+          "required": false,
+          "_note": "Accessibility. Sent as a list parallel to media."
+        },
+        {
+          "notion_property": "Collaborators",
+          "metricool_path": "networkData.instagramData.collaborators",
+          "required": false,
+          "_note": "Comma-separated IG handles. Collab posts appear on both accounts -- worth it for client and supplier tags."
+        },
+        {
+          "notion_property": "AI Disclosure",
+          "metricool_path": "networkData.instagramData.isAiGenerated",
+          "required": false,
+          "_note": "Instagram REQUIRES this declaration when content is AI-generated or significantly altered. Blank is treated as No."
+        }
+      ]
     },
     "YouTube - Shorts": {
       "network": "youtube",
       "network_data": {
         "type": "short",
-        "privacy": "public"
+        "privacy": "public",
+        "madeForKids": false
       },
       "auto_publishable": true,
       "requires_media": "video",
@@ -54,13 +101,58 @@
       ],
       "cover": "image_url",
       "_cover_comment": "Only renders if the channel is phone-verified AND YouTube has enabled Shorts thumbnails on the account. Channel verified 2026-09-12; Shorts thumbnail availability unconfirmed.",
-      "enabled": true
+      "enabled": true,
+      "row_fields": [
+        {
+          "notion_property": "First Comment",
+          "metricool_path": "info.firstCommentText",
+          "required": false,
+          "_note": "Titan actively uses a pinned first comment as an engagement hook ('Guess how many staples we pulled'). It lives in the idea body today; this column is where it becomes postable."
+        },
+        {
+          "notion_property": "Media Alt Text",
+          "metricool_path": "info.mediaAltText",
+          "required": false,
+          "_note": "Accessibility. Sent as a list parallel to media."
+        },
+        {
+          "notion_property": "Video Title",
+          "metricool_path": "networkData.youtubeData.title",
+          "required": true,
+          "_note": "REQUIRED by YouTube. Max ~100 characters, and it is NOT the caption -- YouTube shows the title, not info.text."
+        },
+        {
+          "notion_property": "YouTube Tags",
+          "metricool_path": "networkData.youtubeData.tags",
+          "required": false,
+          "_note": "Comma-separated."
+        },
+        {
+          "notion_property": "YouTube Category",
+          "metricool_path": "networkData.youtubeData.category",
+          "required": false
+        },
+        {
+          "notion_property": "Privacy",
+          "metricool_path": "networkData.youtubeData.privacy",
+          "required": false,
+          "_note": "Blank uses the registry default (public). Public/Unlisted/Private map to lowercase."
+        },
+        {
+          "notion_property": "AI Disclosure",
+          "metricool_path": "networkData.youtubeData.isAiGeneratedContent",
+          "required": false,
+          "_note": "YouTube requires the channel owner to declare realistic synthetic content."
+        }
+      ],
+      "_made_for_kids_is_a_constant": "YouTube REQUIRES madeForKids on every upload. It is false for every piece of content Titan makes -- flooring installation is not children's content -- so it is a registry constant rather than a column. If Titan ever makes something genuinely child-directed, this becomes a column; until then a per-row field would be ten seconds of friction on every single post to express a value that never varies."
     },
     "YouTube - Long": {
       "network": "youtube",
       "network_data": {
         "type": "video",
-        "privacy": "public"
+        "privacy": "public",
+        "madeForKids": false
       },
       "auto_publishable": true,
       "requires_media": "video",
@@ -71,7 +163,51 @@
       "cover": "image_url",
       "cover_required": true,
       "_cover_required_comment": "Policy, not an API rule: a default auto-thumbnail is a lasting CTR cost on long-form. A row with no cover is held, per the approval policy.",
-      "enabled": true
+      "enabled": true,
+      "row_fields": [
+        {
+          "notion_property": "First Comment",
+          "metricool_path": "info.firstCommentText",
+          "required": false,
+          "_note": "Titan actively uses a pinned first comment as an engagement hook ('Guess how many staples we pulled'). It lives in the idea body today; this column is where it becomes postable."
+        },
+        {
+          "notion_property": "Media Alt Text",
+          "metricool_path": "info.mediaAltText",
+          "required": false,
+          "_note": "Accessibility. Sent as a list parallel to media."
+        },
+        {
+          "notion_property": "Video Title",
+          "metricool_path": "networkData.youtubeData.title",
+          "required": true,
+          "_note": "REQUIRED by YouTube. Max ~100 characters, and it is NOT the caption -- YouTube shows the title, not info.text."
+        },
+        {
+          "notion_property": "YouTube Tags",
+          "metricool_path": "networkData.youtubeData.tags",
+          "required": false,
+          "_note": "Comma-separated."
+        },
+        {
+          "notion_property": "YouTube Category",
+          "metricool_path": "networkData.youtubeData.category",
+          "required": false
+        },
+        {
+          "notion_property": "Privacy",
+          "metricool_path": "networkData.youtubeData.privacy",
+          "required": false,
+          "_note": "Blank uses the registry default (public). Public/Unlisted/Private map to lowercase."
+        },
+        {
+          "notion_property": "AI Disclosure",
+          "metricool_path": "networkData.youtubeData.isAiGeneratedContent",
+          "required": false,
+          "_note": "YouTube requires the channel owner to declare realistic synthetic content."
+        }
+      ],
+      "_made_for_kids_is_a_constant": "YouTube REQUIRES madeForKids on every upload. It is false for every piece of content Titan makes -- flooring installation is not children's content -- so it is a registry constant rather than a column. If Titan ever makes something genuinely child-directed, this becomes a column; until then a per-row field would be ten seconds of friction on every single post to express a value that never varies."
     },
     "LinkedIn": {
       "network": "linkedin",
@@ -82,7 +218,8 @@
       "requires_media": false,
       "cover": "image_url",
       "enabled": false,
-      "_enabled_comment": "LinkedIn is not connected in Metricool. Connect it, re-run getBrandSettings, then flip this."
+      "_enabled_comment": "LinkedIn is not connected in Metricool. Connect it, re-run getBrandSettings, then flip this.",
+      "row_fields": []
     },
     "Google Business Profile": {
       "network": "gmb",
@@ -96,7 +233,21 @@
       "_video_trap": "gmbData.type 'publication' is a text update and CANNOT carry a video. 'photo' is the ONLY way to send a video to Google Business Profile, and a photo post carries no text of its own. A row with a video and a caption cannot be one GMB post — it is either a silent caption drop or a silent video drop. Hold and report rather than choosing.",
       "enabled": true,
       "location_id": "accounts/112083294050413715046/locations/7907972280686088665",
-      "_location_comment": "One Metricool brand maps to one GMB location. A second location would need a second brand and therefore a second blog_id -- this file assumes one."
+      "_location_comment": "One Metricool brand maps to one GMB location. A second location would need a second brand and therefore a second blog_id -- this file assumes one.",
+      "row_fields": [
+        {
+          "notion_property": "GBP Post Type",
+          "metricool_path": "networkData.gmbData.type",
+          "required": true,
+          "_note": "REQUIRED, and it is the field that resolves the video trap recorded in _video_trap above: 'Publication' is a text update that CANNOT carry video; 'Photo' carries media and NO text of its own. A row with both a video and a caption is not expressible as one GBP post, so this column is where a person says which half matters. Without it the row is held."
+        },
+        {
+          "notion_property": "First Comment",
+          "metricool_path": "info.firstCommentText",
+          "required": false,
+          "_note": "Not applicable to a GBP publication; ignored."
+        }
+      ]
     },
     "TikTok": {
       "network": "tiktok",
@@ -108,7 +259,44 @@
       "cover": "image_url",
       "_cover_comment": "Silently ignored on personal TikTok accounts — only Business-connected accounts honour a custom cover. Unlike every other network this failure is silent, not an error.",
       "enabled": true,
-      "_enabled_comment": "Connected in Metricool. Still needs adding as an option on the Notion 'Next: Post To' property before a row can route here."
+      "_enabled_comment": "Connected in Metricool. Still needs adding as an option on the Notion 'Next: Post To' property before a row can route here.",
+      "row_fields": [
+        {
+          "notion_property": "First Comment",
+          "metricool_path": "info.firstCommentText",
+          "required": false,
+          "_note": "Titan actively uses a pinned first comment as an engagement hook ('Guess how many staples we pulled'). It lives in the idea body today; this column is where it becomes postable."
+        },
+        {
+          "notion_property": "Media Alt Text",
+          "metricool_path": "info.mediaAltText",
+          "required": false,
+          "_note": "Accessibility. Sent as a list parallel to media."
+        },
+        {
+          "notion_property": "Video Title",
+          "metricool_path": "networkData.tiktokData.title",
+          "required": false
+        },
+        {
+          "notion_property": "Branded Content",
+          "metricool_path": "networkData.tiktokData.commercialContent*",
+          "required": false,
+          "_note": "'Own brand' sets commercialContentOwnBrand, 'Third party' sets commercialContentThirdParty, 'Both' sets both. TikTok requires this disclosure for paid or partnership content -- it is a compliance field, not a preference."
+        },
+        {
+          "notion_property": "AI Disclosure",
+          "metricool_path": "networkData.tiktokData.isAigc",
+          "required": false,
+          "_note": "Silently ignored on photo-only TikTok posts; TikTok does not support the declaration there."
+        },
+        {
+          "notion_property": "Privacy",
+          "metricool_path": "networkData.tiktokData.privacyOption",
+          "required": false,
+          "_note": "Blank uses the registry default PUBLIC_TO_EVERYONE."
+        }
+      ]
     }
   },
   "story_surfaces": {
@@ -252,5 +440,6 @@
       }
     },
     "_field_order_is_load_bearing": "The order of `fields` IS the order the metrics are requested in, and the order the positional response is unpacked in. Both come from this one mapping, so they cannot disagree -- but only while nothing reorders it by hand. Reordering these keys without reordering the request transposes columns SILENTLY: a caption lands in Live URL, a url in Posted Caption, both well-formed, no error anywhere. That exact mistake was made here on 2026-09-14 while writing this block and was caught only because a test asserted against a verbatim live response. Keep a test pinned to real captured rows."
-  }
+  },
+  "_row_fields_comment": "Per-surface mapping from a Content Calendar Log COLUMN to the Metricool field it fills. Added 2026-09-14 (Albert: 'whatever the platform NEEDS, make a column, so we can filter by platform and fill those in'). `required: true` means /content-schedule HOLDS the row when it is blank -- the post would be rejected or malformed without it. The dividing line for adding a column at all: it must VARY per post. Anything constant for every Titan post (madeForKids, TikTok privacyOption, YouTube privacy) stays registry config, because a column for an invariant is pure friction on every row forever."
 }

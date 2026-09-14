@@ -106,7 +106,18 @@
         "Live URL",
         "Posted Caption",
         "Caption Override",
-        "Posted At"
+        "Posted At",
+        "Video Title",
+        "First Comment",
+        "Media Alt Text",
+        "GBP Post Type",
+        "AI Disclosure",
+        "Collaborators",
+        "YouTube Tags",
+        "YouTube Category",
+        "Branded Content",
+        "Privacy",
+        "Ready To Queue"
       ],
       "destination_property": "Post To",
       "_destination_comment": "The authoritative per-post destination. Its option names are destination_vocabulary.names, character for character, and so are the surface keys in social-destinations.json and 'Next: Post To' on the idea. See that block for why an exact match is load-bearing.",
@@ -143,7 +154,10 @@
       "_caption_resolution": "Caption Override on THIS ROW wins; otherwise the Caption rollup from the idea. Added 2026-09-14 because one shared caption cannot serve every surface -- and the reason is idiom, not length. 'Link in bio' is Instagram/TikTok only and is a dead instruction on Facebook, YouTube and Google Business Profile, where a real URL is possible. A 30-hashtag block is native on Instagram, renders only 3 deep on YouTube, and reads as spam on a Google Business listing. GBP also caps at 1500 characters (text_max_chars), so an Instagram caption with a full hashtag block can make a GBP row unpostable through no fault of that row. The override is the escape hatch, same pattern as Cover Image URL: set it and it wins, leave it blank and the shared caption applies.",
       "_posted_caption": "What the post ACTUALLY published, read back from analytics after publication. Immutable, per post, written once by /content-sweep. Distinct from Caption (the plan) on purpose: the diff between them is what a caption gained once somebody could see it rendered. NOT available on YouTube -- its analytics exposes a title, not a description, and a title must never be written here as if it were a caption. See social-destinations.json analytics.",
       "_why_posted_caption_is_not_written_back_to_the_idea": "PROPOSED BY ALBERT 2026-09-14, NOT BUILT, deliberately. The idea is that a caption refined in Metricool should update the idea's Caption so future platforms inherit the better version -- which is a good instinct. The hazard is that Caption reaches a log row as a ROLLUP, which is live rather than a snapshot: changing it retroactively changes what every ALREADY-POSTED row for that idea appears to have published. That silently falsifies the record of posts that went out with the old text. Posted Caption on the row is immune, because it is a copy. If the propagation is built, it must write the idea's Caption ONLY -- never stand in for Posted Caption -- and it crosses the _never_write rule on the idea, which is Albert's call to change.",
-      "_posted_at": "Actual publication time from analytics, which is not always the scheduled time."
+      "_posted_at": "Actual publication time from analytics, which is not always the scheduled time.",
+      "_platform_input_columns": "Added 2026-09-14 (Albert: 'whatever the platform NEEDS, please make a column, so we can filter it based on platform and then fill those in'). Each maps to a Metricool field; the mapping lives per surface in social-destinations.json -> surfaces.<surface>.row_fields, NOT here, so there is one place that says what a platform needs. Two are REQUIRED and hold the row when blank: Video Title on either YouTube surface, and GBP Post Type on Google Business Profile.",
+      "_what_earns_a_column": "It must VARY per post. Anything constant for every Titan post stays registry config -- madeForKids (always false; flooring is not children's content), TikTok privacyOption, YouTube privacy. A column for an invariant is friction on every row forever and one more thing to leave blank.",
+      "_ready_to_queue": "Notion FORMULA, not a pipeline field. Renders '✓ ready' or the name of the first missing required property for that row's Post To, so the log can be filtered by platform and the gaps filled before anything is Queued. It duplicates checks /content-schedule also makes -- deliberately: the formula catches them while Albert is editing, the command catches them at the gate, and a person seeing '⚠ Video Title' in a table beats a run held an hour later. If a required field is added to row_fields, update this formula too; nothing enforces that they agree."
     }
   },
   "drive": {

@@ -76,6 +76,7 @@ the pipeline declining to guess. Held rows are reported per row, with the reason
 | `cover_not_applicable` | A cover was supplied for a surface whose `cover` mode is `none` or `frame_offset`. Sending it rejects the **entire post** with `VIDEO_THUMBNAIL_NOT_APPLICABLE` — so this is reported, never silently dropped. |
 | `gmb_video_with_caption` | `gmbData.type: "publication"` is text-only and cannot carry video; `"photo"` carries a video and no text. The row is not expressible as one GMB post, and choosing a half to discard is a person's call. |
 | `surface_disabled` | The surface is off (LinkedIn) or its network was never connected. Writing anyway produces a confusing Metricool error rather than an honest hold. |
+| `missing_required_field` | A `row_fields` entry marked `required` is blank for this surface — `Video Title` on YouTube, `GBP Post Type` on Google Business Profile. The post would be rejected or malformed. Named by its Notion column so the fix is one edit. |
 
 ## Envelope
 

@@ -56,6 +56,27 @@ YouTube, and reads as spam on a Google listing. GBP also caps at 1500 characters
 an Instagram-shaped caption can make a GBP row unpostable through no fault of that
 row. Leave the override blank and the shared caption applies; set it and it wins.
 
+**Read the surface's `row_fields`** from `social-destinations.json` →
+`surfaces.<surface>.row_fields`. That list is the single answer to "what does this
+platform need?" — each entry names a Calendar Log column and the Metricool field it
+fills. A `required: true` entry that is blank is a **hold**, named by its column:
+
+- **`Video Title`** on either YouTube surface. YouTube requires a title, and it is not
+  the caption — YouTube displays the title, never `info.text`.
+- **`GBP Post Type`** on Google Business Profile. This is the field that resolves the
+  video trap: `Publication` is text-only and cannot carry video; `Photo` carries media
+  and no text of its own. A row with both a video and a caption is not expressible as
+  one GBP post, and this column is where a person says which half matters.
+
+Everything else on that list is optional and simply passed through when present.
+Anything constant for every Titan post is **not** a column — `madeForKids`, TikTok's
+`privacyOption` and YouTube's default privacy live in the registry, because a column
+for an invariant is friction on every row forever.
+
+The `Ready To Queue` formula on the log shows the same missing-required check while
+Albert is editing, so the gaps can be filtered by platform and filled before anything
+is `Queued`. It is a convenience, not the gate — this command re-checks.
+
 `Post To` must match a surface key in `social-destinations.json` **character for
 character**. A miss is a silent lookup failure, not an error, so treat an unmatched
 value as a hold and name the value you got.
