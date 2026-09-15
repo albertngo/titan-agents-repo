@@ -491,5 +491,18 @@
     },
     "brief": true,
     "note": "scheduled run; local branch ledger last showed 2026-09-02, but all 5 ingesters cross-checked unmerged session branches and vault 01_daily notes and confirmed real runs happened through 2026-09-07 (branch-isolation artifact, not a real gap) -- no catch-up widening needed; bookkeeper still has no QBO/Intuit MCP connector (10th consecutive failed run since 2026-07-26)"
+  },
+  {
+    "date": "2026-09-15",
+    "run_at": "2026-09-15T08:12:00-04:00",
+    "sources": {
+      "ghl": "error",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "partial",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; ghl error (MCP tools not bound this session), bookkeeper error (12th consecutive failure since 2026-07-26, no QBO connector), notion partial (Project Status Meetings hit a genuine workspace quota, other 4 sub-sources ok). This branch's local ledger last shows 2026-09-08, but outlook/notion/meta-ads all cross-checked and found no local ingest/<date> files for 2026-09-09 through 2026-09-14 on this branch -- consistent with the repo's recurring branch-isolation pattern (documented in the 2026-09-08 entry): vault 01_daily/ notes exist for every one of those dates and commit 7d08593 'daily-ingest: 2026-09-14 brief + ledger entry' is reachable from origin/claude/adoring-mendel-3mux4g, an unmerged session branch, confirming real runs happened through 2026-09-14 that never merged to main-agents. Outlook and meta-ads widened their pulls to the 7-day cap to cover 2026-09-08 through 2026-09-14/15 so no window was silently skipped despite the local-history gap. No missed run days."
   }
 ]
