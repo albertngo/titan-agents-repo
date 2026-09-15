@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "entries": [
+    {
+      "logged_at": "2026-09-15T01:35:00-04:00",
+      "agent": "content-sweep",
+      "type": "notion_update_task",
+      "target": "Content Calendar Log row 'CC: Staircase Transformation (Demo + Install — merged)' (https://app.notion.com/p/3dc596a4505f80809c5cc1acde058b13)",
+      "content_summary": "Set Post Status=Posted, Live URL, Posted Caption and Posted At for the Instagram Reels post (Metricool UUID 5430001733968808383). Deviation from the mechanical /content-sweep verdict, recorded in full: scripts/social_publish_sweep.py --now 2026-09-15T01:32:00 (America/Toronto local, matching its naive-local convention -- the container's system clock is UTC and using it uncorrected would have misclassified this same row as stuck_past_due/Failed, a false negative caught before acting on it) classified this row 'still_scheduled' because its uuid is still present in getScheduledPosts. But the raw getScheduledPosts object for that uuid itself carries providers[0]={network:instagram, status:PUBLISHED, detailedStatus:Published, publicUrl:https://www.instagram.com/reel/DdSiP5xgMYT/} -- direct, unambiguous evidence of publication that the sweep script does not read (it keys only on uuid presence/absence, per its documented design that a published post disappears from the endpoint entirely -- which this account's Metricool plan/version does not do for this post). This contradicts the pipeline's documented core assumption (content-sweep.md, scripts/social_publish_sweep.py docstring) and is the first real publication observed through this pipeline. Corroborated independently via the documented step-3a path anyway: getAnalyticsDataByMetrics for brand 3951085, surface 'Instagram Reels', metrics IGRE02/03/04/06 (from scripts/social_publish_reconcile.py --print-metrics) returned exactly one row in the window, with url and caption text matching the live object verbatim -- no ambiguous_match, single confident candidate. Posted At uses the analytics IGRE02 raw value 20260915013113, interpreted as UTC per the registry's own stated (unconfirmed) hypothesis and converted to America/Toronto (2026-09-14T21:31:13) -- consistent with the scheduled publicationDate of 2026-09-14T21:30:00 America/Toronto (published ~73s after its slot). Live URL and Posted Caption taken from the analytics read (IGRE06, IGRE03), matching the provider object's publicUrl and text exactly. No approval file needed: this is a report-back write within content-sweep's own write authority (Post Status/Live URL/Posted Caption/Posted At on the Calendar Log), not a platform action gated by social-plan-schema.md.",
+      "approved_by": "content-sweep automated reconciliation (analytics-confirmed publication)",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "Metricool post id 376024432, uuid 5430001733968808383; Instagram permalink https://www.instagram.com/reel/DdSiP5xgMYT/"
+    }
+  ]
+}
