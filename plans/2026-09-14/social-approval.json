@@ -20,6 +20,12 @@
       "status": "approved",
       "approved_by": "policy",
       "reason": "Clears every policy condition in contracts/social-plan-schema.md: surface 'Instagram Reels' is enabled and instagram appears in connected_networks; feed post ('Not a Story'), not a Decorated Story; caption, media_url, scheduled_at and surface all present and non-empty; no text_max_chars set for this surface; cover situation unambiguous (no cover file in 03_FINAL, and Instagram Reels does not require one). write_mode is draft, so this lands as a Metricool draft. See the plan's warnings for a flagged pre-existing test draft on the same idea/surface that this action does not touch."
+    },
+    {
+      "id": "b3f11f55",
+      "status": "approved",
+      "approved_by": "albert",
+      "reason": "Albert confirmed in session (2026-09-14, live /content-schedule + /content-sweep run) that the untracked live Metricool post uuid 5430001733968808383 IS the post for Notion Calendar Log row 3dc596a4505f80809c5cc1acde058b13 (TC-86 Instagram Reel), which /content-schedule had held rather than guess at. Reschedule policy in contracts/social-plan-schema.md also independently clears: scripts/social_post_rebuild.py returned a payload (no refusal); write_mode.mode is 'live' so the draft-while-draft-mode condition is vacuous; only publicationDate differs from the live post; the new date (2026-09-14T21:30 America/Toronto) is in the future."
     }
   ]
 }

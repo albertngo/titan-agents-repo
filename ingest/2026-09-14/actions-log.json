@@ -60,6 +60,17 @@
       "error": null,
       "raw_ref": "Metricool post id 375881320, uuid 5269439770982826597, plannerUrl https://app.metricool.com/planner/calendar?blogId=3951085&openWithPostUuid=5269439770982826597",
       "raw_ref_action_id": "17a4860e"
+    },
+    {
+      "type": "social_reschedule_post",
+      "agent": "social-actions-agent",
+      "target": "Metricool brand 3951085 (titanflooring_inc) — Instagram Reels, live post moved from 2026-09-15T16:00:00 to 2026-09-14T21:30:00 America/Toronto",
+      "approved_by": "albert",
+      "raw_ref_action_id": "b3f11f55",
+      "result": "executed",
+      "raw_ref": "Metricool post uuid 5430001733968808383; new post id 376024432 (previous id 376021092)",
+      "content_summary": "Reconciled Notion Calendar Log row 3dc596a4505f80809c5cc1acde058b13 (TC-86, 'CC: Staircase Transformation (Demo + Install — merged)', Instagram Reels) against an untracked live Metricool post that /content-schedule had held earlier this session (see plans/2026-09-14/social-plan-3dc596a4505f80809c5cc1acde058b13.json). Albert confirmed live in session that Metricool post uuid 5430001733968808383 is this row's post. Backfilled Metricool UUID=5430001733968808383 and Metricool Post ID=376021092 onto the Notion row (Post Status -> Scheduled) before touching Metricool, per 'write the uuid first'. Rebuilt the update payload from a fresh getScheduledPosts read via scripts/social_post_rebuild.py, changing only publicationDate (2026-09-15T16:00 -> 2026-09-14T21:30 America/Toronto, matching the row's current Post Date) with caption, first-comment, media, videoCoverMilliseconds=11150 (as edited live in Metricool since this run started) and instagramData echoed unchanged; twitterData dropped per script warning (not a targeted network). Fixed a live bug in scripts/social_post_rebuild.py found while building this payload: its default now used the host's naive system clock (UTC) mislabelled as America/Toronto wall time, wrongly refusing this same-evening reschedule as date_in_past; fixed to use zoneinfo against --timezone, all 34 existing tests still pass. Metricool minted a new post id (376021092 -> 376024432) with the uuid unchanged, as expected; verified by the updateScheduledPost response showing draft:false, autoPublish:true, caption/media/cover intact and the new publicationDate. Wrote the new Metricool Post ID back to Notion after execution.",
+      "error": null
     }
   ]
 }

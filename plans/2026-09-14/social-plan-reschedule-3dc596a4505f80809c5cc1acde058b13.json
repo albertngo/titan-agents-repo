@@ -1,0 +1,34 @@
+{
+  "contract_version": "social-plan-1",
+  "generated_at": "2026-09-14T20:45:00-04:00",
+  "notion_id": 86,
+  "content_name": "CC: Staircase Transformation (Demo + Install — merged)",
+  "blog_id": "3951085",
+  "write_mode": "live",
+  "actions": [
+    {
+      "id": "b3f11f55",
+      "type": "social_reschedule_post",
+      "surface": "Instagram Reels",
+      "metricool_uuid": "5430001733968808383",
+      "metricool_post_id": "376021092",
+      "from": {
+        "dateTime": "2026-09-15T16:00:00",
+        "timezone": "America/Toronto"
+      },
+      "scheduled_at": {
+        "dateTime": "2026-09-14T21:30:00",
+        "timezone": "America/Toronto"
+      },
+      "notion_page_url": "https://app.notion.com/3dc596a4505f80809c5cc1acde058b13"
+    }
+  ],
+  "held": [],
+  "warnings": [
+    "This resolves the hold logged in social-plan-3dc596a4505f80809c5cc1acde058b13.json: Albert confirmed in session that the untracked live Metricool post (uuid 5430001733968808383) IS this row's post. Metricool UUID and Post ID have been backfilled onto the Notion row and Post Status set to Scheduled.",
+    "scripts/social_post_rebuild.py drops networkData for twitterData, which Metricool returns on a read for a post that does not target twitter.",
+    "The update will mint a NEW Metricool Post ID. The uuid is unchanged and stays the key; the new id must be written back to the row after execution.",
+    "scripts/social_post_rebuild.py had a live bug found and fixed while building this plan: its default 'now' used the host's naive system clock (UTC in this environment) as if it were already America/Toronto wall-clock time, so it wrongly refused this reschedule as date_in_past. Fixed to compute 'now' via zoneinfo in --timezone; all 34 existing tests in tests/test_social_post_rebuild.py still pass.",
+    "Post Date on the Notion row read 9:30 PM America/Toronto at plan time (it had drifted from 8:30 PM earlier in the day, apparently edited directly in Notion); this reschedule targets 9:30 PM to match the row as last read. If Albert intended a different time, re-run --reschedule."
+  ]
+}

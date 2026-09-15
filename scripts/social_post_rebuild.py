@@ -57,6 +57,7 @@ import re
 import sys
 from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 # Provider name -> the networkData key that belongs to it. The write contract is
 # explicit: "Only include the networkData for the networks you have in the providers
@@ -311,7 +312,15 @@ def main() -> int:
         print(f"bad posts input: {exc}", file=sys.stderr)
         return 1
 
-    now = args.now or datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+    # BUG FIXED 2026-09-14: this used to be datetime.now().strftime(...), the host's
+    # naive system clock (UTC in this environment) mislabelled as if it were already
+    # wall-clock time in --timezone. That made "now" run hours ahead of the real
+    # America/Toronto time for most of the day, so a genuinely future --new-date
+    # (e.g. tonight 9:30pm while it's currently 8:42pm) was refused as date_in_past.
+    # The bug only ever pushed "now" later than reality here (UTC is ahead of
+    # Toronto), so it could over-refuse but never under-refuse -- still wrong, and
+    # caught live rescheduling TC-86's real Instagram Reel post.
+    now = args.now or datetime.now(ZoneInfo(args.timezone)).strftime("%Y-%m-%dT%H:%M:%S")
 
     try:
         post, warnings = find_post(posts, args.post_uuid, args.post_id)
