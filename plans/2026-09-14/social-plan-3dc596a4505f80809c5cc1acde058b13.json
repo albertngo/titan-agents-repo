@@ -1,0 +1,25 @@
+{
+  "contract_version": "social-plan-1",
+  "generated_at": "2026-09-14T20:25:00-04:00",
+  "notion_id": 86,
+  "content_name": "CC: Staircase Transformation (Demo + Install — merged)",
+  "blog_id": "3951085",
+  "write_mode": "live",
+  "actions": [],
+  "held": [
+    {
+      "reason": "possible_duplicate_already_scheduled",
+      "surface": "Instagram Reels",
+      "network": "instagram",
+      "network_data": { "type": "REEL" },
+      "story_variant": "Not a Story",
+      "caption": "We didn't rebuild this staircase. We transformed it. 🔥\nCarpet off, red oak cappings on, metal spindles locked in! Same structure, completely new look.\nGot stairs like the \"before\"? Lets change that\n\n#staircasemakeover #stairrenovation #carpetremoval #redoak #metalspindles #beforeandafter #mississauga #gta",
+      "media_url": "https://drive.google.com/file/d/1paOFjUT8YuXJV7hwZKgXfIKHQ_cTU5Lo/view?usp=drivesdk",
+      "cover": { "mode": "frame_offset", "value": 1000 },
+      "scheduled_at": { "dateTime": "2026-09-14T20:30:00", "timezone": "America/Toronto" },
+      "notion_page_url": "https://app.notion.com/3dc596a4505f80809c5cc1acde058b13",
+      "detail": "A live Metricool post already exists with identical caption, first-comment text, and cover offset (uuid 5430001733968808383, Metricool post id 376002938, created 2026-09-14T19:31 America/Toronto, autoPublish:true, draft:false), scheduled for 2026-09-15T16:00:00 America/Toronto -- a different time than this row's Post Date (2026-09-14T20:30:00) and this row's Metricool UUID is blank. This pipeline did not create that post (no matching entry in ingest/2026-09-14/actions-log.json) and cannot confirm it corresponds to this row without guessing. Scheduling this row as a new action would risk publishing the same Reel twice. Held rather than picking a date or assuming the two are the same post to keep the run moving. A person should reconcile: if the existing Metricool post IS this row's post, backfill Metricool UUID=5430001733968808383, Metricool Post ID=376002938 and correct Post Date to 2026-09-15T16:00 by hand (or via --reschedule once the uuid is on the row); if it is unrelated, investigate why an untracked live Instagram Reel with this exact caption is already scheduled before letting this row post as well."
+    }
+  ],
+  "warnings": []
+}
