@@ -32,4 +32,18 @@ in `process-price-list.md`, independent of anything in this file.
   paragraph, plain prose — this is notes, not a schema.
 ```
 
-No entries yet — this file is created empty, ready for the first one.
+## VBK (Notion Company value, exact casing)
+
+- **2026-09-15** — from Price Lists row `3dc596a4-505f-8100-898c-cbbf83399ea4`
+  (`VBK: Need 100+ units of 4x10 Black? Reach out for special offer...`): the
+  attachment was a 1-page marketing comparison flyer, tagged `Marketing Flyer`
+  (a new, gray, open-ended Tags option — not `Regular List`/`Promo`), not a price
+  list. It positions "VBK Vents" against cheap generic competitor vents on
+  quality: galvanized powder-coated steel, an anti-crush warranty, tight clean
+  corners and a consistent finish, versus thin easily-bent metal with inaccurate
+  corners and uneven paint on the competing product. No pricing, no SKUs, no
+  product catalogue — just a sell sheet. `Company` had no `VBK` option in Notion
+  before this row; it was added (confirmed against document header, email
+  subject, and sender domain `vbkinc.com`, all agreeing). VBK does not yet
+  appear in `airtable-destinations.json`'s `supplier_aliases` — not yet
+  onboarded to Airtable/Lightspeed, and this entry does not imply it should be.
