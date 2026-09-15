@@ -1,0 +1,12 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-09-15T08:12:44-04:00",
+  "status": "error",
+  "error": "GHL MCP server not bound/available this session: no mcp__ghl__* tools were exposed to the agent, so no read calls (contacts, opportunities, conversations, calendars) could be made. .mcp.json declares an 'ghl' HTTP MCP server (services.leadconnectorhq.com) authenticated via $GHL_PIT_TOKEN / $GHL_LOCATION_ID, and both env vars are present and populated in .env (not just a cloud var) — so this is a tool-binding gap for this session, not a missing-credential issue. No platform call was attempted or made; nothing was written or modified in GHL. Per ingest-schema.md this is a full failure (no data retrieved for any of the four categories: leads, opportunities, appointments, conversations), so status is 'error' rather than 'partial'.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "ghl-ingest-agent could not run: GHL MCP tools were not bound this session (config present, tool access missing). Re-run with the ghl MCP server attached before trusting today's brief for Sales/GHL coverage — no lead, pipeline, appointment, or conversation data was pulled."
+  ]
+}
