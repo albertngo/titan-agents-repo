@@ -1,0 +1,13 @@
+{
+  "contract_version": "social-plan-1",
+  "approved_at": "2026-09-14T21:33:00-04:00",
+  "_comment": "One approval file per DAY, accumulating. Every action approved on this date appears here; an actions agent executes an id only if it is present with status 'approved'. Append, never replace -- a later run that overwrites this file erases the authorisation record for everything approved earlier that day.",
+  "approvals": [
+    {
+      "id": "826c357c",
+      "status": "approved",
+      "approved_by": "policy",
+      "reason": "Clears every policy condition in contracts/social-plan-schema.md: surface 'YouTube - Long' is enabled and youtube appears in connected_networks; feed post ('Not a Story'), not a Decorated Story; caption, media_url, scheduled_at and surface all present and non-empty; no text_max_chars set for this surface; cover situation unambiguous (image cover resolved from 03_FINAL, video present in media, YouTube - Long requires a cover and one was found); required row_fields entry 'Video Title' is present. write_mode is live, so this schedules a real, publicly visible YouTube upload for 2026-09-16 09:00 America/Toronto."
+    }
+  ]
+}

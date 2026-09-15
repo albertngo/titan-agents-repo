@@ -1,0 +1,41 @@
+{
+  "contract_version": "social-plan-1",
+  "generated_at": "2026-09-14T21:32:00-04:00",
+  "notion_id": 82,
+  "content_name": "CC: Helen Artiga",
+  "blog_id": "3951085",
+  "write_mode": "live",
+  "actions": [
+    {
+      "id": "826c357c",
+      "type": "social_schedule_post",
+      "surface": "YouTube - Long",
+      "network": "youtube",
+      "network_data": {
+        "type": "video",
+        "privacy": "public",
+        "madeForKids": false,
+        "title": "Flooring & Stairs - “We Absolutely Loved It”",
+        "category": "EDUCATION"
+      },
+      "story_variant": "Not a Story",
+      "caption": "We completed Helen and Ricardo’s flooring and stairs project in only a couple of days. Goodbye old hardwood, carpet and tiles. 👋<br><br>Hello Engineered Hardwood and Solid Oak Stairs!",
+      "media_url": "https://drive.google.com/file/d/1p46KMf7q7ZcEMdtMvpjPHLgFN3-NhprB/view?usp=drivesdk",
+      "cover": {
+        "mode": "image_url",
+        "value": "https://drive.google.com/file/d/1rL5n2klUG3sPWIrkDMl0HP7ZxfrEI2kD/view?usp=drivesdk"
+      },
+      "scheduled_at": {
+        "dateTime": "2026-09-16T09:00:00",
+        "timezone": "America/Toronto"
+      },
+      "notion_page_url": "https://app.notion.com/p/3dc596a4505f8057b54dea3f650de600"
+    }
+  ],
+  "held": [],
+  "warnings": [
+    "write_mode is LIVE (flipped 2026-09-14, per social-destinations.json and titan-vault decisions/2026-09-14-social-write-mode-live.md). This is the first row this pipeline has scheduled since the flip -- the earlier 2026-09-14 actions (44896fe6, 3aa05063, 17a4860e) all executed while write_mode was still draft. Watch this one.",
+      "Caption carries literal '<br><br>' text (not an actual line break) -- copied verbatim from the Notion Caption field, per contract ('the caption is Caption on the row, that is the whole rule'). Same convention already present on the live-scheduled Staircase Transformation row (uuid 5430001733968808383), so treated as established, not a defect.",
+    "AI Disclosure = 'No' on the row -> networkData.youtubeData.isAiGeneratedContent omitted (blank/No is the default; nothing to declare)."
+  ]
+}
