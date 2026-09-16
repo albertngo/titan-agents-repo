@@ -1,0 +1,12 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-09-16T08:14:26-04:00",
+  "status": "error",
+  "error": "GHL MCP tools (mcp__ghl__*) were not bound in this session — only Read, Write, and Bash were available, despite .mcp.json configuring an 'ghl' HTTP MCP server (services.leadconnectorhq.com/mcp/, authenticated with GHL_PIT_TOKEN scoped to GHL_LOCATION_ID). No GHL API calls (contacts, opportunities, conversations, calendars, or pipelines) could be made this run, so no leads, pipeline moves, appointments, conversations, or workflow-drift findings could be retrieved or verified. Per the ghl-ingest-agent failure policy, this run writes a status:\"error\" record rather than fabricating or guessing GHL data. No writes were attempted against GHL (this agent is read-only regardless). Re-run once the ghl MCP server is bound/authorized for the session.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest failed to run: the ghl MCP server tools were not available this session, so today's leads, pipeline, appointments, conversations, and workflow-drift findings are missing from the daily brief. Re-run ghl-ingest-agent once MCP access is restored."
+  ]
+}
