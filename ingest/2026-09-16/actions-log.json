@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "entries": [
+    {
+      "logged_at": "2026-09-16T15:31:00-04:00",
+      "agent": "content-sweep",
+      "type": "notion_update_task",
+      "target": "Content Calendar Log row 3dc596a4-505f-8057-b54d-ea3f650de600 (\"CC: Helen Artiga\", YouTube - Long)",
+      "content_summary": "Post Status: Scheduled -> Failed. Verdict stuck_past_due: due 2026-09-16 09:00 America/Toronto, still present in getScheduledPosts 7h later with an explicit provider error (youtube: \"The request metadata specifies an invalid video description.\"). Metricool did not publish it.",
+      "approved_by": "auto: scripts/social_publish_sweep.py verdict, per content-sweep.md step 4 (writes Post Status only, for verdicts carrying set_post_status)",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "Metricool post id 376037019, uuid -7442852623933290709"
+    }
+  ]
+}
