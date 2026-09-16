@@ -491,5 +491,18 @@
     },
     "brief": true,
     "note": "scheduled run; local branch ledger last showed 2026-09-02, but all 5 ingesters cross-checked unmerged session branches and vault 01_daily notes and confirmed real runs happened through 2026-09-07 (branch-isolation artifact, not a real gap) -- no catch-up widening needed; bookkeeper still has no QBO/Intuit MCP connector (10th consecutive failed run since 2026-07-26)"
+  },
+  {
+    "date": "2026-09-16",
+    "run_at": "2026-09-16T08:50:00-04:00",
+    "sources": {
+      "ghl": "error",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; this branch's ledger last showed 2026-09-08, but vault 01_daily notes confirm real 5-source runs happened through 2026-09-15 on other unmerged session branches (same recurring branch-isolation artifact as the 2026-09-01/02/08 entries) -- no missed-day gap, no catch-up widening needed. ghl: MCP tools not bound this session (12th such failure pattern this month). bookkeeper: 11th consecutive failed run since 2026-07-26, still no QBO/Intuit MCP connector. notion: Tactical Tasks List coverage partial (query-data-sources usage limit hit after 100 of 151 stale rows)."
   }
 ]
