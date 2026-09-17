@@ -491,5 +491,18 @@
     },
     "brief": true,
     "note": "scheduled run; local branch ledger last showed 2026-09-02, but all 5 ingesters cross-checked unmerged session branches and vault 01_daily notes and confirmed real runs happened through 2026-09-07 (branch-isolation artifact, not a real gap) -- no catch-up widening needed; bookkeeper still has no QBO/Intuit MCP connector (10th consecutive failed run since 2026-07-26)"
+  },
+  {
+    "date": "2026-09-17",
+    "run_at": "2026-09-17T08:43:25-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run (Albert); local branch ledger last showed 2026-09-08 (main-agents was reset/updated to remote tip 8d62ece this session, bringing in unrelated content/catalogue history but not new ledger entries), so 2026-09-09 through 2026-09-16 show no entry here. Per-source cross-checks (meta-ads explicitly, notion implicitly via its own cold-start note) found individual ingest runs for those dates on separate unmerged session branches -- the same recurring branch-isolation artifact as 2026-09-08/2026-09-16 notes, not a real gap, but not exhaustively verified across all 91 remote branches either. Notion ingest was a cold start (no snapshot within its own 7-day lookback) and seeded 5 won projects silently per policy. Bookkeeper: 11th consecutive failed run since 2026-07-26, QBO/Intuit MCP connector still not configured."
   }
 ]
