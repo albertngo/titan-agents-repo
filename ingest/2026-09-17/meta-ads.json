@@ -1,0 +1,34 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-09-17T08:15:00-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $44.93 spend, 0 leads — Flooring Problems Campaign",
+      "summary": "Yesterday (2026-09-16) Meta spent $44.93 on the sole actively-delivering campaign, Flooring Problems Campaign (1,275 impressions, 14 clicks), but generated zero leads. Window spend is under the $50 minimum the anomaly check requires, so this isn't flagged as an anomaly item, but it's a single-day zero worth watching — the trailing 7-day baseline (2026-09-10 to 2026-09-16) is $354.33 spend / 21 leads / ~$16.87 CPL. Account is ACTIVE and no ads are flagged; the three other campaigns (Tiles Carasoul 1.99, Dead Stock Inventory Campaign Campaign, Real Estate List Building) remain PAUSED with no budget.",
+      "timestamp": "2026-09-16T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 4493,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 4493,
+    "impressions": 1275,
+    "clicks": 14,
+    "leads": 0,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Checked up to 7 days back for the most recent prior meta-ads.json before pulling: none exists on this branch (claude/adoring-mendel-22shgu) more recent than 2026-09-08. Cross-branch verification (the same recurring branch-isolation pattern noted in the 2026-09-08 and 2026-09-16 runs) found a meta-ads.json for every day 2026-09-09 through 2026-09-16 on separate unmerged session branches (adoring-mendel-oygzuv/kfwm1s/yeuzjf/9dyo2m/n3quda/3mux4g/rnnx8m/drqv24 respectively). The most recent, 2026-09-16's run, covered through 2026-09-15 with status ok and no gap of its own — so there is no real coverage gap, and today's pull correctly used the standard 1-day window (2026-09-16), no widening needed.",
+    "Flooring Problems Campaign (the only campaign with any spend, and the only ACTIVE campaign with budget) had zero leads yesterday despite $44.93 spend and 14 clicks. It doesn't meet any of the defined anomaly criteria (window spend is under the $50 minimum for the CPL-baseline check; clicks were nonzero; the campaign did deliver impressions/spend), so no anomaly item was emitted — flagging as a single-day observation, not yet a trend."
+  ]
+}
