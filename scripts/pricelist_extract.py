@@ -58,21 +58,42 @@ def norm(tok: str) -> str:
     return tok.replace("$", "").replace(",", "").replace(" ", "").strip()
 
 
-# A real price-table cell is short: the longest legitimate one on the HOMESPRO
-# sheet is ~60 chars ("Vancouver (8mm, 22mil, 1.5mm IXPE, 17.92 sq ft/ box) LONG
-# PLA"). A whole-page catch-all table dumps hundreds of characters into a single
-# cell. Column count does NOT distinguish them — HOMESPRO's catch-all had 4
-# columns, same as the real tables.
+# A whole-page catch-all table dumps hundreds of characters into a single cell.
+# Column count does NOT distinguish it — HOMESPRO's catch-all had 4 columns, same
+# as the real tables.
 CATCH_ALL_CELL_CHARS = 300
+
+# ...but cell length ALONE does not distinguish it either, which cost the Weiss
+# 2026-09-15 run (Albert). Weiss's genuine 5-column grid encloses the page banner
+# and the "Please Read:" footer prose inside its outermost ruling box, so one cell
+# runs 478-832 chars and a length-only test discarded all three pages as junk. The
+# run then reported "0 structured tables" on a sheet pdfplumber had in fact parsed
+# correctly, and halted rather than invent prices — right call, wrong cause.
+#
+# What actually makes a blob a blob is that ONE cell holds the whole page and
+# nothing else on the table carries content. That is what "the entire page jumbled
+# into one cell" always meant. So the long cell must also stand essentially ALONE:
+#
+#     HOMESPRO catch-all   1 populated cell,  0 others   <- junk
+#     HOMESPRO real        9 populated cells, 8 others   <- keep
+#     Weiss p1/p2/p3      39/37/38 cells,  38/36/37 others <- keep
+#
+# Counting the cells beside it, rather than measuring what share of the text it
+# holds, is deliberate: a share is relative to table SIZE, so a small but genuine
+# table (few short rows plus one long footer) reads as dominated and would be
+# thrown away for being small. The count does not care how big the table is.
+CATCH_ALL_MAX_OTHER_CELLS = 2
 
 
 def is_catch_all(table) -> bool:
     """True for pdfplumber's whole-page blob table, which is junk."""
-    for row in table:
-        for cell in row:
-            if cell and len(cell) > CATCH_ALL_CELL_CHARS:
-                return True
-    return False
+    cells = [c for row in table for c in row if c and c.strip()]
+    if not cells:
+        return False
+    longest = max(len(c) for c in cells)
+    if longest <= CATCH_ALL_CELL_CHARS:
+        return False
+    return len(cells) - 1 <= CATCH_ALL_MAX_OTHER_CELLS
 
 
 def compare_values(plumber_tokens, fium_tokens):

@@ -196,7 +196,8 @@ class TestCatchAllTableDetection(unittest.TestCase):
     """pdfplumber emits a whole-page blob table that must be discarded.
 
     Column count does not distinguish it — the HOMESPRO catch-all had 4 columns,
-    exactly like the real price tables. Cell length does.
+    exactly like the real price tables. Neither does cell length on its own: see
+    TestRealTableWithProseCellSurvives for the Weiss run that cost.
     """
 
     def setUp(self):
@@ -219,6 +220,70 @@ class TestCatchAllTableDetection(unittest.TestCase):
 
     def test_handles_none_cells(self):
         self.assertFalse(self.m.is_catch_all([[None, None], [None, "$1.00"]]))
+
+    def test_empty_table_is_not_a_catch_all(self):
+        self.assertFalse(self.m.is_catch_all([[None, ""], ["", None]]))
+
+
+class TestRealTableWithProseCellSurvives(unittest.TestCase):
+    """The Weiss regression, 2026-09-15 (Albert).
+
+    Weiss's genuine 5-column grid encloses the page banner and the "Please Read:"
+    footer inside its outermost ruling box, so one cell legitimately runs 478-832
+    characters. The length-only test discarded all three pages, and the run
+    reported "0 structured tables" on a sheet pdfplumber had parsed correctly —
+    then halted rather than invent prices, which was right, but the halt was
+    caused by this detector rather than by the document.
+
+    A long cell now has to stand essentially ALONE before it is treated as a blob.
+    The fixtures here are deliberately smaller than the real Weiss pages: an
+    earlier version of the fix measured what share of the table's text the long
+    cell held, which passed on the real 39-cell pages and failed on these, because
+    a share is relative to table size. The count of cells beside it is not.
+    """
+
+    def setUp(self):
+        self.m = _load_extract_module()
+
+    def _weiss_shaped(self, prose_chars):
+        """A real grid whose last row is one long prose cell."""
+        return [
+            ["Spec", "Color", "Price / SF", "SF / box", "LB / Box"],
+            ['6-1/2"x3/4" T&G\n1.2mm Veneer, Wirebrush\nCharacter',
+             "Bistro\nOatmeal\nTerracotta\nWarwick", "$2.99", "26.49", "62"],
+            ['6-1/2"x3/4" T&G\nWirebrush\n1.2mm OAK Veneer',
+             "Fortino\nRaw\nSaffron\nSandy Brown", "$3.09", "", ""],
+            ['7-1/2"x3/4"xRL\nWirebrush\n2mm OAK Veneer',
+             "Pewter\nCoconut\nPenny", "$3.89", "23.7", "57"],
+            ["Please Read: " + "y" * prose_chars, "", "", "", ""],
+        ]
+
+    def test_grid_with_long_footer_prose_is_kept(self):
+        for prose_chars in (478, 832):
+            with self.subTest(prose_chars=prose_chars):
+                table = self._weiss_shaped(prose_chars)
+                longest = max(len(c) for row in table for c in row if c)
+                self.assertGreater(
+                    longest, self.m.CATCH_ALL_CELL_CHARS,
+                    "fixture must exceed the length floor or it proves nothing")
+                self.assertFalse(
+                    self.m.is_catch_all(table),
+                    "a real grid must survive one long prose cell — this is the "
+                    "Weiss 2026-09-15 failure")
+
+    def test_prices_survive_into_the_cross_check(self):
+        """The point of keeping the table: its values reach the value set."""
+        table = self._weiss_shaped(478)
+        money = [m for row in table for c in row if c
+                 for m in self.m.MONEY.findall(c)]
+        self.assertEqual({self.m.norm(v) for v in money},
+                         {"2.99", "3.09", "3.89"})
+
+    def test_a_dominating_cell_is_still_a_blob(self):
+        """The fix must not make the detector toothless."""
+        table = [["everything " + "z" * 2000, "", "", "", ""],
+                 ["", "", "$2.99", "", ""]]
+        self.assertTrue(self.m.is_catch_all(table))
 
 
 if __name__ == "__main__":
