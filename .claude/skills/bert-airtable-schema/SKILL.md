@@ -3295,6 +3295,35 @@ price per collection, and accessory dimensions.
 - **One price per collection, not per row.** The price token sits vertically centred
   beside the colour block, so a naive row-wise parse will orphan it. Verified
   positionally on the first run.
+- **pdfplumber's `extract_tables()` finds NO structured table on this layout — this is
+  expected, not a failure to fix (confirmed 2026-09-18).** Every Vizion section is a
+  free-form column layout (item names stacked in a list, one shared price+spec block
+  floating beside the middle of the stack), not ruled or colour-banded cells, so
+  `extract_tables()` returns nothing usable (a degenerate 1-cell table on p.1, none on
+  the rest). `scripts/pricelist_extract.py` still exits 0 / "CROSS-CHECK PASSED" in this
+  case — **that is a false-positive read for Vizion specifically**, not evidence of a
+  clean parse. It only means pdfplumber found zero values, so there was nothing for
+  the cross-check to disagree with PDFium about. Do not treat a Vizion "passed" as
+  license to build the CSV automatically from `extract_tables()` output; there won't be
+  any. The 2026-09-18 run confirmed this a second time (Aug 2026 list) and escalated
+  correctly rather than hand-transcribing from `extract_text()`, which is exactly what
+  the pdfplumber-only policy exists to prevent.
+- **The reading method for Vizion, once the layout is confirmed (not new information —
+  same shape every run so far):** use `extract_text()` for classification and to read
+  the per-collection price/spec block (never as a substitute for a table-based parse on
+  a supplier where one is achievable), and apply one documented rule: **every SKU listed
+  under a collection's header shares that collection's single printed price and spec
+  block**, regardless of which item name the block sits beside on the page. This has now
+  held across the 2026-07-01 and 2026-08-01 lists (5 collections each time, prices
+  matching exactly for every colour that appears on both). Still verify against a fresh
+  read of the actual PDF text each run — colour lists, box sizes and prices do change —
+  but the *positional rule* itself does not need re-confirming with Albert every time.
+  A future unattended run may apply it directly rather than escalating on "pdfplumber
+  found nothing," provided it separately checks that every candidate price token in the
+  document (via PDFium/`extract_text()`) is accounted for by exactly one collection —
+  if a run ever finds a 6th price-shaped section, an unrecognised layout shift, or two
+  collections whose printed prices could plausibly swap, that's new territory and
+  should still escalate rather than guess.
 - **The vinyl accessory strip repeats identically** under both the 7MM and 8MM sections
   at the same prices — one SKU each, not two (the Canadian Standard trim rule).
 - **Colour names are place names** (Acadia, Banff, Whistler, Nile…) and carry no tone

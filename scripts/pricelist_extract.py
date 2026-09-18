@@ -156,6 +156,14 @@ def main() -> int:
             print(f"\n  present in pypdfium2 only (informational — pdfplumber "
                   f"reads table cells, not prose): {only_fium}")
 
+    # A "pass" with zero pdfplumber values is not evidence of a usable extraction —
+    # it only means there was nothing for the cross-check to disagree with PDFium
+    # about. Seen on Vizion's price lists (2026-09 onward): a free-form layout
+    # (one shared price+spec block per collection, not ruled/colour-banded cells)
+    # that extract_tables() never finds anything in. Flag it explicitly rather than
+    # let "CROSS-CHECK PASSED" read as "safe to build the CSV from these tables."
+    no_structured_data = not only_plumber and len(a) == 0 and len(b) > 0
+
     if args.json:
         args.json.write_text(json.dumps({
             "source": str(args.pdf),
@@ -167,6 +175,7 @@ def main() -> int:
                 "agreed": agreed,
                 "pdfplumber_only": only_plumber,
                 "passed": not only_plumber,
+                "no_structured_data": no_structured_data,
             },
         }, indent=2) + "\n")
 
@@ -182,7 +191,18 @@ def main() -> int:
         return 1
 
     if not args.quiet:
-        print("\nCROSS-CHECK PASSED — both engines agree on every monetary value.")
+        if no_structured_data:
+            print("\nCROSS-CHECK PASSED, BUT NO STRUCTURED PRICE DATA FOUND.")
+            print("  pdfplumber's extract_tables() returned zero monetary values on every "
+                  "page, even though PDFium sees prices in the document's prose/graphics. "
+                  "This is NOT a clean parse — 'passed' only means there was nothing for "
+                  "the cross-check to disagree about. Do not build the upload CSV from "
+                  "extract_tables() output here; check whether this supplier has a "
+                  "documented positional-reading rule (e.g. Vizion, bert-airtable-schema "
+                  "skill) before proceeding, or flag and stop per /process-price-list "
+                  "step 5 if it does not.")
+        else:
+            print("\nCROSS-CHECK PASSED — both engines agree on every monetary value.")
     return 0
 
 
