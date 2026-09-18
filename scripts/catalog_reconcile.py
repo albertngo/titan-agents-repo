@@ -623,12 +623,22 @@ def ls_create_fields(row, ls_upload_row):
     # credential was dead when this was written — and an unverified key 422s the whole
     # create. See the promo-marker gap in ls_update_fields.
     for csv_col, api_key in (("description", "description"),
-                             ("product_category", "product_category"),
                              ("brand_name", "brand_name"),
                              ("supplier_name", "supplier_name")):
         value = clean(ls_upload_row.get(csv_col))
         if value:
             fields[api_key] = value
+
+    # `product_category` needs the API's flat leaf name ('SPC'), never the LS-upload
+    # CSV's ' / '-separated path ('FLOORING / VINYL / SPC') — same distinction
+    # category_resolves() above already documents. lightspeed_push.py resolves this
+    # value against the live /api/2.0/product_types list by an exact (casefolded)
+    # name match, so handing it the CSV path form 404s with "no product type named
+    # 'FLOORING / VINYL / SPC' exists" — confirmed live on the first real
+    # catalog-sync create run, 2026-09-18.
+    category = clean(ls_upload_row.get("product_category"))
+    if category:
+        fields["product_category"] = category.split("/")[-1].strip()
 
     # Variant grouping. The CSV carries the option as a name/value pair; the API
     # wants {attribute_id, value}, resolved against the live attribute list at
