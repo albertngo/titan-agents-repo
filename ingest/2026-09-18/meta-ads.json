@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-09-18T08:15:00-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $48.69 spend, 3 leads, $16.23 CPL — Flooring Problems Campaign",
+      "summary": "Yesterday (2026-09-17) Meta spent $48.69 on the sole actively-delivering campaign, Flooring Problems Campaign (1,313 impressions, 31 clicks), generating 3 leads at $16.23 CPL. Window spend is under the $50 minimum the anomaly check requires, so this isn't compared against the 7-day baseline (2026-09-11 to 2026-09-17: $353.07 spend / 21 leads / ~$16.81 CPL) — but the CPL is in line with it anyway. Account is ACTIVE and no ads are flagged; the three other campaigns (Tiles Carasoul 1.99, Dead Stock Inventory Campaign Campaign, Real Estate List Building) remain PAUSED with no budget.",
+      "timestamp": "2026-09-17T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 4869,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 4869,
+    "impressions": 1313,
+    "clicks": 31,
+    "leads": 3,
+    "cpl_cents": 1623,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Checked up to 7 days back for the most recent prior meta-ads.json before pulling: none exists on this session's branch more recent than 2026-09-08, but cross-branch verification (the same recurring branch-isolation pattern noted in the 2026-09-08 and 2026-09-17 runs) found a meta-ads.json for every day 2026-09-09 through 2026-09-17 on separate unmerged session branches (most recently claude/adoring-mendel-22shgu for 2026-09-17, status ok, window ending 2026-09-16). So there is no real coverage gap, and today's pull correctly used the standard 1-day window (2026-09-17), no widening needed.",
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued at 3, matching the counted leads exactly). This has now recurred on every checked run back to at least 2026-08-31 — no discrepancy in the counted total so far, but the script's lead-action set should be extended rather than continuing to hand-note it."
+  ]
+}

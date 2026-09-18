@@ -1,0 +1,12 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-09-18T08:11:50-04:00",
+  "status": "error",
+  "error": "GHL MCP server tools were not available in this session. .mcp.json configures the 'ghl' HTTP MCP server (https://services.leadconnectorhq.com/mcp/) and GHL_PIT_TOKEN/GHL_LOCATION_ID are both present and non-empty in .env, but no mcp__ghl__* tools (contacts, opportunities, calendars, conversations, locations reads) were exposed to this agent invocation -- only Read/Write/Bash were available, so no GHL tool call could be attempted at all. This differs from the standing bookkeeper/QBO gap (that connector has never been configured); ghl is configured and credentialed, so this reads as a session-level MCP connection/attachment failure, not a config problem. Unable to pull last-24h contacts, opportunities (across any of the three pipelines), calendar appointments, or conversations, and therefore unable to run workflow-drift detection or won-lead analysis for 2026-09-18. No GHL data was read; nothing was written to GHL (read-only agent, no write attempted or possible).",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest failed today (2026-09-18): the ghl MCP server's tools were not reachable/attached in this session despite valid config and credentials in .env, so leads, pipeline moves, appointments, conversations, and workflow-drift findings are all unknown for the last 24h. This is the primary driver of the daily brief -- re-run ghl-ingest-agent once MCP tool access is restored before treating today's brief as complete."
+  ]
+}

@@ -491,5 +491,18 @@
     },
     "brief": true,
     "note": "scheduled run; local branch ledger last showed 2026-09-02, but all 5 ingesters cross-checked unmerged session branches and vault 01_daily notes and confirmed real runs happened through 2026-09-07 (branch-isolation artifact, not a real gap) -- no catch-up widening needed; bookkeeper still has no QBO/Intuit MCP connector (10th consecutive failed run since 2026-07-26)"
+  },
+  {
+    "date": "2026-09-18",
+    "run_at": "2026-09-18T08:10:11-04:00",
+    "sources": {
+      "ghl": "error",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; ghl failed this run specifically because the ghl MCP server tools were not attached to the session despite valid .mcp.json config and .env credentials (session-level attachment failure, distinct from the bookkeeper standing gap); bookkeeper 11th consecutive failed run since 2026-07-26 (no QBO/Intuit connector); no ledger entries exist on main-agents for 2026-09-09 through 2026-09-17 -- cross-checked against vault 01_daily notes (present for every date) and each ingest agent's own branch-isolation check: real runs happened on unmerged session branches, not a genuine gap"
   }
 ]
