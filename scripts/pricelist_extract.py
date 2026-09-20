@@ -42,7 +42,19 @@ import re
 import sys
 from pathlib import Path
 
-MONEY = re.compile(r"\$\s?\d[\d,]*(?:\.\d{1,2})?")
+# Two alternatives, and the ORDER matters.
+#
+# The first matches a LETTER-SPACED number — "$ 1 . 9 9" — where the PDF puts a
+# space between every glyph. FAW's PL-317 does this on one row, and the tight
+# form below silently truncated it to "$ 1": it allows a single space after the
+# "$" and none after that, so it stops at the first digit. PDFium reads the same
+# run as "$1.99", so the 2026-09-12 cross-check caught it as a phantom "1" —
+# but before that check existed the truncated value could have been taken as a
+# price. It requires at least one further spaced glyph, so an ordinary "$ 2.19"
+# does NOT match here and falls through to the tight form intact.
+#
+# The second is the original tight form, unchanged.
+MONEY = re.compile(r"\$(?:\s\d)(?:\s[\d,.])+|\$\s?\d[\d,]*(?:\.\d{1,2})?")
 
 
 def die_tooling(msg: str) -> "int":
