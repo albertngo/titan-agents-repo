@@ -1,0 +1,6357 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "Floors At Work",
+ "run_at": "2026-09-20T12:25:32.671750-04:00",
+ "status": "ok",
+ "inputs": [
+  {
+   "file": "ingest/2026-09-20/faw_pl317_airtable_upload_2026-09-20.csv",
+   "rows": 190
+  },
+  {
+   "file": "/home/user/titan-agents-repo/ingest/2026-09-20/lightspeed-products.json",
+   "products": 14835,
+   "run_at": "2026-09-20T12:21:59.248829-04:00"
+  },
+  {
+   "file": "ingest/2026-09-20/faw_airtable_existing.json",
+   "records": 231
+  },
+  {
+   "file": "ingest/2026-09-20/faw_pl317_ls_upload_2026-09-20.csv",
+   "rows": 190
+  }
+ ],
+ "cost_basis": {
+  "value": "pallet-price",
+  "confirmed_by": "bert-airtable-schema FAW Cost column; Albert 2026-09-20"
+ },
+ "summary": {
+  "airtable_backfill_ls_id": 12,
+  "airtable_upsert": 131,
+  "lightspeed_create": 12,
+  "lightspeed_update": 119,
+  "actions_total": 274,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 0,
+  "warnings": 0,
+  "rows_in": 190
+ },
+ "actions": [
+  {
+   "id": "cat-c4312aa75bba",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0010",
+   "airtable_rec_id": "recXdJPAW1ZvFe1z8",
+   "ls_id": "121e58d7-9221-4d8a-949f-5db0d12fa5e2",
+   "handle": "ENG75HICAGEDBARREL",
+   "fields": {
+    "Cost/unit": "4.49",
+    "Retail price/unit": "5.49"
+   },
+   "before": {
+    "Cost/unit": "4.29",
+    "Retail price/unit": "5.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 1
+  },
+  {
+   "id": "cat-1b7c09151d42",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0011",
+   "airtable_rec_id": "reccXl7uCeDpXyoZz",
+   "ls_id": "dcd79bf3-d84b-48cb-b850-9111566a67c3",
+   "handle": "ENG75HICCACAO",
+   "fields": {
+    "Cost/unit": "4.49",
+    "Retail price/unit": "5.49"
+   },
+   "before": {
+    "Cost/unit": "4.29",
+    "Retail price/unit": "5.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 2
+  },
+  {
+   "id": "cat-9def9329010a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0012",
+   "airtable_rec_id": "recpGz9ljZ5nlrjMw",
+   "ls_id": "a439d996-06b8-45cb-bdaa-3200bf596cee",
+   "handle": "ENG75HICEARLGREY",
+   "fields": {
+    "Cost/unit": "4.49",
+    "Retail price/unit": "5.49"
+   },
+   "before": {
+    "Cost/unit": "4.29",
+    "Retail price/unit": "5.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 3
+  },
+  {
+   "id": "cat-541854f5f91b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0013",
+   "airtable_rec_id": "recWtFrOT3HjyWQwJ",
+   "ls_id": "cafb1668-9d0f-4f1a-b513-c36eaea35740",
+   "handle": "ENG75HICKONA",
+   "fields": {
+    "Cost/unit": "4.49",
+    "Retail price/unit": "5.49"
+   },
+   "before": {
+    "Cost/unit": "4.29",
+    "Retail price/unit": "5.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 4
+  },
+  {
+   "id": "cat-5e8583e175b0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0014",
+   "airtable_rec_id": "rec2a33lGk8V2qldp",
+   "ls_id": "d2665407-48df-491e-b1c0-93b55545a875",
+   "handle": "ENG75HICMACADAMIA",
+   "fields": {
+    "Cost/unit": "4.49",
+    "Retail price/unit": "5.49"
+   },
+   "before": {
+    "Cost/unit": "4.29",
+    "Retail price/unit": "5.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 5
+  },
+  {
+   "id": "cat-11e8afec5795",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0015",
+   "airtable_rec_id": "rec4lgN8jVFfvFd2G",
+   "ls_id": "7d8fe99c-988c-406a-825b-a1218f6a3eed",
+   "handle": "ENG75HICMODERNPEWTER",
+   "fields": {
+    "Cost/unit": "4.49",
+    "Retail price/unit": "5.49"
+   },
+   "before": {
+    "Cost/unit": "4.29",
+    "Retail price/unit": "5.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 6
+  },
+  {
+   "id": "cat-7e0e0e0c7208",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0016",
+   "airtable_rec_id": "recrRQx0ELGUy4dkW",
+   "ls_id": "2267391a-c6ee-468e-bf6a-8c56160a5adc",
+   "handle": "ENG75HICNUTMEG",
+   "fields": {
+    "Cost/unit": "4.49",
+    "Retail price/unit": "5.49"
+   },
+   "before": {
+    "Cost/unit": "4.29",
+    "Retail price/unit": "5.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 7
+  },
+  {
+   "id": "cat-0495a25e611e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0017",
+   "airtable_rec_id": "rec50TzLeixifzqQH",
+   "ls_id": "c6a58785-f61c-4246-a4ee-2079159a1399",
+   "handle": "ENG75HICPECAN",
+   "fields": {
+    "Cost/unit": "4.49",
+    "Retail price/unit": "5.49"
+   },
+   "before": {
+    "Cost/unit": "4.29",
+    "Retail price/unit": "5.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 8
+  },
+  {
+   "id": "cat-2dcf86117f9e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0018",
+   "airtable_rec_id": "recMGtPaq66BAwRNb",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b32464651",
+   "handle": "ENG75HICRUSTICNATURAL",
+   "fields": {
+    "Cost/unit": "4.49",
+    "Retail price/unit": "5.49"
+   },
+   "before": {
+    "Cost/unit": "4.29",
+    "Retail price/unit": "5.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 9
+  },
+  {
+   "id": "cat-742cb43cf308",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0019",
+   "airtable_rec_id": "recz09T4apNkYG55I",
+   "ls_id": "089702d7-935f-43e8-be72-7f9387609d6c",
+   "handle": "ENG75HICSADDLEBROWN",
+   "fields": {
+    "Cost/unit": "4.49",
+    "Retail price/unit": "5.49"
+   },
+   "before": {
+    "Cost/unit": "4.29",
+    "Retail price/unit": "5.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 10
+  },
+  {
+   "id": "cat-425b1d026700",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0029",
+   "airtable_rec_id": "recDbfW4MAobJGtHb",
+   "ls_id": "e24696eb-2a54-4a8b-a98e-ff46b4caa7d4",
+   "handle": "ENG65OAKOREGONOAK168",
+   "fields": {
+    "Cost/unit": "3.69",
+    "Retail price/unit": "4.69"
+   },
+   "before": {
+    "Cost/unit": "3.49",
+    "Retail price/unit": "4.49"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 11
+  },
+  {
+   "id": "cat-f5e4fb3e056f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0030",
+   "airtable_rec_id": "recQSjdBSsq9DNWBR",
+   "ls_id": "676b5d18-4590-4b4f-b0d2-c6ba35cbd53d",
+   "handle": "ENG65OAKPURDY168",
+   "fields": {
+    "Cost/unit": "3.69",
+    "Retail price/unit": "4.69"
+   },
+   "before": {
+    "Cost/unit": "3.49",
+    "Retail price/unit": "4.49"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 12
+  },
+  {
+   "id": "cat-423f1091f4c0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0031",
+   "airtable_rec_id": "recQGSnFCMzsot00Y",
+   "ls_id": "3ed8c4a1-778a-408e-a3d3-c1ae51095b2b",
+   "handle": "ENG65OAKFLORENCE168",
+   "fields": {
+    "Cost/unit": "3.69",
+    "Retail price/unit": "4.69"
+   },
+   "before": {
+    "Cost/unit": "3.49",
+    "Retail price/unit": "4.49"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 13
+  },
+  {
+   "id": "cat-74a1b01cc522",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0032",
+   "airtable_rec_id": "recjCKqfkpRl2sEQB",
+   "ls_id": "b206e4f4-d1ea-4c58-a5e6-8c76274cf694",
+   "handle": "ENG65OAKNAPLES168",
+   "fields": {
+    "Cost/unit": "3.69",
+    "Retail price/unit": "4.69"
+   },
+   "before": {
+    "Cost/unit": "3.49",
+    "Retail price/unit": "4.49"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 14
+  },
+  {
+   "id": "cat-4e70f5568693",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0033",
+   "airtable_rec_id": "rec0SSWqoZuwQQ266",
+   "ls_id": "f835ef3b-b685-4918-adcc-86ea80a0e607",
+   "handle": "ENG65OAKROME168",
+   "fields": {
+    "Cost/unit": "3.69",
+    "Retail price/unit": "4.69"
+   },
+   "before": {
+    "Cost/unit": "3.49",
+    "Retail price/unit": "4.49"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 15
+  },
+  {
+   "id": "cat-a355c0562ede",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0034",
+   "airtable_rec_id": "recFtlxKwUdxzBpmf",
+   "ls_id": "43b19a8b-2db9-4831-8554-9e37210f7bfe",
+   "handle": "ENG65OAKSUNLIGHT168",
+   "fields": {
+    "Cost/unit": "3.69",
+    "Retail price/unit": "4.69"
+   },
+   "before": {
+    "Cost/unit": "3.49",
+    "Retail price/unit": "4.49"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 16
+  },
+  {
+   "id": "cat-5ca751e01e07",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0056",
+   "airtable_rec_id": "recIRgD8HL1ZxXMTg",
+   "ls_id": "4114f0fd-e704-4fd2-a460-fb5ca7142c87",
+   "handle": "ENG5OAKCANVASEURDES",
+   "fields": {
+    "Cost/unit": "4.69",
+    "Retail price/unit": "5.69"
+   },
+   "before": {
+    "Cost/unit": "4.49",
+    "Retail price/unit": "5.49"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 17
+  },
+  {
+   "id": "cat-2cb7532e1957",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0057",
+   "airtable_rec_id": "recDufAKbyklkXy9j",
+   "ls_id": "0b1dbb40-d0f5-4a78-98f2-3be30c10927f",
+   "handle": "ENG5OAKFAWNBEIGEEURDES",
+   "fields": {
+    "Cost/unit": "4.69",
+    "Retail price/unit": "5.69"
+   },
+   "before": {
+    "Cost/unit": "4.49",
+    "Retail price/unit": "5.49"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 18
+  },
+  {
+   "id": "cat-083d1f63654c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0058",
+   "airtable_rec_id": "recUFy2Hxp9zSBftq",
+   "ls_id": "1ce510eb-7e68-40a8-b666-54c8491f5278",
+   "handle": "ENG5OAKHARVESTGOLDEURDES",
+   "fields": {
+    "Cost/unit": "4.69",
+    "Retail price/unit": "5.69"
+   },
+   "before": {
+    "Cost/unit": "4.49",
+    "Retail price/unit": "5.49"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 19
+  },
+  {
+   "id": "cat-759ab614d1e0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0059",
+   "airtable_rec_id": "rectjqIdLL49QiZmW",
+   "ls_id": "a57fb4c2-0891-4286-b273-622694d6cfae",
+   "handle": "ENG5OAKSTORMOAKEURDES",
+   "fields": {
+    "Cost/unit": "4.69",
+    "Retail price/unit": "5.69"
+   },
+   "before": {
+    "Cost/unit": "4.49",
+    "Retail price/unit": "5.49"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 20
+  },
+  {
+   "id": "cat-39ebe455806f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0060",
+   "airtable_rec_id": "recy3tfEnghPMdXBN",
+   "ls_id": "1b0d9d29-491a-42e8-ae8a-6f4f0e51696e",
+   "handle": "ENG5OAKTOFFEEEURDES",
+   "fields": {
+    "Cost/unit": "4.69",
+    "Retail price/unit": "5.69"
+   },
+   "before": {
+    "Cost/unit": "4.49",
+    "Retail price/unit": "5.49"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 21
+  },
+  {
+   "id": "cat-a4fd3bce297d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0061",
+   "airtable_rec_id": "recBLYMYoqzm6dgS4",
+   "ls_id": "a5449104-70e1-4ab9-a446-610d846e44ac",
+   "handle": "ENG75OAKALABASTEROAKEURDES",
+   "fields": {
+    "Cost/unit": "6.99",
+    "Retail price/unit": "7.99"
+   },
+   "before": {
+    "Cost/unit": "5.99",
+    "Retail price/unit": "6.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 22
+  },
+  {
+   "id": "cat-296cbe653516",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0062",
+   "airtable_rec_id": "recPmW0obBgLGetoO",
+   "ls_id": "64892037-9362-42cf-b114-b94816f2f918",
+   "handle": "ENG75OAKLINENOAKEURDES",
+   "fields": {
+    "Cost/unit": "6.99",
+    "Retail price/unit": "7.99"
+   },
+   "before": {
+    "Cost/unit": "5.99",
+    "Retail price/unit": "6.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 23
+  },
+  {
+   "id": "cat-0a8d1cd7a0c8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0063",
+   "airtable_rec_id": "recfQEs8cJi9KcPmQ",
+   "ls_id": "e6d5a5f1-0b58-4a27-828d-a2efeb60dee7",
+   "handle": "ENG75OAKSABLEEURDES",
+   "fields": {
+    "Cost/unit": "6.99",
+    "Retail price/unit": "7.99"
+   },
+   "before": {
+    "Cost/unit": "5.99",
+    "Retail price/unit": "6.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 24
+  },
+  {
+   "id": "cat-546b1c50cb87",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0064",
+   "airtable_rec_id": "rec687kXkgc9oR4u4",
+   "ls_id": "3bd1f806-3325-4c49-b76e-a63ab4963b9e",
+   "handle": "ENG75OAKSOFTGOLDEURDES",
+   "fields": {
+    "Cost/unit": "6.99",
+    "Retail price/unit": "7.99"
+   },
+   "before": {
+    "Cost/unit": "5.99",
+    "Retail price/unit": "6.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 25
+  },
+  {
+   "id": "cat-216634bff9d8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0065",
+   "airtable_rec_id": "recmPJOOccRxiYRev",
+   "ls_id": "70e9a691-05f3-4965-ab88-e2ea520537ae",
+   "handle": "ENG75OAKWARMHONEYEURDES",
+   "fields": {
+    "Cost/unit": "6.99",
+    "Retail price/unit": "7.99"
+   },
+   "before": {
+    "Cost/unit": "5.99",
+    "Retail price/unit": "6.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 26
+  },
+  {
+   "id": "cat-0bd38d6b457b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0075",
+   "airtable_rec_id": "recrE4ASW2AAxn5u4",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b358db670",
+   "handle": "ENG5WALNATURAL",
+   "fields": {
+    "Cost/unit": "4.59",
+    "Retail price/unit": "5.59"
+   },
+   "before": {
+    "Cost/unit": "4.39",
+    "Retail price/unit": "5.39"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 27
+  },
+  {
+   "id": "cat-475b4aeb437f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0076",
+   "airtable_rec_id": "recs9MrOfOlvYbZZA",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b35a688d9",
+   "handle": "ENG5WALTAN",
+   "fields": {
+    "Cost/unit": "4.59",
+    "Retail price/unit": "5.59"
+   },
+   "before": {
+    "Cost/unit": "4.39",
+    "Retail price/unit": "5.39"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 28
+  },
+  {
+   "id": "cat-41753af3facf",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0077",
+   "airtable_rec_id": "rec5NeDry0szfsBJK",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b33cf8e20",
+   "handle": "ENG65MAPNATURAL",
+   "fields": {
+    "Cost/unit": "3.99",
+    "Retail price/unit": "4.99"
+   },
+   "before": {
+    "Cost/unit": "3.79",
+    "Retail price/unit": "4.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 29
+  },
+  {
+   "id": "cat-09fd2570b6f4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0078",
+   "airtable_rec_id": "reciYsnZLymKGRcjV",
+   "ls_id": "5f9dd7da-ca72-492b-8e28-192e2e1b25c6",
+   "handle": "ENG65MAPCAPPUCCINO",
+   "fields": {
+    "Cost/unit": "3.99",
+    "Retail price/unit": "4.99"
+   },
+   "before": {
+    "Cost/unit": "3.79",
+    "Retail price/unit": "4.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 30
+  },
+  {
+   "id": "cat-8a1236eb1045",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0079",
+   "airtable_rec_id": "recehd7swxUjhrY2a",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b337ea751",
+   "handle": "ENG65MAPCAPRI",
+   "fields": {
+    "Cost/unit": "3.99",
+    "Retail price/unit": "4.99"
+   },
+   "before": {
+    "Cost/unit": "3.79",
+    "Retail price/unit": "4.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 31
+  },
+  {
+   "id": "cat-e8b3abf27857",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0080",
+   "airtable_rec_id": "rechXVFO7x3YS3DVc",
+   "ls_id": "a5b48f31-a9a9-4ee2-9417-5bcf0b707e22",
+   "handle": "ENG65MAPORIGINALMAPLE",
+   "fields": {
+    "Cost/unit": "3.99",
+    "Retail price/unit": "4.99"
+   },
+   "before": {
+    "Cost/unit": "3.79",
+    "Retail price/unit": "4.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 32
+  },
+  {
+   "id": "cat-9fe792b52c49",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0081",
+   "airtable_rec_id": "recEivIgNKlT3ys1n",
+   "ls_id": "0a9240fd-23fb-40c0-8c9f-23fb57eee1f3",
+   "handle": "ENG65MAPLATTE",
+   "fields": {
+    "Cost/unit": "3.99",
+    "Retail price/unit": "4.99"
+   },
+   "before": {
+    "Cost/unit": "3.79",
+    "Retail price/unit": "4.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 33
+  },
+  {
+   "id": "cat-4aa3fd3d4028",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0082",
+   "airtable_rec_id": "recMKyaYED9djxSkn",
+   "ls_id": "9534d7a0-b3e4-422c-b14a-57bab13c9689",
+   "handle": "ENG65MAPMACCHIATO",
+   "fields": {
+    "Cost/unit": "3.99",
+    "Retail price/unit": "4.99"
+   },
+   "before": {
+    "Cost/unit": "3.79",
+    "Retail price/unit": "4.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 34
+  },
+  {
+   "id": "cat-3fd5229165a0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0083",
+   "airtable_rec_id": "recghHjiR7bcWrzrb",
+   "ls_id": "d21458e7-09d9-4241-bc81-04a0f6646082",
+   "handle": "ENG65MAPMYTH",
+   "fields": {
+    "Cost/unit": "3.99",
+    "Retail price/unit": "4.99"
+   },
+   "before": {
+    "Cost/unit": "3.79",
+    "Retail price/unit": "4.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 35
+  },
+  {
+   "id": "cat-991fe886a54b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HWD-FAWK-0001",
+   "airtable_rec_id": "recQ8e3m8MqI1QXcZ",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b35daf9f0",
+   "handle": "HWD475WALTAN",
+   "fields": {
+    "Cost/unit": "6.39",
+    "Retail price/unit": "7.39"
+   },
+   "before": {
+    "Cost/unit": "6.19",
+    "Retail price/unit": "7.19"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 36
+  },
+  {
+   "id": "cat-d347c1b103c6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HWD-FAWK-0002",
+   "airtable_rec_id": "rec7drzgItIAZ1lrN",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b35c1445d",
+   "handle": "HWD475WALNATURAL",
+   "fields": {
+    "Cost/unit": "6.39",
+    "Retail price/unit": "7.39"
+   },
+   "before": {
+    "Cost/unit": "6.19",
+    "Retail price/unit": "7.19"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 37
+  },
+  {
+   "id": "cat-b5fc1c07ddb0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0015",
+   "airtable_rec_id": "rec93ElKF9mXZGSoB",
+   "ls_id": "a322c558-dd9f-459d-becc-4fec62ee1185",
+   "handle": "LAM929LAMARIEL",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 38
+  },
+  {
+   "id": "cat-e65258e0bed8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0016",
+   "airtable_rec_id": "recpxP1NmHSf8VTTT",
+   "ls_id": "a5b0ffb5-050a-4a85-a1ea-989d45484ea2",
+   "handle": "LAM929LAMASTRA",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 39
+  },
+  {
+   "id": "cat-95cf43f448e2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0017",
+   "airtable_rec_id": "rec4JCtFOiAWFfKqW",
+   "ls_id": "122c73c0-d58d-41f7-a8ae-5f0c2a621117",
+   "handle": "LAM929LAMAURORA",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 40
+  },
+  {
+   "id": "cat-2c7c63f4ff39",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0018",
+   "airtable_rec_id": "recYkEo4FlAamHP6z",
+   "ls_id": "029d5aa7-0a01-46d6-8abb-70c0269f3cb6",
+   "handle": "LAM929LAMBIANCA",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 41
+  },
+  {
+   "id": "cat-c047bce9afad",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0019",
+   "airtable_rec_id": "recQi0cP8lvKvumdP",
+   "ls_id": "43b9c641-474f-481b-b4bc-a5095e16249c",
+   "handle": "LAM929LAMELECTRA",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 42
+  },
+  {
+   "id": "cat-8b32f26c5fcc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0020",
+   "airtable_rec_id": "recLMn68ujdDAB31u",
+   "ls_id": "0c3cd13c-9ad9-4f7a-b691-4350508dfb25",
+   "handle": "LAM929LAMEQUINOX",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 43
+  },
+  {
+   "id": "cat-c08c9f839f27",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0021",
+   "airtable_rec_id": "recv6YAYaSobevHht",
+   "ls_id": "30baca61-b4f7-48c9-8929-29e50aa86a13",
+   "handle": "LAM929LAMESTELLA",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 44
+  },
+  {
+   "id": "cat-f651df22eda3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0022",
+   "airtable_rec_id": "recQn1bXhRL9gANaO",
+   "ls_id": "108e2627-f1a6-48a8-a20c-d2a739a7a0c4",
+   "handle": "LAM929LAMHALO",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 45
+  },
+  {
+   "id": "cat-107c62b2cd46",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0023",
+   "airtable_rec_id": "recCJLGdzRYd3MYda",
+   "ls_id": "ccb792d5-ffad-4957-8bbb-7f27601b4448",
+   "handle": "LAM929LAMLUNA",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 46
+  },
+  {
+   "id": "cat-beb9583c8051",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0024",
+   "airtable_rec_id": "recncxlzZnKRNA6Rm",
+   "ls_id": "2b150090-540e-4c01-9430-85c24054388a",
+   "handle": "LAM929LAMNOVA",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 47
+  },
+  {
+   "id": "cat-1c72047ab73f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0025",
+   "airtable_rec_id": "recIMNnV7m0n9fsia",
+   "ls_id": "b8b8b261-0863-4a7d-a75d-23daab60d7c6",
+   "handle": "LAM771LAMCANYONMIST",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 48
+  },
+  {
+   "id": "cat-b5d8b266f2b8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0026",
+   "airtable_rec_id": "recNCy5dM1ZXzGYb7",
+   "ls_id": "10a583fc-0347-4877-a422-6f2a95fa5afe",
+   "handle": "LAM771LAMHARBOURMIST",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 49
+  },
+  {
+   "id": "cat-11c476454ecd",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0027",
+   "airtable_rec_id": "recAH2DxyS6tcHqBA",
+   "ls_id": "8e276177-94a8-4104-8d56-5214160b5173",
+   "handle": "LAM771LAMHERITAGEMAPLE",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 50
+  },
+  {
+   "id": "cat-141d07c8fb14",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0028",
+   "airtable_rec_id": "reciaW5SaFIfzNoG4",
+   "ls_id": "9672dbb3-7209-4d64-9df4-39d6b7d4209e",
+   "handle": "LAM771LAMHORIZON",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 51
+  },
+  {
+   "id": "cat-f7b3025a99ca",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0029",
+   "airtable_rec_id": "rec20VLOvHW1hwexQ",
+   "ls_id": "e79ae760-f54a-4422-ac65-f6660a36d93f",
+   "handle": "LAM771LAMMESATAUPE",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 52
+  },
+  {
+   "id": "cat-34b38444087e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0030",
+   "airtable_rec_id": "recdVIHzARwl8NjL0",
+   "ls_id": "b1b64277-d56d-4cc0-9f43-bdaa0ae67756",
+   "handle": "LAM771LAMPALISADE",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 53
+  },
+  {
+   "id": "cat-691b3128b96d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0031",
+   "airtable_rec_id": "recNPzofEKEpguSda",
+   "ls_id": "5cd2c606-08cd-4c39-81b8-9e62201b297f",
+   "handle": "LAM771LAMRAVENWOOD",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 54
+  },
+  {
+   "id": "cat-df91712f68c8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0032",
+   "airtable_rec_id": "reccJUJKSwQppOPqq",
+   "ls_id": "640fba08-36a1-44d9-a5df-860766544b5b",
+   "handle": "LAM771LAMSILVERDUNE",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 55
+  },
+  {
+   "id": "cat-113137e533c9",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0033",
+   "airtable_rec_id": "reca4fnmle7O4AVIu",
+   "ls_id": "f878273f-bc77-49f5-ba46-ac5a99920a7b",
+   "handle": "LAM771LAMSUMMITOAK",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 56
+  },
+  {
+   "id": "cat-69b46045e499",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0034",
+   "airtable_rec_id": "recDUHrahJ3OnkZVP",
+   "ls_id": "032f8648-e1df-4b01-92d8-1872190bb5cb",
+   "handle": "LAM771LAMURBANWALNUT",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 57
+  },
+  {
+   "id": "cat-a8a90b387dfe",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0001",
+   "airtable_rec_id": "recI9cL7Nc3O7f3VL",
+   "ls_id": "8304ce25-2caa-40d2-803c-68285e49f423",
+   "handle": "LVP71VNYWINDSOR",
+   "fields": {
+    "Cost/unit": "1.69",
+    "Retail price/unit": "2.69"
+   },
+   "before": {
+    "Cost/unit": "1.49",
+    "Retail price/unit": "2.49"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 58
+  },
+  {
+   "id": "cat-9bd4788f5f0c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0002",
+   "airtable_rec_id": "recjDFRPj9ggarqRj",
+   "ls_id": "01b60584-4b33-4493-84a7-47b6cdd80760",
+   "handle": "LVP71VNYJASMINE",
+   "fields": {
+    "Cost/unit": "1.69",
+    "Retail price/unit": "2.69"
+   },
+   "before": {
+    "Cost/unit": "1.49",
+    "Retail price/unit": "2.49"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 59
+  },
+  {
+   "id": "cat-ecbd922fe83e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0003",
+   "airtable_rec_id": "receLOSN70RFtvPM4",
+   "ls_id": "9654cca5-88b7-413f-9651-cfa9485ec94e",
+   "handle": "LVP71VNYWESTMINSTER",
+   "fields": {
+    "Cost/unit": "1.69",
+    "Retail price/unit": "2.69"
+   },
+   "before": {
+    "Cost/unit": "1.49",
+    "Retail price/unit": "2.49"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 60
+  },
+  {
+   "id": "cat-0e502bbc18ff",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0004",
+   "airtable_rec_id": "rec0TCtx6Uf2wvxBD",
+   "ls_id": "c634fe5b-334a-498b-8856-04a5608174f5",
+   "handle": "LVP72VNYTOBERMORY183",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 61
+  },
+  {
+   "id": "cat-39ff08eca02a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0005",
+   "airtable_rec_id": "recj0XvSGTggW6ypG",
+   "ls_id": "236c1de1-3c00-4675-8253-56ede8bb42a6",
+   "handle": "LVP72VNYCHAPLIN",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 62
+  },
+  {
+   "id": "cat-6dd9dc22f58b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0006",
+   "airtable_rec_id": "rechNKisnWrJBZc6N",
+   "ls_id": "adc1d913-7ddf-4a12-bf40-67acd5c1478b",
+   "handle": "LVP72VNYSAUBLEBEACH",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 63
+  },
+  {
+   "id": "cat-d5bb0b86be65",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0007",
+   "airtable_rec_id": "recwZ95QnBVU2xkDR",
+   "ls_id": "504a2bb5-e897-421e-a8cf-1c98b8e232ef",
+   "handle": "LVP72VNYDAVISVILLE",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 64
+  },
+  {
+   "id": "cat-fe683ab6c8e5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0008",
+   "airtable_rec_id": "reciEtCsYck6Rj0Hm",
+   "ls_id": "d24a24e3-df4d-4ef1-9e3f-d85c0c30e610",
+   "handle": "LVP72VNYDEERHURST",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 65
+  },
+  {
+   "id": "cat-31d24656c842",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0010",
+   "airtable_rec_id": "recknlhNPxGB2tj1J",
+   "ls_id": "7f400fd6-f2df-4e7d-b981-f9b378e6b244",
+   "handle": "LVP72VNYMUSKOKA",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 66
+  },
+  {
+   "id": "cat-afd8b204fc5e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0011",
+   "airtable_rec_id": "rec02fGK04yxSruf3",
+   "ls_id": "a91fc120-1e72-4bc0-b545-a2bafbb43025",
+   "handle": "LVP72VNYWASAGA",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 67
+  },
+  {
+   "id": "cat-ee274ef5466d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0012",
+   "airtable_rec_id": "rec2bDBme9UnqBXDt",
+   "ls_id": "94f91f82-41ee-4ff5-8053-183c642f6d7e",
+   "handle": "LVP72VNYCOLLINGWOOD",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 68
+  },
+  {
+   "id": "cat-cc4e284ca851",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0013",
+   "airtable_rec_id": "recUVNh5L5Dxse59q",
+   "ls_id": "3347d88a-6032-4083-b265-d1f40e58e881",
+   "handle": "LVP72VNYGRANDBEND",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 69
+  },
+  {
+   "id": "cat-17a33d647aec",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0014",
+   "airtable_rec_id": "recTVu4ipeMmfCDGw",
+   "ls_id": "06e573e2-6e37-41c4-8fb3-4135ee24baba",
+   "handle": "LVP72VNYBRACEBRIDGE",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 70
+  },
+  {
+   "id": "cat-04bd5db70f6c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0015",
+   "airtable_rec_id": "recf5okDaguR3toZw",
+   "ls_id": "3ae0e918-2898-49ec-b286-c16df51a0d50",
+   "handle": "LVP72VNYTOBERMORY",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 71
+  },
+  {
+   "id": "cat-8e4adb4cc9c3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0016",
+   "airtable_rec_id": "recdjHlCuGFyiAN0i",
+   "ls_id": "25f29f4c-c851-4fbd-b419-7120b0760f8e",
+   "handle": "LVP71VNYBALI",
+   "fields": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "before": {
+    "Cost/unit": "1.59",
+    "Retail price/unit": "2.59"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 72
+  },
+  {
+   "id": "cat-453bda3cad5a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0017",
+   "airtable_rec_id": "recK3PiDFTuwI2uEG",
+   "ls_id": "c7f6557a-4ddb-4d5e-ae2d-df9d58315b93",
+   "handle": "LVP71VNYBORABORA",
+   "fields": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "before": {
+    "Cost/unit": "1.59",
+    "Retail price/unit": "2.59"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 73
+  },
+  {
+   "id": "cat-3d66affcb5ce",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0018",
+   "airtable_rec_id": "recasnEzQO543powm",
+   "ls_id": "07f963e6-2d61-460b-af8e-c91d572532fc",
+   "handle": "LVP71VNYFIJI",
+   "fields": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "before": {
+    "Cost/unit": "1.59",
+    "Retail price/unit": "2.59"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 74
+  },
+  {
+   "id": "cat-b4bb81c6d216",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0019",
+   "airtable_rec_id": "recmKpoTjlxV2wylX",
+   "ls_id": "e3ecd146-0bef-469f-9de9-eb9f9faab437",
+   "handle": "LVP71VNYMADAGASCAR",
+   "fields": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "before": {
+    "Cost/unit": "1.59",
+    "Retail price/unit": "2.59"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 75
+  },
+  {
+   "id": "cat-8cada64dc6d8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0020",
+   "airtable_rec_id": "rec5ABzVU9wy9neZS",
+   "ls_id": "bf68fedf-b73b-4039-ae15-87fbaa1ce2f4",
+   "handle": "LVP71VNYMALDIVES",
+   "fields": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "before": {
+    "Cost/unit": "1.59",
+    "Retail price/unit": "2.59"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 76
+  },
+  {
+   "id": "cat-3c035dc30579",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0021",
+   "airtable_rec_id": "reckQP1Rx6u270K4Z",
+   "ls_id": "46db261b-4da0-40c4-a313-67cf97d20a48",
+   "handle": "LVP71VNYMALTA",
+   "fields": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "before": {
+    "Cost/unit": "1.59",
+    "Retail price/unit": "2.59"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 77
+  },
+  {
+   "id": "cat-69b8d63534a4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0022",
+   "airtable_rec_id": "rec6pC9ov7dqZ817K",
+   "ls_id": "d5376735-00b1-46e1-a1c3-5c475ffa74e8",
+   "handle": "LVP71VNYSANTAMARIA",
+   "fields": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "before": {
+    "Cost/unit": "1.59",
+    "Retail price/unit": "2.59"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 78
+  },
+  {
+   "id": "cat-ef8b24b2adb5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0023",
+   "airtable_rec_id": "recQTm8cUQyu88mXi",
+   "ls_id": "38661486-8e8d-4206-bc10-350a269a5e43",
+   "handle": "LVP71VNYSANTORINI",
+   "fields": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "before": {
+    "Cost/unit": "1.59",
+    "Retail price/unit": "2.59"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 79
+  },
+  {
+   "id": "cat-32acec1a1b49",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0024",
+   "airtable_rec_id": "recuY87ihavsbjPYR",
+   "ls_id": "91b85863-42c2-4fa3-9831-7270203370bd",
+   "handle": "LVP71VNYPUNTACANA",
+   "fields": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "before": {
+    "Cost/unit": "1.59",
+    "Retail price/unit": "2.59"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 80
+  },
+  {
+   "id": "cat-b060254389ef",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0025",
+   "airtable_rec_id": "recs91XKxQmEfSwK8",
+   "ls_id": "884e281f-43e6-408b-8465-533211863070",
+   "handle": "LVP71VNYMYKONOS",
+   "fields": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "before": {
+    "Cost/unit": "1.59",
+    "Retail price/unit": "2.59"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 81
+  },
+  {
+   "id": "cat-2f49d3b7d02f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0027",
+   "airtable_rec_id": "rec6A20iJNFzJpZQ9",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b563dfc39",
+   "handle": "LVP71VNYYORKVILLE",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 82
+  },
+  {
+   "id": "cat-082487b34f6a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0029",
+   "airtable_rec_id": "reccAetXhjWtSEstr",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b55dea11f",
+   "handle": "LVP71VNYROSEDALE",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 83
+  },
+  {
+   "id": "cat-814f1225941d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0030",
+   "airtable_rec_id": "recKPmB1DJOa79MQl",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b5543a614",
+   "handle": "LVP71VNYDUPONT",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 84
+  },
+  {
+   "id": "cat-15dc0c6cc29f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0031",
+   "airtable_rec_id": "recEuctqZqBU5mCny",
+   "ls_id": "a5025666-d735-4d37-9707-fdb89dbc6f72",
+   "handle": "LVP71VNYLAKESHORE",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 85
+  },
+  {
+   "id": "cat-b3ce9f2b1987",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0032",
+   "airtable_rec_id": "recLecZQTAtIaRTE1",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b557bc0f5",
+   "handle": "LVP71VNYLESLIE",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 86
+  },
+  {
+   "id": "cat-59b9e68e83c0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0033",
+   "airtable_rec_id": "recwXrOxfUG1X1JWz",
+   "ls_id": "65ebad60-07de-46e5-bd15-d98d5a453e63",
+   "handle": "LVP71VNYSUMMERHILL",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 87
+  },
+  {
+   "id": "cat-d410b38dd787",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0034",
+   "airtable_rec_id": "recELDE263R6JCOVY",
+   "ls_id": "82735ee6-a739-453b-8f11-b2610df3f358",
+   "handle": "LVP71VNYRUSSELLHILL",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 88
+  },
+  {
+   "id": "cat-a3cce1c9c0ed",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0035",
+   "airtable_rec_id": "recReGMZKfXsBWooz",
+   "ls_id": "e4fc3878-6ab1-434c-b4fe-c4e8911121c8",
+   "handle": "LVP71VNYRICHVIEW",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 89
+  },
+  {
+   "id": "cat-56e8e79cf11e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0039",
+   "airtable_rec_id": "reckbWyBm2DVUM5Wh",
+   "ls_id": "21bcf99f-14f7-423b-bfca-8a3599d58758",
+   "handle": "LVP71VNYBUCKINGHAM",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 90
+  },
+  {
+   "id": "cat-3368ad479e6a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0040",
+   "airtable_rec_id": "reczfszQVUIbcireK",
+   "ls_id": "c04288c6-05f0-40e3-ba15-0ea7f38585e8",
+   "handle": "LVP71VNYCORNWALL",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 91
+  },
+  {
+   "id": "cat-6554e36fe506",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0041",
+   "airtable_rec_id": "recPjQlyDFesPpGZ6",
+   "ls_id": "9b86ca01-4cd4-4020-a7e7-153412a9f1c9",
+   "handle": "LVP71VNYHAMPTON",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 92
+  },
+  {
+   "id": "cat-8734590bf0f7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0042",
+   "airtable_rec_id": "rec0SmJeKQnhmMuwo",
+   "ls_id": "50b622f5-eadb-4615-b819-00ac505ca4b8",
+   "handle": "LVP71VNYLEEDSCASTLE",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 93
+  },
+  {
+   "id": "cat-e138ffd91957",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0043",
+   "airtable_rec_id": "recJOAn1HkN1ifakz",
+   "ls_id": "f0cc6b13-709f-4d64-b6cc-9f92a04307be",
+   "handle": "LVP71VNYKENSINGTON",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 94
+  },
+  {
+   "id": "cat-1ad7d8921b50",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0045",
+   "airtable_rec_id": "recFtpDEkVQcp3f67",
+   "ls_id": "50255821-3a12-48f6-b641-09332e26f935",
+   "handle": "LVP71VNYWHITEHALL",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 95
+  },
+  {
+   "id": "cat-b87e140543de",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0046",
+   "airtable_rec_id": "reccDyfmTEh4YfCOH",
+   "ls_id": "7d041d2a-aa0f-4d97-b0e9-35248e04b722",
+   "handle": "LVP71ROYALWINDSOR",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 96
+  },
+  {
+   "id": "cat-30caa78aab80",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0047",
+   "airtable_rec_id": "recHWYjA1cefUTW0M",
+   "ls_id": "8f7cdb35-a788-4b24-b531-2e82a8575553",
+   "handle": "LVP71VNYDURHAM",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 97
+  },
+  {
+   "id": "cat-592270a2580f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0048",
+   "airtable_rec_id": "recLwSwYief2ikPLv",
+   "ls_id": "3a043394-5981-4ed9-bd58-c92964ee8c82",
+   "handle": "LVP71VNYEDINBURGH",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 98
+  },
+  {
+   "id": "cat-5560e6529c46",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0049",
+   "airtable_rec_id": "recSH2P2IOcY0D58V",
+   "ls_id": "302b7293-f21d-4cdd-b119-28752b2b4223",
+   "handle": "LVP71VNYROCHESTER",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 99
+  },
+  {
+   "id": "cat-f494ba06010a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0051",
+   "airtable_rec_id": "recitAyQaXAQBoxtl",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b56822989",
+   "handle": "LVP71VNYLIBRAPLAT",
+   "fields": {
+    "Cost/unit": "2.49",
+    "Retail price/unit": "3.49"
+   },
+   "before": {
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 100
+  },
+  {
+   "id": "cat-800a0ef25f7c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0053",
+   "airtable_rec_id": "rec9GUumDYklSX0Sp",
+   "ls_id": "190d07ff-ebf7-4056-8a2d-dc35f61a72d6",
+   "handle": "LVP71VNYFULHAMPLAT",
+   "fields": {
+    "Cost/unit": "2.49",
+    "Retail price/unit": "3.49"
+   },
+   "before": {
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 101
+  },
+  {
+   "id": "cat-913bc7324599",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0054",
+   "airtable_rec_id": "recKkmLVoutinhbDk",
+   "ls_id": "08cbb95d-eea8-4a39-aed1-d1c83be5efac",
+   "handle": "LVP71VNYLONDONPLAT",
+   "fields": {
+    "Cost/unit": "2.49",
+    "Retail price/unit": "3.49"
+   },
+   "before": {
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 102
+  },
+  {
+   "id": "cat-148c6969ada9",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0055",
+   "airtable_rec_id": "recoB1uN8CLuWETfX",
+   "ls_id": "eda22d9a-ea64-49a5-b876-5de27f28a2db",
+   "handle": "LVP71VNYWESTMINSTERPLAT",
+   "fields": {
+    "Cost/unit": "2.49",
+    "Retail price/unit": "3.49"
+   },
+   "before": {
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 103
+  },
+  {
+   "id": "cat-1aa9534d202c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0056",
+   "airtable_rec_id": "rec5NfRVBhpdLNXsh",
+   "ls_id": "0ff90800-b187-4a30-ab32-b828e7bf9161",
+   "handle": "LVP71VNYCAPRICORNPLAT",
+   "fields": {
+    "Cost/unit": "2.49",
+    "Retail price/unit": "3.49"
+   },
+   "before": {
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 104
+  },
+  {
+   "id": "cat-ec0b13e70ea6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0057",
+   "airtable_rec_id": "recOHrlm6VulKOxMy",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b5669bb59",
+   "handle": "LVP71VNYLEOPLAT",
+   "fields": {
+    "Cost/unit": "2.49",
+    "Retail price/unit": "3.49"
+   },
+   "before": {
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 105
+  },
+  {
+   "id": "cat-e77cd52acb4e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0058",
+   "airtable_rec_id": "reclxEnfQKs8nRSJK",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b56cafa4e",
+   "handle": "LVP71VNYVIRGOPLAT",
+   "fields": {
+    "Cost/unit": "2.49",
+    "Retail price/unit": "3.49"
+   },
+   "before": {
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 106
+  },
+  {
+   "id": "cat-c22837ae7df7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0059",
+   "airtable_rec_id": "rec2P18t7urXV7Jcg",
+   "ls_id": "3e8a988a-249f-4ba1-a14b-2f933261d4d8",
+   "handle": "LVP71VNYMAYFAIRPLAT",
+   "fields": {
+    "Cost/unit": "2.49",
+    "Retail price/unit": "3.49"
+   },
+   "before": {
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 107
+  },
+  {
+   "id": "cat-ea69e38ef7c5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0060",
+   "airtable_rec_id": "recN6LKlXhioqDuGl",
+   "ls_id": "5b89c9b7-cb09-4af9-8daa-fe9959f1e336",
+   "handle": "LVP71VNYSOHOPLAT",
+   "fields": {
+    "Cost/unit": "2.49",
+    "Retail price/unit": "3.49"
+   },
+   "before": {
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 108
+  },
+  {
+   "id": "cat-8e08eb0d565d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0061",
+   "airtable_rec_id": "recGZ21BBdeji3CE0",
+   "ls_id": "7f288473-00a8-4d97-b9d7-bf856e011269",
+   "handle": "LVP9VNYTHAMES",
+   "fields": {
+    "Cost/unit": "3.09",
+    "Retail price/unit": "4.09"
+   },
+   "before": {
+    "Cost/unit": "2.89",
+    "Retail price/unit": "3.89"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 109
+  },
+  {
+   "id": "cat-042a9ef735a3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0062",
+   "airtable_rec_id": "recVYfeD4HUCTGVuR",
+   "ls_id": "1a1372b2-5435-42df-890e-836894a164d2",
+   "handle": "LVP9VNYVOLGA",
+   "fields": {
+    "Cost/unit": "3.09",
+    "Retail price/unit": "4.09"
+   },
+   "before": {
+    "Cost/unit": "2.89",
+    "Retail price/unit": "3.89"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 110
+  },
+  {
+   "id": "cat-166a3384cbda",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0084",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP9VNYDANUBE",
+   "fields": {
+    "Product name": "NAF 10mm Aquawood WPC Vinyl 9\" \u2014 Danube",
+    "Cost/unit": "3.09",
+    "Retail price/unit": "4.09"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 111
+  },
+  {
+   "id": "cat-137af1c50a1b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0085",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP9VNYHUDSON",
+   "fields": {
+    "Product name": "NAF 10mm Aquawood WPC Vinyl 9\" \u2014 Hudson",
+    "Cost/unit": "3.09",
+    "Retail price/unit": "4.09"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 112
+  },
+  {
+   "id": "cat-2116cd32309d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0086",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYAMSTERDAM",
+   "fields": {
+    "Product name": "NAF 5mm Aqualuuuz Loose Lay Vinyl 7.36\" \u2014 Amsterdam",
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 113
+  },
+  {
+   "id": "cat-6e7524e6de8c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0087",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYBATAVIA",
+   "fields": {
+    "Product name": "NAF 5mm Aqualuuuz Loose Lay Vinyl 7.36\" \u2014 Batavia",
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 114
+  },
+  {
+   "id": "cat-270628fea935",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0088",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYCATALAN",
+   "fields": {
+    "Product name": "NAF 5mm Aqualuuuz Loose Lay Vinyl 7.36\" \u2014 Catalan",
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 115
+  },
+  {
+   "id": "cat-164acf25b6e6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0089",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYNYC",
+   "fields": {
+    "Product name": "NAF 5mm Aqualuuuz Loose Lay Vinyl 7.36\" \u2014 NYC",
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 116
+  },
+  {
+   "id": "cat-7559780d0853",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0090",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYPARIS",
+   "fields": {
+    "Product name": "NAF 5mm Aqualuuuz Loose Lay Vinyl 7.36\" \u2014 Paris",
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 117
+  },
+  {
+   "id": "cat-4128828baefe",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0091",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYPEKING",
+   "fields": {
+    "Product name": "NAF 5mm Aqualuuuz Loose Lay Vinyl 7.36\" \u2014 Peking",
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 118
+  },
+  {
+   "id": "cat-e014e19203df",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0092",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYATHENS",
+   "fields": {
+    "Product name": "NAF 5mm Aqualuuuz Loose Lay Vinyl 7.36\" \u2014 Athens",
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 119
+  },
+  {
+   "id": "cat-978e7a18d55c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0093",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYIZMIR",
+   "fields": {
+    "Product name": "NAF 5mm Aqualuuuz Loose Lay Vinyl 7.36\" \u2014 Izmir",
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 120
+  },
+  {
+   "id": "cat-d00b132efaf2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0094",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYLUCERNE",
+   "fields": {
+    "Product name": "NAF 5mm Aqualuuuz Loose Lay Vinyl 7.36\" \u2014 Lucerne",
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 121
+  },
+  {
+   "id": "cat-1454d05301d5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0095",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYSAIGON",
+   "fields": {
+    "Product name": "NAF 5mm Aqualuuuz Loose Lay Vinyl 7.36\" \u2014 Saigon",
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 122
+  },
+  {
+   "id": "cat-c23dac3ba5b6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVT-FAWK-0002",
+   "airtable_rec_id": "rect7hI1pYsSXnhBk",
+   "ls_id": "7da9c997-82d2-4ab3-973b-e70cf7d14ff8",
+   "handle": "LVT12VNYCARBON7MM",
+   "fields": {
+    "Cost/unit": "2.89",
+    "Retail price/unit": "3.89"
+   },
+   "before": {
+    "Cost/unit": "2.69",
+    "Retail price/unit": "3.69"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 123
+  },
+  {
+   "id": "cat-06743213caad",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVT-FAWK-0003",
+   "airtable_rec_id": "rec1qCpeqmzsw3Obd",
+   "ls_id": "abe7c3ce-9bbc-4055-9c95-57523536e3ff",
+   "handle": "LVT12VNYCHROME7MM",
+   "fields": {
+    "Cost/unit": "2.89",
+    "Retail price/unit": "3.89"
+   },
+   "before": {
+    "Cost/unit": "2.69",
+    "Retail price/unit": "3.69"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 124
+  },
+  {
+   "id": "cat-b82ae97ec3c9",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVT-FAWK-0004",
+   "airtable_rec_id": "recHM4no4r7HMUqmd",
+   "ls_id": "738bc9aa-a5db-4202-b3bc-b74edcfb4ad8",
+   "handle": "LVT12VNYGOLD7MM",
+   "fields": {
+    "Cost/unit": "2.89",
+    "Retail price/unit": "3.89"
+   },
+   "before": {
+    "Cost/unit": "2.69",
+    "Retail price/unit": "3.69"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 125
+  },
+  {
+   "id": "cat-35b1b99febbc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVT-FAWK-0005",
+   "airtable_rec_id": "rec5uSWgY7O6I90hB",
+   "ls_id": "979d3b23-3cc0-489e-a575-9cb5efc9f68e",
+   "handle": "LVT12VNYICE7MM",
+   "fields": {
+    "Cost/unit": "2.89",
+    "Retail price/unit": "3.89"
+   },
+   "before": {
+    "Cost/unit": "2.69",
+    "Retail price/unit": "3.69"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 126
+  },
+  {
+   "id": "cat-431c4c94fcd8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVT-FAWK-0006",
+   "airtable_rec_id": "recTJKmPvWHH6oQIW",
+   "ls_id": "66a29651-12ec-4463-a3cc-dda8de9e927e",
+   "handle": "LVT12VNYMARBLE7MM",
+   "fields": {
+    "Cost/unit": "2.89",
+    "Retail price/unit": "3.89"
+   },
+   "before": {
+    "Cost/unit": "2.69",
+    "Retail price/unit": "3.69"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 127
+  },
+  {
+   "id": "cat-3317fea84d3e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVT-FAWK-0007",
+   "airtable_rec_id": "recFWHdZaV9cKzYEO",
+   "ls_id": "671222c6-d8a9-49d0-a8e0-1ee756d1731f",
+   "handle": "LVT12VNYMICA7MM",
+   "fields": {
+    "Cost/unit": "2.89",
+    "Retail price/unit": "3.89"
+   },
+   "before": {
+    "Cost/unit": "2.69",
+    "Retail price/unit": "3.69"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 128
+  },
+  {
+   "id": "cat-ab89388791fa",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVT-FAWK-0008",
+   "airtable_rec_id": "recgq8WjwmgC4M4E7",
+   "ls_id": "838e0c13-c462-4278-9b9c-5be968fac138",
+   "handle": "LVT12VNYONYX7MM",
+   "fields": {
+    "Cost/unit": "2.89",
+    "Retail price/unit": "3.89"
+   },
+   "before": {
+    "Cost/unit": "2.69",
+    "Retail price/unit": "3.69"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 129
+  },
+  {
+   "id": "cat-ae23788eb3c3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVT-FAWK-0009",
+   "airtable_rec_id": "recMVmjZMfOKogkBD",
+   "ls_id": "ea9fdd45-ead8-470a-94b2-4e1d08defa43",
+   "handle": "LVT12VNYOXIDE7MM",
+   "fields": {
+    "Cost/unit": "2.89",
+    "Retail price/unit": "3.89"
+   },
+   "before": {
+    "Cost/unit": "2.69",
+    "Retail price/unit": "3.69"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 130
+  },
+  {
+   "id": "cat-ce2c3c483c88",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVT-FAWK-0010",
+   "airtable_rec_id": "recuFSsk7BFGQZWlR",
+   "ls_id": "21953d86-9b1d-4e24-aaca-2d53c7be841c",
+   "handle": "LVT12VNYSELENITE7MM",
+   "fields": {
+    "Cost/unit": "2.89",
+    "Retail price/unit": "3.89"
+   },
+   "before": {
+    "Cost/unit": "2.69",
+    "Retail price/unit": "3.69"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 131
+  },
+  {
+   "id": "cat-7f6935bce415",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0010",
+   "airtable_rec_id": "recXdJPAW1ZvFe1z8",
+   "ls_id": "121e58d7-9221-4d8a-949f-5db0d12fa5e2",
+   "handle": "ENG75HICAGEDBARREL",
+   "fields": {
+    "supply_price": 4.49,
+    "price_excluding_tax": 5.49
+   },
+   "before": {
+    "name": "NAFENG - Hickory Engineered (Aged Barrel) T&G | 7.5\" x 18mm x RL - 2mm top - 23.31sf/b",
+    "handle": "ENG75HICAGEDBARREL",
+    "sku": "ENG-FAWK-0010",
+    "supply_price": 4.29,
+    "price_including_tax": 5.29,
+    "price_excluding_tax": 5.29,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 132
+  },
+  {
+   "id": "cat-ce6d24a26e8d",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0011",
+   "airtable_rec_id": "reccXl7uCeDpXyoZz",
+   "ls_id": "dcd79bf3-d84b-48cb-b850-9111566a67c3",
+   "handle": "ENG75HICCACAO",
+   "fields": {
+    "supply_price": 4.49,
+    "price_excluding_tax": 5.49
+   },
+   "before": {
+    "name": "NAFENG - Hickory Engineered (Cacao) T&G | 7.5\" x 18mm x RL - 2mm top - 23.31sf/b",
+    "handle": "ENG75HICCACAO",
+    "sku": "ENG-FAWK-0011",
+    "supply_price": 4.29,
+    "price_including_tax": 5.29,
+    "price_excluding_tax": 5.29,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 133
+  },
+  {
+   "id": "cat-da2bf69fa63b",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0012",
+   "airtable_rec_id": "recpGz9ljZ5nlrjMw",
+   "ls_id": "a439d996-06b8-45cb-bdaa-3200bf596cee",
+   "handle": "ENG75HICEARLGREY",
+   "fields": {
+    "supply_price": 4.49,
+    "price_excluding_tax": 5.49
+   },
+   "before": {
+    "name": "NAFENG - Hickory Engineered (Earl Grey) T&G | 7.5\" x 18mm x RL - 2mm top - 23.31sf/b",
+    "handle": "ENG75HICEARLGREY",
+    "sku": "ENG-FAWK-0012",
+    "supply_price": 4.29,
+    "price_including_tax": 5.29,
+    "price_excluding_tax": 5.29,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 134
+  },
+  {
+   "id": "cat-8797ee216092",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0013",
+   "airtable_rec_id": "recWtFrOT3HjyWQwJ",
+   "ls_id": "cafb1668-9d0f-4f1a-b513-c36eaea35740",
+   "handle": "ENG75HICKONA",
+   "fields": {
+    "supply_price": 4.49,
+    "price_excluding_tax": 5.49
+   },
+   "before": {
+    "name": "NAFENG - Hickory Engineered (Kona) T&G | 7.5\" x 18mm x RL - 2mm top - 23.31sf/b",
+    "handle": "ENG75HICKONA",
+    "sku": "ENG-FAWK-0013",
+    "supply_price": 4.29,
+    "price_including_tax": 5.29,
+    "price_excluding_tax": 5.29,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 135
+  },
+  {
+   "id": "cat-3474a69e13f6",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0014",
+   "airtable_rec_id": "rec2a33lGk8V2qldp",
+   "ls_id": "d2665407-48df-491e-b1c0-93b55545a875",
+   "handle": "ENG75HICMACADAMIA",
+   "fields": {
+    "supply_price": 4.49,
+    "price_excluding_tax": 5.49
+   },
+   "before": {
+    "name": "NAFENG - Hickory Engineered (Macadamia) T&G | 7.5\" x 18mm x RL - 2mm top - 23.31sf/b",
+    "handle": "ENG75HICMACADAMIA",
+    "sku": "ENG-FAWK-0014",
+    "supply_price": 4.29,
+    "price_including_tax": 5.29,
+    "price_excluding_tax": 5.29,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 136
+  },
+  {
+   "id": "cat-4c3ea24badfc",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0015",
+   "airtable_rec_id": "rec4lgN8jVFfvFd2G",
+   "ls_id": "7d8fe99c-988c-406a-825b-a1218f6a3eed",
+   "handle": "ENG75HICMODERNPEWTER",
+   "fields": {
+    "supply_price": 4.49,
+    "price_excluding_tax": 5.49
+   },
+   "before": {
+    "name": "NAFENG - Hickory Engineered (Modern Pewter) T&G | 7.5\" x 18mm x RL - 2mm top - 23.31sf/b",
+    "handle": "ENG75HICMODERNPEWTER",
+    "sku": "ENG-FAWK-0015",
+    "supply_price": 4.29,
+    "price_including_tax": 5.29,
+    "price_excluding_tax": 5.29,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 137
+  },
+  {
+   "id": "cat-5bc91e771541",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0016",
+   "airtable_rec_id": "recrRQx0ELGUy4dkW",
+   "ls_id": "2267391a-c6ee-468e-bf6a-8c56160a5adc",
+   "handle": "ENG75HICNUTMEG",
+   "fields": {
+    "supply_price": 4.49,
+    "price_excluding_tax": 5.49
+   },
+   "before": {
+    "name": "NAFENG - Hickory Engineered (Nutmeg) T&G | 7.5\" x 18mm x RL - 2mm top - 23.31sf/b",
+    "handle": "ENG75HICNUTMEG",
+    "sku": "ENG-FAWK-0016",
+    "supply_price": 4.29,
+    "price_including_tax": 5.29,
+    "price_excluding_tax": 5.29,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 138
+  },
+  {
+   "id": "cat-57a39bd1313c",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0017",
+   "airtable_rec_id": "rec50TzLeixifzqQH",
+   "ls_id": "c6a58785-f61c-4246-a4ee-2079159a1399",
+   "handle": "ENG75HICPECAN",
+   "fields": {
+    "supply_price": 4.49,
+    "price_excluding_tax": 5.49
+   },
+   "before": {
+    "name": "NAFENG - Hickory Engineered (Pecan) T&G | 7.5\" x 18mm x RL - 2mm top - 23.31sf/b",
+    "handle": "ENG75HICPECAN",
+    "sku": "ENG-FAWK-0017",
+    "supply_price": 4.29,
+    "price_including_tax": 5.29,
+    "price_excluding_tax": 5.29,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 139
+  },
+  {
+   "id": "cat-b0ac820453fa",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0018",
+   "airtable_rec_id": "recMGtPaq66BAwRNb",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b32464651",
+   "handle": "ENG75HICRUSTICNATURAL",
+   "fields": {
+    "supply_price": 4.49,
+    "price_excluding_tax": 5.49
+   },
+   "before": {
+    "name": "NAFENG - Hickory Engineered (Rustic Natural) T&G | 7.5\" x 18mm x RL - 2mm top - 23.31sf/b",
+    "handle": "ENG75HICRUSTICNATURAL",
+    "sku": "ENG-FAWK-0018",
+    "supply_price": 4.29,
+    "price_including_tax": 5.29,
+    "price_excluding_tax": 5.29,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 140
+  },
+  {
+   "id": "cat-00067ae92fb4",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0019",
+   "airtable_rec_id": "recz09T4apNkYG55I",
+   "ls_id": "089702d7-935f-43e8-be72-7f9387609d6c",
+   "handle": "ENG75HICSADDLEBROWN",
+   "fields": {
+    "supply_price": 4.49,
+    "price_excluding_tax": 5.49
+   },
+   "before": {
+    "name": "NAFENG - Hickory Engineered (Saddle Brown) T&G | 7.5\" x 18mm x RL - 2mm top - 23.31sf/b",
+    "handle": "ENG75HICSADDLEBROWN",
+    "sku": "ENG-FAWK-0019",
+    "supply_price": 4.29,
+    "price_including_tax": 5.29,
+    "price_excluding_tax": 5.29,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 141
+  },
+  {
+   "id": "cat-4d75b7cad98f",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0029",
+   "airtable_rec_id": "recDbfW4MAobJGtHb",
+   "ls_id": "e24696eb-2a54-4a8b-a98e-ff46b4caa7d4",
+   "handle": "ENG65OAKOREGONOAK168",
+   "fields": {
+    "supply_price": 3.69,
+    "price_excluding_tax": 4.69
+   },
+   "before": {
+    "name": "NAFENG - White Oak T&G (Oregon Oak) | 6.5\" x 18mm x RL - 19.74sf/b",
+    "handle": "ENG65OAKOREGONOAK168",
+    "sku": "ENG-FAWK-0029",
+    "supply_price": 3.49,
+    "price_including_tax": 4.49,
+    "price_excluding_tax": 4.49,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 142
+  },
+  {
+   "id": "cat-2065a9c73359",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0030",
+   "airtable_rec_id": "recQSjdBSsq9DNWBR",
+   "ls_id": "676b5d18-4590-4b4f-b0d2-c6ba35cbd53d",
+   "handle": "ENG65OAKPURDY168",
+   "fields": {
+    "supply_price": 3.69,
+    "price_excluding_tax": 4.69
+   },
+   "before": {
+    "name": "NAFENG - White Oak T&G (Purdy) | 6.5\" x 18mm x RL - 20.25sf/b",
+    "handle": "ENG65OAKPURDY168",
+    "sku": "ENG-FAWK-0030",
+    "supply_price": 3.49,
+    "price_including_tax": 4.49,
+    "price_excluding_tax": 4.49,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 143
+  },
+  {
+   "id": "cat-c8c26b48545d",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0031",
+   "airtable_rec_id": "recQGSnFCMzsot00Y",
+   "ls_id": "3ed8c4a1-778a-408e-a3d3-c1ae51095b2b",
+   "handle": "ENG65OAKFLORENCE168",
+   "fields": {
+    "supply_price": 3.69,
+    "price_excluding_tax": 4.69
+   },
+   "before": {
+    "name": "NAFENG - White Oak T&G (Florence) | 6.5\" x 18mm x RL - 20.25sf/b",
+    "handle": "ENG65OAKFLORENCE168",
+    "sku": "ENG-FAWK-0031",
+    "supply_price": 3.49,
+    "price_including_tax": 4.49,
+    "price_excluding_tax": 4.49,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 144
+  },
+  {
+   "id": "cat-dfa6607aa2b8",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0032",
+   "airtable_rec_id": "recjCKqfkpRl2sEQB",
+   "ls_id": "b206e4f4-d1ea-4c58-a5e6-8c76274cf694",
+   "handle": "ENG65OAKNAPLES168",
+   "fields": {
+    "supply_price": 3.69,
+    "price_excluding_tax": 4.69
+   },
+   "before": {
+    "name": "NAFENG - White Oak T&G (Naples) | 6.5\" x 18mm x RL - 20.25sf/b",
+    "handle": "ENG65OAKNAPLES168",
+    "sku": "ENG-FAWK-0032",
+    "supply_price": 3.49,
+    "price_including_tax": 4.49,
+    "price_excluding_tax": 4.49,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 145
+  },
+  {
+   "id": "cat-ba9045ee9f75",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0033",
+   "airtable_rec_id": "rec0SSWqoZuwQQ266",
+   "ls_id": "f835ef3b-b685-4918-adcc-86ea80a0e607",
+   "handle": "ENG65OAKROME168",
+   "fields": {
+    "supply_price": 3.69,
+    "price_excluding_tax": 4.69
+   },
+   "before": {
+    "name": "NAFENG - White Oak T&G (Rome) | 6.5\" x 18mm x RL - 20.25sf/b",
+    "handle": "ENG65OAKROME168",
+    "sku": "ENG-FAWK-0033",
+    "supply_price": 3.49,
+    "price_including_tax": 4.49,
+    "price_excluding_tax": 4.49,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 146
+  },
+  {
+   "id": "cat-8e5845ada08a",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0034",
+   "airtable_rec_id": "recFtlxKwUdxzBpmf",
+   "ls_id": "43b19a8b-2db9-4831-8554-9e37210f7bfe",
+   "handle": "ENG65OAKSUNLIGHT168",
+   "fields": {
+    "supply_price": 3.69,
+    "price_excluding_tax": 4.69
+   },
+   "before": {
+    "name": "NAFENG - White Oak T&G (Sunlight) | 6.5\" x 18mm x RL - 20.25sf/b",
+    "handle": "ENG65OAKSUNLIGHT168",
+    "sku": "ENG-FAWK-0034",
+    "supply_price": 3.49,
+    "price_including_tax": 4.49,
+    "price_excluding_tax": 4.49,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 147
+  },
+  {
+   "id": "cat-7f050723c7db",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0056",
+   "airtable_rec_id": "recIRgD8HL1ZxXMTg",
+   "ls_id": "4114f0fd-e704-4fd2-a460-fb5ca7142c87",
+   "handle": "ENG5OAKCANVASEURDES",
+   "fields": {
+    "supply_price": 4.69,
+    "price_excluding_tax": 5.69
+   },
+   "before": {
+    "name": "NAFENG - Designer European White Oak (Canvas) T&G | 5\" x 18mm x RL - 3mm top - 20.77sf/b - Select",
+    "handle": "ENG5OAKCANVASEURDES",
+    "sku": "ENG-FAWK-0056",
+    "supply_price": 4.49,
+    "price_including_tax": 5.49,
+    "price_excluding_tax": 5.49,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 148
+  },
+  {
+   "id": "cat-22d01204be05",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0057",
+   "airtable_rec_id": "recDufAKbyklkXy9j",
+   "ls_id": "0b1dbb40-d0f5-4a78-98f2-3be30c10927f",
+   "handle": "ENG5OAKFAWNBEIGEEURDES",
+   "fields": {
+    "supply_price": 4.69,
+    "price_excluding_tax": 5.69
+   },
+   "before": {
+    "name": "NAFENG - Designer European White Oak (Fawn Beige) T&G | 5\" x 18mm x RL - 3mm top - 20.77sf/b - Select",
+    "handle": "ENG5OAKFAWNBEIGEEURDES",
+    "sku": "ENG-FAWK-0057",
+    "supply_price": 4.49,
+    "price_including_tax": 5.49,
+    "price_excluding_tax": 5.49,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 149
+  },
+  {
+   "id": "cat-7c0e01fb1d94",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0058",
+   "airtable_rec_id": "recUFy2Hxp9zSBftq",
+   "ls_id": "1ce510eb-7e68-40a8-b666-54c8491f5278",
+   "handle": "ENG5OAKHARVESTGOLDEURDES",
+   "fields": {
+    "supply_price": 4.69,
+    "price_excluding_tax": 5.69
+   },
+   "before": {
+    "name": "NAFENG - Designer European White Oak (Harvest Gold) T&G | 5\" x 18mm x RL - 3mm top - 20.77sf/b - Select",
+    "handle": "ENG5OAKHARVESTGOLDEURDES",
+    "sku": "ENG-FAWK-0058",
+    "supply_price": 4.49,
+    "price_including_tax": 5.49,
+    "price_excluding_tax": 5.49,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 150
+  },
+  {
+   "id": "cat-5b59f4c0f3df",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0059",
+   "airtable_rec_id": "rectjqIdLL49QiZmW",
+   "ls_id": "a57fb4c2-0891-4286-b273-622694d6cfae",
+   "handle": "ENG5OAKSTORMOAKEURDES",
+   "fields": {
+    "supply_price": 4.69,
+    "price_excluding_tax": 5.69
+   },
+   "before": {
+    "name": "NAFENG - Designer European White Oak (Storm Oak) T&G | 5\" x 18mm x RL - 3mm top - 20.77sf/b - Select",
+    "handle": "ENG5OAKSTORMOAKEURDES",
+    "sku": "ENG-FAWK-0059",
+    "supply_price": 4.49,
+    "price_including_tax": 5.49,
+    "price_excluding_tax": 5.49,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 151
+  },
+  {
+   "id": "cat-cfbd5360a72c",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0060",
+   "airtable_rec_id": "recy3tfEnghPMdXBN",
+   "ls_id": "1b0d9d29-491a-42e8-ae8a-6f4f0e51696e",
+   "handle": "ENG5OAKTOFFEEEURDES",
+   "fields": {
+    "supply_price": 4.69,
+    "price_excluding_tax": 5.69
+   },
+   "before": {
+    "name": "NAFENG - Designer European White Oak (Toffee) T&G | 5\" x 18mm x RL - 3mm top - 20.77sf/b - Select",
+    "handle": "ENG5OAKTOFFEEEURDES",
+    "sku": "ENG-FAWK-0060",
+    "supply_price": 4.49,
+    "price_including_tax": 5.49,
+    "price_excluding_tax": 5.49,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 152
+  },
+  {
+   "id": "cat-3595aca43800",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0061",
+   "airtable_rec_id": "recBLYMYoqzm6dgS4",
+   "ls_id": "a5449104-70e1-4ab9-a446-610d846e44ac",
+   "handle": "ENG75OAKALABASTEROAKEURDES",
+   "fields": {
+    "supply_price": 6.99,
+    "price_excluding_tax": 7.99
+   },
+   "before": {
+    "name": "NAFENG - Designer European White Oak (Alabaster Oak) T&G | 7.5\" x 18mm x RL - 3mm top - 23.31sf/b - Select & Better",
+    "handle": "ENG75OAKALABASTEROAKEURDES",
+    "sku": "ENG-FAWK-0061",
+    "supply_price": 5.99,
+    "price_including_tax": 6.99,
+    "price_excluding_tax": 6.99,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 153
+  },
+  {
+   "id": "cat-fd63c857b4e1",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0062",
+   "airtable_rec_id": "recPmW0obBgLGetoO",
+   "ls_id": "64892037-9362-42cf-b114-b94816f2f918",
+   "handle": "ENG75OAKLINENOAKEURDES",
+   "fields": {
+    "supply_price": 6.99,
+    "price_excluding_tax": 7.99
+   },
+   "before": {
+    "name": "NAFENG - Designer European White Oak (Linen Oak) T&G | 7.5\" x 18mm x RL - 3mm top - 23.31sf/b - Select & Better",
+    "handle": "ENG75OAKLINENOAKEURDES",
+    "sku": "ENG-FAWK-0062",
+    "supply_price": 5.99,
+    "price_including_tax": 6.99,
+    "price_excluding_tax": 6.99,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 154
+  },
+  {
+   "id": "cat-9e562e50abda",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0063",
+   "airtable_rec_id": "recfQEs8cJi9KcPmQ",
+   "ls_id": "e6d5a5f1-0b58-4a27-828d-a2efeb60dee7",
+   "handle": "ENG75OAKSABLEEURDES",
+   "fields": {
+    "supply_price": 6.99,
+    "price_excluding_tax": 7.99
+   },
+   "before": {
+    "name": "NAFENG - Designer European White Oak (Sable) T&G | 7.5\" x 18mm x RL - 3mm top - 23.31sf/b - Select & Better",
+    "handle": "ENG75OAKSABLEEURDES",
+    "sku": "ENG-FAWK-0063",
+    "supply_price": 5.99,
+    "price_including_tax": 6.99,
+    "price_excluding_tax": 6.99,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 155
+  },
+  {
+   "id": "cat-5fc457b13966",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0064",
+   "airtable_rec_id": "rec687kXkgc9oR4u4",
+   "ls_id": "3bd1f806-3325-4c49-b76e-a63ab4963b9e",
+   "handle": "ENG75OAKSOFTGOLDEURDES",
+   "fields": {
+    "supply_price": 6.99,
+    "price_excluding_tax": 7.99
+   },
+   "before": {
+    "name": "NAFENG - Designer European White Oak (Soft Gold) T&G | 7.5\" x 18mm x RL - 3mm top - 23.31sf/b - Select & Better",
+    "handle": "ENG75OAKSOFTGOLDEURDES",
+    "sku": "ENG-FAWK-0064",
+    "supply_price": 5.99,
+    "price_including_tax": 6.99,
+    "price_excluding_tax": 6.99,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 156
+  },
+  {
+   "id": "cat-f5685d0a2d34",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0065",
+   "airtable_rec_id": "recmPJOOccRxiYRev",
+   "ls_id": "70e9a691-05f3-4965-ab88-e2ea520537ae",
+   "handle": "ENG75OAKWARMHONEYEURDES",
+   "fields": {
+    "supply_price": 6.99,
+    "price_excluding_tax": 7.99
+   },
+   "before": {
+    "name": "NAFENG - Designer European White Oak (Warm Honey) T&G | 7.5\" x 18mm x RL - 3mm top - 23.31sf/b - Select & Better",
+    "handle": "ENG75OAKWARMHONEYEURDES",
+    "sku": "ENG-FAWK-0065",
+    "supply_price": 5.99,
+    "price_including_tax": 6.99,
+    "price_excluding_tax": 6.99,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 157
+  },
+  {
+   "id": "cat-64b1f9697746",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0075",
+   "airtable_rec_id": "recrE4ASW2AAxn5u4",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b358db670",
+   "handle": "ENG5WALNATURAL",
+   "fields": {
+    "supply_price": 4.59,
+    "price_excluding_tax": 5.59
+   },
+   "before": {
+    "name": "NAFENG - Handscraped Exotic Walnut (Natural) T&G | 5\" x 18mm x RL - 19.68sf/b - Distressed",
+    "handle": "ENG5WALNATURAL",
+    "sku": "ENG-FAWK-0075",
+    "supply_price": 4.39,
+    "price_including_tax": 5.39,
+    "price_excluding_tax": 5.39,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 158
+  },
+  {
+   "id": "cat-ca5651cfa25c",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0076",
+   "airtable_rec_id": "recs9MrOfOlvYbZZA",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b35a688d9",
+   "handle": "ENG5WALTAN",
+   "fields": {
+    "supply_price": 4.59,
+    "price_excluding_tax": 5.59
+   },
+   "before": {
+    "name": "NAFENG - Handscraped Exotic Walnut (Tan) T&G | 5\" x 18mm x RL - 19.68sf/b - Distressed",
+    "handle": "ENG5WALTAN",
+    "sku": "ENG-FAWK-0076",
+    "supply_price": 4.39,
+    "price_including_tax": 5.39,
+    "price_excluding_tax": 5.39,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 159
+  },
+  {
+   "id": "cat-3bf7c912f8d4",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0077",
+   "airtable_rec_id": "rec5NeDry0szfsBJK",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b33cf8e20",
+   "handle": "ENG65MAPNATURAL",
+   "fields": {
+    "supply_price": 3.99,
+    "price_excluding_tax": 4.99
+   },
+   "before": {
+    "name": "NAFENG - Handscraped Maple (Natural) T&G | 6.5\" x 18mm x RL - 19.18sf/b",
+    "handle": "ENG65MAPNATURAL",
+    "sku": "ENG-FAWK-0077",
+    "supply_price": 3.79,
+    "price_including_tax": 4.79,
+    "price_excluding_tax": 4.79,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 160
+  },
+  {
+   "id": "cat-a0e2c51b8e39",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0078",
+   "airtable_rec_id": "reciYsnZLymKGRcjV",
+   "ls_id": "5f9dd7da-ca72-492b-8e28-192e2e1b25c6",
+   "handle": "ENG65MAPCAPPUCCINO",
+   "fields": {
+    "supply_price": 3.99,
+    "price_excluding_tax": 4.99
+   },
+   "before": {
+    "name": "NAFENG - Handscraped Maple (Cappuccino) T&G | 6.5\" x 18mm x RL - 19.18sf/b - Distressed",
+    "handle": "ENG65MAPCAPPUCCINO",
+    "sku": "ENG-FAWK-0078",
+    "supply_price": 3.79,
+    "price_including_tax": 4.79,
+    "price_excluding_tax": 4.79,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 161
+  },
+  {
+   "id": "cat-1ba48e6c781f",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0079",
+   "airtable_rec_id": "recehd7swxUjhrY2a",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b337ea751",
+   "handle": "ENG65MAPCAPRI",
+   "fields": {
+    "supply_price": 3.99,
+    "price_excluding_tax": 4.99
+   },
+   "before": {
+    "name": "NAFENG - Handscraped Maple (Capri) T&G | 6.5\" x 18mm x RL - 19.18sf/b",
+    "handle": "ENG65MAPCAPRI",
+    "sku": "ENG-FAWK-0079",
+    "supply_price": 3.79,
+    "price_including_tax": 4.79,
+    "price_excluding_tax": 4.79,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 162
+  },
+  {
+   "id": "cat-d70e9166dcc4",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0080",
+   "airtable_rec_id": "rechXVFO7x3YS3DVc",
+   "ls_id": "a5b48f31-a9a9-4ee2-9417-5bcf0b707e22",
+   "handle": "ENG65MAPORIGINALMAPLE",
+   "fields": {
+    "supply_price": 3.99,
+    "price_excluding_tax": 4.99
+   },
+   "before": {
+    "name": "NAFENG - Handscraped Maple (Original Maple) T&G | 6.5\" x 18mm x RL - 19.18sf/b - Distressed",
+    "handle": "ENG65MAPORIGINALMAPLE",
+    "sku": "ENG-FAWK-0080",
+    "supply_price": 3.79,
+    "price_including_tax": 4.79,
+    "price_excluding_tax": 4.79,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 163
+  },
+  {
+   "id": "cat-c596699df788",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0081",
+   "airtable_rec_id": "recEivIgNKlT3ys1n",
+   "ls_id": "0a9240fd-23fb-40c0-8c9f-23fb57eee1f3",
+   "handle": "ENG65MAPLATTE",
+   "fields": {
+    "supply_price": 3.99,
+    "price_excluding_tax": 4.99
+   },
+   "before": {
+    "name": "NAFENG - Handscraped Maple (Latte) T&G | 6.5\" x 18mm x RL - 19.18sf/b - Distressed",
+    "handle": "ENG65MAPLATTE",
+    "sku": "ENG-FAWK-0081",
+    "supply_price": 3.79,
+    "price_including_tax": 4.79,
+    "price_excluding_tax": 4.79,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 164
+  },
+  {
+   "id": "cat-ef6acc9df2d4",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0082",
+   "airtable_rec_id": "recMKyaYED9djxSkn",
+   "ls_id": "9534d7a0-b3e4-422c-b14a-57bab13c9689",
+   "handle": "ENG65MAPMACCHIATO",
+   "fields": {
+    "supply_price": 3.99,
+    "price_excluding_tax": 4.99
+   },
+   "before": {
+    "name": "NAFENG - Handscraped Maple (Macchiato) T&G | 6.5\" x 18mm x RL - 19.18sf/b",
+    "handle": "ENG65MAPMACCHIATO",
+    "sku": "ENG-FAWK-0082",
+    "supply_price": 3.79,
+    "price_including_tax": 4.79,
+    "price_excluding_tax": 4.79,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 165
+  },
+  {
+   "id": "cat-732882e49264",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0083",
+   "airtable_rec_id": "recghHjiR7bcWrzrb",
+   "ls_id": "d21458e7-09d9-4241-bc81-04a0f6646082",
+   "handle": "ENG65MAPMYTH",
+   "fields": {
+    "supply_price": 3.99,
+    "price_excluding_tax": 4.99
+   },
+   "before": {
+    "name": "NAFENG - Handscraped Maple (Myth) T&G | 6.5\" x 18mm x RL - 19.18sf/b",
+    "handle": "ENG65MAPMYTH",
+    "sku": "ENG-FAWK-0083",
+    "supply_price": 3.79,
+    "price_including_tax": 4.79,
+    "price_excluding_tax": 4.79,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 166
+  },
+  {
+   "id": "cat-7273029d1edc",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "HWD-FAWK-0001",
+   "airtable_rec_id": "recQ8e3m8MqI1QXcZ",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b35daf9f0",
+   "handle": "HWD475WALTAN",
+   "fields": {
+    "supply_price": 6.39,
+    "price_excluding_tax": 7.39
+   },
+   "before": {
+    "name": "NAFHWD - Handscraped Exotic Walnut (Tan) T&G | 4.75\" x 19.05mm x RL - 22.06sf/b - Distressed",
+    "handle": "HWD475WALTAN",
+    "sku": "HWD-FAWK-0001",
+    "supply_price": 6.19,
+    "price_including_tax": 7.19,
+    "price_excluding_tax": 7.19,
+    "category": "SOLID HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 167
+  },
+  {
+   "id": "cat-15d057e63202",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "HWD-FAWK-0002",
+   "airtable_rec_id": "rec7drzgItIAZ1lrN",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b35c1445d",
+   "handle": "HWD475WALNATURAL",
+   "fields": {
+    "supply_price": 6.39,
+    "price_excluding_tax": 7.39
+   },
+   "before": {
+    "name": "NAFHWD - Handscraped Exotic Walnut (Natural) T&G | 4.75\" x 18mm x RL - 22.06sf/b - Distressed",
+    "handle": "HWD475WALNATURAL",
+    "sku": "HWD-FAWK-0002",
+    "supply_price": 6.19,
+    "price_including_tax": 7.19,
+    "price_excluding_tax": 7.19,
+    "category": "SOLID HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 168
+  },
+  {
+   "id": "cat-f34e24b48c2f",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-FAWK-0015",
+   "airtable_rec_id": "rec93ElKF9mXZGSoB",
+   "ls_id": "a322c558-dd9f-459d-becc-4fec62ee1185",
+   "handle": "LAM929LAMARIEL",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLAM - Waterproof Laminate Plus (Ariel) Click | 9.29\" x 12mm x RL - 19.27sf/b",
+    "handle": "LAM929LAMARIEL",
+    "sku": "LAM-FAWK-0015",
+    "supply_price": 1.89,
+    "price_including_tax": 2.89,
+    "price_excluding_tax": 2.89,
+    "category": "LAMINATE",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 169
+  },
+  {
+   "id": "cat-0c5fdb7992be",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-FAWK-0016",
+   "airtable_rec_id": "recpxP1NmHSf8VTTT",
+   "ls_id": "a5b0ffb5-050a-4a85-a1ea-989d45484ea2",
+   "handle": "LAM929LAMASTRA",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLAM - Waterproof Laminate Plus (Astra) Click | 9.29\" x 12mm x RL - 19.27sf/b",
+    "handle": "LAM929LAMASTRA",
+    "sku": "LAM-FAWK-0016",
+    "supply_price": 1.89,
+    "price_including_tax": 2.89,
+    "price_excluding_tax": 2.89,
+    "category": "LAMINATE",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 170
+  },
+  {
+   "id": "cat-d1be3256e4e6",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-FAWK-0017",
+   "airtable_rec_id": "rec4JCtFOiAWFfKqW",
+   "ls_id": "122c73c0-d58d-41f7-a8ae-5f0c2a621117",
+   "handle": "LAM929LAMAURORA",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLAM - Waterproof Laminate Plus (Aurora) Click | 9.29\" x 12mm x RL - 19.27sf/b",
+    "handle": "LAM929LAMAURORA",
+    "sku": "LAM-FAWK-0017",
+    "supply_price": 1.89,
+    "price_including_tax": 2.89,
+    "price_excluding_tax": 2.89,
+    "category": "LAMINATE",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 171
+  },
+  {
+   "id": "cat-af3c7606f19b",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-FAWK-0018",
+   "airtable_rec_id": "recYkEo4FlAamHP6z",
+   "ls_id": "029d5aa7-0a01-46d6-8abb-70c0269f3cb6",
+   "handle": "LAM929LAMBIANCA",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLAM - Waterproof Laminate Plus (Bianca) Click | 9.29\" x 12mm x RL - 19.27sf/b",
+    "handle": "LAM929LAMBIANCA",
+    "sku": "LAM-FAWK-0018",
+    "supply_price": 1.89,
+    "price_including_tax": 2.89,
+    "price_excluding_tax": 2.89,
+    "category": "LAMINATE",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 172
+  },
+  {
+   "id": "cat-5fb9a3167237",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-FAWK-0019",
+   "airtable_rec_id": "recQi0cP8lvKvumdP",
+   "ls_id": "43b9c641-474f-481b-b4bc-a5095e16249c",
+   "handle": "LAM929LAMELECTRA",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLAM - Waterproof Laminate Plus (Electra) Click | 9.29\" x 12mm x RL - 19.27sf/b",
+    "handle": "LAM929LAMELECTRA",
+    "sku": "LAM-FAWK-0019",
+    "supply_price": 1.89,
+    "price_including_tax": 2.89,
+    "price_excluding_tax": 2.89,
+    "category": "LAMINATE",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 173
+  },
+  {
+   "id": "cat-ce05582cb51c",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-FAWK-0020",
+   "airtable_rec_id": "recLMn68ujdDAB31u",
+   "ls_id": "0c3cd13c-9ad9-4f7a-b691-4350508dfb25",
+   "handle": "LAM929LAMEQUINOX",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLAM - Waterproof Laminate Plus (Equinox) Click | 9.29\" x 12mm x RL - 19.27sf/b",
+    "handle": "LAM929LAMEQUINOX",
+    "sku": "LAM-FAWK-0020",
+    "supply_price": 1.89,
+    "price_including_tax": 2.89,
+    "price_excluding_tax": 2.89,
+    "category": "LAMINATE",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 174
+  },
+  {
+   "id": "cat-5ac7c6037bc6",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-FAWK-0021",
+   "airtable_rec_id": "recv6YAYaSobevHht",
+   "ls_id": "30baca61-b4f7-48c9-8929-29e50aa86a13",
+   "handle": "LAM929LAMESTELLA",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLAM - Waterproof Laminate Plus (Estella) Click | 9.29\" x 12mm x RL - 19.27sf/b",
+    "handle": "LAM929LAMESTELLA",
+    "sku": "LAM-FAWK-0021",
+    "supply_price": 1.89,
+    "price_including_tax": 2.89,
+    "price_excluding_tax": 2.89,
+    "category": "LAMINATE",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 175
+  },
+  {
+   "id": "cat-9d546572bf4e",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-FAWK-0022",
+   "airtable_rec_id": "recQn1bXhRL9gANaO",
+   "ls_id": "108e2627-f1a6-48a8-a20c-d2a739a7a0c4",
+   "handle": "LAM929LAMHALO",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLAM - Waterproof Laminate Plus (Halo) Click | 9.29\" x 12mm x RL - 19.27sf/b",
+    "handle": "LAM929LAMHALO",
+    "sku": "LAM-FAWK-0022",
+    "supply_price": 1.89,
+    "price_including_tax": 2.89,
+    "price_excluding_tax": 2.89,
+    "category": "LAMINATE",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 176
+  },
+  {
+   "id": "cat-43837154f2ad",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-FAWK-0023",
+   "airtable_rec_id": "recCJLGdzRYd3MYda",
+   "ls_id": "ccb792d5-ffad-4957-8bbb-7f27601b4448",
+   "handle": "LAM929LAMLUNA",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLAM - Waterproof Laminate Plus (Luna) Click | 9.29\" x 12mm x RL - 19.27sf/b",
+    "handle": "LAM929LAMLUNA",
+    "sku": "LAM-FAWK-0023",
+    "supply_price": 1.89,
+    "price_including_tax": 2.89,
+    "price_excluding_tax": 2.89,
+    "category": "LAMINATE",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 177
+  },
+  {
+   "id": "cat-0fa0f10a7608",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-FAWK-0024",
+   "airtable_rec_id": "recncxlzZnKRNA6Rm",
+   "ls_id": "2b150090-540e-4c01-9430-85c24054388a",
+   "handle": "LAM929LAMNOVA",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLAM - Waterproof Laminate Plus (Nova) Click | 9.29\" x 12mm x RL - 19.27sf/b",
+    "handle": "LAM929LAMNOVA",
+    "sku": "LAM-FAWK-0024",
+    "supply_price": 1.89,
+    "price_including_tax": 2.89,
+    "price_excluding_tax": 2.89,
+    "category": "LAMINATE",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 178
+  },
+  {
+   "id": "cat-223b784c0db1",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-FAWK-0025",
+   "airtable_rec_id": "recIMNnV7m0n9fsia",
+   "ls_id": "b8b8b261-0863-4a7d-a75d-23daab60d7c6",
+   "handle": "LAM771LAMCANYONMIST",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLAM - Waterproof Laminate Pro (Canyon Mist) Click | 7.71\" x 14mm x RL - 17.94sf/b",
+    "handle": "LAM771LAMCANYONMIST",
+    "sku": "LAM-FAWK-0025",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "LAMINATE",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 179
+  },
+  {
+   "id": "cat-d9571e8562d0",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-FAWK-0026",
+   "airtable_rec_id": "recNCy5dM1ZXzGYb7",
+   "ls_id": "10a583fc-0347-4877-a422-6f2a95fa5afe",
+   "handle": "LAM771LAMHARBOURMIST",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLAM - Waterproof Laminate Pro (Harbour Mist) Click | 7.71\" x 14mm x RL - 17.94sf/b",
+    "handle": "LAM771LAMHARBOURMIST",
+    "sku": "LAM-FAWK-0026",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "LAMINATE",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 180
+  },
+  {
+   "id": "cat-fff5c9d339b8",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-FAWK-0027",
+   "airtable_rec_id": "recAH2DxyS6tcHqBA",
+   "ls_id": "8e276177-94a8-4104-8d56-5214160b5173",
+   "handle": "LAM771LAMHERITAGEMAPLE",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLAM - Waterproof Laminate Pro (Heritage Maple) Click | 7.71\" x 14mm x RL - 17.94sf/b",
+    "handle": "LAM771LAMHERITAGEMAPLE",
+    "sku": "LAM-FAWK-0027",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "LAMINATE",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 181
+  },
+  {
+   "id": "cat-a60b81a7e66d",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-FAWK-0028",
+   "airtable_rec_id": "reciaW5SaFIfzNoG4",
+   "ls_id": "9672dbb3-7209-4d64-9df4-39d6b7d4209e",
+   "handle": "LAM771LAMHORIZON",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLAM - Waterproof Laminate Pro (Horizon) Click | 7.71\" x 14mm x RL - 17.94sf/b",
+    "handle": "LAM771LAMHORIZON",
+    "sku": "LAM-FAWK-0028",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "LAMINATE",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 182
+  },
+  {
+   "id": "cat-c9e726dd66a2",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-FAWK-0029",
+   "airtable_rec_id": "rec20VLOvHW1hwexQ",
+   "ls_id": "e79ae760-f54a-4422-ac65-f6660a36d93f",
+   "handle": "LAM771LAMMESATAUPE",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLAM - Waterproof Laminate Pro (Mesa Taupe) Click | 7.71\" x 14mm x RL - 17.94sf/b",
+    "handle": "LAM771LAMMESATAUPE",
+    "sku": "LAM-FAWK-0029",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "LAMINATE",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 183
+  },
+  {
+   "id": "cat-be0b14880773",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-FAWK-0030",
+   "airtable_rec_id": "recdVIHzARwl8NjL0",
+   "ls_id": "b1b64277-d56d-4cc0-9f43-bdaa0ae67756",
+   "handle": "LAM771LAMPALISADE",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLAM - Waterproof Laminate Pro (Palisade) Click | 7.71\" x 14mm x RL - 17.94sf/b",
+    "handle": "LAM771LAMPALISADE",
+    "sku": "LAM-FAWK-0030",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "LAMINATE",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 184
+  },
+  {
+   "id": "cat-2b825423df41",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-FAWK-0031",
+   "airtable_rec_id": "recNPzofEKEpguSda",
+   "ls_id": "5cd2c606-08cd-4c39-81b8-9e62201b297f",
+   "handle": "LAM771LAMRAVENWOOD",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLAM - Waterproof Laminate Pro (Ravenwood) Click | 7.71\" x 14mm x RL - 17.94sf/b",
+    "handle": "LAM771LAMRAVENWOOD",
+    "sku": "LAM-FAWK-0031",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "LAMINATE",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 185
+  },
+  {
+   "id": "cat-7c8fec813e08",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-FAWK-0032",
+   "airtable_rec_id": "reccJUJKSwQppOPqq",
+   "ls_id": "640fba08-36a1-44d9-a5df-860766544b5b",
+   "handle": "LAM771LAMSILVERDUNE",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLAM - Waterproof Laminate Pro (Silver Dune) Click | 7.71\" x 14mm x RL - 17.94sf/b",
+    "handle": "LAM771LAMSILVERDUNE",
+    "sku": "LAM-FAWK-0032",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "LAMINATE",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 186
+  },
+  {
+   "id": "cat-51f3fde23ae9",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-FAWK-0033",
+   "airtable_rec_id": "reca4fnmle7O4AVIu",
+   "ls_id": "f878273f-bc77-49f5-ba46-ac5a99920a7b",
+   "handle": "LAM771LAMSUMMITOAK",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLAM - Waterproof Laminate Pro (Summit Oak) Click | 7.71\" x 14mm x RL - 17.94sf/b",
+    "handle": "LAM771LAMSUMMITOAK",
+    "sku": "LAM-FAWK-0033",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "LAMINATE",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 187
+  },
+  {
+   "id": "cat-310cd583aaf2",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-FAWK-0034",
+   "airtable_rec_id": "recDUHrahJ3OnkZVP",
+   "ls_id": "032f8648-e1df-4b01-92d8-1872190bb5cb",
+   "handle": "LAM771LAMURBANWALNUT",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLAM - Waterproof Laminate Pro (Urban Walnut) Click | 7.71\" x 14mm x RL - 17.94sf/b",
+    "handle": "LAM771LAMURBANWALNUT",
+    "sku": "LAM-FAWK-0034",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "LAMINATE",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 188
+  },
+  {
+   "id": "cat-2b0b0af4911a",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0001",
+   "airtable_rec_id": "recI9cL7Nc3O7f3VL",
+   "ls_id": "8304ce25-2caa-40d2-803c-68285e49f423",
+   "handle": "LVP71VNYWINDSOR",
+   "fields": {
+    "supply_price": 1.69,
+    "price_excluding_tax": 2.69
+   },
+   "before": {
+    "name": "NAFLVP-SPC - 6.5mm SPC Vinyl (Windsor) Click | 7.1\" x 6.5mm x RL - 23.9sf/b",
+    "handle": "LVP71VNYWINDSOR",
+    "sku": "LVP-FAWK-0001",
+    "supply_price": 1.49,
+    "price_including_tax": 2.49,
+    "price_excluding_tax": 2.49,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 189
+  },
+  {
+   "id": "cat-f6d1348b818d",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0002",
+   "airtable_rec_id": "recjDFRPj9ggarqRj",
+   "ls_id": "01b60584-4b33-4493-84a7-47b6cdd80760",
+   "handle": "LVP71VNYJASMINE",
+   "fields": {
+    "supply_price": 1.69,
+    "price_excluding_tax": 2.69
+   },
+   "before": {
+    "name": "NAFLVP-SPC - 6.5mm SPC Vinyl (Jasmine) Click | 7.1\" x 6.5mm x RL - 23.9sf/b",
+    "handle": "LVP71VNYJASMINE",
+    "sku": "LVP-FAWK-0002",
+    "supply_price": 1.49,
+    "price_including_tax": 2.49,
+    "price_excluding_tax": 2.49,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 190
+  },
+  {
+   "id": "cat-76082abedbe5",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0003",
+   "airtable_rec_id": "receLOSN70RFtvPM4",
+   "ls_id": "9654cca5-88b7-413f-9651-cfa9485ec94e",
+   "handle": "LVP71VNYWESTMINSTER",
+   "fields": {
+    "supply_price": 1.69,
+    "price_excluding_tax": 2.69
+   },
+   "before": {
+    "name": "NAFLVP-SPC - 6.5mm SPC Vinyl (Westminster) Click | 7.1\" x 6.5mm x RL - 23.9sf/b",
+    "handle": "LVP71VNYWESTMINSTER",
+    "sku": "LVP-FAWK-0003",
+    "supply_price": 1.49,
+    "price_including_tax": 2.49,
+    "price_excluding_tax": 2.49,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 191
+  },
+  {
+   "id": "cat-7f1b3ad83125",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0004",
+   "airtable_rec_id": "rec0TCtx6Uf2wvxBD",
+   "ls_id": "c634fe5b-334a-498b-8856-04a5608174f5",
+   "handle": "LVP72VNYTOBERMORY183",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Select (Tobermory) Click | 7.2\" x 7mm x RL - 15sf/b",
+    "handle": "LVP72VNYTOBERMORY183",
+    "sku": "LVP-FAWK-0004",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 192
+  },
+  {
+   "id": "cat-baa299b53b65",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0005",
+   "airtable_rec_id": "recj0XvSGTggW6ypG",
+   "ls_id": "236c1de1-3c00-4675-8253-56ede8bb42a6",
+   "handle": "LVP72VNYCHAPLIN",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Select (Chaplin) Click | 7.2\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP72VNYCHAPLIN",
+    "sku": "LVP-FAWK-0005",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 193
+  },
+  {
+   "id": "cat-da40bbd6f75f",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0006",
+   "airtable_rec_id": "rechNKisnWrJBZc6N",
+   "ls_id": "adc1d913-7ddf-4a12-bf40-67acd5c1478b",
+   "handle": "LVP72VNYSAUBLEBEACH",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Select (Sauble Beach) Click | 7.2\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP72VNYSAUBLEBEACH",
+    "sku": "LVP-FAWK-0006",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 194
+  },
+  {
+   "id": "cat-0c7cacf4bf5a",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0007",
+   "airtable_rec_id": "recwZ95QnBVU2xkDR",
+   "ls_id": "504a2bb5-e897-421e-a8cf-1c98b8e232ef",
+   "handle": "LVP72VNYDAVISVILLE",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Select (Davisville) Click | 7.2\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP72VNYDAVISVILLE",
+    "sku": "LVP-FAWK-0007",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 195
+  },
+  {
+   "id": "cat-7bca65640411",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0008",
+   "airtable_rec_id": "reciEtCsYck6Rj0Hm",
+   "ls_id": "d24a24e3-df4d-4ef1-9e3f-d85c0c30e610",
+   "handle": "LVP72VNYDEERHURST",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Select (Deerhurst) Click | 7.2\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP72VNYDEERHURST",
+    "sku": "LVP-FAWK-0008",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 196
+  },
+  {
+   "id": "cat-79c35fd620a9",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0010",
+   "airtable_rec_id": "recknlhNPxGB2tj1J",
+   "ls_id": "7f400fd6-f2df-4e7d-b981-f9b378e6b244",
+   "handle": "LVP72VNYMUSKOKA",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Select (Muskoka) Click | 7.2\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP72VNYMUSKOKA",
+    "sku": "LVP-FAWK-0010",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 197
+  },
+  {
+   "id": "cat-46746908eb73",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0011",
+   "airtable_rec_id": "rec02fGK04yxSruf3",
+   "ls_id": "a91fc120-1e72-4bc0-b545-a2bafbb43025",
+   "handle": "LVP72VNYWASAGA",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Select (Wasaga) Click | 7.2\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP72VNYWASAGA",
+    "sku": "LVP-FAWK-0011",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 198
+  },
+  {
+   "id": "cat-c3d6e396661b",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0012",
+   "airtable_rec_id": "rec2bDBme9UnqBXDt",
+   "ls_id": "94f91f82-41ee-4ff5-8053-183c642f6d7e",
+   "handle": "LVP72VNYCOLLINGWOOD",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Select (Collingwood) Click | 7.2\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP72VNYCOLLINGWOOD",
+    "sku": "LVP-FAWK-0012",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 199
+  },
+  {
+   "id": "cat-5d58aaca13b8",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0013",
+   "airtable_rec_id": "recUVNh5L5Dxse59q",
+   "ls_id": "3347d88a-6032-4083-b265-d1f40e58e881",
+   "handle": "LVP72VNYGRANDBEND",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Select (Grand Bend) Click | 7.2\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP72VNYGRANDBEND",
+    "sku": "LVP-FAWK-0013",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 200
+  },
+  {
+   "id": "cat-4731062175ff",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0014",
+   "airtable_rec_id": "recTVu4ipeMmfCDGw",
+   "ls_id": "06e573e2-6e37-41c4-8fb3-4135ee24baba",
+   "handle": "LVP72VNYBRACEBRIDGE",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Select (Bracebridge) Click | 7.2\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP72VNYBRACEBRIDGE",
+    "sku": "LVP-FAWK-0014",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 201
+  },
+  {
+   "id": "cat-e1daa9919f7a",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0015",
+   "airtable_rec_id": "recf5okDaguR3toZw",
+   "ls_id": "3ae0e918-2898-49ec-b286-c16df51a0d50",
+   "handle": "LVP72VNYTOBERMORY",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Select (Tobermory) Click | 7.2\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP72VNYTOBERMORY",
+    "sku": "LVP-FAWK-0015",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 202
+  },
+  {
+   "id": "cat-a57d22469e60",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0016",
+   "airtable_rec_id": "recdjHlCuGFyiAN0i",
+   "ls_id": "25f29f4c-c851-4fbd-b419-7120b0760f8e",
+   "handle": "LVP71VNYBALI",
+   "fields": {
+    "supply_price": 1.79,
+    "price_excluding_tax": 2.79
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Classic (Bali) Click | 7.1\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP71VNYBALI",
+    "sku": "LVP-FAWK-0016",
+    "supply_price": 1.59,
+    "price_including_tax": 2.59,
+    "price_excluding_tax": 2.59,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 203
+  },
+  {
+   "id": "cat-24c8feb1bf1a",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0017",
+   "airtable_rec_id": "recK3PiDFTuwI2uEG",
+   "ls_id": "c7f6557a-4ddb-4d5e-ae2d-df9d58315b93",
+   "handle": "LVP71VNYBORABORA",
+   "fields": {
+    "supply_price": 1.79,
+    "price_excluding_tax": 2.79
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Classic (Bora Bora) Click | 7.1\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP71VNYBORABORA",
+    "sku": "LVP-FAWK-0017",
+    "supply_price": 1.59,
+    "price_including_tax": 2.59,
+    "price_excluding_tax": 2.59,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 204
+  },
+  {
+   "id": "cat-529ee6bf1c98",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0018",
+   "airtable_rec_id": "recasnEzQO543powm",
+   "ls_id": "07f963e6-2d61-460b-af8e-c91d572532fc",
+   "handle": "LVP71VNYFIJI",
+   "fields": {
+    "supply_price": 1.79,
+    "price_excluding_tax": 2.79
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Classic (Fiji) Click | 7.1\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP71VNYFIJI",
+    "sku": "LVP-FAWK-0018",
+    "supply_price": 1.59,
+    "price_including_tax": 2.59,
+    "price_excluding_tax": 2.59,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 205
+  },
+  {
+   "id": "cat-9bbd2e2b9782",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0019",
+   "airtable_rec_id": "recmKpoTjlxV2wylX",
+   "ls_id": "e3ecd146-0bef-469f-9de9-eb9f9faab437",
+   "handle": "LVP71VNYMADAGASCAR",
+   "fields": {
+    "supply_price": 1.79,
+    "price_excluding_tax": 2.79
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Classic (Madagascar) Click | 7.1\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP71VNYMADAGASCAR",
+    "sku": "LVP-FAWK-0019",
+    "supply_price": 1.59,
+    "price_including_tax": 2.59,
+    "price_excluding_tax": 2.59,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 206
+  },
+  {
+   "id": "cat-bc832f0d6cb9",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0020",
+   "airtable_rec_id": "rec5ABzVU9wy9neZS",
+   "ls_id": "bf68fedf-b73b-4039-ae15-87fbaa1ce2f4",
+   "handle": "LVP71VNYMALDIVES",
+   "fields": {
+    "supply_price": 1.79,
+    "price_excluding_tax": 2.79
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Classic (Maldives) Click | 7.1\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP71VNYMALDIVES",
+    "sku": "LVP-FAWK-0020",
+    "supply_price": 1.59,
+    "price_including_tax": 2.59,
+    "price_excluding_tax": 2.59,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 207
+  },
+  {
+   "id": "cat-1f0843aa2bc4",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0021",
+   "airtable_rec_id": "reckQP1Rx6u270K4Z",
+   "ls_id": "46db261b-4da0-40c4-a313-67cf97d20a48",
+   "handle": "LVP71VNYMALTA",
+   "fields": {
+    "supply_price": 1.79,
+    "price_excluding_tax": 2.79
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Classic (Malta) Click | 7.1\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP71VNYMALTA",
+    "sku": "LVP-FAWK-0021",
+    "supply_price": 1.59,
+    "price_including_tax": 2.59,
+    "price_excluding_tax": 2.59,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 208
+  },
+  {
+   "id": "cat-1068d9babd0d",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0022",
+   "airtable_rec_id": "rec6pC9ov7dqZ817K",
+   "ls_id": "d5376735-00b1-46e1-a1c3-5c475ffa74e8",
+   "handle": "LVP71VNYSANTAMARIA",
+   "fields": {
+    "supply_price": 1.79,
+    "price_excluding_tax": 2.79
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Classic (Santa Maria) Click | 7.1\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP71VNYSANTAMARIA",
+    "sku": "LVP-FAWK-0022",
+    "supply_price": 1.59,
+    "price_including_tax": 2.59,
+    "price_excluding_tax": 2.59,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 209
+  },
+  {
+   "id": "cat-3e2ac47024a5",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0023",
+   "airtable_rec_id": "recQTm8cUQyu88mXi",
+   "ls_id": "38661486-8e8d-4206-bc10-350a269a5e43",
+   "handle": "LVP71VNYSANTORINI",
+   "fields": {
+    "supply_price": 1.79,
+    "price_excluding_tax": 2.79
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Classic (Santorini) Click | 7.1\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP71VNYSANTORINI",
+    "sku": "LVP-FAWK-0023",
+    "supply_price": 1.59,
+    "price_including_tax": 2.59,
+    "price_excluding_tax": 2.59,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 210
+  },
+  {
+   "id": "cat-73e9e9aa20e4",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0024",
+   "airtable_rec_id": "recuY87ihavsbjPYR",
+   "ls_id": "91b85863-42c2-4fa3-9831-7270203370bd",
+   "handle": "LVP71VNYPUNTACANA",
+   "fields": {
+    "supply_price": 1.79,
+    "price_excluding_tax": 2.79
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Classic (Punta Cana) Click | 7.1\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP71VNYPUNTACANA",
+    "sku": "LVP-FAWK-0024",
+    "supply_price": 1.59,
+    "price_including_tax": 2.59,
+    "price_excluding_tax": 2.59,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 211
+  },
+  {
+   "id": "cat-cc7c3d23cc5f",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0025",
+   "airtable_rec_id": "recs91XKxQmEfSwK8",
+   "ls_id": "884e281f-43e6-408b-8465-533211863070",
+   "handle": "LVP71VNYMYKONOS",
+   "fields": {
+    "supply_price": 1.79,
+    "price_excluding_tax": 2.79
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Classic (Mykonos) Click | 7.1\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP71VNYMYKONOS",
+    "sku": "LVP-FAWK-0025",
+    "supply_price": 1.59,
+    "price_including_tax": 2.59,
+    "price_excluding_tax": 2.59,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 212
+  },
+  {
+   "id": "cat-082a083367b9",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0027",
+   "airtable_rec_id": "rec6A20iJNFzJpZQ9",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b563dfc39",
+   "handle": "LVP71VNYYORKVILLE",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Gold (Yorkville) Click | 7.1\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP71VNYYORKVILLE",
+    "sku": "LVP-FAWK-0027",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 213
+  },
+  {
+   "id": "cat-02a935300bd0",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0029",
+   "airtable_rec_id": "reccAetXhjWtSEstr",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b55dea11f",
+   "handle": "LVP71VNYROSEDALE",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Gold (Rosedale) Click | 7.1\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP71VNYROSEDALE",
+    "sku": "LVP-FAWK-0029",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 214
+  },
+  {
+   "id": "cat-5b431967cc2d",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0030",
+   "airtable_rec_id": "recKPmB1DJOa79MQl",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b5543a614",
+   "handle": "LVP71VNYDUPONT",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Gold (Dupont) Click | 7.1\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP71VNYDUPONT",
+    "sku": "LVP-FAWK-0030",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 215
+  },
+  {
+   "id": "cat-54069ea38457",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0031",
+   "airtable_rec_id": "recEuctqZqBU5mCny",
+   "ls_id": "a5025666-d735-4d37-9707-fdb89dbc6f72",
+   "handle": "LVP71VNYLAKESHORE",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Gold (Lakeshore) Click | 7.1\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP71VNYLAKESHORE",
+    "sku": "LVP-FAWK-0031",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 216
+  },
+  {
+   "id": "cat-2023c2b95dd8",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0032",
+   "airtable_rec_id": "recLecZQTAtIaRTE1",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b557bc0f5",
+   "handle": "LVP71VNYLESLIE",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Gold (Leslie) Click | 7.1\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP71VNYLESLIE",
+    "sku": "LVP-FAWK-0032",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 217
+  },
+  {
+   "id": "cat-9e69a525602d",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0033",
+   "airtable_rec_id": "recwXrOxfUG1X1JWz",
+   "ls_id": "65ebad60-07de-46e5-bd15-d98d5a453e63",
+   "handle": "LVP71VNYSUMMERHILL",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Gold (Summerhill) Click | 7.1\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP71VNYSUMMERHILL",
+    "sku": "LVP-FAWK-0033",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 218
+  },
+  {
+   "id": "cat-2d233530279a",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0034",
+   "airtable_rec_id": "recELDE263R6JCOVY",
+   "ls_id": "82735ee6-a739-453b-8f11-b2610df3f358",
+   "handle": "LVP71VNYRUSSELLHILL",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Gold (Russell Hill) Click | 7.1\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP71VNYRUSSELLHILL",
+    "sku": "LVP-FAWK-0034",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 219
+  },
+  {
+   "id": "cat-fb382477e190",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0035",
+   "airtable_rec_id": "recReGMZKfXsBWooz",
+   "ls_id": "e4fc3878-6ab1-434c-b4fe-c4e8911121c8",
+   "handle": "LVP71VNYRICHVIEW",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Gold (Richview) Click | 7.1\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP71VNYRICHVIEW",
+    "sku": "LVP-FAWK-0035",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 220
+  },
+  {
+   "id": "cat-d51c9c4b9a28",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0039",
+   "airtable_rec_id": "reckbWyBm2DVUM5Wh",
+   "ls_id": "21bcf99f-14f7-423b-bfca-8a3599d58758",
+   "handle": "LVP71VNYBUCKINGHAM",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Royal (Buckingham) Click | 7.1\" x 8mm x RL - 14.93sf/b",
+    "handle": "LVP71VNYBUCKINGHAM",
+    "sku": "LVP-FAWK-0039",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 221
+  },
+  {
+   "id": "cat-2f40ec42484a",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0040",
+   "airtable_rec_id": "reczfszQVUIbcireK",
+   "ls_id": "c04288c6-05f0-40e3-ba15-0ea7f38585e8",
+   "handle": "LVP71VNYCORNWALL",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Royal (Cornwall) Click | 7.1\" x 8mm x RL - 14.93sf/b",
+    "handle": "LVP71VNYCORNWALL",
+    "sku": "LVP-FAWK-0040",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 222
+  },
+  {
+   "id": "cat-c7499a28edaa",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0041",
+   "airtable_rec_id": "recPjQlyDFesPpGZ6",
+   "ls_id": "9b86ca01-4cd4-4020-a7e7-153412a9f1c9",
+   "handle": "LVP71VNYHAMPTON",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Royal (Hampton) Click | 7.1\" x 8mm x RL - 14.93sf/b",
+    "handle": "LVP71VNYHAMPTON",
+    "sku": "LVP-FAWK-0041",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 223
+  },
+  {
+   "id": "cat-2ff3b44e1352",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0042",
+   "airtable_rec_id": "rec0SmJeKQnhmMuwo",
+   "ls_id": "50b622f5-eadb-4615-b819-00ac505ca4b8",
+   "handle": "LVP71VNYLEEDSCASTLE",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Royal (Leeds Castle) Click | 7.1\" x 8mm x RL - 14.93sf/b",
+    "handle": "LVP71VNYLEEDSCASTLE",
+    "sku": "LVP-FAWK-0042",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 224
+  },
+  {
+   "id": "cat-a7dba8aec914",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0043",
+   "airtable_rec_id": "recJOAn1HkN1ifakz",
+   "ls_id": "f0cc6b13-709f-4d64-b6cc-9f92a04307be",
+   "handle": "LVP71VNYKENSINGTON",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Royal (Kensington) Click | 7.1\" x 8mm x RL - 14.93sf/b",
+    "handle": "LVP71VNYKENSINGTON",
+    "sku": "LVP-FAWK-0043",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 225
+  },
+  {
+   "id": "cat-b7af8ef26b7d",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0045",
+   "airtable_rec_id": "recFtpDEkVQcp3f67",
+   "ls_id": "50255821-3a12-48f6-b641-09332e26f935",
+   "handle": "LVP71VNYWHITEHALL",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Royal (Whitehall) Click | 7.1\" x 8mm x RL - 14.93sf/b",
+    "handle": "LVP71VNYWHITEHALL",
+    "sku": "LVP-FAWK-0045",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 226
+  },
+  {
+   "id": "cat-5eade702a84a",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0046",
+   "airtable_rec_id": "reccDyfmTEh4YfCOH",
+   "ls_id": "7d041d2a-aa0f-4d97-b0e9-35248e04b722",
+   "handle": "LVP71ROYALWINDSOR",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Royal (Windsor) Click | 7.1\" x 8mm x RL - 14.93sf/b",
+    "handle": "LVP71ROYALWINDSOR",
+    "sku": "LVP-FAWK-0046",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 227
+  },
+  {
+   "id": "cat-13088a3a8e9a",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0047",
+   "airtable_rec_id": "recHWYjA1cefUTW0M",
+   "ls_id": "8f7cdb35-a788-4b24-b531-2e82a8575553",
+   "handle": "LVP71VNYDURHAM",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Royal (Durham) Click | 7.1\" x 8mm x RL - 14.93sf/b",
+    "handle": "LVP71VNYDURHAM",
+    "sku": "LVP-FAWK-0047",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 228
+  },
+  {
+   "id": "cat-0aaa588abf8b",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0048",
+   "airtable_rec_id": "recLwSwYief2ikPLv",
+   "ls_id": "3a043394-5981-4ed9-bd58-c92964ee8c82",
+   "handle": "LVP71VNYEDINBURGH",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Royal (Edinburgh) Click | 7.1\" x 8mm x RL - 14.93sf/b",
+    "handle": "LVP71VNYEDINBURGH",
+    "sku": "LVP-FAWK-0048",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 229
+  },
+  {
+   "id": "cat-d9bf11693147",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0049",
+   "airtable_rec_id": "recSH2P2IOcY0D58V",
+   "ls_id": "302b7293-f21d-4cdd-b119-28752b2b4223",
+   "handle": "LVP71VNYROCHESTER",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Royal (Rochester) Click | 7.1\" x 8mm x RL - 14.93sf/b",
+    "handle": "LVP71VNYROCHESTER",
+    "sku": "LVP-FAWK-0049",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 230
+  },
+  {
+   "id": "cat-1ae9b6c1b569",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0051",
+   "airtable_rec_id": "recitAyQaXAQBoxtl",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b56822989",
+   "handle": "LVP71VNYLIBRAPLAT",
+   "fields": {
+    "supply_price": 2.49,
+    "price_excluding_tax": 3.49
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Platinum (Libra) Click | 7.1\" x 9mm x RL - 14.69sf/b",
+    "handle": "LVP71VNYLIBRAPLAT",
+    "sku": "LVP-FAWK-0051",
+    "supply_price": 2.29,
+    "price_including_tax": 3.29,
+    "price_excluding_tax": 3.29,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 231
+  },
+  {
+   "id": "cat-ccc0b044cb96",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0053",
+   "airtable_rec_id": "rec9GUumDYklSX0Sp",
+   "ls_id": "190d07ff-ebf7-4056-8a2d-dc35f61a72d6",
+   "handle": "LVP71VNYFULHAMPLAT",
+   "fields": {
+    "supply_price": 2.49,
+    "price_excluding_tax": 3.49
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Platinum (Fulham) Click | 7.1\" x 9mm x RL - 11.94sf/b",
+    "handle": "LVP71VNYFULHAMPLAT",
+    "sku": "LVP-FAWK-0053",
+    "supply_price": 2.29,
+    "price_including_tax": 3.29,
+    "price_excluding_tax": 3.29,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 232
+  },
+  {
+   "id": "cat-96571b3b526d",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0054",
+   "airtable_rec_id": "recKkmLVoutinhbDk",
+   "ls_id": "08cbb95d-eea8-4a39-aed1-d1c83be5efac",
+   "handle": "LVP71VNYLONDONPLAT",
+   "fields": {
+    "supply_price": 2.49,
+    "price_excluding_tax": 3.49
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Platinum (London) Click | 7.1\" x 9mm x RL - 11.94sf/b",
+    "handle": "LVP71VNYLONDONPLAT",
+    "sku": "LVP-FAWK-0054",
+    "supply_price": 2.29,
+    "price_including_tax": 3.29,
+    "price_excluding_tax": 3.29,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 233
+  },
+  {
+   "id": "cat-cb505e229e70",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0055",
+   "airtable_rec_id": "recoB1uN8CLuWETfX",
+   "ls_id": "eda22d9a-ea64-49a5-b876-5de27f28a2db",
+   "handle": "LVP71VNYWESTMINSTERPLAT",
+   "fields": {
+    "supply_price": 2.49,
+    "price_excluding_tax": 3.49
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Platinum (Westminster) Click | 7.1\" x 9mm x RL - 11.94sf/b",
+    "handle": "LVP71VNYWESTMINSTERPLAT",
+    "sku": "LVP-FAWK-0055",
+    "supply_price": 2.29,
+    "price_including_tax": 3.29,
+    "price_excluding_tax": 3.29,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 234
+  },
+  {
+   "id": "cat-9479a466301e",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0056",
+   "airtable_rec_id": "rec5NfRVBhpdLNXsh",
+   "ls_id": "0ff90800-b187-4a30-ab32-b828e7bf9161",
+   "handle": "LVP71VNYCAPRICORNPLAT",
+   "fields": {
+    "supply_price": 2.49,
+    "price_excluding_tax": 3.49
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Platinum (Capricorn) Click | 7.1\" x 9mm x RL - 11.94sf/b",
+    "handle": "LVP71VNYCAPRICORNPLAT",
+    "sku": "LVP-FAWK-0056",
+    "supply_price": 2.29,
+    "price_including_tax": 3.29,
+    "price_excluding_tax": 3.29,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 235
+  },
+  {
+   "id": "cat-02029efb8ec6",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0057",
+   "airtable_rec_id": "recOHrlm6VulKOxMy",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b5669bb59",
+   "handle": "LVP71VNYLEOPLAT",
+   "fields": {
+    "supply_price": 2.49,
+    "price_excluding_tax": 3.49
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Platinum (Leo) Click | 7.1\" x 9mm x RL - 11.94sf/b",
+    "handle": "LVP71VNYLEOPLAT",
+    "sku": "LVP-FAWK-0057",
+    "supply_price": 2.29,
+    "price_including_tax": 3.29,
+    "price_excluding_tax": 3.29,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 236
+  },
+  {
+   "id": "cat-288be110c03c",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0058",
+   "airtable_rec_id": "reclxEnfQKs8nRSJK",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b56cafa4e",
+   "handle": "LVP71VNYVIRGOPLAT",
+   "fields": {
+    "supply_price": 2.49,
+    "price_excluding_tax": 3.49
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Platinum (Virgo) Click | 7.1\" x 9mm x RL - 11.94sf/b",
+    "handle": "LVP71VNYVIRGOPLAT",
+    "sku": "LVP-FAWK-0058",
+    "supply_price": 2.29,
+    "price_including_tax": 3.29,
+    "price_excluding_tax": 3.29,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 237
+  },
+  {
+   "id": "cat-0f642fe0cc1f",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0059",
+   "airtable_rec_id": "rec2P18t7urXV7Jcg",
+   "ls_id": "3e8a988a-249f-4ba1-a14b-2f933261d4d8",
+   "handle": "LVP71VNYMAYFAIRPLAT",
+   "fields": {
+    "supply_price": 2.49,
+    "price_excluding_tax": 3.49
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Platinum (Mayfair) Click | 7.1\" x 9mm x RL - 11.94sf/b",
+    "handle": "LVP71VNYMAYFAIRPLAT",
+    "sku": "LVP-FAWK-0059",
+    "supply_price": 2.29,
+    "price_including_tax": 3.29,
+    "price_excluding_tax": 3.29,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 238
+  },
+  {
+   "id": "cat-a03f66461766",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0060",
+   "airtable_rec_id": "recN6LKlXhioqDuGl",
+   "ls_id": "5b89c9b7-cb09-4af9-8daa-fe9959f1e336",
+   "handle": "LVP71VNYSOHOPLAT",
+   "fields": {
+    "supply_price": 2.49,
+    "price_excluding_tax": 3.49
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Platinum (Soho) Click | 7.1\" x 9mm x RL - 11.94sf/b",
+    "handle": "LVP71VNYSOHOPLAT",
+    "sku": "LVP-FAWK-0060",
+    "supply_price": 2.29,
+    "price_including_tax": 3.29,
+    "price_excluding_tax": 3.29,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 239
+  },
+  {
+   "id": "cat-67e1a1cb181a",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0061",
+   "airtable_rec_id": "recGZ21BBdeji3CE0",
+   "ls_id": "7f288473-00a8-4d97-b9d7-bf856e011269",
+   "handle": "LVP9VNYTHAMES",
+   "fields": {
+    "supply_price": 3.09,
+    "price_excluding_tax": 4.09
+   },
+   "before": {
+    "name": "NAFLVP-WPC - Aquawood (Thames) Click | 9\" x 10mm x RL - 29.92sf/b",
+    "handle": "LVP9VNYTHAMES",
+    "sku": "LVP-FAWK-0061",
+    "supply_price": 2.89,
+    "price_including_tax": 3.89,
+    "price_excluding_tax": 3.89,
+    "category": "WPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 240
+  },
+  {
+   "id": "cat-bc232a7ebd1f",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0062",
+   "airtable_rec_id": "recVYfeD4HUCTGVuR",
+   "ls_id": "1a1372b2-5435-42df-890e-836894a164d2",
+   "handle": "LVP9VNYVOLGA",
+   "fields": {
+    "supply_price": 3.09,
+    "price_excluding_tax": 4.09
+   },
+   "before": {
+    "name": "NAFLVP-WPC - Aquawood (Volga) Click | 9\" x 10mm x RL - 29.92sf/b",
+    "handle": "LVP9VNYVOLGA",
+    "sku": "LVP-FAWK-0062",
+    "supply_price": 2.89,
+    "price_including_tax": 3.89,
+    "price_excluding_tax": 3.89,
+    "category": "WPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 241
+  },
+  {
+   "id": "cat-d68142097198",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-FAWK-0084",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP9VNYDANUBE",
+   "fields": {
+    "sku": "LVP-FAWK-0084",
+    "handle": "LVP9VNYDANUBE",
+    "name": "NAFLVP-WPC - Aquawood (Danube) | 9\" x 10mm x RL - 29.92sf/b",
+    "supply_price": 3.09,
+    "price_excluding_tax": 4.09,
+    "description": "Box size (sf): 29.92",
+    "product_category": "FLOORING / VINYL / WPC",
+    "brand_name": "NAF",
+    "supplier_name": "FAW"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 242
+  },
+  {
+   "id": "cat-05849cfdcb77",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-FAWK-0085",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP9VNYHUDSON",
+   "fields": {
+    "sku": "LVP-FAWK-0085",
+    "handle": "LVP9VNYHUDSON",
+    "name": "NAFLVP-WPC - Aquawood (Hudson) | 9\" x 10mm x RL - 29.92sf/b",
+    "supply_price": 3.09,
+    "price_excluding_tax": 4.09,
+    "description": "Box size (sf): 29.92",
+    "product_category": "FLOORING / VINYL / WPC",
+    "brand_name": "NAF",
+    "supplier_name": "FAW"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 243
+  },
+  {
+   "id": "cat-5de421c72780",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-FAWK-0086",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYAMSTERDAM",
+   "fields": {
+    "sku": "LVP-FAWK-0086",
+    "handle": "LVP736VNYAMSTERDAM",
+    "name": "NAFLVP-SPC - Aqualuuuz (Amsterdam) | 7.36\" x 5mm x RL - 19.75sf/b",
+    "supply_price": 2.29,
+    "price_excluding_tax": 3.29,
+    "description": "Box size (sf): 19.75",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "NAF",
+    "supplier_name": "FAW"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 244
+  },
+  {
+   "id": "cat-ece506ac7d34",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-FAWK-0087",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYBATAVIA",
+   "fields": {
+    "sku": "LVP-FAWK-0087",
+    "handle": "LVP736VNYBATAVIA",
+    "name": "NAFLVP-SPC - Aqualuuuz (Batavia) | 7.36\" x 5mm x RL - 19.75sf/b",
+    "supply_price": 2.29,
+    "price_excluding_tax": 3.29,
+    "description": "Box size (sf): 19.75",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "NAF",
+    "supplier_name": "FAW"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 245
+  },
+  {
+   "id": "cat-2cb2d144b025",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-FAWK-0088",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYCATALAN",
+   "fields": {
+    "sku": "LVP-FAWK-0088",
+    "handle": "LVP736VNYCATALAN",
+    "name": "NAFLVP-SPC - Aqualuuuz (Catalan) | 7.36\" x 5mm x RL - 19.75sf/b",
+    "supply_price": 2.29,
+    "price_excluding_tax": 3.29,
+    "description": "Box size (sf): 19.75",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "NAF",
+    "supplier_name": "FAW"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 246
+  },
+  {
+   "id": "cat-7ce74535577a",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-FAWK-0089",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYNYC",
+   "fields": {
+    "sku": "LVP-FAWK-0089",
+    "handle": "LVP736VNYNYC",
+    "name": "NAFLVP-SPC - Aqualuuuz (NYC) | 7.36\" x 5mm x RL - 19.75sf/b",
+    "supply_price": 2.29,
+    "price_excluding_tax": 3.29,
+    "description": "Box size (sf): 19.75",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "NAF",
+    "supplier_name": "FAW"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 247
+  },
+  {
+   "id": "cat-c2d5e95353ff",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-FAWK-0090",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYPARIS",
+   "fields": {
+    "sku": "LVP-FAWK-0090",
+    "handle": "LVP736VNYPARIS",
+    "name": "NAFLVP-SPC - Aqualuuuz (Paris) | 7.36\" x 5mm x RL - 19.75sf/b",
+    "supply_price": 2.29,
+    "price_excluding_tax": 3.29,
+    "description": "Box size (sf): 19.75",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "NAF",
+    "supplier_name": "FAW"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 248
+  },
+  {
+   "id": "cat-54999ee50ec5",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-FAWK-0091",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYPEKING",
+   "fields": {
+    "sku": "LVP-FAWK-0091",
+    "handle": "LVP736VNYPEKING",
+    "name": "NAFLVP-SPC - Aqualuuuz (Peking) | 7.36\" x 5mm x RL - 19.75sf/b",
+    "supply_price": 2.29,
+    "price_excluding_tax": 3.29,
+    "description": "Box size (sf): 19.75",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "NAF",
+    "supplier_name": "FAW"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 249
+  },
+  {
+   "id": "cat-5abb83d85a40",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-FAWK-0092",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYATHENS",
+   "fields": {
+    "sku": "LVP-FAWK-0092",
+    "handle": "LVP736VNYATHENS",
+    "name": "NAFLVP-SPC - Aqualuuuz (Athens) | 7.36\" x 5mm x RL - 19.75sf/b",
+    "supply_price": 2.29,
+    "price_excluding_tax": 3.29,
+    "description": "Box size (sf): 19.75",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "NAF",
+    "supplier_name": "FAW"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 250
+  },
+  {
+   "id": "cat-55e7ecce0219",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-FAWK-0093",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYIZMIR",
+   "fields": {
+    "sku": "LVP-FAWK-0093",
+    "handle": "LVP736VNYIZMIR",
+    "name": "NAFLVP-SPC - Aqualuuuz (Izmir) | 7.36\" x 5mm x RL - 19.75sf/b",
+    "supply_price": 2.29,
+    "price_excluding_tax": 3.29,
+    "description": "Box size (sf): 19.75",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "NAF",
+    "supplier_name": "FAW"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 251
+  },
+  {
+   "id": "cat-56d62f047a4d",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-FAWK-0094",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYLUCERNE",
+   "fields": {
+    "sku": "LVP-FAWK-0094",
+    "handle": "LVP736VNYLUCERNE",
+    "name": "NAFLVP-SPC - Aqualuuuz (Lucerne) | 7.36\" x 5mm x RL - 19.75sf/b",
+    "supply_price": 2.29,
+    "price_excluding_tax": 3.29,
+    "description": "Box size (sf): 19.75",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "NAF",
+    "supplier_name": "FAW"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 252
+  },
+  {
+   "id": "cat-4f4a8756a9f0",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-FAWK-0095",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYSAIGON",
+   "fields": {
+    "sku": "LVP-FAWK-0095",
+    "handle": "LVP736VNYSAIGON",
+    "name": "NAFLVP-SPC - Aqualuuuz (Saigon) | 7.36\" x 5mm x RL - 19.75sf/b",
+    "supply_price": 2.29,
+    "price_excluding_tax": 3.29,
+    "description": "Box size (sf): 19.75",
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "NAF",
+    "supplier_name": "FAW"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 253
+  },
+  {
+   "id": "cat-70b96fa28e9b",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVT-FAWK-0002",
+   "airtable_rec_id": "rect7hI1pYsSXnhBk",
+   "ls_id": "7da9c997-82d2-4ab3-973b-e70cf7d14ff8",
+   "handle": "LVT12VNYCARBON7MM",
+   "fields": {
+    "supply_price": 2.89,
+    "price_excluding_tax": 3.89
+   },
+   "before": {
+    "name": "NAFLVT-SPC - Aqua Tile (Carbon) Click | 12\" x 7mm x RL - 16.03sf/b",
+    "handle": "LVT12VNYCARBON7MM",
+    "sku": "LVT-FAWK-0002",
+    "supply_price": 2.69,
+    "price_including_tax": 3.69,
+    "price_excluding_tax": 3.69,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 254
+  },
+  {
+   "id": "cat-f6416addf619",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVT-FAWK-0003",
+   "airtable_rec_id": "rec1qCpeqmzsw3Obd",
+   "ls_id": "abe7c3ce-9bbc-4055-9c95-57523536e3ff",
+   "handle": "LVT12VNYCHROME7MM",
+   "fields": {
+    "supply_price": 2.89,
+    "price_excluding_tax": 3.89
+   },
+   "before": {
+    "name": "NAFLVT-SPC - Aqua Tile (Chrome) Click | 12\" x 7mm x RL - 16.03sf/b",
+    "handle": "LVT12VNYCHROME7MM",
+    "sku": "LVT-FAWK-0003",
+    "supply_price": 2.69,
+    "price_including_tax": 3.69,
+    "price_excluding_tax": 3.69,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 255
+  },
+  {
+   "id": "cat-553e87abc8e2",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVT-FAWK-0004",
+   "airtable_rec_id": "recHM4no4r7HMUqmd",
+   "ls_id": "738bc9aa-a5db-4202-b3bc-b74edcfb4ad8",
+   "handle": "LVT12VNYGOLD7MM",
+   "fields": {
+    "supply_price": 2.89,
+    "price_excluding_tax": 3.89
+   },
+   "before": {
+    "name": "NAFLVT-SPC - Aqua Tile (Gold) Click | 12\" x 7mm x RL - 16.03sf/b",
+    "handle": "LVT12VNYGOLD7MM",
+    "sku": "LVT-FAWK-0004",
+    "supply_price": 2.69,
+    "price_including_tax": 3.69,
+    "price_excluding_tax": 3.69,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 256
+  },
+  {
+   "id": "cat-ab233307ba74",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVT-FAWK-0005",
+   "airtable_rec_id": "rec5uSWgY7O6I90hB",
+   "ls_id": "979d3b23-3cc0-489e-a575-9cb5efc9f68e",
+   "handle": "LVT12VNYICE7MM",
+   "fields": {
+    "supply_price": 2.89,
+    "price_excluding_tax": 3.89
+   },
+   "before": {
+    "name": "NAFLVT-SPC - Aqua Tile (Ice) Click | 12\" x 7mm x RL - 16.03sf/b",
+    "handle": "LVT12VNYICE7MM",
+    "sku": "LVT-FAWK-0005",
+    "supply_price": 2.69,
+    "price_including_tax": 3.69,
+    "price_excluding_tax": 3.69,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 257
+  },
+  {
+   "id": "cat-97ae0a456678",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVT-FAWK-0006",
+   "airtable_rec_id": "recTJKmPvWHH6oQIW",
+   "ls_id": "66a29651-12ec-4463-a3cc-dda8de9e927e",
+   "handle": "LVT12VNYMARBLE7MM",
+   "fields": {
+    "supply_price": 2.89,
+    "price_excluding_tax": 3.89
+   },
+   "before": {
+    "name": "NAFLVT-SPC - Aqua Tile (Marble) Click | 12\" x 7mm x RL - 16.03sf/b",
+    "handle": "LVT12VNYMARBLE7MM",
+    "sku": "LVT-FAWK-0006",
+    "supply_price": 2.69,
+    "price_including_tax": 3.69,
+    "price_excluding_tax": 3.69,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 258
+  },
+  {
+   "id": "cat-3ce0d1bd2c1d",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVT-FAWK-0007",
+   "airtable_rec_id": "recFWHdZaV9cKzYEO",
+   "ls_id": "671222c6-d8a9-49d0-a8e0-1ee756d1731f",
+   "handle": "LVT12VNYMICA7MM",
+   "fields": {
+    "supply_price": 2.89,
+    "price_excluding_tax": 3.89
+   },
+   "before": {
+    "name": "NAFLVT-SPC - Aqua Tile (Mica) Click | 12\" x 7mm x RL - 16.03sf/b",
+    "handle": "LVT12VNYMICA7MM",
+    "sku": "LVT-FAWK-0007",
+    "supply_price": 2.69,
+    "price_including_tax": 3.69,
+    "price_excluding_tax": 3.69,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 259
+  },
+  {
+   "id": "cat-856b87ce81af",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVT-FAWK-0008",
+   "airtable_rec_id": "recgq8WjwmgC4M4E7",
+   "ls_id": "838e0c13-c462-4278-9b9c-5be968fac138",
+   "handle": "LVT12VNYONYX7MM",
+   "fields": {
+    "supply_price": 2.89,
+    "price_excluding_tax": 3.89
+   },
+   "before": {
+    "name": "NAFLVT-SPC - Aqua Tile (Onyx) Click | 12\" x 7mm x RL - 16.03sf/b",
+    "handle": "LVT12VNYONYX7MM",
+    "sku": "LVT-FAWK-0008",
+    "supply_price": 2.69,
+    "price_including_tax": 3.69,
+    "price_excluding_tax": 3.69,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 260
+  },
+  {
+   "id": "cat-478d2c44d433",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVT-FAWK-0009",
+   "airtable_rec_id": "recMVmjZMfOKogkBD",
+   "ls_id": "ea9fdd45-ead8-470a-94b2-4e1d08defa43",
+   "handle": "LVT12VNYOXIDE7MM",
+   "fields": {
+    "supply_price": 2.89,
+    "price_excluding_tax": 3.89
+   },
+   "before": {
+    "name": "NAFLVT-SPC - Aqua Tile (Oxide) Click | 12\" x 7mm x RL - 16.03sf/b",
+    "handle": "LVT12VNYOXIDE7MM",
+    "sku": "LVT-FAWK-0009",
+    "supply_price": 2.69,
+    "price_including_tax": 3.69,
+    "price_excluding_tax": 3.69,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 261
+  },
+  {
+   "id": "cat-c374f73d2c3f",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVT-FAWK-0010",
+   "airtable_rec_id": "recuFSsk7BFGQZWlR",
+   "ls_id": "21953d86-9b1d-4e24-aaca-2d53c7be841c",
+   "handle": "LVT12VNYSELENITE7MM",
+   "fields": {
+    "supply_price": 2.89,
+    "price_excluding_tax": 3.89
+   },
+   "before": {
+    "name": "NAFLVT-SPC - Aqua Tile (Selenite) Click | 12\" x 7mm x RL - 16.03sf/b",
+    "handle": "LVT12VNYSELENITE7MM",
+    "sku": "LVT-FAWK-0010",
+    "supply_price": 2.69,
+    "price_including_tax": 3.69,
+    "price_excluding_tax": 3.69,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 262
+  },
+  {
+   "id": "cat-d274154d87f3",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-FAWK-0084",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP9VNYDANUBE",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 263
+  },
+  {
+   "id": "cat-a2d091166757",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-FAWK-0085",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP9VNYHUDSON",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 264
+  },
+  {
+   "id": "cat-ac657d863897",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-FAWK-0086",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYAMSTERDAM",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 265
+  },
+  {
+   "id": "cat-ba5b47740593",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-FAWK-0087",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYBATAVIA",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 266
+  },
+  {
+   "id": "cat-eefa0ade2159",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-FAWK-0088",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYCATALAN",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 267
+  },
+  {
+   "id": "cat-176aca8ab6a5",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-FAWK-0089",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYNYC",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 268
+  },
+  {
+   "id": "cat-92ab182cb950",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-FAWK-0090",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYPARIS",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 269
+  },
+  {
+   "id": "cat-ae3481335ab2",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-FAWK-0091",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYPEKING",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 270
+  },
+  {
+   "id": "cat-829b71470cff",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-FAWK-0092",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYATHENS",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 271
+  },
+  {
+   "id": "cat-032d63347692",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-FAWK-0093",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYIZMIR",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 272
+  },
+  {
+   "id": "cat-08351b100b23",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-FAWK-0094",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYLUCERNE",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 273
+  },
+  {
+   "id": "cat-b54c2701ddf6",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-FAWK-0095",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYSAIGON",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 274
+  }
+ ],
+ "blocked": [],
+ "warnings": []
+}

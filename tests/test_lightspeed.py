@@ -47,6 +47,7 @@ def _load(name, path):
 lsc = _load("lightspeed_client", "scripts/lightspeed_client.py")
 lp = _load("lightspeed_pull", "scripts/lightspeed_pull.py")
 lw = _load("lightspeed_write", "scripts/lightspeed_write.py")
+lpush = _load("lightspeed_push", "scripts/lightspeed_push.py")
 
 GRANDEUR = REPO_ROOT / "ingest/2026-09-03/grandeur_ls_product_export_2026-09-03.xlsx"
 CANADIAN = REPO_ROOT / "ingest/2026-09-03/canadian_standard_ls_product_export_2026-09-03.xlsx"
@@ -453,6 +454,64 @@ class TestCompareExport(unittest.TestCase):
         pull = self.rows_from(GRANDEUR)
         pull.pop(1)
         self.assertEqual(lp.compare_export(pull, GRANDEUR), 0)
+
+
+class _FakeTypesClient:
+    """Serves one product_types table. Read-only, like the real lookup path."""
+
+    def __init__(self, names):
+        self.names = names
+
+    def get(self, path):
+        return {"data": [{"name": n, "id": f"id-{i}"} for i, n in enumerate(self.names)]}
+
+
+class TestProductTypeResolution(unittest.TestCase):
+    """The PL-317 create failure, 2026-09-20.
+
+    The LS upload CSV carries a category PATH — `FLOORING / VINYL / WPC`, the form
+    `ls-upload-instructions` specifies — but Lightspeed's product types are named by
+    the LEAF alone (`WPC`). `build_family_payload` feeds `product_category` straight
+    into a product_type lookup, so every create raised "no product type named
+    'FLOORING / VINYL / WPC'". The dry run caught it before anything was sent, which
+    is what the dry run is for; no create had ever run before, so the mismatch had
+    been latent since the writer was written.
+
+    The second case is the one that would not have announced itself: Titan's live
+    product types contain four duplicated names (`LAMINATE`, `TILE`, `VINYL`,
+    `OTHER`, verified 2026-09-20). The old lookup kept the first id it saw, so a
+    laminate create would have been filed under whichever row the API happened to
+    return first — silently, and wrongly.
+    """
+
+    def setUp(self):
+        self.lookups = lpush.Lookups(_FakeTypesClient(
+            ["SPC", "WPC", "LAMINATE", "LAMINATE", "ACCESSORIES", "mirror"]))
+
+    def test_category_path_resolves_to_its_leaf(self):
+        self.assertEqual(self.lookups.resolve("product_type", "FLOORING / VINYL / WPC"), "id-1")
+        self.assertEqual(self.lookups.resolve("product_type", "FLOORING / VINYL / SPC"), "id-0")
+
+    def test_a_bare_leaf_still_resolves(self):
+        """The path form is not required — don't break a plain name."""
+        self.assertEqual(self.lookups.resolve("product_type", "SPC"), "id-0")
+        self.assertEqual(self.lookups.resolve("product_type", "ACCESSORIES"), "id-4")
+
+    def test_matching_is_case_insensitive(self):
+        self.assertEqual(self.lookups.resolve("product_type", "MIRROR"), "id-5")
+
+    def test_a_duplicated_name_refuses_instead_of_guessing(self):
+        with self.assertRaises(lpush.LightspeedError) as cm:
+            self.lookups.resolve("product_type", "FLOORING / LAMINATE")
+        self.assertIn("ambiguous", str(cm.exception))
+
+    def test_an_unknown_type_is_never_created(self):
+        with self.assertRaises(lpush.LightspeedError) as cm:
+            self.lookups.resolve("product_type", "FLOORING / CARPET")
+        msg = str(cm.exception)
+        self.assertIn("Refusing to create one", msg)
+        self.assertIn("FLOORING / CARPET", msg)
+        self.assertIn("CARPET'", msg, "the leaf it also tried should be named")
 
 
 if __name__ == "__main__":

@@ -118,13 +118,21 @@ class Lookups:
         self._cache = {}
 
     def _table(self, path, label):
+        """name -> [id, ...]. A list, because Lightspeed allows duplicate names.
+
+        Keeping every id rather than the first one is the point: `LAMINATE`,
+        `TILE`, `VINYL` and `OTHER` each exist twice in Titan's product types
+        (verified live 2026-09-20). Collapsing those to whichever row the API
+        happened to return first would silently file a product under the wrong
+        one, and nothing downstream would show it.
+        """
         if label not in self._cache:
             rows = self.c.get(path).get("data", [])
             index = {}
             for r in rows:
                 name = (r.get("name") or "").strip()
                 if name:
-                    index.setdefault(name.casefold(), r["id"])
+                    index.setdefault(name.casefold(), []).append(r["id"])
             self._cache[label] = index
         return self._cache[label]
 
@@ -135,14 +143,36 @@ class Lookups:
                  "attribute": ("/api/2.0/variant_attributes", "variant attribute")}
         path, label = paths[kind]
         index = self._table(path, kind)
-        got = index.get((name or "").strip().casefold())
-        if got is None:
-            raise LightspeedError(
-                f"no {label} named {name!r} exists in Lightspeed. Refusing to create "
-                f"one — {label}s are added by a person, deliberately. Known values "
-                f"include: {sorted(list(index))[:8]}"
-            )
-        return got
+        raw = (name or "").strip()
+
+        # The LS upload CSV carries a category PATH ("FLOORING / VINYL / WPC"),
+        # per ls-upload-instructions. Lightspeed's product types are named by the
+        # LEAF alone ("WPC"). Try the whole string first, so a type that really is
+        # named with slashes ("CEMENT | SEALANT | GLUE" has none, but the shape is
+        # allowed) still resolves, then fall back to the last segment.
+        candidates = [raw]
+        if "/" in raw:
+            candidates.append(raw.rsplit("/", 1)[-1].strip())
+
+        for cand in candidates:
+            got = index.get(cand.casefold())
+            if not got:
+                continue
+            if len(got) > 1:
+                raise LightspeedError(
+                    f"{label} {cand!r} is ambiguous — {len(got)} exist in Lightspeed "
+                    f"with that name. Refusing to guess which one to file this "
+                    f"product under; a person has to de-duplicate them, or the "
+                    f"category has to name the right one unambiguously."
+                )
+            return got[0]
+
+        raise LightspeedError(
+            f"no {label} named {raw!r} exists in Lightspeed"
+            + (f" (also tried {candidates[-1]!r})" if len(candidates) > 1 else "")
+            + f". Refusing to create one — {label}s are added by a person, "
+            f"deliberately. Known values include: {sorted(list(index))[:8]}"
+        )
 
 
 def build_family_payload(actions, lookups, cfg):
