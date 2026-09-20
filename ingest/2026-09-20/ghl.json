@@ -1,0 +1,13 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-09-20T08:11:07-04:00",
+  "status": "error",
+  "error": "mcp__ghl__* tools were not bound to this ghl-ingest-agent session (only Read/Write/Bash were available in the granted toolset) -- a session-level tool-provisioning gap, not a GHL platform outage or credential failure. GHL_PIT_TOKEN and GHL_LOCATION_ID are present in .env and match prior working runs (location 4BwjVRlyDCR4ZRdcSrFR). This is the same failure class already logged in ingest/run-ledger.json for 2026-08-15, 2026-08-18, 2026-08-19, and 2026-08-24 ('ghl: MCP tools unreachable' / 'stuck pending interactive approval'). No GHL read calls were attempted to succeed partially -- every mcp__ghl__ tool call in this session would fail before reaching the network, so status is 'error' rather than 'partial'. There is no read-only REST fallback in this repo (scripts/ has no ghl_*.py client, unlike lightspeed/meta-ads/outlook), so no data could be retrieved by any other means without violating the MCP-only access path documented in .claude/agents/ghl-ingest-agent.md.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest could not run today (2026-09-20): mcp__ghl__* tools were not granted to this session. Re-run with GHL MCP bindings restored -- this is the primary driver of the daily brief and its absence blocks lead/pipeline/conversation/drift visibility for the day.",
+    "Catch-up window ambiguity unresolved by this run: local branch history (ingest/run-ledger.json) last shows a confirmed-merged GHL run on 2026-09-08, but per the orchestrator's brief for this run, titan-vault daily notes 01_daily/2026-09-09.md through 2026-09-19.md are reported to confirm GHL actually ran most of those days on unmerged session branches (the same branch-isolation pattern already recovered/documented for 2026-08-01 through 2026-08-31 in run-ledger.json). This run could not verify that independently -- it never reached GHL and did not have the vault checked out to read those daily notes directly. Whoever retries this ingest should treat 2026-09-08 as the last verified-safe local baseline for diffing, but should check the vault (or ask Albert) before assuming an 11-day backlog is genuinely new; most of it is very likely already-ingested-elsewhere data per the recurring pattern, not a real gap."
+  ]
+}
