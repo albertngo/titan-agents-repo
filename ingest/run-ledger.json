@@ -491,5 +491,18 @@
     },
     "brief": true,
     "note": "scheduled run; local branch ledger last showed 2026-09-02, but all 5 ingesters cross-checked unmerged session branches and vault 01_daily notes and confirmed real runs happened through 2026-09-07 (branch-isolation artifact, not a real gap) -- no catch-up widening needed; bookkeeper still has no QBO/Intuit MCP connector (10th consecutive failed run since 2026-07-26)"
+  },
+  {
+    "date": "2026-09-20",
+    "run_at": "2026-09-20T08:24:21-04:00",
+    "sources": {
+      "ghl": "error",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "partial",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run (user-requested: clone latest titan-agents + titan-vault, run daily brief, push vault). Local ledger last showed 2026-09-08 (11-day apparent gap), but confirmed NOT a real gap before running: titan-vault/01_daily/2026-09-09.md through 2026-09-19.md all carry full real daily-ingest content for every one of those days, and `git ls-remote` found ~30 stranded claude/kind-feynman-* branches on origin -- same recurring branch-isolation pattern as August (see 2026-08-29/08-31/09-08 notes), not addressed/recovered in this run (out of scope; flagged for Albert to schedule separately). Today's 5 ingesters ran fresh against 2026-09-20 using 2026-09-08 as their local diff baseline (each flagged the resulting dedupe/window caveats in its own needs_attention). ghl errored: mcp__ghl__* tools were not bound to this session at all (confirmed via ToolSearch, not just the subagent's own grant) -- credentials present and valid, same failure class as 2026-08-15/18/19/24. bookkeeper errored: QBO/Intuit MCP connector still not configured, 11th consecutive failure since 2026-07-26. notion partial: titan_projects/qa_work_orders/master_payments_log/tactical_tasks_list all ok, project_status_meetings failed on a Notion workspace SQL query-quota cap. outlook and meta-ads both ok, each capped at their 7-day max_catchup_days policy rather than pulling the full apparent gap. DAILY-BRIEF.md written; vault-writer-agent and notion-sync run next per standard /daily-ingest flow."
   }
 ]
