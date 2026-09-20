@@ -437,6 +437,27 @@ When entering products from a supplier price list, Stock status should be assign
 - **Discontinued** — use when the supplier confirms the product is no longer being manufactured or restocked.
 - **SALE items are NOT Clearance** — a SALE label on a price list indicates a promotional price, not a stock status. SALE items get a Promo cost but their Stock status remains blank unless separately marked as clearance or while-stock-last.
 
+### Oak stair treads and risers are out of scope
+
+**Rule (Albert, 2026-09-20): oak / unfinished-hardwood stair treads and risers are not
+imported, from any supplier, unless Albert says otherwise for that specific list.**
+Titan does not carry them. Do not extract them, do not price them, do not create
+records for them, and do not put them in either upload file. Report that you skipped
+them, the same as any other out-of-scope section.
+
+This sits beside the existing exclusions — MDF casing, baseboard and other interior
+trim (the FAW / Olympia / Dragona precedent) — and is the same kind of rule: a product
+family Titan does not sell, which a price list nonetheless prices, so every run would
+otherwise re-extract it.
+
+**Vinyl/SPC stair and riser products are NOT covered by this.** Those are carried:
+FAW's Aquaplus SPC step/riser set (`ACC-FAWK-0001`) stays in scope, as do vinyl
+stairboard sets from other suppliers. The exclusion keys on **oak / unfinished
+hardwood**, not on the words "stair" or "riser".
+
+"Unless specified" means an explicit instruction for a given list — not an inference
+from the supplier having printed prices for them, which they generally do.
+
 ### Grade translation rule
 
 The `Grade` field captures the wood quality tier as stated by the supplier. Four grades are canonical and serve as reference anchors; any other grade a supplier uses is stored **verbatim** as a new single-select option when it unambiguously represents a grade tier.
@@ -1344,7 +1365,29 @@ FAW sells a single "Step + Riser + Side Return Set" product at $49/set with a lo
 - Include dimensions in `Salesperson notes`: Step 8mm × 350mm × 1200mm, Riser 4mm × 200mm × 1200mm, Side Return 400mm with 40mm nose
 - Note "Final Sale / No Returns"
 
-#### Oak stair treads and risers (page 7)
+#### Oak stair treads and risers (page 7) — NOT IMPORTED
+
+**Rule (Albert, 2026-09-20): oak stair treads and risers are excluded. Do not extract
+them, do not price them, do not put them in either upload file.** Titan does not carry
+them. This is the FAW instance of the cross-supplier rule in *Oak stair treads and
+risers are out of scope* under the global rules.
+
+`ACC-FAWK-0001` — the **Aquaplus SPC** step/riser set — is NOT affected. It is vinyl,
+it is carried, and it stays in scope. The exclusion is the oak items only,
+`ACC-FAWK-0004`–`0010`.
+
+Those seven records already exist in the base because this section previously said the
+opposite. Leave them alone — nothing here deletes a record — but a price-list run must
+not touch them again.
+
+> **Superseded, kept as the reason the rows exist.** The former rule, below, was
+> followed on the 2026-09-20 PL-317 run, which dutifully priced all seven and in doing
+> so surfaced three handle collisions (`…TREAD42`, `…TREAD48`, `…TREADPI`, each shared
+> by a Left/Right pair with no variant value) that would have been rejected on import.
+> Moot now: the products should never have been in the file.
+
+<details>
+<summary>Former rule (do not follow)</summary>
 
 Per-piece priced accessories. Store each tread type as a separate `ACC-FAWK-XXXX` record:
 
@@ -1356,6 +1399,8 @@ Per-piece priced accessories. Store each tread type as a separate `ACC-FAWK-XXXX
 - `Salesperson notes` = style description (Two-sided closed / Left-side finished / Right-side finished / One-side closed Pie), full dimensions, and the phrase "Retail markup TBD — FAW stair markup rule covers vinyl steps only"
 
 Oak Riser has dual pricing (Pallet $ 2.99 / Piece $ 3.99). Use $ 3.99 as `Cost/unit` (per-piece).
+
+</details>
 
 #### Known issues / soft spots
 
