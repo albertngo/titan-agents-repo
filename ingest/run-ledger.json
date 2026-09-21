@@ -491,5 +491,18 @@
     },
     "brief": true,
     "note": "scheduled run; local branch ledger last showed 2026-09-02, but all 5 ingesters cross-checked unmerged session branches and vault 01_daily notes and confirmed real runs happened through 2026-09-07 (branch-isolation artifact, not a real gap) -- no catch-up widening needed; bookkeeper still has no QBO/Intuit MCP connector (10th consecutive failed run since 2026-07-26)"
+  },
+  {
+    "date": "2026-09-21",
+    "run_at": "2026-09-21T08:00:00-04:00",
+    "sources": {
+      "ghl": "error",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; ghl error (mcp server pending approval, not bound this session); bookkeeper still has no QBO/Intuit MCP connector (11th consecutive failed run since 2026-07-26); notion cold start (no notion.json in 7d lookback on this branch); outlook/meta-ads windows widened to 7d catch-up cap. Local ledger last entry before today was 2026-09-08 -- confirmed branch-isolation artifact, not a real gap: vault 01_daily notes and unmerged branch origin/claude/adoring-mendel-3jv4ls show real runs happened through 2026-09-20; no catch-up widening needed."
   }
 ]
