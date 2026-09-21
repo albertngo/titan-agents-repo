@@ -319,6 +319,19 @@ row, written by both stages, attached once at the end.
 
 If this run produces no troubled SKUs, write no file at all.
 
+**Always emit the `Action` column, always blank.** It is the reviewer's column and
+the twelfth of twelve — never write into it, never leave it off because this run
+has nothing to ask.
+
+**On a re-run, read the page table's `Action` cells first.** An answer to an
+extract-stage row is only actionable here: a row held out of the upload CSV entirely
+(the `ambiguous_naming` case) never reaches `/catalog-sync`, so re-extracting is the
+only thing that can clear it. Match on `sku`, or on `source_row` where `sku` is
+blank, carry every value forward unchanged, and apply nothing whose key matches zero
+or more than one row. An answer is input to your extraction decision, not
+authorisation to write anything — see `contracts/troubled-skus-schema.md`, "The
+`Action` column".
+
 **This command writes no platform.** It does not touch Airtable or Lightspeed. Never
 report either as imported — `/catalog-sync`, running next, is what writes them.
 

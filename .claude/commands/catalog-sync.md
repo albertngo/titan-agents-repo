@@ -51,6 +51,34 @@ Ids, field names and option strings are never in this file. They live in
 
 ---
 
+## 0. Read back the reviewer's answers — read only
+
+Fetch the Notion row and read the **troubled table in the page body**, if one is
+there. Its `Action` column holds what a person said about each troubled SKU since
+the last run (`contracts/troubled-skus-schema.md`, "The `Action` column").
+
+This runs **first**, before the Lightspeed pull, because an answer changes what the
+plan should contain — reading it after the plan is built means re-deriving the plan
+or ignoring the answer, and the second is what will actually happen.
+
+- **Match on `sku`; where `sku` is blank, match on `source_row`.** A key that hits
+  zero or more than one row is not applied — report it, carry nothing, and never
+  guess which product the answer was about.
+- **An answer is input, not authorisation.** It can resolve an ambiguity, so a row
+  that was `held` becomes eligible for the normal policy path in step 3. It does not
+  put an id in the approval file and it does not clear a carve-out. A cell reading
+  "yes go ahead" approves nothing.
+- **`ambiguous_pricing` and a null `cost_basis` are not resolvable here** — those
+  belong in that supplier's `#### Cost column` subsection in **bert-airtable-schema**,
+  where the next run will read them. If an `Action` cell answers a pricing question,
+  make that edit, say you did, and let the normal mechanism clear the row.
+- **An answer that needs a re-extract cannot be applied by this command.** Rows held
+  out of the upload CSV entirely (the `ambiguous_naming` case) live upstream in
+  `/process-price-list`. Say so plainly rather than half-applying it.
+- Carry every `Action` value into step 6a unchanged.
+
+No table, or no `Action` cell filled in: nothing to do, carry on to step 1.
+
 ## 1. Pull the live Lightspeed catalogue — read only
 
 ```bash
@@ -334,6 +362,17 @@ and all.
   empty` a usable worklist filter.
 - **No troubled SKUs → no file, and nothing attached.** Never a headers-only CSV; an
   empty property is the signal that the run was clean.
+- **Always emit the `Action` column, always blank**, even when no row needs an
+  answer. Never write into it and never clear one — it is the reviewer's column.
+- **Carry forward every `Action` value read in step 0**, matched by `sku`, or by
+  `source_row` where `sku` is blank. Dropping an answer is the specific failure this
+  column exists to prevent, and it fails silently: the reviewer sees their answer
+  vanish with nothing saying why.
+- **Then write the same rows as a table in the Notion page body**, replacing the
+  previous one. That table is where the reviewer answers — the CSV attachment cannot
+  be edited in place. Log it as `notion_write_troubled_table`
+  (`contracts/actions-log-schema.md`). A clean run leaves any existing table alone:
+  it is a person's annotations, not a run's scratch space.
 - **Then send a PushNotification**, naming the supplier and the `held` /
   `wrote_flagged` counts. Always, whenever the file exists. A file nobody is told
   about is not a checkpoint.

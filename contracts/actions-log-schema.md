@@ -53,6 +53,13 @@ Each value belongs to exactly one agent's allowed-actions table.
 | `lightspeed_create_product`, `lightspeed_update_product` | `lightspeed-actions-agent` |
 | `airtable_upsert_product`, `airtable_backfill_ls_id`, `airtable_create_price_history` | `airtable-actions-agent` |
 | `social_schedule_post`, `social_update_post`, `social_reschedule_post`, `social_flag_manual` | `social-actions-agent` |
+| `notion_write_troubled_table` | `.claude/commands/catalog-sync.md` |
+
+`notion_write_troubled_table` writes the troubled-SKU table into a Price Lists page
+body (`contracts/troubled-skus-schema.md`, "The `Action` column"). It replaces the
+run's own rows and **never** touches a reviewer's `Action` cells, which is why it is
+a distinct type rather than a `notion_update_task`: the thing worth auditing about it
+is that it did not overwrite somebody's answer.
 
 There is deliberately **no delete or deactivate value for any platform**. Removing a
 product from the POS or a record from the catalogue is a person's decision made in
