@@ -607,6 +607,28 @@ These two fields are Bert's product-level intelligence. Filled from salesperson 
 
 ## Table 2 — Price History Log
 
+> ## ⛔ SUSPENDED — write nothing here, check nothing against it (Albert, 2026-09-21)
+>
+> **Until Albert says the master lists are trustworthy, no automated run writes a Price
+> History Log row and no automated run reads one as a check.** Not per cost change, not
+> for a promo, not a `Promo cleared` row, not a validation read against prior history.
+> Leave the log out of every run, entirely — this is a full pause, not a reduced cadence.
+>
+> **Why, so nobody "helpfully" restores it:** a price history is only worth as much as
+> the prices feeding it. Logging against catalogue data Albert does not yet trust would
+> manufacture an audit trail that reads as authoritative and isn't — and the whole point
+> of this table is to be the record you can rely on later. An empty log is honest. A
+> confident, wrong one is expensive to unpick, and you cannot tell the two apart by
+> looking.
+>
+> Everything below still describes the table correctly and is kept for when it comes
+> back. **Do not treat the detail below as permission.** Resume only on Albert's explicit
+> say-so — not because a plan contains a history action, not because a rule elsewhere
+> says to log a cost change, and not because this note looks stale.
+>
+> Seven rows were written on 2026-09-21 (the FAW PL-377 sync) before this pause existed.
+> They are left in place; removing them is Albert's call, not an unprompted cleanup.
+
 An append-only audit trail of pricing events. A new row is written for every pricing change. Never edit or delete existing rows.
 
 **Canonical table: `Price History Log v2` (table ID `tbly2em2cMuQs9eqK`).** The original `Price History Log` (`tbl1Af1yC6n2KvL7C`) was never populated and is superseded by v2, which adds the `Entry type` flag, dedicated promo columns, and a `Product name` text field. New logging — manual and Cowork — writes to v2. (The original empty table can be archived; it carries a stray `Entry type` field left over from setup.)
@@ -868,10 +890,10 @@ sequentially numbered, so that run correctly resolved at tier 2.
 - `Stock status` / `Active` — set from the supplier's own markers
   (`Discontinued` → `Discontinued` + `Active` unchecked; `Limited` → `Low stock`,
   still active). The enum has no "Limited" value; `Low stock` is the mapping.
-- Append one row per **cost** change to `Price History Log v2` per the logging
-  convention above. Its `Supplier` select is sparsely populated — pass
-  `typecast: true` so a supplier missing from that field's options is added rather
-  than erroring the whole batch.
+- **Price History Log: nothing. SUSPENDED 2026-09-21** — see the banner on Table 2.
+  Write no row for a cost change and run no check against the log. This line used to
+  say to append one row per cost change; that is paused, not merely deferred, until
+  Albert says the master lists are trustworthy.
 - Airtable caps `update_records_for_table` / `create_records_for_table` at **50
   records per call** — batch accordingly.
 
@@ -1979,7 +2001,9 @@ Vidar runs an "on-going color" promotion sheet separate from the regular price l
 - A promoted grade with no matching record gets a new record per the global "Promo product not found" rule — but note this is what produced the orphan records below, so prefer matching an existing grade record first.
 - **Vents** are handled as `Promo applied` at the clearance price **and** `Stock status = Discontinued` when the sheet marks them discontinued.
 
-Log every applied/cleared promo to `Price History Log v2` with the matching `Entry type`.
+~~Log every applied/cleared promo to `Price History Log v2` with the matching `Entry type`.~~
+**Suspended 2026-09-21 — log nothing.** The promo fields on the record still move as
+described above; only the history row is paused. See the banner on Table 2.
 
 #### Known data quality issues (confirm before going live)
 

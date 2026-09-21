@@ -286,7 +286,12 @@ It writes through MCP — there is no `airtable_write.py`.
 - Upserts merge on `fieldIdsToMergeOn` with **SKU never in the payload** (RULE 0 —
   the SKU is the merge key and is immutable).
 - Backfills set `Lightspeed ID` only, on records where it is currently empty.
-- Batch caps: 50 records, 10 for the Price History Log.
+- Batch cap: 50 records.
+- **No Price History Log rows, and no checks against it (Albert, 2026-09-21).** Paused
+  in full until he is confident in the master lists — a history logged against prices he
+  does not yet trust reads as authoritative and isn't. Skipping it is not a failure and
+  does not stop the batch; say in the report that it was skipped. See the banner on
+  Table 2 of bert-airtable-schema.
 
 ## 6. Close the Notion row
 
