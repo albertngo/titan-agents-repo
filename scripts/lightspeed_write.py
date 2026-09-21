@@ -143,6 +143,11 @@ class LightspeedWriter(LightspeedClient):
         `details` is per-product. `common` is family-wide and would rewrite every
         member, so it is refused unless the caller states a reason, which then gets
         logged. Nothing in the catalogue sync passes it.
+
+        Callers speak the READ vocabulary (`supply_price`, `price_excluding_tax`),
+        because that is what the 2.0 pull returns and what the plan is written in.
+        The 2.1 update endpoint does not accept `supply_price` at all, so this
+        method translates it — see _supply_price_to_product_suppliers().
         """
         if common and not allow_common_reason:
             raise LightspeedError(
@@ -154,12 +159,67 @@ class LightspeedWriter(LightspeedClient):
 
         payload = {}
         if details:
-            payload["details"] = details
+            payload["details"] = self._to_update_details(product_id, details)
         if common:
             payload["common"] = common
         path = self.cfg["api"]["endpoints"]["product_update"].format(id=product_id)
         body = self._send("PUT", path, body=payload)
         return None if body.get("dry_run") else body
+
+    # Placeholder the dry run prints where a live run resolves the real supplier.
+    # Deliberately not a uuid: anything that mistakes it for one fails loudly.
+    SUPPLIER_AT_WRITE_TIME = "<supplier resolved at write time>"
+
+    def _to_update_details(self, product_id, details):
+        """Canonical field names -> the 2.1 `details` wire format.
+
+        `supply_price` is the one that does not survive the trip. The 2.0 list
+        endpoint RETURNS it, so the whole codebase reads and plans in it, but it
+        is a convenience projection: the cost is really stored on the join row
+        between a product and its supplier. The 2.1 update schema has no
+        `supply_price` key and rejects the whole request with
+        `422 Unknown field in payload` when it sees one — verified live
+        2026-09-21 against ENG-FAWK-0054, which is what stopped the first real
+        push of this pipeline.
+
+        The accepted shape is `product_suppliers: [{supplier_id, price}]`, so the
+        supplier has to be known before the cost can be written. It is not in the
+        plan, so it is read from the live product here. `price_excluding_tax` was
+        always correct and passes through untouched.
+        """
+        details = dict(details)
+        if "supply_price" not in details:
+            return details
+
+        supply_price = details.pop("supply_price")
+        entry = {"supplier_id": self.SUPPLIER_AT_WRITE_TIME, "price": supply_price}
+        if not self.dry_run:
+            supplier = self._current_supplier(product_id)
+            entry["supplier_id"] = supplier["id"]
+            # Sending product_suppliers replaces the row, so carry the existing
+            # supplier code through rather than blanking it as a side effect.
+            if supplier.get("code"):
+                entry["code"] = supplier["code"]
+        details["product_suppliers"] = [entry]
+        return details
+
+    def _current_supplier(self, product_id):
+        """The supplier this product already has. Never invents one.
+
+        1,440 of the 14,525 live products carry no supplier at all, and a cost
+        cannot be written without one. Picking a supplier to make the write
+        succeed would be inventing a purchasing relationship, so that case stops
+        the batch like any other failure.
+        """
+        product = self.read_family(product_id)
+        suppliers = product.get("suppliers") or []
+        if not suppliers or not suppliers[0].get("id"):
+            raise LightspeedError(
+                f"product {product_id} has no supplier on record, and a 2.1 update "
+                "writes the cost as product_suppliers[].price — there is nothing to "
+                "attach it to. Refusing to pick a supplier: that would invent a "
+                "purchasing relationship. Set the supplier in Lightspeed first.")
+        return suppliers[0]
 
     # -- reads (inherited transport, listed here for callers) --------------
 

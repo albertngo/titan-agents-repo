@@ -12,6 +12,102 @@
    "error": "HTTP 422 on https://flooru.retail.lightspeed.app/api/2.1/products/c7967980-5f0b-4899-a593-9770f1f3e8a0: {\n  \"error\": \"Unknown field in payload\",\n  \"fields\": {\n    \"fields\": \" \\\"supply_price\\\"\"\n  }\n}",
    "raw_ref": null,
    "raw_ref_action_id": null
+  },
+  {
+   "logged_at": "2026-09-21T12:14:23-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "ENG-FAWK-0054 (c7967980-5f0b-4899-a593-9770f1f3e8a0)",
+   "content_summary": "Set supply_price=3.99, price_excluding_tax=5.99.",
+   "approved_by": "Albert, in chat 2026-09-21 \u2014 single-product test of the 2.1 update fix via catalog-approval-floors_at_work.json",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "c7967980-5f0b-4899-a593-9770f1f3e8a0",
+   "raw_ref_action_id": "cat-cc554279a922"
+  },
+  {
+   "logged_at": "2026-09-21T12:14:41-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "ENG-FAWK-0065 (70e9a691-05f3-4965-ab88-e2ea520537ae)",
+   "content_summary": "Set supply_price=6.79, price_excluding_tax=7.79.",
+   "approved_by": "policy: auto-approval (2026-09-12 rubric) via catalog-approval-floors_at_work.json",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "70e9a691-05f3-4965-ab88-e2ea520537ae",
+   "raw_ref_action_id": "cat-f5685d0a2d34"
+  },
+  {
+   "logged_at": "2026-09-21T12:14:42-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "ENG-FAWK-0084 (a072f3e7-8ce8-4e38-b703-412f05a918ab)",
+   "content_summary": "Set supply_price=3.99, price_excluding_tax=4.99.",
+   "approved_by": "policy: auto-approval (2026-09-12 rubric) via catalog-approval-floors_at_work.json",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "a072f3e7-8ce8-4e38-b703-412f05a918ab",
+   "raw_ref_action_id": "cat-36401a2e4396"
+  },
+  {
+   "logged_at": "2026-09-21T12:14:43-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "LVP-FAWK-0009 (8f45be30-74d6-4d2f-a139-e766b1cef5e8)",
+   "content_summary": "Set supply_price=1.99, price_excluding_tax=2.99.",
+   "approved_by": "policy: auto-approval (2026-09-12 rubric) via catalog-approval-floors_at_work.json",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "8f45be30-74d6-4d2f-a139-e766b1cef5e8",
+   "raw_ref_action_id": "cat-6acae023b6ea"
+  },
+  {
+   "logged_at": "2026-09-21T12:14:44-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "LVP-FAWK-0026 (0a6f6e36-8b89-11eb-f3d6-7e8b54f62a46)",
+   "content_summary": "Set supply_price=1.99, price_excluding_tax=2.99.",
+   "approved_by": "policy: auto-approval (2026-09-12 rubric) via catalog-approval-floors_at_work.json",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "0a6f6e36-8b89-11eb-f3d6-7e8b54f62a46",
+   "raw_ref_action_id": "cat-36e5cc06127b"
+  },
+  {
+   "logged_at": "2026-09-21T12:14:45-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "LVP-FAWK-0028 (6006d007-32f5-4505-a046-0ca08a812b25)",
+   "content_summary": "Set supply_price=1.99, price_excluding_tax=2.99.",
+   "approved_by": "policy: auto-approval (2026-09-12 rubric) via catalog-approval-floors_at_work.json",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "6006d007-32f5-4505-a046-0ca08a812b25",
+   "raw_ref_action_id": "cat-68593dce5232"
+  },
+  {
+   "logged_at": "2026-09-21T12:14:46-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "LVP-FAWK-0044 (161aa580-feeb-4fcc-83c3-d58b18e71ef4)",
+   "content_summary": "Set supply_price=2.19, price_excluding_tax=3.19.",
+   "approved_by": "policy: auto-approval (2026-09-12 rubric) via catalog-approval-floors_at_work.json",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "161aa580-feeb-4fcc-83c3-d58b18e71ef4",
+   "raw_ref_action_id": "cat-283f467cb8ff"
+  },
+  {
+   "logged_at": "2026-09-21T12:14:48-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "batch for Floors At Work",
+   "content_summary": "Batch stopped: HTTP 422 on https://flooru.retail.lightspeed.app/api/2.0/products: {\n  \"error\": \"Each variant must have at least one variant definition\"\n}",
+   "approved_by": "policy: auto-approval (2026-09-12 rubric) via catalog-approval-floors_at_work.json",
+   "result": "failed",
+   "error": "HTTP 422 on https://flooru.retail.lightspeed.app/api/2.0/products: {\n  \"error\": \"Each variant must have at least one variant definition\"\n}",
+   "raw_ref": null,
+   "raw_ref_action_id": null
   }
  ]
 }

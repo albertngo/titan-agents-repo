@@ -166,17 +166,56 @@ class TestWriter(unittest.TestCase):
         self.assertNotIn("details", seen["body"])
 
     def test_update_payload_shape(self):
+        """2.1 has no `supply_price`; the cost rides on product_suppliers[].price.
+
+        Sending `supply_price` earns a 422 that rejects the WHOLE request, which
+        is what stopped the first real push on 2026-09-21. An earlier version of
+        this test asserted the broken shape, so the bug had a passing test.
+        """
         w = self.writer()
         seen = {}
         def cap(m, p, params=None, body=None):
             seen.update(method=m, path=p, body=body); return {}
         w._send = cap
+        w.read_family = lambda pid: {"suppliers": [{"id": "sup-1", "code": ""}]}
         w.update_variant("id-1", {"supply_price": 3.5, "price_excluding_tax": 4.5})
         self.assertEqual(seen["method"], "PUT")
         self.assertIn("2.1", seen["path"])
-        self.assertEqual(seen["body"], {"details": {"supply_price": 3.5,
-                                                    "price_excluding_tax": 4.5}})
+        self.assertEqual(seen["body"], {"details": {
+            "price_excluding_tax": 4.5,
+            "product_suppliers": [{"supplier_id": "sup-1", "price": 3.5}],
+        }})
+        self.assertNotIn("supply_price", json.dumps(seen["body"]))
         self.assertNotIn("common", seen["body"])
+
+    def test_update_keeps_an_existing_supplier_code(self):
+        """product_suppliers replaces the row, so a code must not be lost."""
+        w = self.writer()
+        seen = {}
+        w._send = lambda m, p, params=None, body=None: (seen.update(body=body), {})[1]
+        w.read_family = lambda pid: {"suppliers": [{"id": "sup-1", "code": "FAW-123"}]}
+        w.update_variant("id-1", {"supply_price": 3.5})
+        self.assertEqual(seen["body"]["details"]["product_suppliers"],
+                         [{"supplier_id": "sup-1", "price": 3.5, "code": "FAW-123"}])
+
+    def test_update_refuses_a_cost_with_no_supplier(self):
+        """Inventing a supplier to make the write land is not a fix."""
+        w = self.writer()
+        w._send = lambda m, p, params=None, body=None: {}
+        w.read_family = lambda pid: {"suppliers": []}
+        with self.assertRaises(lsc.LightspeedError) as cm:
+            w.update_variant("id-1", {"supply_price": 3.5})
+        self.assertIn("supplier", str(cm.exception))
+
+    def test_retail_only_update_needs_no_supplier_lookup(self):
+        w = self.writer()
+        seen = {}
+        w._send = lambda m, p, params=None, body=None: (seen.update(body=body), {})[1]
+        def boom(pid):
+            raise AssertionError("read the product for a retail-only update")
+        w.read_family = boom
+        w.update_variant("id-1", {"price_excluding_tax": 4.5})
+        self.assertEqual(seen["body"], {"details": {"price_excluding_tax": 4.5}})
 
     def test_add_variant_targets_the_2_1_collection_and_joins_by_name(self):
         w = self.writer()
