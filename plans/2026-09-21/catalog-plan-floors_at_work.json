@@ -1,0 +1,608 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "Floors At Work",
+ "run_at": "2026-09-21T11:20:45.016648-04:00",
+ "status": "ok",
+ "inputs": [
+  {
+   "file": "ingest/2026-09-21/faw_airtable_upload_2026-09-21.csv",
+   "rows": 11
+  },
+  {
+   "file": "/home/user/titan-agents-repo/ingest/2026-09-21/lightspeed-products.json",
+   "products": 14835,
+   "run_at": "2026-09-21T11:19:41.522132-04:00"
+  },
+  {
+   "file": "ingest/2026-09-21/faw_airtable_existing.json",
+   "records": 231
+  },
+  {
+   "file": "ingest/2026-09-21/faw_ls_upload_2026-09-21.csv",
+   "rows": 4
+  }
+ ],
+ "cost_basis": {
+  "value": "printed-as-cost",
+  "confirmed_by": "bert-airtable-schema FAW subsection (Pallet price column = Cost/unit)"
+ },
+ "summary": {
+  "airtable_backfill_ls_id": 4,
+  "airtable_upsert": 10,
+  "lightspeed_create": 4,
+  "lightspeed_update": 7,
+  "actions_total": 25,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 0,
+  "warnings": 2,
+  "rows_in": 11
+ },
+ "actions": [
+  {
+   "id": "cat-216634bff9d8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0065",
+   "airtable_rec_id": null,
+   "ls_id": "70e9a691-05f3-4965-ab88-e2ea520537ae",
+   "handle": "ENG75OAKWARMHONEYEURDES",
+   "fields": {
+    "Cost/unit": "6.79",
+    "Retail price/unit": "7.79"
+   },
+   "before": {
+    "Cost/unit": "6.99",
+    "Retail price/unit": "7.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 1
+  },
+  {
+   "id": "cat-147f53223418",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0084",
+   "airtable_rec_id": null,
+   "ls_id": "a072f3e7-8ce8-4e38-b703-412f05a918ab",
+   "handle": "ENG65MAPAMERICANO",
+   "fields": {
+    "Cost/unit": "3.99",
+    "Retail price/unit": "4.99"
+   },
+   "before": {
+    "Cost/unit": "3.19",
+    "Retail price/unit": "4.19"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 2
+  },
+  {
+   "id": "cat-702e3eb6e0c3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0085",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "ENG75OAKTRUFFLEDES",
+   "fields": {
+    "Product name": "NAF Engineered White Oak Designer 7.5\" \u2014 Truffle",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.99",
+    "Retail price/unit": "5.99"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 3
+  },
+  {
+   "id": "cat-d91927127193",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0086",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "ENG6ROSEWOOD",
+   "fields": {
+    "Product name": "NAF Engineered Rosewood 6\" (RL)",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "5.49",
+    "Retail price/unit": "6.49"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 4
+  },
+  {
+   "id": "cat-a7382427fc34",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0009",
+   "airtable_rec_id": "recry8htMQiDHT1KZ",
+   "ls_id": "8f45be30-74d6-4d2f-a139-e766b1cef5e8",
+   "handle": "LVP72VNYBAY",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 5
+  },
+  {
+   "id": "cat-599bea5624d8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0026",
+   "airtable_rec_id": null,
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b54f62a46",
+   "handle": "LVP71VNYBAYVIEW",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 6
+  },
+  {
+   "id": "cat-c1ca55cb62c8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0028",
+   "airtable_rec_id": null,
+   "ls_id": "6006d007-32f5-4505-a046-0ca08a812b25",
+   "handle": "LVP71VNYLISMORE",
+   "fields": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "before": {
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 7
+  },
+  {
+   "id": "cat-ca3d33f01ad5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0044",
+   "airtable_rec_id": null,
+   "ls_id": "161aa580-feeb-4fcc-83c3-d58b18e71ef4",
+   "handle": "LVP71VNYPAVILION",
+   "fields": {
+    "Cost/unit": "2.19",
+    "Retail price/unit": "3.19"
+   },
+   "before": {
+    "Cost/unit": "1.99",
+    "Retail price/unit": "2.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 8
+  },
+  {
+   "id": "cat-166a3384cbda",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0084",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYPEKING",
+   "fields": {
+    "Product name": "NAF 5mm Aqualuuuz Loose Lay Vinyl 7.36\" \u2014 Peking",
+    "Category": "LVP",
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 9
+  },
+  {
+   "id": "cat-1869425f5306",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVT-FAWK-0018",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVT18VNYAQUALUUUZ",
+   "fields": {
+    "Product name": "NAF 5mm Aqualuuuz Loose Lay Tile 18\" x 36\"",
+    "Category": "LVT",
+    "Cost/unit": "2.69",
+    "Retail price/unit": "3.69"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 10
+  },
+  {
+   "id": "cat-cc554279a922",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0054",
+   "airtable_rec_id": null,
+   "ls_id": "c7967980-5f0b-4899-a593-9770f1f3e8a0",
+   "handle": "ENG75OAKDAVINCIDES",
+   "fields": {
+    "supply_price": 3.99,
+    "price_excluding_tax": 5.99
+   },
+   "before": {
+    "name": "NAFENG - Designer American White Oak (Da Vinci) T&G | 7.5\" x 18mm x RL - 23.31sf/b",
+    "handle": "ENG75OAKDAVINCIDES",
+    "sku": "ENG-FAWK-0054",
+    "supply_price": 4.99,
+    "price_including_tax": 5.99,
+    "price_excluding_tax": 5.99,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 11
+  },
+  {
+   "id": "cat-f5685d0a2d34",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0065",
+   "airtable_rec_id": null,
+   "ls_id": "70e9a691-05f3-4965-ab88-e2ea520537ae",
+   "handle": "ENG75OAKWARMHONEYEURDES",
+   "fields": {
+    "supply_price": 6.79,
+    "price_excluding_tax": 7.79
+   },
+   "before": {
+    "name": "NAFENG - Designer European White Oak (Warm Honey) T&G | 7.5\" x 18mm x RL - 3mm top - 23.31sf/b - Select & Better",
+    "handle": "ENG75OAKWARMHONEYEURDES",
+    "sku": "ENG-FAWK-0065",
+    "supply_price": 6.99,
+    "price_including_tax": 7.99,
+    "price_excluding_tax": 7.99,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 12
+  },
+  {
+   "id": "cat-36401a2e4396",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0084",
+   "airtable_rec_id": null,
+   "ls_id": "a072f3e7-8ce8-4e38-b703-412f05a918ab",
+   "handle": "ENG65MAPAMERICANO",
+   "fields": {
+    "supply_price": 3.99,
+    "price_excluding_tax": 4.99
+   },
+   "before": {
+    "name": "NAFENG - Handscraped Maple (Americano) T&G | 6.5\" x 18mm x RL - 19.18sf/b",
+    "handle": "ENG65MAPAMERICANO",
+    "sku": "ENG-FAWK-0084",
+    "supply_price": 3.19,
+    "price_including_tax": 4.19,
+    "price_excluding_tax": 4.19,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 13
+  },
+  {
+   "id": "cat-50ff4d9eec53",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-FAWK-0085",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "ENG75OAKTRUFFLEDES",
+   "fields": {
+    "sku": "ENG-FAWK-0085",
+    "handle": "ENG75OAKTRUFFLEDES",
+    "name": "NAFENG - Designer American White Oak (Truffle) Click | 7.5\" x 18mm x 1915mm (RL) - 3mm top - 24.11sf/b - Select",
+    "supply_price": 4.99,
+    "price_excluding_tax": 5.99,
+    "description": "Product type: Flooring | Category: Engineered hardwood | Material type: Hardwood plywood | Grade: Select | Box size (sf): 24.11 | Boxes per skid: 45 | Underpad included: FALSE | Salesperson notes: NEW colourway, Sept 19 2026 FAW list. Grade/species inference flagged \u2014 see Airtable Salesperson notes. Sold per sq ft.",
+    "product_category": "ENGINEERED HARDWOOD",
+    "brand_name": "NAF",
+    "supplier_name": "FAW"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 14
+  },
+  {
+   "id": "cat-04e460fa09a8",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-FAWK-0086",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "ENG6ROSEWOOD",
+   "fields": {
+    "sku": "ENG-FAWK-0086",
+    "handle": "ENG6ROSEWOOD",
+    "name": "NAFENG - Rosewood T&G | 6\" x 18mm x 1200mm (RL) - 11.62sf/b",
+    "supply_price": 5.49,
+    "price_excluding_tax": 6.49,
+    "description": "Product type: Flooring | Category: Engineered hardwood | Material type: Hardwood plywood | Species: Rosewood | Finish type: Smooth | Box size (sf): 11.62 | Boxes per skid: 48 | Salesperson notes: NEW product/collection, Sept 19 2026 FAW list \u2014 NO COLOUR NAME printed on source sheet, no prior FAW Rosewood precedent. Species 'Rosewood' not a controlled Airtable option, needs typecast. Flagged Spec Gap \u2014 full review needed before go-live. Sold per sq ft.",
+    "product_category": "ENGINEERED HARDWOOD",
+    "brand_name": "NAF",
+    "supplier_name": "FAW"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 15
+  },
+  {
+   "id": "cat-6acae023b6ea",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0009",
+   "airtable_rec_id": "recry8htMQiDHT1KZ",
+   "ls_id": "8f45be30-74d6-4d2f-a139-e766b1cef5e8",
+   "handle": "LVP72VNYBAY",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Select (Bay) Click | 7.2\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP72VNYBAY",
+    "sku": "LVP-FAWK-0009",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 16
+  },
+  {
+   "id": "cat-36e5cc06127b",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0026",
+   "airtable_rec_id": null,
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b54f62a46",
+   "handle": "LVP71VNYBAYVIEW",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Gold (Bayview) Click | 7.1\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP71VNYBAYVIEW",
+    "sku": "LVP-FAWK-0026",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 17
+  },
+  {
+   "id": "cat-68593dce5232",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0028",
+   "airtable_rec_id": null,
+   "ls_id": "6006d007-32f5-4505-a046-0ca08a812b25",
+   "handle": "LVP71VNYLISMORE",
+   "fields": {
+    "supply_price": 1.99,
+    "price_excluding_tax": 2.99
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Aquaplus Gold (Lismore) Click | 7.1\" x 7mm x RL - 17.91sf/b",
+    "handle": "LVP71VNYLISMORE",
+    "sku": "LVP-FAWK-0028",
+    "supply_price": 1.79,
+    "price_including_tax": 2.79,
+    "price_excluding_tax": 2.79,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 18
+  },
+  {
+   "id": "cat-283f467cb8ff",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FAWK-0044",
+   "airtable_rec_id": null,
+   "ls_id": "161aa580-feeb-4fcc-83c3-d58b18e71ef4",
+   "handle": "LVP71VNYPAVILION",
+   "fields": {
+    "supply_price": 2.19,
+    "price_excluding_tax": 3.19
+   },
+   "before": {
+    "name": "NAFLVP-SPC - Royal (Pavilion) Click | 7.1\" x 8mm x RL - 14.93sf/b",
+    "handle": "LVP71VNYPAVILION",
+    "sku": "LVP-FAWK-0044",
+    "supply_price": 1.99,
+    "price_including_tax": 2.99,
+    "price_excluding_tax": 2.99,
+    "category": "SPC",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 19
+  },
+  {
+   "id": "cat-d68142097198",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-FAWK-0084",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYPEKING",
+   "fields": {
+    "sku": "LVP-FAWK-0084",
+    "handle": "LVP736VNYPEKING",
+    "name": "NAFLVP-SPC - Aqualuuuz (Peking) | 7.36\" x 5mm x 1219mm - 19.75sf/b",
+    "supply_price": 2.29,
+    "price_excluding_tax": 3.29,
+    "description": "Product type: Flooring | Category: LVP | Material type: SPC core | Wear layer (mil): 20 | Install profile: Loose lay | Box size (sf): 19.75 | Boxes per skid: 55 | Waterproof: TRUE | Pet friendly: TRUE | Salesperson notes: NEW colourway, Sept 19 2026 FAW list, distinct size variant vs. established Aqualuuuz group. Sold per sq ft.",
+    "product_category": "SPC",
+    "brand_name": "NAF",
+    "supplier_name": "FAW"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 20
+  },
+  {
+   "id": "cat-13bbbf35572f",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVT-FAWK-0018",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVT18VNYAQUALUUUZ",
+   "fields": {
+    "sku": "LVT-FAWK-0018",
+    "handle": "LVT18VNYAQUALUUUZ",
+    "name": "NAFLVT-SPC - Aqualuuuz | 18\" x 5mm x 36\" - 22.48sf/b",
+    "supply_price": 2.69,
+    "price_excluding_tax": 3.69,
+    "description": "Product type: Flooring | Category: LVT | Material type: SPC core | Wear layer (mil): 20 | Install profile: Loose lay | Box size (sf): 22.48 | Boxes per skid: 48 | Waterproof: TRUE | Pet friendly: TRUE | Salesperson notes: NEW product, Sept 19 2026 FAW list \u2014 NO COLOUR NAME printed on source sheet at all; name omits the usual (Colour) segment. Flagged Spec Gap \u2014 confirm colourway before go-live. Sold per sq ft.",
+    "product_category": "SPC",
+    "brand_name": "NAF",
+    "supplier_name": "FAW"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 21
+  },
+  {
+   "id": "cat-b48f0a273d45",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-FAWK-0085",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "ENG75OAKTRUFFLEDES",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 22
+  },
+  {
+   "id": "cat-cd8a27612078",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-FAWK-0086",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "ENG6ROSEWOOD",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 23
+  },
+  {
+   "id": "cat-d274154d87f3",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-FAWK-0084",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVP736VNYPEKING",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 24
+  },
+  {
+   "id": "cat-02b156dbe5c4",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVT-FAWK-0018",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "LVT18VNYAQUALUUUZ",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 25
+  }
+ ],
+ "blocked": [],
+ "warnings": [
+  {
+   "sku": "LVP-FAWK-0084",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVT-FAWK-0018",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVT' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  }
+ ]
+}

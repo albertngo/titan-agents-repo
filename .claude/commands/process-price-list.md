@@ -170,13 +170,22 @@ If none of the three is confident, **leave `Company` blank and escalate (step 7)
 not pick a nearest match: the option list has near-collisions (BALTIC/NORTHWAY,
 FLOORDI/UMBRELLAR) and a wrong value looks authoritative.
 
-Casing differs per system and is not to be "fixed": Notion `Company` is ALL CAPS
-(`GREENTOUCH`), Airtable `Supplier` keeps its own mixed case (`GreenTouch`). **And in
-several cases it is not casing at all but a different name** — `FAW` → `Floors At Work`,
-`LEE` → `Lee Flooring`, `OLYMPIA` → `Olympia Tile`, `CIF (FAOILA)` → `CIF Distributors`,
-`BELLA` → `Bella Flooring Plus`. Cross the two with the `supplier_aliases` lookup
-*(registry)*, never with a case transform. A Notion `Company` with no entry there is the
-**new supplier** signal, not an error.
+**`Supplier` is ALL CAPS in Airtable** (Albert, 2026-09-21) — it was mixed case until
+then, and was capitalised so Notion, Airtable and Lightspeed mirror each other. So
+`GREENTOUCH` in Notion is `GREENTOUCH` in Airtable, not `GreenTouch`. **`Brand` is NOT
+capitalised** and keeps its own case (`NAF`, `Toucan`, `Appalachian`) — only `Supplier`
+changed.
+
+**Five cases are a different NAME, not a different case** — `FAW` → `FLOORS AT WORK`,
+`LEE` → `LEE FLOORING`, `OLYMPIA` → `OLYMPIA TILE`, `CIF (FAOILA)` → `CIF DISTRIBUTORS`,
+`BELLA` → `BELLA FLOORING PLUS`. That is the entire reason this stays a lookup: cross the
+two with `supplier_aliases` *(registry)*, **never** with `.upper()`, which would silently
+produce `FAW` and match nothing. A Notion `Company` with no entry there is the **new
+supplier** signal, not an error.
+
+**Never write a `Supplier` value that is not already an option.** Airtable's `typecast`
+creates a missing single-select choice silently, so one mixed-case write re-fragments the
+column — which is the exact state the 2026-09-21 capitalisation cleaned up.
 
 ## 4. Tag the row — `Regular List` or `Promo`
 

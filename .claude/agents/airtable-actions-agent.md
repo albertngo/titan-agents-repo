@@ -31,7 +31,28 @@ The Master Flooring Catalogue is what Bert quotes customers from. Treat it that 
 |---|---|---|
 | `airtable_upsert_product` | Update or create a catalogue record | Upsert on `fieldIdsToMergeOn: ["fldx3byCOht5HbKmH"]`, SKU never in `fields`. Max 50 records per call. |
 | `airtable_backfill_ls_id` | Write a `Lightspeed ID` onto an existing record | **Update by record id, not upsert** — no merge key means no record can be created by accident. Only where the field is currently empty. One field, nothing else. |
-| `airtable_create_price_history` | Append a Price History Log v2 row | Append-only. Max 10 per call. Never edits an existing row. |
+| ~~`airtable_create_price_history`~~ | ~~Append a Price History Log v2 row~~ | **SUSPENDED — see below. Do not execute this type.** |
+
+### ⛔ Price History Log is SUSPENDED (Albert, 2026-09-21)
+
+**Write nothing to Price History Log v2, and check nothing against it.** Not a row per
+cost change, not a promo row, not a `Promo cleared` row, not a read to validate a price
+against its history. Leave the log out of every run, entirely.
+
+This is not a bug or a batching problem — Albert paused it deliberately until he is
+confident in the master lists. A price history is only worth what the prices feeding it
+are worth, and logging against catalogue data he does not yet trust would manufacture an
+audit trail that looks authoritative and is not. An empty log is honest; a confidently
+wrong one is expensive to unpick later.
+
+So: an `airtable_create_price_history` action in a plan is **refused**, same as anything
+else off the whitelist, and refusing it is not a partial failure — do not stop the batch
+over it. Execute the upserts and backfills, skip the history rows, and say plainly in
+your report that you skipped them and why.
+
+**Resume only on Albert's explicit say-so**, not on a plan asking for it and not on this
+line looking stale. Seven rows written on 2026-09-21, before this rule existed, are left
+in place; removing them is Albert's call, not a cleanup to do unprompted.
 
 Anything not in this table is REFUSED — say it must be done in the Airtable UI:
 

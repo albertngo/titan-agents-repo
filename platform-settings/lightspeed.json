@@ -148,7 +148,17 @@
       "only_via_product_suppliers": 6,
       "absent_on": 1440,
       "_do_not_join_on_this": "116 distinct supplier names live in LS against 24 Airtable supplier choices, and several real suppliers are split across more than one LS record: OLYMPIA (292) beside Olympia Tile (2926), LEE (2) beside Lee Flooring (84), UMB beside Umbrellar, MARMOCA beside MARMOCA TILE, CIF Distributors beside CIF LTD. Casing is inconsistent too. Supplier is a reporting field; join on sku.",
-      "_third_namespace": "Notion Company is ALL CAPS, Airtable Supplier is mixed case, and LS is its own thing again \u2014 mostly upper but not always. Three namespaces, none aligned. Airtable <-> Notion is in airtable-destinations.json supplier_aliases; LS is deliberately not mapped, because it does not need to be once the join is on sku."
+      "_third_namespace": "Notion Company is ALL CAPS, Airtable Supplier is mixed case, and LS is its own thing again \u2014 mostly upper but not always. Three namespaces, none aligned. Airtable <-> Notion is in airtable-destinations.json supplier_aliases; LS is deliberately not mapped, because it does not need to be once the join is on sku.",
+      "_record_rulings_2026_09_21": {
+        "_comment": "Albert's rulings on the duplicate/near-duplicate supplier records surfaced 2026-09-21 while tracing how the create path resolves a supplier by name. Recorded so none of these gets 'tidied' the wrong way later. The merges and deletions are done by hand in the Lightspeed UI \u2014 this pipeline has no supplier merge, rename or delete capability, deliberately.",
+        "OLYMPIA + OLYMPIA TILE": "MERGE into 'OLYMPIA TILE', which is also the canonical name in Airtable. Was OLYMPIA (292 products) beside OLYMPIA TILE (2,926).",
+        "TOSCA/VICEROY": "DELETE. 0 products against it; TOSCA (447) is the real record.",
+        "LEE + Lee Flooring": "MERGE into 'LEE FLOORING' (all caps), preserving all products from both. Was LEE (2) beside Lee Flooring (84). Decided by Albert 2026-09-21. Note this also RENAMES the 84-product record, since it was mixed case.",
+        "ZION vs VIZION": "DO NOT MERGE. Confirmed by Albert 2026-09-21: ZION (105 products) is a GENUINELY DIFFERENT SUPPLIER from VIZION (53). The names look like a typo split and ZION holds twice the products, so this is exactly the pair a future cleanup would merge on sight. It would be wrong.",
+        "_capitalisation": "Albert, 2026-09-21: supplier names are ALL CAPS across Notion, Airtable and Lightspeed. BRANDS ARE NOT \u2014 they keep their own case and must be preserved through any supplier merge or rename. Two LS records are still mixed case and need renaming when convenient: 'CIF Distributors' (805) and, via the merge above, 'Lee Flooring' (84).",
+        "_still_open": "Three LS names differ from Airtable by NAME, not case, so capitalising Airtable does not reach parity on its own: FAW (317) vs FLOORS AT WORK, BELLA (288) vs BELLA FLOORING PLUS, and NORTHWAY BUILDING SUPPLY (67) vs NORTHWAY. Either rename the LS record or keep the per-supplier supplier_name note in ls-upload-instructions. Undecided as of 2026-09-21.",
+        "_other_splits_not_ruled_on": "'CIF LTD.' (36) sits beside 'CIF Distributors' (805), and 'BALTIC HOMES' (10) beside the BALTIC Notion option. Surfaced 2026-09-21, not ruled on \u2014 do not merge either without asking, given ZION/VIZION turned out to be genuinely different suppliers."
+      }
     },
     "prices": {
       "_verified": "Confirmed 2026-09-10 against every row of the Grandeur and Lee uploads that exists in Lightspeed \u2014 315/315 on both fields, no exceptions.",
@@ -259,7 +269,7 @@
       },
       "_create_shape_unknown": null,
       "create": {
-        "_verified": "From the API reference and the live account, 2026-09-10. No test write was needed.",
+        "_verified": "Family shape from the API reference and the live account 2026-09-10; NOT verified by a test write. The first real attempt, 2026-09-21, was rejected \u2014 see _variants_array_is_not_for_simple_products. Treat the rest of this block as unverified until a create actually lands.",
         "endpoint": "POST /api/2.0/products",
         "required": [
           "name"
@@ -296,15 +306,39 @@
           "shape": "{\"data\": [\"uuid\", \"uuid\", ...]}",
           "_trap": "A FLAT ARRAY OF IDS, in the order Lightspeed sorts the family by attribute value \u2014 NOT keyed by sku and not necessarily your payload order. Never map ids back to SKUs positionally. Always send an explicit `sku` per variant and re-read the family to pair them. Getting this wrong reproduces Grandeur exactly."
         },
-        "_sku_is_generated_if_omitted": "Lightspeed mints one from your sku sequence. Titan must ALWAYS supply its own \u2014 RULE 0 makes the Airtable SKU the source of truth."
+        "_sku_is_generated_if_omitted": "Lightspeed mints one from your sku sequence. Titan must ALWAYS supply its own \u2014 RULE 0 makes the Airtable SKU the source of truth.",
+        "_variants_array_is_not_for_simple_products": "FOUND 2026-09-21, the second bug of the same kind. A `variants` array whose entries carry no `variant_definitions` is rejected: 422 `Each variant must have at least one variant definition`. A STANDALONE product must omit the `variants` array entirely and carry sku and prices at the TOP level \u2014 per the reference, `name` is the only required field. That matches the catalogue: 11,025 of 11,607 standalone products carry no variant options at all. Do NOT satisfy the error by inventing a one-option variant \u2014 ls-upload-instructions forbids exactly that ('a variant group with only one option is noise, not structure'). scripts/lightspeed_push.py build_family_payload() still always emits a variants array, so creating a simple product through the API does not work yet."
       },
       "update": {
         "endpoint": "PUT /api/2.1/products/{id}",
         "_any_member_id_works": "In 2.1 any id in the family is accepted; the parent is resolved for you.",
         "common": "Fields shared by the whole family \u2014 name, description. Writing these hits every member.",
         "details": "Fields belonging to one variant \u2014 product_codes, price. Updates the id in the URL.",
-        "_maps_onto_our_write_rule": "The `details` section is exactly the prices-only payload catalog_reconcile.py already emits, so an update needs no `common` section at all. That is the safe shape, not a limitation.",
-        "_cannot_create": "The update endpoints cannot add a variant to a family. Creates go through 2.0."
+        "_maps_onto_our_write_rule": "CORRECTED 2026-09-21, the hard way. This previously said the prices-only payload catalog_reconcile.py emits maps straight onto `details`. Half true: `price_excluding_tax` does, `supply_price` does NOT. 2.1 has no such field and rejects the WHOLE request with 422 `Unknown field in payload` when it sees one. The cost is stored on the product-supplier join row, so an update writes it as `product_suppliers: [{supplier_id, price}]`. `supply_price` on the 2.0 LIST response is a convenience projection of that same number, which is exactly why the mistake stayed invisible: everything reads it, nothing can write it.",
+        "_cannot_create": "The update endpoints cannot add a variant to a family. Creates go through 2.0.",
+        "details_fields": [
+          "all_outlets_tax",
+          "composite_components",
+          "dimensions_unit",
+          "height",
+          "inventory",
+          "is_active",
+          "length",
+          "loyalty_amount",
+          "outlet_taxes",
+          "packaging",
+          "price_excluding_tax",
+          "price_including_tax",
+          "product_codes",
+          "product_suppliers",
+          "variant_attribute_values",
+          "weight",
+          "weight_unit",
+          "width"
+        ],
+        "_price_fields": "Titan is tax-exclusive, so retail is `price_excluding_tax`. Never write `price_including_tax` \u2014 that is for tax-inclusive stores.",
+        "_product_suppliers_shape": "[{supplier_id, price, code?}] \u2014 no record `id`; supplier_id is the key. Sending it REPLACES that supplier row, so carry an existing `code` through or it is blanked as a side effect. Verified live 2026-09-21 on ENG-FAWK-0054: one supplier row in, one out, updated in place, no duplicate. A product with NO supplier cannot take a cost this way at all \u2014 1,440 live products are in that state \u2014 and scripts/lightspeed_write.py stops rather than picking one.",
+        "_verified_live": "2026-09-21. 7 FAW products updated through this shape and read back: cost and retail both correct, name unchanged, supplier row count unchanged. First verified write this pipeline has ever made."
       },
       "read_only_attributes": {
         "fields": [

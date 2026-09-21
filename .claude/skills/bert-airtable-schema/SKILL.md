@@ -607,6 +607,28 @@ These two fields are Bert's product-level intelligence. Filled from salesperson 
 
 ## Table 2 — Price History Log
 
+> ## ⛔ SUSPENDED — write nothing here, check nothing against it (Albert, 2026-09-21)
+>
+> **Until Albert says the master lists are trustworthy, no automated run writes a Price
+> History Log row and no automated run reads one as a check.** Not per cost change, not
+> for a promo, not a `Promo cleared` row, not a validation read against prior history.
+> Leave the log out of every run, entirely — this is a full pause, not a reduced cadence.
+>
+> **Why, so nobody "helpfully" restores it:** a price history is only worth as much as
+> the prices feeding it. Logging against catalogue data Albert does not yet trust would
+> manufacture an audit trail that reads as authoritative and isn't — and the whole point
+> of this table is to be the record you can rely on later. An empty log is honest. A
+> confident, wrong one is expensive to unpick, and you cannot tell the two apart by
+> looking.
+>
+> Everything below still describes the table correctly and is kept for when it comes
+> back. **Do not treat the detail below as permission.** Resume only on Albert's explicit
+> say-so — not because a plan contains a history action, not because a rule elsewhere
+> says to log a cost change, and not because this note looks stale.
+>
+> Seven rows were written on 2026-09-21 (the FAW PL-377 sync) before this pause existed.
+> They are left in place; removing them is Albert's call, not an unprompted cleanup.
+
 An append-only audit trail of pricing events. A new row is written for every pricing change. Never edit or delete existing rows.
 
 **Canonical table: `Price History Log v2` (table ID `tbly2em2cMuQs9eqK`).** The original `Price History Log` (`tbl1Af1yC6n2KvL7C`) was never populated and is superseded by v2, which adds the `Entry type` flag, dedicated promo columns, and a `Product name` text field. New logging — manual and Cowork — writes to v2. (The original empty table can be archived; it carries a stray `Entry type` field left over from setup.)
@@ -868,10 +890,10 @@ sequentially numbered, so that run correctly resolved at tier 2.
 - `Stock status` / `Active` — set from the supplier's own markers
   (`Discontinued` → `Discontinued` + `Active` unchecked; `Limited` → `Low stock`,
   still active). The enum has no "Limited" value; `Low stock` is the mapping.
-- Append one row per **cost** change to `Price History Log v2` per the logging
-  convention above. Its `Supplier` select is sparsely populated — pass
-  `typecast: true` so a supplier missing from that field's options is added rather
-  than erroring the whole batch.
+- **Price History Log: nothing. SUSPENDED 2026-09-21** — see the banner on Table 2.
+  Write no row for a cost change and run no check against the log. This line used to
+  say to append one row per cost change; that is paused, not merely deferred, until
+  Albert says the master lists are trustworthy.
 - Airtable caps `update_records_for_table` / `create_records_for_table` at **50
   records per call** — batch accordingly.
 
@@ -1186,7 +1208,7 @@ Floors At Work is a Toronto-area distributor of NAF-branded flooring, accessorie
 
 | Field | Value |
 |---|---|
-| **Supplier** (single-select) | `Floors At Work` |
+| **Supplier** (single-select) | `FLOORS AT WORK` |
 | **Brand** | `NAF` (all flooring products share this brand) |
 | **SKU supplier code** | `FAWK` — 4-char suffix, e.g. `ENG-FAWK-0042` |
 | **Supplier SKU** | Usually blank. FAW only assigns codes on a handful of products (e.g. `F6W`, `F6J`, `F6WM` for 6.5mm SPC colourways). Populate only when an explicit code appears on the price list. |
@@ -1380,7 +1402,7 @@ Triforest is the supplier/distributor; Toucan is the brand. Their price list is 
 
 | Field | Value |
 |---|---|
-| **Supplier** (single-select) | `Triforest` |
+| **Supplier** (single-select) | `TRIFOREST` |
 | **Brand** | `Toucan` (all flooring products) |
 | **SKU supplier code** | `TRIF` — 4-char suffix |
 | **Internal SKU format** | `[CAT]-TRIF-[TF code]` — e.g. `LAM-TRIF-TF8301`, `LVP-TRIF-TFSPC601-F`, `ENG-TRIF-TCN101`. The supplier's TF/FL/TCN product code is used verbatim as the numeric suffix (not a sequential number). |
@@ -1488,7 +1510,7 @@ Purelux Canada Floors Inc. is supplier and brand (single entity, like Vidar or F
 
 | Field | Value |
 |---|---|
-| **Supplier** (single-select) | `Purelux` |
+| **Supplier** (single-select) | `PURELUX` |
 | **Brand** | `Purelux` |
 | **SKU supplier code** | `PLUX` — 4-char suffix |
 | **Internal SKU format** | Sequential per category: `LAM-PLUX-0001`, `LVP-PLUX-0001`, `LVT-PLUX-0001`, etc. Purelux does **not** publish product codes on their list. |
@@ -1594,7 +1616,7 @@ Evergreen Building Materials Ltd. is supplier and brand (single entity). Based i
 
 | Field | Value |
 |---|---|
-| **Supplier** (single-select) | `Evergreen` |
+| **Supplier** (single-select) | `EVERGREEN` |
 | **Brand** | `Evergreen` |
 | **SKU supplier code** | `EVGR` — 4-char suffix |
 | **Internal SKU format** | Use Evergreen's numeric code as SKU suffix: `LAM-EVGR-[code]` — e.g. `LAM-EVGR-72741`, `LAM-EVGR-2020`, `LAM-EVGR-SH003`. Strip any asterisks (clearance markers) from the code. |
@@ -1698,7 +1720,7 @@ GreenTouch Floors is a Toronto-area supplier of engineered hardwood flooring and
 
 | Field | Value |
 |---|---|
-| **Supplier** (single-select) | `GreenTouch` |
+| **Supplier** (single-select) | `GREENTOUCH` |
 | **Brand** | `GreenTouch` (supplier = brand; single-brand distributor) |
 | **SKU supplier code** | `GRNT` — 4-char suffix, e.g. `ENG-GRNT-0042` |
 | **Supplier SKU** | Always populated. GreenTouch assigns explicit codes on every product (e.g. `WB1361`, `AR1301`, `SP2801`). Copy verbatim. The only exception is the T-Moulding accessory which is listed with the descriptive name `T-MOULDING&REDUCER` — use that string as the Supplier SKU. |
@@ -1866,7 +1888,7 @@ Vidar is supplier and brand (single entity). Engineered hardwood specialist with
 
 | Field | Value |
 |---|---|
-| **Supplier** (single-select) | `Vidar` |
+| **Supplier** (single-select) | `VIDAR` |
 | **Brand** | `Vidar` |
 | **SKU supplier code** | `VIDR` — 4-char suffix, e.g. `ENG-VIDR-0042`, `SPC-VIDR-0003`, `LAM-VIDR-0001`, `ACC-VIDR-0007` |
 | **Supplier SKU** | Blank for engineered/laminate/accessories (no codes published). **SPC: Vidar now publishes SPC product codes — populate `Supplier SKU` from them.** |
@@ -1979,7 +2001,9 @@ Vidar runs an "on-going color" promotion sheet separate from the regular price l
 - A promoted grade with no matching record gets a new record per the global "Promo product not found" rule — but note this is what produced the orphan records below, so prefer matching an existing grade record first.
 - **Vents** are handled as `Promo applied` at the clearance price **and** `Stock status = Discontinued` when the sheet marks them discontinued.
 
-Log every applied/cleared promo to `Price History Log v2` with the matching `Entry type`.
+~~Log every applied/cleared promo to `Price History Log v2` with the matching `Entry type`.~~
+**Suspended 2026-09-21 — log nothing.** The promo fields on the record still move as
+described above; only the history row is paused. See the banner on Table 2.
 
 #### Known data quality issues (confirm before going live)
 
@@ -2003,7 +2027,7 @@ Grandeur is supplier and brand (single entity). Multi-category supplier: enginee
 
 | Field | Value |
 |---|---|
-| **Supplier** (single-select) | `Grandeur` |
+| **Supplier** (single-select) | `GRANDEUR` |
 | **Brand** | `Grandeur` |
 | **SKU supplier code** | `GRAN` — 4-char suffix, canonical format |
 | **Internal SKU format** | `[CAT]-GRAN-####` — the canonical format, e.g. `ENG-GRAN-0030`, `SPC-GRAN-0015`. **`GRND` is the Lightspeed name prefix, NOT the Airtable SKU prefix** — see the correction note below. |
@@ -2185,7 +2209,7 @@ Sunshiny is supplier and brand (single entity), and also distributes the **Appal
 
 | Field | Value |
 |---|---|
-| **Supplier** (single-select) | `Sunshiny` |
+| **Supplier** (single-select) | `SUNSHINY` |
 | **Brand** | `Sunshiny` for ENG, LVP, LAM, ACC; `Appalachian` for solid hardwood (HWD) |
 | **SKU supplier code** | `SUNS` — 4-char suffix, e.g. `ENG-SUNS-0001`, `LVP-SUNS-0001` |
 | **Supplier SKU** | Always populated. Sunshiny assigns 4-digit numeric codes to every product (e.g. `2806`, `7220`, `6210`). Copy verbatim. |
@@ -2374,7 +2398,7 @@ Woden Flooring (order@wodenflooring.com, 905-475-0339, wodenflooring.com) is bot
 
 | Field | Value |
 |---|---|
-| **Supplier** (single-select) | `Woden` |
+| **Supplier** (single-select) | `WODEN` |
 | **Brand** | `Woden` (supplier is the brand) |
 | **SKU supplier code** | `WODN` — 4-char suffix, e.g. `LVP-WODN-0001`, `ENG-WODN-0042` |
 | **Supplier SKU** | Leave blank. Woden's colour codes (601, 101, H01, 1201…) are not standalone product codes — they're folded into Product name / LS Handle, not stored as Supplier SKU. |
@@ -2486,7 +2510,7 @@ CIF Distributors (4700 Dixie Road, Unit 2, Mississauga ON L4W 2R1 — 905-455-05
 
 | Field | Value |
 |---|---|
-| **Supplier** (single-select) | `CIF Distributors` |
+| **Supplier** (single-select) | `CIF DISTRIBUTORS` |
 | **Brand** | `CIF Distributors` (supplier is also the brand — they distribute Spanish/Italian/Portuguese/Chinese/Turkish/Indian-made tile under their own catalogue) |
 | **SKU supplier code** | `CIFD` — 4-char suffix. Two prefixes in use: `TIL-CIFD-####` for tile/mosaic (Category = `Tile / Stone`), `STN-CIFD-####` for marble/quartz thresholds/jambs/benches (Category = `STONE`) |
 | **Supplier SKU** | Leave blank. CIF's series codes (B-32, FAOA-2, GPR 662, IDLL4810A, etc.) are colour identifiers within a series — they're folded into Colour / tone and the LS Handle, not stored as Supplier SKU. |
@@ -2703,7 +2727,7 @@ Unlike CIF, Olympia **assigns real per-colour stock codes** (e.g. `ES.AC.WHT.041
 
 | Field | Value |
 |---|---|
-| **Supplier** (single-select) | `Olympia Tile` |
+| **Supplier** (single-select) | `OLYMPIA TILE` |
 | **Brand** | `Olympia Tile` (supplier is also the brand) |
 | **SKU suffix** | `OLYM` |
 | **SKU field — OLYMPIA OVERRIDE** | **For Olympia only, `SKU` = the Olympia stock code verbatim** (e.g. `ES.AC.WHT.0416.VR.G`), NOT the canonical `TIL-OLYM-####` sequential format. The same stock code is also copied into `Supplier SKU`. This is a deliberate, supplier-specific deviation from the canonical SKU rule — confirmed by Albert. Stock codes are globally unique across the whole list (verified: 0 duplicates across 3,028 rows). |
@@ -2826,7 +2850,7 @@ Biyork is both the supplier and the brand. Biyork Materials Canada (Markham, ON)
 
 | Field | Value |
 |---|---|
-| **Supplier** (single-select) | `Biyork` |
+| **Supplier** (single-select) | `BIYORK` |
 | **Brand** | `Biyork` (all products) |
 | **SKU supplier code** | `BIYK` — 4-char suffix |
 | **Internal SKU format** | `[CAT]-BIYK-[Biyork code]` — the Biyork product code used **verbatim** as the suffix (not a sequential number). e.g. `ENG-BIYK-BYKENWA18NA`, `LVP-BIYK-BYKHYDRO7WI`, `LAM-BIYK-BYKRPTDWP12WP`. Biyork assigns a unique code to every colour, so this is the per-product unique-code pattern (see *Supplier SKU policy → When the supplier code is unique per product*). Keep the `BIYK…BYK` overlap untouched. |
@@ -2957,7 +2981,7 @@ Floordi is both the supplier and the brand. Floordi Canada Inc (Hamilton, ON) is
 
 | Field | Value |
 |---|---|
-| **Supplier** (single-select) | `Floordi` |
+| **Supplier** (single-select) | `FLOORDI` |
 | **Brand** | `Floordi` (Avolis / AVO-ROX and Walldi are collection/line names, not brands) |
 | **SKU supplier code** | `FLRD` — 4-char suffix |
 | **Internal SKU format** | `[CAT]-FLRD-[Floordi code]` — the Floordi product code used **verbatim** as the suffix (per-product unique-code pattern, like Biyork). e.g. `LVP-FLRD-AVR651`, `ACC-FLRD-AT-AVR65`. |
@@ -3040,7 +3064,7 @@ prefix derives from the **supplier** (`CANSENG`, `CANSLVP-SPC`, …), never the 
 
 | Field | Value |
 |---|---|
-| **Supplier** (single-select) | `Canadian Standard` |
+| **Supplier** (single-select) | `CANADIAN STANDARD` |
 | **Brand** | The actual maker, verbatim — `Canadian Standard`, `BOEN`, `EGGER`, `Inhaus`, `SONO`, `Antikkwood`, `Nestwood`, `Unikkwood`, `Handcraft`, `Brand Surfaces`, `Brand Coverings` |
 | **SKU supplier code** | `CANS` — 4-char suffix |
 | **Internal SKU format** | `[CAT]-CANS-####` — sequential, since the guide prints no per-product codes |
@@ -3097,7 +3121,7 @@ underlayment, and building materials.
 
 | Field | Value |
 |---|---|
-| **Supplier** (single-select) | `Dragona` |
+| **Supplier** (single-select) | `DRAGONA` |
 | **Brand** | `Dragona` for its own lines; `Falcon Floors` for the house-brand laminate/vinyl |
 | **SKU supplier code** | `DRAG` — 4-char suffix |
 | **Internal SKU format** | `[CAT]-DRAG-####` — sequential, since the sheet prints no per-product codes for flooring |
@@ -3189,7 +3213,7 @@ price, and a per-page accessory strip beneath. **First ingested 2026-09-09 from 
 
 | Field | Value |
 |---|---|
-| **Supplier** (single-select) | `Vizion` — **does not exist in the Airtable select yet**; it is created on first import |
+| **Supplier** (single-select) | `VIZION` — **live** (`selgYCpmWNZjXbXQT`, verified 2026-09-21; this line previously said it did not exist yet). Created on first import |
 | **Brand** | `Vizion` (supplier is the brand; Marvelous and Epic are collection names, not brands) |
 | **SKU supplier code** | `VIZN` — 4-char suffix. **Proposed on the first run, not yet confirmed by Albert.** |
 | **Internal SKU format** | `[CAT]-VIZN-[Vizion code]` — the code used **verbatim** as the suffix, per the per-product unique-code pattern (like Biyork and Triforest). e.g. `LVP-VIZN-V7001`, `LAM-VIZN-LV321`, `LVP-VIZN-VL501`. |
@@ -3347,7 +3371,7 @@ means promo.
 
 | Field | Value |
 |---|---|
-| **Supplier** (single-select) | `Lee Flooring` — **proposed on the first run, not yet confirmed**; the option does not exist in Airtable yet |
+| **Supplier** (single-select) | `LEE FLOORING` — **now live** (`selt75tpTNkBEg8ga`, verified against the base 2026-09-21). This line previously said the option did not exist yet; it does. Note Lightspeed holds the supplier under TWO records — `Lee Flooring` (84 products) and `LEE` (2) — pending Albert's ruling on which name wins; see `lightspeed.json` → `api_shape.supplier._record_rulings_2026_09_21`. |
 | **Brand** | `Lee Flooring` (supplier is the brand) |
 | **SKU supplier code** | `LEEF` — **proposed, not yet confirmed** |
 | **Notion `Company`** | `LEE` (ALL CAPS, per the per-system casing rule — do not "fix" either side) |
@@ -3476,7 +3500,7 @@ and flagged it.
 
 | Field | Value |
 |---|---|
-| **Supplier** (single-select) | `Gracious` — **does not exist in the Airtable select yet**; created on first import |
+| **Supplier** (single-select) | `GRACIOUS` — **live** (`sely9jPOrmIwlvpWD`, verified 2026-09-21; this line previously said it did not exist yet). Created on first import |
 | **Brand** | `Gracious` — **unconfirmed on the vinyl/laminate range**, whose sheet is headed `AMAZING FLOORING` |
 | **SKU supplier code** | `GRAC` — 4-char suffix. **Proposed on the first run, not yet confirmed by Albert.** |
 | **Internal SKU format** | Sequential per category: `TIL-GRAC-####`, `LVP-GRAC-####`, `LAM-GRAC-####`. Gracious publishes no product codes on the tile lists — the "names" there (`EUT-33`, `AWT-01`, `TOPGL-005`) are colour identifiers within a range, not standalone product codes. |
