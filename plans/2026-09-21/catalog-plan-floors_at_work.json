@@ -1,0 +1,666 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "Floors At Work",
+ "run_at": "2026-09-21T12:36:17.631334-04:00",
+ "status": "partial",
+ "inputs": [
+  {
+   "file": "ingest/2026-09-21/faw_airtable_upload_2026-09-21.csv",
+   "rows": 77
+  },
+  {
+   "file": "/home/user/titan-agents-repo/ingest/2026-09-21/lightspeed-products.json",
+   "products": 14835,
+   "run_at": "2026-09-21T12:27:30.554104-04:00"
+  },
+  {
+   "file": "ingest/2026-09-21/faw_airtable_existing.json",
+   "records": 231
+  },
+  {
+   "file": "ingest/2026-09-21/faw_ls_upload_2026-09-21.csv",
+   "rows": 77
+  }
+ ],
+ "cost_basis": {
+  "value": "printed-as-cost",
+  "confirmed_by": null
+ },
+ "summary": {
+  "airtable_backfill_ls_id": 2,
+  "airtable_upsert": 5,
+  "lightspeed_create": 2,
+  "lightspeed_update": 3,
+  "actions_total": 12,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 72,
+  "warnings": 0,
+  "rows_in": 77
+ },
+ "actions": [
+  {
+   "id": "cat-7755ba760c6a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0009",
+   "airtable_rec_id": "rec4DGNnckwi9cMSU",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b2ac9fc87",
+   "handle": "ENG65HICCHESTNUT",
+   "fields": {
+    "Cost/unit": "3.29",
+    "Retail price/unit": "4.29"
+   },
+   "before": {
+    "Cost/unit": "3.69",
+    "Retail price/unit": "4.69"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 1
+  },
+  {
+   "id": "cat-73502d520e41",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0054",
+   "airtable_rec_id": "recqCYLyMAso6TgZc",
+   "ls_id": "c7967980-5f0b-4899-a593-9770f1f3e8a0",
+   "handle": "ENG75OAKDAVINCIDES",
+   "fields": {
+    "Cost/unit": "4.49",
+    "Retail price/unit": "5.49"
+   },
+   "before": {
+    "Cost/unit": "4.99",
+    "Retail price/unit": "5.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 2
+  },
+  {
+   "id": "cat-d91927127193",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0086",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "ENG75OAKTRUFFLEDESCLICK",
+   "fields": {
+    "Product name": "NAF Engineered White Oak Designer 7.5\" (Click, Select) \u2014 Truffle",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.59",
+    "Retail price/unit": "5.59"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 3
+  },
+  {
+   "id": "cat-ad944ba48851",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0088",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "ENG6ROSEWOOD",
+   "fields": {
+    "Product name": "NAF Engineered Hardwood Smooth T&G Rosewood",
+    "Category": "Engineered hardwood",
+    "Cost/unit": "4.99",
+    "Retail price/unit": "5.99"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 4
+  },
+  {
+   "id": "cat-d347c1b103c6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HWD-FAWK-0002",
+   "airtable_rec_id": "rec7drzgItIAZ1lrN",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b35c1445d",
+   "handle": "HWD475WALNATURAL",
+   "fields": {
+    "Cost/unit": "5.79",
+    "Retail price/unit": "6.79"
+   },
+   "before": {
+    "Cost/unit": "6.39",
+    "Retail price/unit": "7.39"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 5
+  },
+  {
+   "id": "cat-cffc3671c2e4",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0009",
+   "airtable_rec_id": "rec4DGNnckwi9cMSU",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b2ac9fc87",
+   "handle": "ENG65HICCHESTNUT",
+   "fields": {
+    "supply_price": 3.29,
+    "price_excluding_tax": 4.29
+   },
+   "before": {
+    "name": "NAFENG - Hickory Engineered (Chestnut) T&G | 6.5\" x 18mm x RL - 20.25sf/b",
+    "handle": "ENG65HICCHESTNUT",
+    "sku": "ENG-FAWK-0009",
+    "supply_price": 3.69,
+    "price_including_tax": 4.69,
+    "price_excluding_tax": 4.69,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 6
+  },
+  {
+   "id": "cat-cc554279a922",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0054",
+   "airtable_rec_id": "recqCYLyMAso6TgZc",
+   "ls_id": "c7967980-5f0b-4899-a593-9770f1f3e8a0",
+   "handle": "ENG75OAKDAVINCIDES",
+   "fields": {
+    "supply_price": 3.59,
+    "price_excluding_tax": 5.49
+   },
+   "before": {
+    "name": "NAFENG - Designer American White Oak (Da Vinci) T&G | 7.5\" x 18mm x RL - 23.31sf/b",
+    "handle": "ENG75OAKDAVINCIDES",
+    "sku": "ENG-FAWK-0054",
+    "supply_price": 3.99,
+    "price_including_tax": 5.99,
+    "price_excluding_tax": 5.99,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 7
+  },
+  {
+   "id": "cat-04e460fa09a8",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-FAWK-0086",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "ENG75OAKTRUFFLEDESCLICK",
+   "fields": {
+    "sku": "ENG-FAWK-0086",
+    "handle": "ENG75OAKTRUFFLEDESCLICK",
+    "name": "Engineered White Oak Designer 7.5\" (Click, Select) \u2014 Truffle | 24.11sf/b",
+    "supply_price": 4.59,
+    "price_excluding_tax": 5.59,
+    "description": "Collection: Designer | Species: American White Oak | Grade: Select | Install profile: Click | Veneer / top layer (mm): 3",
+    "brand_name": "NAF",
+    "supplier_name": "FAW"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 8
+  },
+  {
+   "id": "cat-c36867453901",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-FAWK-0088",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "ENG6ROSEWOOD",
+   "fields": {
+    "sku": "ENG-FAWK-0088",
+    "handle": "ENG6ROSEWOOD",
+    "name": "Engineered Hardwood Smooth T&G Rosewood | 11.62sf/b",
+    "supply_price": 4.99,
+    "price_excluding_tax": 5.99,
+    "description": "Collection: Rosewood | Species: Rosewood | Install profile: T&G",
+    "brand_name": "NAF",
+    "supplier_name": "FAW"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 9
+  },
+  {
+   "id": "cat-15d057e63202",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "HWD-FAWK-0002",
+   "airtable_rec_id": "rec7drzgItIAZ1lrN",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b35c1445d",
+   "handle": "HWD475WALNATURAL",
+   "fields": {
+    "supply_price": 5.79,
+    "price_excluding_tax": 6.79
+   },
+   "before": {
+    "name": "NAFHWD - Handscraped Exotic Walnut (Natural) T&G | 4.75\" x 18mm x RL - 22.06sf/b - Distressed",
+    "handle": "HWD475WALNATURAL",
+    "sku": "HWD-FAWK-0002",
+    "supply_price": 6.39,
+    "price_including_tax": 7.39,
+    "price_excluding_tax": 7.39,
+    "category": "SOLID HARDWOOD",
+    "supplier_name": "FAW",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 10
+  },
+  {
+   "id": "cat-cd8a27612078",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-FAWK-0086",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "ENG75OAKTRUFFLEDESCLICK",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 11
+  },
+  {
+   "id": "cat-5a4ae5a56f10",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-FAWK-0088",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "ENG6ROSEWOOD",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 12
+  }
+ ],
+ "blocked": [
+  {
+   "sku": "ENG-FAWK-0001",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0002",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0003",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0004",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0005",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0006",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0007",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0008",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0010",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0011",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0012",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0013",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0014",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0015",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0016",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0017",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0018",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0019",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0025",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0026",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0027",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0028",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0029",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0030",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0031",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0032",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0033",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0034",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0035",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0036",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0037",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0038",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0039",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0040",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0041",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0042",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0043",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0045",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0046",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0047",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0048",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0049",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0050",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0051",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0052",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0055",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0066",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0067",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0068",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0069",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0070",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0071",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0072",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0073",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0074",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0020",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0021",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0022",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0023",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0024",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0077",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0078",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0079",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0080",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0081",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0082",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0083",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0084",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0075",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0076",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0085",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  },
+  {
+   "sku": "ENG-FAWK-0087",
+   "reason": "ambiguous_match",
+   "detail": "MatchStatus='ambiguous' LS Match status=None; resolve by hand, never guess"
+  }
+ ],
+ "warnings": []
+}

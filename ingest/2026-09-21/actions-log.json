@@ -1,0 +1,17 @@
+{
+ "contract_version": "1",
+ "entries": [
+  {
+   "logged_at": "2026-09-21T12:36:56-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "batch for Floors At Work",
+   "content_summary": "Batch stopped: HTTP 422 on https://flooru.retail.lightspeed.app/api/2.1/products/0a6f6e36-8b89-11eb-f3d6-7e8b2ac9fc87: {\n  \"error\": \"Unknown field in payload\",\n  \"fields\": {\n    \"fields\": \" \\\"supply_price\\\"\"\n  }\n}",
+   "approved_by": "policy: auto-approval (2026-09-12 rubric) via catalog-approval-floors_at_work.json",
+   "result": "failed",
+   "error": "HTTP 422 on https://flooru.retail.lightspeed.app/api/2.1/products/0a6f6e36-8b89-11eb-f3d6-7e8b2ac9fc87: {\n  \"error\": \"Unknown field in payload\",\n  \"fields\": {\n    \"fields\": \" \\\"supply_price\\\"\"\n  }\n}",
+   "raw_ref": null,
+   "raw_ref_action_id": null
+  }
+ ]
+}
