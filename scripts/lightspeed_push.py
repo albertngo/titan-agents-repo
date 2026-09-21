@@ -175,6 +175,53 @@ class Lookups:
         )
 
 
+def update_details(client, product_id, fields):
+    """Translate a plan's price fields into a 2.1 `details` payload.
+
+    `supply_price` is NOT a field on the 2.1 update — it comes back 422
+    "Unknown field in payload". It is a read-side mirror of
+    `product_suppliers[].price`, and that array is where a write has to go.
+    (Recorded in platform-settings/lightspeed.json from the 2026-09-10 variant
+    add; the update path was written before that was known and had never run.)
+
+    The array is read first and sent back whole, with only the matching
+    supplier's price changed. Sending a one-element array instead would be
+    correct for every FAW product — they each carry exactly one supplier — and
+    would silently drop the others from any product that carries two. Reading
+    costs one GET per update and removes the question.
+    """
+    details = {k: v for k, v in fields.items() if k != "supply_price"}
+    if "supply_price" not in fields:
+        return details
+
+    cur = client.get(f"/api/2.0/products/{product_id}").get("data")
+    if isinstance(cur, list):
+        cur = cur[0] if cur else {}
+    rows = list(cur.get("product_suppliers") or [])
+    want = cur.get("supplier_id")
+
+    if not rows:
+        raise LightspeedError(
+            f"{cur.get('sku') or product_id} has no product_suppliers row, so there "
+            f"is nowhere to write a supply price. Attach a supplier to the product "
+            f"in Lightspeed first — inventing the link here would guess at which "
+            f"supplier the cost belongs to."
+        )
+    targets = [r for r in rows if r.get("supplier_id") == want] if want else rows
+    if len(targets) != 1:
+        raise LightspeedError(
+            f"{cur.get('sku') or product_id} carries {len(rows)} supplier rows and "
+            f"{len(targets)} match its supplier_id {want!r}. Refusing to guess which "
+            f"one the price belongs to."
+        )
+    details["product_suppliers"] = [
+        {"supplier_id": r["supplier_id"],
+         "price": fields["supply_price"] if r is targets[0] else r.get("price")}
+        for r in rows
+    ]
+    return details
+
+
 def build_family_payload(actions, lookups, cfg):
     """One POST body for one variant family. Every id resolved or it raises."""
     first = actions[0]["fields"]
@@ -257,7 +304,8 @@ def main():
 
     try:
         for a in sorted(updates, key=lambda a: a["seq"]):
-            writer.update_variant(a["ls_id"], details=a["fields"])
+            writer.update_variant(a["ls_id"],
+                                  details=update_details(writer, a["ls_id"], a["fields"]))
             if not args.dry_run:
                 log.append(a["id"], "lightspeed_update_product",
                            f"{a['sku']} ({a['ls_id']})",

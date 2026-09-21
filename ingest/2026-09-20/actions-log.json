@@ -12,6 +12,18 @@
    "error": "HTTP 422 on https://flooru.retail.lightspeed.app/api/2.1/products/121e58d7-9221-4d8a-949f-5db0d12fa5e2: {\n  \"error\": \"Unknown field in payload\",\n  \"fields\": {\n    \"fields\": \" \\\"supply_price\\\"\"\n  }\n}",
    "raw_ref": null,
    "raw_ref_action_id": null
+  },
+  {
+   "logged_at": "2026-09-20T22:03:38-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "ENG-FAWK-0010 (121e58d7-9221-4d8a-949f-5db0d12fa5e2)",
+   "content_summary": "Set supply_price=4.49, price_excluding_tax=5.49.",
+   "approved_by": "policy: auto-approval (2026-09-12 rubric) via canary-approval.json",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "121e58d7-9221-4d8a-949f-5db0d12fa5e2",
+   "raw_ref_action_id": "cat-7f6935bce415"
   }
  ]
 }
