@@ -148,7 +148,14 @@
       "only_via_product_suppliers": 6,
       "absent_on": 1440,
       "_do_not_join_on_this": "116 distinct supplier names live in LS against 24 Airtable supplier choices, and several real suppliers are split across more than one LS record: OLYMPIA (292) beside Olympia Tile (2926), LEE (2) beside Lee Flooring (84), UMB beside Umbrellar, MARMOCA beside MARMOCA TILE, CIF Distributors beside CIF LTD. Casing is inconsistent too. Supplier is a reporting field; join on sku.",
-      "_third_namespace": "Notion Company is ALL CAPS, Airtable Supplier is mixed case, and LS is its own thing again \u2014 mostly upper but not always. Three namespaces, none aligned. Airtable <-> Notion is in airtable-destinations.json supplier_aliases; LS is deliberately not mapped, because it does not need to be once the join is on sku."
+      "_third_namespace": "Notion Company is ALL CAPS, Airtable Supplier is mixed case, and LS is its own thing again \u2014 mostly upper but not always. Three namespaces, none aligned. Airtable <-> Notion is in airtable-destinations.json supplier_aliases; LS is deliberately not mapped, because it does not need to be once the join is on sku.",
+      "_record_rulings_2026_09_21": {
+        "_comment": "Albert's rulings on the duplicate/near-duplicate supplier records surfaced 2026-09-21 while tracing how the create path resolves a supplier by name. Recorded so none of these gets 'tidied' the wrong way later. The merges and deletions are done by hand in the Lightspeed UI \u2014 this pipeline has no supplier merge, rename or delete capability, deliberately.",
+        "OLYMPIA + OLYMPIA TILE": "MERGE into 'OLYMPIA TILE', which is also the canonical name in Airtable. Was OLYMPIA (292 products) beside OLYMPIA TILE (2,926).",
+        "TOSCA/VICEROY": "DELETE. 0 products against it; TOSCA (447) is the real record.",
+        "LEE + Lee Flooring": "PENDING \u2014 Albert to confirm the target name. LEE holds 2 products, Lee Flooring holds 84.",
+        "ZION vs VIZION": "DO NOT MERGE. Confirmed by Albert 2026-09-21: ZION (105 products) is a GENUINELY DIFFERENT SUPPLIER from VIZION (53). The names look like a typo split and ZION holds twice the products, so this is exactly the pair a future cleanup would merge on sight. It would be wrong."
+      }
     },
     "prices": {
       "_verified": "Confirmed 2026-09-10 against every row of the Grandeur and Lee uploads that exists in Lightspeed \u2014 315/315 on both fields, no exceptions.",

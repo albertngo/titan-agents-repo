@@ -3347,7 +3347,7 @@ means promo.
 
 | Field | Value |
 |---|---|
-| **Supplier** (single-select) | `Lee Flooring` — **proposed on the first run, not yet confirmed**; the option does not exist in Airtable yet |
+| **Supplier** (single-select) | `Lee Flooring` — **now live** (`selt75tpTNkBEg8ga`, verified against the base 2026-09-21). This line previously said the option did not exist yet; it does. Note Lightspeed holds the supplier under TWO records — `Lee Flooring` (84 products) and `LEE` (2) — pending Albert's ruling on which name wins; see `lightspeed.json` → `api_shape.supplier._record_rulings_2026_09_21`. |
 | **Brand** | `Lee Flooring` (supplier is the brand) |
 | **SKU supplier code** | `LEEF` — **proposed, not yet confirmed** |
 | **Notion `Company`** | `LEE` (ALL CAPS, per the per-system casing rule — do not "fix" either side) |
