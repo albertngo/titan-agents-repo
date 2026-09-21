@@ -1,0 +1,71 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-09-21T08:13:00-04:00",
+  "status": "error",
+  "error": "GHL MCP server unreachable this run: .mcp.json declares the 'ghl' HTTP server (https://services.leadconnectorhq.com/mcp/, authenticated with GHL_PIT_TOKEN/GHL_LOCATION_ID from .env, both present and non-empty), but no mcp__ghl__* tools were exposed to this agent invocation -- the tool list available in-session was limited to Read/Write/Bash. A diagnostic `claude mcp get ghl` in a nested shell reports the server itself as \"Pending approval (run `claude` to approve)\", i.e. never connected to this session, not a transient network failure. No GHL API calls were made (no contacts, opportunities, appointments, or conversations were read) and no writes were attempted -- ingest is read-only regardless. Per this agent's failure policy, writing this status:\"error\" record rather than guessing at lead/pipeline/conversation data or fabricating figures for the daily brief.",
+  "items": [],
+  "metrics": {
+    "lead_count": 0,
+    "new_leads": 0,
+    "untagged_in_queue": 0,
+    "unanswered_conversations": 0,
+    "appointments_booked": 0,
+    "pipeline_moves": 0,
+    "won_today": 0,
+    "won_value_cents": 0,
+    "drift_findings": 0,
+    "leads_hot": 0,
+    "leads_warm": 0,
+    "leads_cold": 0,
+    "leads_unqualified": 0,
+    "leads_stale": 0
+  },
+  "needs_attention": [
+    "GHL ingest FAILED to run today (2026-09-21) -- the ghl MCP server never connected to this session (shows 'Pending approval' rather than an auth/network error), so zero leads, opportunities, appointments, or conversations were pulled. This is the primary daily-brief source; treat today's brief as missing GHL entirely until the MCP server connection/approval is fixed and this ingest is re-run.",
+    "No workflow-drift detection ran today (untagged_in_queue, categorization_miss, followup_not_fired, stale_approaching, abandonment_next, meeting_no_followup all unchecked) -- any drift that would normally surface (e.g. a contact crossing a stale threshold) went unflagged for the whole 2026-09-21 window."
+  ],
+  "extensions": {
+    "ghl": {
+      "template_version": "3",
+      "reporting": {
+        "run_status": "no data retrieved -- GHL MCP server not connected to this session (see top-level `error`)",
+        "exclusions": {
+          "new_leads_raw": null,
+          "new_leads_excluded": {},
+          "unanswered_raw": null,
+          "unanswered_excluded": {}
+        },
+        "store_wins_today": null,
+        "store_won_value_cents": null,
+        "leads_by_source": {},
+        "leads_by_tag": {},
+        "leads_by_stage": {},
+        "avg_days_in_stage": {},
+        "opportunity_status_counts": {},
+        "store_pipeline_note": null,
+        "stale_thresholds_used": {
+          "0c. ASAP (Hot)": 7,
+          "0a. New Lead": 14,
+          "0b. Later Date (Warm)": 40,
+          "0b. Far Out (Cold)": 90,
+          "*Meeting (Scheduled)* CCAM|GHL": 30,
+          "1b. Postponed ": 90
+        },
+        "meeting_window_summary": {
+          "contacts_in_stage": null,
+          "median_days_entry_to_appointment": null,
+          "median_effective_window_days": null,
+          "window_already_expired": null
+        }
+      },
+      "new_leads": [],
+      "opportunities": [],
+      "appointments_booked": [],
+      "conversations": [],
+      "workflow_drift": [],
+      "won_records": [],
+      "stragglers_ranked": []
+    }
+  }
+}
