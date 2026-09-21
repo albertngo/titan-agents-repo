@@ -47,6 +47,7 @@ def _load(name, path):
 lsc = _load("lightspeed_client", "scripts/lightspeed_client.py")
 lp = _load("lightspeed_pull", "scripts/lightspeed_pull.py")
 lw = _load("lightspeed_write", "scripts/lightspeed_write.py")
+lpush = _load("lightspeed_push", "scripts/lightspeed_push.py")
 
 GRANDEUR = REPO_ROOT / "ingest/2026-09-03/grandeur_ls_product_export_2026-09-03.xlsx"
 CANADIAN = REPO_ROOT / "ingest/2026-09-03/canadian_standard_ls_product_export_2026-09-03.xlsx"
@@ -492,6 +493,93 @@ class TestCompareExport(unittest.TestCase):
         pull = self.rows_from(GRANDEUR)
         pull.pop(1)
         self.assertEqual(lp.compare_export(pull, GRANDEUR), 0)
+
+
+class TestCreatePayloadShape(unittest.TestCase):
+    """A standalone product is not a family of one on the WRITE side.
+
+    The live API rejects a `variants` array whose entry carries no
+    `variant_definitions`: 422 `Each variant must have at least one variant
+    definition` (FAW PL-377, 2026-09-21). Reading the catalogue said the opposite,
+    because every product comes back carrying a `family_id` -- a read-model
+    projection, same trap as `supply_price`.
+
+    These tests exist because the obvious fix for that 422 is the wrong one:
+    inventing a single-option variant makes the error go away and puts junk
+    attributes on the product forever.
+    """
+
+    class Lookups:
+        def resolve(self, kind, name):
+            return f"{kind}-id-for-{name}"
+
+    CFG = {"outlet": {"id": "outlet-1", "default_tax_id": "tax-1"}}
+
+    def action(self, sku, seq=1, **fields):
+        base = {"name": "NAF 5mm Aqualuuuz Loose Lay Tile 18\" x 36\"",
+                "sku": sku, "supply_price": 2.5, "price_excluding_tax": 4.99}
+        base.update(fields)
+        return {"seq": seq, "sku": sku, "fields": base}
+
+    def build(self, actions):
+        return lpush.build_family_payload(actions, self.Lookups(), self.CFG)
+
+    def test_simple_product_sends_no_variants_key_at_all(self):
+        payload = self.build([self.action("LVT-FAWK-0018")])
+        self.assertNotIn("variants", payload)
+
+    def test_simple_product_carries_sku_and_prices_at_top_level(self):
+        payload = self.build([self.action("LVT-FAWK-0018")])
+        self.assertEqual("LVT-FAWK-0018", payload["sku"])
+        self.assertEqual(2.5, payload["supply_price"])
+        self.assertEqual(4.99, payload["price_excluding_tax"])
+        self.assertEqual([{"outlet_id": "outlet-1", "tax_id": "tax-1"}],
+                         payload["outlet_taxes"])
+
+    def test_simple_product_invents_no_variant_definition(self):
+        # The tempting fix. ls-upload-instructions: "a variant group with only one
+        # option is noise, not structure."
+        payload = self.build([self.action("LVT-FAWK-0018")])
+        self.assertNotIn("variant_definitions", payload)
+
+    def test_a_real_family_still_sends_the_array(self):
+        actions = [self.action("ENG-1", seq=1,
+                               variant_option={"name": "Grade", "value": "Rustic"}),
+                   self.action("ENG-2", seq=2,
+                               variant_option={"name": "Grade", "value": "Select"})]
+        payload = self.build(actions)
+        self.assertEqual(2, len(payload["variants"]))
+        self.assertNotIn("sku", payload, "family-level payload must not carry a sku")
+        self.assertEqual([{"attribute_id": "attribute-id-for-Grade", "value": "Rustic"}],
+                         payload["variants"][0]["variant_definitions"])
+
+    def test_one_member_with_a_real_attribute_keeps_the_array(self):
+        """A deliberate family of one with structure validates, so leave it alone."""
+        payload = self.build([self.action("ENG-1",
+                                          variant_option={"name": "Grade",
+                                                          "value": "Rustic"})])
+        self.assertEqual(1, len(payload["variants"]))
+        self.assertNotIn("sku", payload)
+
+    def test_family_level_fields_are_never_duplicated_onto_a_member(self):
+        payload = self.build([self.action("LVT-FAWK-0018", handle="aqualuuuztile",
+                                          supplier_name="FAW")])
+        self.assertEqual("aqualuuuztile", payload["handle"])
+        self.assertEqual("supplier-id-for-FAW", payload["supplier_id"])
+
+    def test_a_standalone_create_still_needs_an_explicit_sku(self):
+        """RULE 0: Lightspeed mints a sku when one is omitted, orphaning the row.
+
+        The guard used to look only inside `variants`, so hoisting the sku to the
+        top level walked straight past it.
+        """
+        w = lw.LightspeedWriter(domain_prefix="x", token="y",
+                                config=lsc.load_config(), dry_run=True)
+        w.min_interval = 0
+        with self.assertRaises(lsc.LightspeedError):
+            w.create_family({"name": "T", "supply_price": 1.0})
+        # and the same payload with a sku is accepted
+        self.assertIsNone(w.create_family({"name": "T", "sku": "A-1"}))
 
 
 if __name__ == "__main__":

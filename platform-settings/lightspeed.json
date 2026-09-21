@@ -189,7 +189,7 @@
     "variants": {
       "_comment": "The variant data model, established by reading the live catalogue 2026-09-10. This settles WHAT a family looks like. What a CREATE request must send to produce one is still unverified \u2014 see _create_shape_unknown.",
       "grouping_key": "family_id",
-      "_family_id": "The true grouping key, and it is on EVERY product \u2014 all 14,525 carry one. A standalone product is simply a family of one, so there is no separate 'simple product' shape to handle. 856 families have more than one member.",
+      "_family_id": "The true grouping key, and it is on EVERY product \u2014 all 14,525 carry one. A standalone product READS as a family of one. 856 families have more than one member. **This is a read-model fact and does NOT carry to the write side** \u2014 corrected 2026-09-21, after the sentence that used to end this note ('so there is no separate simple product shape to handle') sent a `variants` array on a standalone create and earned a 422. There IS a separate write shape: see create._variants_array_is_not_for_simple_products. Same class of error as supply_price \u2014 a projection in a GET response mistaken for what a POST accepts. Twice now in this one API, so treat every 'X is just a special case of Y' reading here as unproven on the write side until a write proves it.",
       "family_structure": {
         "parent": "has_variants=true, variant_parent_id=null. Exactly one per family.",
         "children": "has_variants=false, variant_parent_id=<parent id>.",

@@ -87,12 +87,17 @@ class LightspeedWriter(LightspeedClient):
         if not payload.get("name"):
             raise LightspeedError("create_family needs a `name`; it is the only required "
                                   "field and it is what groups a variant family")
-        for variant in payload.get("variants") or []:
-            if not variant.get("sku"):
-                raise LightspeedError(
-                    "every variant needs an explicit sku. Lightspeed mints one from its own "
-                    "sequence when omitted, and RULE 0 makes the Airtable SKU the source of "
-                    "truth — a generated sku would orphan the row.")
+        _NO_SKU = ("needs an explicit sku. Lightspeed mints one from its own "
+                   "sequence when omitted, and RULE 0 makes the Airtable SKU the source of "
+                   "truth — a generated sku would orphan the row.")
+        if "variants" in payload:
+            for variant in payload["variants"]:
+                if not variant.get("sku"):
+                    raise LightspeedError(f"every variant {_NO_SKU}")
+        elif not payload.get("sku"):
+            # A standalone product omits `variants` and carries sku at the top level,
+            # so the loop above never sees it. Same rule, different place to look.
+            raise LightspeedError(f"a standalone product {_NO_SKU}")
         body = self._send("POST", self.cfg["api"]["endpoints"]["products"], body=payload)
         if body.get("dry_run"):
             return None
