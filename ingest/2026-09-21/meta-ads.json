@@ -1,0 +1,36 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-09-21T08:14:11-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads (7d): $352.38 spend, 26 leads, $13.55 CPL — Flooring Problems Campaign",
+      "summary": "The most recent prior meta-ads.json (2026-09-08) covered spend through 2026-09-07, a 13-day gap, so this run widened from the standard --days 1 to the 7-day cap: 2026-09-14 through 2026-09-20. Over that window Meta spent $352.38, all on the only actively-delivering campaign, Flooring Problems Campaign, generating 26 leads at $13.55 CPL. Account is ACTIVE and no ads are currently flagged DISAPPROVED or WITH_ISSUES.",
+      "timestamp": "2026-09-20T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 35238,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 35238,
+    "impressions": 8640,
+    "clicks": 213,
+    "leads": 26,
+    "cpl_cents": 1355,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Coverage gap not fully closed: the last successful meta-ads run was 2026-09-08 (covering spend through 2026-09-07). The 13-day gap to yesterday (2026-09-20) exceeds the 7-day widening cap, so this run covers only 2026-09-14 through 2026-09-20 — spend/leads for 2026-09-08 through 2026-09-13 (6 days) were never ingested and are not recoverable from a future run (Meta insights only bucket forward from the pull, not retroactively beyond what a wider window captures). No sibling ingester was blocked by this.",
+    "No separate 7-day baseline pull was made: because the widened main window (2026-09-14–2026-09-20) already spans a full 7 days, a second --days 7 baseline call would have returned the identical window/data, so it was skipped as redundant. Net effect: no CPL-vs-baseline anomaly comparison was possible this run (no anomaly items emitted on that basis) — the CPL baseline should resume as a distinct trailing-7-day check once the ingest cadence catches up to daily.",
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued at 26, matching the counted leads exactly), consistent with the pattern flagged on 2026-08-31, 2026-09-02, and 2026-09-08. No discrepancy in the counted total, but this is now a recurring signal that the script's lead-action set should be extended rather than continuing to hand-note it."
+  ]
+}
