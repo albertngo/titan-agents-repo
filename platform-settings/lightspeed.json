@@ -153,8 +153,11 @@
         "_comment": "Albert's rulings on the duplicate/near-duplicate supplier records surfaced 2026-09-21 while tracing how the create path resolves a supplier by name. Recorded so none of these gets 'tidied' the wrong way later. The merges and deletions are done by hand in the Lightspeed UI \u2014 this pipeline has no supplier merge, rename or delete capability, deliberately.",
         "OLYMPIA + OLYMPIA TILE": "MERGE into 'OLYMPIA TILE', which is also the canonical name in Airtable. Was OLYMPIA (292 products) beside OLYMPIA TILE (2,926).",
         "TOSCA/VICEROY": "DELETE. 0 products against it; TOSCA (447) is the real record.",
-        "LEE + Lee Flooring": "PENDING \u2014 Albert to confirm the target name. LEE holds 2 products, Lee Flooring holds 84.",
-        "ZION vs VIZION": "DO NOT MERGE. Confirmed by Albert 2026-09-21: ZION (105 products) is a GENUINELY DIFFERENT SUPPLIER from VIZION (53). The names look like a typo split and ZION holds twice the products, so this is exactly the pair a future cleanup would merge on sight. It would be wrong."
+        "LEE + Lee Flooring": "MERGE into 'LEE FLOORING' (all caps), preserving all products from both. Was LEE (2) beside Lee Flooring (84). Decided by Albert 2026-09-21. Note this also RENAMES the 84-product record, since it was mixed case.",
+        "ZION vs VIZION": "DO NOT MERGE. Confirmed by Albert 2026-09-21: ZION (105 products) is a GENUINELY DIFFERENT SUPPLIER from VIZION (53). The names look like a typo split and ZION holds twice the products, so this is exactly the pair a future cleanup would merge on sight. It would be wrong.",
+        "_capitalisation": "Albert, 2026-09-21: supplier names are ALL CAPS across Notion, Airtable and Lightspeed. BRANDS ARE NOT \u2014 they keep their own case and must be preserved through any supplier merge or rename. Two LS records are still mixed case and need renaming when convenient: 'CIF Distributors' (805) and, via the merge above, 'Lee Flooring' (84).",
+        "_still_open": "Three LS names differ from Airtable by NAME, not case, so capitalising Airtable does not reach parity on its own: FAW (317) vs FLOORS AT WORK, BELLA (288) vs BELLA FLOORING PLUS, and NORTHWAY BUILDING SUPPLY (67) vs NORTHWAY. Either rename the LS record or keep the per-supplier supplier_name note in ls-upload-instructions. Undecided as of 2026-09-21.",
+        "_other_splits_not_ruled_on": "'CIF LTD.' (36) sits beside 'CIF Distributors' (805), and 'BALTIC HOMES' (10) beside the BALTIC Notion option. Surfaced 2026-09-21, not ruled on \u2014 do not merge either without asking, given ZION/VIZION turned out to be genuinely different suppliers."
       }
     },
     "prices": {
