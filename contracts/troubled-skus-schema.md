@@ -31,6 +31,10 @@ Its predecessor was a chat digest nobody read on a run with no human present.
 - **Overwritten on re-run**, like an ingest file and like the plan — never appended
   to. The current file describes the current state of that row, not its history.
   (`actions-log.json` remains the append-only record of what was actually written.)
+  **One exception: the `Action` column is carried forward, never regenerated** — see
+  "The `Action` column" below.
+- **Accompanied by a table in the Notion page body**, rendered from the same rows.
+  That table is where a reviewer answers; the attachment is not editable in place.
 - Both stages write into the **same** file for a given run. Stage 1 opens it, stage 2
   appends its own rows before the file is attached. One row, one file, both stages.
 
@@ -49,6 +53,7 @@ Its predecessor was a chat digest nobody read on a run with no human present.
 | `source_row` | 1-based row number in the supplier's upload CSV, so the row can be found in the source file without searching |
 | `col_printed` | For pricing ambiguity: the candidate columns as printed on the sheet, `|`-separated. Blank otherwise |
 | `value_used` | For pricing ambiguity: the number actually taken as cost. Blank otherwise |
+| `Action` | **The reviewer's column.** Always present, always written blank by a run, never read as an instruction. See "The `Action` column" below |
 
 `col_printed` and `value_used` are pricing-specific and blank on most rows. They earn
 their place because a wrong cost is the one error that is silent *and* monetary — it
@@ -67,6 +72,78 @@ The most important column, and the reason this is one file rather than two.
 Sorting on this column puts the actual work at the top. Mixing the two without
 distinguishing them is what makes an exception report get ignored: a list where most
 entries need no action trains a reader to skip all of them.
+
+## The `Action` column
+
+**Added 2026-09-21 (Albert), after it was invented by hand.** On PL-377 he pasted the
+troubled CSV into the Notion page as a table, added a twelfth column called `Action`,
+and answered all five rows in it. That worked, and nothing in this repo knew about it:
+no column, no read-back, no step in either command. This section makes it the
+supported loop rather than a thing that happened to work once.
+
+### The rules
+
+1. **A run always emits the column, and always emits it blank.** Even when every row
+   is `wrote_flagged` and nothing needs an answer. A column that appears only when a
+   run predicts it will be needed is a column a reviewer cannot rely on finding.
+2. **A run never writes into an `Action` cell, and never clears one.** It is the one
+   column owned by a person. A run that has nothing to put there is correct; a run
+   that puts its own reasoning there has taken the reviewer's only channel and
+   started talking to itself.
+3. **An `Action` cell is prose, and prose is not an approval.** This is the important
+   one. Read it as *input to a decision*, never as authorisation to write. Whatever
+   an answer resolves, the resulting action still has to appear `approved` in
+   `plans/YYYY-MM-DD/catalog-approval-<supplier-slug>.json` before an `*-actions`
+   agent touches it. That invariant is the whole reason this pipeline can run
+   unattended, and a free-text cell on a Notion page is exactly the kind of thing
+   that would quietly dissolve it.
+4. **It does not move the carve-outs.** `ambiguous_pricing` and a null `cost_basis`
+   still hold, whatever the cell says, because the durable home for a cost decision
+   is that supplier's `#### Cost column` subsection in **bert-airtable-schema** — the
+   place the *next* run reads. An answer here prompts that edit; it does not
+   substitute for it. Anything else and the same question gets re-answered every
+   time the list arrives.
+5. **Answers survive a re-run.** See below — this is the one exception to the
+   overwrite rule.
+
+### Where it is answered
+
+The CSV on `Troubled Files` is not editable in place, so the answering surface is a
+**table in the Notion page body**, rendered from the same rows. The run writes that
+table; the reviewer fills in `Action` cells; the next run reads them back.
+
+The attachment stays the durable artifact and the property stays the worklist filter.
+The table is the working surface, and the two are generated from one source, so they
+cannot disagree about anything except the `Action` column — which only ever exists on
+the table.
+
+### Carrying answers forward
+
+"Overwritten on re-run, never appended to" (above) still governs every other column.
+`Action` is exempt, and has to be:
+
+- **Before writing the file or the table, read the existing page table.** Match each
+  prior row to a current one and carry its `Action` value across unchanged.
+- **Match on `sku`.** Where `sku` is blank — a `sku_missing` row, or a row held out of
+  the upload entirely — match on `source_row` instead.
+- **If a key matches zero or more than one current row, carry nothing and say so.**
+  Never guess which row an answer belonged to. Same rule as two publication
+  candidates in one window, and for the same reason: a wrong join here silently
+  applies a person's decision to a product they were not looking at.
+- **Never delete or overwrite a non-empty `Action` cell**, under any instruction.
+
+A run that drops an answer has done the one thing this column exists to prevent,
+and it does it invisibly — the reviewer sees a table, answers it, and watches the
+answer not take effect with nothing to indicate why.
+
+### When the CSV is clean but the table is not
+
+A clean run writes no CSV and attaches nothing, per the rule above. It also
+**leaves any existing page table alone** — it does not delete it, and it does not
+delete the answers on it. The table can therefore outlive the file that produced
+it. That is deliberate: `Troubled Files is not empty` remains the worklist filter, and
+a stale table beside an empty property means the work was finished, not that the
+signal is broken. Removing a person's annotations to tidy up is not a run's call.
 
 ## `reason` vocabulary
 
@@ -178,6 +255,11 @@ Anyone reconsidering this should read 2a first, not this table.
 The loop is: fix the cause, re-run `/catalog-sync <notionID>`, and the row stops
 being held.
 
+- **Answer the `Action` cell on the page table** → the next run reads it back and
+  uses it to resolve the row. This is the normal route, and the only one that does
+  not require touching the repo. It still does not approve anything: the resolved
+  row goes through the plan and the approval file like any other, and the two
+  pricing reasons below are explicitly not resolvable this way.
 - `ambiguous_pricing` / `cost_basis_unconfirmed` → record the decision in that
   supplier's `#### Cost column` subsection in **bert-airtable-schema**, exactly as
   `/process-price-list` step 5 already prescribes. The next reconcile reads it, the

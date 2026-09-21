@@ -187,6 +187,7 @@
     "ls_upload": "{supplier_slug}_ls_upload_{date}.csv",
     "troubled": "{supplier_slug}_troubled_{date}.csv",
     "_troubled_note": "The exception report, per contracts/troubled-skus-schema.md. Attaches to `Troubled Files`, NOT `Extracted Files`. Written only when the run produced at least one troubled SKU; a clean run produces no file and attaches nothing. Both stages write into the same file before it is attached.",
+    "_troubled_action_column": "12 columns, not 11 (2026-09-21, Albert). The last is `Action` — the reviewer's column, always emitted, always blank when a run writes it, never read as authorisation to write anything. The answering surface is a table the run renders into the Notion page BODY, because a CSV on a file property cannot be edited in place; /catalog-sync step 0 reads those cells back and step 6a carries them forward across the overwrite. Match on `sku`, or on `source_row` where `sku` is blank.",
     "attachment_mime": "text/csv",
     "_attachment_note": "Notion 400s on a content-type mismatch — the multipart upload must carry ;type=text/csv. api.notion.com must be allowed by the environment egress policy (it is, since 2026-09-03)."
   }

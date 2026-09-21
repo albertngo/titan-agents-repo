@@ -90,6 +90,16 @@ property, with a mandatory PushNotification behind it.
 than stopping — a wrong spec can go live and be found after — and that trade is
 recorded in `methods/pricelist-pipeline-routine-prompt.md` rather than left implicit.
 
+**The report answers back (2026-09-21, Albert).** The CSV carries a twelfth column,
+`Action`, and the run renders the same rows as a table in the Notion page body —
+a file property cannot be edited in place, so that table is where a reviewer replies.
+`/catalog-sync` step 0 reads those cells back before it plans, and step 6a carries
+them across the overwrite. **An `Action` cell is prose, never an approval**: it can
+resolve an ambiguity, but the resulting id still has to appear `approved` in the
+approval file, and it cannot clear either pricing carve-out — a cost decision belongs
+in bert-airtable-schema's `#### Cost column`, where the next run reads it. Albert
+invented this column by hand on PL-377 before it existed anywhere in the repo.
+
 **Lightspeed is written before Airtable** — the reverse of `forced_downstream_order` in
 `pricelist-sources.json`, which describes the manual CSV flow. `POST /api/2.0/products`
 returns the new UUID, so the Lightspeed create is what mints the id the Airtable write
