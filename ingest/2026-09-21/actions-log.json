@@ -276,6 +276,30 @@
    "error": null,
    "raw_ref": "recmGPguItuc5QYZN",
    "raw_ref_action_id": null
+  },
+  {
+   "logged_at": "2026-09-21T17:12:42-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "batch for Floors At Work",
+   "content_summary": "Batch stopped: created the family but LVP-FAWK-0084 did not come back in it. Re-read returned []. Not guessing which id is which \u2014 resolve by hand before re-running.",
+   "approved_by": "Albert: transport test, one product (2026-09-21) via approval-peking.json",
+   "result": "failed",
+   "error": "created the family but LVP-FAWK-0084 did not come back in it. Re-read returned []. Not guessing which id is which \u2014 resolve by hand before re-running.",
+   "raw_ref": null,
+   "raw_ref_action_id": null
+  },
+  {
+   "logged_at": "2026-09-21T17:26:00-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_create_product",
+   "target": "LVP-FAWK-0084 \u2014 NAFLVP-SPC - Aqualuuuz (Peking)",
+   "content_summary": "Standalone product created in Lightspeed: sku LVP-FAWK-0084, handle LVP736VNYPEKING, supply 2.29 / retail 3.29, supplier FLOORS AT WORK, no variant options. Transport test for the variants-array fix. Logged by hand: the push run wrote this product successfully and then stopped on the read-back, which could not see a standalone product (3.0 returns variants: []), so it recorded only a failure with a null raw_ref_action_id. Verified after by a full catalogue re-pull \u2014 14,836 products, exactly one row for this sku, no duplicate. This entry exists so resume skips the action instead of creating a second one.",
+   "approved_by": "Albert: transport test, one product (2026-09-21) via approval-peking.json",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "db9e9a99-afb5-4173-8193-6ea68798d80a",
+   "raw_ref_action_id": "cat-d68142097198"
   }
  ]
 }

@@ -270,7 +270,11 @@ def main():
         for name, group in families.items():
             payload = build_family_payload(sorted(group, key=lambda a: a["seq"]), lookups, cfg)
             ids = writer.create_family(payload)
-            print(f"  create family {name!r}: {len(group)} variant(s)")
+            # Say which shape was sent. "1 variant(s)" on a standalone is exactly the
+            # output that made the payload bug invisible for a run and a half.
+            shape = (f"{len(payload['variants'])} variant(s)" if "variants" in payload
+                     else "standalone, no variants array")
+            print(f"  create {name!r}: {shape}")
             if args.dry_run:
                 continue
             # Never pair positionally — re-read and match on sku.

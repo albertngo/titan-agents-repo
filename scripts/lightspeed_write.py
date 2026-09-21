@@ -241,10 +241,19 @@ class LightspeedWriter(LightspeedClient):
         variant carries `primary_sku_code`, not `sku`, and the authoritative code is
         the CUSTOM entry in `product_codes`. Verified against a live family
         2026-09-10 — reading `sku` alone returns nothing at all.
+
+        A STANDALONE product is not a family of one here either (verified live
+        2026-09-21 on db9e9a99, the first product created through this path): 3.0
+        returns `variants: []` and carries the code at the TOP level, in
+        `sku_number` and `product_codes`. Iterating `variants` alone returned {},
+        which read as "the product I just created is not there" and stopped a batch
+        whose write had in fact succeeded. Same read/write asymmetry as the create
+        payload, one call later.
         """
         data = self.read_family(product_id)
+        members = data.get("variants") or [data]
         out = {}
-        for v in (data.get("variants") or []):
+        for v in members:
             sku = v.get("primary_sku_code") or v.get("sku") or v.get("sku_number")
             for code in (v.get("product_codes") or []):
                 if code.get("type") == "CUSTOM" and code.get("code"):

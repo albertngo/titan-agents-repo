@@ -113,7 +113,7 @@
       "active": "1",
       "track_inventory": "1"
     },
-    "_variants_unverified": "OPEN QUESTION, gates all writes. The CSV importer takes one row per variant sharing a handle. The API creates a variant family as ONE POST carrying a `variants` array plus `variant_definitions`; adding a variant to an EXISTING family is a different call. Row-by-row POST will not reproduce importer behaviour. Must be settled by the Phase 3 spike against throwaway SKUs before any production write. Do not assume either shape until this key is replaced with the measured answer."
+    "_variants_unverified": "HALF SETTLED 2026-09-21, by a real create rather than the planned spike. SETTLED: a STANDALONE product. POST /api/2.0/products with sku, prices and outlet_taxes at the TOP level and NO `variants` key created LVP-FAWK-0084 (db9e9a99-afb5-4173-8193-6ea68798d80a) correctly \u2014 verified by a full re-pull: 14,836 products, exactly one row for the sku, has_variants false, variant_options [], no duplicate. STILL UNVERIFIED: a MULTI-MEMBER family. The API creates one as a single POST carrying a `variants` array plus `variant_definitions`, and adding a variant to an EXISTING family is a different call, so row-by-row POST still will not reproduce CSV-importer behaviour. No family of more than one has been created through this path. Do not assume that shape until a create proves it \u2014 the standalone case was assumed from the read model too, and was wrong twice running (api_shape.variants._family_id, and .create._variants_array_is_not_for_simple_products)."
   },
   "make_scenarios": {
     "_comment": "What Make does and does not do for Lightspeed, recorded so it is not re-litigated.",
@@ -269,7 +269,7 @@
       },
       "_create_shape_unknown": null,
       "create": {
-        "_verified": "Family shape from the API reference and the live account 2026-09-10; NOT verified by a test write. The first real attempt, 2026-09-21, was rejected \u2014 see _variants_array_is_not_for_simple_products. Treat the rest of this block as unverified until a create actually lands.",
+        "_verified": "Family shape from the API reference and the live account 2026-09-10. A STANDALONE create is now verified by a real write: LVP-FAWK-0084 -> db9e9a99-afb5-4173-8193-6ea68798d80a, 2026-09-21. A MULTI-MEMBER family create is still unverified by any write \u2014 see write_rules._variants_unverified.",
         "endpoint": "POST /api/2.0/products",
         "required": [
           "name"
@@ -307,7 +307,8 @@
           "_trap": "A FLAT ARRAY OF IDS, in the order Lightspeed sorts the family by attribute value \u2014 NOT keyed by sku and not necessarily your payload order. Never map ids back to SKUs positionally. Always send an explicit `sku` per variant and re-read the family to pair them. Getting this wrong reproduces Grandeur exactly."
         },
         "_sku_is_generated_if_omitted": "Lightspeed mints one from your sku sequence. Titan must ALWAYS supply its own \u2014 RULE 0 makes the Airtable SKU the source of truth.",
-        "_variants_array_is_not_for_simple_products": "FOUND 2026-09-21, the second bug of the same kind. A `variants` array whose entries carry no `variant_definitions` is rejected: 422 `Each variant must have at least one variant definition`. A STANDALONE product must omit the `variants` array entirely and carry sku and prices at the TOP level \u2014 per the reference, `name` is the only required field. That matches the catalogue: 11,025 of 11,607 standalone products carry no variant options at all. Do NOT satisfy the error by inventing a one-option variant \u2014 ls-upload-instructions forbids exactly that ('a variant group with only one option is noise, not structure'). scripts/lightspeed_push.py build_family_payload() still always emits a variants array, so creating a simple product through the API does not work yet."
+        "_variants_array_is_not_for_simple_products": "FIXED AND VERIFIED 2026-09-21. A `variants` array whose entries carry no `variant_definitions` is rejected: 422 `Each variant must have at least one variant definition`. A STANDALONE product must omit the `variants` array entirely and carry sku, prices and outlet_taxes at the TOP level \u2014 per the reference, `name` is the only required field. That matches the catalogue: 11,025 of 11,607 standalone products carry no variant options at all. Do NOT satisfy the error by inventing a one-option variant \u2014 ls-upload-instructions forbids exactly that ('a variant group with only one option is noise, not structure'). scripts/lightspeed_push.py build_family_payload() now branches: one action with no variant_option hoists to the top level, anything else keeps the array. Proven live on LVP-FAWK-0084.",
+        "_read_back_of_a_standalone": "The same asymmetry one call later, found the same day. GET /api/3.0/products/{id} on a standalone returns `variants: []` and carries the code at the TOP level (`sku_number`, and the CUSTOM entry of `product_codes`). family_by_sku() iterated `variants` alone, returned {}, and the push script read that as 'the product I just created is not there' \u2014 so a create that HAD succeeded stopped the batch and logged only a failure with a null raw_ref_action_id, which would have let a re-run create a duplicate. It now falls back to the product document itself when `variants` is empty."
       },
       "update": {
         "endpoint": "PUT /api/2.1/products/{id}",

@@ -1,7 +1,7 @@
 {
  "contract_version": "catalog-plan-1",
  "supplier": "Floors At Work",
- "run_at": "2026-09-21T11:20:45.016648-04:00",
+ "run_at": "2026-09-21T17:12:23.231971-04:00",
  "status": "ok",
  "inputs": [
   {
@@ -9,9 +9,9 @@
    "rows": 11
   },
   {
-   "file": "/home/user/titan-agents-repo/ingest/2026-09-21/lightspeed-products.json",
+   "file": "ingest/2026-09-21/lightspeed-products.json",
    "products": 14835,
-   "run_at": "2026-09-21T11:19:41.522132-04:00"
+   "run_at": "2026-09-21T13:06:25.436613-04:00"
   },
   {
    "file": "ingest/2026-09-21/faw_airtable_existing.json",
@@ -30,8 +30,7 @@
   "airtable_backfill_ls_id": 4,
   "airtable_upsert": 10,
   "lightspeed_create": 4,
-  "lightspeed_update": 7,
-  "actions_total": 25,
+  "actions_total": 18,
   "uuid_recovered_by_sku": 0,
   "blocked": 0,
   "warnings": 2,
@@ -235,87 +234,6 @@
    "seq": 10
   },
   {
-   "id": "cat-cc554279a922",
-   "target_system": "lightspeed",
-   "op": "update",
-   "sku": "ENG-FAWK-0054",
-   "airtable_rec_id": null,
-   "ls_id": "c7967980-5f0b-4899-a593-9770f1f3e8a0",
-   "handle": "ENG75OAKDAVINCIDES",
-   "fields": {
-    "supply_price": 3.99,
-    "price_excluding_tax": 5.99
-   },
-   "before": {
-    "name": "NAFENG - Designer American White Oak (Da Vinci) T&G | 7.5\" x 18mm x RL - 23.31sf/b",
-    "handle": "ENG75OAKDAVINCIDES",
-    "sku": "ENG-FAWK-0054",
-    "supply_price": 4.99,
-    "price_including_tax": 5.99,
-    "price_excluding_tax": 5.99,
-    "category": "ENGINEERED HARDWOOD",
-    "supplier_name": "FAW",
-    "active": true
-   },
-   "reason": "price_change",
-   "uuid_source": "upload",
-   "seq": 11
-  },
-  {
-   "id": "cat-f5685d0a2d34",
-   "target_system": "lightspeed",
-   "op": "update",
-   "sku": "ENG-FAWK-0065",
-   "airtable_rec_id": null,
-   "ls_id": "70e9a691-05f3-4965-ab88-e2ea520537ae",
-   "handle": "ENG75OAKWARMHONEYEURDES",
-   "fields": {
-    "supply_price": 6.79,
-    "price_excluding_tax": 7.79
-   },
-   "before": {
-    "name": "NAFENG - Designer European White Oak (Warm Honey) T&G | 7.5\" x 18mm x RL - 3mm top - 23.31sf/b - Select & Better",
-    "handle": "ENG75OAKWARMHONEYEURDES",
-    "sku": "ENG-FAWK-0065",
-    "supply_price": 6.99,
-    "price_including_tax": 7.99,
-    "price_excluding_tax": 7.99,
-    "category": "ENGINEERED HARDWOOD",
-    "supplier_name": "FAW",
-    "active": true
-   },
-   "reason": "price_change",
-   "uuid_source": "upload",
-   "seq": 12
-  },
-  {
-   "id": "cat-36401a2e4396",
-   "target_system": "lightspeed",
-   "op": "update",
-   "sku": "ENG-FAWK-0084",
-   "airtable_rec_id": null,
-   "ls_id": "a072f3e7-8ce8-4e38-b703-412f05a918ab",
-   "handle": "ENG65MAPAMERICANO",
-   "fields": {
-    "supply_price": 3.99,
-    "price_excluding_tax": 4.99
-   },
-   "before": {
-    "name": "NAFENG - Handscraped Maple (Americano) T&G | 6.5\" x 18mm x RL - 19.18sf/b",
-    "handle": "ENG65MAPAMERICANO",
-    "sku": "ENG-FAWK-0084",
-    "supply_price": 3.19,
-    "price_including_tax": 4.19,
-    "price_excluding_tax": 4.19,
-    "category": "ENGINEERED HARDWOOD",
-    "supplier_name": "FAW",
-    "active": true
-   },
-   "reason": "price_change",
-   "uuid_source": "upload",
-   "seq": 13
-  },
-  {
    "id": "cat-50ff4d9eec53",
    "target_system": "lightspeed",
    "op": "create",
@@ -332,12 +250,12 @@
     "description": "Product type: Flooring | Category: Engineered hardwood | Material type: Hardwood plywood | Grade: Select | Box size (sf): 24.11 | Boxes per skid: 45 | Underpad included: FALSE | Salesperson notes: NEW colourway, Sept 19 2026 FAW list. Grade/species inference flagged \u2014 see Airtable Salesperson notes. Sold per sq ft.",
     "product_category": "ENGINEERED HARDWOOD",
     "brand_name": "NAF",
-    "supplier_name": "FAW"
+    "supplier_name": "FLOORS AT WORK"
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 14
+   "seq": 11
   },
   {
    "id": "cat-04e460fa09a8",
@@ -356,120 +274,12 @@
     "description": "Product type: Flooring | Category: Engineered hardwood | Material type: Hardwood plywood | Species: Rosewood | Finish type: Smooth | Box size (sf): 11.62 | Boxes per skid: 48 | Salesperson notes: NEW product/collection, Sept 19 2026 FAW list \u2014 NO COLOUR NAME printed on source sheet, no prior FAW Rosewood precedent. Species 'Rosewood' not a controlled Airtable option, needs typecast. Flagged Spec Gap \u2014 full review needed before go-live. Sold per sq ft.",
     "product_category": "ENGINEERED HARDWOOD",
     "brand_name": "NAF",
-    "supplier_name": "FAW"
+    "supplier_name": "FLOORS AT WORK"
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 15
-  },
-  {
-   "id": "cat-6acae023b6ea",
-   "target_system": "lightspeed",
-   "op": "update",
-   "sku": "LVP-FAWK-0009",
-   "airtable_rec_id": "recry8htMQiDHT1KZ",
-   "ls_id": "8f45be30-74d6-4d2f-a139-e766b1cef5e8",
-   "handle": "LVP72VNYBAY",
-   "fields": {
-    "supply_price": 1.99,
-    "price_excluding_tax": 2.99
-   },
-   "before": {
-    "name": "NAFLVP-SPC - Aquaplus Select (Bay) Click | 7.2\" x 7mm x RL - 17.91sf/b",
-    "handle": "LVP72VNYBAY",
-    "sku": "LVP-FAWK-0009",
-    "supply_price": 1.79,
-    "price_including_tax": 2.79,
-    "price_excluding_tax": 2.79,
-    "category": "SPC",
-    "supplier_name": "FAW",
-    "active": true
-   },
-   "reason": "price_change",
-   "uuid_source": "upload",
-   "seq": 16
-  },
-  {
-   "id": "cat-36e5cc06127b",
-   "target_system": "lightspeed",
-   "op": "update",
-   "sku": "LVP-FAWK-0026",
-   "airtable_rec_id": null,
-   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b54f62a46",
-   "handle": "LVP71VNYBAYVIEW",
-   "fields": {
-    "supply_price": 1.99,
-    "price_excluding_tax": 2.99
-   },
-   "before": {
-    "name": "NAFLVP-SPC - Aquaplus Gold (Bayview) Click | 7.1\" x 7mm x RL - 17.91sf/b",
-    "handle": "LVP71VNYBAYVIEW",
-    "sku": "LVP-FAWK-0026",
-    "supply_price": 1.79,
-    "price_including_tax": 2.79,
-    "price_excluding_tax": 2.79,
-    "category": "SPC",
-    "supplier_name": "FAW",
-    "active": true
-   },
-   "reason": "price_change",
-   "uuid_source": "upload",
-   "seq": 17
-  },
-  {
-   "id": "cat-68593dce5232",
-   "target_system": "lightspeed",
-   "op": "update",
-   "sku": "LVP-FAWK-0028",
-   "airtable_rec_id": null,
-   "ls_id": "6006d007-32f5-4505-a046-0ca08a812b25",
-   "handle": "LVP71VNYLISMORE",
-   "fields": {
-    "supply_price": 1.99,
-    "price_excluding_tax": 2.99
-   },
-   "before": {
-    "name": "NAFLVP-SPC - Aquaplus Gold (Lismore) Click | 7.1\" x 7mm x RL - 17.91sf/b",
-    "handle": "LVP71VNYLISMORE",
-    "sku": "LVP-FAWK-0028",
-    "supply_price": 1.79,
-    "price_including_tax": 2.79,
-    "price_excluding_tax": 2.79,
-    "category": "SPC",
-    "supplier_name": "FAW",
-    "active": true
-   },
-   "reason": "price_change",
-   "uuid_source": "upload",
-   "seq": 18
-  },
-  {
-   "id": "cat-283f467cb8ff",
-   "target_system": "lightspeed",
-   "op": "update",
-   "sku": "LVP-FAWK-0044",
-   "airtable_rec_id": null,
-   "ls_id": "161aa580-feeb-4fcc-83c3-d58b18e71ef4",
-   "handle": "LVP71VNYPAVILION",
-   "fields": {
-    "supply_price": 2.19,
-    "price_excluding_tax": 3.19
-   },
-   "before": {
-    "name": "NAFLVP-SPC - Royal (Pavilion) Click | 7.1\" x 8mm x RL - 14.93sf/b",
-    "handle": "LVP71VNYPAVILION",
-    "sku": "LVP-FAWK-0044",
-    "supply_price": 1.99,
-    "price_including_tax": 2.99,
-    "price_excluding_tax": 2.99,
-    "category": "SPC",
-    "supplier_name": "FAW",
-    "active": true
-   },
-   "reason": "price_change",
-   "uuid_source": "upload",
-   "seq": 19
+   "seq": 12
   },
   {
    "id": "cat-d68142097198",
@@ -488,12 +298,12 @@
     "description": "Product type: Flooring | Category: LVP | Material type: SPC core | Wear layer (mil): 20 | Install profile: Loose lay | Box size (sf): 19.75 | Boxes per skid: 55 | Waterproof: TRUE | Pet friendly: TRUE | Salesperson notes: NEW colourway, Sept 19 2026 FAW list, distinct size variant vs. established Aqualuuuz group. Sold per sq ft.",
     "product_category": "SPC",
     "brand_name": "NAF",
-    "supplier_name": "FAW"
+    "supplier_name": "FLOORS AT WORK"
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 20
+   "seq": 13
   },
   {
    "id": "cat-13bbbf35572f",
@@ -512,12 +322,12 @@
     "description": "Product type: Flooring | Category: LVT | Material type: SPC core | Wear layer (mil): 20 | Install profile: Loose lay | Box size (sf): 22.48 | Boxes per skid: 48 | Waterproof: TRUE | Pet friendly: TRUE | Salesperson notes: NEW product, Sept 19 2026 FAW list \u2014 NO COLOUR NAME printed on source sheet at all; name omits the usual (Colour) segment. Flagged Spec Gap \u2014 confirm colourway before go-live. Sold per sq ft.",
     "product_category": "SPC",
     "brand_name": "NAF",
-    "supplier_name": "FAW"
+    "supplier_name": "FLOORS AT WORK"
    },
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 21
+   "seq": 14
   },
   {
    "id": "cat-b48f0a273d45",
@@ -535,7 +345,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 22
+   "seq": 15
   },
   {
    "id": "cat-cd8a27612078",
@@ -553,7 +363,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 23
+   "seq": 16
   },
   {
    "id": "cat-d274154d87f3",
@@ -571,7 +381,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 24
+   "seq": 17
   },
   {
    "id": "cat-02b156dbe5c4",
@@ -589,7 +399,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 25
+   "seq": 18
   }
  ],
  "blocked": [],

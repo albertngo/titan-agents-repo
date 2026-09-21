@@ -567,6 +567,37 @@ class TestCreatePayloadShape(unittest.TestCase):
         self.assertEqual("aqualuuuztile", payload["handle"])
         self.assertEqual("supplier-id-for-FAW", payload["supplier_id"])
 
+    def test_read_back_finds_a_standalone_product(self):
+        """3.0 returns `variants: []` for a standalone and puts the code up top.
+
+        Iterating `variants` alone returned {}, which the push script read as "the
+        product I just created is not there" — so a successful create stopped the
+        batch and logged nothing. Shape captured live from db9e9a99, 2026-09-21.
+        """
+        w = lw.LightspeedWriter(domain_prefix="x", token="y",
+                                config=lsc.load_config(), dry_run=True)
+        w.read_family = lambda pid: {
+            "id": pid,
+            "name": "NAFLVP-SPC - Aqualuuuz (Peking)",
+            "sku_number": None,
+            "variants": [],
+            "product_codes": [{"type": "CUSTOM", "code": "LVP-FAWK-0084"}],
+        }
+        got = w.family_by_sku("db9e9a99")
+        self.assertEqual(["LVP-FAWK-0084"], list(got))
+        self.assertEqual("db9e9a99", got["LVP-FAWK-0084"]["id"])
+
+    def test_read_back_still_pairs_a_real_family_by_sku(self):
+        w = lw.LightspeedWriter(domain_prefix="x", token="y",
+                                config=lsc.load_config(), dry_run=True)
+        w.read_family = lambda pid: {"id": pid, "variants": [
+            {"id": "v1", "product_codes": [{"type": "CUSTOM", "code": "ENG-1"}]},
+            {"id": "v2", "product_codes": [{"type": "CUSTOM", "code": "ENG-2"}]},
+        ]}
+        got = w.family_by_sku("parent")
+        self.assertEqual({"ENG-1": "v1", "ENG-2": "v2"},
+                         {k: v["id"] for k, v in got.items()})
+
     def test_a_standalone_create_still_needs_an_explicit_sku(self):
         """RULE 0: Lightspeed mints a sku when one is omitted, orphaning the row.
 
