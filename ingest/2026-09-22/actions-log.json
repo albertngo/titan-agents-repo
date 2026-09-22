@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "entries": [
+    {
+      "logged_at": "2026-09-22T08:40:00-04:00",
+      "agent": ".claude/commands/notion-sync.md",
+      "type": "notion_create_task",
+      "target": "team destination dedupe query (Tactical Tasks List, collection://238596a4-505f-8137-af13-000bde205213)",
+      "content_summary": "17 GHL candidates selected for the team destination, but the dedupe query (Status not in Done/Dropped AND Tags contains 'ghl') failed before any write with Notion's workspace SQL usage-limit error. Per notion-task-schema.md's Failure policy, stopped before writing any row.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "failed",
+      "error": "Notion workspace has reached its usage limit for Query Data Source (same quota notion-ingest-agent hit earlier in today's run)",
+      "raw_ref": null
+    }
+  ]
+}
