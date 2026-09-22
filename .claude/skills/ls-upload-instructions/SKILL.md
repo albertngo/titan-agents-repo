@@ -305,9 +305,29 @@ them change.
 | `[CATEGORY]` | `FLOORING / ENGINEERED HARDWOOD` | `FLOORING / ENGINEERED HARDWOOD` | varies by product type — `FLOORING / VINYL / SPC`, `FLOORING / VINYL / WPC`, `FLOORING / ENGINEERED HARDWOOD`, etc. | varies by product type — routing follows the standard Category + Material type logic |
 | Supplier | VIDAR | SUNSHINY | Grandeur | FAW |
 
-> **Note on supplier name for FAW:** The supplier name written to Airtable's `Supplier` field and to LS column 24 (`supplier_name`) is **FAW** — not "Floors At Work". This is the canonical short form used across both systems. Albert will manually align the Airtable supplier single-select to match.
+> **Note on supplier name for FAW — REVERSED 2026-09-21 (Albert).** This note used
+> to say the short form `FAW` was canonical in both Airtable and LS column 24, with
+> Albert to align Airtable to it. He went the other way: he merged the LS `FAW`
+> record (317 products) into **`FLOORS AT WORK`** and capitalised the Airtable
+> option to match. So `supplier_name` is **`FLOORS AT WORK`**, and `FAW` no longer
+> exists as a Lightspeed supplier — writing it now fails the create outright, which
+> is how this note was caught. The short form survives only as the Notion `Company`
+> option, and `supplier_aliases` in `airtable-destinations.json` is what maps it.
 
-> **Note on supplier name for Bella Flooring Plus:** The `supplier_name` (column 24) for all Bella Flooring Plus products must be set to **BELLA** — regardless of whether the brand is Northernest or Wickham. `brand_name` (column 23) uses the actual brand as normal (e.g. "Northernest", "Wickham"). Do not use "Bella Flooring Plus" in the supplier_name column.
+> **Note on supplier name for Bella Flooring Plus — REVERSED 2026-09-21 (Albert),
+> same merge.** `supplier_name` is **`BELLA FLOORING PLUS`**, not `BELLA`; the LS
+> `BELLA` record (288 products) was merged into it. `brand_name` (column 23) is
+> unaffected and still uses the actual brand (e.g. "Northernest", "Wickham") — the
+> distributor/brand distinction the column exists for did not change. `NORTHWAY
+> BUILDING SUPPLY` was likewise merged into **`NORTHWAY`**; note the direction is
+> the short form there, because that is the name Albert kept.
+
+> **The rule behind all three:** `supplier_name` must be a supplier that already
+> exists in Lightspeed, spelled exactly as Lightspeed spells it. It is not a label
+> this skill gets to choose. Since 2026-09-21 the Airtable `Supplier` option and the
+> LS supplier record are the same string for every supplier, so the Airtable value
+> (after alias mapping from Notion's `Company`) is the one to write. A name that
+> does not resolve stops the batch rather than creating a supplier — deliberately.
 
 > **Grandeur handle regeneration (Jul 2026):** All 239 Grandeur handles in Airtable were regenerated to a deterministic convention: `GRND` + the Product name with the leading "Grandeur " and the trailing grade parenthetical removed, uppercased, non-alphanumerics stripped. Examples: `Grandeur 7.5" EWO — Moraine (ABCD)` → `GRND75EWOMORAINE`; `Grandeur 7" Pacific — Canterbury` → `GRND7PACIFICCANTERBURY`; `Grandeur 12mm Aquamate — Sydney` → `GRND12MMAQUAMATESYDNEY`. This replaced the legacy mix of slugified LS names (hyphenated), UUIDs pasted in the handle column, and shared numeric handles (e.g. 55546911 spanning Barossa 6"/7.5"/HB). One handle per product — the legacy cross-size numeric sharing was intentionally split. LS product identity was preserved via the `id` (Lightspeed UUID) column on update. Audit file: `grandeur_handle_map.csv`.
 

@@ -87,12 +87,17 @@ class LightspeedWriter(LightspeedClient):
         if not payload.get("name"):
             raise LightspeedError("create_family needs a `name`; it is the only required "
                                   "field and it is what groups a variant family")
-        for variant in payload.get("variants") or []:
-            if not variant.get("sku"):
-                raise LightspeedError(
-                    "every variant needs an explicit sku. Lightspeed mints one from its own "
-                    "sequence when omitted, and RULE 0 makes the Airtable SKU the source of "
-                    "truth — a generated sku would orphan the row.")
+        _NO_SKU = ("needs an explicit sku. Lightspeed mints one from its own "
+                   "sequence when omitted, and RULE 0 makes the Airtable SKU the source of "
+                   "truth — a generated sku would orphan the row.")
+        if "variants" in payload:
+            for variant in payload["variants"]:
+                if not variant.get("sku"):
+                    raise LightspeedError(f"every variant {_NO_SKU}")
+        elif not payload.get("sku"):
+            # A standalone product omits `variants` and carries sku at the top level,
+            # so the loop above never sees it. Same rule, different place to look.
+            raise LightspeedError(f"a standalone product {_NO_SKU}")
         body = self._send("POST", self.cfg["api"]["endpoints"]["products"], body=payload)
         if body.get("dry_run"):
             return None
@@ -236,10 +241,19 @@ class LightspeedWriter(LightspeedClient):
         variant carries `primary_sku_code`, not `sku`, and the authoritative code is
         the CUSTOM entry in `product_codes`. Verified against a live family
         2026-09-10 — reading `sku` alone returns nothing at all.
+
+        A STANDALONE product is not a family of one here either (verified live
+        2026-09-21 on db9e9a99, the first product created through this path): 3.0
+        returns `variants: []` and carries the code at the TOP level, in
+        `sku_number` and `product_codes`. Iterating `variants` alone returned {},
+        which read as "the product I just created is not there" and stopped a batch
+        whose write had in fact succeeded. Same read/write asymmetry as the create
+        payload, one call later.
         """
         data = self.read_family(product_id)
+        members = data.get("variants") or [data]
         out = {}
-        for v in (data.get("variants") or []):
+        for v in members:
             sku = v.get("primary_sku_code") or v.get("sku") or v.get("sku_number")
             for code in (v.get("product_codes") or []):
                 if code.get("type") == "CUSTOM" and code.get("code"):

@@ -145,8 +145,48 @@ class Lookups:
         return got
 
 
+def _member_fields(action, lookups, cfg):
+    """The per-product half of a create payload: sku, prices, tax, attributes."""
+    f = action["fields"]
+    outlet = cfg["outlet"]
+    member = {"sku": f["sku"],
+              # Titan is a tax-exclusive store, so outlet_taxes, never all_outlets_tax.
+              "outlet_taxes": [{"outlet_id": outlet["id"],
+                                "tax_id": outlet["default_tax_id"]}]}
+    for k in ("supply_price", "price_excluding_tax"):
+        if f.get(k) is not None:
+            member[k] = f[k]
+    opt = f.get("variant_option")
+    if opt:
+        member["variant_definitions"] = [
+            {"attribute_id": lookups.resolve("attribute", opt["name"]),
+             "value": opt["value"]}
+        ]
+    return member
+
+
 def build_family_payload(actions, lookups, cfg):
-    """One POST body for one variant family. Every id resolved or it raises."""
+    """One POST body for one product, or one variant family. Every id resolved or it raises.
+
+    A standalone product is NOT a family of one on the write side. The registry's
+    read-model note says otherwise -- every product carries a `family_id`, so
+    "there is no separate simple product shape to handle" -- and that is true of
+    what comes back from a GET and false of what a POST accepts. Sending a
+    `variants` array whose single entry has no `variant_definitions` is rejected:
+    422 `Each variant must have at least one variant definition` (2026-09-21).
+
+    So a lone product with no variant attribute carries its sku and prices at the
+    TOP level and sends no `variants` key at all. Per the reference, `name` is the
+    only required field.
+
+    The tempting way to satisfy that error is to invent a one-option variant. Do
+    not: ls-upload-instructions forbids it -- "a variant group with only one option
+    is noise, not structure" -- and it would put junk attributes on the product
+    permanently, to work around a key that simply should not have been sent.
+
+    One action that DOES carry a variant_option keeps the array. That is a
+    deliberate family of one with real structure, and it validates.
+    """
     first = actions[0]["fields"]
     payload = {"name": first["name"]}
     if first.get("handle"):
@@ -160,24 +200,13 @@ def build_family_payload(actions, lookups, cfg):
     if first.get("supplier_name"):
         payload["supplier_id"] = lookups.resolve("supplier", first["supplier_name"])
 
-    outlet = cfg["outlet"]
-    variants = []
-    for a in actions:
-        f = a["fields"]
-        v = {"sku": f["sku"],
-             # Titan is a tax-exclusive store, so outlet_taxes, never all_outlets_tax.
-             "outlet_taxes": [{"outlet_id": outlet["id"], "tax_id": outlet["default_tax_id"]}]}
-        for k in ("supply_price", "price_excluding_tax"):
-            if f.get(k) is not None:
-                v[k] = f[k]
-        opt = f.get("variant_option")
-        if opt:
-            v["variant_definitions"] = [
-                {"attribute_id": lookups.resolve("attribute", opt["name"]),
-                 "value": opt["value"]}
-            ]
-        variants.append(v)
-    payload["variants"] = variants
+    members = [_member_fields(a, lookups, cfg) for a in actions]
+
+    if len(members) == 1 and "variant_definitions" not in members[0]:
+        payload.update(members[0])
+        return payload
+
+    payload["variants"] = members
     return payload
 
 
@@ -241,7 +270,11 @@ def main():
         for name, group in families.items():
             payload = build_family_payload(sorted(group, key=lambda a: a["seq"]), lookups, cfg)
             ids = writer.create_family(payload)
-            print(f"  create family {name!r}: {len(group)} variant(s)")
+            # Say which shape was sent. "1 variant(s)" on a standalone is exactly the
+            # output that made the payload bug invisible for a run and a half.
+            shape = (f"{len(payload['variants'])} variant(s)" if "variants" in payload
+                     else "standalone, no variants array")
+            print(f"  create {name!r}: {shape}")
             if args.dry_run:
                 continue
             # Never pair positionally — re-read and match on sku.
