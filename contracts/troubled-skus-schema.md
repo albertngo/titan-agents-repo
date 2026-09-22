@@ -183,6 +183,7 @@ warning that is SKU-scoped.
 | `sfb_not_exposed` | The row's `Box size (sf)` would be unreadable in Lightspeed |
 | `ls_payload_unavailable` | New to Lightspeed with no skill-built LS upload row to create it from |
 | `category_unresolved` | Carried over from the plan's `warnings`. Always `wrote_flagged` — a warning never withheld a write, before this file existed or after |
+| `supplier_option_missing` | **Added 2026-09-22 (IMPRESSIVE's first sync, the pipeline's first real run).** An approved `airtable` action failed at write time — not at reconciliation — because the Airtable `Supplier` single-select has no live choice matching this supplier, and an automated writer must never invent one (`typecast` stays off, by design — see `airtable-destinations.json`, `_stale_supplier_casing_trap`). Every `airtable_upsert` and `airtable_backfill_ls_id` action for a new supplier is blocked this way until a person adds the option (and a `supplier_aliases` entry, if the canonical spelling differs from the price list's `Company`). **Row-level, so every SKU on the file carries it, same shape as `new_supplier`.** `disposition: held` — nothing was written. Unlike the other `sync`-stage reasons, this one is caught by the *actions agent*, not `catalog_reconcile.py` — the reconciler has no visibility into live Airtable select options, only into Lightspeed and the upload CSV. |
 
 `airtable_side_not_planned` is deliberately **not** here. It is plan-level, not
 SKU-level — it means the plan contains no Airtable actions at all — so it belongs in
@@ -234,6 +235,7 @@ in this file. The rubric there is authoritative; this table is the reader's view
 | `ambiguous_naming` | `wrote_flagged` | Visible and correctable by a follow-up diff |
 | `unmapped_grade`, `unmapped_category`, `spec_gap`, `sku_format_mismatch` | `wrote_flagged` | Annoying, visible, not monetary |
 | `new_supplier` | `wrote_flagged` | **Reversed 2026-09-12 (Albert)** — see below |
+| `supplier_option_missing` | `held` | Not a policy carve-out — a hard technical wall. There is no id that could ever be approved past a select field with no matching option; the write would fail identically on every attempted row |
 
 ### The `new_supplier` reversal, stated plainly
 
