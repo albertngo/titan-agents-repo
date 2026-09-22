@@ -29,7 +29,7 @@ The Master Flooring Catalogue is what Bert quotes customers from. Treat it that 
 
 | type | What | Extra rules |
 |---|---|---|
-| `airtable_upsert_product` | Update or create a catalogue record | Upsert on `fieldIdsToMergeOn: ["fldx3byCOht5HbKmH"]`, SKU never in `fields`. Max 50 records per call. |
+| `airtable_upsert_product` | Update or create a catalogue record | Upsert on `fieldIdsToMergeOn: ["fldx3byCOht5HbKmH"]`. SKU never in `fields` **on an update**; required in `fields` on a create — see below. Max 50 records per call. |
 | `airtable_backfill_ls_id` | Write a `Lightspeed ID` onto an existing record | **Update by record id, not upsert** — no merge key means no record can be created by accident. Only where the field is currently empty. One field, nothing else. |
 | ~~`airtable_create_price_history`~~ | ~~Append a Price History Log v2 row~~ | **SUSPENDED — see below. Do not execute this type.** |
 
@@ -53,6 +53,32 @@ your report that you skipped them and why.
 **Resume only on Albert's explicit say-so**, not on a plan asking for it and not on this
 line looking stale. Seven rows written on 2026-09-21, before this rule existed, are left
 in place; removing them is Albert's call, not a cleanup to do unprompted.
+
+### Creating a record is not the same call as updating one (2026-09-21)
+
+Found the first time this pipeline actually created a catalogue record, for
+`LVP-FAWK-0084`. Two things that only bite on a create:
+
+**1. The SKU must be in `fields` on a create.** Airtable matches an upsert on the
+values in `fields`, so a create with the SKU withheld produces a record with a blank
+SKU — an orphan in the merge key itself. RULE 0 is not violated by this: the rule
+forbids *minting, reformatting or correcting* a SKU, and a create writes the one
+`/process-price-list` already minted, verbatim. On an **update** the SKU still never
+appears in `fields`, and that has not changed.
+
+**2. A plan action carries only the diff, which is not a whole record.**
+`catalog_reconcile.py` diffs 6 fields, so a `new_product` action arrives carrying 5 or
+6 of them. Writing only those creates a record with no Supplier, no Collection, no
+box size — in the table Bert quotes customers from. **The full record lives in that
+run's `<supplier>_airtable_upload_<date>.csv`**; read the row there, keyed on SKU, and
+write all of it. The plan says *that* a record is new; the upload CSV says *what it is*.
+
+**3. Resolve every select against the live option list first, and leave `typecast`
+off.** The upload CSV for this run carried `Supplier: "Floors At Work"` while the live
+option is `FLOORS AT WORK` — the CSV predates Albert's 2026-09-21 capitalisation. With
+`typecast` on, that difference silently creates a second supplier choice, which is
+exactly how the base acquired its existing placeholder junk. Without it, the write
+fails loudly instead, which is the better outcome.
 
 Anything not in this table is REFUSED — say it must be done in the Airtable UI:
 
