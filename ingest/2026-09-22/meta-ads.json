@@ -1,0 +1,36 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-09-22T08:11:44-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $357.74 spend, 28 leads, $12.78 CPL — Flooring Problems Campaign",
+      "summary": "No prior meta-ads.json was found within the last 7 days, so this run widened the window to 7 days (2026-09-15 to 2026-09-21) to cover the gap, capped per policy. Over that window Meta spent $357.74, all on the sole actively-delivering campaign, Flooring Problems Campaign, generating 28 leads at $12.78 CPL — in line with its preceding 7-day baseline (2026-09-08 to 2026-09-14: $364.00 / 28 leads, $13.00 CPL), so no anomaly. Account is ACTIVE and no ads are flagged.",
+      "timestamp": "2026-09-21T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 35774,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 35774,
+    "impressions": 8520,
+    "clicks": 224,
+    "leads": 28,
+    "cpl_cents": 1278,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "No meta-ads.json was found anywhere in the last 7 days of ingest/ history (most recent found in repo history at all: 2026-09-08), so per the ingest agent's window policy this run widened --days to 7 (2026-09-15 through 2026-09-21) rather than pulling just yesterday, capped at 7 days as instructed. Because that widened report window already spans the standard trailing 7-day lookback, the CPL baseline call was shifted to the preceding non-overlapping 7 days (2026-09-08 to 2026-09-14, via --since/--until) instead of a plain --days 7 call, which would have exactly duplicated the report window and made the comparison meaningless. This used 3 script invocations instead of the normal-day budget of 2 — flagging since it deviates from budget, though justified by the gap.",
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued at 28, matching the counted leads exactly, same pattern flagged on 2026-08-31, 2026-09-02, and 2026-09-07/08). No discrepancy in the counted total so far, but this recurs on effectively every run seeing this campaign — the script's lead-action set should be extended rather than continuing to hand-note it.",
+    "Could not confirm whether meta-ads actually ran and simply landed on an unmerged session branch between 2026-09-09 and 2026-09-21 (a pattern seen before per ingest/run-ledger.json's 2026-09-08 entry) versus genuinely not running — this session only has access to this branch's ingest/ history. Worth a cross-branch check if the gap recurs."
+  ]
+}

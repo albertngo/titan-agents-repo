@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "source": "bookkeeper",
+  "run_at": "2026-09-22T08:10:25-04:00",
+  "status": "error",
+  "error": "No Intuit/QuickBooks MCP connector is configured. .mcp.json defines only the 'ghl' server; no QBO/Intuit entry exists. No QBO credentials are present in .env or .env.example, and no QBO/INTUIT/QUICKBOOKS environment variables were found in the session environment. This source has never worked (see CLAUDE.md Departments table: Finance/bookkeeper is listed as 'blocked — the source has never worked'). Read-only ingest could not be attempted.",
+  "items": [],
+  "metrics": {
+    "payments_received_cents": 0,
+    "overdue_invoices": 0,
+    "uncategorized_txns": 0
+  },
+  "needs_attention": [
+    "bookkeeper-ingest-agent: QuickBooks/Intuit MCP connector is not configured — no bookkeeping data pulled today. Needs setup before Finance department can go active."
+  ]
+}
