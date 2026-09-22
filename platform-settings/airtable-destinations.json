@@ -13,6 +13,9 @@
       "primary_field_id": "fldx3byCOht5HbKmH",
       "merge_field_id": "fldx3byCOht5HbKmH",
       "_merge_field_note": "RULE 0. Upsert with fieldIdsToMergeOn: ['fldx3byCOht5HbKmH']. The SKU is immutable and the source of truth — it is NEVER included in the write payload, and no automated process may mint, reformat or 'correct' a stored one. A SKU that looks wrong is escalated, never edited.",
+      "_merge_field_create_exception": "CREATE vs UPDATE (2026-09-21, the first real create through this path). On an UPDATE the SKU stays out of the payload, exactly as above. On a CREATE it must be IN `fields`: Airtable matches an upsert on the values in `fields`, so withholding it produces a record blank in the merge key itself. That is not minting — it writes the SKU /process-price-list already minted, verbatim.",
+      "_new_record_source": "A plan's `new_product` action carries only the 6 DIFF_FIELDS that catalog_reconcile.py diffs, which is a diff and not a record. Writing just those lands a row with no Supplier, no Collection and no box size in the table Bert quotes customers from. The full record is the matching row of that run's <supplier>_airtable_upload_<date>.csv, keyed on SKU — read it there and write all of it. The plan says THAT a record is new; the upload CSV says WHAT it is. Found on LVP-FAWK-0084, 2026-09-21.",
+      "_stale_supplier_casing_trap": "An upload CSV built before 2026-09-21 carries title-case Supplier values ('Floors At Work') while the live options are now ALL CAPS ('FLOORS AT WORK'). Resolve every select against the live option list and leave typecast OFF: with typecast on that difference silently creates a duplicate choice, which is how this base acquired its placeholder junk. Without it the write fails loudly, which is the outcome you want.",
       "batch_cap": 50,
       "fields": {
         "SKU": "fldx3byCOht5HbKmH",

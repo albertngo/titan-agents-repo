@@ -300,6 +300,18 @@
    "error": null,
    "raw_ref": "db9e9a99-afb5-4173-8193-6ea68798d80a",
    "raw_ref_action_id": "cat-d68142097198"
+  },
+  {
+   "logged_at": "2026-09-21T21:50:00-04:00",
+   "agent": "airtable-actions-agent",
+   "type": "airtable_upsert_product",
+   "target": "LVP-FAWK-0084 \u2014 NAF 5mm Aqualuuuz Loose Lay Vinyl 7.36\" \u2014 Peking",
+   "content_summary": "Catalogue record CREATED (it did not exist; this was a create carrying the Lightspeed ID, not a backfill onto an existing row). 27 fields from the upload CSV, including Lightspeed ID db9e9a99-afb5-4173-8193-6ea68798d80a from the create earlier today. Supplier written as the live option FLOORS AT WORK, not the upload CSV's stale title-case 'Floors At Work'; every select value verified against the live option list first and typecast left off, so no duplicate choice was created. Verified after: exactly one record for this SKU, totalRecordCount 1. Written directly through the Airtable MCP tools rather than by the actions agent, same as the 2026-09-21 price writes.",
+   "approved_by": "Albert: explicit instruction, 2026-09-21 ('open PR and merge and the backfill')",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "recfS9sbjA3FJyPeu",
+   "raw_ref_action_id": "cat-166a3384cbda"
   }
  ]
 }

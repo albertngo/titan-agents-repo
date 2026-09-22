@@ -1,7 +1,7 @@
 {
  "contract_version": "catalog-plan-1",
  "supplier": "Floors At Work",
- "run_at": "2026-09-21T17:12:23.231971-04:00",
+ "run_at": "2026-09-21T21:47:33.903424-04:00",
  "status": "ok",
  "inputs": [
   {
@@ -10,8 +10,8 @@
   },
   {
    "file": "ingest/2026-09-21/lightspeed-products.json",
-   "products": 14835,
-   "run_at": "2026-09-21T13:06:25.436613-04:00"
+   "products": 14836,
+   "run_at": "2026-09-21T21:47:24.797328-04:00"
   },
   {
    "file": "ingest/2026-09-21/faw_airtable_existing.json",
@@ -27,11 +27,11 @@
   "confirmed_by": "bert-airtable-schema FAW subsection (Pallet price column = Cost/unit)"
  },
  "summary": {
-  "airtable_backfill_ls_id": 4,
+  "airtable_backfill_ls_id": 3,
   "airtable_upsert": 10,
-  "lightspeed_create": 4,
-  "actions_total": 18,
-  "uuid_recovered_by_sku": 0,
+  "lightspeed_create": 3,
+  "actions_total": 16,
+  "uuid_recovered_by_sku": 1,
   "blocked": 0,
   "warnings": 2,
   "rows_in": 11
@@ -201,17 +201,18 @@
    "op": "upsert",
    "sku": "LVP-FAWK-0084",
    "airtable_rec_id": null,
-   "ls_id": null,
+   "ls_id": "db9e9a99-afb5-4173-8193-6ea68798d80a",
    "handle": "LVP736VNYPEKING",
    "fields": {
     "Product name": "NAF 5mm Aqualuuuz Loose Lay Vinyl 7.36\" \u2014 Peking",
     "Category": "LVP",
     "Cost/unit": "2.29",
-    "Retail price/unit": "3.29"
+    "Retail price/unit": "3.29",
+    "Lightspeed ID": "db9e9a99-afb5-4173-8193-6ea68798d80a"
    },
    "before": null,
    "reason": "new_product",
-   "uuid_source": "lightspeed_on_create",
+   "uuid_source": "recovered_by_sku",
    "seq": 9
   },
   {
@@ -282,30 +283,6 @@
    "seq": 12
   },
   {
-   "id": "cat-d68142097198",
-   "target_system": "lightspeed",
-   "op": "create",
-   "sku": "LVP-FAWK-0084",
-   "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": "LVP736VNYPEKING",
-   "fields": {
-    "sku": "LVP-FAWK-0084",
-    "handle": "LVP736VNYPEKING",
-    "name": "NAFLVP-SPC - Aqualuuuz (Peking) | 7.36\" x 5mm x 1219mm - 19.75sf/b",
-    "supply_price": 2.29,
-    "price_excluding_tax": 3.29,
-    "description": "Product type: Flooring | Category: LVP | Material type: SPC core | Wear layer (mil): 20 | Install profile: Loose lay | Box size (sf): 19.75 | Boxes per skid: 55 | Waterproof: TRUE | Pet friendly: TRUE | Salesperson notes: NEW colourway, Sept 19 2026 FAW list, distinct size variant vs. established Aqualuuuz group. Sold per sq ft.",
-    "product_category": "SPC",
-    "brand_name": "NAF",
-    "supplier_name": "FLOORS AT WORK"
-   },
-   "before": null,
-   "reason": "new_product",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 13
-  },
-  {
    "id": "cat-13bbbf35572f",
    "target_system": "lightspeed",
    "op": "create",
@@ -327,7 +304,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 14
+   "seq": 13
   },
   {
    "id": "cat-b48f0a273d45",
@@ -345,7 +322,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 15
+   "seq": 14
   },
   {
    "id": "cat-cd8a27612078",
@@ -363,25 +340,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 16
-  },
-  {
-   "id": "cat-d274154d87f3",
-   "target_system": "airtable",
-   "op": "backfill_ls_id",
-   "sku": "LVP-FAWK-0084",
-   "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": "LVP736VNYPEKING",
-   "fields": {
-    "Lightspeed ID": "<assigned by Lightspeed on create>"
-   },
-   "before": {
-    "Lightspeed ID": null
-   },
-   "reason": "uuid_from_create",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 17
+   "seq": 15
   },
   {
    "id": "cat-02b156dbe5c4",
@@ -399,7 +358,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 18
+   "seq": 16
   }
  ],
  "blocked": [],
