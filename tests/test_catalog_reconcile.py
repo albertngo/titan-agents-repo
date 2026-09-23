@@ -449,6 +449,26 @@ class TestSfbAlwaysExposed(unittest.TestCase):
         self.assertIn("lightspeed", {a["target_system"] for a in actions})
 
 
+class TestSelectOptionsFromLiveSchema(unittest.TestCase):
+    """get_table_schema as served on 2026-09-23: ids and config.choices, no names.
+    Read naively it holds "no select options" and the pre-flight never runs."""
+
+    def test_the_nameless_live_shape_resolves_through_the_field_map(self):
+        raw = {"tables": [{"tableId": "tblfLXD3zkSdNQGbS", "fields": [
+            {"id": "fldRZJ5JW4G6Yig8x", "type": "singleSelect",
+             "config": {"choices": [{"id": "s1", "name": "IMPRESSIVE"},
+                                    {"id": "s2", "name": "FLOORS AT WORK"}]}},
+            {"id": "fld0sft4ZRTMHt5Hi", "type": "singleSelect",
+             "config": {"choices": [{"id": "s3", "name": "Clearance"}]}},
+            {"id": "fldx3byCOht5HbKmH", "type": "singleLineText"}]}]}
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as fh:
+            json.dump(raw, fh)
+        opts = cr.load_select_options(fh.name)
+        self.assertEqual({"IMPRESSIVE", "FLOORS AT WORK"}, opts["Supplier"])
+        self.assertEqual({"Clearance"}, opts["Stock status"])
+        self.assertNotIn("SKU", opts)
+
+
 class TestSelectOptionPreflight(unittest.TestCase):
     """A value Airtable lacks blocks the SKU on BOTH systems, before either write.
 

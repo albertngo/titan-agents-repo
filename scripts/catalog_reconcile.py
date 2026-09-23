@@ -507,6 +507,16 @@ def missing_select_options(fields, select_options):
     return out
 
 
+FIELD_MAP = Path(__file__).resolve().parent.parent / "platform-settings/airtable-master-catalogue-fields.json"
+
+
+def field_names_by_id():
+    try:
+        return {fid: f["name"] for fid, f in json.loads(FIELD_MAP.read_text())["fields"].items()}
+    except (OSError, KeyError, ValueError):
+        return {}
+
+
 def load_select_options(path):
     """{field name: set(option names)} from either of two shapes.
 
@@ -521,12 +531,18 @@ def load_select_options(path):
         if not any(isinstance(x, dict) for v in data.values() for x in v):
             return {k: set(v) for k, v in data.items()}
     found = {}
+    # get_table_schema as served on 2026-09-23 carries field ids and `config.choices`
+    # but no field names; names resolve through the committed id map. Older payloads
+    # carried `name` and `options.choices`; both shapes are read.
+    names = field_names_by_id()
 
     def walk(node):
         if isinstance(node, dict):
-            if node.get("type") in ("singleSelect", "multipleSelects") and node.get("name"):
-                choices = (node.get("options") or {}).get("choices") or []
-                found[node["name"]] = {c["name"] for c in choices if c.get("name")}
+            name = node.get("name") or names.get(node.get("id"))
+            if node.get("type") in ("singleSelect", "multipleSelects") and name:
+                holder = node.get("options") or node.get("config") or {}
+                choices = holder.get("choices") or []
+                found[name] = {c["name"] for c in choices if c.get("name")}
             for v in node.values():
                 walk(v)
         elif isinstance(node, list):
