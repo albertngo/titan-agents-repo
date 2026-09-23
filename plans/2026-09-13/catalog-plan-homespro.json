@@ -1,0 +1,766 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "Home's Pro",
+ "run_at": "2026-09-13T20:11:38.121966-04:00",
+ "status": "partial",
+ "inputs": [
+  {
+   "file": "ingest/2026-09-13/homespro_airtable_upload_2026-09-13.csv",
+   "rows": 13
+  },
+  {
+   "file": "/home/user/titan-agents-repo/ingest/2026-09-13/lightspeed-products.json",
+   "products": 14824,
+   "run_at": "2026-09-13T20:06:02.876519-04:00"
+  },
+  {
+   "file": "ingest/2026-09-13/homespro_airtable_existing.json",
+   "records": 0
+  },
+  {
+   "file": "ingest/2026-09-13/homespro_ls_upload_2026-09-13.csv",
+   "rows": 9
+  }
+ ],
+ "cost_basis": {
+  "value": "printed-as-cost",
+  "confirmed_by": "Albert 2026-09-12"
+ },
+ "summary": {
+  "airtable_backfill_ls_id": 9,
+  "airtable_upsert": 9,
+  "lightspeed_create": 9,
+  "actions_total": 27,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 4,
+  "warnings": 10,
+  "rows_in": 13
+ },
+ "actions": [
+  {
+   "id": "cat-af53c8de0bde",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-HMPR-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPRIXPEUNDERLAY",
+   "fields": {
+    "Product name": "Home's Pro - Sundry | Underlay | 3mm STC76 IIC77",
+    "Brand": "Home's Pro",
+    "Supplier": "Homespro",
+    "LS Handle / Parent ID": "HMPRIXPEUNDERLAY",
+    "Collection": "Accessories",
+    "Product type": "Underpad",
+    "Thickness (mm)": "3",
+    "IIC rating": "77",
+    "STC rating": "76",
+    "Cost/unit": "13.0",
+    "Retail price/unit": "14.0",
+    "Last price update": "2026-09-13",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "100",
+    "Active": "TRUE",
+    "Salesperson notes": "Sold by the roll (100 sq ft/roll) \u2014 Cost/unit and Retail price/unit are per-roll, not per-sf; Box size (sf) reflects roll coverage. LS: new product."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 1
+  },
+  {
+   "id": "cat-6471df546612",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-HMPR-0002",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPRMULTISURFACEPROTECTOR",
+   "fields": {
+    "Product name": "Home's Pro - Sundry | Floor Protection | 3.28ft x 49ft",
+    "Brand": "Home's Pro",
+    "Supplier": "Homespro",
+    "LS Handle / Parent ID": "HMPRMULTISURFACEPROTECTOR",
+    "Collection": "Accessories",
+    "Product type": "Underpad",
+    "Cost/unit": "17.5",
+    "Retail price/unit": "18.5",
+    "Last price update": "2026-09-13",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "161",
+    "Active": "TRUE",
+    "Salesperson notes": "Sold by the roll (161 sq ft/roll) \u2014 Cost/unit and Retail price/unit are per-roll, not per-sf; Box size (sf) reflects roll coverage. LS: new product."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 2
+  },
+  {
+   "id": "cat-dc5a7107affd",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-HMPR-0003",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPRTMOULDING",
+   "fields": {
+    "Product name": "Home's Pro - Transition | T-Moulding | SPC",
+    "Brand": "Home's Pro",
+    "Supplier": "Homespro",
+    "LS Handle / Parent ID": "HMPRTMOULDING",
+    "Collection": "Accessories",
+    "Product type": "Moulding",
+    "Category": "LVP",
+    "Cost/unit": "19.5",
+    "Retail price/unit": "20.5",
+    "Last price update": "2026-09-13",
+    "Price last changed by": "Cowork",
+    "Active": "TRUE",
+    "Salesperson notes": "Priced per piece. No dimensions printed on supplier sheet. Sold universally across Home's Pro's SPC and laminate lines (identical price on both sections of the sheet) \u2014 Category 'LVP' assigned as the majority case, flagged rather than silently decided (Unmapped Category). Not offered with the glue-down vinyl lines. LS: new product."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 3
+  },
+  {
+   "id": "cat-f2fe910c2cb1",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-HMPR-0004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPRSTAIRNOSING",
+   "fields": {
+    "Product name": "Home's Pro - Transition | Stair Nosing | SPC",
+    "Brand": "Home's Pro",
+    "Supplier": "Homespro",
+    "LS Handle / Parent ID": "HMPRSTAIRNOSING",
+    "Collection": "Accessories",
+    "Product type": "Moulding",
+    "Category": "LVP",
+    "Cost/unit": "24.5",
+    "Retail price/unit": "25.5",
+    "Last price update": "2026-09-13",
+    "Price last changed by": "Cowork",
+    "Active": "TRUE",
+    "Salesperson notes": "Priced per piece. No dimensions printed on supplier sheet. Sold universally across Home's Pro's SPC and laminate lines (identical price on both sections of the sheet) \u2014 Category 'LVP' assigned as the majority case, flagged rather than silently decided (Unmapped Category). Not offered with the glue-down vinyl lines. LS: new product."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 4
+  },
+  {
+   "id": "cat-9e1c5cf55194",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-HMPR-0005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPRREDUCER",
+   "fields": {
+    "Product name": "Home's Pro - Transition | Reducer | SPC",
+    "Brand": "Home's Pro",
+    "Supplier": "Homespro",
+    "LS Handle / Parent ID": "HMPRREDUCER",
+    "Collection": "Accessories",
+    "Product type": "Moulding",
+    "Category": "LVP",
+    "Cost/unit": "19.5",
+    "Retail price/unit": "20.5",
+    "Last price update": "2026-09-13",
+    "Price last changed by": "Cowork",
+    "Active": "TRUE",
+    "Salesperson notes": "Priced per piece. No dimensions printed on supplier sheet. Sold universally across Home's Pro's SPC and laminate lines (identical price on both sections of the sheet) \u2014 Category 'LVP' assigned as the majority case, flagged rather than silently decided (Unmapped Category). Not offered with the glue-down vinyl lines. LS: new product."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 5
+  },
+  {
+   "id": "cat-6417e7e9f1f9",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-HMPR-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPR12TUSCANY",
+   "fields": {
+    "Product name": "Home's Pro Tuscany 12mm Laminate",
+    "Brand": "Home's Pro",
+    "Supplier": "Homespro",
+    "LS Handle / Parent ID": "HMPR12TUSCANY",
+    "Collection": "Tuscany",
+    "Product type": "Flooring",
+    "Category": "Laminate",
+    "Thickness (mm)": "12",
+    "AC rating": "AC4",
+    "Install method": "Float",
+    "Cost/unit": "1.65",
+    "Retail price/unit": "2.65",
+    "Last price update": "2026-09-13",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "19.20",
+    "Active": "TRUE",
+    "Waterproof": "TRUE",
+    "Salesperson notes": "No width/length dimensions printed on supplier sheet. Sheet markets this as '72-Hour Waterproof' AC4 laminate. LS: new product."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 6
+  },
+  {
+   "id": "cat-ba677099386a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-HMPR-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPR55MILAN",
+   "fields": {
+    "Product name": "Home's Pro Milan 5.5mm SPC",
+    "Brand": "Home's Pro",
+    "Supplier": "Homespro",
+    "LS Handle / Parent ID": "HMPR55MILAN",
+    "Collection": "Milan",
+    "Product type": "Flooring",
+    "Category": "LVP",
+    "Material type": "SPC core",
+    "Thickness (mm)": "5.5",
+    "Wear layer (mil)": "12",
+    "Install method": "Float",
+    "Underpad included": "TRUE",
+    "Underpad type": "IXPE",
+    "Cost/unit": "1.45",
+    "Retail price/unit": "2.45",
+    "Last price update": "2026-09-13",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "23.90",
+    "Active": "TRUE",
+    "Waterproof": "TRUE",
+    "Salesperson notes": "No width/length dimensions printed on supplier sheet. LS: new product."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 7
+  },
+  {
+   "id": "cat-643dab14a91a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-HMPR-0004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPR8VANCOUVER",
+   "fields": {
+    "Product name": "Home's Pro Vancouver 8mm SPC",
+    "Brand": "Home's Pro",
+    "Supplier": "Homespro",
+    "LS Handle / Parent ID": "HMPR8VANCOUVER",
+    "Collection": "Vancouver",
+    "Product type": "Flooring",
+    "Category": "LVP",
+    "Material type": "SPC core",
+    "Thickness (mm)": "8",
+    "Wear layer (mil)": "22",
+    "Install method": "Float",
+    "Underpad included": "TRUE",
+    "Underpad type": "IXPE",
+    "Cost/unit": "1.98",
+    "Retail price/unit": "2.98",
+    "Last price update": "2026-09-13",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "17.92",
+    "Active": "TRUE",
+    "Waterproof": "TRUE",
+    "Salesperson notes": "No width/length dimensions printed on supplier sheet. Sheet labels this 'LONG PLANK' format (not a Layout pattern enum value). No live Lightspeed match found under this name."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 8
+  },
+  {
+   "id": "cat-bc228db9ddd6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVT-HMPR-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPR3HOLLAND",
+   "fields": {
+    "Product name": "Home's Pro Holland 3mm LVT",
+    "Brand": "Home's Pro",
+    "Supplier": "Homespro",
+    "LS Handle / Parent ID": "HMPR3HOLLAND",
+    "Collection": "Holland",
+    "Product type": "Flooring",
+    "Category": "LVT",
+    "Material type": "SPC core",
+    "Thickness (mm)": "3",
+    "Wear layer (mil)": "20",
+    "Install method": "Glue down",
+    "Cost/unit": "1.25",
+    "Retail price/unit": "2.25",
+    "Last price update": "2026-09-13",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "34.58",
+    "Active": "TRUE",
+    "Waterproof": "TRUE",
+    "Salesperson notes": "No width/length dimensions printed on supplier sheet. LS: new product."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 9
+  },
+  {
+   "id": "cat-a34478c69b39",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-HMPR-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPRIXPEUNDERLAY",
+   "fields": {
+    "sku": "ACC-HMPR-0001",
+    "handle": "HMPRIXPEUNDERLAY",
+    "name": "Home's Pro - Sundry | Underlay | 3mm STC76 IIC77 - 100.00sf/b",
+    "supply_price": 13.0,
+    "price_excluding_tax": 14.0,
+    "product_category": "ACCESSORIES",
+    "brand_name": "Home's Pro",
+    "supplier_name": "Home's Pro"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 10
+  },
+  {
+   "id": "cat-bf838a74d721",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-HMPR-0002",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPRMULTISURFACEPROTECTOR",
+   "fields": {
+    "sku": "ACC-HMPR-0002",
+    "handle": "HMPRMULTISURFACEPROTECTOR",
+    "name": "Home's Pro - Sundry | Floor Protection | 3.28ft x 49ft - 161.00sf/b",
+    "supply_price": 17.5,
+    "price_excluding_tax": 18.5,
+    "product_category": "ACCESSORIES",
+    "brand_name": "Home's Pro",
+    "supplier_name": "Home's Pro"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 11
+  },
+  {
+   "id": "cat-256c188afdd6",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-HMPR-0003",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPRTMOULDING",
+   "fields": {
+    "sku": "ACC-HMPR-0003",
+    "handle": "HMPRTMOULDING",
+    "name": "Home's Pro - Transition | T-Moulding | SPC",
+    "supply_price": 19.5,
+    "price_excluding_tax": 20.5,
+    "product_category": "ACCESSORIES",
+    "brand_name": "Home's Pro",
+    "supplier_name": "Home's Pro"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 12
+  },
+  {
+   "id": "cat-35f074ab96df",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-HMPR-0004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPRSTAIRNOSING",
+   "fields": {
+    "sku": "ACC-HMPR-0004",
+    "handle": "HMPRSTAIRNOSING",
+    "name": "Home's Pro - Transition | Stair Nosing | SPC",
+    "supply_price": 24.5,
+    "price_excluding_tax": 25.5,
+    "product_category": "ACCESSORIES",
+    "brand_name": "Home's Pro",
+    "supplier_name": "Home's Pro"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 13
+  },
+  {
+   "id": "cat-18cb50b11546",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-HMPR-0005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPRREDUCER",
+   "fields": {
+    "sku": "ACC-HMPR-0005",
+    "handle": "HMPRREDUCER",
+    "name": "Home's Pro - Transition | Reducer | SPC",
+    "supply_price": 19.5,
+    "price_excluding_tax": 20.5,
+    "product_category": "ACCESSORIES",
+    "brand_name": "Home's Pro",
+    "supplier_name": "Home's Pro"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 14
+  },
+  {
+   "id": "cat-776c97051ca3",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LAM-HMPR-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPR12TUSCANY",
+   "fields": {
+    "sku": "LAM-HMPR-0001",
+    "handle": "HMPR12TUSCANY",
+    "name": "HMPRLAM - Tuscany 72H Waterproof AC4 | 12mm - 19.20sf/b",
+    "supply_price": 1.65,
+    "price_excluding_tax": 2.65,
+    "product_category": "FLOORING / LAMINATE",
+    "brand_name": "Home's Pro",
+    "supplier_name": "Home's Pro"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 15
+  },
+  {
+   "id": "cat-8552b2b63933",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-HMPR-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPR55MILAN",
+   "fields": {
+    "sku": "LVP-HMPR-0001",
+    "handle": "HMPR55MILAN",
+    "name": "HMPRLVP - Milan Click | 5.5mm x 12mil - 23.90sf/b",
+    "supply_price": 1.45,
+    "price_excluding_tax": 2.45,
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "Home's Pro",
+    "supplier_name": "Home's Pro"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 16
+  },
+  {
+   "id": "cat-d428251deb67",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-HMPR-0004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPR8VANCOUVER",
+   "fields": {
+    "sku": "LVP-HMPR-0004",
+    "handle": "HMPR8VANCOUVER",
+    "name": "HMPRLVP - Vancouver Click | 8mm x 22mil - 17.92sf/b",
+    "supply_price": 1.98,
+    "price_excluding_tax": 2.98,
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "Home's Pro",
+    "supplier_name": "Home's Pro"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 17
+  },
+  {
+   "id": "cat-28612d1fa890",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVT-HMPR-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPR3HOLLAND",
+   "fields": {
+    "sku": "LVT-HMPR-0001",
+    "handle": "HMPR3HOLLAND",
+    "name": "HMPRLVT - Holland Glue Down | 3mm x 20mil - 34.58sf/b",
+    "supply_price": 1.25,
+    "price_excluding_tax": 2.25,
+    "product_category": "FLOORING / VINYL / SPC",
+    "brand_name": "Home's Pro",
+    "supplier_name": "Home's Pro"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 18
+  },
+  {
+   "id": "cat-50be83630c98",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-HMPR-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPRIXPEUNDERLAY",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 19
+  },
+  {
+   "id": "cat-ddc51ad85971",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-HMPR-0002",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPRMULTISURFACEPROTECTOR",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 20
+  },
+  {
+   "id": "cat-8a5fd684b363",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-HMPR-0003",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPRTMOULDING",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 21
+  },
+  {
+   "id": "cat-ed304fb8480a",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-HMPR-0004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPRSTAIRNOSING",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 22
+  },
+  {
+   "id": "cat-b78e09c4703e",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-HMPR-0005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPRREDUCER",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 23
+  },
+  {
+   "id": "cat-766e804d831d",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LAM-HMPR-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPR12TUSCANY",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 24
+  },
+  {
+   "id": "cat-0fb32617a480",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-HMPR-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPR55MILAN",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 25
+  },
+  {
+   "id": "cat-2483282040eb",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-HMPR-0004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPR8VANCOUVER",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 26
+  },
+  {
+   "id": "cat-027b8f9fd1db",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVT-HMPR-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "HMPR3HOLLAND",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 27
+  }
+ ],
+ "blocked": [
+  {
+   "sku": "LVP-HMPR-0002",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  },
+  {
+   "sku": "LVP-HMPR-0003",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  },
+  {
+   "sku": "LVP-HMPR-0005",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  },
+  {
+   "sku": "LVT-HMPR-0002",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  }
+ ],
+ "warnings": [
+  {
+   "sku": "LVP-HMPR-0001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-HMPR-0002",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-HMPR-0003",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-HMPR-0004",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-HMPR-0005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVT-HMPR-0001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVT' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVT-HMPR-0002",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVT' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-HMPR-0003",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-HMPR-0004",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-HMPR-0005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  }
+ ]
+}

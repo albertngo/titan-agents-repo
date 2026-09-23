@@ -1,0 +1,1179 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "Vizion",
+ "run_at": "2026-09-18T07:24:19.596769-04:00",
+ "status": "partial",
+ "inputs": [
+  {
+   "file": "ingest/2026-09-18/vizion_airtable_upload_2026-09-18.csv",
+   "rows": 67
+  },
+  {
+   "file": "ingest/2026-09-18/lightspeed-products.json",
+   "products": 14835,
+   "run_at": "2026-09-18T07:15:52.062445-04:00"
+  },
+  {
+   "file": "ingest/2026-09-18/vizion_airtable_existing.json",
+   "records": 52
+  },
+  {
+   "file": "ingest/2026-09-18/vizion_ls_upload_2026-09-18.csv",
+   "rows": 15
+  }
+ ],
+ "cost_basis": {
+  "value": "printed-as-cost",
+  "confirmed_by": "Albert 2026-09-10"
+ },
+ "summary": {
+  "airtable_backfill_ls_id": 15,
+  "airtable_upsert": 15,
+  "lightspeed_create": 15,
+  "actions_total": 45,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 7,
+  "warnings": 34,
+  "rows_in": 67
+ },
+ "actions": [
+  {
+   "id": "cat-5e7034e0f007",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-VIZN-0012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNACCREDUCERSPC10X45X2400MM",
+   "fields": {
+    "Product name": "Vizion - Transition | Reducer | SPC | 10 x 45 x 2400 mm",
+    "Category": "LVP",
+    "Cost/unit": "12",
+    "Retail price/unit": "22"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 1
+  },
+  {
+   "id": "cat-03b876680df7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V7010",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP7YELLOWSTONE",
+   "fields": {
+    "Product name": "Vizion 7mm Marvelous 7.2\" \u2014 Yellowstone",
+    "Supplier SKU": "V7010",
+    "Category": "LVP",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "2.69"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 2
+  },
+  {
+   "id": "cat-1fab4a925db9",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V7011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP7BRYCE",
+   "fields": {
+    "Product name": "Vizion 7mm Marvelous 7.2\" \u2014 Bryce",
+    "Supplier SKU": "V7011",
+    "Category": "LVP",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "2.69"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 3
+  },
+  {
+   "id": "cat-ea41bee3381d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V7012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP7CANYON",
+   "fields": {
+    "Product name": "Vizion 7mm Marvelous 7.2\" \u2014 Canyon",
+    "Supplier SKU": "V7012",
+    "Category": "LVP",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "2.69"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 4
+  },
+  {
+   "id": "cat-60afb2379f6d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V8009",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP8AULAVIK",
+   "fields": {
+    "Product name": "Vizion 8mm Marvelous 7.2\" \u2014 Aulavik",
+    "Supplier SKU": "V8009",
+    "Category": "LVP",
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 5
+  },
+  {
+   "id": "cat-8acb9a42023b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V8010",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP8GLACIER",
+   "fields": {
+    "Product name": "Vizion 8mm Marvelous 7.2\" \u2014 Glacier",
+    "Supplier SKU": "V8010",
+    "Category": "LVP",
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 6
+  },
+  {
+   "id": "cat-e679f6fbfe17",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V8011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP8JASPER",
+   "fields": {
+    "Product name": "Vizion 8mm Marvelous 7.2\" \u2014 Jasper",
+    "Supplier SKU": "V8011",
+    "Category": "LVP",
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 7
+  },
+  {
+   "id": "cat-fbc0a2820b85",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V8012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP8RIDING",
+   "fields": {
+    "Product name": "Vizion 8mm Marvelous 7.2\" \u2014 Riding",
+    "Supplier SKU": "V8012",
+    "Category": "LVP",
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 8
+  },
+  {
+   "id": "cat-b349eed37d0e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V9001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP9SORRENTO",
+   "fields": {
+    "Product name": "Vizion 9mm Prestige 7.2\" \u2014 Sorrento",
+    "Supplier SKU": "V9001",
+    "Category": "LVP",
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 9
+  },
+  {
+   "id": "cat-244582e28d18",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V9002",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP9CAPRI",
+   "fields": {
+    "Product name": "Vizion 9mm Prestige 7.2\" \u2014 Capri",
+    "Supplier SKU": "V9002",
+    "Category": "LVP",
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 10
+  },
+  {
+   "id": "cat-cc71cc1b0e63",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V9003",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP9MADEIRA",
+   "fields": {
+    "Product name": "Vizion 9mm Prestige 7.2\" \u2014 Madeira",
+    "Supplier SKU": "V9003",
+    "Category": "LVP",
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 11
+  },
+  {
+   "id": "cat-caec9d3ddb54",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V9004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP9CANNES",
+   "fields": {
+    "Product name": "Vizion 9mm Prestige 7.2\" \u2014 Cannes",
+    "Supplier SKU": "V9004",
+    "Category": "LVP",
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 12
+  },
+  {
+   "id": "cat-b85ca469663b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V9005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP9AMALFI",
+   "fields": {
+    "Product name": "Vizion 9mm Prestige 7.2\" \u2014 Amalfi",
+    "Supplier SKU": "V9005",
+    "Category": "LVP",
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 13
+  },
+  {
+   "id": "cat-81d157b06600",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-VL505",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVPLL5KITSILANO",
+   "fields": {
+    "Product name": "Vizion 5mm Marvelous Loose Lay 9.14\" \u2014 Kitsilano",
+    "Supplier SKU": "VL505",
+    "Category": "LVP",
+    "Cost/unit": "2.39",
+    "Retail price/unit": "3.39"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 14
+  },
+  {
+   "id": "cat-bdbc273ce0ab",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-VL506",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVPLL5ARBUTUS",
+   "fields": {
+    "Product name": "Vizion 5mm Marvelous Loose Lay 9.14\" \u2014 Arbutus",
+    "Supplier SKU": "VL506",
+    "Category": "LVP",
+    "Cost/unit": "2.39",
+    "Retail price/unit": "3.39"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 15
+  },
+  {
+   "id": "cat-bec7a7ad1359",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ACC-VIZN-0012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNACCREDUCERSPC10X45X2400MM",
+   "fields": {
+    "sku": "ACC-VIZN-0012",
+    "handle": "VIZNACCREDUCERSPC10X45X2400MM",
+    "name": "Vizion - Transition | Reducer | SPC | 10 x 45 x 2400 mm",
+    "supply_price": 12.0,
+    "price_excluding_tax": 22.0,
+    "description": "Material type: SPC core | Sold per piece | Salesperson notes: COST BASIS CONFIRMED 2026-09-10 by Albert \u2014 the printed '> PRICE' column is Titan's dealer cost, as-is (no multiplier); Retail = Cost + $1.00. New reducer variant (10mm wide vs the existing 8mm SPC reducer), printed in the Prestige 9MM Luxury Vinyl section of the 2026-08-01 list. Priced per piece. Retail = Cost + $10 per the cross-supplier accessory markup standard. Trim material not stated by Vizion.",
+    "brand_name": "Vizion",
+    "supplier_name": "Vizion",
+    "product_category": "ACCESSORIES"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 16
+  },
+  {
+   "id": "cat-22fd7569f9cb",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-VIZN-V7010",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP7YELLOWSTONE",
+   "fields": {
+    "sku": "LVP-VIZN-V7010",
+    "handle": "VIZNLVP7YELLOWSTONE",
+    "name": "VIZNLVP-SPC - Marvelous 7MM Luxury Vinyl (Yellowstone) | 7.2\" x 7mm x 60.8\" - 24.35sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 2.69,
+    "description": "Material type: SPC core | Boxes per skid: 50 | Waterproof: TRUE | Box size (sf): 24.35 | Salesperson notes: COST BASIS CONFIRMED 2026-09-10 by Albert \u2014 the printed '> PRICE' column is Titan's dealer cost, as-is (no multiplier); Retail = Cost + $1.00. Core not stated on the price list \u2014 SPC core assumed per the global rule for unlabelled rigid vinyl. Wear layer, install profile and locking system are not published by Vizion.",
+    "brand_name": "Vizion",
+    "supplier_name": "Vizion",
+    "product_category": "SPC"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 17
+  },
+  {
+   "id": "cat-f2641596cb83",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-VIZN-V7011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP7BRYCE",
+   "fields": {
+    "sku": "LVP-VIZN-V7011",
+    "handle": "VIZNLVP7BRYCE",
+    "name": "VIZNLVP-SPC - Marvelous 7MM Luxury Vinyl (Bryce) | 7.2\" x 7mm x 60.8\" - 24.35sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 2.69,
+    "description": "Material type: SPC core | Boxes per skid: 50 | Waterproof: TRUE | Box size (sf): 24.35 | Salesperson notes: COST BASIS CONFIRMED 2026-09-10 by Albert \u2014 the printed '> PRICE' column is Titan's dealer cost, as-is (no multiplier); Retail = Cost + $1.00. Core not stated on the price list \u2014 SPC core assumed per the global rule for unlabelled rigid vinyl. Wear layer, install profile and locking system are not published by Vizion.",
+    "brand_name": "Vizion",
+    "supplier_name": "Vizion",
+    "product_category": "SPC"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 18
+  },
+  {
+   "id": "cat-8df5e2153d66",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-VIZN-V7012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP7CANYON",
+   "fields": {
+    "sku": "LVP-VIZN-V7012",
+    "handle": "VIZNLVP7CANYON",
+    "name": "VIZNLVP-SPC - Marvelous 7MM Luxury Vinyl (Canyon) | 7.2\" x 7mm x 60.8\" - 24.35sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 2.69,
+    "description": "Material type: SPC core | Boxes per skid: 50 | Waterproof: TRUE | Box size (sf): 24.35 | Salesperson notes: COST BASIS CONFIRMED 2026-09-10 by Albert \u2014 the printed '> PRICE' column is Titan's dealer cost, as-is (no multiplier); Retail = Cost + $1.00. Core not stated on the price list \u2014 SPC core assumed per the global rule for unlabelled rigid vinyl. Wear layer, install profile and locking system are not published by Vizion.",
+    "brand_name": "Vizion",
+    "supplier_name": "Vizion",
+    "product_category": "SPC"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 19
+  },
+  {
+   "id": "cat-9556e51ed45d",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-VIZN-V8009",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP8AULAVIK",
+   "fields": {
+    "sku": "LVP-VIZN-V8009",
+    "handle": "VIZNLVP8AULAVIK",
+    "name": "VIZNLVP-SPC - Marvelous 8MM Luxury Vinyl (Aulavik) | 7.2\" x 8mm x 60.8\" - 21.31sf/b",
+    "supply_price": 1.89,
+    "price_excluding_tax": 2.89,
+    "description": "Material type: SPC core | Boxes per skid: 45 | Waterproof: TRUE | Box size (sf): 21.31 | Salesperson notes: COST BASIS CONFIRMED 2026-09-10 by Albert \u2014 the printed '> PRICE' column is Titan's dealer cost, as-is (no multiplier); Retail = Cost + $1.00. Core not stated on the price list \u2014 SPC core assumed per the global rule for unlabelled rigid vinyl. Wear layer, install profile and locking system are not published by Vizion.",
+    "brand_name": "Vizion",
+    "supplier_name": "Vizion",
+    "product_category": "SPC"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 20
+  },
+  {
+   "id": "cat-d51cb529013c",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-VIZN-V8010",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP8GLACIER",
+   "fields": {
+    "sku": "LVP-VIZN-V8010",
+    "handle": "VIZNLVP8GLACIER",
+    "name": "VIZNLVP-SPC - Marvelous 8MM Luxury Vinyl (Glacier) | 7.2\" x 8mm x 60.8\" - 21.31sf/b",
+    "supply_price": 1.89,
+    "price_excluding_tax": 2.89,
+    "description": "Material type: SPC core | Boxes per skid: 45 | Waterproof: TRUE | Box size (sf): 21.31 | Salesperson notes: COST BASIS CONFIRMED 2026-09-10 by Albert \u2014 the printed '> PRICE' column is Titan's dealer cost, as-is (no multiplier); Retail = Cost + $1.00. Core not stated on the price list \u2014 SPC core assumed per the global rule for unlabelled rigid vinyl. Wear layer, install profile and locking system are not published by Vizion.",
+    "brand_name": "Vizion",
+    "supplier_name": "Vizion",
+    "product_category": "SPC"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 21
+  },
+  {
+   "id": "cat-26077cfca69e",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-VIZN-V8011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP8JASPER",
+   "fields": {
+    "sku": "LVP-VIZN-V8011",
+    "handle": "VIZNLVP8JASPER",
+    "name": "VIZNLVP-SPC - Marvelous 8MM Luxury Vinyl (Jasper) | 7.2\" x 8mm x 60.8\" - 21.31sf/b",
+    "supply_price": 1.89,
+    "price_excluding_tax": 2.89,
+    "description": "Material type: SPC core | Boxes per skid: 45 | Waterproof: TRUE | Box size (sf): 21.31 | Salesperson notes: COST BASIS CONFIRMED 2026-09-10 by Albert \u2014 the printed '> PRICE' column is Titan's dealer cost, as-is (no multiplier); Retail = Cost + $1.00. Core not stated on the price list \u2014 SPC core assumed per the global rule for unlabelled rigid vinyl. Wear layer, install profile and locking system are not published by Vizion.",
+    "brand_name": "Vizion",
+    "supplier_name": "Vizion",
+    "product_category": "SPC"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 22
+  },
+  {
+   "id": "cat-d8f4e8514c93",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-VIZN-V8012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP8RIDING",
+   "fields": {
+    "sku": "LVP-VIZN-V8012",
+    "handle": "VIZNLVP8RIDING",
+    "name": "VIZNLVP-SPC - Marvelous 8MM Luxury Vinyl (Riding) | 7.2\" x 8mm x 60.8\" - 21.31sf/b",
+    "supply_price": 1.89,
+    "price_excluding_tax": 2.89,
+    "description": "Material type: SPC core | Boxes per skid: 45 | Waterproof: TRUE | Box size (sf): 21.31 | Salesperson notes: COST BASIS CONFIRMED 2026-09-10 by Albert \u2014 the printed '> PRICE' column is Titan's dealer cost, as-is (no multiplier); Retail = Cost + $1.00. Core not stated on the price list \u2014 SPC core assumed per the global rule for unlabelled rigid vinyl. Wear layer, install profile and locking system are not published by Vizion.",
+    "brand_name": "Vizion",
+    "supplier_name": "Vizion",
+    "product_category": "SPC"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 23
+  },
+  {
+   "id": "cat-88bf6440516d",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-VIZN-V9001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP9SORRENTO",
+   "fields": {
+    "sku": "LVP-VIZN-V9001",
+    "handle": "VIZNLVP9SORRENTO",
+    "name": "VIZNLVP-SPC - Prestige 9MM Luxury Vinyl (Sorrento) | 7.2\" x 9mm x 60\" - 18.25sf/b",
+    "supply_price": 2.29,
+    "price_excluding_tax": 3.29,
+    "description": "Material type: SPC core | Boxes per skid: 60 | Waterproof: TRUE | Box size (sf): 18.25 | Salesperson notes: COST BASIS CONFIRMED 2026-09-10 by Albert \u2014 the printed '> PRICE' column is Titan's dealer cost, as-is (no multiplier); Retail = Cost + $1.00. New collection (Prestige 9MM Luxury Vinyl), first appears on the 2026-08-01 list. Core not stated \u2014 SPC core assumed per the global rule for unlabelled rigid vinyl. Wear layer, install profile and locking system are not published by Vizion.",
+    "brand_name": "Vizion",
+    "supplier_name": "Vizion",
+    "product_category": "SPC"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 24
+  },
+  {
+   "id": "cat-cc25ae701548",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-VIZN-V9002",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP9CAPRI",
+   "fields": {
+    "sku": "LVP-VIZN-V9002",
+    "handle": "VIZNLVP9CAPRI",
+    "name": "VIZNLVP-SPC - Prestige 9MM Luxury Vinyl (Capri) | 7.2\" x 9mm x 60\" - 18.25sf/b",
+    "supply_price": 2.29,
+    "price_excluding_tax": 3.29,
+    "description": "Material type: SPC core | Boxes per skid: 60 | Waterproof: TRUE | Box size (sf): 18.25 | Salesperson notes: COST BASIS CONFIRMED 2026-09-10 by Albert \u2014 the printed '> PRICE' column is Titan's dealer cost, as-is (no multiplier); Retail = Cost + $1.00. New collection (Prestige 9MM Luxury Vinyl), first appears on the 2026-08-01 list. Core not stated \u2014 SPC core assumed per the global rule for unlabelled rigid vinyl. Wear layer, install profile and locking system are not published by Vizion.",
+    "brand_name": "Vizion",
+    "supplier_name": "Vizion",
+    "product_category": "SPC"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 25
+  },
+  {
+   "id": "cat-011d7c7c18aa",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-VIZN-V9003",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP9MADEIRA",
+   "fields": {
+    "sku": "LVP-VIZN-V9003",
+    "handle": "VIZNLVP9MADEIRA",
+    "name": "VIZNLVP-SPC - Prestige 9MM Luxury Vinyl (Madeira) | 7.2\" x 9mm x 60\" - 18.25sf/b",
+    "supply_price": 2.29,
+    "price_excluding_tax": 3.29,
+    "description": "Material type: SPC core | Boxes per skid: 60 | Waterproof: TRUE | Box size (sf): 18.25 | Salesperson notes: COST BASIS CONFIRMED 2026-09-10 by Albert \u2014 the printed '> PRICE' column is Titan's dealer cost, as-is (no multiplier); Retail = Cost + $1.00. New collection (Prestige 9MM Luxury Vinyl), first appears on the 2026-08-01 list. Core not stated \u2014 SPC core assumed per the global rule for unlabelled rigid vinyl. Wear layer, install profile and locking system are not published by Vizion.",
+    "brand_name": "Vizion",
+    "supplier_name": "Vizion",
+    "product_category": "SPC"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 26
+  },
+  {
+   "id": "cat-bdff3d5fcf89",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-VIZN-V9004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP9CANNES",
+   "fields": {
+    "sku": "LVP-VIZN-V9004",
+    "handle": "VIZNLVP9CANNES",
+    "name": "VIZNLVP-SPC - Prestige 9MM Luxury Vinyl (Cannes) | 7.2\" x 9mm x 60\" - 18.25sf/b",
+    "supply_price": 2.29,
+    "price_excluding_tax": 3.29,
+    "description": "Material type: SPC core | Boxes per skid: 60 | Waterproof: TRUE | Box size (sf): 18.25 | Salesperson notes: COST BASIS CONFIRMED 2026-09-10 by Albert \u2014 the printed '> PRICE' column is Titan's dealer cost, as-is (no multiplier); Retail = Cost + $1.00. New collection (Prestige 9MM Luxury Vinyl), first appears on the 2026-08-01 list. Core not stated \u2014 SPC core assumed per the global rule for unlabelled rigid vinyl. Wear layer, install profile and locking system are not published by Vizion.",
+    "brand_name": "Vizion",
+    "supplier_name": "Vizion",
+    "product_category": "SPC"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 27
+  },
+  {
+   "id": "cat-5f5d5b7e2125",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-VIZN-V9005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP9AMALFI",
+   "fields": {
+    "sku": "LVP-VIZN-V9005",
+    "handle": "VIZNLVP9AMALFI",
+    "name": "VIZNLVP-SPC - Prestige 9MM Luxury Vinyl (Amalfi) | 7.2\" x 9mm x 60\" - 18.25sf/b",
+    "supply_price": 2.29,
+    "price_excluding_tax": 3.29,
+    "description": "Material type: SPC core | Boxes per skid: 60 | Waterproof: TRUE | Box size (sf): 18.25 | Salesperson notes: COST BASIS CONFIRMED 2026-09-10 by Albert \u2014 the printed '> PRICE' column is Titan's dealer cost, as-is (no multiplier); Retail = Cost + $1.00. New collection (Prestige 9MM Luxury Vinyl), first appears on the 2026-08-01 list. Core not stated \u2014 SPC core assumed per the global rule for unlabelled rigid vinyl. Wear layer, install profile and locking system are not published by Vizion.",
+    "brand_name": "Vizion",
+    "supplier_name": "Vizion",
+    "product_category": "SPC"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 28
+  },
+  {
+   "id": "cat-40cc4f200cdf",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-VIZN-VL505",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVPLL5KITSILANO",
+   "fields": {
+    "sku": "LVP-VIZN-VL505",
+    "handle": "VIZNLVPLL5KITSILANO",
+    "name": "VIZNLVP-LL - Marvelous 5MM Loose Lay (Kitsilano) | 9.14\" x 5mm x 60.32\" - 30.61sf/b",
+    "supply_price": 2.39,
+    "price_excluding_tax": 3.39,
+    "description": "Material type: Loose-lay vinyl | Install method: Loose lay | Boxes per skid: 40 | Waterproof: TRUE | Box size (sf): 30.61 | Salesperson notes: COST BASIS CONFIRMED 2026-09-10 by Albert \u2014 the printed '> PRICE' column is Titan's dealer cost, as-is (no multiplier); Retail = Cost + $1.00. Loose lay stated on the price list. Wear layer not published by Vizion.",
+    "brand_name": "Vizion",
+    "supplier_name": "Vizion",
+    "product_category": "LOOSE LAY"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 29
+  },
+  {
+   "id": "cat-31be9c9a0555",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-VIZN-VL506",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVPLL5ARBUTUS",
+   "fields": {
+    "sku": "LVP-VIZN-VL506",
+    "handle": "VIZNLVPLL5ARBUTUS",
+    "name": "VIZNLVP-LL - Marvelous 5MM Loose Lay (Arbutus) | 9.14\" x 5mm x 60.32\" - 30.61sf/b",
+    "supply_price": 2.39,
+    "price_excluding_tax": 3.39,
+    "description": "Material type: Loose-lay vinyl | Install method: Loose lay | Boxes per skid: 40 | Waterproof: TRUE | Box size (sf): 30.61 | Salesperson notes: COST BASIS CONFIRMED 2026-09-10 by Albert \u2014 the printed '> PRICE' column is Titan's dealer cost, as-is (no multiplier); Retail = Cost + $1.00. Loose lay stated on the price list. Wear layer not published by Vizion.",
+    "brand_name": "Vizion",
+    "supplier_name": "Vizion",
+    "product_category": "LOOSE LAY"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 30
+  },
+  {
+   "id": "cat-7b45583925ee",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ACC-VIZN-0012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNACCREDUCERSPC10X45X2400MM",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 31
+  },
+  {
+   "id": "cat-f458df5f8f02",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-VIZN-V7010",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP7YELLOWSTONE",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 32
+  },
+  {
+   "id": "cat-333b7e1957dd",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-VIZN-V7011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP7BRYCE",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 33
+  },
+  {
+   "id": "cat-74135463b7a1",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-VIZN-V7012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP7CANYON",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 34
+  },
+  {
+   "id": "cat-51131bd4f178",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-VIZN-V8009",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP8AULAVIK",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 35
+  },
+  {
+   "id": "cat-b3385b0b3540",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-VIZN-V8010",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP8GLACIER",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 36
+  },
+  {
+   "id": "cat-c41934b7b575",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-VIZN-V8011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP8JASPER",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 37
+  },
+  {
+   "id": "cat-40b47cebf61e",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-VIZN-V8012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP8RIDING",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 38
+  },
+  {
+   "id": "cat-04817f00cac2",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-VIZN-V9001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP9SORRENTO",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 39
+  },
+  {
+   "id": "cat-ecee1b691782",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-VIZN-V9002",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP9CAPRI",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 40
+  },
+  {
+   "id": "cat-acc9eae3bac4",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-VIZN-V9003",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP9MADEIRA",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 41
+  },
+  {
+   "id": "cat-624a0c6d478b",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-VIZN-V9004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP9CANNES",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 42
+  },
+  {
+   "id": "cat-9c3f8a2f9685",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-VIZN-V9005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVP9AMALFI",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 43
+  },
+  {
+   "id": "cat-5dbb73b4eee7",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-VIZN-VL505",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVPLL5KITSILANO",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 44
+  },
+  {
+   "id": "cat-c820fa34540e",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-VIZN-VL506",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "VIZNLVPLL5ARBUTUS",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 45
+  }
+ ],
+ "blocked": [
+  {
+   "sku": "LVP-VIZN-V7002",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "f51bee12-5fdd-47bb-9e75-368556b0aa0d belongs to 11476 (VIZVIN - 7mm Arches 7.2\" x 60.8\" 24.35sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LVP-VIZN-V7003",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "3c8ab5f8-faeb-4d71-9e50-8148e7f88998 belongs to 11445 (VIZVIN - 7mm Denali 7.2\" x 60.8\" 24.35sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LVP-VIZN-V7004",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "ccfaf7cc-4305-4780-a780-3b55015921b8 belongs to 11449 (VIZVIN - 7mm Everglades 7.2\" x 60.8\" 24.35sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LVP-VIZN-V7008",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "68dea42e-ab5f-46bc-961b-ef49e9915eab belongs to V-SPC-V7008 (VIZVIN - 7mm Zion 7.2\" x 60.8\" 24.35sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LVP-VIZN-V8001",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "51237a3f-4722-48c9-9cc7-20743ae3d2fb belongs to 11414 (VIZVIN - 8mm Banff 7.2\" x 60.8\" 21.31sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LVP-VIZN-V8004",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "81e185ca-7a16-4d8b-a3e1-c81efb9c8688 belongs to 11440 (VIZVIN - 8mm Wapusk 7.2\" x 60.8\" 21.31sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LVP-VIZN-V8006",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "670e9c37-9973-415a-8ff3-e3ad8ef4aaf1 belongs to 11419 (VIZVIN - 8mm Forillon 7.2\" x 60.8\" 21.31sf/b) \u2014 writing it would overwrite that product"
+  }
+ ],
+ "warnings": [
+  {
+   "sku": "LVP-VIZN-V7001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V7005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V7006",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V7007",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V7009",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V8002",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V8003",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V8005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V8007",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V8008",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-VL501",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-VL502",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-VL503",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-VL504",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V7010",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V7011",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V7012",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V8009",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V8010",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V8011",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V8012",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V9001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V9002",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V9003",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V9004",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-V9005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-VL505",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-VIZN-VL506",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-VIZN-0001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-VIZN-0002",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-VIZN-0003",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-VIZN-0004",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-VIZN-0005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-VIZN-0012",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  }
+ ]
+}

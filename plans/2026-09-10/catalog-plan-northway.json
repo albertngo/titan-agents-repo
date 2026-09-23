@@ -1,0 +1,2569 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "Northway",
+ "run_at": "2026-09-10T15:19:03.960721-04:00",
+ "status": "partial",
+ "inputs": [
+  {
+   "file": "ingest/2026-09-10/northway_airtable_upload_2026-05-04.csv",
+   "rows": 66
+  },
+  {
+   "file": "/home/user/titan-agents-repo/ingest/2026-09-10/lightspeed-products.json",
+   "products": 14612,
+   "run_at": "2026-09-10T15:15:59.267434-04:00"
+  },
+  {
+   "file": "ingest/2026-09-10/northway_airtable_existing.json",
+   "records": 66
+  },
+  {
+   "file": "ingest/2026-09-10/northway_ls_upload_2026-09-10.csv",
+   "rows": 47
+  }
+ ],
+ "cost_basis": {
+  "value": "printed-as-cost (smallest-volume tier)",
+  "confirmed_by": "Albert 2026-09-10"
+ },
+ "summary": {
+  "airtable_backfill_ls_id": 47,
+  "lightspeed_create": 47,
+  "actions_total": 94,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 19,
+  "warnings": 63,
+  "rows_in": 66
+ },
+ "actions": [
+  {
+   "id": "cat-06a3ab8a62a6",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-3x12Subway",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCARRARACARRARASUBWAYGLOSSY3X12",
+   "fields": {
+    "sku": "TIL-NORT-3x12Subway",
+    "handle": "NORTCARRARACARRARASUBWAYGLOSSY3X12",
+    "name": "NORTTIL - Carrara - Carrara Subway - 3\"x12\" (Glossy) - 12.37sf/b",
+    "supply_price": 2.39,
+    "price_excluding_tax": 4.39,
+    "description": "Carrara \u2014 Carrara Subway \u2014 3\"x12\" (Glossy). Box size: 12.37 sf. Pieces per box: 51.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Carrara Subway"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 1
+  },
+  {
+   "id": "cat-9fab18f25975",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-4x12Subway",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCARRARACARRARASUBWAYGLOSSY4X12",
+   "fields": {
+    "sku": "TIL-NORT-4x12Subway",
+    "handle": "NORTCARRARACARRARASUBWAYGLOSSY4X12",
+    "name": "NORTTIL - Carrara - Carrara Subway - 4\"x12\" (Glossy) - 18.13sf/b",
+    "supply_price": 2.39,
+    "price_excluding_tax": 4.39,
+    "description": "Carrara \u2014 Carrara Subway \u2014 4\"x12\" (Glossy). Box size: 18.13 sf. Pieces per box: 56.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Carrara Subway"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 2
+  },
+  {
+   "id": "cat-1d247f4d62ab",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-AON078",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTARTISANORIGINSDEEPOCEANGLOSSY25X95",
+   "fields": {
+    "sku": "TIL-NORT-AON078",
+    "handle": "NORTARTISANORIGINSDEEPOCEANGLOSSY25X95",
+    "name": "NORTTIL - Artisan Origins - Deep Ocean - 2.5\" x 9.5\" (Glossy) - 10.55sf/b",
+    "supply_price": 3.99,
+    "price_excluding_tax": 5.99,
+    "description": "Artisan Origins \u2014 Deep Ocean \u2014 2.5\" x 9.5\" (Glossy). Box size: 10.55 sf. Pieces per box: 68.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Deep Ocean"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 3
+  },
+  {
+   "id": "cat-ea0bce53ab5d",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-AON079",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTARTISANORIGINSASHSTONEGLOSSY25X95",
+   "fields": {
+    "sku": "TIL-NORT-AON079",
+    "handle": "NORTARTISANORIGINSASHSTONEGLOSSY25X95",
+    "name": "NORTTIL - Artisan Origins - Ash Stone - 2.5\" x 9.5\" (Glossy) - 10.55sf/b",
+    "supply_price": 3.99,
+    "price_excluding_tax": 5.99,
+    "description": "Artisan Origins \u2014 Ash Stone \u2014 2.5\" x 9.5\" (Glossy). Box size: 10.55 sf. Pieces per box: 68.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Ash Stone"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 4
+  },
+  {
+   "id": "cat-5c850bc3a966",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-AON080",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTARTISANORIGINSTUSCANSANDGLOSSY25X95",
+   "fields": {
+    "sku": "TIL-NORT-AON080",
+    "handle": "NORTARTISANORIGINSTUSCANSANDGLOSSY25X95",
+    "name": "NORTTIL - Artisan Origins - Tuscan Sand - 2.5\" x 9.5\" (Glossy) - 10.55sf/b",
+    "supply_price": 3.99,
+    "price_excluding_tax": 5.99,
+    "description": "Artisan Origins \u2014 Tuscan Sand \u2014 2.5\" x 9.5\" (Glossy). Box size: 10.55 sf. Pieces per box: 68.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Tuscan Sand"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 5
+  },
+  {
+   "id": "cat-175bb706c665",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-AON081",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTARTISANORIGINSANTIQUEPEARLGLOSSY25X95",
+   "fields": {
+    "sku": "TIL-NORT-AON081",
+    "handle": "NORTARTISANORIGINSANTIQUEPEARLGLOSSY25X95",
+    "name": "NORTTIL - Artisan Origins - Antique Pearl - 2.5\" x 9.5\" (Glossy) - 10.55sf/b",
+    "supply_price": 3.99,
+    "price_excluding_tax": 5.99,
+    "description": "Artisan Origins \u2014 Antique Pearl \u2014 2.5\" x 9.5\" (Glossy). Box size: 10.55 sf. Pieces per box: 68.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Antique Pearl"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 6
+  },
+  {
+   "id": "cat-25d2aebd0673",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-AON147",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTARTISANORIGINSAMBERGOLDGLOSSY25X95",
+   "fields": {
+    "sku": "TIL-NORT-AON147",
+    "handle": "NORTARTISANORIGINSAMBERGOLDGLOSSY25X95",
+    "name": "NORTTIL - Artisan Origins - Amber Gold - 2.5\" x 9.5\" (Glossy) - 10.55sf/b",
+    "supply_price": 4.49,
+    "price_excluding_tax": 6.49,
+    "description": "Artisan Origins \u2014 Amber Gold \u2014 2.5\" x 9.5\" (Glossy). Box size: 10.55 sf. Pieces per box: 68.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Amber Gold"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 7
+  },
+  {
+   "id": "cat-d80696ebe08e",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-AON761",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTARTISANORIGINSFORESTMOSSGLOSSY25X95",
+   "fields": {
+    "sku": "TIL-NORT-AON761",
+    "handle": "NORTARTISANORIGINSFORESTMOSSGLOSSY25X95",
+    "name": "NORTTIL - Artisan Origins - Forest Moss - 2.5\" x 9.5\" (Glossy) - 10.55sf/b",
+    "supply_price": 3.99,
+    "price_excluding_tax": 5.99,
+    "description": "Artisan Origins \u2014 Forest Moss \u2014 2.5\" x 9.5\" (Glossy). Box size: 10.55 sf. Pieces per box: 68.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Forest Moss"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 8
+  },
+  {
+   "id": "cat-60f508939ace",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-CL1005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT4HEXWHITEMATTE4",
+   "fields": {
+    "sku": "TIL-NORT-CL1005",
+    "handle": "NORT4HEXWHITEMATTE4",
+    "name": "NORTMOS - 4\" Hex - White - 4\" (Matte) - 17.90sf/b",
+    "supply_price": 3.79,
+    "price_excluding_tax": 8.79,
+    "description": "4\" Hex \u2014 White \u2014 4\" (Matte). Sold per piece (mosaic sheet). Sheet coverage 0.81 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "White"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 9
+  },
+  {
+   "id": "cat-821d5366dd55",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-CL4810",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT4HEXBLACKMATTE4",
+   "fields": {
+    "sku": "TIL-NORT-CL4810",
+    "handle": "NORT4HEXBLACKMATTE4",
+    "name": "NORTMOS - 4\" Hex - Black - 4\" (Matte) - 17.90sf/b",
+    "supply_price": 3.99,
+    "price_excluding_tax": 8.99,
+    "description": "4\" Hex \u2014 Black \u2014 4\" (Matte). Sold per piece (mosaic sheet). Sheet coverage 0.81 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Black"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 10
+  },
+  {
+   "id": "cat-690d4963128c",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-ID4810",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT2SQUAREBLACKMATTE2",
+   "fields": {
+    "sku": "TIL-NORT-ID4810",
+    "handle": "NORT2SQUAREBLACKMATTE2",
+    "name": "NORTMOS - 2\" Square - Black - 2\" (Matte) - 22.20sf/b",
+    "supply_price": 2.89,
+    "price_excluding_tax": 7.89,
+    "description": "2\" Square \u2014 Black \u2014 2\" (Matte). Sold per piece (mosaic sheet). Sheet coverage 1.01 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Black"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 11
+  },
+  {
+   "id": "cat-a0a2f8ad129d",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-ID48M01",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT2SQUAREBEIGEUNGLAZED2",
+   "fields": {
+    "sku": "TIL-NORT-ID48M01",
+    "handle": "NORT2SQUAREBEIGEUNGLAZED2",
+    "name": "NORTMOS - 2\" Square - Beige - 2\" (Unglazed) - 22.20sf/b",
+    "supply_price": 3.79,
+    "price_excluding_tax": 8.79,
+    "description": "2\" Square \u2014 Beige \u2014 2\" (Unglazed). Sold per piece (mosaic sheet). Sheet coverage 1.01 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Beige"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 12
+  },
+  {
+   "id": "cat-b0645691cdf2",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-IDL1005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT2HEXWHITEMATTE2",
+   "fields": {
+    "sku": "TIL-NORT-IDL1005",
+    "handle": "NORT2HEXWHITEMATTE2",
+    "name": "NORTMOS - 2\" Hex - White - 2\" (Matte) - 18.20sf/b",
+    "supply_price": 3.29,
+    "price_excluding_tax": 8.29,
+    "description": "2\" Hex \u2014 White \u2014 2\" (Matte). Sold per piece (mosaic sheet). Sheet coverage 0.83 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "White"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 13
+  },
+  {
+   "id": "cat-accd5e00a9f4",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-IDL4810",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT2HEXBLACKMATTE2",
+   "fields": {
+    "sku": "TIL-NORT-IDL4810",
+    "handle": "NORT2HEXBLACKMATTE2",
+    "name": "NORTMOS - 2\" Hex - Black - 2\" (Matte) - 18.20sf/b",
+    "supply_price": 3.49,
+    "price_excluding_tax": 8.49,
+    "description": "2\" Hex \u2014 Black \u2014 2\" (Matte). Sold per piece (mosaic sheet). Sheet coverage 0.83 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Black"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 14
+  },
+  {
+   "id": "cat-91aebc5e6d6b",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-IDLB0011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT2HEXCHARCOALUNGLAZED2",
+   "fields": {
+    "sku": "TIL-NORT-IDLB0011",
+    "handle": "NORT2HEXCHARCOALUNGLAZED2",
+    "name": "NORTMOS - 2\" Hex - Charcoal - 2\" (Unglazed) - 18.20sf/b",
+    "supply_price": 3.39,
+    "price_excluding_tax": 8.39,
+    "description": "2\" Hex \u2014 Charcoal \u2014 2\" (Unglazed). Sold per piece (mosaic sheet). Sheet coverage 0.83 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Charcoal"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 15
+  },
+  {
+   "id": "cat-b7bfdebe5635",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-IDLB0020",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT2HEXSUPERWHITEUNGLAZED2",
+   "fields": {
+    "sku": "TIL-NORT-IDLB0020",
+    "handle": "NORT2HEXSUPERWHITEUNGLAZED2",
+    "name": "NORTMOS - 2\" Hex - Super White - 2\" (Unglazed) - 18.20sf/b",
+    "supply_price": 3.49,
+    "price_excluding_tax": 8.49,
+    "description": "2\" Hex \u2014 Super White \u2014 2\" (Unglazed). Sold per piece (mosaic sheet). Sheet coverage 0.83 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Super White"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 16
+  },
+  {
+   "id": "cat-52368e46fa85",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-KL1001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT1HEXWHITEGLOSSY1",
+   "fields": {
+    "sku": "TIL-NORT-KL1001",
+    "handle": "NORT1HEXWHITEGLOSSY1",
+    "name": "NORTMOS - 1\" Hex - White - 1\" (Glossy) - 18.50sf/b",
+    "supply_price": 3.39,
+    "price_excluding_tax": 8.39,
+    "description": "1\" Hex \u2014 White \u2014 1\" (Glossy). Sold per piece (mosaic sheet). Sheet coverage 0.84 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "White"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 17
+  },
+  {
+   "id": "cat-f53d99431d0e",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-KL4810",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT1HEXBLACKMATTE1",
+   "fields": {
+    "sku": "TIL-NORT-KL4810",
+    "handle": "NORT1HEXBLACKMATTE1",
+    "name": "NORTMOS - 1\" Hex - Black - 1\" (Matte) - 18.50sf/b",
+    "supply_price": 3.79,
+    "price_excluding_tax": 8.79,
+    "description": "1\" Hex \u2014 Black \u2014 1\" (Matte). Sold per piece (mosaic sheet). Sheet coverage 0.84 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Black"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 18
+  },
+  {
+   "id": "cat-d63f672a5c13",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-KL62299",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT1HEXWHITEBLACKMATTE1",
+   "fields": {
+    "sku": "TIL-NORT-KL62299",
+    "handle": "NORT1HEXWHITEBLACKMATTE1",
+    "name": "NORTMOS - 1\" Hex - White & Black - 1\" (Matte) - 18.50sf/b",
+    "supply_price": 3.59,
+    "price_excluding_tax": 8.59,
+    "description": "1\" Hex \u2014 White & Black \u2014 1\" (Matte). Sold per piece (mosaic sheet). Sheet coverage 0.84 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "White & Black"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 19
+  },
+  {
+   "id": "cat-9d3b7597ab7d",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-KW0120",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTPENNYROUNDWHITEUNGLAZED34",
+   "fields": {
+    "sku": "TIL-NORT-KW0120",
+    "handle": "NORTPENNYROUNDWHITEUNGLAZED34",
+    "name": "NORTMOS - Penny Round - White - 3/4\" (Unglazed) - 11.00sf/b",
+    "supply_price": 5.49,
+    "price_excluding_tax": 10.49,
+    "description": "Penny Round \u2014 White \u2014 3/4\" (Unglazed). Sold per piece (mosaic sheet). Sheet coverage 1.0 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "White"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 20
+  },
+  {
+   "id": "cat-8aac2d398eb5",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-KW0129",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTPENNYROUNDCHARCOALUNGLAZED34",
+   "fields": {
+    "sku": "TIL-NORT-KW0129",
+    "handle": "NORTPENNYROUNDCHARCOALUNGLAZED34",
+    "name": "NORTMOS - Penny Round - Charcoal - 3/4\" (Unglazed) - 11.00sf/b",
+    "supply_price": 5.29,
+    "price_excluding_tax": 10.29,
+    "description": "Penny Round \u2014 Charcoal \u2014 3/4\" (Unglazed). Sold per piece (mosaic sheet). Sheet coverage 1.0 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Charcoal"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 21
+  },
+  {
+   "id": "cat-bcd3944b9062",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-KW1001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTPENNYROUNDWHITEGLOSSY34",
+   "fields": {
+    "sku": "TIL-NORT-KW1001",
+    "handle": "NORTPENNYROUNDWHITEGLOSSY34",
+    "name": "NORTMOS - Penny Round - White - 3/4\" (Glossy) - 11.00sf/b",
+    "supply_price": 4.69,
+    "price_excluding_tax": 9.69,
+    "description": "Penny Round \u2014 White \u2014 3/4\" (Glossy). Sold per piece (mosaic sheet). Sheet coverage 1.0 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "White"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 22
+  },
+  {
+   "id": "cat-a941a280b757",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-KW1005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTPENNYROUNDWHITEMATTE34",
+   "fields": {
+    "sku": "TIL-NORT-KW1005",
+    "handle": "NORTPENNYROUNDWHITEMATTE34",
+    "name": "NORTMOS - Penny Round - White - 3/4\" (Matte) - 11.00sf/b",
+    "supply_price": 4.69,
+    "price_excluding_tax": 9.69,
+    "description": "Penny Round \u2014 White \u2014 3/4\" (Matte). Sold per piece (mosaic sheet). Sheet coverage 1.0 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "White"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 23
+  },
+  {
+   "id": "cat-743e0602e1ae",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-KW4810",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTPENNYROUNDBLACKMATTE34",
+   "fields": {
+    "sku": "TIL-NORT-KW4810",
+    "handle": "NORTPENNYROUNDBLACKMATTE34",
+    "name": "NORTMOS - Penny Round - Black - 3/4\" (Matte) - 11.00sf/b",
+    "supply_price": 4.89,
+    "price_excluding_tax": 9.89,
+    "description": "Penny Round \u2014 Black \u2014 3/4\" (Matte). Sold per piece (mosaic sheet). Sheet coverage 1.0 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Black"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 24
+  },
+  {
+   "id": "cat-d420f1b1349f",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-KWLR1005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT2ROUNDWHITEMATTE2",
+   "fields": {
+    "sku": "TIL-NORT-KWLR1005",
+    "handle": "NORT2ROUNDWHITEMATTE2",
+    "name": "NORTMOS - 2\" Round - White - 2\" (Matte) - 19.04sf/b",
+    "supply_price": 3.49,
+    "price_excluding_tax": 8.49,
+    "description": "2\" Round \u2014 White \u2014 2\" (Matte). Sold per piece (mosaic sheet). Sheet coverage 0.865 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "White"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 25
+  },
+  {
+   "id": "cat-c7d625673b6b",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-KWLR4810",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT2ROUNDBLACKMATTE2",
+   "fields": {
+    "sku": "TIL-NORT-KWLR4810",
+    "handle": "NORT2ROUNDBLACKMATTE2",
+    "name": "NORTMOS - 2\" Round - Black - 2\" (Matte) - 19.04sf/b",
+    "supply_price": 3.79,
+    "price_excluding_tax": 8.79,
+    "description": "2\" Round \u2014 Black \u2014 2\" (Matte). Sold per piece (mosaic sheet). Sheet coverage 0.865 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Black"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 26
+  },
+  {
+   "id": "cat-4b61dfbdd080",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-N73000",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT2X8HERRINGBONEBLACKMATTE2X8",
+   "fields": {
+    "sku": "TIL-NORT-N73000",
+    "handle": "NORT2X8HERRINGBONEBLACKMATTE2X8",
+    "name": "NORTMOS - 2\"x8\" Herringbone - Black - 2\"x8\" (Matte) - 13.52sf/b",
+    "supply_price": 2.49,
+    "price_excluding_tax": 7.49,
+    "description": "2\"x8\" Herringbone \u2014 Black \u2014 2\"x8\" (Matte). Sold per piece (mosaic sheet). Sheet coverage 0.614 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Black"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 27
+  },
+  {
+   "id": "cat-b610ccc1cce2",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-NCM-CES-HX3M",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCARRARAESSENCECARRARAESSENCEMATTE3HEXAGON",
+   "fields": {
+    "sku": "TIL-NORT-NCM-CES-HX3M",
+    "handle": "NORTCARRARAESSENCECARRARAESSENCEMATTE3HEXAGON",
+    "name": "NORTMOS - Carrara Essence - Carrara Essence - 3\" Hexagon (Matte) - 9.20sf/b",
+    "supply_price": 5.59,
+    "price_excluding_tax": 10.59,
+    "description": "Carrara Essence Matching Mosaic \u2014 3\" Hexagon (Matte). Sold per piece (mosaic sheet). Sheet coverage 0.84 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Carrara Essence"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 28
+  },
+  {
+   "id": "cat-2d3a509d15dc",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-NCM-CES-SQ2M",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCARRARAESSENCECARRARAESSENCEMATTE2SQUARE",
+   "fields": {
+    "sku": "TIL-NORT-NCM-CES-SQ2M",
+    "handle": "NORTCARRARAESSENCECARRARAESSENCEMATTE2SQUARE",
+    "name": "NORTMOS - Carrara Essence - Carrara Essence - 2\" Square (Matte) - 10.70sf/b",
+    "supply_price": 4.59,
+    "price_excluding_tax": 9.59,
+    "description": "Carrara Essence Matching Mosaic \u2014 2\" Square (Matte). Sold per piece (mosaic sheet). Sheet coverage 0.97 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Carrara Essence"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 29
+  },
+  {
+   "id": "cat-45d433f0f9fe",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-NTL12501",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCARRARAESSENCECARRARAESSENCEPOLISHED12X24",
+   "fields": {
+    "sku": "TIL-NORT-NTL12501",
+    "handle": "NORTCARRARAESSENCECARRARAESSENCEPOLISHED12X24",
+    "name": "NORTTIL - Carrara Essence - Carrara Essence - 12\" x 24\" (Polished) - 15.50sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Carrara Essence \u2014 Carrara Essence \u2014 12\" x 24\" (Polished). Box size: 15.50 sf. Pieces per box: 8.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Carrara Essence"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 30
+  },
+  {
+   "id": "cat-d0980048c848",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-NTL12501M",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCARRARAESSENCECARRARAESSENCEMATTE12X24",
+   "fields": {
+    "sku": "TIL-NORT-NTL12501M",
+    "handle": "NORTCARRARAESSENCECARRARAESSENCEMATTE12X24",
+    "name": "NORTTIL - Carrara Essence - Carrara Essence - 12\" x 24\" (Matte) - 15.50sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Carrara Essence \u2014 Carrara Essence \u2014 12\" x 24\" (Matte). Box size: 15.50 sf. Pieces per box: 8.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Carrara Essence"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 31
+  },
+  {
+   "id": "cat-17b0a328f65a",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-NTL22311",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTLAKESHORETERRAZZOLAKESHORETERRAZZOMATTE24X24",
+   "fields": {
+    "sku": "TIL-NORT-NTL22311",
+    "handle": "NORTLAKESHORETERRAZZOLAKESHORETERRAZZOMATTE24X24",
+    "name": "NORTTIL - Lakeshore Terrazzo - Lakeshore Terrazzo - 24\"x24\" (Matte) - 15.50sf/b",
+    "supply_price": 1.95,
+    "price_excluding_tax": 3.95,
+    "description": "Lakeshore Terrazzo \u2014 Lakeshore Terrazzo \u2014 24\"x24\" (Matte). Box size: 15.50 sf. Pieces per box: 4.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Lakeshore Terrazzo"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 32
+  },
+  {
+   "id": "cat-142f90d10135",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-NTL22601",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCARRARAESSENCECARRARAESSENCEPOLISHED24X24",
+   "fields": {
+    "sku": "TIL-NORT-NTL22601",
+    "handle": "NORTCARRARAESSENCECARRARAESSENCEPOLISHED24X24",
+    "name": "NORTTIL - Carrara Essence - Carrara Essence - 24\" x 24\" (Polished) - 15.50sf/b",
+    "supply_price": 1.95,
+    "price_excluding_tax": 3.95,
+    "description": "Carrara Essence \u2014 Carrara Essence \u2014 24\" x 24\" (Polished). Box size: 15.50 sf. Pieces per box: 4.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Carrara Essence"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 33
+  },
+  {
+   "id": "cat-f6e218affed9",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-NTL22601M",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCARRARAESSENCECARRARAESSENCEMATTE24X24",
+   "fields": {
+    "sku": "TIL-NORT-NTL22601M",
+    "handle": "NORTCARRARAESSENCECARRARAESSENCEMATTE24X24",
+    "name": "NORTTIL - Carrara Essence - Carrara Essence - 24\" x 24\" (Matte) - 15.50sf/b",
+    "supply_price": 1.95,
+    "price_excluding_tax": 3.95,
+    "description": "Carrara Essence \u2014 Carrara Essence \u2014 24\" x 24\" (Matte). Box size: 15.50 sf. Pieces per box: 4.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Carrara Essence"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 34
+  },
+  {
+   "id": "cat-23103f04620c",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-NTL22609",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTMUSKOKAMISTMUSKOKAMISTMATTE24X24",
+   "fields": {
+    "sku": "TIL-NORT-NTL22609",
+    "handle": "NORTMUSKOKAMISTMUSKOKAMISTMATTE24X24",
+    "name": "NORTTIL - Muskoka Mist - Muskoka Mist - 24\"x24\" (Matte) - 15.50sf/b",
+    "supply_price": 1.95,
+    "price_excluding_tax": 3.95,
+    "description": "Muskoka Mist \u2014 Muskoka Mist \u2014 24\"x24\" (Matte). Box size: 15.50 sf. Pieces per box: 4.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Muskoka Mist"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 35
+  },
+  {
+   "id": "cat-6eb601a05710",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-NTL22611M",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTIVORYSANDIVORYSANDMATTE24X24",
+   "fields": {
+    "sku": "TIL-NORT-NTL22611M",
+    "handle": "NORTIVORYSANDIVORYSANDMATTE24X24",
+    "name": "NORTTIL - Ivory Sand - Ivory Sand - 24\" x 24\" (Matte) - 15.50sf/b",
+    "supply_price": 1.95,
+    "price_excluding_tax": 3.95,
+    "description": "Ivory Sand \u2014 Ivory Sand \u2014 24\" x 24\" (Matte). Box size: 15.50 sf. Pieces per box: 4.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Ivory Sand"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 36
+  },
+  {
+   "id": "cat-ec523776813b",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-NTL22625",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTLOFTCONCRETELOFTCONCRETEMATTE24X24",
+   "fields": {
+    "sku": "TIL-NORT-NTL22625",
+    "handle": "NORTLOFTCONCRETELOFTCONCRETEMATTE24X24",
+    "name": "NORTTIL - Loft Concrete - Loft Concrete - 24\" x 24\" (Matte) - 15.50sf/b",
+    "supply_price": 1.95,
+    "price_excluding_tax": 3.95,
+    "description": "Loft Concrete \u2014 Loft Concrete \u2014 24\" x 24\" (Matte). Box size: 15.50 sf. Pieces per box: 4.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Loft Concrete"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 37
+  },
+  {
+   "id": "cat-6c3534ae8279",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-NTL24129",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCARRARAESSENCECARRARAESSENCEPOLISHED24X48",
+   "fields": {
+    "sku": "TIL-NORT-NTL24129",
+    "handle": "NORTCARRARAESSENCECARRARAESSENCEPOLISHED24X48",
+    "name": "NORTTIL - Carrara Essence - Carrara Essence - 24\" x 48\" (Polished) - 15.50sf/b",
+    "supply_price": 2.49,
+    "price_excluding_tax": 4.49,
+    "description": "Carrara Essence \u2014 Carrara Essence \u2014 24\" x 48\" (Polished). Box size: 15.50 sf. Pieces per box: 2.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Carrara Essence"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 38
+  },
+  {
+   "id": "cat-daa82f7ecd5d",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-RIT51CARARA",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT2HEXCARRARAMATTE2",
+   "fields": {
+    "sku": "TIL-NORT-RIT51CARARA",
+    "handle": "NORT2HEXCARRARAMATTE2",
+    "name": "NORTMOS - 2\" Hex - Carrara - 2\" (Matte) - 18.20sf/b",
+    "supply_price": 4.19,
+    "price_excluding_tax": 9.19,
+    "description": "2\" Hex \u2014 Carrara \u2014 2\" (Matte). Sold per piece (mosaic sheet). Sheet coverage 0.83 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Carrara"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 39
+  },
+  {
+   "id": "cat-aad4d727e897",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-RIT95CARARA",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT4HEXCARRARAMATTE4",
+   "fields": {
+    "sku": "TIL-NORT-RIT95CARARA",
+    "handle": "NORT4HEXCARRARAMATTE4",
+    "name": "NORTMOS - 4\" Hex - Carrara - 4\" (Matte) - 17.90sf/b",
+    "supply_price": 4.29,
+    "price_excluding_tax": 9.29,
+    "description": "4\" Hex \u2014 Carrara \u2014 4\" (Matte). Sold per piece (mosaic sheet). Sheet coverage 0.81 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Carrara"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 40
+  },
+  {
+   "id": "cat-5528aaa61188",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-RSW-412-FLGWH",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCLASSICWHITESUBWAYGLOSSY4X12",
+   "fields": {
+    "sku": "TIL-NORT-RSW-412-FLGWH",
+    "handle": "NORTCLASSICWHITESUBWAYGLOSSY4X12",
+    "name": "NORTTIL - Classic - White Subway - 4\"x12\" (Glossy) - 18.75sf/b",
+    "supply_price": 1.79,
+    "price_excluding_tax": 3.79,
+    "description": "Classic \u2014 White Subway \u2014 4\"x12\" (Glossy). Box size: 18.75 sf. Pieces per box: 58.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "White Subway"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 41
+  },
+  {
+   "id": "cat-bb54e87dd73e",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-RSW-416-FLGWH",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCLASSICWHITESUBWAYGLOSSY4X16",
+   "fields": {
+    "sku": "TIL-NORT-RSW-416-FLGWH",
+    "handle": "NORTCLASSICWHITESUBWAYGLOSSY4X16",
+    "name": "NORTTIL - Classic - White Subway - 4\"x16\" (Glossy) - 16.37sf/b",
+    "supply_price": 1.79,
+    "price_excluding_tax": 3.79,
+    "description": "Classic \u2014 White Subway \u2014 4\"x16\" (Glossy). Box size: 16.37 sf. Pieces per box: 38.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "White Subway"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 42
+  },
+  {
+   "id": "cat-6e6bce86ffad",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-TBM2142",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTWHITEOCTAGONWITHBLACKDOTMATTEWHITEBLACKMATTEWHITEBLACK",
+   "fields": {
+    "sku": "TIL-NORT-TBM2142",
+    "handle": "NORTWHITEOCTAGONWITHBLACKDOTMATTEWHITEBLACKMATTEWHITEBLACK",
+    "name": "NORTMOS - White Octagon with Black Dot Matte - White & Black - White & Black (Matte) - 20.70sf/b",
+    "supply_price": 3.49,
+    "price_excluding_tax": 8.49,
+    "description": "White Octagon with Black Dot Matte \u2014 White & Black (Matte). Sold per piece (mosaic sheet). Sheet coverage 0.94 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "White & Black"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 43
+  },
+  {
+   "id": "cat-9cc3bce4c82a",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-VSW-312-1001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTVISTAVISTAPUREWHITEGLOSSY3X12",
+   "fields": {
+    "sku": "TIL-NORT-VSW-312-1001",
+    "handle": "NORTVISTAVISTAPUREWHITEGLOSSY3X12",
+    "name": "NORTTIL - Vista - Vista Pure White - 3\"x12\" (Glossy) - 9.71sf/b",
+    "supply_price": 2.39,
+    "price_excluding_tax": 4.39,
+    "description": "Vista \u2014 Vista Pure White \u2014 3\"x12\" (Glossy). Box size: 9.71 sf. Pieces per box: 40.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Vista Pure White"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 44
+  },
+  {
+   "id": "cat-c29082e2473d",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-VSW-312-1002",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTVISTAVISTASILKYWHITEMATTE3X12",
+   "fields": {
+    "sku": "TIL-NORT-VSW-312-1002",
+    "handle": "NORTVISTAVISTASILKYWHITEMATTE3X12",
+    "name": "NORTTIL - Vista - Vista Silky White - 3\"x12\" (Matte) - 9.71sf/b",
+    "supply_price": 2.39,
+    "price_excluding_tax": 4.39,
+    "description": "Vista \u2014 Vista Silky White \u2014 3\"x12\" (Matte). Box size: 9.71 sf. Pieces per box: 40.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Vista Silky White"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 45
+  },
+  {
+   "id": "cat-c80ea2313603",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-VSW-312-1011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTVISTAVISTAFOGGLOSSY3X12",
+   "fields": {
+    "sku": "TIL-NORT-VSW-312-1011",
+    "handle": "NORTVISTAVISTAFOGGLOSSY3X12",
+    "name": "NORTTIL - Vista - Vista Fog - 3\"x12\" (Glossy) - 9.71sf/b",
+    "supply_price": 2.39,
+    "price_excluding_tax": 4.39,
+    "description": "Vista \u2014 Vista Fog \u2014 3\"x12\" (Glossy). Box size: 9.71 sf. Pieces per box: 40.",
+    "product_category": "TILE",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "Vista Fog"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 46
+  },
+  {
+   "id": "cat-a943626b0a5a",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-NORT-YK31000",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT1X3HERRINGBONEWHITEMATTE1X3",
+   "fields": {
+    "sku": "TIL-NORT-YK31000",
+    "handle": "NORT1X3HERRINGBONEWHITEMATTE1X3",
+    "name": "NORTMOS - 1\"x3\" Herringbone - White - 1\"x3\" (Matte) - 20.70sf/b",
+    "supply_price": 3.09,
+    "price_excluding_tax": 8.09,
+    "description": "1\"x3\" Herringbone \u2014 White \u2014 1\"x3\" (Matte). Sold per piece (mosaic sheet). Sheet coverage 0.94 sf.",
+    "product_category": "MOSAIC",
+    "supplier_name": "Northway Building Supplies",
+    "variant_option": {
+     "name": "Colour",
+     "value": "White"
+    }
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 47
+  },
+  {
+   "id": "cat-1862a178381d",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-3x12Subway",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCARRARACARRARASUBWAYGLOSSY3X12",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 48
+  },
+  {
+   "id": "cat-5214d27de58c",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-4x12Subway",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCARRARACARRARASUBWAYGLOSSY4X12",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 49
+  },
+  {
+   "id": "cat-10fd1c83841f",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-AON078",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTARTISANORIGINSDEEPOCEANGLOSSY25X95",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 50
+  },
+  {
+   "id": "cat-8398973379fe",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-AON079",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTARTISANORIGINSASHSTONEGLOSSY25X95",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 51
+  },
+  {
+   "id": "cat-7d3899b68355",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-AON080",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTARTISANORIGINSTUSCANSANDGLOSSY25X95",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 52
+  },
+  {
+   "id": "cat-c2d0b7e0b859",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-AON081",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTARTISANORIGINSANTIQUEPEARLGLOSSY25X95",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 53
+  },
+  {
+   "id": "cat-dcad1ac432c4",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-AON147",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTARTISANORIGINSAMBERGOLDGLOSSY25X95",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 54
+  },
+  {
+   "id": "cat-b9b1c4b1053e",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-AON761",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTARTISANORIGINSFORESTMOSSGLOSSY25X95",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 55
+  },
+  {
+   "id": "cat-47fbe565dc1c",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-CL1005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT4HEXWHITEMATTE4",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 56
+  },
+  {
+   "id": "cat-67ecbbdfe6a5",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-CL4810",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT4HEXBLACKMATTE4",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 57
+  },
+  {
+   "id": "cat-dd271518f489",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-ID4810",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT2SQUAREBLACKMATTE2",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 58
+  },
+  {
+   "id": "cat-d76b5a3d5cfb",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-ID48M01",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT2SQUAREBEIGEUNGLAZED2",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 59
+  },
+  {
+   "id": "cat-cb6b0009b561",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-IDL1005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT2HEXWHITEMATTE2",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 60
+  },
+  {
+   "id": "cat-471fca0d4107",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-IDL4810",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT2HEXBLACKMATTE2",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 61
+  },
+  {
+   "id": "cat-0a160f524b08",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-IDLB0011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT2HEXCHARCOALUNGLAZED2",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 62
+  },
+  {
+   "id": "cat-63d1c8281f29",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-IDLB0020",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT2HEXSUPERWHITEUNGLAZED2",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 63
+  },
+  {
+   "id": "cat-559060d78de0",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-KL1001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT1HEXWHITEGLOSSY1",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 64
+  },
+  {
+   "id": "cat-4bed0135df92",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-KL4810",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT1HEXBLACKMATTE1",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 65
+  },
+  {
+   "id": "cat-aaeb08cbafd1",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-KL62299",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT1HEXWHITEBLACKMATTE1",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 66
+  },
+  {
+   "id": "cat-5cb99b98e091",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-KW0120",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTPENNYROUNDWHITEUNGLAZED34",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 67
+  },
+  {
+   "id": "cat-5bf4d836b941",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-KW0129",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTPENNYROUNDCHARCOALUNGLAZED34",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 68
+  },
+  {
+   "id": "cat-3c2438c1ffe3",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-KW1001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTPENNYROUNDWHITEGLOSSY34",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 69
+  },
+  {
+   "id": "cat-01d6750f076b",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-KW1005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTPENNYROUNDWHITEMATTE34",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 70
+  },
+  {
+   "id": "cat-1d5e21f172e6",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-KW4810",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTPENNYROUNDBLACKMATTE34",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 71
+  },
+  {
+   "id": "cat-2f16b9bc73ef",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-KWLR1005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT2ROUNDWHITEMATTE2",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 72
+  },
+  {
+   "id": "cat-18afbd118ca2",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-KWLR4810",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT2ROUNDBLACKMATTE2",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 73
+  },
+  {
+   "id": "cat-be4250f182fb",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-N73000",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT2X8HERRINGBONEBLACKMATTE2X8",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 74
+  },
+  {
+   "id": "cat-f9efef2bb93d",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-NCM-CES-HX3M",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCARRARAESSENCECARRARAESSENCEMATTE3HEXAGON",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 75
+  },
+  {
+   "id": "cat-602890a715e3",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-NCM-CES-SQ2M",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCARRARAESSENCECARRARAESSENCEMATTE2SQUARE",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 76
+  },
+  {
+   "id": "cat-3f22566a0cf4",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-NTL12501",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCARRARAESSENCECARRARAESSENCEPOLISHED12X24",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 77
+  },
+  {
+   "id": "cat-8d481ed46a81",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-NTL12501M",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCARRARAESSENCECARRARAESSENCEMATTE12X24",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 78
+  },
+  {
+   "id": "cat-41f093d7f213",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-NTL22311",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTLAKESHORETERRAZZOLAKESHORETERRAZZOMATTE24X24",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 79
+  },
+  {
+   "id": "cat-0a59e8eb2e18",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-NTL22601",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCARRARAESSENCECARRARAESSENCEPOLISHED24X24",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 80
+  },
+  {
+   "id": "cat-f2921e9fa2f4",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-NTL22601M",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCARRARAESSENCECARRARAESSENCEMATTE24X24",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 81
+  },
+  {
+   "id": "cat-6cbbc4675928",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-NTL22609",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTMUSKOKAMISTMUSKOKAMISTMATTE24X24",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 82
+  },
+  {
+   "id": "cat-b8513ca57d8b",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-NTL22611M",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTIVORYSANDIVORYSANDMATTE24X24",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 83
+  },
+  {
+   "id": "cat-68f1c4f4de8c",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-NTL22625",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTLOFTCONCRETELOFTCONCRETEMATTE24X24",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 84
+  },
+  {
+   "id": "cat-75930f1347c6",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-NTL24129",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCARRARAESSENCECARRARAESSENCEPOLISHED24X48",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 85
+  },
+  {
+   "id": "cat-a8d8d42da8a6",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-RIT51CARARA",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT2HEXCARRARAMATTE2",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 86
+  },
+  {
+   "id": "cat-0de3d6a60fdf",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-RIT95CARARA",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT4HEXCARRARAMATTE4",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 87
+  },
+  {
+   "id": "cat-daffbb64fc71",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-RSW-412-FLGWH",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCLASSICWHITESUBWAYGLOSSY4X12",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 88
+  },
+  {
+   "id": "cat-e97e2b4d9c9c",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-RSW-416-FLGWH",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTCLASSICWHITESUBWAYGLOSSY4X16",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 89
+  },
+  {
+   "id": "cat-d45e25cacaca",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-TBM2142",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTWHITEOCTAGONWITHBLACKDOTMATTEWHITEBLACKMATTEWHITEBLACK",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 90
+  },
+  {
+   "id": "cat-83594207dbe7",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-VSW-312-1001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTVISTAVISTAPUREWHITEGLOSSY3X12",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 91
+  },
+  {
+   "id": "cat-b06fec6df600",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-VSW-312-1002",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTVISTAVISTASILKYWHITEMATTE3X12",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 92
+  },
+  {
+   "id": "cat-680c419716a5",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-VSW-312-1011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORTVISTAVISTAFOGGLOSSY3X12",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 93
+  },
+  {
+   "id": "cat-e5c05e02c81f",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-NORT-YK31000",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "NORT1X3HERRINGBONEWHITEMATTE1X3",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 94
+  }
+ ],
+ "blocked": [
+  {
+   "sku": "TIL-NORT-IDB0011",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "895afa67-7933-4e1a-8d11-85ade4b808ad belongs to IDB0011 (2\" Square in Textured Charcoal-IDB0011-Unglazed) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "TIL-NORT-IDB0085",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "31cfda24-6e86-414e-96fc-072db6e90739 belongs to IDB0085 (2\" Square in Textured White-IDB0085-Unglazed) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "TIL-NORT-RIT48CARARA",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "fd90e372-c731-4e5a-ad15-19f3d605980f belongs to RIT48CARARA (2\" Square in Matte Carrara-RIT48CARARA-Matte) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "STN-NORT-WSJ1065-SWH",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  },
+  {
+   "sku": "STN-NORT-WSJ945-SWH",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  },
+  {
+   "sku": "STN-NORT-WSJ76-SWH",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  },
+  {
+   "sku": "STN-NORT-WSJ63-SWH",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  },
+  {
+   "sku": "STN-NORT-TRSJ1065-PWH",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  },
+  {
+   "sku": "STN-NORT-TRSJ945-PWH",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  },
+  {
+   "sku": "STN-NORT-TRSJ76-PWH",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  },
+  {
+   "sku": "STN-NORT-TRSJ63-PWH",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  },
+  {
+   "sku": "STN-NORT-WSJ945-CAL",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  },
+  {
+   "sku": "STN-NORT-WSN1624-CAL",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  },
+  {
+   "sku": "STN-NORT-WSN1624-CAL-LS",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  },
+  {
+   "sku": "STN-NORT-WSN1624-SWH",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  },
+  {
+   "sku": "STN-NORT-WSN1624-SWH-LS",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  },
+  {
+   "sku": "STN-NORT-WSN1624-PBL",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  },
+  {
+   "sku": "STN-NORT-WSN1624-CIG",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  },
+  {
+   "sku": "STN-NORT-TRSN1624-PWH",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  }
+ ],
+ "warnings": [
+  {
+   "sku": "TIL-NORT-AON081",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-AON761",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-AON078",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-AON079",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-AON080",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-AON147",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-VSW-312-1001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-VSW-312-1002",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-VSW-312-1011",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-3x12Subway",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-4x12Subway",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-RSW-412-FLGWH",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-RSW-416-FLGWH",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-KL1001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-KL4810",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-KL62299",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-TBM2142",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-IDL1005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-IDL4810",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-IDLB0011",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-IDLB0020",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-RIT51CARARA",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-CL1005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-CL4810",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-RIT95CARARA",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-YK31000",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-N73000",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-KW1001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-KW1005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-KW4810",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-KW0120",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-KW0129",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-KWLR1005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-KWLR4810",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-ID4810",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-ID48M01",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-NTL12501",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-NTL12501M",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-NTL22601",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-NTL22601M",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-NTL24129",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-NTL22611M",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-NTL22625",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-NTL22311",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-NTL22609",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-NCM-CES-SQ2M",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-NORT-NCM-CES-HX3M",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "STN-NORT-WSJ1065-SWH",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'STONE' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "STN-NORT-WSJ945-SWH",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'STONE' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "STN-NORT-WSJ76-SWH",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'STONE' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "STN-NORT-WSJ63-SWH",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'STONE' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "STN-NORT-TRSJ1065-PWH",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'STONE' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "STN-NORT-TRSJ945-PWH",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'STONE' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "STN-NORT-TRSJ76-PWH",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'STONE' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "STN-NORT-TRSJ63-PWH",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'STONE' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "STN-NORT-WSJ945-CAL",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'STONE' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "STN-NORT-WSN1624-CAL",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'STONE' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "STN-NORT-WSN1624-CAL-LS",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'STONE' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "STN-NORT-WSN1624-SWH",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'STONE' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "STN-NORT-WSN1624-SWH-LS",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'STONE' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "STN-NORT-WSN1624-PBL",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'STONE' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "STN-NORT-WSN1624-CIG",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'STONE' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "STN-NORT-TRSN1624-PWH",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'STONE' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  }
+ ]
+}

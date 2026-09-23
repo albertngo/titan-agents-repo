@@ -1,0 +1,17 @@
+{
+ "contract_version": "1",
+ "entries": [
+  {
+   "logged_at": "2026-09-18T07:24:38-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "batch for Vizion",
+   "content_summary": "Batch stopped: HTTP 422 on https://flooru.retail.lightspeed.app/api/2.0/products: {\n  \"error\": \"Each variant must have at least one variant definition\"\n}",
+   "approved_by": "policy: auto-approval (2026-09-12 rubric) via catalog-approval-vizion.json",
+   "result": "failed",
+   "error": "HTTP 422 on https://flooru.retail.lightspeed.app/api/2.0/products: {\n  \"error\": \"Each variant must have at least one variant definition\"\n}",
+   "raw_ref": null,
+   "raw_ref_action_id": null
+  }
+ ]
+}
