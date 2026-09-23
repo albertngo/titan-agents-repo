@@ -435,6 +435,9 @@ and all.
   one failure this design cannot detect later, because there is no longer a gate
   standing behind it.
 - Nothing reported as cleared by policy that policy did not actually clear.
+- **The run's files are in a PR against `main-agents`** (`scripts/publish_run.py`, routine
+  step 3). A run whose output sits only on its session branch is not done, because the
+  next run starts from `main-agents` and cannot see it.
 
 Report honestly. If a step did not run, say which. Never mark a stage complete that
 isn't.

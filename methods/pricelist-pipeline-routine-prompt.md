@@ -141,6 +141,26 @@ treat a cloud/session env var as satisfying that check in place of .env.
 
 ---
 
+Step 3 — Publish, before reporting
+
+Commit everything this run produced (ingest/<date>/, plans/<date>/, the actions-log,
+any repo file it changed), then run:
+
+    python3 scripts/publish_run.py --title "price list: PL-<id> <COMPANY> — <outcome>"
+
+It pushes this session's branch and opens, or reuses, a PR into main-agents, and
+prints the PR URL on its last line. Put that URL in the report and in any
+PushNotification. This step runs whether steps 1-2 succeeded or stopped: a stopped
+run's files are exactly what the next person needs to see.
+
+If it exits non-zero, the run is PARTIAL. Say so, name the branch, and send a
+PushNotification. Never report a run complete when its output is not in a PR —
+output left on a session branch is invisible to every later run, and that is how
+fifteen branches stranded their fixes and write logs before 2026-09-23. Never merge
+the PR and never push to main-agents yourself: Albert merges.
+
+---
+
 Report and notify
 
 Report honestly, one run covering both steps: what extraction produced, what policy
