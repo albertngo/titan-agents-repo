@@ -104,6 +104,27 @@ by attempting a Notion download — report it and stop. Then take a **live** Air
 snapshot of that supplier's records — `list_records_for_table` against
 `tables.master_flooring_catalogue`, filtered to the supplier — and save it as JSON.
 
+**The snapshot must carry every field in `catalog_reconcile.py`'s `DIFF_FIELDS`**,
+and as of 2026-09-22 that is nine:
+
+```
+SKU · Product name · Supplier SKU · Category · Cost/unit · Retail price/unit
+Stock status · Promo cost ($/sf) · Promo end date · Lightspeed ID
+```
+
+**A missing column does not read as "no change" — it reads as "unknown", and the
+reconciler then writes the field on every matched row.** `live_value()` returns
+`readable: False` for a key the snapshot lacks, which is correct for a genuinely new
+record and is a blanket overwrite when the column was simply not selected. Narrowing
+the snapshot is therefore not a safe optimisation, and widening `DIFF_FIELDS` without
+widening this list turns the diff into an overwrite.
+`tests/test_catalog_reconcile.py` holds the two to each other.
+
+**Flatten single-selects to their `name`.** `list_records_for_table` returns
+`{"id": …, "name": …, "color": …}` for a select; the reconciler compares strings, so
+an unflattened `Category` or `Stock status` never equals the upload value and diffs
+on every row.
+
 ```bash
 python3 scripts/catalog_reconcile.py \
   --upload        ingest/<date>/<supplier>_airtable_upload_<date>.csv \

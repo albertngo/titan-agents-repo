@@ -67,12 +67,29 @@ SUPPLIER = "Supplier"
 
 # Fields worth diffing against the live Airtable record. Keys are upload-CSV
 # column names; values are the aliases a live-record snapshot may use instead.
+#
+# EVERY KEY HERE MUST BE PRESENT IN THE SNAPSHOT. live_value() returns
+# readable=False for a key the snapshot lacks, and the caller then writes the
+# field anyway and records it as unreadable -- correct when a record is genuinely
+# new, and a blanket write on every matched row when the snapshot is simply
+# missing the column. So widening this dict without widening the snapshot turns a
+# diff into an overwrite. /catalog-sync step 2 names the required field list and
+# tests/test_catalog_reconcile.py holds the two to each other.
 DIFF_FIELDS = {
     "Product name": ("ProductName", "Product name"),
     "Supplier SKU": ("SupplierSKU", "Supplier SKU"),
     "Category": ("Category",),
     "Cost/unit": ("Cost", "Cost/unit"),
     "Retail price/unit": ("Retail", "Retail price/unit"),
+    # Added 2026-09-22 (Albert asked "can we diff it?"). Before this, a supplier
+    # marking a colourway clearance, or putting one on promo, produced NO Airtable
+    # action at all: the reconciler only looked at the five fields above, so the
+    # change was invisible. On FAW PL-377 that meant ~56 CLEARANCE SALE colourways
+    # went unwritten, and a laminate promo reached Lightspeed with nothing in
+    # Airtable to ever clear it -- the POS would have held the promo price forever.
+    "Stock status": ("StockStatus", "Stock status"),
+    "Promo cost ($/sf)": ("PromoCost", "Promo cost ($/sf)"),
+    "Promo end date": ("PromoEndDate", "Promo end date"),
     LS_ID: ("LightspeedID", "Lightspeed ID"),
 }
 PRICE_FIELDS = ("Cost/unit", "Retail price/unit")

@@ -723,5 +723,39 @@ class TestLeeRoundTrip(unittest.TestCase):
                          "sku join, not turned into a create")
 
 
+class DiffFieldsAndSnapshotAgree(unittest.TestCase):
+    """DIFF_FIELDS and the snapshot /catalog-sync takes must name the same fields.
+
+    live_value() returns readable=False for a key the snapshot lacks, and the
+    caller then writes the field anyway. That is right for a genuinely new record
+    and is a blanket overwrite on every matched row when the column was simply not
+    selected. So the two lists drifting apart does not fail loudly — it quietly
+    converts a diff into an overwrite, which is the failure this test exists for.
+    """
+
+    COMMAND = REPO_ROOT / ".claude" / "commands" / "catalog-sync.md"
+
+    def test_every_diff_field_is_named_in_the_command(self):
+        doc = self.COMMAND.read_text()
+        block = doc.split("The snapshot must carry every field", 1)[1][:800]
+        for field in cr.DIFF_FIELDS:
+            self.assertIn(field, block,
+                          f"{field!r} is diffed but /catalog-sync does not ask the "
+                          f"snapshot for it — every matched row would be overwritten")
+
+    def test_stock_status_and_promo_are_diffed(self):
+        # Added 2026-09-22. Their absence is what let ~56 FAW clearance flags go
+        # unwritten, and let a promo reach Lightspeed with nothing in Airtable to
+        # clear it.
+        for field in ("Stock status", "Promo cost ($/sf)", "Promo end date"):
+            self.assertIn(field, cr.DIFF_FIELDS)
+
+    def test_an_unreadable_field_is_written_not_treated_as_unchanged(self):
+        """Pins the behaviour the two tests above exist to protect against."""
+        value, readable = cr.live_value({"SKU": "X"}, "Stock status")
+        self.assertIsNone(value)
+        self.assertFalse(readable)
+
+
 if __name__ == "__main__":
     unittest.main()
