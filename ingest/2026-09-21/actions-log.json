@@ -624,6 +624,18 @@
    "error": null,
    "raw_ref": "recPVqfcVAebsn6gk",
    "raw_ref_action_id": null
+  },
+  {
+   "logged_at": "2026-09-22T23:25:00-04:00",
+   "agent": ".claude/commands/catalog-sync.md",
+   "type": "notion_write_troubled_table",
+   "target": "PL-377 (3e2596a4-505f-8140-a7ff-c53a570b1544)",
+   "content_summary": "Row brought current after the re-extract and the writes. Re-attached all three CSVs (airtable upload, ls upload, troubled), New Products 4 -> 7, LS Upload -> Done, UUID Backfill -> Done, Airtable Sync stays Partial (2 held laminate SKUs, ~56 unwritten Stock status flags, the Designer Click question), Notes rewritten. Extraction Status NOT touched \u2014 Albert set it to Extracted [Ready to Upload] and that field is the reviewer's. Troubled table in the page body replaced with the current 8 rows, Albert's 3 still-open Action answers carried forward by sku and the 2 resolved ones preserved above the table so nothing he wrote was lost. First render split two rows into 13 columns on the literal pipe in col_printed; corrected, and the trap written into contracts/troubled-skus-schema.md.",
+   "approved_by": "Albert: explicit instruction 2026-09-22 (asked for the row to be brought current)",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "3e2596a4-505f-8140-a7ff-c53a570b1544",
+   "raw_ref_action_id": null
   }
  ]
 }
