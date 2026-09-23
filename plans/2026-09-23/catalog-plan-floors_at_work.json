@@ -1,0 +1,761 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "Floors At Work",
+ "run_at": "2026-09-23T16:15:34.185822-04:00",
+ "status": "ok",
+ "inputs": [
+  {
+   "file": "ingest/2026-09-23/faw_airtable_upload_2026-09-23.csv",
+   "rows": 44
+  },
+  {
+   "file": "ingest/2026-09-23/lightspeed-products.json",
+   "products": 14941,
+   "run_at": "2026-09-23T16:13:17.916359-04:00"
+  },
+  {
+   "file": "ingest/2026-09-23/faw_airtable_existing.json",
+   "records": 239
+  },
+  {
+   "file": "/tmp/claude-0/-home-user/7073bf12-0ecb-5aba-9f48-381dc91fbc0c/scratchpad/faw_options.json",
+   "select_fields": 2
+  }
+ ],
+ "cost_basis": {
+  "value": "printed-as-cost",
+  "confirmed_by": "bert-airtable-schema FAW subsection (Pallet price column = Cost/unit)"
+ },
+ "summary": {
+  "airtable_upsert": 40,
+  "actions_total": 40,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 0,
+  "warnings": 0,
+  "rows_in": 44
+ },
+ "actions": [
+  {
+   "id": "cat-c1976009dc75",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0001",
+   "airtable_rec_id": "recEMgv1r798hye4v",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b2a95d6af",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 1
+  },
+  {
+   "id": "cat-25045438adda",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0003",
+   "airtable_rec_id": "recPThzsyB5RHoESf",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b2b4f72a1",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 2
+  },
+  {
+   "id": "cat-b59b20070833",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0005",
+   "airtable_rec_id": "recJc1Q1m3TsJzrPh",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b2ab1f41d",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 3
+  },
+  {
+   "id": "cat-32fca50d0926",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0008",
+   "airtable_rec_id": "recOg1lXUDgp2zIvs",
+   "ls_id": "98369d2a-25c4-40d2-b1eb-5e0ce8c580a0",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 4
+  },
+  {
+   "id": "cat-7755ba760c6a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0009",
+   "airtable_rec_id": "rec4DGNnckwi9cMSU",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b2ac9fc87",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 5
+  },
+  {
+   "id": "cat-2852b2f38486",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0025",
+   "airtable_rec_id": "recNXWClO1xNgthcG",
+   "ls_id": "663decc3-d7db-45b3-bba8-677410d1690b",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 6
+  },
+  {
+   "id": "cat-e89bd5a7c974",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0026",
+   "airtable_rec_id": "recdDfEE47QnKxSuB",
+   "ls_id": "a71a7ead-b28c-4edc-9de2-885efe0422fb",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 7
+  },
+  {
+   "id": "cat-7230bb7d5658",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0027",
+   "airtable_rec_id": "recdXCy16CtkYJgAi",
+   "ls_id": "62ac6d35-0fe3-4e1b-9640-aacca4066061",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 8
+  },
+  {
+   "id": "cat-425b1d026700",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0029",
+   "airtable_rec_id": "recDbfW4MAobJGtHb",
+   "ls_id": "e24696eb-2a54-4a8b-a98e-ff46b4caa7d4",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 9
+  },
+  {
+   "id": "cat-f5e4fb3e056f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0030",
+   "airtable_rec_id": "recQSjdBSsq9DNWBR",
+   "ls_id": "676b5d18-4590-4b4f-b0d2-c6ba35cbd53d",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 10
+  },
+  {
+   "id": "cat-423f1091f4c0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0031",
+   "airtable_rec_id": "recQGSnFCMzsot00Y",
+   "ls_id": "3ed8c4a1-778a-408e-a3d3-c1ae51095b2b",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 11
+  },
+  {
+   "id": "cat-74a1b01cc522",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0032",
+   "airtable_rec_id": "recjCKqfkpRl2sEQB",
+   "ls_id": "b206e4f4-d1ea-4c58-a5e6-8c76274cf694",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 12
+  },
+  {
+   "id": "cat-4e70f5568693",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0033",
+   "airtable_rec_id": "rec0SSWqoZuwQQ266",
+   "ls_id": "f835ef3b-b685-4918-adcc-86ea80a0e607",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 13
+  },
+  {
+   "id": "cat-a355c0562ede",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0034",
+   "airtable_rec_id": "recFtlxKwUdxzBpmf",
+   "ls_id": "43b19a8b-2db9-4831-8554-9e37210f7bfe",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 14
+  },
+  {
+   "id": "cat-174da3bd2270",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0035",
+   "airtable_rec_id": "recBiMtOgjr5N7ZzR",
+   "ls_id": "4b1143e8-c99e-4996-8eb0-5656702f16a2",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 15
+  },
+  {
+   "id": "cat-0713d2ca8cc2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0036",
+   "airtable_rec_id": "recGfFGfBIRYMbmgD",
+   "ls_id": "84f1655d-e059-4fa1-aca5-77fe1a9b3fe1",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 16
+  },
+  {
+   "id": "cat-012815dd0951",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0037",
+   "airtable_rec_id": "rec4ws7sZSKXsw7Ha",
+   "ls_id": "4561d200-a264-43e8-a56a-0b6ab73145be",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 17
+  },
+  {
+   "id": "cat-98670e4df0c5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0038",
+   "airtable_rec_id": "recYbhgc5qCyBedKY",
+   "ls_id": "f8c3f291-d53d-4bca-8cf6-a0835b6cf484",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 18
+  },
+  {
+   "id": "cat-18da70b9a4ae",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0039",
+   "airtable_rec_id": "recnP1itRJbFMo8sg",
+   "ls_id": "74dcdfb0-b3db-42f4-a045-99a1cd064efc",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 19
+  },
+  {
+   "id": "cat-187ca28984ac",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0040",
+   "airtable_rec_id": "recNNhupEvZdh9AL2",
+   "ls_id": "bcd5e93c-a5f4-4d36-917f-73c69a5b4e71",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 20
+  },
+  {
+   "id": "cat-1b9ccaac88a4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0044",
+   "airtable_rec_id": "recFTOAite3ZzHQhO",
+   "ls_id": "aff41580-1c1d-4828-b8e9-3b53002c43bb",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 21
+  },
+  {
+   "id": "cat-5cfcb3abda1b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0045",
+   "airtable_rec_id": "recRavvKj1TS0HJ8r",
+   "ls_id": "39665145-285c-423a-ac9c-e1f272491011",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 22
+  },
+  {
+   "id": "cat-231c9b2a23d5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0046",
+   "airtable_rec_id": "recHFadIhShbo2lvm",
+   "ls_id": "82eee7a5-3756-4c43-a1d0-e55fee905a80",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 23
+  },
+  {
+   "id": "cat-0e90aa31bc79",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0047",
+   "airtable_rec_id": "rec52TshBv4BLw9B3",
+   "ls_id": "0eff8950-8fd0-42af-b0ac-02c8c3a6547d",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 24
+  },
+  {
+   "id": "cat-2466f26ff69c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0049",
+   "airtable_rec_id": "rec2c8p1eWPloWN2m",
+   "ls_id": "1b15d0c8-577f-4ab9-8c2d-047cb7ceda3c",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 25
+  },
+  {
+   "id": "cat-91b78b738526",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0050",
+   "airtable_rec_id": "recIPHIaxDJeOtsoI",
+   "ls_id": "9bdac384-301c-499d-9cb4-27d08f23c573",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 26
+  },
+  {
+   "id": "cat-74303a45e45e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0051",
+   "airtable_rec_id": "reca9JbNAb45SRmiD",
+   "ls_id": "0cf786be-086e-4d14-8b8e-5861b6fcc97e",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 27
+  },
+  {
+   "id": "cat-25e83c950b45",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0052",
+   "airtable_rec_id": "recg69TueROHxPGjo",
+   "ls_id": "dbd25b9b-adea-4024-82f2-fa9bcb8cfbc5",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 28
+  },
+  {
+   "id": "cat-e03cf686ff4a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0053",
+   "airtable_rec_id": "recyw0K8IRPAp530s",
+   "ls_id": "30bb94a1-ac01-4fac-927d-31f69b3e7cb8",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 29
+  },
+  {
+   "id": "cat-73502d520e41",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0054",
+   "airtable_rec_id": "recqCYLyMAso6TgZc",
+   "ls_id": "c7967980-5f0b-4899-a593-9770f1f3e8a0",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 30
+  },
+  {
+   "id": "cat-ee89d3d96663",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0055",
+   "airtable_rec_id": "rec5PbVx2xEUDPO7s",
+   "ls_id": "3bf1b792-5c1f-46c9-a58a-f925f6b5eafc",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 31
+  },
+  {
+   "id": "cat-4f200128e960",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0068",
+   "airtable_rec_id": "recuwDyjqsV4yw9jl",
+   "ls_id": "312c35d2-5426-4e6b-bd12-37ace4b7e716",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 32
+  },
+  {
+   "id": "cat-a1bc7f5ab9f0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0070",
+   "airtable_rec_id": "rec7ZurREBVZqOVOn",
+   "ls_id": "814fca4c-f593-43cb-9e91-3df05a863009",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 33
+  },
+  {
+   "id": "cat-95f0bcc69b3a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0071",
+   "airtable_rec_id": "recidPa2yFsSt5aGB",
+   "ls_id": "82737f81-6eee-4be8-b27e-29f364af5d1a",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 34
+  },
+  {
+   "id": "cat-eb3d3ba90c48",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0072",
+   "airtable_rec_id": "recVbLVGbunvIU48c",
+   "ls_id": "d6db4370-f6f5-421a-9fe1-4b1a8daff0f5",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 35
+  },
+  {
+   "id": "cat-1b87af4cb17d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0073",
+   "airtable_rec_id": "recomDZDGwe9jBDCO",
+   "ls_id": "c51a4aa5-298c-4e1a-8b9e-9171564a8830",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 36
+  },
+  {
+   "id": "cat-b357d62dc060",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0074",
+   "airtable_rec_id": "rec0X0XT02zfw9INK",
+   "ls_id": "d79fbd7e-97f5-4f70-821d-89f57c8f8413",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 37
+  },
+  {
+   "id": "cat-3679354e98ce",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0063",
+   "airtable_rec_id": "recdyM5MbUfgjmJ62",
+   "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b4d5ca71d",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 38
+  },
+  {
+   "id": "cat-7e2b4acf5d26",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0069",
+   "airtable_rec_id": "recLmblYtKRHCI8Ks",
+   "ls_id": "d63907e0-317b-416b-afcc-91d3212f57f2",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 39
+  },
+  {
+   "id": "cat-f8cd0f5adda5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0070",
+   "airtable_rec_id": "rec87ACbpUHoaqs5t",
+   "ls_id": "d6fcf275-e7ad-4f8b-8921-93ac21287709",
+   "handle": null,
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 40
+  }
+ ],
+ "blocked": [],
+ "warnings": []
+}
