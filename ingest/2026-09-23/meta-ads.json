@@ -1,0 +1,36 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-09-23T08:07:17-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $354.19 spend, 25 leads, $14.17 CPL — Flooring Problems Campaign",
+      "summary": "Window widened to 7 days (2026-09-16 to 2026-09-22, capped per policy) because the last successful meta-ads run was 2026-09-08 — more than a day stale. Across that window Meta spent $354.19 total, all on the sole actively-delivering campaign, Flooring Problems Campaign, generating 25 leads at $14.17 CPL. Account is ACTIVE and no ads are currently flagged.",
+      "timestamp": "2026-09-22T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 35419,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 35419,
+    "impressions": 8512,
+    "clicks": 208,
+    "leads": 25,
+    "cpl_cents": 1417,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Data gap: the last successful meta-ads run was 2026-09-08, 15 days before this run. Per policy the pull window was widened to 7 days (2026-09-16 through 2026-09-22, the cap), but 2026-09-09 through 2026-09-15 was never covered by this or any prior run — spend/lead totals for that stretch are not captured anywhere in this pipeline. This run does not retroactively backfill those 7 days.",
+    "Because the widened primary window (7 days) is identical in span to the standard 7-day CPL baseline window, no independent baseline exists this run to compare against — the 7-day-invocation budget was spent on the gap-covering pull instead of a separate baseline call. CPL-vs-baseline anomaly detection (2x threshold) was skipped as a result; the zero-lead/zero-click and active-campaign-no-delivery checks were still run against the window data and found nothing to flag.",
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads=25, offsite_search_add_meta_leads=25, offsite_content_view_add_meta_leads=25 — each matching the counted 25 leads exactly, same pattern flagged on 2026-08-31, 2026-09-02, and 2026-09-08). No discrepancy in the counted total, but this is now a recurring observation across multiple runs — the script's lead-action set should be extended rather than continuing to hand-note it."
+  ]
+}

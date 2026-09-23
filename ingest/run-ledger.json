@@ -491,5 +491,18 @@
     },
     "brief": true,
     "note": "scheduled run; local branch ledger last showed 2026-09-02, but all 5 ingesters cross-checked unmerged session branches and vault 01_daily notes and confirmed real runs happened through 2026-09-07 (branch-isolation artifact, not a real gap) -- no catch-up widening needed; bookkeeper still has no QBO/Intuit MCP connector (10th consecutive failed run since 2026-07-26)"
+  },
+  {
+    "date": "2026-09-23",
+    "run_at": "2026-09-23T08:20:00-04:00",
+    "sources": {
+      "ghl": "error",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; local branch ledger last showed 2026-09-08, but vault 01_daily/ has notes through 2026-09-22 confirming real runs happened every day in between (branch-isolation artifact, not a real gap, same pattern as 2026-09-08's entry) -- no catch-up widening applied for the ledger gap itself. GHL errored same-day only: its MCP server was pending session approval (not a credential issue), zero data pulled, first GHL failure since 2026-07-26. Bookkeeper still has no QBO/Intuit MCP connector (11th consecutive failed run). Outlook and meta-ads each independently found their own last-successful-file-on-branch was 2026-09-08 and widened catch-up windows to the 7-day cap, leaving 2026-09-09 through 2026-09-15 uncaptured by either pipeline. Notion hit a cold start (no notion.json within 7-day lookback on this branch) and seeded its snapshot without emitting new_won_project/meeting_logged items this run."
   }
 ]

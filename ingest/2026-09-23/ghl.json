@@ -1,0 +1,42 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-09-23T08:06:00-04:00",
+  "status": "error",
+  "error": "GHL MCP server tools were unavailable to this agent invocation. `.mcp.json` correctly defines the `ghl` HTTP server, and `GHL_PIT_TOKEN` (40 chars) / `GHL_LOCATION_ID` (20 chars) are both present and non-empty in `.env` (not just a same-named cloud env var — confirmed per CLAUDE.md's Secrets check, and the values match the session's provisioned GHL_PIT_TOKEN/GHL_LOCATION_ID, consistent with the session-start hook having populated .env correctly). `claude mcp list` reports the `ghl` server as 'Pending approval', and none of the mcp__ghl__* read tools (contacts_get-contacts, opportunities_search-opportunity, opportunities_get-pipelines, calendars_get-calendar-events, conversations_search-conversation, etc.) were granted to this session, so zero GHL API calls could be made. A raw network check confirms the endpoint itself is reachable (https://services.leadconnectorhq.com/mcp/ returns HTTP 401 to an unauthenticated bare GET, i.e. it is up, not down) -- this is a session tool-authorization gap, not a network outage or a missing/misconfigured credential. Per CLAUDE.md architecture, this agent reaches GHL only through the ghl MCP server and does not fall back to a direct API call to bypass that gate. No GHL data (leads, opportunities, appointments, conversations) was read this run. Every prior recorded ghl-ingest run (2026-07-26 through 2026-09-08) completed with status ok, so this is a one-off session gap, not a standing configuration problem like bookkeeper's.",
+  "items": [],
+  "metrics": {
+    "lead_count": 0,
+    "new_leads": 0,
+    "untagged_in_queue": 0,
+    "unanswered_conversations": 0,
+    "appointments_booked": 0,
+    "pipeline_moves": 0,
+    "won_today": 0,
+    "won_value_cents": 0,
+    "drift_findings": 0,
+    "leads_hot": 0,
+    "leads_warm": 0,
+    "leads_cold": 0,
+    "leads_unqualified": 0,
+    "leads_stale": 0
+  },
+  "needs_attention": [
+    "GHL ingest produced ZERO data today (2026-09-23) — the `ghl` MCP server is up but its tools were never approved/granted for this session ('Pending approval' in `claude mcp list'), so no leads, opportunities, appointments, or conversations were pulled. GHL is the primary driver of the daily brief; today's brief has no GHL-derived content at all. Approve/grant the `ghl` MCP server for the next run (credentials in .env are already valid) and re-run ghl-ingest-agent as soon as possible — this is a same-day gap, not a historical one; every prior run since 2026-07-26 succeeded."
+  ],
+  "extensions": {
+    "ghl": {
+      "template_version": "3",
+      "reporting": {
+        "run_status_note": "No GHL calls were made this run (server pending approval in-session). All reporting sections below are intentionally empty rather than fabricated. See top-level `error` for the full diagnosis."
+      },
+      "new_leads": [],
+      "opportunities": [],
+      "appointments_booked": [],
+      "conversations": [],
+      "workflow_drift": [],
+      "won_records": [],
+      "stragglers_ranked": []
+    }
+  }
+}
