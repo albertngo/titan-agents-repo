@@ -108,7 +108,7 @@
     "NORTHWAY": "NORTHWAY",
     "HOMESPRO": "HOMESPRO",
     "IMPRESSIVE": "IMPRESSIVE",
-    "_impressive_added_2026_09_23": "Albert reported adding an IMPRESSIVE Supplier option on 2026-09-23, after PL-381 had all 282 Airtable writes refused for its absence (2026-09-22; also PL-226 on 2026-09-14). NOT CONFIRMED LIVE: a get_table_schema read of the Master Flooring Catalogue Supplier field (fldRZJ5JW4G6Yig8x) later that day showed 28 options and no IMPRESSIVE. The alias stays because the intended option name is IMPRESSIVE; the pre-flight (catalog_reconcile --airtable-options) keeps holding every IMPRESSIVE row until the option really exists.",
+    "_impressive_added_2026_09_23": "Albert added the IMPRESSIVE Supplier option on 2026-09-23, after PL-381 had all 282 Airtable writes refused for its absence (2026-09-22; also PL-226 on 2026-09-14). A first read that afternoon did not find it on fldRZJ5JW4G6Yig8x; a second read confirmed it live (30 options, JL TILE added too), and PL-381 then created 250 IMPRESSIVE records.",
     "BALTIC": "BALTIC HOMES"
   },
 
