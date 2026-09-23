@@ -67,12 +67,29 @@ SUPPLIER = "Supplier"
 
 # Fields worth diffing against the live Airtable record. Keys are upload-CSV
 # column names; values are the aliases a live-record snapshot may use instead.
+#
+# EVERY KEY HERE MUST BE PRESENT IN THE SNAPSHOT. live_value() returns
+# readable=False for a key the snapshot lacks, and the caller then writes the
+# field anyway and records it as unreadable -- correct when a record is genuinely
+# new, and a blanket write on every matched row when the snapshot is simply
+# missing the column. So widening this dict without widening the snapshot turns a
+# diff into an overwrite. /catalog-sync step 2 names the required field list and
+# tests/test_catalog_reconcile.py holds the two to each other.
 DIFF_FIELDS = {
     "Product name": ("ProductName", "Product name"),
     "Supplier SKU": ("SupplierSKU", "Supplier SKU"),
     "Category": ("Category",),
     "Cost/unit": ("Cost", "Cost/unit"),
     "Retail price/unit": ("Retail", "Retail price/unit"),
+    # Added 2026-09-22 (Albert asked "can we diff it?"). Before this, a supplier
+    # marking a colourway clearance, or putting one on promo, produced NO Airtable
+    # action at all: the reconciler only looked at the five fields above, so the
+    # change was invisible. On FAW PL-377 that meant ~56 CLEARANCE SALE colourways
+    # went unwritten, and a laminate promo reached Lightspeed with nothing in
+    # Airtable to ever clear it -- the POS would have held the promo price forever.
+    "Stock status": ("StockStatus", "Stock status"),
+    "Promo cost ($/sf)": ("PromoCost", "Promo cost ($/sf)"),
+    "Promo end date": ("PromoEndDate", "Promo end date"),
     LS_ID: ("LightspeedID", "Lightspeed ID"),
 }
 PRICE_FIELDS = ("Cost/unit", "Retail price/unit")
@@ -248,15 +265,30 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
             block(sku, "uuid_collision", detail, rows=collided[uuid])
             continue
 
+        # A row's Lightspeed identity is normally its Airtable SKU: that's what a
+        # CREATE writes into Lightspeed's own `sku` field (ls_create_fields), so
+        # for anything this pipeline minted, LS sku == Airtable SKU. IMPRESSIVE
+        # (2026-09-14) exposed the case that invariant does not cover: RULE 0a's
+        # "third state" (new to Airtable, already live in Lightspeed) where the
+        # live product predates this pipeline and Lightspeed's own sku field is
+        # still the supplier's raw code — the exact value /process-price-list
+        # matched against and recorded in `Supplier SKU`, never the Airtable SKU.
+        # Accept either as valid identity; this stays an exact-match check (no
+        # fuzzy join is reintroduced), so it does not touch what the Grandeur
+        # regression guards against — a UUID that belongs to a genuinely
+        # different product, under either identifier.
+        supplier_sku = clean(row.get("Supplier SKU"))
+        sku_candidates = {sku} | ({supplier_sku} if supplier_sku else set())
+
         ls_by_id = ls["by_id"].get(uuid) if uuid else None
-        ls_by_sku = ls["by_sku"].get(sku)
+        ls_by_sku = ls["by_sku"].get(sku) or (ls["by_sku"].get(supplier_sku) if supplier_sku else None)
 
         if uuid and ls_by_id is None:
             block(sku, "uuid_not_in_lightspeed",
                   f"row carries {uuid}, which Lightspeed does not hold")
             continue
 
-        if uuid and clean(ls_by_id.get("sku")) != sku:
+        if uuid and clean(ls_by_id.get("sku")) not in sku_candidates:
             block(sku, "uuid_belongs_to_other_sku",
                   f"{uuid} belongs to {clean(ls_by_id.get('sku'))} "
                   f"({clean(ls_by_id.get('name')) or ''}) — writing it would overwrite that product")
@@ -282,11 +314,21 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
         # Enforced always, including variant groups (Albert, 2026-09-10). The rule
         # was already written in ls-upload-instructions; nothing checked it, and
         # ENG-VIDR-0038 sat in Lightspeed for months with no sf/b in its name.
-        sfb_problem = sfb_not_exposed(row, ls_upload.get(sku),
-                                      group_boxes.get(handle) if handle else None)
-        if sfb_problem:
-            block(sku, "sfb_not_exposed", sfb_problem)
-            continue
+        #
+        # Only on a CREATE (uuid still blank here): an UPDATE never writes `name`
+        # (ls_update_fields — "prices, and nothing else"), so the skill-built
+        # ls_upload row's name is never sent for a matched product and checking
+        # it proves nothing about what a person sees at the POS. IMPRESSIVE
+        # (2026-09-14) was the first supplier with matched/update rows to reach
+        # this check and it blocked 187 of 220 on that never-sent placeholder
+        # name — every existing test for this function uses a blank Lightspeed
+        # ID (create), so this gap had no coverage either.
+        if not uuid:
+            sfb_problem = sfb_not_exposed(row, ls_upload.get(sku),
+                                          group_boxes.get(handle) if handle else None)
+            if sfb_problem:
+                block(sku, "sfb_not_exposed", sfb_problem)
+                continue
 
         category = clean(row.get("Category"))
         if category and not category_resolves(category, categories):
@@ -304,24 +346,40 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
         live = existing.get(sku) if airtable_snapshot else None
         is_new_in_airtable = (match_status == "new") or (live is None and match_status != "matched")
         fields, before, unreadable = {}, {}, []
-        for field in DIFF_FIELDS:
-            new = clean(row.get(field))
-            if new is None:
-                continue
-            if live is None:
-                old, readable = None, False
-            else:
-                raw, readable = live_value(live, field)
-                old = clean(raw)
-            if not readable:
-                # No prior value to compare against, so write it and say so rather
-                # than implying it was empty.
-                fields[field] = new
-                unreadable.append(field)
-                continue
-            if comparable(field, new) != comparable(field, old):
-                fields[field] = new
-                before[field] = old
+        if is_new_in_airtable:
+            # There is no live record to diff against, so DIFF_FIELDS (which
+            # exists to write only what actually changed on an UPDATE) does not
+            # apply here — it would leave a brand-new record with ~5 of 57
+            # columns populated and everything else blank. A create writes the
+            # whole row: every non-empty column from the upload CSV except the
+            # merge key and the reviewer helper columns, neither of which is a
+            # real field. Found 2026-09-13: this path had never been exercised
+            # against a genuine new-to-Airtable supplier before HOMESPRO.
+            for field, new_raw in row.items():
+                if field in (SKU, MATCH_STATUS, MATCHED_REC, LS_MATCH_STATUS):
+                    continue
+                new = clean(new_raw)
+                if new is not None:
+                    fields[field] = new
+        else:
+            for field in DIFF_FIELDS:
+                new = clean(row.get(field))
+                if new is None:
+                    continue
+                if live is None:
+                    old, readable = None, False
+                else:
+                    raw, readable = live_value(live, field)
+                    old = clean(raw)
+                if not readable:
+                    # No prior value to compare against, so write it and say so
+                    # rather than implying it was empty.
+                    fields[field] = new
+                    unreadable.append(field)
+                    continue
+                if comparable(field, new) != comparable(field, old):
+                    fields[field] = new
+                    before[field] = old
 
         if recovered:
             fields[LS_ID] = recovered
@@ -623,12 +681,22 @@ def ls_create_fields(row, ls_upload_row):
     # credential was dead when this was written — and an unverified key 422s the whole
     # create. See the promo-marker gap in ls_update_fields.
     for csv_col, api_key in (("description", "description"),
-                             ("product_category", "product_category"),
                              ("brand_name", "brand_name"),
                              ("supplier_name", "supplier_name")):
         value = clean(ls_upload_row.get(csv_col))
         if value:
             fields[api_key] = value
+
+    # `product_category` needs the API's flat leaf name ('SPC'), never the LS-upload
+    # CSV's ' / '-separated path ('FLOORING / VINYL / SPC') — same distinction
+    # category_resolves() above already documents. lightspeed_push.py resolves this
+    # value against the live /api/2.0/product_types list by an exact (casefolded)
+    # name match, so handing it the CSV path form 404s with "no product type named
+    # 'FLOORING / VINYL / SPC' exists" — confirmed live on the first real
+    # catalog-sync create run, 2026-09-18.
+    category = clean(ls_upload_row.get("product_category"))
+    if category:
+        fields["product_category"] = category.split("/")[-1].strip()
 
     # Variant grouping. The CSV carries the option as a name/value pair; the API
     # wants {attribute_id, value}, resolved against the live attribute list at

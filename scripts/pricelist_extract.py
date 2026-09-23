@@ -42,7 +42,19 @@ import re
 import sys
 from pathlib import Path
 
-MONEY = re.compile(r"\$\s?\d[\d,]*(?:\.\d{1,2})?")
+# Two alternatives, and the ORDER matters.
+#
+# The first matches a LETTER-SPACED number — "$ 1 . 9 9" — where the PDF puts a
+# space between every glyph. FAW's PL-317 does this on one row, and the tight
+# form below silently truncated it to "$ 1": it allows a single space after the
+# "$" and none after that, so it stops at the first digit. PDFium reads the same
+# run as "$1.99", so the 2026-09-12 cross-check caught it as a phantom "1" —
+# but before that check existed the truncated value could have been taken as a
+# price. It requires at least one further spaced glyph, so an ordinary "$ 2.19"
+# does NOT match here and falls through to the tight form intact.
+#
+# The second is the original tight form, unchanged.
+MONEY = re.compile(r"\$(?:\s\d)(?:\s[\d,.])+|\$\s?\d[\d,]*(?:\.\d{1,2})?")
 
 
 def die_tooling(msg: str) -> "int":
@@ -112,6 +124,16 @@ def compare_values(plumber_tokens, fium_tokens):
     return sorted(a & b, key=key), sorted(a - b, key=key), sorted(b - a, key=key)
 
 
+def is_vacuous_pass(plumber_values, fium_values, only_plumber) -> bool:
+    """True when the cross-check "passed" only because pdfplumber found nothing.
+
+    Zero pdfplumber values against a document PDFium can see prices in is not a
+    clean parse: there was simply nothing to disagree about (Vizion, 2026-09-09 and
+    2026-09-18). Ported 2026-09-23 from e5c8a15, which was never merged.
+    """
+    return not only_plumber and len(plumber_values) == 0 and len(fium_values) > 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("pdf", type=Path)
@@ -177,6 +199,14 @@ def main() -> int:
             print(f"\n  present in pypdfium2 only (informational — pdfplumber "
                   f"reads table cells, not prose): {only_fium}")
 
+    # A "pass" with zero pdfplumber values is not evidence of a usable extraction —
+    # it only means there was nothing for the cross-check to disagree with PDFium
+    # about. Seen on Vizion's price lists (2026-09 onward): a free-form layout
+    # (one shared price+spec block per collection, not ruled/colour-banded cells)
+    # that extract_tables() never finds anything in. Flag it explicitly rather than
+    # let "CROSS-CHECK PASSED" read as "safe to build the CSV from these tables."
+    no_structured_data = is_vacuous_pass(a, b, only_plumber)
+
     if args.json:
         args.json.write_text(json.dumps({
             "source": str(args.pdf),
@@ -188,6 +218,7 @@ def main() -> int:
                 "agreed": agreed,
                 "pdfplumber_only": only_plumber,
                 "passed": not only_plumber,
+                "no_structured_data": no_structured_data,
             },
         }, indent=2) + "\n")
 
@@ -203,7 +234,18 @@ def main() -> int:
         return 1
 
     if not args.quiet:
-        print("\nCROSS-CHECK PASSED — both engines agree on every monetary value.")
+        if no_structured_data:
+            print("\nCROSS-CHECK PASSED, BUT NO STRUCTURED PRICE DATA FOUND.")
+            print("  pdfplumber's extract_tables() returned zero monetary values on every "
+                  "page, even though PDFium sees prices in the document's prose/graphics. "
+                  "This is NOT a clean parse — 'passed' only means there was nothing for "
+                  "the cross-check to disagree about. Do not build the upload CSV from "
+                  "extract_tables() output here; check whether this supplier has a "
+                  "documented positional-reading rule (e.g. Vizion, bert-airtable-schema "
+                  "skill) before proceeding, or flag and stop per /process-price-list "
+                  "step 5 if it does not.")
+        else:
+            print("\nCROSS-CHECK PASSED — both engines agree on every monetary value.")
     return 0
 
 

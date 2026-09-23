@@ -191,40 +191,70 @@ class LightspeedWriter(LightspeedClient):
         supplier has to be known before the cost can be written. It is not in the
         plan, so it is read from the live product here. `price_excluding_tax` was
         always correct and passes through untouched.
+
+        The WHOLE array goes back, with only the product's own supplier's price
+        changed (ported 2026-09-23 from b44e192, which had verified it live on
+        ENG-FAWK-0010 but was never merged). Sending a one-element array is
+        correct for a product with one supplier and, on a product with two, risks
+        dropping the second: `product_suppliers` replaces rows. Which row is
+        "ours" is decided by the product's own `supplier_id`, never by position.
         """
         details = dict(details)
         if "supply_price" not in details:
             return details
 
         supply_price = details.pop("supply_price")
-        entry = {"supplier_id": self.SUPPLIER_AT_WRITE_TIME, "price": supply_price}
-        if not self.dry_run:
-            supplier = self._current_supplier(product_id)
-            entry["supplier_id"] = supplier["id"]
-            # Sending product_suppliers replaces the row, so carry the existing
-            # supplier code through rather than blanking it as a side effect.
-            if supplier.get("code"):
-                entry["code"] = supplier["code"]
-        details["product_suppliers"] = [entry]
+        if self.dry_run:
+            details["product_suppliers"] = [
+                {"supplier_id": self.SUPPLIER_AT_WRITE_TIME, "price": supply_price}]
+            return details
+        details["product_suppliers"] = self._product_suppliers_with_price(
+            product_id, supply_price)
         return details
 
-    def _current_supplier(self, product_id):
-        """The supplier this product already has. Never invents one.
+    def read_product(self, product_id):
+        """GET one product from the 2.0 endpoint — carries product_suppliers[] with prices."""
+        path = f"{self.cfg['api']['endpoints']['products']}/{product_id}"
+        body = self.get(path)
+        data = body.get("data", body)
+        if isinstance(data, list):
+            data = data[0] if data else {}
+        return data or {}
 
-        1,440 of the 14,525 live products carry no supplier at all, and a cost
-        cannot be written without one. Picking a supplier to make the write
-        succeed would be inventing a purchasing relationship, so that case stops
-        the batch like any other failure.
+    def _product_suppliers_with_price(self, product_id, price):
+        """Every existing supplier row, carried through, with only ours repriced.
+
+        Never invents a supplier. 1,440 of the 14,525 live products carry none,
+        and a cost cannot be written without one; picking a supplier to make the
+        write succeed would invent a purchasing relationship, so that stops the
+        batch. Nor does it guess between two rows that could both be ours.
         """
-        product = self.read_family(product_id)
-        suppliers = product.get("suppliers") or []
-        if not suppliers or not suppliers[0].get("id"):
+        product = self.read_product(product_id)
+        rows = [r for r in (product.get("product_suppliers") or []) if r.get("supplier_id")]
+        label = product.get("sku") or product_id
+        if not rows:
             raise LightspeedError(
-                f"product {product_id} has no supplier on record, and a 2.1 update "
+                f"product {label} has no supplier on record, and a 2.1 update "
                 "writes the cost as product_suppliers[].price — there is nothing to "
                 "attach it to. Refusing to pick a supplier: that would invent a "
                 "purchasing relationship. Set the supplier in Lightspeed first.")
-        return suppliers[0]
+        own = product.get("supplier_id") or (product.get("supplier") or {}).get("id")
+        targets = [r for r in rows if r["supplier_id"] == own] if own else rows
+        if len(targets) != 1:
+            raise LightspeedError(
+                f"product {label} carries {len(rows)} supplier rows and {len(targets)} "
+                f"match its own supplier {own!r}. Refusing to guess which one the "
+                "cost belongs to.")
+        out = []
+        for r in rows:
+            entry = {"supplier_id": r["supplier_id"],
+                     "price": price if r is targets[0] else r.get("price")}
+            # product_suppliers replaces the row, so a supplier code must be
+            # carried through or it is blanked as a side effect.
+            if r.get("code"):
+                entry["code"] = r["code"]
+            out.append(entry)
+        return out
 
     # -- reads (inherited transport, listed here for callers) --------------
 

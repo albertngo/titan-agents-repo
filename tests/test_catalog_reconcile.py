@@ -168,7 +168,98 @@ class TestUuidRecovery(unittest.TestCase):
         create = next(a for a in actions if a["op"] == "create")
         self.assertEqual(create["fields"]["name"], 'BUILT NAME | 7" x 6mm')
         self.assertNotEqual(create["fields"]["name"], "Airtable Name")
+
+    def test_create_product_category_is_the_flat_api_leaf_not_the_csv_path(self):
+        """lightspeed_push.py resolves product_category by exact name against the
+        live /api/2.0/product_types list, which holds flat leaves ('SPC',
+        'LAMINATE') — never the LS-upload CSV's ' / '-separated import-path form
+        ('FLOORING / VINYL / SPC'). Confirmed live 2026-09-18: a create shipped
+        with the path form 404s with "no product type named ... exists".
+        """
+        rows = [row(SKU="NEW-1", MatchStatus="new", **{"LS Handle / Parent ID": "HNEW"})]
+        actions, _, _ = run(rows, [], ls_upload=ls_upload_row())
+        create = next(a for a in actions if a["op"] == "create")
+        self.assertEqual(create["fields"]["product_category"], "LAMINATE")
         self.assertEqual(create["fields"]["price_excluding_tax"], 2.0)
+
+
+class TestNewToAirtableWritesTheFullRow(unittest.TestCase):
+    """Found 2026-09-13, HOMESPRO: the first genuine new-to-Airtable supplier
+    this reconciler was ever run against for real. DIFF_FIELDS exists to write
+    only what changed on an UPDATE and is correct there; applied to a CREATE
+    (no live record to diff against) it silently produced an Airtable upsert
+    with ~5 of 57 columns populated and everything else blank — Supplier,
+    Brand, Material type, Install method, Box size, Waterproof, and so on,
+    simply never written. A create has to write the whole row instead."""
+
+    def test_create_writes_every_non_blank_column_not_just_the_diff_set(self):
+        # Box size (sf) deliberately omitted here — exposing it correctly is
+        # TestSfbAlwaysExposed's concern, not this test's.
+        rows = [row(SKU="NEW-1", MatchStatus="new", **{
+            "LS Handle / Parent ID": "HNEW",
+            "Brand": "Acme", "Material type": "SPC core",
+            "Install method": "Click", "Waterproof": "TRUE",
+            "Salesperson notes": "Sells well.",
+        })]
+        actions, blocked, _ = run(rows, [], ls_upload=ls_upload_row(sku="NEW-1"))
+        self.assertEqual(blocked, [])
+        upsert = next(a for a in actions if a["op"] == "upsert")
+        for field, expected in {
+            "Brand": "Acme", "Material type": "SPC core",
+            "Install method": "Click", "Waterproof": "TRUE",
+            "Salesperson notes": "Sells well.",
+        }.items():
+            self.assertEqual(upsert["fields"].get(field), expected,
+                             f"{field} missing from a create's payload — this "
+                             f"is the DIFF_FIELDS-on-create gap")
+
+    def test_sku_is_never_in_the_create_payload(self):
+        """RULE 0: the SKU is the merge key and immutable — never in the write."""
+        rows = [row(SKU="NEW-1", MatchStatus="new",
+                    **{"LS Handle / Parent ID": "HNEW"})]
+        actions, _, _ = run(rows, [], ls_upload=ls_upload_row(sku="NEW-1"))
+        upsert = next(a for a in actions if a["op"] == "upsert")
+        self.assertNotIn("SKU", upsert["fields"])
+
+    def test_blank_columns_are_excluded_not_written_as_empty_strings(self):
+        rows = [row(SKU="NEW-1", MatchStatus="new", **{
+            "LS Handle / Parent ID": "HNEW", "Brand": "",
+            "Salesperson notes": "   ",
+        })]
+        actions, _, _ = run(rows, [], ls_upload=ls_upload_row(sku="NEW-1"))
+        upsert = next(a for a in actions if a["op"] == "upsert")
+        self.assertNotIn("Brand", upsert["fields"])
+        self.assertNotIn("Salesperson notes", upsert["fields"])
+
+    def test_helper_columns_never_reach_the_payload(self):
+        """MatchStatus/MatchedRecId/LS Match status are reviewer scratch columns,
+        never real Airtable fields — RULE 0a and process-price-list step 3."""
+        rows = [row(SKU="NEW-1", MatchStatus="new", **{
+            "LS Handle / Parent ID": "HNEW", "MatchedRecId": "recABC123",
+            "LS Match status": "MATCHED",
+        })]
+        actions, _, _ = run(rows, [], ls_upload=ls_upload_row(sku="NEW-1"))
+        upsert = next(a for a in actions if a["op"] == "upsert")
+        self.assertNotIn("MatchedRecId", upsert["fields"])
+        self.assertNotIn("MatchStatus", upsert["fields"])
+        self.assertNotIn("LS Match status", upsert["fields"])
+
+    def test_update_path_is_unaffected_still_writes_only_the_diff(self):
+        """Regression guard: an existing, MATCHED record must still only get
+        the narrow DIFF_FIELDS treatment — this fix must not widen updates."""
+        rows = [row(SKU="A-1", MatchStatus="matched", **{
+            "Lightspeed ID": "u-1", "Cost/unit": "5.00",
+            "Salesperson notes": "New note that changed too.",
+        })]
+        ls = [product(id="u-1", sku="A-1", supply_price=1.0)]
+        existing = {"A-1": {"SKU": "A-1", "ProductName": "Thing", "Cost": 1.0,
+                            "Retail price/unit": "2.00", "Category": "Laminate"}}
+        actions, _, _ = run(rows, ls, existing)
+        upsert = next(a for a in actions if a["op"] == "upsert")
+        self.assertIn("Cost/unit", upsert["fields"])
+        self.assertNotIn("Salesperson notes", upsert["fields"],
+                         "an update must still write only DIFF_FIELDS, not the "
+                         "whole row — that widening is create-only")
 
 
 class TestOrderingAndIds(unittest.TestCase):
@@ -341,6 +432,55 @@ class TestSfbAlwaysExposed(unittest.TestCase):
         rows = [row(SKU="A-1", **{"Lightspeed ID": "", "Box size (sf)": "18.19"})]
         _, blocked, _ = run(rows, [], ls_upload=self.upload())  # name says 25.32
         self.assertEqual([b["reason"] for b in blocked], ["sfb_not_exposed"])
+
+    def test_an_update_is_not_blocked_on_a_name_it_never_sends(self):
+        """8780af9 bug #2 (IMPRESSIVE 2026-09-14, again PL-381 2026-09-22).
+
+        An update writes prices only, so the ls_upload row's name never reaches
+        Lightspeed for a matched product. Checking it blocked 187 of 220 IMPRESSIVE
+        rows on 09-14 and 67 of 250 on 09-22, while the fix sat unmerged.
+        """
+        rows = [row(SKU="A-1", **{"Lightspeed ID": "u-1", "Box size (sf)": "25.32",
+                                  "Cost/unit": "2.00"})]
+        ls = [product(id="u-1", sku="A-1", supply_price=1.0, price_excluding_tax=2.0)]
+        actions, blocked, _ = run(rows, ls, ls_upload=self.upload(
+            name="IMPRESSIVE legacy name with no box size"))
+        self.assertEqual(blocked, [])
+        self.assertIn("lightspeed", {a["target_system"] for a in actions})
+
+
+class TestSupplierSkuIdentity(unittest.TestCase):
+    """8780af9 bug #1: a pre-pipeline Lightspeed product keeps the supplier's raw code.
+
+    RULE 0a's third state (new to Airtable, already live in Lightspeed): the live
+    `sku` is the supplier's code, recorded in Airtable's `Supplier SKU`, never the
+    Airtable SKU. IMPRESSIVE blocked 156 of 156 matched rows on 2026-09-14 for this;
+    on 2026-09-22 PL-381 worked around it by giving Airtable SKUs LS raw codes.
+    """
+
+    def test_uuid_whose_ls_sku_is_the_supplier_sku_is_accepted(self):
+        rows = [row(SKU="ENG-IMPR-0001", **{"Supplier SKU": "4400",
+                                             "Lightspeed ID": "u-1", "Cost/unit": "2.00"})]
+        ls = [product(id="u-1", sku="4400", supply_price=1.0)]
+        actions, blocked, _ = run(rows, ls)
+        self.assertEqual(blocked, [])
+        self.assertTrue(actions)
+
+    def test_a_blank_uuid_is_recovered_through_the_supplier_sku(self):
+        rows = [row(SKU="ENG-IMPR-0001", **{"Supplier SKU": "4400", "Lightspeed ID": ""})]
+        ls = [product(id="u-1", sku="4400")]
+        actions, blocked, _ = run(rows, ls)
+        self.assertEqual(blocked, [])
+        self.assertFalse([a for a in actions if a["op"] == "create"],
+                         "a live product must never be created again")
+
+    def test_a_genuinely_different_product_is_still_blocked(self):
+        """The Grandeur guard is untouched: neither identifier matches."""
+        rows = [row(SKU="ENG-IMPR-0001", **{"Supplier SKU": "4400",
+                                             "Lightspeed ID": "u-1"})]
+        ls = [product(id="u-1", sku="9999")]
+        _, blocked, _ = run(rows, ls)
+        self.assertEqual([b["reason"] for b in blocked], ["uuid_belongs_to_other_sku"])
 
 
 class TestMixedBoxSizeGroup(unittest.TestCase):
@@ -721,6 +861,40 @@ class TestLeeRoundTrip(unittest.TestCase):
         self.assertEqual(len(recovered), len(self.rows) - carried,
                          "every row without a UUID should have been repaired by the "
                          "sku join, not turned into a create")
+
+
+class DiffFieldsAndSnapshotAgree(unittest.TestCase):
+    """DIFF_FIELDS and the snapshot /catalog-sync takes must name the same fields.
+
+    live_value() returns readable=False for a key the snapshot lacks, and the
+    caller then writes the field anyway. That is right for a genuinely new record
+    and is a blanket overwrite on every matched row when the column was simply not
+    selected. So the two lists drifting apart does not fail loudly — it quietly
+    converts a diff into an overwrite, which is the failure this test exists for.
+    """
+
+    COMMAND = REPO_ROOT / ".claude" / "commands" / "catalog-sync.md"
+
+    def test_every_diff_field_is_named_in_the_command(self):
+        doc = self.COMMAND.read_text()
+        block = doc.split("The snapshot must carry every field", 1)[1][:800]
+        for field in cr.DIFF_FIELDS:
+            self.assertIn(field, block,
+                          f"{field!r} is diffed but /catalog-sync does not ask the "
+                          f"snapshot for it — every matched row would be overwritten")
+
+    def test_stock_status_and_promo_are_diffed(self):
+        # Added 2026-09-22. Their absence is what let ~56 FAW clearance flags go
+        # unwritten, and let a promo reach Lightspeed with nothing in Airtable to
+        # clear it.
+        for field in ("Stock status", "Promo cost ($/sf)", "Promo end date"):
+            self.assertIn(field, cr.DIFF_FIELDS)
+
+    def test_an_unreadable_field_is_written_not_treated_as_unchanged(self):
+        """Pins the behaviour the two tests above exist to protect against."""
+        value, readable = cr.live_value({"SKU": "X"}, "Stock status")
+        self.assertIsNone(value)
+        self.assertFalse(readable)
 
 
 if __name__ == "__main__":

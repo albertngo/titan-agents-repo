@@ -286,5 +286,84 @@ class TestRealTableWithProseCellSurvives(unittest.TestCase):
         self.assertTrue(self.m.is_catch_all(table))
 
 
+class TestZeroTablesIsNotACleanPass(unittest.TestCase):
+    """A layout pdfplumber finds no tables in must not read as "CROSS-CHECK PASSED"."""
+
+    def setUp(self):
+        self.m = _load_extract_module()
+
+    def test_no_plumber_values_but_prices_in_the_page_is_flagged(self):
+        self.assertTrue(self.m.is_vacuous_pass(set(), {"1.99", "2.49"}, []))
+
+    def test_a_real_agreeing_parse_is_not_flagged(self):
+        self.assertFalse(self.m.is_vacuous_pass({"1.99"}, {"1.99", "2.49"}, []))
+
+    def test_a_document_with_no_prices_at_all_is_not_flagged(self):
+        self.assertFalse(self.m.is_vacuous_pass(set(), set(), []))
+
+
+class TestLetterSpacedMoneyIsRead(unittest.TestCase):
+    """The FAW PL-317 regression, 2026-09-20 (Albert).
+
+    One row of FAW's July list is rendered with a space between every glyph —
+    `Colors: Tobermory 7 . 2 " w i d e $ 1 . 9 9` — and the original MONEY
+    pattern allowed a single space after the `$` and none after that. It
+    therefore matched `$ 1` and stopped, inventing a phantom value of 1 and
+    losing the real 1.99. PDFium reads the same run as `$1.99`, so the
+    2026-09-12 cross-check caught it and the run halted, which is the system
+    working. But the halt is also the proof that the tight pattern could
+    truncate a price, and before that check existed a truncated `$1` could have
+    been taken as a cost.
+
+    The fix adds a letter-spaced alternative, tried FIRST. It requires at least
+    one spaced glyph beyond the opening digit, so an ordinary `$ 2.19` does not
+    match it and falls through to the tight form unchanged. That constraint is
+    what these tests mostly exercise: the danger in loosening a money pattern is
+    not failing to match, it is matching too much and welding two numbers into
+    one.
+    """
+
+    def setUp(self):
+        self.m = _load_extract_module()
+
+    def _vals(self, text):
+        return [self.m.norm(v) for v in self.m.MONEY.findall(text)]
+
+    def test_the_actual_pl317_cell(self):
+        """Verbatim from the PDF, via pdfplumber."""
+        cell = 'Colors: Tobermory 7 . 2 " w i d e $ 1 . 9 9 $ 2.19 15.00 60'
+        self.assertEqual(self._vals(cell), ["1.99", "2.19"])
+
+    def test_the_same_row_unspaced_reads_identically(self):
+        """The next line prices the same product normally — the two must agree."""
+        self.assertEqual(self._vals('7.2" wide $1.99 $2.19 17.91 55'),
+                         ["1.99", "2.19"])
+
+    def test_a_bare_dollar_one_is_never_produced(self):
+        """The exact phantom that halted the run."""
+        self.assertNotIn("1", self._vals('$ 1 . 9 9'))
+
+    def test_adjacent_numbers_are_not_welded_together(self):
+        """The over-match this fix must not introduce.
+
+        `$13 15.00` is a price followed by a separate figure. A pattern that
+        allowed interior spaces freely would read it as 1315.00 — a silently
+        wrong cost, which is the failure class the cross-check exists for.
+        """
+        for text in ("$13 15.00", "$ 13 15.00"):
+            with self.subTest(text=text):
+                self.assertEqual(self._vals(text), ["13"])
+
+    def test_single_space_after_dollar_still_keeps_its_decimals(self):
+        """`$ 2.19` is not letter-spaced and must survive whole."""
+        self.assertEqual(self._vals("$ 2.19"), ["2.19"])
+
+    def test_ordinary_formats_are_unchanged(self):
+        self.assertEqual(self._vals("$1.45"), ["1.45"])
+        self.assertEqual(self._vals("$ 1,234.50"), ["1234.50"])
+        self.assertEqual(self._vals("$2.99 $3.09 $3.89"), ["2.99", "3.09", "3.89"])
+        self.assertEqual(self._vals("no money here 15.00 60"), [])
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

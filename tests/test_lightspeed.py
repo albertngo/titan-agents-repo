@@ -178,7 +178,8 @@ class TestWriter(unittest.TestCase):
         def cap(m, p, params=None, body=None):
             seen.update(method=m, path=p, body=body); return {}
         w._send = cap
-        w.read_family = lambda pid: {"suppliers": [{"id": "sup-1", "code": ""}]}
+        w.read_product = lambda pid: {"supplier_id": "sup-1", "product_suppliers": [
+            {"supplier_id": "sup-1", "price": 3.0, "code": ""}]}
         w.update_variant("id-1", {"supply_price": 3.5, "price_excluding_tax": 4.5})
         self.assertEqual(seen["method"], "PUT")
         self.assertIn("2.1", seen["path"])
@@ -194,7 +195,8 @@ class TestWriter(unittest.TestCase):
         w = self.writer()
         seen = {}
         w._send = lambda m, p, params=None, body=None: (seen.update(body=body), {})[1]
-        w.read_family = lambda pid: {"suppliers": [{"id": "sup-1", "code": "FAW-123"}]}
+        w.read_product = lambda pid: {"supplier_id": "sup-1", "product_suppliers": [
+            {"supplier_id": "sup-1", "price": 3.0, "code": "FAW-123"}]}
         w.update_variant("id-1", {"supply_price": 3.5})
         self.assertEqual(seen["body"]["details"]["product_suppliers"],
                          [{"supplier_id": "sup-1", "price": 3.5, "code": "FAW-123"}])
@@ -203,10 +205,38 @@ class TestWriter(unittest.TestCase):
         """Inventing a supplier to make the write land is not a fix."""
         w = self.writer()
         w._send = lambda m, p, params=None, body=None: {}
-        w.read_family = lambda pid: {"suppliers": []}
+        w.read_product = lambda pid: {"product_suppliers": []}
         with self.assertRaises(lsc.LightspeedError) as cm:
             w.update_variant("id-1", {"supply_price": 3.5})
         self.assertIn("supplier", str(cm.exception))
+
+    def test_update_keeps_a_second_supplier_row(self):
+        """product_suppliers replaces rows, so a one-element array could drop one.
+
+        Ported 2026-09-23 from b44e192 (unmerged since 09-21). Only the row that
+        matches the product's own supplier_id is repriced; the other row goes back
+        exactly as read, price and code included.
+        """
+        w = self.writer()
+        seen = {}
+        w._send = lambda m, p, params=None, body=None: (seen.update(body=body), {})[1]
+        w.read_product = lambda pid: {"supplier_id": "sup-2", "product_suppliers": [
+            {"supplier_id": "sup-1", "price": 2.0, "code": "A-1"},
+            {"supplier_id": "sup-2", "price": 3.0, "code": "B-2"}]}
+        w.update_variant("id-1", {"supply_price": 3.5})
+        self.assertEqual(seen["body"]["details"]["product_suppliers"], [
+            {"supplier_id": "sup-1", "price": 2.0, "code": "A-1"},
+            {"supplier_id": "sup-2", "price": 3.5, "code": "B-2"}])
+
+    def test_update_refuses_when_it_cannot_tell_which_supplier_is_ours(self):
+        w = self.writer()
+        w._send = lambda m, p, params=None, body=None: {}
+        w.read_product = lambda pid: {"product_suppliers": [
+            {"supplier_id": "sup-1", "price": 2.0},
+            {"supplier_id": "sup-2", "price": 3.0}]}
+        with self.assertRaises(lsc.LightspeedError) as cm:
+            w.update_variant("id-1", {"supply_price": 3.5})
+        self.assertIn("Refusing to guess", str(cm.exception))
 
     def test_retail_only_update_needs_no_supplier_lookup(self):
         w = self.writer()
@@ -215,6 +245,7 @@ class TestWriter(unittest.TestCase):
         def boom(pid):
             raise AssertionError("read the product for a retail-only update")
         w.read_family = boom
+        w.read_product = boom
         w.update_variant("id-1", {"price_excluding_tax": 4.5})
         self.assertEqual(seen["body"], {"details": {"price_excluding_tax": 4.5}})
 
@@ -611,6 +642,64 @@ class TestCreatePayloadShape(unittest.TestCase):
             w.create_family({"name": "T", "supply_price": 1.0})
         # and the same payload with a sku is accepted
         self.assertIsNone(w.create_family({"name": "T", "sku": "A-1"}))
+
+
+class _FakeTypesClient:
+    """Serves one product_types table. Read-only, like the real lookup path."""
+
+    def __init__(self, names):
+        self.names = names
+
+    def get(self, path):
+        return {"data": [{"name": n, "id": f"id-{i}"} for i, n in enumerate(self.names)]}
+
+
+class TestProductTypeResolution(unittest.TestCase):
+    """The PL-317 create failure, 2026-09-20.
+
+    The LS upload CSV carries a category PATH — `FLOORING / VINYL / WPC`, the form
+    `ls-upload-instructions` specifies — but Lightspeed's product types are named by
+    the LEAF alone (`WPC`). `build_family_payload` feeds `product_category` straight
+    into a product_type lookup, so every create raised "no product type named
+    'FLOORING / VINYL / WPC'". The dry run caught it before anything was sent, which
+    is what the dry run is for; no create had ever run before, so the mismatch had
+    been latent since the writer was written.
+
+    The second case is the one that would not have announced itself: Titan's live
+    product types contain four duplicated names (`LAMINATE`, `TILE`, `VINYL`,
+    `OTHER`, verified 2026-09-20). The old lookup kept the first id it saw, so a
+    laminate create would have been filed under whichever row the API happened to
+    return first — silently, and wrongly.
+    """
+
+    def setUp(self):
+        self.lookups = lpush.Lookups(_FakeTypesClient(
+            ["SPC", "WPC", "LAMINATE", "LAMINATE", "ACCESSORIES", "mirror"]))
+
+    def test_category_path_resolves_to_its_leaf(self):
+        self.assertEqual(self.lookups.resolve("product_type", "FLOORING / VINYL / WPC"), "id-1")
+        self.assertEqual(self.lookups.resolve("product_type", "FLOORING / VINYL / SPC"), "id-0")
+
+    def test_a_bare_leaf_still_resolves(self):
+        """The path form is not required — don't break a plain name."""
+        self.assertEqual(self.lookups.resolve("product_type", "SPC"), "id-0")
+        self.assertEqual(self.lookups.resolve("product_type", "ACCESSORIES"), "id-4")
+
+    def test_matching_is_case_insensitive(self):
+        self.assertEqual(self.lookups.resolve("product_type", "MIRROR"), "id-5")
+
+    def test_a_duplicated_name_refuses_instead_of_guessing(self):
+        with self.assertRaises(lpush.LightspeedError) as cm:
+            self.lookups.resolve("product_type", "FLOORING / LAMINATE")
+        self.assertIn("ambiguous", str(cm.exception))
+
+    def test_an_unknown_type_is_never_created(self):
+        with self.assertRaises(lpush.LightspeedError) as cm:
+            self.lookups.resolve("product_type", "FLOORING / CARPET")
+        msg = str(cm.exception)
+        self.assertIn("Refusing to create one", msg)
+        self.assertIn("FLOORING / CARPET", msg)
+        self.assertIn("CARPET'", msg, "the leaf it also tried should be named")
 
 
 if __name__ == "__main__":
