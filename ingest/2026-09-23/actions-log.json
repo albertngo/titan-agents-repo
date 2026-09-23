@@ -526,6 +526,17 @@
       "raw_ref": "3e3596a4-505f-818f-a679-ede62ce13909"
     },
     {
+      "agent": ".claude/commands/catalog-sync.md",
+      "result": "executed",
+      "error": null,
+      "approved_by": "Albert, in chat 2026-09-23 (answers: IMPRESSIVE added; 1.19; LS code; routine stays manual)",
+      "logged_at": "2026-09-23T17:05:00-04:00",
+      "type": "notion_update_page",
+      "target": "PL-380 (3e3596a4-505f-81b6-933e-f21236e1f4a8)",
+      "content_summary": "Resolved: Space Grey/Sahara/Zeus stay at 1.19 (Albert), no write needed. Extraction Status -> Extracted [All Uploaded], Airtable Sync -> Done: Updated, LS Upload -> Not needed. 'Resolved 2026-09-23' note inserted above the table; Action cells, Troubled Files and Review Reason left for Albert.",
+      "raw_ref": "3e3596a4-505f-81b6-933e-f21236e1f4a8"
+    },
+    {
       "logged_at": "2026-09-23T17:13:09-04:00",
       "agent": "lightspeed-actions-agent",
       "type": "lightspeed_update_product",
@@ -4112,6 +4123,28 @@
       "error": null,
       "raw_ref": "recR630N42sWnbunB",
       "raw_ref_action_id": "cat-284695d0466e"
+    },
+    {
+      "agent": ".claude/commands/catalog-sync.md",
+      "result": "executed",
+      "error": null,
+      "approved_by": "Albert, in chat 2026-09-23 (answers: IMPRESSIVE added; 1.19; LS code; routine stays manual)",
+      "logged_at": "2026-09-23T18:25:00-04:00",
+      "type": "notion_update_page",
+      "target": "PL-381 (3e3596a4-505f-818f-a679-ede62ce13909)",
+      "content_summary": "Extracted Files replaced with the step-5a pair (impressive_airtable_upload / ls_upload 2026-09-23, 250 rows each, all with Lightspeed ID). Troubled Files -> impressive_troubled_2026-09-23.csv (0 held, 443 wrote_flagged). Airtable Sync -> Done: Updated, LS Upload Done, UUID Backfill Done, Extraction Status -> Extracted [All Uploaded], Notes rewritten. Review Reason left for Albert.",
+      "raw_ref": "3e3596a4-505f-818f-a679-ede62ce13909"
+    },
+    {
+      "agent": ".claude/commands/catalog-sync.md",
+      "result": "executed",
+      "error": null,
+      "approved_by": "Albert, in chat 2026-09-23 (answers: IMPRESSIVE added; 1.19; LS code; routine stays manual)",
+      "logged_at": "2026-09-23T18:26:00-04:00",
+      "type": "notion_write_troubled_table",
+      "target": "PL-381 (3e3596a4-505f-818f-a679-ede62ce13909)",
+      "content_summary": "Page body replaced: completion summary plus the 2026-09-23 troubled table (counts for new_supplier and the select mapping; rows for the 4 wrong LS handles, Heritage width conflict, hardwood trims, new colourways). The previous table had no Action answers, so none was lost.",
+      "raw_ref": "3e3596a4-505f-818f-a679-ede62ce13909"
     }
   ]
 }
