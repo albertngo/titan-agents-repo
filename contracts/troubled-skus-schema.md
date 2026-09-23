@@ -112,6 +112,16 @@ The CSV on `Troubled Files` is not editable in place, so the answering surface i
 **table in the Notion page body**, rendered from the same rows. The run writes that
 table; the reviewer fills in `Action` cells; the next run reads them back.
 
+**Never render a literal `|` into a cell of that table.** `col_printed` is
+`|`-separated in the CSV (above), and a pipe inside a Markdown table cell splits the
+row — Notion then widens the whole table to the longest row and every column after the
+split is off by one on the rows that contain it. Escaping it as `\|` does **not**
+survive; the escape reaches Notion as a literal backslash and the cell still splits.
+Substitute a separator when rendering — ` · ` reads correctly — and leave the CSV's
+`|` alone, since that is what the contract specifies and what a re-read parses.
+Observed on PL-377, 2026-09-22: two `ambiguous_pricing` rows turned a 12-column table
+into 13.
+
 The attachment stays the durable artifact and the property stays the worklist filter.
 The table is the working surface, and the two are generated from one source, so they
 cannot disagree about anything except the `Action` column — which only ever exists on
