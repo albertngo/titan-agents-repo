@@ -193,6 +193,9 @@ What still holds structurally, independent of policy:
   construction, which no policy can approve past. That case is still effectively a
   two-pass flow; it just reaches that outcome by being blocked rather than by this
   command stopping.
+  **The row still ends with two CSVs (2026-09-23):** step 5a renders the Lightspeed
+  file from the POS after the sync, so "one CSV" now describes only what extraction
+  could build, not what the row carries.
 - The **third state — new to Airtable, already live in Lightspeed** (Canadian
   Standard 2026-09-03; HOMESPRO and IMPRESSIVE both) — carries two CSVs and is *not*
   structurally blocked. Those rows write. This is the case the reversal actually
@@ -365,6 +368,55 @@ It writes through MCP — there is no `airtable_write.py`.
   does not stop the batch; say in the report that it was skipped. See the banner on
   Table 2 of bert-airtable-schema.
 
+## 5a. Re-render both CSVs from the live systems
+
+**Both files, every run (Albert, 2026-09-23).** The row keeps the Airtable CSV *and*
+the Lightspeed CSV, so the uploaded items can be seen, and re-imported by hand if
+ever needed, without opening either system. The Airtable CSV carries each SKU's
+Lightspeed UUID, and both reflect what is **live now**, not what the sheet said
+before the sync. This supersedes every "no Lightspeed file" rule (promo-only runs,
+status-only runs, a new supplier new to Lightspeed): those described what
+extraction could *build*, and this step renders from the POS after the fact.
+
+After step 5, and after any held residue step 3a cleared:
+
+1. `python3 scripts/lightspeed_pull.py --refresh`, because the cached pull predates this
+   run's own Lightspeed writes.
+2. Read back every SKU on the upload CSV from Airtable with `list_records_for_table`:
+   `recordIds` from `MatchedRecId`, plus a `SKU` filter for any row created this run.
+   Take **all fields**. Save the raw tool output (it lands in a file when large)
+   and check that the record count matches.
+3. Run the export. It rewrites both files in place:
+
+   ```bash
+   python3 scripts/catalog_export.py \
+     --upload        ingest/<date>/<supplier>_airtable_upload_<date>.csv \
+     --ls-upload     ingest/<date>/<supplier>_ls_upload_<date>.csv \
+     --airtable-live <the saved list_records output> \
+     --lightspeed    ingest/<date>/lightspeed-products.json
+   ```
+
+   The Airtable CSV takes every column from the live record (an emptied cell comes
+   out empty) and sets `MatchStatus: matched`. `Lightspeed ID` comes from Airtable,
+   or from the POS by sku where the backfill has not landed. A SKU Airtable does not
+   hold keeps its extracted row, so the next run still sees it as a create. The LS CSV
+   gets one row per SKU as it is live on the POS, and is created if extraction built
+   none. Field ids resolve through
+   `platform-settings/airtable-master-catalogue-fields.json`. A `WARNING: not Airtable
+   fields` line means a field was renamed: refresh that map from
+   `list_tables_for_base`, do not ignore it.
+4. **Commit, then re-attach both** to `Extracted Files`, replacing the previous pair
+   (same upload recipe as `/process-price-list` step 6). The extraction commit came
+   first, so `git diff` on this one is exactly what the sync changed.
+
+The exported file is a fixed point: fed back to the reconciler against the same live
+state, it plans nothing (`tests/test_catalog_export.py`). That is what makes it safe
+to leave on the row as the input to any later re-run. It also means it carries stale
+live values faithfully, such as an expired promo nobody cleared. The reconciler
+therefore never pushes a promo whose `Promo end date` has passed as today's
+`supply_price` (`ls_update_fields`, 2026-09-23). The Airtable fields stay as they
+are, because no promo sweep runs.
+
 ## 6. Close the Notion row
 
 In dependency order — a new product has no Lightspeed ID until the POS upload makes
@@ -429,6 +481,8 @@ and all.
   policy string on an auto-approved entry, never a person's name for one) and
   `raw_ref_action_id` set.
 - Every new product carries a `Lightspeed ID` in Airtable.
+- **Both CSVs are on `Extracted Files`, re-rendered from live** by step 5a: the Airtable
+  one with every SKU's Lightspeed UUID, the Lightspeed one from the POS.
 - The Notion trackers reflect reality, `Partial` included where that's what happened.
 - **Every troubled SKU is in the CSV, attached to `Troubled Files`, and notified** —
   `held` rows and `wrote_flagged` rows both. A held row that reaches nobody is the

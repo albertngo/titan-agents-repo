@@ -664,6 +664,27 @@ class TestPromoPricing(unittest.TestCase):
                                        "Promo cost ($/sf)": blank})
             self.assertEqual(out["supply_price"], 4.20, f"blank={blank!r}")
 
+    def test_a_lapsed_promo_is_not_pushed(self):
+        """Nothing clears an expired promo in Airtable (no sweep, by ruling), so the
+        POS must not take it as today's cost."""
+        out = cr.ls_update_fields({"Cost/unit": "3.69", "Retail price/unit": "4.69",
+                                   "Promo cost ($/sf)": "3.29",
+                                   "Promo end date": "2026-08-31"}, as_of="2026-09-23")
+        self.assertEqual(out["supply_price"], 3.69)
+
+    def test_a_running_promo_still_applies(self):
+        for end in ("2026-09-30", "2026-09-23"):
+            out = cr.ls_update_fields({"Cost/unit": "4.99", "Retail price/unit": "5.99",
+                                       "Promo cost ($/sf)": "3.99",
+                                       "Promo end date": end}, as_of="2026-09-23")
+            self.assertEqual(out["supply_price"], 3.99, end)
+
+    def test_a_promo_with_no_end_date_still_applies(self):
+        out = cr.ls_update_fields({"Cost/unit": "1.49", "Retail price/unit": "2.49",
+                                   "Promo cost ($/sf)": "1.29", "Promo end date": ""},
+                                  as_of="2026-09-23")
+        self.assertEqual(out["supply_price"], 1.29)
+
     def test_update_still_writes_only_prices(self):
         """A promo must not widen the payload — no name, no supplier, no category."""
         out = cr.ls_update_fields({"Cost/unit": "4.20", "Retail price/unit": "5.20",

@@ -94,6 +94,7 @@ DIFF_FIELDS = {
 }
 PRICE_FIELDS = ("Cost/unit", "Retail price/unit")
 PROMO_COST = "Promo cost ($/sf)"
+PROMO_END = "Promo end date"
 
 # MatchStatus / LS Match status values that must never reach a write.
 AMBIGUOUS = {"ambiguous", "AMBIGUOUS", "DUPLICATE"}
@@ -658,7 +659,7 @@ def category_resolves(category, leaves):
     return any(want == leaf.split("/")[-1].strip().lower() for leaf in leaves)
 
 
-def ls_update_fields(row):
+def ls_update_fields(row, as_of=None):
     """What a Lightspeed UPDATE writes: prices, and nothing else.
 
     Deliberately minimal, because the obvious wider payload is destructive.
@@ -725,8 +726,25 @@ def ls_update_fields(row):
     deliberately narrow, against a 2.1 attribute shape that has already bitten once
     (a guard read the wrong key and returned [] where a `Select` existed). Worth
     doing only on the evidence of a live API check. Not urgent.
+
+    ## A lapsed promo is not what Titan pays (2026-09-23)
+
+    The paragraphs above assume `Promo cost` clears itself on `Promo end date`.
+    Nothing does that: no promo-expiry mechanism exists anywhere, and Albert ruled
+    on 2026-09-23 that no sweep should clear them. So a row can carry a promo that
+    ended weeks ago (28 FAW records still held August's on 2026-09-23). Read "as
+    written", this function would push that dead price into Lightspeed as today's
+    supply_price. It surfaced the first time a CSV was re-rendered from live
+    Airtable (scripts/catalog_export.py), which carries those stale values
+    faithfully. So a promo whose end date is before `as_of` is ignored here and the
+    regular cost is used. The Airtable fields are untouched: this is not the sweep.
+    A promo with no end date still applies, since clearance "while stock lasts"
+    prints none.
     """
     promo = as_number(row.get(PROMO_COST))
+    end = clean(row.get(PROMO_END))
+    if promo is not None and end and end[:10] < (as_of or today()):
+        promo = None
     cost = as_number(row.get("Cost/unit"))
     return {k: v for k, v in (
         ("supply_price", promo if promo is not None else cost),

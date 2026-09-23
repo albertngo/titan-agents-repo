@@ -304,6 +304,10 @@ Otherwise, **in this order — it is a dependency, not a preference**:
    - **Exception — a new supplier with no Lightspeed presence gets no LS file.** Those three columns are copied from
      the Airtable state, and for a new supplier that state does not exist yet. The LS file
      follows the Airtable import, per the forced order below. One file, not two.
+   - **The row still ends with both (Albert, 2026-09-23).** Whatever extraction could
+     build, `/catalog-sync` step 5a re-renders the Airtable CSV and the Lightspeed CSV
+     from the live systems after the writes, with every SKU's Lightspeed UUID, and
+     re-attaches the pair. Build what you can here; never skip the Airtable file.
 
 Cross-check extracted SKU→price pairs against pdfplumber's own text before attaching.
 

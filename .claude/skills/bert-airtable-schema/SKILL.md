@@ -864,6 +864,8 @@ import path exists to provide.
 >
 > A new supplier also gets **no Lightspeed file** — LS columns 1–3 are copied from the
 > Airtable state, which does not exist until the import happens.
+> (At extraction. Since 2026-09-23 `/catalog-sync` step 5a renders the LS file from the
+> POS after the sync, so the row ends with both CSVs regardless. Albert wants both, always.)
 
 ### Step 2 — the matching cascade
 
@@ -1438,6 +1440,9 @@ tagged `Promo`, and they are always an **update** against existing records — n
   Aquaplus Gold and Aquaplus Gold with Cork at once.
 - **A promo run produces no Lightspeed file.** Only `Promo cost ($/sf)` and `Promo end date`
   change; retail during a promo is adjusted manually, so no LS-visible field moves.
+  **Superseded for the row (Albert, 2026-09-23):** extraction still builds none, but
+  `/catalog-sync` step 5a renders both CSVs from the live systems after every sync, so a
+  promo run's row carries a Lightspeed CSV too, with each SKU's UUID.
 - **Check the printed end date against today before reporting.** The Aug 2026 sheet was
   processed on 2026-09-09, nine days after it expired. Do not roll the date forward on your
   own — an extension has to be confirmed — but say plainly that it has lapsed.

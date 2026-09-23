@@ -1,0 +1,259 @@
+{
+  "_comment": "Master Flooring Catalogue (tblfLXD3zkSdNQGbS) field ids -> name and type, captured live 2026-09-23 from list_tables_for_base. Read by scripts/catalog_export.py, which renders the post-sync Airtable CSV from list_records_for_table output (keyed by field id). Ids are stable; names can be renamed in Airtable. The script warns on any CSV column it cannot find here, which is how a rename shows up. Refresh from list_tables_for_base when it does.",
+  "table_id": "tblfLXD3zkSdNQGbS",
+  "captured": "2026-09-23",
+  "fields": {
+    "fldx3byCOht5HbKmH": {
+      "name": "SKU",
+      "type": "singleLineText"
+    },
+    "fld67650y8QClqoMc": {
+      "name": "Last price update",
+      "type": "date"
+    },
+    "fldPSbURaP3wp0Tce": {
+      "name": "Product name",
+      "type": "singleLineText"
+    },
+    "fldUnNZptVhSQYp4h": {
+      "name": "Brand",
+      "type": "singleLineText"
+    },
+    "fldRZJ5JW4G6Yig8x": {
+      "name": "Supplier",
+      "type": "singleSelect"
+    },
+    "fldLOrMqh4aBftjtu": {
+      "name": "Supplier SKU",
+      "type": "singleLineText"
+    },
+    "fldQhbI35Ng2ZxNKL": {
+      "name": "Lightspeed ID",
+      "type": "singleLineText"
+    },
+    "fldPV7HD44LsBZbTa": {
+      "name": "LS Handle / Parent ID",
+      "type": "singleLineText"
+    },
+    "fldL8miCdB55TWmfJ": {
+      "name": "Collection",
+      "type": "singleLineText"
+    },
+    "fld1rKmaRWtUxJYdi": {
+      "name": "Product type",
+      "type": "singleSelect"
+    },
+    "fldPPKZFhN91SDDbI": {
+      "name": "Category",
+      "type": "singleSelect"
+    },
+    "fldIM2DCPpSon7A3J": {
+      "name": "Material type",
+      "type": "singleSelect"
+    },
+    "fldvWLfeSvsMnd1vL": {
+      "name": "Species",
+      "type": "singleSelect"
+    },
+    "fldNTc3qponIjsNLV": {
+      "name": "Colour / tone",
+      "type": "singleSelect"
+    },
+    "fld42aGNM67nKH2hp": {
+      "name": "Grade",
+      "type": "singleSelect"
+    },
+    "fldbUK6gN4FrNXVXc": {
+      "name": "Layout pattern",
+      "type": "singleSelect"
+    },
+    "fldb9VH0GrYL2y8OK": {
+      "name": "Width (in)",
+      "type": "number"
+    },
+    "fldnx613WYktJTVpT": {
+      "name": "Length",
+      "type": "singleLineText"
+    },
+    "fldEevOqBS3QngAGu": {
+      "name": "Thickness (mm)",
+      "type": "number"
+    },
+    "fldM0h6glmExHSWwH": {
+      "name": "Wear layer (mil)",
+      "type": "number"
+    },
+    "fldT6pX7eAeneU6Ez": {
+      "name": "Veneer / top layer (mm)",
+      "type": "number"
+    },
+    "fldyOeJ5T7ZQWpplR": {
+      "name": "Veneer cut type",
+      "type": "singleSelect"
+    },
+    "fld6d4PhPa1yZBKoZ": {
+      "name": "AC rating",
+      "type": "singleSelect"
+    },
+    "fldo6Em81uoydl9Jj": {
+      "name": "Finish type",
+      "type": "singleSelect"
+    },
+    "fldAxs1u4wam2TuNe": {
+      "name": "Install profile",
+      "type": "singleSelect"
+    },
+    "fldRbQwtrXcKNYZo4": {
+      "name": "Install method",
+      "type": "singleSelect"
+    },
+    "fldbcp5sjjcrniWaw": {
+      "name": "Locking system",
+      "type": "singleLineText"
+    },
+    "fldVhtPuaLy2v6nXS": {
+      "name": "Underpad included",
+      "type": "checkbox"
+    },
+    "fld66Qq8UteH8kNeh": {
+      "name": "Underpad type",
+      "type": "singleSelect"
+    },
+    "fld14cOYVWMtOS1Wv": {
+      "name": "IIC rating",
+      "type": "number"
+    },
+    "fldEAl2eJfz2Lr4zY": {
+      "name": "STC rating",
+      "type": "number"
+    },
+    "fldex3pTEVhot4rsN": {
+      "name": "Tile format",
+      "type": "singleSelect"
+    },
+    "fld5BEjv1bqRdtNtw": {
+      "name": "Weight per piece (kg)",
+      "type": "number"
+    },
+    "fld3eJsjlV9ZEdHLg": {
+      "name": "Certifications",
+      "type": "multipleSelects"
+    },
+    "flduJqOhE4YuX3Bmq": {
+      "name": "Cost/unit",
+      "type": "currency"
+    },
+    "fldpH6d7GlytLLh7Q": {
+      "name": "Retail price/unit",
+      "type": "currency"
+    },
+    "fldBXJ01HkGU9j0jc": {
+      "name": "MAP price ($/sf)",
+      "type": "currency"
+    },
+    "fldbYjaqpOY2XQWhY": {
+      "name": "Pallet price ($/sf)",
+      "type": "currency"
+    },
+    "fldB21dDwkG60NEAS": {
+      "name": "Promo cost ($/sf)",
+      "type": "currency"
+    },
+    "fldluA0eeTCwfton7": {
+      "name": "Promo end date",
+      "type": "date"
+    },
+    "fldL7kf3jwS67tBdc": {
+      "name": "Volume pricing notes",
+      "type": "multilineText"
+    },
+    "fldow6H8DTr7jg5nb": {
+      "name": "Price last changed by",
+      "type": "singleSelect"
+    },
+    "fldFXyeHxIVYjWM4R": {
+      "name": "Box size (sf)",
+      "type": "number"
+    },
+    "fldjznD2AfUlFXqan": {
+      "name": "Pieces per box",
+      "type": "number"
+    },
+    "fldxOeq7wkcuDZBgG": {
+      "name": "Boxes per skid",
+      "type": "number"
+    },
+    "fldTjl8DwIP7DAnBE": {
+      "name": "Pieces per pallet",
+      "type": "number"
+    },
+    "fld0sft4ZRTMHt5Hi": {
+      "name": "Stock status",
+      "type": "singleSelect"
+    },
+    "fldPsKISM495IjaWU": {
+      "name": "Active",
+      "type": "checkbox"
+    },
+    "fldzCXqsqj6kwSiOk": {
+      "name": "Waterproof",
+      "type": "checkbox"
+    },
+    "fldtm2O7rcdJ52sBy": {
+      "name": "Pet friendly",
+      "type": "checkbox"
+    },
+    "fld9QVoh2IdPqTGlh": {
+      "name": "Radiant heat compatible",
+      "type": "checkbox"
+    },
+    "fldoFFxH1f9vXTqxw": {
+      "name": "Traffic rating",
+      "type": "singleSelect"
+    },
+    "fldL3n3AxbsUiWhEz": {
+      "name": "Suitable rooms",
+      "type": "multipleSelects"
+    },
+    "fldpDLLqVkhMrU9QN": {
+      "name": "Residential warranty (yrs)",
+      "type": "number"
+    },
+    "fldkMjKlwCoGWNPbF": {
+      "name": "Commercial warranty (yrs)",
+      "type": "number"
+    },
+    "fldm06jdSIM9o3PXI": {
+      "name": "Salesperson notes",
+      "type": "multilineText"
+    },
+    "fldhzmVj2usNnBNWM": {
+      "name": "Pairs well with",
+      "type": "singleLineText"
+    },
+    "fldvl6KE266usFJAt": {
+      "name": "Price History Log",
+      "type": "singleLineText"
+    },
+    "fldEmZtBFeNQcVa0I": {
+      "name": "Price List URL",
+      "type": "url"
+    },
+    "fldK1CPhmJ8YDf5ci": {
+      "name": "Internal notes",
+      "type": "multilineText"
+    },
+    "fldddnDXunopu1B1v": {
+      "name": "Attachments",
+      "type": "multipleAttachments"
+    },
+    "fldgAL4jzZVDmn4qY": {
+      "name": "Attachment Summary",
+      "type": "aiText"
+    },
+    "fldkQY4YQHpwTQUnX": {
+      "name": "Price History Log v2",
+      "type": "multipleRecordLinks"
+    }
+  }
+}
