@@ -147,6 +147,32 @@ So the mixed case is **both**, never either-or. Dropping the name half loses the
 
 **Blank `Box size (sf)` on a flooring row is a data defect, not an exemption.** Per-piece accessories and STONE are legitimately blank. A plank/tile flooring SKU with no box size must be flagged and fixed in Airtable before upload — the LS file cannot invent it.
 
+### One SKU shown at two box sizes across lists — surface both, never round
+
+**Rule (Albert, 2026-09-20): when a supplier deliberately shows the same product at two different box sizes — a regular list saying one thing and a promo sheet saying another, or two lists disagreeing — the LS name states BOTH, joined by ` or `: `- 17.91sf/b or 17.63sf/b`. Do not round, average, or soften either number to make them agree.**
+
+This is a *different* case from the mixed-box-size rule above, and the two must not be confused:
+
+| | Mixed-box-size group | Two sizes across lists |
+|---|---|---|
+| What varies | Box size differs **between grades** inside one handle group | Box size differs **between documents** for one single SKU |
+| Separator | `/` — `18.19/20.18sf/b` | ` or ` — `17.91sf/b or 17.63sf/b` |
+| Order | Ascending | **Catalogue value first**, then the alternate |
+| Column 11 | Carries this row's own exact value | Untouched — there is no variant group |
+
+The ordering is deliberate and carries meaning: the first number is what the catalogue and the regular list hold, the second is the other size the supplier has printed. Ascending would throw that away.
+
+**Why surface rather than reconcile.** FAW ships the same plank in different box counts, so the two numbers are usually both true rather than one being an error. Rounding them together (`23sf/b`) destroys the only signal that there are two, and picking one silently asserts a fact nobody checked. Both visible lets whoever is looking at the receipt or the order line see the real spread and ask, which is the same reasoning as the combined name above.
+
+**Airtable still holds exactly one value.** `Box size (sf)` is a number field and cannot hold a pair; it keeps the catalogue/regular-list figure. The dual form is an LS-name device for human clarity, not a data change — so a box-size difference between a promo sheet and the catalogue is **not** `ambiguous_naming` and should not be flagged as a spec conflict when the regular list corroborates the stored value.
+
+**Worked example (PL-370 promo vs PL-317 regular, 2026-09-20).** The September promo sheet printed box sizes that disagreed with the catalogue on seven SKUs. The July regular list confirmed the stored value on every one it listed, so nothing was changed — the names simply gained the second figure:
+
+```
+NAFLVP-SPC - Aquaplus Platinum (Soho) | 7.1" x 9mm x RL - 11.94sf/b or 14.93sf/b
+NAFENG - Regal American White Oak (Cuba) | 7.5" x 18mm x RL - 23.31sf/b or 20.24sf/b
+```
+
 ---
 
 ## Marking a promo — `(P)` and the `PROMO` tag

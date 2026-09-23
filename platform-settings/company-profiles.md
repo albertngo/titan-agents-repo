@@ -32,4 +32,39 @@ in `process-price-list.md`, independent of anything in this file.
   paragraph, plain prose — this is notes, not a schema.
 ```
 
-No entries yet — this file is created empty, ready for the first one.
+## FAW (Notion Company value, exact casing)
+
+- **2026-09-21** — from Price Lists row `3e2596a4-505f-810b-9522-d1b13e9f59e5`
+  (`New Price List - Effective September 19, 2026`): a real, structured 4-page price
+  list — not flagged blank/no-content — but for bathroom vanities and linen cabinets,
+  not flooring. MDF and solid-wood vanity cabinets (24"–72", single/double sink, includes
+  quartz countertop + side/backsplash) priced $195–$999 (MDF) and $329–$1,299 (solid
+  wood, more for natural-wood finishes), plus matching linen cabinets ($499–$749) and
+  door handles/knobs ($3–$6/pc). Order desk `ORDERDESK@FLOORSATWORK.COM`. Tagged
+  `Vanity Price List` (new, gray, open-ended per the 2026-09-11 tagging rule) rather
+  than `Regular List`/`Promo`, since neither fits a document with zero flooring SKUs.
+  Not run through extraction into the Master Flooring Catalogue schema — a vanity has
+  none of the 57 flooring columns (no grade, wear layer, box size, etc.) and forcing it
+  through would invent meaningless values. This is the first FAW attachment observed to
+  carry a non-flooring product line; prior FAW rows in this database are flooring price
+  lists. Escalated to Albert (Tactical Tasks List) to confirm the classification and
+  decide whether a vanity-specific catalogue/pipeline is worth building, given the
+  existing but unrelated `BEST VANITY` Company option already in this same Notion
+  database — nothing in this document links FAW to that entity, so no assumption was
+  made either way.
+
+## VBK (Notion Company value, exact casing)
+
+- **2026-09-15** — from Price Lists row `3dc596a4-505f-8100-898c-cbbf83399ea4`
+  (`VBK: Need 100+ units of 4x10 Black? Reach out for special offer...`): the
+  attachment was a 1-page marketing comparison flyer, tagged `Marketing Flyer`
+  (a new, gray, open-ended Tags option — not `Regular List`/`Promo`), not a price
+  list. It positions "VBK Vents" against cheap generic competitor vents on
+  quality: galvanized powder-coated steel, an anti-crush warranty, tight clean
+  corners and a consistent finish, versus thin easily-bent metal with inaccurate
+  corners and uneven paint on the competing product. No pricing, no SKUs, no
+  product catalogue — just a sell sheet. `Company` had no `VBK` option in Notion
+  before this row; it was added (confirmed against document header, email
+  subject, and sender domain `vbkinc.com`, all agreeing). VBK does not yet
+  appear in `airtable-destinations.json`'s `supplier_aliases` — not yet
+  onboarded to Airtable/Lightspeed, and this entry does not imply it should be.

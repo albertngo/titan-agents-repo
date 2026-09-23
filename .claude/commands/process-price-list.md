@@ -267,6 +267,15 @@ Otherwise, **in this order — it is a dependency, not a preference**:
      `/catalog-sync` leaves `cost_basis` null, and carve-out 3 holds every action on
      the plan. Flag the row `cost_basis_unconfirmed` in the troubled CSV (5a) so the
      question is visible rather than only implied by nothing having been written.
+     **Zero rows in Airtable does not mean zero rows in Lightspeed — check Lightspeed
+     before treating `Lightspeed ID` as blank** (Albert, 2026-09-11, after Oakel and
+     Golden Choice both turned out to be live at the POS; salvaged 2026-09-23 from
+     `7e47544`, whose cost-basis half was superseded on 2026-09-12 and is not taken).
+     Run `python3 scripts/lightspeed_pull.py --supplier "<Notion Company value>"`, and
+     if it returns nothing, retry with only the first word — Lightspeed's
+     `supplier_name` is often shorter (`GOLDEN CHOICE` is stored as `GOLDEN`). Every
+     live match is the third state below: `MatchStatus` stays `new`, and `Lightspeed
+     ID` / `LS Handle / Parent ID` are copied from the live product.
      **Skip the Lightspeed file** only while the products are new to Lightspeed too —
      if `Lightspeed ID`s have been reconciled in from an LS export, build it. See 5.4.
    - **Verify the supplier's documented SKU format against the base before generating
