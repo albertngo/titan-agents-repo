@@ -218,7 +218,31 @@ This file only controls what the routine *does* once it fires. What fires it —
 4381438's webhook — has to actually post a `notionID` on every fire for the table
 above to hold; confirm that at the trigger side, not in this repo.
 
+## Routine environment (as observed 2026-09-23)
+
+What fires the stored text, recorded here because none of it lives in the repo and
+all of it has drifted silently before. Re-read it live (`list_triggers`,
+`get_session`) before relying on it.
+
+| Item | Value on 2026-09-23 |
+|---|---|
+| Trigger | CCR routine "New Price Lists", `trig_01Vjj6UXF92MaPhAqWw6uoTN` |
+| Enabled | **No.** Disabled 2026-09-23T03:29Z, three minutes after PR #57 merged; no commit records why. Albert, 2026-09-23: "the routine can keep firing". Re-enable **after** the salvage PR merges, since a fire before that runs `main-agents` code without the fixes |
+| Environment | `env_01XHGNpnEFthGu3i3VzP8xKp` |
+| Connectors | Airtable, Gmail, Make, Microsoft-365, Notion, visualize. The run uses Airtable and Notion. No GitHub MCP and no `gh`, so publishing goes through `scripts/publish_run.py` with `GH_TOKEN` |
+| Model | The trigger's stored model and the model sessions actually ran on differ. Check `get_session` rather than trusting the trigger record |
+| Git | Each fire opens its own `claude/*` branch, with `auto-create-pr` off. Step 3 above is the only thing that gets its output to `main-agents` |
+| Upstream | Make 4381438 polls one Outlook folder hourly, Mon–Sat, and keeps creating rows while the trigger is off. Albert, 2026-09-23: fine. Rows wait at `Not started` |
+
 ## Still open
+
+**As of 2026-09-23 the paragraphs below this one are history, not status.** The
+auto-approval path and the troubled CSV have both run on real plans: FAW PL-377
+(09-21/22, mostly interactive), IMPRESSIVE PL-381 (09-22, unattended: 151 Lightspeed
+writes, then 0/282 Airtable because the Supplier option was missing) and FAW PL-380
+(09-23, 40 policy writes). No unattended fire has yet completed **both** systems on
+one row. PL-381 is the open case: its Airtable half waits on the `IMPRESSIVE` option
+(not live on 2026-09-23) and on a SKU ruling for the 84 raw-code rows.
 
 **The first real run under the two-trigger-shape version of this routine (2026-09-11,
 this session) did not complete.** It found two eligible rows (HOMESPRO, IMPRESSIVE)
@@ -261,6 +285,18 @@ only when the flow itself or the stored text needs to change.
 
 ## Changelog
 
+- **2026-09-23 (Albert, in chat: Phase 0).** Salvaged ~100 stranded commits onto one
+  branch. Added the publish step (Step 3, `scripts/publish_run.py`), a durable backfill,
+  a select-option pre-flight, and `/catalog-sync` step 5a: both CSVs re-rendered from
+  the live systems after every sync, the Airtable one carrying each SKU's Lightspeed
+  UUID, because Albert wants both files on the row, always. Albert's data rulings,
+  same day:
+  PL-380 is the correct FAW clearance list and overrides PL-377's clearance lines
+  (PL-378, the wrong list, deleted). LAM-FAWK-0035/0036 stay at cost 0.89 in
+  Handscraped Laminates (Drop Clic), this case only. PL-370 is left alone because a
+  replacement list is coming. **No promo-expiry sweep**: expired promos stay in
+  Airtable, and the reconciler instead stops a lapsed promo reaching the POS as
+  `supply_price`. Make 4381438 may keep firing. Added the "Routine environment" section.
 - **2026-09-12 (Albert, in chat).** pdfplumber is now a hard precondition, not a
   recommendation: `/process-price-list` step 2.0 verifies it before any download and
   flags-and-stops if it is missing, with an explicit list of prohibited substitutes.

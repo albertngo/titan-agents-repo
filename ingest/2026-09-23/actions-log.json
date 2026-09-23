@@ -491,6 +491,39 @@
       "result": "executed",
       "error": null,
       "raw_ref": "3e3596a4-505f-81b6-933e-f21236e1f4a8"
+    },
+    {
+      "agent": ".claude/commands/catalog-sync.md",
+      "type": "notion_update_page",
+      "result": "executed",
+      "error": null,
+      "approved_by": "Albert, in chat 2026-09-23 (Phase 0: rulings on PL-377/380/381, and \"keep the two CSVs\")",
+      "logged_at": "2026-09-23T16:25:00-04:00",
+      "target": "PL-377 (3e2596a4-505f-8140-a7ff-c53a570b1544)",
+      "content_summary": "Page body: 'Update 2026-09-23' section inserted above the troubled table: clearance lines superseded by PL-380 (40 Stock status writes; Space Grey/Sahara/Zeus held there), LAM-FAWK-0035/0036 resolved by Albert at 0.89 (already live, no write), PL-378 deleted and never wrote. Notes property left untouched.",
+      "raw_ref": "3e2596a4-505f-8140-a7ff-c53a570b1544"
+    },
+    {
+      "agent": ".claude/commands/catalog-sync.md",
+      "type": "notion_update_page",
+      "result": "executed",
+      "error": null,
+      "approved_by": "Albert, in chat 2026-09-23 (Phase 0: rulings on PL-377/380/381, and \"keep the two CSVs\")",
+      "logged_at": "2026-09-23T16:43:00-04:00",
+      "target": "PL-380 (3e3596a4-505f-81b6-933e-f21236e1f4a8)",
+      "content_summary": "Extracted Files replaced with the step-5a pair re-rendered from live: faw_airtable_upload_2026-09-23.csv (44 rows, every column from live Airtable, all 44 with Lightspeed ID) and faw_ls_upload_2026-09-23.csv (44 rows from the live POS). The reconciler plans 0 actions against this file.",
+      "raw_ref": "3e3596a4-505f-81b6-933e-f21236e1f4a8"
+    },
+    {
+      "agent": ".claude/commands/catalog-sync.md",
+      "type": "notion_update_page",
+      "result": "executed",
+      "error": null,
+      "approved_by": "Albert, in chat 2026-09-23 (Phase 0: rulings on PL-377/380/381, and \"keep the two CSVs\")",
+      "logged_at": "2026-09-23T16:50:00-04:00",
+      "target": "PL-381 (3e3596a4-505f-818f-a679-ede62ce13909)",
+      "content_summary": "Page body: 'Update 2026-09-23' section inserted: the IMPRESSIVE Supplier option is not live on fldRZJ5JW4G6Yig8x (28 options, none IMPRESSIVE), so no Airtable write ran. 99 minted-SKU products are ready once it exists; the 84 raw-code rows need Albert's SKU ruling. No property changed.",
+      "raw_ref": "3e3596a4-505f-818f-a679-ede62ce13909"
     }
   ]
 }

@@ -135,13 +135,13 @@ that residue in one reply, but on an unattended run it is a digest, not a wait.
 Nothing changed about an action needing an id in the approval file before an
 `*-actions` agent touches it.
 
-> **⚠️ Scheduling status (2026-09-12).** **None of this has run end to end yet.**
-> `/catalog-sync` has never completed a recorded, verified session; the policy
-> auto-approval path has never executed a real write; and the troubled-SKUs CSV and
-> `Troubled Files` property have never been produced by a real run. The first fire
-> under this design writes to a live POS with no gate in front of it — watch it,
-> don't assume the docs are enough. Detail:
-> `methods/pricelist-pipeline-routine-prompt.md`, Still open.
+> **⚠️ Scheduling status (2026-09-23).** The policy path has now run on real plans:
+> FAW PL-377 and PL-380, and IMPRESSIVE PL-381 unattended. But **no unattended fire has
+> completed both systems on one row**: PL-381 wrote 151 Lightspeed products and 0 Airtable
+> records, because its Supplier option was missing. The routine trigger is disabled
+> (since 2026-09-23T03:29Z) while Make keeps creating rows. Re-enable it once the Phase 0
+> salvage merges, and watch the first fire. Detail:
+> `methods/pricelist-pipeline-routine-prompt.md`, Routine environment and Still open.
 
 **Only two files can change the POS**: `scripts/lightspeed_write.py` and
 `scripts/lightspeed_push.py`. The read path contains no write verb and a test
