@@ -335,6 +335,7 @@ def main():
     # complete even when the run that created them died before writing it.
     backfill = {} if args.dry_run else pairs_from_log(log, plan["actions"])
     current = {"type": "lightspeed_update_product", "target": f"batch for {supplier}"}
+    unresolved = []
 
     def save_backfill():
         if not args.dry_run and backfill:
@@ -356,7 +357,21 @@ def main():
             families[a["fields"].get("name")].append(a)
         for name, group in families.items():
             current.update(type="lightspeed_create_product", target=f"family {name!r}")
-            payload = build_family_payload(sorted(group, key=lambda a: a["seq"]), lookups, cfg)
+            if args.dry_run:
+                # The dry run is the Lightspeed pre-flight: it resolves every
+                # supplier, brand, category and attribute name against the live
+                # account. Report ALL that fail, not just the first, so one run
+                # names every SKU to hold.
+                try:
+                    payload = build_family_payload(
+                        sorted(group, key=lambda a: a["seq"]), lookups, cfg)
+                except LightspeedError as e:
+                    unresolved.append((name, [a["sku"] for a in group], str(e)))
+                    print(f"  create {name!r}: UNRESOLVED — {e}")
+                    continue
+            else:
+                payload = build_family_payload(
+                    sorted(group, key=lambda a: a["seq"]), lookups, cfg)
             ids = writer.create_family(payload)
             # Say which shape was sent. "1 variant(s)" on a standalone is exactly the
             # output that made the payload bug invisible for a run and a half.
@@ -404,6 +419,15 @@ def main():
     print(f"\n{json.dumps(writer.write_stats())}")
     if args.dry_run:
         print("DRY RUN — nothing was sent and nothing was logged.")
+        if unresolved:
+            print(f"\nPRE-FLIGHT FAILED: {len(unresolved)} famil"
+                  f"{'y' if len(unresolved) == 1 else 'ies'} cannot be created as planned. "
+                  "Hold these SKUs on BOTH systems (drop their Lightspeed and Airtable ids "
+                  "from the approval file, report them as held) before the live run:",
+                  file=sys.stderr)
+            for name, skus, err in unresolved:
+                print(f"  {name!r} [{', '.join(skus)}]: {err}", file=sys.stderr)
+            return 3
     return 0
 
 

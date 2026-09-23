@@ -130,10 +130,21 @@ python3 scripts/catalog_reconcile.py \
   --upload        ingest/<date>/<supplier>_airtable_upload_<date>.csv \
   --ls-upload     ingest/<date>/<supplier>_ls_upload_<date>.csv \
   --airtable-existing ingest/<date>/<supplier>_airtable_existing.json \
+  --airtable-options  ingest/<date>/<supplier>_airtable_options.json \
   --cost-basis    dealer --confirmed-by "Albert 2026-09-10"
 ```
 
-Three of those are load-bearing:
+**Pre-flight the Airtable options first (2026-09-23).** Call `get_table_schema` for
+`tables.master_flooring_catalogue` and save the result as
+`ingest/<date>/<supplier>_airtable_options.json`, fresh every run, raw output is fine.
+The reconciler then blocks any SKU whose Airtable write names a select value the base
+does not have (`supplier_option_missing`, `select_option_missing`) and emits **no
+action on either system** for it. This is what stops a first-time supplier writing
+Lightspeed and then being refused by Airtable, which left 99 IMPRESSIVE products in
+the POS with no catalogue record on 2026-09-22. Never add the missing option yourself:
+the block names it, and a person adds it.
+
+Four of those are load-bearing:
 
 - **`--airtable-existing` is not optional in practice.** Without it the reconciler
   emits **no** Airtable actions at all — deliberately. Planning Airtable writes off
@@ -310,7 +321,13 @@ python3 scripts/lightspeed_push.py --plan plans/<date>/catalog-plan-<slug>.json 
     --approval plans/<date>/catalog-approval-<slug>.json --dry-run
 ```
 
-That prints every request and sends nothing.
+That prints every request and sends nothing. **It is also the Lightspeed pre-flight
+(2026-09-23)**: it resolves every supplier, brand, category and attribute name against
+the live account and, if any family cannot be resolved, lists every one and exits `3`.
+On exit `3`, hold those SKUs on **both** systems: remove their Lightspeed and Airtable
+ids from the approval file, add them to the troubled CSV as `held` (`brand_missing`
+for a brand; the error text for anything else), and re-run the dry run until it exits
+`0`. Never create the missing brand, supplier or category.
 
 `scripts/lightspeed_write.py` and `lightspeed_push.py` are the **only** two files that
 can change the POS. There is no delete or deactivate action type in either system, and

@@ -161,6 +161,19 @@ class TestDryRunWritesNothing(PushCase):
         self.assertFalse(self.log_path.exists())
 
 
+class TestDryRunIsTheLightspeedPreflight(PushCase):
+
+    def test_every_unresolved_family_is_reported_and_the_run_fails(self):
+        """Not just the first: one dry run must name every SKU to hold."""
+        for a in self.actions:
+            a["fields"]["brand_name"] = "NO SUCH BRAND"
+        self.plan_path.write_text(json.dumps({"supplier": "TEST", "actions": self.actions}))
+        with mock.patch("sys.stderr") as err:
+            code = self.run_push("--dry-run")
+        self.assertEqual(3, code)
+        self.assertFalse(self.log_path.exists(), "a dry run never logs")
+
+
 class TestApprovalIsTheGate(PushCase):
 
     def test_an_unapproved_create_is_not_sent(self):

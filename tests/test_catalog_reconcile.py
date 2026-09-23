@@ -449,6 +449,70 @@ class TestSfbAlwaysExposed(unittest.TestCase):
         self.assertIn("lightspeed", {a["target_system"] for a in actions})
 
 
+class TestSelectOptionPreflight(unittest.TestCase):
+    """A value Airtable lacks blocks the SKU on BOTH systems, before either write.
+
+    IMPRESSIVE PL-381, 2026-09-22: Lightspeed took 151 writes, then Airtable refused
+    all 282 because "IMPRESSIVE" was not a Supplier option. The pre-flight turns
+    that into one block per SKU and zero writes anywhere.
+    """
+
+    OPTIONS = {"Supplier": {"IMPRESSIVE", "FLOORS AT WORK"},
+               "Category": {"Laminate", "Engineered hardwood"}}
+
+    def new_row(self, supplier="IMPRESSIVE", category="Laminate"):
+        return row(SKU="LAM-IMPR-0001", MatchStatus="new", Supplier=supplier,
+                   Category=category, **{"Lightspeed ID": "", "LS Handle / Parent ID": "HNEW"})
+
+    def run_new(self, r, options):
+        return cr.reconcile([r], fake_ls([]), {}, "IMPRESSIVE", LEAVES,
+                            ls_upload_row(sku="LAM-IMPR-0001"), airtable_snapshot=True,
+                            select_options=options)
+
+    def test_a_missing_supplier_option_blocks_both_sides(self):
+        actions, blocked, _ = self.run_new(self.new_row(),
+                                           {"Supplier": {"FLOORS AT WORK"}})
+        self.assertEqual(["supplier_option_missing"], [b["reason"] for b in blocked])
+        self.assertEqual([], actions, "no Lightspeed create may run ahead of Airtable")
+
+    def test_a_live_option_writes_normally(self):
+        actions, blocked, _ = self.run_new(self.new_row(), self.OPTIONS)
+        self.assertEqual([], blocked)
+        self.assertEqual({"airtable", "lightspeed"}, {a["target_system"] for a in actions})
+
+    def test_a_case_only_difference_is_blocked_and_named(self):
+        """Typecast is off, so 'Floors At Work' is refused; with it on, it duplicates."""
+        _, blocked, _ = self.run_new(self.new_row(supplier="Floors At Work"), self.OPTIONS)
+        self.assertEqual("supplier_option_missing", blocked[0]["reason"])
+        self.assertIn("FLOORS AT WORK", blocked[0]["detail"])
+
+    def test_other_select_fields_use_their_own_reason(self):
+        _, blocked, _ = self.run_new(self.new_row(category="LAM"), self.OPTIONS)
+        self.assertEqual(["select_option_missing"], [b["reason"] for b in blocked])
+
+    def test_no_options_means_no_check(self):
+        """Backwards compatible: main() warns select_options_not_checked instead."""
+        _, blocked, _ = self.run_new(self.new_row(), None)
+        self.assertEqual([], blocked)
+
+    def test_raw_schema_output_is_accepted(self):
+        schema = {"tables": [{"id": "tbl", "fields": [
+            {"name": "Supplier", "type": "singleSelect",
+             "options": {"choices": [{"id": "sel1", "name": "IMPRESSIVE"}]}},
+            {"name": "Tags", "type": "multipleSelects",
+             "options": {"choices": [{"name": "Clearance"}, {"name": "Promo"}]}},
+            {"name": "Product name", "type": "singleLineText"}]}]}
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as fh:
+            json.dump(schema, fh)
+        got = cr.load_select_options(fh.name)
+        self.assertEqual({"Supplier": {"IMPRESSIVE"}, "Tags": {"Clearance", "Promo"}}, got)
+
+    def test_multi_select_values_are_checked_one_by_one(self):
+        missing = cr.missing_select_options({"Tags": "Clearance, Bogus"},
+                                            {"Tags": {"Clearance", "Promo"}})
+        self.assertEqual([("Tags", "Bogus", None)], missing)
+
+
 class TestSupplierSkuIdentity(unittest.TestCase):
     """8780af9 bug #1: a pre-pipeline Lightspeed product keeps the supplier's raw code.
 

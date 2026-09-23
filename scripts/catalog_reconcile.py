@@ -196,11 +196,18 @@ def live_value(record, field):
 
 
 def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
-              airtable_snapshot=True):
+              airtable_snapshot=True, select_options=None):
     """Every row -> an action or a block. Never both, never neither.
 
     Warnings are separate: things worth a reader's attention that are not a
     reason to withhold a write.
+
+    `select_options` ({field: set of live option names}) is the pre-flight. A row
+    whose Airtable write would name a select value Airtable does not have is
+    blocked on BOTH systems, before either is written. Without it, a first-time
+    supplier wrote Lightspeed and then had every Airtable write refused:
+    HOMESPRO and IMPRESSIVE on 2026-09-14, IMPRESSIVE again on 2026-09-22, which
+    left 99 products in the POS with no catalogue record.
     """
     actions, blocked, warnings = [], [], []
     ls_upload = ls_upload or {}
@@ -381,6 +388,23 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
                     fields[field] = new
                     before[field] = old
 
+        if airtable_snapshot and select_options:
+            missing = missing_select_options(fields, select_options)
+            if missing:
+                field, value, near = missing[0]
+                reason = ("supplier_option_missing" if field == SUPPLIER
+                          else "select_option_missing")
+                hint = (f" The live option {near!r} differs only in case: fix the upload "
+                        "CSV, never the option." if near else
+                        " Add the option in Airtable, then re-run; nothing was written "
+                        "to either system for this SKU.")
+                extra = (f" ({len(missing) - 1} more: "
+                         + ", ".join(f"{f}={v!r}" for f, v, _ in missing[1:]) + ")"
+                         if len(missing) > 1 else "")
+                block(sku, reason,
+                      f"{field}={value!r} is not a live Airtable option.{hint}{extra}")
+                continue
+
         if recovered:
             fields[LS_ID] = recovered
             before[LS_ID] = None
@@ -459,6 +483,58 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
             })
 
     return order(actions), blocked, warnings
+
+
+def missing_select_options(fields, select_options):
+    """[(field, value, case-only near match or None)] for values Airtable lacks.
+
+    Exact match, because writes run with typecast OFF: a value that differs only
+    in case is refused at write time (or, with typecast on, silently becomes a
+    duplicate option, which is how the base collected its placeholder junk).
+    Multi-select values are checked one by one, split on commas.
+    """
+    out = []
+    for field, value in fields.items():
+        live = select_options.get(field)
+        if not live or value is None:
+            continue
+        parts = [p.strip() for p in str(value).split(",")] if "," in str(value) else [str(value).strip()]
+        for part in parts:
+            if part and part not in live:
+                near = next((o for o in live if o.casefold() == part.casefold()), None)
+                out.append((field, part, near))
+    return out
+
+
+def load_select_options(path):
+    """{field name: set(option names)} from either of two shapes.
+
+    - The plain map `{"Supplier": ["FLOORS AT WORK", ...], ...}`.
+    - The raw Airtable MCP `get_table_schema` result, from which every
+      singleSelect / multipleSelects field is taken.
+    """
+    if not path:
+        return None
+    data = json.loads(Path(path).read_text())
+    if isinstance(data, dict) and data and all(isinstance(v, list) for v in data.values()):
+        if not any(isinstance(x, dict) for v in data.values() for x in v):
+            return {k: set(v) for k, v in data.items()}
+    found = {}
+
+    def walk(node):
+        if isinstance(node, dict):
+            if node.get("type") in ("singleSelect", "multipleSelects") and node.get("name"):
+                choices = (node.get("options") or {}).get("choices") or []
+                found[node["name"]] = {c["name"] for c in choices if c.get("name")}
+            for v in node.values():
+                walk(v)
+        elif isinstance(node, list):
+            for v in node:
+                walk(v)
+    walk(data)
+    if not found:
+        raise SystemExit(f"error: {path} holds no select options in either known shape")
+    return found
 
 
 def two_dp(value):
@@ -742,6 +818,10 @@ def main():
                          "/process-price-list. Required for any row that is new to "
                          "Lightspeed: a create needs the skill-built name and "
                          "category, which cannot be derived from the Airtable columns.")
+    ap.add_argument("--airtable-options", type=Path,
+                    help="Live Airtable select options (plain {field: [names]} or the raw "
+                         "get_table_schema output). The pre-flight: a value Airtable lacks "
+                         "blocks that SKU on both systems before anything is written.")
     ap.add_argument("--supplier", help="Override the Supplier read from the CSV")
     ap.add_argument("--out", type=Path)
     ap.add_argument("--cost-basis", help="e.g. 'dealer'. Recorded, never inferred.")
@@ -783,8 +863,19 @@ def main():
     )["product_categories"]["leaves"]
 
     have_snapshot = bool(args.airtable_existing)
+    select_options = load_select_options(args.airtable_options)
     actions, blocked, warnings = reconcile(rows, ls, existing, supplier, categories,
-                                          ls_upload, airtable_snapshot=have_snapshot)
+                                          ls_upload, airtable_snapshot=have_snapshot,
+                                          select_options=select_options)
+    if have_snapshot and select_options is None:
+        warnings.insert(0, {
+            "sku": None,
+            "reason": "select_options_not_checked",
+            "detail": ("No --airtable-options were supplied, so no Airtable select value "
+                       "on this plan was checked against the live base. A value Airtable "
+                       "lacks will be refused at write time, after Lightspeed has already "
+                       "been written for that SKU."),
+        })
 
     if not have_snapshot:
         warnings.insert(0, {
@@ -811,6 +902,8 @@ def main():
             {"file": str(ls_path), "products": ls["count"], "run_at": ls["pulled_at"]},
         ] + ([{"file": str(args.airtable_existing), "records": len(existing)}]
              if args.airtable_existing else [])
+          + ([{"file": str(args.airtable_options), "select_fields": len(select_options)}]
+             if select_options else [])
           + ([{"file": str(args.ls_upload), "rows": len(ls_upload)}]
              if args.ls_upload else []),
         "cost_basis": ({"value": args.cost_basis, "confirmed_by": args.confirmed_by}
