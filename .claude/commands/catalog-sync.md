@@ -324,8 +324,14 @@ Interrupted by a rate limit or a bad row? **Re-run the same command.** Ids alrea
 `executed` in today's `actions-log.json` are skipped. There is no separate state file.
 
 The run writes `plans/<date>/catalog-backfill-<slug>.json` — `sku_to_lightspeed_id`
-for every product Lightspeed just created. That file is step 5's input. **Ids are
-never paired positionally** with the request order.
+for every product Lightspeed created under this plan. That file is step 5's input.
+**Ids are never paired positionally** with the request order.
+
+The file is durable (2026-09-23): it is **merged, never overwritten**, saved after
+every family and again on any stop, and rebuilt from this plan's executed creates in
+the actions-log whenever the script runs. So a batch that stops on family three still
+leaves families one and two in the file, and a resume completes it. If the file is
+ever missing, re-running the same command with nothing left to do rebuilds it.
 
 ## 5. Airtable writes
 

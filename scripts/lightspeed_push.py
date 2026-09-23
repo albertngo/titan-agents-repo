@@ -240,6 +240,48 @@ def build_family_payload(actions, lookups, cfg):
     return payload
 
 
+def write_backfill(path, supplier, plan_path, pairs):
+    """Merge sku -> Lightspeed id pairs into the backfill file, atomically.
+
+    Merged, never overwritten: a resumed run only holds the pairs IT created, and
+    overwriting dropped ACC-OAKL-0001 on 2026-09-11 (fix ccab66f, never merged).
+    Written through a temp file and a rename so a crash mid-write cannot leave
+    half a file behind for the Airtable side to read.
+    """
+    if not pairs:
+        return 0
+    existing = {}
+    if path.exists():
+        try:
+            existing = json.loads(path.read_text()).get("sku_to_lightspeed_id", {}) or {}
+        except (ValueError, OSError):
+            existing = {}
+    merged = {**existing, **pairs}
+    tmp = path.with_name(path.name + ".tmp")
+    tmp.write_text(json.dumps({
+        "contract_version": "catalog-backfill-1",
+        "supplier": supplier, "written_at": now(),
+        "plan": str(plan_path), "sku_to_lightspeed_id": merged,
+    }, indent=1) + "\n")
+    tmp.replace(path)
+    return len(merged)
+
+
+def pairs_from_log(log, plan_actions):
+    """sku -> Lightspeed id for every create of THIS plan already executed.
+
+    A run that died before writing the backfill file left its UUIDs only in the
+    actions-log (raw_ref). A resume skips those ids as done, so without this they
+    would never reach the file, and the Airtable side would come up short.
+    """
+    creates = {a["id"]: a["sku"] for a in plan_actions
+               if a["target_system"] == "lightspeed" and a["op"] == "create"}
+    return {creates[e["raw_ref_action_id"]]: e["raw_ref"]
+            for e in log.data["entries"]
+            if e.get("result") == "executed" and e.get("raw_ref")
+            and e.get("raw_ref_action_id") in creates}
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0],
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -273,6 +315,12 @@ def main():
           f"{len(skipped_unapproved)} not approved, {len(skipped_done)} already executed")
     if not todo:
         print("nothing to do")
+        if not args.dry_run:
+            recovered = pairs_from_log(log, plan["actions"])
+            if recovered:
+                out = args.plan.with_name(f"catalog-backfill-{slug}.json")
+                total = write_backfill(out, supplier, args.plan, recovered)
+                print(f"{out.name} — rebuilt from the actions-log ({total} UUIDs)")
         return 0
 
     cfg = load_config()
@@ -282,10 +330,19 @@ def main():
 
     updates = [a for a in todo if a["op"] == "update"]
     creates = [a for a in todo if a["op"] == "create"]
-    backfill = {}
+    backfill_path = args.plan.with_name(f"catalog-backfill-{slug}.json")
+    # Start from what earlier runs of this plan already created, so the file is
+    # complete even when the run that created them died before writing it.
+    backfill = {} if args.dry_run else pairs_from_log(log, plan["actions"])
+    current = {"type": "lightspeed_update_product", "target": f"batch for {supplier}"}
+
+    def save_backfill():
+        if not args.dry_run and backfill:
+            write_backfill(backfill_path, supplier, args.plan, backfill)
 
     try:
         for a in sorted(updates, key=lambda a: a["seq"]):
+            current.update(type="lightspeed_update_product", target=f"{a['sku']} ({a['ls_id']})")
             writer.update_variant(a["ls_id"], details=a["fields"])
             if not args.dry_run:
                 log.append(a["id"], "lightspeed_update_product",
@@ -298,6 +355,7 @@ def main():
         for a in creates:
             families[a["fields"].get("name")].append(a)
         for name, group in families.items():
+            current.update(type="lightspeed_create_product", target=f"family {name!r}")
             payload = build_family_payload(sorted(group, key=lambda a: a["seq"]), lookups, cfg)
             ids = writer.create_family(payload)
             # Say which shape was sent. "1 variant(s)" on a standalone is exactly the
@@ -323,23 +381,25 @@ def main():
                            f"on sku; Lightspeed assigned {variant['id']}.",
                            approved_by, "executed", raw_ref=variant["id"])
                 print(f"    {a['sku']:20} -> {variant['id']}")
+            # Saved per family, not at the end: a later family failing must not
+            # cost the UUIDs this one already minted.
+            save_backfill()
     except (LightspeedError, Exception) as e:  # noqa: BLE001 — stop the batch on anything
         if not args.dry_run:
-            log.append(None, "lightspeed_update_product", f"batch for {supplier}",
+            log.append(None, current["type"], current["target"],
                        f"Batch stopped: {e}", approved_by, "failed", error=str(e))
+        save_backfill()
         print(f"\nSTOPPED: {e}", file=sys.stderr)
         print("Nothing after this point was attempted. Everything already applied is in "
               f"{log_path.name}; re-running skips it.", file=sys.stderr)
+        if backfill and not args.dry_run:
+            print(f"UUIDs created before the stop are saved in {backfill_path.name} "
+                  f"({len(backfill)} so far).", file=sys.stderr)
         return 1
 
-    if backfill:
-        out = args.plan.with_name(f"catalog-backfill-{slug}.json")
-        out.write_text(json.dumps({
-            "contract_version": "catalog-backfill-1",
-            "supplier": supplier, "written_at": now(),
-            "plan": str(args.plan), "sku_to_lightspeed_id": backfill,
-        }, indent=1) + "\n")
-        print(f"\n{out.name} — {len(backfill)} new UUIDs for the Airtable backfill")
+    save_backfill()
+    if backfill and not args.dry_run:
+        print(f"\n{backfill_path.name} — {len(backfill)} UUIDs for the Airtable backfill")
 
     print(f"\n{json.dumps(writer.write_stats())}")
     if args.dry_run:
