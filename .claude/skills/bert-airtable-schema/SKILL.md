@@ -1523,6 +1523,7 @@ When processing a new FAW list, double-check these recurring ambiguities:
 - **Effective date** — every FAW list is headed "Effective [date] — price subject to change due to fluctuating ocean freight charges." Record the effective date in `Price list reference` when logging to Price History Log.
 - **CLEARANCE SALE lines apply to the colours printed, never to a whole collection (2026-09-23).** The Sept 19 2026 Product Guide (PL-377) printed its clearance laminate line with an empty Colours cell. It was resolved to "Handscraped Laminate", and all seven 1.39 records went to clearance at 1.19. FAW's corrected CLEARANCE PRICE LIST (PL-380, Albert: "the correct version") names only Aphrodite, Apollo, Artemis and Poseidon. Space Grey, Sahara and Zeus were left at 1.19 with no sheet pricing them otherwise, and are held for Albert. When the Colours cell is empty, hold the line as `ambiguous_naming` and ask; do not fan it out. **Colour names on the clearance list are drawn as outlines**, so pdfplumber reads the cell as empty. Render the page (pypdfium2) and read them off the image. The prices stay text and cross-check normally.
 - **LAM-FAWK-0035 Antique Birch / LAM-FAWK-0036 Cosmic: cost 0.89 (Albert, 2026-09-23, "in this singular case").** They are in `Handscraped Laminates (Drop Clic)`, but neither PL-377 nor PL-380 prints them. Keep Cost/unit 0.89 / Retail 1.89. Never raise them to a clearance price that sits above their stored cost.
+- **LAM-FAWK-0002 Space Grey / 0003 Sahara / 0008 Zeus stay at the clearance 1.19 / 2.19 (Albert, 2026-09-23).** PL-380's corrected clearance line names only Aphrodite, Apollo, Artemis and Poseidon, but Albert kept all three at 1.19 rather than restoring 1.39. Stock status stays `Clearance`. Nothing was written: they were already there.
 
 #### FAW ingest output format
 
@@ -4107,11 +4108,43 @@ cost — and leave `Promo cost` blank.
 Page 10 (MDF casing / baseboard) is interior trim, excluded — consistent with the
 FAW / Olympia / Dragona precedent above.
 
-#### Not yet recorded
+#### SKU (Albert, 2026-09-23)
 
-SKU supplier code, brand and collection naming are **not** established here. Derive
-from live Lightspeed records, same as HOMESPRO, and flag `sku_format_mismatch` on any
-disagreement rather than reconciling it silently.
+**A product already in Lightspeed keeps its Lightspeed code as its Airtable `SKU`**,
+verbatim: `4400`, `91500-N`, `IMP.LM.NS`. Albert's ruling on PL-381, answering the
+question of raw LS code versus a minted `[CAT]-IMPR-####`: "LS code". It overrides the
+global `CAT-SUPP-####` format for IMPRESSIVE, and a stranded 2026-09-22 note that said a
+minted SKU should replace the LS code. SKU is immutable (RULE 0), so this was asked
+before any create. A product **new** to Lightspeed is minted as `[CAT]-IMPR-<code>`,
+because Lightspeed takes the SKU the create sends (99 on 2026-09-22). Both kinds are in
+the catalogue; neither is rewritten.
+
+Watch the SKU merge key: every other hyphen-less SKU in the base is an Olympia Tile
+code. On 2026-09-23 none of the 151 raw IMPRESSIVE codes collided with one (checked by
+exact match), but an upsert merges on SKU, so check again on any new raw code.
+
+#### Select values: the sheet's wording is not the base's (2026-09-23)
+
+The PL-381 extraction wrote the sheet's words into single-selects, and the pre-flight
+blocked all 250 rows. The base already has an answer for each; use it:
+
+| Sheet / extraction | Field | Write |
+|---|---|---|
+| `Nail down / Glue` (hardwood) | Install profile | `T&G` |
+| `Nail down / Glue` (hardwood) | Install method | `Nail / staple`, and note "glue-down also permitted" in Salesperson notes |
+| `Tongue and Groove` | Install profile | `T&G` |
+| `Click`, `Click - Drop Lock` | Install profile / method | `Click` / `Float` |
+| `Glue Down` | Install profile / method | `Glue down` |
+| `Solid hardwood`, `Laminate`, `Wood` | Material type | blank (hardwood and accessories carry none) |
+| `SPC` / `Dryback / Glue-down vinyl` | Material type | `SPC core` / `Dry-back vinyl` |
+| `Light Wirebrushed, Micro V bevelled sides` | Finish type | `Light Wirebrushed` |
+| `Wirebrushed and Light Handscraped` | Finish type | `Light Handscraped & Wire brushed` |
+| `UV Cured Acrylic` | Finish type | blank; printed wording in Salesperson notes |
+| `1.5mm IXPE` / `1.5mm EVA` | Underpad type | `IXPE` / `EVA` |
+| a colourway name (`UMBER`, `HARBOUR`, …) | Colour / tone | blank: 1,621 of 1,627 plank records leave it blank, and the colour is in Product name |
+
+Brand and collection naming are still derived from live Lightspeed records, same as
+HOMESPRO.
 
 ### Northway (Northway Building Supplies)
 

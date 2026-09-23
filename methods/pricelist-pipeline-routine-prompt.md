@@ -227,7 +227,7 @@ all of it has drifted silently before. Re-read it live (`list_triggers`,
 | Item | Value on 2026-09-23 |
 |---|---|
 | Trigger | CCR routine "New Price Lists", `trig_01Vjj6UXF92MaPhAqWw6uoTN` |
-| Enabled | **No.** Disabled 2026-09-23T03:29Z, three minutes after PR #57 merged; no commit records why. Albert, 2026-09-23: "the routine can keep firing". Re-enable **after** the salvage PR merges, since a fire before that runs `main-agents` code without the fixes |
+| Enabled | **No, deliberately.** Disabled 2026-09-23T03:29Z, three minutes after PR #57 merged. Albert, 2026-09-23 (asked whether to re-enable after the salvage merges): "Not yet. I'll do manual." Price lists are run by hand until he says otherwise; do not re-enable it on a session's own initiative |
 | Environment | `env_01XHGNpnEFthGu3i3VzP8xKp` |
 | Connectors | Airtable, Gmail, Make, Microsoft-365, Notion, visualize. The run uses Airtable and Notion. No GitHub MCP and no `gh`, so publishing goes through `scripts/publish_run.py` with `GH_TOKEN` |
 | Model | The trigger's stored model and the model sessions actually ran on differ. Check `get_session` rather than trusting the trigger record |
@@ -241,8 +241,11 @@ auto-approval path and the troubled CSV have both run on real plans: FAW PL-377
 (09-21/22, mostly interactive), IMPRESSIVE PL-381 (09-22, unattended: 151 Lightspeed
 writes, then 0/282 Airtable because the Supplier option was missing) and FAW PL-380
 (09-23, 40 policy writes). No unattended fire has yet completed **both** systems on
-one row. PL-381 is the open case: its Airtable half waits on the `IMPRESSIVE` option
-(not live on 2026-09-23) and on a SKU ruling for the 84 raw-code rows.
+one row. PL-381 was completed interactively on 2026-09-23 once Albert added the
+`IMPRESSIVE` option and ruled that a product already in Lightspeed keeps its LS code as
+SKU. That run also found the extraction had written 832 select values the base does not
+have. The pre-flight blocked all 250 rows on them rather than letting Airtable refuse
+them one by one; the mapping now lives in the skill's IMPRESSIVE section.
 
 **The first real run under the two-trigger-shape version of this routine (2026-09-11,
 this session) did not complete.** It found two eligible rows (HOMESPRO, IMPRESSIVE)
