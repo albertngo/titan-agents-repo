@@ -196,6 +196,7 @@ warning that is SKU-scoped.
 | `brand_missing` | The row's Lightspeed `create` needs a Brand with no live entity. Brand creation is a person's decision, never automated (Albert, 2026-09-13, after a duplicate "Home's Pro" supplier was created without checking first) — `lightspeed_push.py` refuses rather than mint one. Added 2026-09-14 (IMPRESSIVE), the first supplier to reach a Lightspeed create whose brand had no live match |
 | `supplier_option_missing` | The row's Airtable write names a `Supplier` value with no live select-option match. `airtable-actions-agent` refuses rather than silently mint one — see "Creating a select option" in bert-airtable-schema. Added 2026-09-14 (IMPRESSIVE), the first supplier whose Airtable side reached execution before its Supplier value was confirmed |
 | `select_option_missing` | Pre-flight (2026-09-23). An Airtable select value other than `Supplier` has no live option. Held on both systems, same as `supplier_option_missing` |
+| `ls_supplier_missing` | The row's live Lightspeed product has no supplier, so its cost cannot be written (`lightspeed_write.py` refuses to invent a purchasing relationship). Held on both systems until a person sets the supplier in Lightspeed. Added 2026-09-24 (PL-170 Baltic, EHDP-003 — created 2025-08-26 with no supplier) |
 
 `airtable_side_not_planned` is deliberately **not** here. It is plan-level, not
 SKU-level — it means the plan contains no Airtable actions at all — so it belongs in
