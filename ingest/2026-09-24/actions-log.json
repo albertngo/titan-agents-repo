@@ -2827,6 +2827,90 @@
    "error": "HTTP 422 on https://flooru.retail.lightspeed.app/api/2.1/products/f51bee12-5fdd-47bb-9e75-368556b0aa0d: {\n  \"error\": \"Unknown field in payload\",\n  \"fields\": {\n    \"fields\": \" \\\"sku\\\"\"\n  }\n}",
    "raw_ref": null,
    "raw_ref_action_id": null
+  },
+  {
+   "logged_at": "2026-09-24T10:50:21-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "LVP-VIZN-V7002 (f51bee12-5fdd-47bb-9e75-368556b0aa0d)",
+   "content_summary": "Set sku=LVP-VIZN-V7002, supply_price=1.69, price_excluding_tax=2.69.",
+   "approved_by": "Albert, in chat 2026-09-24 (\"Use the SKU in Airtable for those 7 legacy\"). First action approved alone as the live proof that the 2.1 update accepts details.sku; the rest follow once it reads back correctly. via catalog-approval-vizion-relink.json",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "f51bee12-5fdd-47bb-9e75-368556b0aa0d",
+   "raw_ref_action_id": "cat-f2d999e65ace"
+  },
+  {
+   "logged_at": "2026-09-24T10:51:19-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "LVP-VIZN-V7003 (3c8ab5f8-faeb-4d71-9e50-8148e7f88998)",
+   "content_summary": "Set sku=LVP-VIZN-V7003, supply_price=1.69, price_excluding_tax=2.69.",
+   "approved_by": "Albert, in chat 2026-09-24 (\"Use the SKU in Airtable for those 7 legacy\"). First action approved alone as the live proof that the 2.1 update accepts details.sku; the rest follow once it reads back correctly. Live proof passed on LVP-VIZN-V7002 (sku, retail and supplier price read back correct); remaining six approved 2026-09-24T10:51:17-04:00. via catalog-approval-vizion-relink.json",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "3c8ab5f8-faeb-4d71-9e50-8148e7f88998",
+   "raw_ref_action_id": "cat-29ae99acce0b"
+  },
+  {
+   "logged_at": "2026-09-24T10:51:20-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "LVP-VIZN-V7004 (ccfaf7cc-4305-4780-a780-3b55015921b8)",
+   "content_summary": "Set sku=LVP-VIZN-V7004, supply_price=1.69, price_excluding_tax=2.69.",
+   "approved_by": "Albert, in chat 2026-09-24 (\"Use the SKU in Airtable for those 7 legacy\"). First action approved alone as the live proof that the 2.1 update accepts details.sku; the rest follow once it reads back correctly. Live proof passed on LVP-VIZN-V7002 (sku, retail and supplier price read back correct); remaining six approved 2026-09-24T10:51:17-04:00. via catalog-approval-vizion-relink.json",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "ccfaf7cc-4305-4780-a780-3b55015921b8",
+   "raw_ref_action_id": "cat-2da6818c37a5"
+  },
+  {
+   "logged_at": "2026-09-24T10:51:21-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "LVP-VIZN-V7008 (68dea42e-ab5f-46bc-961b-ef49e9915eab)",
+   "content_summary": "Set sku=LVP-VIZN-V7008, supply_price=1.69, price_excluding_tax=2.69.",
+   "approved_by": "Albert, in chat 2026-09-24 (\"Use the SKU in Airtable for those 7 legacy\"). First action approved alone as the live proof that the 2.1 update accepts details.sku; the rest follow once it reads back correctly. Live proof passed on LVP-VIZN-V7002 (sku, retail and supplier price read back correct); remaining six approved 2026-09-24T10:51:17-04:00. via catalog-approval-vizion-relink.json",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "68dea42e-ab5f-46bc-961b-ef49e9915eab",
+   "raw_ref_action_id": "cat-418b6c16d60d"
+  },
+  {
+   "logged_at": "2026-09-24T10:51:22-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "LVP-VIZN-V8001 (51237a3f-4722-48c9-9cc7-20743ae3d2fb)",
+   "content_summary": "Set sku=LVP-VIZN-V8001, supply_price=1.89, price_excluding_tax=2.89.",
+   "approved_by": "Albert, in chat 2026-09-24 (\"Use the SKU in Airtable for those 7 legacy\"). First action approved alone as the live proof that the 2.1 update accepts details.sku; the rest follow once it reads back correctly. Live proof passed on LVP-VIZN-V7002 (sku, retail and supplier price read back correct); remaining six approved 2026-09-24T10:51:17-04:00. via catalog-approval-vizion-relink.json",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "51237a3f-4722-48c9-9cc7-20743ae3d2fb",
+   "raw_ref_action_id": "cat-686f61797b2b"
+  },
+  {
+   "logged_at": "2026-09-24T10:51:24-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "LVP-VIZN-V8004 (81e185ca-7a16-4d8b-a3e1-c81efb9c8688)",
+   "content_summary": "Set sku=LVP-VIZN-V8004, supply_price=1.89, price_excluding_tax=2.89.",
+   "approved_by": "Albert, in chat 2026-09-24 (\"Use the SKU in Airtable for those 7 legacy\"). First action approved alone as the live proof that the 2.1 update accepts details.sku; the rest follow once it reads back correctly. Live proof passed on LVP-VIZN-V7002 (sku, retail and supplier price read back correct); remaining six approved 2026-09-24T10:51:17-04:00. via catalog-approval-vizion-relink.json",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "81e185ca-7a16-4d8b-a3e1-c81efb9c8688",
+   "raw_ref_action_id": "cat-aa921a101e01"
+  },
+  {
+   "logged_at": "2026-09-24T10:51:25-04:00",
+   "agent": "lightspeed-actions-agent",
+   "type": "lightspeed_update_product",
+   "target": "LVP-VIZN-V8006 (670e9c37-9973-415a-8ff3-e3ad8ef4aaf1)",
+   "content_summary": "Set sku=LVP-VIZN-V8006, supply_price=1.89, price_excluding_tax=2.89.",
+   "approved_by": "Albert, in chat 2026-09-24 (\"Use the SKU in Airtable for those 7 legacy\"). First action approved alone as the live proof that the 2.1 update accepts details.sku; the rest follow once it reads back correctly. Live proof passed on LVP-VIZN-V7002 (sku, retail and supplier price read back correct); remaining six approved 2026-09-24T10:51:17-04:00. via catalog-approval-vizion-relink.json",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "670e9c37-9973-415a-8ff3-e3ad8ef4aaf1",
+   "raw_ref_action_id": "cat-d2f4853acab7"
   }
  ]
 }
