@@ -1,0 +1,3888 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "FLOOR & DECOR",
+ "run_at": "2026-09-24T10:33:02.907364-04:00",
+ "status": "ok",
+ "inputs": [
+  {
+   "file": "ingest/2026-09-24/floordecor_airtable_upload_2026-09-24.csv",
+   "rows": 48
+  },
+  {
+   "file": "ingest/2026-09-24/lightspeed-products.json",
+   "products": 15004,
+   "run_at": "2026-09-24T10:31:23.227707-04:00"
+  },
+  {
+   "file": "ingest/2026-09-24/floordecor_airtable_existing.json",
+   "records": 0
+  },
+  {
+   "file": "/tmp/claude-0/-home-user/7073bf12-0ecb-5aba-9f48-381dc91fbc0c/scratchpad/schema_live.json",
+   "select_fields": 20
+  },
+  {
+   "file": "ingest/2026-09-24/floordecor_ls_upload_2026-09-24.csv",
+   "rows": 48
+  }
+ ],
+ "cost_basis": {
+  "value": "loose",
+  "confirmed_by": "Albert 2026-09-24 (Floor & Decor #### Cost column: Loose, 'the higher one'; box 16 sf/b)"
+ },
+ "summary": {
+  "airtable_backfill_ls_id": 48,
+  "airtable_upsert": 48,
+  "lightspeed_create": 48,
+  "actions_total": 144,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 0,
+  "warnings": 48,
+  "rows_in": 48
+ },
+ "actions": [
+  {
+   "id": "cat-b35a277d4bc8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0001",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Noor Statuario \u2014 12 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0001",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "12",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.3: 'NOOR STATUARIO POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 1
+  },
+  {
+   "id": "cat-21d590acde8e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0002",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0002",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Noor Statuario \u2014 12 x 24 (Matte)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0002",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "12",
+    "Length": "24\"",
+    "Finish type": "Matte",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.3: 'NOOR STATUARIO POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 2
+  },
+  {
+   "id": "cat-cd10230f47e9",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0003",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0003",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Noor Statuario \u2014 24 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0003",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.3: 'NOOR STATUARIO POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 3
+  },
+  {
+   "id": "cat-0cce03d5ba94",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0004",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Noor Statuario \u2014 24 x 24 (Matte)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0004",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "24\"",
+    "Finish type": "Matte",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.3: 'NOOR STATUARIO POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 4
+  },
+  {
+   "id": "cat-fcc68daddc8a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0005",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Noor Statuario \u2014 24 x 48 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0005",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.99",
+    "Retail price/unit": "3.99",
+    "Pallet price ($/sf)": "1.89",
+    "Volume pricing notes": "Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.3: 'NOOR STATUARIO POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 5
+  },
+  {
+   "id": "cat-1d3bde9f48ae",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0006",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0006",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Noor Statuario \u2014 24 x 48 (Matte)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0006",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Matte",
+    "Cost/unit": "1.99",
+    "Retail price/unit": "3.99",
+    "Pallet price ($/sf)": "1.89",
+    "Volume pricing notes": "Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.3: 'NOOR STATUARIO POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 6
+  },
+  {
+   "id": "cat-53c2adf3af1d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0007",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0007",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Belinda Gold \u2014 12 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0007",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "12",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.4: 'BELINDA GOLD POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 7
+  },
+  {
+   "id": "cat-ad2b2790cc1e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0008",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0008",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Belinda Gold \u2014 24 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0008",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.4: 'BELINDA GOLD POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 8
+  },
+  {
+   "id": "cat-fa33214cb547",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0009",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0009",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Belinda Gold \u2014 24 x 24 (Matte)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0009",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "24\"",
+    "Finish type": "Matte",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.4: 'BELINDA GOLD POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 9
+  },
+  {
+   "id": "cat-c59646bec6db",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0010",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0010",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Belinda Gold \u2014 24 x 48 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0010",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.99",
+    "Retail price/unit": "3.99",
+    "Pallet price ($/sf)": "1.89",
+    "Volume pricing notes": "Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.4: 'BELINDA GOLD POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 10
+  },
+  {
+   "id": "cat-1cdbf76a78c0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0011",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Belinda Gold \u2014 24 x 48 (Matte)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0011",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Matte",
+    "Cost/unit": "1.99",
+    "Retail price/unit": "3.99",
+    "Pallet price ($/sf)": "1.89",
+    "Volume pricing notes": "Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.4: 'BELINDA GOLD POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 11
+  },
+  {
+   "id": "cat-3d20ef9a8bd8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0012",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Leez Calcatta Natural \u2014 12 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0012",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "12",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.5: 'LEEZ CALCATTA NATURAL POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 12
+  },
+  {
+   "id": "cat-1768d9c29c04",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0013",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0013",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Leez Calcatta Natural \u2014 24 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0013",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.5: 'LEEZ CALCATTA NATURAL POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 13
+  },
+  {
+   "id": "cat-8fd2a3806c0c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0014",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0014",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Leez Calcatta Natural \u2014 24 x 48 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0014",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.99",
+    "Retail price/unit": "3.99",
+    "Pallet price ($/sf)": "1.89",
+    "Volume pricing notes": "Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.5: 'LEEZ CALCATTA NATURAL POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 14
+  },
+  {
+   "id": "cat-7c15fcab6015",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0015",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0015",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Belinda White \u2014 12 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0015",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "12",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.6: 'BELINDA WHITE POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 15
+  },
+  {
+   "id": "cat-6b10051dc16d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0016",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0016",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Belinda White \u2014 12 x 24 (Matte)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0016",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "12",
+    "Length": "24\"",
+    "Finish type": "Matte",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.6: 'BELINDA WHITE POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 16
+  },
+  {
+   "id": "cat-74b2d3778fae",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0017",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0017",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Belinda White \u2014 24 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0017",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.6: 'BELINDA WHITE POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 17
+  },
+  {
+   "id": "cat-a9cc6c8bf0ba",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0018",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0018",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Belinda White \u2014 24 x 24 (Matte)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0018",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "24\"",
+    "Finish type": "Matte",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.6: 'BELINDA WHITE POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 18
+  },
+  {
+   "id": "cat-200e2b490b24",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0019",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0019",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Belinda White \u2014 24 x 48 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0019",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.99",
+    "Retail price/unit": "3.99",
+    "Pallet price ($/sf)": "1.89",
+    "Volume pricing notes": "Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.6: 'BELINDA WHITE POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 19
+  },
+  {
+   "id": "cat-c4180b1d7220",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0020",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0020",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Belinda White \u2014 24 x 48 (Matte)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0020",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Matte",
+    "Cost/unit": "1.99",
+    "Retail price/unit": "3.99",
+    "Pallet price ($/sf)": "1.89",
+    "Volume pricing notes": "Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.6: 'BELINDA WHITE POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 20
+  },
+  {
+   "id": "cat-3c257140ebed",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0021",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0021",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Nolte Gold \u2014 12 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0021",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "12",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.7: 'NOLTE GOLD POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 21
+  },
+  {
+   "id": "cat-40a7d4d33610",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0022",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0022",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Nolte Gold \u2014 24 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0022",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.7: 'NOLTE GOLD POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 22
+  },
+  {
+   "id": "cat-3f15b6def4bc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0023",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0023",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Nolte Gold \u2014 24 x 48 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0023",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.99",
+    "Retail price/unit": "3.99",
+    "Pallet price ($/sf)": "1.89",
+    "Volume pricing notes": "Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.7: 'NOLTE GOLD POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 23
+  },
+  {
+   "id": "cat-1eef3b021cc0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0024",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0024",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Sanaro Natural \u2014 12 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0024",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "12",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.8: 'SANARO NATURAL POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 24
+  },
+  {
+   "id": "cat-9ce74eba54c4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0025",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0025",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Sanaro Natural \u2014 24 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0025",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.8: 'SANARO NATURAL POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 25
+  },
+  {
+   "id": "cat-a2e08fc00d01",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0026",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0026",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Sky Onyx Grey \u2014 12 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0026",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "12",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.9: 'SKY ONYX GREY POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 26
+  },
+  {
+   "id": "cat-dd86da1d7f6c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0027",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0027",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Sky Onyx Grey \u2014 24 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0027",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.9: 'SKY ONYX GREY POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 27
+  },
+  {
+   "id": "cat-d229cb1f6edb",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0028",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0028",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Sky Onyx Grey \u2014 24 x 24 (Matte)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0028",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "24\"",
+    "Finish type": "Matte",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.9: 'SKY ONYX GREY POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 28
+  },
+  {
+   "id": "cat-a4f0cd439143",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0029",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0029",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Sky Onyx Grey \u2014 24 x 48 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0029",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.99",
+    "Retail price/unit": "3.99",
+    "Pallet price ($/sf)": "1.89",
+    "Volume pricing notes": "Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.9: 'SKY ONYX GREY POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 29
+  },
+  {
+   "id": "cat-d9531c2c5ba1",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0030",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0030",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Sky Onyx Grey \u2014 24 x 48 (Matte)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0030",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Matte",
+    "Cost/unit": "1.99",
+    "Retail price/unit": "3.99",
+    "Pallet price ($/sf)": "1.89",
+    "Volume pricing notes": "Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.9: 'SKY ONYX GREY POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 30
+  },
+  {
+   "id": "cat-2a2f16f12f49",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0031",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0031",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Agata White \u2014 12 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0031",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "12",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.10: 'AGATA WHITE POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 31
+  },
+  {
+   "id": "cat-5f73751771c5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0032",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0032",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Agata White \u2014 24 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0032",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.10: 'AGATA WHITE POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 32
+  },
+  {
+   "id": "cat-315496c935b3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0033",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0033",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Agata White \u2014 24 x 48 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0033",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.99",
+    "Retail price/unit": "3.99",
+    "Pallet price ($/sf)": "1.89",
+    "Volume pricing notes": "Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.10: 'AGATA WHITE POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 33
+  },
+  {
+   "id": "cat-60967d94677d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0034",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0034",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Pulpis Silver \u2014 12 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0034",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "12",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.11: 'PULPIS SILVER POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 34
+  },
+  {
+   "id": "cat-d974d3cc0df8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0035",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0035",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Pulpis Silver \u2014 24 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0035",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.11: 'PULPIS SILVER POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 35
+  },
+  {
+   "id": "cat-b29bc6c7e503",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0036",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0036",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Pulpis Silver \u2014 24 x 48 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0036",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.99",
+    "Retail price/unit": "3.99",
+    "Pallet price ($/sf)": "1.89",
+    "Volume pricing notes": "Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.11: 'PULPIS SILVER POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 36
+  },
+  {
+   "id": "cat-412afa37699b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0037",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0037",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Picket Grey \u2014 12 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0037",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "12",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.12: 'PICKET GREY POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 37
+  },
+  {
+   "id": "cat-ac4338a57dd8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0038",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0038",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Picket Grey \u2014 24 x 48 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0038",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.99",
+    "Retail price/unit": "3.99",
+    "Pallet price ($/sf)": "1.89",
+    "Volume pricing notes": "Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.12: 'PICKET GREY POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 38
+  },
+  {
+   "id": "cat-49f419bfe821",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0039",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0039",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Simba Black \u2014 24 x 48 (Polished High Gloss)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0039",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Polished",
+    "Cost/unit": "2.10",
+    "Retail price/unit": "4.10",
+    "Pallet price ($/sf)": "1.99",
+    "Volume pricing notes": "Loose $2.10/sf, Skid $1.99/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.13: 'SIMBA BLACK POLISHED', 24 x 48 high gloss. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 39
+  },
+  {
+   "id": "cat-dc81ef0a0b46",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0040",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0040",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Avenue Black \u2014 24 x 48 (Polished High Gloss)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0040",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Polished",
+    "Cost/unit": "2.10",
+    "Retail price/unit": "4.10",
+    "Pallet price ($/sf)": "1.99",
+    "Volume pricing notes": "Loose $2.10/sf, Skid $1.99/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.14: 'AVENUE BLACK POLISHED', 24 x 48 high gloss. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 40
+  },
+  {
+   "id": "cat-287b7e47d78a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0041",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0041",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Ruby Gold \u2014 24 x 48 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0041",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.99",
+    "Retail price/unit": "3.99",
+    "Pallet price ($/sf)": "1.89",
+    "Volume pricing notes": "Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.15: 'RUBY GOLD POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 41
+  },
+  {
+   "id": "cat-f3fa2258720f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0042",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0042",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Ruby Gold \u2014 24 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0042",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.15: 'RUBY GOLD POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 42
+  },
+  {
+   "id": "cat-eea66a9a3804",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0043",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0043",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Lilac Navy \u2014 24 x 48 (Polished High Gloss)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0043",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.99",
+    "Retail price/unit": "3.99",
+    "Pallet price ($/sf)": "1.89",
+    "Volume pricing notes": "Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.16: 'LILAC NAVY POLISHED', 24 x 48 high gloss. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 43
+  },
+  {
+   "id": "cat-6e92b3a3c3fd",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0044",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0044",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Circle Satuario \u2014 12 x 24 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0044",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "12",
+    "Length": "24\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.69",
+    "Retail price/unit": "3.69",
+    "Pallet price ($/sf)": "1.59",
+    "Volume pricing notes": "Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.17: 'CIRCLE SATUARIO POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 44
+  },
+  {
+   "id": "cat-ac5da686053f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0045",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0045",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Circle Satuario \u2014 24 x 48 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0045",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.99",
+    "Retail price/unit": "3.99",
+    "Pallet price ($/sf)": "1.89",
+    "Volume pricing notes": "Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.17: 'CIRCLE SATUARIO POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 45
+  },
+  {
+   "id": "cat-af8afd863b50",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0046",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0046",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Silver Onyx \u2014 24 x 48 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0046",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.99",
+    "Retail price/unit": "3.99",
+    "Pallet price ($/sf)": "1.89",
+    "Volume pricing notes": "Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.18: 'SILVER ONYX POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 46
+  },
+  {
+   "id": "cat-2ce8c275bcc7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0047",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0047",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Pulpis Bianco \u2014 24 x 48 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0047",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.99",
+    "Retail price/unit": "3.99",
+    "Pallet price ($/sf)": "1.89",
+    "Volume pricing notes": "Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.19: 'PULPIS BIANCO POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 47
+  },
+  {
+   "id": "cat-513e71d3b7a3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-FLDC-0048",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0048",
+   "fields": {
+    "Product name": "Floor & Decor Porcelain \u2014 Pulpis Grey \u2014 24 x 48 (Polished)",
+    "Supplier": "FLOOR & DECOR",
+    "LS Handle / Parent ID": "FLDCTILTILFLDC0048",
+    "Collection": "Porcelain Tile Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24",
+    "Length": "48\"",
+    "Finish type": "Polished",
+    "Cost/unit": "1.99",
+    "Retail price/unit": "3.99",
+    "Pallet price ($/sf)": "1.89",
+    "Volume pricing notes": "Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Active": "TRUE",
+    "Salesperson notes": "Brochure p.20: 'PULPIS GREY POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 48
+  },
+  {
+   "id": "cat-2a04465d34b0",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0001",
+   "fields": {
+    "sku": "TIL-FLDC-0001",
+    "handle": "FLDCTILTILFLDC0001",
+    "name": "FLDCTIL - Porcelain (Noor Statuario) | 12 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.3: 'NOOR STATUARIO POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 49
+  },
+  {
+   "id": "cat-990de40b526e",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0002",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0002",
+   "fields": {
+    "sku": "TIL-FLDC-0002",
+    "handle": "FLDCTILTILFLDC0002",
+    "name": "FLDCTIL - Porcelain (Noor Statuario) | 12 x 24 | Matte - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Matte | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.3: 'NOOR STATUARIO POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 50
+  },
+  {
+   "id": "cat-655cb0ed2ffb",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0003",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0003",
+   "fields": {
+    "sku": "TIL-FLDC-0003",
+    "handle": "FLDCTILTILFLDC0003",
+    "name": "FLDCTIL - Porcelain (Noor Statuario) | 24 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.3: 'NOOR STATUARIO POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 51
+  },
+  {
+   "id": "cat-1f6e43b3422e",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0004",
+   "fields": {
+    "sku": "TIL-FLDC-0004",
+    "handle": "FLDCTILTILFLDC0004",
+    "name": "FLDCTIL - Porcelain (Noor Statuario) | 24 x 24 | Matte - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Matte | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.3: 'NOOR STATUARIO POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 52
+  },
+  {
+   "id": "cat-65ef9ea5f4bf",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0005",
+   "fields": {
+    "sku": "TIL-FLDC-0005",
+    "handle": "FLDCTILTILFLDC0005",
+    "name": "FLDCTIL - Porcelain (Noor Statuario) | 24 x 48 | Polished - 16.00sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.89 | Volume pricing notes: Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.3: 'NOOR STATUARIO POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 53
+  },
+  {
+   "id": "cat-815d8016470a",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0006",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0006",
+   "fields": {
+    "sku": "TIL-FLDC-0006",
+    "handle": "FLDCTILTILFLDC0006",
+    "name": "FLDCTIL - Porcelain (Noor Statuario) | 24 x 48 | Matte - 16.00sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Finish type: Matte | Material type: Porcelain | Pallet price ($/sf): 1.89 | Volume pricing notes: Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.3: 'NOOR STATUARIO POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 54
+  },
+  {
+   "id": "cat-cc8d28db3734",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0007",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0007",
+   "fields": {
+    "sku": "TIL-FLDC-0007",
+    "handle": "FLDCTILTILFLDC0007",
+    "name": "FLDCTIL - Porcelain (Belinda Gold) | 12 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.4: 'BELINDA GOLD POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 55
+  },
+  {
+   "id": "cat-9ea80a2f50ec",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0008",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0008",
+   "fields": {
+    "sku": "TIL-FLDC-0008",
+    "handle": "FLDCTILTILFLDC0008",
+    "name": "FLDCTIL - Porcelain (Belinda Gold) | 24 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.4: 'BELINDA GOLD POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 56
+  },
+  {
+   "id": "cat-2262bd4f7674",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0009",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0009",
+   "fields": {
+    "sku": "TIL-FLDC-0009",
+    "handle": "FLDCTILTILFLDC0009",
+    "name": "FLDCTIL - Porcelain (Belinda Gold) | 24 x 24 | Matte - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Matte | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.4: 'BELINDA GOLD POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 57
+  },
+  {
+   "id": "cat-2c9031289700",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0010",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0010",
+   "fields": {
+    "sku": "TIL-FLDC-0010",
+    "handle": "FLDCTILTILFLDC0010",
+    "name": "FLDCTIL - Porcelain (Belinda Gold) | 24 x 48 | Polished - 16.00sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.89 | Volume pricing notes: Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.4: 'BELINDA GOLD POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 58
+  },
+  {
+   "id": "cat-99fc6dcabae2",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0011",
+   "fields": {
+    "sku": "TIL-FLDC-0011",
+    "handle": "FLDCTILTILFLDC0011",
+    "name": "FLDCTIL - Porcelain (Belinda Gold) | 24 x 48 | Matte - 16.00sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Finish type: Matte | Material type: Porcelain | Pallet price ($/sf): 1.89 | Volume pricing notes: Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.4: 'BELINDA GOLD POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 59
+  },
+  {
+   "id": "cat-8b86d303449d",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0012",
+   "fields": {
+    "sku": "TIL-FLDC-0012",
+    "handle": "FLDCTILTILFLDC0012",
+    "name": "FLDCTIL - Porcelain (Leez Calcatta Natural) | 12 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.5: 'LEEZ CALCATTA NATURAL POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 60
+  },
+  {
+   "id": "cat-a1818d40686e",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0013",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0013",
+   "fields": {
+    "sku": "TIL-FLDC-0013",
+    "handle": "FLDCTILTILFLDC0013",
+    "name": "FLDCTIL - Porcelain (Leez Calcatta Natural) | 24 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.5: 'LEEZ CALCATTA NATURAL POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 61
+  },
+  {
+   "id": "cat-d1cf9ce7b0e7",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0014",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0014",
+   "fields": {
+    "sku": "TIL-FLDC-0014",
+    "handle": "FLDCTILTILFLDC0014",
+    "name": "FLDCTIL - Porcelain (Leez Calcatta Natural) | 24 x 48 | Polished - 16.00sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.89 | Volume pricing notes: Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.5: 'LEEZ CALCATTA NATURAL POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 62
+  },
+  {
+   "id": "cat-1c9ca8224d1d",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0015",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0015",
+   "fields": {
+    "sku": "TIL-FLDC-0015",
+    "handle": "FLDCTILTILFLDC0015",
+    "name": "FLDCTIL - Porcelain (Belinda White) | 12 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.6: 'BELINDA WHITE POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 63
+  },
+  {
+   "id": "cat-7e53b984f3b8",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0016",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0016",
+   "fields": {
+    "sku": "TIL-FLDC-0016",
+    "handle": "FLDCTILTILFLDC0016",
+    "name": "FLDCTIL - Porcelain (Belinda White) | 12 x 24 | Matte - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Matte | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.6: 'BELINDA WHITE POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 64
+  },
+  {
+   "id": "cat-a3f8fd5b38c4",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0017",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0017",
+   "fields": {
+    "sku": "TIL-FLDC-0017",
+    "handle": "FLDCTILTILFLDC0017",
+    "name": "FLDCTIL - Porcelain (Belinda White) | 24 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.6: 'BELINDA WHITE POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 65
+  },
+  {
+   "id": "cat-dd5f571c69e9",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0018",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0018",
+   "fields": {
+    "sku": "TIL-FLDC-0018",
+    "handle": "FLDCTILTILFLDC0018",
+    "name": "FLDCTIL - Porcelain (Belinda White) | 24 x 24 | Matte - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Matte | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.6: 'BELINDA WHITE POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 66
+  },
+  {
+   "id": "cat-56bbea5e2701",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0019",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0019",
+   "fields": {
+    "sku": "TIL-FLDC-0019",
+    "handle": "FLDCTILTILFLDC0019",
+    "name": "FLDCTIL - Porcelain (Belinda White) | 24 x 48 | Polished - 16.00sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.89 | Volume pricing notes: Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.6: 'BELINDA WHITE POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 67
+  },
+  {
+   "id": "cat-8494e8d4f55b",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0020",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0020",
+   "fields": {
+    "sku": "TIL-FLDC-0020",
+    "handle": "FLDCTILTILFLDC0020",
+    "name": "FLDCTIL - Porcelain (Belinda White) | 24 x 48 | Matte - 16.00sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Finish type: Matte | Material type: Porcelain | Pallet price ($/sf): 1.89 | Volume pricing notes: Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.6: 'BELINDA WHITE POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 68
+  },
+  {
+   "id": "cat-640114a6e0eb",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0021",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0021",
+   "fields": {
+    "sku": "TIL-FLDC-0021",
+    "handle": "FLDCTILTILFLDC0021",
+    "name": "FLDCTIL - Porcelain (Nolte Gold) | 12 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.7: 'NOLTE GOLD POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 69
+  },
+  {
+   "id": "cat-129d3e5bad03",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0022",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0022",
+   "fields": {
+    "sku": "TIL-FLDC-0022",
+    "handle": "FLDCTILTILFLDC0022",
+    "name": "FLDCTIL - Porcelain (Nolte Gold) | 24 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.7: 'NOLTE GOLD POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 70
+  },
+  {
+   "id": "cat-f50748a9b611",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0023",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0023",
+   "fields": {
+    "sku": "TIL-FLDC-0023",
+    "handle": "FLDCTILTILFLDC0023",
+    "name": "FLDCTIL - Porcelain (Nolte Gold) | 24 x 48 | Polished - 16.00sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.89 | Volume pricing notes: Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.7: 'NOLTE GOLD POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 71
+  },
+  {
+   "id": "cat-980fcf882d88",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0024",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0024",
+   "fields": {
+    "sku": "TIL-FLDC-0024",
+    "handle": "FLDCTILTILFLDC0024",
+    "name": "FLDCTIL - Porcelain (Sanaro Natural) | 12 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.8: 'SANARO NATURAL POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 72
+  },
+  {
+   "id": "cat-3b7f6a135b7d",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0025",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0025",
+   "fields": {
+    "sku": "TIL-FLDC-0025",
+    "handle": "FLDCTILTILFLDC0025",
+    "name": "FLDCTIL - Porcelain (Sanaro Natural) | 24 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.8: 'SANARO NATURAL POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 73
+  },
+  {
+   "id": "cat-04c1af894c67",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0026",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0026",
+   "fields": {
+    "sku": "TIL-FLDC-0026",
+    "handle": "FLDCTILTILFLDC0026",
+    "name": "FLDCTIL - Porcelain (Sky Onyx Grey) | 12 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.9: 'SKY ONYX GREY POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 74
+  },
+  {
+   "id": "cat-65c7dfa789c2",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0027",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0027",
+   "fields": {
+    "sku": "TIL-FLDC-0027",
+    "handle": "FLDCTILTILFLDC0027",
+    "name": "FLDCTIL - Porcelain (Sky Onyx Grey) | 24 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.9: 'SKY ONYX GREY POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 75
+  },
+  {
+   "id": "cat-422c24111a59",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0028",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0028",
+   "fields": {
+    "sku": "TIL-FLDC-0028",
+    "handle": "FLDCTILTILFLDC0028",
+    "name": "FLDCTIL - Porcelain (Sky Onyx Grey) | 24 x 24 | Matte - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Matte | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.9: 'SKY ONYX GREY POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 76
+  },
+  {
+   "id": "cat-8a2b91e7994d",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0029",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0029",
+   "fields": {
+    "sku": "TIL-FLDC-0029",
+    "handle": "FLDCTILTILFLDC0029",
+    "name": "FLDCTIL - Porcelain (Sky Onyx Grey) | 24 x 48 | Polished - 16.00sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.89 | Volume pricing notes: Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.9: 'SKY ONYX GREY POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 77
+  },
+  {
+   "id": "cat-705907928eed",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0030",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0030",
+   "fields": {
+    "sku": "TIL-FLDC-0030",
+    "handle": "FLDCTILTILFLDC0030",
+    "name": "FLDCTIL - Porcelain (Sky Onyx Grey) | 24 x 48 | Matte - 16.00sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Finish type: Matte | Material type: Porcelain | Pallet price ($/sf): 1.89 | Volume pricing notes: Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.9: 'SKY ONYX GREY POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 78
+  },
+  {
+   "id": "cat-df8e86a01889",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0031",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0031",
+   "fields": {
+    "sku": "TIL-FLDC-0031",
+    "handle": "FLDCTILTILFLDC0031",
+    "name": "FLDCTIL - Porcelain (Agata White) | 12 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.10: 'AGATA WHITE POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 79
+  },
+  {
+   "id": "cat-7f2cfb36c466",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0032",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0032",
+   "fields": {
+    "sku": "TIL-FLDC-0032",
+    "handle": "FLDCTILTILFLDC0032",
+    "name": "FLDCTIL - Porcelain (Agata White) | 24 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.10: 'AGATA WHITE POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 80
+  },
+  {
+   "id": "cat-8292c9021a37",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0033",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0033",
+   "fields": {
+    "sku": "TIL-FLDC-0033",
+    "handle": "FLDCTILTILFLDC0033",
+    "name": "FLDCTIL - Porcelain (Agata White) | 24 x 48 | Polished - 16.00sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.89 | Volume pricing notes: Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.10: 'AGATA WHITE POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 81
+  },
+  {
+   "id": "cat-ab35e5d022c8",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0034",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0034",
+   "fields": {
+    "sku": "TIL-FLDC-0034",
+    "handle": "FLDCTILTILFLDC0034",
+    "name": "FLDCTIL - Porcelain (Pulpis Silver) | 12 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.11: 'PULPIS SILVER POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 82
+  },
+  {
+   "id": "cat-45da6583b4b9",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0035",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0035",
+   "fields": {
+    "sku": "TIL-FLDC-0035",
+    "handle": "FLDCTILTILFLDC0035",
+    "name": "FLDCTIL - Porcelain (Pulpis Silver) | 24 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.11: 'PULPIS SILVER POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 83
+  },
+  {
+   "id": "cat-dcb8b0e22fb4",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0036",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0036",
+   "fields": {
+    "sku": "TIL-FLDC-0036",
+    "handle": "FLDCTILTILFLDC0036",
+    "name": "FLDCTIL - Porcelain (Pulpis Silver) | 24 x 48 | Polished - 16.00sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.89 | Volume pricing notes: Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.11: 'PULPIS SILVER POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 84
+  },
+  {
+   "id": "cat-6353d40b1ea6",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0037",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0037",
+   "fields": {
+    "sku": "TIL-FLDC-0037",
+    "handle": "FLDCTILTILFLDC0037",
+    "name": "FLDCTIL - Porcelain (Picket Grey) | 12 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.12: 'PICKET GREY POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 85
+  },
+  {
+   "id": "cat-2fa7287dbe9d",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0038",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0038",
+   "fields": {
+    "sku": "TIL-FLDC-0038",
+    "handle": "FLDCTILTILFLDC0038",
+    "name": "FLDCTIL - Porcelain (Picket Grey) | 24 x 48 | Polished - 16.00sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.89 | Volume pricing notes: Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.12: 'PICKET GREY POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 86
+  },
+  {
+   "id": "cat-0d65d1c75f01",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0039",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0039",
+   "fields": {
+    "sku": "TIL-FLDC-0039",
+    "handle": "FLDCTILTILFLDC0039",
+    "name": "FLDCTIL - Porcelain (Simba Black) | 24 x 48 | Polished High Gloss - 16.00sf/b",
+    "supply_price": 2.1,
+    "price_excluding_tax": 4.1,
+    "description": "Finish type: Polished High Gloss | Material type: Porcelain | Pallet price ($/sf): 1.99 | Volume pricing notes: Loose $2.10/sf, Skid $1.99/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.13: 'SIMBA BLACK POLISHED', 24 x 48 high gloss. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 87
+  },
+  {
+   "id": "cat-d2e1808973a7",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0040",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0040",
+   "fields": {
+    "sku": "TIL-FLDC-0040",
+    "handle": "FLDCTILTILFLDC0040",
+    "name": "FLDCTIL - Porcelain (Avenue Black) | 24 x 48 | Polished High Gloss - 16.00sf/b",
+    "supply_price": 2.1,
+    "price_excluding_tax": 4.1,
+    "description": "Finish type: Polished High Gloss | Material type: Porcelain | Pallet price ($/sf): 1.99 | Volume pricing notes: Loose $2.10/sf, Skid $1.99/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.14: 'AVENUE BLACK POLISHED', 24 x 48 high gloss. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 88
+  },
+  {
+   "id": "cat-bf100f4d77dc",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0041",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0041",
+   "fields": {
+    "sku": "TIL-FLDC-0041",
+    "handle": "FLDCTILTILFLDC0041",
+    "name": "FLDCTIL - Porcelain (Ruby Gold) | 24 x 48 | Polished - 16.00sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.89 | Volume pricing notes: Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.15: 'RUBY GOLD POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 89
+  },
+  {
+   "id": "cat-5773b07ca698",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0042",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0042",
+   "fields": {
+    "sku": "TIL-FLDC-0042",
+    "handle": "FLDCTILTILFLDC0042",
+    "name": "FLDCTIL - Porcelain (Ruby Gold) | 24 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.15: 'RUBY GOLD POLISHED', 24 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 90
+  },
+  {
+   "id": "cat-e6a8ee4b5881",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0043",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0043",
+   "fields": {
+    "sku": "TIL-FLDC-0043",
+    "handle": "FLDCTILTILFLDC0043",
+    "name": "FLDCTIL - Porcelain (Lilac Navy) | 24 x 48 | Polished High Gloss - 16.00sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Finish type: Polished High Gloss | Material type: Porcelain | Pallet price ($/sf): 1.89 | Volume pricing notes: Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.16: 'LILAC NAVY POLISHED', 24 x 48 high gloss. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 91
+  },
+  {
+   "id": "cat-219b8c682255",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0044",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0044",
+   "fields": {
+    "sku": "TIL-FLDC-0044",
+    "handle": "FLDCTILTILFLDC0044",
+    "name": "FLDCTIL - Porcelain (Circle Satuario) | 12 x 24 | Polished - 16.00sf/b",
+    "supply_price": 1.69,
+    "price_excluding_tax": 3.69,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.59 | Volume pricing notes: Loose $1.69/sf, Skid $1.59/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.17: 'CIRCLE SATUARIO POLISHED', 12 x 24. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 92
+  },
+  {
+   "id": "cat-fe7ef3167823",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0045",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0045",
+   "fields": {
+    "sku": "TIL-FLDC-0045",
+    "handle": "FLDCTILTILFLDC0045",
+    "name": "FLDCTIL - Porcelain (Circle Satuario) | 24 x 48 | Polished - 16.00sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.89 | Volume pricing notes: Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.17: 'CIRCLE SATUARIO POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 93
+  },
+  {
+   "id": "cat-3b433f69b651",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0046",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0046",
+   "fields": {
+    "sku": "TIL-FLDC-0046",
+    "handle": "FLDCTILTILFLDC0046",
+    "name": "FLDCTIL - Porcelain (Silver Onyx) | 24 x 48 | Polished - 16.00sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.89 | Volume pricing notes: Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.18: 'SILVER ONYX POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 94
+  },
+  {
+   "id": "cat-ef0ff10d93bc",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0047",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0047",
+   "fields": {
+    "sku": "TIL-FLDC-0047",
+    "handle": "FLDCTILTILFLDC0047",
+    "name": "FLDCTIL - Porcelain (Pulpis Bianco) | 24 x 48 | Polished - 16.00sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.89 | Volume pricing notes: Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.19: 'PULPIS BIANCO POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 95
+  },
+  {
+   "id": "cat-db398e428252",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "TIL-FLDC-0048",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0048",
+   "fields": {
+    "sku": "TIL-FLDC-0048",
+    "handle": "FLDCTILTILFLDC0048",
+    "name": "FLDCTIL - Porcelain (Pulpis Grey) | 24 x 48 | Polished - 16.00sf/b",
+    "supply_price": 1.99,
+    "price_excluding_tax": 3.99,
+    "description": "Finish type: Polished | Material type: Porcelain | Pallet price ($/sf): 1.89 | Volume pricing notes: Loose $1.99/sf, Skid $1.89/sf, plus HST (PL-47, effective 2025-01-03) | Box size (sf): 16.00 | Salesperson notes: Brochure p.20: 'PULPIS GREY POLISHED', 24 x 48. Box size 16 sf/b per Albert 2026-09-24 (not printed).",
+    "supplier_name": "FLOOR & DECOR",
+    "product_category": "FLOORING / TILE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 96
+  },
+  {
+   "id": "cat-d6f148369dfa",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0001",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0001",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 97
+  },
+  {
+   "id": "cat-9be14861afa1",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0002",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0002",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 98
+  },
+  {
+   "id": "cat-aabe130775cd",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0003",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0003",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 99
+  },
+  {
+   "id": "cat-51736994569d",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0004",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 100
+  },
+  {
+   "id": "cat-e4abd1e8122b",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0005",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 101
+  },
+  {
+   "id": "cat-a65d1d55f616",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0006",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0006",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 102
+  },
+  {
+   "id": "cat-a8818645262a",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0007",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0007",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 103
+  },
+  {
+   "id": "cat-6defff2451c4",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0008",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0008",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 104
+  },
+  {
+   "id": "cat-ff58d0eaff0f",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0009",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0009",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 105
+  },
+  {
+   "id": "cat-28051a6367a8",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0010",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0010",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 106
+  },
+  {
+   "id": "cat-dcf981d40038",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0011",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0011",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 107
+  },
+  {
+   "id": "cat-8b8fed75e5ad",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0012",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0012",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 108
+  },
+  {
+   "id": "cat-38d69b810d4a",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0013",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0013",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 109
+  },
+  {
+   "id": "cat-0349f538865e",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0014",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0014",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 110
+  },
+  {
+   "id": "cat-1c222831455e",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0015",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0015",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 111
+  },
+  {
+   "id": "cat-fce391c0fc49",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0016",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0016",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 112
+  },
+  {
+   "id": "cat-8b18b7c6bb68",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0017",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0017",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 113
+  },
+  {
+   "id": "cat-86e6d0f4fe75",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0018",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0018",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 114
+  },
+  {
+   "id": "cat-733eb338617b",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0019",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0019",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 115
+  },
+  {
+   "id": "cat-25d67f2b33cf",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0020",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0020",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 116
+  },
+  {
+   "id": "cat-d61e44de90d3",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0021",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0021",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 117
+  },
+  {
+   "id": "cat-e3ff63ca1a55",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0022",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0022",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 118
+  },
+  {
+   "id": "cat-284688ea0e76",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0023",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0023",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 119
+  },
+  {
+   "id": "cat-2e1e9b817b39",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0024",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0024",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 120
+  },
+  {
+   "id": "cat-b93b9778c18a",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0025",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0025",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 121
+  },
+  {
+   "id": "cat-030d538c0358",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0026",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0026",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 122
+  },
+  {
+   "id": "cat-517c1c6f3743",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0027",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0027",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 123
+  },
+  {
+   "id": "cat-c4dfcbd042e7",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0028",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0028",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 124
+  },
+  {
+   "id": "cat-77ba38022b3f",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0029",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0029",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 125
+  },
+  {
+   "id": "cat-eef7da9a1482",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0030",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0030",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 126
+  },
+  {
+   "id": "cat-959f42826a0a",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0031",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0031",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 127
+  },
+  {
+   "id": "cat-4f0d9f43af50",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0032",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0032",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 128
+  },
+  {
+   "id": "cat-0784cb1f9484",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0033",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0033",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 129
+  },
+  {
+   "id": "cat-76256edd957d",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0034",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0034",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 130
+  },
+  {
+   "id": "cat-133ab22d718f",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0035",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0035",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 131
+  },
+  {
+   "id": "cat-634e6f939de4",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0036",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0036",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 132
+  },
+  {
+   "id": "cat-7323de368f5d",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0037",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0037",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 133
+  },
+  {
+   "id": "cat-c1e26b32b76b",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0038",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0038",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 134
+  },
+  {
+   "id": "cat-139a76e94c70",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0039",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0039",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 135
+  },
+  {
+   "id": "cat-cdc28f2fa983",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0040",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0040",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 136
+  },
+  {
+   "id": "cat-74c3b831569e",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0041",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0041",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 137
+  },
+  {
+   "id": "cat-10c3ecd7908f",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0042",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0042",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 138
+  },
+  {
+   "id": "cat-cb461d12c4ce",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0043",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0043",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 139
+  },
+  {
+   "id": "cat-4b04c8c869fa",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0044",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0044",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 140
+  },
+  {
+   "id": "cat-c1705b3e4b01",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0045",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0045",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 141
+  },
+  {
+   "id": "cat-df4bac5257a5",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0046",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0046",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 142
+  },
+  {
+   "id": "cat-022357b2c229",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0047",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0047",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 143
+  },
+  {
+   "id": "cat-37fdc2e22cda",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "TIL-FLDC-0048",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "FLDCTILTILFLDC0048",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 144
+  }
+ ],
+ "blocked": [],
+ "warnings": [
+  {
+   "sku": "TIL-FLDC-0001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0002",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0003",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0004",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0006",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0007",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0008",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0009",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0010",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0011",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0012",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0013",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0014",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0015",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0016",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0017",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0018",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0019",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0020",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0021",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0022",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0023",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0024",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0025",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0026",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0027",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0028",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0029",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0030",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0031",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0032",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0033",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0034",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0035",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0036",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0037",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0038",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0039",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0040",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0041",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0042",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0043",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0044",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0045",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0046",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0047",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "TIL-FLDC-0048",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  }
+ ]
+}

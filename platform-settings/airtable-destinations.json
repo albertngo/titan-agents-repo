@@ -109,7 +109,10 @@
     "HOMESPRO": "HOMESPRO",
     "IMPRESSIVE": "IMPRESSIVE",
     "_impressive_added_2026_09_23": "Albert added the IMPRESSIVE Supplier option on 2026-09-23, after PL-381 had all 282 Airtable writes refused for its absence (2026-09-22; also PL-226 on 2026-09-14). A first read that afternoon did not find it on fldRZJ5JW4G6Yig8x; a second read confirmed it live (30 options, JL TILE added too), and PL-381 then created 250 IMPRESSIVE records.",
-    "BALTIC": "BALTIC HOMES"
+    "BALTIC": "BALTIC HOMES",
+    "JL TILE": "JL TILE",
+    "FLOOR & DECOR": "FLOOR & DECOR",
+    "_options_deleted_2026_09_24": "The JL TILE and IMPRESSIVE Supplier options were deleted on 2026-09-24 (during the FLOOR & DECOR rename), which blanked Supplier on all 395 records that used them (145 JL TILE + 250 IMPRESSIVE). Albert re-added both; Supplier was restored by record id from the repo's own write records. Deleting a select option in Airtable silently empties every cell that held it \u2014 rename an option instead of deleting and re-adding it."
   },
 
   "_placeholder_choices": {

@@ -4392,6 +4392,31 @@ Tier 1 goes in `Volume pricing notes`.
 - The sheet states no install method, wear layer or species beyond "Oak" — those
   stay blank rather than assumed.
 
+### Floor & Decor (flooranddecor.ca, Mississauga)
+
+Notion `Company` **FLOOR & DECOR** = Airtable Supplier **FLOOR & DECOR** = Lightspeed
+supplier **FLOOR & DECOR** (Albert renamed the LS supplier from "FLOOR & DECOR SHOP"
+and added the Airtable option, 2026-09-24). A retailer/distributor also selling
+doors and toilets; **only the porcelain tiles are in scope** (Albert, 2026-09-23 —
+"floor and decor but only the tiles"). Their brochure (PL-47, "Tiles and Toilets",
+effective 2025-01-03) is catalogue-style: one colour per page, no table grid, no
+product codes, no box sizes, prices per size tier in prose.
+
+#### Cost column — CONFIRMED, 2026-09-24 (Albert): `Loose` ("the higher one")
+
+Every tile prints a **Loose** and a **Skid** price per sf (e.g. 12x24/24x24 $1.69 /
+$1.59, 24x48 $1.99 / $1.89, high-gloss 24x48 $2.10 / $1.99). Cost = Loose; Skid goes
+to `Pallet price ($/sf)`. Retail = cost + $2.00 (global field-tile rule).
+
+#### Box size — CONFIRMED, 2026-09-24 (Albert): 16 sf/box for every size
+
+The brochure prints none; Albert: "all 16sf/b" (12x24, 24x24 and 24x48 alike).
+
+#### SKU / prefixes
+
+No supplier codes → minted `TIL-FLDC-0001…` (one SKU per colour x size x finish),
+Supplier SKU blank. LS name prefix `FLDCTIL`, handle prefix `FLDC`.
+
 ### Tosca Floors
 
 Tosca Floors (george@toscaflooring.com) is both the supplier and the brand. The price

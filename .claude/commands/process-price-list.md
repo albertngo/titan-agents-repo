@@ -398,6 +398,15 @@ report either as imported — `/catalog-sync`, running next, is what writes them
 
 ## 6. Attach both files, then set the row's state
 
+**Stamp `Last Agent Activity Date` on every write to the row (Albert, 2026-09-24).**
+Every `update-page` this command makes on a Price Lists row — properties, file
+attachments, the page-body table — carries, in that same call,
+`"date:Last Agent Activity Date:start": "<now, America/Toronto ISO with offset>"` and
+`"date:Last Agent Activity Date:is_datetime": 1`. A page-body `replace_content` call
+cannot set properties, so follow it with a one-property stamp. Never write
+`Since Last Agent Edit`; it is the formula that reads this date back as "3 hours ago".
+Registry key: `write_properties.last_agent_activity`.
+
 `Extracted Files` is a Notion **`file`** property — upload natively, do not paste a
 link.
 
