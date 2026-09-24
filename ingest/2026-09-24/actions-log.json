@@ -1028,6 +1028,17 @@
    "result": "executed",
    "error": null,
    "raw_ref": "3e5596a4-505f-8136-9884-00b213fbf550,3e5596a4-505f-8127-a661-00b24c020729,3e5596a4-505f-8167-a143-00b2d5ac601f"
+  },
+  {
+   "logged_at": "2026-09-24T10:37:29-04:00",
+   "agent": ".claude/commands/catalog-sync.md",
+   "type": "airtable_upsert_product",
+   "target": "Master Flooring Catalogue — Supplier restored on 395 records (145 JL TILE, 250 IMPRESSIVE)",
+   "content_summary": "Both Supplier select options (JL TILE, IMPRESSIVE) on fldRZJ5JW4G6Yig8x had been deleted, which blanked Supplier on every record that used them. Albert re-added both options; Supplier was then set by record id on the 395 affected records (each pre-verified as empty-Supplier with a SKU matching the repo's supplier record) in 8 batches of <=50, typecast off. No other field was written and no record outside the 395 ids was touched. Verification after the write: Supplier isEmpty = 0 records; Supplier = JL TILE = 145; Supplier = IMPRESSIVE = 250.",
+   "approved_by": "Albert, in chat 2026-09-24 (\"JL TILE and IMPRESSIVE are now options. Can you assign all the products accordingly?\")",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "restore_b0..b7 (395 record ids)"
   }
  ]
 }
