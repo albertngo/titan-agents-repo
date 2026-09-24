@@ -4038,6 +4038,32 @@ Resolved from rules already recorded elsewhere in this file rather than invented
   `Product type = Underpad`, `Category` left blank — no flooring-format category
   applies to an underlayment roll, and none of the documented Category options fit.
 
+#### Per-colour expansion and accessory markups — RESOLVED, 2026-09-24 (Albert)
+
+The PL-242 residue (Venice, Moscow, Sydney, Seoul — held since 09-13 as
+collection-level rows against per-colour Lightspeed products) was settled in four answers:
+
+1. **A collection price applies to every live colour.** One Airtable record per live
+   Lightspeed colour product, linked to it by UUID, priced at the sheet's collection cost
+   (+ $1.00). Colour and plank dimensions come from the live Lightspeed name, because the
+   sheet prints neither. Both Venice "Texas" products (HOM.660, HOM.661) got a record,
+   disambiguated by code in the product name. Result: LVP-HMPR-0006..0032 (27 records).
+   The never-written collection-level SKUs LVP-HMPR-0002/0003/0005 and LVT-HMPR-0002
+   were retired unused.
+2. **Seoul is the live Looselay product**, despite the sheet listing it under GLUE DOWN
+   VINYL: Category LVP, Material type Loose-lay vinyl, Install method Loose lay.
+3. **Standard accessory markups apply, not + $1.00**: T-moulding and reducer Cost + $10,
+   stair nose Cost + $15, IXPE underlay Cost + $20 (the 2026-09-24 underpad rule). The
+   floor protector has no standard and stays at Cost + $1.00. The 09-12 "+ $1.00 global
+   rule" answer covered flooring, and was misapplied to the trims on 09-14.
+4. **Lightspeed keeps Home's Pro's own `HOM.*` codes as its sku**, carried in Airtable's
+   `Supplier SKU` (the reconciler accepts either as identity). Unlike Vizion and Weiss,
+   these are the supplier's real item codes, so they are not relinked to the HMPR SKU.
+
+`Colour / tone` stays blank on these records. It is a tone palette (Light / Medium /
+Dark / Grey / …), not a colour-name field, and the pre-flight rightly refuses a colour
+name there.
+
 #### From the first extraction (2026-09-11, PL-242) — salvaged 2026-09-23
 
 Recorded on `funny-rubin-4puvl1`, never merged. Its proposed identity (`HomesPro`, `HMSP`) is superseded by the confirmed `HOMESPRO` supplier value and `HMPR` prefix above, and its cost-column reasoning by Albert's 2026-09-12 confirmation. What it established about the live catalogue still holds:
