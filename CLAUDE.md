@@ -145,8 +145,10 @@ Nothing changed about an action needing an id in the approval file before an
 
 **Only two files can change the POS**: `scripts/lightspeed_write.py` and
 `scripts/lightspeed_push.py`. The read path contains no write verb and a test
-enforces that. There is no deactivate action type. A **delete** type exists since 2026-09-24 (Albert: products
-the newest list no longer carries), and only a person's approval can execute one; policy never can.
+enforces that. Removing a product the supplier's newest list no longer carries is a person's call only
+(Albert, 2026-09-24): **deactivate** is an ordinary update of Lightspeed `is_active` / Airtable `Active` that the
+reconciler never plans, and a guarded **delete** exists that policy can never approve. First use: FAW's old T&G
+Toffee / Warm Honey, set inactive, not deleted.
 
 Add a new agent = add one file in `.claude/agents/` + conform to the matching contract
 (`ingest-schema.md` for ingesters, `actions-log-schema.md` for actions agents).

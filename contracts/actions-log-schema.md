@@ -75,8 +75,10 @@ executes only under an approval file whose `approved_by` names a person;
 `scripts/lightspeed_push.py` refuses one under the policy auto-approval, and
 `catalog-plan-schema.md` lists delete as a carve-out policy never clears. The type
 is never emitted by the reconciler, so a delete is always hand-planned against a named
-instruction. There is still no deactivate type, and nothing deletes a record that the
-newest list still prints. Lightspeed's delete archives the product (`deleted_at`) and
+instruction. Deactivation has no type of its own: it is a `lightspeed_update_product` of
+`is_active` plus an `airtable_upsert_product` of `Active`, on a person's instruction only
+(first used 2026-09-24, FAW ENG-FAWK-0060/0065, which Albert chose over deleting). Nothing
+deletes or deactivates a record that the newest list still prints. Lightspeed's delete archives the product (`deleted_at`) and
 keeps its sales history. **The Airtable record is removed by a person in Airtable's
 UI**: `airtable-actions-agent` carries no delete tool, and granting it one was
 deliberately not done by a session (2026-09-24). Delete both sides together; a
