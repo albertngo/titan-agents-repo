@@ -4320,7 +4320,11 @@ The sheet prints two columns per row, **`$/sf (Regular dealer Price)`** and
 is cost). The 2026-09-14 extraction run defaulted to Regular dealer Price and flagged
 it, per the "assume, do not stop" rule — **Albert corrected this**: `Your cut order
 price` is Titan's actual cost. `Cost/unit = Your cut order price`, `Retail =
-Cost/unit + $ 1.00`. `Regular dealer Price` is not an MSRP (nothing on the sheet
+Cost/unit + $ 2.00` (field tile) / `+ $ 5.00` (mosaic) — the global *Tile and mosaic
+markup* rule. **Confirmed by Albert 2026-09-23 ("+2, was live")**: this line used to
+read `+ $ 1.00`, a flooring default the 09-14 extraction wrote in, never a ruling;
+live Lightspeed already carried `+ $ 2.00` on 81 of 84 JL products, and PL-372's CSVs
+were corrected before any write. `Regular dealer Price` is not an MSRP (nothing on the sheet
 frames it as a suggested retail) — keep it in `Volume pricing notes` as the higher
 reference tier, the mirror image of the Vidar cut-order convention rather than a
 match to it.

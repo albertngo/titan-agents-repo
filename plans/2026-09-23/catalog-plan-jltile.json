@@ -1,7 +1,7 @@
 {
  "contract_version": "catalog-plan-1",
  "supplier": "JL TILE",
- "run_at": "2026-09-23T23:46:50.717751-04:00",
+ "run_at": "2026-09-23T23:51:08.047456-04:00",
  "status": "partial",
  "inputs": [
   {
@@ -28,17 +28,17 @@
  ],
  "cost_basis": {
   "value": "cut-order",
-  "confirmed_by": "Albert 2026-09-14 (JL Tile #### Cost column: 'Your cut order price')"
+  "confirmed_by": "Albert 2026-09-14 (JL Tile #### Cost column: 'Your cut order price'); retail +$2.00 Albert 2026-09-23"
  },
  "summary": {
-  "airtable_backfill_ls_id": 49,
-  "airtable_upsert": 150,
-  "lightspeed_create": 49,
-  "lightspeed_update": 84,
-  "actions_total": 332,
+  "airtable_backfill_ls_id": 42,
+  "airtable_upsert": 146,
+  "lightspeed_create": 42,
+  "lightspeed_update": 73,
+  "actions_total": 303,
   "uuid_recovered_by_sku": 0,
-  "blocked": 2,
-  "warnings": 152,
+  "blocked": 6,
+  "warnings": 148,
   "rows_in": 152
  },
  "actions": [
@@ -62,7 +62,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -96,7 +96,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -109,40 +109,6 @@
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
    "seq": 2
-  },
-  {
-   "id": "cat-f2e6662c7322",
-   "target_system": "airtable",
-   "op": "upsert",
-   "sku": "TIL-JLTI-0003",
-   "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
-   "fields": {
-    "Product name": "Elegant Collection \u2014 Panda White Matte \u2014 24 x 48 (Matte)",
-    "Brand": "JL Tile",
-    "Supplier": "JL TILE",
-    "Collection": "Elegant Collection",
-    "Product type": "Flooring",
-    "Category": "Tile / Stone",
-    "Material type": "Porcelain",
-    "Width (in)": "24.0",
-    "Finish type": "Matte",
-    "Underpad included": "FALSE",
-    "Cost/unit": "4.49",
-    "Retail price/unit": "5.49",
-    "Volume pricing notes": "Regular dealer Price (reference tier): $4.99/sf",
-    "Last price update": "2026-09-11",
-    "Price last changed by": "Cowork",
-    "Box size (sf)": "16",
-    "Pieces per box": "2",
-    "Active": "TRUE",
-    "Salesperson notes": "Sheet printed no real code (cell read 'Panda White Matte')."
-   },
-   "before": null,
-   "reason": "new_product",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 3
   },
   {
    "id": "cat-8f3797843ccd",
@@ -167,7 +133,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -179,7 +145,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 4
+   "seq": 3
   },
   {
    "id": "cat-92d67cbb1fab",
@@ -214,7 +180,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 5
+   "seq": 4
   },
   {
    "id": "cat-7eb3a2b678f0",
@@ -239,7 +205,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -250,7 +216,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 6
+   "seq": 5
   },
   {
    "id": "cat-016f8d075609",
@@ -285,7 +251,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 7
+   "seq": 6
   },
   {
    "id": "cat-3d2f2da444b8",
@@ -308,7 +274,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -319,7 +285,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 8
+   "seq": 7
   },
   {
    "id": "cat-8c157409de18",
@@ -342,7 +308,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -353,7 +319,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 9
+   "seq": 8
   },
   {
    "id": "cat-3d0b71b30115",
@@ -378,7 +344,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -390,7 +356,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 10
+   "seq": 9
   },
   {
    "id": "cat-1373095f0670",
@@ -415,7 +381,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -426,7 +392,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 11
+   "seq": 10
   },
   {
    "id": "cat-ac43930798ab",
@@ -451,7 +417,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -462,7 +428,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 12
+   "seq": 11
   },
   {
    "id": "cat-d7f956ade030",
@@ -487,7 +453,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -499,7 +465,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 13
+   "seq": 12
   },
   {
    "id": "cat-c7a63306ffd8",
@@ -524,7 +490,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -535,7 +501,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 14
+   "seq": 13
   },
   {
    "id": "cat-bbaba7639259",
@@ -558,7 +524,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "4.94",
-    "Retail price/unit": "5.94",
+    "Retail price/unit": "6.94",
     "Volume pricing notes": "Regular dealer Price (reference tier): $5.49/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -569,7 +535,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 15
+   "seq": 14
   },
   {
    "id": "cat-80e0248414ab",
@@ -594,7 +560,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.40",
-    "Retail price/unit": "3.40",
+    "Retail price/unit": "4.40",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.67/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -605,7 +571,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 16
+   "seq": 15
   },
   {
    "id": "cat-80e585460f7b",
@@ -630,7 +596,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.40",
-    "Retail price/unit": "3.40",
+    "Retail price/unit": "4.40",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.67/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -641,7 +607,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 17
+   "seq": 16
   },
   {
    "id": "cat-e831ae097db7",
@@ -666,7 +632,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.40",
-    "Retail price/unit": "3.40",
+    "Retail price/unit": "4.40",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.67/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -677,7 +643,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 18
+   "seq": 17
   },
   {
    "id": "cat-72843f328194",
@@ -702,7 +668,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.40",
-    "Retail price/unit": "3.40",
+    "Retail price/unit": "4.40",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.67/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -713,7 +679,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 19
+   "seq": 18
   },
   {
    "id": "cat-afb6938bd751",
@@ -738,7 +704,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.40",
-    "Retail price/unit": "3.40",
+    "Retail price/unit": "4.40",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.67/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -749,7 +715,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 20
+   "seq": 19
   },
   {
    "id": "cat-31131560cc1d",
@@ -772,7 +738,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "3.06",
-    "Retail price/unit": "4.06",
+    "Retail price/unit": "5.06",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.40/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -783,7 +749,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 21
+   "seq": 20
   },
   {
    "id": "cat-1ea58ce71511",
@@ -806,7 +772,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.40",
-    "Retail price/unit": "3.40",
+    "Retail price/unit": "4.40",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.67/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -817,7 +783,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 22
+   "seq": 21
   },
   {
    "id": "cat-c6a9e72bc7b0",
@@ -840,7 +806,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.40",
-    "Retail price/unit": "3.40",
+    "Retail price/unit": "4.40",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.67/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -851,7 +817,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 23
+   "seq": 22
   },
   {
    "id": "cat-b0647477b58d",
@@ -874,7 +840,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.40",
-    "Retail price/unit": "3.40",
+    "Retail price/unit": "4.40",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.67/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -885,7 +851,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 24
+   "seq": 23
   },
   {
    "id": "cat-da88988dec48",
@@ -908,7 +874,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.40",
-    "Retail price/unit": "3.40",
+    "Retail price/unit": "4.40",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.67/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -919,7 +885,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 25
+   "seq": 24
   },
   {
    "id": "cat-1f2916f13c50",
@@ -942,7 +908,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "3.06",
-    "Retail price/unit": "4.06",
+    "Retail price/unit": "5.06",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.40/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -953,7 +919,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 26
+   "seq": 25
   },
   {
    "id": "cat-36b02c172ed3",
@@ -976,7 +942,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "3.06",
-    "Retail price/unit": "4.06",
+    "Retail price/unit": "5.06",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.40/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -987,7 +953,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 27
+   "seq": 26
   },
   {
    "id": "cat-5778b50a8504",
@@ -1010,7 +976,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "3.06",
-    "Retail price/unit": "4.06",
+    "Retail price/unit": "5.06",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.40/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1021,7 +987,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 28
+   "seq": 27
   },
   {
    "id": "cat-ea47997d1c9a",
@@ -1044,7 +1010,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "3.06",
-    "Retail price/unit": "4.06",
+    "Retail price/unit": "5.06",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.40/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1055,7 +1021,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 29
+   "seq": 28
   },
   {
    "id": "cat-63866e5ea170",
@@ -1078,7 +1044,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "3.06",
-    "Retail price/unit": "4.06",
+    "Retail price/unit": "5.06",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.40/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1089,7 +1055,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 30
+   "seq": 29
   },
   {
    "id": "cat-20b597d1144e",
@@ -1112,7 +1078,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "3.06",
-    "Retail price/unit": "4.06",
+    "Retail price/unit": "5.06",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.40/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1123,7 +1089,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 31
+   "seq": 30
   },
   {
    "id": "cat-19bc0dcdb68b",
@@ -1146,7 +1112,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "3.06",
-    "Retail price/unit": "4.06",
+    "Retail price/unit": "5.06",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.40/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1157,7 +1123,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 32
+   "seq": 31
   },
   {
    "id": "cat-30d8a8d15052",
@@ -1180,7 +1146,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "3.06",
-    "Retail price/unit": "4.06",
+    "Retail price/unit": "5.06",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.40/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1191,7 +1157,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 33
+   "seq": 32
   },
   {
    "id": "cat-8f2d32b720fe",
@@ -1214,7 +1180,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "3.06",
-    "Retail price/unit": "4.06",
+    "Retail price/unit": "5.06",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.40/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1226,7 +1192,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 34
+   "seq": 33
   },
   {
    "id": "cat-9cedd858aa76",
@@ -1249,7 +1215,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "3.06",
-    "Retail price/unit": "4.06",
+    "Retail price/unit": "5.06",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.40/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1260,7 +1226,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 35
+   "seq": 34
   },
   {
    "id": "cat-e660c21c0454",
@@ -1283,7 +1249,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "4.94",
-    "Retail price/unit": "5.94",
+    "Retail price/unit": "6.94",
     "Volume pricing notes": "Regular dealer Price (reference tier): $5.49/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1294,7 +1260,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 36
+   "seq": 35
   },
   {
    "id": "cat-e722d8d080bf",
@@ -1317,7 +1283,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "4.94",
-    "Retail price/unit": "5.94",
+    "Retail price/unit": "6.94",
     "Volume pricing notes": "Regular dealer Price (reference tier): $5.49/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1328,7 +1294,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 37
+   "seq": 36
   },
   {
    "id": "cat-571935d874d4",
@@ -1351,7 +1317,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "4.94",
-    "Retail price/unit": "5.94",
+    "Retail price/unit": "6.94",
     "Volume pricing notes": "Regular dealer Price (reference tier): $5.49/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1362,7 +1328,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 38
+   "seq": 37
   },
   {
    "id": "cat-332cf95a55c1",
@@ -1385,7 +1351,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "5.39",
-    "Retail price/unit": "6.39",
+    "Retail price/unit": "7.39",
     "Volume pricing notes": "Regular dealer Price (reference tier): $5.99/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1396,7 +1362,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 39
+   "seq": 38
   },
   {
    "id": "cat-4d4d9f27e87f",
@@ -1421,7 +1387,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1433,7 +1399,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 40
+   "seq": 39
   },
   {
    "id": "cat-e7a2df94eac3",
@@ -1458,7 +1424,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1470,7 +1436,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 41
+   "seq": 40
   },
   {
    "id": "cat-a0ab4e69d946",
@@ -1495,7 +1461,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1507,7 +1473,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 42
+   "seq": 41
   },
   {
    "id": "cat-73a58b0a7cc2",
@@ -1532,7 +1498,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1544,7 +1510,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 43
+   "seq": 42
   },
   {
    "id": "cat-181ff1e8c8e8",
@@ -1579,7 +1545,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 44
+   "seq": 43
   },
   {
    "id": "cat-e280919ed68e",
@@ -1604,7 +1570,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1616,7 +1582,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 45
+   "seq": 44
   },
   {
    "id": "cat-06e4e44d9f0d",
@@ -1641,7 +1607,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1653,7 +1619,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 46
+   "seq": 45
   },
   {
    "id": "cat-a01686b63108",
@@ -1676,7 +1642,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1688,7 +1654,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 47
+   "seq": 46
   },
   {
    "id": "cat-b0d6b5fec9e1",
@@ -1723,7 +1689,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 48
+   "seq": 47
   },
   {
    "id": "cat-3eae767f1759",
@@ -1748,7 +1714,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1759,7 +1725,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 49
+   "seq": 48
   },
   {
    "id": "cat-89f315af9918",
@@ -1784,7 +1750,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1795,7 +1761,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 50
+   "seq": 49
   },
   {
    "id": "cat-be4c1b2e774e",
@@ -1820,7 +1786,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1831,7 +1797,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 51
+   "seq": 50
   },
   {
    "id": "cat-878730a8c230",
@@ -1856,7 +1822,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1867,7 +1833,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 52
+   "seq": 51
   },
   {
    "id": "cat-56176a496759",
@@ -1892,7 +1858,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1903,7 +1869,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 53
+   "seq": 52
   },
   {
    "id": "cat-46916ecb2960",
@@ -1928,7 +1894,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1939,7 +1905,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 54
+   "seq": 53
   },
   {
    "id": "cat-1a678818d8f5",
@@ -1962,7 +1928,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -1973,7 +1939,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 55
+   "seq": 54
   },
   {
    "id": "cat-c9e81a914a54",
@@ -2008,7 +1974,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 56
+   "seq": 55
   },
   {
    "id": "cat-6aec643c4260",
@@ -2043,7 +2009,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 57
+   "seq": 56
   },
   {
    "id": "cat-234b35e78788",
@@ -2068,7 +2034,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "3.59",
-    "Retail price/unit": "4.59",
+    "Retail price/unit": "5.59",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.99/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -2080,7 +2046,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 58
+   "seq": 57
   },
   {
    "id": "cat-49bc24a9102c",
@@ -2105,7 +2071,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "3.59",
-    "Retail price/unit": "4.59",
+    "Retail price/unit": "5.59",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.99/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -2117,7 +2083,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 59
+   "seq": 58
   },
   {
    "id": "cat-210fd62fd982",
@@ -2142,7 +2108,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "3.59",
-    "Retail price/unit": "4.59",
+    "Retail price/unit": "5.59",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.99/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -2153,7 +2119,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 60
+   "seq": 59
   },
   {
    "id": "cat-0e5429bc3606",
@@ -2176,7 +2142,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "4.94",
-    "Retail price/unit": "5.94",
+    "Retail price/unit": "6.94",
     "Volume pricing notes": "Regular dealer Price (reference tier): $5.49/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -2188,7 +2154,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 61
+   "seq": 60
   },
   {
    "id": "cat-68b93a94efcd",
@@ -2223,42 +2189,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 62
-  },
-  {
-   "id": "cat-eec524520e62",
-   "target_system": "airtable",
-   "op": "upsert",
-   "sku": "TIL-JLTI-DM12340M",
-   "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
-   "fields": {
-    "Product name": "Elegant Collection \u2014 Dream White Matt \u2014 24 x 48 (Polished)",
-    "Brand": "JL Tile",
-    "Supplier": "JL TILE",
-    "Supplier SKU": "DM12340M",
-    "Collection": "Elegant Collection",
-    "Product type": "Flooring",
-    "Category": "Tile / Stone",
-    "Material type": "Porcelain",
-    "Width (in)": "24.0",
-    "Finish type": "Polished",
-    "Underpad included": "FALSE",
-    "Cost/unit": "3.77",
-    "Retail price/unit": "4.77",
-    "Volume pricing notes": "Regular dealer Price (reference tier): $4.19/sf",
-    "Last price update": "2026-09-11",
-    "Price last changed by": "Cowork",
-    "Box size (sf)": "16",
-    "Pieces per box": "2",
-    "Active": "TRUE",
-    "Salesperson notes": "Sheet also prints 'PY126929M' for this SKU (kept 'DM12340M' as the primary code)."
-   },
-   "before": null,
-   "reason": "new_product",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 63
+   "seq": 61
   },
   {
    "id": "cat-a74ef61063e9",
@@ -2283,7 +2214,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.69",
-    "Retail price/unit": "3.69",
+    "Retail price/unit": "4.69",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.99/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -2295,7 +2226,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 64
+   "seq": 62
   },
   {
    "id": "cat-621ea469da2f",
@@ -2330,7 +2261,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 65
+   "seq": 63
   },
   {
    "id": "cat-ecc4e69332c4",
@@ -2355,7 +2286,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -2367,7 +2298,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 66
+   "seq": 64
   },
   {
    "id": "cat-b6206eed3529",
@@ -2392,7 +2323,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -2404,7 +2335,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 67
+   "seq": 65
   },
   {
    "id": "cat-03942b5631cd",
@@ -2429,7 +2360,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -2440,7 +2371,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 68
+   "seq": 66
   },
   {
    "id": "cat-70eab04f4fbc",
@@ -2465,7 +2396,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -2476,7 +2407,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 69
+   "seq": 67
   },
   {
    "id": "cat-f5e67b8e0fca",
@@ -2501,7 +2432,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -2513,7 +2444,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 70
+   "seq": 68
   },
   {
    "id": "cat-5475393bcb25",
@@ -2538,7 +2469,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -2549,7 +2480,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 71
+   "seq": 69
   },
   {
    "id": "cat-f9eb2824273f",
@@ -2574,7 +2505,7 @@
     "Underpad included": "FALSE",
     "Tile format": "Wall",
     "Cost/unit": "2.96",
-    "Retail price/unit": "3.96",
+    "Retail price/unit": "4.96",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.29/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -2585,7 +2516,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 72
+   "seq": 70
   },
   {
    "id": "cat-bec410258a40",
@@ -2610,7 +2541,7 @@
     "Underpad included": "FALSE",
     "Tile format": "Wall",
     "Cost/unit": "2.96",
-    "Retail price/unit": "3.96",
+    "Retail price/unit": "4.96",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.29/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -2621,7 +2552,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 73
+   "seq": 71
   },
   {
    "id": "cat-0b3f992eecaa",
@@ -2656,7 +2587,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 74
+   "seq": 72
   },
   {
    "id": "cat-921cc8595f83",
@@ -2681,7 +2612,7 @@
     "Underpad included": "FALSE",
     "Tile format": "Wall",
     "Cost/unit": "2.96",
-    "Retail price/unit": "3.96",
+    "Retail price/unit": "4.96",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.29/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -2692,7 +2623,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 75
+   "seq": 73
   },
   {
    "id": "cat-f27b4bac2c7e",
@@ -2727,7 +2658,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 76
+   "seq": 74
   },
   {
    "id": "cat-8ac598e081e4",
@@ -2762,7 +2693,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 77
+   "seq": 75
   },
   {
    "id": "cat-06c0081b0e9d",
@@ -2787,7 +2718,7 @@
     "Underpad included": "FALSE",
     "Tile format": "Wall",
     "Cost/unit": "2.96",
-    "Retail price/unit": "3.96",
+    "Retail price/unit": "4.96",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.29/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -2798,7 +2729,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 78
+   "seq": 76
   },
   {
    "id": "cat-7a7a87b75df8",
@@ -2823,7 +2754,7 @@
     "Underpad included": "FALSE",
     "Tile format": "Wall",
     "Cost/unit": "2.96",
-    "Retail price/unit": "3.96",
+    "Retail price/unit": "4.96",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.29/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -2834,7 +2765,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 79
+   "seq": 77
   },
   {
    "id": "cat-cfa88aee6acd",
@@ -2859,7 +2790,7 @@
     "Underpad included": "FALSE",
     "Tile format": "Wall",
     "Cost/unit": "2.96",
-    "Retail price/unit": "3.96",
+    "Retail price/unit": "4.96",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.29/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -2870,7 +2801,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 80
+   "seq": 78
   },
   {
    "id": "cat-2f76acddacfb",
@@ -2895,7 +2826,7 @@
     "Underpad included": "FALSE",
     "Tile format": "Wall",
     "Cost/unit": "2.96",
-    "Retail price/unit": "3.96",
+    "Retail price/unit": "4.96",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.29/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -2906,7 +2837,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 81
+   "seq": 79
   },
   {
    "id": "cat-aa7ec9dd7d46",
@@ -2931,7 +2862,7 @@
     "Underpad included": "FALSE",
     "Tile format": "Wall",
     "Cost/unit": "2.96",
-    "Retail price/unit": "3.96",
+    "Retail price/unit": "4.96",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.29/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -2942,7 +2873,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 82
+   "seq": 80
   },
   {
    "id": "cat-958e77efb7d4",
@@ -2967,7 +2898,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "3.68",
-    "Retail price/unit": "4.68",
+    "Retail price/unit": "5.68",
     "Volume pricing notes": "Regular dealer Price (reference tier): $4.09/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -2979,7 +2910,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 83
+   "seq": 81
   },
   {
    "id": "cat-c79c06e7d3d7",
@@ -3004,7 +2935,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "3.68",
-    "Retail price/unit": "4.68",
+    "Retail price/unit": "5.68",
     "Volume pricing notes": "Regular dealer Price (reference tier): $4.09/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3015,7 +2946,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 84
+   "seq": 82
   },
   {
    "id": "cat-5063fbc9734d",
@@ -3040,7 +2971,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "3.68",
-    "Retail price/unit": "4.68",
+    "Retail price/unit": "5.68",
     "Volume pricing notes": "Regular dealer Price (reference tier): $4.09/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3051,7 +2982,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 85
+   "seq": 83
   },
   {
    "id": "cat-c37a1213957b",
@@ -3074,7 +3005,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "3.68",
-    "Retail price/unit": "4.68",
+    "Retail price/unit": "5.68",
     "Volume pricing notes": "Regular dealer Price (reference tier): $4.09/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3085,7 +3016,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 86
+   "seq": 84
   },
   {
    "id": "cat-e040d976c717",
@@ -3108,7 +3039,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "3.68",
-    "Retail price/unit": "4.68",
+    "Retail price/unit": "5.68",
     "Volume pricing notes": "Regular dealer Price (reference tier): $4.09/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3119,7 +3050,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 87
+   "seq": 85
   },
   {
    "id": "cat-cda7b29e7fa9",
@@ -3142,7 +3073,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "3.68",
-    "Retail price/unit": "4.68",
+    "Retail price/unit": "5.68",
     "Volume pricing notes": "Regular dealer Price (reference tier): $4.09/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3153,7 +3084,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 88
+   "seq": 86
   },
   {
    "id": "cat-3664cdc84e2d",
@@ -3176,7 +3107,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "3.68",
-    "Retail price/unit": "4.68",
+    "Retail price/unit": "5.68",
     "Volume pricing notes": "Regular dealer Price (reference tier): $4.09/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3187,7 +3118,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 89
+   "seq": 87
   },
   {
    "id": "cat-32b6db4d8bc9",
@@ -3210,7 +3141,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "5.39",
-    "Retail price/unit": "6.39",
+    "Retail price/unit": "7.39",
     "Volume pricing notes": "Regular dealer Price (reference tier): $5.99/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3221,7 +3152,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 90
+   "seq": 88
   },
   {
    "id": "cat-dae93c6842e9",
@@ -3246,7 +3177,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "3.68",
-    "Retail price/unit": "4.68",
+    "Retail price/unit": "5.68",
     "Volume pricing notes": "Regular dealer Price (reference tier): $4.09/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3257,7 +3188,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 91
+   "seq": 89
   },
   {
    "id": "cat-465181510e51",
@@ -3282,7 +3213,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3294,7 +3225,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 92
+   "seq": 90
   },
   {
    "id": "cat-0179596e3ad1",
@@ -3319,7 +3250,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3330,7 +3261,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 93
+   "seq": 91
   },
   {
    "id": "cat-543ae291b817",
@@ -3355,7 +3286,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "3.59",
-    "Retail price/unit": "4.59",
+    "Retail price/unit": "5.59",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.99/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3366,7 +3297,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 94
+   "seq": 92
   },
   {
    "id": "cat-6fa18d85a0c4",
@@ -3389,7 +3320,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "3.59",
-    "Retail price/unit": "4.59",
+    "Retail price/unit": "5.59",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.99/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3400,7 +3331,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 95
+   "seq": 93
   },
   {
    "id": "cat-6769e543791e",
@@ -3425,7 +3356,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "3.50",
-    "Retail price/unit": "4.50",
+    "Retail price/unit": "5.50",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.89/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3437,7 +3368,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 96
+   "seq": 94
   },
   {
    "id": "cat-29b2609f3c68",
@@ -3462,7 +3393,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "3.50",
-    "Retail price/unit": "4.50",
+    "Retail price/unit": "5.50",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.89/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3473,7 +3404,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 97
+   "seq": 95
   },
   {
    "id": "cat-77f75bc49c2f",
@@ -3496,7 +3427,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "4.04",
-    "Retail price/unit": "5.04",
+    "Retail price/unit": "6.04",
     "Volume pricing notes": "Regular dealer Price (reference tier): $4.49/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3507,7 +3438,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 98
+   "seq": 96
   },
   {
    "id": "cat-77775bba164e",
@@ -3530,7 +3461,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "4.94",
-    "Retail price/unit": "5.94",
+    "Retail price/unit": "6.94",
     "Volume pricing notes": "Regular dealer Price (reference tier): $5.49/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3541,7 +3472,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 99
+   "seq": 97
   },
   {
    "id": "cat-bedaf9e79d2a",
@@ -3576,7 +3507,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 100
+   "seq": 98
   },
   {
    "id": "cat-7a9cfd26b20e",
@@ -3601,7 +3532,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3613,7 +3544,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 101
+   "seq": 99
   },
   {
    "id": "cat-75b78784f41e",
@@ -3638,7 +3569,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3649,7 +3580,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 102
+   "seq": 100
   },
   {
    "id": "cat-0fcb0cc56993",
@@ -3674,7 +3605,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3685,7 +3616,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 103
+   "seq": 101
   },
   {
    "id": "cat-1e05d8ca193a",
@@ -3710,7 +3641,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3721,7 +3652,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 104
+   "seq": 102
   },
   {
    "id": "cat-9a52879c1fd8",
@@ -3746,7 +3677,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3757,7 +3688,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 105
+   "seq": 103
   },
   {
    "id": "cat-e2051cefe654",
@@ -3782,7 +3713,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3793,7 +3724,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 106
+   "seq": 104
   },
   {
    "id": "cat-7c1a15d2aac0",
@@ -3818,7 +3749,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "4.22",
-    "Retail price/unit": "5.22",
+    "Retail price/unit": "6.22",
     "Volume pricing notes": "Regular dealer Price (reference tier): $4.69/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3829,7 +3760,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 107
+   "seq": 105
   },
   {
    "id": "cat-9a547e135aba",
@@ -3854,7 +3785,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "4.40",
-    "Retail price/unit": "5.40",
+    "Retail price/unit": "6.40",
     "Volume pricing notes": "Regular dealer Price (reference tier): $4.89/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3866,7 +3797,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 108
+   "seq": 106
   },
   {
    "id": "cat-2bf869251685",
@@ -3889,7 +3820,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3901,7 +3832,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 109
+   "seq": 107
   },
   {
    "id": "cat-ed1983e75201",
@@ -3924,7 +3855,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -3935,7 +3866,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 110
+   "seq": 108
   },
   {
    "id": "cat-e8d84cd1c7bf",
@@ -3970,7 +3901,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 111
+   "seq": 109
   },
   {
    "id": "cat-fb59843adf35",
@@ -4005,7 +3936,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 112
+   "seq": 110
   },
   {
    "id": "cat-715f02997c94",
@@ -4030,7 +3961,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.40",
-    "Retail price/unit": "3.40",
+    "Retail price/unit": "4.40",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.67/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4042,7 +3973,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 113
+   "seq": 111
   },
   {
    "id": "cat-2b393f09d136",
@@ -4067,7 +3998,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4079,7 +4010,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 114
+   "seq": 112
   },
   {
    "id": "cat-797d1e85eea9",
@@ -4104,7 +4035,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4115,7 +4046,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 115
+   "seq": 113
   },
   {
    "id": "cat-2a6bf9a06da4",
@@ -4140,7 +4071,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4151,7 +4082,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 116
+   "seq": 114
   },
   {
    "id": "cat-f2e381b95974",
@@ -4176,7 +4107,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4187,7 +4118,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 117
+   "seq": 115
   },
   {
    "id": "cat-67babac2ec24",
@@ -4212,7 +4143,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4223,7 +4154,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 118
+   "seq": 116
   },
   {
    "id": "cat-757f0a379829",
@@ -4248,7 +4179,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4259,7 +4190,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 119
+   "seq": 117
   },
   {
    "id": "cat-fd3c057b4f14",
@@ -4284,7 +4215,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "4.67",
-    "Retail price/unit": "5.67",
+    "Retail price/unit": "6.67",
     "Volume pricing notes": "Regular dealer Price (reference tier): $5.19/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4295,7 +4226,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 120
+   "seq": 118
   },
   {
    "id": "cat-169c45a6c8b2",
@@ -4320,7 +4251,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "4.67",
-    "Retail price/unit": "5.67",
+    "Retail price/unit": "6.67",
     "Volume pricing notes": "Regular dealer Price (reference tier): $5.19/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4331,7 +4262,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 121
+   "seq": 119
   },
   {
    "id": "cat-9f9bb19f6e5d",
@@ -4354,7 +4285,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "4.67",
-    "Retail price/unit": "5.67",
+    "Retail price/unit": "6.67",
     "Volume pricing notes": "Regular dealer Price (reference tier): $5.19/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4365,7 +4296,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 122
+   "seq": 120
   },
   {
    "id": "cat-59773dad681e",
@@ -4390,7 +4321,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "3.50",
-    "Retail price/unit": "4.50",
+    "Retail price/unit": "5.50",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.89/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4402,7 +4333,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 123
+   "seq": 121
   },
   {
    "id": "cat-b9fe4c10f833",
@@ -4427,7 +4358,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "3.50",
-    "Retail price/unit": "4.50",
+    "Retail price/unit": "5.50",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.89/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4438,7 +4369,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 124
+   "seq": 122
   },
   {
    "id": "cat-7ef04fdf7066",
@@ -4463,7 +4394,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4475,7 +4406,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 125
+   "seq": 123
   },
   {
    "id": "cat-2334b6abebfd",
@@ -4500,7 +4431,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4511,7 +4442,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 126
+   "seq": 124
   },
   {
    "id": "cat-326427390116",
@@ -4519,13 +4450,15 @@
    "op": "upsert",
    "sku": "TIL-JLTI-QP8320GMB360",
    "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
+   "ls_id": "332ab198-8c13-4450-aeda-a2a895274660",
+   "handle": "jlttil---essential---porcelain-emotive-astonished-white-matt---qp8320gmb-360-----12-x-24---8pcb---16sfb",
    "fields": {
     "Product name": "Essential Collection \u2014 Emotive Astonished white Matt \u2014 12 x 24 (Matt)",
     "Brand": "JL Tile",
     "Supplier": "JL TILE",
-    "Supplier SKU": "QP8320GMB 360",
+    "Supplier SKU": "QP8320GMB360",
+    "Lightspeed ID": "332ab198-8c13-4450-aeda-a2a895274660",
+    "LS Handle / Parent ID": "jlttil---essential---porcelain-emotive-astonished-white-matt---qp8320gmb-360-----12-x-24---8pcb---16sfb",
     "Collection": "Essential Collection",
     "Product type": "Flooring",
     "Category": "Tile / Stone",
@@ -4534,7 +4467,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4545,8 +4478,8 @@
    },
    "before": null,
    "reason": "new_product",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 127
+   "uuid_source": "upload",
+   "seq": 125
   },
   {
    "id": "cat-2fa06bc9f351",
@@ -4554,13 +4487,15 @@
    "op": "upsert",
    "sku": "TIL-JLTI-QP8320GMB612",
    "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
+   "ls_id": "1ded4d6b-be29-4913-b9cd-caeb0aee09c3",
+   "handle": "jlttil---elegant----emotive-astonished-white-matt---qp8320gmb-612--------2pcb---16sfb",
    "fields": {
     "Product name": "Elegant Collection \u2014 Emotive Astonished White Matt \u2014 24 x 48 (Matte)",
     "Brand": "JL Tile",
     "Supplier": "JL TILE",
-    "Supplier SKU": "QP8320GMB 612",
+    "Supplier SKU": "QP8320GMB612",
+    "Lightspeed ID": "1ded4d6b-be29-4913-b9cd-caeb0aee09c3",
+    "LS Handle / Parent ID": "jlttil---elegant----emotive-astonished-white-matt---qp8320gmb-612--------2pcb---16sfb",
     "Collection": "Elegant Collection",
     "Product type": "Flooring",
     "Category": "Tile / Stone",
@@ -4569,7 +4504,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "4.49",
-    "Retail price/unit": "5.49",
+    "Retail price/unit": "6.49",
     "Volume pricing notes": "Regular dealer Price (reference tier): $4.99/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4579,8 +4514,8 @@
    },
    "before": null,
    "reason": "new_product",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 128
+   "uuid_source": "upload",
+   "seq": 126
   },
   {
    "id": "cat-8738ef476e6e",
@@ -4588,13 +4523,15 @@
    "op": "upsert",
    "sku": "TIL-JLTI-QP8320GMB660",
    "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
+   "ls_id": "e252e01c-deb6-4e02-a549-22249932e1d1",
+   "handle": "jlttil---essential---porcelain-emotive-astonished-white-matt---qp8320gmb-660-----24-x-24---4pcb---16sfb",
    "fields": {
     "Product name": "Essential Collection \u2014 Emotive Astonished white Matt \u2014 24 x 24 (Matt)",
     "Brand": "JL Tile",
     "Supplier": "JL TILE",
-    "Supplier SKU": "QP8320GMB 660",
+    "Supplier SKU": "QP8320GMB660",
+    "Lightspeed ID": "e252e01c-deb6-4e02-a549-22249932e1d1",
+    "LS Handle / Parent ID": "jlttil---essential---porcelain-emotive-astonished-white-matt---qp8320gmb-660-----24-x-24---4pcb---16sfb",
     "Collection": "Essential Collection",
     "Product type": "Flooring",
     "Category": "Tile / Stone",
@@ -4603,7 +4540,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4613,8 +4550,8 @@
    },
    "before": null,
    "reason": "new_product",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 129
+   "uuid_source": "upload",
+   "seq": 127
   },
   {
    "id": "cat-17ed87c75d3c",
@@ -4639,7 +4576,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "4.49",
-    "Retail price/unit": "5.49",
+    "Retail price/unit": "6.49",
     "Volume pricing notes": "Regular dealer Price (reference tier): $4.99/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4650,7 +4587,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 130
+   "seq": 128
   },
   {
    "id": "cat-57aa09b02ed5",
@@ -4675,7 +4612,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4687,7 +4624,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 131
+   "seq": 129
   },
   {
    "id": "cat-d68c872bd310",
@@ -4712,7 +4649,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "2.18",
-    "Retail price/unit": "3.18",
+    "Retail price/unit": "4.18",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4723,7 +4660,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 132
+   "seq": 130
   },
   {
    "id": "cat-a9dfe325b89f",
@@ -4758,7 +4695,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 133
+   "seq": 131
   },
   {
    "id": "cat-67856032fa59",
@@ -4793,7 +4730,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 134
+   "seq": 132
   },
   {
    "id": "cat-6fab233c5165",
@@ -4818,7 +4755,7 @@
     "Finish type": "Polished",
     "Underpad included": "FALSE",
     "Cost/unit": "3.44",
-    "Retail price/unit": "4.44",
+    "Retail price/unit": "5.44",
     "Volume pricing notes": "Regular dealer Price (reference tier): $3.82/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4830,76 +4767,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 135
-  },
-  {
-   "id": "cat-e79b62d37c5a",
-   "target_system": "airtable",
-   "op": "upsert",
-   "sku": "TIL-JLTI-SP36P00T",
-   "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
-   "fields": {
-    "Product name": "Essential Collection \u2014 Pure White \u2014 12 x 24 (Polished)",
-    "Brand": "JL Tile",
-    "Supplier": "JL TILE",
-    "Supplier SKU": "SP36P00T",
-    "Collection": "Essential Collection",
-    "Product type": "Flooring",
-    "Category": "Tile / Stone",
-    "Material type": "Porcelain",
-    "Width (in)": "12.0",
-    "Finish type": "Polished",
-    "Underpad included": "FALSE",
-    "Cost/unit": "2.70",
-    "Retail price/unit": "3.70",
-    "Volume pricing notes": "Regular dealer Price (reference tier): $3.00/sf",
-    "Last price update": "2026-09-11",
-    "Price last changed by": "Cowork",
-    "Box size (sf)": "16",
-    "Pieces per box": "8",
-    "Active": "TRUE",
-    "Salesperson notes": "N/A"
-   },
-   "before": null,
-   "reason": "new_product",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 136
-  },
-  {
-   "id": "cat-7fa8aca07b07",
-   "target_system": "airtable",
-   "op": "upsert",
-   "sku": "TIL-JLTI-SP6P00T",
-   "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
-   "fields": {
-    "Product name": "Essential Collection \u2014 Pure White \u2014 24 x 24 (Polished)",
-    "Brand": "JL Tile",
-    "Supplier": "JL TILE",
-    "Supplier SKU": "SP6P00T",
-    "Collection": "Essential Collection",
-    "Product type": "Flooring",
-    "Category": "Tile / Stone",
-    "Material type": "Porcelain",
-    "Width (in)": "24.0",
-    "Finish type": "Polished",
-    "Underpad included": "FALSE",
-    "Cost/unit": "2.70",
-    "Retail price/unit": "3.70",
-    "Volume pricing notes": "Regular dealer Price (reference tier): $3.00/sf",
-    "Last price update": "2026-09-11",
-    "Price last changed by": "Cowork",
-    "Box size (sf)": "16",
-    "Pieces per box": "4",
-    "Active": "TRUE"
-   },
-   "before": null,
-   "reason": "new_product",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 137
+   "seq": 133
   },
   {
    "id": "cat-868b2c1ede1c",
@@ -4924,7 +4792,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "3.68",
-    "Retail price/unit": "4.68",
+    "Retail price/unit": "5.68",
     "Volume pricing notes": "Regular dealer Price (reference tier): $4.09/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4935,7 +4803,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 138
+   "seq": 134
   },
   {
    "id": "cat-1613d862c87e",
@@ -4958,7 +4826,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "3.68",
-    "Retail price/unit": "4.68",
+    "Retail price/unit": "5.68",
     "Volume pricing notes": "Regular dealer Price (reference tier): $4.09/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -4969,7 +4837,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 139
+   "seq": 135
   },
   {
    "id": "cat-5f0db687d7ba",
@@ -4994,7 +4862,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "3.68",
-    "Retail price/unit": "4.68",
+    "Retail price/unit": "5.68",
     "Volume pricing notes": "Regular dealer Price (reference tier): $4.09/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -5005,7 +4873,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 140
+   "seq": 136
   },
   {
    "id": "cat-22af2af4acd2",
@@ -5028,7 +4896,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "3.68",
-    "Retail price/unit": "4.68",
+    "Retail price/unit": "5.68",
     "Volume pricing notes": "Regular dealer Price (reference tier): $4.09/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -5039,7 +4907,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 141
+   "seq": 137
   },
   {
    "id": "cat-9e70aa7ae831",
@@ -5062,7 +4930,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "3.68",
-    "Retail price/unit": "4.68",
+    "Retail price/unit": "5.68",
     "Volume pricing notes": "Regular dealer Price (reference tier): $4.09/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -5073,7 +4941,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 142
+   "seq": 138
   },
   {
    "id": "cat-f8543c1a18e9",
@@ -5096,7 +4964,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "3.68",
-    "Retail price/unit": "4.68",
+    "Retail price/unit": "5.68",
     "Volume pricing notes": "Regular dealer Price (reference tier): $4.09/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -5107,7 +4975,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 143
+   "seq": 139
   },
   {
    "id": "cat-fc2495ddddac",
@@ -5142,7 +5010,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 144
+   "seq": 140
   },
   {
    "id": "cat-9193604b5d76",
@@ -5167,7 +5035,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -5179,7 +5047,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 145
+   "seq": 141
   },
   {
    "id": "cat-8638cbc2d3dc",
@@ -5204,7 +5072,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -5215,7 +5083,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 146
+   "seq": 142
   },
   {
    "id": "cat-61c7e2143a72",
@@ -5240,7 +5108,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -5251,7 +5119,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 147
+   "seq": 143
   },
   {
    "id": "cat-c99a04d2a40c",
@@ -5276,7 +5144,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -5287,7 +5155,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 148
+   "seq": 144
   },
   {
    "id": "cat-43fc6de1f4f0",
@@ -5312,7 +5180,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -5323,7 +5191,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 149
+   "seq": 145
   },
   {
    "id": "cat-bafbcb9d07b0",
@@ -5348,7 +5216,7 @@
     "Finish type": "Matte",
     "Underpad included": "FALSE",
     "Cost/unit": "2.30",
-    "Retail price/unit": "3.30",
+    "Retail price/unit": "4.30",
     "Volume pricing notes": "Regular dealer Price (reference tier): $2.55/sf",
     "Last price update": "2026-09-11",
     "Price last changed by": "Cowork",
@@ -5359,7 +5227,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "upload",
-   "seq": 150
+   "seq": 146
   },
   {
    "id": "cat-b75fae2cbdc2",
@@ -5374,7 +5242,7 @@
     "handle": "JLTITILTILJLTI0001",
     "name": "JLTITIL - Essential Collection (Lisbon Grey Matte) | 12 x 24 | Matt - 16.00sf/b",
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3,
+    "price_excluding_tax": 4.3,
     "description": "Finish type: Matt | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 8 | Salesperson notes: N/A; Sheet printed no real code (cell read 'coming soon').",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -5383,7 +5251,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 151
+   "seq": 147
   },
   {
    "id": "cat-ff48414cb503",
@@ -5398,7 +5266,7 @@
     "handle": "JLTITILTILJLTI0002",
     "name": "JLTITIL - Essential Collection (Lisbon Silver Matte) | 12 x 24 | Matt - 16.00sf/b",
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3,
+    "price_excluding_tax": 4.3,
     "description": "Finish type: Matt | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 8 | Salesperson notes: N/A; Sheet printed no real code (cell read 'coming soon').",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -5407,31 +5275,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 152
-  },
-  {
-   "id": "cat-e6341cccada2",
-   "target_system": "lightspeed",
-   "op": "create",
-   "sku": "TIL-JLTI-0003",
-   "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
-   "fields": {
-    "sku": "TIL-JLTI-0003",
-    "handle": "JLTITILTILJLTI0003",
-    "name": "JLTITIL - Elegant Collection (Panda White Matte) | 24 x 48 | Matte - 16.00sf/b",
-    "supply_price": 4.49,
-    "price_excluding_tax": 5.49,
-    "description": "Finish type: Matte | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2 | Salesperson notes: Sheet printed no real code (cell read 'Panda White Matte').",
-    "brand_name": "JL Tile",
-    "supplier_name": "JL Tile",
-    "product_category": "TILE"
-   },
-   "before": null,
-   "reason": "new_product",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 153
+   "seq": 148
   },
   {
    "id": "cat-8e527850588e",
@@ -5443,7 +5287,7 @@
    "handle": "jlttil---essential---porcelain-wasaga-sand-matt---36m0633h-----12-x-24---8pcb---16sfb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Wasaga Sand Matt)  | #36M0633H |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -5458,7 +5302,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 154
+   "seq": 149
   },
   {
    "id": "cat-1f387f3f8e6d",
@@ -5470,7 +5314,7 @@
    "handle": "jlttil---essential---porcelain-wasaga-sand-matt---60m0633h-----12-x-24---4pcb---16sfb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Wasaga Sand Matt)  | #60M0633H |  - 12 x 24 - 4pc/b - 16sf/b",
@@ -5485,7 +5329,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 155
+   "seq": 150
   },
   {
    "id": "cat-7b3f3827fdb0",
@@ -5500,7 +5344,7 @@
     "handle": "JLTITIL6P227",
     "name": "JLTITIL - Essential Collection (Lisbon Grey Matte) | 24 x 24 | Matt - 16.00sf/b",
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3,
+    "price_excluding_tax": 4.3,
     "description": "Finish type: Matt | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 4",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -5509,7 +5353,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 156
+   "seq": 151
   },
   {
    "id": "cat-c3bf4c31cbbf",
@@ -5524,7 +5368,7 @@
     "handle": "JLTITIL6P228",
     "name": "JLTITIL - Essential Collection (Lisbon Silver Matte) | 24 x 24 | Matt - 16.00sf/b",
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3,
+    "price_excluding_tax": 4.3,
     "description": "Finish type: Matt | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 4",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -5533,7 +5377,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 157
+   "seq": 152
   },
   {
    "id": "cat-6deb405cbb48",
@@ -5545,7 +5389,7 @@
    "handle": "jlttil---porcelain-essence-grey---am36325-----1224---8pcb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Essence Grey)  | #AM36325 |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -5560,7 +5404,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 158
+   "seq": 153
   },
   {
    "id": "cat-42b7bf372c09",
@@ -5572,7 +5416,7 @@
    "handle": "jlttil---porcelain-essence-grey---am48325-----1632---4pcb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Essence Grey)  | #AM48325 |  - 16 x 32 - 4pc/b - 14.24sf/b",
@@ -5587,7 +5431,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 159
+   "seq": 154
   },
   {
    "id": "cat-afc3330d32ed",
@@ -5599,7 +5443,7 @@
    "handle": "jlttil---porcelain-essence-grey---am60325-----2424---4pcb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Essence Grey)  | #AM60325 |  - 24 x 24 - 4pc/b - 16sf/b",
@@ -5614,7 +5458,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 160
+   "seq": 155
   },
   {
    "id": "cat-524b9d76489c",
@@ -5626,7 +5470,7 @@
    "handle": "jlttil---porcelain-wasaga-sands---b360m0633-----1224---8pcb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Wasaga Sands)  | #B360M0633 |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -5641,7 +5485,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 161
+   "seq": 156
   },
   {
    "id": "cat-e14f745eb343",
@@ -5653,7 +5497,7 @@
    "handle": "jlttil---porcelain-wasaga-sands---b60m0633-----2424---4pcb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Wasaga Sands)  | #B60M0633 |  - 24 x 24 - 4pc/b - 16sf/b",
@@ -5668,7 +5512,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 162
+   "seq": 157
   },
   {
    "id": "cat-fc0f25003dbc",
@@ -5683,7 +5527,7 @@
     "handle": "JLTITILBM6H61210",
     "name": "JLTITIL - Elegant Collection (Rockwood charcoal FLAT) | 24 x 48 | Matte - 16.00sf/b",
     "supply_price": 4.94,
-    "price_excluding_tax": 5.94,
+    "price_excluding_tax": 6.94,
     "description": "Finish type: Matte | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -5692,7 +5536,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 163
+   "seq": 158
   },
   {
    "id": "cat-7327524280c8",
@@ -5704,7 +5548,7 @@
    "handle": "jlttil---porcelain-bremen-white---bpck1260-----2448-8pcs-bookmatch---2pcb",
    "fields": {
     "supply_price": 2.4,
-    "price_excluding_tax": 3.4
+    "price_excluding_tax": 4.4
    },
    "before": {
     "name": "JLTTIL - ELEGANT - Porcelain (Bremen White)  | #BPCK1260 |  - 24 x 48 - 2pc/b - 16sf/b",
@@ -5719,7 +5563,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 164
+   "seq": 159
   },
   {
    "id": "cat-75c1d8aa6714",
@@ -5731,7 +5575,7 @@
    "handle": "jlttil---porcelain-bremen-gris---bpck1261-----2448-8pcs-bookmatch---2pcb",
    "fields": {
     "supply_price": 2.4,
-    "price_excluding_tax": 3.4
+    "price_excluding_tax": 4.4
    },
    "before": {
     "name": "JLTTIL - ELEGANT - Porcelain (Bremen Gris)  | #BPCK1261 |  - 24 x 48 - 2pc/b - 16sf/b",
@@ -5746,7 +5590,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 165
+   "seq": 160
   },
   {
    "id": "cat-6feab0d5c8aa",
@@ -5758,7 +5602,7 @@
    "handle": "jlttil---porcelain-breman-fall---bpck1262-----2448-8pcs-bookmatch---2pcb",
    "fields": {
     "supply_price": 2.4,
-    "price_excluding_tax": 3.4
+    "price_excluding_tax": 4.4
    },
    "before": {
     "name": "JLTTIL - ELEGANT - Porcelain (Bremen Fall)  | #BPCK1262 |  - 24 x 48 - 2pc/b - 16sf/b",
@@ -5773,7 +5617,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 166
+   "seq": 161
   },
   {
    "id": "cat-74fc32981d36",
@@ -5785,7 +5629,7 @@
    "handle": "jlttil---porcelain-bremen-night---bpck1263-----2448-8pcs-bookmatch---2pcb",
    "fields": {
     "supply_price": 2.4,
-    "price_excluding_tax": 3.4
+    "price_excluding_tax": 4.4
    },
    "before": {
     "name": "JLTTIL - ELEGANT - Porcelain (Bremen Night)  | #BPCK1263 |  - 24 x 48 - 2pc/b - 16sf/b",
@@ -5800,7 +5644,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 167
+   "seq": 162
   },
   {
    "id": "cat-57347b6f2eef",
@@ -5812,7 +5656,7 @@
    "handle": "jlttil---elegant----catarina-bianco---bpck1265-----24-x-48---2pcb---16sfb",
    "fields": {
     "supply_price": 2.4,
-    "price_excluding_tax": 3.4
+    "price_excluding_tax": 4.4
    },
    "before": {
     "name": "JLTTIL - ELEGANT - Porcelain (Catarina Bianco)  | #BPCK1265 |  - 24 x 48 - 2pc/b - 16sf/b",
@@ -5827,7 +5671,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 168
+   "seq": 163
   },
   {
    "id": "cat-c524b6395d21",
@@ -5842,7 +5686,7 @@
     "handle": "JLTITILBPCK1266",
     "name": "JLTITIL - Elegant Collection (Alps Gold) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 3.06,
-    "price_excluding_tax": 4.06,
+    "price_excluding_tax": 5.06,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -5851,7 +5695,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 169
+   "seq": 164
   },
   {
    "id": "cat-10020f9aa6a9",
@@ -5866,7 +5710,7 @@
     "handle": "JLTITILBPCK1270",
     "name": "JLTITIL - Elegant Collection (Lamia Bianco) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 2.4,
-    "price_excluding_tax": 3.4,
+    "price_excluding_tax": 4.4,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -5875,7 +5719,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 170
+   "seq": 165
   },
   {
    "id": "cat-77d3281a7f3a",
@@ -5890,7 +5734,7 @@
     "handle": "JLTITILBPCK1271",
     "name": "JLTITIL - Elegant Collection (Lamia Grey) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 2.4,
-    "price_excluding_tax": 3.4,
+    "price_excluding_tax": 4.4,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -5899,7 +5743,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 171
+   "seq": 166
   },
   {
    "id": "cat-8acbc79ca1b2",
@@ -5914,7 +5758,7 @@
     "handle": "JLTITILBPCK1273",
     "name": "JLTITIL - Elegant Collection (Lamia Cream) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 2.4,
-    "price_excluding_tax": 3.4,
+    "price_excluding_tax": 4.4,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -5923,7 +5767,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 172
+   "seq": 167
   },
   {
    "id": "cat-ae27d4c64b5f",
@@ -5938,7 +5782,7 @@
     "handle": "JLTITILBPCK1274",
     "name": "JLTITIL - Elegant Collection (Lamia Snow) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 2.4,
-    "price_excluding_tax": 3.4,
+    "price_excluding_tax": 4.4,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -5947,7 +5791,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 173
+   "seq": 168
   },
   {
    "id": "cat-bcb06426fe09",
@@ -5962,7 +5806,7 @@
     "handle": "JLTITILBPCK1275",
     "name": "JLTITIL - Elegant Collection (Royal Charles) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 3.06,
-    "price_excluding_tax": 4.06,
+    "price_excluding_tax": 5.06,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -5971,7 +5815,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 174
+   "seq": 169
   },
   {
    "id": "cat-89dab7328c99",
@@ -5986,7 +5830,7 @@
     "handle": "JLTITILBPCK1280",
     "name": "JLTITIL - Elegant Collection (Calcatta Platinum) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 3.06,
-    "price_excluding_tax": 4.06,
+    "price_excluding_tax": 5.06,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -5995,7 +5839,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 175
+   "seq": 170
   },
   {
    "id": "cat-f5d040a69f66",
@@ -6010,7 +5854,7 @@
     "handle": "JLTITILBPCK1281",
     "name": "JLTITIL - Elegant Collection (Onex Silver) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 3.06,
-    "price_excluding_tax": 4.06,
+    "price_excluding_tax": 5.06,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -6019,7 +5863,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 176
+   "seq": 171
   },
   {
    "id": "cat-e2df64bf69bc",
@@ -6034,7 +5878,7 @@
     "handle": "JLTITILBPCK1283",
     "name": "JLTITIL - Elegant Collection (Onex Gold) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 3.06,
-    "price_excluding_tax": 4.06,
+    "price_excluding_tax": 5.06,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -6043,7 +5887,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 177
+   "seq": 172
   },
   {
    "id": "cat-3e019fa76f03",
@@ -6058,7 +5902,7 @@
     "handle": "JLTITILBPCK1284",
     "name": "JLTITIL - Elegant Collection (Onex Navy) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 3.06,
-    "price_excluding_tax": 4.06,
+    "price_excluding_tax": 5.06,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -6067,7 +5911,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 178
+   "seq": 173
   },
   {
    "id": "cat-a31d1a549e18",
@@ -6082,7 +5926,7 @@
     "handle": "JLTITILBPCK1286",
     "name": "JLTITIL - Elegant Collection (Ariosa Mist) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 3.06,
-    "price_excluding_tax": 4.06,
+    "price_excluding_tax": 5.06,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -6091,7 +5935,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 179
+   "seq": 174
   },
   {
    "id": "cat-4bc9fee06dda",
@@ -6106,7 +5950,7 @@
     "handle": "JLTITILBPCK1287",
     "name": "JLTITIL - Elegant Collection (Winter Sunset (NEW SHADE)) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 3.06,
-    "price_excluding_tax": 4.06,
+    "price_excluding_tax": 5.06,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -6115,7 +5959,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 180
+   "seq": 175
   },
   {
    "id": "cat-46b4cad6318b",
@@ -6130,7 +5974,7 @@
     "handle": "JLTITILBPCK1288",
     "name": "JLTITIL - Elegant Collection (Ariosa Whisper) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 3.06,
-    "price_excluding_tax": 4.06,
+    "price_excluding_tax": 5.06,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -6139,7 +5983,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 181
+   "seq": 176
   },
   {
    "id": "cat-38fb33e855e3",
@@ -6154,7 +5998,7 @@
     "handle": "JLTITILBPCK128803",
     "name": "JLTITIL - Elegant Collection (Onex Cream) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 3.06,
-    "price_excluding_tax": 4.06,
+    "price_excluding_tax": 5.06,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2 | Salesperson notes: Sheet also prints 'LU3-612GS' for this SKU (kept 'BPCK128803' as the primary code).",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -6163,7 +6007,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 182
+   "seq": 177
   },
   {
    "id": "cat-3fc65359779b",
@@ -6178,7 +6022,7 @@
     "handle": "JLTITILBPCK1289",
     "name": "JLTITIL - Elegant Collection (Mesa Topaz (Calcata Gold)) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 3.06,
-    "price_excluding_tax": 4.06,
+    "price_excluding_tax": 5.06,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -6187,7 +6031,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 183
+   "seq": 178
   },
   {
    "id": "cat-5e9ce17cbda3",
@@ -6202,7 +6046,7 @@
     "handle": "JLTITILBPCK1291",
     "name": "JLTITIL - Elegant Collection (Imperial Gold) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 4.94,
-    "price_excluding_tax": 5.94,
+    "price_excluding_tax": 6.94,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -6211,7 +6055,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 184
+   "seq": 179
   },
   {
    "id": "cat-699da1f1d172",
@@ -6226,7 +6070,7 @@
     "handle": "JLTITILBPCK1292",
     "name": "JLTITIL - Elegant Collection (Caesar Gold) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 4.94,
-    "price_excluding_tax": 5.94,
+    "price_excluding_tax": 6.94,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -6235,7 +6079,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 185
+   "seq": 180
   },
   {
    "id": "cat-5d0a7034e660",
@@ -6250,7 +6094,7 @@
     "handle": "JLTITILBPCK1293",
     "name": "JLTITIL - Elegant Collection (Ocean Mirage) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 4.94,
-    "price_excluding_tax": 5.94,
+    "price_excluding_tax": 6.94,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -6259,7 +6103,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 186
+   "seq": 181
   },
   {
    "id": "cat-648804b25aed",
@@ -6274,7 +6118,7 @@
     "handle": "JLTITILBPCK1295",
     "name": "JLTITIL - Elegant Collection (Golden Leaf) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 5.39,
-    "price_excluding_tax": 6.39,
+    "price_excluding_tax": 7.39,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -6283,7 +6127,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 187
+   "seq": 182
   },
   {
    "id": "cat-2fbbf38f2c44",
@@ -6295,7 +6139,7 @@
    "handle": "jlttil---porcelain-rodas-bianco---bpck36007-----1224---8pcb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Rodas Bianco)  | #BPCK36007 |  - 12 x 24 - 5pc/b - 16sf/b",
@@ -6310,7 +6154,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 188
+   "seq": 183
   },
   {
    "id": "cat-6a060a5a8d94",
@@ -6322,7 +6166,7 @@
    "handle": "jlttil---porcelain-utica-snow---bpck36008-----1224---8pcb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Utica Snow)  | #BPCK36008 |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -6337,7 +6181,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 189
+   "seq": 184
   },
   {
    "id": "cat-d0c70fafea70",
@@ -6349,7 +6193,7 @@
    "handle": "jlttil---porcelain-statuario-vienna---bpck36009-----1224---8pcb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Statuario Vienna)  | #BPCK36009 |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -6364,7 +6208,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 190
+   "seq": 185
   },
   {
    "id": "cat-4878a37aad88",
@@ -6376,7 +6220,7 @@
    "handle": "jlttil---porcelain-landsdown-grey---bpck36011-----1224---8pcb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Landsdown Grey)  | #BPCK36011 |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -6391,7 +6235,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 191
+   "seq": 186
   },
   {
    "id": "cat-13a4a0a35080",
@@ -6403,7 +6247,7 @@
    "handle": "jlttil---essential---porcelain-bremen-fall---bpck36062-----12-x-24---8pcb---16sfb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Bremen Fall)  | #BPCK36062 |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -6418,7 +6262,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 192
+   "seq": 187
   },
   {
    "id": "cat-955a49741c8d",
@@ -6430,7 +6274,7 @@
    "handle": "jlttil---essential---porcelain-calacatta-gold---bpck36066-----12-x-24---8pcb---16sfb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Calacatta Gold)  | #BPCK36066 |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -6445,7 +6289,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 193
+   "seq": 188
   },
   {
    "id": "cat-8267e932f809",
@@ -6460,7 +6304,7 @@
     "handle": "JLTITILBPCK36082",
     "name": "JLTITIL - Essential Collection (Onex Grey) | 12 x 24 | Polished - 16.00sf/b",
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18,
+    "price_excluding_tax": 4.18,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 8 | Salesperson notes: N/A",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -6469,7 +6313,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 194
+   "seq": 189
   },
   {
    "id": "cat-9ec7cdde61cb",
@@ -6481,7 +6325,7 @@
    "handle": "jlttil---porcelain-utica-snow---bpck6008-----2424---4pcb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Utica Snow)  | #BPCK6008 |  - 24 x 24 - 4pc/b - 16sf/b",
@@ -6496,7 +6340,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 195
+   "seq": 190
   },
   {
    "id": "cat-6de575ecedff",
@@ -6508,7 +6352,7 @@
    "handle": "jlttil---porcelain-statuario-vienna---bpck6009-----2424---4pcb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Statuario Vienna)  | #BPCK6009 |  - 24 x 24 - 4pc/b - 16sf/b",
@@ -6523,7 +6367,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 196
+   "seq": 191
   },
   {
    "id": "cat-50cc7f1b0fac",
@@ -6535,7 +6379,7 @@
    "handle": "jlttil---porcelain-landsdown-grey---bpck6011-----2424---4pcb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Landsdown Grey)  | #BPCK6011 |  - 24 x 24 - 4pc/b - 16sf/b",
@@ -6550,7 +6394,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 197
+   "seq": 192
   },
   {
    "id": "cat-45eeac10f177",
@@ -6562,7 +6406,7 @@
    "handle": "jlttil---porcelain-timber-snow---bpck6012-----2424---4pcb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Timber Snow)  | #BPCK6012 |  - 12 x 24 - 4pc/b - 16sf/b",
@@ -6577,7 +6421,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 198
+   "seq": 193
   },
   {
    "id": "cat-db1cd076f0a9",
@@ -6589,7 +6433,7 @@
    "handle": "jlttil---essential---porcelain-bremen-fall---bpck6062-----12-x-24---4pcb---16sfb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Bremen Fall)  | #BPCK6062 |  - 12 x 24 - 4pc/b - 16sf/b",
@@ -6604,7 +6448,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 199
+   "seq": 194
   },
   {
    "id": "cat-29e86604d2a0",
@@ -6616,7 +6460,7 @@
    "handle": "jlttil---essential---porcelain-calacatta-gold---bpck6066-----12-x-24---4pcb---16sfb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Calacatta Gold)  | #BPCK6066 |  - 12 x 24 - 4pc/b - 16sf/b",
@@ -6631,7 +6475,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 200
+   "seq": 195
   },
   {
    "id": "cat-4726a6775a7f",
@@ -6646,7 +6490,7 @@
     "handle": "JLTITILBPCK6082",
     "name": "JLTITIL - Essential Collection (Onex Grey) | 24 x 24 | Polished - 16.00sf/b",
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18,
+    "price_excluding_tax": 4.18,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 4",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -6655,34 +6499,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 201
-  },
-  {
-   "id": "cat-c4fc2029f6cf",
-   "target_system": "lightspeed",
-   "op": "update",
-   "sku": "TIL-JLTI-BPCK994",
-   "airtable_rec_id": null,
-   "ls_id": "47c685b3-85a8-4343-b4f7-c69455d0a9b2",
-   "handle": "jlttil---elegant----vesta-charcoal---bpck994-----36-x-36---2pcb---9sfb",
-   "fields": {
-    "supply_price": 3.59,
-    "price_excluding_tax": 4.59
-   },
-   "before": {
-    "name": "JLTTIL - ELEGANT - Porcelain (Vesta Charcoal)  | #BPCK994 |  - 36 x 36 - 2pc/b - 9sf/b",
-    "handle": "jlttil---elegant----vesta-charcoal---bpck994-----36-x-36---2pcb---9sfb",
-    "sku": "BPCK994",
-    "supply_price": 3.59,
-    "price_including_tax": 5.59,
-    "price_excluding_tax": 5.59,
-    "category": "TILE",
-    "supplier_name": "JLTILE",
-    "active": true
-   },
-   "reason": "price_change",
-   "uuid_source": "upload",
-   "seq": 202
+   "seq": 196
   },
   {
    "id": "cat-94f5380ff4aa",
@@ -6694,7 +6511,7 @@
    "handle": "jlttil---essential---porcelain-rock-wood-charcoal-matt---by6h3610-----12-x-24---8pcb---16sfb",
    "fields": {
     "supply_price": 3.59,
-    "price_excluding_tax": 4.59
+    "price_excluding_tax": 5.59
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Rock Wood Charcoal Matt)  | #BY6H3610 |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -6709,7 +6526,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 203
+   "seq": 197
   },
   {
    "id": "cat-cce53b7d94e4",
@@ -6721,7 +6538,7 @@
    "handle": "jlttil---essential---porcelain-rock-wood-charcoal-matt---by6h6010-----12-x-24---4pcb---16sfb",
    "fields": {
     "supply_price": 3.59,
-    "price_excluding_tax": 4.59
+    "price_excluding_tax": 5.59
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Rock Wood Charcoal Matt)  | #BY6H6010 |  - 12 x 24 - 4pc/b - 16sf/b",
@@ -6736,7 +6553,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 204
+   "seq": 198
   },
   {
    "id": "cat-0d9d88d56af4",
@@ -6751,7 +6568,7 @@
     "handle": "JLTITILBY6H61210",
     "name": "JLTITIL - Elegant Collection (Rockwood charcoal MATTE) | 24 x 48 | Matte - 16.00sf/b",
     "supply_price": 4.94,
-    "price_excluding_tax": 5.94,
+    "price_excluding_tax": 6.94,
     "description": "Finish type: Matte | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2 | Salesperson notes: ching 3\" hex & 3\" square mo",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -6760,31 +6577,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 205
-  },
-  {
-   "id": "cat-84eabe4fc833",
-   "target_system": "lightspeed",
-   "op": "create",
-   "sku": "TIL-JLTI-DM12340M",
-   "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
-   "fields": {
-    "sku": "TIL-JLTI-DM12340M",
-    "handle": "JLTITILDM12340M",
-    "name": "JLTITIL - Elegant Collection (Dream White Matt) | 24 x 48 | Polished - 16.00sf/b",
-    "supply_price": 3.77,
-    "price_excluding_tax": 4.77,
-    "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2 | Salesperson notes: Sheet also prints 'PY126929M' for this SKU (kept 'DM12340M' as the primary code).",
-    "brand_name": "JL Tile",
-    "supplier_name": "JL Tile",
-    "product_category": "TILE"
-   },
-   "before": null,
-   "reason": "new_product",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 206
+   "seq": 199
   },
   {
    "id": "cat-ac04f1f4cbe3",
@@ -6796,7 +6589,7 @@
    "handle": "jlttil---porcelain-dream-white---dm12341-----2448-8pcs-bookmatch---2pcb",
    "fields": {
     "supply_price": 2.69,
-    "price_excluding_tax": 3.69
+    "price_excluding_tax": 4.69
    },
    "before": {
     "name": "(P) JLTTIL - Porcelain (Dream White)  | #DM12341 |  - 2448 (8pcs Bookmatch) - 2pc/b",
@@ -6811,7 +6604,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 207
+   "seq": 200
   },
   {
    "id": "cat-4d7203388fee",
@@ -6823,7 +6616,7 @@
    "handle": "jlttil---essential---porcelain-dream-white-matt---dm36340m-----12-x-24---8pcb---16sfb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Dream White Matt)  | #DM36340M |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -6838,7 +6631,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 208
+   "seq": 201
   },
   {
    "id": "cat-119c962ec1b9",
@@ -6850,7 +6643,7 @@
    "handle": "jlttil---porcelain-dream-white---dm36341-----1224---8pcb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Dream White)  | #DM36341 |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -6865,7 +6658,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 209
+   "seq": 202
   },
   {
    "id": "cat-d9128d352090",
@@ -6877,7 +6670,7 @@
    "handle": "jlttil---essential---porcelain-dream-white-matt---dm60340m-----24-x-24---4pcb---16sfb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Dream White Matt)  | #DM60340M |  - 24 x 24 - 4pc/b - 16sf/b",
@@ -6892,7 +6685,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 210
+   "seq": 203
   },
   {
    "id": "cat-cf94a2037265",
@@ -6904,7 +6697,7 @@
    "handle": "jlttil---porcelain-dream-white---dm60341-----2424---4pcb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Dream White)  | #DM60341 |  - 24 x 24 - 4pc/b - 16sf/b",
@@ -6919,7 +6712,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 211
+   "seq": 204
   },
   {
    "id": "cat-fe83b2c6e65f",
@@ -6931,7 +6724,7 @@
    "handle": "jlttil---porcelain-dino-light---dn36331-----1224---8pcb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Dino Light)  | #DN36331 |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -6946,7 +6739,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 212
+   "seq": 205
   },
   {
    "id": "cat-8c70e784429c",
@@ -6958,7 +6751,7 @@
    "handle": "jlttil---porcelain-dino-light---dn60331-----2424---4pcb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Dino Light)  | #DN60331 |  - 24 x 24 - 4pc/b - 16sf/b",
@@ -6973,7 +6766,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 213
+   "seq": 206
   },
   {
    "id": "cat-4b5422d47250",
@@ -6985,7 +6778,7 @@
    "handle": "jlttil---ceramic---wall-clear-white---is3900-----16-x-36----5pcb",
    "fields": {
     "supply_price": 2.96,
-    "price_excluding_tax": 3.96
+    "price_excluding_tax": 4.96
    },
    "before": {
     "name": "JLTTIL - ISABELLA 3D - Ceramic - Wall (CLEAR WHITE)  | #IS3900 |  - 12\" x 36\"  - 5pc/b - 15sf/b",
@@ -7000,7 +6793,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 214
+   "seq": 207
   },
   {
    "id": "cat-a7cd054572fa",
@@ -7012,7 +6805,7 @@
    "handle": "jlttil---ceramic---wall-snow---is3901-----16-x-36----5pcb",
    "fields": {
     "supply_price": 2.96,
-    "price_excluding_tax": 3.96
+    "price_excluding_tax": 4.96
    },
    "before": {
     "name": "JLTTIL - ISABELLA 3D - Ceramic - Wall (SNOW)  | #IS3901 |  - 12\" x 36\"  - 5pc/b - 15sf/b",
@@ -7027,7 +6820,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 215
+   "seq": 208
   },
   {
    "id": "cat-4d111bc879c1",
@@ -7039,7 +6832,7 @@
    "handle": "jlttil---ceramic---wall-tropical---is3903-----16-x-36----5pcb",
    "fields": {
     "supply_price": 2.96,
-    "price_excluding_tax": 3.96
+    "price_excluding_tax": 4.96
    },
    "before": {
     "name": "JLTTIL - ISABELLA 3D - Ceramic - Wall (TROPICAL)  | #IS3903 |  - 12\" x 36\"  - 5pc/b - 15sf/b",
@@ -7054,7 +6847,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 216
+   "seq": 209
   },
   {
    "id": "cat-ed39a7ef3fbc",
@@ -7066,7 +6859,7 @@
    "handle": "jlttil---ceramic---wall-grey-river---is3906-----16-x-36----5pcb",
    "fields": {
     "supply_price": 2.96,
-    "price_excluding_tax": 3.96
+    "price_excluding_tax": 4.96
    },
    "before": {
     "name": "JLTTIL - ISABELLA 3D - Ceramic - Wall (GREY RIVER)  | #IS3906 |  - 12\" x 36\"  - 5pc/b - 15sf/b",
@@ -7081,7 +6874,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 217
+   "seq": 210
   },
   {
    "id": "cat-28890002b4f3",
@@ -7093,7 +6886,7 @@
    "handle": "jlttil---ceramic---wall-travertine-plain---is3907-----16-x-36----5pcb",
    "fields": {
     "supply_price": 2.96,
-    "price_excluding_tax": 3.96
+    "price_excluding_tax": 4.96
    },
    "before": {
     "name": "JLTTIL - ISABELLA 3D - Ceramic - Wall (TRAVERTINE PLAIN)  | #IS3907 |  - 12\" x 36\"  - 5pc/b - 15sf/b",
@@ -7108,7 +6901,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 218
+   "seq": 211
   },
   {
    "id": "cat-f130d3c83a8c",
@@ -7120,7 +6913,7 @@
    "handle": "jlttil---ceramic---wall-travertine-3d---is3908-----16-x-36----5pcb",
    "fields": {
     "supply_price": 2.96,
-    "price_excluding_tax": 3.96
+    "price_excluding_tax": 4.96
    },
    "before": {
     "name": "JLTTIL - ISABELLA 3D - Ceramic - Wall (TRAVERTINE 3D)  | #IS3908 |  - 12\" x 36\"  - 5pc/b - 15sf/b",
@@ -7135,7 +6928,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 219
+   "seq": 212
   },
   {
    "id": "cat-c06c09bfa884",
@@ -7147,7 +6940,7 @@
    "handle": "jlttil---ceramic---wall-silver-grey---is3909-----16-x-36----5pcb",
    "fields": {
     "supply_price": 2.96,
-    "price_excluding_tax": 3.96
+    "price_excluding_tax": 4.96
    },
    "before": {
     "name": "JLTTIL - ISABELLA 3D - Ceramic - Wall (SILVER GREY)  | #IS3909 |  - 12\" x 36\"  - 5pc/b - 15sf/b",
@@ -7162,7 +6955,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 220
+   "seq": 213
   },
   {
    "id": "cat-1467d53dd6c2",
@@ -7174,7 +6967,7 @@
    "handle": "jlttil---isabella-3d---ceramic---wall-pedro-grey---is3910-----12-x-36----5pcb---15sfb",
    "fields": {
     "supply_price": 2.96,
-    "price_excluding_tax": 3.96
+    "price_excluding_tax": 4.96
    },
    "before": {
     "name": "JLTTIL - ISABELLA 3D - Ceramic - Wall (PEDRO GREY)  | #IS3910 |  - 12\" x 36\"  - 5pc/b - 15sf/b",
@@ -7189,88 +6982,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 221
-  },
-  {
-   "id": "cat-a282eb80e915",
-   "target_system": "lightspeed",
-   "op": "update",
-   "sku": "TIL-JLTI-JH12051",
-   "airtable_rec_id": null,
-   "ls_id": "89fe95ef-d0c9-45d7-9a95-61713f8af3a3",
-   "handle": "jlttil---elegant----elementi-silver---jh12051--------2pcb---16sfb",
-   "fields": {
-    "supply_price": 3.68,
-    "price_excluding_tax": 4.68
-   },
-   "before": {
-    "name": "JLTTIL - ELEGANT - Porcelain (Elementi Silver)  | #JH12051 |  -  - 2pc/b - 16sf/b",
-    "handle": "jlttil---elegant----elementi-silver---jh12051--------2pcb---16sfb",
-    "sku": "JH12051",
-    "supply_price": 3.68,
-    "price_including_tax": 5.68,
-    "price_excluding_tax": 5.68,
-    "category": "TILE",
-    "supplier_name": "JLTILE",
-    "active": true
-   },
-   "reason": "price_change",
-   "uuid_source": "upload",
-   "seq": 222
-  },
-  {
-   "id": "cat-fdc6f72b86e2",
-   "target_system": "lightspeed",
-   "op": "update",
-   "sku": "TIL-JLTI-JH12052",
-   "airtable_rec_id": null,
-   "ls_id": "46fcfc53-7106-465e-84ea-206dfe65a634",
-   "handle": "jlttil---elegant----elementi-grigio---jh12052--------2pcb---16sfb",
-   "fields": {
-    "supply_price": 3.68,
-    "price_excluding_tax": 4.68
-   },
-   "before": {
-    "name": "JLTTIL - ELEGANT - Porcelain (Elementi Grigio)  | #JH12052 |  -  - 2pc/b - 16sf/b",
-    "handle": "jlttil---elegant----elementi-grigio---jh12052--------2pcb---16sfb",
-    "sku": "JH12052",
-    "supply_price": 3.68,
-    "price_including_tax": 5.68,
-    "price_excluding_tax": 5.68,
-    "category": "TILE",
-    "supplier_name": "JLTILE",
-    "active": true
-   },
-   "reason": "price_change",
-   "uuid_source": "upload",
-   "seq": 223
-  },
-  {
-   "id": "cat-0247de0e714c",
-   "target_system": "lightspeed",
-   "op": "update",
-   "sku": "TIL-JLTI-JH12053",
-   "airtable_rec_id": null,
-   "ls_id": "d47a59ae-f940-4914-a2a8-2083617cf8a8",
-   "handle": "jlttil---elegant----elementi-carbone---jh12053--------2pcb---16sfb",
-   "fields": {
-    "supply_price": 3.68,
-    "price_excluding_tax": 4.68
-   },
-   "before": {
-    "name": "JLTTIL - ELEGANT - Porcelain (Elementi Carbone)  | #JH12053 |  -  - 2pc/b - 16sf/b",
-    "handle": "jlttil---elegant----elementi-carbone---jh12053--------2pcb---16sfb",
-    "sku": "JH12053",
-    "supply_price": 3.68,
-    "price_including_tax": 5.68,
-    "price_excluding_tax": 5.68,
-    "category": "TILE",
-    "supplier_name": "JLTILE",
-    "active": true
-   },
-   "reason": "price_change",
-   "uuid_source": "upload",
-   "seq": 224
+   "seq": 214
   },
   {
    "id": "cat-c1b898df40ed",
@@ -7285,7 +6997,7 @@
     "handle": "JLTITILJH12054",
     "name": "JLTITIL - Elegant Collection (Winter Sands) | 24 x 48 | Matte - 16.00sf/b",
     "supply_price": 3.68,
-    "price_excluding_tax": 4.68,
+    "price_excluding_tax": 5.68,
     "description": "Finish type: Matte | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -7294,7 +7006,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 225
+   "seq": 215
   },
   {
    "id": "cat-c80f0daeffed",
@@ -7309,7 +7021,7 @@
     "handle": "JLTITILJH12055",
     "name": "JLTITIL - Elegant Collection (Stering Mist) | 24 x 48 | Matte - 16.00sf/b",
     "supply_price": 3.68,
-    "price_excluding_tax": 4.68,
+    "price_excluding_tax": 5.68,
     "description": "Finish type: Matte | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -7318,7 +7030,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 226
+   "seq": 216
   },
   {
    "id": "cat-9786f952ad13",
@@ -7333,7 +7045,7 @@
     "handle": "JLTITILJH12056",
     "name": "JLTITIL - Elegant Collection (Stering Grey) | 24 x 48 | Matte - 16.00sf/b",
     "supply_price": 3.68,
-    "price_excluding_tax": 4.68,
+    "price_excluding_tax": 5.68,
     "description": "Finish type: Matte | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -7342,7 +7054,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 227
+   "seq": 217
   },
   {
    "id": "cat-9a8fb766d055",
@@ -7357,7 +7069,7 @@
     "handle": "JLTITILJH12057",
     "name": "JLTITIL - Elegant Collection (Ariosa Mist Matte) | 24 x 48 | Matte - 16.00sf/b",
     "supply_price": 3.68,
-    "price_excluding_tax": 4.68,
+    "price_excluding_tax": 5.68,
     "description": "Finish type: Matte | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -7366,7 +7078,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 228
+   "seq": 218
   },
   {
    "id": "cat-8b2bbca319d8",
@@ -7381,7 +7093,7 @@
     "handle": "JLTITILJH12059",
     "name": "JLTITIL - Elegant Collection (Elementi River Stone) | 24 x 48 | Matte - 16.00sf/b",
     "supply_price": 5.39,
-    "price_excluding_tax": 6.39,
+    "price_excluding_tax": 7.39,
     "description": "Finish type: Matte | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -7390,34 +7102,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 229
-  },
-  {
-   "id": "cat-1b88bdafd2c5",
-   "target_system": "lightspeed",
-   "op": "update",
-   "sku": "TIL-JLTI-KG126012S",
-   "airtable_rec_id": null,
-   "ls_id": "d0b38bfe-f6b5-42a2-8952-b863cc2e0ea4",
-   "handle": "jlttil---elegant----kamloops-glory-mist-matt---kg126012s--------2pcb---16sfb",
-   "fields": {
-    "supply_price": 3.68,
-    "price_excluding_tax": 4.68
-   },
-   "before": {
-    "name": "JLTTIL - ELEGANT - Porcelain (KAMLOOPS GLORY MIST MATT)  | #KG126012S |  -  - 2pc/b - 16sf/b",
-    "handle": "jlttil---elegant----kamloops-glory-mist-matt---kg126012s--------2pcb---16sfb",
-    "sku": "KG126012S",
-    "supply_price": 3.68,
-    "price_including_tax": 5.68,
-    "price_excluding_tax": 5.68,
-    "category": "TILE",
-    "supplier_name": "JLTILE",
-    "active": true
-   },
-   "reason": "price_change",
-   "uuid_source": "upload",
-   "seq": 230
+   "seq": 219
   },
   {
    "id": "cat-743723409cb3",
@@ -7429,7 +7114,7 @@
    "handle": "jlttil---essential---porcelain-kamloops-glory-mist-matte---kg36012s-----12-x-24---8pcb---16sfb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Kamloops Glory Mist Matte)  | #KG36012S |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -7444,7 +7129,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 231
+   "seq": 220
   },
   {
    "id": "cat-6e486dd29185",
@@ -7456,7 +7141,7 @@
    "handle": "jlttil---essential---porcelain-kamloops-glory-mist-matte---kg6012s-----24-x-24---4pcb---16sfb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Kamloops Glory Mist Matte)  | #KG6012S |  - 24 x 24 - 4pc/b - 16sf/b",
@@ -7471,34 +7156,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 232
-  },
-  {
-   "id": "cat-4b18b2f5feaf",
-   "target_system": "lightspeed",
-   "op": "update",
-   "sku": "TIL-JLTI-KR6012017",
-   "airtable_rec_id": null,
-   "ls_id": "cfd36011-c5d4-46a1-a923-b6b27fc72a4c",
-   "handle": "jlttil---elegant----camellia-winter-river---kr6012017--------2pcb---16sfb",
-   "fields": {
-    "supply_price": 3.59,
-    "price_excluding_tax": 4.59
-   },
-   "before": {
-    "name": "JLTTIL - ELEGANT - Porcelain (Camellia Winter River)  | #KR6012017 |  -  - 2pc/b - 16sf/b",
-    "handle": "jlttil---elegant----camellia-winter-river---kr6012017--------2pcb---16sfb",
-    "sku": "KR6012017",
-    "supply_price": 3.59,
-    "price_including_tax": 5.59,
-    "price_excluding_tax": 5.59,
-    "category": "TILE",
-    "supplier_name": "JLTILE",
-    "active": true
-   },
-   "reason": "price_change",
-   "uuid_source": "upload",
-   "seq": 233
+   "seq": 221
   },
   {
    "id": "cat-20e520fe1689",
@@ -7513,7 +7171,7 @@
     "handle": "JLTITILKR6012018",
     "name": "JLTITIL - Elegant Collection (Camellia Winter Grey) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 3.59,
-    "price_excluding_tax": 4.59,
+    "price_excluding_tax": 5.59,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -7522,7 +7180,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 234
+   "seq": 222
   },
   {
    "id": "cat-ed7f2f4e5155",
@@ -7534,7 +7192,7 @@
    "handle": "jlttil---porcelain-super-pure-black---lf36808-----1224---8pcb",
    "fields": {
     "supply_price": 3.5,
-    "price_excluding_tax": 4.5
+    "price_excluding_tax": 5.5
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Super Pure Black)  | #LF36808 |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -7549,7 +7207,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 235
+   "seq": 223
   },
   {
    "id": "cat-8380d4a183ce",
@@ -7561,7 +7219,7 @@
    "handle": "jlttil---porcelain-super-pure-black---lf6808-----2424---4pcb",
    "fields": {
     "supply_price": 3.5,
-    "price_excluding_tax": 4.5
+    "price_excluding_tax": 5.5
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Super Pure Black)  | #LF6808 |  - 24 x 24 - 4pc/b - 16sf/b",
@@ -7576,7 +7234,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 236
+   "seq": 224
   },
   {
    "id": "cat-82eccf0688a1",
@@ -7591,7 +7249,7 @@
     "handle": "JLTITILLU1612GS",
     "name": "JLTITIL - Elegant Collection (Lucent Gold) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 4.04,
-    "price_excluding_tax": 5.04,
+    "price_excluding_tax": 6.04,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -7600,7 +7258,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 237
+   "seq": 225
   },
   {
    "id": "cat-f65cc49b5844",
@@ -7615,7 +7273,7 @@
     "handle": "JLTITILLU2612GS",
     "name": "JLTITIL - Elegant Collection (Lucent Sapphire) | 24 x 48 | Polished - 16.00sf/b",
     "supply_price": 4.94,
-    "price_excluding_tax": 5.94,
+    "price_excluding_tax": 6.94,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -7624,7 +7282,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 238
+   "seq": 226
   },
   {
    "id": "cat-87724c75d152",
@@ -7636,7 +7294,7 @@
    "handle": "jlttil---porcelain-luxor-silver---lx3638-----1224---8pcb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Luxor Silver)  | #LX3638 |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -7651,7 +7309,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 239
+   "seq": 227
   },
   {
    "id": "cat-33f66010c398",
@@ -7663,7 +7321,7 @@
    "handle": "jlttil---porcelain-luxor-grey---lx3639-----1224---8pcb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Luxor Grey)  | #LX3639 |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -7678,7 +7336,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 240
+   "seq": 228
   },
   {
    "id": "cat-45c12896256e",
@@ -7690,7 +7348,7 @@
    "handle": "jlttil---porcelain-luxor-night---lx3640-----1224---8pcb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Luxor Night)  | #LX3640 |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -7705,7 +7363,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 241
+   "seq": 229
   },
   {
    "id": "cat-be2e9a69e188",
@@ -7717,7 +7375,7 @@
    "handle": "jlttil---porcelain-luxor-silver---lx6638-----2424---4pcb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Luxor Silver)  | #LX6638 |  - 24 x 24 - 4pc/b - 16sf/b",
@@ -7732,7 +7390,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 242
+   "seq": 230
   },
   {
    "id": "cat-4394709e3d52",
@@ -7744,7 +7402,7 @@
    "handle": "jlttil---porcelain-luxor-grey---lx6639-----2424---4pcb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Luxor Grey)  | #LX6639 |  - 24 x 24 - 4pc/b - 16sf/b",
@@ -7759,7 +7417,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 243
+   "seq": 231
   },
   {
    "id": "cat-b44a76a8c8b7",
@@ -7771,7 +7429,7 @@
    "handle": "jlttil---porcelain-luxor-night---lx6640-----2424---4pcb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Luxor Night)  | #LX6640 |  - 24 x 24 - 4pc/b - 16sf/b",
@@ -7786,34 +7444,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 244
-  },
-  {
-   "id": "cat-d146c7182d0b",
-   "target_system": "lightspeed",
-   "op": "update",
-   "sku": "TIL-JLTI-MH12001",
-   "airtable_rec_id": null,
-   "ls_id": "7e60150f-de9c-4735-9bb1-5a5ee5947027",
-   "handle": "jlttil---porcelain-canelli-grafite---mh12001-----2448---2pcb",
-   "fields": {
-    "supply_price": 4.22,
-    "price_excluding_tax": 5.22
-   },
-   "before": {
-    "name": "JLTTIL - ELEGANT - Porcelain (Canelli Grafite)  | #MH12001 |  - 24 x 48 - 2pc/b - 16sf/b",
-    "handle": "jlttil---porcelain-canelli-grafite---mh12001-----2448---2pcb",
-    "sku": "MH12001",
-    "supply_price": 4.22,
-    "price_including_tax": 6.22,
-    "price_excluding_tax": 6.22,
-    "category": "TILE",
-    "supplier_name": "JLTILE",
-    "active": true
-   },
-   "reason": "price_change",
-   "uuid_source": "upload",
-   "seq": 245
+   "seq": 232
   },
   {
    "id": "cat-3fb53dbca061",
@@ -7825,7 +7456,7 @@
    "handle": "jlttil---porcelain-canelli-vintage---mh1248-----2448---2pcb",
    "fields": {
     "supply_price": 4.4,
-    "price_excluding_tax": 5.4
+    "price_excluding_tax": 6.4
    },
    "before": {
     "name": "JLTTIL - ELEGANT - Porcelain (Canelli Vintage)  | #MH1248 |  - 24 x 48 - pc/b - sf/b",
@@ -7840,7 +7471,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 246
+   "seq": 233
   },
   {
    "id": "cat-182e6ac7de4d",
@@ -7855,7 +7486,7 @@
     "handle": "JLTITILMI36019",
     "name": "JLTITIL - Essential Collection (Miami Gold) | 12 x 24 | Polished - 16.00sf/b",
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18,
+    "price_excluding_tax": 4.18,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 8 | Salesperson notes: N/A",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -7864,7 +7495,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 247
+   "seq": 234
   },
   {
    "id": "cat-16bc459cda14",
@@ -7879,7 +7510,7 @@
     "handle": "JLTITILMI6019",
     "name": "JLTITIL - Essential Collection (Miami Gold) | 24 x 24 | Polished - 16.00sf/b",
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18,
+    "price_excluding_tax": 4.18,
     "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 4",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -7888,7 +7519,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 248
+   "seq": 235
   },
   {
    "id": "cat-cf4cd090be0c",
@@ -7900,7 +7531,7 @@
    "handle": "jlttil---porcelain-ariosa-marble-wall-tile---n612008-----2448---3pcb",
    "fields": {
     "supply_price": 2.4,
-    "price_excluding_tax": 3.4
+    "price_excluding_tax": 4.4
    },
    "before": {
     "name": "(P) JLTTIL - Porcelain (Ariosa Marble Wall Tile)  | #N612008 |  - 2448 - 3pc/b",
@@ -7915,7 +7546,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 249
+   "seq": 236
   },
   {
    "id": "cat-93f57ee366be",
@@ -7927,7 +7558,7 @@
    "handle": "jlttil---essential---porcelain-nordic-chalk---nd3641-----12-x-24---8pcb---16sfb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Nordic Chalk)  | #ND3641 |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -7942,7 +7573,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 250
+   "seq": 237
   },
   {
    "id": "cat-84b387e06be4",
@@ -7954,7 +7585,7 @@
    "handle": "jlttil---essential---porcelain-nordic-grigio---nd3642-----12-x-24---8pcb---16sfb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Nordic Grigio)  | #ND3642 |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -7969,7 +7600,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 251
+   "seq": 238
   },
   {
    "id": "cat-e2d6902d6d6b",
@@ -7981,7 +7612,7 @@
    "handle": "jlttil---essential---porcelain-nordic-charcoal---nd3643-----12-x-24---8pcb---16sfb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Nordic Charcoal)  | #ND3643 |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -7996,7 +7627,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 252
+   "seq": 239
   },
   {
    "id": "cat-b3ca5cf970a9",
@@ -8008,7 +7639,7 @@
    "handle": "jlttil---essential---porcelain-nordic-chalk---nd6041-----24-x-24---4pcb---16sfb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Nordic Chalk)  | #ND6041 |  - 24 x 24 - 4pc/b - 16sf/b",
@@ -8023,7 +7654,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 253
+   "seq": 240
   },
   {
    "id": "cat-aecc6dfe6f60",
@@ -8035,7 +7666,7 @@
    "handle": "jlttil---essential---porcelain-nordic-grigio---nd6042-----24-x-24---4pcb---16sfb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Nordic Grigio)  | #ND6042 |  - 24 x 24 - 4pc/b - 16sf/b",
@@ -8050,7 +7681,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 254
+   "seq": 241
   },
   {
    "id": "cat-ce50003821d3",
@@ -8062,7 +7693,7 @@
    "handle": "jlttil---essential---porcelain-nordic-charcoal---nd6043-----24-x-24---4pcb---16sfb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Nordic Charcoal)  | #ND6043 |  - 24 x 24 - 4pc/b - 16sf/b",
@@ -8077,61 +7708,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 255
-  },
-  {
-   "id": "cat-bd6113a5761b",
-   "target_system": "lightspeed",
-   "op": "update",
-   "sku": "TIL-JLTI-NY612007",
-   "airtable_rec_id": null,
-   "ls_id": "43e6470a-f61c-4b8d-a8eb-1cc4735a3feb",
-   "handle": "jlttil---elegant----moss-rock---ny612007--------2pcb---16sfb",
-   "fields": {
-    "supply_price": 4.67,
-    "price_excluding_tax": 5.67
-   },
-   "before": {
-    "name": "JLTTIL - ELEGANT - Porcelain (MOSS ROCK)  | #NY612007 |  -  - 2pc/b - 16sf/b",
-    "handle": "jlttil---elegant----moss-rock---ny612007--------2pcb---16sfb",
-    "sku": "NY612007",
-    "supply_price": 4.67,
-    "price_including_tax": 6.67,
-    "price_excluding_tax": 6.67,
-    "category": "TILE",
-    "supplier_name": "JLTILE",
-    "active": true
-   },
-   "reason": "price_change",
-   "uuid_source": "upload",
-   "seq": 256
-  },
-  {
-   "id": "cat-e26a902dfe85",
-   "target_system": "lightspeed",
-   "op": "update",
-   "sku": "TIL-JLTI-NY612171",
-   "airtable_rec_id": null,
-   "ls_id": "fd9e2c9b-e0d8-40e1-9c79-470981d5b273",
-   "handle": "jlttil---elegant----moss-ivory---ny612171--------2pcb---16sfb",
-   "fields": {
-    "supply_price": 4.67,
-    "price_excluding_tax": 5.67
-   },
-   "before": {
-    "name": "JLTTIL - ELEGANT - Porcelain (MOSS IVORY)  | #NY612171 |  -  - 2pc/b - 16sf/b",
-    "handle": "jlttil---elegant----moss-ivory---ny612171--------2pcb---16sfb",
-    "sku": "NY612171",
-    "supply_price": 4.67,
-    "price_including_tax": 6.67,
-    "price_excluding_tax": 6.67,
-    "category": "TILE",
-    "supplier_name": "JLTILE",
-    "active": true
-   },
-   "reason": "price_change",
-   "uuid_source": "upload",
-   "seq": 257
+   "seq": 242
   },
   {
    "id": "cat-ee5c0b756141",
@@ -8146,7 +7723,7 @@
     "handle": "JLTITILNY612173",
     "name": "JLTITIL - Elegant Collection (MOSS GREY) | 24 x 48 | Matte - 16.00sf/b",
     "supply_price": 4.67,
-    "price_excluding_tax": 5.67,
+    "price_excluding_tax": 6.67,
     "description": "Finish type: Matte | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -8155,7 +7732,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 258
+   "seq": 243
   },
   {
    "id": "cat-8e8471cad65e",
@@ -8167,7 +7744,7 @@
    "handle": "jlttil---porcelain-midnight-charcoal---pjq36706-----1224---8pcb",
    "fields": {
     "supply_price": 3.5,
-    "price_excluding_tax": 4.5
+    "price_excluding_tax": 5.5
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Midnight Charcoal)  | #PJQ36706 |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -8182,7 +7759,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 259
+   "seq": 244
   },
   {
    "id": "cat-1b305a7c5a99",
@@ -8194,7 +7771,7 @@
    "handle": "jlttil---porcelain-midnight-charcoal---pjq6706-----2424---4pcb",
    "fields": {
     "supply_price": 3.5,
-    "price_excluding_tax": 4.5
+    "price_excluding_tax": 5.5
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Midnight Charcoal)  | #PJQ6706 |  - 24 x 24 - 4pc/b - 16sf/b",
@@ -8209,7 +7786,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 260
+   "seq": 245
   },
   {
    "id": "cat-de808c2695a0",
@@ -8221,7 +7798,7 @@
    "handle": "jlttil---essential---porcelain-rockwood-bianco-matt---py3648m-----12-x-24---8pcb---16sfb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Rockwood Bianco Matt)  | #PY3648M |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -8236,7 +7813,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 261
+   "seq": 246
   },
   {
    "id": "cat-06540cf99add",
@@ -8248,7 +7825,7 @@
    "handle": "p-jlttil---porcelain-rockwood-bianco-matte--py6648m----2424---4pcb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Rockwood Bianco Matt)  | #PY6648M |  - 12 x 24 - 4pc/b - 16sf/b",
@@ -8263,106 +7840,61 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 262
+   "seq": 247
   },
   {
-   "id": "cat-aba33b53a750",
-   "target_system": "lightspeed",
-   "op": "create",
-   "sku": "TIL-JLTI-QP8320GMB360",
-   "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
-   "fields": {
-    "sku": "TIL-JLTI-QP8320GMB360",
-    "handle": "JLTITILQP8320GMB360",
-    "name": "JLTITIL - Essential Collection (Emotive Astonished white Matt) | 12 x 24 | Matt - 16.00sf/b",
-    "supply_price": 2.3,
-    "price_excluding_tax": 3.3,
-    "description": "Finish type: Matt | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 8 | Salesperson notes: N/A",
-    "brand_name": "JL Tile",
-    "supplier_name": "JL Tile",
-    "product_category": "TILE"
-   },
-   "before": null,
-   "reason": "new_product",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 263
-  },
-  {
-   "id": "cat-790c53241960",
-   "target_system": "lightspeed",
-   "op": "create",
-   "sku": "TIL-JLTI-QP8320GMB612",
-   "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
-   "fields": {
-    "sku": "TIL-JLTI-QP8320GMB612",
-    "handle": "JLTITILQP8320GMB612",
-    "name": "JLTITIL - Elegant Collection (Emotive Astonished White Matt) | 24 x 48 | Matte - 16.00sf/b",
-    "supply_price": 4.49,
-    "price_excluding_tax": 5.49,
-    "description": "Finish type: Matte | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
-    "brand_name": "JL Tile",
-    "supplier_name": "JL Tile",
-    "product_category": "TILE"
-   },
-   "before": null,
-   "reason": "new_product",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 264
-  },
-  {
-   "id": "cat-fd1261d93f1d",
-   "target_system": "lightspeed",
-   "op": "create",
-   "sku": "TIL-JLTI-QP8320GMB660",
-   "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
-   "fields": {
-    "sku": "TIL-JLTI-QP8320GMB660",
-    "handle": "JLTITILQP8320GMB660",
-    "name": "JLTITIL - Essential Collection (Emotive Astonished white Matt) | 24 x 24 | Matt - 16.00sf/b",
-    "supply_price": 2.3,
-    "price_excluding_tax": 3.3,
-    "description": "Finish type: Matt | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 4",
-    "brand_name": "JL Tile",
-    "supplier_name": "JL Tile",
-    "product_category": "TILE"
-   },
-   "before": null,
-   "reason": "new_product",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 265
-  },
-  {
-   "id": "cat-3e1590033edc",
+   "id": "cat-d1fca6040e49",
    "target_system": "lightspeed",
    "op": "update",
-   "sku": "TIL-JLTI-QP8320LMB",
+   "sku": "TIL-JLTI-QP8320GMB360",
    "airtable_rec_id": null,
-   "ls_id": "82ea6f2c-42a6-4f33-8867-21e880c8ffa1",
-   "handle": "jlttil---elegant----emotive-astonished-white-matt-textured---qp8320lmb--------2pcb---16sfb",
+   "ls_id": "332ab198-8c13-4450-aeda-a2a895274660",
+   "handle": "jlttil---essential---porcelain-emotive-astonished-white-matt---qp8320gmb-360-----12-x-24---8pcb---16sfb",
    "fields": {
-    "supply_price": 4.49,
-    "price_excluding_tax": 5.49
+    "supply_price": 2.3,
+    "price_excluding_tax": 4.3
    },
    "before": {
-    "name": "JLTTIL - ELEGANT - Porcelain (Emotive Astonished White Matt Textured)  | #QP8320LMB |  -  - 2pc/b - 16sf/b",
-    "handle": "jlttil---elegant----emotive-astonished-white-matt-textured---qp8320lmb--------2pcb---16sfb",
-    "sku": "QP8320LMB",
-    "supply_price": 4.49,
-    "price_including_tax": 6.49,
-    "price_excluding_tax": 6.49,
+    "name": "JLTTIL - ESSENTIAL - Porcelain (Emotive Astonished white Matt)  | #QP8320GMB360 |  - 12 x 24 - 8pc/b - 16sf/b",
+    "handle": "jlttil---essential---porcelain-emotive-astonished-white-matt---qp8320gmb-360-----12-x-24---8pcb---16sfb",
+    "sku": "QP8320GMB360",
+    "supply_price": 2.78,
+    "price_including_tax": 4.78,
+    "price_excluding_tax": 4.78,
     "category": "TILE",
     "supplier_name": "JLTILE",
     "active": true
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 266
+   "seq": 248
+  },
+  {
+   "id": "cat-59f5ed9f8f25",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "TIL-JLTI-QP8320GMB660",
+   "airtable_rec_id": null,
+   "ls_id": "e252e01c-deb6-4e02-a549-22249932e1d1",
+   "handle": "jlttil---essential---porcelain-emotive-astonished-white-matt---qp8320gmb-660-----24-x-24---4pcb---16sfb",
+   "fields": {
+    "supply_price": 2.3,
+    "price_excluding_tax": 4.3
+   },
+   "before": {
+    "name": "JLTTIL - ESSENTIAL - Porcelain (Emotive Astonished white Matt)  | #QP8320GMB660 |  - 24 x 24 - 4pc/b - 16sf/b",
+    "handle": "jlttil---essential---porcelain-emotive-astonished-white-matt---qp8320gmb-660-----24-x-24---4pcb---16sfb",
+    "sku": "QP8320GMB660",
+    "supply_price": 2.78,
+    "price_including_tax": 4.78,
+    "price_excluding_tax": 4.78,
+    "category": "TILE",
+    "supplier_name": "JLTILE",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 249
   },
   {
    "id": "cat-9e6c97bef5ae",
@@ -8374,7 +7906,7 @@
    "handle": "jlttil---porcelain-royal-dianna-silver---rd36320-----1224---8pcb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Royal Dianna Silver)  | #RD36320 |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -8389,7 +7921,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 267
+   "seq": 250
   },
   {
    "id": "cat-cffb18b92c34",
@@ -8401,7 +7933,7 @@
    "handle": "jlttil---porcelain-royal-dianna-silver---rd60320-----2424---4pcb",
    "fields": {
     "supply_price": 2.18,
-    "price_excluding_tax": 3.18
+    "price_excluding_tax": 4.18
    },
    "before": {
     "name": "(P) JLTTIL - Porcelain (Royal Dianna Silver)  | #RD60320 |  - 2424 - 4pc/b",
@@ -8416,109 +7948,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 268
-  },
-  {
-   "id": "cat-bd51b68c7603",
-   "target_system": "lightspeed",
-   "op": "update",
-   "sku": "TIL-JLTI-SDX8634P",
-   "airtable_rec_id": null,
-   "ls_id": "7e6d1007-076e-45c4-be7e-68e1b9f5d13b",
-   "handle": "jlttil---porcelain-elina-snow---sdx8634p-----3232---3pcb",
-   "fields": {
-    "supply_price": 3.44,
-    "price_excluding_tax": 4.44
-   },
-   "before": {
-    "name": "JLTTIL - ELEGANT - Porcelain (Elina Snow)  | #SDX8634P |  - 32 x 32 - 3pc/b - 7.12sf/b",
-    "handle": "jlttil---porcelain-elina-snow---sdx8634p-----3232---3pcb",
-    "sku": "SDX8634P",
-    "supply_price": 3.44,
-    "price_including_tax": 5.44,
-    "price_excluding_tax": 5.44,
-    "category": "TILE",
-    "supplier_name": "JLTILE",
-    "active": true
-   },
-   "reason": "price_change",
-   "uuid_source": "upload",
-   "seq": 269
-  },
-  {
-   "id": "cat-b3bc9f046ced",
-   "target_system": "lightspeed",
-   "op": "create",
-   "sku": "TIL-JLTI-SP36P00T",
-   "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
-   "fields": {
-    "sku": "TIL-JLTI-SP36P00T",
-    "handle": "JLTITILSP36P00T",
-    "name": "JLTITIL - Essential Collection (Pure White) | 12 x 24 | Polished - 16.00sf/b",
-    "supply_price": 2.7,
-    "price_excluding_tax": 3.7,
-    "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 8 | Salesperson notes: N/A",
-    "brand_name": "JL Tile",
-    "supplier_name": "JL Tile",
-    "product_category": "TILE"
-   },
-   "before": null,
-   "reason": "new_product",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 270
-  },
-  {
-   "id": "cat-a99ec6d86ce7",
-   "target_system": "lightspeed",
-   "op": "create",
-   "sku": "TIL-JLTI-SP6P00T",
-   "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
-   "fields": {
-    "sku": "TIL-JLTI-SP6P00T",
-    "handle": "JLTITILSP6P00T",
-    "name": "JLTITIL - Essential Collection (Pure White) | 24 x 24 | Polished - 16.00sf/b",
-    "supply_price": 2.7,
-    "price_excluding_tax": 3.7,
-    "description": "Finish type: Polished | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 4",
-    "brand_name": "JL Tile",
-    "supplier_name": "JL Tile",
-    "product_category": "TILE"
-   },
-   "before": null,
-   "reason": "new_product",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 271
-  },
-  {
-   "id": "cat-8847c8195d6a",
-   "target_system": "lightspeed",
-   "op": "update",
-   "sku": "TIL-JLTI-TE12602",
-   "airtable_rec_id": null,
-   "ls_id": "e9432862-94e9-455f-bb69-16ca2954b4d9",
-   "handle": "jlttil---elegant----camilia-cloude---te12602--------2pcb---16sfb",
-   "fields": {
-    "supply_price": 3.68,
-    "price_excluding_tax": 4.68
-   },
-   "before": {
-    "name": "JLTTIL - ELEGANT - Porcelain (Camilia Cloude)  | #TE12602 |  -  - 2pc/b - 16sf/b",
-    "handle": "jlttil---elegant----camilia-cloude---te12602--------2pcb---16sfb",
-    "sku": "TE12602",
-    "supply_price": 3.68,
-    "price_including_tax": 5.68,
-    "price_excluding_tax": 5.68,
-    "category": "TILE",
-    "supplier_name": "JLTILE",
-    "active": true
-   },
-   "reason": "price_change",
-   "uuid_source": "upload",
-   "seq": 272
+   "seq": 251
   },
   {
    "id": "cat-a27ccb073e7d",
@@ -8533,7 +7963,7 @@
     "handle": "JLTITILTE12605",
     "name": "JLTITIL - Elegant Collection (Camilia Sand) | 24 x 48 | Matte - 16.00sf/b",
     "supply_price": 3.68,
-    "price_excluding_tax": 4.68,
+    "price_excluding_tax": 5.68,
     "description": "Finish type: Matte | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -8542,34 +7972,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 273
-  },
-  {
-   "id": "cat-18ba1c199c3c",
-   "target_system": "lightspeed",
-   "op": "update",
-   "sku": "TIL-JLTI-TE12606",
-   "airtable_rec_id": null,
-   "ls_id": "c53f7409-f4d3-4e4c-a49a-dac7d04deb8b",
-   "handle": "jlttil---elegant----camilia-smoke-grey---te12606--------2pcb---16sfb",
-   "fields": {
-    "supply_price": 3.68,
-    "price_excluding_tax": 4.68
-   },
-   "before": {
-    "name": "JLTTIL - ELEGANT - Porcelain (Camilia Smoke Grey)  | #TE12606 |  -  - 2pc/b - 16sf/b",
-    "handle": "jlttil---elegant----camilia-smoke-grey---te12606--------2pcb---16sfb",
-    "sku": "TE12606",
-    "supply_price": 3.68,
-    "price_including_tax": 5.68,
-    "price_excluding_tax": 5.68,
-    "category": "TILE",
-    "supplier_name": "JLTILE",
-    "active": true
-   },
-   "reason": "price_change",
-   "uuid_source": "upload",
-   "seq": 274
+   "seq": 252
   },
   {
    "id": "cat-5164de5a60ff",
@@ -8584,7 +7987,7 @@
     "handle": "JLTITILTE12609",
     "name": "JLTITIL - Elegant Collection (Camellia Summer) | 24 x 48 | Matte - 16.00sf/b",
     "supply_price": 3.68,
-    "price_excluding_tax": 4.68,
+    "price_excluding_tax": 5.68,
     "description": "Finish type: Matte | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -8593,7 +7996,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 275
+   "seq": 253
   },
   {
    "id": "cat-241d3f91ad11",
@@ -8608,7 +8011,7 @@
     "handle": "JLTITILTE12610",
     "name": "JLTITIL - Elegant Collection (Camilia Fall) | 24 x 48 | Matte - 16.00sf/b",
     "supply_price": 3.68,
-    "price_excluding_tax": 4.68,
+    "price_excluding_tax": 5.68,
     "description": "Finish type: Matte | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -8617,7 +8020,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 276
+   "seq": 254
   },
   {
    "id": "cat-97df0f431466",
@@ -8632,7 +8035,7 @@
     "handle": "JLTITILTE12611",
     "name": "JLTITIL - Elegant Collection (Camilia Snow) | 24 x 48 | Matte - 16.00sf/b",
     "supply_price": 3.68,
-    "price_excluding_tax": 4.68,
+    "price_excluding_tax": 5.68,
     "description": "Finish type: Matte | Material type: Porcelain | Box size (sf): 16 | Pieces per box: 2",
     "brand_name": "JL Tile",
     "supplier_name": "JL Tile",
@@ -8641,7 +8044,7 @@
    "before": null,
    "reason": "new_product",
    "uuid_source": "lightspeed_on_create",
-   "seq": 277
+   "seq": 255
   },
   {
    "id": "cat-12ee13ff144f",
@@ -8653,7 +8056,7 @@
    "handle": "jlttil---porcelain-camelia-silver---te36622r-----1224---8pcb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Camelia Silver)  | #TE36622R |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -8668,7 +8071,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 278
+   "seq": 256
   },
   {
    "id": "cat-f858892cc29c",
@@ -8680,7 +8083,7 @@
    "handle": "jlttil---porcelain-camelia-gris---te36627r-----1224---8pcb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Camelia Gris)  | #TE36627R |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -8695,7 +8098,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 279
+   "seq": 257
   },
   {
    "id": "cat-1e90da2d5bc6",
@@ -8707,7 +8110,7 @@
    "handle": "jlttil---porcelain-camelia-dark---te36628r-----1224---8pcb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Camelia Dark)  | #TE36628R |  - 12 x 24 - 8pc/b - 16sf/b",
@@ -8722,7 +8125,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 280
+   "seq": 258
   },
   {
    "id": "cat-42616f44fea7",
@@ -8734,7 +8137,7 @@
    "handle": "jlttil---porcelain-camelia-silver---te65622r-----2424---4pcb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Camelia Silver)  | #TE65622R |  - 24 x 24 - 4pc/b - 16sf/b",
@@ -8749,7 +8152,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 281
+   "seq": 259
   },
   {
    "id": "cat-2758d8c80c48",
@@ -8761,7 +8164,7 @@
    "handle": "jlttil---porcelain-camelia-gris---te65627r-----2424---4pcb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Camelia Gris)  | #TE65627R |  - 24 x 24 - 4pc/b - 16sf/b",
@@ -8776,7 +8179,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 282
+   "seq": 260
   },
   {
    "id": "cat-dbe69b4178ad",
@@ -8788,7 +8191,7 @@
    "handle": "jlttil---porcelain-camelia-dark---te65628r-----2424---4pcb",
    "fields": {
     "supply_price": 2.3,
-    "price_excluding_tax": 3.3
+    "price_excluding_tax": 4.3
    },
    "before": {
     "name": "JLTTIL - ESSENTIAL - Porcelain (Camelia Dark)  | #TE65628R |  - 24 x 24 - 4pc/b - 16sf/b",
@@ -8803,7 +8206,7 @@
    },
    "reason": "price_change",
    "uuid_source": "upload",
-   "seq": 283
+   "seq": 261
   },
   {
    "id": "cat-71b3be27af8d",
@@ -8821,7 +8224,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 284
+   "seq": 262
   },
   {
    "id": "cat-5d357fd24c83",
@@ -8839,25 +8242,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 285
-  },
-  {
-   "id": "cat-97d78c2bca7b",
-   "target_system": "airtable",
-   "op": "backfill_ls_id",
-   "sku": "TIL-JLTI-0003",
-   "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
-   "fields": {
-    "Lightspeed ID": "<assigned by Lightspeed on create>"
-   },
-   "before": {
-    "Lightspeed ID": null
-   },
-   "reason": "uuid_from_create",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 286
+   "seq": 263
   },
   {
    "id": "cat-9830b106be98",
@@ -8875,7 +8260,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 287
+   "seq": 264
   },
   {
    "id": "cat-080bc088798f",
@@ -8893,7 +8278,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 288
+   "seq": 265
   },
   {
    "id": "cat-caa72a39c80c",
@@ -8911,7 +8296,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 289
+   "seq": 266
   },
   {
    "id": "cat-c3e7831427da",
@@ -8929,7 +8314,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 290
+   "seq": 267
   },
   {
    "id": "cat-e53a001df4cb",
@@ -8947,7 +8332,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 291
+   "seq": 268
   },
   {
    "id": "cat-837b242bba04",
@@ -8965,7 +8350,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 292
+   "seq": 269
   },
   {
    "id": "cat-5008abd49539",
@@ -8983,7 +8368,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 293
+   "seq": 270
   },
   {
    "id": "cat-09513ccc7769",
@@ -9001,7 +8386,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 294
+   "seq": 271
   },
   {
    "id": "cat-a63f99480210",
@@ -9019,7 +8404,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 295
+   "seq": 272
   },
   {
    "id": "cat-81c8849ec5a0",
@@ -9037,7 +8422,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 296
+   "seq": 273
   },
   {
    "id": "cat-ff1512da692f",
@@ -9055,7 +8440,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 297
+   "seq": 274
   },
   {
    "id": "cat-a2dcbe8bb697",
@@ -9073,7 +8458,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 298
+   "seq": 275
   },
   {
    "id": "cat-dc35897a894f",
@@ -9091,7 +8476,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 299
+   "seq": 276
   },
   {
    "id": "cat-ad872565d311",
@@ -9109,7 +8494,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 300
+   "seq": 277
   },
   {
    "id": "cat-c1cb41c9cdc9",
@@ -9127,7 +8512,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 301
+   "seq": 278
   },
   {
    "id": "cat-6faa88630f51",
@@ -9145,7 +8530,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 302
+   "seq": 279
   },
   {
    "id": "cat-433b5d1f94aa",
@@ -9163,7 +8548,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 303
+   "seq": 280
   },
   {
    "id": "cat-481409c252b8",
@@ -9181,7 +8566,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 304
+   "seq": 281
   },
   {
    "id": "cat-37ed4be63d22",
@@ -9199,7 +8584,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 305
+   "seq": 282
   },
   {
    "id": "cat-4267ed220bb3",
@@ -9217,7 +8602,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 306
+   "seq": 283
   },
   {
    "id": "cat-ccecd1ed94f8",
@@ -9235,7 +8620,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 307
+   "seq": 284
   },
   {
    "id": "cat-3de843e6f90e",
@@ -9253,7 +8638,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 308
+   "seq": 285
   },
   {
    "id": "cat-c7597d2cab48",
@@ -9271,7 +8656,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 309
+   "seq": 286
   },
   {
    "id": "cat-127fcd482bd0",
@@ -9289,7 +8674,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 310
+   "seq": 287
   },
   {
    "id": "cat-abc16813f7f7",
@@ -9307,25 +8692,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 311
-  },
-  {
-   "id": "cat-c5f275e0a41f",
-   "target_system": "airtable",
-   "op": "backfill_ls_id",
-   "sku": "TIL-JLTI-DM12340M",
-   "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
-   "fields": {
-    "Lightspeed ID": "<assigned by Lightspeed on create>"
-   },
-   "before": {
-    "Lightspeed ID": null
-   },
-   "reason": "uuid_from_create",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 312
+   "seq": 288
   },
   {
    "id": "cat-8d50dd0eef07",
@@ -9343,7 +8710,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 313
+   "seq": 289
   },
   {
    "id": "cat-0cd36f02b7b0",
@@ -9361,7 +8728,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 314
+   "seq": 290
   },
   {
    "id": "cat-bff0b15ea321",
@@ -9379,7 +8746,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 315
+   "seq": 291
   },
   {
    "id": "cat-d8f8c537cfe1",
@@ -9397,7 +8764,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 316
+   "seq": 292
   },
   {
    "id": "cat-ddeede8a9089",
@@ -9415,7 +8782,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 317
+   "seq": 293
   },
   {
    "id": "cat-bbfedb7dddb0",
@@ -9433,7 +8800,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 318
+   "seq": 294
   },
   {
    "id": "cat-717f8cc06424",
@@ -9451,7 +8818,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 319
+   "seq": 295
   },
   {
    "id": "cat-e459cb91b2ec",
@@ -9469,7 +8836,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 320
+   "seq": 296
   },
   {
    "id": "cat-0820ffdf3811",
@@ -9487,7 +8854,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 321
+   "seq": 297
   },
   {
    "id": "cat-40ed4e0227d2",
@@ -9505,7 +8872,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 322
+   "seq": 298
   },
   {
    "id": "cat-dd218820bec9",
@@ -9523,97 +8890,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 323
-  },
-  {
-   "id": "cat-b448fda6cd87",
-   "target_system": "airtable",
-   "op": "backfill_ls_id",
-   "sku": "TIL-JLTI-QP8320GMB360",
-   "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
-   "fields": {
-    "Lightspeed ID": "<assigned by Lightspeed on create>"
-   },
-   "before": {
-    "Lightspeed ID": null
-   },
-   "reason": "uuid_from_create",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 324
-  },
-  {
-   "id": "cat-5c7bc557d86c",
-   "target_system": "airtable",
-   "op": "backfill_ls_id",
-   "sku": "TIL-JLTI-QP8320GMB612",
-   "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
-   "fields": {
-    "Lightspeed ID": "<assigned by Lightspeed on create>"
-   },
-   "before": {
-    "Lightspeed ID": null
-   },
-   "reason": "uuid_from_create",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 325
-  },
-  {
-   "id": "cat-48d2221ec19b",
-   "target_system": "airtable",
-   "op": "backfill_ls_id",
-   "sku": "TIL-JLTI-QP8320GMB660",
-   "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
-   "fields": {
-    "Lightspeed ID": "<assigned by Lightspeed on create>"
-   },
-   "before": {
-    "Lightspeed ID": null
-   },
-   "reason": "uuid_from_create",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 326
-  },
-  {
-   "id": "cat-65752572883b",
-   "target_system": "airtable",
-   "op": "backfill_ls_id",
-   "sku": "TIL-JLTI-SP36P00T",
-   "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
-   "fields": {
-    "Lightspeed ID": "<assigned by Lightspeed on create>"
-   },
-   "before": {
-    "Lightspeed ID": null
-   },
-   "reason": "uuid_from_create",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 327
-  },
-  {
-   "id": "cat-14350a031c8a",
-   "target_system": "airtable",
-   "op": "backfill_ls_id",
-   "sku": "TIL-JLTI-SP6P00T",
-   "airtable_rec_id": null,
-   "ls_id": null,
-   "handle": null,
-   "fields": {
-    "Lightspeed ID": "<assigned by Lightspeed on create>"
-   },
-   "before": {
-    "Lightspeed ID": null
-   },
-   "reason": "uuid_from_create",
-   "uuid_source": "lightspeed_on_create",
-   "seq": 328
+   "seq": 299
   },
   {
    "id": "cat-4f34304de0f2",
@@ -9631,7 +8908,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 329
+   "seq": 300
   },
   {
    "id": "cat-c180ef3548bc",
@@ -9649,7 +8926,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 330
+   "seq": 301
   },
   {
    "id": "cat-101a43c94c06",
@@ -9667,7 +8944,7 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 331
+   "seq": 302
   },
   {
    "id": "cat-26d32c5a3b77",
@@ -9685,14 +8962,34 @@
    },
    "reason": "uuid_from_create",
    "uuid_source": "lightspeed_on_create",
-   "seq": 332
+   "seq": 303
   }
  ],
  "blocked": [
   {
+   "sku": "TIL-JLTI-SP36P00T",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "561771fe-a260-44ce-8e49-8dc85b5ef030 belongs to SP36POOT (JLTTIL - ESSENTIAL - Porcelain (Pure White)  | #SP36POOT |  - 12 x 24 - 8pc/b - 16sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "TIL-JLTI-SP6P00T",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "16b1cbd5-4f19-46b8-b560-8d15fb495188 belongs to SPC6POOT (JLTTIL - ESSENTIAL - Porcelain (Pure White)  | #SPC6POOT |  - 24 x 24 - 4pc/b - 16sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "TIL-JLTI-DM12340M",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "19bda592-8613-4c6e-8e59-e910a223fe3b belongs to DM12341M/PY126929M (JLTTIL - ELEGANT - Porcelain (Dream White (Matt))  | #DM12341M/PY126929M |  - 24 x 48 - 2pc/b - 16sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
    "sku": "TIL-JLTI-BPCK1294",
    "reason": "ls_payload_unavailable",
    "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  },
+  {
+   "sku": "TIL-JLTI-0003",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "fb32dc90-5abf-42c0-9fce-32a742332406 belongs to PandaWhiteMatte (JLTTIL - ELEGANT - Porcelain (Panda White Matte)  | #PandaWhiteMatte |  -  - 2pc/b - 16sf/b) \u2014 writing it would overwrite that product"
   },
   {
    "sku": "TIL-JLTI-TE12608",
@@ -9787,16 +9084,6 @@
    "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
   },
   {
-   "sku": "TIL-JLTI-SP36P00T",
-   "reason": "category_unresolved",
-   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
-  },
-  {
-   "sku": "TIL-JLTI-SP6P00T",
-   "reason": "category_unresolved",
-   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
-  },
-  {
    "sku": "TIL-JLTI-BPCK36009",
    "reason": "category_unresolved",
    "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
@@ -10087,11 +9374,6 @@
    "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
   },
   {
-   "sku": "TIL-JLTI-DM12340M",
-   "reason": "category_unresolved",
-   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
-  },
-  {
    "sku": "TIL-JLTI-DM12342",
    "reason": "category_unresolved",
    "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
@@ -10278,11 +9560,6 @@
   },
   {
    "sku": "TIL-JLTI-QP8320LMB",
-   "reason": "category_unresolved",
-   "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
-  },
-  {
-   "sku": "TIL-JLTI-0003",
    "reason": "category_unresolved",
    "detail": "Airtable category 'Tile / Stone' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
   },
