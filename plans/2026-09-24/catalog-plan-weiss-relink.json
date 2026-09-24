@@ -1,0 +1,552 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "WEISS",
+ "run_at": "2026-09-24T11:54:10-04:00",
+ "status": "ready",
+ "inputs": {
+  "airtable_existing": "ingest/2026-09-24/weiss_airtable_existing.json",
+  "lightspeed": "ingest/2026-09-24/lightspeed-products.json",
+  "source_plan": "plans/2026-09-24/catalog-plan-weiss.json (its 23 uuid_belongs_to_other_sku blocks)"
+ },
+ "cost_basis": {
+  "value": "dealer",
+  "confirmed_by": "Albert 2026-09-10"
+ },
+ "summary": {
+  "lightspeed_update": 23
+ },
+ "blocked": [],
+ "warnings": [],
+ "_note": "Hand-built from the reconciler's own blocks, applying Albert's 2026-09-24 Vizion ruling ('Use the SKU in Airtable for those 7 legacy') to the identical Weiss case: per RULE 0 the Lightspeed record is corrected to the Airtable SKU, and its prices to the Sept 21 2026 list. The UUID each action targets is the one the Airtable record already carries. The legacy F-E*-* codes are Weiss's own item codes and stay visible in each product's LS name (#F-E1-04 etc.).",
+ "actions": [
+  {
+   "id": "cat-6a771421a5f1",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ACC-WEIS-0001",
+   "airtable_rec_id": "recNSazLtM6yqy9dQ",
+   "ls_id": "8988bcb1-644e-4aa1-bc53-25dde3bb71fc",
+   "handle": "weivin---t-molding-all-colors-8-ft-long",
+   "fields": {
+    "sku": "ACC-WEIS-0001",
+    "supply_price": 15.0,
+    "price_excluding_tax": 25.0
+   },
+   "before": {
+    "sku": "11221",
+    "supply_price": 15.0,
+    "price_excluding_tax": 35.0,
+    "name": "WEIVIN - T-MOLDING VINYL (ALL COLORS) 8 FT LONG"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 1
+  },
+  {
+   "id": "cat-168058c57cbb",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ACC-WEIS-0002",
+   "airtable_rec_id": "rec0NjJEbfO4tj3Px",
+   "ls_id": "000a3057-6a62-43b6-884b-c5ef468fc3c9",
+   "handle": "weivin--vinyl-reducer--all-colors-8-ft-long",
+   "fields": {
+    "sku": "ACC-WEIS-0002",
+    "supply_price": 15.0,
+    "price_excluding_tax": 25.0
+   },
+   "before": {
+    "sku": "11222",
+    "supply_price": 15.0,
+    "price_excluding_tax": 35.0,
+    "name": "WEIVIN- VINYL REDUCER ( ALL COLORS) 8 FT LONG"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 2
+  },
+  {
+   "id": "cat-417884d1acef",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ACC-WEIS-0004",
+   "airtable_rec_id": "recKJbiJBJgzk8IHY",
+   "ls_id": "08b4ba3e-0209-4f62-a335-e75e7df59d35",
+   "handle": "weilam---laminate-t-moulding-8ft",
+   "fields": {
+    "sku": "ACC-WEIS-0004",
+    "supply_price": 15.0,
+    "price_excluding_tax": 25.0
+   },
+   "before": {
+    "sku": "WEI.LM.TM",
+    "supply_price": 12.0,
+    "price_excluding_tax": 24.99,
+    "name": "WEILAM - Laminate T-Moulding 8ft"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 3
+  },
+  {
+   "id": "cat-bd5d0530835a",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ACC-WEIS-0005",
+   "airtable_rec_id": "recyG1lvs57EhXsm1",
+   "ls_id": "9fcf7d84-6e33-4efe-8d1c-77feca3ac145",
+   "handle": "weilam---laminate-reducer-8ft",
+   "fields": {
+    "sku": "ACC-WEIS-0005",
+    "supply_price": 15.0,
+    "price_excluding_tax": 25.0
+   },
+   "before": {
+    "sku": "WEI.LM.RED",
+    "supply_price": 12.0,
+    "price_excluding_tax": 24.99,
+    "name": "WEILAM - Laminate Reducer 8ft"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 4
+  },
+  {
+   "id": "cat-d5327b0b8b71",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0005",
+   "airtable_rec_id": "recQuiO5BqBaU6Ine",
+   "ls_id": "7ab4f3f2-4a69-4709-b654-fef154b0bb80",
+   "handle": "neaeng------red-oak-fortino-tg--f-e1-04-----6-12x34-tg-wirebrush-12mm-veneer---2649sfb",
+   "fields": {
+    "sku": "ENG-WEIS-0005",
+    "supply_price": 3.09,
+    "price_excluding_tax": 4.09
+   },
+   "before": {
+    "sku": "F-E1-04",
+    "supply_price": 2.99,
+    "price_excluding_tax": 4.39,
+    "name": "WEIENG -  - Red Oak (Fortino) T&G | #F-E1-04 | Character - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 5
+  },
+  {
+   "id": "cat-be0076e401b7",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0006",
+   "airtable_rec_id": "recTo7fdNNBF3yfRV",
+   "ls_id": "4849c65b-3176-4acd-8555-58b8cbc58310",
+   "handle": "neaeng------red-oak-raw-tg--f-e1-06-----6-12x34-tg-wirebrush-12mm-veneer---2649sfb",
+   "fields": {
+    "sku": "ENG-WEIS-0006",
+    "supply_price": 3.09,
+    "price_excluding_tax": 4.09
+   },
+   "before": {
+    "sku": "F-E1-06",
+    "supply_price": 2.99,
+    "price_excluding_tax": 4.39,
+    "name": "WEIENG -  - Red Oak (Raw) T&G | #F-E1-06 | Character - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 6
+  },
+  {
+   "id": "cat-1e71fbf9bf11",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0007",
+   "airtable_rec_id": "recoLTSQcoDRlbbPB",
+   "ls_id": "f30922b2-b285-4838-ba67-524ce8040bc2",
+   "handle": "neaeng------red-oak-saffron-tg--f-e1-09-----6-12x34-tg-wirebrush-12mm-veneer---2649sfb",
+   "fields": {
+    "sku": "ENG-WEIS-0007",
+    "supply_price": 3.09,
+    "price_excluding_tax": 4.09
+   },
+   "before": {
+    "sku": "F-E1-09",
+    "supply_price": 2.99,
+    "price_excluding_tax": 4.39,
+    "name": "WEIENG -  - Red Oak (Saffron) T&G | #F-E1-09 | Character - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 7
+  },
+  {
+   "id": "cat-ce9e220a98d8",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0008",
+   "airtable_rec_id": "rec9fZSO6xgGF8YZE",
+   "ls_id": "fd35dd20-b9b4-42aa-aa9a-4e65a2af289f",
+   "handle": "neaeng------red-oak-sandy-brown-tg--f-e1-07-----6-12x34-tg-wirebrush-12mm-veneer---2649sfb",
+   "fields": {
+    "sku": "ENG-WEIS-0008",
+    "supply_price": 3.09,
+    "price_excluding_tax": 4.09
+   },
+   "before": {
+    "sku": "F-E1-07",
+    "supply_price": 2.99,
+    "price_excluding_tax": 4.39,
+    "name": "WEIENG -  - Red Oak (Sandy Brown) T&G | #F-E1-07 | Character - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 8
+  },
+  {
+   "id": "cat-b4b8df5c171b",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0009",
+   "airtable_rec_id": "recebOGClticN7WmU",
+   "ls_id": "c99860d6-b3bc-4367-b05a-1bcc1c730d3e",
+   "handle": "neaeng------red-oak-seashell-tg--f-e1-10-----6-12x34-tg-wirebrush-12mm-veneer---2649sfb",
+   "fields": {
+    "sku": "ENG-WEIS-0009",
+    "supply_price": 3.09,
+    "price_excluding_tax": 4.09
+   },
+   "before": {
+    "sku": "F-E1-10",
+    "supply_price": 2.99,
+    "price_excluding_tax": 4.39,
+    "name": "WEIENG -  - Red Oak (Seashell) T&G | #F-E1-10 | Character - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 9
+  },
+  {
+   "id": "cat-c40e3eb881c4",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0010",
+   "airtable_rec_id": "recAOBj0VkrVjSf87",
+   "ls_id": "b1dafece-959f-420d-b9da-9c2d519a864a",
+   "handle": "neaeng------red-oak-silver-gray-tg--f-e1-08-----6-12x34-tg-wirebrush-12mm-veneer---2649sfb",
+   "fields": {
+    "sku": "ENG-WEIS-0010",
+    "supply_price": 3.09,
+    "price_excluding_tax": 4.09
+   },
+   "before": {
+    "sku": "F-E1-08",
+    "supply_price": 2.49,
+    "price_excluding_tax": 3.89,
+    "name": "WEIENG -  - Red Oak (Silver Gray) T&G | #F-E1-08 | Character - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 10
+  },
+  {
+   "id": "cat-a9f9abdba490",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0011",
+   "airtable_rec_id": "recU2FrYgjl3oqMPI",
+   "ls_id": "ecfdad22-cbf4-4e75-8dc1-1dbbda74c9e1",
+   "handle": "55546767",
+   "fields": {
+    "sku": "ENG-WEIS-0011",
+    "supply_price": 3.39,
+    "price_excluding_tax": 4.39
+   },
+   "before": {
+    "sku": "F-E6-02",
+    "supply_price": 3.0,
+    "price_excluding_tax": 4.4,
+    "name": "WEIENG -  - Red Oak (Amber) T&G | #F-E6-02 | Select Plus - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 11
+  },
+  {
+   "id": "cat-a86518714227",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0012",
+   "airtable_rec_id": "rec0IaVCTKkJBh4Wd",
+   "ls_id": "3d49d218-fb99-4c6b-930a-d02f9397819a",
+   "handle": "55546764",
+   "fields": {
+    "sku": "ENG-WEIS-0012",
+    "supply_price": 3.39,
+    "price_excluding_tax": 4.39
+   },
+   "before": {
+    "sku": "F-E6-01",
+    "supply_price": 3.0,
+    "price_excluding_tax": 4.4,
+    "name": "WEIENG -  - Red Oak (Caramel) T&G | #F-E6-01 | Select Plus - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 12
+  },
+  {
+   "id": "cat-2145df6e6382",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0013",
+   "airtable_rec_id": "recx93mnbVfUVkIbZ",
+   "ls_id": "b18fb885-bac5-4a94-b4d6-08980aedab22",
+   "handle": "weieng------red-oak-dijon-tg--f-e6-07--select-plus---6-12x34-tg-wirebrush-12mm-veneer---2649sfb",
+   "fields": {
+    "sku": "ENG-WEIS-0013",
+    "supply_price": 3.39,
+    "price_excluding_tax": 4.39
+   },
+   "before": {
+    "sku": "F-E6-07",
+    "supply_price": 3.0,
+    "price_excluding_tax": 4.4,
+    "name": "WEIENG -  - Red Oak (Dijon) T&G | #F-E6-07 | Select Plus - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 13
+  },
+  {
+   "id": "cat-0ba20a462b67",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0015",
+   "airtable_rec_id": "recN1qx2Hnb5VuloS",
+   "ls_id": "5ced4325-d301-41df-b39c-14c8ddc4dbfc",
+   "handle": "55546759",
+   "fields": {
+    "sku": "ENG-WEIS-0015",
+    "supply_price": 3.39,
+    "price_excluding_tax": 4.39
+   },
+   "before": {
+    "sku": "F-E6-05",
+    "supply_price": 3.0,
+    "price_excluding_tax": 4.4,
+    "name": "WEIENG -  - Red Oak (Pebble) T&G | #F-E6-05 | Select Plus - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 14
+  },
+  {
+   "id": "cat-ef249269ecd3",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0016",
+   "airtable_rec_id": "recDWUveuaGk4sLtN",
+   "ls_id": "eb619a22-e57a-48f2-b38f-88b9a59dbf6f",
+   "handle": "55546758",
+   "fields": {
+    "sku": "ENG-WEIS-0016",
+    "supply_price": 3.39,
+    "price_excluding_tax": 4.39
+   },
+   "before": {
+    "sku": "F-E6-06",
+    "supply_price": 3.0,
+    "price_excluding_tax": 4.4,
+    "name": "WEIENG -  - Red Oak (Sand) T&G | #F-E6-06 | Select Plus - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 15
+  },
+  {
+   "id": "cat-da49fc6d78cb",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0017",
+   "airtable_rec_id": "recLb3E7mGPoEZ7yu",
+   "ls_id": "81c6f381-bde6-4793-bae3-4aad0b11d482",
+   "handle": "55546756",
+   "fields": {
+    "sku": "ENG-WEIS-0017",
+    "supply_price": 3.39,
+    "price_excluding_tax": 4.39
+   },
+   "before": {
+    "sku": "F-E6-04",
+    "supply_price": 3.0,
+    "price_excluding_tax": 4.4,
+    "name": "WEIENG -  - Red Oak (Vanilla) T&G | #F-E6-04 | Select Plus - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 16
+  },
+  {
+   "id": "cat-a235f2629a57",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0022",
+   "airtable_rec_id": "recrv4LSgpyxFLPlw",
+   "ls_id": "b069b849-1feb-418d-ae25-9e2f4d338afd",
+   "handle": "weieng------red-oak-amber-tg--f-e8-02--select-plus---6-12x34-tg-wirebrush-2mm-veneer---2649sfb",
+   "fields": {
+    "sku": "ENG-WEIS-0022",
+    "supply_price": 3.89,
+    "price_excluding_tax": 4.89
+   },
+   "before": {
+    "sku": "F-E8-02",
+    "supply_price": 3.5,
+    "price_excluding_tax": 4.9,
+    "name": "WEIENG -  - Red Oak (Amber) T&G | #F-E8-02 | Select Plus - 6-1/2\"x3/4\" T&G Wirebrush 2mm Veneer - 26.49sf/b"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 17
+  },
+  {
+   "id": "cat-2cb87cb60deb",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0023",
+   "airtable_rec_id": "recdbiAqI3JBE3eIZ",
+   "ls_id": "9fdf7c08-1ca6-4e0c-9912-4f45d9064bb3",
+   "handle": "weieng------red-oak-sand-tg--f-e8-01--select-plus---6-12x34-tg-wirebrush-2mm-veneer---2649sfb",
+   "fields": {
+    "sku": "ENG-WEIS-0023",
+    "supply_price": 3.89,
+    "price_excluding_tax": 4.89
+   },
+   "before": {
+    "sku": "F-E8-01",
+    "supply_price": 3.5,
+    "price_excluding_tax": 4.9,
+    "name": "WEIENG -  - Red Oak (Sand) T&G | #F-E8-01 | Select Plus - 6-1/2\"x3/4\" T&G Wirebrush 2mm Veneer - 26.49sf/b"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 18
+  },
+  {
+   "id": "cat-9646793cb6c4",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0024",
+   "airtable_rec_id": "recSduMQTc0KSig97",
+   "ls_id": "dcdcd1e0-30c2-47a4-8d27-961b5593c1dc",
+   "handle": "weieng------red-oak-sandy-brown-tg--f-e8-04--select-plus---6-12x34-tg-wirebrush-2mm-veneer---2649sfb",
+   "fields": {
+    "sku": "ENG-WEIS-0024",
+    "supply_price": 3.89,
+    "price_excluding_tax": 4.89
+   },
+   "before": {
+    "sku": "F-E8-04",
+    "supply_price": 3.5,
+    "price_excluding_tax": 4.9,
+    "name": "WEIENG -  - Red Oak (Sandy Brown) T&G | #F-E8-04 | Select Plus - 6-1/2\"x3/4\" T&G Wirebrush 2mm Veneer - 26.49sf/b"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 19
+  },
+  {
+   "id": "cat-e7479983c4f2",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0025",
+   "airtable_rec_id": "recBokxjmhQe6MIFt",
+   "ls_id": "a97b5273-4f3f-459f-9f92-aa7f04e8ebe1",
+   "handle": "weieng------red-oak-vanilla-tg--f-e8-03--select-plus---6-12x34-tg-wirebrush-2mm-veneer---2649sfb",
+   "fields": {
+    "sku": "ENG-WEIS-0025",
+    "supply_price": 3.89,
+    "price_excluding_tax": 4.89
+   },
+   "before": {
+    "sku": "F-E8-03",
+    "supply_price": 3.5,
+    "price_excluding_tax": 4.9,
+    "name": "WEIENG -  - Red Oak (Vanilla) T&G | #F-E8-03 | Select Plus - 6-1/2\"x3/4\" T&G Wirebrush 2mm Veneer - 26.49sf/b"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 20
+  },
+  {
+   "id": "cat-2808e91c08de",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-WEIS-0001",
+   "airtable_rec_id": "recrSdnq7u8BC8L6D",
+   "ls_id": "18e05ba3-c044-4b51-ba80-d4fd492b88f1",
+   "handle": "weilam---citadel-2081sfb",
+   "fields": {
+    "sku": "LAM-WEIS-0001",
+    "supply_price": 1.39,
+    "price_excluding_tax": 2.39
+   },
+   "before": {
+    "sku": "11228",
+    "supply_price": 1.35,
+    "price_excluding_tax": 2.5,
+    "name": "WEILAM - Citadel 20.81sf/b"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 21
+  },
+  {
+   "id": "cat-0fb43ef195c1",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-WEIS-0004",
+   "airtable_rec_id": "recumqK3DZEeOBge2",
+   "ls_id": "176f1ade-4aeb-4709-9548-9a0c0e7ccf86",
+   "handle": "weivin---breeze-collection-52mm-underlay-7x-48-12-mil-wearlayer-coral-2163-sfbox",
+   "fields": {
+    "sku": "LVP-WEIS-0004",
+    "supply_price": 1.49,
+    "price_excluding_tax": 2.49
+   },
+   "before": {
+    "sku": "11223",
+    "supply_price": 1.55,
+    "price_excluding_tax": 2.5,
+    "name": "WEIVIN - BREEZE COLLECTION 5+2mm Underlay 7\"x 48\" 12 mil wearlayer CORAL (21.63 SF/BOX)"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 22
+  },
+  {
+   "id": "cat-75f6b4b2cfbc",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-WEIS-0008",
+   "airtable_rec_id": "recTtyyQuslQKcbrm",
+   "ls_id": "4edd272c-030f-48e8-9287-325a6fb23ded",
+   "handle": "weivinyl----atmosphere-collection-american-walnut--5515mm-underlay-7x-48-painted-bevel-20-mil-wearlayer-1683sfbox",
+   "fields": {
+    "sku": "LVP-WEIS-0008",
+    "supply_price": 1.69,
+    "price_excluding_tax": 2.69
+   },
+   "before": {
+    "sku": "11202",
+    "supply_price": 1.75,
+    "price_excluding_tax": 2.69,
+    "name": "WEIVINYL -  Atmosphere Collection AMERICAN WALNUT  5.5+1.5mm Underlay 7\"x 48\" Painted Bevel 20 mil wearlayer (16.83SF/BOX)"
+   },
+   "reason": "relink_sku_to_airtable",
+   "uuid_source": "airtable_record",
+   "seq": 23
+  }
+ ]
+}

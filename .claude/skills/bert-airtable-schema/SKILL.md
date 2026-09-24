@@ -3354,6 +3354,41 @@ extraction (62 rows) — it is now confirmed. Do not ask again.
   on their sheet but is not formally mapped to either; confirm the equivalence with
   Weiss if it becomes load-bearing.
 
+#### Red ink means different things on different lists (PL-376, 2026-09-24)
+
+The Aug 1 2026 list's legend read red as *low stock*; the **Sept 21 2026 list's legend
+reads "The color in Red: promotions while quantities last."** Read the legend on every
+list — never carry the previous meaning forward. "While quantities last" is the
+schema's while-stock-lasts language, so red colourways get `Stock status = Clearance`.
+The red names share their block's printed price (there is no separate promo figure), so
+`Promo cost` stays blank. Red is detected from the PDF's character colours
+(`non_stroking_color == (1,0,0)`), not by eye. An asterisk after an LVP colour means a
+Stairboard Set exists in it — still not a stock marker.
+
+The text layer is printed twice (a black layer plus a slightly offset grey one), so
+pdfplumber's `dedupe_chars()` sometimes yields doubled glyphs (`$1155` for `$15`,
+`2 2 6 6 . .4 4 9 9`). Collapse doubled pairs before the two-engine price check;
+pypdfium2 reads the cells cleanly.
+
+#### Legacy Lightspeed SKUs (relinked 2026-09-24)
+
+23 of the Aug-imported records were linked to pre-pipeline Lightspeed products still
+carrying legacy skus — Weiss's own item codes (`F-E1-04`, `F-E6-02`, `F-E8-01` …; they
+stay visible in the LS name as `#F-E1-04`) and Titan numbers (`11221`, `11228`,
+`WEI.LM.TM` …). On PL-376 each was corrected to its Airtable SKU with prices from the
+Sept list (`catalog-plan-weiss-relink.json`), applying Albert's Vizion ruling of the
+same day. A future Weiss run should find every Lightspeed sku equal to the Airtable SKU.
+
+#### Lines as of the Sept 21 2026 list
+
+- New: `8mm Vinyl Plank 12 mil 48"` (6+2mm, 7"x48", Jute/Linen/Mist/Noble/Sienna,
+  19.23 sf/b — a second 8mm line beside the 7"x60" one, so the collection names the
+  length; the list prints no line name), `5mm Looselay 22 mil` (501–505, ceramic-bead
+  wear layer, 27.17 sf/b), plus new colours in existing lines.
+- **Gone:** the `6mm Vinyl Plank 12 mil` line (Driftwood, Havenest, Venus). Records
+  stay live — no deactivate action exists — and sit in the troubled CSV as
+  `absent_from_list` until Albert decides.
+
 ---
 
 ### Vizion (Vizion Floor)
