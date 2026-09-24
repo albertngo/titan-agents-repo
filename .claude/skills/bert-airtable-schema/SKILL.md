@@ -4361,6 +4361,37 @@ say otherwise. Not yet recorded: a per-collection markup override (using the glo
 `Retail = Cost + $ 1.00` for now), any SALE/promo convention (the 2026-09-14 sheet
 carried none), and confirmation of the Supplier/Brand string above.
 
+### Baltic Homes (Baltic Home "Nature", Longhua Flooring)
+
+Notion `Company` **BALTIC** → Airtable/LS Supplier **BALTIC HOMES** (`supplier_aliases`).
+Warehouse 200 Telson Rd, Markham; orders@longhuaflooring.com. First processed as
+PL-170 (2026-09-24), which arrived as a **phone photo** of the printed list — the
+first image price list, read under `/process-price-list` step 2.3 (two readers, row
+by row). Lines: engineered oak (HD-xxx 18/2mm, EHDP-xxx 18/3mm), SPC click (7mm),
+loose-lay LVT (5mm, 9"x60" and 12"x24").
+
+#### Cost column — CONFIRMED, 2026-09-24 (Albert): `Tier 2 Price SF/CAD`
+
+The sheet prints **Tier 1** and **Tier 2** per sf, Tier 2 ~12% higher. Albert chose
+Tier 2 as cost even though the 10 engineered products already in Lightspeed (added
+2025-11-03) carried costs a cent above Tier 1. `Retail = Cost + $ 1.00` (global
+flooring rule, confirmed same day — it moved live engineered retail 4.99 → 4.91).
+Tier 1 goes in `Volume pricing notes`.
+
+#### SKU, brand, prefixes — CONFIRMED, 2026-09-24 (Albert)
+
+- **SKU = the supplier's printed code, raw** (`HD-001`, `SPC-A16215`,
+  `VL88035L-001`), and `Supplier SKU` = the same. The Olympia-style exception to
+  `CAT-SUPP-0001`: the codes are unique per product and the 10 live LS products
+  already use them.
+- **Brand: blank.** Not "Nature", not "Baltic Homes".
+- LS name prefixes for new products: `BALTENG`, `BALTLVP-SPC`, `BALTLVP-LL`,
+  `BALTLVT-LL` — confirmed by Albert 2026-09-24 ("BALT is good"). The 10
+  pre-existing engineered LS names (`NATURE-ENG Hardwood …`) and their hyphenated
+  handles stay verbatim (RULE 0a).
+- The sheet states no install method, wear layer or species beyond "Oak" — those
+  stay blank rather than assumed.
+
 ### Tosca Floors
 
 Tosca Floors (george@toscaflooring.com) is both the supplier and the brand. The price
