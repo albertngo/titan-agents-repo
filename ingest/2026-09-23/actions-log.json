@@ -7801,6 +7801,39 @@
    "error": null,
    "raw_ref": "recJR4PIeQp9tT9Y6",
    "raw_ref_action_id": "cat-26d32c5a3b77"
+  },
+  {
+   "logged_at": "2026-09-24T00:26:12-04:00",
+   "agent": ".claude/commands/catalog-sync.md",
+   "type": "notion_update_page",
+   "target": "Price Lists PL-372 (3d8596a4-505f-810d-b999-f406f9687f1e)",
+   "content_summary": "Airtable Sync Pending->Partial, LS Upload (blank)->Partial, UUID Backfill Pending->Done, Review Reason + Ambiguous Pricing, Ambiguous Naming, Spec Gap (additive), Notes: sync summary prepended and the 09-14 '+$1.00' retail claim corrected to +$2.00. Extraction Status left at Extracted [Needs Review] (7 SKUs held).",
+   "approved_by": "Albert, in chat 2026-09-23 (\"Yes\" to running PL-372; retail \"+2 (Whas live)\"; \"use the TILE that is nested in FLOORING Parent\")",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "3d8596a4-505f-810d-b999-f406f9687f1e"
+  },
+  {
+   "logged_at": "2026-09-24T00:26:12-04:00",
+   "agent": ".claude/commands/catalog-sync.md",
+   "type": "notion_write_troubled_table",
+   "target": "Price Lists PL-372 page body",
+   "content_summary": "Troubled table written to the (previously blank) page body: 46 of 336 CSV rows — all 20 held rows (7 SKUs) plus every SKU-specific flag; the 290 rows repeating new_supplier/category_unresolved on every SKU are only in the attached CSV (noted on the page).",
+   "approved_by": "Albert, in chat 2026-09-23 (\"Yes\" to running PL-372)",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "3d8596a4-505f-810d-b999-f406f9687f1e"
+  },
+  {
+   "logged_at": "2026-09-24T00:26:12-04:00",
+   "agent": ".claude/commands/catalog-sync.md",
+   "type": "notion_update_page",
+   "target": "Price Lists: PL-51, PL-52, PL-53, PL-143, PL-148, PL-165, PL-166 (JL TILE)",
+   "content_summary": "Extraction Status 'Not started' -> 'Not Needed' on the 7 older JL Tile rows, superseded by PL-372 now synced. PL-194 (JL, Extracted [Needs Review]) deliberately not touched.",
+   "approved_by": "Albert, in chat 2026-09-23 (backlog triage: keep JL; older rows Not Needed once PL-372 lands)",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "29f596a4505f81f893e8d35c4b377c49,29f596a4505f8134a191ecd9e4d6d390,29f596a4505f816aae9be74cba69f661,29f596a4505f81b3aa08d40517263569,29f596a4505f819b9147c0b513508df8,29f596a4505f81f6ac38cd31d9257d1b,29f596a4505f81379507faea78d9a7f6"
   }
  ]
 }
