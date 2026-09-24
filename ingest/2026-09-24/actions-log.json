@@ -33,6 +33,17 @@
       "result": "executed",
       "error": null,
       "raw_ref": "collection://e2dc37bc-63da-42e9-b6c0-63ff48d72e6b"
+    },
+    {
+      "logged_at": "2026-09-24T10:40:00-04:00",
+      "agent": ".claude/commands/catalog-sync.md",
+      "type": "notion_update_page",
+      "target": "Price Lists: PL-129 (Sidco), PL-98, PL-298 (Kisense), PL-190 (OMC), PL-209 (OMC Tools), PL-65, 67, 68, 102-106 (Surfaces), PL-20, 64, 73, 89, 154 (Floor & Decor doors)",
+      "content_summary": "Extraction Status 'Not started' -> 'Not Needed' on 18 rows. Albert: wall panels are not processed, and every other row waiting on a call is Not Needed. Still to run: JL Tile (PL-372), Vista (PL-145/146), Baltic Homes (PL-170), Floor & Decor tiles only (PL-47); then PL-373, PL-376, PL-242, PL-377 one by one.",
+      "approved_by": "Albert, in chat 2026-09-24 (\"Wall Panels dont need to be processed. All Not Started Waiting on Call can be put as not needed.\")",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "collection://e2dc37bc-63da-42e9-b6c0-63ff48d72e6b"
     }
   ]
 }

@@ -437,6 +437,13 @@ When entering products from a supplier price list, Stock status should be assign
 - **Discontinued** — use when the supplier confirms the product is no longer being manufactured or restocked.
 - **SALE items are NOT Clearance** — a SALE label on a price list indicates a promotional price, not a stock status. SALE items get a Promo cost but their Stock status remains blank unless separately marked as clearance or while-stock-last.
 
+### Wall panels are out of scope
+
+**Rule (Albert, 2026-09-24): wall panels (WPC / PVC / fluted wall panels, e.g. Sidco)
+are not processed, from any supplier.** A price list made only of wall panels is marked
+`Not Needed` without extraction; a panel section inside a flooring list is skipped and
+reported, the same as any other out-of-scope section.
+
 ### Oak stair treads and risers are out of scope
 
 **Rule (Albert, 2026-09-20): oak / unfinished-hardwood stair treads and risers are not
