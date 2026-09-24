@@ -4145,6 +4145,50 @@
       "target": "PL-381 (3e3596a4-505f-818f-a679-ede62ce13909)",
       "content_summary": "Page body replaced: completion summary plus the 2026-09-23 troubled table (counts for new_supplier and the select mapping; rows for the 4 wrong LS handles, Heritage width conflict, hardwood trims, new colourways). The previous table had no Action answers, so none was lost.",
       "raw_ref": "3e3596a4-505f-818f-a679-ede62ce13909"
+    },
+    {
+      "logged_at": "2026-09-23T21:35:00-04:00",
+      "agent": ".claude/commands/catalog-sync.md",
+      "type": "notion_update_page",
+      "target": "Price Lists backlog: 189 rows (PL-1, PL-2, PL-3, PL-4, PL-5, PL-6, PL-7, PL-8, PL-9, PL-10, PL-11, PL-12, PL-13, PL-14, PL-15, PL-17, PL-18, PL-19, PL-21, PL-23, PL-24, PL-25, PL-26, PL-27, PL-28, PL-29, PL-30, PL-31, PL-32, PL-33, PL-34, PL-35, PL-36, PL-37, PL-38, PL-39, PL-40, PL-42, PL-43, PL-44, PL-45, PL-46, PL-48, PL-49, PL-50, PL-54, PL-55, PL-56, PL-57, PL-58, PL-59, PL-60, PL-61, PL-62, PL-63, PL-69, PL-71, PL-72, PL-74, PL-75, PL-76, PL-78, PL-79, PL-80, PL-81, PL-84, PL-85, PL-86, PL-87, PL-88, PL-90, PL-91, PL-92, PL-93, PL-94, PL-95, PL-96, PL-97, PL-99, PL-100, PL-101, PL-107, PL-108, PL-109, PL-110, PL-111, PL-112, PL-113, PL-114, PL-115, PL-116, PL-117, PL-118, PL-119, PL-120, PL-121, PL-122, PL-123, PL-124, PL-125, PL-126, PL-127, PL-128, PL-130, PL-131, PL-132, PL-133, PL-135, PL-136, PL-137, PL-138, PL-139, PL-141, PL-142, PL-144, PL-147, PL-150, PL-151, PL-152, PL-153, PL-155, PL-156, PL-157, PL-158, PL-159, PL-160, PL-161, PL-162, PL-164, PL-167, PL-168, PL-169, PL-171, PL-173, PL-174, PL-175, PL-176, PL-177, PL-178, PL-180, PL-181, PL-182, PL-183, PL-184, PL-185, PL-186, PL-187, PL-188, PL-189, PL-191, PL-195, PL-196, PL-203, PL-204, PL-205, PL-206, PL-207, PL-208, PL-210, PL-211, PL-212, PL-213, PL-214, PL-215, PL-216, PL-218, PL-220, PL-222, PL-223, PL-226, PL-227, PL-228, PL-229, PL-263, PL-264, PL-265, PL-267, PL-268, PL-269, PL-270, PL-271, PL-272, PL-273, PL-274, PL-275, PL-276, PL-277, PL-283, PL-291)",
+      "content_summary": "Extraction Status 'Not started' -> 'Not Needed' on 188 backlog rows whose supplier already has records in the Airtable Master Flooring Catalogue (23 suppliers, 7,957 records read 2026-09-24), plus PL-226 (IMPRESSIVE Feb 2026, superseded by PL-381). No other property touched. Held back as newer than Airtable: PL-285/286 (Bella, May 2026), PL-287 (Olympia, May 2026). Final re-query not run: the Notion workspace hit its Query Data Source usage limit; spot checks by page fetch confirmed PL-226 changed and PL-285/286/287 untouched.",
+      "approved_by": "Albert, in chat 2026-09-23 (\"cross reference what is already on Airtable ... Turn them into Not Needed if they exist\")",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "collection://e2dc37bc-63da-42e9-b6c0-63ff48d72e6b"
+    },
+    {
+      "logged_at": "2026-09-23T23:19:00-04:00",
+      "agent": ".claude/commands/catalog-sync.md",
+      "type": "notion_update_page",
+      "target": "Price Lists backlog: PL-22, PL-41, PL-66, PL-70, PL-82, PL-83",
+      "content_summary": "Extraction Status 'Not started' -> 'Not Needed' (Azitech, Electric Supplies, Surfaces x1, Toolway, General Building x2). Albert kept Vista, Baltic, Sidco, JL Tile and Floor & Decor tiles (PL-47). Five further updates in the same batch (PL-65, PL-98, PL-298, PL-190, PL-209) were declined at the permission prompt and not written; the rest of the batch was not sent.",
+      "approved_by": "Albert, in chat 2026-09-23 (\"Keep Vista, Baltic, Sidco, JL, floor and decor but only the tiles\")",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "collection://e2dc37bc-63da-42e9-b6c0-63ff48d72e6b"
+    },
+    {
+      "logged_at": "2026-09-23T23:35:00-04:00",
+      "agent": ".claude/commands/catalog-sync.md",
+      "type": "notion_update_page",
+      "target": "Price Lists: PL-285, PL-286 (Bella Flooring Plus), PL-287 (Olympia Tile)",
+      "content_summary": "Extraction Status 'Not started' -> 'Not Needed'. Albert: Olympia Tile and Bella Flooring Plus are already in the catalogue.",
+      "approved_by": "Albert, in chat 2026-09-23 (\"Olympia (Tile) already have so put as not needed. Same as Bella Flooring Plus\")",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "collection://e2dc37bc-63da-42e9-b6c0-63ff48d72e6b"
+    },
+    {
+      "logged_at": "2026-09-23T23:39:00-04:00",
+      "agent": ".claude/commands/catalog-sync.md",
+      "type": "notion_update_page",
+      "target": "Price Lists: PL-129 (Sidco), PL-98, PL-298 (Kisense), PL-190 (OMC), PL-209 (OMC Tools), PL-65, 67, 68, 102-106 (Surfaces), PL-20, 64, 73, 89, 154 (Floor & Decor doors)",
+      "content_summary": "Extraction Status 'Not started' -> 'Not Needed' on 18 rows. Albert: wall panels are not processed, and every other row waiting on a call is Not Needed. Still to run: JL Tile (PL-372), Vista (PL-145/146), Baltic Homes (PL-170), Floor & Decor tiles only (PL-47); then PL-373, PL-376, PL-242, PL-377 one by one.",
+      "approved_by": "Albert, in chat 2026-09-23 (\"Wall Panels dont need to be processed. All Not Started Waiting on Call can be put as not needed.\")",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "collection://e2dc37bc-63da-42e9-b6c0-63ff48d72e6b"
     }
   ]
 }

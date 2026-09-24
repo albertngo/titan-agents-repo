@@ -439,7 +439,7 @@ When entering products from a supplier price list, Stock status should be assign
 
 ### Wall panels are out of scope
 
-**Rule (Albert, 2026-09-24): wall panels (WPC / PVC / fluted wall panels, e.g. Sidco)
+**Rule (Albert, 2026-09-23): wall panels (WPC / PVC / fluted wall panels, e.g. Sidco)
 are not processed, from any supplier.** A price list made only of wall panels is marked
 `Not Needed` without extraction; a panel section inside a flooring list is skipped and
 reported, the same as any other out-of-scope section.
