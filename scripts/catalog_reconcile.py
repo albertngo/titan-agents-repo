@@ -797,16 +797,16 @@ def ls_create_fields(row, ls_upload_row):
         if value:
             fields[api_key] = value
 
-    # `product_category` needs the API's flat leaf name ('SPC'), never the LS-upload
-    # CSV's ' / '-separated path ('FLOORING / VINYL / SPC') — same distinction
-    # category_resolves() above already documents. lightspeed_push.py resolves this
-    # value against the live /api/2.0/product_types list by an exact (casefolded)
-    # name match, so handing it the CSV path form 404s with "no product type named
-    # 'FLOORING / VINYL / SPC' exists" — confirmed live on the first real
-    # catalog-sync create run, 2026-09-18.
+    # `product_category` is carried as the CSV's path form ('FLOORING / TILE'),
+    # verbatim. lightspeed_push.Lookups.resolve() matches it against a nested
+    # type's full path first, then falls back to the leaf ('SPC'). Stripping to the
+    # leaf here (as on 2026-09-18, before that fallback existed) threw away the one
+    # thing that tells Titan's two live TILEs apart — PL-372, 2026-09-23, 42 creates
+    # refused as ambiguous until the path was kept (Albert: "use the TILE that is
+    # nested in FLOORING").
     category = clean(ls_upload_row.get("product_category"))
     if category:
-        fields["product_category"] = category.split("/")[-1].strip()
+        fields["product_category"] = category
 
     # Variant grouping. The CSV carries the option as a name/value pair; the API
     # wants {attribute_id, value}, resolved against the live attribute list at

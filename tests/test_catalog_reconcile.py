@@ -169,17 +169,16 @@ class TestUuidRecovery(unittest.TestCase):
         self.assertEqual(create["fields"]["name"], 'BUILT NAME | 7" x 6mm')
         self.assertNotEqual(create["fields"]["name"], "Airtable Name")
 
-    def test_create_product_category_is_the_flat_api_leaf_not_the_csv_path(self):
-        """lightspeed_push.py resolves product_category by exact name against the
-        live /api/2.0/product_types list, which holds flat leaves ('SPC',
-        'LAMINATE') — never the LS-upload CSV's ' / '-separated import-path form
-        ('FLOORING / VINYL / SPC'). Confirmed live 2026-09-18: a create shipped
-        with the path form 404s with "no product type named ... exists".
+    def test_create_product_category_keeps_the_csv_path(self):
+        """The path is passed through verbatim; lightspeed_push resolves it (full
+        nested path first, leaf second). Cutting it to the leaf, as this did until
+        2026-09-23, made 'FLOORING / TILE' indistinguishable from the root TILE and
+        refused every JL Tile create on PL-372.
         """
         rows = [row(SKU="NEW-1", MatchStatus="new", **{"LS Handle / Parent ID": "HNEW"})]
         actions, _, _ = run(rows, [], ls_upload=ls_upload_row())
         create = next(a for a in actions if a["op"] == "create")
-        self.assertEqual(create["fields"]["product_category"], "LAMINATE")
+        self.assertEqual(create["fields"]["product_category"], "FLOORING / LAMINATE")
         self.assertEqual(create["fields"]["price_excluding_tax"], 2.0)
 
 

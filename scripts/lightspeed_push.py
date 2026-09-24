@@ -133,6 +133,13 @@ class Lookups:
                 name = (r.get("name") or "").strip()
                 if name:
                     index.setdefault(name.casefold(), []).append(r["id"])
+                # A nested product type is also indexed by its full path, so
+                # "FLOORING / TILE" names exactly one of the two live TILEs
+                # (Albert, 2026-09-23: "use the TILE that is nested in FLOORING").
+                # A bare duplicated leaf still refuses below.
+                path = [(p.get("name") or "").strip() for p in r.get("category_path") or []]
+                if len(path) > 1 and all(path):
+                    index.setdefault(" / ".join(path).casefold(), []).append(r["id"])
             self._cache[label] = index
         return self._cache[label]
 

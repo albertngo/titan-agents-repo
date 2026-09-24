@@ -702,5 +702,41 @@ class TestProductTypeResolution(unittest.TestCase):
         self.assertIn("CARPET'", msg, "the leaf it also tried should be named")
 
 
+class TestNestedTypePathResolution(unittest.TestCase):
+    """PL-372 JL Tile, 2026-09-23: 42 creates refused on the duplicated TILE.
+
+    Live, one TILE sits at the root and one under FLOORING. Albert: "use the TILE
+    that is nested in FLOORING". The full path names it uniquely; the bare leaf
+    must go on refusing.
+    """
+
+    class _Client:
+        def get(self, path):
+            return {"data": [
+                {"id": "root-tile", "name": "TILE",
+                 "category_path": [{"id": "root-tile", "name": "TILE"}]},
+                {"id": "floor-tile", "name": "TILE",
+                 "category_path": [{"id": "f", "name": "FLOORING"},
+                                   {"id": "floor-tile", "name": "TILE"}]},
+                {"id": "spc", "name": "SPC",
+                 "category_path": [{"id": "spc", "name": "SPC"}]},
+            ]}
+
+    def setUp(self):
+        self.lookups = lpush.Lookups(self._Client())
+
+    def test_full_path_picks_the_nested_one(self):
+        self.assertEqual(self.lookups.resolve("product_type", "FLOORING / TILE"), "floor-tile")
+        self.assertEqual(self.lookups.resolve("product_type", "flooring / tile"), "floor-tile")
+
+    def test_bare_duplicated_leaf_still_refuses(self):
+        with self.assertRaises(lpush.LightspeedError) as cm:
+            self.lookups.resolve("product_type", "TILE")
+        self.assertIn("ambiguous", str(cm.exception))
+
+    def test_unmatched_path_still_falls_back_to_a_unique_leaf(self):
+        self.assertEqual(self.lookups.resolve("product_type", "FLOORING / VINYL / SPC"), "spc")
+
+
 if __name__ == "__main__":
     unittest.main()
