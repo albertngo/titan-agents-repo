@@ -6048,6 +6048,30 @@
    "error": null,
    "raw_ref": "recmPJOOccRxiYRev",
    "raw_ref_action_id": "cat-f0a2b8710e47"
+  },
+  {
+   "logged_at": "2026-09-24T18:29:07-04:00",
+   "agent": "airtable-actions-agent",
+   "type": "airtable_upsert_product",
+   "target": "ENG-FAWK-0089 (FLOORS AT WORK) in Master Flooring Catalogue",
+   "content_summary": "Salesperson notes (fldm06jdSIM9o3PXI) corrected by record id recEgSM3AjthdfacY: 'is to be deleted' -> 'was set inactive on 2026-09-24 (Albert chose inactive over delete)'. SKU and existing notes confirmed live equal to plan sku/before (exact match) before writing; one field only; SKU not in payload; typecast off; read back and confirmed. No price-history row (suspended).",
+   "approved_by": "Albert, in chat 2026-09-24 ('put them as inactive then') \u2014 correcting this run's own note text to match. via catalog-approval-faw-note.json",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "recEgSM3AjthdfacY",
+   "raw_ref_action_id": "cat-f487e1f25f60"
+  },
+  {
+   "logged_at": "2026-09-24T18:29:07-04:00",
+   "agent": "airtable-actions-agent",
+   "type": "airtable_upsert_product",
+   "target": "ENG-FAWK-0090 (FLOORS AT WORK) in Master Flooring Catalogue",
+   "content_summary": "Salesperson notes (fldm06jdSIM9o3PXI) corrected by record id rec9i032u4BjlUorw: 'is to be deleted' -> 'was set inactive on 2026-09-24 (Albert chose inactive over delete)'. SKU and existing notes confirmed live equal to plan sku/before (exact match) before writing; one field only; SKU not in payload; typecast off; read back and confirmed. No price-history row (suspended).",
+   "approved_by": "Albert, in chat 2026-09-24 ('put them as inactive then') \u2014 correcting this run's own note text to match. via catalog-approval-faw-note.json",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "rec9i032u4BjlUorw",
+   "raw_ref_action_id": "cat-b76a809699d4"
   }
  ]
 }
