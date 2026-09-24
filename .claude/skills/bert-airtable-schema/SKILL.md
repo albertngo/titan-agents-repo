@@ -3385,9 +3385,11 @@ same day. A future Weiss run should find every Lightspeed sku equal to the Airta
   19.23 sf/b — a second 8mm line beside the 7"x60" one, so the collection names the
   length; the list prints no line name), `5mm Looselay 22 mil` (501–505, ceramic-bead
   wear layer, 27.17 sf/b), plus new colours in existing lines.
-- **Gone:** the `6mm Vinyl Plank 12 mil` line (Driftwood, Havenest, Venus). Records
-  stay live — no deactivate action exists — and sit in the troubled CSV as
-  `absent_from_list` until Albert decides.
+- **Gone from the list:** the `6mm Vinyl Plank 12 mil` line (Driftwood, Havenest, Venus).
+  **Albert, 2026-09-24: keep it, but note it.** The records stay active at their Aug 1
+  2026 prices, with a Salesperson note saying no current list backs those prices and to
+  confirm with Weiss before quoting. A later Weiss list that still omits the line needs
+  no new question; one that reprices it updates as normal.
 
 ---
 
