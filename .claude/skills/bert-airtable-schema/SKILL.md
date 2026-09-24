@@ -294,6 +294,18 @@ All products follow a single flat markup:
 
 This applies to every category.
 
+> Superseded in part by the dated rulings further down (field tile `+ $ 2.00`, mosaic
+> `+ $ 5.00`, and the accessory tiers). Two more global sundry rules, **Albert,
+> 2026-09-24** — "a good rule to stick by in global rule", every supplier:
+>
+> | Product | Retail |
+> |---|---|
+> | **Underpad / underlayment** (`Product type = Underpad`) | `Cost + $ 20.00` per unit (roll) — confirms the existing cross-supplier tier |
+> | **Adhesive / glue** (`Product type = Adhesive`) | `Cost × 1.40` (40% markup), rounded to the cent |
+>
+> First applied to Vizion PL-373 (Zeromono adhesive $68.00/pail → $95.20; EVA 3mm
+> underpad $22.00/roll → $42.00).
+
 ### Promo pricing flow
 
 When a supplier posts a promotional cost:
