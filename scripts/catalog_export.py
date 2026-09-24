@@ -149,6 +149,12 @@ def load_lightspeed(path):
     return {str(p["sku"]).strip(): p for p in products if p.get("sku")}
 
 
+def load_lightspeed_by_id(path):
+    payload = json.loads(Path(path).read_text())
+    products = payload.get("products", payload)
+    return {str(p["id"]).strip(): p for p in products if p.get("id")}
+
+
 def money(value):
     return "" if value is None else f"{float(value):.2f}"
 
@@ -181,14 +187,25 @@ def airtable_rows(header, rows, live, types, ls):
     return out, stats
 
 
-def ls_rows(header, skus, existing, ls):
-    """One row per SKU in the Airtable file's order."""
+def ls_rows(header, skus, existing, ls, ls_ids=None, ls_by_id=None):
+    """One row per SKU in the Airtable file's order.
+
+    A product is found by the row's Lightspeed ID first, then by SKU. The ID
+    matters wherever the Airtable SKU is not the POS sku — JL Tile (PL-372,
+    2026-09-23): Airtable `TIL-JLTI-36M0633H` is Lightspeed `36M0633H`, and a
+    SKU-only lookup reported 91 live products as "not on the POS". The row then
+    carries the POS's own sku, so the file shows what Lightspeed holds and a
+    manual re-import cannot rename the product.
+    """
+    ls_ids, ls_by_id = ls_ids or {}, ls_by_id or {}
     by_sku = {(r.get("sku") or "").strip(): r for r in existing}
+    by_id = {(r.get("id") or "").strip(): r for r in existing if (r.get("id") or "").strip()}
     variant_cols = header[VARIANT_PAIR_START:VARIANT_PAIR_START + 6]
     out, stats = [], {"live": 0, "kept_extracted": 0, "omitted": 0}
     for sku in skus:
-        base = by_sku.get(sku)
-        product = ls.get(sku)
+        uuid = ls_ids.get(sku, "")
+        base = by_sku.get(sku) or by_id.get(uuid)
+        product = ls_by_id.get(uuid) or ls.get(sku)
         if not product:
             if base:
                 out.append(base)
@@ -200,7 +217,7 @@ def ls_rows(header, skus, existing, ls):
         row.update({
             "id": product.get("id", ""),
             "handle": product.get("handle") or row.get("handle", ""),
-            "sku": sku,
+            "sku": product.get("sku") or sku,
             "name": product.get("name") or row.get("name", ""),
             "product_category": product.get("category") or row.get("product_category", ""),
             "supply_price": money(product.get("supply_price")),
@@ -252,7 +269,9 @@ def main(argv=None):
     ls_path = Path(args.ls_upload)
     ls_header, ls_existing = read_csv(ls_path) if ls_path.exists() else (DEFAULT_LS_HEADER, [])
     skus = [(r.get(SKU) or "").strip() for r in at_rows if (r.get(SKU) or "").strip()]
-    out_ls, ls_stats = ls_rows(ls_header, skus, ls_existing, ls)
+    ls_ids = {(r.get(SKU) or "").strip(): (r.get(LS_ID) or "").strip() for r in at_rows}
+    out_ls, ls_stats = ls_rows(ls_header, skus, ls_existing, ls,
+                               ls_ids, load_lightspeed_by_id(args.lightspeed))
 
     write_csv(args.upload, header, at_rows)
     write_csv(ls_path, ls_header, out_ls)

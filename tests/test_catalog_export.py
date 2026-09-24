@@ -185,6 +185,20 @@ class TestLightspeedSide(unittest.TestCase):
         self.assertEqual("BRAND", out["brand_name"])
         self.assertEqual("1.20", out["supply_price"], "live price wins")
 
+    def test_a_product_under_a_different_pos_sku_is_found_by_its_uuid(self):
+        """JL Tile, PL-372: Airtable TIL-JLTI-36M0633H is Lightspeed 36M0633H."""
+        rec = live_record(fSKU="TIL-JLTI-36M0633H", fLS="uuid-9")
+        mine = {h: "" for h in ce.DEFAULT_LS_HEADER}
+        mine.update({"id": "uuid-9", "sku": "TIL-JLTI-36M0633H", "description": "from the run"})
+        out = Run([upload_row(SKU="TIL-JLTI-36M0633H", **{"Lightspeed ID": "uuid-9"})], [rec],
+                  [ls_product(id="uuid-9", sku="36M0633H", supply_price=2.3,
+                              price_excluding_tax=4.3)], ls_rows=[mine]).ls_out
+        self.assertNotIn("TIL-JLTI-36M0633H", out, "the POS sku is what the POS holds")
+        row = out["36M0633H"]
+        self.assertEqual(("uuid-9", "2.30", "4.30"),
+                         (row["id"], row["supply_price"], row["retail_price"]))
+        self.assertEqual("from the run", row["description"])
+
     def test_not_on_the_pos_keeps_its_row_or_is_left_out(self):
         mine = {h: "" for h in ce.DEFAULT_LS_HEADER}
         mine.update({"sku": "LAM-TEST-0002", "name": "to create"})
