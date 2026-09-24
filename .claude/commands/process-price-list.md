@@ -65,6 +65,11 @@ an LLM transcription of a screenshot, or retyping figures from the Notion `Notes
 a previous run. A price that reaches the POS must be traceable to a deterministic
 parse of the supplier's own bytes.
 
+**Except when the attachment IS an image (Albert, 2026-09-24)** — a JPEG/PNG/HEIC
+photo or scan of a list, not a PDF. Then there are no text bytes to parse, and
+step 2.3 below is the sanctioned method. It does not reopen any of the above for a
+PDF: a PDF is still read by pdfplumber and nothing else.
+
 **Why this is a hard gate and not a preference.** On 2026-09-01 the pdfplumber method
 was written into these docs from a session where it genuinely worked. On 2026-09-02 the
 import in `scripts/pricelist_fetch.py` was made lazy — "so fetching works without it
@@ -150,6 +155,49 @@ parse and a useless one.
 Cross-check the two code paths against each other where both produce a figure: they
 are independent enough that disagreement is a real signal. That replaces the old
 "cross-check against pdfplumber's own text", which compared a parse against itself.
+
+### 2.3 The attachment is an image — two readers, row by row (2026-09-24)
+
+Albert, 2026-09-24, on PL-170 (Baltic Homes, a phone photo of a printed list):
+*"jpg (or any image file) should be allowed. BUT it should read the context of the
+image, and decide if it is flooring. And if so, process just as pdfplumber does."*
+
+Check the downloaded bytes with `file` before step 2.2 — `pricelist_fetch.py` says
+`non-PDF` — and a SharePoint `:i:` share link is the early sign. Then:
+
+1. **Read the image and classify it first.** Is it a price list, and is it flooring?
+   Not a price list → step 5's "not a price list" branch, same as a PDF. Out-of-scope
+   product only (trim, vanities, doors) → report it and stop, same as a PDF section.
+2. **Transcribe it into structured JSON — reader 1.** Zoom the image (crop into
+   bands at ~2×) and read every row: code, colour, description, and every printed
+   price as printed. Shape: `{"rows": [{"key": <code>, "money": [<prices>], …}]}`,
+   saved and **committed** as `ingest/<date>/<supplier>_transcription_<date>.json`
+   next to the image itself (`<supplier>_<PL>_source.<ext>`), so every price stays
+   traceable to its bytes.
+3. **Cross-check it with OCR — reader 2:**
+   ```bash
+   pip install rapidocr_onnxruntime   # not vendored: ~100 MB with onnxruntime/opencv
+   python3 scripts/pricelist_image_check.py <image> <transcription.json> --json <report.json>
+   ```
+   RapidOCR shares nothing with the model reading the image. Every transcribed price
+   must be on the **same row** of the OCR output, and every priced OCR line must be
+   claimed by a transcribed row.
+
+| Exit | Meaning | What to do |
+|---|---|---|
+| `0` | Both readers agree on every price, row by row | Proceed to step 3 with the transcription |
+| `1`, rows `disagree` / `not_located` | OCR read a different number, or could not find the row | **Hold those rows** — `ambiguous_pricing`, `held`, the two readings in `col_printed`. The rest proceed. Never pick a reader |
+| `1`, `unclaimed priced OCR lines` | OCR saw a priced line the transcription does not have | **Stop.** The transcription dropped a row; fix it and re-run |
+| `2` | No OCR engine | Stop, per step 2.0 — never proceed on one reader |
+
+**Why rows are held rather than the whole list voided**, unlike a PDF's exit 1: OCR
+on a phone photo misreads characters far more often than a PDF engine does, so an
+all-or-nothing rule would make every photographed list unprocessable. A held row
+writes nothing, so the pricing carve-out still protects it. On PL-170 OCR read
+HD-005's 3.92 as 3.02; the other 31 rows agreed exactly.
+
+**Do not upscale for OCR.** On PL-170 a 2.2× crop introduced four new misreads
+(3.43, 3.01, 3.40, 1.93); zoom is for the transcription, not the check.
 
 ## 3. Assign `Company` — before checking parseability
 
