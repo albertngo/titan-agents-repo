@@ -68,3 +68,19 @@ in `process-price-list.md`, independent of anything in this file.
   subject, and sender domain `vbkinc.com`, all agreeing). VBK does not yet
   appear in `airtable-destinations.json`'s `supplier_aliases` — not yet
   onboarded to Airtable/Lightspeed, and this entry does not imply it should be.
+
+## VISTA (Notion Company value, exact casing)
+
+- **2026-09-24** — from Price Lists rows `29f596a4-505f-815c-b44c-f84bb1cc61c7` (PL-145)
+  and `29f596a4-505f-817f-86d6-fbf9e03a2b6b` (PL-146) (`TRIM ON SALE~~NEW PRICE LIST`,
+  sender `vistastairjoanna@gmail.com`): Vista Stairs, 100 Esna Park Dr., Markham. Both
+  attachments are the same 3-page "Primed Trim Price List", effective 2025-07-07 — 43
+  primed wood items (baseboard 4"–7¼", casing 2¾"–3½", door jamb, quarter round, door
+  stop) — PL-145 priced at "Store Price /pc (≥100 pcs)", PL-146 at the lower "Skid Price
+  /pc". Parsed cleanly (both engines agreed), but **Albert set both rows Not Needed**:
+  trim is outside the catalogue per the standing moulding exclusion. What Titan actually
+  stocks from Vista is stair parts — 142 live Lightspeed products under supplier `VISTA`
+  (risers, nosings, treads, spindles, pickets, posts, handrail supports, engineered
+  stair pieces) — plus about 4 trims (CWS31-H-08, 11241, 11207, 11242) whose LS costs
+  equal the Store Price column. A Vista *stair-parts* list would be a different
+  question; this entry does not decide it.
