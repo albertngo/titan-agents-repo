@@ -7834,6 +7834,17 @@
    "result": "executed",
    "error": null,
    "raw_ref": "29f596a4505f81f893e8d35c4b377c49,29f596a4505f8134a191ecd9e4d6d390,29f596a4505f816aae9be74cba69f661,29f596a4505f81b3aa08d40517263569,29f596a4505f819b9147c0b513508df8,29f596a4505f81f6ac38cd31d9257d1b,29f596a4505f81379507faea78d9a7f6"
+  },
+  {
+   "logged_at": "2026-09-24T00:38:38-04:00",
+   "agent": ".claude/commands/catalog-sync.md",
+   "type": "notion_update_page",
+   "target": "Price Lists PL-372 (3d8596a4-505f-810d-b999-f406f9687f1e) — Extracted Files, Troubled Files",
+   "content_summary": "Attached the step-5a re-rendered jltile_airtable_upload_2026-09-23.csv + jltile_ls_upload_2026-09-23.csv (Extracted Files) and jltile_troubled_2026-09-23.csv (Troubled Files), replacing the 2026-09-14 files. Via create-attachment inline content because the file-upload endpoint returned HTTP 500 MemcachedCrossCellError; uploaded with LF line endings (repo copies are CRLF), each verified identical after download.",
+   "approved_by": "Albert, in chat 2026-09-23 (\"Yes\" to running PL-372)",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "3e5596a4-505f-8108-add6-00b2ea1abfc8,3e5596a4-505f-8191-b8c9-00b2b39cc12d,3e5596a4-505f-812c-b6a0-00b2f2ab578e"
   }
  ]
 }
