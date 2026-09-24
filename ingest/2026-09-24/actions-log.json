@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "entries": [
+    {
+      "logged_at": "2026-09-24T08:52:00-04:00",
+      "agent": ".claude/commands/notion-sync.md",
+      "type": "notion_create_task",
+      "target": "team destination dedupe query (Tactical Tasks List, Tags contains 'ghl', Status not in closed_statuses)",
+      "content_summary": "Dedupe query against the team destination failed before any candidate could be created or updated (11 GHL high-priority candidates were resolved and ready). Per contracts/notion-task-schema.md's Failure policy, stopped before any writes.",
+      "approved_by": "auto: notion-task-schema.md team routing, policy approved by Albert 2026-07-27",
+      "result": "failed",
+      "error": "Notion workspace usage limit for Query Data Source reached (same cap notion-ingest-agent hit earlier this run) — dedupe query against collection://238596a4-505f-8137-af13-000bde205213 returned no result on two attempts.",
+      "raw_ref": null
+    }
+  ]
+}
