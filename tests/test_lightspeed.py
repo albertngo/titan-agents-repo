@@ -322,12 +322,39 @@ class TestWriter(unittest.TestCase):
                                               "value": "Character"}]}]}
         self.assertEqual(w.family_attribute_values("x")["v1"][0]["value"], "Character")
 
-    def test_there_is_no_delete_capability(self):
+    def test_delete_is_guarded_by_a_live_sku_check(self):
+        """Delete exists since 2026-09-24 (Albert), but only for the product meant:
+        a UUID whose live sku differs is refused before any request is built."""
+        w = self.writer()
+        sent = []
+        w._send = lambda m, p, params=None, body=None: (sent.append(m), {})[1]
+        w.read_product = lambda pid: {"sku": "ENG-FAWK-0061"}
+        with self.assertRaises(lsc.LightspeedError):
+            w.delete_product("id-1", expect_sku="ENG-FAWK-0060")
+        self.assertEqual(sent, [])
+
+    def test_delete_refuses_a_variant_family(self):
+        w = self.writer()
+        w._send = lambda m, p, params=None, body=None: {}
+        for product in ({"sku": "A", "has_variants": True},
+                        {"sku": "A", "variant_parent_id": "fam-1"},
+                        {"sku": "A", "variant_count": 3}):
+            w.read_product = lambda pid, product=product: product
+            with self.assertRaises(lsc.LightspeedError):
+                w.delete_product("id-1", expect_sku="A")
+
+    def test_delete_dry_run_sends_nothing(self):
         w = self.writer(dry_run=True)
-        for banned in ("delete", "delete_product", "deactivate", "archive"):
-            self.assertFalse(hasattr(w, banned), f"writer exposes {banned}")
-        src = (REPO_ROOT / "scripts/lightspeed_write.py").read_text()
-        self.assertNotIn('"DELETE"', src.replace('WRITE_METHODS = ("POST", "PUT", "PATCH", "DELETE")', ''))
+        w.read_product = lambda pid: {"sku": "A"}
+        self.assertIsNone(w.delete_product("id-1", expect_sku="A"))
+        self.assertEqual(w.sent, [])
+        self.assertEqual([r["method"] for r in w.planned], ["DELETE"])
+
+    def test_policy_approval_can_never_carry_a_delete(self):
+        import lightspeed_push as lp
+        self.assertFalse(lp.person_approved({"approved_by": "policy: auto-approval (2026-09-12 rubric)"}))
+        self.assertFalse(lp.person_approved({"approved_by": ""}))
+        self.assertTrue(lp.person_approved({"approved_by": "Albert, in chat 2026-09-24: 'Delete'"}))
 
     def test_reads_still_go_through_the_read_path(self):
         """read_family must not be caught by the dry-run write interceptor."""

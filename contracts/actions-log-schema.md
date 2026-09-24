@@ -50,7 +50,7 @@ Each value belongs to exactly one agent's allowed-actions table.
 |---|---|
 | `send_sms`, `send_email`, `move_stage`, `add_tag`, `remove_tag`, `create_task` | `ghl-actions-agent` |
 | `notion_create_task`, `notion_update_task`, `notion_create_page` | `.claude/commands/notion-sync.md`, `project-status-meeting-processor` |
-| `lightspeed_create_product`, `lightspeed_update_product` | `lightspeed-actions-agent` |
+| `lightspeed_create_product`, `lightspeed_update_product`, `lightspeed_delete_product` | `lightspeed-actions-agent` |
 | `airtable_upsert_product`, `airtable_backfill_ls_id`, `airtable_create_price_history` | `airtable-actions-agent` |
 | `social_schedule_post`, `social_update_post`, `social_reschedule_post`, `social_flag_manual` | `social-actions-agent` |
 | `notion_write_troubled_table`, `notion_update_page` | `.claude/commands/catalog-sync.md` |
@@ -66,9 +66,22 @@ row: tracker properties, `Notes`, re-attaching `Extracted Files` after step 5a, 
 dated update section in the page body. It was in use from 2026-09-22 before this
 table named it (added 2026-09-23).
 
-There is deliberately **no delete or deactivate value for any platform**. Removing a
-product from the POS or a record from the catalogue is a person's decision made in
-that platform's UI, so no agent has a type for it and none may be added.
+**Deleting a catalogue product: a person's decision, never a policy one (2026-09-24,
+Albert — replacing "no delete value for any platform").** `lightspeed_delete_product`
+exists for one case: a product the supplier's newest list
+no longer carries, which Albert has said to remove ("If they don't exist in the newest,
+delete them", FAW PL-377). The rule that survives is who decides. A delete action
+executes only under an approval file whose `approved_by` names a person;
+`scripts/lightspeed_push.py` refuses one under the policy auto-approval, and
+`catalog-plan-schema.md` lists delete as a carve-out policy never clears. The type
+is never emitted by the reconciler, so a delete is always hand-planned against a named
+instruction. There is still no deactivate type, and nothing deletes a record that the
+newest list still prints. Lightspeed's delete archives the product (`deleted_at`) and
+keeps its sales history. **The Airtable record is removed by a person in Airtable's
+UI**: `airtable-actions-agent` carries no delete tool, and granting it one was
+deliberately not done by a session (2026-09-24). Delete both sides together; a
+Lightspeed product deleted while its Airtable record stays leaves a dangling
+`Lightspeed ID` that the reconciler blocks as `uuid_not_in_lightspeed`.
 
 The same rule binds the social types, and binds harder. There is **no value for
 deleting or editing a live post, and none for replying to a comment or a DM** — a

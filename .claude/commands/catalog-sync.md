@@ -333,8 +333,11 @@ for a brand; the error text for anything else), and re-run the dry run until it 
 `0`. Never create the missing brand, supplier or category.
 
 `scripts/lightspeed_write.py` and `lightspeed_push.py` are the **only** two files that
-can change the POS. There is no delete or deactivate action type in either system, and
-none may be added — removing a product is a person's decision in that platform's UI.
+can change the POS. There is no deactivate action type. A `delete` op exists since
+2026-09-24 (Albert), for a product the supplier's newest list no longer carries. It is
+never emitted by the reconciler and never auto-approved: it is hand-planned against a
+person's instruction, and `lightspeed_push.py` refuses it under a policy approval
+(`contracts/catalog-plan-schema.md`, carve-out 4).
 
 An update writes **prices only**. It never writes `name`: Lightspeed holds a
 constructed name that is not Airtable's `Product name`, and sending one renames or

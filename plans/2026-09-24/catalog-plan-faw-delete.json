@@ -1,0 +1,57 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "FLOORS AT WORK",
+ "run_at": "2026-09-24T12:35:54-04:00",
+ "status": "ready",
+ "inputs": {
+  "source": "hand-planned on a named instruction"
+ },
+ "cost_basis": {
+  "value": "dealer",
+  "confirmed_by": "FAW #### Cost column"
+ },
+ "summary": {
+  "lightspeed_delete": 2
+ },
+ "blocked": [],
+ "warnings": [],
+ "_note": "Hand-built. Deletes the two old T&G Designer products the newest FAW list no longer carries. Their Airtable records (recy3tfEnghPMdXBN, recmPJOOccRxiYRev) are deleted by a person in Airtable — the airtable-actions-agent has no delete tool.",
+ "actions": [
+  {
+   "id": "cat-0a290fdc5e50",
+   "target_system": "lightspeed",
+   "op": "delete",
+   "sku": "ENG-FAWK-0060",
+   "airtable_rec_id": "recy3tfEnghPMdXBN",
+   "ls_id": "1b0d9d29-491a-42e8-ae8a-6f4f0e51696e",
+   "handle": null,
+   "fields": {
+    "expect_sku": "ENG-FAWK-0060"
+   },
+   "before": {
+    "sku": "ENG-FAWK-0060",
+    "name": "NAFENG - Designer European White Oak (Toffee) T&G | 5\" x 18mm x RL - 3mm top - 20.77sf/b - Select"
+   },
+   "reason": "not on the newest FAW list (PL-377 prints only the new Designer Click Toffee/Warm Honey, ENG-FAWK-0089/0090); Albert 2026-09-24: 'If they don't exist in the newest, delete them' / 'Delete'",
+   "seq": 1
+  },
+  {
+   "id": "cat-f6a696a20054",
+   "target_system": "lightspeed",
+   "op": "delete",
+   "sku": "ENG-FAWK-0065",
+   "airtable_rec_id": "recmPJOOccRxiYRev",
+   "ls_id": "70e9a691-05f3-4965-ab88-e2ea520537ae",
+   "handle": null,
+   "fields": {
+    "expect_sku": "ENG-FAWK-0065"
+   },
+   "before": {
+    "sku": "ENG-FAWK-0065",
+    "name": "NAFENG - Designer European White Oak (Warm Honey) T&G | 7.5\" x 18mm x RL - 3mm top - 23.31sf/b - Select & Better"
+   },
+   "reason": "not on the newest FAW list (PL-377 prints only the new Designer Click Toffee/Warm Honey, ENG-FAWK-0089/0090); Albert 2026-09-24: 'If they don't exist in the newest, delete them' / 'Delete'",
+   "seq": 2
+  }
+ ]
+}

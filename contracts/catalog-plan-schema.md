@@ -59,6 +59,9 @@ carve-outs below. Everything it does not clear lands in the run's troubled-SKUs 
    nobody has recorded what the sheet's printed numbers mean, every price on it is a
    guess, and precedent runs three ways (dealer-cost-only, MSRP × multiplier, both
    columns printed).
+4. **Its `op` is `delete`** (2026-09-24). A removal is only ever a person's decision.
+   The reconciler never emits one; it is hand-planned against a named instruction, and
+   `lightspeed_push.py` refuses to send one under a policy approval.
 
 Carve-outs 2 and 3 are both the same failure — a wrong cost — caught at two
 different points. It is the one error that is silent *and* monetary: it does not look
@@ -153,7 +156,7 @@ changes every row.
 | `id` | `cat-<sha1[:12]>` over supplier + sku + target_system + op. **Stable across re-runs** — that is what makes the actions-log idempotency check work |
 | `seq` | Execution order. Ascending, gapless |
 | `target_system` | `airtable` \| `lightspeed` |
-| `op` | `upsert` \| `create` \| `update` \| `backfill_ls_id` |
+| `op` | `upsert` \| `create` \| `update` \| `backfill_ls_id` \| `delete` (hand-planned only; person approval only — see carve-out 4) |
 | `sku` | Airtable `SKU`. The join key across both systems |
 | `airtable_rec_id` | `MatchedRecId`, or `null` on a create |
 | `ls_id` | The Lightspeed UUID. `null` where Lightspeed will mint one |

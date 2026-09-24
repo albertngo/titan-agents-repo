@@ -145,7 +145,8 @@ Nothing changed about an action needing an id in the approval file before an
 
 **Only two files can change the POS**: `scripts/lightspeed_write.py` and
 `scripts/lightspeed_push.py`. The read path contains no write verb and a test
-enforces that. Neither system has a delete or deactivate action type, deliberately.
+enforces that. There is no deactivate action type. A **delete** type exists since 2026-09-24 (Albert: products
+the newest list no longer carries), and only a person's approval can execute one; policy never can.
 
 Add a new agent = add one file in `.claude/agents/` + conform to the matching contract
 (`ingest-schema.md` for ingesters, `actions-log-schema.md` for actions agents).

@@ -110,6 +110,16 @@ def load_approval(path, plan_path):
                       if d.get("status") == "approved"}
 
 
+def person_approved(approval):
+    """True when the approval names a person, not the policy rubric.
+
+    The policy auto-approval writes `approved_by` starting "policy"; anything a
+    person signs says who. Used to keep deletes out of every unattended path.
+    """
+    by = (approval.get("approved_by") or "").strip().lower()
+    return bool(by) and not by.startswith("policy") and "auto-approval" not in by
+
+
 class Lookups:
     """Name -> id, read live. Never creates anything."""
 
@@ -337,6 +347,13 @@ def main():
 
     updates = [a for a in todo if a["op"] == "update"]
     creates = [a for a in todo if a["op"] == "create"]
+    deletes = [a for a in todo if a["op"] == "delete"]
+    if deletes and not person_approved(approval):
+        print(f"error: {len(deletes)} delete action(s) under a policy approval "
+              f"({approval.get('approved_by')!r}). A delete is only ever a person's "
+              "decision; policy auto-approval can never carry one. Nothing was sent.",
+              file=sys.stderr)
+        return 1
     backfill_path = args.plan.with_name(f"catalog-backfill-{slug}.json")
     # Start from what earlier runs of this plan already created, so the file is
     # complete even when the run that created them died before writing it.
@@ -358,6 +375,25 @@ def main():
                            f"Set {', '.join(f'{k}={v}' for k, v in a['fields'].items())}.",
                            approved_by, "executed", raw_ref=a["ls_id"])
             print(f"  update {a['sku']:20} {a['ls_id']}")
+
+        for a in sorted(deletes, key=lambda a: a["seq"]):
+            current.update(type="lightspeed_delete_product", target=f"{a['sku']} ({a['ls_id']})")
+            writer.delete_product(a["ls_id"], expect_sku=a["fields"]["expect_sku"])
+            if not args.dry_run:
+                try:
+                    gone = writer.read_product(a["ls_id"])
+                except LightspeedError as e:
+                    if "404" not in str(e):
+                        raise
+                    gone = None  # not found at all: removed
+                if gone and not gone.get("deleted_at"):
+                    raise LightspeedError(
+                        f"deleted {a['sku']} but a re-read still shows it live (no deleted_at)")
+                log.append(a["id"], "lightspeed_delete_product",
+                           f"{a['sku']} ({a['ls_id']})",
+                           f"Deleted (archived) and confirmed by re-read. Reason: {a.get('reason')}.",
+                           approved_by, "executed", raw_ref=a["ls_id"])
+            print(f"  delete {a['sku']:20} {a['ls_id']}")
 
         families = defaultdict(list)
         for a in creates:

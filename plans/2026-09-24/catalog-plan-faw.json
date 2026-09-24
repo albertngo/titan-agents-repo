@@ -1,0 +1,209 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "FLOORS AT WORK",
+ "run_at": "2026-09-24T12:34:40.032917-04:00",
+ "status": "ok",
+ "inputs": [
+  {
+   "file": "ingest/2026-09-24/faw_airtable_upload_2026-09-24.csv",
+   "rows": 2
+  },
+  {
+   "file": "ingest/2026-09-24/lightspeed-products.json",
+   "products": 15089,
+   "run_at": "2026-09-24T12:01:20.562885-04:00"
+  },
+  {
+   "file": "ingest/2026-09-24/faw_airtable_existing.json",
+   "records": 0
+  },
+  {
+   "file": "/tmp/claude-0/-home-user/7073bf12-0ecb-5aba-9f48-381dc91fbc0c/scratchpad/schema_live.json",
+   "select_fields": 20
+  },
+  {
+   "file": "ingest/2026-09-24/faw_ls_upload_2026-09-24.csv",
+   "rows": 2
+  }
+ ],
+ "cost_basis": {
+  "value": "dealer",
+  "confirmed_by": "FAW #### Cost column (bert-airtable-schema)"
+ },
+ "summary": {
+  "airtable_backfill_ls_id": 2,
+  "airtable_upsert": 2,
+  "lightspeed_create": 2,
+  "actions_total": 6,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 0,
+  "warnings": 0,
+  "rows_in": 2
+ },
+ "actions": [
+  {
+   "id": "cat-2247cd5fbee4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0089",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "ENG5OAKTOFFEEDESCLICK",
+   "fields": {
+    "Product name": "NAF Engineered European White Oak Designer Click 5\" \u2014 Toffee",
+    "Brand": "NAF",
+    "Supplier": "FLOORS AT WORK",
+    "LS Handle / Parent ID": "ENG5OAKTOFFEEDESCLICK",
+    "Collection": "Designer Click",
+    "Product type": "Flooring",
+    "Category": "Engineered hardwood",
+    "Material type": "Hardwood plywood",
+    "Species": "European White Oak",
+    "Grade": "Select",
+    "Width (in)": "5",
+    "Length": "1900mm (RL)",
+    "Thickness (mm)": "18",
+    "Veneer / top layer (mm)": "3",
+    "Install profile": "Click",
+    "Install method": "Float",
+    "Cost/unit": "4.69",
+    "Retail price/unit": "5.69",
+    "Last price update": "2026-09-19",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "20.77",
+    "Boxes per skid": "48",
+    "Active": "TRUE",
+    "Salesperson notes": "2026-09-24 (PL-377, FAW Sept 19 2026 list, p.3): 'NEW! NAF Designer Eng. European White Oak - Click (3mm Veneer, Select Grade)'. A new product in the Designer Click collection (Albert: brand new collection, 2026-09-22). NOT the older T&G Designer Toffee (ENG-FAWK-0060) \u2014 Albert 2026-09-24: both are Click-era products with different specs and prices; the T&G one is not on the newest list and is to be deleted. Grade Select as printed. Finish not printed on the Click row, left blank. Cost = pallet price column as printed; Retail = Cost + $1.00."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 1
+  },
+  {
+   "id": "cat-1f80427dc672",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0090",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "ENG75OAKWARMHONEYDESCLICK",
+   "fields": {
+    "Product name": "NAF Engineered European White Oak Designer Click 7.5\" \u2014 Warm Honey",
+    "Brand": "NAF",
+    "Supplier": "FLOORS AT WORK",
+    "LS Handle / Parent ID": "ENG75OAKWARMHONEYDESCLICK",
+    "Collection": "Designer Click",
+    "Product type": "Flooring",
+    "Category": "Engineered hardwood",
+    "Material type": "Hardwood plywood",
+    "Species": "European White Oak",
+    "Grade": "Select & Better",
+    "Width (in)": "7.5",
+    "Length": "1900mm (RL)",
+    "Thickness (mm)": "18",
+    "Veneer / top layer (mm)": "3",
+    "Install profile": "Click",
+    "Install method": "Float",
+    "Cost/unit": "6.79",
+    "Retail price/unit": "7.79",
+    "Last price update": "2026-09-19",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "23.31",
+    "Boxes per skid": "40",
+    "Active": "TRUE",
+    "Salesperson notes": "2026-09-24 (PL-377, FAW Sept 19 2026 list, p.3): 'NEW! NAF Designer Eng. European White Oak - Click (3mm Veneer, AB Grade)'. A new product in the Designer Click collection (Albert: brand new collection, 2026-09-22). NOT the older T&G Designer Warm Honey (ENG-FAWK-0065) \u2014 Albert 2026-09-24: both are Click-era products with different specs and prices; the T&G one is not on the newest list and is to be deleted. Grade AB -> Select & Better per the letter-grade rule. Finish not printed on the Click row, left blank. Cost = pallet price column as printed; Retail = Cost + $1.00."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 2
+  },
+  {
+   "id": "cat-1b0590533dba",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-FAWK-0089",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "ENG5OAKTOFFEEDESCLICK",
+   "fields": {
+    "sku": "ENG-FAWK-0089",
+    "handle": "ENG5OAKTOFFEEDESCLICK",
+    "name": "NAFENG - Designer Click European White Oak (Toffee) | 5\" x 18mm x RL - 3mm top - 20.77sf/b - Select",
+    "supply_price": 4.69,
+    "price_excluding_tax": 5.69,
+    "description": "Material type: Hardwood plywood | Box size (sf): 20.77 | Salesperson notes: 2026-09-24 (PL-377, FAW Sept 19 2026 list, p.3): 'NEW! NAF Designer Eng. European White Oak - Click (3mm Veneer, Select Grade)'. A new product in the Designer Click collection (Albert: brand new collection, 2026-09-22). NOT the older T&G Designer Toffee (ENG-FAWK-0060) \u2014 Albert 2026-09-24: both are Click-era products with different specs and prices; the T&G one is not on the newest list and is to be deleted. Grade Select as printed. Finish not printed on the Click row, left blank. Cost = pallet price column as printed; Retail = Cost + $1.00.",
+    "brand_name": "NAF",
+    "supplier_name": "FLOORS AT WORK",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 3
+  },
+  {
+   "id": "cat-ab051703631f",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-FAWK-0090",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "ENG75OAKWARMHONEYDESCLICK",
+   "fields": {
+    "sku": "ENG-FAWK-0090",
+    "handle": "ENG75OAKWARMHONEYDESCLICK",
+    "name": "NAFENG - Designer Click European White Oak (Warm Honey) | 7.5\" x 18mm x RL - 3mm top - 23.31sf/b - Select & Better",
+    "supply_price": 6.79,
+    "price_excluding_tax": 7.79,
+    "description": "Material type: Hardwood plywood | Box size (sf): 23.31 | Salesperson notes: 2026-09-24 (PL-377, FAW Sept 19 2026 list, p.3): 'NEW! NAF Designer Eng. European White Oak - Click (3mm Veneer, AB Grade)'. A new product in the Designer Click collection (Albert: brand new collection, 2026-09-22). NOT the older T&G Designer Warm Honey (ENG-FAWK-0065) \u2014 Albert 2026-09-24: both are Click-era products with different specs and prices; the T&G one is not on the newest list and is to be deleted. Grade AB -> Select & Better per the letter-grade rule. Finish not printed on the Click row, left blank. Cost = pallet price column as printed; Retail = Cost + $1.00.",
+    "brand_name": "NAF",
+    "supplier_name": "FLOORS AT WORK",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 4
+  },
+  {
+   "id": "cat-d0e2965800fa",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-FAWK-0089",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "ENG5OAKTOFFEEDESCLICK",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 5
+  },
+  {
+   "id": "cat-9c19bd1d9713",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-FAWK-0090",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "ENG75OAKWARMHONEYDESCLICK",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 6
+  }
+ ],
+ "blocked": [],
+ "warnings": []
+}

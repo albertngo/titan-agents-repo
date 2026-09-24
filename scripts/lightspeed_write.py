@@ -8,13 +8,20 @@ scripts/lightspeed_push.py.
 
 What it can do, and nothing more:
 
-    create_family(payload)          POST /api/2.0/products
-    update_variant(id, details)     PUT  /api/2.1/products/{id}
-    read_family(id)                 GET  /api/3.0/products/{id}
+    create_family(payload)          POST   /api/2.0/products
+    update_variant(id, details)     PUT    /api/2.1/products/{id}
+    delete_product(id, expect_sku)  DELETE /api/2.0/products/{id}
+    read_family(id)                 GET    /api/3.0/products/{id}
 
-There is no delete and no deactivate, deliberately and permanently. Removing a
-product from a live POS is a human decision made in the Lightspeed UI; nothing in
-this pipeline may do it, so the capability simply does not exist here.
+**Delete exists since 2026-09-24, and only as a person's decision.** Until then there
+was none, deliberately. Albert reversed that for products a supplier's newest list no
+longer carries (FAW PL-377: the old T&G Toffee / Warm Honey, "If they don't exist in
+the newest, delete them"). What still holds: removing a product is never the
+pipeline's idea. lightspeed_push.py refuses a delete action unless the approval
+names a person (a policy auto-approval can never carry one), and delete_product()
+re-reads the product first, refusing unless its live sku is the one the plan meant.
+It also refuses a variant family, because deleting a parent takes its variants with it.
+Lightspeed's delete archives the product (`deleted_at`); its sales history stays.
 
 Three versions are in play and that is not an accident of ours — creates are 2.0,
 updates are 2.1, reading a whole family is 3.0. Paths come from
@@ -50,7 +57,7 @@ WRITE_METHODS = ("POST", "PUT", "PATCH", "DELETE")
 
 
 class LightspeedWriter(LightspeedClient):
-    """Adds create and update to the read-only client. No delete, ever."""
+    """Adds create, update and a guarded delete to the read-only client."""
 
     def __init__(self, *args, dry_run=False, **kwargs):
         super().__init__(*args, **kwargs)
@@ -213,6 +220,29 @@ class LightspeedWriter(LightspeedClient):
         details["product_suppliers"] = self._product_suppliers_with_price(
             product_id, supply_price)
         return details
+
+    def delete_product(self, product_id, expect_sku):
+        """Delete (archive) ONE standalone product, after proving it is the one meant.
+
+        Re-reads the product and refuses unless its live sku equals `expect_sku`, so
+        a stale or mistyped UUID cannot remove a different product. Refuses a variant
+        family or a member of one: deleting a parent removes every variant with it,
+        and deleting one member of a family is a family edit, not a removal.
+        """
+        product = self.read_product(product_id)
+        live_sku = product.get("sku")
+        if not product or live_sku != expect_sku:
+            raise LightspeedError(
+                f"refusing to delete {product_id}: its live sku is {live_sku!r}, "
+                f"the plan expected {expect_sku!r}")
+        if product.get("has_variants") or product.get("variant_parent_id") \
+                or (product.get("variant_count") or 0) > 1:
+            raise LightspeedError(
+                f"refusing to delete {expect_sku} ({product_id}): it belongs to a "
+                "variant family, and a delete there removes more than one product")
+        path = f"{self.cfg['api']['endpoints']['products']}/{product_id}"
+        body = self._send("DELETE", path)
+        return None if body.get("dry_run") else body
 
     def read_product(self, product_id):
         """GET one product from the 2.0 endpoint — carries product_suppliers[] with prices."""
