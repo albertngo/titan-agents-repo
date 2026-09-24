@@ -201,6 +201,31 @@ class TestWriter(unittest.TestCase):
         self.assertEqual(seen["body"]["details"]["product_suppliers"],
                          [{"supplier_id": "sup-1", "price": 3.5, "code": "FAW-123"}])
 
+    def test_sku_correction_rewrites_the_custom_code_in_place(self):
+        """2.1 has no `sku` key (422, Vizion 11476, 2026-09-24): the sku is the
+        product's CUSTOM product code, and every other code must survive."""
+        w = self.writer()
+        seen = {}
+        w._send = lambda m, p, params=None, body=None: (seen.update(body=body), {})[1]
+        w.read_product = lambda pid: {"sku": "11476", "product_codes": [
+            {"id": "pc-1", "type": "CUSTOM", "code": "11476"},
+            {"id": "pc-2", "type": "UPC", "code": "0123"}]}
+        w.update_variant("id-1", {"sku": "LVP-VIZN-V7002", "price_excluding_tax": 2.69})
+        self.assertEqual(seen["body"], {"details": {
+            "price_excluding_tax": 2.69,
+            "product_codes": [{"id": "pc-1", "type": "CUSTOM", "code": "LVP-VIZN-V7002"},
+                              {"id": "pc-2", "type": "UPC", "code": "0123"}]}})
+        self.assertNotIn('"sku"', json.dumps(seen["body"]))
+
+    def test_sku_correction_refuses_without_exactly_one_custom_code(self):
+        w = self.writer()
+        w._send = lambda m, p, params=None, body=None: {}
+        for codes in ([], [{"id": "a", "type": "CUSTOM", "code": "1"},
+                           {"id": "b", "type": "CUSTOM", "code": "2"}]):
+            w.read_product = lambda pid, codes=codes: {"product_codes": codes}
+            with self.assertRaises(lsc.LightspeedError):
+                w.update_variant("id-1", {"sku": "NEW-1"})
+
     def test_update_refuses_a_cost_with_no_supplier(self):
         """Inventing a supplier to make the write land is not a fix."""
         w = self.writer()

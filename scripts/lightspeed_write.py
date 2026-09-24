@@ -200,6 +200,8 @@ class LightspeedWriter(LightspeedClient):
         "ours" is decided by the product's own `supplier_id`, never by position.
         """
         details = dict(details)
+        if "sku" in details:
+            details["product_codes"] = self._product_codes_with_sku(product_id, details.pop("sku"))
         if "supply_price" not in details:
             return details
 
@@ -220,6 +222,37 @@ class LightspeedWriter(LightspeedClient):
         if isinstance(data, list):
             data = data[0] if data else {}
         return data or {}
+
+    SKU_AT_WRITE_TIME = "<existing CUSTOM code id resolved at write time>"
+
+    def _product_codes_with_sku(self, product_id, sku):
+        """Correct a product's sku to `sku` — RULE 0: when Lightspeed and Airtable
+        disagree about a SKU, the Lightspeed record is what gets corrected.
+
+        The 2.1 update has no `sku` key (422 "Unknown field in payload", verified
+        live 2026-09-24 on Vizion 11476). A product's sku IS its single `CUSTOM`
+        entry in `product_codes`, and `product_codes` replaces the whole list, so
+        every existing code goes back and only the CUSTOM one is rewritten, in
+        place by its own id. Anything but exactly one CUSTOM code is refused.
+        """
+        if not sku:
+            raise LightspeedError("refusing to set an empty sku")
+        if self.dry_run:
+            return [{"id": self.SKU_AT_WRITE_TIME, "type": "CUSTOM", "code": sku}]
+        product = self.read_product(product_id)
+        codes = product.get("product_codes") or []
+        custom = [c for c in codes if c.get("type") == "CUSTOM"]
+        if len(custom) != 1:
+            raise LightspeedError(
+                f"product {product.get('sku') or product_id} carries {len(custom)} CUSTOM "
+                "product codes; refusing to guess which one is its sku.")
+        out = []
+        for c in codes:
+            entry = {k: c[k] for k in ("id", "type", "code") if c.get(k) is not None}
+            if c is custom[0]:
+                entry["code"] = sku
+            out.append(entry)
+        return out
 
     def _product_suppliers_with_price(self, product_id, price):
         """Every existing supplier row, carried through, with only ours repriced.
