@@ -1,0 +1,405 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "WEISS",
+ "run_at": "2026-09-24T12:11:47.684278-04:00",
+ "status": "ok",
+ "inputs": [
+  {
+   "file": "/tmp/claude-0/-home-user/7073bf12-0ecb-5aba-9f48-381dc91fbc0c/scratchpad/weiss_upload_r2.csv",
+   "rows": 79
+  },
+  {
+   "file": "ingest/2026-09-24/lightspeed-products.json",
+   "products": 15089,
+   "run_at": "2026-09-24T12:01:20.562885-04:00"
+  },
+  {
+   "file": "ingest/2026-09-24/weiss_airtable_existing_r2.json",
+   "records": 82
+  },
+  {
+   "file": "/tmp/claude-0/-home-user/7073bf12-0ecb-5aba-9f48-381dc91fbc0c/scratchpad/schema_live.json",
+   "select_fields": 20
+  },
+  {
+   "file": "/tmp/claude-0/-home-user/7073bf12-0ecb-5aba-9f48-381dc91fbc0c/scratchpad/weiss_ls_r2.csv",
+   "rows": 79
+  }
+ ],
+ "cost_basis": {
+  "value": "dealer",
+  "confirmed_by": "Albert 2026-09-10"
+ },
+ "summary": {
+  "airtable_upsert": 10,
+  "actions_total": 10,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 0,
+  "warnings": 31,
+  "rows_in": 79
+ },
+ "actions": [
+  {
+   "id": "cat-ad9eed3581e2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0005",
+   "airtable_rec_id": "recQuiO5BqBaU6Ine",
+   "ls_id": "7ab4f3f2-4a69-4709-b654-fef154b0bb80",
+   "handle": "WEISENG65OAK12FORTINO",
+   "fields": {
+    "Cost/unit": "3.09",
+    "Retail price/unit": "4.09"
+   },
+   "before": {
+    "Cost/unit": "2.99",
+    "Retail price/unit": "3.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 1
+  },
+  {
+   "id": "cat-79d9e52ae839",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0006",
+   "airtable_rec_id": "recTo7fdNNBF3yfRV",
+   "ls_id": "4849c65b-3176-4acd-8555-58b8cbc58310",
+   "handle": "WEISENG65OAK12RAW",
+   "fields": {
+    "Cost/unit": "3.09",
+    "Retail price/unit": "4.09"
+   },
+   "before": {
+    "Cost/unit": "2.99",
+    "Retail price/unit": "3.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 2
+  },
+  {
+   "id": "cat-072bf87c69dc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0007",
+   "airtable_rec_id": "recoLTSQcoDRlbbPB",
+   "ls_id": "f30922b2-b285-4838-ba67-524ce8040bc2",
+   "handle": "WEISENG65OAK12SAFFRON",
+   "fields": {
+    "Cost/unit": "3.09",
+    "Retail price/unit": "4.09"
+   },
+   "before": {
+    "Cost/unit": "2.99",
+    "Retail price/unit": "3.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 3
+  },
+  {
+   "id": "cat-969aaed06988",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0008",
+   "airtable_rec_id": "rec9fZSO6xgGF8YZE",
+   "ls_id": "fd35dd20-b9b4-42aa-aa9a-4e65a2af289f",
+   "handle": "WEISENG65OAK12SANDYBROWN",
+   "fields": {
+    "Cost/unit": "3.09",
+    "Retail price/unit": "4.09",
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Cost/unit": "2.99",
+    "Retail price/unit": "3.99",
+    "Stock status": null
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 4
+  },
+  {
+   "id": "cat-41ec94701a64",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0009",
+   "airtable_rec_id": "recebOGClticN7WmU",
+   "ls_id": "c99860d6-b3bc-4367-b05a-1bcc1c730d3e",
+   "handle": "WEISENG65OAK12SEASHELL",
+   "fields": {
+    "Cost/unit": "3.09",
+    "Retail price/unit": "4.09"
+   },
+   "before": {
+    "Cost/unit": "2.99",
+    "Retail price/unit": "3.99"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 5
+  },
+  {
+   "id": "cat-126ab654ab7b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0010",
+   "airtable_rec_id": "recAOBj0VkrVjSf87",
+   "ls_id": "b1dafece-959f-420d-b9da-9c2d519a864a",
+   "handle": "WEISENG65OAK12SILVERGRAY",
+   "fields": {
+    "Cost/unit": "3.09",
+    "Retail price/unit": "4.09",
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Cost/unit": "2.99",
+    "Retail price/unit": "3.99",
+    "Stock status": null
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 6
+  },
+  {
+   "id": "cat-e262ed7cf66c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0016",
+   "airtable_rec_id": "recDWUveuaGk4sLtN",
+   "ls_id": "eb619a22-e57a-48f2-b38f-88b9a59dbf6f",
+   "handle": "WEISENG65OAK12SAND",
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 7
+  },
+  {
+   "id": "cat-389720942c0c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-WEIS-0001",
+   "airtable_rec_id": "recrSdnq7u8BC8L6D",
+   "ls_id": "18e05ba3-c044-4b51-ba80-d4fd492b88f1",
+   "handle": "WEISLAMPREMIERCITADEL",
+   "fields": {
+    "Cost/unit": "1.39",
+    "Retail price/unit": "2.39",
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Cost/unit": "1.29",
+    "Retail price/unit": "2.29",
+    "Stock status": null
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 8
+  },
+  {
+   "id": "cat-7ac2b68f8781",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0004",
+   "airtable_rec_id": "recumqK3DZEeOBge2",
+   "ls_id": "176f1ade-4aeb-4709-9548-9a0c0e7ccf86",
+   "handle": "WEISLVP712CORAL",
+   "fields": {
+    "Cost/unit": "1.49",
+    "Retail price/unit": "2.49"
+   },
+   "before": {
+    "Cost/unit": "1.39",
+    "Retail price/unit": "2.39"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 9
+  },
+  {
+   "id": "cat-ebc5279610e9",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0008",
+   "airtable_rec_id": "recTtyyQuslQKcbrm",
+   "ls_id": "4edd272c-030f-48e8-9287-325a6fb23ded",
+   "handle": "WEISLVP720AMERICANWALNUT",
+   "fields": {
+    "Cost/unit": "1.69",
+    "Retail price/unit": "2.69"
+   },
+   "before": {
+    "Cost/unit": "1.59",
+    "Retail price/unit": "2.59"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 10
+  }
+ ],
+ "blocked": [],
+ "warnings": [
+  {
+   "sku": "LVP-WEIS-0004",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0006",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0007",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0008",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0009",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0010",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0011",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0012",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0013",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0014",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0015",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0016",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0017",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0018",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0019",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-WEIS-0001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-WEIS-0002",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-WEIS-0003",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-WEIS-0007",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0020",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0021",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0022",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0023",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0024",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0025",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0026",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0027",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0028",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0029",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0030",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  }
+ ]
+}
