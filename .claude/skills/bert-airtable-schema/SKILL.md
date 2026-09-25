@@ -1542,7 +1542,8 @@ When processing a new FAW list, double-check these recurring ambiguities:
 - **Effective date** — every FAW list is headed "Effective [date] — price subject to change due to fluctuating ocean freight charges." Record the effective date in `Price list reference` when logging to Price History Log.
 - **CLEARANCE SALE lines apply to the colours printed, never to a whole collection (2026-09-23).** The Sept 19 2026 Product Guide (PL-377) printed its clearance laminate line with an empty Colours cell. It was resolved to "Handscraped Laminate", and all seven 1.39 records went to clearance at 1.19. FAW's corrected CLEARANCE PRICE LIST (PL-380, Albert: "the correct version") names only Aphrodite, Apollo, Artemis and Poseidon. Space Grey, Sahara and Zeus were left at 1.19 with no sheet pricing them otherwise, and are held for Albert. When the Colours cell is empty, hold the line as `ambiguous_naming` and ask; do not fan it out. **Colour names on the clearance list are drawn as outlines**, so pdfplumber reads the cell as empty. Render the page (pypdfium2) and read them off the image. The prices stay text and cross-check normally.
 - **LAM-FAWK-0035 Antique Birch / LAM-FAWK-0036 Cosmic: cost 0.89 (Albert, 2026-09-23, "in this singular case").** They are in `Handscraped Laminates (Drop Clic)`, but neither PL-377 nor PL-380 prints them. Keep Cost/unit 0.89 / Retail 1.89. Never raise them to a clearance price that sits above their stored cost.
-- **Designer Click Toffee / Warm Honey are NEW products, not the old T&G Designer ones (Albert, 2026-09-24).** PL-377 prints "NEW! NAF Designer Eng. European White Oak - Click" for Toffee (5", Select, $4.69) and Warm Honey (7.5", AB -> Select & Better, $6.79). Same widths and box sizes as the T&G Designer records ENG-FAWK-0060 / 0065, but different products ("They are both click. But different specs and prices"). Created as ENG-FAWK-0089 / 0090 in `Designer Click`. The old pair is not on the newest list, and Albert said to delete it. The Lightspeed delete was refused on 2026-09-24: ENG-FAWK-0060 is in the open stocktake "Mississauga Outlet - Apr 24, 2026". That stays pending until the count is closed; the Airtable records are deleted by hand. Until then ENG-FAWK-0065 still carries the Click price 6.79 that the 09-21 run wrongly wrote onto it (its own last price was 6.99, PL-317).
+- **Designer Click Toffee / Warm Honey are NEW products, not the old T&G Designer ones (Albert, 2026-09-24).** PL-377 prints "NEW! NAF Designer Eng. European White Oak - Click" for Toffee (5", Select, $4.69) and Warm Honey (7.5", AB -> Select & Better, $6.79). Same widths and box sizes as the T&G Designer records ENG-FAWK-0060 / 0065, but different products ("They are both click. But different specs and prices"). Created as ENG-FAWK-0089 / 0090 in `Designer Click`. The old T&G pair is not on the newest list and is **inactive** in both systems (Albert chose inactive over delete once the Apr 24 stocktake that blocked the delete was cleared). ENG-FAWK-0065 is back at its own 6.99 / 7.99.
+- **Truffle (ENG-FAWK-0085): Species left blank (Albert, 2026-09-25).** The sheet says "White Oak" without American or European, so neither is guessed. Finish is also unprinted and blank.
 - **LAM-FAWK-0002 Space Grey / 0003 Sahara / 0008 Zeus stay at the clearance 1.19 / 2.19 (Albert, 2026-09-23).** PL-380's corrected clearance line names only Aphrodite, Apollo, Artemis and Poseidon, but Albert kept all three at 1.19 rather than restoring 1.39. Stock status stays `Clearance`. Nothing was written: they were already there.
 
 #### FAW ingest output format
@@ -3440,6 +3441,8 @@ Reducer and T-Moulding `Cost + $10`; any nosing `Cost + $15`. **Stair Board sets
 dedicated standard** — the Stair Nose/Tread `+$15` rule was applied as the closest match,
 the same call made for the Woden square-return set; confirm with Albert.
 
+**Laminate trims are $8, vinyl trims are $12 (Albert, 2026-09-25).** The 2026/07/01 list prints the laminate reducer / T-moulding (15×45 / 12×45 mm) at $8 on the Epic 12.3mm page and at $12 on the Epic 14.3mm page. $8 is the laminate price and $12 belongs to the vinyl pages, so every laminate trim is Cost $8 / Retail $18 (ACC-VIZN-0007..0010). Do not re-ask.
+
 #### Scope of ingest
 
 In scope: **LVP** (Marvelous 7MM, 8MM, and 5MM Loose Lay) and **LAM** (Epic 120 HR at
@@ -4436,6 +4439,15 @@ apply the same defaults on the next JL Tile list unless the sheet's section head
 say otherwise. Not yet recorded: a per-collection markup override (using the global
 `Retail = Cost + $ 1.00` for now), any SALE/promo convention (the 2026-09-14 sheet
 carried none), and confirmation of the Supplier/Brand string above.
+
+#### Albert's PL-372 answers (2026-09-25)
+
+- **A live Lightspeed product with the same tile under a different code gets linked, and Lightspeed's sku is corrected to the Airtable SKU.** "Link. If UUID belongs to another SKU, then change the SKU in LS. The supplier SKU can be the direct supplier SKU version." `Supplier SKU` holds the sheet's own code, without the `TIL-JLTI-` prefix. Applied to SP36P00T (LS SP36POOT), SP6P00T (LS SPC6POOT), 0003 Panda White Matte (LS PandaWhiteMatte), DM12340M (LS DM12341M/PY126929M) and BPCK6062.
+- **When the sheet prints two codes for one tile, `Supplier SKU` carries both, as `A / B`** ("use both SKU"): `DM12341 / DM12341Y`, `N612002 / BPCK1272`, `N612008 / BPCK1278`, `BPCK128803 / LU3-612GS`. Lightspeed's sku is the Airtable SKU for those, so the combined string never has to match it.
+- **Finish follows the PDF's name**: DM12340M is "Dream White Matt", so it is Matte.
+- **BPCK6062 cost is 2.18**, the "Your Cut Order Price"; the cell printed "2 $2.42". Its live Lightspeed name still says 12 x 24, but the sheet and the record are 24 x 24 (the 12 x 24 Bremen Fall is BPCK36062).
+- **Category: "should be Flooring > Tile".** New JL products are already filed under FLOORING / TILE. Existing JL products that sit under the root TILE type have not been re-filed yet; that needs a product-type write the pipeline does not have (open).
+- BPCK1294 and TE12608 are discontinued and not in Lightspeed. "Correct": nothing is created for them.
 
 ### Baltic Homes (Baltic Home "Nature", Longhua Flooring)
 

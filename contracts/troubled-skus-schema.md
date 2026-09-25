@@ -75,6 +75,8 @@ entries need no action trains a reader to skip all of them.
 
 ## The `Action` column
 
+**Keep the page table small enough to answer (2026-09-25).** PL-372's table held all 337 rows, about 180K characters. Albert answered it, but had to paste his answers back in pieces, and fetching the page overflows a tool read. From now on the page table renders only rows a reviewer might act on: every `held` row, plus `wrote_flagged` rows whose reason is not purely routine. `category_unresolved` and `new_supplier` are routine; they stay in the attached CSV, and the table says how many were left out. Notion's API also caps a single rich-text run at 2,000 characters and an append at 100 blocks, so keep `detail` short.
+
 **Added 2026-09-21 (Albert), after it was invented by hand.** On PL-377 he pasted the
 troubled CSV into the Notion page as a table, added a twelfth column called `Action`,
 and answered all five rows in it. That worked, and nothing in this repo knew about it:
