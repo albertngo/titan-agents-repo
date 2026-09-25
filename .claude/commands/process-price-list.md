@@ -252,6 +252,14 @@ month. Write it as `YYYY-MM-DD` — the reconciler refuses any other form. Say i
 which of the three it came from when it was not (1). Never the day the run processed
 the list: Baltic PL-170 and IMPRESSIVE PL-381 were created that way.
 
+**Put the list's link beside it, as a `Price List URL` column** after the helper
+columns (Albert, 2026-09-25: "each SKU has a verifiable company list to look at with
+a click of a button from Airtable"). The value is the SharePoint share link decoded
+from the row's `Files & media` (step 1's `.source`) — the same anonymous link the
+download used, so it opens for anyone at Titan. Same value on every row. Airtable's
+`Price List URL` field is a URL type, and the reconciler writes it together with the
+date, so a record always points at the list its `Last price update` names.
+
 `catalog_reconcile.py` does the rest: a price change writes this date and
 `Price last changed by = Agent`; a confirmation moves the date forward only, never
 backward, and leaves the author alone.

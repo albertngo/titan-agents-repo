@@ -328,6 +328,43 @@ class TestPriceDateAndChangedBy(unittest.TestCase):
             "Last price update": "2026-07-01"})])
         self.assertEqual(up["fields"]["Last price update"], "2026-07-01")
 
+    URL = "https://flooruca-my.sharepoint.com/:b:/g/x/NEW"
+
+    def test_the_list_link_travels_with_the_date(self):
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Last price update": "2026-09-21",
+            "Price List URL": self.URL})])
+        self.assertEqual(up["fields"]["Price List URL"], self.URL)
+        self.assertEqual(up["fields"]["Last price update"], "2026-09-21")
+
+    def test_an_older_list_does_not_repoint_the_link(self):
+        existing = {"A-1": {**self.EXISTING["A-1"], "Price List URL": "old"}}
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Last price update": "2026-07-01",
+            "Price List URL": self.URL})], existing)
+        self.assertIsNone(up)
+
+    def test_the_same_list_fills_a_blank_link(self):
+        existing = {"A-1": {**self.EXISTING["A-1"], "Price List URL": None}}
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Last price update": "2026-08-01",
+            "Price List URL": self.URL})], existing)
+        self.assertEqual(up["fields"], {"Price List URL": self.URL})
+
+    def test_a_link_already_in_place_writes_nothing(self):
+        existing = {"A-1": {**self.EXISTING["A-1"], "Price List URL": self.URL}}
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Last price update": "2026-08-01",
+            "Price List URL": self.URL})], existing)
+        self.assertIsNone(up)
+
+    def test_a_create_carries_the_link(self):
+        rows = [row(SKU="NEW-1", MatchStatus="new", **{
+            "LS Handle / Parent ID": "HNEW", "Price List URL": self.URL})]
+        actions, _, _ = run(rows, [], ls_upload=ls_upload_row(sku="NEW-1"))
+        up = next(a for a in actions if a["op"] == "upsert")
+        self.assertEqual(up["fields"]["Price List URL"], self.URL)
+
     def test_a_non_iso_date_warns_and_is_not_written(self):
         up, warnings = self.upsert([row(SKU="A-1", **{
             "Lightspeed ID": "u-1", "Cost/unit": "1.10",
@@ -1083,7 +1120,7 @@ class DiffFieldsAndSnapshotAgree(unittest.TestCase):
         # snapshot lacks the date, so the command must ask for both.
         doc = self.COMMAND.read_text()
         block = doc.split("The snapshot must carry every field", 1)[1][:2000]
-        for field in (cr.PRICE_DATE, cr.CHANGED_BY):
+        for field in (cr.PRICE_DATE, cr.CHANGED_BY, cr.PRICE_URL):
             self.assertIn(field, block)
 
     def test_stock_status_and_promo_are_diffed(self):

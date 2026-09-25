@@ -603,6 +603,7 @@ The source of truth for all Titan flooring products. Every active product that B
 | **Volume pricing notes** | Long text | Tiered pricing rules. e.g. Vidar: Cut order $ 1.39 / 1-5 skids $ 1.34 / 6-20 skids $ 1.29 | |
 | **Last price update** | Date | **Effective date of the newest list received for the company that carries the product** (Albert, 2026-09-25): printed on the list, else a date in the email subject, else the email's received date — never the day it was processed. A price change writes it; a newer list that repeats the price moves it forward (never backward). Bert flags records older than 90 days as potentially stale. | Auto |
 | **Price last changed by** | Single select | `Agent` (any write this pipeline makes, attended or not) or `Manual` (a person editing in Airtable). Audit trail. The `Agent` option was `Cowork` until 2026-09-25 — renamed in place, same option id. | Auto |
+| **Price List URL** | URL | The SharePoint share link to the price list that `Last price update` names (Albert, 2026-09-25) — one click from the record to the supplier's own document. Written with the date, never on its own except to fill a blank from the same list. Not one of the 57 upload columns: it rides as an extra column after `MatchStatus`. | Auto |
 
 ### Packaging & inventory
 

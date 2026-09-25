@@ -106,6 +106,11 @@ PRICE_DATE = "Last price update"
 CHANGED_BY = "Price last changed by"
 AGENT = "Agent"
 ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+# The list itself, one click from the record (Albert, 2026-09-25): the SharePoint
+# share link off the Notion row's `Files & media`, carried as an extra upload-CSV
+# column. It travels with `Last price update` — the record points at the same list
+# its date names — and is never written on its own except to fill a blank.
+PRICE_URL = "Price List URL"
 PROMO_COST = "Promo cost ($/sf)"
 PROMO_END = "Promo end date"
 
@@ -441,6 +446,18 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
                 # blind write could move a newer date backward.
                 fields[PRICE_DATE] = effective
                 before[PRICE_DATE] = old_date
+            url = clean(row.get(PRICE_URL))
+            if url:
+                old_url, url_readable = (live_value(live, PRICE_URL) if live
+                                         else (None, False))
+                old_url = clean(old_url)
+                same_list = (effective and date_readable
+                             and str(old_date or "") == effective)
+                if PRICE_DATE in fields or (same_list and url_readable
+                                            and old_url != url):
+                    if old_url != url:
+                        fields[PRICE_URL] = url
+                        before[PRICE_URL] = old_url if url_readable else None
 
         if airtable_snapshot and select_options:
             missing = missing_select_options(fields, select_options)
