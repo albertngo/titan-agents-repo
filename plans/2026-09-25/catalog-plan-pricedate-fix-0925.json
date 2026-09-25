@@ -1,0 +1,40 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "FLOORS AT WORK",
+ "run_at": "2026-09-25T07:39:23-04:00",
+ "status": "ready",
+ "inputs": {
+  "source": "correction to plans/2026-09-25/catalog-plan-pricedate-0925.json action cat-e9b9f204c00e (refused by the Airtable agent)"
+ },
+ "cost_basis": {
+  "value": "n/a",
+  "confirmed_by": "no price field is written"
+ },
+ "summary": {
+  "airtable_upsert": 1
+ },
+ "blocked": [],
+ "warnings": [],
+ "_note": "LVP-FAWK-0084's only Airtable write is the 2026-09-21 create from FAW PL-377 (effective 2026-09-19). The pricedate plan credited it to PL-317 (2026-07-09) because both FAW plans carry the same action id cat-166a3384cbda for this SKU (ids are keyed supplier|sku|system|op, not on the PL): the Danube/Peking collision.",
+ "actions": [
+  {
+   "id": "cat-fe136b92384f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0084",
+   "airtable_rec_id": "recfS9sbjA3FJyPeu",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Agent"
+   },
+   "reason": "price_date_is_effective_date_albert",
+   "source_plan": "plans/2026-09-21/catalog-plan-floors_at_work.json",
+   "seq": 1
+  }
+ ]
+}
