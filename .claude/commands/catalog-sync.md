@@ -104,15 +104,47 @@ by attempting a Notion download — report it and stop. Then take a **live** Air
 snapshot of that supplier's records — `list_records_for_table` against
 `tables.master_flooring_catalogue`, filtered to the supplier — and save it as JSON.
 
+**The snapshot must carry every field in `catalog_reconcile.py`'s `DIFF_FIELDS`**,
+and as of 2026-09-22 that is nine:
+
+```
+SKU · Product name · Supplier SKU · Category · Cost/unit · Retail price/unit
+Stock status · Promo cost ($/sf) · Promo end date · Lightspeed ID
+```
+
+**A missing column does not read as "no change" — it reads as "unknown", and the
+reconciler then writes the field on every matched row.** `live_value()` returns
+`readable: False` for a key the snapshot lacks, which is correct for a genuinely new
+record and is a blanket overwrite when the column was simply not selected. Narrowing
+the snapshot is therefore not a safe optimisation, and widening `DIFF_FIELDS` without
+widening this list turns the diff into an overwrite.
+`tests/test_catalog_reconcile.py` holds the two to each other.
+
+**Flatten single-selects to their `name`.** `list_records_for_table` returns
+`{"id": …, "name": …, "color": …}` for a select; the reconciler compares strings, so
+an unflattened `Category` or `Stock status` never equals the upload value and diffs
+on every row.
+
 ```bash
 python3 scripts/catalog_reconcile.py \
   --upload        ingest/<date>/<supplier>_airtable_upload_<date>.csv \
   --ls-upload     ingest/<date>/<supplier>_ls_upload_<date>.csv \
   --airtable-existing ingest/<date>/<supplier>_airtable_existing.json \
+  --airtable-options  ingest/<date>/<supplier>_airtable_options.json \
   --cost-basis    dealer --confirmed-by "Albert 2026-09-10"
 ```
 
-Three of those are load-bearing:
+**Pre-flight the Airtable options first (2026-09-23).** Call `get_table_schema` for
+`tables.master_flooring_catalogue` and save the result as
+`ingest/<date>/<supplier>_airtable_options.json`, fresh every run, raw output is fine.
+The reconciler then blocks any SKU whose Airtable write names a select value the base
+does not have (`supplier_option_missing`, `select_option_missing`) and emits **no
+action on either system** for it. This is what stops a first-time supplier writing
+Lightspeed and then being refused by Airtable, which left 99 IMPRESSIVE products in
+the POS with no catalogue record on 2026-09-22. Never add the missing option yourself:
+the block names it, and a person adds it.
+
+Four of those are load-bearing:
 
 - **`--airtable-existing` is not optional in practice.** Without it the reconciler
   emits **no** Airtable actions at all — deliberately. Planning Airtable writes off
@@ -161,6 +193,9 @@ What still holds structurally, independent of policy:
   construction, which no policy can approve past. That case is still effectively a
   two-pass flow; it just reaches that outcome by being blocked rather than by this
   command stopping.
+  **The row still ends with two CSVs (2026-09-23):** step 5a renders the Lightspeed
+  file from the POS after the sync, so "one CSV" now describes only what extraction
+  could build, not what the row carries.
 - The **third state — new to Airtable, already live in Lightspeed** (Canadian
   Standard 2026-09-03; HOMESPRO and IMPRESSIVE both) — carries two CSVs and is *not*
   structurally blocked. Those rows write. This is the case the reversal actually
@@ -289,11 +324,21 @@ python3 scripts/lightspeed_push.py --plan plans/<date>/catalog-plan-<slug>.json 
     --approval plans/<date>/catalog-approval-<slug>.json --dry-run
 ```
 
-That prints every request and sends nothing.
+That prints every request and sends nothing. **It is also the Lightspeed pre-flight
+(2026-09-23)**: it resolves every supplier, brand, category and attribute name against
+the live account and, if any family cannot be resolved, lists every one and exits `3`.
+On exit `3`, hold those SKUs on **both** systems: remove their Lightspeed and Airtable
+ids from the approval file, add them to the troubled CSV as `held` (`brand_missing`
+for a brand; the error text for anything else), and re-run the dry run until it exits
+`0`. Never create the missing brand, supplier or category.
 
 `scripts/lightspeed_write.py` and `lightspeed_push.py` are the **only** two files that
-can change the POS. There is no delete or deactivate action type in either system, and
-none may be added — removing a product is a person's decision in that platform's UI.
+can change the POS. Deactivating is an ordinary `update` of `is_active` (Airtable `Active`),
+never planned by the reconciler and only ever on a person's instruction. A `delete` op exists since
+2026-09-24 (Albert), for a product the supplier's newest list no longer carries. It is
+never emitted by the reconciler and never auto-approved: it is hand-planned against a
+person's instruction, and `lightspeed_push.py` refuses it under a policy approval
+(`contracts/catalog-plan-schema.md`, carve-out 4).
 
 An update writes **prices only**. It never writes `name`: Lightspeed holds a
 constructed name that is not Airtable's `Product name`, and sending one renames or
@@ -303,8 +348,14 @@ Interrupted by a rate limit or a bad row? **Re-run the same command.** Ids alrea
 `executed` in today's `actions-log.json` are skipped. There is no separate state file.
 
 The run writes `plans/<date>/catalog-backfill-<slug>.json` — `sku_to_lightspeed_id`
-for every product Lightspeed just created. That file is step 5's input. **Ids are
-never paired positionally** with the request order.
+for every product Lightspeed created under this plan. That file is step 5's input.
+**Ids are never paired positionally** with the request order.
+
+The file is durable (2026-09-23): it is **merged, never overwritten**, saved after
+every family and again on any stop, and rebuilt from this plan's executed creates in
+the actions-log whenever the script runs. So a batch that stops on family three still
+leaves families one and two in the file, and a resume completes it. If the file is
+ever missing, re-running the same command with nothing left to do rebuilds it.
 
 ## 5. Airtable writes
 
@@ -321,7 +372,65 @@ It writes through MCP — there is no `airtable_write.py`.
   does not stop the batch; say in the report that it was skipped. See the banner on
   Table 2 of bert-airtable-schema.
 
+## 5a. Re-render both CSVs from the live systems
+
+**Both files, every run (Albert, 2026-09-23).** The row keeps the Airtable CSV *and*
+the Lightspeed CSV, so the uploaded items can be seen, and re-imported by hand if
+ever needed, without opening either system. The Airtable CSV carries each SKU's
+Lightspeed UUID, and both reflect what is **live now**, not what the sheet said
+before the sync. This supersedes every "no Lightspeed file" rule (promo-only runs,
+status-only runs, a new supplier new to Lightspeed): those described what
+extraction could *build*, and this step renders from the POS after the fact.
+
+After step 5, and after any held residue step 3a cleared:
+
+1. `python3 scripts/lightspeed_pull.py --refresh`, because the cached pull predates this
+   run's own Lightspeed writes.
+2. Read back every SKU on the upload CSV from Airtable with `list_records_for_table`:
+   `recordIds` from `MatchedRecId`, plus a `SKU` filter for any row created this run.
+   Take **all fields**. Save the raw tool output (it lands in a file when large)
+   and check that the record count matches.
+3. Run the export. It rewrites both files in place:
+
+   ```bash
+   python3 scripts/catalog_export.py \
+     --upload        ingest/<date>/<supplier>_airtable_upload_<date>.csv \
+     --ls-upload     ingest/<date>/<supplier>_ls_upload_<date>.csv \
+     --airtable-live <the saved list_records output> \
+     --lightspeed    ingest/<date>/lightspeed-products.json
+   ```
+
+   The Airtable CSV takes every column from the live record (an emptied cell comes
+   out empty) and sets `MatchStatus: matched`. `Lightspeed ID` comes from Airtable,
+   or from the POS by sku where the backfill has not landed. A SKU Airtable does not
+   hold keeps its extracted row, so the next run still sees it as a create. The LS CSV
+   gets one row per SKU as it is live on the POS, and is created if extraction built
+   none. Field ids resolve through
+   `platform-settings/airtable-master-catalogue-fields.json`. A `WARNING: not Airtable
+   fields` line means a field was renamed: refresh that map from
+   `list_tables_for_base`, do not ignore it.
+4. **Commit, then re-attach both** to `Extracted Files`, replacing the previous pair
+   (same upload recipe as `/process-price-list` step 6). The extraction commit came
+   first, so `git diff` on this one is exactly what the sync changed.
+
+The exported file is a fixed point: fed back to the reconciler against the same live
+state, it plans nothing (`tests/test_catalog_export.py`). That is what makes it safe
+to leave on the row as the input to any later re-run. It also means it carries stale
+live values faithfully, such as an expired promo nobody cleared. The reconciler
+therefore never pushes a promo whose `Promo end date` has passed as today's
+`supply_price` (`ls_update_fields`, 2026-09-23). The Airtable fields stay as they
+are, because no promo sweep runs.
+
 ## 6. Close the Notion row
+
+**Stamp `Last Agent Activity Date` on every write to the row (Albert, 2026-09-24).**
+Every `update-page` this command makes on a Price Lists row — properties, file
+attachments, the page-body table — carries, in that same call,
+`"date:Last Agent Activity Date:start": "<now, America/Toronto ISO with offset>"` (computed at the moment of the call — `TZ=America/Toronto date -Iseconds` — never typed by hand) and
+`"date:Last Agent Activity Date:is_datetime": 1`. A page-body `replace_content` call
+cannot set properties, so follow it with a one-property stamp. Never write
+`Since Last Agent Edit`; it is the formula that reads this date back as "3 hours ago".
+Registry key: `write_properties.last_agent_activity`.
 
 In dependency order — a new product has no Lightspeed ID until the POS upload makes
 one:
@@ -385,12 +494,17 @@ and all.
   policy string on an auto-approved entry, never a person's name for one) and
   `raw_ref_action_id` set.
 - Every new product carries a `Lightspeed ID` in Airtable.
+- **Both CSVs are on `Extracted Files`, re-rendered from live** by step 5a: the Airtable
+  one with every SKU's Lightspeed UUID, the Lightspeed one from the POS.
 - The Notion trackers reflect reality, `Partial` included where that's what happened.
 - **Every troubled SKU is in the CSV, attached to `Troubled Files`, and notified** —
   `held` rows and `wrote_flagged` rows both. A held row that reaches nobody is the
   one failure this design cannot detect later, because there is no longer a gate
   standing behind it.
 - Nothing reported as cleared by policy that policy did not actually clear.
+- **The run's files are in a PR against `main-agents`** (`scripts/publish_run.py`, routine
+  step 3). A run whose output sits only on its session branch is not done, because the
+  next run starts from `main-agents` and cannot see it.
 
 Report honestly. If a step did not run, say which. Never mark a stage complete that
 isn't.

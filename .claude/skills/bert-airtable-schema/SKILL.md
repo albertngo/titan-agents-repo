@@ -294,6 +294,18 @@ All products follow a single flat markup:
 
 This applies to every category.
 
+> Superseded in part by the dated rulings further down (field tile `+ $ 2.00`, mosaic
+> `+ $ 5.00`, and the accessory tiers). Two more global sundry rules, **Albert,
+> 2026-09-24** — "a good rule to stick by in global rule", every supplier:
+>
+> | Product | Retail |
+> |---|---|
+> | **Underpad / underlayment** (`Product type = Underpad`) | `Cost + $ 20.00` per unit (roll) — confirms the existing cross-supplier tier |
+> | **Adhesive / glue** (`Product type = Adhesive`) | `Cost × 1.40` (40% markup), rounded to the cent |
+>
+> First applied to Vizion PL-373 (Zeromono adhesive $68.00/pail → $95.20; EVA 3mm
+> underpad $22.00/roll → $42.00).
+
 ### Promo pricing flow
 
 When a supplier posts a promotional cost:
@@ -436,6 +448,34 @@ When entering products from a supplier price list, Stock status should be assign
 - **Clearance** — use only when the supplier explicitly marks a product as "while stock last," "clearance," "closeout," or similar language indicating the product is being phased out with limited remaining inventory.
 - **Discontinued** — use when the supplier confirms the product is no longer being manufactured or restocked.
 - **SALE items are NOT Clearance** — a SALE label on a price list indicates a promotional price, not a stock status. SALE items get a Promo cost but their Stock status remains blank unless separately marked as clearance or while-stock-last.
+
+### Wall panels are out of scope
+
+**Rule (Albert, 2026-09-23): wall panels (WPC / PVC / fluted wall panels, e.g. Sidco)
+are not processed, from any supplier.** A price list made only of wall panels is marked
+`Not Needed` without extraction; a panel section inside a flooring list is skipped and
+reported, the same as any other out-of-scope section.
+
+### Oak stair treads and risers are out of scope
+
+**Rule (Albert, 2026-09-20): oak / unfinished-hardwood stair treads and risers are not
+imported, from any supplier, unless Albert says otherwise for that specific list.**
+Titan does not carry them. Do not extract them, do not price them, do not create
+records for them, and do not put them in either upload file. Report that you skipped
+them, the same as any other out-of-scope section.
+
+This sits beside the existing exclusions — MDF casing, baseboard and other interior
+trim (the FAW / Olympia / Dragona precedent) — and is the same kind of rule: a product
+family Titan does not sell, which a price list nonetheless prices, so every run would
+otherwise re-extract it.
+
+**Vinyl/SPC stair and riser products are NOT covered by this.** Those are carried:
+FAW's Aquaplus SPC step/riser set (`ACC-FAWK-0001`) stays in scope, as do vinyl
+stairboard sets from other suppliers. The exclusion keys on **oak / unfinished
+hardwood**, not on the words "stair" or "riser".
+
+"Unless specified" means an explicit instruction for a given list — not an inference
+from the supplier having printed prices for them, which they generally do.
 
 ### Grade translation rule
 
@@ -843,6 +883,8 @@ import path exists to provide.
 >
 > A new supplier also gets **no Lightspeed file** — LS columns 1–3 are copied from the
 > Airtable state, which does not exist until the import happens.
+> (At extraction. Since 2026-09-23 `/catalog-sync` step 5a renders the LS file from the
+> POS after the sync, so the row ends with both CSVs regardless. Albert wants both, always.)
 
 ### Step 2 — the matching cascade
 
@@ -1078,6 +1120,19 @@ The general flow for any supplier ingest:
 4. Generate an Airtable-ready CSV file with all 57 schema fields as columns
 5. Spot-check a sample covering every edge case before committing to import
 
+**Precedence rule (Albert, 2026-09-10): global rules apply by default — pricing,
+naming, anything — unless a supplier's own subsection explicitly states otherwise.**
+A supplier subsection overrides the global rule only for what it actually names, and
+only for that supplier; everything it stays silent on falls through to the global
+rule, not to whatever a neighbouring supplier happens to do. Concretely: the tile
+markup default (`Cost + $ 2.00`, below) applies to every supplier that sells tile
+unless that supplier's own subsection says differently; CIF and Olympia's mosaic tier
+(`Cost + $ 5.00`) is a real override because it is written down under their own
+subsections, not because tile suppliers generally get a mosaic premium. When
+extracting a supplier with no subsection yet, this is the default assumption to work
+from — apply the global rules, and record only the genuine deviations as the new
+subsection's overrides.
+
 ---
 
 ### ⚠️ Cost basis — default to the printed price, flag the exceptions
@@ -1197,6 +1252,36 @@ not today.
 **Verified 2026-09-03.** `MAP price` is populated on 399 records — Grandeur (true MAP) and
 Biyork (MSRP). Zero CIF or Olympia records, which is **correct**: neither publishes an
 MSRP or suggested-price column, and their printed list price is a cost-side input.
+
+#### Tile and mosaic markup — `Cost + $ 2.00` / `Cost + $ 5.00`, every supplier, going forward
+
+**Ruling (Albert, 2026-09-10, extended same day): field tile is priced at
+`Retail = Cost + $ 2.00` and mosaic at `Retail = Cost + $ 5.00`, across every
+supplier, not just CIF and Olympia.** This supersedes the flooring-wide
+`Cost + $ 1.00` default for both — the schema now carries three flat markups:
+`+$ 1.00` for flooring, `+$ 2.00` for field tile, `+$ 5.00` for mosaic.
+
+**Scope — what changed and what did not:**
+
+| Product | Markup | Status |
+|---|---|---|
+| **Field tile** (`Category = Tile / Stone`, `Tile format` ≠ Mosaic — porcelain, ceramic, wall tile, subway tile, field slabs, regardless of supplier) | `Retail = Cost + $ 2.00` | **The global default.** No longer a CIF/Olympia-only override — every current and future tile supplier uses it unless a future ruling says otherwise. |
+| **Mosaic** (`Tile format = Mosaic`, any supplier) | `Retail = Cost + $ 5.00` | **Also the global default**, same as field tile — the same rule CIF and Olympia already used is now every supplier's mosaic rule, not theirs alone. |
+| **Ceramic trims** (Olympia's bullnose/cove base/pencil/listello, `Product type = Moulding`) | Unchanged | Stays at `Cost + $10.00`, per Olympia's existing subsection. Not extended to other suppliers by this ruling. |
+| **STONE** (`Category = STONE` — thresholds, jambs, sills, benches, niches) | Unchanged | Stays open — `Retail price/unit = 0`, pending a separate ruling. Explicitly **not** covered by this update. |
+
+**Going forward only.** This does not retroactively reprice CIF's or Olympia's
+already-imported tile/mosaic records (which have carried these values since before
+this ruling and are unaffected either way), and it does not trigger a bulk repricing
+pass on any other supplier's existing catalogue — e.g. Gracious's live mosaic rows,
+backfilled at the old flooring default before this ruling, are not touched. It
+governs extraction from this date on — any tile or mosaic row in a Price Lists CSV
+not yet imported should use `+$ 2.00` / `+$ 5.00` as applicable.
+
+Because tile and mosaic are now both tile-wide defaults rather than per-supplier
+overrides, the CIF and Olympia subsections' own markup tables are retained for their
+STONE (and Olympia's trim/vinyl) specifics, but no longer describe field tile or
+mosaic as *their* override — see the note in each.
 
 ---
 
@@ -1337,9 +1422,53 @@ Each section begins with a coloured header bar naming the collection, followed b
 FAW marks promo items as "Colors ON SALE: [names]" in yellow highlighting, usually within a collection that also lists regular-priced colourways. Apply the global Sale item pricing logic:
 
 - **Rule 1 applies most often** — regular colours live in the same section, so pull Cost from the regular pallet price and put the SALE pallet price in `Promo cost ($/sf)`.
-- **Promo end date** — FAW does not print end dates on SALE items. Per the global month-end default rule (Jul 2026, supersedes the earlier leave-blank convention): set `Promo end date` = last day of the price list's month, and roll it forward month-by-month if the promo is confirmed still running on the next list. Flag in Salesperson notes.
+- **Promo end date** — **on the regular price list** FAW does not print one, so the global
+  month-end default applies (Jul 2026, supersedes the earlier leave-blank convention): set
+  `Promo end date` = last day of the price list's month, and roll it forward month-by-month
+  if the promo is confirmed still running on the next list. Flag in Salesperson notes.
+  **On a standalone promo sheet FAW does print one — use the printed date, never the
+  default** (corrected 2026-09-09; see *Standalone promo sheets* below).
 
 Example from Feb 23 2026 list: Designer 7.5" regular colours (Monet, Dali) @ $ 4.99 pallet; SALE colours (Da Vinci, Picasso) @ $ 3.99 pallet → Cost=$ 4.99, Retail=$ 5.99, Promo cost=$ 3.99, Promo end date blank.
+
+#### Standalone promo sheets — a different document from the price list
+
+**Added 2026-09-09** from the "NAF August Specials & Clearance Sale" sheet. FAW also issues
+short standalone promo documents, separate from the Product Guide, headed
+`PROMOTIONS - LAMINATE / VINYL` with the month and a printed validity window. They are
+tagged `Promo`, and they are always an **update** against existing records — never an import.
+
+- **They print an end date** ("Valid until August 31, 2026"). Use it verbatim. This is the
+  exception to the month-end default above.
+- **They carry no specs at all** — only a group label, colour, MOQ, sf/box, boxes available
+  and one price. Every spec on the output row therefore comes from the live catalogue
+  record, not from the sheet. Match on **colour + sf/box**; the box size is what
+  disambiguates, and it resolves both documented FAW collisions cleanly: the **Tobermory**
+  duplicate (17.91 -> `LVP-FAWK-0015`, not the 15.0 record) and **Westminster**, which
+  exists in both 6.5mm SPC (23.90) and Aquaplus Platinum (11.94).
+- **The `PRODUCT` group label is vertically centred on its block, not repeated per row.**
+  A row-wise text parse mis-assigns it. Extract positionally and assign each label to the
+  block it centres on — on the Aug 2026 sheet that correctly put Superior and Rainbow in
+  Waterproof Laminate rather than the Handscraped Laminate block above them, which the
+  catalogue then confirmed.
+- **The sheet's own group names are not the catalogue's collection names.** Observed
+  mapping: `Waterproof Laminate +` -> `Waterproof Laminate Plus`; `WPC 10MM` -> `Aquawood`;
+  `Dryback 3MM` / `Dryback 5MM` / `LVT 5MM` -> `Aqua Commercial`; `Loose Lay 5MM` ->
+  `Aqualuuuz`; `AquaTile 5G Click 7MM` -> `Aqua Tile`; `Vinyl 6MM` -> `6.5mm SPC Vinyl`.
+  `Vinyl 7MM` is a thickness, not a collection — it spans Classic, Aquaplus Select,
+  Aquaplus Gold and Aquaplus Gold with Cork at once.
+- **A promo run produces no Lightspeed file.** Only `Promo cost ($/sf)` and `Promo end date`
+  change; retail during a promo is adjusted manually, so no LS-visible field moves.
+  **Superseded for the row (Albert, 2026-09-23):** extraction still builds none, but
+  `/catalog-sync` step 5a renders both CSVs from the live systems after every sync, so a
+  promo run's row carries a Lightspeed CSV too, with each SKU's UUID.
+- **Check the printed end date against today before reporting.** The Aug 2026 sheet was
+  processed on 2026-09-09, nine days after it expired. Do not roll the date forward on your
+  own — an extension has to be confirmed — but say plainly that it has lapsed.
+- **Watch for promo = stored regular cost.** Four of the 37 rows on the Aug 2026 sheet
+  (Nordstrom, Fiji, Madagascar, Muskoka) priced exactly at the stored `Cost/unit`, i.e. no
+  discount at all — usually a sign the stored regular cost is stale rather than a fake
+  promo. Flag, do not block.
 
 #### Coming Soon items
 
@@ -1366,7 +1495,29 @@ FAW sells a single "Step + Riser + Side Return Set" product at $49/set with a lo
 - Include dimensions in `Salesperson notes`: Step 8mm × 350mm × 1200mm, Riser 4mm × 200mm × 1200mm, Side Return 400mm with 40mm nose
 - Note "Final Sale / No Returns"
 
-#### Oak stair treads and risers (page 7)
+#### Oak stair treads and risers (page 7) — NOT IMPORTED
+
+**Rule (Albert, 2026-09-20): oak stair treads and risers are excluded. Do not extract
+them, do not price them, do not put them in either upload file.** Titan does not carry
+them. This is the FAW instance of the cross-supplier rule in *Oak stair treads and
+risers are out of scope* under the global rules.
+
+`ACC-FAWK-0001` — the **Aquaplus SPC** step/riser set — is NOT affected. It is vinyl,
+it is carried, and it stays in scope. The exclusion is the oak items only,
+`ACC-FAWK-0004`–`0010`.
+
+Those seven records already exist in the base because this section previously said the
+opposite. Leave them alone — nothing here deletes a record — but a price-list run must
+not touch them again.
+
+> **Superseded, kept as the reason the rows exist.** The former rule, below, was
+> followed on the 2026-09-20 PL-317 run, which dutifully priced all seven and in doing
+> so surfaced three handle collisions (`…TREAD42`, `…TREAD48`, `…TREADPI`, each shared
+> by a Left/Right pair with no variant value) that would have been rejected on import.
+> Moot now: the products should never have been in the file.
+
+<details>
+<summary>Former rule (do not follow)</summary>
 
 Per-piece priced accessories. Store each tread type as a separate `ACC-FAWK-XXXX` record:
 
@@ -1379,6 +1530,8 @@ Per-piece priced accessories. Store each tread type as a separate `ACC-FAWK-XXXX
 
 Oak Riser has dual pricing (Pallet $ 2.99 / Piece $ 3.99). Use $ 3.99 as `Cost/unit` (per-piece).
 
+</details>
+
 #### Known issues / soft spots
 
 When processing a new FAW list, double-check these recurring ambiguities:
@@ -1387,6 +1540,10 @@ When processing a new FAW list, double-check these recurring ambiguities:
 - **Tobermory duplicate** — appears in two size variants. Confirm both exist by asking the rep before deduplicating.
 - **Colourway reuse across collections** — "Westminster" appears in both Aquaplus Platinum (9mm) and Royal (8mm). "Windsor" appears in both Royal and 6.5mm SPC. Create separate records; differentiate in LS Handle with a collection suffix.
 - **Effective date** — every FAW list is headed "Effective [date] — price subject to change due to fluctuating ocean freight charges." Record the effective date in `Price list reference` when logging to Price History Log.
+- **CLEARANCE SALE lines apply to the colours printed, never to a whole collection (2026-09-23).** The Sept 19 2026 Product Guide (PL-377) printed its clearance laminate line with an empty Colours cell. It was resolved to "Handscraped Laminate", and all seven 1.39 records went to clearance at 1.19. FAW's corrected CLEARANCE PRICE LIST (PL-380, Albert: "the correct version") names only Aphrodite, Apollo, Artemis and Poseidon. Space Grey, Sahara and Zeus were left at 1.19 with no sheet pricing them otherwise, and are held for Albert. When the Colours cell is empty, hold the line as `ambiguous_naming` and ask; do not fan it out. **Colour names on the clearance list are drawn as outlines**, so pdfplumber reads the cell as empty. Render the page (pypdfium2) and read them off the image. The prices stay text and cross-check normally.
+- **LAM-FAWK-0035 Antique Birch / LAM-FAWK-0036 Cosmic: cost 0.89 (Albert, 2026-09-23, "in this singular case").** They are in `Handscraped Laminates (Drop Clic)`, but neither PL-377 nor PL-380 prints them. Keep Cost/unit 0.89 / Retail 1.89. Never raise them to a clearance price that sits above their stored cost.
+- **Designer Click Toffee / Warm Honey are NEW products, not the old T&G Designer ones (Albert, 2026-09-24).** PL-377 prints "NEW! NAF Designer Eng. European White Oak - Click" for Toffee (5", Select, $4.69) and Warm Honey (7.5", AB -> Select & Better, $6.79). Same widths and box sizes as the T&G Designer records ENG-FAWK-0060 / 0065, but different products ("They are both click. But different specs and prices"). Created as ENG-FAWK-0089 / 0090 in `Designer Click`. The old pair is not on the newest list, and Albert said to delete it. The Lightspeed delete was refused on 2026-09-24: ENG-FAWK-0060 is in the open stocktake "Mississauga Outlet - Apr 24, 2026". That stays pending until the count is closed; the Airtable records are deleted by hand. Until then ENG-FAWK-0065 still carries the Click price 6.79 that the 09-21 run wrongly wrote onto it (its own last price was 6.99, PL-317).
+- **LAM-FAWK-0002 Space Grey / 0003 Sahara / 0008 Zeus stay at the clearance 1.19 / 2.19 (Albert, 2026-09-23).** PL-380's corrected clearance line names only Aphrodite, Apollo, Artemis and Poseidon, but Albert kept all three at 1.19 rather than restoring 1.39. Stock status stays `Clearance`. Nothing was written: they were already there.
 
 #### FAW ingest output format
 
@@ -2529,17 +2686,16 @@ Round to two decimals. Apply this exactly once — do not double-discount. The p
 
 **The printed list price is a cost-side input, not an MSRP.** CIF publishes no MSRP or suggested-price column, so no MSRP value is stored for CIF — see *Which printed number feeds which field*.
 
-#### Markup overrides — CIF only
+#### Markup overrides — CIF
 
-CIF breaks the standard `Retail = Cost + $ 1.00` rule. Three distinct markup tiers apply:
+CIF breaks the standard flooring `Retail = Cost + $ 1.00` rule. Three distinct markup
+tiers apply:
 
 | Product type | Markup | Notes |
 |---|---|---|
-| Tile (porcelain, ceramic field tile, slabs) | `Retail = Cost + $ 2.00` | Applies to floor and wall tile, regardless of size or material |
-| Mosaic (anything `Tile format = Mosaic`, including hex mosaics, listellos, pencils, decors) | `Retail = Cost + $ 5.00` | Higher markup reflects accent-product positioning |
+| Tile (porcelain, ceramic field tile, slabs) | `Retail = Cost + $ 2.00` | Applies to floor and wall tile, regardless of size or material. **No longer CIF-specific** — this is the tile-wide default for every supplier, per *Tile and mosaic markup* above (2026-09-10). Kept here because CIF is where it originated. |
+| Mosaic (anything `Tile format = Mosaic`, including hex mosaics, listellos, pencils, decors) | `Retail = Cost + $ 5.00` | Higher markup reflects accent-product positioning. **No longer CIF-specific either** — also promoted to the tile-wide mosaic default the same day, per *Tile and mosaic markup* above. |
 | STONE (marble/quartz thresholds, jambs, benches — Category = `STONE`) | `Retail = 0` (leave at zero) | Markup rule unsettled; leave `Retail price/unit = 0` and flag for Albert to set. Do not infer. |
-
-These overrides are **CIF-specific** and do not generalize to other tile suppliers.
 
 #### Scope of ingest
 
@@ -2747,16 +2903,17 @@ Round to two decimals. Apply the 0.564 multiplier exactly once. Example: `$ 9.1
 
 Use the **`$/SqFt`** figure as `Cost/unit` for anything sold by area (tile, stone, vinyl). Use the **per-piece** figure (`$/Pcs.`, `$/Lin.Ft`, `$/Set`) as `Cost/unit` for per-piece-only items (thresholds, jambs, trims, vinyl nosing/reducer) — those have no meaningful `$/SqFt`.
 
-#### Markup overrides — Olympia (CIF-style tiers)
+#### Markup overrides — Olympia
 
-Olympia breaks the standard `Retail = Cost + $ 1.00` rule, using the same tier structure agreed for CIF:
+Olympia breaks the standard flooring `Retail = Cost + $ 1.00` rule, using tiers shared
+with CIF:
 
 | Product type | Markup | Applies to |
 |---|---|---|
-| Field tile (porcelain, ceramic, granite, marble, limestone, quartzite, travertine, slate field tile, agglomerated slabs) | `Retail = Cost + $ 2.00` | `Category = Tile / Stone`, `Tile format` ≠ Mosaic |
-| Mosaic (anything `Tile format = Mosaic` — glazed porcelain mosaics, mother of pearl, metal/aluminum mosaic, riverstone, sheet-format glass) | `Retail = Cost + $ 5.00` | `Tile format = Mosaic` |
-| Ceramic Trims (bullnose, cove base, pencil, listello — the Trims section) | `Retail = Cost + $10.00` | `Product type = Moulding`, `Category = Tile / Stone` |
-| SPC / LVT vinyl flooring (Chimestone, Chimewood) | `Retail = Cost + $ 1.00` | `Category = LVP / LVT`, `Product type = Flooring` |
+| Field tile (porcelain, ceramic, granite, marble, limestone, quartzite, travertine, slate field tile, agglomerated slabs) | `Retail = Cost + $ 2.00` | `Category = Tile / Stone`, `Tile format` ≠ Mosaic. **No longer Olympia/CIF-specific** — the tile-wide default for every supplier, per *Tile and mosaic markup* above (2026-09-10). |
+| Mosaic (anything `Tile format = Mosaic` — glazed porcelain mosaics, mother of pearl, metal/aluminum mosaic, riverstone, sheet-format glass) | `Retail = Cost + $ 5.00` | `Tile format = Mosaic`. **No longer Olympia/CIF-specific either** — also promoted to the tile-wide mosaic default the same day, per *Tile and mosaic markup* above. |
+| Ceramic Trims (bullnose, cove base, pencil, listello — the Trims section) | `Retail = Cost + $10.00` | `Product type = Moulding`, `Category = Tile / Stone`. Unaffected by the 2026-09-10 ruling. |
+| SPC / LVT vinyl flooring (Chimestone, Chimewood) | `Retail = Cost + $ 1.00` | `Category = LVP / LVT`, `Product type = Flooring` |
 | Vinyl reducer (Chimewood reducer) | `Retail = Cost + $10.00` | cross-supplier accessory markup |
 | Vinyl nosing (Chimewood nosing) | `Retail = Cost + $20.00` | cross-supplier accessory markup (stair-step/riser tier) |
 | STONE (marble/quartz thresholds, shower jambs, benches — `Category = STONE`) | `Retail = 0` (leave at zero) | Markup unsettled; leave `Retail price/unit = 0` and flag for Albert. Do not infer. |
@@ -3198,6 +3355,43 @@ extraction (62 rows) — it is now confirmed. Do not ask again.
   on their sheet but is not formally mapped to either; confirm the equivalence with
   Weiss if it becomes load-bearing.
 
+#### Red ink means different things on different lists (PL-376, 2026-09-24)
+
+The Aug 1 2026 list's legend read red as *low stock*; the **Sept 21 2026 list's legend
+reads "The color in Red: promotions while quantities last."** Read the legend on every
+list — never carry the previous meaning forward. "While quantities last" is the
+schema's while-stock-lasts language, so red colourways get `Stock status = Clearance`.
+The red names share their block's printed price (there is no separate promo figure), so
+`Promo cost` stays blank. Red is detected from the PDF's character colours
+(`non_stroking_color == (1,0,0)`), not by eye. An asterisk after an LVP colour means a
+Stairboard Set exists in it — still not a stock marker.
+
+The text layer is printed twice (a black layer plus a slightly offset grey one), so
+pdfplumber's `dedupe_chars()` sometimes yields doubled glyphs (`$1155` for `$15`,
+`2 2 6 6 . .4 4 9 9`). Collapse doubled pairs before the two-engine price check;
+pypdfium2 reads the cells cleanly.
+
+#### Legacy Lightspeed SKUs (relinked 2026-09-24)
+
+23 of the Aug-imported records were linked to pre-pipeline Lightspeed products still
+carrying legacy skus — Weiss's own item codes (`F-E1-04`, `F-E6-02`, `F-E8-01` …; they
+stay visible in the LS name as `#F-E1-04`) and Titan numbers (`11221`, `11228`,
+`WEI.LM.TM` …). On PL-376 each was corrected to its Airtable SKU with prices from the
+Sept list (`catalog-plan-weiss-relink.json`), applying Albert's Vizion ruling of the
+same day. A future Weiss run should find every Lightspeed sku equal to the Airtable SKU.
+
+#### Lines as of the Sept 21 2026 list
+
+- New: `8mm Vinyl Plank 12 mil 48"` (6+2mm, 7"x48", Jute/Linen/Mist/Noble/Sienna,
+  19.23 sf/b — a second 8mm line beside the 7"x60" one, so the collection names the
+  length; the list prints no line name), `5mm Looselay 22 mil` (501–505, ceramic-bead
+  wear layer, 27.17 sf/b), plus new colours in existing lines.
+- **Gone from the list:** the `6mm Vinyl Plank 12 mil` line (Driftwood, Havenest, Venus).
+  **Albert, 2026-09-24: keep it, but note it.** The records stay active at their Aug 1
+  2026 prices, with a Salesperson note saying no current list backs those prices and to
+  confirm with Weiss before quoting. A later Weiss list that still omits the line needs
+  no new question; one that reprices it updates as normal.
+
 ---
 
 ### Vizion (Vizion Floor)
@@ -3319,6 +3513,35 @@ price per collection, and accessory dimensions.
 - **One price per collection, not per row.** The price token sits vertically centred
   beside the colour block, so a naive row-wise parse will orphan it. Verified
   positionally on the first run.
+- **pdfplumber's `extract_tables()` finds NO structured table on this layout — this is
+  expected, not a failure to fix (confirmed 2026-09-18).** Every Vizion section is a
+  free-form column layout (item names stacked in a list, one shared price+spec block
+  floating beside the middle of the stack), not ruled or colour-banded cells, so
+  `extract_tables()` returns nothing usable (a degenerate 1-cell table on p.1, none on
+  the rest). `scripts/pricelist_extract.py` still exits 0 / "CROSS-CHECK PASSED" in this
+  case — **that is a false-positive read for Vizion specifically**, not evidence of a
+  clean parse. It only means pdfplumber found zero values, so there was nothing for
+  the cross-check to disagree with PDFium about. Do not treat a Vizion "passed" as
+  license to build the CSV automatically from `extract_tables()` output; there won't be
+  any. The 2026-09-18 run confirmed this a second time (Aug 2026 list) and escalated
+  correctly rather than hand-transcribing from `extract_text()`, which is exactly what
+  the pdfplumber-only policy exists to prevent.
+- **The reading method for Vizion, once the layout is confirmed (not new information —
+  same shape every run so far):** use `extract_text()` for classification and to read
+  the per-collection price/spec block (never as a substitute for a table-based parse on
+  a supplier where one is achievable), and apply one documented rule: **every SKU listed
+  under a collection's header shares that collection's single printed price and spec
+  block**, regardless of which item name the block sits beside on the page. This has now
+  held across the 2026-07-01 and 2026-08-01 lists (5 collections each time, prices
+  matching exactly for every colour that appears on both). Still verify against a fresh
+  read of the actual PDF text each run — colour lists, box sizes and prices do change —
+  but the *positional rule* itself does not need re-confirming with Albert every time.
+  A future unattended run may apply it directly rather than escalating on "pdfplumber
+  found nothing," provided it separately checks that every candidate price token in the
+  document (via PDFium/`extract_text()`) is accounted for by exactly one collection —
+  if a run ever finds a 6th price-shaped section, an unrecognised layout shift, or two
+  collections whose printed prices could plausibly swap, that's new territory and
+  should still escalate rather than guess.
 - **The vinyl accessory strip repeats identically** under both the 7MM and 8MM sections
   at the same prices — one SKU each, not two (the Canadian Standard trim rule).
 - **Colour names are place names** (Acadia, Banff, Whistler, Nile…) and carry no tone
@@ -3763,30 +3986,170 @@ printed-as-cost case, recorded here so the question is not re-asked and so
 Albert confirmed the **cost column** on 2026-09-12. He did not confirm a markup —
 see the next subsection, which is still open.
 
-#### Markup override — OPEN QUESTION, do not assume the global rule
+#### Markup override — RESOLVED, 2026-09-12 (Albert): global rule applies
 
-**Observed 2026-09-12 from the live Lightspeed catalogue: all 73 live HOMESPRO
-products carry `retail = cost + $ 1.40`, with zero exceptions.** Not one sits at the
-global `+ $ 1.00`.
+**Albert confirmed `+ $ 1.00` — the global rule, not the live pattern.** Retail =
+Cost/unit + $ 1.00, same as every other supplier without a recorded override.
 
-73/73 is not noise; it reads as a deliberate supplier-specific markup that was never
-recorded here. **Until Albert rules on it, do not apply either value to this
-supplier** — flag the rows and let the plan hold. Applying the global `+ $ 1.00`
-would cut retail by roughly `$ 1.00`/sf against live on every matched product, on
-top of whatever the cost change already does.
+This is a deliberate cut against where HOMESPRO's 27 already-live, name-matched
+SKUs (Venice, Moscow, Sydney, Seoul) currently sit — all 73 live HOMESPRO products
+in Lightspeed carry `retail = cost + $ 1.40`, zero exceptions, so this decision
+both drops the markup AND applies the sheet's 26-30% cost cut on top. The combined
+effect on those 27 SKUs is roughly $0.58-$1.18/sf below current live retail. Recorded
+here so the size of the move is never mistaken for a rounding difference.
 
-An earlier draft of this subsection asserted the global `+ $ 1.00` for HOMESPRO. That
-was wrong — it extended Albert's cost-column answer into a markup answer he had not
-given. Recorded here rather than quietly deleted, because the same overreach is easy
-to repeat on the next new supplier.
+The $1.40 pattern in the live catalogue is not being adopted going forward — it
+reflects the account's prior state, not a supplier-specific rule Titan is choosing
+to continue.
+
+(An earlier draft of this subsection asserted the global rule before Albert had
+actually confirmed it, then was corrected to an open question when that overreach
+was caught. Kept in this file's history rather than smoothed over, since the same
+mistake is easy to repeat on the next new supplier.)
+
+#### SKU / handle / name prefix — CONFIRMED, 2026-09-13 (Albert): `HMPR`
+
+Onboarding a brand-new supplier requires confirming these before anything is minted
+— `bert-airtable-schema` "Before importing a new supplier" and `ls-upload-instructions`
+line 1079 both gate on it explicitly. Albert confirmed a single token for all three:
+
+| Token | Value | Used for |
+|---|---|---|
+| SKU prefix | `HMPR` | Titan's internal Airtable SKU — `LVP-HMPR-0001`, `ACC-HMPR-0001`, etc. |
+| Handle prefix | `HMPR` | `LS Handle / Parent ID`, e.g. `HMPR55MILAN` |
+| Name prefix | `HMPR` | The constructed Lightspeed display name |
+
+`Sequential 0001 format` per Supplier SKU policy — the sheet carries no per-product
+supplier code, so `Supplier SKU` stays blank on every HOMESPRO record.
+
+#### Category mapping — derived from existing schema precedent, not confirmed with Albert
+
+Resolved from rules already recorded elsewhere in this file rather than invented:
+
+- **Click/floating SPC** (Milan, Venice, Moscow, Vancouver, Sydney) → `Category = LVP`,
+  `Material type = SPC core`, `Install method = Click` — the Chimestone precedent.
+- **Glue-down vinyl** (Holland, Seoul) → `Category = LVT`, `Material type = SPC core`,
+  `Install method = Glue down` — the Chimewood "Glued Down" precedent (glue-down vinyl
+  is `LVT`, not `LVP`, regardless of core).
+- **Laminate** (Tuscany) → `Category = Laminate`, `AC rating = AC4`.
+- **T-Moulding / Stair Nose / Reducer** → `SKU prefix = ACC`, `Product type = Moulding`.
+  These three price identically ($19.50/$24.50/$19.50) across both the SPC and
+  laminate lines — shared accessories, not per-collection variants. `Category = LVP`
+  assigned as the majority case; flagged rather than silently decided, since a trim
+  genuinely serving two categories has no clean single answer.
+- **IXPE Underlay / Multi-Surface Protector** → `SKU prefix = ACC`,
+  `Product type = Underpad`, `Category` left blank — no flooring-format category
+  applies to an underlayment roll, and none of the documented Category options fit.
+
+#### Per-colour expansion and accessory markups — RESOLVED, 2026-09-24 (Albert)
+
+The PL-242 residue (Venice, Moscow, Sydney, Seoul — held since 09-13 as
+collection-level rows against per-colour Lightspeed products) was settled in four answers:
+
+1. **A collection price applies to every live colour.** One Airtable record per live
+   Lightspeed colour product, linked to it by UUID, priced at the sheet's collection cost
+   (+ $1.00). Colour and plank dimensions come from the live Lightspeed name, because the
+   sheet prints neither. Both Venice "Texas" products (HOM.660, HOM.661) got a record,
+   disambiguated by code in the product name. Result: LVP-HMPR-0006..0032 (27 records).
+   The never-written collection-level SKUs LVP-HMPR-0002/0003/0005 and LVT-HMPR-0002
+   were retired unused.
+2. **Seoul is the live Looselay product**, despite the sheet listing it under GLUE DOWN
+   VINYL: Category LVP, Material type Loose-lay vinyl, Install method Loose lay.
+3. **Standard accessory markups apply, not + $1.00**: T-moulding and reducer Cost + $10,
+   stair nose Cost + $15, IXPE underlay Cost + $20 (the 2026-09-24 underpad rule). The
+   floor protector has no standard and stays at Cost + $1.00. The 09-12 "+ $1.00 global
+   rule" answer covered flooring, and was misapplied to the trims on 09-14.
+4. **Lightspeed keeps Home's Pro's own `HOM.*` codes as its sku**, carried in Airtable's
+   `Supplier SKU` (the reconciler accepts either as identity). Unlike Vizion and Weiss,
+   these are the supplier's real item codes, so they are not relinked to the HMPR SKU.
+
+`Colour / tone` stays blank on these records. It is a tone palette (Light / Medium /
+Dark / Grey / …), not a colour-name field, and the pre-flight rightly refuses a colour
+name there.
+
+#### From the first extraction (2026-09-11, PL-242) — salvaged 2026-09-23
+
+Recorded on `funny-rubin-4puvl1`, never merged. Its proposed identity (`HomesPro`, `HMSP`) is superseded by the confirmed `HOMESPRO` supplier value and `HMPR` prefix above, and its cost-column reasoning by Albert's 2026-09-12 confirmation. What it established about the live catalogue still holds:
+
+##### HomesPro is already extensively live in Lightspeed — the third state, at scale
+
+**73 HomesPro products already exist in Lightspeed** (`supplier_name: "HOMESPRO"`,
+checked via `scripts/lightspeed_pull.py --supplier "Homespro"` before treating this as a
+plain new-supplier run — Oakel/Golden Choice, 2026-09-10, are why this check is now
+mandatory). This is RULE 0a's third state (new to Airtable, already live in Lightspeed),
+but at a scale the pattern hadn't shown before: the live catalogue spans 12 collections
+(BERLIN, MADRID, MONTREAL, MOSCOW, PARIS, ROME, SEOUL, SWEDEN, SYDNEY, TOKYO, VENICE,
+VICTORIA) across laminate, SPC, VSPC, LVT, Looselay and Dry Back — none of which this
+one-page PL-242 sheet is a complete picture of.
+
+**Three of PL-242's five SPC lines spec-match a live collection exactly, but every one
+is a genuine tie, not a clean 1:1 match — because the price list prices per *collection*,
+while Lightspeed carries per-*colour* SKUs:**
+
+| PL-242 line | Live LS collection | Spec match | Live colour SKUs (tied) |
+|---|---|---|---|
+| Venice (6.5mm, 1.5mm IXPE, 19.12sf/b) | VENICE | Exact | 11 — Baku, Cody, Dover, Gabon, Havana, Hawaii, Luka, Maine, Malta, Texas (×2), Troy |
+| Moscow (7mm, 1.5mm IXPE, 19.12sf/b) | MOSCOW | Exact | 6 — Bonjour, Hola, Marhaba, Namaste, Salve, Shalom |
+| Sydney (6mm Herringbone, 1.5mm Cork, 19.38sf/b) | SYDNEY | Exact | 4 — Birch Hills, Castletown, Divibeach, Sunderland |
+| Seoul (5mm, 19.76sf/b, listed as **Glue Down** on PL-242) | SEOUL | Exact on thickness+box size | 5 — Arish, Bursa, Pune, Seto, Tours, but LS labels the line **Looselay**, not Glue Down |
+
+**None of these four were backfilled a `Lightspeed ID`.** This is exactly the Gracious
+SPC-colour-range lesson (bert-airtable-schema, Gracious subsection): "one record cannot
+hold fourteen UUIDs." A collection-level Airtable row with no colour has nothing to
+disambiguate against a field of same-spec colour SKUs, so guessing any one of them would
+silently misattribute a UUID. Per the updated policy, a genuine tie between two or more
+candidates is excluded from the LS upload file entirely and flagged (`Review Reason:
+Ambiguous Naming`) rather than guessed. Seoul additionally carries an unresolved
+install-method conflict (Glue Down on the price list vs. Looselay in Lightspeed) that
+compounds the tie — flagged, not silently corrected either way.
+
+**Milan, Vancouver ("Long Plank"), Holland (Glue Down, marked NEW), Tuscany (72-Hour
+Waterproof Laminate, marked NEW), and both underlay rolls have no match anywhere in the
+73-product live catalogue** — genuinely new to both systems, and are the only PL-242
+rows that went into the LS upload file (blank `id`, minted handle).
+
+**The structural lesson, stated for the next HomesPro run:** this price list's
+collection-level pricing (one row, one price, per named line — no colour breakdown) is
+a *coarser* granularity than how HomesPro's own catalogue is actually built in
+Lightspeed (one SKU per colour). Extracting at the sheet's own granularity is correct
+for what the sheet says, but it means the extracted Venice/Moscow/Sydney/Seoul rows are
+the wrong shape to ever get a Lightspeed ID as-is — they would need to be expanded to
+per-colour records (keyed on the live LS `sku` values, e.g. `HOM.662`…`HOM.66B` for
+Venice) before a 1:1 backfill is possible, the same fix Gracious's SPC range is still
+waiting on.
+
+##### Naming
+
+Live HomesPro Lightspeed products use `HOMVIN` for every vinyl format (SPC, VSPC, LVT,
+Looselay, Dry Back all share the one prefix — HomesPro does not split by core/format
+the way the generic schema convention does) and `HOMLAM` for laminate. The five new-to-
+both-systems rows in the LS file (Milan, Vancouver, Holland, Tuscany, and the two
+underlay rolls plus three trims) follow those two prefixes for consistency with the
+live catalogue rather than the generic `[SUPP][TYPE]-[CORE]` convention. Minted handles
+are alphanumeric brand-first (`HMSP55MILAN`, `HMSP8VANCOUVER`, … — the prefix is now `HMPR`, confirmed 2026-09-13) since none of these
+five have a stored handle to copy.
+
+**Trims (T-Moulding, Stair Nosing, Reducer) are priced identically across every
+compatible flooring line** ($19.50 / $24.50 / $19.50 regardless of which SPC or
+laminate line) and the sheet gives no dimensions to distinguish them by floor type.
+Rather than force the closed `[Material]` vocabulary (`SPC`/`Laminate`/`Wood`) into two
+SKUs per trim on no real evidence they're physically different pieces, each trim is a
+single `SPC`-tagged SKU (5 of 6 compatible lines are vinyl) with a Salesperson note
+naming every compatible line, including Tuscany (laminate) — flagged `Review Reason:
+Spec Gap` rather than guessed apart.
+
+##### Scope of ingest
+
+Everything on the one-page sheet: 5 SPC Vinyl, 2 Glue Down Vinyl, 1 waterproof
+laminate, 2 underlayment rolls (IXPE Underlay, Multi-Surface Protector), 3 trims. No
+out-of-scope sections — the whole document is flooring-adjacent product.
 
 #### Not yet recorded
 
-SKU supplier code, brand, collection naming and material-type defaults are **not**
-established here. Derive them from the live Lightspeed records rather than inventing
-them — the products exist there, so the real convention is readable from data. Verify
-any SKU format against the live base before generating a SKU (the Grandeur 2026-09-03
-trap), and flag `sku_format_mismatch` rather than reconciling a disagreement silently.
+Collection naming and material-type defaults beyond the mapping above are still
+**not** established. Verify any SKU format against the live base before generating
+a SKU (the Grandeur 2026-09-03 trap), and flag `sku_format_mismatch` rather than
+reconciling a disagreement silently.
 
 ### IMPRESSIVE (MG Impressive / Impressive Floors)
 
@@ -3828,11 +4191,499 @@ cost — and leave `Promo cost` blank.
 Page 10 (MDF casing / baseboard) is interior trim, excluded — consistent with the
 FAW / Olympia / Dragona precedent above.
 
+#### SKU (Albert, 2026-09-23)
+
+**A product already in Lightspeed keeps its Lightspeed code as its Airtable `SKU`**,
+verbatim: `4400`, `91500-N`, `IMP.LM.NS`. Albert's ruling on PL-381, answering the
+question of raw LS code versus a minted `[CAT]-IMPR-####`: "LS code". It overrides the
+global `CAT-SUPP-####` format for IMPRESSIVE, and a stranded 2026-09-22 note that said a
+minted SKU should replace the LS code. SKU is immutable (RULE 0), so this was asked
+before any create. A product **new** to Lightspeed is minted as `[CAT]-IMPR-<code>`,
+because Lightspeed takes the SKU the create sends (99 on 2026-09-22). Both kinds are in
+the catalogue; neither is rewritten.
+
+Watch the SKU merge key: every other hyphen-less SKU in the base is an Olympia Tile
+code. On 2026-09-23 none of the 151 raw IMPRESSIVE codes collided with one (checked by
+exact match), but an upsert merges on SKU, so check again on any new raw code.
+
+#### Select values: the sheet's wording is not the base's (2026-09-23)
+
+The PL-381 extraction wrote the sheet's words into single-selects, and the pre-flight
+blocked all 250 rows. The base already has an answer for each; use it:
+
+| Sheet / extraction | Field | Write |
+|---|---|---|
+| `Nail down / Glue` (hardwood) | Install profile | `T&G` |
+| `Nail down / Glue` (hardwood) | Install method | `Nail / staple`, and note "glue-down also permitted" in Salesperson notes |
+| `Tongue and Groove` | Install profile | `T&G` |
+| `Click`, `Click - Drop Lock` | Install profile / method | `Click` / `Float` |
+| `Glue Down` | Install profile / method | `Glue down` |
+| `Solid hardwood`, `Laminate`, `Wood` | Material type | blank (hardwood and accessories carry none) |
+| `SPC` / `Dryback / Glue-down vinyl` | Material type | `SPC core` / `Dry-back vinyl` |
+| `Light Wirebrushed, Micro V bevelled sides` | Finish type | `Light Wirebrushed` |
+| `Wirebrushed and Light Handscraped` | Finish type | `Light Handscraped & Wire brushed` |
+| `UV Cured Acrylic` | Finish type | blank; printed wording in Salesperson notes |
+| `1.5mm IXPE` / `1.5mm EVA` | Underpad type | `IXPE` / `EVA` |
+| a colourway name (`UMBER`, `HARBOUR`, …) | Colour / tone | blank: 1,621 of 1,627 plank records leave it blank, and the colour is in Product name |
+
+Brand and collection naming are still derived from live Lightspeed records, same as
+HOMESPRO.
+
+### Northway (Northway Building Supplies)
+
+**New supplier — first ingested 2026-09-10 from Notion Price Lists row PL-278, a
+10-page PDF.** Confirmed genuinely new via `platform-settings/airtable-destinations.json`
+`supplier_aliases` (no entry) before minting a prefix. Sourced 66 in-scope rows across
+seven sections; a lighting section is out of scope entirely.
+
+#### Identity
+
+| Field | Value |
+|---|---|
+| **Supplier** (single-select) | `NORTHWAY` — ALL CAPS since Albert's 2026-09-21 capitalisation (was `Northway` when first onboarded) |
+| **Brand** | `Northway` (supplier is the brand) |
+| **SKU supplier code** | `NORT` |
+| **Internal SKU format** | `TIL-NORT-####` for everything under `Category = Tile / Stone` (field tile, mosaics); `STN-NORT-####` for the two STONE sections (Shower Jamb & Sill, Shower Niche) |
+
+#### Cost column
+
+**SETTLED (Albert, 2026-09-10): the smallest-volume tier is Titan's ordering tier and
+is Cost/unit, uniformly across every section** — `1 Box` on the three sqft-priced tile
+sections, `1 Piece` on the two per-piece mosaic/matching-mosaic sections and the two
+STONE sections. No multiplier; the printed price at that tier goes to `Cost/unit` as-is.
+The two heavier tiers on each section (`1/2 Pallet`, `1 Pallet`, `3 Pallets`, `10 Pieces`,
+`Crate`, …) are recorded in `Volume pricing notes` for reference but never used as
+`Cost/unit`. This was the open item on the PL-278 Tactical Task; ruling now applied to
+all 66 rows, so no repricing is needed going forward on this basis.
+
+#### Markup
+
+No Northway-specific override. Applies the global rules as-is (Precedence rule, above):
+
+- Field tile (Porcelain Subway Tile, Ceramic Wall Tile, Porcelain Tile sections) →
+  `Retail = Cost + $ 2.00`, per *Tile and mosaic markup* in the global cost-basis section.
+- Mosaic (Porcelain Mosaic, Porcelain Tile Matching Mosaics) → `Retail = Cost + $ 5.00`,
+  same global rule.
+- STONE (Shower Jamb & Sill, Shower Niche) → **OPEN.** Left at `Retail = 0` per the
+  global STONE default, same as every other supplier's STONE rows. Not yet ruled
+  Northway-specific or otherwise — do not set a Northway STONE markup without asking.
+
+#### Scope of ingest
+
+| Section | Rows | Pricing | Tiers | Category / notes |
+|---|---|---|---|---|
+| Porcelain Subway Tile | 1–6 | $/sf | 1 Box / 1/2 Pallet / 1 Pallet | Tile / Stone, field tile |
+| Ceramic Wall Tile | 7–13 | $/sf | 1 Box / 1/2 Pallet / 1 Pallet | Tile / Stone, field tile |
+| Porcelain Mosaic | 14–39 | $/pc | 1 Box / 1/2 Pallet / 1 Pallet | Tile / Stone, `Tile format = Mosaic`; spans PDF pages 3–5 |
+| Porcelain Tile | 40–48 | $/sf | 1 Box / 1 Pallet / 3 Pallets | Tile / Stone, field tile — **tier labels differ from the other two sqft-priced sections** (no `1/2 Pallet`; `3 Pallets` instead of `1 Pallet` as the top tier) |
+| Porcelain Tile Matching Mosaics | 49–50 | $/pc | 1 Box / 1/2 Pallet / 1 Pallet | Tile / Stone, `Tile format = Mosaic` |
+| Shower Jamb & Sill | 51–59 | $/pc | 1 Piece / 1 Crate | **STONE**, 2-tier only |
+| Shower Niche | 60–66 | $/pc | 1 Piece / 10 Pieces / 1 Pallet | **STONE**, 3-tier |
+| LED Gimbal Recessed Lights | 67–68 | — | — | **Excluded** — lighting, out of scope for the flooring catalogue |
+
+#### Packing Info / Sqft Info column mapping
+
+Each section prints two small tables per row — **Packing Info** and **Sqft Info** —
+whose column counts vary by section. Recorded here since the schema fields they feed
+aren't self-evident from the column headers alone:
+
+| PDF column | Table | Airtable field | Notes |
+|---|---|---|---|
+| `Pcs/Ctn` | Packing Info | `Pieces per box` | |
+| `Ctns/Pallet` | Packing Info | `Boxes per skid` | |
+| `Pcs/Pallet` | Packing Info | `Pieces per pallet` | Printed on every section, **including Porcelain Tile** — the first build missed it there (see below) |
+| `Sqft/Pc` | Sqft Info | *(not stored)* | Per-piece coverage; used only to sanity-check `Sqft/Ctn` against `Pcs/Ctn`, not written to any field |
+| `Sqft/Ctn` | Sqft Info | `Box size (sf)` | |
+| `Sqft/Pallet` | Sqft Info | *(not stored)* | Derivable from `Box size (sf) × Boxes per skid`; not written to any field |
+
+**The Porcelain Tile section (rows 40–48) prints a 2-column Sqft Info table, not 3** —
+it omits `Sqft/Pc` and gives only `Sqft/Ctn` and `Sqft/Pallet`. That's a genuine
+structural difference from the other sqft-priced sections, not a parsing gap, and it's
+why `Box size (sf)` is still populated there (`Sqft/Ctn` is present) even though
+per-piece coverage isn't stated. Its Packing Info table is the normal 3 columns, and
+`Pcs/Pallet` = `Pcs/Ctn × Ctns/Pallet` (e.g. row 40: `8 × 40 = 320`).
+
+**Fixed 2026-09-10:** the original build script's Porcelain Tile section handling
+captured `Pieces per box` and `Boxes per skid` but not `Pieces per pallet`, even though
+the source PDF prints it — 9 rows (`NTL12501`, `NTL12501M`, `NTL22601`, `NTL22601M`,
+`NTL24129`, `NTL22611M`, `NTL22625`, `NTL22311`, `NTL22609`) were affected and have
+been backfilled as `Pieces per box × Boxes per skid`.
+
+#### Northway IS already live in Lightspeed for 3 SKUs — the third state
+
+Read-only pull of the live Lightspeed catalogue (14,612 products, 2026-09-10) found
+**3 of the 66 extracted rows already live**: `TIL-NORT-IDB0011` (id
+`895afa67-7933-4e1a-8d11-85ade4b808ad`), `TIL-NORT-IDB0085` (id
+`31cfda24-6e86-414e-96fc-072db6e90739`), `TIL-NORT-RIT48CARARA` (id
+`fd90e372-c731-4e5a-ad15-19f3d605980f`) — matched on spec, not on SKU (Northway has no
+Airtable presence to match SKUs against). Handles copied verbatim from the live API
+response (lowercase, hyphenated auto-generated slugs — see RULE 0a and
+`platform-settings/lightspeed.json`: **never** transform an existing handle to the
+uppercase/alnum minted-format convention). This is RULE 0a's third state (new to
+Airtable, already live in Lightspeed) — same pattern as Canadian Standard and Gracious.
+The other 63 rows are genuinely new to both systems; `Lightspeed ID` stays blank on
+those until an LS upload creates one.
+
+#### Northway ingest output format
+
+Single file, all 57 schema columns plus helper columns 58–59, `MatchStatus = new` on
+every row (per RULE 0a, judged by Airtable presence, not by whether `Lightspeed ID` is
+populated): `ingest/2026-09-10/northway_airtable_upload_2026-05-04.csv`.
+
+**No Lightspeed file** — per *New supplier, and anything the defaults do not cover*
+(`/catalog-sync` §2a) and the process-price-list new-supplier flow, a supplier with no
+existing Airtable rows gets no LS file; those columns are copied from Airtable state
+that doesn't exist yet. This is a one-CSV supplier until a human imports it.
+
+---
+
+### Golden Choice
+
+**New supplier, first ingested 2026-09-10** from Notion Price Lists row PL-252
+(effective 2025-05-01). 184 rows.
+
+#### Cost column — Box vs. Skid, still open; a labeling quirk resolved (Albert, 2026-09-11)
+
+Every price group on the sheet prints **two** columns, both marked "For Dealer" and
+"+Tax": **Net Box Price** and **Net Skid Price**, e.g. `$4.89/sf` vs `$4.79/sf` on the
+Hickory (Medici) line. **Which one is the true dealer cost is still unconfirmed and
+still escalated** — `Net Box Price` was taken as the placeholder (smaller order
+quantity → higher price → read as the more conservative "dealer cost" default), not
+because it's been confirmed.
+
+**What Albert did settle:** despite the "Box Price" / "Skid Price" naming, **both
+columns are already expressed in $/sf** — there is no unit-of-measure difference to
+convert between them. "Box" and "Skid" name the **order-quantity tier** the price
+applies to (buying by the individual box vs. a full skid earns a bulk discount), not a
+per-box-lump-sum vs. per-square-foot distinction. So a future run must not attempt any
+box→sf conversion on either column — take the printed number as-is, per-sf, for
+whichever tier turns out to be the confirmed cost basis. This resolves the *labeling*
+confusion; it does not resolve *which tier* is the dealer cost — that answer still
+belongs in the open Tactical Task, and once Albert confirms it this subsection should
+be updated with the settled basis, the same way HomesPro and Northway's were.
+
+#### Hickory (Medici) — a genuine LS duplicate, not an extraction error
+
+`ENG-GLDC-0027` (Golden Choice Engineered Hickory (NEW) — Medici) tied 1:1 against two
+live Lightspeed records that are the same product entered twice: `GOL.E.H.Med.6` and
+`GOL.E.H.Med.6.1`, identical name/spec/box size (22.39sf/b), created one second apart
+on 2025-06-26. Resolved by Albert 2026-09-11: kept `GOL.E.H.Med.6`
+(`a4ad4c3b-9ee1-4ebd-b735-5f3c39154f95`) as the match; `GOL.E.H.Med.6.1`
+(`aaff679c-8786-42c2-842e-f455ef3ba97f`) is a duplicate LS record for Albert to
+deactivate or delete by hand in the Lightspeed UI — this pipeline has no delete or
+deactivate action, deliberately (`CLAUDE.md`).
+
+#### Golden Choice ingest output format
+
+`ingest/2026-09-10/golden_choice_airtable_upload_2025-05-01.csv` (184 rows, 57 schema
+columns + helper columns) and `ingest/2026-09-10/golden_choice_ls_upload_2025-05-01.csv`
+(183 rows — the Hickory Medici tie above was excluded until resolved, then folded back
+in once matched).
+
+---
+
+### JL Tile
+
+Zero Airtable records as of 2026-09-14 — new to the catalogue, but already live in
+Lightspeed (161 products under `supplier_name` JLTILE observed on the 2026-09-14
+extraction run). Same RULE 0a third state as HOMESPRO/IMPRESSIVE. Sheet arrives as
+`PL-372`, "Important Notice: Price Adjustment Notification & Updated Price List".
+
+#### Cost column — CONFIRMED, 2026-09-14 (Albert): `Your cut order price`
+
+The sheet prints two columns per row, **`$/sf (Regular dealer Price)`** and
+**`Your cut order price`** (always the lower of the two, no terms page states which
+is cost). The 2026-09-14 extraction run defaulted to Regular dealer Price and flagged
+it, per the "assume, do not stop" rule — **Albert corrected this**: `Your cut order
+price` is Titan's actual cost. `Cost/unit = Your cut order price`, `Retail =
+Cost/unit + $ 2.00` (field tile) / `+ $ 5.00` (mosaic) — the global *Tile and mosaic
+markup* rule. **Confirmed by Albert 2026-09-23 ("+2, was live")**: this line used to
+read `+ $ 1.00`, a flooring default the 09-14 extraction wrote in, never a ruling;
+live Lightspeed already carried `+ $ 2.00` on 81 of 84 JL products, and PL-372's CSVs
+were corrected before any write. `Regular dealer Price` is not an MSRP (nothing on the sheet
+frames it as a suggested retail) — keep it in `Volume pricing notes` as the higher
+reference tier, the mirror image of the Vidar cut-order convention rather than a
+match to it.
+
+This reverses the run's own default, so the already-extracted Airtable/LS upload
+CSVs for PL-372 needed rebuilding with the corrected cost column before import — the
+run's first guess is not authoritative once Albert answers; this subsection is.
+
+#### SKU / handle / name prefix — CONFIRMED, 2026-09-14 (Albert): `JLTI`
+
+| Token | Value | Used for |
+|---|---|---|
+| SKU prefix | `JLTI` | Titan's internal Airtable SKU — `TIL-JLTI-DN36331`, etc. |
+| Handle prefix (new products) | `JLTI` | `LS Handle / Parent ID` for genuinely new-to-LS rows, e.g. `JLTITILDN36331` |
+| Name prefix | `JLTITIL` | The constructed Lightspeed display name — `[SUPPLIER]TIL` per the tile-family convention in `ls-upload-instructions` |
+
+**Matched rows (161 live products) keep their existing stored handle verbatim** —
+these are long auto-generated-looking slugs from a prior CSV import, not the `JLTI`
+convention, and RULE 0a says a stored handle is never regenerated or normalized to
+match another convention. `JLTI` governs new records only.
+
+**Supplier / Brand — still proposed, not yet confirmed**: `JL Tile` (the doc header
+prints "J&L TILE", Notion `Company` is "JL TILE" ALL CAPS, no existing Airtable
+Supplier option). Confirm before the Airtable import — an unconfirmed Supplier value
+risks minting a select option nobody chose deliberately, the same trap the Airtable
+actions agent already refuses to walk into unprompted.
+
 #### Not yet recorded
 
-SKU supplier code, brand and collection naming are **not** established here. Derive
-from live Lightspeed records, same as HOMESPRO, and flag `sku_format_mismatch` on any
-disagreement rather than reconciling it silently.
+Collection/material defaults were derived at extraction time from section headers
+(Essential/Elegant Collection → Porcelain; Isabella 3D Collection → Ceramic, Wall) —
+apply the same defaults on the next JL Tile list unless the sheet's section headers
+say otherwise. Not yet recorded: a per-collection markup override (using the global
+`Retail = Cost + $ 1.00` for now), any SALE/promo convention (the 2026-09-14 sheet
+carried none), and confirmation of the Supplier/Brand string above.
+
+### Baltic Homes (Baltic Home "Nature", Longhua Flooring)
+
+Notion `Company` **BALTIC** → Airtable/LS Supplier **BALTIC HOMES** (`supplier_aliases`).
+Warehouse 200 Telson Rd, Markham; orders@longhuaflooring.com. First processed as
+PL-170 (2026-09-24), which arrived as a **phone photo** of the printed list — the
+first image price list, read under `/process-price-list` step 2.3 (two readers, row
+by row). Lines: engineered oak (HD-xxx 18/2mm, EHDP-xxx 18/3mm), SPC click (7mm),
+loose-lay LVT (5mm, 9"x60" and 12"x24").
+
+#### Cost column — CONFIRMED, 2026-09-24 (Albert): `Tier 2 Price SF/CAD`
+
+The sheet prints **Tier 1** and **Tier 2** per sf, Tier 2 ~12% higher. Albert chose
+Tier 2 as cost even though the 10 engineered products already in Lightspeed (added
+2025-11-03) carried costs a cent above Tier 1. `Retail = Cost + $ 1.00` (global
+flooring rule, confirmed same day — it moved live engineered retail 4.99 → 4.91).
+Tier 1 goes in `Volume pricing notes`.
+
+#### SKU, brand, prefixes — CONFIRMED, 2026-09-24 (Albert)
+
+- **SKU = the supplier's printed code, raw** (`HD-001`, `SPC-A16215`,
+  `VL88035L-001`), and `Supplier SKU` = the same. The Olympia-style exception to
+  `CAT-SUPP-0001`: the codes are unique per product and the 10 live LS products
+  already use them.
+- **Brand: blank.** Not "Nature", not "Baltic Homes".
+- LS name prefixes for new products: `BALTENG`, `BALTLVP-SPC`, `BALTLVP-LL`,
+  `BALTLVT-LL` — confirmed by Albert 2026-09-24 ("BALT is good"). The 10
+  pre-existing engineered LS names (`NATURE-ENG Hardwood …`) and their hyphenated
+  handles stay verbatim (RULE 0a).
+- The sheet states no install method, wear layer or species beyond "Oak" — those
+  stay blank rather than assumed.
+
+### Floor & Decor (flooranddecor.ca, Mississauga)
+
+Notion `Company` **FLOOR & DECOR** = Airtable Supplier **FLOOR & DECOR** = Lightspeed
+supplier **FLOOR & DECOR** (Albert renamed the LS supplier from "FLOOR & DECOR SHOP"
+and added the Airtable option, 2026-09-24). A retailer/distributor also selling
+doors and toilets; **only the porcelain tiles are in scope** (Albert, 2026-09-23 —
+"floor and decor but only the tiles"). Their brochure (PL-47, "Tiles and Toilets",
+effective 2025-01-03) is catalogue-style: one colour per page, no table grid, no
+product codes, no box sizes, prices per size tier in prose.
+
+#### Cost column — CONFIRMED, 2026-09-24 (Albert): `Loose` ("the higher one")
+
+Every tile prints a **Loose** and a **Skid** price per sf (e.g. 12x24/24x24 $1.69 /
+$1.59, 24x48 $1.99 / $1.89, high-gloss 24x48 $2.10 / $1.99). Cost = Loose; Skid goes
+to `Pallet price ($/sf)`. Retail = cost + $2.00 (global field-tile rule).
+
+#### Box size — CONFIRMED, 2026-09-24 (Albert): 16 sf/box for every size
+
+The brochure prints none; Albert: "all 16sf/b" (12x24, 24x24 and 24x48 alike).
+
+#### SKU / prefixes
+
+No supplier codes → minted `TIL-FLDC-0001…` (one SKU per colour x size x finish),
+Supplier SKU blank. LS name prefix `FLDCTIL`, handle prefix `FLDC`.
+
+### Tosca Floors
+
+Tosca Floors (george@toscaflooring.com) is both the supplier and the brand. The price
+list is a 13-page PDF opening with a content page, then solid Red Oak (p.2), engineered
+split into AB-grade (pp.3-5) and ABCD-grade (pp.6-8) sections, vinyl (p.9), laminate and
+both accessory strips (p.10), Primed Pine Wood Trim (pp.11-12) and Baluster (p.13).
+First ingested 2026-09-09 from the 2026 list, effective **2026-07-01** — 225 rows.
+
+**Tosca was already live in Lightspeed before it existed in Airtable.** The Master
+Flooring Catalogue returns zero Tosca records, but an LS export carries 195 Tosca
+products under hand-built SKUs (`TOS.E.EO.Bee.6`, `TOS.H.RO.Ant.4.1`, and bare numeric
+codes). This is the third state from RULE 0a — `MatchStatus: new` on the Airtable side
+**and** a populated `Lightspeed ID`. Do not conclude "new supplier, therefore no LS
+presence"; ask for an LS export before deciding there is no LS file to build.
+
+#### Identity
+
+| Field | Value |
+|---|---|
+| **Supplier** (single-select) | `Tosca` — **does not exist in the Airtable select yet**; created on first import |
+| **Brand** | `Tosca` (supplier is the brand) |
+| **SKU supplier code** | `TOSC` — 4-char suffix. **Proposed on the first run, not yet confirmed by Albert.** |
+| **Internal SKU format** | Sequential per category: `HWD-TOSC-####`, `ENG-TOSC-####`, `LVP-TOSC-####`, `LAM-TOSC-####`, `ACC-TOSC-####` |
+| **Supplier SKU** | Populated with the numeric colour code on **vinyl and laminate only** (`3301`, `18001`, `9901`). Blank on solid, engineered and accessories — Tosca prints colour names there, no codes. |
+
+**Do not use the per-product-unique-code pattern here.** Tosca's vinyl codes are *not*
+globally unique: `18001`-`18010` appear under both the 7mm and the 8mm 7 1/4" lines. The
+codes are unique only within a thickness group, so they go in `Supplier SKU` and the
+internal SKU stays sequential (the fallback the Supplier SKU policy calls for).
+
+#### Cost column
+
+**Settled by Albert, 2026-09-09: the printed `Price(per sq.ft)` column IS Titan's dealer
+cost. Taken as-is, no multiplier. Do not ask again.**
+
+- `Cost/unit` = the printed price, verbatim. `Price(per pc)` for the accessory strips.
+- `Retail price/unit` = `Cost + $ 1.00` — the schema default, unmodified.
+- **Tosca publishes no MSRP or suggested-retail column**, and there is no terms page or
+  stated discount anywhere in the document. `MAP price ($/sf)` stays blank. The absence
+  is a real finding, not an omission — it is what stops the next run hunting for one.
+- `Pallet price ($/sf)` stays blank: the sheet gives `Sq.ft/Carton`, never a pallet rate.
+
+Corroborated independently by the 2026-09-09 LS export: across the 129 rows matched to
+live Lightspeed products, `supply_price` — what Titan already books as cost — was
+**identical to the printed price on 60 rows**, lower on 63 (price cuts on the new list)
+and higher on 2. A discount off list would have left none identical.
+
+#### Markup overrides (accessories)
+
+Accessories are per piece. Standard cross-supplier markups apply on top of the printed cost:
+
+| Printed as | Cost/unit | Retail |
+|---|---|---|
+| SPC T-Moulding, 8ft | $15 | $25 (+$10) |
+| SPC Reducer, 8ft | $15 | $25 (+$10) |
+| Flush Nosing, 4" x 8ft | $35 | $50 (+$15, the Stair Nose/Nosing tier) |
+| MDF T-Moulding, 8ft | $10 | $20 (+$10) |
+| MDF Reducer, 8ft | $10 | $20 (+$10) |
+
+Each is one SKU, not one per colour — the list says "All Color of vinyl flooring has
+matching T-Moulding available".
+
+#### Scope of ingest
+
+In scope: **HWD** (solid Red Oak), **ENG** (both grade sections), **LVP** (all nine SPC
+vinyl groups), **LAM**, and the five vinyl/laminate transitions.
+
+**Out of scope: Primed Pine Wood Trim (pp.11-12)** — baseboard, casing, quarter round,
+doorstop, door jamb — per the standing moulding exclusion applied to FAW, Triforest and
+Woden; and **Baluster (p.13)** — hollow iron spindles, shoe bottoms, wall rail brackets:
+stair railing hardware, not flooring. Flagged to Albert 2026-09-09; revisit if he wants
+them catalogued.
+
+Note that Lightspeed separately carries **33 `TREAD` and 1 `HANDRAIL` Tosca products**
+(oak treads, risers, bullnose, pizza sets, landings) that this price list does not price
+at all. They will go stale unless Tosca sends a stair/trim list — they are not something
+this ingest can maintain.
+
+#### Collections
+
+Engineered collections are printed per section and used verbatim: `Deluxe Collection`,
+`Deluxe Collection Bespoke Series`, `Deluxe Collection 7 1/2" Series`,
+`Deluxe Collection Herringbone Series`, `Prestige Collection`, `Glory Collection`,
+`Superior Collection`, `Aura Collection`, `Elegant Herringbone Collection`,
+`Prime Oak Collection` (AB grade); `Renaissance Collection`, `Legend Collection`,
+`Composer Collection`, `Master Collection`, `Diamond Collection`, `Royal Oak Collection`,
+`Monarch Collection`, `Noble Collection` (ABCD grade).
+
+Solid is one line → `Red Oak Solid`. Vinyl and laminate are unnamed on the sheet, so use
+the descriptive spec form (the Evergreen precedent): `5.5mm SPC Click 6"`,
+`7mm SPC Click 7 1/4"`, `8mm SPC Click 7 1/4"`, `7mm SPC Click 9"`,
+`7.5mm SPC 5G Click 7 1/4"`, `7.5mm SPC 5G Click 9"`, `8mm SPC 5G Click 7"`,
+`9mm SPC 5G Click 9"`, `9mm SPC 5G Click 9" Random Length`; `12.3mm Laminate 8"`,
+`12.3mm Laminate 7.68"`.
+
+#### Category / Material type mapping
+
+| Section | Category | Material type |
+|---|---|---|
+| Solid Red Oak | `Solid hardwood` | *(blank — solid)* |
+| All engineered | `Engineered hardwood` | `Hardwood plywood` |
+| All vinyl | `LVP` | `SPC core` — **the core is never stated**; assumed per the global rule for unlabelled rigid click vinyl |
+| Laminate | `Laminate` | `HDF core` — not marked waterproof or water-resistant anywhere |
+
+`Waterproof = TRUE` on vinyl only. `Radiant heat compatible = TRUE` on **engineered**
+(both grade sections state it explicitly) and **blank on solid** — the solid page does
+not claim it. Do not carry the engineered claim across.
+
+#### Grade mapping
+
+Tosca uses the European letter system on engineered and a word grade on solid:
+
+| Tosca says | Airtable Grade |
+|---|---|
+| `AB` (pp.3-5 section header) | `Select & Better` |
+| `ABCD` (pp.6-8 section header) | `Character` |
+| `Select & Better` (solid, p.2 column) | `Select & Better` |
+
+`Product name` keeps the **letter** grade in parentheses on engineered
+(`Tosca Glory Collection 7.5" — Lily (AB)`) and the **word** form on solid
+(`Tosca Red Oak 4.25" — Antwerp (Select & Better)`) — the Grandeur convention.
+
+#### LS handle format
+
+Brand-first, alphanumeric only, colour never truncated:
+`TOSCHWD425REDOAK[COLOUR]`, `TOSCENG[width][COLLECTION][COLOUR]`,
+`TOSCLVP[thickness]MM[width][CODE]`, `TOSCLAM123[width][CODE]`, `TOSCACC[TYPE][MATERIAL]`.
+The thickness token is load-bearing on vinyl — it is what keeps the 7mm and 8mm lines
+apart when they share a colour code.
+
+#### Fields Tosca does not provide
+
+**Species on the AB-grade engineered collections** — the ABCD section states European
+White Oak, the AB section states nothing. Left blank on all 60 AB rows; do not infer it
+from the ABCD section. Also absent throughout: wear layer, AC rating, locking system
+brand, IIC/STC, certifications, colour/tone, pieces per box, boxes per skid, traffic
+rating, veneer cut type, and any warranty beyond the 35-year finish warranty printed for
+solid and engineered.
+
+Provides: colour names (except vinyl/laminate, which are code-only), price, plank size,
+veneer thickness, finish, `Sq.ft/Carton`, and the attached underpad material on vinyl —
+stated as `1.5mm IXPE`, `2.0mm IXPE` or `1.5mm CORK`, so **the underpad type is read, not
+assumed**, which is unusual and worth keeping.
+
+#### Parsing quirks / known soft spots
+
+- **Monarch Collection is printed as two separately numbered blocks (7 and 8) across the
+  p.7/p.8 page break**, and `Greyish white` / `Greyish White` appears in both halves at
+  the same size, price and box. It is one collection of 10 colours. Taking the numbering
+  at face value duplicates a SKU.
+- **The ABCD sheet cross-references AB colours in parentheses** — `Dawn (Lite Latte)`,
+  `Florence (Invisible Oak)`, `Moonstone (Pearlescent Down)`, `Roma (Yale)`,
+  `Genoa (Oak Charm)`, `Gold Coast ( Oak Charm)`. The colour is the leading token; the
+  parenthetical is the equivalent colour in the other grade and belongs in
+  `Salesperson notes`, not in the colour value. (`Pearlescent Down` is a typo for the AB
+  colour `Pearlescent Dawn`.)
+- **Box size printed as a pair** on Noble Collection: `20.247/20.25`. 20.25 used.
+  Diamond and Monarch print `23.315` where every other 7.5" collection prints `23.32`.
+  Stored as printed.
+- **Solid wood width is a mixed fraction**, `4 1/4''`, and the row-wise text extraction
+  merges the species column into the colour (`Northern Bari` for colour `Bari`). Use
+  table extraction, not `extract_text`, on this document.
+- **Vinyl codes repeat across thickness groups** — see Identity above.
+- **Gaps in the code sequences are real**: laminate skips 9911, vinyl skips 9806. Do not
+  create placeholder rows.
+- **Five vinyl codes are marked `*` = "will be discontinued"** (5601-5604, 5608). Written
+  `Stock status = Discontinued` with `Active = TRUE`, because the list still prices them —
+  the future tense matters. Deactivate once stock is exhausted.
+- **"NEW" markers** on the 8mm 7 1/4", 8mm 7", and 9mm Random Length vinyl groups, with
+  a footnote that new vinyl lands mid-July. Treated like FAW's Coming Soon: `Active` TRUE,
+  `Stock status` blank, noted.
+- **The 9mm 9"x60" Random Length group** prints a fixed `60"` size and calls itself Random
+  Length. `Length = RL`; it is a distinct product from the other 9mm 9"x60" group (26.80
+  vs 22.38 sf/carton).
+
+#### SALE / promo items
+
+The 2026 price list carries **no promo or clearance pricing** — never populate
+`Promo cost ($/sf)` / `Promo end date` from it. Tosca does issue a separate clearance
+list (the 2026-07-01 email was subject "Tosca Floors NEW Price List and July Clearance
+List"), but that attachment did not reach the Price Lists row; ask for it rather than
+inferring clearance from the regular sheet.
+
+#### Tosca ingest output format
+
+`tosca_airtable_upload_[YYYY-MM-DD].csv`, all 57 schema columns plus helper columns 58-59,
+written to `ingest/YYYY-MM-DD/`. A Lightspeed file is buildable **once `Lightspeed ID`s
+have been reconciled in from an LS export** — 129 of the 225 rows carry one as of
+2026-09-09; the remaining 96 are new to LS and correctly blank.
+
+---
 
 ---
 
@@ -3884,6 +4735,39 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
 
 ### Changelog
 
+- **2026-09-11** — **HomesPro onboarded (PL-242), and it is already extensively live in
+  Lightspeed — 73 products across 12 collections, checked via `lightspeed_pull.py`
+  before assuming new-supplier-to-Airtable meant new-supplier-to-Lightspeed (the
+  Oakel/Golden Choice mistake this check now exists to prevent). Three of the price
+  list's five SPC lines and one Glue Down line spec-match a live collection exactly on
+  thickness+box size, but every one is a genuine tie against several live colour SKUs
+  (11/6/4/5 candidates) rather than a resolvable 1:1 match, because this one-page sheet
+  prices per collection while Lightspeed carries per-colour SKUs — the Gracious
+  SPC-colour-range lesson recurring at a new supplier. None were backfilled a
+  Lightspeed ID; all four are excluded from the LS upload file and flagged
+  `Ambiguous Naming`, per the 2026-09-11 policy that a genuine tie is excluded, not
+  guessed. Cost basis needed no escalation (single obvious `$/sf` column, no MSRP).
+  Added the new `### HomesPro` subsection.
+- **2026-09-10** — **Northway cost basis settled**: the smallest-volume tier (`1 Box` /
+  `1 Piece`) is Titan's ordering tier and `Cost/unit`, uniformly across all seven
+  in-scope sections, closing the open item on the PL-278 Tactical Task. Added the new
+  `### Northway` subsection, including the Packing Info / Sqft Info column-to-field
+  mapping (`Pcs/Ctn`→`Pieces per box`, `Ctns/Pallet`→`Boxes per skid`,
+  `Pcs/Pallet`→`Pieces per pallet`, `Sqft/Ctn`→`Box size (sf)`; `Sqft/Pc` and
+  `Sqft/Pallet` are not stored) and the Porcelain Tile section's 2-column Sqft Info
+  table (no `Sqft/Pc`). STONE markup stays open — not yet ruled.
+- **2026-09-10** — **Tile AND mosaic markup unified to `Cost + $ 2.00` / `Cost + $ 5.00`
+  across every supplier**, superseding CIF and Olympia's own tiers as a
+  supplier-specific thing — both are now tile-wide defaults, documented once under
+  *Tile and mosaic markup* in the global cost-basis section rather than repeated per
+  subsection. (First recorded as tile-only, with mosaic explicitly staying
+  CIF/Olympia-specific; extended to mosaic the same day.) Olympia's ceramic trims
+  (`+$10.00`) and STONE (`Retail = 0`, unsettled) remain untouched. Applies going
+  forward only; no retroactive repricing of CIF's, Olympia's or Gracious's
+  already-imported tile/mosaic records. Also added the general precedence rule this
+  makes explicit: **global rules apply by default — pricing, naming, anything —
+  unless a supplier's own subsection states otherwise**, and an override binds only
+  the supplier that states it, never a neighbour by inference.
 - **2026-09-09** — **"Gracious has no Lightspeed presence" was wrong, and the way it was
   reached is the reusable lesson.** The first Gracious run queried the Master Flooring
   Catalogue, found no Gracious records, and inferred from that empty result that the supplier
@@ -3925,6 +4809,26 @@ no names). Latest snapshot committed alongside the workbook in `analysis/output/
   are its own product codes, so laminate joins exactly on `Supplier SKU` ↔ LS `sku`,
   a stronger bridge than colour matching. Supplier option `Lee Flooring`, suffix `LEEF`
   and the laminate-code-as-SKU-suffix split remain **proposed, not confirmed**.
+- **2026-09-09** — Added the **Tosca Floors** subsection from the 2026-07-01 list (225
+  rows, first ingest). Its `#### Cost column` is **settled**: Albert confirmed the printed
+  `Price(per sq.ft)` is Titan's dealer cost, taken as-is with no multiplier, and Tosca
+  publishes no MSRP. Corroborated by an LS export the same day — on the 129 rows matched
+  to live Lightspeed products, `supply_price` was identical to the printed price on 60
+  and lower on 63, which a discount off list could not produce.
+  **General lesson, and the reason this run nearly shipped wrong: an empty Airtable
+  catalogue does NOT mean the supplier is absent from Lightspeed.** Tosca had 195 live LS
+  products while the Master Flooring Catalogue held none — the RULE 0a third state. The
+  first pass concluded "new supplier, therefore no LS presence, therefore no LS file";
+  only the export showed otherwise. Ask for an LS export before deciding a supplier has no
+  Lightspeed footprint.
+
+- **2026-09-09** — Corrected the FAW claim that "FAW does not print end dates on SALE
+  items": true of the regular price list, false of the **standalone promo sheets**, which
+  print an explicit validity window. Added a *Standalone promo sheets* block covering their
+  layout (vertically-centred group labels that a row-wise parse mis-assigns), the
+  sheet-label -> catalogue-collection mapping, matching on colour + sf/box (which resolves
+  the documented Tobermory and Westminster collisions), and the fact that a promo run
+  produces no Lightspeed file. From the NAF August 2026 run.
 
 - **2026-09-09** — **Price Lists status option names corrected against the live data
   source.** The documented values `Extracted [Pending Review]`, `Error: Needs attention`

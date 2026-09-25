@@ -8,13 +8,20 @@ scripts/lightspeed_push.py.
 
 What it can do, and nothing more:
 
-    create_family(payload)          POST /api/2.0/products
-    update_variant(id, details)     PUT  /api/2.1/products/{id}
-    read_family(id)                 GET  /api/3.0/products/{id}
+    create_family(payload)          POST   /api/2.0/products
+    update_variant(id, details)     PUT    /api/2.1/products/{id}
+    delete_product(id, expect_sku)  DELETE /api/2.0/products/{id}
+    read_family(id)                 GET    /api/3.0/products/{id}
 
-There is no delete and no deactivate, deliberately and permanently. Removing a
-product from a live POS is a human decision made in the Lightspeed UI; nothing in
-this pipeline may do it, so the capability simply does not exist here.
+**Delete exists since 2026-09-24, and only as a person's decision.** Until then there
+was none, deliberately. Albert reversed that for products a supplier's newest list no
+longer carries (FAW PL-377: the old T&G Toffee / Warm Honey, "If they don't exist in
+the newest, delete them"). What still holds: removing a product is never the
+pipeline's idea. lightspeed_push.py refuses a delete action unless the approval
+names a person (a policy auto-approval can never carry one), and delete_product()
+re-reads the product first, refusing unless its live sku is the one the plan meant.
+It also refuses a variant family, because deleting a parent takes its variants with it.
+Lightspeed's delete archives the product (`deleted_at`); its sales history stays.
 
 Three versions are in play and that is not an accident of ours — creates are 2.0,
 updates are 2.1, reading a whole family is 3.0. Paths come from
@@ -50,7 +57,7 @@ WRITE_METHODS = ("POST", "PUT", "PATCH", "DELETE")
 
 
 class LightspeedWriter(LightspeedClient):
-    """Adds create and update to the read-only client. No delete, ever."""
+    """Adds create, update and a guarded delete to the read-only client."""
 
     def __init__(self, *args, dry_run=False, **kwargs):
         super().__init__(*args, **kwargs)
@@ -191,40 +198,126 @@ class LightspeedWriter(LightspeedClient):
         supplier has to be known before the cost can be written. It is not in the
         plan, so it is read from the live product here. `price_excluding_tax` was
         always correct and passes through untouched.
+
+        The WHOLE array goes back, with only the product's own supplier's price
+        changed (ported 2026-09-23 from b44e192, which had verified it live on
+        ENG-FAWK-0010 but was never merged). Sending a one-element array is
+        correct for a product with one supplier and, on a product with two, risks
+        dropping the second: `product_suppliers` replaces rows. Which row is
+        "ours" is decided by the product's own `supplier_id`, never by position.
         """
         details = dict(details)
+        if "sku" in details:
+            details["product_codes"] = self._product_codes_with_sku(product_id, details.pop("sku"))
         if "supply_price" not in details:
             return details
 
         supply_price = details.pop("supply_price")
-        entry = {"supplier_id": self.SUPPLIER_AT_WRITE_TIME, "price": supply_price}
-        if not self.dry_run:
-            supplier = self._current_supplier(product_id)
-            entry["supplier_id"] = supplier["id"]
-            # Sending product_suppliers replaces the row, so carry the existing
-            # supplier code through rather than blanking it as a side effect.
-            if supplier.get("code"):
-                entry["code"] = supplier["code"]
-        details["product_suppliers"] = [entry]
+        if self.dry_run:
+            details["product_suppliers"] = [
+                {"supplier_id": self.SUPPLIER_AT_WRITE_TIME, "price": supply_price}]
+            return details
+        details["product_suppliers"] = self._product_suppliers_with_price(
+            product_id, supply_price)
         return details
 
-    def _current_supplier(self, product_id):
-        """The supplier this product already has. Never invents one.
+    def delete_product(self, product_id, expect_sku):
+        """Delete (archive) ONE standalone product, after proving it is the one meant.
 
-        1,440 of the 14,525 live products carry no supplier at all, and a cost
-        cannot be written without one. Picking a supplier to make the write
-        succeed would be inventing a purchasing relationship, so that case stops
-        the batch like any other failure.
+        Re-reads the product and refuses unless its live sku equals `expect_sku`, so
+        a stale or mistyped UUID cannot remove a different product. Refuses a variant
+        family or a member of one: deleting a parent removes every variant with it,
+        and deleting one member of a family is a family edit, not a removal.
         """
-        product = self.read_family(product_id)
-        suppliers = product.get("suppliers") or []
-        if not suppliers or not suppliers[0].get("id"):
+        product = self.read_product(product_id)
+        live_sku = product.get("sku")
+        if not product or live_sku != expect_sku:
             raise LightspeedError(
-                f"product {product_id} has no supplier on record, and a 2.1 update "
+                f"refusing to delete {product_id}: its live sku is {live_sku!r}, "
+                f"the plan expected {expect_sku!r}")
+        if product.get("has_variants") or product.get("variant_parent_id") \
+                or (product.get("variant_count") or 0) > 1:
+            raise LightspeedError(
+                f"refusing to delete {expect_sku} ({product_id}): it belongs to a "
+                "variant family, and a delete there removes more than one product")
+        path = f"{self.cfg['api']['endpoints']['products']}/{product_id}"
+        body = self._send("DELETE", path)
+        return None if body.get("dry_run") else body
+
+    def read_product(self, product_id):
+        """GET one product from the 2.0 endpoint — carries product_suppliers[] with prices."""
+        path = f"{self.cfg['api']['endpoints']['products']}/{product_id}"
+        body = self.get(path)
+        data = body.get("data", body)
+        if isinstance(data, list):
+            data = data[0] if data else {}
+        return data or {}
+
+    SKU_AT_WRITE_TIME = "<existing CUSTOM code id resolved at write time>"
+
+    def _product_codes_with_sku(self, product_id, sku):
+        """Correct a product's sku to `sku` — RULE 0: when Lightspeed and Airtable
+        disagree about a SKU, the Lightspeed record is what gets corrected.
+
+        The 2.1 update has no `sku` key (422 "Unknown field in payload", verified
+        live 2026-09-24 on Vizion 11476). A product's sku IS its single `CUSTOM`
+        entry in `product_codes`, and `product_codes` replaces the whole list, so
+        every existing code goes back and only the CUSTOM one is rewritten, in
+        place by its own id. Anything but exactly one CUSTOM code is refused.
+        """
+        if not sku:
+            raise LightspeedError("refusing to set an empty sku")
+        if self.dry_run:
+            return [{"id": self.SKU_AT_WRITE_TIME, "type": "CUSTOM", "code": sku}]
+        product = self.read_product(product_id)
+        codes = product.get("product_codes") or []
+        custom = [c for c in codes if c.get("type") == "CUSTOM"]
+        if len(custom) != 1:
+            raise LightspeedError(
+                f"product {product.get('sku') or product_id} carries {len(custom)} CUSTOM "
+                "product codes; refusing to guess which one is its sku.")
+        out = []
+        for c in codes:
+            entry = {k: c[k] for k in ("id", "type", "code") if c.get(k) is not None}
+            if c is custom[0]:
+                entry["code"] = sku
+            out.append(entry)
+        return out
+
+    def _product_suppliers_with_price(self, product_id, price):
+        """Every existing supplier row, carried through, with only ours repriced.
+
+        Never invents a supplier. 1,440 of the 14,525 live products carry none,
+        and a cost cannot be written without one; picking a supplier to make the
+        write succeed would invent a purchasing relationship, so that stops the
+        batch. Nor does it guess between two rows that could both be ours.
+        """
+        product = self.read_product(product_id)
+        rows = [r for r in (product.get("product_suppliers") or []) if r.get("supplier_id")]
+        label = product.get("sku") or product_id
+        if not rows:
+            raise LightspeedError(
+                f"product {label} has no supplier on record, and a 2.1 update "
                 "writes the cost as product_suppliers[].price — there is nothing to "
                 "attach it to. Refusing to pick a supplier: that would invent a "
                 "purchasing relationship. Set the supplier in Lightspeed first.")
-        return suppliers[0]
+        own = product.get("supplier_id") or (product.get("supplier") or {}).get("id")
+        targets = [r for r in rows if r["supplier_id"] == own] if own else rows
+        if len(targets) != 1:
+            raise LightspeedError(
+                f"product {label} carries {len(rows)} supplier rows and {len(targets)} "
+                f"match its own supplier {own!r}. Refusing to guess which one the "
+                "cost belongs to.")
+        out = []
+        for r in rows:
+            entry = {"supplier_id": r["supplier_id"],
+                     "price": price if r is targets[0] else r.get("price")}
+            # product_suppliers replaces the row, so a supplier code must be
+            # carried through or it is blanked as a side effect.
+            if r.get("code"):
+                entry["code"] = r["code"]
+            out.append(entry)
+        return out
 
     # -- reads (inherited transport, listed here for callers) --------------
 

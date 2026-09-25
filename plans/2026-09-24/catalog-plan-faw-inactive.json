@@ -1,0 +1,98 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "FLOORS AT WORK",
+ "run_at": "2026-09-24T13:30:16-04:00",
+ "status": "ready",
+ "inputs": {
+  "source": "hand-planned on Albert's instruction; replaces catalog-plan-faw-delete.json (not executed: Lightspeed refused on an open stocktake, then Albert chose inactive)"
+ },
+ "cost_basis": {
+  "value": "dealer",
+  "confirmed_by": "FAW #### Cost column"
+ },
+ "summary": {
+  "lightspeed_update": 2,
+  "airtable_upsert": 2
+ },
+ "blocked": [],
+ "warnings": [],
+ "_note": "Sets the two old T&G Designer products inactive in both systems. Airtable writes by record id, SKU not in payload.",
+ "actions": [
+  {
+   "id": "cat-9a3a55657ae3",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0060",
+   "airtable_rec_id": "recy3tfEnghPMdXBN",
+   "ls_id": "1b0d9d29-491a-42e8-ae8a-6f4f0e51696e",
+   "handle": null,
+   "fields": {
+    "is_active": false
+   },
+   "before": {
+    "is_active": true
+   },
+   "reason": "deactivate_absent_from_list",
+   "seq": 1
+  },
+  {
+   "id": "cat-9642546e1c61",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0060",
+   "airtable_rec_id": "recy3tfEnghPMdXBN",
+   "ls_id": "1b0d9d29-491a-42e8-ae8a-6f4f0e51696e",
+   "handle": null,
+   "fields": {
+    "Active": false,
+    "Salesperson notes": "COMING SOON — not yet in stock. European White Oak, Select grade, 3mm veneer. INACTIVE since 2026-09-24 (Albert): not on the newest FAW list (PL-377 prints only the NEW Designer Click Toffee, ENG-FAWK-0089); the older T&G product was set inactive in Lightspeed and Airtable rather than deleted."
+   },
+   "before": {
+    "Active": true,
+    "Salesperson notes": "COMING SOON — not yet in stock. European White Oak, Select grade, 3mm veneer."
+   },
+   "reason": "deactivate_absent_from_list",
+   "seq": 1
+  },
+  {
+   "id": "cat-b281735701e5",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-FAWK-0065",
+   "airtable_rec_id": "recmPJOOccRxiYRev",
+   "ls_id": "70e9a691-05f3-4965-ab88-e2ea520537ae",
+   "handle": null,
+   "fields": {
+    "is_active": false,
+    "supply_price": 6.99,
+    "price_excluding_tax": 7.99
+   },
+   "before": {
+    "is_active": true
+   },
+   "reason": "deactivate_absent_from_list",
+   "seq": 2
+  },
+  {
+   "id": "cat-f0a2b8710e47",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0065",
+   "airtable_rec_id": "recmPJOOccRxiYRev",
+   "ls_id": "70e9a691-05f3-4965-ab88-e2ea520537ae",
+   "handle": null,
+   "fields": {
+    "Active": false,
+    "Salesperson notes": "COMING SOON — not yet in stock. European White Oak, Select & Better grade, 3mm veneer. INACTIVE since 2026-09-24 (Albert): not on the newest FAW list (PL-377 prints only the NEW Designer Click Warm Honey, ENG-FAWK-0090); the older T&G product was set inactive in Lightspeed and Airtable rather than deleted. Cost/retail restored to 6.99 / 7.99, its own last price (PL-317): the 6.79 written on 2026-09-21 belonged to the new Click product and was applied here by mistake.",
+    "Cost/unit": "6.99",
+    "Retail price/unit": "7.99"
+   },
+   "before": {
+    "Active": true,
+    "Salesperson notes": "COMING SOON — not yet in stock. European White Oak, Select & Better grade, 3mm veneer."
+   },
+   "reason": "deactivate_absent_from_list",
+   "seq": 2
+  }
+ ]
+}

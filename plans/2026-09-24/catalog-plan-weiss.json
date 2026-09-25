@@ -1,0 +1,2923 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "WEISS",
+ "run_at": "2026-09-24T11:53:10.748217-04:00",
+ "status": "partial",
+ "inputs": [
+  {
+   "file": "ingest/2026-09-24/weiss_airtable_upload_2026-09-24.csv",
+   "rows": 79
+  },
+  {
+   "file": "ingest/2026-09-24/lightspeed-products.json",
+   "products": 15069,
+   "run_at": "2026-09-24T11:02:30.486984-04:00"
+  },
+  {
+   "file": "ingest/2026-09-24/weiss_airtable_existing.json",
+   "records": 62
+  },
+  {
+   "file": "/tmp/claude-0/-home-user/7073bf12-0ecb-5aba-9f48-381dc91fbc0c/scratchpad/schema_live.json",
+   "select_fields": 20
+  },
+  {
+   "file": "ingest/2026-09-24/weiss_ls_upload_2026-09-24.csv",
+   "rows": 79
+  }
+ ],
+ "cost_basis": {
+  "value": "dealer",
+  "confirmed_by": "Albert 2026-09-10"
+ },
+ "summary": {
+  "airtable_backfill_ls_id": 20,
+  "airtable_upsert": 42,
+  "lightspeed_create": 20,
+  "lightspeed_update": 21,
+  "actions_total": 103,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 23,
+  "warnings": 27,
+  "rows_in": 79
+ },
+ "actions": [
+  {
+   "id": "cat-b039e42f069d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-WEIS-0008",
+   "airtable_rec_id": "rec9kSbZVXJiUWlig",
+   "ls_id": "dd1f114d-64ff-487b-9057-0a477cb5429b",
+   "handle": "WEISACCUNDERLAY3MMEPEPAD",
+   "fields": {
+    "Cost/unit": "12.00",
+    "Retail price/unit": "32.00"
+   },
+   "before": {
+    "Cost/unit": "10",
+    "Retail price/unit": "30"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 1
+  },
+  {
+   "id": "cat-02e736b0979f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-WEIS-0009",
+   "airtable_rec_id": "recI6UUjdNMhNwSK7",
+   "ls_id": "d76b7693-ed94-4097-a255-0f81c61393fd",
+   "handle": "WEISACCUNDERLAY3MMEVAPAD",
+   "fields": {
+    "Cost/unit": "24.00",
+    "Retail price/unit": "44.00"
+   },
+   "before": {
+    "Cost/unit": "22",
+    "Retail price/unit": "42"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 2
+  },
+  {
+   "id": "cat-1ec51e948d57",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0001",
+   "airtable_rec_id": "reciXeEpvMtJbvlXU",
+   "ls_id": "880ea51b-3f20-4cde-865a-9604f0e8157e",
+   "handle": "WEISENG65ASH12BISTRO",
+   "fields": {
+    "Cost/unit": "2.99",
+    "Retail price/unit": "3.99"
+   },
+   "before": {
+    "Cost/unit": "2.89",
+    "Retail price/unit": "3.89"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 3
+  },
+  {
+   "id": "cat-b5909ee22ac4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0002",
+   "airtable_rec_id": "recW4opFuvhh9IU4O",
+   "ls_id": "3bd70be4-3125-4aff-a588-fb4004a6a3dd",
+   "handle": "WEISENG65ASH12OATMEAL",
+   "fields": {
+    "Cost/unit": "2.99",
+    "Retail price/unit": "3.99"
+   },
+   "before": {
+    "Cost/unit": "2.89",
+    "Retail price/unit": "3.89"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 4
+  },
+  {
+   "id": "cat-47be99ef2345",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0003",
+   "airtable_rec_id": "rectDv94yWvqLHGAY",
+   "ls_id": "eac08baf-8430-4141-b193-3748622e6d9d",
+   "handle": "WEISENG65ASH12TERRACOTTA",
+   "fields": {
+    "Cost/unit": "2.99",
+    "Retail price/unit": "3.99"
+   },
+   "before": {
+    "Cost/unit": "2.89",
+    "Retail price/unit": "3.89"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 5
+  },
+  {
+   "id": "cat-0e1a56b57ccb",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0004",
+   "airtable_rec_id": "receuBUU65G2A57Pj",
+   "ls_id": "a137ddf6-240a-4049-8225-6fc05d3e8942",
+   "handle": "WEISENG65ASH12WARWICK",
+   "fields": {
+    "Cost/unit": "2.99",
+    "Retail price/unit": "3.99"
+   },
+   "before": {
+    "Cost/unit": "2.89",
+    "Retail price/unit": "3.89"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 6
+  },
+  {
+   "id": "cat-f6e34ace1b82",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0018",
+   "airtable_rec_id": "recA5UcI5WW5iz1yB",
+   "ls_id": "782289ac-5eee-4bc6-b6a2-2ae58668004d",
+   "handle": "WEISENG65MAPLE12COTTAGEMAPLE",
+   "fields": {
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Stock status": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 7
+  },
+  {
+   "id": "cat-bd1aeee93b34",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0026",
+   "airtable_rec_id": "reclYFp5pWjCxhnwt",
+   "ls_id": "127e9d34-e10f-4d7a-9bf7-95048969f046",
+   "handle": "WEISENG65OAK2AURORA",
+   "fields": {
+    "Cost/unit": "4.39",
+    "Retail price/unit": "5.39"
+   },
+   "before": {
+    "Cost/unit": "4.19",
+    "Retail price/unit": "5.19"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 8
+  },
+  {
+   "id": "cat-a87ad3a424d4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0027",
+   "airtable_rec_id": "recrGmjKM1VKxOmRU",
+   "ls_id": "cfa6403e-414e-4828-a2a5-bf5bf03b4c30",
+   "handle": "WEISENG65OAK2BISCOTTI",
+   "fields": {
+    "Cost/unit": "4.39",
+    "Retail price/unit": "5.39"
+   },
+   "before": {
+    "Cost/unit": "4.19",
+    "Retail price/unit": "5.19"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 9
+  },
+  {
+   "id": "cat-7c7322c13373",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0028",
+   "airtable_rec_id": "rec0jlSU7TOEWP0ej",
+   "ls_id": "42fe4d19-0b4c-4245-b256-e45d3faf482d",
+   "handle": "WEISENG65OAK2CYPRESS",
+   "fields": {
+    "Cost/unit": "4.39",
+    "Retail price/unit": "5.39"
+   },
+   "before": {
+    "Cost/unit": "4.19",
+    "Retail price/unit": "5.19"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 10
+  },
+  {
+   "id": "cat-3e12af4f9410",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0029",
+   "airtable_rec_id": "rectvGlYVDMYiuREQ",
+   "ls_id": "d1ce3eba-56a7-4461-83fa-73cb6d9c8605",
+   "handle": "WEISENG65OAK2DUNE",
+   "fields": {
+    "Cost/unit": "4.39",
+    "Retail price/unit": "5.39",
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Cost/unit": "4.19",
+    "Retail price/unit": "5.19",
+    "Stock status": null
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 11
+  },
+  {
+   "id": "cat-bd22b00eec1b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0030",
+   "airtable_rec_id": "recgZxlVjCzpSzzaV",
+   "ls_id": "e1c254c4-c372-43d3-95f1-67224b0c8a5b",
+   "handle": "WEISENG75OAK2CREAM",
+   "fields": {
+    "Cost/unit": "3.89",
+    "Retail price/unit": "4.89"
+   },
+   "before": {
+    "Cost/unit": "3.59",
+    "Retail price/unit": "4.59"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 12
+  },
+  {
+   "id": "cat-32c403122d32",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0031",
+   "airtable_rec_id": "recdGFkZQV6ngw4wx",
+   "ls_id": "b71b2d4b-a447-4895-ada1-958792eee104",
+   "handle": "WEISENG75OAK2PENNY",
+   "fields": {
+    "Cost/unit": "3.89",
+    "Retail price/unit": "4.89"
+   },
+   "before": {
+    "Cost/unit": "3.59",
+    "Retail price/unit": "4.59"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 13
+  },
+  {
+   "id": "cat-8051010fb03d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0032",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISENG65OAK2NATURAL",
+   "fields": {
+    "Product name": "Weiss 6.5\" Oak 2mm \u2014 Natural (Select Plus)",
+    "Brand": "Weiss",
+    "Supplier": "WEISS",
+    "LS Handle / Parent ID": "WEISENG65OAK2NATURAL",
+    "Collection": "6.5\" 2mm Oak Veneer",
+    "Product type": "Flooring",
+    "Category": "Engineered hardwood",
+    "Material type": "Hardwood plywood",
+    "Species": "Oak",
+    "Grade": "Select Plus",
+    "Width (in)": "6.5",
+    "Thickness (mm)": "19.05",
+    "Veneer / top layer (mm)": "2.0",
+    "Finish type": "Wire brushed",
+    "Install profile": "T&G",
+    "Underpad included": "FALSE",
+    "Cost/unit": "3.89",
+    "Retail price/unit": "4.89",
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "26.49",
+    "Active": "TRUE",
+    "Waterproof": "FALSE",
+    "Salesperson notes": "New on the Sept 21 2026 list. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 'Select Plus' is Weiss's own grade wording, stored verbatim per the grade translation rule; it sits between Select and Select & Better on their sheet but is not formally mapped -- confirm the equivalence with Weiss. 62 lb/box printed on the list; the schema has no box-weight field (Weight per piece is tile/stone only), so it is recorded here. Weiss price list valid from Sept 21 2026 (PL-376)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 14
+  },
+  {
+   "id": "cat-814cf8428399",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0033",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISENG65OAK2PEWTER",
+   "fields": {
+    "Product name": "Weiss 6.5\" Oak 2mm \u2014 Pewter (Select & Better)",
+    "Brand": "Weiss",
+    "Supplier": "WEISS",
+    "LS Handle / Parent ID": "WEISENG65OAK2PEWTER",
+    "Collection": "6.5\" 2mm Oak Veneer",
+    "Product type": "Flooring",
+    "Category": "Engineered hardwood",
+    "Material type": "Hardwood plywood",
+    "Species": "Oak",
+    "Grade": "Select & Better",
+    "Width (in)": "6.5",
+    "Thickness (mm)": "19.05",
+    "Veneer / top layer (mm)": "2.0",
+    "Finish type": "Wire brushed",
+    "Install profile": "T&G",
+    "Underpad included": "FALSE",
+    "Cost/unit": "4.39",
+    "Retail price/unit": "5.39",
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "26.49",
+    "Active": "TRUE",
+    "Waterproof": "FALSE",
+    "Salesperson notes": "New on the Sept 21 2026 list. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 62 lb/box printed on the list; the schema has no box-weight field (Weight per piece is tile/stone only), so it is recorded here. Weiss price list valid from Sept 21 2026 (PL-376)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 15
+  },
+  {
+   "id": "cat-47f7701bb3a5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0034",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISENG75OAK2COCONUT",
+   "fields": {
+    "Product name": "Weiss 7.5\" Oak 2mm \u2014 Coconut (Select)",
+    "Brand": "Weiss",
+    "Supplier": "WEISS",
+    "LS Handle / Parent ID": "WEISENG75OAK2COCONUT",
+    "Collection": "7.5\" 2mm Oak Veneer",
+    "Product type": "Flooring",
+    "Category": "Engineered hardwood",
+    "Material type": "Hardwood plywood",
+    "Species": "Oak",
+    "Grade": "Select",
+    "Width (in)": "7.5",
+    "Length": "RL",
+    "Thickness (mm)": "19.05",
+    "Veneer / top layer (mm)": "2.0",
+    "Finish type": "Wire brushed",
+    "Install profile": "T&G",
+    "Underpad included": "FALSE",
+    "Cost/unit": "3.89",
+    "Retail price/unit": "4.89",
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "23.70",
+    "Active": "TRUE",
+    "Waterproof": "FALSE",
+    "Salesperson notes": "New on the Sept 21 2026 list. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 57 lb/box printed on the list; the schema has no box-weight field (Weight per piece is tile/stone only), so it is recorded here. Weiss price list valid from Sept 21 2026 (PL-376)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 16
+  },
+  {
+   "id": "cat-c43d688a195a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0035",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISENG75OAK2TOFFEE",
+   "fields": {
+    "Product name": "Weiss 7.5\" Oak 2mm \u2014 Toffee (Select)",
+    "Brand": "Weiss",
+    "Supplier": "WEISS",
+    "LS Handle / Parent ID": "WEISENG75OAK2TOFFEE",
+    "Collection": "7.5\" 2mm Oak Veneer",
+    "Product type": "Flooring",
+    "Category": "Engineered hardwood",
+    "Material type": "Hardwood plywood",
+    "Species": "Oak",
+    "Grade": "Select",
+    "Width (in)": "7.5",
+    "Length": "RL",
+    "Thickness (mm)": "19.05",
+    "Veneer / top layer (mm)": "2.0",
+    "Finish type": "Wire brushed",
+    "Install profile": "T&G",
+    "Underpad included": "FALSE",
+    "Cost/unit": "3.89",
+    "Retail price/unit": "4.89",
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "23.70",
+    "Active": "TRUE",
+    "Waterproof": "FALSE",
+    "Salesperson notes": "New on the Sept 21 2026 list. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 57 lb/box printed on the list; the schema has no box-weight field (Weight per piece is tile/stone only), so it is recorded here. Weiss price list valid from Sept 21 2026 (PL-376)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 17
+  },
+  {
+   "id": "cat-a33c4eb07316",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-WEIS-0002",
+   "airtable_rec_id": "recyw6tQlzv95hEi4",
+   "ls_id": "1afde335-2f54-4031-81f5-1c74566cdffe",
+   "handle": "WEISLAMPREMIERECLIPSE",
+   "fields": {
+    "Cost/unit": "1.39",
+    "Retail price/unit": "2.39",
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Cost/unit": "1.29",
+    "Retail price/unit": "2.29",
+    "Stock status": null
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 18
+  },
+  {
+   "id": "cat-ddf1799cbf13",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-WEIS-0003",
+   "airtable_rec_id": "recR4FhRk8iAUG7GQ",
+   "ls_id": "f01a77bb-5d41-4bcc-b009-05b84419c15b",
+   "handle": "WEISLAMPREMIERSAUVAGE",
+   "fields": {
+    "Cost/unit": "1.39",
+    "Retail price/unit": "2.39",
+    "Stock status": "Clearance"
+   },
+   "before": {
+    "Cost/unit": "1.29",
+    "Retail price/unit": "2.29",
+    "Stock status": null
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 19
+  },
+  {
+   "id": "cat-51fa7b07b59b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-WEIS-0004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLAMPREMIERAUBE",
+   "fields": {
+    "Product name": "Weiss 12mm Premier Laminate 7\" \u2014 Aube",
+    "Brand": "Weiss",
+    "Supplier": "WEISS",
+    "LS Handle / Parent ID": "WEISLAMPREMIERAUBE",
+    "Collection": "Premier",
+    "Product type": "Flooring",
+    "Category": "Laminate",
+    "Material type": "HDF core",
+    "Width (in)": "7",
+    "Length": "48\"",
+    "Thickness (mm)": "12",
+    "AC rating": "AC4",
+    "Finish type": "Matte",
+    "Underpad included": "FALSE",
+    "Cost/unit": "1.39",
+    "Retail price/unit": "2.39",
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "20.81",
+    "Stock status": "Clearance",
+    "Active": "TRUE",
+    "Waterproof": "FALSE",
+    "Pet friendly": "FALSE",
+    "Salesperson notes": "Printed in RED on the Sept 21 2026 list, whose legend reads 'The color in Red: promotions while quantities last' -> Stock status Clearance per the schema's while-stock-lasts rule (verified from the PDF's character colours). Same printed price as the rest of its block; no separate promo price, so Promo cost is blank. New on the Sept 21 2026 list. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 45 lb/box printed on the list; no box-weight field in the schema. Weiss states no locking system or install profile for the laminate -- left blank rather than inferred. Weiss price list valid from Sept 21 2026 (PL-376)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 20
+  },
+  {
+   "id": "cat-2afa9b06b93d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-WEIS-0005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLAMPREMIERHORIZON",
+   "fields": {
+    "Product name": "Weiss 12mm Premier Laminate 7\" \u2014 Horizon",
+    "Brand": "Weiss",
+    "Supplier": "WEISS",
+    "LS Handle / Parent ID": "WEISLAMPREMIERHORIZON",
+    "Collection": "Premier",
+    "Product type": "Flooring",
+    "Category": "Laminate",
+    "Material type": "HDF core",
+    "Width (in)": "7",
+    "Length": "48\"",
+    "Thickness (mm)": "12",
+    "AC rating": "AC4",
+    "Finish type": "Matte",
+    "Underpad included": "FALSE",
+    "Cost/unit": "1.39",
+    "Retail price/unit": "2.39",
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "20.81",
+    "Active": "TRUE",
+    "Waterproof": "FALSE",
+    "Pet friendly": "FALSE",
+    "Salesperson notes": "New on the Sept 21 2026 list. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 45 lb/box printed on the list; no box-weight field in the schema. Weiss states no locking system or install profile for the laminate -- left blank rather than inferred. Weiss price list valid from Sept 21 2026 (PL-376)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 21
+  },
+  {
+   "id": "cat-829d9e78fedf",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-WEIS-0006",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLAMPREMIERMERIDIAN",
+   "fields": {
+    "Product name": "Weiss 12mm Premier Laminate 7\" \u2014 Meridian",
+    "Brand": "Weiss",
+    "Supplier": "WEISS",
+    "LS Handle / Parent ID": "WEISLAMPREMIERMERIDIAN",
+    "Collection": "Premier",
+    "Product type": "Flooring",
+    "Category": "Laminate",
+    "Material type": "HDF core",
+    "Width (in)": "7",
+    "Length": "48\"",
+    "Thickness (mm)": "12",
+    "AC rating": "AC4",
+    "Finish type": "Matte",
+    "Underpad included": "FALSE",
+    "Cost/unit": "1.39",
+    "Retail price/unit": "2.39",
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "20.81",
+    "Active": "TRUE",
+    "Waterproof": "FALSE",
+    "Pet friendly": "FALSE",
+    "Salesperson notes": "New on the Sept 21 2026 list. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 45 lb/box printed on the list; no box-weight field in the schema. Weiss states no locking system or install profile for the laminate -- left blank rather than inferred. Weiss price list valid from Sept 21 2026 (PL-376)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 22
+  },
+  {
+   "id": "cat-456279c7c6a6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-WEIS-0007",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLAMPREMIERTITANIUM",
+   "fields": {
+    "Product name": "Weiss 12mm Premier Laminate 7\" \u2014 Titanium",
+    "Brand": "Weiss",
+    "Supplier": "WEISS",
+    "LS Handle / Parent ID": "WEISLAMPREMIERTITANIUM",
+    "Collection": "Premier",
+    "Product type": "Flooring",
+    "Category": "Laminate",
+    "Material type": "HDF core",
+    "Width (in)": "7",
+    "Length": "48\"",
+    "Thickness (mm)": "12",
+    "AC rating": "AC4",
+    "Finish type": "Matte",
+    "Underpad included": "FALSE",
+    "Cost/unit": "1.39",
+    "Retail price/unit": "2.39",
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "20.81",
+    "Active": "TRUE",
+    "Waterproof": "FALSE",
+    "Pet friendly": "FALSE",
+    "Salesperson notes": "New on the Sept 21 2026 list. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 45 lb/box printed on the list; no box-weight field in the schema. Weiss states no locking system or install profile for the laminate -- left blank rather than inferred. Weiss price list valid from Sept 21 2026 (PL-376)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 23
+  },
+  {
+   "id": "cat-d95feaecac2a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-WEIS-0008",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLAMPREMIERZENITH",
+   "fields": {
+    "Product name": "Weiss 12mm Premier Laminate 7\" \u2014 Zenith",
+    "Brand": "Weiss",
+    "Supplier": "WEISS",
+    "LS Handle / Parent ID": "WEISLAMPREMIERZENITH",
+    "Collection": "Premier",
+    "Product type": "Flooring",
+    "Category": "Laminate",
+    "Material type": "HDF core",
+    "Width (in)": "7",
+    "Length": "48\"",
+    "Thickness (mm)": "12",
+    "AC rating": "AC4",
+    "Finish type": "Matte",
+    "Underpad included": "FALSE",
+    "Cost/unit": "1.39",
+    "Retail price/unit": "2.39",
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "20.81",
+    "Active": "TRUE",
+    "Waterproof": "FALSE",
+    "Pet friendly": "FALSE",
+    "Salesperson notes": "New on the Sept 21 2026 list. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 45 lb/box printed on the list; no box-weight field in the schema. Weiss states no locking system or install profile for the laminate -- left blank rather than inferred. Weiss price list valid from Sept 21 2026 (PL-376)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 24
+  },
+  {
+   "id": "cat-a85fff5cac6f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0005",
+   "airtable_rec_id": "recf4DxOs6Pj2uDoY",
+   "ls_id": "6263da31-fc38-4f02-af47-390d7573ef47",
+   "handle": "WEISLVP712FOG",
+   "fields": {
+    "Cost/unit": "1.49",
+    "Retail price/unit": "2.49"
+   },
+   "before": {
+    "Cost/unit": "1.39",
+    "Retail price/unit": "2.39"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 25
+  },
+  {
+   "id": "cat-42a63d9006c6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0006",
+   "airtable_rec_id": "recPaKBRKKoHqMKIC",
+   "ls_id": "8b1cfb34-a040-4e57-8629-06c744ec8d6c",
+   "handle": "WEISLVP712REEF",
+   "fields": {
+    "Cost/unit": "1.49",
+    "Retail price/unit": "2.49"
+   },
+   "before": {
+    "Cost/unit": "1.39",
+    "Retail price/unit": "2.39"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 26
+  },
+  {
+   "id": "cat-3cd4ef644f53",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0007",
+   "airtable_rec_id": "recGnoskgFsjsxOuD",
+   "ls_id": "44e42b1f-5d3a-4355-9edc-6b08f4ee42f6",
+   "handle": "WEISLVP712SABLE",
+   "fields": {
+    "Cost/unit": "1.49",
+    "Retail price/unit": "2.49"
+   },
+   "before": {
+    "Cost/unit": "1.39",
+    "Retail price/unit": "2.39"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 27
+  },
+  {
+   "id": "cat-dd54ca3d6d6c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0009",
+   "airtable_rec_id": "reco9Mm4B5DnUr4vX",
+   "ls_id": "184c26bf-3b5f-4f0a-9603-dd0c157ea77f",
+   "handle": "WEISLVP720CAVIAR",
+   "fields": {
+    "Cost/unit": "1.69",
+    "Retail price/unit": "2.69"
+   },
+   "before": {
+    "Cost/unit": "1.59",
+    "Retail price/unit": "2.59"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 28
+  },
+  {
+   "id": "cat-aa616f0ac1e1",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0010",
+   "airtable_rec_id": "recnHxBOB0Tw04aVH",
+   "ls_id": "e18df1e6-d5fd-4e59-9a5b-e88b215a717b",
+   "handle": "WEISLVP720CINNABAR",
+   "fields": {
+    "Cost/unit": "1.69",
+    "Retail price/unit": "2.69"
+   },
+   "before": {
+    "Cost/unit": "1.59",
+    "Retail price/unit": "2.59"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 29
+  },
+  {
+   "id": "cat-3f6bb822fbd8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0011",
+   "airtable_rec_id": "rec8LPa3zJruecBV7",
+   "ls_id": "8bc88ecb-ef12-4f7a-8af4-7663a1c0cc1a",
+   "handle": "WEISLVP720TAN",
+   "fields": {
+    "Cost/unit": "1.69",
+    "Retail price/unit": "2.69"
+   },
+   "before": {
+    "Cost/unit": "1.59",
+    "Retail price/unit": "2.59"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 30
+  },
+  {
+   "id": "cat-10308ab23da7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0012",
+   "airtable_rec_id": "receJdZlWjvk3XCIT",
+   "ls_id": "1d05910e-be8c-47f6-9aca-a577072a8859",
+   "handle": "WEISLVP720VEGA",
+   "fields": {
+    "Cost/unit": "1.69",
+    "Retail price/unit": "2.69"
+   },
+   "before": {
+    "Cost/unit": "1.59",
+    "Retail price/unit": "2.59"
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 31
+  },
+  {
+   "id": "cat-f7b7aab2be67",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0020",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVP81248JUTE",
+   "fields": {
+    "Product name": "Weiss 8mm Vinyl Plank 7\"x48\" \u2014 Jute",
+    "Brand": "Weiss",
+    "Supplier": "WEISS",
+    "LS Handle / Parent ID": "WEISLVP81248JUTE",
+    "Collection": "8mm Vinyl Plank 12 mil 48\"",
+    "Product type": "Flooring",
+    "Category": "LVP",
+    "Material type": "SPC core",
+    "Width (in)": "7",
+    "Length": "48\"",
+    "Thickness (mm)": "8",
+    "Wear layer (mil)": "12",
+    "Underpad included": "TRUE",
+    "Underpad type": "IXPE",
+    "Cost/unit": "1.59",
+    "Retail price/unit": "2.59",
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "19.23",
+    "Active": "TRUE",
+    "Waterproof": "TRUE",
+    "Pet friendly": "FALSE",
+    "Salesperson notes": "New on the Sept 21 2026 list. 6mm core + 2mm attached underpad = 8mm total, 7\"x48\" -- a second 8mm line alongside the 7\"x60\" one, so the collection carries 48\" to keep them apart (naming is this run's choice; the list prints no line name). Core construction not stated; rigid vinyl defaults to SPC per the global rule. Underpad material not named; IXPE assumed -- verify with Weiss. Not marked * -- no Stairboard Set listed for this colour. 51 lb/box printed on the list; no box-weight field in the schema. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. Weiss price list valid from Sept 21 2026 (PL-376)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 32
+  },
+  {
+   "id": "cat-d7cc5b177f92",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0021",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVP81248LINEN",
+   "fields": {
+    "Product name": "Weiss 8mm Vinyl Plank 7\"x48\" \u2014 Linen",
+    "Brand": "Weiss",
+    "Supplier": "WEISS",
+    "LS Handle / Parent ID": "WEISLVP81248LINEN",
+    "Collection": "8mm Vinyl Plank 12 mil 48\"",
+    "Product type": "Flooring",
+    "Category": "LVP",
+    "Material type": "SPC core",
+    "Width (in)": "7",
+    "Length": "48\"",
+    "Thickness (mm)": "8",
+    "Wear layer (mil)": "12",
+    "Underpad included": "TRUE",
+    "Underpad type": "IXPE",
+    "Cost/unit": "1.59",
+    "Retail price/unit": "2.59",
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "19.23",
+    "Active": "TRUE",
+    "Waterproof": "TRUE",
+    "Pet friendly": "FALSE",
+    "Salesperson notes": "New on the Sept 21 2026 list. 6mm core + 2mm attached underpad = 8mm total, 7\"x48\" -- a second 8mm line alongside the 7\"x60\" one, so the collection carries 48\" to keep them apart (naming is this run's choice; the list prints no line name). Core construction not stated; rigid vinyl defaults to SPC per the global rule. Underpad material not named; IXPE assumed -- verify with Weiss. Not marked * -- no Stairboard Set listed for this colour. 51 lb/box printed on the list; no box-weight field in the schema. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. Weiss price list valid from Sept 21 2026 (PL-376)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 33
+  },
+  {
+   "id": "cat-38eb43ad0b32",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0022",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVP81248MIST",
+   "fields": {
+    "Product name": "Weiss 8mm Vinyl Plank 7\"x48\" \u2014 Mist",
+    "Brand": "Weiss",
+    "Supplier": "WEISS",
+    "LS Handle / Parent ID": "WEISLVP81248MIST",
+    "Collection": "8mm Vinyl Plank 12 mil 48\"",
+    "Product type": "Flooring",
+    "Category": "LVP",
+    "Material type": "SPC core",
+    "Width (in)": "7",
+    "Length": "48\"",
+    "Thickness (mm)": "8",
+    "Wear layer (mil)": "12",
+    "Underpad included": "TRUE",
+    "Underpad type": "IXPE",
+    "Cost/unit": "1.59",
+    "Retail price/unit": "2.59",
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "19.23",
+    "Active": "TRUE",
+    "Waterproof": "TRUE",
+    "Pet friendly": "FALSE",
+    "Salesperson notes": "New on the Sept 21 2026 list. 6mm core + 2mm attached underpad = 8mm total, 7\"x48\" -- a second 8mm line alongside the 7\"x60\" one, so the collection carries 48\" to keep them apart (naming is this run's choice; the list prints no line name). Core construction not stated; rigid vinyl defaults to SPC per the global rule. Underpad material not named; IXPE assumed -- verify with Weiss. Not marked * -- no Stairboard Set listed for this colour. 51 lb/box printed on the list; no box-weight field in the schema. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. Weiss price list valid from Sept 21 2026 (PL-376)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 34
+  },
+  {
+   "id": "cat-7ae626a8536a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0023",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVP81248NOBLE",
+   "fields": {
+    "Product name": "Weiss 8mm Vinyl Plank 7\"x48\" \u2014 Noble",
+    "Brand": "Weiss",
+    "Supplier": "WEISS",
+    "LS Handle / Parent ID": "WEISLVP81248NOBLE",
+    "Collection": "8mm Vinyl Plank 12 mil 48\"",
+    "Product type": "Flooring",
+    "Category": "LVP",
+    "Material type": "SPC core",
+    "Width (in)": "7",
+    "Length": "48\"",
+    "Thickness (mm)": "8",
+    "Wear layer (mil)": "12",
+    "Underpad included": "TRUE",
+    "Underpad type": "IXPE",
+    "Cost/unit": "1.59",
+    "Retail price/unit": "2.59",
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "19.23",
+    "Active": "TRUE",
+    "Waterproof": "TRUE",
+    "Pet friendly": "FALSE",
+    "Salesperson notes": "New on the Sept 21 2026 list. 6mm core + 2mm attached underpad = 8mm total, 7\"x48\" -- a second 8mm line alongside the 7\"x60\" one, so the collection carries 48\" to keep them apart (naming is this run's choice; the list prints no line name). Core construction not stated; rigid vinyl defaults to SPC per the global rule. Underpad material not named; IXPE assumed -- verify with Weiss. Not marked * -- no Stairboard Set listed for this colour. 51 lb/box printed on the list; no box-weight field in the schema. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. Weiss price list valid from Sept 21 2026 (PL-376)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 35
+  },
+  {
+   "id": "cat-b50215b7598b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0024",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVP81248SIENNA",
+   "fields": {
+    "Product name": "Weiss 8mm Vinyl Plank 7\"x48\" \u2014 Sienna",
+    "Brand": "Weiss",
+    "Supplier": "WEISS",
+    "LS Handle / Parent ID": "WEISLVP81248SIENNA",
+    "Collection": "8mm Vinyl Plank 12 mil 48\"",
+    "Product type": "Flooring",
+    "Category": "LVP",
+    "Material type": "SPC core",
+    "Width (in)": "7",
+    "Length": "48\"",
+    "Thickness (mm)": "8",
+    "Wear layer (mil)": "12",
+    "Underpad included": "TRUE",
+    "Underpad type": "IXPE",
+    "Cost/unit": "1.59",
+    "Retail price/unit": "2.59",
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "19.23",
+    "Active": "TRUE",
+    "Waterproof": "TRUE",
+    "Pet friendly": "FALSE",
+    "Salesperson notes": "New on the Sept 21 2026 list. 6mm core + 2mm attached underpad = 8mm total, 7\"x48\" -- a second 8mm line alongside the 7\"x60\" one, so the collection carries 48\" to keep them apart (naming is this run's choice; the list prints no line name). Core construction not stated; rigid vinyl defaults to SPC per the global rule. Underpad material not named; IXPE assumed -- verify with Weiss. Not marked * -- no Stairboard Set listed for this colour. 51 lb/box printed on the list; no box-weight field in the schema. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. Weiss price list valid from Sept 21 2026 (PL-376)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 36
+  },
+  {
+   "id": "cat-47606312178e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0025",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVP712COVEHAUS",
+   "fields": {
+    "Product name": "Weiss 7mm Vinyl Plank 7\" \u2014 Covehaus",
+    "Brand": "Weiss",
+    "Supplier": "WEISS",
+    "LS Handle / Parent ID": "WEISLVP712COVEHAUS",
+    "Collection": "7mm Vinyl Plank 12 mil",
+    "Product type": "Flooring",
+    "Category": "LVP",
+    "Material type": "SPC core",
+    "Width (in)": "7",
+    "Length": "48\"",
+    "Thickness (mm)": "7",
+    "Wear layer (mil)": "12",
+    "Underpad included": "TRUE",
+    "Underpad type": "IXPE",
+    "Cost/unit": "1.49",
+    "Retail price/unit": "2.49",
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "21.63",
+    "Active": "TRUE",
+    "Waterproof": "TRUE",
+    "Pet friendly": "FALSE",
+    "Salesperson notes": "New on the Sept 21 2026 list. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 5mm core + 2mm attached underpad = 7mm total, which matches the 6mm/7mm/8mm trim sizes on the accessory table. Core construction not stated; rigid vinyl defaults to SPC per the global rule. Underpad material not named; IXPE assumed -- verify with Weiss. Not marked * -- no Stairboard Set listed for this colour. 48 lb/box printed on the list; no box-weight field in the schema. Weiss price list valid from Sept 21 2026 (PL-376)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 37
+  },
+  {
+   "id": "cat-0e381499bcae",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0026",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVPLL522501",
+   "fields": {
+    "Product name": "Weiss 5mm Looselay 7\" \u2014 501",
+    "Brand": "Weiss",
+    "Supplier": "WEISS",
+    "LS Handle / Parent ID": "WEISLVPLL522501",
+    "Collection": "5mm Looselay 22 mil",
+    "Product type": "Flooring",
+    "Category": "LVP",
+    "Material type": "Loose-lay vinyl",
+    "Width (in)": "7",
+    "Length": "48\"",
+    "Thickness (mm)": "5",
+    "Wear layer (mil)": "22",
+    "Install profile": "Loose lay",
+    "Install method": "Loose lay",
+    "Underpad included": "FALSE",
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89",
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "27.17",
+    "Active": "TRUE",
+    "Waterproof": "TRUE",
+    "Pet friendly": "FALSE",
+    "Salesperson notes": "New on the Sept 21 2026 list. 7\"x48\"x5mm loose lay, 22 mil wear layer, 'Ceramic Beads added' as printed. Colour names are the printed numbers 501-505 (no other name given). Core construction not stated. 54 lb/box printed on the list; no box-weight field in the schema. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. Weiss price list valid from Sept 21 2026 (PL-376)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 38
+  },
+  {
+   "id": "cat-c6c626cf206c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0027",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVPLL522502",
+   "fields": {
+    "Product name": "Weiss 5mm Looselay 7\" \u2014 502",
+    "Brand": "Weiss",
+    "Supplier": "WEISS",
+    "LS Handle / Parent ID": "WEISLVPLL522502",
+    "Collection": "5mm Looselay 22 mil",
+    "Product type": "Flooring",
+    "Category": "LVP",
+    "Material type": "Loose-lay vinyl",
+    "Width (in)": "7",
+    "Length": "48\"",
+    "Thickness (mm)": "5",
+    "Wear layer (mil)": "22",
+    "Install profile": "Loose lay",
+    "Install method": "Loose lay",
+    "Underpad included": "FALSE",
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89",
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "27.17",
+    "Active": "TRUE",
+    "Waterproof": "TRUE",
+    "Pet friendly": "FALSE",
+    "Salesperson notes": "New on the Sept 21 2026 list. 7\"x48\"x5mm loose lay, 22 mil wear layer, 'Ceramic Beads added' as printed. Colour names are the printed numbers 501-505 (no other name given). Core construction not stated. 54 lb/box printed on the list; no box-weight field in the schema. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. Weiss price list valid from Sept 21 2026 (PL-376)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 39
+  },
+  {
+   "id": "cat-d79b47386a94",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0028",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVPLL522503",
+   "fields": {
+    "Product name": "Weiss 5mm Looselay 7\" \u2014 503",
+    "Brand": "Weiss",
+    "Supplier": "WEISS",
+    "LS Handle / Parent ID": "WEISLVPLL522503",
+    "Collection": "5mm Looselay 22 mil",
+    "Product type": "Flooring",
+    "Category": "LVP",
+    "Material type": "Loose-lay vinyl",
+    "Width (in)": "7",
+    "Length": "48\"",
+    "Thickness (mm)": "5",
+    "Wear layer (mil)": "22",
+    "Install profile": "Loose lay",
+    "Install method": "Loose lay",
+    "Underpad included": "FALSE",
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89",
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "27.17",
+    "Active": "TRUE",
+    "Waterproof": "TRUE",
+    "Pet friendly": "FALSE",
+    "Salesperson notes": "New on the Sept 21 2026 list. 7\"x48\"x5mm loose lay, 22 mil wear layer, 'Ceramic Beads added' as printed. Colour names are the printed numbers 501-505 (no other name given). Core construction not stated. 54 lb/box printed on the list; no box-weight field in the schema. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. Weiss price list valid from Sept 21 2026 (PL-376)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 40
+  },
+  {
+   "id": "cat-00ab58ad2bb5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0029",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVPLL522504",
+   "fields": {
+    "Product name": "Weiss 5mm Looselay 7\" \u2014 504",
+    "Brand": "Weiss",
+    "Supplier": "WEISS",
+    "LS Handle / Parent ID": "WEISLVPLL522504",
+    "Collection": "5mm Looselay 22 mil",
+    "Product type": "Flooring",
+    "Category": "LVP",
+    "Material type": "Loose-lay vinyl",
+    "Width (in)": "7",
+    "Length": "48\"",
+    "Thickness (mm)": "5",
+    "Wear layer (mil)": "22",
+    "Install profile": "Loose lay",
+    "Install method": "Loose lay",
+    "Underpad included": "FALSE",
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89",
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "27.17",
+    "Active": "TRUE",
+    "Waterproof": "TRUE",
+    "Pet friendly": "FALSE",
+    "Salesperson notes": "New on the Sept 21 2026 list. 7\"x48\"x5mm loose lay, 22 mil wear layer, 'Ceramic Beads added' as printed. Colour names are the printed numbers 501-505 (no other name given). Core construction not stated. 54 lb/box printed on the list; no box-weight field in the schema. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. Weiss price list valid from Sept 21 2026 (PL-376)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 41
+  },
+  {
+   "id": "cat-b358a8e44342",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0030",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVPLL522505",
+   "fields": {
+    "Product name": "Weiss 5mm Looselay 7\" \u2014 505",
+    "Brand": "Weiss",
+    "Supplier": "WEISS",
+    "LS Handle / Parent ID": "WEISLVPLL522505",
+    "Collection": "5mm Looselay 22 mil",
+    "Product type": "Flooring",
+    "Category": "LVP",
+    "Material type": "Loose-lay vinyl",
+    "Width (in)": "7",
+    "Length": "48\"",
+    "Thickness (mm)": "5",
+    "Wear layer (mil)": "22",
+    "Install profile": "Loose lay",
+    "Install method": "Loose lay",
+    "Underpad included": "FALSE",
+    "Cost/unit": "1.89",
+    "Retail price/unit": "2.89",
+    "Last price update": "2026-09-21",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "27.17",
+    "Active": "TRUE",
+    "Waterproof": "TRUE",
+    "Pet friendly": "FALSE",
+    "Salesperson notes": "New on the Sept 21 2026 list. 7\"x48\"x5mm loose lay, 22 mil wear layer, 'Ceramic Beads added' as printed. Colour names are the printed numbers 501-505 (no other name given). Core construction not stated. 54 lb/box printed on the list; no box-weight field in the schema. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. Weiss price list valid from Sept 21 2026 (PL-376)."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 42
+  },
+  {
+   "id": "cat-48e73f69bb6e",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ACC-WEIS-0008",
+   "airtable_rec_id": "rec9kSbZVXJiUWlig",
+   "ls_id": "dd1f114d-64ff-487b-9057-0a477cb5429b",
+   "handle": "WEISACCUNDERLAY3MMEPEPAD",
+   "fields": {
+    "supply_price": 12.0,
+    "price_excluding_tax": 32.0
+   },
+   "before": {
+    "name": "Weiss - Sundry | Underlay | 3mm EPE Pad 200sf Roll",
+    "handle": "WEISACCUNDERLAY3MMEPEPAD",
+    "sku": "ACC-WEIS-0008",
+    "supply_price": 10.0,
+    "price_including_tax": 30.0,
+    "price_excluding_tax": 30.0,
+    "category": "ACCESSORIES",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 43
+  },
+  {
+   "id": "cat-865180472df8",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ACC-WEIS-0009",
+   "airtable_rec_id": "recI6UUjdNMhNwSK7",
+   "ls_id": "d76b7693-ed94-4097-a255-0f81c61393fd",
+   "handle": "WEISACCUNDERLAY3MMEVAPAD",
+   "fields": {
+    "supply_price": 24.0,
+    "price_excluding_tax": 44.0
+   },
+   "before": {
+    "name": "Weiss - Sundry | Underlay | 3mm EVA Pad 200sf Roll",
+    "handle": "WEISACCUNDERLAY3MMEVAPAD",
+    "sku": "ACC-WEIS-0009",
+    "supply_price": 22.0,
+    "price_including_tax": 42.0,
+    "price_excluding_tax": 42.0,
+    "category": "ACCESSORIES",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 44
+  },
+  {
+   "id": "cat-97db32154c43",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0001",
+   "airtable_rec_id": "reciXeEpvMtJbvlXU",
+   "ls_id": "880ea51b-3f20-4cde-865a-9604f0e8157e",
+   "handle": "WEISENG65ASH12BISTRO",
+   "fields": {
+    "supply_price": 2.99,
+    "price_excluding_tax": 3.99
+   },
+   "before": {
+    "name": "WEISENG - 6.5\" 1.2mm Ash Veneer (Bistro) T&G | 6.5\" x 19.05mm x RL - 1.2mm top - 26.49sf/b - Character",
+    "handle": "WEISENG65ASH12BISTRO",
+    "sku": "ENG-WEIS-0001",
+    "supply_price": 2.89,
+    "price_including_tax": 3.89,
+    "price_excluding_tax": 3.89,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 45
+  },
+  {
+   "id": "cat-92e2576bb2ca",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0002",
+   "airtable_rec_id": "recW4opFuvhh9IU4O",
+   "ls_id": "3bd70be4-3125-4aff-a588-fb4004a6a3dd",
+   "handle": "WEISENG65ASH12OATMEAL",
+   "fields": {
+    "supply_price": 2.99,
+    "price_excluding_tax": 3.99
+   },
+   "before": {
+    "name": "WEISENG - 6.5\" 1.2mm Ash Veneer (Oatmeal) T&G | 6.5\" x 19.05mm x RL - 1.2mm top - 26.49sf/b - Character",
+    "handle": "WEISENG65ASH12OATMEAL",
+    "sku": "ENG-WEIS-0002",
+    "supply_price": 2.89,
+    "price_including_tax": 3.89,
+    "price_excluding_tax": 3.89,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 46
+  },
+  {
+   "id": "cat-f0caa367c988",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0003",
+   "airtable_rec_id": "rectDv94yWvqLHGAY",
+   "ls_id": "eac08baf-8430-4141-b193-3748622e6d9d",
+   "handle": "WEISENG65ASH12TERRACOTTA",
+   "fields": {
+    "supply_price": 2.99,
+    "price_excluding_tax": 3.99
+   },
+   "before": {
+    "name": "WEISENG - 6.5\" 1.2mm Ash Veneer (Terracotta) T&G | 6.5\" x 19.05mm x RL - 1.2mm top - 26.49sf/b - Character",
+    "handle": "WEISENG65ASH12TERRACOTTA",
+    "sku": "ENG-WEIS-0003",
+    "supply_price": 2.89,
+    "price_including_tax": 3.89,
+    "price_excluding_tax": 3.89,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 47
+  },
+  {
+   "id": "cat-1b0fdc4c1c16",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0004",
+   "airtable_rec_id": "receuBUU65G2A57Pj",
+   "ls_id": "a137ddf6-240a-4049-8225-6fc05d3e8942",
+   "handle": "WEISENG65ASH12WARWICK",
+   "fields": {
+    "supply_price": 2.99,
+    "price_excluding_tax": 3.99
+   },
+   "before": {
+    "name": "WEISENG - 6.5\" 1.2mm Ash Veneer (Warwick) T&G | 6.5\" x 19.05mm x RL - 1.2mm top - 26.49sf/b - Character",
+    "handle": "WEISENG65ASH12WARWICK",
+    "sku": "ENG-WEIS-0004",
+    "supply_price": 2.89,
+    "price_including_tax": 3.89,
+    "price_excluding_tax": 3.89,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 48
+  },
+  {
+   "id": "cat-3c39e0f0edd3",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0026",
+   "airtable_rec_id": "reclYFp5pWjCxhnwt",
+   "ls_id": "127e9d34-e10f-4d7a-9bf7-95048969f046",
+   "handle": "WEISENG65OAK2AURORA",
+   "fields": {
+    "supply_price": 4.39,
+    "price_excluding_tax": 5.39
+   },
+   "before": {
+    "name": "WEISENG - 6.5\" 2mm Oak Veneer (Aurora) T&G | 6.5\" x 19.05mm x RL - 2mm top - 26.49sf/b - Select & Better",
+    "handle": "WEISENG65OAK2AURORA",
+    "sku": "ENG-WEIS-0026",
+    "supply_price": 4.19,
+    "price_including_tax": 5.19,
+    "price_excluding_tax": 5.19,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 49
+  },
+  {
+   "id": "cat-2429dafa4179",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0027",
+   "airtable_rec_id": "recrGmjKM1VKxOmRU",
+   "ls_id": "cfa6403e-414e-4828-a2a5-bf5bf03b4c30",
+   "handle": "WEISENG65OAK2BISCOTTI",
+   "fields": {
+    "supply_price": 4.39,
+    "price_excluding_tax": 5.39
+   },
+   "before": {
+    "name": "WEISENG - 6.5\" 2mm Oak Veneer (Biscotti) T&G | 6.5\" x 19.05mm x RL - 2mm top - 26.49sf/b - Select & Better",
+    "handle": "WEISENG65OAK2BISCOTTI",
+    "sku": "ENG-WEIS-0027",
+    "supply_price": 4.19,
+    "price_including_tax": 5.19,
+    "price_excluding_tax": 5.19,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 50
+  },
+  {
+   "id": "cat-52578b04203b",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0028",
+   "airtable_rec_id": "rec0jlSU7TOEWP0ej",
+   "ls_id": "42fe4d19-0b4c-4245-b256-e45d3faf482d",
+   "handle": "WEISENG65OAK2CYPRESS",
+   "fields": {
+    "supply_price": 4.39,
+    "price_excluding_tax": 5.39
+   },
+   "before": {
+    "name": "WEISENG - 6.5\" 2mm Oak Veneer (Cypress) T&G | 6.5\" x 19.05mm x RL - 2mm top - 26.49sf/b - Select & Better",
+    "handle": "WEISENG65OAK2CYPRESS",
+    "sku": "ENG-WEIS-0028",
+    "supply_price": 4.19,
+    "price_including_tax": 5.19,
+    "price_excluding_tax": 5.19,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 51
+  },
+  {
+   "id": "cat-db3fd265bf82",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0029",
+   "airtable_rec_id": "rectvGlYVDMYiuREQ",
+   "ls_id": "d1ce3eba-56a7-4461-83fa-73cb6d9c8605",
+   "handle": "WEISENG65OAK2DUNE",
+   "fields": {
+    "supply_price": 4.39,
+    "price_excluding_tax": 5.39
+   },
+   "before": {
+    "name": "WEISENG - 6.5\" 2mm Oak Veneer (Dune) T&G | 6.5\" x 19.05mm x RL - 2mm top - 26.49sf/b - Select & Better",
+    "handle": "WEISENG65OAK2DUNE",
+    "sku": "ENG-WEIS-0029",
+    "supply_price": 4.19,
+    "price_including_tax": 5.19,
+    "price_excluding_tax": 5.19,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 52
+  },
+  {
+   "id": "cat-972d14617b9e",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0030",
+   "airtable_rec_id": "recgZxlVjCzpSzzaV",
+   "ls_id": "e1c254c4-c372-43d3-95f1-67224b0c8a5b",
+   "handle": "WEISENG75OAK2CREAM",
+   "fields": {
+    "supply_price": 3.89,
+    "price_excluding_tax": 4.89
+   },
+   "before": {
+    "name": "WEISENG - 7.5\" 2mm Oak Veneer (Cream) T&G | 7.5\" x 19.05mm x RL - 2mm top - 23.7sf/b - Select",
+    "handle": "WEISENG75OAK2CREAM",
+    "sku": "ENG-WEIS-0030",
+    "supply_price": 3.59,
+    "price_including_tax": 4.59,
+    "price_excluding_tax": 4.59,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 53
+  },
+  {
+   "id": "cat-b9a44dc5068f",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-WEIS-0031",
+   "airtable_rec_id": "recdGFkZQV6ngw4wx",
+   "ls_id": "b71b2d4b-a447-4895-ada1-958792eee104",
+   "handle": "WEISENG75OAK2PENNY",
+   "fields": {
+    "supply_price": 3.89,
+    "price_excluding_tax": 4.89
+   },
+   "before": {
+    "name": "WEISENG - 7.5\" 2mm Oak Veneer (Penny) T&G | 7.5\" x 19.05mm x RL - 2mm top - 23.7sf/b - Select",
+    "handle": "WEISENG75OAK2PENNY",
+    "sku": "ENG-WEIS-0031",
+    "supply_price": 3.59,
+    "price_including_tax": 4.59,
+    "price_excluding_tax": 4.59,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 54
+  },
+  {
+   "id": "cat-c55727f4fbb6",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-WEIS-0032",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISENG65OAK2NATURAL",
+   "fields": {
+    "sku": "ENG-WEIS-0032",
+    "handle": "WEISENG65OAK2NATURAL",
+    "name": "WEISENG - 6.5\" 2mm Oak Veneer (Natural) T&G | 6.5\" x 19.05mm x RL - 2mm top - 26.49sf/b - Select Plus",
+    "supply_price": 3.89,
+    "price_excluding_tax": 4.89,
+    "description": "Material type: Hardwood plywood | Finish type: Wire brushed | Box size (sf): 26.49 | Salesperson notes: New on the Sept 21 2026 list. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 'Select Plus' is Weiss's own grade wording, stored verbatim per the grade translation rule; it sits between Select and Select & Better on their sheet but is not formally mapped -- confirm the equivalence with Weiss. 62 lb/box printed on the list; the schema has no box-weight field (Weight per piece is tile/stone only), so it is recorded here. Weiss price list valid from Sept 21 2026 (PL-376).",
+    "brand_name": "Weiss",
+    "supplier_name": "WEISS",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 55
+  },
+  {
+   "id": "cat-55f1a0c343fa",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-WEIS-0033",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISENG65OAK2PEWTER",
+   "fields": {
+    "sku": "ENG-WEIS-0033",
+    "handle": "WEISENG65OAK2PEWTER",
+    "name": "WEISENG - 6.5\" 2mm Oak Veneer (Pewter) T&G | 6.5\" x 19.05mm x RL - 2mm top - 26.49sf/b - Select & Better",
+    "supply_price": 4.39,
+    "price_excluding_tax": 5.39,
+    "description": "Material type: Hardwood plywood | Finish type: Wire brushed | Box size (sf): 26.49 | Salesperson notes: New on the Sept 21 2026 list. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 62 lb/box printed on the list; the schema has no box-weight field (Weight per piece is tile/stone only), so it is recorded here. Weiss price list valid from Sept 21 2026 (PL-376).",
+    "brand_name": "Weiss",
+    "supplier_name": "WEISS",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 56
+  },
+  {
+   "id": "cat-846db89346b4",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-WEIS-0034",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISENG75OAK2COCONUT",
+   "fields": {
+    "sku": "ENG-WEIS-0034",
+    "handle": "WEISENG75OAK2COCONUT",
+    "name": "WEISENG - 7.5\" 2mm Oak Veneer (Coconut) T&G | 7.5\" x 19.05mm x RL - 2mm top - 23.70sf/b - Select",
+    "supply_price": 3.89,
+    "price_excluding_tax": 4.89,
+    "description": "Material type: Hardwood plywood | Finish type: Wire brushed | Box size (sf): 23.70 | Salesperson notes: New on the Sept 21 2026 list. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 57 lb/box printed on the list; the schema has no box-weight field (Weight per piece is tile/stone only), so it is recorded here. Weiss price list valid from Sept 21 2026 (PL-376).",
+    "brand_name": "Weiss",
+    "supplier_name": "WEISS",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 57
+  },
+  {
+   "id": "cat-1bcf0586203d",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "ENG-WEIS-0035",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISENG75OAK2TOFFEE",
+   "fields": {
+    "sku": "ENG-WEIS-0035",
+    "handle": "WEISENG75OAK2TOFFEE",
+    "name": "WEISENG - 7.5\" 2mm Oak Veneer (Toffee) T&G | 7.5\" x 19.05mm x RL - 2mm top - 23.70sf/b - Select",
+    "supply_price": 3.89,
+    "price_excluding_tax": 4.89,
+    "description": "Material type: Hardwood plywood | Finish type: Wire brushed | Box size (sf): 23.70 | Salesperson notes: New on the Sept 21 2026 list. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 57 lb/box printed on the list; the schema has no box-weight field (Weight per piece is tile/stone only), so it is recorded here. Weiss price list valid from Sept 21 2026 (PL-376).",
+    "brand_name": "Weiss",
+    "supplier_name": "WEISS",
+    "product_category": "FLOORING / ENGINEERED HARDWOOD"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 58
+  },
+  {
+   "id": "cat-7f5765b3b20b",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-WEIS-0002",
+   "airtable_rec_id": "recyw6tQlzv95hEi4",
+   "ls_id": "1afde335-2f54-4031-81f5-1c74566cdffe",
+   "handle": "WEISLAMPREMIERECLIPSE",
+   "fields": {
+    "supply_price": 1.39,
+    "price_excluding_tax": 2.39
+   },
+   "before": {
+    "name": "WEISLAM - Premier (Eclipse) | 7\" x 12mm x 48\" - 20.81sf/b",
+    "handle": "WEISLAMPREMIERECLIPSE",
+    "sku": "LAM-WEIS-0002",
+    "supply_price": 1.29,
+    "price_including_tax": 2.29,
+    "price_excluding_tax": 2.29,
+    "category": "LAMINATE",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 59
+  },
+  {
+   "id": "cat-97b52e83a192",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LAM-WEIS-0003",
+   "airtable_rec_id": "recR4FhRk8iAUG7GQ",
+   "ls_id": "f01a77bb-5d41-4bcc-b009-05b84419c15b",
+   "handle": "WEISLAMPREMIERSAUVAGE",
+   "fields": {
+    "supply_price": 1.39,
+    "price_excluding_tax": 2.39
+   },
+   "before": {
+    "name": "WEISLAM - Premier (Sauvage) | 7\" x 12mm x 48\" - 20.81sf/b",
+    "handle": "WEISLAMPREMIERSAUVAGE",
+    "sku": "LAM-WEIS-0003",
+    "supply_price": 1.29,
+    "price_including_tax": 2.29,
+    "price_excluding_tax": 2.29,
+    "category": "LAMINATE",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 60
+  },
+  {
+   "id": "cat-946c21c0720e",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LAM-WEIS-0004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLAMPREMIERAUBE",
+   "fields": {
+    "sku": "LAM-WEIS-0004",
+    "handle": "WEISLAMPREMIERAUBE",
+    "name": "WEISLAM - Premier (Aube) | 7\" x 12mm x 48\" - 20.81sf/b",
+    "supply_price": 1.39,
+    "price_excluding_tax": 2.39,
+    "description": "Material type: HDF core | Finish type: Matte | AC rating: AC4 | Box size (sf): 20.81 | Salesperson notes: Printed in RED on the Sept 21 2026 list, whose legend reads 'The color in Red: promotions while quantities last' -> Stock status Clearance per the schema's while-stock-lasts rule (verified from the PDF's character colours). Same printed price as the rest of its block; no separate promo price, so Promo cost is blank. New on the Sept 21 2026 list. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 45 lb/box printed on the list; no box-weight field in the schema. Weiss states no locking system or install profile for the laminate -- left blank rather than inferred. Weiss price list valid from Sept 21 2026 (PL-376).",
+    "brand_name": "Weiss",
+    "supplier_name": "WEISS",
+    "product_category": "FLOORING / LAMINATE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 61
+  },
+  {
+   "id": "cat-a6379659b2b2",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LAM-WEIS-0005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLAMPREMIERHORIZON",
+   "fields": {
+    "sku": "LAM-WEIS-0005",
+    "handle": "WEISLAMPREMIERHORIZON",
+    "name": "WEISLAM - Premier (Horizon) | 7\" x 12mm x 48\" - 20.81sf/b",
+    "supply_price": 1.39,
+    "price_excluding_tax": 2.39,
+    "description": "Material type: HDF core | Finish type: Matte | AC rating: AC4 | Box size (sf): 20.81 | Salesperson notes: New on the Sept 21 2026 list. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 45 lb/box printed on the list; no box-weight field in the schema. Weiss states no locking system or install profile for the laminate -- left blank rather than inferred. Weiss price list valid from Sept 21 2026 (PL-376).",
+    "brand_name": "Weiss",
+    "supplier_name": "WEISS",
+    "product_category": "FLOORING / LAMINATE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 62
+  },
+  {
+   "id": "cat-f47601f272a8",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LAM-WEIS-0006",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLAMPREMIERMERIDIAN",
+   "fields": {
+    "sku": "LAM-WEIS-0006",
+    "handle": "WEISLAMPREMIERMERIDIAN",
+    "name": "WEISLAM - Premier (Meridian) | 7\" x 12mm x 48\" - 20.81sf/b",
+    "supply_price": 1.39,
+    "price_excluding_tax": 2.39,
+    "description": "Material type: HDF core | Finish type: Matte | AC rating: AC4 | Box size (sf): 20.81 | Salesperson notes: New on the Sept 21 2026 list. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 45 lb/box printed on the list; no box-weight field in the schema. Weiss states no locking system or install profile for the laminate -- left blank rather than inferred. Weiss price list valid from Sept 21 2026 (PL-376).",
+    "brand_name": "Weiss",
+    "supplier_name": "WEISS",
+    "product_category": "FLOORING / LAMINATE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 63
+  },
+  {
+   "id": "cat-0e274e3a8538",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LAM-WEIS-0007",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLAMPREMIERTITANIUM",
+   "fields": {
+    "sku": "LAM-WEIS-0007",
+    "handle": "WEISLAMPREMIERTITANIUM",
+    "name": "WEISLAM - Premier (Titanium) | 7\" x 12mm x 48\" - 20.81sf/b",
+    "supply_price": 1.39,
+    "price_excluding_tax": 2.39,
+    "description": "Material type: HDF core | Finish type: Matte | AC rating: AC4 | Box size (sf): 20.81 | Salesperson notes: New on the Sept 21 2026 list. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 45 lb/box printed on the list; no box-weight field in the schema. Weiss states no locking system or install profile for the laminate -- left blank rather than inferred. Weiss price list valid from Sept 21 2026 (PL-376).",
+    "brand_name": "Weiss",
+    "supplier_name": "WEISS",
+    "product_category": "FLOORING / LAMINATE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 64
+  },
+  {
+   "id": "cat-f8a6e9ca764f",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LAM-WEIS-0008",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLAMPREMIERZENITH",
+   "fields": {
+    "sku": "LAM-WEIS-0008",
+    "handle": "WEISLAMPREMIERZENITH",
+    "name": "WEISLAM - Premier (Zenith) | 7\" x 12mm x 48\" - 20.81sf/b",
+    "supply_price": 1.39,
+    "price_excluding_tax": 2.39,
+    "description": "Material type: HDF core | Finish type: Matte | AC rating: AC4 | Box size (sf): 20.81 | Salesperson notes: New on the Sept 21 2026 list. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 45 lb/box printed on the list; no box-weight field in the schema. Weiss states no locking system or install profile for the laminate -- left blank rather than inferred. Weiss price list valid from Sept 21 2026 (PL-376).",
+    "brand_name": "Weiss",
+    "supplier_name": "WEISS",
+    "product_category": "FLOORING / LAMINATE"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 65
+  },
+  {
+   "id": "cat-350a5fb531c4",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-WEIS-0005",
+   "airtable_rec_id": "recf4DxOs6Pj2uDoY",
+   "ls_id": "6263da31-fc38-4f02-af47-390d7573ef47",
+   "handle": "WEISLVP712FOG",
+   "fields": {
+    "supply_price": 1.49,
+    "price_excluding_tax": 2.49
+   },
+   "before": {
+    "name": "WEISLVP-SPC - 7mm Vinyl Plank 12 mil (Fog) | 7\" x 7mm x 48\" - 21.63sf/b",
+    "handle": "WEISLVP712FOG",
+    "sku": "LVP-WEIS-0005",
+    "supply_price": 1.39,
+    "price_including_tax": 2.39,
+    "price_excluding_tax": 2.39,
+    "category": "SPC",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 66
+  },
+  {
+   "id": "cat-ed22d2c7ceaa",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-WEIS-0006",
+   "airtable_rec_id": "recPaKBRKKoHqMKIC",
+   "ls_id": "8b1cfb34-a040-4e57-8629-06c744ec8d6c",
+   "handle": "WEISLVP712REEF",
+   "fields": {
+    "supply_price": 1.49,
+    "price_excluding_tax": 2.49
+   },
+   "before": {
+    "name": "WEISLVP-SPC - 7mm Vinyl Plank 12 mil (Reef) | 7\" x 7mm x 48\" - 21.63sf/b",
+    "handle": "WEISLVP712REEF",
+    "sku": "LVP-WEIS-0006",
+    "supply_price": 1.39,
+    "price_including_tax": 2.39,
+    "price_excluding_tax": 2.39,
+    "category": "SPC",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 67
+  },
+  {
+   "id": "cat-cf64fededf64",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-WEIS-0007",
+   "airtable_rec_id": "recGnoskgFsjsxOuD",
+   "ls_id": "44e42b1f-5d3a-4355-9edc-6b08f4ee42f6",
+   "handle": "WEISLVP712SABLE",
+   "fields": {
+    "supply_price": 1.49,
+    "price_excluding_tax": 2.49
+   },
+   "before": {
+    "name": "WEISLVP-SPC - 7mm Vinyl Plank 12 mil (Sable) | 7\" x 7mm x 48\" - 21.63sf/b",
+    "handle": "WEISLVP712SABLE",
+    "sku": "LVP-WEIS-0007",
+    "supply_price": 1.39,
+    "price_including_tax": 2.39,
+    "price_excluding_tax": 2.39,
+    "category": "SPC",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 68
+  },
+  {
+   "id": "cat-c8d19722e49a",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-WEIS-0009",
+   "airtable_rec_id": "reco9Mm4B5DnUr4vX",
+   "ls_id": "184c26bf-3b5f-4f0a-9603-dd0c157ea77f",
+   "handle": "WEISLVP720CAVIAR",
+   "fields": {
+    "supply_price": 1.69,
+    "price_excluding_tax": 2.69
+   },
+   "before": {
+    "name": "WEISLVP-SPC - 7mm Vinyl Plank 20 mil (Caviar) | 7\" x 7mm x 48\" - 16.83sf/b",
+    "handle": "WEISLVP720CAVIAR",
+    "sku": "LVP-WEIS-0009",
+    "supply_price": 1.59,
+    "price_including_tax": 2.59,
+    "price_excluding_tax": 2.59,
+    "category": "SPC",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 69
+  },
+  {
+   "id": "cat-315b2bf27afc",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-WEIS-0010",
+   "airtable_rec_id": "recnHxBOB0Tw04aVH",
+   "ls_id": "e18df1e6-d5fd-4e59-9a5b-e88b215a717b",
+   "handle": "WEISLVP720CINNABAR",
+   "fields": {
+    "supply_price": 1.69,
+    "price_excluding_tax": 2.69
+   },
+   "before": {
+    "name": "WEISLVP-SPC - 7mm Vinyl Plank 20 mil (Cinnabar) | 7\" x 7mm x 48\" - 16.83sf/b",
+    "handle": "WEISLVP720CINNABAR",
+    "sku": "LVP-WEIS-0010",
+    "supply_price": 1.59,
+    "price_including_tax": 2.59,
+    "price_excluding_tax": 2.59,
+    "category": "SPC",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 70
+  },
+  {
+   "id": "cat-df01a6702e96",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-WEIS-0011",
+   "airtable_rec_id": "rec8LPa3zJruecBV7",
+   "ls_id": "8bc88ecb-ef12-4f7a-8af4-7663a1c0cc1a",
+   "handle": "WEISLVP720TAN",
+   "fields": {
+    "supply_price": 1.69,
+    "price_excluding_tax": 2.69
+   },
+   "before": {
+    "name": "WEISLVP-SPC - 7mm Vinyl Plank 20 mil (Tan) | 7\" x 7mm x 48\" - 16.83sf/b",
+    "handle": "WEISLVP720TAN",
+    "sku": "LVP-WEIS-0011",
+    "supply_price": 1.59,
+    "price_including_tax": 2.59,
+    "price_excluding_tax": 2.59,
+    "category": "SPC",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 71
+  },
+  {
+   "id": "cat-4e413d0ffdd4",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-WEIS-0012",
+   "airtable_rec_id": "receJdZlWjvk3XCIT",
+   "ls_id": "1d05910e-be8c-47f6-9aca-a577072a8859",
+   "handle": "WEISLVP720VEGA",
+   "fields": {
+    "supply_price": 1.69,
+    "price_excluding_tax": 2.69
+   },
+   "before": {
+    "name": "WEISLVP-SPC - 7mm Vinyl Plank 20 mil (Vega) | 7\" x 7mm x 48\" - 16.83sf/b",
+    "handle": "WEISLVP720VEGA",
+    "sku": "LVP-WEIS-0012",
+    "supply_price": 1.59,
+    "price_including_tax": 2.59,
+    "price_excluding_tax": 2.59,
+    "category": "SPC",
+    "supplier_name": "WEISS",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 72
+  },
+  {
+   "id": "cat-c875a73cb517",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-WEIS-0020",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVP81248JUTE",
+   "fields": {
+    "sku": "LVP-WEIS-0020",
+    "handle": "WEISLVP81248JUTE",
+    "name": "WEISLVP-SPC - 8mm Vinyl Plank 12 mil 48\" (Jute) | 7\" x 8mm x 48\" - 19.23sf/b",
+    "supply_price": 1.59,
+    "price_excluding_tax": 2.59,
+    "description": "Material type: SPC core | Wear layer (mil): 12 | Waterproof: TRUE | Box size (sf): 19.23 | Salesperson notes: New on the Sept 21 2026 list. 6mm core + 2mm attached underpad = 8mm total, 7\"x48\" -- a second 8mm line alongside the 7\"x60\" one, so the collection carries 48\" to keep them apart (naming is this run's choice; the list prints no line name). Core construction not stated; rigid vinyl defaults to SPC per the global rule. Underpad material not named; IXPE assumed -- verify with Weiss. Not marked * -- no Stairboard Set listed for this colour. 51 lb/box printed on the list; no box-weight field in the schema. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. Weiss price list valid from Sept 21 2026 (PL-376).",
+    "brand_name": "Weiss",
+    "supplier_name": "WEISS",
+    "product_category": "FLOORING / VINYL / SPC"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 73
+  },
+  {
+   "id": "cat-5a5bd8e72990",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-WEIS-0021",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVP81248LINEN",
+   "fields": {
+    "sku": "LVP-WEIS-0021",
+    "handle": "WEISLVP81248LINEN",
+    "name": "WEISLVP-SPC - 8mm Vinyl Plank 12 mil 48\" (Linen) | 7\" x 8mm x 48\" - 19.23sf/b",
+    "supply_price": 1.59,
+    "price_excluding_tax": 2.59,
+    "description": "Material type: SPC core | Wear layer (mil): 12 | Waterproof: TRUE | Box size (sf): 19.23 | Salesperson notes: New on the Sept 21 2026 list. 6mm core + 2mm attached underpad = 8mm total, 7\"x48\" -- a second 8mm line alongside the 7\"x60\" one, so the collection carries 48\" to keep them apart (naming is this run's choice; the list prints no line name). Core construction not stated; rigid vinyl defaults to SPC per the global rule. Underpad material not named; IXPE assumed -- verify with Weiss. Not marked * -- no Stairboard Set listed for this colour. 51 lb/box printed on the list; no box-weight field in the schema. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. Weiss price list valid from Sept 21 2026 (PL-376).",
+    "brand_name": "Weiss",
+    "supplier_name": "WEISS",
+    "product_category": "FLOORING / VINYL / SPC"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 74
+  },
+  {
+   "id": "cat-c5413dee45c2",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-WEIS-0022",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVP81248MIST",
+   "fields": {
+    "sku": "LVP-WEIS-0022",
+    "handle": "WEISLVP81248MIST",
+    "name": "WEISLVP-SPC - 8mm Vinyl Plank 12 mil 48\" (Mist) | 7\" x 8mm x 48\" - 19.23sf/b",
+    "supply_price": 1.59,
+    "price_excluding_tax": 2.59,
+    "description": "Material type: SPC core | Wear layer (mil): 12 | Waterproof: TRUE | Box size (sf): 19.23 | Salesperson notes: New on the Sept 21 2026 list. 6mm core + 2mm attached underpad = 8mm total, 7\"x48\" -- a second 8mm line alongside the 7\"x60\" one, so the collection carries 48\" to keep them apart (naming is this run's choice; the list prints no line name). Core construction not stated; rigid vinyl defaults to SPC per the global rule. Underpad material not named; IXPE assumed -- verify with Weiss. Not marked * -- no Stairboard Set listed for this colour. 51 lb/box printed on the list; no box-weight field in the schema. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. Weiss price list valid from Sept 21 2026 (PL-376).",
+    "brand_name": "Weiss",
+    "supplier_name": "WEISS",
+    "product_category": "FLOORING / VINYL / SPC"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 75
+  },
+  {
+   "id": "cat-933e687b5919",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-WEIS-0023",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVP81248NOBLE",
+   "fields": {
+    "sku": "LVP-WEIS-0023",
+    "handle": "WEISLVP81248NOBLE",
+    "name": "WEISLVP-SPC - 8mm Vinyl Plank 12 mil 48\" (Noble) | 7\" x 8mm x 48\" - 19.23sf/b",
+    "supply_price": 1.59,
+    "price_excluding_tax": 2.59,
+    "description": "Material type: SPC core | Wear layer (mil): 12 | Waterproof: TRUE | Box size (sf): 19.23 | Salesperson notes: New on the Sept 21 2026 list. 6mm core + 2mm attached underpad = 8mm total, 7\"x48\" -- a second 8mm line alongside the 7\"x60\" one, so the collection carries 48\" to keep them apart (naming is this run's choice; the list prints no line name). Core construction not stated; rigid vinyl defaults to SPC per the global rule. Underpad material not named; IXPE assumed -- verify with Weiss. Not marked * -- no Stairboard Set listed for this colour. 51 lb/box printed on the list; no box-weight field in the schema. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. Weiss price list valid from Sept 21 2026 (PL-376).",
+    "brand_name": "Weiss",
+    "supplier_name": "WEISS",
+    "product_category": "FLOORING / VINYL / SPC"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 76
+  },
+  {
+   "id": "cat-119dce47d66c",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-WEIS-0024",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVP81248SIENNA",
+   "fields": {
+    "sku": "LVP-WEIS-0024",
+    "handle": "WEISLVP81248SIENNA",
+    "name": "WEISLVP-SPC - 8mm Vinyl Plank 12 mil 48\" (Sienna) | 7\" x 8mm x 48\" - 19.23sf/b",
+    "supply_price": 1.59,
+    "price_excluding_tax": 2.59,
+    "description": "Material type: SPC core | Wear layer (mil): 12 | Waterproof: TRUE | Box size (sf): 19.23 | Salesperson notes: New on the Sept 21 2026 list. 6mm core + 2mm attached underpad = 8mm total, 7\"x48\" -- a second 8mm line alongside the 7\"x60\" one, so the collection carries 48\" to keep them apart (naming is this run's choice; the list prints no line name). Core construction not stated; rigid vinyl defaults to SPC per the global rule. Underpad material not named; IXPE assumed -- verify with Weiss. Not marked * -- no Stairboard Set listed for this colour. 51 lb/box printed on the list; no box-weight field in the schema. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. Weiss price list valid from Sept 21 2026 (PL-376).",
+    "brand_name": "Weiss",
+    "supplier_name": "WEISS",
+    "product_category": "FLOORING / VINYL / SPC"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 77
+  },
+  {
+   "id": "cat-c2504347578e",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-WEIS-0025",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVP712COVEHAUS",
+   "fields": {
+    "sku": "LVP-WEIS-0025",
+    "handle": "WEISLVP712COVEHAUS",
+    "name": "WEISLVP-SPC - 7mm Vinyl Plank 12 mil (Covehaus) | 7\" x 7mm x 48\" - 21.63sf/b",
+    "supply_price": 1.49,
+    "price_excluding_tax": 2.49,
+    "description": "Material type: SPC core | Wear layer (mil): 12 | Waterproof: TRUE | Box size (sf): 21.63 | Salesperson notes: New on the Sept 21 2026 list. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 5mm core + 2mm attached underpad = 7mm total, which matches the 6mm/7mm/8mm trim sizes on the accessory table. Core construction not stated; rigid vinyl defaults to SPC per the global rule. Underpad material not named; IXPE assumed -- verify with Weiss. Not marked * -- no Stairboard Set listed for this colour. 48 lb/box printed on the list; no box-weight field in the schema. Weiss price list valid from Sept 21 2026 (PL-376).",
+    "brand_name": "Weiss",
+    "supplier_name": "WEISS",
+    "product_category": "FLOORING / VINYL / SPC"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 78
+  },
+  {
+   "id": "cat-e1e1b2ee794b",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-WEIS-0026",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVPLL522501",
+   "fields": {
+    "sku": "LVP-WEIS-0026",
+    "handle": "WEISLVPLL522501",
+    "name": "WEISLVP-LL - 5mm Looselay 22 mil (501) | 7\" x 5mm x 48\" - 27.17sf/b",
+    "supply_price": 1.89,
+    "price_excluding_tax": 2.89,
+    "description": "Material type: Loose-lay vinyl | Wear layer (mil): 22 | Waterproof: TRUE | Box size (sf): 27.17 | Salesperson notes: New on the Sept 21 2026 list. 7\"x48\"x5mm loose lay, 22 mil wear layer, 'Ceramic Beads added' as printed. Colour names are the printed numbers 501-505 (no other name given). Core construction not stated. 54 lb/box printed on the list; no box-weight field in the schema. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. Weiss price list valid from Sept 21 2026 (PL-376).",
+    "brand_name": "Weiss",
+    "supplier_name": "WEISS",
+    "product_category": "FLOORING / VINYL / LOOSE LAY"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 79
+  },
+  {
+   "id": "cat-7d487f6f2306",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-WEIS-0027",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVPLL522502",
+   "fields": {
+    "sku": "LVP-WEIS-0027",
+    "handle": "WEISLVPLL522502",
+    "name": "WEISLVP-LL - 5mm Looselay 22 mil (502) | 7\" x 5mm x 48\" - 27.17sf/b",
+    "supply_price": 1.89,
+    "price_excluding_tax": 2.89,
+    "description": "Material type: Loose-lay vinyl | Wear layer (mil): 22 | Waterproof: TRUE | Box size (sf): 27.17 | Salesperson notes: New on the Sept 21 2026 list. 7\"x48\"x5mm loose lay, 22 mil wear layer, 'Ceramic Beads added' as printed. Colour names are the printed numbers 501-505 (no other name given). Core construction not stated. 54 lb/box printed on the list; no box-weight field in the schema. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. Weiss price list valid from Sept 21 2026 (PL-376).",
+    "brand_name": "Weiss",
+    "supplier_name": "WEISS",
+    "product_category": "FLOORING / VINYL / LOOSE LAY"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 80
+  },
+  {
+   "id": "cat-7ac6fe1001f8",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-WEIS-0028",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVPLL522503",
+   "fields": {
+    "sku": "LVP-WEIS-0028",
+    "handle": "WEISLVPLL522503",
+    "name": "WEISLVP-LL - 5mm Looselay 22 mil (503) | 7\" x 5mm x 48\" - 27.17sf/b",
+    "supply_price": 1.89,
+    "price_excluding_tax": 2.89,
+    "description": "Material type: Loose-lay vinyl | Wear layer (mil): 22 | Waterproof: TRUE | Box size (sf): 27.17 | Salesperson notes: New on the Sept 21 2026 list. 7\"x48\"x5mm loose lay, 22 mil wear layer, 'Ceramic Beads added' as printed. Colour names are the printed numbers 501-505 (no other name given). Core construction not stated. 54 lb/box printed on the list; no box-weight field in the schema. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. Weiss price list valid from Sept 21 2026 (PL-376).",
+    "brand_name": "Weiss",
+    "supplier_name": "WEISS",
+    "product_category": "FLOORING / VINYL / LOOSE LAY"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 81
+  },
+  {
+   "id": "cat-6f4fcb36b47f",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-WEIS-0029",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVPLL522504",
+   "fields": {
+    "sku": "LVP-WEIS-0029",
+    "handle": "WEISLVPLL522504",
+    "name": "WEISLVP-LL - 5mm Looselay 22 mil (504) | 7\" x 5mm x 48\" - 27.17sf/b",
+    "supply_price": 1.89,
+    "price_excluding_tax": 2.89,
+    "description": "Material type: Loose-lay vinyl | Wear layer (mil): 22 | Waterproof: TRUE | Box size (sf): 27.17 | Salesperson notes: New on the Sept 21 2026 list. 7\"x48\"x5mm loose lay, 22 mil wear layer, 'Ceramic Beads added' as printed. Colour names are the printed numbers 501-505 (no other name given). Core construction not stated. 54 lb/box printed on the list; no box-weight field in the schema. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. Weiss price list valid from Sept 21 2026 (PL-376).",
+    "brand_name": "Weiss",
+    "supplier_name": "WEISS",
+    "product_category": "FLOORING / VINYL / LOOSE LAY"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 82
+  },
+  {
+   "id": "cat-5a5007cf8405",
+   "target_system": "lightspeed",
+   "op": "create",
+   "sku": "LVP-WEIS-0030",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVPLL522505",
+   "fields": {
+    "sku": "LVP-WEIS-0030",
+    "handle": "WEISLVPLL522505",
+    "name": "WEISLVP-LL - 5mm Looselay 22 mil (505) | 7\" x 5mm x 48\" - 27.17sf/b",
+    "supply_price": 1.89,
+    "price_excluding_tax": 2.89,
+    "description": "Material type: Loose-lay vinyl | Wear layer (mil): 22 | Waterproof: TRUE | Box size (sf): 27.17 | Salesperson notes: New on the Sept 21 2026 list. 7\"x48\"x5mm loose lay, 22 mil wear layer, 'Ceramic Beads added' as printed. Colour names are the printed numbers 501-505 (no other name given). Core construction not stated. 54 lb/box printed on the list; no box-weight field in the schema. Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. Weiss price list valid from Sept 21 2026 (PL-376).",
+    "brand_name": "Weiss",
+    "supplier_name": "WEISS",
+    "product_category": "FLOORING / VINYL / LOOSE LAY"
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 83
+  },
+  {
+   "id": "cat-11cecd6a526d",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-WEIS-0032",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISENG65OAK2NATURAL",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 84
+  },
+  {
+   "id": "cat-f4f8b74240c8",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-WEIS-0033",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISENG65OAK2PEWTER",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 85
+  },
+  {
+   "id": "cat-9078259a0de9",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-WEIS-0034",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISENG75OAK2COCONUT",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 86
+  },
+  {
+   "id": "cat-1631576b4f75",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "ENG-WEIS-0035",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISENG75OAK2TOFFEE",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 87
+  },
+  {
+   "id": "cat-d43fc50a9b64",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LAM-WEIS-0004",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLAMPREMIERAUBE",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 88
+  },
+  {
+   "id": "cat-d9f425ec2980",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LAM-WEIS-0005",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLAMPREMIERHORIZON",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 89
+  },
+  {
+   "id": "cat-e111257e7d66",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LAM-WEIS-0006",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLAMPREMIERMERIDIAN",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 90
+  },
+  {
+   "id": "cat-3d8890644494",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LAM-WEIS-0007",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLAMPREMIERTITANIUM",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 91
+  },
+  {
+   "id": "cat-325d8dac0fa9",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LAM-WEIS-0008",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLAMPREMIERZENITH",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 92
+  },
+  {
+   "id": "cat-86c75730cd9c",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-WEIS-0020",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVP81248JUTE",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 93
+  },
+  {
+   "id": "cat-724fbb9043bc",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-WEIS-0021",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVP81248LINEN",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 94
+  },
+  {
+   "id": "cat-f2e2096c73fc",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-WEIS-0022",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVP81248MIST",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 95
+  },
+  {
+   "id": "cat-9d131028b46c",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-WEIS-0023",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVP81248NOBLE",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 96
+  },
+  {
+   "id": "cat-63a4e99350e4",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-WEIS-0024",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVP81248SIENNA",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 97
+  },
+  {
+   "id": "cat-9d3ee9662014",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-WEIS-0025",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVP712COVEHAUS",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 98
+  },
+  {
+   "id": "cat-9b7daea328ec",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-WEIS-0026",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVPLL522501",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 99
+  },
+  {
+   "id": "cat-2a58a0a30655",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-WEIS-0027",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVPLL522502",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 100
+  },
+  {
+   "id": "cat-e94188b1c620",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-WEIS-0028",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVPLL522503",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 101
+  },
+  {
+   "id": "cat-5c3a5c394172",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-WEIS-0029",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVPLL522504",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 102
+  },
+  {
+   "id": "cat-905ce39c9ee4",
+   "target_system": "airtable",
+   "op": "backfill_ls_id",
+   "sku": "LVP-WEIS-0030",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": "WEISLVPLL522505",
+   "fields": {
+    "Lightspeed ID": "<assigned by Lightspeed on create>"
+   },
+   "before": {
+    "Lightspeed ID": null
+   },
+   "reason": "uuid_from_create",
+   "uuid_source": "lightspeed_on_create",
+   "seq": 103
+  }
+ ],
+ "blocked": [
+  {
+   "sku": "ENG-WEIS-0005",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "7ab4f3f2-4a69-4709-b654-fef154b0bb80 belongs to F-E1-04 (WEIENG -  - Red Oak (Fortino) T&G | #F-E1-04 | Character - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-WEIS-0006",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "4849c65b-3176-4acd-8555-58b8cbc58310 belongs to F-E1-06 (WEIENG -  - Red Oak (Raw) T&G | #F-E1-06 | Character - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-WEIS-0007",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "f30922b2-b285-4838-ba67-524ce8040bc2 belongs to F-E1-09 (WEIENG -  - Red Oak (Saffron) T&G | #F-E1-09 | Character - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-WEIS-0008",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "fd35dd20-b9b4-42aa-aa9a-4e65a2af289f belongs to F-E1-07 (WEIENG -  - Red Oak (Sandy Brown) T&G | #F-E1-07 | Character - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-WEIS-0009",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "c99860d6-b3bc-4367-b05a-1bcc1c730d3e belongs to F-E1-10 (WEIENG -  - Red Oak (Seashell) T&G | #F-E1-10 | Character - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-WEIS-0010",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "b1dafece-959f-420d-b9da-9c2d519a864a belongs to F-E1-08 (WEIENG -  - Red Oak (Silver Gray) T&G | #F-E1-08 | Character - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-WEIS-0011",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "ecfdad22-cbf4-4e75-8dc1-1dbbda74c9e1 belongs to F-E6-02 (WEIENG -  - Red Oak (Amber) T&G | #F-E6-02 | Select Plus - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-WEIS-0012",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "3d49d218-fb99-4c6b-930a-d02f9397819a belongs to F-E6-01 (WEIENG -  - Red Oak (Caramel) T&G | #F-E6-01 | Select Plus - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-WEIS-0013",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "b18fb885-bac5-4a94-b4d6-08980aedab22 belongs to F-E6-07 (WEIENG -  - Red Oak (Dijon) T&G | #F-E6-07 | Select Plus - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-WEIS-0015",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "5ced4325-d301-41df-b39c-14c8ddc4dbfc belongs to F-E6-05 (WEIENG -  - Red Oak (Pebble) T&G | #F-E6-05 | Select Plus - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-WEIS-0016",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "eb619a22-e57a-48f2-b38f-88b9a59dbf6f belongs to F-E6-06 (WEIENG -  - Red Oak (Sand) T&G | #F-E6-06 | Select Plus - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-WEIS-0017",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "81c6f381-bde6-4793-bae3-4aad0b11d482 belongs to F-E6-04 (WEIENG -  - Red Oak (Vanilla) T&G | #F-E6-04 | Select Plus - 6-1/2\"x3/4\" T&G Wirebrush, 1.2mm Veneer - 26.49sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-WEIS-0022",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "b069b849-1feb-418d-ae25-9e2f4d338afd belongs to F-E8-02 (WEIENG -  - Red Oak (Amber) T&G | #F-E8-02 | Select Plus - 6-1/2\"x3/4\" T&G Wirebrush 2mm Veneer - 26.49sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-WEIS-0023",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "9fdf7c08-1ca6-4e0c-9912-4f45d9064bb3 belongs to F-E8-01 (WEIENG -  - Red Oak (Sand) T&G | #F-E8-01 | Select Plus - 6-1/2\"x3/4\" T&G Wirebrush 2mm Veneer - 26.49sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-WEIS-0024",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "dcdcd1e0-30c2-47a4-8d27-961b5593c1dc belongs to F-E8-04 (WEIENG -  - Red Oak (Sandy Brown) T&G | #F-E8-04 | Select Plus - 6-1/2\"x3/4\" T&G Wirebrush 2mm Veneer - 26.49sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ENG-WEIS-0025",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "a97b5273-4f3f-459f-9f92-aa7f04e8ebe1 belongs to F-E8-03 (WEIENG -  - Red Oak (Vanilla) T&G | #F-E8-03 | Select Plus - 6-1/2\"x3/4\" T&G Wirebrush 2mm Veneer - 26.49sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LVP-WEIS-0004",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "176f1ade-4aeb-4709-9548-9a0c0e7ccf86 belongs to 11223 (WEIVIN - BREEZE COLLECTION 5+2mm Underlay 7\"x 48\" 12 mil wearlayer CORAL (21.63 SF/BOX)) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LVP-WEIS-0008",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "4edd272c-030f-48e8-9287-325a6fb23ded belongs to 11202 (WEIVINYL -  Atmosphere Collection AMERICAN WALNUT  5.5+1.5mm Underlay 7\"x 48\" Painted Bevel 20 mil wearlayer (16.83SF/BOX)) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "LAM-WEIS-0001",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "18e05ba3-c044-4b51-ba80-d4fd492b88f1 belongs to 11228 (WEILAM - Citadel 20.81sf/b) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ACC-WEIS-0001",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "8988bcb1-644e-4aa1-bc53-25dde3bb71fc belongs to 11221 (WEIVIN - T-MOLDING VINYL (ALL COLORS) 8 FT LONG) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ACC-WEIS-0002",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "000a3057-6a62-43b6-884b-c5ef468fc3c9 belongs to 11222 (WEIVIN- VINYL REDUCER ( ALL COLORS) 8 FT LONG) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ACC-WEIS-0004",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "08b4ba3e-0209-4f62-a335-e75e7df59d35 belongs to WEI.LM.TM (WEILAM - Laminate T-Moulding 8ft) \u2014 writing it would overwrite that product"
+  },
+  {
+   "sku": "ACC-WEIS-0005",
+   "reason": "uuid_belongs_to_other_sku",
+   "detail": "9fcf7d84-6e33-4efe-8d1c-77feca3ac145 belongs to WEI.LM.RED (WEILAM - Laminate Reducer 8ft) \u2014 writing it would overwrite that product"
+  }
+ ],
+ "warnings": [
+  {
+   "sku": "LVP-WEIS-0005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0006",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0007",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0009",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0010",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0011",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0012",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0013",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0014",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0015",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0016",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0017",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0018",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0019",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-WEIS-0003",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-WEIS-0007",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0020",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0021",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0022",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0023",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0024",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0025",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0026",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0027",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0028",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0029",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-WEIS-0030",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  }
+ ]
+}

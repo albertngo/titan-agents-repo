@@ -65,6 +65,11 @@ an LLM transcription of a screenshot, or retyping figures from the Notion `Notes
 a previous run. A price that reaches the POS must be traceable to a deterministic
 parse of the supplier's own bytes.
 
+**Except when the attachment IS an image (Albert, 2026-09-24)** — a JPEG/PNG/HEIC
+photo or scan of a list, not a PDF. Then there are no text bytes to parse, and
+step 2.3 below is the sanctioned method. It does not reopen any of the above for a
+PDF: a PDF is still read by pdfplumber and nothing else.
+
 **Why this is a hard gate and not a preference.** On 2026-09-01 the pdfplumber method
 was written into these docs from a session where it genuinely worked. On 2026-09-02 the
 import in `scripts/pricelist_fetch.py` was made lazy — "so fetching works without it
@@ -150,6 +155,49 @@ parse and a useless one.
 Cross-check the two code paths against each other where both produce a figure: they
 are independent enough that disagreement is a real signal. That replaces the old
 "cross-check against pdfplumber's own text", which compared a parse against itself.
+
+### 2.3 The attachment is an image — two readers, row by row (2026-09-24)
+
+Albert, 2026-09-24, on PL-170 (Baltic Homes, a phone photo of a printed list):
+*"jpg (or any image file) should be allowed. BUT it should read the context of the
+image, and decide if it is flooring. And if so, process just as pdfplumber does."*
+
+Check the downloaded bytes with `file` before step 2.2 — `pricelist_fetch.py` says
+`non-PDF` — and a SharePoint `:i:` share link is the early sign. Then:
+
+1. **Read the image and classify it first.** Is it a price list, and is it flooring?
+   Not a price list → step 5's "not a price list" branch, same as a PDF. Out-of-scope
+   product only (trim, vanities, doors) → report it and stop, same as a PDF section.
+2. **Transcribe it into structured JSON — reader 1.** Zoom the image (crop into
+   bands at ~2×) and read every row: code, colour, description, and every printed
+   price as printed. Shape: `{"rows": [{"key": <code>, "money": [<prices>], …}]}`,
+   saved and **committed** as `ingest/<date>/<supplier>_transcription_<date>.json`
+   next to the image itself (`<supplier>_<PL>_source.<ext>`), so every price stays
+   traceable to its bytes.
+3. **Cross-check it with OCR — reader 2:**
+   ```bash
+   pip install rapidocr_onnxruntime   # not vendored: ~100 MB with onnxruntime/opencv
+   python3 scripts/pricelist_image_check.py <image> <transcription.json> --json <report.json>
+   ```
+   RapidOCR shares nothing with the model reading the image. Every transcribed price
+   must be on the **same row** of the OCR output, and every priced OCR line must be
+   claimed by a transcribed row.
+
+| Exit | Meaning | What to do |
+|---|---|---|
+| `0` | Both readers agree on every price, row by row | Proceed to step 3 with the transcription |
+| `1`, rows `disagree` / `not_located` | OCR read a different number, or could not find the row | **Hold those rows** — `ambiguous_pricing`, `held`, the two readings in `col_printed`. The rest proceed. Never pick a reader |
+| `1`, `unclaimed priced OCR lines` | OCR saw a priced line the transcription does not have | **Stop.** The transcription dropped a row; fix it and re-run |
+| `2` | No OCR engine | Stop, per step 2.0 — never proceed on one reader |
+
+**Why rows are held rather than the whole list voided**, unlike a PDF's exit 1: OCR
+on a phone photo misreads characters far more often than a PDF engine does, so an
+all-or-nothing rule would make every photographed list unprocessable. A held row
+writes nothing, so the pricing carve-out still protects it. On PL-170 OCR read
+HD-005's 3.92 as 3.02; the other 31 rows agreed exactly.
+
+**Do not upscale for OCR.** On PL-170 a 2.2× crop introduced four new misreads
+(3.43, 3.01, 3.40, 1.93); zoom is for the transcription, not the check.
 
 ## 3. Assign `Company` — before checking parseability
 
@@ -267,6 +315,15 @@ Otherwise, **in this order — it is a dependency, not a preference**:
      `/catalog-sync` leaves `cost_basis` null, and carve-out 3 holds every action on
      the plan. Flag the row `cost_basis_unconfirmed` in the troubled CSV (5a) so the
      question is visible rather than only implied by nothing having been written.
+     **Zero rows in Airtable does not mean zero rows in Lightspeed — check Lightspeed
+     before treating `Lightspeed ID` as blank** (Albert, 2026-09-11, after Oakel and
+     Golden Choice both turned out to be live at the POS; salvaged 2026-09-23 from
+     `7e47544`, whose cost-basis half was superseded on 2026-09-12 and is not taken).
+     Run `python3 scripts/lightspeed_pull.py --supplier "<Notion Company value>"`, and
+     if it returns nothing, retry with only the first word — Lightspeed's
+     `supplier_name` is often shorter (`GOLDEN CHOICE` is stored as `GOLDEN`). Every
+     live match is the third state below: `MatchStatus` stays `new`, and `Lightspeed
+     ID` / `LS Handle / Parent ID` are copied from the live product.
      **Skip the Lightspeed file** only while the products are new to Lightspeed too —
      if `Lightspeed ID`s have been reconciled in from an LS export, build it. See 5.4.
    - **Verify the supplier's documented SKU format against the base before generating
@@ -295,6 +352,10 @@ Otherwise, **in this order — it is a dependency, not a preference**:
    - **Exception — a new supplier with no Lightspeed presence gets no LS file.** Those three columns are copied from
      the Airtable state, and for a new supplier that state does not exist yet. The LS file
      follows the Airtable import, per the forced order below. One file, not two.
+   - **The row still ends with both (Albert, 2026-09-23).** Whatever extraction could
+     build, `/catalog-sync` step 5a re-renders the Airtable CSV and the Lightspeed CSV
+     from the live systems after the writes, with every SKU's Lightspeed UUID, and
+     re-attaches the pair. Build what you can here; never skip the Airtable file.
 
 Cross-check extracted SKU→price pairs against pdfplumber's own text before attaching.
 
@@ -336,6 +397,15 @@ authorisation to write anything — see `contracts/troubled-skus-schema.md`, "Th
 report either as imported — `/catalog-sync`, running next, is what writes them.
 
 ## 6. Attach both files, then set the row's state
+
+**Stamp `Last Agent Activity Date` on every write to the row (Albert, 2026-09-24).**
+Every `update-page` this command makes on a Price Lists row — properties, file
+attachments, the page-body table — carries, in that same call,
+`"date:Last Agent Activity Date:start": "<now, America/Toronto ISO with offset>"` (computed at the moment of the call — `TZ=America/Toronto date -Iseconds` — never typed by hand) and
+`"date:Last Agent Activity Date:is_datetime": 1`. A page-body `replace_content` call
+cannot set properties, so follow it with a one-property stamp. Never write
+`Since Last Agent Edit`; it is the formula that reads this date back as "3 hours ago".
+Registry key: `write_properties.last_agent_activity`.
 
 `Extracted Files` is a Notion **`file`** property — upload natively, do not paste a
 link.

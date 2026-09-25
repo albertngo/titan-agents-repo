@@ -25,8 +25,10 @@
       "notes": "Notes",
       "review_reason": "Review Reason",
       "extracted_files": "Extracted Files",
-      "troubled_files": "Troubled Files"
+      "troubled_files": "Troubled Files",
+      "last_agent_activity": "Last Agent Activity Date"
     },
+    "_last_agent_activity_note": "Added 2026-09-24 (Albert). A date-with-time property that EVERY agent write to a Price Lists row stamps with the current time, in the same update_properties call as the write itself, computed at the moment of that call (TZ=America/Toronto date -Iseconds) — never typed by hand: on 2026-09-24 two hand-typed stamps landed ~20 minutes ahead of the clock (keys `date:Last Agent Activity Date:start` = now in America/Toronto ISO-8601 with offset, `date:Last Agent Activity Date:is_datetime` = 1). Any property write, file attach or page-body change counts; a read does not. The formula `Since Last Agent Edit` (read-only, never written) renders it as 'N hours / days / weeks ago' so a stale row is visible at a glance. Backfilled on 2026-09-24 for the 16 rows whose latest agent write the actions logs date exactly; the 2026-09-23 backlog bulk Not Needed batches logged no page ids and were left blank.",
     "_troubled_files_note": "Added 2026-09-12 (Albert). A `file` property, separate from `Extracted Files` on purpose: Extracted Files holds the import artifacts, Troubled Files holds the exception report. Keeping them apart is what makes `Troubled Files is not empty` a usable worklist filter. Holds ONE csv per run, per contracts/troubled-skus-schema.md, and is left EMPTY on a clean run — never a headers-only file, which would make that filter meaningless.",
     "_write_key_trap": "The extraction state key is `Extraction Status`, NOT `Status`. Writing `Status` returns 400 validation_error.",
     "company_profiles_file": "platform-settings/company-profiles.md",

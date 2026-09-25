@@ -1,0 +1,72 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "WEISS",
+ "run_at": "2026-09-24T12:14:35-04:00",
+ "status": "ready",
+ "inputs": {
+  "source": "live read of the 3 records 2026-09-24; troubled row absent_from_list"
+ },
+ "cost_basis": {
+  "value": "dealer",
+  "confirmed_by": "Albert 2026-09-10"
+ },
+ "summary": {
+  "airtable_upsert": 3
+ },
+ "blocked": [],
+ "warnings": [],
+ "_note": "Hand-built on Albert's instruction 2026-09-24 ('Keep but note it') for the 6mm line absent from PL-376. Appends one sentence to Salesperson notes; the existing text is kept verbatim. Nothing else changes: Active stays true, prices stay.",
+ "actions": [
+  {
+   "id": "cat-01d04ff4094f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0001",
+   "airtable_rec_id": "recF1fLHkzF0InWUO",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Salesperson notes": "Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 4.5mm core + 1.5mm attached underpad = 6mm total, which matches the 6mm/7mm/8mm trim sizes on the accessory table. Core construction not stated; rigid vinyl defaults to SPC per the global rule. Underpad material not named; IXPE assumed -- verify with Weiss. Not marked * -- no Stairboard Set listed for this colour. 47 lb/box printed on the list; no box-weight field in the schema. The list's legend marks low stock by printing a colour in RED; verified against the PDF's character colours that NO colour name on any page is red, so Stock status is blank throughout. Weiss price list valid from Aug 1 2026. NOT ON THE SEPT 21 2026 LIST (PL-376): Weiss dropped the whole 6mm 12 mil line (Driftwood, Havenest, Venus) from its price list. Albert, 2026-09-24: keep it active and note it. Cost and retail are still the Aug 1 2026 figures, which no current list backs, so confirm availability and price with Weiss before quoting."
+   },
+   "before": {
+    "Salesperson notes": "Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 4.5mm core + 1.5mm attached underpad = 6mm total, which matches the 6mm/7mm/8mm trim sizes on the accessory table. Core construction not stated; rigid vinyl defaults to SPC per the global rule. Underpad material not named; IXPE assumed -- verify with Weiss. Not marked * -- no Stairboard Set listed for this colour. 47 lb/box printed on the list; no box-weight field in the schema. The list's legend marks low stock by printing a colour in RED; verified against the PDF's character colours that NO colour name on any page is red, so Stock status is blank throughout. Weiss price list valid from Aug 1 2026."
+   },
+   "reason": "absent_from_list_note",
+   "seq": 1
+  },
+  {
+   "id": "cat-b11e059f4940",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0002",
+   "airtable_rec_id": "recaRzyTMRiSzBAf5",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Salesperson notes": "Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 4.5mm core + 1.5mm attached underpad = 6mm total, which matches the 6mm/7mm/8mm trim sizes on the accessory table. Core construction not stated; rigid vinyl defaults to SPC per the global rule. Underpad material not named; IXPE assumed -- verify with Weiss. Not marked * -- no Stairboard Set listed for this colour. 47 lb/box printed on the list; no box-weight field in the schema. The list's legend marks low stock by printing a colour in RED; verified against the PDF's character colours that NO colour name on any page is red, so Stock status is blank throughout. Weiss price list valid from Aug 1 2026. NOT ON THE SEPT 21 2026 LIST (PL-376): Weiss dropped the whole 6mm 12 mil line (Driftwood, Havenest, Venus) from its price list. Albert, 2026-09-24: keep it active and note it. Cost and retail are still the Aug 1 2026 figures, which no current list backs, so confirm availability and price with Weiss before quoting."
+   },
+   "before": {
+    "Salesperson notes": "Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 4.5mm core + 1.5mm attached underpad = 6mm total, which matches the 6mm/7mm/8mm trim sizes on the accessory table. Core construction not stated; rigid vinyl defaults to SPC per the global rule. Underpad material not named; IXPE assumed -- verify with Weiss. Not marked * -- no Stairboard Set listed for this colour. 47 lb/box printed on the list; no box-weight field in the schema. The list's legend marks low stock by printing a colour in RED; verified against the PDF's character colours that NO colour name on any page is red, so Stock status is blank throughout. Weiss price list valid from Aug 1 2026."
+   },
+   "reason": "absent_from_list_note",
+   "seq": 2
+  },
+  {
+   "id": "cat-85cd3a6aa497",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0003",
+   "airtable_rec_id": "recxBapRWVCj8HwZr",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Salesperson notes": "Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 4.5mm core + 1.5mm attached underpad = 6mm total, which matches the 6mm/7mm/8mm trim sizes on the accessory table. Core construction not stated; rigid vinyl defaults to SPC per the global rule. Underpad material not named; IXPE assumed -- verify with Weiss. Not marked * -- no Stairboard Set listed for this colour. 47 lb/box printed on the list; no box-weight field in the schema. The list's legend marks low stock by printing a colour in RED; verified against the PDF's character colours that NO colour name on any page is red, so Stock status is blank throughout. Weiss price list valid from Aug 1 2026. NOT ON THE SEPT 21 2026 LIST (PL-376): Weiss dropped the whole 6mm 12 mil line (Driftwood, Havenest, Venus) from its price list. Albert, 2026-09-24: keep it active and note it. Cost and retail are still the Aug 1 2026 figures, which no current list backs, so confirm availability and price with Weiss before quoting."
+   },
+   "before": {
+    "Salesperson notes": "Cost basis CONFIRMED 2026-09-10 by Albert: the list's single 'Price / SF' column is Titan's dealer cost, no multiplier. 4.5mm core + 1.5mm attached underpad = 6mm total, which matches the 6mm/7mm/8mm trim sizes on the accessory table. Core construction not stated; rigid vinyl defaults to SPC per the global rule. Underpad material not named; IXPE assumed -- verify with Weiss. Not marked * -- no Stairboard Set listed for this colour. 47 lb/box printed on the list; no box-weight field in the schema. The list's legend marks low stock by printing a colour in RED; verified against the PDF's character colours that NO colour name on any page is red, so Stock status is blank throughout. Weiss price list valid from Aug 1 2026."
+   },
+   "reason": "absent_from_list_note",
+   "seq": 3
+  }
+ ]
+}

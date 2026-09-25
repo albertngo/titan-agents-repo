@@ -135,6 +135,10 @@ filtered to that supplier. The answer decides what the exported file *is*:
 - **No rows** → the file is a fresh import sheet. The supplier's select option, SKU
   suffix, cost column and markup overrides have to be settled first — see the skill's
   new-supplier onboarding checklist.
+  **Check Lightspeed before assuming it is absent there too** (Albert, 2026-09-11):
+  `scripts/lightspeed_pull.py --supplier "<name>"`, retrying with the first word only.
+  Oakel, Golden Choice, Canadian Standard, HOMESPRO and IMPRESSIVE were all new to the
+  catalogue and already live at the POS.
 
 ## Order of operations — reconcile before you build anything
 
@@ -404,13 +408,37 @@ file that is not a price document; if Company is only set after parsing, flyers 
 junk attachments lose their tag entirely — worse than the old behaviour. Set it
 from subject/sender first, then upgrade to the document-derived value.
 
-### Parent scenario 4381438 depends on the returned value
+### What 4381438 looks like now
 
-4381438 feeds `{{20.company_name}}` into a Tactical Tasks title,
-`"Update POS Price List - {{company}}"`, created at ingest time — before the routine
-has read anything. Retitle that task from the **email subject** (which carries the
-supplier name in practice) so the CallSubscenario modules can be dropped; otherwise
-the title renders with a blank.
+Albert rebuilt it 2026-09-03. The router is gone; the flow is linear and ends in one
+row plus one routine fire per attachment:
+
+```
+#14 watchMessages → #4/#5 datastore dedupe (filter: {{4.exist}} = false)
+  → #6 listAttachments → #7 download → #9 upload → #25 getAShareLink
+  → #10 aggregate (excludes names containing outlook / image / Outlook-)
+  → #11 setVariable → #12 BasicFeeder  ← everything below runs once per file
+      → #16 notion:createDataSourceItem   title/date/sender/files only
+      → #104 http:MakeRequest  {"notionID": "{{16.id}}"}
+```
+
+`#16` maps **no `Tags` and no `Company`** — both arrive blank and the routine is the
+only thing that sets them. That is the whole point of the rebuild: blank means "not
+yet classified", so a failed or undecided run stays visibly incomplete instead of
+asserting a wrong value. `#9` uses `conflictBehavior: "rename"`, so same-named
+attachments no longer overwrite each other.
+
+**Two behaviours were dropped with the router** and now have no owner. Both are
+parked as designer orphans, both depended on `company_name` coming back from 4382120:
+
+- `#28/#30/#33` created `"Update POS Price List - <Company>"` in the ✅ Tactical Tasks
+  List (`238596a4-505f-8137-af13-000bde205213`), assigned to Albert, carrying the
+  Price Lists row URL.
+- `#38/#45/#47` sent a WhatsApp group message, `"Updated Price List From - <Company>"`
+  plus the file link, to group `WAG42b0586d-1349-4379-ade0-58fd6136f271`.
+
+The routine is the natural place to restore the task (it now resolves Company more
+reliably than 4382120 ever did). Not wired up — decide before relying on either.
 
 ## Tagging the row: Regular List vs Promo
 
@@ -421,10 +449,25 @@ list at all is a different case, not a third option here — see "When the file 
 not a price list at all," below.)
 
 **The file decides, not the email.** One email with several attachments becomes
-several rows, and they are tagged per attachment: 24 subjects in the database carry
-*both* tags across 55 rows (Vidar's "…price list and monthly promotion price list"
-pattern, Tosca's "NEW Price List and July Clearance List", Floordi, Weiss, Lee,
-Impressive). The payload hands you one `notionID` = one file. Classify that file.
+several rows — 4381438 aggregates the attachments (`#10`), then iterates them with a
+`BasicFeeder` (`#12`), so every module past the feeder runs once per file. 24
+subjects in the database carry *both* tags across 55 rows (Vidar's "…price list and
+monthly promotion price list" pattern, Tosca's "NEW Price List and July Clearance
+List", Floordi, Weiss, Lee, Impressive). The payload hands you one `notionID` = one
+file. Classify that file.
+
+**Where the existing tags came from — they are not a human's judgement.** Every row
+created before 2026-09-03 was tagged by 4381438's router (`#15`) from the **OneDrive
+filename**: route 0 hardcoded `Promo` on `promotion|promo|special|clearance|sale|
+sales`, route 1 hardcoded `Regular List` on `price list|pricelist|price`, route 2
+had no filter and wrote no tag (the source of the 5 untagged rows). So the 24
+split-tag subjects are two filenames landing in two keyword buckets, not per-file
+judgement — treat historical tags as a weak baseline, and see the mis-tags below.
+That router is now deleted, so nothing else writes `Tags`; rows arrive blank.
+The `sale` condition is a substring match, so it also fires on **"Whole*sale*"**;
+`/Price List (Attachments)` currently holds three such files
+(`Wholesale Price List.xlsx.pdf`, `Wholesale Price List.xlsx - Waterproofing (3).pdf`,
+`Door Wholesale pricelist (05122025).pdf`).
 
 ### The distinction
 

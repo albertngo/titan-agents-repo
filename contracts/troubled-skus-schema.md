@@ -193,6 +193,11 @@ warning that is SKU-scoped.
 | `sfb_not_exposed` | The row's `Box size (sf)` would be unreadable in Lightspeed |
 | `ls_payload_unavailable` | New to Lightspeed with no skill-built LS upload row to create it from |
 | `category_unresolved` | Carried over from the plan's `warnings`. Always `wrote_flagged` — a warning never withheld a write, before this file existed or after |
+| `brand_missing` | The row's Lightspeed `create` needs a Brand with no live entity. Brand creation is a person's decision, never automated (Albert, 2026-09-13, after a duplicate "Home's Pro" supplier was created without checking first) — `lightspeed_push.py` refuses rather than mint one. Added 2026-09-14 (IMPRESSIVE), the first supplier to reach a Lightspeed create whose brand had no live match |
+| `supplier_option_missing` | The row's Airtable write names a `Supplier` value with no live select-option match. `airtable-actions-agent` refuses rather than silently mint one — see "Creating a select option" in bert-airtable-schema. Added 2026-09-14 (IMPRESSIVE), the first supplier whose Airtable side reached execution before its Supplier value was confirmed |
+| `select_option_missing` | Pre-flight (2026-09-23). An Airtable select value other than `Supplier` has no live option. Held on both systems, same as `supplier_option_missing` |
+| `ls_supplier_missing` | The row's live Lightspeed product has no supplier, so its cost cannot be written (`lightspeed_write.py` refuses to invent a purchasing relationship). Held on both systems until a person sets the supplier in Lightspeed. Added 2026-09-24 (PL-170 Baltic, EHDP-003 — created 2025-08-26 with no supplier) |
+| `absent_from_list` | A live Airtable record for this supplier that the new price list does not print at all. Nothing is written — neither system has a delete or deactivate action type, deliberately — so the product stays live at its last price until a person decides whether it is discontinued. `held`: a TODO, since the price it sells at is no longer backed by any current list. Added 2026-09-24 (PL-376 Weiss: the 6mm 12 mil line, 3 colours, is gone from the Sept 21 2026 list) |
 
 `airtable_side_not_planned` is deliberately **not** here. It is plan-level, not
 SKU-level — it means the plan contains no Airtable actions at all — so it belongs in
@@ -241,6 +246,7 @@ in this file. The rubric there is authoritative; this table is the reader's view
 | Every stage-`sync` `blocked` reason | `held` | Structural. The reconciler emits no action and no id, so there is nothing that *could* be written |
 | `ambiguous_pricing` | `held` | A wrong cost is silent and monetary. The one flag worth stopping for |
 | `cost_basis_unconfirmed` | `held` | Same failure, one step earlier: if nobody has said what the printed numbers mean, every price on the file is a guess |
+| `absent_from_list` | `held` | Nothing to write — there is no deactivate action — but the product still sells at a price no current list supports |
 | `ambiguous_naming` | `wrote_flagged` | Visible and correctable by a follow-up diff |
 | `unmapped_grade`, `unmapped_category`, `spec_gap`, `sku_format_mismatch` | `wrote_flagged` | Annoying, visible, not monetary |
 | `new_supplier` | `wrote_flagged` | **Reversed 2026-09-12 (Albert)** — see below |

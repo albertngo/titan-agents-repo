@@ -135,17 +135,20 @@ that residue in one reply, but on an unattended run it is a digest, not a wait.
 Nothing changed about an action needing an id in the approval file before an
 `*-actions` agent touches it.
 
-> **⚠️ Scheduling status (2026-09-12).** **None of this has run end to end yet.**
-> `/catalog-sync` has never completed a recorded, verified session; the policy
-> auto-approval path has never executed a real write; and the troubled-SKUs CSV and
-> `Troubled Files` property have never been produced by a real run. The first fire
-> under this design writes to a live POS with no gate in front of it — watch it,
-> don't assume the docs are enough. Detail:
-> `methods/pricelist-pipeline-routine-prompt.md`, Still open.
+> **⚠️ Scheduling status (2026-09-23).** The policy path has now run on real plans:
+> FAW PL-377 and PL-380, and IMPRESSIVE PL-381 (unattended on 09-22, finished by hand
+> on 09-23). **No unattended fire has yet completed both systems on one row.** The
+> routine trigger is **disabled, and stays that way** (Albert, 2026-09-23: "Not yet.
+> I'll do manual"). Make keeps creating rows, and price lists are run by hand. Do not
+> re-enable it on a session's own initiative. Detail:
+> `methods/pricelist-pipeline-routine-prompt.md`, Routine environment and Still open.
 
 **Only two files can change the POS**: `scripts/lightspeed_write.py` and
 `scripts/lightspeed_push.py`. The read path contains no write verb and a test
-enforces that. Neither system has a delete or deactivate action type, deliberately.
+enforces that. Removing a product the supplier's newest list no longer carries is a person's call only
+(Albert, 2026-09-24): **deactivate** is an ordinary update of Lightspeed `is_active` / Airtable `Active` that the
+reconciler never plans, and a guarded **delete** exists that policy can never approve. First use: FAW's old T&G
+Toffee / Warm Honey, set inactive, not deleted.
 
 Add a new agent = add one file in `.claude/agents/` + conform to the matching contract
 (`ingest-schema.md` for ingesters, `actions-log-schema.md` for actions agents).

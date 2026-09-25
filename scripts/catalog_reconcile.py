@@ -67,16 +67,34 @@ SUPPLIER = "Supplier"
 
 # Fields worth diffing against the live Airtable record. Keys are upload-CSV
 # column names; values are the aliases a live-record snapshot may use instead.
+#
+# EVERY KEY HERE MUST BE PRESENT IN THE SNAPSHOT. live_value() returns
+# readable=False for a key the snapshot lacks, and the caller then writes the
+# field anyway and records it as unreadable -- correct when a record is genuinely
+# new, and a blanket write on every matched row when the snapshot is simply
+# missing the column. So widening this dict without widening the snapshot turns a
+# diff into an overwrite. /catalog-sync step 2 names the required field list and
+# tests/test_catalog_reconcile.py holds the two to each other.
 DIFF_FIELDS = {
     "Product name": ("ProductName", "Product name"),
     "Supplier SKU": ("SupplierSKU", "Supplier SKU"),
     "Category": ("Category",),
     "Cost/unit": ("Cost", "Cost/unit"),
     "Retail price/unit": ("Retail", "Retail price/unit"),
+    # Added 2026-09-22 (Albert asked "can we diff it?"). Before this, a supplier
+    # marking a colourway clearance, or putting one on promo, produced NO Airtable
+    # action at all: the reconciler only looked at the five fields above, so the
+    # change was invisible. On FAW PL-377 that meant ~56 CLEARANCE SALE colourways
+    # went unwritten, and a laminate promo reached Lightspeed with nothing in
+    # Airtable to ever clear it -- the POS would have held the promo price forever.
+    "Stock status": ("StockStatus", "Stock status"),
+    "Promo cost ($/sf)": ("PromoCost", "Promo cost ($/sf)"),
+    "Promo end date": ("PromoEndDate", "Promo end date"),
     LS_ID: ("LightspeedID", "Lightspeed ID"),
 }
 PRICE_FIELDS = ("Cost/unit", "Retail price/unit")
 PROMO_COST = "Promo cost ($/sf)"
+PROMO_END = "Promo end date"
 
 # MatchStatus / LS Match status values that must never reach a write.
 AMBIGUOUS = {"ambiguous", "AMBIGUOUS", "DUPLICATE"}
@@ -179,11 +197,18 @@ def live_value(record, field):
 
 
 def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
-              airtable_snapshot=True):
+              airtable_snapshot=True, select_options=None):
     """Every row -> an action or a block. Never both, never neither.
 
     Warnings are separate: things worth a reader's attention that are not a
     reason to withhold a write.
+
+    `select_options` ({field: set of live option names}) is the pre-flight. A row
+    whose Airtable write would name a select value Airtable does not have is
+    blocked on BOTH systems, before either is written. Without it, a first-time
+    supplier wrote Lightspeed and then had every Airtable write refused:
+    HOMESPRO and IMPRESSIVE on 2026-09-14, IMPRESSIVE again on 2026-09-22, which
+    left 99 products in the POS with no catalogue record.
     """
     actions, blocked, warnings = [], [], []
     ls_upload = ls_upload or {}
@@ -248,15 +273,30 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
             block(sku, "uuid_collision", detail, rows=collided[uuid])
             continue
 
+        # A row's Lightspeed identity is normally its Airtable SKU: that's what a
+        # CREATE writes into Lightspeed's own `sku` field (ls_create_fields), so
+        # for anything this pipeline minted, LS sku == Airtable SKU. IMPRESSIVE
+        # (2026-09-14) exposed the case that invariant does not cover: RULE 0a's
+        # "third state" (new to Airtable, already live in Lightspeed) where the
+        # live product predates this pipeline and Lightspeed's own sku field is
+        # still the supplier's raw code — the exact value /process-price-list
+        # matched against and recorded in `Supplier SKU`, never the Airtable SKU.
+        # Accept either as valid identity; this stays an exact-match check (no
+        # fuzzy join is reintroduced), so it does not touch what the Grandeur
+        # regression guards against — a UUID that belongs to a genuinely
+        # different product, under either identifier.
+        supplier_sku = clean(row.get("Supplier SKU"))
+        sku_candidates = {sku} | ({supplier_sku} if supplier_sku else set())
+
         ls_by_id = ls["by_id"].get(uuid) if uuid else None
-        ls_by_sku = ls["by_sku"].get(sku)
+        ls_by_sku = ls["by_sku"].get(sku) or (ls["by_sku"].get(supplier_sku) if supplier_sku else None)
 
         if uuid and ls_by_id is None:
             block(sku, "uuid_not_in_lightspeed",
                   f"row carries {uuid}, which Lightspeed does not hold")
             continue
 
-        if uuid and clean(ls_by_id.get("sku")) != sku:
+        if uuid and clean(ls_by_id.get("sku")) not in sku_candidates:
             block(sku, "uuid_belongs_to_other_sku",
                   f"{uuid} belongs to {clean(ls_by_id.get('sku'))} "
                   f"({clean(ls_by_id.get('name')) or ''}) — writing it would overwrite that product")
@@ -282,11 +322,21 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
         # Enforced always, including variant groups (Albert, 2026-09-10). The rule
         # was already written in ls-upload-instructions; nothing checked it, and
         # ENG-VIDR-0038 sat in Lightspeed for months with no sf/b in its name.
-        sfb_problem = sfb_not_exposed(row, ls_upload.get(sku),
-                                      group_boxes.get(handle) if handle else None)
-        if sfb_problem:
-            block(sku, "sfb_not_exposed", sfb_problem)
-            continue
+        #
+        # Only on a CREATE (uuid still blank here): an UPDATE never writes `name`
+        # (ls_update_fields — "prices, and nothing else"), so the skill-built
+        # ls_upload row's name is never sent for a matched product and checking
+        # it proves nothing about what a person sees at the POS. IMPRESSIVE
+        # (2026-09-14) was the first supplier with matched/update rows to reach
+        # this check and it blocked 187 of 220 on that never-sent placeholder
+        # name — every existing test for this function uses a blank Lightspeed
+        # ID (create), so this gap had no coverage either.
+        if not uuid:
+            sfb_problem = sfb_not_exposed(row, ls_upload.get(sku),
+                                          group_boxes.get(handle) if handle else None)
+            if sfb_problem:
+                block(sku, "sfb_not_exposed", sfb_problem)
+                continue
 
         category = clean(row.get("Category"))
         if category and not category_resolves(category, categories):
@@ -304,24 +354,57 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
         live = existing.get(sku) if airtable_snapshot else None
         is_new_in_airtable = (match_status == "new") or (live is None and match_status != "matched")
         fields, before, unreadable = {}, {}, []
-        for field in DIFF_FIELDS:
-            new = clean(row.get(field))
-            if new is None:
+        if is_new_in_airtable:
+            # There is no live record to diff against, so DIFF_FIELDS (which
+            # exists to write only what actually changed on an UPDATE) does not
+            # apply here — it would leave a brand-new record with ~5 of 57
+            # columns populated and everything else blank. A create writes the
+            # whole row: every non-empty column from the upload CSV except the
+            # merge key and the reviewer helper columns, neither of which is a
+            # real field. Found 2026-09-13: this path had never been exercised
+            # against a genuine new-to-Airtable supplier before HOMESPRO.
+            for field, new_raw in row.items():
+                if field in (SKU, MATCH_STATUS, MATCHED_REC, LS_MATCH_STATUS):
+                    continue
+                new = clean(new_raw)
+                if new is not None:
+                    fields[field] = new
+        else:
+            for field in DIFF_FIELDS:
+                new = clean(row.get(field))
+                if new is None:
+                    continue
+                if live is None:
+                    old, readable = None, False
+                else:
+                    raw, readable = live_value(live, field)
+                    old = clean(raw)
+                if not readable:
+                    # No prior value to compare against, so write it and say so
+                    # rather than implying it was empty.
+                    fields[field] = new
+                    unreadable.append(field)
+                    continue
+                if comparable(field, new) != comparable(field, old):
+                    fields[field] = new
+                    before[field] = old
+
+        if airtable_snapshot and select_options:
+            missing = missing_select_options(fields, select_options)
+            if missing:
+                field, value, near = missing[0]
+                reason = ("supplier_option_missing" if field == SUPPLIER
+                          else "select_option_missing")
+                hint = (f" The live option {near!r} differs only in case: fix the upload "
+                        "CSV, never the option." if near else
+                        " Add the option in Airtable, then re-run; nothing was written "
+                        "to either system for this SKU.")
+                extra = (f" ({len(missing) - 1} more: "
+                         + ", ".join(f"{f}={v!r}" for f, v, _ in missing[1:]) + ")"
+                         if len(missing) > 1 else "")
+                block(sku, reason,
+                      f"{field}={value!r} is not a live Airtable option.{hint}{extra}")
                 continue
-            if live is None:
-                old, readable = None, False
-            else:
-                raw, readable = live_value(live, field)
-                old = clean(raw)
-            if not readable:
-                # No prior value to compare against, so write it and say so rather
-                # than implying it was empty.
-                fields[field] = new
-                unreadable.append(field)
-                continue
-            if comparable(field, new) != comparable(field, old):
-                fields[field] = new
-                before[field] = old
 
         if recovered:
             fields[LS_ID] = recovered
@@ -401,6 +484,74 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
             })
 
     return order(actions), blocked, warnings
+
+
+def missing_select_options(fields, select_options):
+    """[(field, value, case-only near match or None)] for values Airtable lacks.
+
+    Exact match, because writes run with typecast OFF: a value that differs only
+    in case is refused at write time (or, with typecast on, silently becomes a
+    duplicate option, which is how the base collected its placeholder junk).
+    Multi-select values are checked one by one, split on commas.
+    """
+    out = []
+    for field, value in fields.items():
+        live = select_options.get(field)
+        if not live or value is None:
+            continue
+        parts = [p.strip() for p in str(value).split(",")] if "," in str(value) else [str(value).strip()]
+        for part in parts:
+            if part and part not in live:
+                near = next((o for o in live if o.casefold() == part.casefold()), None)
+                out.append((field, part, near))
+    return out
+
+
+FIELD_MAP = Path(__file__).resolve().parent.parent / "platform-settings/airtable-master-catalogue-fields.json"
+
+
+def field_names_by_id():
+    try:
+        return {fid: f["name"] for fid, f in json.loads(FIELD_MAP.read_text())["fields"].items()}
+    except (OSError, KeyError, ValueError):
+        return {}
+
+
+def load_select_options(path):
+    """{field name: set(option names)} from either of two shapes.
+
+    - The plain map `{"Supplier": ["FLOORS AT WORK", ...], ...}`.
+    - The raw Airtable MCP `get_table_schema` result, from which every
+      singleSelect / multipleSelects field is taken.
+    """
+    if not path:
+        return None
+    data = json.loads(Path(path).read_text())
+    if isinstance(data, dict) and data and all(isinstance(v, list) for v in data.values()):
+        if not any(isinstance(x, dict) for v in data.values() for x in v):
+            return {k: set(v) for k, v in data.items()}
+    found = {}
+    # get_table_schema as served on 2026-09-23 carries field ids and `config.choices`
+    # but no field names; names resolve through the committed id map. Older payloads
+    # carried `name` and `options.choices`; both shapes are read.
+    names = field_names_by_id()
+
+    def walk(node):
+        if isinstance(node, dict):
+            name = node.get("name") or names.get(node.get("id"))
+            if node.get("type") in ("singleSelect", "multipleSelects") and name:
+                holder = node.get("options") or node.get("config") or {}
+                choices = holder.get("choices") or []
+                found[name] = {c["name"] for c in choices if c.get("name")}
+            for v in node.values():
+                walk(v)
+        elif isinstance(node, list):
+            for v in node:
+                walk(v)
+    walk(data)
+    if not found:
+        raise SystemExit(f"error: {path} holds no select options in either known shape")
+    return found
 
 
 def two_dp(value):
@@ -524,7 +675,7 @@ def category_resolves(category, leaves):
     return any(want == leaf.split("/")[-1].strip().lower() for leaf in leaves)
 
 
-def ls_update_fields(row):
+def ls_update_fields(row, as_of=None):
     """What a Lightspeed UPDATE writes: prices, and nothing else.
 
     Deliberately minimal, because the obvious wider payload is destructive.
@@ -591,8 +742,25 @@ def ls_update_fields(row):
     deliberately narrow, against a 2.1 attribute shape that has already bitten once
     (a guard read the wrong key and returned [] where a `Select` existed). Worth
     doing only on the evidence of a live API check. Not urgent.
+
+    ## A lapsed promo is not what Titan pays (2026-09-23)
+
+    The paragraphs above assume `Promo cost` clears itself on `Promo end date`.
+    Nothing does that: no promo-expiry mechanism exists anywhere, and Albert ruled
+    on 2026-09-23 that no sweep should clear them. So a row can carry a promo that
+    ended weeks ago (28 FAW records still held August's on 2026-09-23). Read "as
+    written", this function would push that dead price into Lightspeed as today's
+    supply_price. It surfaced the first time a CSV was re-rendered from live
+    Airtable (scripts/catalog_export.py), which carries those stale values
+    faithfully. So a promo whose end date is before `as_of` is ignored here and the
+    regular cost is used. The Airtable fields are untouched: this is not the sweep.
+    A promo with no end date still applies, since clearance "while stock lasts"
+    prints none.
     """
     promo = as_number(row.get(PROMO_COST))
+    end = clean(row.get(PROMO_END))
+    if promo is not None and end and end[:10] < (as_of or today()):
+        promo = None
     cost = as_number(row.get("Cost/unit"))
     return {k: v for k, v in (
         ("supply_price", promo if promo is not None else cost),
@@ -623,12 +791,22 @@ def ls_create_fields(row, ls_upload_row):
     # credential was dead when this was written — and an unverified key 422s the whole
     # create. See the promo-marker gap in ls_update_fields.
     for csv_col, api_key in (("description", "description"),
-                             ("product_category", "product_category"),
                              ("brand_name", "brand_name"),
                              ("supplier_name", "supplier_name")):
         value = clean(ls_upload_row.get(csv_col))
         if value:
             fields[api_key] = value
+
+    # `product_category` is carried as the CSV's path form ('FLOORING / TILE'),
+    # verbatim. lightspeed_push.Lookups.resolve() matches it against a nested
+    # type's full path first, then falls back to the leaf ('SPC'). Stripping to the
+    # leaf here (as on 2026-09-18, before that fallback existed) threw away the one
+    # thing that tells Titan's two live TILEs apart — PL-372, 2026-09-23, 42 creates
+    # refused as ambiguous until the path was kept (Albert: "use the TILE that is
+    # nested in FLOORING").
+    category = clean(ls_upload_row.get("product_category"))
+    if category:
+        fields["product_category"] = category
 
     # Variant grouping. The CSV carries the option as a name/value pair; the API
     # wants {attribute_id, value}, resolved against the live attribute list at
@@ -674,6 +852,10 @@ def main():
                          "/process-price-list. Required for any row that is new to "
                          "Lightspeed: a create needs the skill-built name and "
                          "category, which cannot be derived from the Airtable columns.")
+    ap.add_argument("--airtable-options", type=Path,
+                    help="Live Airtable select options (plain {field: [names]} or the raw "
+                         "get_table_schema output). The pre-flight: a value Airtable lacks "
+                         "blocks that SKU on both systems before anything is written.")
     ap.add_argument("--supplier", help="Override the Supplier read from the CSV")
     ap.add_argument("--out", type=Path)
     ap.add_argument("--cost-basis", help="e.g. 'dealer'. Recorded, never inferred.")
@@ -715,8 +897,19 @@ def main():
     )["product_categories"]["leaves"]
 
     have_snapshot = bool(args.airtable_existing)
+    select_options = load_select_options(args.airtable_options)
     actions, blocked, warnings = reconcile(rows, ls, existing, supplier, categories,
-                                          ls_upload, airtable_snapshot=have_snapshot)
+                                          ls_upload, airtable_snapshot=have_snapshot,
+                                          select_options=select_options)
+    if have_snapshot and select_options is None:
+        warnings.insert(0, {
+            "sku": None,
+            "reason": "select_options_not_checked",
+            "detail": ("No --airtable-options were supplied, so no Airtable select value "
+                       "on this plan was checked against the live base. A value Airtable "
+                       "lacks will be refused at write time, after Lightspeed has already "
+                       "been written for that SKU."),
+        })
 
     if not have_snapshot:
         warnings.insert(0, {
@@ -743,6 +936,8 @@ def main():
             {"file": str(ls_path), "products": ls["count"], "run_at": ls["pulled_at"]},
         ] + ([{"file": str(args.airtable_existing), "records": len(existing)}]
              if args.airtable_existing else [])
+          + ([{"file": str(args.airtable_options), "select_fields": len(select_options)}]
+             if select_options else [])
           + ([{"file": str(args.ls_upload), "rows": len(ls_upload)}]
              if args.ls_upload else []),
         "cost_basis": ({"value": args.cost_basis, "confirmed_by": args.confirmed_by}

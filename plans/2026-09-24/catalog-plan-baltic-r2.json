@@ -1,0 +1,280 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "BALTIC HOMES",
+ "run_at": "2026-09-24T10:31:23.811955-04:00",
+ "status": "ok",
+ "inputs": [
+  {
+   "file": "ingest/2026-09-24/baltic_airtable_upload_2026-09-24.csv",
+   "rows": 32
+  },
+  {
+   "file": "ingest/2026-09-24/lightspeed-products.json",
+   "products": 15004,
+   "run_at": "2026-09-24T10:31:23.227707-04:00"
+  },
+  {
+   "file": "/tmp/claude-0/-home-user/7073bf12-0ecb-5aba-9f48-381dc91fbc0c/scratchpad/balt_existing_named.json",
+   "records": 30
+  },
+  {
+   "file": "/tmp/claude-0/-home-user/7073bf12-0ecb-5aba-9f48-381dc91fbc0c/scratchpad/schema_live.json",
+   "select_fields": 20
+  },
+  {
+   "file": "ingest/2026-09-24/baltic_ls_upload_2026-09-24.csv",
+   "rows": 32
+  }
+ ],
+ "cost_basis": {
+  "value": "tier-2",
+  "confirmed_by": "Albert 2026-09-24 (Tier 2 Price SF/CAD; HD-005 'Tier 2 Price' confirmed)"
+ },
+ "summary": {
+  "airtable_upsert": 2,
+  "lightspeed_update": 2,
+  "actions_total": 4,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 0,
+  "warnings": 21,
+  "rows_in": 32
+ },
+ "actions": [
+  {
+   "id": "cat-e2b97ff7876e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "EHDP-003",
+   "airtable_rec_id": null,
+   "ls_id": "0f4e98b6-2a86-4d82-b20d-119f24a94d80",
+   "handle": "nature-eng-hardwood-wildwood-oak--7-12-x-34-x-75-tg-3mm-veneer-layer-1943-sfbox",
+   "fields": {
+    "Product name": "Baltic Homes Engineered Oak 7.5\" (3mm top) \u2014 Wildwood Oak",
+    "Supplier": "BALTIC HOMES",
+    "Supplier SKU": "EHDP-003",
+    "Lightspeed ID": "0f4e98b6-2a86-4d82-b20d-119f24a94d80",
+    "LS Handle / Parent ID": "nature-eng-hardwood-wildwood-oak--7-12-x-34-x-75-tg-3mm-veneer-layer-1943-sfbox",
+    "Collection": "Engineered Hardwood Collection",
+    "Product type": "Flooring",
+    "Category": "Engineered hardwood",
+    "Species": "Oak",
+    "Width (in)": "7.5",
+    "Length": "75\"",
+    "Thickness (mm)": "18",
+    "Veneer / top layer (mm)": "3",
+    "Cost/unit": "4.03",
+    "Retail price/unit": "5.03",
+    "Volume pricing notes": "Tier 1 Price $3.58/sf (sheet's lower tier; Tier 2 is cost, Albert 2026-09-24)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "19.43",
+    "Boxes per skid": "50",
+    "Active": "TRUE",
+    "Salesperson notes": "Supplier spec as printed (PL-170, photographed list): '18/3 mm x190mm x1900mm (75\"x7-1/2\"x3/4\")'."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 1
+  },
+  {
+   "id": "cat-6f99e0bc8c0d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HD-005",
+   "airtable_rec_id": null,
+   "ls_id": "edb7f910-72da-4936-a7fd-86899390dca4",
+   "handle": "nature-eng-hardwood-elysian-oak--7-12-x-34-x-75-tg-2mm-veneer-layer-1943-sfbox",
+   "fields": {
+    "Product name": "Baltic Homes Engineered Oak 7.48\" (2mm top) \u2014 Elysian Oak",
+    "Supplier": "BALTIC HOMES",
+    "Supplier SKU": "HD-005",
+    "Lightspeed ID": "edb7f910-72da-4936-a7fd-86899390dca4",
+    "LS Handle / Parent ID": "nature-eng-hardwood-elysian-oak--7-12-x-34-x-75-tg-2mm-veneer-layer-1943-sfbox",
+    "Collection": "Engineered Hardwood Collection",
+    "Product type": "Flooring",
+    "Category": "Engineered hardwood",
+    "Species": "Oak",
+    "Width (in)": "7.48",
+    "Length": "1900mm",
+    "Thickness (mm)": "18",
+    "Veneer / top layer (mm)": "2",
+    "Cost/unit": "3.92",
+    "Retail price/unit": "4.92",
+    "Volume pricing notes": "Tier 1 Price $3.49/sf (sheet's lower tier; Tier 2 is cost, Albert 2026-09-24)",
+    "Last price update": "2026-09-24",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "19.43",
+    "Boxes per skid": "50",
+    "Active": "TRUE",
+    "Salesperson notes": "Supplier spec as printed (PL-170, photographed list): 'ENG Oak, HD-005, 18/2 mm x190mm x1900mm'."
+   },
+   "before": null,
+   "reason": "new_product",
+   "uuid_source": "upload",
+   "seq": 2
+  },
+  {
+   "id": "cat-fd5cc60e5961",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "EHDP-003",
+   "airtable_rec_id": null,
+   "ls_id": "0f4e98b6-2a86-4d82-b20d-119f24a94d80",
+   "handle": "nature-eng-hardwood-wildwood-oak--7-12-x-34-x-75-tg-3mm-veneer-layer-1943-sfbox",
+   "fields": {
+    "supply_price": 4.03,
+    "price_excluding_tax": 5.03
+   },
+   "before": {
+    "name": "NATURE-ENG Hardwood Wildwood Oak  7-1/2'' x 3/4'' x 75'' T&G (3mm veneer layer) 19.43 Sf/box",
+    "handle": "nature-eng-hardwood-wildwood-oak--7-12-x-34-x-75-tg-3mm-veneer-layer-1943-sfbox",
+    "sku": "EHDP-003",
+    "supply_price": 3.59,
+    "price_including_tax": 4.99,
+    "price_excluding_tax": 4.99,
+    "category": "HARDWOOD",
+    "supplier_name": "BALTIC HOMES",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 3
+  },
+  {
+   "id": "cat-cdb0618e3b96",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "HD-005",
+   "airtable_rec_id": null,
+   "ls_id": "edb7f910-72da-4936-a7fd-86899390dca4",
+   "handle": "nature-eng-hardwood-elysian-oak--7-12-x-34-x-75-tg-2mm-veneer-layer-1943-sfbox",
+   "fields": {
+    "supply_price": 3.92,
+    "price_excluding_tax": 4.92
+   },
+   "before": {
+    "name": "NATURE-ENG Hardwood Elysian Oak  7-1/2'' x 3/4'' x 75'' T&G (2mm veneer layer) 19.43 Sf/box",
+    "handle": "nature-eng-hardwood-elysian-oak--7-12-x-34-x-75-tg-2mm-veneer-layer-1943-sfbox",
+    "sku": "HD-005",
+    "supply_price": 3.49,
+    "price_including_tax": 4.99,
+    "price_excluding_tax": 4.99,
+    "category": "HARDWOOD",
+    "supplier_name": "BALTIC HOMES",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 4
+  }
+ ],
+ "blocked": [],
+ "warnings": [
+  {
+   "sku": "SPC-A16215",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-4210",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-VN706",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-002",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-011",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-NGW1017-6",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-NGW61140-19",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "SPC-NGW61140-38",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "VL88035L-001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "VL88171L-001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "VL88259L-001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "VL88174L-001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "VL88174L-003",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "VL88174L-005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "VL88174L-006",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "VL88204L-001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "VL88174L-007",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "VL89730-001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVT' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "VL89724-002",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVT' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "VL89745-006",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'LVT' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+  }
+ ]
+}

@@ -141,6 +141,26 @@ treat a cloud/session env var as satisfying that check in place of .env.
 
 ---
 
+Step 3 — Publish, before reporting
+
+Commit everything this run produced (ingest/<date>/, plans/<date>/, the actions-log,
+any repo file it changed), then run:
+
+    python3 scripts/publish_run.py --title "price list: PL-<id> <COMPANY> — <outcome>"
+
+It pushes this session's branch and opens, or reuses, a PR into main-agents, and
+prints the PR URL on its last line. Put that URL in the report and in any
+PushNotification. This step runs whether steps 1-2 succeeded or stopped: a stopped
+run's files are exactly what the next person needs to see.
+
+If it exits non-zero, the run is PARTIAL. Say so, name the branch, and send a
+PushNotification. Never report a run complete when its output is not in a PR —
+output left on a session branch is invisible to every later run, and that is how
+fifteen branches stranded their fixes and write logs before 2026-09-23. Never merge
+the PR and never push to main-agents yourself: Albert merges.
+
+---
+
 Report and notify
 
 Report honestly, one run covering both steps: what extraction produced, what policy
@@ -198,7 +218,34 @@ This file only controls what the routine *does* once it fires. What fires it —
 4381438's webhook — has to actually post a `notionID` on every fire for the table
 above to hold; confirm that at the trigger side, not in this repo.
 
+## Routine environment (as observed 2026-09-23)
+
+What fires the stored text, recorded here because none of it lives in the repo and
+all of it has drifted silently before. Re-read it live (`list_triggers`,
+`get_session`) before relying on it.
+
+| Item | Value on 2026-09-23 |
+|---|---|
+| Trigger | CCR routine "New Price Lists", `trig_01Vjj6UXF92MaPhAqWw6uoTN` |
+| Enabled | **No, deliberately.** Disabled 2026-09-23T03:29Z, three minutes after PR #57 merged. Albert, 2026-09-23 (asked whether to re-enable after the salvage merges): "Not yet. I'll do manual." Price lists are run by hand until he says otherwise; do not re-enable it on a session's own initiative |
+| Environment | `env_01XHGNpnEFthGu3i3VzP8xKp` |
+| Connectors | Airtable, Gmail, Make, Microsoft-365, Notion, visualize. The run uses Airtable and Notion. No GitHub MCP and no `gh`, so publishing goes through `scripts/publish_run.py` with `GH_TOKEN` |
+| Model | The trigger's stored model and the model sessions actually ran on differ. Check `get_session` rather than trusting the trigger record |
+| Git | Each fire opens its own `claude/*` branch, with `auto-create-pr` off. Step 3 above is the only thing that gets its output to `main-agents` |
+| Upstream | Make 4381438 polls one Outlook folder hourly, Mon–Sat, and keeps creating rows while the trigger is off. Albert, 2026-09-23: fine. Rows wait at `Not started` |
+
 ## Still open
+
+**As of 2026-09-23 the paragraphs below this one are history, not status.** The
+auto-approval path and the troubled CSV have both run on real plans: FAW PL-377
+(09-21/22, mostly interactive), IMPRESSIVE PL-381 (09-22, unattended: 151 Lightspeed
+writes, then 0/282 Airtable because the Supplier option was missing) and FAW PL-380
+(09-23, 40 policy writes). No unattended fire has yet completed **both** systems on
+one row. PL-381 was completed interactively on 2026-09-23 once Albert added the
+`IMPRESSIVE` option and ruled that a product already in Lightspeed keeps its LS code as
+SKU. That run also found the extraction had written 832 select values the base does not
+have. The pre-flight blocked all 250 rows on them rather than letting Airtable refuse
+them one by one; the mapping now lives in the skill's IMPRESSIVE section.
 
 **The first real run under the two-trigger-shape version of this routine (2026-09-11,
 this session) did not complete.** It found two eligible rows (HOMESPRO, IMPRESSIVE)
@@ -241,6 +288,18 @@ only when the flow itself or the stored text needs to change.
 
 ## Changelog
 
+- **2026-09-23 (Albert, in chat: Phase 0).** Salvaged ~100 stranded commits onto one
+  branch. Added the publish step (Step 3, `scripts/publish_run.py`), a durable backfill,
+  a select-option pre-flight, and `/catalog-sync` step 5a: both CSVs re-rendered from
+  the live systems after every sync, the Airtable one carrying each SKU's Lightspeed
+  UUID, because Albert wants both files on the row, always. Albert's data rulings,
+  same day:
+  PL-380 is the correct FAW clearance list and overrides PL-377's clearance lines
+  (PL-378, the wrong list, deleted). LAM-FAWK-0035/0036 stay at cost 0.89 in
+  Handscraped Laminates (Drop Clic), this case only. PL-370 is left alone because a
+  replacement list is coming. **No promo-expiry sweep**: expired promos stay in
+  Airtable, and the reconciler instead stops a lapsed promo reaching the POS as
+  `supply_price`. Make 4381438 may keep firing. Added the "Routine environment" section.
 - **2026-09-12 (Albert, in chat).** pdfplumber is now a hard precondition, not a
   recommendation: `/process-price-list` step 2.0 verifies it before any download and
   flags-and-stops if it is missing, with an explicit list of prohibited substitutes.

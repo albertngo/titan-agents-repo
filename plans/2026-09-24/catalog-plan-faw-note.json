@@ -1,0 +1,55 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "FLOORS AT WORK",
+ "run_at": "2026-09-24T18:21:05-04:00",
+ "status": "ready",
+ "inputs": {
+  "source": "note correction"
+ },
+ "cost_basis": {
+  "value": "dealer",
+  "confirmed_by": "FAW #### Cost column"
+ },
+ "summary": {
+  "airtable_upsert": 2
+ },
+ "blocked": [],
+ "warnings": [],
+ "_note": "Corrects the run's own note text on ENG-FAWK-0089/0090: the old T&G pair was set inactive, not deleted.",
+ "actions": [
+  {
+   "id": "cat-f487e1f25f60",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0089",
+   "airtable_rec_id": "recEgSM3AjthdfacY",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Salesperson notes": "2026-09-24 (PL-377, FAW Sept 19 2026 list, p.3): 'NEW! NAF Designer Eng. European White Oak - Click (3mm Veneer, Select Grade)'. A new product in the Designer Click collection (Albert: brand new collection, 2026-09-22). NOT the older T&G Designer Toffee (ENG-FAWK-0060) — Albert 2026-09-24: both are Click-era products with different specs and prices; the T&G one is not on the newest list and was set inactive on 2026-09-24 (Albert chose inactive over delete). Grade Select as printed. Finish not printed on the Click row, left blank. Cost = pallet price column as printed; Retail = Cost + $1.00."
+   },
+   "before": {
+    "Salesperson notes": "2026-09-24 (PL-377, FAW Sept 19 2026 list, p.3): 'NEW! NAF Designer Eng. European White Oak - Click (3mm Veneer, Select Grade)'. A new product in the Designer Click collection (Albert: brand new collection, 2026-09-22). NOT the older T&G Designer Toffee (ENG-FAWK-0060) — Albert 2026-09-24: both are Click-era products with different specs and prices; the T&G one is not on the newest list and is to be deleted. Grade Select as printed. Finish not printed on the Click row, left blank. Cost = pallet price column as printed; Retail = Cost + $1.00."
+   },
+   "reason": "note_correction",
+   "seq": 1
+  },
+  {
+   "id": "cat-b76a809699d4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0090",
+   "airtable_rec_id": "rec9i032u4BjlUorw",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Salesperson notes": "2026-09-24 (PL-377, FAW Sept 19 2026 list, p.3): 'NEW! NAF Designer Eng. European White Oak - Click (3mm Veneer, AB Grade)'. A new product in the Designer Click collection (Albert: brand new collection, 2026-09-22). NOT the older T&G Designer Warm Honey (ENG-FAWK-0065) — Albert 2026-09-24: both are Click-era products with different specs and prices; the T&G one is not on the newest list and was set inactive on 2026-09-24 (Albert chose inactive over delete). Grade AB -> Select & Better per the letter-grade rule. Finish not printed on the Click row, left blank. Cost = pallet price column as printed; Retail = Cost + $1.00."
+   },
+   "before": {
+    "Salesperson notes": "2026-09-24 (PL-377, FAW Sept 19 2026 list, p.3): 'NEW! NAF Designer Eng. European White Oak - Click (3mm Veneer, AB Grade)'. A new product in the Designer Click collection (Albert: brand new collection, 2026-09-22). NOT the older T&G Designer Warm Honey (ENG-FAWK-0065) — Albert 2026-09-24: both are Click-era products with different specs and prices; the T&G one is not on the newest list and is to be deleted. Grade AB -> Select & Better per the letter-grade rule. Finish not printed on the Click row, left blank. Cost = pallet price column as printed; Retail = Cost + $1.00."
+   },
+   "reason": "note_correction",
+   "seq": 2
+  }
+ ]
+}

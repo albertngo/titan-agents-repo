@@ -1,0 +1,184 @@
+{
+  "contract_version": "catalog-plan-1",
+  "supplier": "VIZION",
+  "run_at": "2026-09-24T10:46:04-04:00",
+  "status": "ready",
+  "inputs": {
+    "airtable_existing": "ingest/2026-09-24/vizion_airtable_existing.json",
+    "lightspeed": "ingest/2026-09-24/lightspeed-products.json",
+    "source_plan": "plans/2026-09-24/catalog-plan-vizion.json (its 7 uuid_belongs_to_other_sku blocks)"
+  },
+  "cost_basis": {
+    "value": "printed-price",
+    "confirmed_by": "Albert 2026-09-10 (Vizion #### Cost column: printed price as-is)"
+  },
+  "summary": {
+    "lightspeed_update": 7
+  },
+  "blocked": [],
+  "warnings": [],
+  "_note": "Hand-built from the reconciler's own blocks, on Albert's ruling 2026-09-24 ('Use the SKU in Airtable for those 7 legacy'): per RULE 0 the Lightspeed record is corrected to the Airtable SKU, and its prices to Airtable's. The UUID each action targets is the one the Airtable record already carries.",
+  "actions": [
+    {
+      "id": "cat-f2d999e65ace",
+      "target_system": "lightspeed",
+      "op": "update",
+      "sku": "LVP-VIZN-V7002",
+      "airtable_rec_id": "recSMR62eLoSmzd3e",
+      "ls_id": "f51bee12-5fdd-47bb-9e75-368556b0aa0d",
+      "handle": "vizvin---7mm-arches-72-x-608-2435sfb",
+      "fields": {
+        "sku": "LVP-VIZN-V7002",
+        "supply_price": 1.69,
+        "price_excluding_tax": 2.69
+      },
+      "before": {
+        "sku": "11476",
+        "supply_price": 0.0,
+        "price_excluding_tax": 2.39,
+        "name": "VIZVIN - 7mm Arches 7.2\" x 60.8\" 24.35sf/b"
+      },
+      "reason": "relink_sku_to_airtable",
+      "uuid_source": "airtable_record",
+      "seq": 1
+    },
+    {
+      "id": "cat-29ae99acce0b",
+      "target_system": "lightspeed",
+      "op": "update",
+      "sku": "LVP-VIZN-V7003",
+      "airtable_rec_id": "reccUuZVidt1eYwaA",
+      "ls_id": "3c8ab5f8-faeb-4d71-9e50-8148e7f88998",
+      "handle": "vizvin---7mm-denali-72-x-608-2131sfb",
+      "fields": {
+        "sku": "LVP-VIZN-V7003",
+        "supply_price": 1.69,
+        "price_excluding_tax": 2.69
+      },
+      "before": {
+        "sku": "11445",
+        "supply_price": 0.0,
+        "price_excluding_tax": 2.39,
+        "name": "VIZVIN - 7mm Denali 7.2\" x 60.8\" 24.35sf/b"
+      },
+      "reason": "relink_sku_to_airtable",
+      "uuid_source": "airtable_record",
+      "seq": 2
+    },
+    {
+      "id": "cat-2da6818c37a5",
+      "target_system": "lightspeed",
+      "op": "update",
+      "sku": "LVP-VIZN-V7004",
+      "airtable_rec_id": "recAboAlgiA6K0v93",
+      "ls_id": "ccfaf7cc-4305-4780-a780-3b55015921b8",
+      "handle": "vizvin---7mm-everglades-72-x-608-2435sfb",
+      "fields": {
+        "sku": "LVP-VIZN-V7004",
+        "supply_price": 1.69,
+        "price_excluding_tax": 2.69
+      },
+      "before": {
+        "sku": "11449",
+        "supply_price": 0.0,
+        "price_excluding_tax": 1.89,
+        "name": "VIZVIN - 7mm Everglades 7.2\" x 60.8\" 24.35sf/b"
+      },
+      "reason": "relink_sku_to_airtable",
+      "uuid_source": "airtable_record",
+      "seq": 3
+    },
+    {
+      "id": "cat-418b6c16d60d",
+      "target_system": "lightspeed",
+      "op": "update",
+      "sku": "LVP-VIZN-V7008",
+      "airtable_rec_id": "receaUPPtwIQYC6ZM",
+      "ls_id": "68dea42e-ab5f-46bc-961b-ef49e9915eab",
+      "handle": "vizvin---7mm-zion-72-x-608-2435sfb",
+      "fields": {
+        "sku": "LVP-VIZN-V7008",
+        "supply_price": 1.69,
+        "price_excluding_tax": 2.69
+      },
+      "before": {
+        "sku": "V-SPC-V7008",
+        "supply_price": 0.0,
+        "price_excluding_tax": 1.99,
+        "name": "VIZVIN - 7mm Zion 7.2\" x 60.8\" 24.35sf/b"
+      },
+      "reason": "relink_sku_to_airtable",
+      "uuid_source": "airtable_record",
+      "seq": 4
+    },
+    {
+      "id": "cat-686f61797b2b",
+      "target_system": "lightspeed",
+      "op": "update",
+      "sku": "LVP-VIZN-V8001",
+      "airtable_rec_id": "recMQWGLoV7g46fHx",
+      "ls_id": "51237a3f-4722-48c9-9cc7-20743ae3d2fb",
+      "handle": "vizvin---8mm-banff-72-x-608-2131sfb",
+      "fields": {
+        "sku": "LVP-VIZN-V8001",
+        "supply_price": 1.89,
+        "price_excluding_tax": 2.89
+      },
+      "before": {
+        "sku": "11414",
+        "supply_price": 0.0,
+        "price_excluding_tax": 0.0,
+        "name": "VIZVIN - 8mm Banff 7.2\" x 60.8\" 21.31sf/b"
+      },
+      "reason": "relink_sku_to_airtable",
+      "uuid_source": "airtable_record",
+      "seq": 5
+    },
+    {
+      "id": "cat-aa921a101e01",
+      "target_system": "lightspeed",
+      "op": "update",
+      "sku": "LVP-VIZN-V8004",
+      "airtable_rec_id": "rec4Rqytx4c9vZAoN",
+      "ls_id": "81e185ca-7a16-4d8b-a3e1-c81efb9c8688",
+      "handle": "vizvin---8mm-wapusk-72-x-608-2131sfb",
+      "fields": {
+        "sku": "LVP-VIZN-V8004",
+        "supply_price": 1.89,
+        "price_excluding_tax": 2.89
+      },
+      "before": {
+        "sku": "11440",
+        "supply_price": 0.0,
+        "price_excluding_tax": 0.0,
+        "name": "VIZVIN - 8mm Wapusk 7.2\" x 60.8\" 21.31sf/b"
+      },
+      "reason": "relink_sku_to_airtable",
+      "uuid_source": "airtable_record",
+      "seq": 6
+    },
+    {
+      "id": "cat-d2f4853acab7",
+      "target_system": "lightspeed",
+      "op": "update",
+      "sku": "LVP-VIZN-V8006",
+      "airtable_rec_id": "rec2wIjZFyfAlFH2R",
+      "ls_id": "670e9c37-9973-415a-8ff3-e3ad8ef4aaf1",
+      "handle": "vizvin---8mm-forillon-72-x-608-2131sfb",
+      "fields": {
+        "sku": "LVP-VIZN-V8006",
+        "supply_price": 1.89,
+        "price_excluding_tax": 2.89
+      },
+      "before": {
+        "sku": "11419",
+        "supply_price": 0.0,
+        "price_excluding_tax": 2.49,
+        "name": "VIZVIN - 8mm Forillon 7.2\" x 60.8\" 21.31sf/b"
+      },
+      "reason": "relink_sku_to_airtable",
+      "uuid_source": "airtable_record",
+      "seq": 7
+    }
+  ]
+}

@@ -31,6 +31,14 @@ pdfplumber
 # independence (shares no code with pdfminer.six, so it fails differently).
 pypdfium2
 
+# Image price lists — the OCR reader for scripts/pricelist_image_check.py (Albert,
+# 2026-09-24: an image attachment may be read, cross-checked row by row). This is
+# the one exception to "never an LLM transcription of a screenshot" above, and it
+# applies only when the supplier's file itself IS an image; a PDF is still
+# pdfplumber-only. Not in the lock or vendor/wheels yet (onnxruntime + opencv are
+# ~100 MB): /process-price-list step 2.3 installs it from PyPI on demand.
+rapidocr_onnxruntime
+
 
 # ── STRICT BLOCK: pypdf ───────────────────────────────────────────────────────
 # `pypdf` (and its ancestor `PyPDF2`) must NEVER be added here, installed, or
