@@ -289,21 +289,51 @@ class TestPriceDateAndChangedBy(unittest.TestCase):
         self.assertEqual(up["before"]["Last price update"], "2026-08-01")
         self.assertEqual(up["before"]["Price last changed by"], "Cowork")
 
-    def test_non_price_change_writes_neither(self):
+    def test_same_price_on_a_newer_list_moves_the_date_forward_only(self):
+        """A newer list that repeats the price confirms it: the date moves, the
+        author does not (nobody changed the price)."""
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Last price update": "2026-09-21"})])
+        self.assertEqual(up["fields"], {"Last price update": "2026-09-21"})
+        self.assertEqual(up["before"], {"Last price update": "2026-08-01"})
+
+    def test_non_price_change_on_a_newer_list_moves_the_date_not_the_author(self):
         up, _ = self.upsert([row(SKU="A-1", **{
             "Lightspeed ID": "u-1", "Stock status": "Discontinued",
             "Last price update": "2026-09-21"})])
-        self.assertIsNotNone(up)
-        self.assertNotIn("Last price update", up["fields"])
+        self.assertEqual(up["fields"]["Last price update"], "2026-09-21")
         self.assertNotIn("Price last changed by", up["fields"])
 
-    def test_unchanged_price_produces_no_write(self):
-        """The date alone differing must not create an action — it is written
-        alongside a price, never diffed on its own."""
+    def test_an_older_list_never_moves_the_date_backward(self):
         up, _ = self.upsert([row(SKU="A-1", **{
-            "Lightspeed ID": "u-1", "Stock status": "In stock",
-            "Last price update": "2026-09-21"})])
+            "Lightspeed ID": "u-1", "Last price update": "2026-07-01"})])
         self.assertIsNone(up)
+
+    def test_same_date_produces_no_write(self):
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Last price update": "2026-08-01"})])
+        self.assertIsNone(up)
+
+    def test_unreadable_date_is_not_written_blind_on_a_confirmation(self):
+        existing = {"A-1": {k: v for k, v in self.EXISTING["A-1"].items()
+                            if k != "Last price update"}}
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Last price update": "2026-09-21"})], existing)
+        self.assertIsNone(up)
+
+    def test_a_price_change_writes_the_list_date_even_if_older(self):
+        """The date names the list that set the price, whichever list that is."""
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Cost/unit": "1.10",
+            "Last price update": "2026-07-01"})])
+        self.assertEqual(up["fields"]["Last price update"], "2026-07-01")
+
+    def test_a_non_iso_date_warns_and_is_not_written(self):
+        up, warnings = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Cost/unit": "1.10",
+            "Last price update": "Sept 21, 2026"})])
+        self.assertNotIn("Last price update", up["fields"])
+        self.assertIn("price_date_invalid", {w["reason"] for w in warnings})
 
     def test_missing_date_warns_but_still_marks_agent(self):
         up, warnings = self.upsert([row(SKU="A-1", **{
@@ -1047,6 +1077,14 @@ class DiffFieldsAndSnapshotAgree(unittest.TestCase):
             self.assertIn(field, block,
                           f"{field!r} is diffed but /catalog-sync does not ask the "
                           f"snapshot for it — every matched row would be overwritten")
+
+    def test_price_date_and_author_are_named_in_the_command(self):
+        # Not DIFF_FIELDS, but a confirmation-only date move is skipped when the
+        # snapshot lacks the date, so the command must ask for both.
+        doc = self.COMMAND.read_text()
+        block = doc.split("The snapshot must carry every field", 1)[1][:2000]
+        for field in (cr.PRICE_DATE, cr.CHANGED_BY):
+            self.assertIn(field, block)
 
     def test_stock_status_and_promo_are_diffed(self):
         # Added 2026-09-22. Their absence is what let ~56 FAW clearance flags go

@@ -322,12 +322,8 @@ before trusting it** — the skill is not authoritative about what is actually s
   (Grandeur holds `SPC-GRAN-####` / `WPC-GRAN-####` vinyl; the schema now issues
   LVP/LVT). Match against what is stored; issue new SKUs per the current rule.
 - **`Last price update` on every row = the list's effective date** (Albert, 2026-09-25):
-  the date the list prints ("Effective …", "Valid from …", a dated header), never the
-  day the run processed it. No printed date → the email's received date, said so in
-  the row's `Notes`. The reconciler copies this value onto every cost/retail change,
-  so a wrong date here lands in Airtable. (Baltic PL-170 and IMPRESSIVE PL-381 were
-  created before this rule and still carry their processing date — their lists'
-  effective dates were never recorded.)
+  printed in the document, else a date in the email subject, else the email's received
+  date — never the day the run processed it. Full rule: `/process-price-list` step 3a.
 - Fields that changed, `Last price update` (= the list's **effective date**), `Price last changed by` = **`Agent`**,
   and the Price History Log v2 rows are all still the *reviewer's* import job — the
   routine no longer performs them. Keep the values correct in the exported sheet.

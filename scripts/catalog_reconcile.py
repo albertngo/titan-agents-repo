@@ -93,17 +93,19 @@ DIFF_FIELDS = {
     LS_ID: ("LightspeedID", "Lightspeed ID"),
 }
 PRICE_FIELDS = ("Cost/unit", "Retail price/unit")
-# Written alongside a price, never diffed on their own (Albert, 2026-09-25).
-# `Last price update` is the EFFECTIVE DATE of the price list that set the current
-# cost/retail, taken from the upload row (extraction fills it with the list's
-# effective date). `Price last changed by` says WHO: "Agent" for any write this
-# pipeline makes, "Manual" for a person editing in Airtable. Before this, an UPDATE
-# moved the price and left both fields at their old values, so a Weiss record
-# re-priced from the Sept 21 list still read 2026-08-01 and the Stale-pricing view
-# (older than 90 days) would have flagged freshly re-priced products.
+# Not in DIFF_FIELDS: written by the rule below them in reconcile() (Albert,
+# 2026-09-25). `Last price update` is the EFFECTIVE DATE of the newest list that
+# carries the product, taken from the upload row (extraction fills it: the date
+# printed on the list, else the email subject's, else the email's received date).
+# `Price last changed by` says WHO last changed the price: "Agent" for any write
+# this pipeline makes, "Manual" for a person editing in Airtable. Before this, an
+# UPDATE moved the price and left both fields at their old values, so a Weiss
+# record re-priced from the Sept 21 list still read 2026-08-01 and the
+# Stale-pricing view (older than 90 days) would have flagged it.
 PRICE_DATE = "Last price update"
 CHANGED_BY = "Price last changed by"
 AGENT = "Agent"
+ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 PROMO_COST = "Promo cost ($/sf)"
 PROMO_END = "Promo end date"
 
@@ -403,19 +405,42 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
         if is_new_in_airtable:
             if fields:
                 fields[CHANGED_BY] = AGENT
-        elif any(f in PRICE_FIELDS for f in fields):
-            effective = clean(row.get(PRICE_DATE))
-            if effective:
+        else:
+            # `Last price update` = the date of the NEWEST list that carries this
+            # product (Albert, 2026-09-25): a list that repeats the same price still
+            # moves the date forward, because the price is confirmed current. It never
+            # moves backward on a confirmation — an older list processed late must not
+            # make a record look staler than it is. A price change always writes the
+            # list's date, and only a price change writes the author: a confirmation
+            # changed nobody's price.
+            price_moved = any(f in PRICE_FIELDS for f in fields)
+            raw_date = clean(row.get(PRICE_DATE))
+            effective = raw_date if raw_date and ISO_DATE.match(raw_date) else None
+            if raw_date and not effective:
+                warn(sku, "price_date_invalid",
+                     f"Last price update {raw_date!r} is not YYYY-MM-DD, so the date "
+                     "was left as it was")
+            old_date, date_readable = (live_value(live, PRICE_DATE) if live
+                                       else (None, False))
+            old_date = clean(old_date)
+            if price_moved:
+                if effective:
+                    fields[PRICE_DATE] = effective
+                    before[PRICE_DATE] = old_date if date_readable else None
+                elif not raw_date:
+                    warn(sku, "price_date_missing",
+                         "cost/retail changed but the upload row has no Last price "
+                         "update (the list's effective date), so the date was left "
+                         "as it was")
+                fields[CHANGED_BY] = AGENT
+                old_by, readable = live_value(live, CHANGED_BY) if live else (None, False)
+                before[CHANGED_BY] = clean(old_by) if readable else None
+            elif effective and date_readable and (old_date is None
+                                                  or effective > str(old_date)):
+                # Unreadable (the snapshot lacks the column) writes nothing here: a
+                # blind write could move a newer date backward.
                 fields[PRICE_DATE] = effective
-                old_date, readable = live_value(live, PRICE_DATE) if live else (None, False)
-                before[PRICE_DATE] = clean(old_date) if readable else None
-            else:
-                warn(sku, "price_date_missing",
-                     "cost/retail changed but the upload row has no Last price update "
-                     "(the list's effective date), so the date was left as it was")
-            fields[CHANGED_BY] = AGENT
-            old_by, readable = live_value(live, CHANGED_BY) if live else (None, False)
-            before[CHANGED_BY] = clean(old_by) if readable else None
+                before[PRICE_DATE] = old_date
 
         if airtable_snapshot and select_options:
             missing = missing_select_options(fields, select_options)

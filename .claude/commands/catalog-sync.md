@@ -112,10 +112,12 @@ SKU · Product name · Supplier SKU · Category · Cost/unit · Retail price/uni
 Stock status · Promo cost ($/sf) · Promo end date · Lightspeed ID
 ```
 
-Also select `Last price update` and `Price last changed by`. They are not diffed —
-the reconciler writes them alongside any cost/retail change (effective date +
-`Agent`) — but the plan's `before` records their old values only if the snapshot has
-them.
+**Also select `Last price update` and `Price last changed by`.** They are not in
+`DIFF_FIELDS` but the reconciler needs them (Albert, 2026-09-25): a cost/retail change
+writes the list's effective date and `Agent`, and a list that only *confirms* a price
+moves `Last price update` forward to its date — never backward. Without the date in
+the snapshot, that confirmation is silently skipped (a blind write could regress a
+newer date), so every re-confirmed product would keep looking stale.
 
 **A missing column does not read as "no change" — it reads as "unknown", and the
 reconciler then writes the field on every matched row.** `live_value()` returns

@@ -235,6 +235,26 @@ supplier** signal, not an error.
 creates a missing single-select choice silently, so one mixed-case write re-fragments the
 column — which is the exact state the 2026-09-21 capitalisation cleaned up.
 
+## 3a. The list's effective date — `Last price update` on every row
+
+(Albert, 2026-09-25.) `Last price update` is the date of the **newest list received for
+the company** that carries the product — a list that repeats a price still moves it
+forward, because the price is confirmed current. Put the same date on every row of
+both the create and update sheets, taken in strict priority order:
+
+1. **The date printed in the document** — "Effective …", "Valid from …", a dated
+   header or footer. A range → its start date.
+2. **A date in the email subject** (`read_properties.title`, `Email Subject`).
+3. **The email's received date** (`read_properties.email_date`, `Email Date`).
+
+Write it as `YYYY-MM-DD` — the reconciler refuses any other form. Say in `Notes`
+which of the three it came from when it was not (1). Never the day the run processed
+the list: Baltic PL-170 and IMPRESSIVE PL-381 were created that way.
+
+`catalog_reconcile.py` does the rest: a price change writes this date and
+`Price last changed by = Agent`; a confirmation moves the date forward only, never
+backward, and leaves the author alone.
+
 ## 4. Tag the row — `Regular List` or `Promo`
 
 **This step is for a document already confirmed to be a price list.** If it turns
