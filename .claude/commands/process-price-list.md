@@ -247,7 +247,8 @@ both the create and update sheets, taken in strict priority order:
 2. **A date in the email subject** (`read_properties.title`, `Email Subject`).
 3. **The email's received date** (`read_properties.email_date`, `Email Date`).
 
-Write it as `YYYY-MM-DD` — the reconciler refuses any other form. Say in `Notes`
+A date printed as a month only ("SEPTEMBER 2026 PRICE LIST") is the first of that
+month. Write it as `YYYY-MM-DD` — the reconciler refuses any other form. Say in `Notes`
 which of the three it came from when it was not (1). Never the day the run processed
 the list: Baltic PL-170 and IMPRESSIVE PL-381 were created that way.
 
