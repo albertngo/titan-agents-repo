@@ -1,0 +1,539 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "MULTI (JL TILE, VIZION, FLOORS AT WORK)",
+ "run_at": "2026-09-25T01:04:51-04:00",
+ "status": "ready",
+ "inputs": {
+  "source": "Albert's Action answers on PL-372 and chat answers 2026-09-25"
+ },
+ "cost_basis": {
+  "value": "dealer",
+  "confirmed_by": "per-supplier #### Cost column"
+ },
+ "summary": {
+  "lightspeed_update": 10,
+  "airtable_upsert": 12
+ },
+ "blocked": [],
+ "warnings": [],
+ "_note": "Hand-built from Albert's answers. JL: 'Link. If UUID belongs to another SKU, then change the SKU in LS. The supplier SKU can be the direct supplier SKU' (applied to the 4 held links plus the 3 'use both SKU' rows whose LS sku is the raw code); BPCK6062 'Price is 2.18'; DM12340M 'Make it Matte'. Vizion: '8 is for LAMINATE 12 is for VINYL'. FAW Truffle: species not printed, leave blank.",
+ "actions": [
+  {
+   "id": "cat-e7bcfa7b71a8",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "TIL-JLTI-SP36P00T",
+   "airtable_rec_id": null,
+   "ls_id": "561771fe-a260-44ce-8e49-8dc85b5ef030",
+   "handle": "jlttil---essential---porcelain-pure-white---sp36poot-----12-x-24---8pcb---16sfb",
+   "fields": {
+    "sku": "TIL-JLTI-SP36P00T",
+    "supply_price": 2.7,
+    "price_excluding_tax": 4.7
+   },
+   "before": {
+    "sku": "SP36POOT",
+    "supply_price": 2.52,
+    "price_excluding_tax": 4.52,
+    "name": "JLTTIL - ESSENTIAL - Porcelain (Pure White)  | #SP36POOT |  - 12 x 24 - 8pc/b - 16sf/b"
+   },
+   "reason": "link_confirmed_by_albert_relink_sku",
+   "seq": 1
+  },
+  {
+   "id": "cat-656d6e43c538",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "TIL-JLTI-SP6P00T",
+   "airtable_rec_id": null,
+   "ls_id": "16b1cbd5-4f19-46b8-b560-8d15fb495188",
+   "handle": "jlttil---essential---porcelain-pure-white---spc6poot-----24-x-24---4pcb---16sfb",
+   "fields": {
+    "sku": "TIL-JLTI-SP6P00T",
+    "supply_price": 2.7,
+    "price_excluding_tax": 4.7
+   },
+   "before": {
+    "sku": "SPC6POOT",
+    "supply_price": 2.52,
+    "price_excluding_tax": 4.52,
+    "name": "JLTTIL - ESSENTIAL - Porcelain (Pure White)  | #SPC6POOT |  - 24 x 24 - 4pc/b - 16sf/b"
+   },
+   "reason": "link_confirmed_by_albert_relink_sku",
+   "seq": 2
+  },
+  {
+   "id": "cat-9d5d8de9d9dd",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "TIL-JLTI-0003",
+   "airtable_rec_id": null,
+   "ls_id": "fb32dc90-5abf-42c0-9fce-32a742332406",
+   "handle": "jlttil---elegant----panda-white-matte---panda-white-matte--------2pcb---16sfb",
+   "fields": {
+    "sku": "TIL-JLTI-0003"
+   },
+   "before": {
+    "sku": "PandaWhiteMatte",
+    "supply_price": 4.49,
+    "price_excluding_tax": 6.49,
+    "name": "JLTTIL - ELEGANT - Porcelain (Panda White Matte)  | #PandaWhiteMatte |  -  - 2pc/b - 16sf/b"
+   },
+   "reason": "link_confirmed_by_albert_relink_sku",
+   "seq": 3
+  },
+  {
+   "id": "cat-79f641ab02bf",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "TIL-JLTI-DM12340M",
+   "airtable_rec_id": null,
+   "ls_id": "19bda592-8613-4c6e-8e59-e910a223fe3b",
+   "handle": "jlttil---elegant----dream-white-matt---dm12341m--py126929m-----24-x-48---2pcb---16sfb",
+   "fields": {
+    "sku": "TIL-JLTI-DM12340M",
+    "supply_price": 3.77,
+    "price_excluding_tax": 5.77
+   },
+   "before": {
+    "sku": "DM12341M/PY126929M",
+    "supply_price": 3.59,
+    "price_excluding_tax": 5.59,
+    "name": "JLTTIL - ELEGANT - Porcelain (Dream White (Matt))  | #DM12341M/PY126929M |  - 24 x 48 - 2pc/b - 16sf/b"
+   },
+   "reason": "link_confirmed_by_albert_relink_sku",
+   "seq": 4
+  },
+  {
+   "id": "cat-74f968501049",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "TIL-JLTI-BPCK6062",
+   "airtable_rec_id": null,
+   "ls_id": "012a887b-656c-4633-aedd-df93a27d7508",
+   "handle": "jlttil---essential---porcelain-bremen-fall---bpck6062-----12-x-24---4pcb---16sfb",
+   "fields": {
+    "sku": "TIL-JLTI-BPCK6062",
+    "supply_price": 2.18,
+    "price_excluding_tax": 4.18
+   },
+   "before": {
+    "sku": "BPCK6062",
+    "supply_price": 2.52,
+    "price_excluding_tax": 4.52,
+    "name": "JLTTIL - ESSENTIAL - Porcelain (Bremen Fall)  | #BPCK6062 |  - 12 x 24 - 4pc/b - 16sf/b"
+   },
+   "reason": "link_confirmed_by_albert_relink_sku",
+   "seq": 5
+  },
+  {
+   "id": "cat-9cfe25ef0cbc",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "TIL-JLTI-DM12341",
+   "airtable_rec_id": null,
+   "ls_id": "5003f2a6-76eb-41fd-9d2d-2ee41b8740df",
+   "handle": "jlttil---porcelain-dream-white---dm12341-----2448-8pcs-bookmatch---2pcb",
+   "fields": {
+    "sku": "TIL-JLTI-DM12341"
+   },
+   "before": {
+    "sku": "DM12341",
+    "supply_price": 2.69,
+    "price_excluding_tax": 4.69,
+    "name": "(P) JLTTIL - Porcelain (Dream White)  | #DM12341 |  - 2448 (8pcs Bookmatch) - 2pc/b"
+   },
+   "reason": "relink_sku_so_supplier_sku_can_carry_both_codes",
+   "seq": 6
+  },
+  {
+   "id": "cat-1d7d9fb46f50",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "TIL-JLTI-N612002",
+   "airtable_rec_id": null,
+   "ls_id": "b36c3844-ece0-4e50-858a-0f3dec7420d3",
+   "handle": "jlttil---porcelain-ariosa-snow-wall-tile---n612002-----2448---3pcb",
+   "fields": {
+    "sku": "TIL-JLTI-N612002"
+   },
+   "before": {
+    "sku": "N612002",
+    "supply_price": 3.05,
+    "price_excluding_tax": 4.79,
+    "name": "(P) JLTTIL - Porcelain (Ariosa Snow Wall Tile)  | #N612002 |  - 2448 - 3pc/b"
+   },
+   "reason": "relink_sku_so_supplier_sku_can_carry_both_codes",
+   "seq": 7
+  },
+  {
+   "id": "cat-faa3eea6a116",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "TIL-JLTI-N612008",
+   "airtable_rec_id": null,
+   "ls_id": "5c34402b-568a-46f9-a974-518d79aaa876",
+   "handle": "jlttil---porcelain-ariosa-marble-wall-tile---n612008-----2448---3pcb",
+   "fields": {
+    "sku": "TIL-JLTI-N612008"
+   },
+   "before": {
+    "sku": "N612008",
+    "supply_price": 2.4,
+    "price_excluding_tax": 4.4,
+    "name": "(P) JLTTIL - Porcelain (Ariosa Marble Wall Tile)  | #N612008 |  - 2448 - 3pc/b"
+   },
+   "reason": "relink_sku_so_supplier_sku_can_carry_both_codes",
+   "seq": 8
+  },
+  {
+   "id": "cat-da993af6442a",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ACC-VIZN-0009",
+   "airtable_rec_id": null,
+   "ls_id": "97947d7a-c22b-4d4f-896b-d573ad40c7a2",
+   "handle": "VIZNACCREDUCERLAMINATE123MM15X45X2400MM",
+   "fields": {
+    "supply_price": 8.0,
+    "price_excluding_tax": 18.0
+   },
+   "before": {
+    "sku": "ACC-VIZN-0009",
+    "supply_price": 12.0,
+    "price_excluding_tax": 22.0,
+    "name": "Vizion - Transition | Reducer | Laminate 12.3mm | 15 x 45 x 2400 mm"
+   },
+   "reason": "laminate_trim_is_8_albert",
+   "seq": 9
+  },
+  {
+   "id": "cat-dcf805017168",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ACC-VIZN-0010",
+   "airtable_rec_id": null,
+   "ls_id": "0be20f85-3cf9-47b8-9773-8816d023aa09",
+   "handle": "VIZNACCTMOULDINGLAMINATE123MM12X45X2400MM",
+   "fields": {
+    "supply_price": 8.0,
+    "price_excluding_tax": 18.0
+   },
+   "before": {
+    "sku": "ACC-VIZN-0010",
+    "supply_price": 12.0,
+    "price_excluding_tax": 22.0,
+    "name": "Vizion - Transition | T-Moulding | Laminate 12.3mm | 12 x 45 x 2400 mm"
+   },
+   "reason": "laminate_trim_is_8_albert",
+   "seq": 10
+  },
+  {
+   "id": "cat-0ef490b21f91",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-JLTI-SP36P00T",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Essential Collection — Pure White — 12 x 24 (Polished)",
+    "Brand": "JL Tile",
+    "Supplier": "JL TILE",
+    "Supplier SKU": "SP36P00T",
+    "Lightspeed ID": "561771fe-a260-44ce-8e49-8dc85b5ef030",
+    "LS Handle / Parent ID": "jlttil---essential---porcelain-pure-white---sp36poot-----12-x-24---8pcb---16sfb",
+    "Collection": "Essential Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "12.0",
+    "Finish type": "Polished",
+    "Underpad included": "FALSE",
+    "Cost/unit": "2.70",
+    "Retail price/unit": "4.70",
+    "Volume pricing notes": "Regular dealer Price (reference tier): $3.00/sf",
+    "Last price update": "2026-09-11",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Pieces per box": "8",
+    "Active": "TRUE",
+    "Salesperson notes": "N/A Linked 2026-09-25 to live LS SP36POOT (letter O) on Albert's 'Link'; LS sku corrected to the Airtable SKU; Supplier SKU is the sheet code.",
+    "SKU": "TIL-JLTI-SP36P00T"
+   },
+   "before": null,
+   "reason": "create_after_albert_answer",
+   "seq": 1
+  },
+  {
+   "id": "cat-f0f299d07659",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-JLTI-SP6P00T",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Essential Collection — Pure White — 24 x 24 (Polished)",
+    "Brand": "JL Tile",
+    "Supplier": "JL TILE",
+    "Supplier SKU": "SP6P00T",
+    "Lightspeed ID": "16b1cbd5-4f19-46b8-b560-8d15fb495188",
+    "LS Handle / Parent ID": "jlttil---essential---porcelain-pure-white---spc6poot-----24-x-24---4pcb---16sfb",
+    "Collection": "Essential Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24.0",
+    "Finish type": "Polished",
+    "Underpad included": "FALSE",
+    "Cost/unit": "2.70",
+    "Retail price/unit": "4.70",
+    "Volume pricing notes": "Regular dealer Price (reference tier): $3.00/sf",
+    "Last price update": "2026-09-11",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Pieces per box": "4",
+    "Active": "TRUE",
+    "SKU": "TIL-JLTI-SP6P00T",
+    "Salesperson notes": "Linked 2026-09-25 to live LS SPC6POOT on Albert's 'Link'; LS sku corrected to the Airtable SKU; Supplier SKU is the sheet code."
+   },
+   "before": null,
+   "reason": "create_after_albert_answer",
+   "seq": 2
+  },
+  {
+   "id": "cat-08cbc4e91611",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-JLTI-0003",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Elegant Collection — Panda White Matte — 24 x 48 (Matte)",
+    "Brand": "JL Tile",
+    "Supplier": "JL TILE",
+    "Lightspeed ID": "fb32dc90-5abf-42c0-9fce-32a742332406",
+    "LS Handle / Parent ID": "jlttil---elegant----panda-white-matte---panda-white-matte--------2pcb---16sfb",
+    "Collection": "Elegant Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24.0",
+    "Finish type": "Matte",
+    "Underpad included": "FALSE",
+    "Cost/unit": "4.49",
+    "Retail price/unit": "6.49",
+    "Volume pricing notes": "Regular dealer Price (reference tier): $4.99/sf",
+    "Last price update": "2026-09-11",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Pieces per box": "2",
+    "Active": "TRUE",
+    "Salesperson notes": "Sheet printed no real code (cell read 'Panda White Matte'). Linked 2026-09-25 to live LS PandaWhiteMatte on Albert's 'Link'; LS sku corrected to the Airtable SKU. The sheet prints no code, so Supplier SKU stays blank. An older '(P)' duplicate d1ca6d4c Panda.White.Matte also exists in Lightspeed, untouched.",
+    "SKU": "TIL-JLTI-0003"
+   },
+   "before": null,
+   "reason": "create_after_albert_answer",
+   "seq": 3
+  },
+  {
+   "id": "cat-58eeb8f71665",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-JLTI-DM12340M",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Elegant Collection — Dream White Matt — 24 x 48 (Matte)",
+    "Brand": "JL Tile",
+    "Supplier": "JL TILE",
+    "Supplier SKU": "DM12340M",
+    "Lightspeed ID": "19bda592-8613-4c6e-8e59-e910a223fe3b",
+    "LS Handle / Parent ID": "jlttil---elegant----dream-white-matt---dm12341m--py126929m-----24-x-48---2pcb---16sfb",
+    "Collection": "Elegant Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24.0",
+    "Finish type": "Matte",
+    "Underpad included": "FALSE",
+    "Cost/unit": "3.77",
+    "Retail price/unit": "5.77",
+    "Volume pricing notes": "Regular dealer Price (reference tier): $4.19/sf",
+    "Last price update": "2026-09-11",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Pieces per box": "2",
+    "Active": "TRUE",
+    "Salesperson notes": "Sheet also prints 'PY126929M' for this SKU (kept 'DM12340M' as the primary code). Linked 2026-09-25 to live LS DM12341M/PY126929M on Albert's 'Link'; LS sku corrected to the Airtable SKU. Finish is Matte, as the PDF names it (Albert); the 09-14 extraction wrongly said Polished.",
+    "SKU": "TIL-JLTI-DM12340M"
+   },
+   "before": null,
+   "reason": "create_after_albert_answer",
+   "seq": 4
+  },
+  {
+   "id": "cat-e8d0192ec59f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-JLTI-BPCK6062",
+   "airtable_rec_id": null,
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Product name": "Essential Collection — Bremen Fall — 24 x 24 (Polished)",
+    "Brand": "JL Tile",
+    "Supplier": "JL TILE",
+    "Supplier SKU": "BPCK6062",
+    "Lightspeed ID": "012a887b-656c-4633-aedd-df93a27d7508",
+    "LS Handle / Parent ID": "jlttil---essential---porcelain-bremen-fall---bpck6062-----12-x-24---4pcb---16sfb",
+    "Collection": "Essential Collection",
+    "Product type": "Flooring",
+    "Category": "Tile / Stone",
+    "Material type": "Porcelain",
+    "Width (in)": "24.0",
+    "Finish type": "Polished",
+    "Underpad included": "FALSE",
+    "Cost/unit": "2.18",
+    "Retail price/unit": "4.18",
+    "Volume pricing notes": "Regular dealer Price (reference tier): $2.42/sf",
+    "Last price update": "2026-09-11",
+    "Price last changed by": "Cowork",
+    "Box size (sf)": "16",
+    "Pieces per box": "4",
+    "Active": "TRUE",
+    "SKU": "TIL-JLTI-BPCK6062",
+    "Salesperson notes": "Cost 2.18 = 'Your Cut Order Price' (Albert 2026-09-25; the cell printed '2 $2.42'). Linked by exact code to live LS BPCK6062, whose name still says 12 x 24; the sheet row and this record are 24 x 24. The LS name is not rewritten by the pipeline."
+   },
+   "before": null,
+   "reason": "create_after_albert_answer",
+   "seq": 5
+  },
+  {
+   "id": "cat-32fbcd5b161e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-JLTI-DM12341",
+   "airtable_rec_id": "rec9PWjwYoSieoWXZ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Supplier SKU": "DM12341 / DM12341Y"
+   },
+   "before": {
+    "Supplier SKU": "DM12341"
+   },
+   "reason": "both_codes_albert",
+   "seq": 6
+  },
+  {
+   "id": "cat-06a22a46f315",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-JLTI-N612002",
+   "airtable_rec_id": "recHGphqmZZK0BfqE",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Supplier SKU": "N612002 / BPCK1272"
+   },
+   "before": {
+    "Supplier SKU": "N612002"
+   },
+   "reason": "both_codes_albert",
+   "seq": 7
+  },
+  {
+   "id": "cat-b97e49907dab",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-JLTI-N612008",
+   "airtable_rec_id": "rec4C95HuVq0FJO8Z",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Supplier SKU": "N612008 / BPCK1278"
+   },
+   "before": {
+    "Supplier SKU": "N612008"
+   },
+   "reason": "both_codes_albert",
+   "seq": 8
+  },
+  {
+   "id": "cat-8e49da1c3f40",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-JLTI-BPCK128803",
+   "airtable_rec_id": "recjlYkhvbL4zJEhp",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Supplier SKU": "BPCK128803 / LU3-612GS"
+   },
+   "before": {
+    "Supplier SKU": "BPCK128803"
+   },
+   "reason": "both_codes_albert",
+   "seq": 9
+  },
+  {
+   "id": "cat-e3c9aa8e308a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-VIZN-0009",
+   "airtable_rec_id": "recKKuLtrmR4lVjAQ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Cost/unit": 8.0,
+    "Retail price/unit": 18.0
+   },
+   "before": {
+    "Cost/unit": 12,
+    "Retail price/unit": 22
+   },
+   "reason": "laminate_trim_is_8_albert",
+   "seq": 10
+  },
+  {
+   "id": "cat-85c3765465dc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-VIZN-0010",
+   "airtable_rec_id": "recvxal6FYtpZ0gJ7",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Cost/unit": 8.0,
+    "Retail price/unit": 18.0
+   },
+   "before": {
+    "Cost/unit": 12,
+    "Retail price/unit": 22
+   },
+   "reason": "laminate_trim_is_8_albert",
+   "seq": 11
+  },
+  {
+   "id": "cat-45de9dd1ddf0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0085",
+   "airtable_rec_id": "recnJFmNXGzjHgrk0",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Species": null
+   },
+   "before": {
+    "Species": "American White Oak"
+   },
+   "reason": "species_not_printed_albert_leave_blank",
+   "seq": 12
+  }
+ ]
+}
