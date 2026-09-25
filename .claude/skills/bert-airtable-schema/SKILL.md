@@ -601,9 +601,9 @@ The source of truth for all Titan flooring products. Every active product that B
 | **Promo cost ($/sf)** | Currency | Active promotional cost per sq ft from the supplier. When populated, Bert flags this product as having an active promo. Retail price is adjusted manually — not auto-calculated. Cleared automatically when promo ends. | Bert · Auto |
 | **Promo end date** | Date | When the promotional price expires. Cowork clears Promo cost automatically on this date. | Auto |
 | **Volume pricing notes** | Long text | Tiered pricing rules. e.g. Vidar: Cut order $ 1.39 / 1-5 skids $ 1.34 / 6-20 skids $ 1.29 | |
-| **Last price update** | Date | **Effective date of the newest list received for the company that carries the product** (Albert, 2026-09-25): printed on the list, else a date in the email subject, else the email's received date — never the day it was processed. A price change writes it; a newer list that repeats the price moves it forward (never backward). Bert flags records older than 90 days as potentially stale. | Auto |
+| **Effective Date** | Date | (Named `Effective Date` until Albert renamed it 2026-09-25; same field id `fld67650y8QClqoMc`.) **Effective date of the newest list received for the company that carries the product** (Albert, 2026-09-25): printed on the list, else a date in the email subject, else the email's received date — never the day it was processed. A price change writes it; a newer list that repeats the price moves it forward (never backward). Bert flags records older than 90 days as potentially stale. | Auto |
 | **Price last changed by** | Single select | `Agent` (any write this pipeline makes, attended or not) or `Manual` (a person editing in Airtable). Audit trail. The `Agent` option was `Cowork` until 2026-09-25 — renamed in place, same option id. | Auto |
-| **Price List URL** | URL | The SharePoint share link to the price list that `Last price update` names (Albert, 2026-09-25) — one click from the record to the supplier's own document. Written with the date, never on its own except to fill a blank from the same list. Not one of the 57 upload columns: it rides as an extra column after `MatchStatus`. | Auto |
+| **Price List URL** | URL | The SharePoint share link to the price list that `Effective Date` names (Albert, 2026-09-25) — one click from the record to the supplier's own document. Written with the date, never on its own except to fill a blank from the same list. Not one of the 57 upload columns: it rides as an extra column after `MatchStatus`. | Auto |
 
 ### Packaging & inventory
 
@@ -819,7 +819,7 @@ Sending the wrong one is rejected with a `400 validation_error`.
 | 38 | Promo cost ($/sf) |
 | 39 | Promo end date |
 | 40 | Volume pricing notes |
-| 41 | Last price update |
+| 41 | Effective Date |
 | 42 | Price last changed by |
 | 43 | Box size (sf) |
 | 44 | Pieces per box |
@@ -929,7 +929,7 @@ sequentially numbered, so that run correctly resolved at tier 2.
 - **Only fields that actually changed.** Compare against current values and build a
   per-record diff; do not blanket-write every field on every row.
 - `Price last changed by` = `Agent` — set **only when cost or retail actually
-  moved**. `Last price update` = the list's **effective date** (from the upload row,
+  moved**. `Effective Date` = the list's **effective date** (from the upload row,
   `/process-price-list` step 3a) — written on every price change, and moved
   **forward** when a newer list repeats the price (a confirmation; never backward,
   and the author is left alone). `catalog_reconcile.py` does this itself since
@@ -1009,7 +1009,7 @@ Views must be created manually — they cannot be built via the API.
 | By supplier | Grid | Group by Supplier field. |
 | By category | Grid | Group by Category field. |
 | Active only | Grid | Filter: Active = checked. |
-| Stale pricing | Grid | Filter: Last price update is before 90 days ago. |
+| Stale pricing | Grid | Filter: Effective Date is before 90 days ago. |
 | Bert view | Grid | Show only: SKU, Product name, Supplier, Category, Retail price, Waterproof, Pet friendly, Radiant heat compatible, Suitable rooms, Salesperson notes. |
 
 ### Section views for manual data entry
@@ -1093,7 +1093,7 @@ Only the controlled transition types get the `Transition` token — stair treads
   correct. Escalate instead.**
 - Cost/unit — updated by Cowork from supplier price lists
 - Promo cost ($/sf) and Promo end date — set and cleared by Cowork
-- Last price update (the list's effective date) and Price last changed by (`Agent`) — written by the pipeline
+- Effective Date (the list's effective date) and Price last changed by (`Agent`) — written by the pipeline
 - Lightspeed ID — assigned by Lightspeed after upload
 - Price History Log records — append-only, never edit existing rows
 
@@ -1769,7 +1769,7 @@ Purelux marks clearance items with red "On Sale" text in the price column. Known
 
 #### Effective date quirk
 
-The Feb 2025 PDF shows conflicting date information — filename "Feb 2025", cover page "2025", but every page footer says "Effective Oct 1, 2022." Use the **most recent date inferable from the filename or cover** as `Last price update`. Flag the discrepancy in response but proceed.
+The Feb 2025 PDF shows conflicting date information — filename "Feb 2025", cover page "2025", but every page footer says "Effective Oct 1, 2022." Use the **most recent date inferable from the filename or cover** as `Effective Date`. Flag the discrepancy in response but proceed.
 
 #### Purelux ingest output format
 
@@ -1865,7 +1865,7 @@ Evergreen sells laminate only — no vinyl, no engineered, no solid hardwood.
 
 #### Effective date
 
-Evergreen publishes a **monthly price list** with a date range in the header (e.g. "Effective Date: 2025/09/01-2025/09/30"). Use the **start date of the range** as `Last price update`. The end date is implicitly when the next monthly list supersedes it.
+Evergreen publishes a **monthly price list** with a date range in the header (e.g. "Effective Date: 2025/09/01-2025/09/30"). Use the **start date of the range** as `Effective Date`. The end date is implicitly when the next monthly list supersedes it.
 
 #### Layout parsing quirks
 
@@ -3897,7 +3897,7 @@ thickness composition, wear layer, and the EIR/embossed finish.
   `Atlanta WT`, `Unicorn 5 GL`) and anything containing a digit is a code, both left
   exactly as printed.
 - **No effective date anywhere on any of the three PDFs.** Use the email date
-  (2026-06-30 on the first set) as `Last price update`, and record it in
+  (2026-06-30 on the first set) as `Effective Date`, and record it in
   `Price list reference` when logging to Price History Log v2.
 
 #### Stock status & promo

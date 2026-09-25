@@ -94,7 +94,7 @@ DIFF_FIELDS = {
 }
 PRICE_FIELDS = ("Cost/unit", "Retail price/unit")
 # Not in DIFF_FIELDS: written by the rule below them in reconcile() (Albert,
-# 2026-09-25). `Last price update` is the EFFECTIVE DATE of the newest list that
+# 2026-09-25). `Effective Date` is the EFFECTIVE DATE of the newest list that
 # carries the product, taken from the upload row (extraction fills it: the date
 # printed on the list, else the email subject's, else the email's received date).
 # `Price last changed by` says WHO last changed the price: "Agent" for any write
@@ -102,13 +102,18 @@ PRICE_FIELDS = ("Cost/unit", "Retail price/unit")
 # UPDATE moved the price and left both fields at their old values, so a Weiss
 # record re-priced from the Sept 21 list still read 2026-08-01 and the
 # Stale-pricing view (older than 90 days) would have flagged it.
-PRICE_DATE = "Last price update"
+PRICE_DATE = "Effective Date"
+# The same field's name until Albert renamed it in Airtable on 2026-09-25 (same id,
+# fld67650y8QClqoMc). Upload CSVs and snapshots written before then carry this
+# header, so it is still read — and renamed on the way out, since Airtable rejects a
+# write to a field name it no longer has.
+LEGACY_PRICE_DATE = "Last price update"
 CHANGED_BY = "Price last changed by"
 AGENT = "Agent"
 ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 # The list itself, one click from the record (Albert, 2026-09-25): the SharePoint
 # share link off the Notion row's `Files & media`, carried as an extra upload-CSV
-# column. It travels with `Last price update` — the record points at the same list
+# column. It travels with `Effective Date` — the record points at the same list
 # its date names — and is never written on its own except to fill a blank.
 PRICE_URL = "Price List URL"
 PROMO_COST = "Promo cost ($/sf)"
@@ -201,6 +206,9 @@ def load_airtable_existing(path):
     return {clean(r.get(SKU)): r for r in records if clean(r.get(SKU))}
 
 
+FIELD_ALIASES = {PRICE_DATE: (PRICE_DATE, LEGACY_PRICE_DATE)}
+
+
 def live_value(record, field):
     """(value, readable). `readable` False means the snapshot carries no such key.
 
@@ -208,7 +216,7 @@ def live_value(record, field):
     "this field was empty" from "we could not read this field", and null renders
     both the same.
     """
-    for alias in DIFF_FIELDS.get(field, (field,)):
+    for alias in DIFF_FIELDS.get(field, FIELD_ALIASES.get(field, (field,))):
         if alias in record:
             return record[alias], True
     return None, False
@@ -386,7 +394,7 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
                     continue
                 new = clean(new_raw)
                 if new is not None:
-                    fields[field] = new
+                    fields[PRICE_DATE if field == LEGACY_PRICE_DATE else field] = new
         else:
             for field in DIFF_FIELDS:
                 new = clean(row.get(field))
@@ -411,7 +419,7 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
             if fields:
                 fields[CHANGED_BY] = AGENT
         else:
-            # `Last price update` = the date of the NEWEST list that carries this
+            # `Effective Date` = the date of the NEWEST list that carries this
             # product (Albert, 2026-09-25): a list that repeats the same price still
             # moves the date forward, because the price is confirmed current. It never
             # moves backward on a confirmation — an older list processed late must not
@@ -419,11 +427,11 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
             # list's date, and only a price change writes the author: a confirmation
             # changed nobody's price.
             price_moved = any(f in PRICE_FIELDS for f in fields)
-            raw_date = clean(row.get(PRICE_DATE))
+            raw_date = clean(row.get(PRICE_DATE)) or clean(row.get(LEGACY_PRICE_DATE))
             effective = raw_date if raw_date and ISO_DATE.match(raw_date) else None
             if raw_date and not effective:
                 warn(sku, "price_date_invalid",
-                     f"Last price update {raw_date!r} is not YYYY-MM-DD, so the date "
+                     f"Effective Date {raw_date!r} is not YYYY-MM-DD, so the date "
                      "was left as it was")
             old_date, date_readable = (live_value(live, PRICE_DATE) if live
                                        else (None, False))
@@ -434,8 +442,8 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
                     before[PRICE_DATE] = old_date if date_readable else None
                 elif not raw_date:
                     warn(sku, "price_date_missing",
-                         "cost/retail changed but the upload row has no Last price "
-                         "update (the list's effective date), so the date was left "
+                         "cost/retail changed but the upload row has no Effective "
+                         "Date (the list's effective date), so the date was left "
                          "as it was")
                 fields[CHANGED_BY] = AGENT
                 old_by, readable = live_value(live, CHANGED_BY) if live else (None, False)

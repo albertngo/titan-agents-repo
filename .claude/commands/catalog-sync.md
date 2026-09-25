@@ -112,10 +112,10 @@ SKU · Product name · Supplier SKU · Category · Cost/unit · Retail price/uni
 Stock status · Promo cost ($/sf) · Promo end date · Lightspeed ID
 ```
 
-**Also select `Last price update`, `Price last changed by` and `Price List URL`.** They are not in
+**Also select `Effective Date`, `Price last changed by` and `Price List URL`.** They are not in
 `DIFF_FIELDS` but the reconciler needs them (Albert, 2026-09-25): a cost/retail change
 writes the list's effective date and `Agent`, and a list that only *confirms* a price
-moves `Last price update` forward to its date — never backward. Without the date in
+moves `Effective Date` forward to its date — never backward. Without the date in
 the snapshot, that confirmation is silently skipped (a blind write could regress a
 newer date), so every re-confirmed product would keep looking stale. `Price List URL` (the
 list's SharePoint link, an extra upload-CSV column) travels with the date: written

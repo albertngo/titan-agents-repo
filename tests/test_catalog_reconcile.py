@@ -65,7 +65,7 @@ def row(**kw):
             "Lightspeed ID": "", "LS Handle / Parent ID": "HX1",
             "MatchStatus": "matched", "Cost/unit": "1.00",
             "Retail price/unit": "2.00", "Category": "Laminate",
-            "Last price update": "2026-09-01"}
+            "Effective Date": "2026-09-01"}
     base.update(kw)
     return base
 
@@ -271,7 +271,7 @@ class TestPriceDateAndChangedBy(unittest.TestCase):
     EXISTING = {"A-1": {"SKU": "A-1", "ProductName": "Thing", "Cost": 1.0,
                         "Retail price/unit": "2.00", "Category": "Laminate",
                         "Stock status": "In stock", "Lightspeed ID": "u-1",
-                        "Last price update": "2026-08-01",
+                        "Effective Date": "2026-08-01",
                         "Price last changed by": "Cowork"}}
 
     def upsert(self, rows, existing=None):
@@ -283,78 +283,78 @@ class TestPriceDateAndChangedBy(unittest.TestCase):
     def test_price_change_writes_effective_date_and_agent(self):
         up, _ = self.upsert([row(SKU="A-1", **{
             "Lightspeed ID": "u-1", "Cost/unit": "1.10",
-            "Last price update": "2026-09-21"})])
-        self.assertEqual(up["fields"]["Last price update"], "2026-09-21")
+            "Effective Date": "2026-09-21"})])
+        self.assertEqual(up["fields"]["Effective Date"], "2026-09-21")
         self.assertEqual(up["fields"]["Price last changed by"], "Agent")
-        self.assertEqual(up["before"]["Last price update"], "2026-08-01")
+        self.assertEqual(up["before"]["Effective Date"], "2026-08-01")
         self.assertEqual(up["before"]["Price last changed by"], "Cowork")
 
     def test_same_price_on_a_newer_list_moves_the_date_forward_only(self):
         """A newer list that repeats the price confirms it: the date moves, the
         author does not (nobody changed the price)."""
         up, _ = self.upsert([row(SKU="A-1", **{
-            "Lightspeed ID": "u-1", "Last price update": "2026-09-21"})])
-        self.assertEqual(up["fields"], {"Last price update": "2026-09-21"})
-        self.assertEqual(up["before"], {"Last price update": "2026-08-01"})
+            "Lightspeed ID": "u-1", "Effective Date": "2026-09-21"})])
+        self.assertEqual(up["fields"], {"Effective Date": "2026-09-21"})
+        self.assertEqual(up["before"], {"Effective Date": "2026-08-01"})
 
     def test_non_price_change_on_a_newer_list_moves_the_date_not_the_author(self):
         up, _ = self.upsert([row(SKU="A-1", **{
             "Lightspeed ID": "u-1", "Stock status": "Discontinued",
-            "Last price update": "2026-09-21"})])
-        self.assertEqual(up["fields"]["Last price update"], "2026-09-21")
+            "Effective Date": "2026-09-21"})])
+        self.assertEqual(up["fields"]["Effective Date"], "2026-09-21")
         self.assertNotIn("Price last changed by", up["fields"])
 
     def test_an_older_list_never_moves_the_date_backward(self):
         up, _ = self.upsert([row(SKU="A-1", **{
-            "Lightspeed ID": "u-1", "Last price update": "2026-07-01"})])
+            "Lightspeed ID": "u-1", "Effective Date": "2026-07-01"})])
         self.assertIsNone(up)
 
     def test_same_date_produces_no_write(self):
         up, _ = self.upsert([row(SKU="A-1", **{
-            "Lightspeed ID": "u-1", "Last price update": "2026-08-01"})])
+            "Lightspeed ID": "u-1", "Effective Date": "2026-08-01"})])
         self.assertIsNone(up)
 
     def test_unreadable_date_is_not_written_blind_on_a_confirmation(self):
         existing = {"A-1": {k: v for k, v in self.EXISTING["A-1"].items()
-                            if k != "Last price update"}}
+                            if k != "Effective Date"}}
         up, _ = self.upsert([row(SKU="A-1", **{
-            "Lightspeed ID": "u-1", "Last price update": "2026-09-21"})], existing)
+            "Lightspeed ID": "u-1", "Effective Date": "2026-09-21"})], existing)
         self.assertIsNone(up)
 
     def test_a_price_change_writes_the_list_date_even_if_older(self):
         """The date names the list that set the price, whichever list that is."""
         up, _ = self.upsert([row(SKU="A-1", **{
             "Lightspeed ID": "u-1", "Cost/unit": "1.10",
-            "Last price update": "2026-07-01"})])
-        self.assertEqual(up["fields"]["Last price update"], "2026-07-01")
+            "Effective Date": "2026-07-01"})])
+        self.assertEqual(up["fields"]["Effective Date"], "2026-07-01")
 
     URL = "https://flooruca-my.sharepoint.com/:b:/g/x/NEW"
 
     def test_the_list_link_travels_with_the_date(self):
         up, _ = self.upsert([row(SKU="A-1", **{
-            "Lightspeed ID": "u-1", "Last price update": "2026-09-21",
+            "Lightspeed ID": "u-1", "Effective Date": "2026-09-21",
             "Price List URL": self.URL})])
         self.assertEqual(up["fields"]["Price List URL"], self.URL)
-        self.assertEqual(up["fields"]["Last price update"], "2026-09-21")
+        self.assertEqual(up["fields"]["Effective Date"], "2026-09-21")
 
     def test_an_older_list_does_not_repoint_the_link(self):
         existing = {"A-1": {**self.EXISTING["A-1"], "Price List URL": "old"}}
         up, _ = self.upsert([row(SKU="A-1", **{
-            "Lightspeed ID": "u-1", "Last price update": "2026-07-01",
+            "Lightspeed ID": "u-1", "Effective Date": "2026-07-01",
             "Price List URL": self.URL})], existing)
         self.assertIsNone(up)
 
     def test_the_same_list_fills_a_blank_link(self):
         existing = {"A-1": {**self.EXISTING["A-1"], "Price List URL": None}}
         up, _ = self.upsert([row(SKU="A-1", **{
-            "Lightspeed ID": "u-1", "Last price update": "2026-08-01",
+            "Lightspeed ID": "u-1", "Effective Date": "2026-08-01",
             "Price List URL": self.URL})], existing)
         self.assertEqual(up["fields"], {"Price List URL": self.URL})
 
     def test_a_link_already_in_place_writes_nothing(self):
         existing = {"A-1": {**self.EXISTING["A-1"], "Price List URL": self.URL}}
         up, _ = self.upsert([row(SKU="A-1", **{
-            "Lightspeed ID": "u-1", "Last price update": "2026-08-01",
+            "Lightspeed ID": "u-1", "Effective Date": "2026-08-01",
             "Price List URL": self.URL})], existing)
         self.assertIsNone(up)
 
@@ -365,18 +365,39 @@ class TestPriceDateAndChangedBy(unittest.TestCase):
         up = next(a for a in actions if a["op"] == "upsert")
         self.assertEqual(up["fields"]["Price List URL"], self.URL)
 
+    def test_a_pre_rename_csv_and_snapshot_still_work(self):
+        """Albert renamed `Last price update` to `Effective Date` on 2026-09-25.
+        Older upload CSVs and snapshots carry the old header; the write must use
+        the new name, since Airtable rejects a name it no longer has."""
+        existing = {"A-1": {k if k != "Effective Date" else "Last price update": v
+                            for k, v in self.EXISTING["A-1"].items()}}
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Cost/unit": "1.10",
+            "Last price update": "2026-09-21", "Effective Date": ""})], existing)
+        self.assertEqual(up["fields"]["Effective Date"], "2026-09-21")
+        self.assertEqual(up["before"]["Effective Date"], "2026-08-01")
+        self.assertNotIn("Last price update", up["fields"])
+
+    def test_a_pre_rename_create_writes_the_new_name(self):
+        r = row(SKU="NEW-1", MatchStatus="new", **{"LS Handle / Parent ID": "HNEW"})
+        r["Last price update"] = r.pop("Effective Date")
+        actions, _, _ = run([r], [], ls_upload=ls_upload_row(sku="NEW-1"))
+        up = next(a for a in actions if a["op"] == "upsert")
+        self.assertEqual(up["fields"]["Effective Date"], "2026-09-01")
+        self.assertNotIn("Last price update", up["fields"])
+
     def test_a_non_iso_date_warns_and_is_not_written(self):
         up, warnings = self.upsert([row(SKU="A-1", **{
             "Lightspeed ID": "u-1", "Cost/unit": "1.10",
-            "Last price update": "Sept 21, 2026"})])
-        self.assertNotIn("Last price update", up["fields"])
+            "Effective Date": "Sept 21, 2026"})])
+        self.assertNotIn("Effective Date", up["fields"])
         self.assertIn("price_date_invalid", {w["reason"] for w in warnings})
 
     def test_missing_date_warns_but_still_marks_agent(self):
         up, warnings = self.upsert([row(SKU="A-1", **{
             "Lightspeed ID": "u-1", "Cost/unit": "1.10",
-            "Last price update": ""})])
-        self.assertNotIn("Last price update", up["fields"])
+            "Effective Date": ""})])
+        self.assertNotIn("Effective Date", up["fields"])
         self.assertEqual(up["fields"]["Price last changed by"], "Agent")
         self.assertIn("price_date_missing", {w["reason"] for w in warnings})
 
@@ -386,7 +407,7 @@ class TestPriceDateAndChangedBy(unittest.TestCase):
         actions, _, _ = run(rows, [], ls_upload=ls_upload_row(sku="NEW-1"))
         up = next(a for a in actions if a["op"] == "upsert")
         self.assertEqual(up["fields"]["Price last changed by"], "Agent")
-        self.assertEqual(up["fields"]["Last price update"], "2026-09-01")
+        self.assertEqual(up["fields"]["Effective Date"], "2026-09-01")
 
 
 class TestOrderingAndIds(unittest.TestCase):

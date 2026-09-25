@@ -228,7 +228,15 @@ class TestCommittedFieldMap(unittest.TestCase):
         schema = ce.load_schema(ce.DEFAULT_SCHEMA)
         names = {name for name, _ in schema.values()}
         header = read_header(REPO_ROOT / "ingest/2026-09-21/faw_airtable_upload_2026-09-21.csv")
-        self.assertEqual([], [c for c in header if c not in names and c not in ce.HELPER_COLUMNS])
+        self.assertEqual([], [c for c in header if c not in names and c not in ce.HELPER_COLUMNS
+                              and ce.RENAMED.get(c) not in names])
+
+    def test_a_renamed_field_still_renders_under_its_old_header(self):
+        # `Last price update` became `Effective Date` on 2026-09-25 (same field id).
+        rows, _ = ce.airtable_rows(["SKU", "Last price update"], [{"SKU": "A-1"}],
+                                   {"A-1": ("rec1", {"Effective Date": "2026-10-01"})},
+                                   {"Effective Date": "date"}, {})
+        self.assertEqual(rows[0]["Last price update"], "2026-10-01")
 
     def test_the_key_fields_sit_on_the_ids_the_registry_uses(self):
         schema = ce.load_schema(ce.DEFAULT_SCHEMA)
