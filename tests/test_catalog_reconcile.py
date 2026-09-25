@@ -64,7 +64,8 @@ def row(**kw):
     base = {"SKU": "X-1", "Product name": "Thing", "Supplier": "Test",
             "Lightspeed ID": "", "LS Handle / Parent ID": "HX1",
             "MatchStatus": "matched", "Cost/unit": "1.00",
-            "Retail price/unit": "2.00", "Category": "Laminate"}
+            "Retail price/unit": "2.00", "Category": "Laminate",
+            "Last price update": "2026-09-01"}
     base.update(kw)
     return base
 
@@ -259,6 +260,66 @@ class TestNewToAirtableWritesTheFullRow(unittest.TestCase):
         self.assertNotIn("Salesperson notes", upsert["fields"],
                          "an update must still write only DIFF_FIELDS, not the "
                          "whole row — that widening is create-only")
+
+
+class TestPriceDateAndChangedBy(unittest.TestCase):
+    """`Last price update` is the list's effective date and `Price last changed
+    by` is Agent/Manual (Albert, 2026-09-25). Before this an update moved the
+    price and left both at their old values — Weiss ENG-WEIS-0001 went
+    2.89 -> 2.99 from the Sept 21 list and still read 2026-08-01."""
+
+    EXISTING = {"A-1": {"SKU": "A-1", "ProductName": "Thing", "Cost": 1.0,
+                        "Retail price/unit": "2.00", "Category": "Laminate",
+                        "Stock status": "In stock", "Lightspeed ID": "u-1",
+                        "Last price update": "2026-08-01",
+                        "Price last changed by": "Cowork"}}
+
+    def upsert(self, rows, existing=None):
+        ls = [product(id="u-1", sku="A-1", supply_price=1.0)]
+        actions, _, warnings = run(rows, ls, existing or self.EXISTING)
+        ups = [a for a in actions if a["op"] == "upsert"]
+        return (ups[0] if ups else None), warnings
+
+    def test_price_change_writes_effective_date_and_agent(self):
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Cost/unit": "1.10",
+            "Last price update": "2026-09-21"})])
+        self.assertEqual(up["fields"]["Last price update"], "2026-09-21")
+        self.assertEqual(up["fields"]["Price last changed by"], "Agent")
+        self.assertEqual(up["before"]["Last price update"], "2026-08-01")
+        self.assertEqual(up["before"]["Price last changed by"], "Cowork")
+
+    def test_non_price_change_writes_neither(self):
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Stock status": "Discontinued",
+            "Last price update": "2026-09-21"})])
+        self.assertIsNotNone(up)
+        self.assertNotIn("Last price update", up["fields"])
+        self.assertNotIn("Price last changed by", up["fields"])
+
+    def test_unchanged_price_produces_no_write(self):
+        """The date alone differing must not create an action — it is written
+        alongside a price, never diffed on its own."""
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Stock status": "In stock",
+            "Last price update": "2026-09-21"})])
+        self.assertIsNone(up)
+
+    def test_missing_date_warns_but_still_marks_agent(self):
+        up, warnings = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Cost/unit": "1.10",
+            "Last price update": ""})])
+        self.assertNotIn("Last price update", up["fields"])
+        self.assertEqual(up["fields"]["Price last changed by"], "Agent")
+        self.assertIn("price_date_missing", {w["reason"] for w in warnings})
+
+    def test_create_is_marked_agent_whatever_the_csv_said(self):
+        rows = [row(SKU="NEW-1", MatchStatus="new", **{
+            "LS Handle / Parent ID": "HNEW", "Price last changed by": "Cowork"})]
+        actions, _, _ = run(rows, [], ls_upload=ls_upload_row(sku="NEW-1"))
+        up = next(a for a in actions if a["op"] == "upsert")
+        self.assertEqual(up["fields"]["Price last changed by"], "Agent")
+        self.assertEqual(up["fields"]["Last price update"], "2026-09-01")
 
 
 class TestOrderingAndIds(unittest.TestCase):

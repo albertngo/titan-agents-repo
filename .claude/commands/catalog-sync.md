@@ -112,6 +112,11 @@ SKU · Product name · Supplier SKU · Category · Cost/unit · Retail price/uni
 Stock status · Promo cost ($/sf) · Promo end date · Lightspeed ID
 ```
 
+Also select `Last price update` and `Price last changed by`. They are not diffed —
+the reconciler writes them alongside any cost/retail change (effective date +
+`Agent`) — but the plan's `before` records their old values only if the snapshot has
+them.
+
 **A missing column does not read as "no change" — it reads as "unknown", and the
 reconciler then writes the field on every matched row.** `live_value()` returns
 `readable: False` for a key the snapshot lacks, which is correct for a genuinely new

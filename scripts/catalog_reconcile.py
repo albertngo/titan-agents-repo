@@ -93,6 +93,17 @@ DIFF_FIELDS = {
     LS_ID: ("LightspeedID", "Lightspeed ID"),
 }
 PRICE_FIELDS = ("Cost/unit", "Retail price/unit")
+# Written alongside a price, never diffed on their own (Albert, 2026-09-25).
+# `Last price update` is the EFFECTIVE DATE of the price list that set the current
+# cost/retail, taken from the upload row (extraction fills it with the list's
+# effective date). `Price last changed by` says WHO: "Agent" for any write this
+# pipeline makes, "Manual" for a person editing in Airtable. Before this, an UPDATE
+# moved the price and left both fields at their old values, so a Weiss record
+# re-priced from the Sept 21 list still read 2026-08-01 and the Stale-pricing view
+# (older than 90 days) would have flagged freshly re-priced products.
+PRICE_DATE = "Last price update"
+CHANGED_BY = "Price last changed by"
+AGENT = "Agent"
 PROMO_COST = "Promo cost ($/sf)"
 PROMO_END = "Promo end date"
 
@@ -388,6 +399,23 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
                 if comparable(field, new) != comparable(field, old):
                     fields[field] = new
                     before[field] = old
+
+        if is_new_in_airtable:
+            if fields:
+                fields[CHANGED_BY] = AGENT
+        elif any(f in PRICE_FIELDS for f in fields):
+            effective = clean(row.get(PRICE_DATE))
+            if effective:
+                fields[PRICE_DATE] = effective
+                old_date, readable = live_value(live, PRICE_DATE) if live else (None, False)
+                before[PRICE_DATE] = clean(old_date) if readable else None
+            else:
+                warn(sku, "price_date_missing",
+                     "cost/retail changed but the upload row has no Last price update "
+                     "(the list's effective date), so the date was left as it was")
+            fields[CHANGED_BY] = AGENT
+            old_by, readable = live_value(live, CHANGED_BY) if live else (None, False)
+            before[CHANGED_BY] = clean(old_by) if readable else None
 
         if airtable_snapshot and select_options:
             missing = missing_select_options(fields, select_options)

@@ -601,8 +601,8 @@ The source of truth for all Titan flooring products. Every active product that B
 | **Promo cost ($/sf)** | Currency | Active promotional cost per sq ft from the supplier. When populated, Bert flags this product as having an active promo. Retail price is adjusted manually — not auto-calculated. Cleared automatically when promo ends. | Bert · Auto |
 | **Promo end date** | Date | When the promotional price expires. Cowork clears Promo cost automatically on this date. | Auto |
 | **Volume pricing notes** | Long text | Tiered pricing rules. e.g. Vidar: Cut order $ 1.39 / 1-5 skids $ 1.34 / 6-20 skids $ 1.29 | |
-| **Last price update** | Date | Date cost or retail was last updated. Bert flags records older than 90 days as potentially stale. | Auto |
-| **Price last changed by** | Single select | Manual or Cowork. Audit trail. | Auto |
+| **Last price update** | Date | **Effective date of the price list that set the current cost/retail** (Albert, 2026-09-25) — the date printed on the list, not the day it was processed. Written with every cost/retail change, never on its own. Bert flags records older than 90 days as potentially stale. | Auto |
+| **Price last changed by** | Single select | `Agent` (any write this pipeline makes, attended or not) or `Manual` (a person editing in Airtable). Audit trail. The `Agent` option was `Cowork` until 2026-09-25 — renamed in place, same option id. | Auto |
 
 ### Packaging & inventory
 
@@ -929,6 +929,11 @@ sequentially numbered, so that run correctly resolved at tier 2.
   per-record diff; do not blanket-write every field on every row.
 - `Last price update` and `Price last changed by` — set these **only when cost or
   retail actually moved**, not when the only change was a stock-status flag.
+  `Last price update` = the list's **effective date** (from the upload row);
+  `Price last changed by` = `Agent`. `catalog_reconcile.py` does this itself since
+  2026-09-25 — before that an update moved the price and left both at their old
+  values (Weiss ENG-WEIS-0001 re-priced from the Sept 21 list still read
+  2026-08-01). A create is always `Agent`.
 - `Stock status` / `Active` — set from the supplier's own markers
   (`Discontinued` → `Discontinued` + `Active` unchecked; `Limited` → `Low stock`,
   still active). The enum has no "Limited" value; `Low stock` is the mapping.
@@ -939,12 +944,16 @@ sequentially numbered, so that run correctly resolved at tier 2.
 - Airtable caps `update_records_for_table` / `create_records_for_table` at **50
   records per call** — batch accordingly.
 
-### Manual vs Cowork on unattended runs
+### Agent vs Manual (2026-09-25, Albert — supersedes "Manual vs Cowork")
 
-`Changed by` / `Price last changed by` = `Cowork` for **any unattended run** —
-including a scheduled Claude routine with no human watching. `Manual` means a person
-or an interactive session made the change. The distinction is whether a human was in
-the loop, not whether Claude was involved.
+`Price last changed by` = **`Agent`** for any write the pipeline makes — the
+routine, `/catalog-sync`, the `airtable-actions-agent`, attended or unattended.
+**`Manual`** means a person typed the value into Airtable. The distinction is
+whether the write came through the pipeline, not whether a human approved it.
+(Until 2026-09-25 the option was `Cowork` and attended sessions wrote `Manual`;
+the option was renamed in place and this week's agent writes corrected.)
+The suspended Price History Log v2's own `Changed by` still lists `Manual`/`Cowork`
+and was left alone.
 
 ### Name casing differs per system — do not normalise it
 
@@ -1082,7 +1091,7 @@ Only the controlled transition types get the `Transition` token — stair treads
   correct. Escalate instead.**
 - Cost/unit — updated by Cowork from supplier price lists
 - Promo cost ($/sf) and Promo end date — set and cleared by Cowork
-- Last price update and Price last changed by — written by Cowork
+- Last price update (the list's effective date) and Price last changed by (`Agent`) — written by the pipeline
 - Lightspeed ID — assigned by Lightspeed after upload
 - Price History Log records — append-only, never edit existing rows
 

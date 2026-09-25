@@ -321,7 +321,7 @@ before trusting it** — the skill is not authoritative about what is actually s
 - Note the base can carry **legacy prefixes** the current schema no longer issues
   (Grandeur holds `SPC-GRAN-####` / `WPC-GRAN-####` vinyl; the schema now issues
   LVP/LVT). Match against what is stored; issue new SKUs per the current rule.
-- Fields that changed, `Last price update`, `Price last changed by` = **`Cowork`**,
+- Fields that changed, `Last price update` (= the list's **effective date**), `Price last changed by` = **`Agent`**,
   and the Price History Log v2 rows are all still the *reviewer's* import job — the
   routine no longer performs them. Keep the values correct in the exported sheet.
 - **This routine still writes no platform.** Produce the ls-upload file; never report
