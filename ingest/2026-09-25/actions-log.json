@@ -3120,6 +3120,18 @@
       "error": null,
       "raw_ref": "recv3j7pUxAdd7SAW",
       "raw_ref_action_id": "cat-f056de0114a7"
+    },
+    {
+      "logged_at": "2026-09-25T08:58:34-04:00",
+      "agent": "airtable-actions-agent",
+      "type": "airtable_upsert_product",
+      "target": "Master Flooring Catalogue LVP-FAWK-0084 (record recfS9sbjA3FJyPeu)",
+      "content_summary": "Updated by record id (no SKU in payload): Last price update: 2026-09-21 -> 2026-09-19. Source plan plans/2026-09-21/catalog-plan-floors_at_work.json; corrects refused cat-e9b9f204c00e.",
+      "approved_by": "Albert, chat 2026-09-25 ('Last Price update should be more like effective date'); corrects the value refused under catalog-plan-pricedate-0925; date field only",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "recfS9sbjA3FJyPeu",
+      "raw_ref_action_id": "cat-fe136b92384f"
     }
   ]
 }
