@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-09-25T08:07:21-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $356.12 spend, 27 leads, $13.19 CPL (2026-09-18 to 2026-09-24) — Flooring Problems Campaign",
+      "summary": "The last meta-ads.json on record only covers through 2026-09-07, so this run widened the window to the 7-day cap (2026-09-18 to 2026-09-24) rather than a single day. Over that window Meta spent $356.12, all on the sole actively-delivering campaign, Flooring Problems Campaign, generating 27 leads at $13.19 CPL — below the prior-7-day baseline (2026-09-11 to 2026-09-17: $353.19 / 21 leads, ~$16.82 CPL), so no anomaly. Account is ACTIVE (CAD) and no ads are flagged DISAPPROVED/WITH_ISSUES.",
+      "timestamp": "2026-09-24T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 35612,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 35612,
+    "impressions": 8520,
+    "clicks": 221,
+    "leads": 27,
+    "cpl_cents": 1319,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Coverage gap exceeds the 7-day cap: the most recent prior meta-ads.json (ingest/2026-09-08/meta-ads.json, confirmed on both this session's branch and origin/main-agents) reported through 2026-09-07 only. No meta-ads.json exists for any day from 2026-09-08 through 2026-09-24 (17 days), well past the 7-day widen cap this agent is allowed to use. Today's run pulled the maximum allowed window, 2026-09-18 through 2026-09-24 (7 days), as the report period above. The middle stretch, 2026-09-08 through 2026-09-17 (10 days), remains permanently un-ingested by this agent — Meta's insights API won't retroactively fix that gap in a later run either, since each day only widens back to the last *recorded* file, not the true last-pulled day. Worth checking why meta-ads ingest didn't run daily in that window (or landed only on unmerged session branches, as happened previously between 2026-09-03 and 2026-09-07).",
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued at 27 this window, matching the counted leads exactly; same pattern in the 2026-09-11 to 2026-09-17 baseline pull at 21). No discrepancy in the counted total so far, but this has now recurred across every run seen (2026-08-31, 2026-09-02, 2026-09-07/08, and this run) — the script's lead-action set should be extended rather than continuing to hand-note it."
+  ]
+}

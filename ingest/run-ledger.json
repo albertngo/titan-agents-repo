@@ -491,5 +491,18 @@
     },
     "brief": true,
     "note": "scheduled run; local branch ledger last showed 2026-09-02, but all 5 ingesters cross-checked unmerged session branches and vault 01_daily notes and confirmed real runs happened through 2026-09-07 (branch-isolation artifact, not a real gap) -- no catch-up widening needed; bookkeeper still has no QBO/Intuit MCP connector (10th consecutive failed run since 2026-07-26)"
+  },
+  {
+    "date": "2026-09-25",
+    "run_at": "2026-09-25T12:27:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run (clone + run-daily-brief task); local main-agents ledger last showed 2026-09-08, but vault 01_daily notes and cross-source confirmation show real daily-ingest runs happened every day through 2026-09-24 on unmerged session branches whose run-ledger.json entries never reached main-agents (same branch-isolation artifact as the 2026-09-08 entry) -- not treated as missed run days. Real, still-open gaps: outlook and meta-ads have no raw ingest file for 2026-09-09 through 2026-09-17 (10 days), now past the 7-day catch-up cap and unrecoverable by those agents. bookkeeper: 11th consecutive failed run since 2026-07-26, no QBO/Intuit MCP connector configured."
   }
 ]
