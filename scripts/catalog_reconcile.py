@@ -93,6 +93,29 @@ DIFF_FIELDS = {
     LS_ID: ("LightspeedID", "Lightspeed ID"),
 }
 PRICE_FIELDS = ("Cost/unit", "Retail price/unit")
+# Not in DIFF_FIELDS: written by the rule below them in reconcile() (Albert,
+# 2026-09-25). `Effective Date` is the EFFECTIVE DATE of the newest list that
+# carries the product, taken from the upload row (extraction fills it: the date
+# printed on the list, else the email subject's, else the email's received date).
+# `Price last changed by` says WHO last changed the price: "Agent" for any write
+# this pipeline makes, "Manual" for a person editing in Airtable. Before this, an
+# UPDATE moved the price and left both fields at their old values, so a Weiss
+# record re-priced from the Sept 21 list still read 2026-08-01 and the
+# Stale-pricing view (older than 90 days) would have flagged it.
+PRICE_DATE = "Effective Date"
+# The same field's name until Albert renamed it in Airtable on 2026-09-25 (same id,
+# fld67650y8QClqoMc). Upload CSVs and snapshots written before then carry this
+# header, so it is still read — and renamed on the way out, since Airtable rejects a
+# write to a field name it no longer has.
+LEGACY_PRICE_DATE = "Last price update"
+CHANGED_BY = "Price last changed by"
+AGENT = "Agent"
+ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+# The list itself, one click from the record (Albert, 2026-09-25): the SharePoint
+# share link off the Notion row's `Files & media`, carried as an extra upload-CSV
+# column. It travels with `Effective Date` — the record points at the same list
+# its date names — and is never written on its own except to fill a blank.
+PRICE_URL = "Price List URL"
 PROMO_COST = "Promo cost ($/sf)"
 PROMO_END = "Promo end date"
 
@@ -183,6 +206,9 @@ def load_airtable_existing(path):
     return {clean(r.get(SKU)): r for r in records if clean(r.get(SKU))}
 
 
+FIELD_ALIASES = {PRICE_DATE: (PRICE_DATE, LEGACY_PRICE_DATE)}
+
+
 def live_value(record, field):
     """(value, readable). `readable` False means the snapshot carries no such key.
 
@@ -190,18 +216,23 @@ def live_value(record, field):
     "this field was empty" from "we could not read this field", and null renders
     both the same.
     """
-    for alias in DIFF_FIELDS.get(field, (field,)):
+    for alias in DIFF_FIELDS.get(field, FIELD_ALIASES.get(field, (field,))):
         if alias in record:
             return record[alias], True
     return None, False
 
 
 def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
-              airtable_snapshot=True, select_options=None):
+              airtable_snapshot=True, select_options=None, as_of=None):
     """Every row -> an action or a block. Never both, never neither.
 
     Warnings are separate: things worth a reader's attention that are not a
     reason to withhold a write.
+
+    `as_of` (YYYY-MM-DD, default today in Toronto) is the effective-date gate
+    (Albert, 2026-09-25): a row whose list takes effect after it is blocked
+    `not_yet_effective` on both systems, so a list received early is staged and
+    applied by /price-list-sweep on the day, never written ahead of it.
 
     `select_options` ({field: set of live option names}) is the pre-flight. A row
     whose Airtable write would name a select value Airtable does not have is
@@ -234,9 +265,18 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
     # appear. A row cannot answer this about itself.
     group_boxes = box_sizes_by_handle(upload_rows)
 
+    as_of = as_of or today()
+
     # Pass 2 — per row.
     for row in upload_rows:
         sku = clean(row.get(SKU))
+        effective = clean(row.get(PRICE_DATE)) or clean(row.get(LEGACY_PRICE_DATE))
+        if effective and ISO_DATE.match(effective) and effective > as_of:
+            block(sku, "not_yet_effective",
+                  f"the list takes effect {effective}; nothing is written to either "
+                  f"system before then (as of {as_of}). /price-list-sweep applies it "
+                  "on the day, against a fresh pull of both systems")
+            continue
         if not sku:
             name = clean(row.get("Product name")) or "<unnamed>"
             if clean(row.get(MATCH_STATUS)) == "new":
@@ -368,7 +408,7 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
                     continue
                 new = clean(new_raw)
                 if new is not None:
-                    fields[field] = new
+                    fields[PRICE_DATE if field == LEGACY_PRICE_DATE else field] = new
         else:
             for field in DIFF_FIELDS:
                 new = clean(row.get(field))
@@ -388,6 +428,58 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
                 if comparable(field, new) != comparable(field, old):
                     fields[field] = new
                     before[field] = old
+
+        if is_new_in_airtable:
+            if fields:
+                fields[CHANGED_BY] = AGENT
+        else:
+            # `Effective Date` = the date of the NEWEST list that carries this
+            # product (Albert, 2026-09-25): a list that repeats the same price still
+            # moves the date forward, because the price is confirmed current. It never
+            # moves backward on a confirmation — an older list processed late must not
+            # make a record look staler than it is. A price change always writes the
+            # list's date, and only a price change writes the author: a confirmation
+            # changed nobody's price.
+            price_moved = any(f in PRICE_FIELDS for f in fields)
+            raw_date = clean(row.get(PRICE_DATE)) or clean(row.get(LEGACY_PRICE_DATE))
+            effective = raw_date if raw_date and ISO_DATE.match(raw_date) else None
+            if raw_date and not effective:
+                warn(sku, "price_date_invalid",
+                     f"Effective Date {raw_date!r} is not YYYY-MM-DD, so the date "
+                     "was left as it was")
+            old_date, date_readable = (live_value(live, PRICE_DATE) if live
+                                       else (None, False))
+            old_date = clean(old_date)
+            if price_moved:
+                if effective:
+                    fields[PRICE_DATE] = effective
+                    before[PRICE_DATE] = old_date if date_readable else None
+                elif not raw_date:
+                    warn(sku, "price_date_missing",
+                         "cost/retail changed but the upload row has no Effective "
+                         "Date (the list's effective date), so the date was left "
+                         "as it was")
+                fields[CHANGED_BY] = AGENT
+                old_by, readable = live_value(live, CHANGED_BY) if live else (None, False)
+                before[CHANGED_BY] = clean(old_by) if readable else None
+            elif effective and date_readable and (old_date is None
+                                                  or effective > str(old_date)):
+                # Unreadable (the snapshot lacks the column) writes nothing here: a
+                # blind write could move a newer date backward.
+                fields[PRICE_DATE] = effective
+                before[PRICE_DATE] = old_date
+            url = clean(row.get(PRICE_URL))
+            if url:
+                old_url, url_readable = (live_value(live, PRICE_URL) if live
+                                         else (None, False))
+                old_url = clean(old_url)
+                same_list = (effective and date_readable
+                             and str(old_date or "") == effective)
+                if PRICE_DATE in fields or (same_list and url_readable
+                                            and old_url != url):
+                    if old_url != url:
+                        fields[PRICE_URL] = url
+                        before[PRICE_URL] = old_url if url_readable else None
 
         if airtable_snapshot and select_options:
             missing = missing_select_options(fields, select_options)
@@ -860,6 +952,9 @@ def main():
     ap.add_argument("--out", type=Path)
     ap.add_argument("--cost-basis", help="e.g. 'dealer'. Recorded, never inferred.")
     ap.add_argument("--confirmed-by", help="Who confirmed the cost basis, and when")
+    ap.add_argument("--as-of", help="YYYY-MM-DD for the effective-date gate. Default: "
+                    "today in Toronto. A row whose list takes effect later is blocked "
+                    "not_yet_effective; only a person passes a later date on purpose.")
     args = ap.parse_args()
 
     ls_path = args.lightspeed or (REPO_ROOT / "ingest" / today() / "lightspeed-products.json")
@@ -900,7 +995,8 @@ def main():
     select_options = load_select_options(args.airtable_options)
     actions, blocked, warnings = reconcile(rows, ls, existing, supplier, categories,
                                           ls_upload, airtable_snapshot=have_snapshot,
-                                          select_options=select_options)
+                                          select_options=select_options,
+                                          as_of=args.as_of)
     if have_snapshot and select_options is None:
         warnings.insert(0, {
             "sku": None,
@@ -942,6 +1038,10 @@ def main():
              if args.ls_upload else []),
         "cost_basis": ({"value": args.cost_basis, "confirmed_by": args.confirmed_by}
                        if args.cost_basis else None),
+        "as_of": args.as_of or today(),
+        "effective_dates": sorted({d for r in rows
+                                   for d in [clean(r.get(PRICE_DATE))
+                                             or clean(r.get(LEGACY_PRICE_DATE))] if d}),
         "summary": {**dict(sorted(kinds.items())),
                     "actions_total": len(actions),
                     "uuid_recovered_by_sku": recovered,

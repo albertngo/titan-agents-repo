@@ -601,8 +601,9 @@ The source of truth for all Titan flooring products. Every active product that B
 | **Promo cost ($/sf)** | Currency | Active promotional cost per sq ft from the supplier. When populated, Bert flags this product as having an active promo. Retail price is adjusted manually — not auto-calculated. Cleared automatically when promo ends. | Bert · Auto |
 | **Promo end date** | Date | When the promotional price expires. Cowork clears Promo cost automatically on this date. | Auto |
 | **Volume pricing notes** | Long text | Tiered pricing rules. e.g. Vidar: Cut order $ 1.39 / 1-5 skids $ 1.34 / 6-20 skids $ 1.29 | |
-| **Last price update** | Date | Date cost or retail was last updated. Bert flags records older than 90 days as potentially stale. | Auto |
-| **Price last changed by** | Single select | Manual or Cowork. Audit trail. | Auto |
+| **Effective Date** | Date | (Named `Effective Date` until Albert renamed it 2026-09-25; same field id `fld67650y8QClqoMc`.) **Effective date of the newest list received for the company that carries the product** (Albert, 2026-09-25): printed on the list, else a date in the email subject, else the email's received date — never the day it was processed. A price change writes it; a newer list that repeats the price moves it forward (never backward). Bert flags records older than 90 days as potentially stale. | Auto |
+| **Price last changed by** | Single select | `Agent` (any write this pipeline makes, attended or not) or `Manual` (a person editing in Airtable). Audit trail. The `Agent` option was `Cowork` until 2026-09-25 — renamed in place, same option id. | Auto |
+| **Price List URL** | URL | The SharePoint share link to the price list that `Effective Date` names (Albert, 2026-09-25) — one click from the record to the supplier's own document. Written with the date, never on its own except to fill a blank from the same list. Not one of the 57 upload columns: it rides as an extra column after `MatchStatus`. | Auto |
 
 ### Packaging & inventory
 
@@ -818,7 +819,7 @@ Sending the wrong one is rejected with a `400 validation_error`.
 | 38 | Promo cost ($/sf) |
 | 39 | Promo end date |
 | 40 | Volume pricing notes |
-| 41 | Last price update |
+| 41 | Effective Date |
 | 42 | Price last changed by |
 | 43 | Box size (sf) |
 | 44 | Pieces per box |
@@ -927,8 +928,14 @@ sequentially numbered, so that run correctly resolved at tier 2.
   escalate rather than writing it.
 - **Only fields that actually changed.** Compare against current values and build a
   per-record diff; do not blanket-write every field on every row.
-- `Last price update` and `Price last changed by` — set these **only when cost or
-  retail actually moved**, not when the only change was a stock-status flag.
+- `Price last changed by` = `Agent` — set **only when cost or retail actually
+  moved**. `Effective Date` = the list's **effective date** (from the upload row,
+  `/process-price-list` step 3a) — written on every price change, and moved
+  **forward** when a newer list repeats the price (a confirmation; never backward,
+  and the author is left alone). `catalog_reconcile.py` does this itself since
+  2026-09-25 — before that an update moved the price and left both at their old
+  values (Weiss ENG-WEIS-0001 re-priced from the Sept 21 list still read
+  2026-08-01). A create is always `Agent`.
 - `Stock status` / `Active` — set from the supplier's own markers
   (`Discontinued` → `Discontinued` + `Active` unchecked; `Limited` → `Low stock`,
   still active). The enum has no "Limited" value; `Low stock` is the mapping.
@@ -939,12 +946,16 @@ sequentially numbered, so that run correctly resolved at tier 2.
 - Airtable caps `update_records_for_table` / `create_records_for_table` at **50
   records per call** — batch accordingly.
 
-### Manual vs Cowork on unattended runs
+### Agent vs Manual (2026-09-25, Albert — supersedes "Manual vs Cowork")
 
-`Changed by` / `Price last changed by` = `Cowork` for **any unattended run** —
-including a scheduled Claude routine with no human watching. `Manual` means a person
-or an interactive session made the change. The distinction is whether a human was in
-the loop, not whether Claude was involved.
+`Price last changed by` = **`Agent`** for any write the pipeline makes — the
+routine, `/catalog-sync`, the `airtable-actions-agent`, attended or unattended.
+**`Manual`** means a person typed the value into Airtable. The distinction is
+whether the write came through the pipeline, not whether a human approved it.
+(Until 2026-09-25 the option was `Cowork` and attended sessions wrote `Manual`;
+the option was renamed in place and this week's agent writes corrected.)
+The suspended Price History Log v2's own `Changed by` still lists `Manual`/`Cowork`
+and was left alone.
 
 ### Name casing differs per system — do not normalise it
 
@@ -998,7 +1009,7 @@ Views must be created manually — they cannot be built via the API.
 | By supplier | Grid | Group by Supplier field. |
 | By category | Grid | Group by Category field. |
 | Active only | Grid | Filter: Active = checked. |
-| Stale pricing | Grid | Filter: Last price update is before 90 days ago. |
+| Stale pricing | Grid | Filter: Effective Date is before 90 days ago. |
 | Bert view | Grid | Show only: SKU, Product name, Supplier, Category, Retail price, Waterproof, Pet friendly, Radiant heat compatible, Suitable rooms, Salesperson notes. |
 
 ### Section views for manual data entry
@@ -1082,7 +1093,7 @@ Only the controlled transition types get the `Transition` token — stair treads
   correct. Escalate instead.**
 - Cost/unit — updated by Cowork from supplier price lists
 - Promo cost ($/sf) and Promo end date — set and cleared by Cowork
-- Last price update and Price last changed by — written by Cowork
+- Effective Date (the list's effective date) and Price last changed by (`Agent`) — written by the pipeline
 - Lightspeed ID — assigned by Lightspeed after upload
 - Price History Log records — append-only, never edit existing rows
 
@@ -1542,7 +1553,8 @@ When processing a new FAW list, double-check these recurring ambiguities:
 - **Effective date** — every FAW list is headed "Effective [date] — price subject to change due to fluctuating ocean freight charges." Record the effective date in `Price list reference` when logging to Price History Log.
 - **CLEARANCE SALE lines apply to the colours printed, never to a whole collection (2026-09-23).** The Sept 19 2026 Product Guide (PL-377) printed its clearance laminate line with an empty Colours cell. It was resolved to "Handscraped Laminate", and all seven 1.39 records went to clearance at 1.19. FAW's corrected CLEARANCE PRICE LIST (PL-380, Albert: "the correct version") names only Aphrodite, Apollo, Artemis and Poseidon. Space Grey, Sahara and Zeus were left at 1.19 with no sheet pricing them otherwise, and are held for Albert. When the Colours cell is empty, hold the line as `ambiguous_naming` and ask; do not fan it out. **Colour names on the clearance list are drawn as outlines**, so pdfplumber reads the cell as empty. Render the page (pypdfium2) and read them off the image. The prices stay text and cross-check normally.
 - **LAM-FAWK-0035 Antique Birch / LAM-FAWK-0036 Cosmic: cost 0.89 (Albert, 2026-09-23, "in this singular case").** They are in `Handscraped Laminates (Drop Clic)`, but neither PL-377 nor PL-380 prints them. Keep Cost/unit 0.89 / Retail 1.89. Never raise them to a clearance price that sits above their stored cost.
-- **Designer Click Toffee / Warm Honey are NEW products, not the old T&G Designer ones (Albert, 2026-09-24).** PL-377 prints "NEW! NAF Designer Eng. European White Oak - Click" for Toffee (5", Select, $4.69) and Warm Honey (7.5", AB -> Select & Better, $6.79). Same widths and box sizes as the T&G Designer records ENG-FAWK-0060 / 0065, but different products ("They are both click. But different specs and prices"). Created as ENG-FAWK-0089 / 0090 in `Designer Click`. The old pair is not on the newest list, and Albert said to delete it. The Lightspeed delete was refused on 2026-09-24: ENG-FAWK-0060 is in the open stocktake "Mississauga Outlet - Apr 24, 2026". That stays pending until the count is closed; the Airtable records are deleted by hand. Until then ENG-FAWK-0065 still carries the Click price 6.79 that the 09-21 run wrongly wrote onto it (its own last price was 6.99, PL-317).
+- **Designer Click Toffee / Warm Honey are NEW products, not the old T&G Designer ones (Albert, 2026-09-24).** PL-377 prints "NEW! NAF Designer Eng. European White Oak - Click" for Toffee (5", Select, $4.69) and Warm Honey (7.5", AB -> Select & Better, $6.79). Same widths and box sizes as the T&G Designer records ENG-FAWK-0060 / 0065, but different products ("They are both click. But different specs and prices"). Created as ENG-FAWK-0089 / 0090 in `Designer Click`. The old T&G pair is not on the newest list and is **inactive** in both systems (Albert chose inactive over delete once the Apr 24 stocktake that blocked the delete was cleared). ENG-FAWK-0065 is back at its own 6.99 / 7.99.
+- **Truffle (ENG-FAWK-0085): Species left blank (Albert, 2026-09-25).** The sheet says "White Oak" without American or European, so neither is guessed. Finish is also unprinted and blank.
 - **LAM-FAWK-0002 Space Grey / 0003 Sahara / 0008 Zeus stay at the clearance 1.19 / 2.19 (Albert, 2026-09-23).** PL-380's corrected clearance line names only Aphrodite, Apollo, Artemis and Poseidon, but Albert kept all three at 1.19 rather than restoring 1.39. Stock status stays `Clearance`. Nothing was written: they were already there.
 
 #### FAW ingest output format
@@ -1757,7 +1769,7 @@ Purelux marks clearance items with red "On Sale" text in the price column. Known
 
 #### Effective date quirk
 
-The Feb 2025 PDF shows conflicting date information — filename "Feb 2025", cover page "2025", but every page footer says "Effective Oct 1, 2022." Use the **most recent date inferable from the filename or cover** as `Last price update`. Flag the discrepancy in response but proceed.
+The Feb 2025 PDF shows conflicting date information — filename "Feb 2025", cover page "2025", but every page footer says "Effective Oct 1, 2022." Use the **most recent date inferable from the filename or cover** as `Effective Date`. Flag the discrepancy in response but proceed.
 
 #### Purelux ingest output format
 
@@ -1853,7 +1865,7 @@ Evergreen sells laminate only — no vinyl, no engineered, no solid hardwood.
 
 #### Effective date
 
-Evergreen publishes a **monthly price list** with a date range in the header (e.g. "Effective Date: 2025/09/01-2025/09/30"). Use the **start date of the range** as `Last price update`. The end date is implicitly when the next monthly list supersedes it.
+Evergreen publishes a **monthly price list** with a date range in the header (e.g. "Effective Date: 2025/09/01-2025/09/30"). Use the **start date of the range** as `Effective Date`. The end date is implicitly when the next monthly list supersedes it.
 
 #### Layout parsing quirks
 
@@ -3440,6 +3452,8 @@ Reducer and T-Moulding `Cost + $10`; any nosing `Cost + $15`. **Stair Board sets
 dedicated standard** — the Stair Nose/Tread `+$15` rule was applied as the closest match,
 the same call made for the Woden square-return set; confirm with Albert.
 
+**Laminate trims are $8, vinyl trims are $12 (Albert, 2026-09-25).** The 2026/07/01 list prints the laminate reducer / T-moulding (15×45 / 12×45 mm) at $8 on the Epic 12.3mm page and at $12 on the Epic 14.3mm page. $8 is the laminate price and $12 belongs to the vinyl pages, so every laminate trim is Cost $8 / Retail $18 (ACC-VIZN-0007..0010). Do not re-ask.
+
 #### Scope of ingest
 
 In scope: **LVP** (Marvelous 7MM, 8MM, and 5MM Loose Lay) and **LAM** (Epic 120 HR at
@@ -3883,7 +3897,7 @@ thickness composition, wear layer, and the EIR/embossed finish.
   `Atlanta WT`, `Unicorn 5 GL`) and anything containing a digit is a code, both left
   exactly as printed.
 - **No effective date anywhere on any of the three PDFs.** Use the email date
-  (2026-06-30 on the first set) as `Last price update`, and record it in
+  (2026-06-30 on the first set) as `Effective Date`, and record it in
   `Price list reference` when logging to Price History Log v2.
 
 #### Stock status & promo
@@ -4436,6 +4450,15 @@ apply the same defaults on the next JL Tile list unless the sheet's section head
 say otherwise. Not yet recorded: a per-collection markup override (using the global
 `Retail = Cost + $ 1.00` for now), any SALE/promo convention (the 2026-09-14 sheet
 carried none), and confirmation of the Supplier/Brand string above.
+
+#### Albert's PL-372 answers (2026-09-25)
+
+- **A live Lightspeed product with the same tile under a different code gets linked, and Lightspeed's sku is corrected to the Airtable SKU.** "Link. If UUID belongs to another SKU, then change the SKU in LS. The supplier SKU can be the direct supplier SKU version." `Supplier SKU` holds the sheet's own code, without the `TIL-JLTI-` prefix. Applied to SP36P00T (LS SP36POOT), SP6P00T (LS SPC6POOT), 0003 Panda White Matte (LS PandaWhiteMatte), DM12340M (LS DM12341M/PY126929M) and BPCK6062.
+- **When the sheet prints two codes for one tile, `Supplier SKU` carries both, as `A / B`** ("use both SKU"): `DM12341 / DM12341Y`, `N612002 / BPCK1272`, `N612008 / BPCK1278`, `BPCK128803 / LU3-612GS`. Lightspeed's sku is the Airtable SKU for those, so the combined string never has to match it.
+- **Finish follows the PDF's name**: DM12340M is "Dream White Matt", so it is Matte.
+- **BPCK6062 cost is 2.18**, the "Your Cut Order Price"; the cell printed "2 $2.42". Its live Lightspeed name still says 12 x 24, but the sheet and the record are 24 x 24 (the 12 x 24 Bremen Fall is BPCK36062).
+- **Category: "should be Flooring > Tile".** New JL products are already filed under FLOORING / TILE. Existing JL products that sit under the root TILE type have not been re-filed yet; that needs a product-type write the pipeline does not have (open).
+- BPCK1294 and TE12608 are discontinued and not in Lightspeed. "Correct": nothing is created for them.
 
 ### Baltic Homes (Baltic Home "Nature", Longhua Flooring)
 

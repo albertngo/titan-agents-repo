@@ -48,6 +48,11 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_SCHEMA = REPO_ROOT / "platform-settings/airtable-master-catalogue-fields.json"
 # Columns the upload CSV carries for the reviewer that are not Airtable fields.
 HELPER_COLUMNS = {"MatchedRecId", "MatchStatus", "LS Match status"}
+# Upload-CSV headers that name an Airtable field by a name it has since lost. Albert
+# renamed `Last price update` to `Effective Date` on 2026-09-25 (same field id); a CSV
+# written before then still says the old name, and without this its date would be
+# re-rendered blank.
+RENAMED = {"Last price update": "Effective Date"}
 
 SKU = "SKU"
 LS_ID = "Lightspeed ID"
@@ -169,8 +174,9 @@ def airtable_rows(header, rows, live, types, ls):
             rec_id, fields = hit
             stats["live"] += 1
             for col in header:
-                if col in types:  # a real Airtable field: live wins, empty included
-                    new[col] = fmt_airtable(fields.get(col), types[col])
+                name = RENAMED.get(col, col)
+                if name in types:  # a real Airtable field: live wins, empty included
+                    new[col] = fmt_airtable(fields.get(name), types[name])
             if MATCHED_REC in header:
                 new[MATCHED_REC] = rec_id or new.get(MATCHED_REC, "")
             # It is in the catalogue now. Left at `new`, a re-run of the reconciler on

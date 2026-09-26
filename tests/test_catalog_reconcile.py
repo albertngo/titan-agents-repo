@@ -64,7 +64,8 @@ def row(**kw):
     base = {"SKU": "X-1", "Product name": "Thing", "Supplier": "Test",
             "Lightspeed ID": "", "LS Handle / Parent ID": "HX1",
             "MatchStatus": "matched", "Cost/unit": "1.00",
-            "Retail price/unit": "2.00", "Category": "Laminate"}
+            "Retail price/unit": "2.00", "Category": "Laminate",
+            "Effective Date": "2026-09-01"}
     base.update(kw)
     return base
 
@@ -259,6 +260,179 @@ class TestNewToAirtableWritesTheFullRow(unittest.TestCase):
         self.assertNotIn("Salesperson notes", upsert["fields"],
                          "an update must still write only DIFF_FIELDS, not the "
                          "whole row — that widening is create-only")
+
+
+class TestPriceDateAndChangedBy(unittest.TestCase):
+    """`Last price update` is the list's effective date and `Price last changed
+    by` is Agent/Manual (Albert, 2026-09-25). Before this an update moved the
+    price and left both at their old values — Weiss ENG-WEIS-0001 went
+    2.89 -> 2.99 from the Sept 21 list and still read 2026-08-01."""
+
+    EXISTING = {"A-1": {"SKU": "A-1", "ProductName": "Thing", "Cost": 1.0,
+                        "Retail price/unit": "2.00", "Category": "Laminate",
+                        "Stock status": "In stock", "Lightspeed ID": "u-1",
+                        "Effective Date": "2026-08-01",
+                        "Price last changed by": "Cowork"}}
+
+    def upsert(self, rows, existing=None):
+        ls = [product(id="u-1", sku="A-1", supply_price=1.0)]
+        actions, _, warnings = run(rows, ls, existing or self.EXISTING)
+        ups = [a for a in actions if a["op"] == "upsert"]
+        return (ups[0] if ups else None), warnings
+
+    def test_price_change_writes_effective_date_and_agent(self):
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Cost/unit": "1.10",
+            "Effective Date": "2026-09-21"})])
+        self.assertEqual(up["fields"]["Effective Date"], "2026-09-21")
+        self.assertEqual(up["fields"]["Price last changed by"], "Agent")
+        self.assertEqual(up["before"]["Effective Date"], "2026-08-01")
+        self.assertEqual(up["before"]["Price last changed by"], "Cowork")
+
+    def test_same_price_on_a_newer_list_moves_the_date_forward_only(self):
+        """A newer list that repeats the price confirms it: the date moves, the
+        author does not (nobody changed the price)."""
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Effective Date": "2026-09-21"})])
+        self.assertEqual(up["fields"], {"Effective Date": "2026-09-21"})
+        self.assertEqual(up["before"], {"Effective Date": "2026-08-01"})
+
+    def test_non_price_change_on_a_newer_list_moves_the_date_not_the_author(self):
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Stock status": "Discontinued",
+            "Effective Date": "2026-09-21"})])
+        self.assertEqual(up["fields"]["Effective Date"], "2026-09-21")
+        self.assertNotIn("Price last changed by", up["fields"])
+
+    def test_an_older_list_never_moves_the_date_backward(self):
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Effective Date": "2026-07-01"})])
+        self.assertIsNone(up)
+
+    def test_same_date_produces_no_write(self):
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Effective Date": "2026-08-01"})])
+        self.assertIsNone(up)
+
+    def test_unreadable_date_is_not_written_blind_on_a_confirmation(self):
+        existing = {"A-1": {k: v for k, v in self.EXISTING["A-1"].items()
+                            if k != "Effective Date"}}
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Effective Date": "2026-09-21"})], existing)
+        self.assertIsNone(up)
+
+    def test_a_price_change_writes_the_list_date_even_if_older(self):
+        """The date names the list that set the price, whichever list that is."""
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Cost/unit": "1.10",
+            "Effective Date": "2026-07-01"})])
+        self.assertEqual(up["fields"]["Effective Date"], "2026-07-01")
+
+    URL = "https://flooruca-my.sharepoint.com/:b:/g/x/NEW"
+
+    def test_the_list_link_travels_with_the_date(self):
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Effective Date": "2026-09-21",
+            "Price List URL": self.URL})])
+        self.assertEqual(up["fields"]["Price List URL"], self.URL)
+        self.assertEqual(up["fields"]["Effective Date"], "2026-09-21")
+
+    def test_an_older_list_does_not_repoint_the_link(self):
+        existing = {"A-1": {**self.EXISTING["A-1"], "Price List URL": "old"}}
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Effective Date": "2026-07-01",
+            "Price List URL": self.URL})], existing)
+        self.assertIsNone(up)
+
+    def test_the_same_list_fills_a_blank_link(self):
+        existing = {"A-1": {**self.EXISTING["A-1"], "Price List URL": None}}
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Effective Date": "2026-08-01",
+            "Price List URL": self.URL})], existing)
+        self.assertEqual(up["fields"], {"Price List URL": self.URL})
+
+    def test_a_link_already_in_place_writes_nothing(self):
+        existing = {"A-1": {**self.EXISTING["A-1"], "Price List URL": self.URL}}
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Effective Date": "2026-08-01",
+            "Price List URL": self.URL})], existing)
+        self.assertIsNone(up)
+
+    def test_a_create_carries_the_link(self):
+        rows = [row(SKU="NEW-1", MatchStatus="new", **{
+            "LS Handle / Parent ID": "HNEW", "Price List URL": self.URL})]
+        actions, _, _ = run(rows, [], ls_upload=ls_upload_row(sku="NEW-1"))
+        up = next(a for a in actions if a["op"] == "upsert")
+        self.assertEqual(up["fields"]["Price List URL"], self.URL)
+
+    def test_a_pre_rename_csv_and_snapshot_still_work(self):
+        """Albert renamed `Last price update` to `Effective Date` on 2026-09-25.
+        Older upload CSVs and snapshots carry the old header; the write must use
+        the new name, since Airtable rejects a name it no longer has."""
+        existing = {"A-1": {k if k != "Effective Date" else "Last price update": v
+                            for k, v in self.EXISTING["A-1"].items()}}
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Cost/unit": "1.10",
+            "Last price update": "2026-09-21", "Effective Date": ""})], existing)
+        self.assertEqual(up["fields"]["Effective Date"], "2026-09-21")
+        self.assertEqual(up["before"]["Effective Date"], "2026-08-01")
+        self.assertNotIn("Last price update", up["fields"])
+
+    def test_a_pre_rename_create_writes_the_new_name(self):
+        r = row(SKU="NEW-1", MatchStatus="new", **{"LS Handle / Parent ID": "HNEW"})
+        r["Last price update"] = r.pop("Effective Date")
+        actions, _, _ = run([r], [], ls_upload=ls_upload_row(sku="NEW-1"))
+        up = next(a for a in actions if a["op"] == "upsert")
+        self.assertEqual(up["fields"]["Effective Date"], "2026-09-01")
+        self.assertNotIn("Last price update", up["fields"])
+
+    def test_a_list_not_yet_in_effect_writes_nothing_anywhere(self):
+        """Albert, 2026-09-25: a list received early is staged and applied on its
+        effective date, never before. Both systems, creates included."""
+        rows = [row(SKU="A-1", **{"Lightspeed ID": "u-1", "Cost/unit": "1.10",
+                                  "Effective Date": "2026-10-01"}),
+                row(SKU="NEW-1", MatchStatus="new", **{
+                    "LS Handle / Parent ID": "HNEW", "Effective Date": "2026-10-01"})]
+        ls = [product(id="u-1", sku="A-1", supply_price=1.0)]
+        actions, blocked, _ = cr.reconcile(rows, fake_ls(ls), self.EXISTING, "Test",
+                                           LEAVES, ls_upload_row(sku="NEW-1"),
+                                           as_of="2026-09-25")
+        self.assertEqual(actions, [])
+        self.assertEqual({b["reason"] for b in blocked}, {"not_yet_effective"})
+        self.assertEqual({b["sku"] for b in blocked}, {"A-1", "NEW-1"})
+
+    def test_the_list_applies_on_its_effective_date(self):
+        rows = [row(SKU="A-1", **{"Lightspeed ID": "u-1", "Cost/unit": "1.10",
+                                  "Effective Date": "2026-10-01"})]
+        ls = [product(id="u-1", sku="A-1", supply_price=1.0)]
+        actions, blocked, _ = cr.reconcile(rows, fake_ls(ls), self.EXISTING, "Test",
+                                           LEAVES, as_of="2026-10-01")
+        self.assertEqual(blocked, [])
+        self.assertTrue(any(a["target_system"] == "lightspeed" for a in actions))
+        self.assertTrue(any(a["target_system"] == "airtable" for a in actions))
+
+    def test_a_non_iso_date_warns_and_is_not_written(self):
+        up, warnings = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Cost/unit": "1.10",
+            "Effective Date": "Sept 21, 2026"})])
+        self.assertNotIn("Effective Date", up["fields"])
+        self.assertIn("price_date_invalid", {w["reason"] for w in warnings})
+
+    def test_missing_date_warns_but_still_marks_agent(self):
+        up, warnings = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Cost/unit": "1.10",
+            "Effective Date": ""})])
+        self.assertNotIn("Effective Date", up["fields"])
+        self.assertEqual(up["fields"]["Price last changed by"], "Agent")
+        self.assertIn("price_date_missing", {w["reason"] for w in warnings})
+
+    def test_create_is_marked_agent_whatever_the_csv_said(self):
+        rows = [row(SKU="NEW-1", MatchStatus="new", **{
+            "LS Handle / Parent ID": "HNEW", "Price last changed by": "Cowork"})]
+        actions, _, _ = run(rows, [], ls_upload=ls_upload_row(sku="NEW-1"))
+        up = next(a for a in actions if a["op"] == "upsert")
+        self.assertEqual(up["fields"]["Price last changed by"], "Agent")
+        self.assertEqual(up["fields"]["Effective Date"], "2026-09-01")
 
 
 class TestOrderingAndIds(unittest.TestCase):
@@ -986,6 +1160,14 @@ class DiffFieldsAndSnapshotAgree(unittest.TestCase):
             self.assertIn(field, block,
                           f"{field!r} is diffed but /catalog-sync does not ask the "
                           f"snapshot for it — every matched row would be overwritten")
+
+    def test_price_date_and_author_are_named_in_the_command(self):
+        # Not DIFF_FIELDS, but a confirmation-only date move is skipped when the
+        # snapshot lacks the date, so the command must ask for both.
+        doc = self.COMMAND.read_text()
+        block = doc.split("The snapshot must carry every field", 1)[1][:2000]
+        for field in (cr.PRICE_DATE, cr.CHANGED_BY, cr.PRICE_URL):
+            self.assertIn(field, block)
 
     def test_stock_status_and_promo_are_diffed(self):
         # Added 2026-09-22. Their absence is what let ~56 FAW clearance flags go

@@ -127,7 +127,21 @@ Anything not in this table is REFUSED — say it must be done in the Airtable UI
   supplier, `Stock status` as a stock status) from exactly that. Resolve against the
   live option list or stop.
 - Editing any table other than Master Flooring Catalogue and Price History Log v2.
-- Touching `Price List URL`, `Attachments`, or any formula/rollup field.
+- Touching `Attachments`, or any formula/rollup field.
+
+### `Price List URL` is writable, narrowly (Albert, 2026-09-25)
+
+Albert: "copy over the shared file of the pdf from notion to airtable. So each SKU has
+a verifiable company list to look at with a click of a button from airtable." Until
+this date the field was on the refused list above; Albert chose to allow it when the
+first backfill was refused.
+
+Write it **only** when it appears in an approved action's `fields` — inside an
+`airtable_upsert_product` (the reconciler puts it beside `Effective Date`, and a
+create carries it with the full row) — and only with a value that is an
+`https://flooruca-my.sharepoint.com/` link, which is the one kind of link the Notion
+Price Lists rows hold. Any other host, or a blank that would clear an existing link,
+is refused. It is never an action type of its own and never originated by you.
 
 ## Field ids and batch caps
 
