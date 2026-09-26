@@ -329,6 +329,12 @@ only when the flow itself or the stored text needs to change.
 
 ## Changelog
 
+- **2026-09-26 (Albert, in chat), rep rates.** New Airtable fields `Rep cost ($/sf)`,
+  `Rep cost end date` (may be empty), `Rep cost note`. The promo lane prices Lightspeed at
+  the lowest active discount and marks the winner `(P …)` / `(R …)`; variant members now
+  carry the marker on their own variant value (live check ENG-VIDR-0046). The reconciler
+  falls back to Airtable's live promo / rep rate so a sync never undoes one.
+
 - **2026-09-26 (Albert, in chat), last.** Every promo has an end date, guessed strictly
   when not printed (Promo row's month, else the list's month; the earlier when unsure).
   The 56 undated records were dated from their Notion rows — all already over. The

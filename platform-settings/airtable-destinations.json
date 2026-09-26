@@ -8,7 +8,7 @@
 
   "tables": {
     "master_flooring_catalogue": {
-      "_comment": "Source of truth for every Titan flooring product. 63 fields live; the canonical upload CSV is the first 57 in documented order (the excluded are Price History Log, Price List URL, Promo List URL, Internal notes, Attachments, Attachment Summary, Price History Log v2).",
+      "_comment": "Source of truth for every Titan flooring product. 66 fields live; the canonical upload CSV is the first 57 in documented order (the excluded are Price History Log, Price List URL, Promo List URL, Rep cost ($/sf), Rep cost end date, Rep cost note, Internal notes, Attachments, Attachment Summary, Price History Log v2).",
       "table_id": "tblfLXD3zkSdNQGbS",
       "primary_field_id": "fldx3byCOht5HbKmH",
       "merge_field_id": "fldx3byCOht5HbKmH",

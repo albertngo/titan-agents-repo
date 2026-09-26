@@ -249,7 +249,10 @@ is one Airtable edit (move the end date). **Every promo has an end date** (2026-
 printed, else the last day of its Promo row's month, else of its list's month — the
 earlier when unsure; an undated one counts as over. Policy approves a morning of ≤50 changes;
 more waits for a person. The report lists promos ended in the last 14 days with their
-`Promo List URL` ("ask the rep"). Variant members get the price only; no `PROMO` tag.
+`Promo List URL` ("ask the rep"). **Rep rates** (`Rep cost ($/sf)`, entered by hand,
+end date optional) run the same way with an `(R …)` marker; the lower of promo and
+rep wins, and a sync never pushes a list cost over either. Variant members carry the
+marker on their own variant value, never the family name. No `PROMO` tag.
 
 **A periodic no-`notionID` sweep can still exist as a backstop**, not the primary
 path: it would pick up any row where `Airtable Sync` is still `Pending`/`Partial`

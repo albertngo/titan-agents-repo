@@ -956,6 +956,41 @@ class TestPromoPricing(unittest.TestCase):
             if a["target_system"] == "lightspeed":
                 self.assertEqual(a["fields"].get("supply_price"), 1.0)
 
+    def test_a_rep_rate_with_no_end_applies_and_the_lower_wins(self):
+        base = {"Cost/unit": "4.20", "Retail price/unit": "5.20", "Rep cost ($/sf)": "3.50"}
+        self.assertEqual(cr.ls_update_fields(base, as_of="2026-09-26")["supply_price"], 3.5)
+        promo_lower = {**base, "Promo cost ($/sf)": "3.15", "Promo end date": "2026-09-30"}
+        self.assertEqual(cr.ls_update_fields(promo_lower, as_of="2026-09-26")["supply_price"], 3.15)
+        rep_over = {**base, "Rep cost ($/sf)": "4.50"}
+        self.assertEqual(cr.ls_update_fields(rep_over, as_of="2026-09-26")["supply_price"], 4.2)
+        rep_ended = {**base, "Rep cost end date": "2026-09-25"}
+        self.assertEqual(cr.ls_update_fields(rep_ended, as_of="2026-09-26")["supply_price"], 4.2)
+
+    def _sync(self, live_extra, **row_kw):
+        existing = {"A-1": {"SKU": "A-1", "ProductName": "Thing", "Cost": 1.0,
+                            "Retail price/unit": "2.00", "Category": "Laminate",
+                            "Lightspeed ID": "u-1", "Effective Date": "2026-09-01",
+                            **live_extra}}
+        rows = [row(SKU="A-1", **{"Lightspeed ID": "u-1", **row_kw})]
+        ls = [product(id="u-1", sku="A-1", supply_price=1.0)]
+        return cr.reconcile(rows, fake_ls(ls), existing, "Test", LEAVES, as_of="2026-09-26")
+
+    def test_a_regular_list_does_not_undo_a_running_promo_sheet(self):
+        """2026-09-26: a row that carries no promo takes Airtable's live one, so the
+        sync never pushes the list cost over a promo the morning sweep applied."""
+        actions, _, _ = self._sync({"Promo cost ($/sf)": 0.8, "Promo end date": "2026-09-30"})
+        ls = [a for a in actions if a["target_system"] == "lightspeed"]
+        self.assertEqual(ls[0]["fields"]["supply_price"], 0.8)
+
+    def test_a_regular_list_does_not_undo_a_rep_rate(self):
+        actions, _, _ = self._sync({"Rep cost ($/sf)": 0.9})
+        ls = [a for a in actions if a["target_system"] == "lightspeed"]
+        self.assertEqual(ls[0]["fields"]["supply_price"], 0.9)
+
+    def test_a_list_cost_at_or_below_the_rep_rate_is_flagged(self):
+        _, _, warnings = self._sync({"Rep cost ($/sf)": 0.9}, **{"Cost/unit": "0.85"})
+        self.assertIn("rep_rate_not_better", {w["reason"] for w in warnings})
+
     def test_month_end(self):
         self.assertEqual(cr.month_end("2026-02-14"), "2026-02-28")
         self.assertEqual(cr.month_end("2028-02-01"), "2028-02-29")
@@ -1249,7 +1284,8 @@ class DiffFieldsAndSnapshotAgree(unittest.TestCase):
         # snapshot lacks the date, so the command must ask for both.
         doc = self.COMMAND.read_text()
         block = doc.split("The snapshot must carry every field", 1)[1][:2000]
-        for field in (cr.PRICE_DATE, cr.CHANGED_BY, cr.PRICE_URL, cr.PROMO_URL):
+        for field in (cr.PRICE_DATE, cr.CHANGED_BY, cr.PRICE_URL, cr.PROMO_URL,
+                      cr.REP_COST, cr.REP_END):
             self.assertIn(field, block)
 
     def test_stock_status_and_promo_are_diffed(self):

@@ -67,7 +67,8 @@ Airtable. Not counted against the 5-row cap.
    changed Lightspeed after the cached walk).
 2. **Full Airtable read** of Master Flooring Catalogue, fields by id
    *(`airtable-master-catalogue-fields.json`)*: `SKU`, `Lightspeed ID`, `Cost/unit`,
-   `Promo cost ($/sf)`, `Promo end date`, `Promo List URL`, `Supplier`. `pageSize`
+   `Promo cost ($/sf)`, `Promo end date`, `Promo List URL`, `Rep cost ($/sf)`, `Rep cost
+   end date`, `Rep cost note`, `Supplier`. `pageSize`
    8000 and follow `nextCursor` to the end — **every record**, because a record
    missing from the read looks like "no promo" and would lose its marker. Flatten to
    `{"total_record_count": N, "records": [{id, <field name>: value}]}` at
@@ -83,17 +84,24 @@ Airtable. Not counted against the 5-row cap.
 What the lane does, per Airtable record with a promo (active = promo cost set and end
 date on/after today):
 
-| Lightspeed | Promo active | Promo over |
+| Lightspeed | A discount is in force | None is |
 |---|---|---|
-| `supply_price` | the promo cost | back to `Cost/unit` — **only if Lightspeed still holds the promo cost** (any other mismatch is `/catalog-sync`'s) |
-| name | `(P YYYY-MM-DD) ` prefix | prefix removed |
+| `supply_price` | the **lowest** of the active promo and active rep rate, if below `Cost/unit` | back to `Cost/unit` — **only if Lightspeed still holds a promo or rep cost** (any other mismatch is `/catalog-sync`'s) |
+| marker, for the winner | `(P YYYY-MM-DD) ` for a promo; `(R YYYY-MM-DD) ` or `(R) ` (undated, ongoing) for a rep rate | removed |
+| where the marker goes | standalone product: the **name**; variant-family member: **its own variant value** (`(P 2026-09-30) Character`), never the shared family name | |
+
+**Rep rates (Albert, 2026-09-26).** `Rep cost ($/sf)` is a rate a supplier rep gave
+Titan, entered by hand with `Rep cost note` (who, when, terms, email link). Its end date
+**may be empty** — ongoing until a person clears it. A list cost at or below it is
+warned `rep_rate_not_better`; a rep rate that ended in the last 14 days is listed with
+the promos to ask the rep about. A promo and a rep rate tie → the promo's marker.
 
 A promo with **no end date counts as over** (Albert, 2026-09-26: every promo is dated,
 strictly) and is reported `promo_end_missing` — date it in Airtable to turn it on.
 
-Never touched: retail, Airtable, anything but the marker in a name. A variant-family
-member gets its price but no marker (the name is family-wide) — `marker_on_variant`.
-A `(P)` product that matches no Airtable record is left alone. There is no `PROMO`
+Never touched: retail, Airtable, anything but the marker in a name or variant value.
+A variant marker a sibling already holds is blocked (`variant_value_collision`), never
+sent. A marked product that matches no Airtable record is left alone. There is no `PROMO`
 tag in the account yet; the lane does not create one.
 
 **A verbal extension** = move `Promo end date` forward in Airtable. The next sweep

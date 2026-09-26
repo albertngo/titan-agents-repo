@@ -354,6 +354,42 @@ class TestWriter(unittest.TestCase):
                 w.set_promo_marker("id-1", "A-1", self.NAME, f"(P) {self.NAME}")
             self.assertEqual(sent, [])
 
+    VARIANT = {"sku": "V-1", "has_variants": True, "variant_options": [
+        {"id": "grade", "name": "Grade", "value": "Character"}]}
+
+    def _variant_writer(self, live, family=None):
+        w, sent = self._marker_writer(live)
+        w.family_attribute_values = lambda pid: family or {}
+        return w, sent
+
+    def test_variant_marker_sends_only_the_variant_value(self):
+        """Verified live 2026-09-26 on ENG-VIDR-0046: only that member's Grade value
+        moved; its two siblings and the family name did not."""
+        w, sent = self._variant_writer(self.VARIANT)
+        w.set_variant_marker("id-1", "V-1", "grade", "Character", "(P 2026-09-30) Character")
+        self.assertEqual(sent, [("PUT", {"details": {"variant_attribute_values": [
+            {"attribute_id": "grade", "attribute_value": "(P 2026-09-30) Character"}]}})])
+
+    def test_variant_marker_refuses_anything_but_the_marker(self):
+        w, sent = self._variant_writer(self.VARIANT)
+        for new in ("Select", "(P) Character X", "(R) "):
+            with self.assertRaises(lsc.LightspeedError):
+                w.set_variant_marker("id-1", "V-1", "grade", "Character", new)
+        self.assertEqual(sent, [])
+
+    def test_variant_marker_refuses_drift_a_standalone_and_a_duplicate(self):
+        cases = [({**self.VARIANT, "sku": "OTHER"}, None),
+                 ({**self.VARIANT, "variant_options": [
+                     {"id": "grade", "name": "Grade", "value": "Select"}]}, None),
+                 ({"sku": "V-1", "variant_options": self.VARIANT["variant_options"]}, None),
+                 (self.VARIANT, {"id-2": [{"attribute_id": "grade",
+                                           "value": "(P) Character"}]})]
+        for live, family in cases:
+            w, sent = self._variant_writer(live, family)
+            with self.assertRaises(lsc.LightspeedError):
+                w.set_variant_marker("id-1", "V-1", "grade", "Character", "(P) Character")
+            self.assertEqual(sent, [])
+
     def test_delete_is_guarded_by_a_live_sku_check(self):
         """Delete exists since 2026-09-24 (Albert), but only for the product meant:
         a UUID whose live sku differs is refused before any request is built."""

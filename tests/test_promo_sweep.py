@@ -64,7 +64,7 @@ class TestPromoOn(unittest.TestCase):
         """Albert, 2026-09-26: every promo has an end date, strictly guessed if it
         must be. An undated one is reported, not treated as running forever."""
         r = run([rec(**{"Promo end date": None})], [prod(name=f"(P) {NAME}", supply_price=1.19)])
-        self.assertEqual(ops(r), {("promo_marker", "promo_marker_off")})
+        self.assertEqual(ops(r), {("promo_marker", "marker_off")})
         self.assertIn("promo_end_missing", {w["reason"] for w in r["warnings"]})
 
     def test_a_marker_already_right_writes_nothing(self):
@@ -84,8 +84,8 @@ class TestPromoOn(unittest.TestCase):
 class TestPromoOff(unittest.TestCase):
     def test_the_day_after_the_end_takes_the_marker_and_the_promo_cost_off(self):
         r = run([rec()], [prod(name=f"(P 2026-09-30) {NAME}")], as_of="2026-10-01")
-        self.assertEqual(ops(r), {("promo_marker", "promo_marker_off"),
-                                  ("update", "promo_price_off")})
+        self.assertEqual(ops(r), {("promo_marker", "marker_off"),
+                                  ("update", "price_off")})
         marker = next(a for a in r["actions"] if a["op"] == "promo_marker")
         self.assertEqual(marker["fields"]["name"], NAME)
         up = next(a for a in r["actions"] if a["op"] == "update")
@@ -94,7 +94,7 @@ class TestPromoOff(unittest.TestCase):
     def test_an_ended_promo_is_listed_for_the_rep_question(self):
         r = run([rec()], [prod()], as_of="2026-10-01")
         (e,) = r["recently_ended"]
-        self.assertEqual((e["sku"], e["promo_list_url"]), ("A-1", "https://x/promo"))
+        self.assertEqual((e["kind"], e["sku"], e["link"]), ("promo", "A-1", "https://x/promo"))
 
     def test_the_lane_is_not_a_general_cost_sync(self):
         """Lightspeed at a cost that is neither the promo nor Cost/unit is
@@ -105,7 +105,7 @@ class TestPromoOff(unittest.TestCase):
     def test_a_legacy_bare_marker_comes_off_where_airtable_has_no_promo(self):
         r = run([rec(**{"Promo cost ($/sf)": None, "Promo end date": None})],
                 [prod(name=f"(P) {NAME}", supply_price=1.19)])
-        self.assertEqual(ops(r), {("promo_marker", "promo_marker_off")})
+        self.assertEqual(ops(r), {("promo_marker", "marker_off")})
 
     def test_a_marker_with_no_airtable_record_is_left_alone(self):
         r = run([], [prod(name=f"(P) {NAME}")])
@@ -117,11 +117,79 @@ class TestPromoOff(unittest.TestCase):
         self.assertEqual(r["blocked"][0]["reason"], "no_regular_cost")
 
 
+class TestRepRate(unittest.TestCase):
+    """Albert, 2026-09-26: a rep's special rate is its own field, marked (R), may have
+    no end date, and the lower of rep and promo wins."""
+
+    def test_a_rep_rate_with_no_end_is_ongoing(self):
+        r = run([rec(**{"Promo cost ($/sf)": None, "Promo end date": None,
+                        "Rep cost ($/sf)": 0.99})], [prod(supply_price=1.19)])
+        self.assertIn(("update", "rep_price_on"), ops(r))
+        marker = next(a for a in r["actions"] if a["op"] == "promo_marker")
+        self.assertEqual(marker["fields"]["name"], f"(R) {NAME}")
+
+    def test_a_dated_rep_rate_carries_its_date(self):
+        r = run([rec(**{"Promo cost ($/sf)": None, "Rep cost ($/sf)": 0.99,
+                        "Rep cost end date": "2026-12-31"})], [prod(supply_price=0.99)])
+        self.assertEqual(r["actions"][0]["fields"]["name"], f"(R 2026-12-31) {NAME}")
+
+    def test_the_lower_of_rep_and_promo_wins(self):
+        rep_lower = run([rec(**{"Rep cost ($/sf)": 0.95})], [prod()])
+        self.assertEqual(next(a for a in rep_lower["actions"] if a["op"] == "update")
+                         ["fields"], {"supply_price": 0.95})
+        self.assertTrue(next(a for a in rep_lower["actions"] if a["op"] == "promo_marker")
+                        ["fields"]["name"].startswith("(R) "))
+        promo_lower = run([rec(**{"Rep cost ($/sf)": 1.15})], [prod()])
+        self.assertEqual(promo_lower["actions"][0]["fields"]["name"], f"(P 2026-09-30) {NAME}")
+
+    def test_when_the_promo_ends_the_rep_rate_takes_over(self):
+        r = run([rec(**{"Rep cost ($/sf)": 1.15})],
+                [prod(name=f"(P 2026-09-30) {NAME}")], as_of="2026-10-01")
+        self.assertEqual({a["reason"] for a in r["actions"]},
+                         {"rep_price_on", "rep_marker_on"})
+
+    def test_an_ended_rep_rate_reverts_and_is_listed(self):
+        r = run([rec(**{"Promo cost ($/sf)": None, "Promo end date": None,
+                        "Rep cost ($/sf)": 0.99, "Rep cost end date": "2026-09-25",
+                        "Rep cost note": "Mike, phone"})],
+                [prod(name=f"(R 2026-09-25) {NAME}", supply_price=0.99)])
+        self.assertEqual(ops(r), {("update", "price_off"), ("promo_marker", "marker_off")})
+        self.assertEqual(r["recently_ended"][0]["kind"], "rep rate")
+
+    def test_a_rep_rate_at_or_above_the_list_cost_does_not_apply(self):
+        r = run([rec(**{"Promo cost ($/sf)": None, "Promo end date": None,
+                        "Rep cost ($/sf)": 1.19})], [prod(supply_price=1.19)])
+        self.assertEqual(r["actions"], [])
+        self.assertIn("rep_rate_not_better", {w["reason"] for w in r["warnings"]})
+
+
 class TestLimits(unittest.TestCase):
-    def test_a_variant_member_gets_its_price_but_not_a_marker(self):
-        r = run([rec()], [prod(variant_parent_id="fam-1", supply_price=1.19)])
-        self.assertEqual({a["op"] for a in r["actions"]}, {"update"})
-        self.assertEqual(r["warnings"][0]["reason"], "marker_on_variant")
+    def test_a_variant_member_is_marked_on_its_own_value_not_the_family_name(self):
+        """Albert, 2026-09-26: 'the P marker can go on variant names, not the parent
+        one'. Verified live on ENG-VIDR-0046."""
+        grade = {"id": "attr-grade", "name": "Grade", "value": "Character"}
+        sibling = prod(id="u-2", sku="A-2", has_variants=True, variant_options=[
+            {"id": "attr-grade", "name": "Grade", "value": "Select"}])
+        r = run([rec()], [prod(has_variants=True, variant_options=[grade]), sibling])
+        (a,) = r["actions"]
+        self.assertEqual(a["op"], "variant_marker")
+        self.assertEqual(a["fields"], {"attribute_id": "attr-grade", "expect_value": "Character",
+                                       "value": "(P 2026-09-30) Character",
+                                       "expect_sku": "A-1"})
+
+    def test_a_variant_marker_comes_off_its_value(self):
+        grade = {"id": "attr-grade", "name": "Grade", "value": "(P 2026-09-30) Character"}
+        r = run([rec()], [prod(has_variants=True, variant_options=[grade])],
+                as_of="2026-10-01")
+        marker = next(a for a in r["actions"] if a["op"] == "variant_marker")
+        self.assertEqual((marker["fields"]["value"], marker["reason"]), ("Character", "marker_off"))
+
+    def test_a_variant_value_a_sibling_already_holds_blocks(self):
+        grade = {"id": "attr-grade", "name": "Grade", "value": "Character"}
+        twin = prod(id="u-2", sku="A-2", has_variants=True, variant_options=[
+            {"id": "attr-grade", "name": "Grade", "value": "(P 2026-09-30) Character"}])
+        r = run([rec()], [prod(has_variants=True, variant_options=[grade]), twin])
+        self.assertEqual(r["blocked"][0]["reason"], "variant_value_collision")
 
     def test_a_name_collision_blocks(self):
         other = prod(id="u-2", sku="B-1", name=f"(P 2026-09-30) {NAME}")
@@ -181,7 +249,8 @@ class TestLimits(unittest.TestCase):
         self.assertNotRegex(src, r"(?m)^\s*(from|import)\s+lightspeed_(write|push)")
 
     def test_planner_and_writer_agree_on_the_marker(self):
-        for name in ("(P 2026-09-30) X", "(P) X", "(P)X", "X (P) Y", "(PP) X", "(P 26-9-30) X"):
+        for name in ("(P 2026-09-30) X", "(P) X", "(P)X", "X (P) Y", "(PP) X", "(P 26-9-30) X",
+                     "(R) X", "(R 2026-12-31) X", "(Q) X"):
             self.assertEqual(ps.strip_marker(name), lw.strip_promo_marker(name), name)
 
 

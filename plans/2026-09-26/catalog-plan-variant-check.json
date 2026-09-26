@@ -1,0 +1,30 @@
+{
+  "contract_version": "catalog-plan-1",
+  "supplier": "PROMO SWEEP 2026-09-26",
+  "status": "ready",
+  "cost_basis": "airtable",
+  "actions": [
+    {
+      "id": "promo-a3d40edd97eb",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0046",
+      "ls_id": "2efa1ef6-5474-49aa-855f-8abf938d4979",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0046"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 1
+    }
+  ],
+  "blocked": [],
+  "warnings": [],
+  "_note": "Live API check (Albert 2026-09-26: 'the P marker can go on variant names, not the parent one. So it should still have a marker'): one Vidar variant member, promo active to 2026-09-30."
+}

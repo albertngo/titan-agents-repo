@@ -152,7 +152,7 @@ SKU · Product name · Supplier SKU · Category · Cost/unit · Retail price/uni
 Stock status · Promo cost ($/sf) · Promo end date · Lightspeed ID
 ```
 
-**Also select `Effective Date`, `Price last changed by`, `Price List URL` and `Promo List URL`.** They are not in
+**Also select `Effective Date`, `Price last changed by`, `Price List URL`, `Promo List URL`, `Rep cost ($/sf)` and `Rep cost end date`.** They are not in
 `DIFF_FIELDS` but the reconciler needs them (Albert, 2026-09-25): a cost/retail change
 writes the list's effective date and `Agent`, and a list that only *confirms* a price
 moves `Effective Date` forward to its date — never backward. Without the date in
@@ -163,6 +163,11 @@ whenever the date is, and to fill a blank when the same list is re-run.
 `Promo List URL` (2026-09-26) does the same for the promo: written whenever `Promo cost`
 or `Promo end date` is, and to fill a blank when the same promo is re-run — only if the
 snapshot carried it, so an unread link is never overwritten.
+`Rep cost ($/sf)` / `Rep cost end date` (2026-09-26) are never written by a sync, but the
+Lightspeed cost is the lowest of the active rep rate, promo and list cost — so a regular
+list must not push its cost over a running rep rate or promo sheet. A row that carries
+no promo takes Airtable's live one for the same reason. A list cost at or below an active
+rep rate is warned `rep_rate_not_better`.
 
 **A missing column does not read as "no change" — it reads as "unknown", and the
 reconciler then writes the field on every matched row.** `live_value()` returns

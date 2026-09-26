@@ -126,6 +126,12 @@ PROMO_END = "Promo end date"
 # promo). It travels with the two promo fields and, like them, is never cleared — an
 # ended promo keeps its link, which is what lets a person ask the rep about it later.
 PROMO_URL = "Promo List URL"
+# A supplier rep's special rate (Albert, 2026-09-26). Never on a price list, never in
+# an upload CSV, never written by this script: a person enters it in Airtable. Read
+# from the snapshot so a sync prices Lightspeed at the lowest active cost instead of
+# undoing the rate until the next morning's promo lane puts it back.
+REP_COST = "Rep cost ($/sf)"
+REP_END = "Rep cost end date"
 
 # MatchStatus / LS Match status values that must never reach a write.
 AMBIGUOUS = {"ambiguous", "AMBIGUOUS", "DUPLICATE"}
@@ -586,7 +592,18 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
 
         # ---- Lightspeed side ----
         if uuid:
-            ls_fields_out = ls_update_fields(row)
+            # A regular list says nothing about a promo sheet's promo or a rep's rate,
+            # so a row that does not carry one takes Airtable's live value — else the
+            # sync would push the list cost over a running discount (2026-09-26).
+            ls_row = with_live_discounts(row, live)
+            ls_fields_out = ls_update_fields(ls_row, as_of)
+            rep = as_number(ls_row.get(REP_COST))
+            new_cost = as_number(row.get("Cost/unit"))
+            if rep is not None and new_cost is not None and rep >= new_cost - 0.005 \
+                    and rep_in_force(ls_row, as_of):
+                warn(sku, "rep_rate_not_better",
+                     f"this list's cost {new_cost} is at or below the rep rate {rep}; the "
+                     "list cost applies — clear or renegotiate the rep rate in Airtable")
             live = ls_by_id or ls_by_sku
             before = ls_before(live)
             if before and all(
@@ -896,17 +913,46 @@ def ls_update_fields(row, as_of=None):
     A promo with no end date does NOT apply (2026-09-26, reversing "clearance while
     stock lasts prints none"): every promo is dated, strictly, at extraction.
     """
+    as_of = as_of or today()
     promo = as_number(row.get(PROMO_COST))
     end = clean(row.get(PROMO_END))
     # A blank end is not "forever" (2026-09-26): reconcile() fills one before this
     # runs, so a blank here is a promo nobody dated, and it does not apply.
-    if promo is not None and (not end or end[:10] < (as_of or today())):
+    if promo is not None and (not end or end[:10] < as_of):
         promo = None
+    # A rep rate MAY be undated (ongoing), and the lower of rep and promo wins —
+    # neither applies unless it is below the regular cost (Albert, 2026-09-26).
+    rep = as_number(row.get(REP_COST)) if rep_in_force(row, as_of) else None
     cost = as_number(row.get("Cost/unit"))
+    discounts = [d for d in (promo, rep) if d is not None and (cost is None or d < cost)]
     return {k: v for k, v in (
-        ("supply_price", promo if promo is not None else cost),
+        ("supply_price", min(discounts) if discounts else cost),
         ("price_excluding_tax", as_number(row.get("Retail price/unit"))),
     ) if v is not None}
+
+
+def rep_in_force(row, as_of):
+    if as_number(row.get(REP_COST)) is None:
+        return False
+    end = clean(row.get(REP_END))
+    return not end or end[:10] >= (as_of or today())
+
+
+def with_live_discounts(row, live):
+    """The upload row, with Airtable's live promo and rep rate filled in wherever the
+    row carries none. A pair is taken whole: a row with its own promo cost keeps its
+    own end date."""
+    if not live:
+        return row
+    out = dict(row)
+    for cost_field, end_field in ((PROMO_COST, PROMO_END), (REP_COST, REP_END)):
+        if as_number(out.get(cost_field)) is not None:
+            continue
+        value, readable = live_value(live, cost_field)
+        if readable and as_number(value) is not None:
+            out[cost_field] = value
+            out[end_field] = live_value(live, end_field)[0]
+    return out
 
 
 def ls_create_fields(row, ls_upload_row):

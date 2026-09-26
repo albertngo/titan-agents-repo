@@ -253,6 +253,14 @@ a row that never gets rebuilt after its promo ends keeps the marker until it doe
 > not write), and there is **no `PROMO` tag** in the account, so column 16 still
 > reaches Lightspeed only through a CSV import. The paragraph below is kept for why.
 >
+> **Variant members too, and rep rates (Albert, 2026-09-26).** The lane now writes a
+> family member's own variant value — `(P 2026-09-30) Character`, never the family name
+> — verified live on ENG-VIDR-0046 (only that member's Grade moved; Lightspeed re-sorted
+> its button position). A supplier rep's special rate (`Rep cost ($/sf)` in Airtable)
+> carries `(R YYYY-MM-DD) ` or, undated, `(R) `; when a promo and a rep rate both run,
+> the lower cost wins and only the winner's marker shows. A CSV build follows the same
+> rule.
+>
 > **The API sync moves the promo PRICE, not the promo MARKER.** `/catalog-sync`'s
 > Lightspeed update writes prices and nothing else, by design. So on an existing product
 > `supply_price` follows `Promo cost ($/sf)` automatically in both directions, while

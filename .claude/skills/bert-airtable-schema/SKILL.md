@@ -323,6 +323,15 @@ When a supplier posts a promotional cost:
 3. Otherwise the promo came on a regular list → the last day of **that list's** `Effective Date` month.
 4. Two readings disagree → the **earlier** end date.
 
+**A rep offers a price (Albert, 2026-09-26).** Two cases, never mixed:
+- **Time-limited ("$2.49 until Oct 31", or "for now")** → it is a promo: `Promo cost` +
+  `Promo end date` (none given → last day of this month; roll forward when the rep
+  confirms). It gets `(P …)`.
+- **A standing rate ("your price is $2.49")** → `Rep cost ($/sf)`, `Rep cost end date`
+  (blank if open-ended) and `Rep cost note`. It gets `(R …)`, survives every price list,
+  and is flagged when a list undercuts it. Never type a rep rate into `Cost/unit`: the
+  next list overwrites it without a trace.
+
 A supplier subsection below that says "leave `Promo end date` blank" or "holds while stock lasts" is **superseded** by this. `catalog_reconcile.py` enforces it (a promo row with no end is given step 3's date and warned `promo_end_inferred`), and the promo lane treats any undated promo in Airtable as over. First applied to the 56 undated records on 2026-09-26 (Bella 2026-01-31, Evergreen 2025-09-30, Grandeur 2026-04-30, Purelux 2025-02-28, Woden 2026-05-31) — all already past. A rep saying it still runs = move the date forward by hand; the next sweep puts it back in Lightspeed.
 
 ### Promo product not found in catalogue
@@ -612,6 +621,9 @@ The source of truth for all Titan flooring products. Every active product that B
 | **Effective Date** | Date | (Named `Effective Date` until Albert renamed it 2026-09-25; same field id `fld67650y8QClqoMc`.) **Effective date of the newest list received for the company that carries the product** (Albert, 2026-09-25): printed on the list, else a date in the email subject, else the email's received date — never the day it was processed. A price change writes it; a newer list that repeats the price moves it forward (never backward). Bert flags records older than 90 days as potentially stale. | Auto |
 | **Price last changed by** | Single select | `Agent` (any write this pipeline makes, attended or not) or `Manual` (a person editing in Airtable). Audit trail. The `Agent` option was `Cowork` until 2026-09-25 — renamed in place, same option id. | Auto |
 | **Price List URL** | URL | The SharePoint share link to the price list that `Effective Date` names (Albert, 2026-09-25) — one click from the record to the supplier's own document. Written with the date, never on its own except to fill a blank from the same list. Not one of the 57 upload columns: it rides as an extra column after `MatchStatus`. | Auto |
+| **Rep cost ($/sf)** | Currency | A special rate a supplier **rep** gave Titan — by phone, email or in person — separate from any printed promo (Albert, 2026-09-26). Entered by hand; **price lists never overwrite it**. While active, Lightspeed's cost is the **lowest** of this, an active promo and `Cost/unit`, and the winner's marker shows: `(R YYYY-MM-DD)`, or `(R)` when undated. A list cost at or below it is flagged `rep_rate_not_better`. | Manual |
+| **Rep cost end date** | Date | Last day of the rep rate. **May be empty** = ongoing until a person clears `Rep cost` (unlike a promo, which is always dated). The morning sweep takes the rate off Lightspeed the day after. | Manual |
+| **Rep cost note** | Long text | Who, when, what terms, and the email link if there is one ("Mike @ Vidar, phone 2026-09-26, 2+ skids"). The pipeline never writes it. | Manual |
 | **Promo List URL** | URL | The SharePoint share link to the list that set `Promo cost` / `Promo end date` (Albert, 2026-09-26) — a promo sheet, or a regular list that printed the promo. `Price List URL` stays the regular list, so a SKU priced by one list and put on promo by another links to both. Written with the promo fields; **never cleared**, so an ended promo still links to its source (ask the rep whether it still holds). Extra upload column after `Price List URL`, set only on rows that carry a promo. | Auto |
 
 ### Packaging & inventory
