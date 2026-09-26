@@ -66,7 +66,16 @@ carries the same date) and write it to the row. Compare it with today in Toronto
   `Extraction Status` where extraction left it; put `STAGED until <date>` at the front
   of `Notes`, stamp `Last Agent Activity Date`, and report the date. No push: nothing
   is wrong. `/price-list-sweep` runs this command again on the day.
-- **Today or earlier → carry on** with step 0.
+- **Today or earlier → check it is still the newest list** (below), then carry on
+  with step 0.
+
+**Superseded — an older list must never overwrite a newer one.** Before going on,
+query Price Lists for other rows with the same `Company` whose `Effective Date` is
+**later** than this row's and whose `Airtable Sync` reads `Done: …` or `Partial`. If
+one exists, this list is superseded: write nothing, put `SUPERSEDED by PL-<n>
+(<date>)` at the front of `Notes`, stamp `Last Agent Activity Date`, report it, and
+stop. Applying it would move prices backward to an older list (the reconciler only
+guards the date, not the price). A person can still apply it deliberately.
 
 Planning now and executing later is deliberately not an option: prices, UUIDs and
 the catalogue can all move in between, so a plan is only good against the systems as

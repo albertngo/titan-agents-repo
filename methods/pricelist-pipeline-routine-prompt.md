@@ -9,7 +9,7 @@ its own approval gate instead of waiting for Albert to review it.
 | Payload | Runs |
 |---|---|
 | `{"notionID": "<page id>"}` (Make 4381438's webhook) | `/process-price-list <notionID>`, then immediately `/catalog-sync <notionID>` — same session |
-| No `notionID` — the routine's own **scheduled** fire (or any payload without one) | `/price-list-sweep` — applies every staged list whose `Effective Date` has arrived (Albert, 2026-09-25: "a webhook always has a payload … a scheduled run of it will be the price list sweep, making both routines in one") |
+| No `notionID` — the routine's own **scheduled** fire (or any payload without one) | `/price-list-sweep` — runs on each row the skill its state is ready for: `Ready to Upload` → sync; `Effective Date` arrived → sync; a recent `Not started` row the webhook missed → extract + sync (Albert, 2026-09-25: "a scheduled run of it will be the price list sweep, making both routines in one" / "the sweep should handle catalogue sync and effective date and any other 'ready to have the respective skill run'") |
 
 Both stages still point at their command files, not a copy of their procedures —
 same pointer rationale as always (2026-09-03: a routine that carries a copy of a
@@ -59,12 +59,15 @@ never imply policy approved something it didn't actually clear.
   below on that one row.
 - **It carries no notionID** — the routine's daily scheduled fire has no payload at
   all: this is a SWEEP. Read `.claude/commands/price-list-sweep.md` and run it exactly
-  as written (it is /price-list-sweep, no argument), then do Step 3 (publish) and
-  stop. Skip Steps 1 and 2. If the payload was present but held no notionID, say so
+  as written (it is /price-list-sweep, no argument): it decides, row by row, which of
+  /process-price-list and /catalog-sync each row is ready for. Then do Step 3
+  (publish) and stop. Skip Steps 1 and 2 as written here — the sweep runs them for
+  the rows that need them. If the payload was present but held no notionID, say so
   in the report — a webhook that lost its id is worth knowing about — but still sweep.
 
-Never guess a notionID, never invent one, and never extract a row the payload did
-not name. A sweep extracts nothing: it only syncs rows already extracted and due.
+Never guess a notionID and never invent one. A sweep extracts only what its lane C
+allows (a `Not started` row with files, received in the last 14 days) — never the
+historical backlog.
 
 ---
 

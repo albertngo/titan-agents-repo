@@ -230,7 +230,12 @@ but `/catalog-sync` writes nothing and `catalog_reconcile.py` blocks every row
 `not_yet_effective`. `/price-list-sweep` applies due lists on the day, against a fresh
 pull. Staged = `Effective Date` in the future with `Airtable Sync: Pending`. The sweep
 is the "New Price Lists" routine's **scheduled** fire: a fire with a `notionID` extracts
-that row, a fire without one sweeps (Albert, 2026-09-25 — one routine, not two).
+that row, a fire without one sweeps (Albert, 2026-09-25 — one routine, not two). The
+sweep runs each row's next skill: `Ready to Upload` (a person answered) → sync;
+`Effective Date` arrived → sync; a `Not started` row from the last 14 days the webhook
+missed → extract + sync. At most 5 rows a morning; held `Partial` rows, errors and the
+older backlog wait for a person. `/catalog-sync` refuses a list older than one already
+applied for the same company.
 
 **A periodic no-`notionID` sweep can still exist as a backstop**, not the primary
 path: it would pick up any row where `Airtable Sync` is still `Pending`/`Partial`

@@ -56,6 +56,7 @@
         "_never_leave_at": [
           "Extracting"
         ],
+        "_ready_to_upload_2026-09-25": "Albert, 2026-09-25: Extracted [Ready to Upload] is the reviewer's 'I have answered, run it again' signal. /price-list-sweep lane A runs /catalog-sync on such a row the next morning; catalog-sync step 6 then moves it to All Uploaded or back to Needs Review, so the signal is consumed.",
         "_ready_to_upload_option_is_MISSING": "Broken 2026-09-10, confirmed restored live 2026-09-11 (see CLAUDE.md Scheduling status). Historical note only, kept for the incident record.",
         "_catalog_sync_scope": "SUPERSEDED 2026-09-11 (Albert). The merged routine (methods/pricelist-pipeline-routine-prompt.md) no longer scopes on this option at all — sync now runs immediately after extraction, same session, same notionID, and never waits for a person to set Extracted [Ready to Upload] first. That status still exists for the manual CSV path only. The safety property this note used to describe is now enforced differently: /catalog-sync's own policy auto-approval rubric (contracts/catalog-plan-schema.md) decides what may write, not a pre-filter on which rows sync even looks at."
       },
