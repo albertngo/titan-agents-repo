@@ -8,3 +8,7 @@ analysis/cache/
 # Lightspeed product bodies: regenerable from the API, ~9-41 MB per run.
 # The committed record of a pull is the -summary.json beside them.
 ingest/*/lightspeed-products.json
+
+# Full-catalogue Airtable read for the promo lane (~2 MB a day, regenerable).
+# The committed record is plans/<date>/catalog-plan-promo-sweep.json.
+ingest/*/airtable-promo-snapshot.json

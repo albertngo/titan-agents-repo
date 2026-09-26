@@ -859,6 +859,10 @@ def ls_update_fields(row, as_of=None):
     (a guard read the wrong key and returned [] where a `Select` existed). Worth
     doing only on the evidence of a live API check. Not urgent.
 
+    Done since, and NOT here (2026-09-26): scripts/promo_sweep.py, the sweep's promo
+    lane, writes the name prefix on standalone products after a live check on
+    LAM-FAWK-0004. This function still moves prices only.
+
     ## A lapsed promo is not what Titan pays (2026-09-23)
 
     The paragraphs above assume `Promo cost` clears itself on `Promo end date`.

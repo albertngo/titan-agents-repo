@@ -348,6 +348,12 @@ def main():
     updates = [a for a in todo if a["op"] == "update"]
     creates = [a for a in todo if a["op"] == "create"]
     deletes = [a for a in todo if a["op"] == "delete"]
+    markers = [a for a in todo if a["op"] == "promo_marker"]
+    unknown = [a for a in todo if a["op"] not in ("update", "create", "delete", "promo_marker")]
+    if unknown:
+        print(f"error: unknown op(s) {sorted({a['op'] for a in unknown})}; nothing was sent.",
+              file=sys.stderr)
+        return 1
     if deletes and not person_approved(approval):
         print(f"error: {len(deletes)} delete action(s) under a policy approval "
               f"({approval.get('approved_by')!r}). A delete is only ever a person's "
@@ -375,6 +381,25 @@ def main():
                            f"Set {', '.join(f'{k}={v}' for k, v in a['fields'].items())}.",
                            approved_by, "executed", raw_ref=a["ls_id"])
             print(f"  update {a['sku']:20} {a['ls_id']}")
+
+        # The promo lane (scripts/promo_sweep.py, Albert 2026-09-26): the name prefix
+        # only, guarded in set_promo_marker(), and confirmed by re-reading.
+        for a in sorted(markers, key=lambda a: a["seq"]):
+            current.update(type="lightspeed_update_product", target=f"{a['sku']} ({a['ls_id']})")
+            f = a["fields"]
+            writer.set_promo_marker(a["ls_id"], f["expect_sku"], f["expect_name"], f["name"])
+            if not args.dry_run:
+                after = writer.read_product(a["ls_id"])
+                if after.get("name") != f["name"] or after.get("sku") != f["expect_sku"]:
+                    raise LightspeedError(
+                        f"promo marker on {a['sku']}: re-read shows name "
+                        f"{after.get('name')!r}, sku {after.get('sku')!r}")
+                log.append(a["id"], "lightspeed_update_product",
+                           f"{a['sku']} ({a['ls_id']})",
+                           f"Promo marker {'on' if a.get('reason') == 'promo_marker_on' else 'off'}: "
+                           f"name {f['expect_name']!r} -> {f['name']!r}; confirmed by re-read.",
+                           approved_by, "executed", raw_ref=a["ls_id"])
+            print(f"  marker {a['sku']:20} {f['name'][:60]}")
 
         for a in sorted(deletes, key=lambda a: a["seq"]):
             current.update(type="lightspeed_delete_product", target=f"{a['sku']} ({a['ls_id']})")

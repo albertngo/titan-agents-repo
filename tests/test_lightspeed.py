@@ -322,6 +322,38 @@ class TestWriter(unittest.TestCase):
                                               "value": "Character"}]}]}
         self.assertEqual(w.family_attribute_values("x")["v1"][0]["value"], "Character")
 
+    def _marker_writer(self, live):
+        w = self.writer()
+        sent = []
+        w._send = lambda m, p, params=None, body=None: (sent.append((m, body)), {})[1]
+        w.read_product = lambda pid: live
+        return w, sent
+
+    NAME = "NAFLAM - Handscraped (Aphrodite) Click | 7.71in - 20.5sf/b"
+
+    def test_promo_marker_sends_the_name_alone_through_common(self):
+        """Verified live 2026-09-26 on LAM-FAWK-0004: only name/variant_name moved."""
+        w, sent = self._marker_writer({"sku": "A-1", "name": self.NAME})
+        w.set_promo_marker("id-1", "A-1", self.NAME, f"(P 2026-09-30) {self.NAME}")
+        self.assertEqual(sent, [("PUT", {"common": {"name": f"(P 2026-09-30) {self.NAME}"}})])
+
+    def test_promo_marker_refuses_anything_but_the_marker(self):
+        w, sent = self._marker_writer({"sku": "A-1", "name": self.NAME})
+        for new in (f"(P 2026-09-30) {self.NAME} X", "Something else", "(P) "):
+            with self.assertRaises(lsc.LightspeedError):
+                w.set_promo_marker("id-1", "A-1", self.NAME, new)
+        self.assertEqual(sent, [])
+
+    def test_promo_marker_refuses_a_product_that_moved_since_the_pull(self):
+        for live in ({"sku": "B-2", "name": self.NAME},
+                     {"sku": "A-1", "name": "renamed by a person"},
+                     {"sku": "A-1", "name": self.NAME, "variant_parent_id": "fam"},
+                     {"sku": "A-1", "name": self.NAME, "has_variants": True}):
+            w, sent = self._marker_writer(live)
+            with self.assertRaises(lsc.LightspeedError):
+                w.set_promo_marker("id-1", "A-1", self.NAME, f"(P) {self.NAME}")
+            self.assertEqual(sent, [])
+
     def test_delete_is_guarded_by_a_live_sku_check(self):
         """Delete exists since 2026-09-24 (Albert), but only for the product meant:
         a UUID whose live sku differs is refused before any request is built."""

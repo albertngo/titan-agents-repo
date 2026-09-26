@@ -144,7 +144,7 @@ Nothing changed about an action needing an id in the approval file before an
 > `methods/pricelist-pipeline-routine-prompt.md`, Routine environment and Still open.
 
 **Only two files can change the POS**: `scripts/lightspeed_write.py` and
-`scripts/lightspeed_push.py`. The read path contains no write verb and a test
+`scripts/lightspeed_push.py` (the promo lane's planner, `promo_sweep.py`, only writes a plan). The read path contains no write verb and a test
 enforces that. Removing a product the supplier's newest list no longer carries is a person's call only
 (Albert, 2026-09-24): **deactivate** is an ordinary update of Lightspeed `is_active` / Airtable `Active` that the
 reconciler never plans, and a guarded **delete** exists that policy can never approve. First use: FAW's old T&G
@@ -239,6 +239,15 @@ sweep runs each row's next skill: `Ready to Upload` (a person answered) → sync
 missed → extract + sync. At most 5 rows a morning; held `Partial` rows, errors and the
 older backlog wait for a person. `/catalog-sync` refuses a list older than one already
 applied for the same company.
+
+**Promos come and go in Lightspeed with the sweep (2026-09-26, Albert).** Every
+`/price-list-sweep` runs a promo lane (`scripts/promo_sweep.py`): from Airtable's
+`Promo cost` / `Promo end date` — kept forever, never cleared — it puts the
+`(P YYYY-MM-DD)` name prefix and the promo cost on a standalone Lightspeed product
+while the promo runs and takes both off the morning after it ends. A verbal extension
+is one Airtable edit (move the end date). Policy approves a morning of ≤50 changes;
+more waits for a person. The report lists promos ended in the last 14 days with their
+`Promo List URL` ("ask the rep"). Variant members get the price only; no `PROMO` tag.
 
 **A periodic no-`notionID` sweep can still exist as a backstop**, not the primary
 path: it would pick up any row where `Airtable Sync` is still `Pending`/`Partial`

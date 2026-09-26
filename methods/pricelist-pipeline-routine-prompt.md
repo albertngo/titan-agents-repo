@@ -329,6 +329,12 @@ only when the flow itself or the stored text needs to change.
 
 ## Changelog
 
+- **2026-09-26 (Albert, in chat), later.** The sweep gained a promo lane
+  (`/price-list-sweep` 3P, `scripts/promo_sweep.py`): Lightspeed's `(P YYYY-MM-DD)`
+  name prefix and promo cost follow Airtable's promo every morning, on and off. New
+  plan op `promo_marker`; policy approves ≤50 actions, more waits for a person. Live
+  check on LAM-FAWK-0004 before the first run.
+
 - **2026-09-26 (Albert, in chat).** New Airtable field `Promo List URL`
   (`fldwRz00XnZgsv0GU`): the list that set a record's promo, beside `Price List URL`
   (the regular list), because one SKU can be updated by both in one month. Written with
