@@ -72,7 +72,8 @@ Airtable. Not counted against the 5-row cap.
    missing from the read looks like "no promo" and would lose its marker. Flatten to
    `{"total_record_count": N, "records": [{id, <field name>: value}]}` at
    `ingest/<today>/airtable-promo-snapshot.json` (gitignored; the plan is the record).
-3. `python3 scripts/promo_sweep.py --airtable ingest/<today>/airtable-promo-snapshot.json`
+3. `python3 scripts/promo_sweep.py --airtable-raw <every saved MCP page>` (or
+   `--airtable ingest/<today>/airtable-promo-snapshot.json` once flattened)
    → `plans/<today>/catalog-plan-promo-sweep.json`. It refuses a partial read.
 4. **`status: ready`** → write `catalog-approval-promo-sweep.json` approving every
    action, `approved_by: "policy: promo lane (2026-09-26)"`; `lightspeed_push.py
@@ -80,12 +81,15 @@ Airtable. Not counted against the 5-row cap.
    nothing, report the counts and push. A person approves it by hand or not at all.
 
 What the lane does, per Airtable record with a promo (active = promo cost set and end
-date blank or on/after today):
+date on/after today):
 
 | Lightspeed | Promo active | Promo over |
 |---|---|---|
 | `supply_price` | the promo cost | back to `Cost/unit` — **only if Lightspeed still holds the promo cost** (any other mismatch is `/catalog-sync`'s) |
-| name | `(P YYYY-MM-DD) ` prefix (`(P) ` with no end date) | prefix removed |
+| name | `(P YYYY-MM-DD) ` prefix | prefix removed |
+
+A promo with **no end date counts as over** (Albert, 2026-09-26: every promo is dated,
+strictly) and is reported `promo_end_missing` — date it in Airtable to turn it on.
 
 Never touched: retail, Airtable, anything but the marker in a name. A variant-family
 member gets its price but no marker (the name is family-wide) — `marker_on_variant`.

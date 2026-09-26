@@ -205,9 +205,9 @@ tells the salesperson the promo is over without anyone having rebuilt the file. 
 what makes the verify-before-quoting rule practical rather than a discipline nobody can
 act on at the counter.
 
-**If `Promo end date` is blank, emit `(P)` alone** — and treat the blank as worth
-flagging, since a promo with no printed expiry is exactly the case where a person most
-needs to ask the supplier.
+**`Promo end date` is never blank (2026-09-26).** Every promo is dated at extraction,
+strictly (bert-airtable-schema, "Every promo has an end date"), so the marker always
+carries a date. An undated promo is not on: no `(P)`, no promo cost — flag it instead.
 
 **The `(P)` goes in the variant value, never in a variant family's shared name.** This
 is the whole reason the marker works, and it is worth being explicit about why:

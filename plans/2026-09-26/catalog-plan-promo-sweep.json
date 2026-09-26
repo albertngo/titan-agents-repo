@@ -1,23 +1,23 @@
 {
   "contract_version": "catalog-plan-1",
   "supplier": "PROMO SWEEP 2026-09-26",
-  "run_at": "2026-09-26T08:18:19-04:00",
+  "run_at": "2026-09-26T08:34:42-04:00",
   "as_of": "2026-09-26",
   "status": "needs_person",
   "cost_basis": "airtable (the promo lane mirrors Airtable's own Cost/unit and Promo cost)",
   "summary": {
     "airtable_records": 8253,
     "with_promo": 398,
-    "active": 307,
+    "active": 251,
     "not_in_lightspeed": 0,
     "inactive_skipped": 5,
-    "actions": 400,
-    "price_on": 162,
+    "actions": 309,
+    "price_on": 126,
     "price_off": 2,
-    "marker_on": 226,
+    "marker_on": 171,
     "marker_off": 10,
     "blocked": 0,
-    "warnings": 185,
+    "warnings": 184,
     "recently_ended": 0,
     "max_changes": 50
   },
@@ -567,230 +567,6 @@
       "seq": 34
     },
     {
-      "id": "promo-c2f9d3cf3065",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "ENG-NRTH-0003",
-      "ls_id": "e443bc82-85ff-491c-977c-ae66bf44dbf5",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 3.69
-      },
-      "before": {
-        "supply_price": 3.99
-      },
-      "reason": "promo_price_on",
-      "seq": 35
-    },
-    {
-      "id": "promo-830d44867fe6",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "ENG-NRTH-0004",
-      "ls_id": "0933780a-e6bb-4e48-9156-a933598b0e33",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 3.69
-      },
-      "before": {
-        "supply_price": 3.99
-      },
-      "reason": "promo_price_on",
-      "seq": 36
-    },
-    {
-      "id": "promo-68b577cc80dc",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "ENG-NRTH-0005",
-      "ls_id": "a0836696-77ac-4e2a-aa62-208b519d6163",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 3.69
-      },
-      "before": {
-        "supply_price": 3.99
-      },
-      "reason": "promo_price_on",
-      "seq": 37
-    },
-    {
-      "id": "promo-8b9eceea27d3",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "ENG-NRTH-0006",
-      "ls_id": "d4d33d8d-a61d-4c90-b2a7-c8b3def40536",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 3.69
-      },
-      "before": {
-        "supply_price": 3.99
-      },
-      "reason": "promo_price_on",
-      "seq": 38
-    },
-    {
-      "id": "promo-abd803acbdb1",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "ENG-NRTH-0007",
-      "ls_id": "916a1951-15a9-4c13-88e8-3dc017e04640",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 3.69
-      },
-      "before": {
-        "supply_price": 3.99
-      },
-      "reason": "promo_price_on",
-      "seq": 39
-    },
-    {
-      "id": "promo-9c078aee0890",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "ENG-NRTH-0008",
-      "ls_id": "dd3bdc4e-33b3-42f9-9f7e-dc9b88df5e54",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 3.69
-      },
-      "before": {
-        "supply_price": 3.99
-      },
-      "reason": "promo_price_on",
-      "seq": 40
-    },
-    {
-      "id": "promo-52b48d09c279",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "ENG-NRTH-0009",
-      "ls_id": "4c8b4956-543f-4e81-838f-2b9bee24bc7d",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 3.69
-      },
-      "before": {
-        "supply_price": 3.99
-      },
-      "reason": "promo_price_on",
-      "seq": 41
-    },
-    {
-      "id": "promo-268d15f3425e",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "ENG-NRTH-0010",
-      "ls_id": "03ee71d6-41ed-4965-bb73-3a7791faff04",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 3.69
-      },
-      "before": {
-        "supply_price": 3.99
-      },
-      "reason": "promo_price_on",
-      "seq": 42
-    },
-    {
-      "id": "promo-6718f0d68055",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "ENG-NRTH-0062",
-      "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8ab75f06bc",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 3.79
-      },
-      "before": {
-        "supply_price": 3.99
-      },
-      "reason": "promo_price_on",
-      "seq": 43
-    },
-    {
-      "id": "promo-e56410953cf6",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "ENG-NRTH-0063",
-      "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8ab77ca95c",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 3.79
-      },
-      "before": {
-        "supply_price": 3.99
-      },
-      "reason": "promo_price_on",
-      "seq": 44
-    },
-    {
-      "id": "promo-f36a77bfde41",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "ENG-NRTH-0064",
-      "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8ab8033764",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 3.79
-      },
-      "before": {
-        "supply_price": 3.99
-      },
-      "reason": "promo_price_on",
-      "seq": 45
-    },
-    {
-      "id": "promo-d314bbaae9c1",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "ENG-NRTH-0071",
-      "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8ab7a7eaf8",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 3.35
-      },
-      "before": {
-        "supply_price": 3.5
-      },
-      "reason": "promo_price_on",
-      "seq": 46
-    },
-    {
-      "id": "promo-e0e6d1082285",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "ENG-NRTH-0072",
-      "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8ab7d33fb4",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 3.35
-      },
-      "before": {
-        "supply_price": 3.5
-      },
-      "reason": "promo_price_on",
-      "seq": 47
-    },
-    {
-      "id": "promo-74b75db570bb",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "ENG-NRTH-0073",
-      "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8ab790a8ae",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 3.35
-      },
-      "before": {
-        "supply_price": 3.5
-      },
-      "reason": "promo_price_on",
-      "seq": 48
-    },
-    {
       "id": "promo-ccc5f792fae2",
       "target_system": "lightspeed",
       "op": "update",
@@ -804,7 +580,7 @@
         "supply_price": 2.79
       },
       "reason": "promo_price_on",
-      "seq": 49
+      "seq": 35
     },
     {
       "id": "promo-121685162413",
@@ -820,7 +596,7 @@
         "supply_price": 4.09
       },
       "reason": "promo_price_on",
-      "seq": 50
+      "seq": 36
     },
     {
       "id": "promo-63c826f78747",
@@ -836,7 +612,7 @@
         "supply_price": 2.79
       },
       "reason": "promo_price_on",
-      "seq": 51
+      "seq": 37
     },
     {
       "id": "promo-9f3d3aef32ea",
@@ -852,7 +628,7 @@
         "supply_price": 2.79
       },
       "reason": "promo_price_on",
-      "seq": 52
+      "seq": 38
     },
     {
       "id": "promo-b41dc479d19d",
@@ -868,7 +644,7 @@
         "supply_price": 3.09
       },
       "reason": "promo_price_on",
-      "seq": 53
+      "seq": 39
     },
     {
       "id": "promo-6a8405b01d3e",
@@ -884,7 +660,7 @@
         "supply_price": 3.09
       },
       "reason": "promo_price_on",
-      "seq": 54
+      "seq": 40
     },
     {
       "id": "promo-679d2a073204",
@@ -900,7 +676,7 @@
         "supply_price": 3.09
       },
       "reason": "promo_price_on",
-      "seq": 55
+      "seq": 41
     },
     {
       "id": "promo-d47e51c8e2f9",
@@ -916,7 +692,7 @@
         "supply_price": 3.59
       },
       "reason": "promo_price_on",
-      "seq": 56
+      "seq": 42
     },
     {
       "id": "promo-2179a648db5a",
@@ -932,7 +708,7 @@
         "supply_price": 3.59
       },
       "reason": "promo_price_on",
-      "seq": 57
+      "seq": 43
     },
     {
       "id": "promo-ad738e68e007",
@@ -948,7 +724,7 @@
         "supply_price": 3.59
       },
       "reason": "promo_price_off",
-      "seq": 58
+      "seq": 44
     },
     {
       "id": "promo-ce798209d9c6",
@@ -964,7 +740,7 @@
         "supply_price": 3.59
       },
       "reason": "promo_price_off",
-      "seq": 59
+      "seq": 45
     },
     {
       "id": "promo-f4f07dcfe48f",
@@ -980,7 +756,7 @@
         "supply_price": 3.59
       },
       "reason": "promo_price_on",
-      "seq": 60
+      "seq": 46
     },
     {
       "id": "promo-5d70cebb5baa",
@@ -996,7 +772,7 @@
         "supply_price": 3.59
       },
       "reason": "promo_price_on",
-      "seq": 61
+      "seq": 47
     },
     {
       "id": "promo-5f84d9865d9d",
@@ -1012,7 +788,7 @@
         "supply_price": 3.59
       },
       "reason": "promo_price_on",
-      "seq": 62
+      "seq": 48
     },
     {
       "id": "promo-43bd5d3a462d",
@@ -1028,7 +804,7 @@
         "supply_price": 3.59
       },
       "reason": "promo_price_on",
-      "seq": 63
+      "seq": 49
     },
     {
       "id": "promo-5a69b69aa855",
@@ -1044,7 +820,7 @@
         "supply_price": 3.59
       },
       "reason": "promo_price_on",
-      "seq": 64
+      "seq": 50
     },
     {
       "id": "promo-1880077a4f7e",
@@ -1060,7 +836,7 @@
         "supply_price": 3.59
       },
       "reason": "promo_price_on",
-      "seq": 65
+      "seq": 51
     },
     {
       "id": "promo-a2ff3d49e492",
@@ -1076,7 +852,7 @@
         "supply_price": 2.89
       },
       "reason": "promo_price_on",
-      "seq": 66
+      "seq": 52
     },
     {
       "id": "promo-e0aa342bd632",
@@ -1092,7 +868,7 @@
         "supply_price": 3.29
       },
       "reason": "promo_price_on",
-      "seq": 67
+      "seq": 53
     },
     {
       "id": "promo-91256f6c3cdb",
@@ -1108,7 +884,7 @@
         "supply_price": 3.09
       },
       "reason": "promo_price_on",
-      "seq": 68
+      "seq": 54
     },
     {
       "id": "promo-31cea123ea40",
@@ -1124,7 +900,7 @@
         "supply_price": 3.09
       },
       "reason": "promo_price_on",
-      "seq": 69
+      "seq": 55
     },
     {
       "id": "promo-0668a416a669",
@@ -1140,7 +916,7 @@
         "supply_price": 3.69
       },
       "reason": "promo_price_on",
-      "seq": 70
+      "seq": 56
     },
     {
       "id": "promo-7f2d941a6177",
@@ -1156,7 +932,7 @@
         "supply_price": 4.29
       },
       "reason": "promo_price_on",
-      "seq": 71
+      "seq": 57
     },
     {
       "id": "promo-cd147d875354",
@@ -1172,7 +948,7 @@
         "supply_price": 5.09
       },
       "reason": "promo_price_on",
-      "seq": 72
+      "seq": 58
     },
     {
       "id": "promo-bb5105336191",
@@ -1188,7 +964,7 @@
         "supply_price": 4.29
       },
       "reason": "promo_price_on",
-      "seq": 73
+      "seq": 59
     },
     {
       "id": "promo-90402859d085",
@@ -1204,7 +980,7 @@
         "supply_price": 3.49
       },
       "reason": "promo_price_on",
-      "seq": 74
+      "seq": 60
     },
     {
       "id": "promo-c6e482aedafb",
@@ -1220,7 +996,7 @@
         "supply_price": 3.49
       },
       "reason": "promo_price_on",
-      "seq": 75
+      "seq": 61
     },
     {
       "id": "promo-09732bccb348",
@@ -1236,7 +1012,7 @@
         "supply_price": 4.29
       },
       "reason": "promo_price_on",
-      "seq": 76
+      "seq": 62
     },
     {
       "id": "promo-8a09e338978a",
@@ -1252,7 +1028,7 @@
         "supply_price": 4.29
       },
       "reason": "promo_price_on",
-      "seq": 77
+      "seq": 63
     },
     {
       "id": "promo-cf5bdcc54e69",
@@ -1268,7 +1044,7 @@
         "supply_price": 4.29
       },
       "reason": "promo_price_on",
-      "seq": 78
+      "seq": 64
     },
     {
       "id": "promo-4e7bc435e857",
@@ -1284,7 +1060,7 @@
         "supply_price": 4.29
       },
       "reason": "promo_price_on",
-      "seq": 79
+      "seq": 65
     },
     {
       "id": "promo-008949e36222",
@@ -1300,7 +1076,7 @@
         "supply_price": 4.29
       },
       "reason": "promo_price_on",
-      "seq": 80
+      "seq": 66
     },
     {
       "id": "promo-ebc8d0b340ce",
@@ -1316,7 +1092,7 @@
         "supply_price": 3.79
       },
       "reason": "promo_price_on",
-      "seq": 81
+      "seq": 67
     },
     {
       "id": "promo-b23ac3778002",
@@ -1332,7 +1108,7 @@
         "supply_price": 3.49
       },
       "reason": "promo_price_on",
-      "seq": 82
+      "seq": 68
     },
     {
       "id": "promo-05b1ff63ac8f",
@@ -1348,7 +1124,7 @@
         "supply_price": 3.49
       },
       "reason": "promo_price_on",
-      "seq": 83
+      "seq": 69
     },
     {
       "id": "promo-a6325f088ebf",
@@ -1364,7 +1140,7 @@
         "supply_price": 3.09
       },
       "reason": "promo_price_on",
-      "seq": 84
+      "seq": 70
     },
     {
       "id": "promo-d059f0e464f4",
@@ -1380,7 +1156,7 @@
         "supply_price": 3.49
       },
       "reason": "promo_price_on",
-      "seq": 85
+      "seq": 71
     },
     {
       "id": "promo-794c8668ee46",
@@ -1396,7 +1172,7 @@
         "supply_price": 3.29
       },
       "reason": "promo_price_on",
-      "seq": 86
+      "seq": 72
     },
     {
       "id": "promo-b68e773e8168",
@@ -1412,7 +1188,7 @@
         "supply_price": 4.19
       },
       "reason": "promo_price_on",
-      "seq": 87
+      "seq": 73
     },
     {
       "id": "promo-d6b1c81b5456",
@@ -1428,7 +1204,7 @@
         "supply_price": 4.49
       },
       "reason": "promo_price_on",
-      "seq": 88
+      "seq": 74
     },
     {
       "id": "promo-88c0d1d1c035",
@@ -1444,7 +1220,7 @@
         "supply_price": 5.99
       },
       "reason": "promo_price_on",
-      "seq": 89
+      "seq": 75
     },
     {
       "id": "promo-5ce3f84ad0e9",
@@ -1460,7 +1236,7 @@
         "supply_price": 4.49
       },
       "reason": "promo_price_on",
-      "seq": 90
+      "seq": 76
     },
     {
       "id": "promo-d33b0a3472b8",
@@ -1476,7 +1252,7 @@
         "supply_price": 3.29
       },
       "reason": "promo_price_on",
-      "seq": 91
+      "seq": 77
     },
     {
       "id": "promo-1e3f38a2aab9",
@@ -1492,7 +1268,7 @@
         "supply_price": 3.29
       },
       "reason": "promo_price_on",
-      "seq": 92
+      "seq": 78
     },
     {
       "id": "promo-48f94e5de50b",
@@ -1508,7 +1284,7 @@
         "supply_price": 3.29
       },
       "reason": "promo_price_on",
-      "seq": 93
+      "seq": 79
     },
     {
       "id": "promo-61392036eaaf",
@@ -1524,7 +1300,7 @@
         "supply_price": 3.29
       },
       "reason": "promo_price_on",
-      "seq": 94
+      "seq": 80
     },
     {
       "id": "promo-d255a778d180",
@@ -1540,7 +1316,7 @@
         "supply_price": 3.29
       },
       "reason": "promo_price_on",
-      "seq": 95
+      "seq": 81
     },
     {
       "id": "promo-5b7454add870",
@@ -1556,7 +1332,7 @@
         "supply_price": 3.29
       },
       "reason": "promo_price_on",
-      "seq": 96
+      "seq": 82
     },
     {
       "id": "promo-d6f35d2983d2",
@@ -1572,7 +1348,7 @@
         "supply_price": 3.49
       },
       "reason": "promo_price_on",
-      "seq": 97
+      "seq": 83
     },
     {
       "id": "promo-900001839df7",
@@ -1588,7 +1364,7 @@
         "supply_price": 3.49
       },
       "reason": "promo_price_on",
-      "seq": 98
+      "seq": 84
     },
     {
       "id": "promo-0b1f10b05afa",
@@ -1604,7 +1380,7 @@
         "supply_price": 2.99
       },
       "reason": "promo_price_on",
-      "seq": 99
+      "seq": 85
     },
     {
       "id": "promo-69fb7e004619",
@@ -1620,7 +1396,7 @@
         "supply_price": 2.99
       },
       "reason": "promo_price_on",
-      "seq": 100
+      "seq": 86
     },
     {
       "id": "promo-5e885f6ad74a",
@@ -1636,7 +1412,7 @@
         "supply_price": 2.99
       },
       "reason": "promo_price_on",
-      "seq": 101
+      "seq": 87
     },
     {
       "id": "promo-944e0125b52d",
@@ -1652,7 +1428,7 @@
         "supply_price": 2.99
       },
       "reason": "promo_price_on",
-      "seq": 102
+      "seq": 88
     },
     {
       "id": "promo-a41b16fb458d",
@@ -1668,7 +1444,7 @@
         "supply_price": 3.59
       },
       "reason": "promo_price_on",
-      "seq": 103
+      "seq": 89
     },
     {
       "id": "promo-8b245f7b2b64",
@@ -1684,7 +1460,7 @@
         "supply_price": 3.59
       },
       "reason": "promo_price_on",
-      "seq": 104
+      "seq": 90
     },
     {
       "id": "promo-19fab3b95610",
@@ -1700,7 +1476,7 @@
         "supply_price": 5.49
       },
       "reason": "promo_price_on",
-      "seq": 105
+      "seq": 91
     },
     {
       "id": "promo-40cdeb7e8a3d",
@@ -1716,7 +1492,7 @@
         "supply_price": 5.49
       },
       "reason": "promo_price_on",
-      "seq": 106
+      "seq": 92
     },
     {
       "id": "promo-fc6358e06517",
@@ -1732,7 +1508,7 @@
         "supply_price": 5.49
       },
       "reason": "promo_price_on",
-      "seq": 107
+      "seq": 93
     },
     {
       "id": "promo-5fcb5320cadf",
@@ -1748,7 +1524,7 @@
         "supply_price": 5.49
       },
       "reason": "promo_price_on",
-      "seq": 108
+      "seq": 94
     },
     {
       "id": "promo-0b66fc39b80c",
@@ -1764,7 +1540,7 @@
         "supply_price": 4.99
       },
       "reason": "promo_price_on",
-      "seq": 109
+      "seq": 95
     },
     {
       "id": "promo-fb38ecdfc869",
@@ -1780,7 +1556,7 @@
         "supply_price": 2.39
       },
       "reason": "promo_price_on",
-      "seq": 110
+      "seq": 96
     },
     {
       "id": "promo-9ac1880ddda3",
@@ -1796,7 +1572,7 @@
         "supply_price": 2.39
       },
       "reason": "promo_price_on",
-      "seq": 111
+      "seq": 97
     },
     {
       "id": "promo-4a37b9463369",
@@ -1812,7 +1588,7 @@
         "supply_price": 2.39
       },
       "reason": "promo_price_on",
-      "seq": 112
+      "seq": 98
     },
     {
       "id": "promo-80eeae30cd1e",
@@ -1828,7 +1604,7 @@
         "supply_price": 2.39
       },
       "reason": "promo_price_on",
-      "seq": 113
+      "seq": 99
     },
     {
       "id": "promo-14341d887d77",
@@ -1844,7 +1620,7 @@
         "supply_price": 2.39
       },
       "reason": "promo_price_on",
-      "seq": 114
+      "seq": 100
     },
     {
       "id": "promo-b6f23961a4b6",
@@ -1860,7 +1636,7 @@
         "supply_price": 2.39
       },
       "reason": "promo_price_on",
-      "seq": 115
+      "seq": 101
     },
     {
       "id": "promo-72d7159575c6",
@@ -1876,7 +1652,7 @@
         "supply_price": 2.39
       },
       "reason": "promo_price_on",
-      "seq": 116
+      "seq": 102
     },
     {
       "id": "promo-2a322149c06d",
@@ -1892,7 +1668,7 @@
         "supply_price": 2.79
       },
       "reason": "promo_price_on",
-      "seq": 117
+      "seq": 103
     },
     {
       "id": "promo-abc13c61e5d1",
@@ -1908,7 +1684,7 @@
         "supply_price": 1.79
       },
       "reason": "promo_price_on",
-      "seq": 118
+      "seq": 104
     },
     {
       "id": "promo-075e11381509",
@@ -1924,7 +1700,7 @@
         "supply_price": 1.79
       },
       "reason": "promo_price_on",
-      "seq": 119
+      "seq": 105
     },
     {
       "id": "promo-2340cf77227b",
@@ -1940,7 +1716,7 @@
         "supply_price": 1.79
       },
       "reason": "promo_price_on",
-      "seq": 120
+      "seq": 106
     },
     {
       "id": "promo-b0fe40d2e0a0",
@@ -1956,7 +1732,7 @@
         "supply_price": 1.79
       },
       "reason": "promo_price_on",
-      "seq": 121
+      "seq": 107
     },
     {
       "id": "promo-e28e2a66690e",
@@ -1972,7 +1748,7 @@
         "supply_price": 1.79
       },
       "reason": "promo_price_on",
-      "seq": 122
+      "seq": 108
     },
     {
       "id": "promo-3419965b6ed3",
@@ -1988,7 +1764,7 @@
         "supply_price": 1.79
       },
       "reason": "promo_price_on",
-      "seq": 123
+      "seq": 109
     },
     {
       "id": "promo-e1013b694b58",
@@ -2004,23 +1780,7 @@
         "supply_price": 1.79
       },
       "reason": "promo_price_on",
-      "seq": 124
-    },
-    {
-      "id": "promo-c944ea233926",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LAM-EVGR-2020",
-      "ls_id": "6f2b19ba-fa05-4151-b9aa-fcdb9c6e14e1",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 1.69
-      },
-      "before": {
-        "supply_price": 1.79
-      },
-      "reason": "promo_price_on",
-      "seq": 125
+      "seq": 110
     },
     {
       "id": "promo-a06187cf1f6c",
@@ -2036,7 +1796,7 @@
         "supply_price": 3.49
       },
       "reason": "promo_price_on",
-      "seq": 126
+      "seq": 111
     },
     {
       "id": "promo-75b4e28d5001",
@@ -2052,7 +1812,7 @@
         "supply_price": 3.49
       },
       "reason": "promo_price_on",
-      "seq": 127
+      "seq": 112
     },
     {
       "id": "promo-5243fcff6eb2",
@@ -2068,7 +1828,7 @@
         "supply_price": 3.49
       },
       "reason": "promo_price_on",
-      "seq": 128
+      "seq": 113
     },
     {
       "id": "promo-d90a1ca1511b",
@@ -2084,7 +1844,7 @@
         "supply_price": 3.49
       },
       "reason": "promo_price_on",
-      "seq": 129
+      "seq": 114
     },
     {
       "id": "promo-04cdb47c96f3",
@@ -2100,7 +1860,7 @@
         "supply_price": 3.49
       },
       "reason": "promo_price_on",
-      "seq": 130
+      "seq": 115
     },
     {
       "id": "promo-68bc708e97fb",
@@ -2116,7 +1876,7 @@
         "supply_price": 3.49
       },
       "reason": "promo_price_on",
-      "seq": 131
+      "seq": 116
     },
     {
       "id": "promo-26caf06f7103",
@@ -2132,7 +1892,7 @@
         "supply_price": 3.49
       },
       "reason": "promo_price_on",
-      "seq": 132
+      "seq": 117
     },
     {
       "id": "promo-e78427c696d2",
@@ -2148,7 +1908,7 @@
         "supply_price": 3.49
       },
       "reason": "promo_price_on",
-      "seq": 133
+      "seq": 118
     },
     {
       "id": "promo-6dd29a7250d6",
@@ -2164,7 +1924,7 @@
         "supply_price": 2.49
       },
       "reason": "promo_price_on",
-      "seq": 134
+      "seq": 119
     },
     {
       "id": "promo-ff6261dc2250",
@@ -2180,7 +1940,7 @@
         "supply_price": 2.49
       },
       "reason": "promo_price_on",
-      "seq": 135
+      "seq": 120
     },
     {
       "id": "promo-8193260a5997",
@@ -2196,7 +1956,7 @@
         "supply_price": 2.49
       },
       "reason": "promo_price_on",
-      "seq": 136
+      "seq": 121
     },
     {
       "id": "promo-d37edfa45b0d",
@@ -2212,7 +1972,7 @@
         "supply_price": 2.49
       },
       "reason": "promo_price_on",
-      "seq": 137
+      "seq": 122
     },
     {
       "id": "promo-c569ce5b20d6",
@@ -2228,7 +1988,7 @@
         "supply_price": 2.49
       },
       "reason": "promo_price_on",
-      "seq": 138
+      "seq": 123
     },
     {
       "id": "promo-f3a4a5d5de22",
@@ -2244,7 +2004,7 @@
         "supply_price": 2.49
       },
       "reason": "promo_price_on",
-      "seq": 139
+      "seq": 124
     },
     {
       "id": "promo-dd1357fee214",
@@ -2260,7 +2020,7 @@
         "supply_price": 2.49
       },
       "reason": "promo_price_on",
-      "seq": 140
+      "seq": 125
     },
     {
       "id": "promo-61a20fa4af91",
@@ -2276,7 +2036,7 @@
         "supply_price": 2.49
       },
       "reason": "promo_price_on",
-      "seq": 141
+      "seq": 126
     },
     {
       "id": "promo-d2813cda7c9f",
@@ -2292,7 +2052,7 @@
         "supply_price": 2.49
       },
       "reason": "promo_price_on",
-      "seq": 142
+      "seq": 127
     },
     {
       "id": "promo-2abe774521fa",
@@ -2308,343 +2068,7 @@
         "supply_price": 2.49
       },
       "reason": "promo_price_on",
-      "seq": 143
-    },
-    {
-      "id": "promo-96f0b0c00b21",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-NRTH-0001",
-      "ls_id": "419fb0b9-9b9f-4226-89f9-23b70e920e65",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 1.75
-      },
-      "before": {
-        "supply_price": 1.99
-      },
-      "reason": "promo_price_on",
-      "seq": 144
-    },
-    {
-      "id": "promo-c13fa9154f99",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-NRTH-0002",
-      "ls_id": "be334b9e-cef0-4171-b25d-57be7e849609",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 1.75
-      },
-      "before": {
-        "supply_price": 1.99
-      },
-      "reason": "promo_price_on",
-      "seq": 145
-    },
-    {
-      "id": "promo-8878aa0328dd",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-NRTH-0003",
-      "ls_id": "67ac7ebc-a547-427f-ae65-8f8720fad3d9",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 1.75
-      },
-      "before": {
-        "supply_price": 1.99
-      },
-      "reason": "promo_price_on",
-      "seq": 146
-    },
-    {
-      "id": "promo-d243807c9bbb",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-NRTH-0004",
-      "ls_id": "3f3ae5ff-b28c-47ca-8f24-88e59567e0fa",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 1.75
-      },
-      "before": {
-        "supply_price": 1.99
-      },
-      "reason": "promo_price_on",
-      "seq": 147
-    },
-    {
-      "id": "promo-560de7fe07f0",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-NRTH-0005",
-      "ls_id": "b808cf93-2f53-41ef-a3cf-5c95063293c6",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 1.75
-      },
-      "before": {
-        "supply_price": 1.99
-      },
-      "reason": "promo_price_on",
-      "seq": 148
-    },
-    {
-      "id": "promo-b874c12a891f",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-NRTH-0006",
-      "ls_id": "a092f0de-9296-42d1-9955-68150910a615",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 1.75
-      },
-      "before": {
-        "supply_price": 1.99
-      },
-      "reason": "promo_price_on",
-      "seq": 149
-    },
-    {
-      "id": "promo-32318a295d89",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-NRTH-0007",
-      "ls_id": "a2eb1e52-2e9e-4fc8-a4de-b2af0801814b",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 1.75
-      },
-      "before": {
-        "supply_price": 1.99
-      },
-      "reason": "promo_price_on",
-      "seq": 150
-    },
-    {
-      "id": "promo-bfe6f031ebba",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-NRTH-0008",
-      "ls_id": "d9a295e2-cdf3-4849-bab8-03f1b183fc84",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 1.75
-      },
-      "before": {
-        "supply_price": 1.99
-      },
-      "reason": "promo_price_on",
-      "seq": 151
-    },
-    {
-      "id": "promo-39648b44f9d8",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-NRTH-0018",
-      "ls_id": "eb3ff2c4-a7cc-4685-a031-d27cee25a52c",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 2.25
-      },
-      "before": {
-        "supply_price": 2.49
-      },
-      "reason": "promo_price_on",
-      "seq": 152
-    },
-    {
-      "id": "promo-f890785b453d",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-NRTH-0019",
-      "ls_id": "33208340-1788-445a-92cb-5bac413e55c4",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 2.25
-      },
-      "before": {
-        "supply_price": 2.49
-      },
-      "reason": "promo_price_on",
-      "seq": 153
-    },
-    {
-      "id": "promo-650cb2115809",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-NRTH-0020",
-      "ls_id": "51416dd5-c67d-4202-accb-699c02105d06",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 2.25
-      },
-      "before": {
-        "supply_price": 2.49
-      },
-      "reason": "promo_price_on",
-      "seq": 154
-    },
-    {
-      "id": "promo-ca185384141d",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-NRTH-0021",
-      "ls_id": "8be5ab3b-a3e5-4cd1-9dae-979f9194c6b0",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 2.25
-      },
-      "before": {
-        "supply_price": 2.49
-      },
-      "reason": "promo_price_on",
-      "seq": 155
-    },
-    {
-      "id": "promo-46575ad3b320",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-NRTH-0022",
-      "ls_id": "b2b4be1a-6100-40c2-bcce-1babb95d3e39",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 2.25
-      },
-      "before": {
-        "supply_price": 2.49
-      },
-      "reason": "promo_price_on",
-      "seq": 156
-    },
-    {
-      "id": "promo-853597591570",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-NRTH-0023",
-      "ls_id": "b8ac0046-a6e0-442d-89ff-55b3257788d1",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 2.25
-      },
-      "before": {
-        "supply_price": 2.49
-      },
-      "reason": "promo_price_on",
-      "seq": 157
-    },
-    {
-      "id": "promo-bbaf6094286b",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-NRTH-0024",
-      "ls_id": "1d55911a-2941-494e-8c78-a880e7022d84",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 2.25
-      },
-      "before": {
-        "supply_price": 2.49
-      },
-      "reason": "promo_price_on",
-      "seq": 158
-    },
-    {
-      "id": "promo-af76a2d4e2b1",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-NRTH-0025",
-      "ls_id": "4dd9e09e-d125-434f-9bc1-d161c35f7d4d",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 2.25
-      },
-      "before": {
-        "supply_price": 2.49
-      },
-      "reason": "promo_price_on",
-      "seq": 159
-    },
-    {
-      "id": "promo-2df1bfa14b23",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-PLUX-0032",
-      "ls_id": "19807558-191b-41f8-9502-59ee535e1660",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 1.99
-      },
-      "before": {
-        "supply_price": 2.99
-      },
-      "reason": "promo_price_on",
-      "seq": 160
-    },
-    {
-      "id": "promo-780d5536f3c6",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-PLUX-0033",
-      "ls_id": "cbd58bb5-0d0f-4f6d-ac8a-8f30c376bf15",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 1.99
-      },
-      "before": {
-        "supply_price": 2.99
-      },
-      "reason": "promo_price_on",
-      "seq": 161
-    },
-    {
-      "id": "promo-3d10b42b31ab",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-PLUX-0034",
-      "ls_id": "72794686-5e27-4438-95df-2343121b46f8",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 1.99
-      },
-      "before": {
-        "supply_price": 2.99
-      },
-      "reason": "promo_price_on",
-      "seq": 162
-    },
-    {
-      "id": "promo-a451661f1c91",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-PLUX-0035",
-      "ls_id": "940ad5d6-0ac8-4b7a-b30e-4acbc591d41a",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 1.99
-      },
-      "before": {
-        "supply_price": 2.99
-      },
-      "reason": "promo_price_on",
-      "seq": 163
-    },
-    {
-      "id": "promo-0b257bde99ba",
-      "target_system": "lightspeed",
-      "op": "update",
-      "sku": "LVP-PLUX-0036",
-      "ls_id": "7883401b-8d41-4cf1-9cda-8396b20defd8",
-      "airtable_rec_id": null,
-      "fields": {
-        "supply_price": 1.99
-      },
-      "before": {
-        "supply_price": 2.99
-      },
-      "reason": "promo_price_on",
-      "seq": 164
+      "seq": 128
     },
     {
       "id": "promo-846310a6edd1",
@@ -2662,7 +2086,7 @@
         "name": "CANSENG - Origins Oak (Arlington) T&G | 6.5\" x 19.05mm x RL - 4mm top - 20.25sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 165
+      "seq": 129
     },
     {
       "id": "promo-3d3fe1cc9574",
@@ -2680,7 +2104,7 @@
         "name": "CANSENG - Origins Oak (Mckinney) T&G | 6.5\" x 19.05mm x RL - 4mm top - 20.25sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 166
+      "seq": 130
     },
     {
       "id": "promo-78bac318d721",
@@ -2698,7 +2122,7 @@
         "name": "CANSENG - Origins Oak (Nashville) T&G | 6.5\" x 19.05mm x RL - 4mm top - 20.25sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 167
+      "seq": 131
     },
     {
       "id": "promo-5688d0fd355e",
@@ -2716,7 +2140,7 @@
         "name": "CANSENG - Origins Oak (Quincy) T&G | 6.5\" x 19.05mm x RL - 4mm top - 20.25sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 168
+      "seq": 132
     },
     {
       "id": "promo-31468d553c5c",
@@ -2734,7 +2158,7 @@
         "name": "CANSENG - Origins Oak (Wrenwood) T&G | 6.5\" x 19.05mm x RL - 4mm top - 20.25sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 169
+      "seq": 133
     },
     {
       "id": "promo-ced2f1b54d04",
@@ -2752,7 +2176,7 @@
         "name": "CANSENG - LUCID 6\" Engineered Planks American Oak (Calm) | 6.5\" x 19.05mm x RL - 20.25sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 170
+      "seq": 134
     },
     {
       "id": "promo-04ef2485de49",
@@ -2770,7 +2194,7 @@
         "name": "CANSENG - LUCID 6\" Engineered Planks American Oak (Enhance) | 6.5\" x 19.05mm x RL - 20.25sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 171
+      "seq": 135
     },
     {
       "id": "promo-6467e3bd9545",
@@ -2788,7 +2212,7 @@
         "name": "CANSENG - LUCID 6\" Engineered Planks American Oak (Senses) | 6.5\" x 19.05mm x RL - 20.25sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 172
+      "seq": 136
     },
     {
       "id": "promo-798060441448",
@@ -2806,7 +2230,7 @@
         "name": "CANSENG - LUCID 6\" Engineered Herringbone American Oak (Soothe) | 5\" x 19.05mm x RL - 20.03sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 173
+      "seq": 137
     },
     {
       "id": "promo-927ed549ba01",
@@ -2824,7 +2248,7 @@
         "name": "CANSENG - LUCID 6\" Engineered Herringbone American Oak (Tranquil) | 5\" x 19.05mm x RL - 20.03sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 174
+      "seq": 138
     },
     {
       "id": "promo-7cd572e51d4b",
@@ -2842,7 +2266,7 @@
         "name": "CANSENG - LUCID 7\" Engineered Planks American Oak (Bare) | 7.5\" x 19.05mm x RL - 23.32sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 175
+      "seq": 139
     },
     {
       "id": "promo-9a6a5f34a9d0",
@@ -2860,7 +2284,7 @@
         "name": "CANSENG - LUCID 7\" Engineered Planks American Oak (Essence) | 7.5\" x 19.05mm x RL - 23.32sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 176
+      "seq": 140
     },
     {
       "id": "promo-8b80a9c269e4",
@@ -2878,7 +2302,7 @@
         "name": "CANSENG - LUCID 7\" Engineered Planks American Oak (Nature) | 7.5\" x 19.05mm x RL - 23.32sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 177
+      "seq": 141
     },
     {
       "id": "promo-53a668f58694",
@@ -2896,7 +2320,7 @@
         "name": "CANSENG - LUCID 7\" Engineered Herringbone American Oak (Pristine) | 6\" x 19.05mm x RL - 17.87sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 178
+      "seq": 142
     },
     {
       "id": "promo-89ca88af9fc8",
@@ -2914,7 +2338,7 @@
         "name": "CANSENG - LUCID 7\" Engineered Herringbone American Oak (Pure) | 6\" x 19.05mm x RL - 17.87sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 179
+      "seq": 143
     },
     {
       "id": "promo-82a93f75ca15",
@@ -2932,7 +2356,7 @@
         "name": "CANSENG - Origins European Oak (Planetary Silver) T&G | 6.5\" x 19.05mm x RL - 19.40sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 180
+      "seq": 144
     },
     {
       "id": "promo-24928b42a75d",
@@ -2950,7 +2374,7 @@
         "name": "CANSENG - Origins European Oak (Subtle White) T&G | 6.5\" x 19.05mm x RL - 19.40sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 181
+      "seq": 145
     },
     {
       "id": "promo-2f30de176041",
@@ -2968,7 +2392,7 @@
         "name": "CANSENG - Origins American Hickory (Forest Trail) T&G | 6.5\" x 19.05mm x RL - 19.40sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 182
+      "seq": 146
     },
     {
       "id": "promo-ecd9cc890186",
@@ -2986,7 +2410,7 @@
         "name": "CANSENG - Origins American Hickory (Greysmith) T&G | 6.5\" x 19.05mm x RL - 19.40sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 183
+      "seq": 147
     },
     {
       "id": "promo-8c900ddce6f0",
@@ -3004,7 +2428,7 @@
         "name": "CANSENG - Origins American Hickory (Nottingham) T&G | 6.5\" x 19.05mm x RL - 19.40sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 184
+      "seq": 148
     },
     {
       "id": "promo-6b4b103a5afd",
@@ -3022,7 +2446,7 @@
         "name": "CANSENG - Origins American Hickory (Warm Heritage) T&G | 6.5\" x 19.05mm x RL - 19.40sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 185
+      "seq": 149
     },
     {
       "id": "promo-5a6e32d37ff9",
@@ -3040,7 +2464,7 @@
         "name": "CANSENG - Engineered Click Hickory (Morro Bay) | 6.5\" x 12.7mm x RL - 25.58sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 186
+      "seq": 150
     },
     {
       "id": "promo-acf8ad8c4818",
@@ -3058,7 +2482,7 @@
         "name": "CANSENG - Engineered Click Hickory (Ventura) | 6.5\" x 12.7mm x RL - 25.58sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 187
+      "seq": 151
     },
     {
       "id": "promo-26f47f6c2e0b",
@@ -3076,7 +2500,7 @@
         "name": "CANSENG - Engineered Click Hickory (Great Sur) | 6.5\" x 12.7mm x RL - 25.58sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 188
+      "seq": 152
     },
     {
       "id": "promo-0e88ec6c2496",
@@ -3094,7 +2518,7 @@
         "name": "CANSENG - Engineered Click Hickory (Summerland) | 6.5\" x 12.7mm x RL - 25.58sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 189
+      "seq": 153
     },
     {
       "id": "promo-ceeb77af8797",
@@ -3112,7 +2536,7 @@
         "name": "CANSENG - Engineered Click Hickory (Baywood) | 6.5\" x 12.7mm x RL - 25.58sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 190
+      "seq": 154
     },
     {
       "id": "promo-e6da2aee0fd8",
@@ -3130,7 +2554,7 @@
         "name": "CANSENG - Engineered Click Hickory (Sausalito) | 6.5\" x 12.7mm x RL - 25.58sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 191
+      "seq": 155
     },
     {
       "id": "promo-e63a6099b214",
@@ -3148,7 +2572,7 @@
         "name": "CANSENG - Engineered Click Oak (Moss Landing) | 6.5\" x 12.7mm x RL - 25.58sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 192
+      "seq": 156
     },
     {
       "id": "promo-b01fda6ca6ca",
@@ -3166,7 +2590,7 @@
         "name": "CANSENG - Engineered Click Oak (Monterey) | 6.5\" x 12.7mm x RL - 25.58sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 193
+      "seq": 157
     },
     {
       "id": "promo-4e7ad992eb40",
@@ -3184,7 +2608,7 @@
         "name": "CANSENG - Engineered Click Oak (Santa Maria) | 6.5\" x 12.7mm x RL - 25.58sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 194
+      "seq": 158
     },
     {
       "id": "promo-199ef6ed390f",
@@ -3202,7 +2626,7 @@
         "name": "CANSENG - Engineered Click Oak (Napa Valley) | 6.5\" x 12.7mm x RL - 25.58sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 195
+      "seq": 159
     },
     {
       "id": "promo-ee98f1005249",
@@ -3220,7 +2644,7 @@
         "name": "NAFENG - Hickory Engineered (Millstone) T&G | 6.5\" x 18mm x RL - 19.18sf/b - Distressed"
       },
       "reason": "promo_marker_on",
-      "seq": 196
+      "seq": 160
     },
     {
       "id": "promo-5f1efaa38898",
@@ -3238,7 +2662,7 @@
         "name": "NAFENG - Hickory Engineered (Aged Barrel) T&G | 7.5\" x 18mm x RL - 2mm top - 23.31sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 197
+      "seq": 161
     },
     {
       "id": "promo-8250f22355aa",
@@ -3256,7 +2680,7 @@
         "name": "NAFENG - Hickory Engineered (Earl Grey) T&G | 7.5\" x 18mm x RL - 2mm top - 23.31sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 198
+      "seq": 162
     },
     {
       "id": "promo-229ea6c1f8df",
@@ -3274,7 +2698,7 @@
         "name": "NAFENG - Hickory Engineered (Macadamia) T&G | 7.5\" x 18mm x RL - 2mm top - 23.31sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 199
+      "seq": 163
     },
     {
       "id": "promo-84297248d2a3",
@@ -3292,7 +2716,7 @@
         "name": "NAFENG - Hickory Engineered (Modern Pewter) T&G | 7.5\" x 18mm x RL - 2mm top - 23.31sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 200
+      "seq": 164
     },
     {
       "id": "promo-251d0e44adb9",
@@ -3310,7 +2734,7 @@
         "name": "NAFENG - Hickory Engineered (Saddle Brown) T&G | 7.5\" x 18mm x RL - 2mm top - 23.31sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 201
+      "seq": 165
     },
     {
       "id": "promo-babd16091963",
@@ -3328,7 +2752,7 @@
         "name": "NAFENG - White Oak Click (Golden) | 5\" x 12mm x RL - 29.28sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 202
+      "seq": 166
     },
     {
       "id": "promo-645d378aee83",
@@ -3346,7 +2770,7 @@
         "name": "NAFENG - White Oak T&G (Country Brown) | 6.5\" x 18mm x RL - 19.18sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 203
+      "seq": 167
     },
     {
       "id": "promo-f5c04abc3957",
@@ -3364,7 +2788,7 @@
         "name": "NAFENG - White Oak T&G (Oregon Oak) | 6.5\" x 18mm x RL - 19.74sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 204
+      "seq": 168
     },
     {
       "id": "promo-d2ce7bf2375e",
@@ -3382,7 +2806,7 @@
         "name": "NAFENG - Regal American White Oak (Puerto Rico) T&G | 6.5\" x 18mm x RL - 20.24sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 205
+      "seq": 169
     },
     {
       "id": "promo-69f33a372dd5",
@@ -3400,7 +2824,7 @@
         "name": "NAFENG - Regal American White Oak (Suriname) T&G | 6.5\" x 18mm x RL - 20.24sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 206
+      "seq": 170
     },
     {
       "id": "promo-e7f6009bb3e1",
@@ -3418,7 +2842,7 @@
         "name": "NAFENG - Regal American White Oak (Haiti) T&G | 7.5\" x 18mm x RL - 23.31sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 207
+      "seq": 171
     },
     {
       "id": "promo-47cbed95b8d8",
@@ -3436,7 +2860,7 @@
         "name": "NAFENG - Regal American White Oak (Cuba) T&G | 7.5\" x 18mm x RL - 23.31sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 208
+      "seq": 172
     },
     {
       "id": "promo-65fea2970c4e",
@@ -3454,7 +2878,7 @@
         "name": "NAFENG - Regal American White Oak (St. Kitts) T&G | 7.5\" x 18mm x RL - 23.31sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 209
+      "seq": 173
     },
     {
       "id": "promo-0cfec8ad7c08",
@@ -3472,7 +2896,7 @@
         "name": "NAFENG - Regal American White Oak (Lisbon) T&G | 7.5\" x 18mm x RL - 23.44sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 210
+      "seq": 174
     },
     {
       "id": "promo-c175c669a609",
@@ -3490,7 +2914,7 @@
         "name": "NAFENG - Designer American White Oak (Da Vinci) T&G | 7.5\" x 18mm x RL - 23.31sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 211
+      "seq": 175
     },
     {
       "id": "promo-a524061bd225",
@@ -3508,7 +2932,7 @@
         "name": "NAFENG - Designer American White Oak (Picasso) T&G | 7.5\" x 18mm x RL - 23.31sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 212
+      "seq": 176
     },
     {
       "id": "promo-85a0e5b2aefc",
@@ -3526,7 +2950,7 @@
         "name": "NAFENG - Designer European White Oak (Storm Oak) T&G | 5\" x 18mm x RL - 3mm top - 20.77sf/b - Select"
       },
       "reason": "promo_marker_on",
-      "seq": 213
+      "seq": 177
     },
     {
       "id": "promo-170c04245176",
@@ -3544,7 +2968,7 @@
         "name": "NAFENG - Designer European White Oak (Alabaster Oak) T&G | 7.5\" x 18mm x RL - 3mm top - 23.31sf/b - Select & Better"
       },
       "reason": "promo_marker_on",
-      "seq": 214
+      "seq": 178
     },
     {
       "id": "promo-04116342b27f",
@@ -3562,7 +2986,7 @@
         "name": "NAFENG - Designer European White Oak (Soft Gold) T&G | 7.5\" x 18mm x RL - 3mm top - 23.31sf/b - Select & Better"
       },
       "reason": "promo_marker_on",
-      "seq": 215
+      "seq": 179
     },
     {
       "id": "promo-edb342a2a502",
@@ -3580,7 +3004,7 @@
         "name": "NAFENG - Elegant American White Oak (Montana) T&G | 7.5\" x 18mm x RL - 23.81sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 216
+      "seq": 180
     },
     {
       "id": "promo-94b1f4bf726d",
@@ -3598,7 +3022,7 @@
         "name": "NAFENG - Elegant American White Oak (Arizona) T&G | 7.5\" x 18mm x RL - 23.81sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 217
+      "seq": 181
     },
     {
       "id": "promo-e4d6623b9a67",
@@ -3616,7 +3040,7 @@
         "name": "NAFENG - Elegant American White Oak (Colorado) T&G | 7.5\" x 18mm x RL - 23.81sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 218
+      "seq": 182
     },
     {
       "id": "promo-09f5b0208914",
@@ -3634,7 +3058,7 @@
         "name": "NAFENG - Handscraped Maple (Capri) T&G | 6.5\" x 18mm x RL - 19.18sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 219
+      "seq": 183
     },
     {
       "id": "promo-cdf1190a135c",
@@ -3652,7 +3076,7 @@
         "name": "NAFENG - Handscraped Maple (Myth) T&G | 6.5\" x 18mm x RL - 19.18sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 220
+      "seq": 184
     },
     {
       "id": "promo-d8ded8645bc5",
@@ -3670,259 +3094,7 @@
         "name": "GRNDENG - Ultra American Oak (Cascade) T&G | 7.5\" x 19.05mm x RL - 2mm top - 23.32sf/b - Select & Better"
       },
       "reason": "promo_marker_on",
-      "seq": 221
-    },
-    {
-      "id": "promo-efc1881a7d2d",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "ENG-NRTH-0003",
-      "ls_id": "e443bc82-85ff-491c-977c-ae66bf44dbf5",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHENG - Coastal White Oak (Element) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b",
-        "expect_name": "NRTHENG - Coastal White Oak (Element) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b",
-        "expect_sku": "ENG-NRTH-0003"
-      },
-      "before": {
-        "name": "NRTHENG - Coastal White Oak (Element) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 222
-    },
-    {
-      "id": "promo-ceff6091a178",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "ENG-NRTH-0004",
-      "ls_id": "0933780a-e6bb-4e48-9156-a933598b0e33",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHENG - Coastal White Oak (Celeste) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b",
-        "expect_name": "NRTHENG - Coastal White Oak (Celeste) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b",
-        "expect_sku": "ENG-NRTH-0004"
-      },
-      "before": {
-        "name": "NRTHENG - Coastal White Oak (Celeste) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 223
-    },
-    {
-      "id": "promo-ad5767af0d34",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "ENG-NRTH-0005",
-      "ls_id": "a0836696-77ac-4e2a-aa62-208b519d6163",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHENG - Coastal White Oak (Pure Walnut) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b",
-        "expect_name": "NRTHENG - Coastal White Oak (Pure Walnut) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b",
-        "expect_sku": "ENG-NRTH-0005"
-      },
-      "before": {
-        "name": "NRTHENG - Coastal White Oak (Pure Walnut) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 224
-    },
-    {
-      "id": "promo-ba6110c90540",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "ENG-NRTH-0006",
-      "ls_id": "d4d33d8d-a61d-4c90-b2a7-c8b3def40536",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHENG - Coastal White Oak (Warm Beechwood) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b",
-        "expect_name": "NRTHENG - Coastal White Oak (Warm Beechwood) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b",
-        "expect_sku": "ENG-NRTH-0006"
-      },
-      "before": {
-        "name": "NRTHENG - Coastal White Oak (Warm Beechwood) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 225
-    },
-    {
-      "id": "promo-bcc47d4d51e9",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "ENG-NRTH-0007",
-      "ls_id": "916a1951-15a9-4c13-88e8-3dc017e04640",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHENG - Coastal White Oak (Provence) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b",
-        "expect_name": "NRTHENG - Coastal White Oak (Provence) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b",
-        "expect_sku": "ENG-NRTH-0007"
-      },
-      "before": {
-        "name": "NRTHENG - Coastal White Oak (Provence) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 226
-    },
-    {
-      "id": "promo-beeeca5be2f9",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "ENG-NRTH-0008",
-      "ls_id": "dd3bdc4e-33b3-42f9-9f7e-dc9b88df5e54",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHENG - Coastal White Oak (Nappa) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b",
-        "expect_name": "NRTHENG - Coastal White Oak (Nappa) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b",
-        "expect_sku": "ENG-NRTH-0008"
-      },
-      "before": {
-        "name": "NRTHENG - Coastal White Oak (Nappa) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 227
-    },
-    {
-      "id": "promo-b6bf9a2d4e4b",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "ENG-NRTH-0009",
-      "ls_id": "4c8b4956-543f-4e81-838f-2b9bee24bc7d",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHENG - Coastal White Oak (Belize) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b",
-        "expect_name": "NRTHENG - Coastal White Oak (Belize) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b",
-        "expect_sku": "ENG-NRTH-0009"
-      },
-      "before": {
-        "name": "NRTHENG - Coastal White Oak (Belize) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 228
-    },
-    {
-      "id": "promo-40f6528b7d4c",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "ENG-NRTH-0010",
-      "ls_id": "03ee71d6-41ed-4965-bb73-3a7791faff04",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHENG - Coastal White Oak (Monaco) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b",
-        "expect_name": "NRTHENG - Coastal White Oak (Monaco) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b",
-        "expect_sku": "ENG-NRTH-0010"
-      },
-      "before": {
-        "name": "NRTHENG - Coastal White Oak (Monaco) T&G | 7.5\" x 19mm x RL - 1.5mm top - 19.43sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 229
-    },
-    {
-      "id": "promo-126bc26d9907",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "ENG-NRTH-0062",
-      "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8ab75f06bc",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHENG - Winery White Oak (Black Cedar) T&G | 6.5\" x 19mm x RL - 1.5mm top - 25.58sf/b",
-        "expect_name": "NRTHENG - Winery White Oak (Black Cedar) T&G | 6.5\" x 19mm x RL - 1.5mm top - 25.58sf/b",
-        "expect_sku": "ENG-NRTH-0062"
-      },
-      "before": {
-        "name": "NRTHENG - Winery White Oak (Black Cedar) T&G | 6.5\" x 19mm x RL - 1.5mm top - 25.58sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 230
-    },
-    {
-      "id": "promo-88ef654d31b8",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "ENG-NRTH-0063",
-      "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8ab77ca95c",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHENG - Winery White Oak (Falcon Grey) T&G | 6.5\" x 19mm x RL - 1.5mm top - 25.58sf/b",
-        "expect_name": "NRTHENG - Winery White Oak (Falcon Grey) T&G | 6.5\" x 19mm x RL - 1.5mm top - 25.58sf/b",
-        "expect_sku": "ENG-NRTH-0063"
-      },
-      "before": {
-        "name": "NRTHENG - Winery White Oak (Falcon Grey) T&G | 6.5\" x 19mm x RL - 1.5mm top - 25.58sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 231
-    },
-    {
-      "id": "promo-0b1b9063b1c8",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "ENG-NRTH-0064",
-      "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8ab8033764",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHENG - Winery White Oak (Old Country) T&G | 6.5\" x 19mm x RL - 1.5mm top - 25.58sf/b",
-        "expect_name": "NRTHENG - Winery White Oak (Old Country) T&G | 6.5\" x 19mm x RL - 1.5mm top - 25.58sf/b",
-        "expect_sku": "ENG-NRTH-0064"
-      },
-      "before": {
-        "name": "NRTHENG - Winery White Oak (Old Country) T&G | 6.5\" x 19mm x RL - 1.5mm top - 25.58sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 232
-    },
-    {
-      "id": "promo-c36d04789bd8",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "ENG-NRTH-0071",
-      "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8ab7a7eaf8",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHENG - Performance White Oak (Hazelnut) T&G | 6\" x 19mm x RL - 1.5mm top - 23.73sf/b",
-        "expect_name": "NRTHENG - Performance White Oak (Hazelnut) T&G | 6\" x 19mm x RL - 1.5mm top - 23.73sf/b",
-        "expect_sku": "ENG-NRTH-0071"
-      },
-      "before": {
-        "name": "NRTHENG - Performance White Oak (Hazelnut) T&G | 6\" x 19mm x RL - 1.5mm top - 23.73sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 233
-    },
-    {
-      "id": "promo-319eb239b0f8",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "ENG-NRTH-0072",
-      "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8ab7d33fb4",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHENG - Performance White Oak (Mid Oak) T&G | 6\" x 19mm x RL - 1.5mm top - 23.73sf/b",
-        "expect_name": "NRTHENG - Performance White Oak (Mid Oak) T&G | 6\" x 19mm x RL - 1.5mm top - 23.73sf/b",
-        "expect_sku": "ENG-NRTH-0072"
-      },
-      "before": {
-        "name": "NRTHENG - Performance White Oak (Mid Oak) T&G | 6\" x 19mm x RL - 1.5mm top - 23.73sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 234
-    },
-    {
-      "id": "promo-c86bb0dd630f",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "ENG-NRTH-0073",
-      "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8ab790a8ae",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHENG - Performance White Oak (Grey Stone) T&G | 6\" x 19mm x RL - 1.5mm top - 23.73sf/b",
-        "expect_name": "NRTHENG - Performance White Oak (Grey Stone) T&G | 6\" x 19mm x RL - 1.5mm top - 23.73sf/b",
-        "expect_sku": "ENG-NRTH-0073"
-      },
-      "before": {
-        "name": "NRTHENG - Performance White Oak (Grey Stone) T&G | 6\" x 19mm x RL - 1.5mm top - 23.73sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 235
+      "seq": 185
     },
     {
       "id": "promo-b75ee37e33de",
@@ -3940,7 +3112,7 @@
         "name": "VIDENG - 7 American White Oak (Wheat Berry) T&G | 7.5\" x 18mm x RL - 3mm top - 25.32sf/b - Character"
       },
       "reason": "promo_marker_on",
-      "seq": 236
+      "seq": 186
     },
     {
       "id": "promo-2d457333becb",
@@ -3958,7 +3130,7 @@
         "name": "VIDENG - 7 European White Oak (Joffre Lake) T&G | 7.5\" x 18mm x RL - 3mm top - 24.56sf/b - Rustic"
       },
       "reason": "promo_marker_on",
-      "seq": 237
+      "seq": 187
     },
     {
       "id": "promo-d995494c2843",
@@ -3976,7 +3148,7 @@
         "name": "VIDENG - Herringbone American White Oak (Honey Wheat) T&G | 5\" x 18mm x RL - 3mm top - 20.18sf/b - Select"
       },
       "reason": "promo_marker_on",
-      "seq": 238
+      "seq": 188
     },
     {
       "id": "promo-83dff155c317",
@@ -3994,7 +3166,7 @@
         "name": "VIDENG - Herringbone European White Oak (Yukon) T&G | 5\" x 18mm x RL - 3mm top - 20.18sf/b - Character"
       },
       "reason": "promo_marker_on",
-      "seq": 239
+      "seq": 189
     },
     {
       "id": "promo-01f5652806be",
@@ -4012,7 +3184,7 @@
         "name": "VIDENG - 7 European White Ash (Toffee Crunch) T&G | 7.5\" x 18mm x RL - 3mm top - 24.43sf/b - Select & Better"
       },
       "reason": "promo_marker_on",
-      "seq": 240
+      "seq": 190
     },
     {
       "id": "promo-c7bbb5be9c22",
@@ -4030,7 +3202,7 @@
         "name": "VIDENG - 7 European White Ash (Natural) T&G | 7.5\" x 18mm x RL - 3mm top - 24.43sf/b - Select & Better"
       },
       "reason": "promo_marker_on",
-      "seq": 241
+      "seq": 191
     },
     {
       "id": "promo-e9a2dba31b0c",
@@ -4048,7 +3220,7 @@
         "name": "WODNENG - Vermont American White Oak (Modern Grey) Click | 6.5\" x 19.05mm x RL - 1.2mm top - 22.75sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 242
+      "seq": 192
     },
     {
       "id": "promo-b93d2dd7e059",
@@ -4066,7 +3238,7 @@
         "name": "WODNENG - Vermont American White Oak (Cloudy Grey) Click | 6.5\" x 19.05mm x RL - 1.2mm top - 22.75sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 243
+      "seq": 193
     },
     {
       "id": "promo-be0375a54983",
@@ -4084,7 +3256,7 @@
         "name": "WODNENG - Vermont American White Oak (Hudson) Click | 6.5\" x 19.05mm x RL - 1.2mm top - 22.75sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 244
+      "seq": 194
     },
     {
       "id": "promo-d7b9606badf3",
@@ -4102,7 +3274,7 @@
         "name": "WODNENG - Vermont American White Oak (Charcoal) Click | 6.5\" x 19.05mm x RL - 1.2mm top - 22.75sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 245
+      "seq": 195
     },
     {
       "id": "promo-910cd4f0948f",
@@ -4120,7 +3292,7 @@
         "name": "WODNENG - Grand Chateau European White Oak (Natural) Click | 7.5\" x 19.05mm x RL - 2mm top - 23.93sf/b - Character"
       },
       "reason": "promo_marker_on",
-      "seq": 246
+      "seq": 196
     },
     {
       "id": "promo-4e238830bcd7",
@@ -4138,7 +3310,7 @@
         "name": "WODNENG - Grand Chateau European White Oak (Coyote) Click | 7.5\" x 19.05mm x RL - 2mm top - 23.93sf/b - Character"
       },
       "reason": "promo_marker_on",
-      "seq": 247
+      "seq": 197
     },
     {
       "id": "promo-332026d9e499",
@@ -4156,7 +3328,7 @@
         "name": "WODNENG - 6 1/2 Monte Rosa American White Oak (COMO) Click | 6.5\" x 19.05mm x RL - 3mm top - 20.62sf/b - Select & Better"
       },
       "reason": "promo_marker_on",
-      "seq": 248
+      "seq": 198
     },
     {
       "id": "promo-097d91553ce8",
@@ -4174,7 +3346,7 @@
         "name": "WODNENG - 6 1/2 Monte Rosa American White Oak (ALBA) Click | 6.5\" x 19.05mm x RL - 3mm top - 20.62sf/b - Select & Better"
       },
       "reason": "promo_marker_on",
-      "seq": 249
+      "seq": 199
     },
     {
       "id": "promo-e6a715b3c5aa",
@@ -4192,7 +3364,7 @@
         "name": "WODNENG - 6 1/2 Monte Rosa American White Oak (VERONA) Click | 6.5\" x 19.05mm x RL - 3mm top - 20.62sf/b - Select & Better"
       },
       "reason": "promo_marker_on",
-      "seq": 250
+      "seq": 200
     },
     {
       "id": "promo-1212810d51fa",
@@ -4210,7 +3382,7 @@
         "name": "WODNENG - 6 1/2 Monte Rosa American White Oak (PISA) Click | 6.5\" x 19.05mm x RL - 3mm top - 20.62sf/b - Select & Better"
       },
       "reason": "promo_marker_on",
-      "seq": 251
+      "seq": 201
     },
     {
       "id": "promo-c6c4c0421b5a",
@@ -4228,7 +3400,7 @@
         "name": "WODNENG - 6 1/2 Monte Rosa American White Oak (PISA ABC) Click | 6.5\" x 19.05mm x RL - 3mm top - 20.62sf/b - Select"
       },
       "reason": "promo_marker_on",
-      "seq": 252
+      "seq": 202
     },
     {
       "id": "promo-6686c8b16218",
@@ -4246,7 +3418,7 @@
         "name": "CANSLAM - Elemental12 Planks Waterproof (Akita) | 9.29\" x 12mm x RL - 19.28sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 253
+      "seq": 203
     },
     {
       "id": "promo-0492c60e1033",
@@ -4264,7 +3436,7 @@
         "name": "CANSLAM - Elemental12 Planks Waterproof (Nagasaki) | 9.29\" x 12mm x RL - 19.28sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 254
+      "seq": 204
     },
     {
       "id": "promo-2e0ddb2483b5",
@@ -4282,7 +3454,7 @@
         "name": "CANSLAM - Elemental12 Planks Waterproof (Nara) | 9.29\" x 12mm x RL - 19.28sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 255
+      "seq": 205
     },
     {
       "id": "promo-4f92b33bbfad",
@@ -4300,7 +3472,7 @@
         "name": "CANSLAM - Elemental12 Planks Waterproof (Nikko) | 9.29\" x 12mm x RL - 19.28sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 256
+      "seq": 206
     },
     {
       "id": "promo-0240b07e081c",
@@ -4318,7 +3490,7 @@
         "name": "CANSLAM - Elemental12 Planks Waterproof (Noto) | 9.29\" x 12mm x RL - 19.28sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 257
+      "seq": 207
     },
     {
       "id": "promo-3e6eb7687e49",
@@ -4336,7 +3508,7 @@
         "name": "CANSLAM - Elemental12 Planks Waterproof (Shikoku) | 9.29\" x 12mm x RL - 19.28sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 258
+      "seq": 208
     },
     {
       "id": "promo-f0198c6c56f2",
@@ -4354,7 +3526,7 @@
         "name": "CANSLAM - Elemental12 Planks Waterproof (Uji) | 9.29\" x 12mm x RL - 19.28sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 259
+      "seq": 209
     },
     {
       "id": "promo-51029b800d9a",
@@ -4372,7 +3544,7 @@
         "name": "CANSLAM - Elemental12 Herringbone Waterproof (Akita - H) | 6.5\" x 12mm x RL - 11.37sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 260
+      "seq": 210
     },
     {
       "id": "promo-32b66069ef49",
@@ -4390,7 +3562,7 @@
         "name": "CANSLAM - 8MM Laminate Waterproof Fibre Planks (Five Peaks) | 7.72\" x 8mm x RL - 25.63sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 261
+      "seq": 211
     },
     {
       "id": "promo-8dec03376614",
@@ -4408,7 +3580,7 @@
         "name": "CANSLAM - 8MM Laminate Waterproof Fibre Planks (Lake View) | 7.72\" x 8mm x RL - 25.63sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 262
+      "seq": 212
     },
     {
       "id": "promo-7737cc463307",
@@ -4426,7 +3598,7 @@
         "name": "CANSLAM - 8MM Laminate Waterproof Fibre Planks (Laurel Ridge) | 7.72\" x 8mm x RL - 25.63sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 263
+      "seq": 213
     },
     {
       "id": "promo-92113456f6d0",
@@ -4444,7 +3616,7 @@
         "name": "CANSLAM - 8MM Laminate Waterproof Fibre Planks (Oak Bridge) | 7.72\" x 8mm x RL - 25.63sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 264
+      "seq": 214
     },
     {
       "id": "promo-b3abb5232d85",
@@ -4462,7 +3634,7 @@
         "name": "CANSLAM - 8MM Laminate Waterproof Fibre Planks (Town Mill) | 7.72\" x 8mm x RL - 25.63sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 265
+      "seq": 215
     },
     {
       "id": "promo-7f6218553c64",
@@ -4480,7 +3652,7 @@
         "name": "CANSLAM - 8MM Laminate Waterproof Fibre Planks (Willow Creek) | 7.72\" x 8mm x RL - 25.63sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 266
+      "seq": 216
     },
     {
       "id": "promo-6201442014db",
@@ -4498,169 +3670,7 @@
         "name": "CANSLAM - 8MM Laminate Waterproof Fibre Planks (Wood Land) | 7.72\" x 8mm x RL - 25.63sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 267
-    },
-    {
-      "id": "promo-ed847c470f5e",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LAM-EVGR-2020",
-      "ls_id": "6f2b19ba-fa05-4151-b9aa-fcdb9c6e14e1",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) EVGRLAM - Waterproof Drop Lock 12mm Short Plank (2020*) Click | 7.7\" x 12mm x 48\" - 20.40sf/b",
-        "expect_name": "EVGRLAM - Waterproof Drop Lock 12mm Short Plank (2020*) Click | 7.7\" x 12mm x 48\" - 20.40sf/b",
-        "expect_sku": "LAM-EVGR-2020"
-      },
-      "before": {
-        "name": "EVGRLAM - Waterproof Drop Lock 12mm Short Plank (2020*) Click | 7.7\" x 12mm x 48\" - 20.40sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 268
-    },
-    {
-      "id": "promo-471dc13ebecb",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LAM-EVGR-72102",
-      "ls_id": "8540f588-3ddf-4d93-90a0-884c342c5c9e",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72102*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b",
-        "expect_name": "EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72102*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b",
-        "expect_sku": "LAM-EVGR-72102"
-      },
-      "before": {
-        "name": "EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72102*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 269
-    },
-    {
-      "id": "promo-634dab8593bb",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LAM-EVGR-72103",
-      "ls_id": "ef9d9050-1109-410b-ad28-957e5ba3a042",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72103*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b",
-        "expect_name": "EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72103*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b",
-        "expect_sku": "LAM-EVGR-72103"
-      },
-      "before": {
-        "name": "EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72103*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 270
-    },
-    {
-      "id": "promo-af4acce12216",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LAM-EVGR-72113-10MM",
-      "ls_id": "3d1b1525-75f5-4fd8-9e0a-adb31f12eb44",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72113*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b",
-        "expect_name": "EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72113*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b",
-        "expect_sku": "LAM-EVGR-72113-10MM"
-      },
-      "before": {
-        "name": "EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72113*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 271
-    },
-    {
-      "id": "promo-2b386f1b5420",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LAM-EVGR-72208",
-      "ls_id": "e056ec22-b561-4730-8c05-47dfc868b12b",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72208*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b",
-        "expect_name": "EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72208*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b",
-        "expect_sku": "LAM-EVGR-72208"
-      },
-      "before": {
-        "name": "EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72208*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 272
-    },
-    {
-      "id": "promo-58764a01ee55",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LAM-EVGR-72228",
-      "ls_id": "3463c380-4c45-451b-8537-cc7de24688fc",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72228*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b",
-        "expect_name": "EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72228*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b",
-        "expect_sku": "LAM-EVGR-72228"
-      },
-      "before": {
-        "name": "EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72228*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 273
-    },
-    {
-      "id": "promo-fbc52f5a1bbb",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LAM-EVGR-72245",
-      "ls_id": "0c37e0cd-8d0b-4d2f-b34b-78574c553a66",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72245*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b",
-        "expect_name": "EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72245*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b",
-        "expect_sku": "LAM-EVGR-72245"
-      },
-      "before": {
-        "name": "EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72245*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 274
-    },
-    {
-      "id": "promo-092a2d810b3c",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LAM-EVGR-72523-10MM",
-      "ls_id": "c7bc1e65-ffb2-4f60-9318-8daa1a78c4a9",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72523*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b",
-        "expect_name": "EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72523*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b",
-        "expect_sku": "LAM-EVGR-72523-10MM"
-      },
-      "before": {
-        "name": "EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72523*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 275
-    },
-    {
-      "id": "promo-92080a60eb5f",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LAM-EVGR-72527",
-      "ls_id": "1c2f9b37-3174-4fc2-9afa-2ed5f9cd86c1",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72527*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b",
-        "expect_name": "EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72527*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b",
-        "expect_sku": "LAM-EVGR-72527"
-      },
-      "before": {
-        "name": "EVGRLAM - Waterproof Drop Lock 10mm (Clearance) (72527*) Click | 9.4\" x 10mm x 60\" - 23.29sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 276
+      "seq": 217
     },
     {
       "id": "promo-e52d6d336080",
@@ -4678,7 +3688,7 @@
         "name": "NAFLAM - Handscraped Laminates (Drop Clic) (Apollo) Click | 7.71\" x 12mm x RL - 20.5sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 277
+      "seq": 218
     },
     {
       "id": "promo-cae0c59039c0",
@@ -4696,7 +3706,7 @@
         "name": "NAFLAM - Handscraped Laminates (Drop Clic) (Artemis) Click | 7.71\" x 12mm x RL - 20.5sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 278
+      "seq": 219
     },
     {
       "id": "promo-9c491bbeb872",
@@ -4714,7 +3724,7 @@
         "name": "NAFLAM - Handscraped Laminates (Drop Clic) (Poseidon) Click | 7.71\" x 12mm x RL - 20.5sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 279
+      "seq": 220
     },
     {
       "id": "promo-d7ddd56bea48",
@@ -4732,7 +3742,7 @@
         "name": "NAFLAM - Handscraped Laminates (Drop Clic) (Zeus) Click | 7.71\" x 12mm x RL - 20.5sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 280
+      "seq": 221
     },
     {
       "id": "promo-71f70c727fed",
@@ -4750,7 +3760,7 @@
         "name": "NAFLAM - Waterproof Laminate Plus (Aurora) Click | 9.29\" x 12mm x RL - 19.27sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 281
+      "seq": 222
     },
     {
       "id": "promo-0e9f4ac94cf8",
@@ -4768,7 +3778,7 @@
         "name": "NAFLAM - Waterproof Laminate Plus (Equinox) Click | 9.29\" x 12mm x RL - 19.27sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 282
+      "seq": 223
     },
     {
       "id": "promo-bd9d20f98505",
@@ -4786,7 +3796,7 @@
         "name": "NAFLAM - Waterproof Laminate Plus (Halo) Click | 9.29\" x 12mm x RL - 19.27sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 283
+      "seq": 224
     },
     {
       "id": "promo-3972b60e4685",
@@ -4804,7 +3814,7 @@
         "name": "GRNDLAM - Aquamate (Adelaide) Click | 12mm x RL - 23.31sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 284
+      "seq": 225
     },
     {
       "id": "promo-c0a9467f0bcc",
@@ -4822,7 +3832,7 @@
         "name": "GRNDLAM - Aquamate (Alice Springs) Click | 12mm x RL - 23.31sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 285
+      "seq": 226
     },
     {
       "id": "promo-4f5962da67fd",
@@ -4840,7 +3850,7 @@
         "name": "GRNDLAM - Aquamate (Brisbane) Click | 12mm x RL - 23.31sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 286
+      "seq": 227
     },
     {
       "id": "promo-0c27f18ac873",
@@ -4858,7 +3868,7 @@
         "name": "GRNDLAM - Aquamate (Cairns) Click | 12mm x RL - 23.31sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 287
+      "seq": 228
     },
     {
       "id": "promo-bd7817832d8c",
@@ -4876,7 +3886,7 @@
         "name": "GRNDLAM - Aquamate (Canberra) Click | 12mm x RL - 23.31sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 288
+      "seq": 229
     },
     {
       "id": "promo-28588edf83c0",
@@ -4894,7 +3904,7 @@
         "name": "GRNDLAM - Aquamate (Darwin) Click | 12mm x RL - 23.31sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 289
+      "seq": 230
     },
     {
       "id": "promo-74adf0c6c439",
@@ -4912,7 +3922,7 @@
         "name": "GRNDLAM - Aquamate (Hobart) Click | 12mm x RL - 23.31sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 290
+      "seq": 231
     },
     {
       "id": "promo-06d2fdc1c576",
@@ -4930,7 +3940,7 @@
         "name": "GRNDLAM - Aquamate (Melbourne) Click | 12mm x RL - 23.31sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 291
+      "seq": 232
     },
     {
       "id": "promo-9e9ab820cfd2",
@@ -4948,25 +3958,7 @@
         "name": "GRNDLAM - Aquamate (Perth) Click | 12mm x RL - 23.31sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 292
-    },
-    {
-      "id": "promo-d17ba0b89963",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LAM-GRAN-0030",
-      "ls_id": "02436e2c-fed5-4134-93bf-eb6bf67f23f9",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) GRNDLAM - Aquamate (Sydney) Click | 9.3\" x 12mm x RL - 23.31sf/b",
-        "expect_name": "GRNDLAM - Aquamate (Sydney) Click | 9.3\" x 12mm x RL - 23.31sf/b",
-        "expect_sku": "LAM-GRAN-0030"
-      },
-      "before": {
-        "name": "GRNDLAM - Aquamate (Sydney) Click | 9.3\" x 12mm x RL - 23.31sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 293
+      "seq": 233
     },
     {
       "id": "promo-582c899974c8",
@@ -4984,7 +3976,7 @@
         "name": "CANSLVP-SPC - Evion 9 Waterproof (Arno) | 9\" x 9mm x RL - 22.38sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 294
+      "seq": 234
     },
     {
       "id": "promo-c2fef7013133",
@@ -5002,7 +3994,7 @@
         "name": "CANSLVP-SPC - Evion 9 Waterproof (Eska) | 9\" x 9mm x RL - 22.38sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 295
+      "seq": 235
     },
     {
       "id": "promo-77c07f56b362",
@@ -5020,7 +4012,7 @@
         "name": "CANSLVP-SPC - Evion 9 Waterproof (Lumi) | 9\" x 9mm x RL - 22.38sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 296
+      "seq": 236
     },
     {
       "id": "promo-a4cfd86d7939",
@@ -5038,7 +4030,7 @@
         "name": "CANSLVP-SPC - Evion 9 Waterproof (Mizu) | 9\" x 9mm x RL - 22.38sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 297
+      "seq": 237
     },
     {
       "id": "promo-a96de45cb47b",
@@ -5056,7 +4048,7 @@
         "name": "CANSLVP-SPC - Evion 9 Waterproof (Noa) | 9\" x 9mm x RL - 22.38sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 298
+      "seq": 238
     },
     {
       "id": "promo-aa99ec0a4733",
@@ -5074,7 +4066,7 @@
         "name": "CANSLVP-SPC - Evion 9 Waterproof (Ruvo) | 9\" x 9mm x RL - 22.38sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 299
+      "seq": 239
     },
     {
       "id": "promo-03b1a63d7224",
@@ -5092,7 +4084,7 @@
         "name": "CANSLVP-SPC - Evion 9 Waterproof (Sora) | 9\" x 9mm x RL - 22.38sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 300
+      "seq": 240
     },
     {
       "id": "promo-f1690b685dfc",
@@ -5110,7 +4102,7 @@
         "name": "CANSLVP-SPC - Evion 9 Waterproof (Yara) | 9\" x 9mm x RL - 22.38sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 301
+      "seq": 241
     },
     {
       "id": "promo-7a492a166b1e",
@@ -5128,7 +4120,7 @@
         "name": "CANSLVP-SPC - VANNTETT PLUS (Dawson) | 9\" x 7mm x RL - 22.09sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 302
+      "seq": 242
     },
     {
       "id": "promo-db1534ed8d74",
@@ -5146,7 +4138,7 @@
         "name": "CANSLVP-SPC - VANNTETT PLUS (Eddi) | 9\" x 7mm x RL - 22.09sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 303
+      "seq": 243
     },
     {
       "id": "promo-5cc14814af31",
@@ -5164,7 +4156,7 @@
         "name": "CANSLVP-SPC - VANNTETT PLUS (Ellis) | 9\" x 7mm x RL - 22.09sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 304
+      "seq": 244
     },
     {
       "id": "promo-f4b4ae6f94b7",
@@ -5182,7 +4174,7 @@
         "name": "CANSLVP-SPC - VANNTETT PLUS (Ernest) | 9\" x 7mm x RL - 22.09sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 305
+      "seq": 245
     },
     {
       "id": "promo-559cd1568aee",
@@ -5200,7 +4192,7 @@
         "name": "CANSLVP-SPC - VANNTETT PLUS (Lesley) | 9\" x 7mm x RL - 22.09sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 306
+      "seq": 246
     },
     {
       "id": "promo-952c1aa903eb",
@@ -5218,7 +4210,7 @@
         "name": "CANSLVP-SPC - VANNTETT PLUS (Nadine) | 9\" x 7mm x RL - 22.09sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 307
+      "seq": 247
     },
     {
       "id": "promo-fea1621df609",
@@ -5236,7 +4228,7 @@
         "name": "CANSLVP-SPC - VANNTETT PLUS (Percy) | 9\" x 7mm x RL - 22.09sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 308
+      "seq": 248
     },
     {
       "id": "promo-f55d2f2a2b29",
@@ -5254,7 +4246,7 @@
         "name": "CANSLVP-SPC - VANNTETT PLUS (Phoebe) | 9\" x 7mm x RL - 22.09sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 309
+      "seq": 249
     },
     {
       "id": "promo-3a965f0ed15b",
@@ -5272,7 +4264,7 @@
         "name": "CANSLVP-SPC - VANNTETT PLUS (Rosie) | 9\" x 7mm x RL - 22.09sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 310
+      "seq": 250
     },
     {
       "id": "promo-c604476ff7b1",
@@ -5290,7 +4282,7 @@
         "name": "CANSLVP-SPC - VANNTETT PLUS (Ross) | 9\" x 7mm x RL - 22.09sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 311
+      "seq": 251
     },
     {
       "id": "promo-893bc4c5b762",
@@ -5308,7 +4300,7 @@
         "name": "NAFLVP-SPC - 6.5mm SPC Vinyl (Westminster) Click | 7.1\" x 6.5mm x RL - 23.9sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 312
+      "seq": 252
     },
     {
       "id": "promo-25a6412eb610",
@@ -5326,7 +4318,7 @@
         "name": "NAFLVP-SPC - Aquaplus Select (Grand Bend) Click | 7.2\" x 7mm x RL - 17.91sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 313
+      "seq": 253
     },
     {
       "id": "promo-32c1484e7c6b",
@@ -5344,7 +4336,7 @@
         "name": "NAFLVP-SPC - Classic (Punta Cana) Click | 7.1\" x 7mm x RL - 17.91sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 314
+      "seq": 254
     },
     {
       "id": "promo-86ffe70cf3b4",
@@ -5362,7 +4354,7 @@
         "name": "NAFLVP-SPC - Aquaplus Gold (Yorkville) Click | 7.1\" x 7mm x RL - 17.91sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 315
+      "seq": 255
     },
     {
       "id": "promo-a41ff423de9e",
@@ -5380,7 +4372,7 @@
         "name": "NAFLVP-SPC - Aquaplus Gold (Russell Hill) Click | 7.1\" x 7mm x RL - 17.91sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 316
+      "seq": 256
     },
     {
       "id": "promo-9aba3cf09e5f",
@@ -5398,7 +4390,7 @@
         "name": "NAFLVP-SPC - Aquaplus Gold with Cork (Shangri-La) Click | 7.1\" x 7mm x RL - 17.63sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 317
+      "seq": 257
     },
     {
       "id": "promo-f83641a3ce4e",
@@ -5416,7 +4408,7 @@
         "name": "NAFLVP-SPC - Aquaplus Platinum (Soho) Click | 7.1\" x 9mm x RL - 11.94sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 318
+      "seq": 258
     },
     {
       "id": "promo-15c6fd4619c2",
@@ -5434,7 +4426,7 @@
         "name": "NAFLVP-SPC - Aqualuuuz (Prague) Loose lay | 7.25\" x 5mm x RL - 19.32sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 319
+      "seq": 259
     },
     {
       "id": "promo-c75e5b6f56d0",
@@ -5452,7 +4444,7 @@
         "name": "NAFLVP-SPC - Aqua Commercial (Landmark) Glue down | 7.36\" x 3mm x RL - 34.58sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 320
+      "seq": 260
     },
     {
       "id": "promo-cc53e4b8173b",
@@ -5470,7 +4462,7 @@
         "name": "NAFLVP-SPC - Aqua Commercial (Ellisdon) Glue down | 7.36\" x 3mm x RL - 34.58sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 321
+      "seq": 261
     },
     {
       "id": "promo-745f445ff44c",
@@ -5488,7 +4480,7 @@
         "name": "NAFLVP-SPC - Aqua Commercial (Duca) Glue down | 7.36\" x 3mm x RL - 34.58sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 322
+      "seq": 262
     },
     {
       "id": "promo-25999e68264e",
@@ -5506,7 +4498,7 @@
         "name": "GRNDLVP-DB - Entrepreneur (Canvaslight) Glue down | 7\" x 4mm x RL - 28.00sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 323
+      "seq": 263
     },
     {
       "id": "promo-a36c22609df0",
@@ -5524,7 +4516,7 @@
         "name": "GRNDLVP-DB - Entrepreneur (Chroma Drift) Glue down | 7\" x 4mm x RL - 28.00sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 324
+      "seq": 264
     },
     {
       "id": "promo-eea4965cd64b",
@@ -5542,7 +4534,7 @@
         "name": "GRNDLVP-DB - Entrepreneur (Feathergrass) Glue down | 7\" x 4mm x RL - 28.00sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 325
+      "seq": 265
     },
     {
       "id": "promo-5d42227b4ccb",
@@ -5560,7 +4552,7 @@
         "name": "GRNDLVP-DB - Entrepreneur (Rainmoor) Glue down | 7\" x 4mm x RL - 28.00sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 326
+      "seq": 266
     },
     {
       "id": "promo-3df39cd540c2",
@@ -5578,7 +4570,7 @@
         "name": "GRNDLVP-DB - Entrepreneur (Stone Veil) Glue down | 7\" x 4mm x RL - 28.00sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 327
+      "seq": 267
     },
     {
       "id": "promo-4499921f0d7e",
@@ -5596,529 +4588,7 @@
         "name": "GRNDLVP-DB - Entrepreneur (Woodmere) Glue down | 7\" x 4mm x RL - 28.00sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 328
-    },
-    {
-      "id": "promo-b9956c6e7a0a",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-NRTH-0001",
-      "ls_id": "419fb0b9-9b9f-4226-89f9-23b70e920e65",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHLVP-SPC - 300 Series (Saffiano) Click | 7.25\" x 7mm x RL - 18.01sf/b",
-        "expect_name": "NRTHLVP-SPC - 300 Series (Saffiano) Click | 7.25\" x 7mm x RL - 18.01sf/b",
-        "expect_sku": "LVP-NRTH-0001"
-      },
-      "before": {
-        "name": "NRTHLVP-SPC - 300 Series (Saffiano) Click | 7.25\" x 7mm x RL - 18.01sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 329
-    },
-    {
-      "id": "promo-2bbf6f838af5",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-NRTH-0002",
-      "ls_id": "be334b9e-cef0-4171-b25d-57be7e849609",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHLVP-SPC - 300 Series (Athabasca) Click | 7.25\" x 7mm x RL - 18.01sf/b",
-        "expect_name": "NRTHLVP-SPC - 300 Series (Athabasca) Click | 7.25\" x 7mm x RL - 18.01sf/b",
-        "expect_sku": "LVP-NRTH-0002"
-      },
-      "before": {
-        "name": "NRTHLVP-SPC - 300 Series (Athabasca) Click | 7.25\" x 7mm x RL - 18.01sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 330
-    },
-    {
-      "id": "promo-3a3413f89aa9",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-NRTH-0003",
-      "ls_id": "67ac7ebc-a547-427f-ae65-8f8720fad3d9",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHLVP-SPC - 300 Series (Banff) Click | 7.25\" x 7mm x RL - 18.01sf/b",
-        "expect_name": "NRTHLVP-SPC - 300 Series (Banff) Click | 7.25\" x 7mm x RL - 18.01sf/b",
-        "expect_sku": "LVP-NRTH-0003"
-      },
-      "before": {
-        "name": "NRTHLVP-SPC - 300 Series (Banff) Click | 7.25\" x 7mm x RL - 18.01sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 331
-    },
-    {
-      "id": "promo-4646a28315ad",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-NRTH-0004",
-      "ls_id": "3f3ae5ff-b28c-47ca-8f24-88e59567e0fa",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHLVP-SPC - 300 Series (Hoover) Click | 7.25\" x 7mm x RL - 18.01sf/b",
-        "expect_name": "NRTHLVP-SPC - 300 Series (Hoover) Click | 7.25\" x 7mm x RL - 18.01sf/b",
-        "expect_sku": "LVP-NRTH-0004"
-      },
-      "before": {
-        "name": "NRTHLVP-SPC - 300 Series (Hoover) Click | 7.25\" x 7mm x RL - 18.01sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 332
-    },
-    {
-      "id": "promo-6bb0cb7e7662",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-NRTH-0005",
-      "ls_id": "b808cf93-2f53-41ef-a3cf-5c95063293c6",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHLVP-SPC - 300 Series (Azure Sky) Click | 7.25\" x 7mm x RL - 18.01sf/b",
-        "expect_name": "NRTHLVP-SPC - 300 Series (Azure Sky) Click | 7.25\" x 7mm x RL - 18.01sf/b",
-        "expect_sku": "LVP-NRTH-0005"
-      },
-      "before": {
-        "name": "NRTHLVP-SPC - 300 Series (Azure Sky) Click | 7.25\" x 7mm x RL - 18.01sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 333
-    },
-    {
-      "id": "promo-e4202b3ef1cd",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-NRTH-0006",
-      "ls_id": "a092f0de-9296-42d1-9955-68150910a615",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHLVP-SPC - 300 Series (Dusty Diamond) Click | 7.25\" x 7mm x RL - 18.01sf/b",
-        "expect_name": "NRTHLVP-SPC - 300 Series (Dusty Diamond) Click | 7.25\" x 7mm x RL - 18.01sf/b",
-        "expect_sku": "LVP-NRTH-0006"
-      },
-      "before": {
-        "name": "NRTHLVP-SPC - 300 Series (Dusty Diamond) Click | 7.25\" x 7mm x RL - 18.01sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 334
-    },
-    {
-      "id": "promo-2f25175f7e92",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-NRTH-0007",
-      "ls_id": "a2eb1e52-2e9e-4fc8-a4de-b2af0801814b",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHLVP-SPC - 300 Series (Maple Fog) Click | 7.25\" x 7mm x RL - 18.01sf/b",
-        "expect_name": "NRTHLVP-SPC - 300 Series (Maple Fog) Click | 7.25\" x 7mm x RL - 18.01sf/b",
-        "expect_sku": "LVP-NRTH-0007"
-      },
-      "before": {
-        "name": "NRTHLVP-SPC - 300 Series (Maple Fog) Click | 7.25\" x 7mm x RL - 18.01sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 335
-    },
-    {
-      "id": "promo-3e89cb82e3f0",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-NRTH-0008",
-      "ls_id": "d9a295e2-cdf3-4849-bab8-03f1b183fc84",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHLVP-SPC - 300 Series (Marbella) Click | 7.25\" x 7mm x RL - 18.01sf/b",
-        "expect_name": "NRTHLVP-SPC - 300 Series (Marbella) Click | 7.25\" x 7mm x RL - 18.01sf/b",
-        "expect_sku": "LVP-NRTH-0008"
-      },
-      "before": {
-        "name": "NRTHLVP-SPC - 300 Series (Marbella) Click | 7.25\" x 7mm x RL - 18.01sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 336
-    },
-    {
-      "id": "promo-7948db8ee70c",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-NRTH-0018",
-      "ls_id": "eb3ff2c4-a7cc-4685-a031-d27cee25a52c",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHLVP-SPC - Antique Series (Foggy) Click | 7.09\" x 9mm x RL - 17.84sf/b",
-        "expect_name": "NRTHLVP-SPC - Antique Series (Foggy) Click | 7.09\" x 9mm x RL - 17.84sf/b",
-        "expect_sku": "LVP-NRTH-0018"
-      },
-      "before": {
-        "name": "NRTHLVP-SPC - Antique Series (Foggy) Click | 7.09\" x 9mm x RL - 17.84sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 337
-    },
-    {
-      "id": "promo-70e402a84b10",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-NRTH-0019",
-      "ls_id": "33208340-1788-445a-92cb-5bac413e55c4",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHLVP-SPC - Antique Series (Bluff) Click | 7.09\" x 9mm x RL - 17.84sf/b",
-        "expect_name": "NRTHLVP-SPC - Antique Series (Bluff) Click | 7.09\" x 9mm x RL - 17.84sf/b",
-        "expect_sku": "LVP-NRTH-0019"
-      },
-      "before": {
-        "name": "NRTHLVP-SPC - Antique Series (Bluff) Click | 7.09\" x 9mm x RL - 17.84sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 338
-    },
-    {
-      "id": "promo-0315831a073a",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-NRTH-0020",
-      "ls_id": "51416dd5-c67d-4202-accb-699c02105d06",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHLVP-SPC - Antique Series (Allure) Click | 7.09\" x 9mm x RL - 17.84sf/b",
-        "expect_name": "NRTHLVP-SPC - Antique Series (Allure) Click | 7.09\" x 9mm x RL - 17.84sf/b",
-        "expect_sku": "LVP-NRTH-0020"
-      },
-      "before": {
-        "name": "NRTHLVP-SPC - Antique Series (Allure) Click | 7.09\" x 9mm x RL - 17.84sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 339
-    },
-    {
-      "id": "promo-b467e9807c32",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-NRTH-0021",
-      "ls_id": "8be5ab3b-a3e5-4cd1-9dae-979f9194c6b0",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHLVP-SPC - Antique Series (Whispering) Click | 7.09\" x 9mm x RL - 17.84sf/b",
-        "expect_name": "NRTHLVP-SPC - Antique Series (Whispering) Click | 7.09\" x 9mm x RL - 17.84sf/b",
-        "expect_sku": "LVP-NRTH-0021"
-      },
-      "before": {
-        "name": "NRTHLVP-SPC - Antique Series (Whispering) Click | 7.09\" x 9mm x RL - 17.84sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 340
-    },
-    {
-      "id": "promo-44b69aca08e4",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-NRTH-0022",
-      "ls_id": "b2b4be1a-6100-40c2-bcce-1babb95d3e39",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHLVP-SPC - Antique Series (Horizon) Click | 7.09\" x 9mm x RL - 17.84sf/b",
-        "expect_name": "NRTHLVP-SPC - Antique Series (Horizon) Click | 7.09\" x 9mm x RL - 17.84sf/b",
-        "expect_sku": "LVP-NRTH-0022"
-      },
-      "before": {
-        "name": "NRTHLVP-SPC - Antique Series (Horizon) Click | 7.09\" x 9mm x RL - 17.84sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 341
-    },
-    {
-      "id": "promo-7c576b3487d3",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-NRTH-0023",
-      "ls_id": "b8ac0046-a6e0-442d-89ff-55b3257788d1",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHLVP-SPC - Antique Series (Montana) Click | 7.09\" x 9mm x RL - 17.84sf/b",
-        "expect_name": "NRTHLVP-SPC - Antique Series (Montana) Click | 7.09\" x 9mm x RL - 17.84sf/b",
-        "expect_sku": "LVP-NRTH-0023"
-      },
-      "before": {
-        "name": "NRTHLVP-SPC - Antique Series (Montana) Click | 7.09\" x 9mm x RL - 17.84sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 342
-    },
-    {
-      "id": "promo-0b74b8551f6c",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-NRTH-0024",
-      "ls_id": "1d55911a-2941-494e-8c78-a880e7022d84",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHLVP-SPC - Antique Series (Laurel) Click | 7.09\" x 9mm x RL - 17.84sf/b",
-        "expect_name": "NRTHLVP-SPC - Antique Series (Laurel) Click | 7.09\" x 9mm x RL - 17.84sf/b",
-        "expect_sku": "LVP-NRTH-0024"
-      },
-      "before": {
-        "name": "NRTHLVP-SPC - Antique Series (Laurel) Click | 7.09\" x 9mm x RL - 17.84sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 343
-    },
-    {
-      "id": "promo-7e5b7d72e659",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-NRTH-0025",
-      "ls_id": "4dd9e09e-d125-434f-9bc1-d161c35f7d4d",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) NRTHLVP-SPC - Antique Series (Reflections) Click | 7.09\" x 9mm x RL - 17.84sf/b",
-        "expect_name": "NRTHLVP-SPC - Antique Series (Reflections) Click | 7.09\" x 9mm x RL - 17.84sf/b",
-        "expect_sku": "LVP-NRTH-0025"
-      },
-      "before": {
-        "name": "NRTHLVP-SPC - Antique Series (Reflections) Click | 7.09\" x 9mm x RL - 17.84sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 344
-    },
-    {
-      "id": "promo-43e7a4d9a7b9",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-PLUX-0032",
-      "ls_id": "19807558-191b-41f8-9502-59ee535e1660",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) PLUXLVP-WPC - WPC Series (Arctic Mist) Click | 7.09\" x 8mm x RL - 23.95sf/b",
-        "expect_name": "PLUXLVP-WPC - WPC Series (Arctic Mist) Click | 7.09\" x 8mm x RL - 23.95sf/b",
-        "expect_sku": "LVP-PLUX-0032"
-      },
-      "before": {
-        "name": "PLUXLVP-WPC - WPC Series (Arctic Mist) Click | 7.09\" x 8mm x RL - 23.95sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 345
-    },
-    {
-      "id": "promo-1427afbe0400",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-PLUX-0033",
-      "ls_id": "cbd58bb5-0d0f-4f6d-ac8a-8f30c376bf15",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) PLUXLVP-WPC - WPC Series (Mocha Glow) Click | 7.09\" x 8mm x RL - 23.95sf/b",
-        "expect_name": "PLUXLVP-WPC - WPC Series (Mocha Glow) Click | 7.09\" x 8mm x RL - 23.95sf/b",
-        "expect_sku": "LVP-PLUX-0033"
-      },
-      "before": {
-        "name": "PLUXLVP-WPC - WPC Series (Mocha Glow) Click | 7.09\" x 8mm x RL - 23.95sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 346
-    },
-    {
-      "id": "promo-4f6e408cfc4e",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-PLUX-0034",
-      "ls_id": "72794686-5e27-4438-95df-2343121b46f8",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) PLUXLVP-WPC - WPC Series (Natural Essence) Click | 7.09\" x 8mm x RL - 23.95sf/b",
-        "expect_name": "PLUXLVP-WPC - WPC Series (Natural Essence) Click | 7.09\" x 8mm x RL - 23.95sf/b",
-        "expect_sku": "LVP-PLUX-0034"
-      },
-      "before": {
-        "name": "PLUXLVP-WPC - WPC Series (Natural Essence) Click | 7.09\" x 8mm x RL - 23.95sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 347
-    },
-    {
-      "id": "promo-54f42a0dc2f3",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-PLUX-0035",
-      "ls_id": "940ad5d6-0ac8-4b7a-b30e-4acbc591d41a",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) PLUXLVP-WPC - WPC Series (Nimbus Gray) Click | 7.09\" x 8mm x RL - 23.95sf/b",
-        "expect_name": "PLUXLVP-WPC - WPC Series (Nimbus Gray) Click | 7.09\" x 8mm x RL - 23.95sf/b",
-        "expect_sku": "LVP-PLUX-0035"
-      },
-      "before": {
-        "name": "PLUXLVP-WPC - WPC Series (Nimbus Gray) Click | 7.09\" x 8mm x RL - 23.95sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 348
-    },
-    {
-      "id": "promo-f444b26de6d5",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-PLUX-0036",
-      "ls_id": "7883401b-8d41-4cf1-9cda-8396b20defd8",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) PLUXLVP-WPC - WPC Series (Whispering Breeze) Click | 7.09\" x 8mm x RL - 23.95sf/b",
-        "expect_name": "PLUXLVP-WPC - WPC Series (Whispering Breeze) Click | 7.09\" x 8mm x RL - 23.95sf/b",
-        "expect_sku": "LVP-PLUX-0036"
-      },
-      "before": {
-        "name": "PLUXLVP-WPC - WPC Series (Whispering Breeze) Click | 7.09\" x 8mm x RL - 23.95sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 349
-    },
-    {
-      "id": "promo-eec381b5b0cf",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-WODN-0022",
-      "ls_id": "90ffe6df-8002-475e-889f-1ecdcdc253eb",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) WODNLVP-SPC - 7 Diamond (701 Sandy Shell) Click | 7\" x 7mm x RL - 17.72sf/b",
-        "expect_name": "WODNLVP-SPC - 7 Diamond (701 Sandy Shell) Click | 7\" x 7mm x RL - 17.72sf/b",
-        "expect_sku": "LVP-WODN-0022"
-      },
-      "before": {
-        "name": "WODNLVP-SPC - 7 Diamond (701 Sandy Shell) Click | 7\" x 7mm x RL - 17.72sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 350
-    },
-    {
-      "id": "promo-4270effcf24b",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-WODN-0023",
-      "ls_id": "e1738778-9536-4022-b9c3-c74954e754f8",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) WODNLVP-SPC - 7 Diamond (702 Sierra Canyon) Click | 7\" x 7mm x RL - 17.72sf/b",
-        "expect_name": "WODNLVP-SPC - 7 Diamond (702 Sierra Canyon) Click | 7\" x 7mm x RL - 17.72sf/b",
-        "expect_sku": "LVP-WODN-0023"
-      },
-      "before": {
-        "name": "WODNLVP-SPC - 7 Diamond (702 Sierra Canyon) Click | 7\" x 7mm x RL - 17.72sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 351
-    },
-    {
-      "id": "promo-f5143265f395",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-WODN-0024",
-      "ls_id": "7e8a1098-853a-4604-9003-2d2b917d3340",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) WODNLVP-SPC - 7 Diamond (703 Ashy Stone) Click | 7\" x 7mm x RL - 17.72sf/b",
-        "expect_name": "WODNLVP-SPC - 7 Diamond (703 Ashy Stone) Click | 7\" x 7mm x RL - 17.72sf/b",
-        "expect_sku": "LVP-WODN-0024"
-      },
-      "before": {
-        "name": "WODNLVP-SPC - 7 Diamond (703 Ashy Stone) Click | 7\" x 7mm x RL - 17.72sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 352
-    },
-    {
-      "id": "promo-9ad4ef6af272",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-WODN-0025",
-      "ls_id": "d98f9e1a-a749-437c-ba75-19dbc89996df",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) WODNLVP-SPC - 7 Diamond (705 Misty Island) Click | 7\" x 7mm x RL - 17.72sf/b",
-        "expect_name": "WODNLVP-SPC - 7 Diamond (705 Misty Island) Click | 7\" x 7mm x RL - 17.72sf/b",
-        "expect_sku": "LVP-WODN-0025"
-      },
-      "before": {
-        "name": "WODNLVP-SPC - 7 Diamond (705 Misty Island) Click | 7\" x 7mm x RL - 17.72sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 353
-    },
-    {
-      "id": "promo-426fa33be198",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-WODN-0026",
-      "ls_id": "a4af61fb-adab-4ba9-8510-69d258bf7efb",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) WODNLVP-SPC - 7 Diamond (706 Rustic Pier) Click | 7\" x 7mm x RL - 17.72sf/b",
-        "expect_name": "WODNLVP-SPC - 7 Diamond (706 Rustic Pier) Click | 7\" x 7mm x RL - 17.72sf/b",
-        "expect_sku": "LVP-WODN-0026"
-      },
-      "before": {
-        "name": "WODNLVP-SPC - 7 Diamond (706 Rustic Pier) Click | 7\" x 7mm x RL - 17.72sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 354
-    },
-    {
-      "id": "promo-087f6f30d8d0",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-WODN-0027",
-      "ls_id": "a1173c8d-3019-449f-84b9-8d4aa6d938df",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) WODNLVP-SPC - 7 Diamond (707 Arcodia) Click | 7\" x 7mm x RL - 17.72sf/b",
-        "expect_name": "WODNLVP-SPC - 7 Diamond (707 Arcodia) Click | 7\" x 7mm x RL - 17.72sf/b",
-        "expect_sku": "LVP-WODN-0027"
-      },
-      "before": {
-        "name": "WODNLVP-SPC - 7 Diamond (707 Arcodia) Click | 7\" x 7mm x RL - 17.72sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 355
-    },
-    {
-      "id": "promo-3bc72cb8e94e",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-WODN-0028",
-      "ls_id": "0ea505dc-7429-40bb-b12f-c44532df7bf4",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) WODNLVP-SPC - 7 Diamond (708 Late Autumn) Click | 7\" x 7mm x RL - 17.72sf/b",
-        "expect_name": "WODNLVP-SPC - 7 Diamond (708 Late Autumn) Click | 7\" x 7mm x RL - 17.72sf/b",
-        "expect_sku": "LVP-WODN-0028"
-      },
-      "before": {
-        "name": "WODNLVP-SPC - 7 Diamond (708 Late Autumn) Click | 7\" x 7mm x RL - 17.72sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 356
-    },
-    {
-      "id": "promo-ddae7691deaf",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "LVP-WODN-0029",
-      "ls_id": "56bd74ec-f2c3-4ab2-ad4c-4580835f324c",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) WODNLVP-SPC - 7 Diamond (711 Mount Harbor) Click | 7\" x 7mm x RL - 17.72sf/b",
-        "expect_name": "WODNLVP-SPC - 7 Diamond (711 Mount Harbor) Click | 7\" x 7mm x RL - 17.72sf/b",
-        "expect_sku": "LVP-WODN-0029"
-      },
-      "before": {
-        "name": "WODNLVP-SPC - 7 Diamond (711 Mount Harbor) Click | 7\" x 7mm x RL - 17.72sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 357
+      "seq": 268
     },
     {
       "id": "promo-a27272254b47",
@@ -6136,7 +4606,7 @@
         "name": "NAFLVT-SPC - Aqua Tile (Gold) Click | 12\" x 7mm x RL - 16.03sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 358
+      "seq": 269
     },
     {
       "id": "promo-1e8ceafb00fd",
@@ -6154,7 +4624,7 @@
         "name": "NAFLVT-SPC - Aqua Commercial (Magnetite) Glue down | 18\" x 5mm x RL - 22.5sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 359
+      "seq": 270
     },
     {
       "id": "promo-f7a7c427e021",
@@ -6172,7 +4642,7 @@
         "name": "NAFLVT-SPC - Aqua Commercial (Moonstone) Glue down | 18\" x 5mm x RL - 22.5sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 360
+      "seq": 271
     },
     {
       "id": "promo-830ef6c9cbf1",
@@ -6190,7 +4660,7 @@
         "name": "GRNDLVP-SPC - Atlantic (GF8936) Click | 7\" x 5mm x RL - 26.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 361
+      "seq": 272
     },
     {
       "id": "promo-f511dad85f21",
@@ -6208,25 +4678,7 @@
         "name": "GRNDLVP-SPC - Atlantic (CDW340-2) Click | 7\" x 5mm x RL - 26.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 362
-    },
-    {
-      "id": "promo-36d852e20790",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "SPC-GRAN-0004",
-      "ls_id": "bcdcc7ec-e904-4155-b051-579dccbc45fe",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) GRNDLVP-SPC - Atlantic (88004-7) Click | 7\" x 5mm x RL - 26.72sf/b",
-        "expect_name": "GRNDLVP-SPC - Atlantic (88004-7) Click | 7\" x 5mm x RL - 26.72sf/b",
-        "expect_sku": "SPC-GRAN-0004"
-      },
-      "before": {
-        "name": "GRNDLVP-SPC - Atlantic (88004-7) Click | 7\" x 5mm x RL - 26.72sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 363
+      "seq": 273
     },
     {
       "id": "promo-58919cdf4ea9",
@@ -6244,25 +4696,7 @@
         "name": "GRNDLVP-SPC - Continental (Connecticut) Click | 7\" x 7mm x RL - 17.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 364
-    },
-    {
-      "id": "promo-a5cc4e289375",
-      "target_system": "lightspeed",
-      "op": "promo_marker",
-      "sku": "SPC-GRAN-0008",
-      "ls_id": "3133bf9e-d35a-4997-9dcc-8ebeb2608bff",
-      "airtable_rec_id": null,
-      "fields": {
-        "name": "(P) GRNDLVP-SPC - Continental (Illinois) Click | 7\" x 7mm x RL - 17.72sf/b",
-        "expect_name": "GRNDLVP-SPC - Continental (Illinois) Click | 7\" x 7mm x RL - 17.72sf/b",
-        "expect_sku": "SPC-GRAN-0008"
-      },
-      "before": {
-        "name": "GRNDLVP-SPC - Continental (Illinois) Click | 7\" x 7mm x RL - 17.72sf/b"
-      },
-      "reason": "promo_marker_on",
-      "seq": 365
+      "seq": 274
     },
     {
       "id": "promo-452a6cead644",
@@ -6280,7 +4714,7 @@
         "name": "GRNDLVP-SPC - Continental (Iowa) Click | 7\" x 7mm x RL - 17.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 366
+      "seq": 275
     },
     {
       "id": "promo-725333d20a09",
@@ -6298,7 +4732,7 @@
         "name": "GRNDLVP-SPC - Continental (Kentucky) Click | 7\" x 7mm x RL - 17.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 367
+      "seq": 276
     },
     {
       "id": "promo-64ae2c3125b5",
@@ -6316,7 +4750,7 @@
         "name": "GRNDLVP-SPC - Continental (Michigan) Click | 7\" x 7mm x RL - 17.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 368
+      "seq": 277
     },
     {
       "id": "promo-f17c4a9abaf1",
@@ -6334,7 +4768,7 @@
         "name": "GRNDLVP-SPC - Continental (New Jersey) Click | 7\" x 7mm x RL - 17.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 369
+      "seq": 278
     },
     {
       "id": "promo-0384b2b9d4de",
@@ -6352,7 +4786,7 @@
         "name": "GRNDLVP-SPC - Continental (New York) Click | 7\" x 7mm x RL - 17.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 370
+      "seq": 279
     },
     {
       "id": "promo-938d69166df7",
@@ -6370,7 +4804,7 @@
         "name": "GRNDLVP-SPC - Continental (Wisconsin) Click | 7\" x 7mm x RL - 17.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 371
+      "seq": 280
     },
     {
       "id": "promo-ee323bd00741",
@@ -6388,7 +4822,7 @@
         "name": "GRNDLVP-SPC - Pacific (Canterbury) Click | 7\" x 7mm x RL - 17.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 372
+      "seq": 281
     },
     {
       "id": "promo-f0dc6894cc83",
@@ -6406,7 +4840,7 @@
         "name": "GRNDLVP-SPC - Pacific (Golden Bay) Click | 7\" x 7mm x RL - 17.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 373
+      "seq": 282
     },
     {
       "id": "promo-67a5544f69d8",
@@ -6424,7 +4858,7 @@
         "name": "GRNDLVP-SPC - Pacific (Queenstown) Click | 7\" x 7mm x RL - 17.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 374
+      "seq": 283
     },
     {
       "id": "promo-3269df83e2ee",
@@ -6442,7 +4876,7 @@
         "name": "GRNDLVP-SPC - Pacific (Wellington) Click | 7\" x 7mm x RL - 17.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 375
+      "seq": 284
     },
     {
       "id": "promo-fb3cf7fcef0e",
@@ -6460,7 +4894,7 @@
         "name": "GRNDLVP-SPC - Pacific (88006-2) Click | 7\" x 7mm x RL - 17.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 376
+      "seq": 285
     },
     {
       "id": "promo-aa8eb0cac33c",
@@ -6478,7 +4912,7 @@
         "name": "GRNDLVP-SPC - Anchor 7 (Battery Point) Click | 7\" x 7mm x RL - 18.91sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 377
+      "seq": 286
     },
     {
       "id": "promo-369e76540bc5",
@@ -6496,7 +4930,7 @@
         "name": "GRNDLVP-SPC - Anchor 7 (North Head) Click | 7\" x 7mm x RL - 18.91sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 378
+      "seq": 287
     },
     {
       "id": "promo-c6b588494294",
@@ -6514,7 +4948,7 @@
         "name": "GRNDLVP-SPC - Anchor 7 (Oak Island) Click | 7\" x 7mm x RL - 18.91sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 379
+      "seq": 288
     },
     {
       "id": "promo-1beb6d34087a",
@@ -6532,7 +4966,7 @@
         "name": "GRNDLVP-SPC - Anchor 7 (Peggy's Cove) Click | 7\" x 7mm x RL - 18.91sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 380
+      "seq": 289
     },
     {
       "id": "promo-c485839652d8",
@@ -6550,7 +4984,7 @@
         "name": "GRNDLVP-SPC - Anchor 7 (Point Reyes) Click | 7\" x 7mm x RL - 18.91sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 381
+      "seq": 290
     },
     {
       "id": "promo-f1f8bb5668db",
@@ -6568,7 +5002,7 @@
         "name": "GRNDLVP-SPC - Anchor 7 (Sambro) Click | 7\" x 7mm x RL - 18.91sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 382
+      "seq": 291
     },
     {
       "id": "promo-d8a9d8ed8cb3",
@@ -6586,7 +5020,7 @@
         "name": "GRNDLVP-SPC - Anchor 7 (Windpoint) Click | 7\" x 7mm x RL - 18.91sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 383
+      "seq": 292
     },
     {
       "id": "promo-16d476d896a9",
@@ -6604,7 +5038,7 @@
         "name": "GRNDLVP-SPC - Wonder 7 (Alexandria) Click | 7\" x 7mm x RL - 17.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 384
+      "seq": 293
     },
     {
       "id": "promo-3c6294fe54f6",
@@ -6622,7 +5056,7 @@
         "name": "GRNDLVP-SPC - Wonder 7 (Babylon) Click | 7\" x 7mm x RL - 17.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 385
+      "seq": 294
     },
     {
       "id": "promo-ba368a638030",
@@ -6640,7 +5074,7 @@
         "name": "GRNDLVP-SPC - Wonder 7 (Coliseum) Click | 7\" x 7mm x RL - 17.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 386
+      "seq": 295
     },
     {
       "id": "promo-9bc2691ae24f",
@@ -6658,7 +5092,7 @@
         "name": "GRNDLVP-SPC - Wonder 7 (Giza) Click | 7\" x 7mm x RL - 17.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 387
+      "seq": 296
     },
     {
       "id": "promo-19a30f476d3d",
@@ -6676,7 +5110,7 @@
         "name": "GRNDLVP-SPC - Wonder 7 (Olympia) Click | 7\" x 7mm x RL - 17.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 388
+      "seq": 297
     },
     {
       "id": "promo-8d01d99503b8",
@@ -6694,7 +5128,7 @@
         "name": "GRNDLVP-SPC - Wonder 7 (Petra) Click | 7\" x 7mm x RL - 17.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 389
+      "seq": 298
     },
     {
       "id": "promo-e9afcf62cc54",
@@ -6712,7 +5146,7 @@
         "name": "GRNDLVP-SPC - Wonder 7 (Rhodes) Click | 7\" x 7mm x RL - 17.72sf/b"
       },
       "reason": "promo_marker_on",
-      "seq": 390
+      "seq": 299
     },
     {
       "id": "promo-330f4a5f79f5",
@@ -6730,7 +5164,7 @@
         "name": "(P) JLTTIL - Porcelain (Super Pure White*)  | #36P00B |  - 1224 - 8pc/b"
       },
       "reason": "promo_marker_off",
-      "seq": 391
+      "seq": 300
     },
     {
       "id": "promo-be536b1d64db",
@@ -6748,7 +5182,7 @@
         "name": "(P) JLTTIL - Porcelain (Super Pure White*)  | #60P00B |  - 2424 - 4pc/b"
       },
       "reason": "promo_marker_off",
-      "seq": 392
+      "seq": 301
     },
     {
       "id": "promo-1205977395b2",
@@ -6766,7 +5200,7 @@
         "name": "(P) JLTTIL - Porcelain (Rodas Bianco)  | #BPCK6007 |  - 2424 - 4pc/b"
       },
       "reason": "promo_marker_off",
-      "seq": 393
+      "seq": 302
     },
     {
       "id": "promo-894f775825a1",
@@ -6784,7 +5218,7 @@
         "name": "(P) JLTTIL - Porcelain (Dream White)  | #DM12341 |  - 2448 (8pcs Bookmatch) - 2pc/b"
       },
       "reason": "promo_marker_off",
-      "seq": 394
+      "seq": 303
     },
     {
       "id": "promo-3240820c7a3f",
@@ -6802,7 +5236,7 @@
         "name": "(P) JLTTIL - Porcelain (Dream Grey)  | #DM12342 |  - 2448 (8pcs Bookmatch) - 2pc/b"
       },
       "reason": "promo_marker_off",
-      "seq": 395
+      "seq": 304
     },
     {
       "id": "promo-7e305961bc1e",
@@ -6820,7 +5254,7 @@
         "name": "(P) JLTTIL - Porcelain (Luxor Grey)  | #LX12639 |  - 2448 - 2pc/b"
       },
       "reason": "promo_marker_off",
-      "seq": 396
+      "seq": 305
     },
     {
       "id": "promo-61bc4ef77f6b",
@@ -6838,7 +5272,7 @@
         "name": "(P) JLTTIL - Porcelain (Ariosa Snow Wall Tile)  | #N612002 |  - 2448 - 3pc/b"
       },
       "reason": "promo_marker_off",
-      "seq": 397
+      "seq": 306
     },
     {
       "id": "promo-0574beabd0f8",
@@ -6856,7 +5290,7 @@
         "name": "(P) JLTTIL - Porcelain (Ariosa Marble Wall Tile)  | #N612008 |  - 2448 - 3pc/b"
       },
       "reason": "promo_marker_off",
-      "seq": 398
+      "seq": 307
     },
     {
       "id": "promo-924f18f8fd80",
@@ -6874,7 +5308,7 @@
         "name": "(P) JLTTIL - Porcelain (Royal Dianna Silver)  | #RD60320 |  - 2424 - 4pc/b"
       },
       "reason": "promo_marker_off",
-      "seq": 399
+      "seq": 308
     },
     {
       "id": "promo-1016f48ea353",
@@ -6892,7 +5326,7 @@
         "name": "(P) JLTTIL - Porcelain (Iceberg White Lappato)  | #TE12690P |  - 2448 - 2pc/b"
       },
       "reason": "promo_marker_off",
-      "seq": 400
+      "seq": 309
     }
   ],
   "blocked": [],
@@ -6931,11 +5365,6 @@
       "sku": "ENG-VIDR-0018",
       "reason": "marker_on_variant",
       "detail": "variant family member: price handled, marker left as 'VIDENG - 6 American White Oak (Toffee Cr' (family-wide name)"
-    },
-    {
-      "sku": "ENG-GRAN-0013",
-      "reason": "marker_on_variant",
-      "detail": "variant family member: price handled, marker left as 'GRNDENG - Artisan North American Hickory' (family-wide name)"
     },
     {
       "sku": "ENG-VIDR-0007",

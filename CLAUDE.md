@@ -245,7 +245,9 @@ applied for the same company.
 `Promo cost` / `Promo end date` — kept forever, never cleared — it puts the
 `(P YYYY-MM-DD)` name prefix and the promo cost on a standalone Lightspeed product
 while the promo runs and takes both off the morning after it ends. A verbal extension
-is one Airtable edit (move the end date). Policy approves a morning of ≤50 changes;
+is one Airtable edit (move the end date). **Every promo has an end date** (2026-09-26):
+printed, else the last day of its Promo row's month, else of its list's month — the
+earlier when unsure; an undated one counts as over. Policy approves a morning of ≤50 changes;
 more waits for a person. The report lists promos ended in the last 14 days with their
 `Promo List URL` ("ask the rep"). Variant members get the price only; no `PROMO` tag.
 

@@ -11,13 +11,14 @@ leaves when it goes out. During the sweep." Airtable holds each record's promo
 (`Promo cost ($/sf)`, `Promo end date`) and never clears it (2026-09-23 ruling), so
 Lightspeed is DERIVED from it every morning:
 
-    active  = Promo cost is set AND (Promo end date is blank OR on/after today)
+    active  = Promo cost is set AND Promo end date is on/after today
+              (a blank end date is NOT active — every promo is dated, 2026-09-26)
 
     supply_price   active -> Promo cost          over -> Cost/unit, only while
                                                          Lightspeed still holds the
                                                          promo cost (never a general
                                                          cost sync)
-    name prefix    active -> "(P YYYY-MM-DD) "   ("(P) " when no end date)
+    name prefix    active -> "(P YYYY-MM-DD) "
                    else   -> no prefix
 
 A promo that ends therefore comes off by itself the next morning, and a verbal
@@ -84,7 +85,7 @@ def strip_marker(name):
 
 
 def marker_for(end):
-    return f"(P {end}) " if end else "(P) "
+    return f"(P {end}) "
 
 
 def number(value):
@@ -97,10 +98,12 @@ def number(value):
 
 
 def is_active(record, as_of):
+    """Strict (Albert, 2026-09-26): a promo with no end date is NOT running. Every
+    promo is dated at extraction; an undated one is a gap for a person to fill."""
     if number(record.get(PROMO_COST)) is None:
         return False
     end = (record.get(PROMO_END) or "")[:10]
-    return not end or end >= as_of
+    return bool(end) and end >= as_of
 
 
 def action_id(as_of, sku, op, value):
@@ -126,6 +129,34 @@ def load_airtable(path):
             raise SystemExit("pass a flattened snapshot (field names), not raw MCP output")
         flat.append(r)
     return flat
+
+
+def load_airtable_raw(paths):
+    """The Airtable MCP's own output pages (cellValuesByFieldId), merged and mapped
+    to field names via platform-settings/airtable-master-catalogue-fields.json.
+    Refuses a partial read, same as load_airtable()."""
+    registry = json.loads((REPO_ROOT / "platform-settings" /
+                           "airtable-master-catalogue-fields.json").read_text())
+    names = {fid: f["name"] for fid, f in registry.get("fields", registry).items()
+             if isinstance(f, dict) and "name" in f}
+    records, totals = [], set()
+    for path in paths:
+        page = json.loads(Path(path).read_text())
+        totals.add((page.get("metadata") or {}).get("totalRecordCount"))
+        for r in page["records"]:
+            row = {"id": r["id"]}
+            for fid, value in (r.get("cellValuesByFieldId") or {}).items():
+                if isinstance(value, dict):
+                    value = value.get("name")
+                row[names.get(fid, fid)] = value
+            records.append(row)
+    ids = {r["id"] for r in records}
+    total = max((t for t in totals if t is not None), default=None)
+    if len(ids) != len(records):
+        raise SystemExit("airtable pages overlap: the same record appears twice")
+    if total is None or total != len(records):
+        raise SystemExit(f"airtable read is partial: {len(records)} of {total} records")
+    return records
 
 
 def load_lightspeed(path):
@@ -165,6 +196,10 @@ def plan(airtable, products, as_of=None, max_changes=MAX_CHANGES):
             continue  # no promo, no marker: nothing to reconcile
         active = is_active(rec, as_of)
         end = (rec.get(PROMO_END) or "")[:10] or None
+        if has_promo and not end:
+            warnings.append({"sku": sku, "reason": "promo_end_missing",
+                             "detail": "promo cost with no end date is treated as over; "
+                                       "give it an end date in Airtable to turn it on"})
         if has_promo:
             counts["with_promo"] += 1
             counts["active"] += active
@@ -263,7 +298,10 @@ def plan(airtable, products, as_of=None, max_changes=MAX_CHANGES):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--airtable", required=True, type=Path)
+    src = ap.add_mutually_exclusive_group(required=True)
+    src.add_argument("--airtable", type=Path, help="flattened snapshot (field names)")
+    src.add_argument("--airtable-raw", type=Path, nargs="+",
+                     help="the Airtable MCP's saved list_records pages, all of them")
     ap.add_argument("--lightspeed", type=Path)
     ap.add_argument("--as-of")
     ap.add_argument("--max-changes", type=int, default=MAX_CHANGES)
@@ -272,7 +310,9 @@ def main():
     as_of = args.as_of or today()
     ls_path = args.lightspeed or REPO_ROOT / "ingest" / as_of / "lightspeed-products.json"
     out = args.out or REPO_ROOT / "plans" / as_of / "catalog-plan-promo-sweep.json"
-    result = plan(load_airtable(args.airtable), load_lightspeed(ls_path), as_of,
+    airtable = (load_airtable_raw(args.airtable_raw) if args.airtable_raw
+                else load_airtable(args.airtable))
+    result = plan(airtable, load_lightspeed(ls_path), as_of,
                   args.max_changes)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n")

@@ -280,6 +280,13 @@ the sheet that set it, which is how a person finds it to ask the rep about it la
 The row's own `Effective Date` property still gets the promo's start date (it is what
 decides whether the promo is in effect yet), and `Promo end date` gets the printed end.
 
+**Every promo row carries a `Promo end date` — never blank (Albert, 2026-09-26).** No
+printed end: a Promo sheet for a named month → that month's last day; a promo on a
+regular list → the last day of the list's `Effective Date` month. When two readings
+disagree, the earlier. Strict on purpose: an end too soon costs a rep call, an end
+too late sells at a cost Titan no longer gets. Say in `Notes` which rule dated it.
+(`catalog_reconcile.py` fills a missed one the same way and warns `promo_end_inferred`.)
+
 `catalog_reconcile.py` does the rest: a price change writes this date and
 `Price last changed by = Agent`; a confirmation moves the date forward only, never
 backward, and leaves the author alone.

@@ -886,7 +886,8 @@ class TestPromoPricing(unittest.TestCase):
 
     def test_promo_cost_becomes_supply_price(self):
         out = cr.ls_update_fields({"Cost/unit": "4.20", "Retail price/unit": "5.20",
-                                   "Promo cost ($/sf)": "3.15"})
+                                   "Promo cost ($/sf)": "3.15",
+                                   "Promo end date": "2099-12-31"})
         self.assertEqual(out["supply_price"], 3.15)
 
     def test_retail_stays_off_the_regular_cost(self):
@@ -923,11 +924,42 @@ class TestPromoPricing(unittest.TestCase):
                                        "Promo end date": end}, as_of="2026-09-23")
             self.assertEqual(out["supply_price"], 3.99, end)
 
-    def test_a_promo_with_no_end_date_still_applies(self):
+    def test_a_promo_with_no_end_date_does_not_apply(self):
+        """Albert, 2026-09-26: every promo is dated, strictly. reconcile() fills a
+        blank end before this runs, so a blank here is undated and does not apply."""
         out = cr.ls_update_fields({"Cost/unit": "1.49", "Retail price/unit": "2.49",
                                    "Promo cost ($/sf)": "1.29", "Promo end date": ""},
                                   as_of="2026-09-23")
-        self.assertEqual(out["supply_price"], 1.29)
+        self.assertEqual(out["supply_price"], 1.49)
+
+    def test_an_undated_promo_ends_with_its_lists_month(self):
+        rows = [row(SKU="A-1", **{"Lightspeed ID": "u-1", "Effective Date": "2026-09-01",
+                                  "Promo cost ($/sf)": "0.90", "Promo end date": ""})]
+        ls = [product(id="u-1", sku="A-1", supply_price=1.0)]
+        actions, _, warnings = cr.reconcile(rows, fake_ls(ls), {}, "Test", LEAVES,
+                                            as_of="2026-09-26")
+        up = next(a for a in actions if a["target_system"] == "airtable")
+        self.assertEqual(up["fields"]["Promo end date"], "2026-09-30")
+        ls_up = next(a for a in actions if a["target_system"] == "lightspeed")
+        self.assertEqual(ls_up["fields"]["supply_price"], 0.9)
+        self.assertIn("promo_end_inferred", {w["reason"] for w in warnings})
+
+    def test_an_undated_promo_on_an_old_list_is_already_over(self):
+        rows = [row(SKU="A-1", **{"Lightspeed ID": "u-1", "Effective Date": "2026-05-20",
+                                  "Promo cost ($/sf)": "0.90", "Promo end date": ""})]
+        ls = [product(id="u-1", sku="A-1", supply_price=1.0)]
+        actions, _, _ = cr.reconcile(rows, fake_ls(ls), {}, "Test", LEAVES,
+                                     as_of="2026-09-26")
+        up = next(a for a in actions if a["target_system"] == "airtable")
+        self.assertEqual(up["fields"]["Promo end date"], "2026-05-31")
+        for a in actions:
+            if a["target_system"] == "lightspeed":
+                self.assertEqual(a["fields"].get("supply_price"), 1.0)
+
+    def test_month_end(self):
+        self.assertEqual(cr.month_end("2026-02-14"), "2026-02-28")
+        self.assertEqual(cr.month_end("2028-02-01"), "2028-02-29")
+        self.assertEqual(cr.month_end("2025-12-31"), "2025-12-31")
 
     def test_update_still_writes_only_prices(self):
         """A promo must not widen the payload — no name, no supplier, no category."""

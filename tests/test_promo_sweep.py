@@ -60,9 +60,12 @@ class TestPromoOn(unittest.TestCase):
         r = run([rec()], [prod()], as_of="2026-09-30")
         self.assertIn(("promo_marker", "promo_marker_on"), ops(r))
 
-    def test_no_end_date_is_a_bare_marker(self):
-        r = run([rec(**{"Promo end date": None})], [prod()])
-        self.assertEqual(r["actions"][0]["fields"]["name"], f"(P) {NAME}")
+    def test_no_end_date_is_not_a_running_promo(self):
+        """Albert, 2026-09-26: every promo has an end date, strictly guessed if it
+        must be. An undated one is reported, not treated as running forever."""
+        r = run([rec(**{"Promo end date": None})], [prod(name=f"(P) {NAME}", supply_price=1.19)])
+        self.assertEqual(ops(r), {("promo_marker", "promo_marker_off")})
+        self.assertIn("promo_end_missing", {w["reason"] for w in r["warnings"]})
 
     def test_a_marker_already_right_writes_nothing(self):
         r = run([rec()], [prod(name=f"(P 2026-09-30) {NAME}")])
@@ -154,6 +157,22 @@ class TestLimits(unittest.TestCase):
             json.dump({"total_record_count": 2, "records": [rec()]}, f)
         with self.assertRaises(SystemExit):
             ps.load_airtable(f.name)
+
+    def test_raw_mcp_pages_are_mapped_and_a_missing_page_is_refused(self):
+        import json
+        import tempfile
+        page = {"records": [{"id": "rec1", "cellValuesByFieldId": {
+            "fldx3byCOht5HbKmH": "A-1", "fldRZJ5JW4G6Yig8x": {"id": "sel", "name": "FAW"},
+            "fldluA0eeTCwfton7": "2026-09-30"}}], "metadata": {"totalRecordCount": 1}}
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+            json.dump(page, f)
+        (r,) = ps.load_airtable_raw([f.name])
+        self.assertEqual((r["SKU"], r["Supplier"], r["Promo end date"]), ("A-1", "FAW", "2026-09-30"))
+        page["metadata"]["totalRecordCount"] = 2
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+            json.dump(page, f)
+        with self.assertRaises(SystemExit):
+            ps.load_airtable_raw([f.name])
 
     def test_the_planner_contains_no_write_verb(self):
         src = (REPO_ROOT / "scripts" / "promo_sweep.py").read_text()

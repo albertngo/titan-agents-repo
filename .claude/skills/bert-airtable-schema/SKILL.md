@@ -317,6 +317,14 @@ When a supplier posts a promotional cost:
 
 **Promo end date default (global rule, added Jul 2026):** unless the supplier specifies an end date, set `Promo end date` = the **last day of the month** the promo sheet applies to. If a promo is confirmed ongoing past its printed end date without a new date, roll the end date to the last day of the current month and note the extension. Never leave a promo open-ended with a blank end date.
 
+**Every promo has an end date — strict, and it beats every supplier subsection (Albert, 2026-09-26).** "We should put an end date for all of them, even if it is a guess. And the guess should be strict. Ending sooner than later if you have to guess." In order:
+1. The date printed on the sheet.
+2. A Notion **Promo** row for a specific month (subject or sheet says "January Deals", "April Clearance") → the last day of **that** month.
+3. Otherwise the promo came on a regular list → the last day of **that list's** `Effective Date` month.
+4. Two readings disagree → the **earlier** end date.
+
+A supplier subsection below that says "leave `Promo end date` blank" or "holds while stock lasts" is **superseded** by this. `catalog_reconcile.py` enforces it (a promo row with no end is given step 3's date and warned `promo_end_inferred`), and the promo lane treats any undated promo in Airtable as over. First applied to the 56 undated records on 2026-09-26 (Bella 2026-01-31, Evergreen 2025-09-30, Grandeur 2026-04-30, Purelux 2025-02-28, Woden 2026-05-31) — all already past. A rep saying it still runs = move the date forward by hand; the next sweep puts it back in Lightspeed.
+
 ### Promo product not found in catalogue
 
 When scanning a supplier promo sheet, a promoted grade or colour may not exist as a record in the Master Flooring Catalogue. In this case:
@@ -598,7 +606,7 @@ The source of truth for all Titan flooring products. Every active product that B
 | **Retail price/unit** | Currency | Selling price per unit (same unit as Cost/unit — per sq ft for flooring, per piece for tile/stone/accessories). Default = Cost + $ 1.00 for flooring; accessory markups vary (see supplier sections). This is what Bert quotes. | LS · Bert |
 | **MAP price ($/sf)** | Currency | **Holds either a MAP or an MSRP** (Albert, 2026-09-03 — one field for both, no separate MSRP field). A **MAP** is a contractual Minimum Advertised Price the supplier enforces (Grandeur); an **MSRP** is the supplier's advisory suggested retail (Biyork). Populated only when the price list actually publishes one — most suppliers publish neither, and a list price is never an MSRP. Bert will not quote below this value whichever it is, so a stored MSRP acts as a soft floor. | |
 | **Pallet price ($/sf)** | Currency | Full skid / pallet price per sq ft where supplier offers a volume discount. | Auto |
-| **Promo cost ($/sf)** | Currency | Promotional cost per sq ft from the supplier. The promo is **active only while `Promo end date` is today or later** (or blank) — a populated cost with a past end date is an ended promo, kept on purpose. Retail price is adjusted manually — not auto-calculated. **Never cleared** (Albert, 2026-09-23): the last promo stays on the record, with `Promo List URL`, so "any recently ended promos?" can be answered and put to the rep. | Bert · Auto |
+| **Promo cost ($/sf)** | Currency | Promotional cost per sq ft from the supplier. The promo is **active only while `Promo end date` is today or later** — never blank (2026-09-26) — a populated cost with a past end date is an ended promo, kept on purpose. Retail price is adjusted manually — not auto-calculated. **Never cleared** (Albert, 2026-09-23): the last promo stays on the record, with `Promo List URL`, so "any recently ended promos?" can be answered and put to the rep. | Bert · Auto |
 | **Promo end date** | Date | When the promotional price expires. Nothing clears `Promo cost` on this date (2026-09-23 ruling); compare against today to tell active from ended. A verbal extension from the rep = move this date forward by hand. | Auto |
 | **Volume pricing notes** | Long text | Tiered pricing rules. e.g. Vidar: Cut order $ 1.39 / 1-5 skids $ 1.34 / 6-20 skids $ 1.29 | |
 | **Effective Date** | Date | (Named `Effective Date` until Albert renamed it 2026-09-25; same field id `fld67650y8QClqoMc`.) **Effective date of the newest list received for the company that carries the product** (Albert, 2026-09-25): printed on the list, else a date in the email subject, else the email's received date — never the day it was processed. A price change writes it; a newer list that repeats the price moves it forward (never backward). Bert flags records older than 90 days as potentially stale. | Auto |
@@ -1093,7 +1101,7 @@ Only the controlled transition types get the `Transition` token — stair treads
   Not a "prefer not to": there is no workflow in which editing a SKU in place is
   correct. Escalate instead.**
 - Cost/unit — updated by Cowork from supplier price lists
-- Promo cost ($/sf) and Promo end date — set and cleared by Cowork
+- Promo cost ($/sf) and Promo end date — set by the pipeline, never cleared (2026-09-23); the sweep derives Lightspeed from them
 - Effective Date (the list's effective date) and Price last changed by (`Agent`) — written by the pipeline
 - Lightspeed ID — assigned by Lightspeed after upload
 - Price History Log records — append-only, never edit existing rows
@@ -1231,7 +1239,7 @@ has its own field. It never overwrites `Cost/unit`.
 |---|---|
 | `Cost/unit` | The **regular** cost. Stays put through a promo — it is what the price reverts to. |
 | `Promo cost ($/sf)` | The supplier's promotional / sale cost. Populated → Bert flags an active promo. |
-| `Promo end date` | The printed expiry. Cowork clears `Promo cost` on this date. |
+| `Promo end date` | The printed expiry, else the strict month-end default (never blank, 2026-09-26). Nothing clears `Promo cost`; the sweep's promo lane takes it off in Lightspeed the next morning. |
 
 - A sheet printing **paired Promotion / Regular columns** puts Regular in `Cost/unit` and
   Promotion in `Promo cost ($/sf)` — never the promo price into `Cost/unit`, which would
@@ -1441,7 +1449,7 @@ FAW marks promo items as "Colors ON SALE: [names]" in yellow highlighting, usual
   **On a standalone promo sheet FAW does print one — use the printed date, never the
   default** (corrected 2026-09-09; see *Standalone promo sheets* below).
 
-Example from Feb 23 2026 list: Designer 7.5" regular colours (Monet, Dali) @ $ 4.99 pallet; SALE colours (Da Vinci, Picasso) @ $ 3.99 pallet → Cost=$ 4.99, Retail=$ 5.99, Promo cost=$ 3.99, Promo end date blank.
+Example from Feb 23 2026 list: Designer 7.5" regular colours (Monet, Dali) @ $ 4.99 pallet; SALE colours (Da Vinci, Picasso) @ $ 3.99 pallet → Cost=$ 4.99, Retail=$ 5.99, Promo cost=$ 3.99, Promo end date 2026-02-28 (the list's month — never blank, 2026-09-26).
 
 #### Standalone promo sheets — a different document from the price list
 
@@ -1664,7 +1672,7 @@ Triforest shows composite thickness as `[SPC]+[pad]mm` but doesn't name underpad
 
 #### SALE / promo items
 
-The Jan 2026 list has no explicit SALE items. If future lists add promos, Triforest does not print promo end dates — leave `Promo end date` blank, promo holds until next price list.
+The Jan 2026 list has no explicit SALE items. If future lists add promos, Triforest does not print promo end dates — the strict global default applies (last day of the list's month; 2026-09-26, superseding "leave blank").
 
 #### Triforest ingest output format
 
@@ -1765,7 +1773,7 @@ Purelux marks clearance items with red "On Sale" text in the price column. Known
 **Sale pricing flow**:
 - If a sale colour has a **regular-price equivalent in the same series** (same structure, same spec sheet), set `Cost` = regular equivalent price, `Retail` = Cost + $ 1.00, `Promo cost ($/sf)` = sale price.
 - If a sale item has **no regular equivalent**, set `Cost` = sale price, `Retail` = Cost + $ 1.00, `Promo cost ($/sf)` = sale price (clearance-only product).
-- **Promo end date** = blank (Purelux does not publish end dates).
+- **Promo end date** = the strict global default (last day of the list's month). Purelux does not publish end dates; "blank" was superseded 2026-09-26.
 - Flag in Salesperson notes: "ON SALE. Regular price $X.XX/sf assumed (same structure as series). Confirm with Purelux."
 
 #### Effective date quirk
@@ -1804,7 +1812,7 @@ Evergreen lists `Price / Sq.ft` per tier. Standard markup: `Retail = Cost + $ 1
 - **If the clearance item has no regular equivalent** (unique thickness): `Cost` = clearance price, `Retail` = Cost + $ 1.00, `Promo cost ($/sf)` = clearance price.
   - Example: 10mm tier has no non-clearance equivalent. Cost = $ 1.49, Retail = $ 2.49, Promo = $ 1.49.
 - **Stock status** = `Clearance` on all clearance rows.
-- **Promo end date** = blank (Evergreen's price list is monthly — "Effective DD/MM/YYYY-DD/MM/YYYY" — and they don't publish separate promo end dates; the clearance holds while stock lasts).
+- **Promo end date** = the end of the list's printed validity window ("Effective DD/MM/YYYY-DD/MM/YYYY"), else the last day of its month (strict global default, 2026-09-26 — "holds while stock lasts" is superseded).
 
 #### LS Handle format
 
@@ -2029,7 +2037,7 @@ Examples:
 
 #### SALE / promo items
 
-The Feb 1, 2026 list has no SALE items. If future lists add promos, apply the global Sale item pricing logic. GreenTouch does not appear to print promo end dates — leave `Promo end date` blank; promo holds until next price list or manual update.
+The Feb 1, 2026 list has no SALE items. If future lists add promos, apply the global Sale item pricing logic. GreenTouch does not appear to print promo end dates — the strict global default applies (last day of the list's month; 2026-09-26).
 
 #### Effective date
 
@@ -2552,7 +2560,7 @@ Sunshiny **does provide**:
 
 #### SALE / promo items
 
-Sunshiny does not typically show promos on their standard price list. If a promo appears, it may be marked with a cross (✗) or red highlight. Apply the global Sale item pricing logic. Sunshiny does not publish promo end dates — leave `Promo end date` blank; promo holds until next price list or manual update.
+Sunshiny does not typically show promos on their standard price list. If a promo appears, it may be marked with a cross (✗) or red highlight. Apply the global Sale item pricing logic. Sunshiny does not publish promo end dates — the strict global default applies (last day of the list's month; 2026-09-26).
 
 #### Sunshiny ingest output format
 
@@ -2635,7 +2643,7 @@ Woden uses two distinct words and they map differently:
 
 - **"Clearance / while stock last"** (7 Diamond Collection) → `Stock status = Clearance` **and** apply Sale pricing. No regular price exists on the list for 7 Diamond, so **Sale rule 3**: `Cost = SALE price`, `Retail = Cost + $ 1.00`, `Promo cost = SALE price`. Cost = Promo cost signals original cost unavailable. Note "while stock last; final sale" and the 8 Diamond replacement.
 - **"(promotion)"** (Vermont Charcoal @ $ 2.50; Grand Chateau Natural/Coyote @ $ 2.50; and effectively the lower in-collection price tiers) → `Stock status` stays **blank**; `Promo cost = promo price`; `Cost` = the in-collection regular price (Sale rule 1). For Grand Chateau Natural/Coyote no separate regular price is printed → use the nearest in-collection regular tier ($ 3.29) as Cost and flag to confirm.
-- **No promo end dates** — Woden never prints them. Leave `Promo end date` blank; promo holds until next list or manual update.
+- **No promo end dates** — Woden never prints them. The strict global default applies: last day of the list's `Effective Date` month (2026-09-26, superseding "leave blank").
 
 Multi-tier collections (Elite 3.79/3.59, Grand Chateau 3.79/3.29/2.50, Timbercraft 5.99/5.49, Lumine 5.49/4.99) are priced per colour at the tier shown — these are different price points, not promos, unless the word "promotion" appears.
 

@@ -49,6 +49,7 @@ import json
 import re
 import sys
 from collections import Counter, defaultdict
+from calendar import monthrange
 from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -134,6 +135,12 @@ BOX_SIZE = "Box size (sf)"
 
 def today():
     return datetime.now(TZ).date().isoformat()
+
+
+def month_end(iso):
+    """Last day of the month an ISO date falls in: 2026-05-20 -> 2026-05-31."""
+    y, m = int(iso[:4]), int(iso[5:7])
+    return f"{y:04d}-{m:02d}-{monthrange(y, m)[1]:02d}"
 
 
 def slugify(name):
@@ -284,6 +291,18 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
                   f"system before then (as of {as_of}). /price-list-sweep applies it "
                   "on the day, against a fresh pull of both systems")
             continue
+        # Every promo has an end date (Albert, 2026-09-26: "We should put an end date
+        # for all of them, even if it is a guess. And the guess should be strict").
+        # A row carrying a promo cost with no printed end is a promo for the list's
+        # own month: it ends on the last day of that month, never later. Extraction
+        # applies the same rule; this is the backstop, so no promo reaches Airtable
+        # or Lightspeed open-ended — 56 did before this, and read as active forever.
+        if as_number(row.get(PROMO_COST)) is not None and not clean(row.get(PROMO_END)):
+            basis = effective if effective and ISO_DATE.match(effective) else as_of
+            row = {**row, PROMO_END: month_end(basis)}
+            warn(sku, "promo_end_inferred",
+                 f"promo cost with no end date: set to {row[PROMO_END]}, the last day of "
+                 f"the {'list' if basis == effective else 'run'}'s month ({basis})")
         if not sku:
             name = clean(row.get("Product name")) or "<unnamed>"
             if clean(row.get(MATCH_STATUS)) == "new":
@@ -874,12 +893,14 @@ def ls_update_fields(row, as_of=None):
     Airtable (scripts/catalog_export.py), which carries those stale values
     faithfully. So a promo whose end date is before `as_of` is ignored here and the
     regular cost is used. The Airtable fields are untouched: this is not the sweep.
-    A promo with no end date still applies, since clearance "while stock lasts"
-    prints none.
+    A promo with no end date does NOT apply (2026-09-26, reversing "clearance while
+    stock lasts prints none"): every promo is dated, strictly, at extraction.
     """
     promo = as_number(row.get(PROMO_COST))
     end = clean(row.get(PROMO_END))
-    if promo is not None and end and end[:10] < (as_of or today()):
+    # A blank end is not "forever" (2026-09-26): reconcile() fills one before this
+    # runs, so a blank here is a promo nobody dated, and it does not apply.
+    if promo is not None and (not end or end[:10] < (as_of or today())):
         promo = None
     cost = as_number(row.get("Cost/unit"))
     return {k: v for k, v in (

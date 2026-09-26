@@ -329,6 +329,12 @@ only when the flow itself or the stored text needs to change.
 
 ## Changelog
 
+- **2026-09-26 (Albert, in chat), last.** Every promo has an end date, guessed strictly
+  when not printed (Promo row's month, else the list's month; the earlier when unsure).
+  The 56 undated records were dated from their Notion rows — all already over. The
+  reconciler dates a missed one (`promo_end_inferred`); the promo lane treats an
+  undated promo as over.
+
 - **2026-09-26 (Albert, in chat), later.** The sweep gained a promo lane
   (`/price-list-sweep` 3P, `scripts/promo_sweep.py`): Lightspeed's `(P YYYY-MM-DD)`
   name prefix and promo cost follow Airtable's promo every morning, on and off. New
