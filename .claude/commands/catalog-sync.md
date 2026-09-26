@@ -76,6 +76,11 @@ one exists, this list is superseded: write nothing, put `SUPERSEDED by PL-<n>
 (<date>)` at the front of `Notes`, stamp `Last Agent Activity Date`, report it, and
 stop. Applying it would move prices backward to an older list (the reconciler only
 guards the date, not the price). A person can still apply it deliberately.
+**Promo lists are exempt** (`Tags = Promo`): a promo sheet sets only `Promo cost` and
+`Promo end date` on top of the regular price and never moves `Cost/unit`, so a newer
+regular list does not supersede it — FAW's September promo (PL-383, dated 09-01) runs
+alongside its Sept 19 regular list (PL-377). Compare Promo rows only against other
+Promo rows for the same company.
 
 Planning now and executing later is deliberately not an option: prices, UUIDs and
 the catalogue can all move in between, so a plan is only good against the systems as
