@@ -154,6 +154,26 @@ Add a new agent = add one file in `.claude/agents/` + conform to the matching co
 (`ingest-schema.md` for ingesters, `actions-log-schema.md` for actions agents).
 Nothing else changes.
 
+### Style tags (`/style-tag`, 2026-09-26)
+
+Second catalogue flow, Airtable only, **not** part of `/daily-ingest` and never
+scheduled. `/style-tag <SUPPLIER>` fills the blank style fields on that supplier's
+records — `Undertone`, `Tone depth`, `Texture`, `Style`, `Busyness` — from specs and
+images, marks them `AI suggested`, and leaves staff to confirm. Same shape as
+`/catalog-sync`: `scripts/style_tag_pull.py` (read-only) → the session model's
+judgement file → `scripts/style_tag_plan.py` (read-only, deterministic) → a policy
+approval file → `airtable-actions-agent` (`airtable_update_style_tags`, blank fields
+only, read-before-write) → a troubled-tags CSV and page table on a standing Notion
+row plus a PushNotification. Contracts: `contracts/style-plan-schema.md`,
+`contracts/troubled-tags-schema.md`; registry `platform-settings/style-tags.json`;
+method and rubric `methods/style-tags.md`.
+
+Three rules that are not negotiable, all from Albert on 2026-09-26: a record whose
+`Style tags status` is `Staff confirmed` is never touched; colour tags come from
+`Swatch images` only — never a room scene — and no swatch means hold; the run never
+writes `Staff confirmed`. `write_mode` starts at `plan_only` and flipping it is a
+dated vault decision, same as the social pipeline was.
+
 ## Agent class rules
 
 | | `*-ingest` | `*-actions` |

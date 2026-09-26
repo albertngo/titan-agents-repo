@@ -1,0 +1,175 @@
+{
+  "_comment": "Registry for /style-tag (.claude/commands/style-tag.md): the Master Flooring Catalogue style-tag fields, what may decide each one, the thresholds and rule tables scripts/style_tag_plan.py applies, the staged write_mode, and where a run writes. Consumed by scripts/style_tag_pull.py, scripts/style_tag_plan.py, .claude/agents/airtable-actions-agent.md (the closed field list) and the command. Field ids verified live 2026-09-26 (list_tables_for_base + get_table_schema). Ids are stable across renames; names are not — prefer the id wherever the API accepts one. Method and rubric: methods/style-tags.md.",
+  "_maintenance": "Option strings are EXACT MATCH against Airtable (`Warm`, not `warm`); the plan script pre-flights every value here against a fresh get_table_schema read and stops if one is missing — never add the option. Thresholds and rule tables are tunable data (architecture.md: a value you might change next month lives here); what they MEAN is in methods/style-tags.md. tests/test_style_tags.py holds this file to platform-settings/airtable-master-catalogue-fields.json and to the actions agent's closed field list.",
+  "config_version": "1",
+  "base_id": "appWHOVZ0QCS0xQ3M",
+  "table_id": "tblfLXD3zkSdNQGbS",
+
+  "write_mode": {
+    "mode": "plan_only",
+    "_values": ["plan_only", "write"],
+    "_flip": "Staged rollout, same shape as social-destinations.json write_mode. While `plan_only`, /style-tag builds the plan, the troubled CSV and the Notion report and writes NO approval file and NO Airtable record — scripts/style_tag_plan.py refuses --write-approval under it. Flipping to `write` is a dated decision recorded in the vault (05_decisions/), never an edit made to get a run through. tests/test_style_tags.py guards the value; update the test in the same commit as the flip (test_social_registry.py went stale exactly this way on 2026-09-2x)."
+  },
+
+  "targets": {
+    "_comment": "The five tag fields a run may fill, BLANK ONLY. Order here is the order tags appear in evidence and in the troubled CSV.",
+    "Undertone":  {"id": "fldrOvSEzOoxyNSpC", "type": "singleSelect", "options": ["Warm", "Neutral", "Cool"]},
+    "Tone depth": {"id": "fldjlGQSOwPGJfEcA", "type": "rating", "min": 1, "max": 5, "_note": "A rating field, not a number: write an integer 1-5. 1 = very light, 5 = very dark."},
+    "Texture":    {"id": "fldCH08dVkm48BoiD", "type": "singleSelect", "options": ["Smooth", "Brushed", "Rustic"]},
+    "Style":      {"id": "fldMN7qErzn39NFcY", "type": "multipleSelects", "options": ["Modern", "Rustic", "Scandinavian", "Coastal", "Traditional"]},
+    "Busyness":   {"id": "fldRMUIPEXOxvp7Xk", "type": "singleSelect", "options": ["Calm", "Moderate", "Busy"]}
+  },
+  "status_field": {
+    "name": "Style tags status",
+    "id": "fldFEZIuna04JLFCr",
+    "options": ["AI suggested", "Staff confirmed"],
+    "run_writes": "AI suggested",
+    "never_touch": "Staff confirmed",
+    "_note": "A run sets `AI suggested` only when it writes at least one tag and the field is blank. It NEVER writes `Staff confirmed` — that is a person's click in Airtable (D5, 2026-09-26). A record already `Staff confirmed` is excluded at pull, at plan, and again at write time."
+  },
+  "evidence_field": {
+    "name": "Style tags evidence",
+    "id": "flduKhIN0PBEmnOMJ",
+    "_note": "Appended, never replaced: existing text + newline + this run's block. Block = header line `AI suggested <date> — <plan path>` then one line per written tag `Field: Value (confidence, source[: image filename]) — evidence`. No tag is written without an evidence line."
+  },
+
+  "inputs": {
+    "_comment": "Read, never written. The three image fields (Albert, 2026-09-26: `Images` renamed to `Swatch images`, same id; Room scene and Detail added) plus the specs the rule tables and the model read.",
+    "swatch_images": "fldbRlqkxa7hp7quH",
+    "room_scene_images": "fldcB1MQVqcPf6lKY",
+    "detail_images": "fldRH7GrND9w10KWH",
+    "SKU": "fldx3byCOht5HbKmH",
+    "Product name": "fldPSbURaP3wp0Tce",
+    "Supplier": "fldRZJ5JW4G6Yig8x",
+    "Category": "fldPPKZFhN91SDDbI",
+    "Active": "fldPsKISM495IjaWU",
+    "Collection": "fldL8miCdB55TWmfJ",
+    "Finish type": "fldo6Em81uoydl9Jj",
+    "Grade": "fld42aGNM67nKH2hp",
+    "Species": "fldvWLfeSvsMnd1vL",
+    "Colour / tone": "fldNTc3qponIjsNLV",
+    "Salesperson notes": "fldm06jdSIM9o3PXI"
+  },
+  "image_fields": {
+    "_comment": "Key -> live field name and the manifest `kind`. The KIND IS THE SOURCE FIELD, never the model's guess: which field an attachment sits in decides what it may inform (image_sources). The model's `looks_like` is a sanity check that can only withhold a misfiled image.",
+    "swatch_images":     {"name": "Swatch images",     "kind": "swatch"},
+    "room_scene_images": {"name": "Room scene images", "kind": "room"},
+    "detail_images":     {"name": "Detail images",     "kind": "detail"}
+  },
+  "image_sources": {
+    "_comment": "Albert, 2026-09-26, verbatim: 'Colour tags (Undertone, Tone depth) come from Swatch images only; never from Room scene images (room lighting skews colour). Style uses swatch + room scenes. Texture uses specs + Detail images. No swatch -> hold colour tags for review.'",
+    "swatch_images": ["colour", "style"],
+    "room_scene_images": ["style"],
+    "detail_images": ["texture"]
+  },
+  "source_rules": {
+    "_comment": "Which sources may DECIDE a field. `spec` = the rule tables below; `swatch_images` / `room_scene_images` / `detail_images` = the model's judgement of an image in that field; `hint` = supplier colour words and `Colour / tone`, confidence-capped so they never write alone. A `reviewer` answer (troubled table `Action` cell) may decide any field. Anything not listed is never a source for that field — a room scene cannot reach Undertone at any confidence.",
+    "Texture":    {"primary": ["spec"], "secondary": ["detail_images"]},
+    "Busyness":   {"primary": ["spec"], "secondary": [], "conflict_check": ["swatch_images", "detail_images"]},
+    "Undertone":  {"primary": ["swatch_images"], "secondary": ["hint"]},
+    "Tone depth": {"primary": ["swatch_images"], "secondary": ["hint"]},
+    "Style":      {"primary": ["swatch_images", "room_scene_images", "spec"], "secondary": []}
+  },
+
+  "eligible_categories": ["Engineered hardwood", "Solid hardwood", "LVP", "LVT", "Laminate"],
+  "_eligible_note": "v1 is flooring only (D2, 2026-09-26). Tile / Stone needs its own texture table (polished / honed / glazed / splitface) and its busyness is veining, not grain — added when asked for. Accessory, STONE and Carpet are out.",
+
+  "policy": {
+    "min_confidence": 0.7,
+    "agreement_bonus": 0.1,
+    "spec_only_style_cap": 0.65,
+    "hint_confidence": 0.5,
+    "verbatim_grade_confidence": 0.7,
+    "approved_by": "policy: style-tags auto-approval (v1 rubric)",
+    "_note": "A tag writes only if: the field is blank (at pull AND at write), the record is not Staff confirmed, confidence >= min_confidence after caps, no spec-vs-image conflict, and the value is a live option. agreement_bonus is added (capped at 1.0) when two independent sources name the same value; disagreement at >= min_confidence on both sides is a conflict, never an average. spec_only_style_cap keeps Style below threshold on a record with no swatch or room image (D4). hint_confidence is what supplier colour words and `Colour / tone` are worth on their own — never enough."
+  },
+
+  "spec_rules": {
+    "_comment": "Deterministic tables scripts/style_tag_plan.py applies. Finish matching normalises the option string (lowercase, letters and digits only, single spaces) because the live `Finish type` list carries a dozen spellings of wire-brushed; rules are tried top to bottom, first match wins. Anything unmatched is held `spec_unmapped` and named in the troubled CSV — grow these tables from real rows, never by guessing at run time. Rules marked provisional write `wrote_flagged` (`spec_rule_provisional`) below min_confidence they simply hold.",
+    "texture_from_finish": [
+      {"contains": ["handscraped", "hand scraped", "distressed", "sawmark", "saw marked", "arc saw", "tumbled", "splitface", "hand crafted"], "texture": "Rustic", "confidence": 0.85, "why": "scraping, distressing and saw marks are deliberate rustic texture"},
+      {"contains": ["wirebrush", "wire brush", "brushed"], "texture": "Brushed", "confidence": 0.85, "why": "any wire-brushed finish, light or deep"},
+      {"contains": ["eir", "embossed in register", "embossed", "registered embossing", "registered embossed", "textured"], "texture": "Brushed", "confidence": 0.6, "provisional": true, "why": "PROVISIONAL: vinyl/laminate grain embossing is neither smooth nor brushed wood. Held at 0.6 until Albert rules on it — see methods/style-tags.md, open rulings"},
+      {"contains": ["smooth", "matte uv", "uv lacquer", "semi gloss", "semigloss", "gloss", "polished", "honed", "matte", "satin", "ceramic coating", "uv oil", "lacquer"], "texture": "Smooth", "confidence": 0.8, "why": "a coating with no brush or scrape word is a smooth face"}
+    ],
+    "grade_letter_map": {
+      "_comment": "bert-airtable-schema 'Letter-grade mapping' — letter grades collapse to the canonical four before the busyness lookup.",
+      "AB": "Select & Better",
+      "ABC": "Select",
+      "ABCD": "Character",
+      "EF": "Rustic"
+    },
+    "busyness_from_grade": {
+      "Select & Better": {"busyness": "Calm", "confidence": 0.85},
+      "Select":          {"busyness": "Calm", "confidence": 0.85},
+      "Select Plus":     {"busyness": "Calm", "confidence": 0.7, "why": "verbatim supplier grade; not formally mapped per bert-airtable-schema"},
+      "Prestige Grade":  {"busyness": "Calm", "confidence": 0.7, "why": "verbatim supplier grade; not formally mapped"},
+      "Excel Grade":     {"busyness": "Calm", "confidence": 0.7, "why": "verbatim supplier grade; not formally mapped"},
+      "Prime":           {"busyness": "Calm", "confidence": 0.7},
+      "Character":       {"busyness": "Moderate", "confidence": 0.85},
+      "Rustic":          {"busyness": "Busy", "confidence": 0.85},
+      "Distressed Grade": {"busyness": "Busy", "confidence": 0.85},
+      "Distressed":      {"busyness": "Busy", "confidence": 0.7, "why": "live option without the word Grade; finish language stored as a grade"},
+      "BCDE":            {"busyness": "Busy", "confidence": 0.7, "provisional": true, "why": "PROVISIONAL: a letter grade the schema skill does not map"}
+    },
+    "busyness_ladder": ["Calm", "Moderate", "Busy"],
+    "busyness_modifiers": [
+      {"finish_contains": ["distressed", "smoked", "reactive", "handscraped", "hand scraped", "saw marked", "sawmark"], "step": 1, "confidence": 0.85, "why": "distressing, smoking, reactive stains and saw marks add visual variation"},
+      {"colour_tone_in": ["Multi"], "step": 1, "confidence": 0.85, "why": "the catalogue already says the colour varies"},
+      {"species_in": ["Hickory", "Acacia"], "step": 1, "confidence": 0.7, "why": "known busy grain"}
+    ],
+    "tone_depth_from_colour_tone": {
+      "_comment": "`Colour / tone` (only its seven canonical values; the ~130 supplier colour codes on that select are ignored) as a HINT for Tone depth at hint_confidence. `range` is what counts as agreement with the image; `proposed` is the value offered when the hint is all there is (never enough to write).",
+      "White":   {"range": [1], "proposed": 1},
+      "Light":   {"range": [1, 2], "proposed": 2},
+      "Natural": {"range": [2, 3], "proposed": 2},
+      "Medium":  {"range": [3], "proposed": 3},
+      "Dark":    {"range": [4, 5], "proposed": 4}
+    },
+    "colour_words": {
+      "_comment": "Whole-word, case-insensitive, over `Product name` + `Collection`. Hints at hint_confidence for Undertone (warm/cool/neutral) and Tone depth (light -> 2, dark -> 4).",
+      "warm":    ["golden", "honey", "amber", "caramel", "toffee", "cognac", "chestnut", "cinnamon", "copper", "butterscotch", "warm", "brandy", "hazel", "auburn", "rust", "terra"],
+      "cool":    ["grey", "gray", "ash", "smoke", "smoked", "silver", "slate", "fog", "mist", "cool", "blue", "platinum", "steel", "glacier", "arctic", "frost", "pewter"],
+      "neutral": ["natural", "sand", "beige", "taupe", "oat", "linen", "driftwood", "greige", "almond", "bone", "ivory", "nude"],
+      "light":   ["white", "ivory", "blond", "blonde", "pale", "light", "cream", "snow", "arctic", "frost", "bone", "sand", "vanilla", "pearl"],
+      "dark":    ["espresso", "ebony", "black", "dark", "coffee", "charcoal", "mocha", "cocoa", "chocolate", "tobacco", "midnight", "onyx", "walnut", "umber"]
+    }
+  },
+
+  "style_guidance": "methods/style-tags.md#style",
+  "_style_note": "Style is the model's judgement over specs + swatch + room scene images (D6: the session model writes the judgement file; contracts/style-plan-schema.md 'The judgement file'). The rubric it follows is prose in methods/style-tags.md; the script only thresholds, caps and validates.",
+
+  "notion_row": {
+    "_comment": "D1 (2026-09-26): one STANDING row per scope in the Price Lists database — data_source from platform-settings/pricelist-sources.json -> price_lists.data_source, property names from its read_properties / write_properties. Found by title; created on the first run; Troubled Files and the page table replaced each run with Action cells carried forward.",
+    "title_format": "Style tags — {supplier}",
+    "tag": "Style Tags",
+    "tag_colour": "gray",
+    "_tag_note": "Coined under the 2026-09-11 open-ended-tag rule (pricelist-sources.json tags._open_ended_2026-09-11): a gray tag, never Regular List / Promo, colour set on the new option only.",
+    "properties_on_create": {
+      "Extraction Status": "Not Needed",
+      "Airtable Sync": "Not needed",
+      "LS Upload": "Not needed",
+      "UUID Backfill": "Not needed"
+    },
+    "_properties_note": "So no present or future sweep mistakes the row for a price list: the extraction routine stops on any status past Not started, and the (unwired) backstop sweep filters Airtable Sync Pending/Partial.",
+    "notes_format": "{date} style-tag {scope}: {written} written, {held} held, {flagged} flagged. write_mode={write_mode}."
+  },
+
+  "outputs": {
+    "dir": "ingest/{date}",
+    "snapshot": "{scope}_style_snapshot.json",
+    "options": "{scope}_style_options.json",
+    "answers": "{scope}_style_answers.json",
+    "candidates": "style-candidates-{scope}.json",
+    "judgements": "style-judgements-{scope}.json",
+    "images_dir": "style-images",
+    "_images_note": "ingest/<date>/style-images/<sku>/<kind>/<attachment_id>-<filename> plus a downscaled `<attachment_id>-read.jpg` beside it for the model. Gitignored: product photos are Airtable's copy, regenerable, and would bloat the repo. The manifest in the candidates file stores ids and filenames, never the signed URLs (they expire within hours).",
+    "plan": "plans/{date}/style-plan-{scope}.json",
+    "approval": "plans/{date}/style-approval-{scope}.json",
+    "troubled": "{scope}_style_troubled_{date}.csv"
+  },
+
+  "troubled_columns": ["supplier", "sku", "product_name", "field", "reason", "disposition", "proposed", "confidence", "source", "detail", "action_id", "Action"],
+  "held_reasons": ["low_confidence", "spec_image_conflict", "no_swatch", "image_host_blocked", "image_format_unsupported", "spec_unmapped", "needs_image", "answer_unparsed", "image_misfiled", "reviewer_skipped"],
+  "flagged_reasons": ["spec_rule_provisional"]
+}

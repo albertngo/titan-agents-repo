@@ -2,6 +2,7 @@
   "_comment": "Master Flooring Catalogue (tblfLXD3zkSdNQGbS) field ids -> name and type, captured live 2026-09-23 from list_tables_for_base. Read by scripts/catalog_export.py, which renders the post-sync Airtable CSV from list_records_for_table output (keyed by field id). Ids are stable; names can be renamed in Airtable. The script warns on any CSV column it cannot find here, which is how a rename shows up. Refresh from list_tables_for_base when it does.",
   "table_id": "tblfLXD3zkSdNQGbS",
   "captured": "2026-09-23",
+  "_topped_up_2026-09-26": "Ten fields added from a live list_tables_for_base read on 2026-09-26, appended in live order: Swatch images (fldbRlqkxa7hp7quH — RENAMED from `Images` the same day, same id; Albert), the seven style-tag fields, Room scene images and Detail images. Consumers: methods/style-tags.md (the /style-tag plan) and, once built, platform-settings/style-tags.json. NOT applied here: fld67650y8QClqoMc is live-named `Effective Date` now, not `Last price update` — catalog_export.py resolves upload-CSV columns by NAME, so renaming this entry would turn every CSV's `Last price update` column into an unknown; that rename goes with the canonical CSV column list in bert-airtable-schema, not here.",
   "fields": {
     "fldx3byCOht5HbKmH": {
       "name": "SKU",
@@ -254,6 +255,46 @@
     "fldkQY4YQHpwTQUnX": {
       "name": "Price History Log v2",
       "type": "multipleRecordLinks"
+    },
+    "fldbRlqkxa7hp7quH": {
+      "name": "Swatch images",
+      "type": "multipleAttachments"
+    },
+    "fldrOvSEzOoxyNSpC": {
+      "name": "Undertone",
+      "type": "singleSelect"
+    },
+    "fldjlGQSOwPGJfEcA": {
+      "name": "Tone depth",
+      "type": "rating"
+    },
+    "fldCH08dVkm48BoiD": {
+      "name": "Texture",
+      "type": "singleSelect"
+    },
+    "fldMN7qErzn39NFcY": {
+      "name": "Style",
+      "type": "multipleSelects"
+    },
+    "fldRMUIPEXOxvp7Xk": {
+      "name": "Busyness",
+      "type": "singleSelect"
+    },
+    "fldFEZIuna04JLFCr": {
+      "name": "Style tags status",
+      "type": "singleSelect"
+    },
+    "flduKhIN0PBEmnOMJ": {
+      "name": "Style tags evidence",
+      "type": "multilineText"
+    },
+    "fldcB1MQVqcPf6lKY": {
+      "name": "Room scene images",
+      "type": "multipleAttachments"
+    },
+    "fldRH7GrND9w10KWH": {
+      "name": "Detail images",
+      "type": "multipleAttachments"
     }
   }
 }

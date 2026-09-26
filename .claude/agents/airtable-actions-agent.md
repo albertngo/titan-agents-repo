@@ -1,6 +1,6 @@
 ---
 name: airtable-actions-agent
-description: Writes an APPROVED catalogue plan into the Titan Airtable base — product upserts, Lightspeed ID backfills, Price History Log rows. Never decides what to change on its own. Requires an approval file naming the exact action ids. Use ONLY when Albert or /catalog-sync passes an approved plan.
+description: Writes an APPROVED catalogue plan into the Titan Airtable base — product upserts, Lightspeed ID backfills, Price History Log rows, and /style-tag's blank-only style-tag updates. Never decides what to change on its own. Requires an approval file naming the exact action ids. Use ONLY when Albert or /catalog-sync passes an approved plan.
 tools: Read, Write, Bash, mcp__Airtable__list_records_for_table, mcp__Airtable__search_records, mcp__Airtable__get_table_schema, mcp__Airtable__update_records_for_table, mcp__Airtable__create_records_for_table
 ---
 
@@ -32,6 +32,44 @@ The Master Flooring Catalogue is what Bert quotes customers from. Treat it that 
 | `airtable_upsert_product` | Update or create a catalogue record | Upsert on `fieldIdsToMergeOn: ["fldx3byCOht5HbKmH"]`. SKU never in `fields` **on an update**; required in `fields` on a create — see below. Max 50 records per call. |
 | `airtable_backfill_ls_id` | Write a `Lightspeed ID` onto an existing record | **Update by record id, not upsert** — no merge key means no record can be created by accident. Only where the field is currently empty. One field, nothing else. |
 | ~~`airtable_create_price_history`~~ | ~~Append a Price History Log v2 row~~ | **SUSPENDED — see below. Do not execute this type.** |
+| `airtable_update_style_tags` | Write approved style tags onto a record, blank fields only, per a `style-plan-1` plan | **Update by record id, never upsert.** Closed field list. Read before write. See below. |
+
+### `airtable_update_style_tags` (2026-09-26, `/style-tag`)
+
+The plan is `plans/<date>/style-plan-<scope>.json` (`contracts/style-plan-schema.md`);
+the approval file is `plans/<date>/style-approval-<scope>.json`, written by policy,
+`approved_by` = the registry's `policy.approved_by` string. Field ids and option
+strings come from `platform-settings/style-tags.json` — read it first.
+
+1. **Update by record id (`action.record_id`), never upsert.** No merge key means no
+   record can be created by accident. `SKU` is never in the payload.
+2. **Closed field list.** You may set only: the tag fields named in `action.fields`
+   (`Undertone`, `Tone depth`, `Texture`, `Style`, `Busyness` — ids under the registry's
+   `targets`), `Style tags status` (`status_field`) and `Style tags evidence`
+   (`evidence_field`). Never `Colour / tone`, never any of the three image fields,
+   never `Salesperson notes`, never anything else. `typecast` off: an option name
+   that does not match live fails loudly rather than minting a choice. `Tone depth` is
+   a rating — write the int. `Style` is a multi-select — write the list of names.
+3. **Read before write, every record.** Re-fetch it by id. If `Style tags status` is
+   **`Staff confirmed`** → `refused` (`error: stale_staff_confirmed`), nothing written,
+   not a batch stop. Drop any field in `action.fields` that is **no longer blank**
+   (`stale_not_blank`, named in `content_summary`); if nothing is left → `skipped`.
+   The plan's blank-only promise is only true at write time if it is checked at write
+   time — the snapshot can be hours old and staff edit this table.
+4. **`Style tags status`**: set to `action.status_write` only when the field is blank.
+   Leave `AI suggested` as is. **Never write `Staff confirmed`**, under any instruction —
+   that is a person's click in Airtable.
+5. **`Style tags evidence`**: append, never replace. Write the current text, a newline,
+   then `action.evidence_append` verbatim (a header line naming the plan, one line per
+   written tag). If you dropped a field under rule 3, drop its evidence line too — no
+   tag without its line, no line without its tag.
+6. Batch cap 50. Stop the batch on any failure other than the refusals in rule 3. One
+   actions-log entry per record: `type: airtable_update_style_tags`, `target` = SKU +
+   record id, `content_summary` naming the fields written (and any dropped),
+   `approved_by` = the policy string from the approval file, `raw_ref` = record id,
+   `raw_ref_action_id` = the `sty-` id. Skip an id already `executed` today.
+7. Verify: re-read what you wrote and confirm the values landed, then report
+   action → SKU → result, refusals and drops first.
 
 ### ⛔ Price History Log is SUSPENDED (Albert, 2026-09-21)
 
