@@ -152,7 +152,7 @@ SKU · Product name · Supplier SKU · Category · Cost/unit · Retail price/uni
 Stock status · Promo cost ($/sf) · Promo end date · Lightspeed ID
 ```
 
-**Also select `Effective Date`, `Price last changed by` and `Price List URL`.** They are not in
+**Also select `Effective Date`, `Price last changed by`, `Price List URL` and `Promo List URL`.** They are not in
 `DIFF_FIELDS` but the reconciler needs them (Albert, 2026-09-25): a cost/retail change
 writes the list's effective date and `Agent`, and a list that only *confirms* a price
 moves `Effective Date` forward to its date — never backward. Without the date in
@@ -160,6 +160,9 @@ the snapshot, that confirmation is silently skipped (a blind write could regress
 newer date), so every re-confirmed product would keep looking stale. `Price List URL` (the
 list's SharePoint link, an extra upload-CSV column) travels with the date: written
 whenever the date is, and to fill a blank when the same list is re-run.
+`Promo List URL` (2026-09-26) does the same for the promo: written whenever `Promo cost`
+or `Promo end date` is, and to fill a blank when the same promo is re-run — only if the
+snapshot carried it, so an unread link is never overwritten.
 
 **A missing column does not read as "no change" — it reads as "unknown", and the
 reconciler then writes the field on every matched row.** `live_value()` returns

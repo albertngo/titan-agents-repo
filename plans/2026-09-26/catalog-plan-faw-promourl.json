@@ -1,0 +1,950 @@
+{
+  "contract_version": "catalog-plan-1",
+  "supplier": "FLOORS AT WORK (PL-383 promo link)",
+  "run_at": "2026-09-26T08:06:36.179115-04:00",
+  "status": "ok",
+  "inputs": [
+    {
+      "file": "ingest/2026-09-26/faw_promo_airtable_upload_2026-09-26.csv",
+      "rows": 46
+    },
+    {
+      "file": "ingest/2026-09-26/lightspeed-products.json",
+      "products": 15091,
+      "run_at": "2026-09-26T06:18:06.220260-04:00"
+    },
+    {
+      "file": "ingest/2026-09-26/faw_promo_airtable_existing_promourl.json",
+      "records": 46
+    },
+    {
+      "file": "ingest/2026-09-26/faw_promo_airtable_options.json",
+      "select_fields": 20
+    },
+    {
+      "file": "ingest/2026-09-26/faw_promo_ls_upload_2026-09-26.csv",
+      "rows": 46
+    }
+  ],
+  "cost_basis": {
+    "value": "dealer",
+    "confirmed_by": "skill #### Cost column (FAW)"
+  },
+  "as_of": "2026-09-26",
+  "effective_dates": [
+    "2026-07-09",
+    "2026-09-19"
+  ],
+  "summary": {
+    "airtable_upsert": 46,
+    "actions_total": 46,
+    "uuid_recovered_by_sku": 0,
+    "blocked": 0,
+    "warnings": 14,
+    "rows_in": 46
+  },
+  "actions": [
+    {
+      "id": "cat-488ed2390dc1",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0008",
+      "airtable_rec_id": "recOg1lXUDgp2zIvs",
+      "ls_id": "98369d2a-25c4-40d2-b1eb-5e0ce8c580a0",
+      "handle": "ENG65HICMILLSTONE",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 1
+    },
+    {
+      "id": "cat-ae8ec688b0fa",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0010",
+      "airtable_rec_id": "recXdJPAW1ZvFe1z8",
+      "ls_id": "121e58d7-9221-4d8a-949f-5db0d12fa5e2",
+      "handle": "ENG75HICAGEDBARREL",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 2
+    },
+    {
+      "id": "cat-be4e14ab98ef",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0012",
+      "airtable_rec_id": "recpGz9ljZ5nlrjMw",
+      "ls_id": "a439d996-06b8-45cb-bdaa-3200bf596cee",
+      "handle": "ENG75HICEARLGREY",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 3
+    },
+    {
+      "id": "cat-65b7142281ae",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0014",
+      "airtable_rec_id": "rec2a33lGk8V2qldp",
+      "ls_id": "d2665407-48df-491e-b1c0-93b55545a875",
+      "handle": "ENG75HICMACADAMIA",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 4
+    },
+    {
+      "id": "cat-309d4c79e65c",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0015",
+      "airtable_rec_id": "rec4lgN8jVFfvFd2G",
+      "ls_id": "7d8fe99c-988c-406a-825b-a1218f6a3eed",
+      "handle": "ENG75HICMODERNPEWTER",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 5
+    },
+    {
+      "id": "cat-498ebf41b095",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0019",
+      "airtable_rec_id": "recz09T4apNkYG55I",
+      "ls_id": "089702d7-935f-43e8-be72-7f9387609d6c",
+      "handle": "ENG75HICSADDLEBROWN",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 6
+    },
+    {
+      "id": "cat-1d254e28d90d",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0022",
+      "airtable_rec_id": "recwnyLWOFKFNmFTg",
+      "ls_id": "3999f742-2cd2-44d1-a49f-22aeecf4d8f8",
+      "handle": "ENG5OAKGOLDENCLICK",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 7
+    },
+    {
+      "id": "cat-483d86277914",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0025",
+      "airtable_rec_id": "recNXWClO1xNgthcG",
+      "ls_id": "663decc3-d7db-45b3-bba8-677410d1690b",
+      "handle": "ENG65OAKCOUNTRYBROWN",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 8
+    },
+    {
+      "id": "cat-12a63e230c33",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0029",
+      "airtable_rec_id": "recDbfW4MAobJGtHb",
+      "ls_id": "e24696eb-2a54-4a8b-a98e-ff46b4caa7d4",
+      "handle": "ENG65OAKOREGONOAK168",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 9
+    },
+    {
+      "id": "cat-197494df1ef5",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0037",
+      "airtable_rec_id": "rec4ws7sZSKXsw7Ha",
+      "ls_id": "4561d200-a264-43e8-a56a-0b6ab73145be",
+      "handle": "ENG65OAKPUERTORICOREGAL",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 10
+    },
+    {
+      "id": "cat-cdc8947e874e",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0038",
+      "airtable_rec_id": "recYbhgc5qCyBedKY",
+      "ls_id": "f8c3f291-d53d-4bca-8cf6-a0835b6cf484",
+      "handle": "ENG65OAKSURINAMEREGAL",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 11
+    },
+    {
+      "id": "cat-372bbdcacf30",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0043",
+      "airtable_rec_id": "rec1QMBdKOAey0CXN",
+      "ls_id": "67d0277d-2bf4-43ba-9be3-a91e478a495f",
+      "handle": "ENG75OAKHAITIREGAL",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 12
+    },
+    {
+      "id": "cat-550ec4bed2ca",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0045",
+      "airtable_rec_id": "recRavvKj1TS0HJ8r",
+      "ls_id": "39665145-285c-423a-ac9c-e1f272491011",
+      "handle": "ENG75OAKCUBAREGAL",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 13
+    },
+    {
+      "id": "cat-222af491899b",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0047",
+      "airtable_rec_id": "rec52TshBv4BLw9B3",
+      "ls_id": "0eff8950-8fd0-42af-b0ac-02c8c3a6547d",
+      "handle": "ENG75OAKSTKITTSREGAL",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 14
+    },
+    {
+      "id": "cat-4e683c5148aa",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0051",
+      "airtable_rec_id": "reca9JbNAb45SRmiD",
+      "ls_id": "0cf786be-086e-4d14-8b8e-5861b6fcc97e",
+      "handle": "ENG75OAKLISBONREGAL",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 15
+    },
+    {
+      "id": "cat-3a23f939b173",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0055",
+      "airtable_rec_id": "rec5PbVx2xEUDPO7s",
+      "ls_id": "3bf1b792-5c1f-46c9-a58a-f925f6b5eafc",
+      "handle": "ENG75OAKPICASSODES",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 16
+    },
+    {
+      "id": "cat-354e593736b4",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0059",
+      "airtable_rec_id": "rectjqIdLL49QiZmW",
+      "ls_id": "a57fb4c2-0891-4286-b273-622694d6cfae",
+      "handle": "ENG5OAKSTORMOAKEURDES",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 17
+    },
+    {
+      "id": "cat-1663ecdd7251",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0061",
+      "airtable_rec_id": "recBLYMYoqzm6dgS4",
+      "ls_id": "a5449104-70e1-4ab9-a446-610d846e44ac",
+      "handle": "ENG75OAKALABASTEROAKEURDES",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 18
+    },
+    {
+      "id": "cat-680b24385b84",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0064",
+      "airtable_rec_id": "rec687kXkgc9oR4u4",
+      "ls_id": "3bd1f806-3325-4c49-b76e-a63ab4963b9e",
+      "handle": "ENG75OAKSOFTGOLDEURDES",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 19
+    },
+    {
+      "id": "cat-a9c4dc82f1f9",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0068",
+      "airtable_rec_id": "recuwDyjqsV4yw9jl",
+      "ls_id": "312c35d2-5426-4e6b-bd12-37ace4b7e716",
+      "handle": "ENG75OAKMONTANAELEG",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 20
+    },
+    {
+      "id": "cat-7cebaea55196",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0071",
+      "airtable_rec_id": "recidPa2yFsSt5aGB",
+      "ls_id": "82737f81-6eee-4be8-b27e-29f364af5d1a",
+      "handle": "ENG75OAKARIZONAELEG",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 21
+    },
+    {
+      "id": "cat-88bd71400334",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0073",
+      "airtable_rec_id": "recomDZDGwe9jBDCO",
+      "ls_id": "c51a4aa5-298c-4e1a-8b9e-9171564a8830",
+      "handle": "ENG75OAKCOLORADOELEG",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 22
+    },
+    {
+      "id": "cat-62956194bfbf",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0079",
+      "airtable_rec_id": "recehd7swxUjhrY2a",
+      "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b337ea751",
+      "handle": "ENG65MAPCAPRI",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 23
+    },
+    {
+      "id": "cat-3258a0009e59",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "ENG-FAWK-0083",
+      "airtable_rec_id": "recghHjiR7bcWrzrb",
+      "ls_id": "d21458e7-09d9-4241-bc81-04a0f6646082",
+      "handle": "ENG65MAPMYTH",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 24
+    },
+    {
+      "id": "cat-5716e159cede",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LAM-FAWK-0004",
+      "airtable_rec_id": "recqyWZjYW78GDJUo",
+      "ls_id": "6da0ce1d-77e7-4dee-9166-dbc9c46b9635",
+      "handle": "LAM771LAMAPHRODITE",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 25
+    },
+    {
+      "id": "cat-74a29fe068ea",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LAM-FAWK-0005",
+      "airtable_rec_id": "recdoaQEcy3OzmdFv",
+      "ls_id": "9c2c5430-342a-48e5-adda-c21ec3baa8bd",
+      "handle": "LAM771LAMAPOLLO",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 26
+    },
+    {
+      "id": "cat-c3147827764a",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LAM-FAWK-0006",
+      "airtable_rec_id": "recdqlFgakMIQ55Wr",
+      "ls_id": "deb9a104-c0be-45ad-9e4b-40d7a7d518cc",
+      "handle": "LAM771LAMARTEMIS",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 27
+    },
+    {
+      "id": "cat-7dc5b921faee",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LAM-FAWK-0007",
+      "airtable_rec_id": "recuZ6OofVooraky2",
+      "ls_id": "cf9732f5-7ab2-434c-9489-613ad460bb1e",
+      "handle": "LAM771LAMPOSEIDON",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 28
+    },
+    {
+      "id": "cat-c5b264d5153e",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LAM-FAWK-0008",
+      "airtable_rec_id": "recPVqfcVAebsn6gk",
+      "ls_id": "5d524d7f-7373-4225-a01f-6ff72a36e2a7",
+      "handle": "LAM771LAMZEUS",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 29
+    },
+    {
+      "id": "cat-a30de2d96bfe",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LAM-FAWK-0017",
+      "airtable_rec_id": "rec4JCtFOiAWFfKqW",
+      "ls_id": "122c73c0-d58d-41f7-a8ae-5f0c2a621117",
+      "handle": "LAM929LAMAURORA",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 30
+    },
+    {
+      "id": "cat-005a01bb23c9",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LAM-FAWK-0020",
+      "airtable_rec_id": "recLMn68ujdDAB31u",
+      "ls_id": "0c3cd13c-9ad9-4f7a-b691-4350508dfb25",
+      "handle": "LAM929LAMEQUINOX",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 31
+    },
+    {
+      "id": "cat-61e39fac8ae1",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LAM-FAWK-0022",
+      "airtable_rec_id": "recQn1bXhRL9gANaO",
+      "ls_id": "108e2627-f1a6-48a8-a20c-d2a739a7a0c4",
+      "handle": "LAM929LAMHALO",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 32
+    },
+    {
+      "id": "cat-46eef29bb08e",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LVP-FAWK-0003",
+      "airtable_rec_id": "receLOSN70RFtvPM4",
+      "ls_id": "9654cca5-88b7-413f-9651-cfa9485ec94e",
+      "handle": "LVP71VNYWESTMINSTER",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 33
+    },
+    {
+      "id": "cat-927f4be416cf",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LVP-FAWK-0013",
+      "airtable_rec_id": "recUVNh5L5Dxse59q",
+      "ls_id": "3347d88a-6032-4083-b265-d1f40e58e881",
+      "handle": "LVP72VNYGRANDBEND",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 34
+    },
+    {
+      "id": "cat-29cc8cd3124b",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LVP-FAWK-0024",
+      "airtable_rec_id": "recuY87ihavsbjPYR",
+      "ls_id": "91b85863-42c2-4fa3-9831-7270203370bd",
+      "handle": "LVP71VNYPUNTACANA",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 35
+    },
+    {
+      "id": "cat-10f74cf27f45",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LVP-FAWK-0027",
+      "airtable_rec_id": "rec6A20iJNFzJpZQ9",
+      "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b563dfc39",
+      "handle": "LVP71VNYYORKVILLE",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 36
+    },
+    {
+      "id": "cat-ca1d66a99db3",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LVP-FAWK-0034",
+      "airtable_rec_id": "recELDE263R6JCOVY",
+      "ls_id": "82735ee6-a739-453b-8f11-b2610df3f358",
+      "handle": "LVP71VNYRUSSELLHILL",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 37
+    },
+    {
+      "id": "cat-7a95bdc12cc2",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LVP-FAWK-0038",
+      "airtable_rec_id": "recl6rNIy92ofPoO8",
+      "ls_id": "1af388b2-ea85-4a43-97a3-e8d43caaa035",
+      "handle": "LVP71VNYSHANGRILA",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 38
+    },
+    {
+      "id": "cat-0b113d9cf774",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LVP-FAWK-0060",
+      "airtable_rec_id": "recN6LKlXhioqDuGl",
+      "ls_id": "5b89c9b7-cb09-4af9-8daa-fe9959f1e336",
+      "handle": "LVP71VNYSOHOPLAT",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 39
+    },
+    {
+      "id": "cat-044f87892bdb",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LVP-FAWK-0070",
+      "airtable_rec_id": "rec87ACbpUHoaqs5t",
+      "ls_id": "d6fcf275-e7ad-4f8b-8921-93ac21287709",
+      "handle": "LVP725VNYPRAGUE",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 40
+    },
+    {
+      "id": "cat-9dc35e2eed43",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LVP-FAWK-0071",
+      "airtable_rec_id": "recUJhDj4YoFdfi6V",
+      "ls_id": "ef8f9235-703a-4c05-8996-f22fe41dc66d",
+      "handle": "LVP736VNYLANDMARK",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 41
+    },
+    {
+      "id": "cat-48290c2af185",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LVP-FAWK-0073",
+      "airtable_rec_id": "reckFJHStVtZBMoLs",
+      "ls_id": "fbdabe02-fc6a-41bd-9850-b2490822a706",
+      "handle": "LVP736VNYELLISDON",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 42
+    },
+    {
+      "id": "cat-59e518b186fa",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LVP-FAWK-0075",
+      "airtable_rec_id": "recXxPAKUEONas6SO",
+      "ls_id": "c347c034-ffd2-4160-887c-8b4a2b2b76d0",
+      "handle": "LVP736VNYDUCA",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 43
+    },
+    {
+      "id": "cat-1dff103ee8ff",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LVT-FAWK-0004",
+      "airtable_rec_id": "recHM4no4r7HMUqmd",
+      "ls_id": "738bc9aa-a5db-4202-b3bc-b74edcfb4ad8",
+      "handle": "LVT12VNYGOLD7MM",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 44
+    },
+    {
+      "id": "cat-7c09a2261bff",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LVT-FAWK-0015",
+      "airtable_rec_id": "recl1EBiC4TFiZYYi",
+      "ls_id": "40a34129-714c-4f16-b6d7-a0c05d5e6b92",
+      "handle": "LVT18VNYMAGNETITE",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 45
+    },
+    {
+      "id": "cat-a804846568f6",
+      "target_system": "airtable",
+      "op": "upsert",
+      "sku": "LVT-FAWK-0016",
+      "airtable_rec_id": "recSYUmc3bu8hKyHY",
+      "ls_id": "294acd77-0c1e-4f7b-94f8-7981673f30d7",
+      "handle": "LVT18VNYMOONSTONE",
+      "fields": {
+        "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDVNGuY-19nS4fKP3l904OzAQJmY3UPktiTmDQmshX16oA"
+      },
+      "before": {
+        "Promo List URL": null
+      },
+      "reason": "field_update",
+      "uuid_source": "upload",
+      "seq": 46
+    }
+  ],
+  "blocked": [],
+  "warnings": [
+    {
+      "sku": "LVP-FAWK-0073",
+      "reason": "category_unresolved",
+      "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+    },
+    {
+      "sku": "LVP-FAWK-0071",
+      "reason": "category_unresolved",
+      "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+    },
+    {
+      "sku": "LVP-FAWK-0075",
+      "reason": "category_unresolved",
+      "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+    },
+    {
+      "sku": "LVT-FAWK-0004",
+      "reason": "category_unresolved",
+      "detail": "Airtable category 'LVT' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+    },
+    {
+      "sku": "LVT-FAWK-0015",
+      "reason": "category_unresolved",
+      "detail": "Airtable category 'LVT' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+    },
+    {
+      "sku": "LVT-FAWK-0016",
+      "reason": "category_unresolved",
+      "detail": "Airtable category 'LVT' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+    },
+    {
+      "sku": "LVP-FAWK-0070",
+      "reason": "category_unresolved",
+      "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+    },
+    {
+      "sku": "LVP-FAWK-0003",
+      "reason": "category_unresolved",
+      "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+    },
+    {
+      "sku": "LVP-FAWK-0027",
+      "reason": "category_unresolved",
+      "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+    },
+    {
+      "sku": "LVP-FAWK-0024",
+      "reason": "category_unresolved",
+      "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+    },
+    {
+      "sku": "LVP-FAWK-0013",
+      "reason": "category_unresolved",
+      "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+    },
+    {
+      "sku": "LVP-FAWK-0034",
+      "reason": "category_unresolved",
+      "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+    },
+    {
+      "sku": "LVP-FAWK-0038",
+      "reason": "category_unresolved",
+      "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+    },
+    {
+      "sku": "LVP-FAWK-0060",
+      "reason": "category_unresolved",
+      "detail": "Airtable category 'LVP' does not map to a Lightspeed leaf on its own \u2014 LVP/LVT are formats, and Lightspeed classifies vinyl by core and install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and Install method. Not blocking: no write path sets a category yet."
+    }
+  ],
+  "_note": "Albert 2026-09-26: 'It's possible that some SKUs are updated from BOTH a regular list, and a promo list in one given time period. So a promo URL is useful. Add it.' New Airtable field Promo List URL (fldwRz00XnZgsv0GU). Backfill: the 46 records PL-383 (FAW September promo sheet) set this morning get PL-383's own SharePoint link. Promo List URL only; the supplier label is distinct so ids do not collide with catalog-plan-faw-promo.json's executed ids."
+}

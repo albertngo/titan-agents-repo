@@ -118,6 +118,13 @@ ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 PRICE_URL = "Price List URL"
 PROMO_COST = "Promo cost ($/sf)"
 PROMO_END = "Promo end date"
+# The list that set the PROMO, one click from the record (Albert, 2026-09-26). A SKU
+# can be priced by a regular list and put on promo by a separate sheet in the same
+# month, so one link cannot name both: `Price List URL` stays the regular list and
+# this names the promo's source (a promo sheet, or a regular list that printed the
+# promo). It travels with the two promo fields and, like them, is never cleared — an
+# ended promo keeps its link, which is what lets a person ask the rep about it later.
+PROMO_URL = "Promo List URL"
 
 # MatchStatus / LS Match status values that must never reach a write.
 AMBIGUOUS = {"ambiguous", "AMBIGUOUS", "DUPLICATE"}
@@ -480,6 +487,23 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
                     if old_url != url:
                         fields[PRICE_URL] = url
                         before[PRICE_URL] = old_url if url_readable else None
+            promo_url = clean(row.get(PROMO_URL))
+            carries_promo = clean(row.get(PROMO_COST)) or clean(row.get(PROMO_END))
+            if promo_url and carries_promo:
+                old_purl, purl_readable = (live_value(live, PROMO_URL) if live
+                                           else (None, False))
+                old_purl = clean(old_purl)
+                promo_moved = PROMO_COST in fields or PROMO_END in fields
+                # Same promo re-run: both promo fields were read and neither moved.
+                # Fill or repoint the link only then, and only when the snapshot
+                # carried the link — a blind write could repoint an ended promo at a
+                # list that never set it.
+                same_promo = (live is not None and not promo_moved
+                              and live_value(live, PROMO_COST)[1]
+                              and live_value(live, PROMO_END)[1])
+                if (promo_moved or (same_promo and purl_readable)) and old_purl != promo_url:
+                    fields[PROMO_URL] = promo_url
+                    before[PROMO_URL] = old_purl if purl_readable else None
 
         if airtable_snapshot and select_options:
             missing = missing_select_options(fields, select_options)

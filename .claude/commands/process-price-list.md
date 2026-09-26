@@ -269,6 +269,14 @@ date, so a record always points at the list its `Effective Date` names.
 **A promo sheet is the exception** (Tags `Promo`, 2026-09-26, PL-383): it sets only
 `Promo cost` and `Promo end date` and confirms nothing about the regular price, so its
 rows carry each record's **live** `Effective Date` and `Price List URL`, unchanged.
+
+**Every row that carries a promo gets a `Promo List URL` column** — this list's link,
+the same value `Price List URL` would take (Albert, 2026-09-26: a SKU can be priced by
+a regular list and put on promo by a separate sheet in the same month, so one link
+cannot name both). On a promo sheet that is the only link that changes; on a regular
+list that prints promo prices, both columns carry this list. A row without a promo
+leaves it blank, and blank never clears a live link: an ended promo keeps pointing at
+the sheet that set it, which is how a person finds it to ask the rep about it later.
 The row's own `Effective Date` property still gets the promo's start date (it is what
 decides whether the promo is in effect yet), and `Promo end date` gets the printed end.
 

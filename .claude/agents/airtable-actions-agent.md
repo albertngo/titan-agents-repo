@@ -91,7 +91,7 @@ Anything not in this table is REFUSED — say it must be done in the Airtable UI
 - Editing any table other than Master Flooring Catalogue and Price History Log v2.
 - Touching `Attachments`, or any formula/rollup field.
 
-### `Price List URL` is writable, narrowly (Albert, 2026-09-25)
+### `Price List URL` and `Promo List URL` are writable, narrowly (Albert, 2026-09-25 / 09-26)
 
 Albert: "copy over the shared file of the pdf from notion to airtable. So each SKU has
 a verifiable company list to look at with a click of a button from airtable." Until
@@ -104,6 +104,12 @@ create carries it with the full row) — and only with a value that is an
 `https://flooruca-my.sharepoint.com/` link, which is the one kind of link the Notion
 Price Lists rows hold. Any other host, or a blank that would clear an existing link,
 is refused. It is never an action type of its own and never originated by you.
+
+`Promo List URL` (Albert, 2026-09-26: "It's possible that some SKUs are updated from
+BOTH a regular list, and a promo list in one given time period. So a promo URL is
+useful.") follows the identical rules: only inside an approved upsert's `fields` (the
+reconciler puts it beside `Promo cost` / `Promo end date`), SharePoint links only,
+never a blank that would clear one.
 
 ## Field ids and batch caps
 

@@ -365,6 +365,57 @@ class TestPriceDateAndChangedBy(unittest.TestCase):
         up = next(a for a in actions if a["op"] == "upsert")
         self.assertEqual(up["fields"]["Price List URL"], self.URL)
 
+    PROMO_URL = "https://flooruca-my.sharepoint.com/:b:/g/x/PROMO"
+    ON_PROMO = {"A-1": {**EXISTING["A-1"], "Promo cost ($/sf)": 0.9,
+                        "Promo end date": "2099-12-31", "Promo List URL": None}}
+
+    def promo_row(self, **kw):
+        return row(SKU="A-1", **{"Lightspeed ID": "u-1", "Effective Date": "2026-08-01",
+                                 "Promo cost ($/sf)": "0.90",
+                                 "Promo end date": "2099-12-31",
+                                 "Promo List URL": self.PROMO_URL, **kw})
+
+    def test_a_new_promo_writes_its_own_link_and_leaves_the_list_link(self):
+        """Albert, 2026-09-26: a SKU can be priced by a regular list and put on
+        promo by a separate sheet in the same month, so the promo gets its own
+        link and `Price List URL` stays the regular list."""
+        existing = {"A-1": {**self.EXISTING["A-1"], "Price List URL": self.URL}}
+        up, _ = self.upsert([self.promo_row(**{"Price List URL": self.URL})], existing)
+        self.assertEqual(up["fields"]["Promo List URL"], self.PROMO_URL)
+        self.assertEqual(up["before"]["Promo List URL"], None)
+        self.assertNotIn("Price List URL", up["fields"])
+        self.assertNotIn("Effective Date", up["fields"])
+
+    def test_the_same_promo_fills_a_blank_promo_link(self):
+        up, _ = self.upsert([self.promo_row()], self.ON_PROMO)
+        self.assertEqual(up["fields"], {"Promo List URL": self.PROMO_URL})
+
+    def test_the_same_promo_never_blind_writes_an_unread_link(self):
+        existing = {"A-1": {k: v for k, v in self.ON_PROMO["A-1"].items()
+                            if k != "Promo List URL"}}
+        up, _ = self.upsert([self.promo_row()], existing)
+        self.assertIsNone(up)
+
+    def test_a_row_without_a_promo_never_writes_a_promo_link(self):
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Effective Date": "2026-08-01",
+            "Promo List URL": self.PROMO_URL})])
+        self.assertIsNone(up)
+
+    def test_a_promo_without_a_link_never_clears_one(self):
+        existing = {"A-1": {**self.ON_PROMO["A-1"], "Promo List URL": "old"}}
+        up, _ = self.upsert([self.promo_row(**{"Promo cost ($/sf)": "0.85",
+                                               "Promo List URL": ""})], existing)
+        self.assertNotIn("Promo List URL", up["fields"])
+
+    def test_a_create_carries_the_promo_link(self):
+        rows = [row(SKU="NEW-1", MatchStatus="new", **{
+            "LS Handle / Parent ID": "HNEW", "Promo cost ($/sf)": "0.90",
+            "Promo end date": "2099-12-31", "Promo List URL": self.PROMO_URL})]
+        actions, _, _ = run(rows, [], ls_upload=ls_upload_row(sku="NEW-1"))
+        up = next(a for a in actions if a["op"] == "upsert")
+        self.assertEqual(up["fields"]["Promo List URL"], self.PROMO_URL)
+
     def test_a_pre_rename_csv_and_snapshot_still_work(self):
         """Albert renamed `Last price update` to `Effective Date` on 2026-09-25.
         Older upload CSVs and snapshots carry the old header; the write must use
@@ -1166,7 +1217,7 @@ class DiffFieldsAndSnapshotAgree(unittest.TestCase):
         # snapshot lacks the date, so the command must ask for both.
         doc = self.COMMAND.read_text()
         block = doc.split("The snapshot must carry every field", 1)[1][:2000]
-        for field in (cr.PRICE_DATE, cr.CHANGED_BY, cr.PRICE_URL):
+        for field in (cr.PRICE_DATE, cr.CHANGED_BY, cr.PRICE_URL, cr.PROMO_URL):
             self.assertIn(field, block)
 
     def test_stock_status_and_promo_are_diffed(self):

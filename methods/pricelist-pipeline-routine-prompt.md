@@ -329,6 +329,11 @@ only when the flow itself or the stored text needs to change.
 
 ## Changelog
 
+- **2026-09-26 (Albert, in chat).** New Airtable field `Promo List URL`
+  (`fldwRz00XnZgsv0GU`): the list that set a record's promo, beside `Price List URL`
+  (the regular list), because one SKU can be updated by both in one month. Written with
+  the promo fields, never cleared, so an ended promo still links to its sheet.
+
 - **2026-09-25 (Albert, in chat), later.** Step 1b: after extraction the webhook
   path checks the row's `Effective Date` and runs Step 2 (sync) only when the list is
   in effect today; a later date stays staged for the sweep. The sweep became a
