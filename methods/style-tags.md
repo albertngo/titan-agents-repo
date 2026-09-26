@@ -1,9 +1,10 @@
-# Style tags — `/style-tag` plan
+# Style tags — `/style-tag` method
 
-> **STATUS: PROPOSED 2026-09-26. Nothing below is built.** This file is the plan
-> Albert asked for ("Plan first, don't implement until approved"). On approval it
-> becomes the method doc the command points to; until then it changes nothing that
-> runs. Decisions the plan needs are marked **D1–D6**; blockers **B1–B3**.
+> **STATUS: BUILT 2026-09-26, `write_mode: plan_only`.** Albert approved the plan the
+> same day ("Go with the recommendations on D1–D6, build it"). This file is now the
+> method the command points to: §0 records what exists and what was decided, §4–§6
+> are the rules the scripts implement, §14 is the rubric the model judges by. The
+> blockers **B1–B3** are still live and are what the first real runs will meet.
 >
 > **Amended 2026-09-26, same day (Albert):** `Images` is now **`Swatch images`** (same
 > id), and **`Room scene images`** and **`Detail images`** exist beside it, each with a
@@ -19,9 +20,9 @@ only an id that appears `approved` in an approval file.
 
 ---
 
-## 0. The short version
+## 0. What exists, and what was decided
 
-**Build (8 files, plus 4 edits):**
+**Built 2026-09-26 (8 files, plus the edits below):**
 
 | File | Role |
 |---|---|
@@ -32,34 +33,34 @@ only an id that appears `approved` in an approval file.
 | `scripts/style_tag_pull.py` | Pull, read-only: eligible records from a saved Airtable snapshot, image manifest, image download (soft-fails when the host is blocked) |
 | `scripts/style_tag_plan.py` | Decide, read-only: spec rules + the model's judgement file + reviewer answers → the plan. No platform, no credentials |
 | `tests/test_style_tags.py` | Contract, policy, conflict, spec-only, registry ↔ live-schema, answer parsing |
-| `methods/style-tags.md` | This file, rewritten as the rubric (what Warm means, tone-depth anchors, busyness ladder) |
+| `methods/style-tags.md` | This file: the method, the decisions, and the rubric (§14) |
 
-Edits: `.claude/agents/airtable-actions-agent.md` (one new action type),
-`contracts/actions-log-schema.md` (type vocabulary), `platform-settings/departments.json`
-(Catalogue `owns.commands` + route keywords), `platform-settings/airtable-master-catalogue-fields.json`
-(the `Effective Date` rename — see Side findings), `CLAUDE.md` (a paragraph under the catalogue pipeline),
-`.gitignore` (`ingest/*/style-images/`). No new agent. No Airtable schema change — the
-fields already exist (§2). No Notion database. No routine.
+Edits made: `.claude/agents/airtable-actions-agent.md` (the `airtable_update_style_tags`
+type), `contracts/actions-log-schema.md` (type vocabulary), `platform-settings/departments.json`
+(Catalogue `owns.commands` + route keywords), `CLAUDE.md` (a paragraph under the catalogue
+pipeline), `.gitignore` (`ingest/*/style-images/`). No new agent. No Airtable schema change —
+the fields already exist (§2). No Notion database. No routine. Not done: the
+`Effective Date` rename in `airtable-master-catalogue-fields.json` (§13).
 
-**Decisions needed before building:**
+**Decisions — all six taken as recommended (Albert, 2026-09-26, "go with the recommendations"):**
 
-- **D1 — Which Notion row carries `Troubled Files`.** Recommend one standing row per
-  scope in the existing Price Lists database, tagged `Style Tags`, `Extraction Status =
-  Not Needed`, overwritten each run. Alternative: a new "Style Tag Runs" database. §6.
-- **D2 — v1 category scope.** Recommend flooring only (Engineered hardwood, Solid
-  hardwood, LVP, LVT, Laminate). Tile / Stone (4,036 active records) opts in later. §1.
-- **D3 — Troubled report shape.** Recommend a sibling contract with a `field` column,
-  one row per SKU × field, rather than stretching the 12-column price-list file. §6.
-- **D4 — `Style` on a spec-only record.** Recommend hold (`needs_image`) until images
-  exist; Style depends on tone and undertone, which specs cannot give. §4.
-- **D5 — What a reviewer's `Action` answer writes.** Recommend the answered tag is
-  written with `Style tags status = AI suggested` still, evidence naming the reviewer;
-  a person flips to `Staff confirmed` in Airtable. The run never writes `Staff confirmed`. §6.
-- **D6 — Who looks at the images.** Recommend the session model (the same pattern as
-  the image price-list transcription in `/process-price-list` 2.3), writing a structured
-  judgement file. Alternative: a script calling the Claude API with a new credential. §3.
+- **D1 — Which Notion row carries `Troubled Files`.** One standing row per scope in the
+  existing Price Lists database, tagged `Style Tags`, `Extraction Status = Not Needed`,
+  overwritten each run. (Alternative not taken: a "Style Tag Runs" database.) §6.
+- **D2 — v1 category scope.** Flooring only (Engineered hardwood, Solid hardwood, LVP,
+  LVT, Laminate). Tile / Stone (4,036 active records) opts in later. §1.
+- **D3 — Troubled report shape.** A sibling contract (`troubled-tags-1`) with a `field`
+  column, one row per SKU × field, rather than stretching the price-list file. §6.
+- **D4 — `Style` on a spec-only record.** Held (`needs_image`) until images exist; Style
+  depends on tone and undertone, which specs cannot give. §4.
+- **D5 — What a reviewer's `Action` answer writes.** The answered tag is written with
+  `Style tags status = AI suggested` still, evidence naming the reviewer; a person flips
+  to `Staff confirmed` in Airtable. The run never writes `Staff confirmed`. §6.
+- **D6 — Who looks at the images.** The session model (the same pattern as the image
+  price-list transcription in `/process-price-list` 2.3), writing a structured judgement
+  file. A script calling the Claude API is the later scale path, not built. §3.
 
-**Blockers found while planning:**
+**Blockers, still live:**
 
 - **B1 — No record has an image yet.** `Swatch images` (the renamed `Images`, same id) is
   empty on all 8,253 records (checked live 2026-09-26, two filters), and `Room scene
@@ -154,10 +155,11 @@ Dark → 4–5, at confidence 0.5 — never enough to write on its own).
 [7] troubled CSV -> Troubled Files -> page table -> PushNotification; commit; PR
 ```
 
-Steps 0–4 write no platform. `write_mode` in the registry starts at `plan_only`:
-the command stops after step 7's report with no approval file and no writes, until
-the value is flipped by a dated decision — the same staged rollout as
-`social-destinations.json`.
+Steps 0–4 write no platform. `write_mode` in the registry is `plan_only`: the command
+runs steps 0–4 and 7 with no approval file and no writes, until the value is flipped
+by a dated decision — the same staged rollout as `social-destinations.json`. The
+authoritative step-by-step is `.claude/commands/style-tag.md`; what follows is the
+shape and the reasoning.
 
 ### `/style-tag <SUPPLIER> [--sku SKU,SKU…] [--plan-only]`
 
@@ -437,7 +439,7 @@ types. Rules, to be written into the agent file and enforced by prose tests:
 `contracts/actions-log-schema.md` type table gains the value under
 `airtable-actions-agent`.
 
-## 8. Registry — `platform-settings/style-tags.json` (sketch)
+## 8. Registry — `platform-settings/style-tags.json`
 
 ```json
 {
@@ -475,14 +477,15 @@ types. Rules, to be written into the agent file and enforced by prose tests:
 }
 ```
 
-Thresholds and rule tables live here (architecture rule of thumb: a value you might
-change next month → `platform-settings/`); what the values *mean* lives in this file
-once it is the rubric.
+The sketch above is what was planned; the file itself is longer (full rule tables,
+`notion_row`, `outputs`, the reason vocabularies) and is the one that counts.
+Thresholds and rule tables live there (architecture rule of thumb: a value you might
+change next month → `platform-settings/`); what the values *mean* lives here, §14.
 
 ## 9. Tests — `tests/test_style_tags.py` (stdlib unittest)
 
-Against fixtures under `tests/fixtures/style/` (a small snapshot, an options file, a
-judgement file), never live:
+Inline fixtures, never live. The cases, as built (the numbering below is the plan's;
+the file groups them by class):
 
 1. **Contract**: plan envelope has `contract_version: style-plan-1`, `scope`, `run_at`,
    `inputs`, `write_mode`, `summary`, `actions`, `held`; every tag is
@@ -527,10 +530,9 @@ judgement file), never live:
 
 ## 10. Rollout
 
-1. Albert approves this plan (with D1–D6 answered or defaulted to the recommendations).
-2. Implementation PR against `main-agents`: the 8 files + 4 edits, tests green, plus a
-   vault decision note `decisions/2026-09-26-style-tags.md` (committed and pushed from
-   the cloud session, per Vault writes).
+1. ~~Albert approves this plan~~ — done 2026-09-26, recommendations taken.
+2. ~~Implementation~~ — done 2026-09-26 on branch `claude/style-tags-flooring-catalogue-8uymcs`,
+   tests green, vault decision note `05_decisions/2026-09-26-style-tags.md`.
 3. First run, `write_mode: plan_only`, one supplier with dense specs (VIDAR or FLOORS
    AT WORK engineered hardwood). Albert reads `style-plan-<scope>.json` and the
    troubled CSV. Rule tables adjusted from what it held.
@@ -586,3 +588,79 @@ re-enables anything scheduled.
 - `Finish type` and `Grade` both carry placeholder options named after the field
   (`Finish type`, `Grade`) and many spelling variants — the normalising match in §4
   exists because of this, and both placeholders are ignored.
+
+## 14. The rubric — what the model judges by (step 3)
+
+The plan script decides what an observation is worth; this section is what the
+observation should mean. Read it before writing a judgement file. Confidence is a
+statement about *you*: 0.9+ means you would be surprised to be wrong; 0.7 means
+probable; below 0.7 means a guess worth showing a reviewer, not writing.
+
+**Undertone** — the colour cast under the brown, judged on a swatch only. Compare the
+swatch to the neutral white or grey border most supplier swatches carry; if there is
+none, compare to the image's own lightest region.
+
+| Value | Looks like | Typical supplier words |
+|---|---|---|
+| `Warm` | golden, honey, amber, red-brown, orange cast | honey, caramel, cognac, toffee, chestnut, copper |
+| `Neutral` | true brown or tan, no obvious cast either way; most "natural" oaks | natural, sand, beige, taupe, driftwood, greige |
+| `Cool` | grey, ashy, taupe-grey, silver, blue-grey cast; smoked and fumed woods | grey, ash, smoke, silver, slate, fog, mist |
+
+A whitewashed or grey-washed oak is `Cool` even when the base wood is warm; a fumed
+or smoked oak is `Cool` or `Neutral`, rarely `Warm`. A phone photo under warm
+tungsten light would read `Warm` for any floor — which is why only swatches count.
+
+**Tone depth** — how light or dark, 1 to 5, on a swatch only:
+
+| 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|
+| white, ivory, bleached, very pale ash | light blonde oak, natural maple, pale grey | mid oak, honey, natural walnut sapwood | dark honey, mid-brown walnut, smoked oak | espresso, ebony, black, very dark walnut |
+
+Judge the field of the plank, not the knots. `Colour / tone` (`Light` / `Medium` /
+`Dark`) and the product name are hints only — the script treats them at 0.5.
+
+**Texture** — decided by the spec rule over `Finish type` (§4); a `Detail images`
+close-up confirms or conflicts. When you record `texture_seen` from a close-up:
+`Smooth` = no relief, a flat coated face; `Brushed` = open grain lines you could feel,
+from any wire-brushing; `Rustic` = scraping, distressing, saw marks, deliberate
+roughness. Grain *print* on vinyl or laminate (EIR) is the open ruling below — record
+what you see and let the rule decide.
+
+**Busyness** — how much visual variation across a box, decided by the grade rule;
+you record `busyness_seen` for the conflict check. `Calm` = uniform colour, few or no
+knots, straight grain (Select & Better, Select). `Moderate` = some knots and colour
+shift, character without drama (Character, ABC). `Busy` = many knots, mineral
+streaks, strong colour variation, distressing (Rustic, ABCD, Distressed Grade).
+
+**Style** — which interiors the floor suits; more than one is normal, none is fine.
+Judged over specs + swatch + room scenes, never a detail image alone.
+
+| Style | Says yes when | Says no when |
+|---|---|---|
+| `Modern` | clean, calm, long plank or large format, neutral or cool, matte | heavy distressing, strong red-brown |
+| `Rustic` | busy, distressed, hand-scraped, knotty, wide plank | uniform pale floors |
+| `Scandinavian` | pale (tone 1–2), neutral or cool, calm, matte, often wide oak | dark or warm-red floors |
+| `Coastal` | pale to mid, whitewashed or sandy, relaxed grain, often wider planks | dark, formal, glossy |
+| `Traditional` | mid to dark, warm, narrower planks, satin or semi-gloss, classic species (oak, walnut, maple) | pale grey, extreme widths |
+
+A record with no swatch and no room scene may still carry a `Style` judgement from
+its specs; it is held `needs_image` for a reviewer.
+
+**The one thing not to do**: infer a colour from a name alone at high confidence.
+"Honey Oak" from three suppliers spans `Warm` and `Neutral` and tone 2 to 4. Names
+are hints; the script already treats them as such.
+
+## 15. Open rulings — held until Albert answers
+
+Held on purpose; each writes `spec_rule_provisional` or holds `low_confidence` until a
+line here changes and the registry with it.
+
+- **EIR / embossed / textured vinyl and laminate → `Texture`.** Grain embossing is
+  neither a coated smooth face nor brushed wood. The registry maps it to `Brushed` at
+  0.6 (held) so the rows surface. Options: `Brushed` (it reads as texture at the
+  counter), `Smooth` (it is a print), or a fourth value, which is an Airtable change.
+- **`BCDE` → `Busyness`.** A letter grade bert-airtable-schema does not map. Mapped to
+  `Busy` at 0.7, provisional (writes `wrote_flagged`).
+- **Tile / Stone** (D2). Its own `texture_from_finish` table (polished / honed /
+  glazed → `Smooth`; textured / splitface / tumbled → `Rustic`) and a busyness notion
+  for veining. Add `Tile / Stone` to `eligible_categories` only with that table.

@@ -8,3 +8,8 @@ analysis/cache/
 # Lightspeed product bodies: regenerable from the API, ~9-41 MB per run.
 # The committed record of a pull is the -summary.json beside them.
 ingest/*/lightspeed-products.json
+
+# /style-tag image originals and read copies: Airtable's copy, regenerable, and
+# product photos would bloat the repo. The manifest in style-candidates-*.json is
+# the committed record of what was read.
+ingest/*/style-images/
