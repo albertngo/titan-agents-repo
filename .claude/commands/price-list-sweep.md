@@ -41,7 +41,8 @@ only when something failed or was held.
 
 ## Scheduling
 
-Meant to run once each morning (Toronto), so a list dated the 1st is live on the
-1st. **Not scheduled yet**: the price-list routine is disabled by Albert's decision
-(2026-09-23, "Not yet. I'll do manual") and no session enables a trigger on its own
-initiative. Until he wires one up, run it by hand on or after a staged list's date.
+Runs as the **scheduled fire of the "New Price Lists" routine** (Albert, 2026-09-25):
+a fire with a `notionID` is Make's webhook and extracts that row; a fire without one
+is this sweep. Meant for once each morning (Toronto), so a list dated the 1st is live
+on the 1st. See `methods/pricelist-pipeline-routine-prompt.md`. Runnable by hand at
+any time too.

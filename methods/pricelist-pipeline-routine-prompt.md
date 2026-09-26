@@ -8,9 +8,8 @@ its own approval gate instead of waiting for Albert to review it.
 
 | Payload | Runs |
 |---|---|
-| `{"notionID": "<page id>"}` | `/process-price-list <notionID>`, then immediately `/catalog-sync <notionID>` — same session |
-| `{"sweep": true}` | `/price-list-sweep` — applies every staged list whose `Effective Date` has arrived (2026-09-25). Not yet scheduled |
-| `{}` / no `notionID` | Nothing — see "Backstop sweep" below |
+| `{"notionID": "<page id>"}` (Make 4381438's webhook) | `/process-price-list <notionID>`, then immediately `/catalog-sync <notionID>` — same session |
+| No `notionID` — the routine's own **scheduled** fire (or any payload without one) | `/price-list-sweep` — applies every staged list whose `Effective Date` has arrived (Albert, 2026-09-25: "a webhook always has a payload … a scheduled run of it will be the price list sweep, making both routines in one") |
 
 Both stages still point at their command files, not a copy of their procedures —
 same pointer rationale as always (2026-09-03: a routine that carries a copy of a
@@ -53,10 +52,19 @@ honestly rather than marking work complete that isn't. If you cannot complete a
 step, say so plainly and say which step — never imply a stage ran that didn't, and
 never imply policy approved something it didn't actually clear.
 
-**This routine requires a notionID.** The fire payload is {"notionID": "<page id>"}.
-If it carries no notionID, stop and report that — there is no sweep wired up yet to
-fall back to (see the repo file's "Backstop sweep, not wired up"). Never guess a
-notionID, never invent one, never proceed without it.
+**Two kinds of fire, decided by the payload.**
+
+- **The payload carries a notionID** ({"notionID": "<page id>"}, from Make's
+  webhook, sometimes wrapped as {"text": "{\"notionID\": …}"}): run Steps 1–3
+  below on that one row.
+- **It carries no notionID** — the routine's daily scheduled fire has no payload at
+  all: this is a SWEEP. Read `.claude/commands/price-list-sweep.md` and run it exactly
+  as written (it is /price-list-sweep, no argument), then do Step 3 (publish) and
+  stop. Skip Steps 1 and 2. If the payload was present but held no notionID, say so
+  in the report — a webhook that lost its id is worth knowing about — but still sweep.
+
+Never guess a notionID, never invent one, and never extract a row the payload did
+not name. A sweep extracts nothing: it only syncs rows already extracted and due.
 
 ---
 
@@ -207,8 +215,9 @@ Six deliberate inclusions:
 A list whose `Effective Date` is after today is extracted on the fire as usual, then
 `/catalog-sync` step 0a stops before any write and leaves the row staged (`Effective
 Date` in the future, `Airtable Sync: Pending`, `Notes` starting `STAGED until`).
-`/price-list-sweep` applies it on the day. A daily trigger carrying `{"sweep": true}`
-is the intended way to fire it; none exists yet, and creating one is Albert's call.
+`/price-list-sweep` applies it on the day. It runs as the **scheduled** fire of this
+same routine: a fire with no `notionID` is a sweep (table at the top, Albert
+2026-09-25). There is no separate sweep routine.
 
 ## Backstop sweep, not wired up
 
@@ -296,6 +305,15 @@ full. Change a step's procedure in its command file, as always; change this file
 only when the flow itself or the stored text needs to change.
 
 ## Changelog
+
+- **2026-09-25 (Albert, in chat).** One routine, two fires. A fire with a
+  `notionID` (Make's webhook) extracts and syncs that row as before; a fire without
+  one — the routine's own daily schedule — runs `/price-list-sweep`, which applies
+  every staged list whose `Effective Date` has arrived. Lists received before their
+  date are extracted on arrival and written on the day (`/catalog-sync` step 0a,
+  reconciler `not_yet_effective`). Replaces the separate "Price List Sweep" routine.
+  Same day: `Last price update` renamed `Effective Date` in Airtable and written as the
+  newest list's date; `Price List URL` links each record to its list.
 
 - **2026-09-23 (Albert, in chat: Phase 0).** Salvaged ~100 stranded commits onto one
   branch. Added the publish step (Step 3, `scripts/publish_run.py`), a durable backfill,

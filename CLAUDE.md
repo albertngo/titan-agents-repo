@@ -229,7 +229,8 @@ per "all three trackers are kept" below.
 but `/catalog-sync` writes nothing and `catalog_reconcile.py` blocks every row
 `not_yet_effective`. `/price-list-sweep` applies due lists on the day, against a fresh
 pull. Staged = `Effective Date` in the future with `Airtable Sync: Pending`. The sweep
-is not scheduled yet — that is Albert's call, like the routine itself.
+is the "New Price Lists" routine's **scheduled** fire: a fire with a `notionID` extracts
+that row, a fire without one sweeps (Albert, 2026-09-25 — one routine, not two).
 
 **A periodic no-`notionID` sweep can still exist as a backstop**, not the primary
 path: it would pick up any row where `Airtable Sync` is still `Pending`/`Partial`
