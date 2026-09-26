@@ -211,7 +211,10 @@ lands). One session, in order, on that one row:
    two upload CSVs to `ingest/YYYY-MM-DD/`, attaches them to the row, sets
    `Extraction Status` to `Extracted [Needs Review]` (or `[Error]`). Writes no
    platform.
-2. **Sync, immediately, same session.** Runs `/catalog-sync` on the same notionID,
+2. **Check the effective date (2026-09-25).** If the row's `Effective Date` is after
+   today the list is staged: no sync now; the routine's scheduled sweep runs it on
+   the day. Otherwise go on.
+3. **Sync, same session.** Runs `/catalog-sync` on the same notionID,
    reading the CSVs the previous step just committed — never a Notion re-download,
    which is why the commit in step 1 is load-bearing now, not just tidy. Pulls
    Lightspeed, reconciles, produces the plan, then applies policy auto-approval
