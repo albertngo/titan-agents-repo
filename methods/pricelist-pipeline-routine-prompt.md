@@ -8,8 +8,8 @@ its own approval gate instead of waiting for Albert to review it.
 
 | Payload | Runs |
 |---|---|
-| `{"notionID": "<page id>"}` | `/process-price-list <notionID>`, then immediately `/catalog-sync <notionID>` — same session |
-| `{}` / no `notionID` | Nothing wired up yet — see "Backstop sweep, not wired up" below |
+| `{"notionID": "<page id>"}` (Make 4381438's webhook) | `/process-price-list <notionID>` → check the row's `Effective Date` → `/catalog-sync <notionID>` in the same session **only if that date is today or earlier**; a later date leaves the row staged for the sweep |
+| No `notionID` — the routine's own **scheduled** fire (or any payload without one) | `/price-list-sweep` — runs on each row the skill its state is ready for: `Ready to Upload` → sync; `Effective Date` arrived → sync; a recent `Not started` row the webhook missed → extract + sync (Albert, 2026-09-25: "a scheduled run of it will be the price list sweep, making both routines in one" / "the sweep should handle catalogue sync and effective date and any other 'ready to have the respective skill run'") |
 
 Both stages still point at their command files, not a copy of their procedures —
 same pointer rationale as always (2026-09-03: a routine that carries a copy of a
@@ -52,10 +52,23 @@ honestly rather than marking work complete that isn't. If you cannot complete a
 step, say so plainly and say which step — never imply a stage ran that didn't, and
 never imply policy approved something it didn't actually clear.
 
-**This routine requires a notionID.** The fire payload is {"notionID": "<page id>"}.
-If it carries no notionID, stop and report that — there is no sweep wired up yet to
-fall back to (see the repo file's "Backstop sweep, not wired up"). Never guess a
-notionID, never invent one, never proceed without it.
+**Two kinds of fire, decided by the payload.**
+
+- **The payload carries a notionID** ({"notionID": "<page id>"}, from Make's
+  webhook, sometimes wrapped as {"text": "{\"notionID\": …}"}): run Steps 1, 1b, 2
+  and 3 below on that one row — extract, check the effective date, sync only if the
+  list is in effect today, publish.
+- **It carries no notionID** — the routine's daily scheduled fire has no payload at
+  all: this is a SWEEP. Read `.claude/commands/price-list-sweep.md` and run it exactly
+  as written (it is /price-list-sweep, no argument): it decides, row by row, which of
+  /process-price-list and /catalog-sync each row is ready for. Then do Step 3
+  (publish) and stop. Skip Steps 1 and 2 as written here — the sweep runs them for
+  the rows that need them. If the payload was present but held no notionID, say so
+  in the report — a webhook that lost its id is worth knowing about — but still sweep.
+
+Never guess a notionID and never invent one. A sweep extracts only what its lane C
+allows (a `Not started` row with files, received in the last 14 days) — never the
+historical backlog.
 
 ---
 
@@ -96,7 +109,26 @@ to sync. Report and, if anything needs Albert, notify.
 
 ---
 
-Step 2 — Sync, immediately, same session
+Step 1b — Check the effective date, before any sync (Albert, 2026-09-25)
+
+A list can arrive before it takes effect. Read the row's Effective Date — Step 1 set
+it from the document, else the email subject, else the received date — and compare
+it with today in Toronto (TZ=America/Toronto date +%F).
+
+- On or before today → go on to Step 2.
+- After today → the list is STAGED. Do not run Step 2. Put "STAGED until <date>" at
+  the front of Notes, stamp Last Agent Activity Date, leave Airtable Sync at Pending,
+  and go straight to Step 3 (publish). The routine's scheduled fire (a sweep) runs
+  /catalog-sync on that row on the day. No push notification: nothing is wrong.
+- Blank → Step 1 failed to set it. Do not sync. Say so in Notes and the report, push
+  a notification, and go to Step 3.
+
+(/catalog-sync step 0a and the reconciler enforce the same rule, so a sync started
+early by mistake still writes nothing. This step is what keeps it from starting.)
+
+---
+
+Step 2 — Sync, same session, only when Step 1b allows
 
 Run /catalog-sync with the same notionID, all the way through — steps 1-6, not just
 1-3. If the slash command does not resolve in this session, read
@@ -201,6 +233,15 @@ Six deliberate inclusions:
    rubric. Every one of those lives only in `/process-price-list`, `/catalog-sync`,
    or `catalog-plan-schema.md`, and this file points at them instead of quoting them.
 
+## Staged lists and the sweep (2026-09-25, Albert)
+
+A list whose `Effective Date` is after today is extracted on the fire as usual, then
+`/catalog-sync` step 0a stops before any write and leaves the row staged (`Effective
+Date` in the future, `Airtable Sync: Pending`, `Notes` starting `STAGED until`).
+`/price-list-sweep` applies it on the day. It runs as the **scheduled** fire of this
+same routine: a fire with no `notionID` is a sweep (table at the top, Albert
+2026-09-25). There is no separate sweep routine.
+
 ## Backstop sweep, not wired up
 
 A periodic no-`notionID` fire could, in principle, sweep for rows where `Airtable
@@ -287,6 +328,20 @@ full. Change a step's procedure in its command file, as always; change this file
 only when the flow itself or the stored text needs to change.
 
 ## Changelog
+
+- **2026-09-25 (Albert, in chat), later.** Step 1b: after extraction the webhook
+  path checks the row's `Effective Date` and runs Step 2 (sync) only when the list is
+  in effect today; a later date stays staged for the sweep. The sweep became a
+  dispatcher: `Ready to Upload`, arrived `Effective Date`, and a missed recent
+  extraction each run their skill; `/catalog-sync` refuses a superseded list.
+- **2026-09-25 (Albert, in chat).** One routine, two fires. A fire with a
+  `notionID` (Make's webhook) extracts and syncs that row as before; a fire without
+  one — the routine's own daily schedule — runs `/price-list-sweep`, which applies
+  every staged list whose `Effective Date` has arrived. Lists received before their
+  date are extracted on arrival and written on the day (`/catalog-sync` step 0a,
+  reconciler `not_yet_effective`). Replaces the separate "Price List Sweep" routine.
+  Same day: `Last price update` renamed `Effective Date` in Airtable and written as the
+  newest list's date; `Price List URL` links each record to its list.
 
 - **2026-09-23 (Albert, in chat: Phase 0).** Salvaged ~100 stranded commits onto one
   branch. Added the publish step (Step 3, `scripts/publish_run.py`), a durable backfill,

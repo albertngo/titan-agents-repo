@@ -1,0 +1,77 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "MULTI",
+ "run_at": "2026-09-25T01:10:26-04:00",
+ "status": "ready",
+ "inputs": {
+  "source": "stale notes found on read-back of catalog-plan-answers-0925"
+ },
+ "cost_basis": {
+  "value": "dealer",
+  "confirmed_by": "per supplier"
+ },
+ "summary": {
+  "airtable_upsert": 4
+ },
+ "blocked": [],
+ "warnings": [],
+ "_note": "Salesperson notes only, rewritten to match Albert's 2026-09-25 rulings (drops a stray 'N/A', the resolved Vizion PRICE CONFLICT text and the stale species line).",
+ "actions": [
+  {
+   "id": "cat-088790cbaf66",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-JLTI-SP36P00T",
+   "airtable_rec_id": "recZcD7puQYFcaVzi",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Salesperson notes": "Linked 2026-09-25 to live LS SP36POOT (letter O) on Albert's 'Link'; LS sku corrected to the Airtable SKU; Supplier SKU is the sheet code."
+   },
+   "reason": "note_matches_ruling",
+   "seq": 1
+  },
+  {
+   "id": "cat-c0ddfef55f55",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-VIZN-0009",
+   "airtable_rec_id": "recKKuLtrmR4lVjAQ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Salesperson notes": "COST BASIS CONFIRMED 2026-09-10 by Albert — the printed '> PRICE' column is Titan's dealer cost, as-is (no multiplier). Priced per piece. Printed dimensions 15 x 45 x 2400 mm. Retail = Cost + $10 per the cross-supplier accessory markup standard. Trim material not stated by Vizion. PRICE RESOLVED 2026-09-25 (Albert: '8 is for LAMINATE 12 is for VINYL'): the list printed this laminate trim at $8.00 (14.3mm page) and $12.00 (12.3mm page); laminate trims are $8.00, so cost 8.00 / retail 18.00."
+   },
+   "reason": "note_matches_ruling",
+   "seq": 2
+  },
+  {
+   "id": "cat-8ed008dccde2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-VIZN-0010",
+   "airtable_rec_id": "recvxal6FYtpZ0gJ7",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Salesperson notes": "COST BASIS CONFIRMED 2026-09-10 by Albert — the printed '> PRICE' column is Titan's dealer cost, as-is (no multiplier). Priced per piece. Printed dimensions 12 x 45 x 2400 mm. Retail = Cost + $10 per the cross-supplier accessory markup standard. Trim material not stated by Vizion. PRICE RESOLVED 2026-09-25 (Albert: '8 is for LAMINATE 12 is for VINYL'): the list printed this laminate trim at $8.00 (14.3mm page) and $12.00 (12.3mm page); laminate trims are $8.00, so cost 8.00 / retail 18.00."
+   },
+   "reason": "note_matches_ruling",
+   "seq": 3
+  },
+  {
+   "id": "cat-dd28d058f1c9",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0085",
+   "airtable_rec_id": "recnJFmNXGzjHgrk0",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Salesperson notes": "2026-09-22 re-extract (PL-377): NEW colourway 'Truffle'. Collection is 'Designer Click' — a BRAND NEW collection per Albert (Action column, PL-377 page table); the existing FAW 'Designer' records are T&G/Wirebrushed, this line is Click. Grade ABC -> Select. Species left BLANK (Albert 2026-09-25): the row says 'White Oak' without American or European. Finish type left blank — this row does not say Wirebrushed, unlike every sibling."
+   },
+   "reason": "note_matches_ruling",
+   "seq": 4
+  }
+ ]
+}

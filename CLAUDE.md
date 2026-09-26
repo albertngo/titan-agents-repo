@@ -211,7 +211,10 @@ lands). One session, in order, on that one row:
    two upload CSVs to `ingest/YYYY-MM-DD/`, attaches them to the row, sets
    `Extraction Status` to `Extracted [Needs Review]` (or `[Error]`). Writes no
    platform.
-2. **Sync, immediately, same session.** Runs `/catalog-sync` on the same notionID,
+2. **Check the effective date (2026-09-25).** If the row's `Effective Date` is after
+   today the list is staged: no sync now; the routine's scheduled sweep runs it on
+   the day. Otherwise go on.
+3. **Sync, same session.** Runs `/catalog-sync` on the same notionID,
    reading the CSVs the previous step just committed — never a Notion re-download,
    which is why the commit in step 1 is load-bearing now, not just tidy. Pulls
    Lightspeed, reconciles, produces the plan, then applies policy auto-approval
@@ -223,6 +226,19 @@ lands). One session, in order, on that one row:
 sync no longer waits on Albert manually promoting a row before it runs. The status
 still exists for the manual CSV path (whoever runs a stage by hand still uses it),
 per "all three trackers are kept" below.
+
+**Lists received before they take effect are staged (2026-09-25, Albert).** The row's
+`Effective Date` (Notion) is the list's date; when it is after today, extraction runs
+but `/catalog-sync` writes nothing and `catalog_reconcile.py` blocks every row
+`not_yet_effective`. `/price-list-sweep` applies due lists on the day, against a fresh
+pull. Staged = `Effective Date` in the future with `Airtable Sync: Pending`. The sweep
+is the "New Price Lists" routine's **scheduled** fire: a fire with a `notionID` extracts
+that row, a fire without one sweeps (Albert, 2026-09-25 — one routine, not two). The
+sweep runs each row's next skill: `Ready to Upload` (a person answered) → sync;
+`Effective Date` arrived → sync; a `Not started` row from the last 14 days the webhook
+missed → extract + sync. At most 5 rows a morning; held `Partial` rows, errors and the
+older backlog wait for a person. `/catalog-sync` refuses a list older than one already
+applied for the same company.
 
 **A periodic no-`notionID` sweep can still exist as a backstop**, not the primary
 path: it would pick up any row where `Airtable Sync` is still `Pending`/`Partial`

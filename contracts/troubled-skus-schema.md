@@ -75,6 +75,8 @@ entries need no action trains a reader to skip all of them.
 
 ## The `Action` column
 
+**Keep the page table small enough to answer (2026-09-25).** PL-372's table held all 337 rows, about 180K characters. Albert answered it, but had to paste his answers back in pieces, and fetching the page overflows a tool read. From now on the page table renders only rows a reviewer might act on: every `held` row, plus `wrote_flagged` rows whose reason is not purely routine. `category_unresolved` and `new_supplier` are routine; they stay in the attached CSV, and the table says how many were left out. Notion's API also caps a single rich-text run at 2,000 characters and an append at 100 blocks, so keep `detail` short.
+
 **Added 2026-09-21 (Albert), after it was invented by hand.** On PL-377 he pasted the
 troubled CSV into the Notion page as a table, added a twelfth column called `Action`,
 and answered all five rows in it. That worked, and nothing in this repo knew about it:
@@ -197,6 +199,7 @@ warning that is SKU-scoped.
 | `supplier_option_missing` | The row's Airtable write names a `Supplier` value with no live select-option match. `airtable-actions-agent` refuses rather than silently mint one — see "Creating a select option" in bert-airtable-schema. Added 2026-09-14 (IMPRESSIVE), the first supplier whose Airtable side reached execution before its Supplier value was confirmed |
 | `select_option_missing` | Pre-flight (2026-09-23). An Airtable select value other than `Supplier` has no live option. Held on both systems, same as `supplier_option_missing` |
 | `ls_supplier_missing` | The row's live Lightspeed product has no supplier, so its cost cannot be written (`lightspeed_write.py` refuses to invent a purchasing relationship). Held on both systems until a person sets the supplier in Lightspeed. Added 2026-09-24 (PL-170 Baltic, EHDP-003 — created 2025-08-26 with no supplier) |
+| `not_yet_effective` | The list takes effect after today (its `Effective Date`, Albert 2026-09-25). `catalog_reconcile.py` blocks every row, so nothing is written to either system; `/price-list-sweep` applies the list on the day against a fresh pull of both. `held`, but not a TODO for a person: it clears itself when the date arrives |
 | `absent_from_list` | A live Airtable record for this supplier that the new price list does not print at all. Nothing is written — neither system has a delete or deactivate action type, deliberately — so the product stays live at its last price until a person decides whether it is discontinued. `held`: a TODO, since the price it sells at is no longer backed by any current list. Added 2026-09-24 (PL-376 Weiss: the 6mm 12 mil line, 3 colours, is gone from the Sept 21 2026 list) |
 
 `airtable_side_not_planned` is deliberately **not** here. It is plan-level, not

@@ -1,0 +1,7492 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "MULTI (FAW, WEISS, HOMESPRO, VIZION, FLOOR & DECOR, BALTIC HOMES, IMPRESSIVE)",
+ "run_at": "2026-09-25T09:40:20-04:00",
+ "status": "ready",
+ "inputs": {
+  "source": "SKUs on each company's newest list (the committed upload CSVs), live Airtable read 2026-09-25, Notion Price Lists checked for newer lists",
+  "newest_list": {
+   "FAW PL-377 (+PL-380 clearance correction)": "2026-09-19 printed",
+   "WEISS PL-376": "2026-09-21 printed",
+   "HOMESPRO PL-242": "2026-03-02 printed",
+   "VIZION PL-373": "2026-08-01 printed",
+   "JL TILE PL-372": "2026-09-11",
+   "FLOOR & DECOR PL-47": "2025-01-03 subject",
+   "BALTIC PL-170": "2025-10-09 email date (photo, no printed date, none in subject)",
+   "IMPRESSIVE PL-381": "2026-09-01 printed 'SEPTEMBER 2026' (month only = first of the month)"
+  }
+ },
+ "cost_basis": {
+  "value": "n/a",
+  "confirmed_by": "no price field is written"
+ },
+ "summary": {
+  "airtable_upsert": 414,
+  "by_list_and_reason": {
+   "BALTIC PL-170 / processing_date_corrected": 32,
+   "FAW PL-377 / newer_list_confirms_price": 41,
+   "FAW PL-377 / processing_date_corrected": 7,
+   "HOMESPRO PL-242 / processing_date_corrected": 5,
+   "IMPRESSIVE PL-381 / processing_date_corrected": 250,
+   "VIZION PL-373 / newer_list_confirms_price": 50,
+   "WEISS PL-376 / newer_list_confirms_price": 29
+  }
+ },
+ "blocked": [],
+ "warnings": [],
+ "_note": "Albert 2026-09-25: 'Move it forward to reflect the date of newest list received for the company. If it isn't clear on when in the pdf, use the emails subject. If not, use the received email date.' Every product on the company's newest list gets that list's date. Dates LATER than the newest list are day-of-processing stamps from earlier runs (no newer list exists for any of these companies) and are corrected. Last price update only; Price last changed by untouched (a confirmation changes nobody's price).",
+ "actions": [
+  {
+   "id": "cat-537996325724",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4100",
+   "airtable_rec_id": "recNHcJUPDjSgLHVC",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 1
+  },
+  {
+   "id": "cat-eddb9c9d16e4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4101",
+   "airtable_rec_id": "recJ52nrcnbwjvutz",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 2
+  },
+  {
+   "id": "cat-f9c1909a02f3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4102",
+   "airtable_rec_id": "recl8oUtfvi70FfMZ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 3
+  },
+  {
+   "id": "cat-c28cc9162782",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4103",
+   "airtable_rec_id": "rec4eAX8LvU9TdjDg",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 4
+  },
+  {
+   "id": "cat-f42e1adf1b82",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4104",
+   "airtable_rec_id": "recgurpp5orgKuzz8",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 5
+  },
+  {
+   "id": "cat-0dbdf39d4278",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4105",
+   "airtable_rec_id": "recmJVploAPFceASM",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 6
+  },
+  {
+   "id": "cat-7170e428395d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4106",
+   "airtable_rec_id": "rec6WUm0vclWBIJuu",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 7
+  },
+  {
+   "id": "cat-92cf3a67d06e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4107",
+   "airtable_rec_id": "rec981n77IRKoVYnJ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 8
+  },
+  {
+   "id": "cat-7fe89336ea0e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4200",
+   "airtable_rec_id": "rec22HWPOWxCSI7lL",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 9
+  },
+  {
+   "id": "cat-2fb342649f01",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4201",
+   "airtable_rec_id": "recRY6bdPwBcpwUWv",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 10
+  },
+  {
+   "id": "cat-134e804463ce",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4202",
+   "airtable_rec_id": "rec4Kh7rtP16V3iY5",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 11
+  },
+  {
+   "id": "cat-affd9aeb4cb2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4203",
+   "airtable_rec_id": "recpGd1HrVpJCQobv",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 12
+  },
+  {
+   "id": "cat-8735b85ba163",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4204",
+   "airtable_rec_id": "recp4b6ub6XA5KyH4",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 13
+  },
+  {
+   "id": "cat-5421ff09755b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4205",
+   "airtable_rec_id": "recheqtxrZasri40t",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 14
+  },
+  {
+   "id": "cat-ddbb60c407dd",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4206",
+   "airtable_rec_id": "reciuFGa3DSx8Myzl",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 15
+  },
+  {
+   "id": "cat-58057712655e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4207",
+   "airtable_rec_id": "recTNT9th1V3Y8Rul",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 16
+  },
+  {
+   "id": "cat-1a4219638394",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4300",
+   "airtable_rec_id": "rec4xldVbGGf3XMPK",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 17
+  },
+  {
+   "id": "cat-3b2eae62a015",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4301",
+   "airtable_rec_id": "rec9mtL57XX3cxd3r",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 18
+  },
+  {
+   "id": "cat-a82964193301",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4302",
+   "airtable_rec_id": "recLbJQxwEYx1vz9L",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 19
+  },
+  {
+   "id": "cat-2815dd29548e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4303",
+   "airtable_rec_id": "rec7lr1VYGqS4cm6R",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 20
+  },
+  {
+   "id": "cat-8f5b9801ce4b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4304",
+   "airtable_rec_id": "recOcLQ7aikm9FQ9x",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 21
+  },
+  {
+   "id": "cat-1b5ba6dfc3a3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4305",
+   "airtable_rec_id": "recBqCA8K6tKpHY2D",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 22
+  },
+  {
+   "id": "cat-dac75871aee2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4306",
+   "airtable_rec_id": "recmKtaLs8zNPttvo",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 23
+  },
+  {
+   "id": "cat-0565c6d9ecc0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4307",
+   "airtable_rec_id": "recUUX1ph0hYl4qgj",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 24
+  },
+  {
+   "id": "cat-920925f640af",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4400",
+   "airtable_rec_id": "reclbUGVoJ74JSZ3W",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 25
+  },
+  {
+   "id": "cat-e99691510b76",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4401",
+   "airtable_rec_id": "recbz11RnP3k8vcZk",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 26
+  },
+  {
+   "id": "cat-14fc0febc498",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4402",
+   "airtable_rec_id": "recopZVDx5WsexihA",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 27
+  },
+  {
+   "id": "cat-569f20a718db",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4403",
+   "airtable_rec_id": "recGbaMVPLN7Dhime",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 28
+  },
+  {
+   "id": "cat-28a718424543",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4404",
+   "airtable_rec_id": "recF4ZAlkW2wZL55x",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 29
+  },
+  {
+   "id": "cat-4e220c9d2417",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4405",
+   "airtable_rec_id": "recl0U9nxK8nG9EeQ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 30
+  },
+  {
+   "id": "cat-2c0c21e4622a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4406",
+   "airtable_rec_id": "recc7JqlmeQ7q3nkM",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 31
+  },
+  {
+   "id": "cat-96f03719f31d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4407",
+   "airtable_rec_id": "recgbZXSXqDUG5v7H",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 32
+  },
+  {
+   "id": "cat-05777c297254",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4500",
+   "airtable_rec_id": "recAYylotWgljIFux",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 33
+  },
+  {
+   "id": "cat-98b2eaa1b07e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4501",
+   "airtable_rec_id": "recqfRhn9nVD2gase",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 34
+  },
+  {
+   "id": "cat-aadda7a7f9f6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4502",
+   "airtable_rec_id": "recijNamwII3Ozbu5",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 35
+  },
+  {
+   "id": "cat-8b0b6f01b5a0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4503",
+   "airtable_rec_id": "rec1q4fn6OhjbYqSl",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 36
+  },
+  {
+   "id": "cat-0b74639f1380",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4504",
+   "airtable_rec_id": "recxUV62vVpd6RoaE",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 37
+  },
+  {
+   "id": "cat-6233ff9ca940",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4505",
+   "airtable_rec_id": "rec0NZL3hYhmr3agu",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 38
+  },
+  {
+   "id": "cat-ef98b2b2ad62",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4506",
+   "airtable_rec_id": "recfzsRVXaO1G86j4",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 39
+  },
+  {
+   "id": "cat-63bfeb63351d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "4507",
+   "airtable_rec_id": "recFtNfWQolbrXPtN",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 40
+  },
+  {
+   "id": "cat-6529c18f9c0d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91000",
+   "airtable_rec_id": "recTcLdLxJQZIuqHw",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 41
+  },
+  {
+   "id": "cat-8b9ca49c7a76",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91001",
+   "airtable_rec_id": "recwHRjaKkHpilYvb",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 42
+  },
+  {
+   "id": "cat-3b8c7cd310a0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91002",
+   "airtable_rec_id": "recUpvdvGJwaeiQ9q",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 43
+  },
+  {
+   "id": "cat-668c5583a466",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91003",
+   "airtable_rec_id": "rec07QaGcj5ynFnQW",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 44
+  },
+  {
+   "id": "cat-559bbd4c8879",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91004",
+   "airtable_rec_id": "recYQzhzpLlo1DDl8",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 45
+  },
+  {
+   "id": "cat-f49e815c988b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91005",
+   "airtable_rec_id": "recK9GDFsSWe277qL",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 46
+  },
+  {
+   "id": "cat-aae034da2023",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91006",
+   "airtable_rec_id": "recjh1BE63fi3SFkq",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 47
+  },
+  {
+   "id": "cat-fe253060e76d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91007",
+   "airtable_rec_id": "rec9T3b2dXeS7B6zd",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 48
+  },
+  {
+   "id": "cat-18036c3f730c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91008",
+   "airtable_rec_id": "rec5u60qgD4pb7uiM",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 49
+  },
+  {
+   "id": "cat-20ac7a19125d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91009",
+   "airtable_rec_id": "receqLadNaXZZFibV",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 50
+  },
+  {
+   "id": "cat-d2abb665ae4a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91010",
+   "airtable_rec_id": "rechoNSM4aJ2WEE4l",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 51
+  },
+  {
+   "id": "cat-f56384d4f755",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91100",
+   "airtable_rec_id": "recBAkl4xLoqpujkX",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 52
+  },
+  {
+   "id": "cat-7c6a5c23ac5b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91101",
+   "airtable_rec_id": "reccF31uxF4Wdv748",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 53
+  },
+  {
+   "id": "cat-fa31f768328d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91102",
+   "airtable_rec_id": "rec4hFv0R6OKwa7lS",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 54
+  },
+  {
+   "id": "cat-b017528e542e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91103",
+   "airtable_rec_id": "reccqDdFGQv8VYQaX",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 55
+  },
+  {
+   "id": "cat-4e667a0c47fd",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91104",
+   "airtable_rec_id": "rec1BQDZtijePst67",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 56
+  },
+  {
+   "id": "cat-c676d9bba86e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91105",
+   "airtable_rec_id": "recP4LwYhizqkTggJ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 57
+  },
+  {
+   "id": "cat-ae430f359fd8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91106",
+   "airtable_rec_id": "recw5Q0C9UNYtvCaE",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 58
+  },
+  {
+   "id": "cat-0396fc736fc2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91107",
+   "airtable_rec_id": "recy5QBXI1PGCQJY7",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 59
+  },
+  {
+   "id": "cat-7a1f19ad7c4a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91108",
+   "airtable_rec_id": "rec2yj3WiMbZWX6CP",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 60
+  },
+  {
+   "id": "cat-f7c1f8badccc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91109",
+   "airtable_rec_id": "rec0e9Xc8VDxXtf54",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 61
+  },
+  {
+   "id": "cat-bcb90abb47cc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91110",
+   "airtable_rec_id": "recaPtw20vTm0nOYP",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 62
+  },
+  {
+   "id": "cat-82adb62a6f68",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91111",
+   "airtable_rec_id": "recPQ2yNVMd9WolJL",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 63
+  },
+  {
+   "id": "cat-3dd9cfd325f2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91112",
+   "airtable_rec_id": "recIQ8n3tYfUodd03",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 64
+  },
+  {
+   "id": "cat-0ca6c4038adf",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91200",
+   "airtable_rec_id": "recE8N4lEMrCrfw16",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 65
+  },
+  {
+   "id": "cat-f723d0d21d18",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91201",
+   "airtable_rec_id": "recSIoW8EkhZaQr5P",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 66
+  },
+  {
+   "id": "cat-39eb882689c7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91202",
+   "airtable_rec_id": "recgkhv2vwsNjEHBf",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 67
+  },
+  {
+   "id": "cat-c5e9b52f7290",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91203",
+   "airtable_rec_id": "recljjy9wBjZaYmQg",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 68
+  },
+  {
+   "id": "cat-6652e39f4f9c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91204",
+   "airtable_rec_id": "recU93uXyIlzMZOK9",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 69
+  },
+  {
+   "id": "cat-e35048fec322",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91205",
+   "airtable_rec_id": "recwRexyuB07SQiQJ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 70
+  },
+  {
+   "id": "cat-53b2ddc17f30",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91206",
+   "airtable_rec_id": "rec9Fp7IUes6ybXjP",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 71
+  },
+  {
+   "id": "cat-1129b4f4997d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91207",
+   "airtable_rec_id": "recdsk2dEmlkaFmd2",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 72
+  },
+  {
+   "id": "cat-008201cddb47",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91300",
+   "airtable_rec_id": "recnaQsMQq1MQrW2E",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 73
+  },
+  {
+   "id": "cat-9436b7f3a12c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91301",
+   "airtable_rec_id": "rec6T5rejlHZQcz5F",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 74
+  },
+  {
+   "id": "cat-77c6bc1d5a04",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91302",
+   "airtable_rec_id": "reczMAHKiib1p46VO",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 75
+  },
+  {
+   "id": "cat-de9ceae264b8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91303",
+   "airtable_rec_id": "recsfDTXW7okhj762",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 76
+  },
+  {
+   "id": "cat-56aa3bf21557",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91304",
+   "airtable_rec_id": "recsMEqWaW4qyeO5c",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 77
+  },
+  {
+   "id": "cat-dd21b1989269",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91305",
+   "airtable_rec_id": "recRweIu78bMl4Y6r",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 78
+  },
+  {
+   "id": "cat-a4567e057ab7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91500-M",
+   "airtable_rec_id": "recVszl70SRExFn8R",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 79
+  },
+  {
+   "id": "cat-a779eb53c78c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91500-N",
+   "airtable_rec_id": "reckonxPe8KNOJZTP",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 80
+  },
+  {
+   "id": "cat-091826f15aed",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91500-P",
+   "airtable_rec_id": "recNy8BEzxowGV1Jc",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 81
+  },
+  {
+   "id": "cat-016bbe27c7b0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91500-S",
+   "airtable_rec_id": "reco1Fjtw9xldHP14",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 82
+  },
+  {
+   "id": "cat-2b63a08a4d63",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91501-M",
+   "airtable_rec_id": "recMcn62JjZeJ1iVe",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 83
+  },
+  {
+   "id": "cat-092571cc228a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91501-N",
+   "airtable_rec_id": "recUI4n8UinHwCLqb",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 84
+  },
+  {
+   "id": "cat-7386792364b1",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91501-P",
+   "airtable_rec_id": "recx3Qj5Hnf0TNDDz",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 85
+  },
+  {
+   "id": "cat-6d646eb0714b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91501-S",
+   "airtable_rec_id": "recwV6vIG0zeDH6jS",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 86
+  },
+  {
+   "id": "cat-f578f36f14e8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91502-M",
+   "airtable_rec_id": "recWwABCNjC8CXEU0",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 87
+  },
+  {
+   "id": "cat-62b329a77859",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91502-N",
+   "airtable_rec_id": "recCSo5HsqcEg09ST",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 88
+  },
+  {
+   "id": "cat-9259bf1950b8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91502-P",
+   "airtable_rec_id": "recOwSMRdGya3YuGv",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 89
+  },
+  {
+   "id": "cat-33e6d8dd9109",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91502-S",
+   "airtable_rec_id": "recZDZc0TWaRKk4me",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 90
+  },
+  {
+   "id": "cat-03450efc580b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91503-M",
+   "airtable_rec_id": "recCS1WJR00nYxt3U",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 91
+  },
+  {
+   "id": "cat-126e4d3b542c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91503-N",
+   "airtable_rec_id": "recuoItZlpgJLsEjN",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 92
+  },
+  {
+   "id": "cat-2d9af6a6d9e9",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91503-P",
+   "airtable_rec_id": "recsXpDe53dwFnUe0",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 93
+  },
+  {
+   "id": "cat-9ca25e740d07",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91503-S",
+   "airtable_rec_id": "recKlB1WVw9a4B81Q",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 94
+  },
+  {
+   "id": "cat-062cb01c9f0f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91504-M",
+   "airtable_rec_id": "rec6qnrNovYOkP5vt",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 95
+  },
+  {
+   "id": "cat-6d942f31a1e2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91504-N",
+   "airtable_rec_id": "rec0Hj94jGc1D1KgD",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 96
+  },
+  {
+   "id": "cat-2c9e9acec43e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91504-P",
+   "airtable_rec_id": "recBpxMVuI1r9P02A",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 97
+  },
+  {
+   "id": "cat-d0b7555cca4f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91504-S",
+   "airtable_rec_id": "rec5OEpu0HaD9Ve9M",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 98
+  },
+  {
+   "id": "cat-a97d5d356823",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91505-M",
+   "airtable_rec_id": "recV8WhmRYTeNquQX",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 99
+  },
+  {
+   "id": "cat-ade0c7f251f7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91505-N",
+   "airtable_rec_id": "rec6mIJC92EzPaYGl",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 100
+  },
+  {
+   "id": "cat-f7d2e40a4350",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91505-P",
+   "airtable_rec_id": "recdsehNqB8f9X8xu",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 101
+  },
+  {
+   "id": "cat-f4fa65ee8721",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91505-S",
+   "airtable_rec_id": "recX1xtradjZBMf5w",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 102
+  },
+  {
+   "id": "cat-503350cb0cbb",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91506-M",
+   "airtable_rec_id": "rec3D5ksElZBGnNBq",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 103
+  },
+  {
+   "id": "cat-96f229118db0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91506-N",
+   "airtable_rec_id": "recUGeaFMIpNIZHDj",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 104
+  },
+  {
+   "id": "cat-babff3365440",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91506-P",
+   "airtable_rec_id": "recE81vHCFM96KOvN",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 105
+  },
+  {
+   "id": "cat-df95adb1024a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91506-S",
+   "airtable_rec_id": "recXe3eLkL8Y6ERfr",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 106
+  },
+  {
+   "id": "cat-85fda1be47c4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91507-M",
+   "airtable_rec_id": "recLseQbSSOgpExAB",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 107
+  },
+  {
+   "id": "cat-2c1bcc2e121d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91507-N",
+   "airtable_rec_id": "recB3lS9CCl4dWTEj",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 108
+  },
+  {
+   "id": "cat-2e3537b4f7ab",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91507-P",
+   "airtable_rec_id": "recZKLsvOFVaNH9qd",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 109
+  },
+  {
+   "id": "cat-f6ece84d7026",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91507-S",
+   "airtable_rec_id": "recetgF8XawiTZu1H",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 110
+  },
+  {
+   "id": "cat-cf277d44f91d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91508-M",
+   "airtable_rec_id": "recDqCKQc7AcLvnDH",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 111
+  },
+  {
+   "id": "cat-b11cc60c3e14",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91508-S",
+   "airtable_rec_id": "recP5CbTcM47KNNug",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 112
+  },
+  {
+   "id": "cat-8f8ee96537c6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91509-M",
+   "airtable_rec_id": "rec0b6Kp2mAw2St1S",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 113
+  },
+  {
+   "id": "cat-95e0957352c9",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91509-N",
+   "airtable_rec_id": "reczVNsxYIEuv3kl4",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 114
+  },
+  {
+   "id": "cat-bbfc3508667a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91509-P",
+   "airtable_rec_id": "recgDjzZaSA5Ml0AZ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 115
+  },
+  {
+   "id": "cat-7fb68ed9c7c9",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91509-S",
+   "airtable_rec_id": "recUngsynQOqeQ2an",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 116
+  },
+  {
+   "id": "cat-02294ef87d1d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91510-M",
+   "airtable_rec_id": "rechfG1MBq1Iaok9I",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 117
+  },
+  {
+   "id": "cat-6b1aedeba2ac",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91510-N",
+   "airtable_rec_id": "rec3TAR1AJ7YzXxwD",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 118
+  },
+  {
+   "id": "cat-bca1874f02d5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91510-P",
+   "airtable_rec_id": "rechsE9ZsvWcplDxC",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 119
+  },
+  {
+   "id": "cat-52b442a326a6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91510-S",
+   "airtable_rec_id": "rec1p7eQaQC0pqR1W",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 120
+  },
+  {
+   "id": "cat-c136ae7ed216",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91511-M",
+   "airtable_rec_id": "rechecUb64gnj3iGw",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 121
+  },
+  {
+   "id": "cat-a25c36138b13",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91511-N",
+   "airtable_rec_id": "recgCuLlJNsTdkmyh",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 122
+  },
+  {
+   "id": "cat-a857958dfb70",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91511-P",
+   "airtable_rec_id": "recdpc9nJyjVfIbkl",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 123
+  },
+  {
+   "id": "cat-7c04f8f4eabb",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91511-S",
+   "airtable_rec_id": "recBS3lLOM5UmJ67p",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 124
+  },
+  {
+   "id": "cat-a5872bb88560",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91512-M",
+   "airtable_rec_id": "rec56KAlCm7G1kb9o",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 125
+  },
+  {
+   "id": "cat-fb02e983866b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91512-N",
+   "airtable_rec_id": "rec1zRL8dBxtchCZ7",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 126
+  },
+  {
+   "id": "cat-bf47fd0bf95e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91512-P",
+   "airtable_rec_id": "recByISwtDxDPq71p",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 127
+  },
+  {
+   "id": "cat-18e96bd43969",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91512-S",
+   "airtable_rec_id": "recF1Qu3mUNAhBJUa",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 128
+  },
+  {
+   "id": "cat-ff4a8bc89db0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91513-M",
+   "airtable_rec_id": "recpagLCZ2NgBHBQA",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 129
+  },
+  {
+   "id": "cat-360dff47d87f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91513-N",
+   "airtable_rec_id": "recdDETSO50urR9P7",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 130
+  },
+  {
+   "id": "cat-0851d4366964",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91513-P",
+   "airtable_rec_id": "recD8nlEjDzAji8l4",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 131
+  },
+  {
+   "id": "cat-42f2eb0fd822",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91513-S",
+   "airtable_rec_id": "recHLAW62LE3Xzzy4",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 132
+  },
+  {
+   "id": "cat-626bfd06321f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91514-M",
+   "airtable_rec_id": "recB06wi90YJFftpb",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 133
+  },
+  {
+   "id": "cat-526637f8af2f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91514-N",
+   "airtable_rec_id": "rec2edznaIGzvxnhz",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 134
+  },
+  {
+   "id": "cat-95117574901c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91514-P",
+   "airtable_rec_id": "rec1fgVvkCWKq6oil",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 135
+  },
+  {
+   "id": "cat-aba067fe84ad",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91514-S",
+   "airtable_rec_id": "recyUJBd6YgEeoviG",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 136
+  },
+  {
+   "id": "cat-2f80fc16923e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91515-M",
+   "airtable_rec_id": "recFtl6tELXtd1lbO",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 137
+  },
+  {
+   "id": "cat-92796f151959",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91515-N",
+   "airtable_rec_id": "rectcr7VSBwX5YSrj",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 138
+  },
+  {
+   "id": "cat-6021a08bd7a1",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91515-P",
+   "airtable_rec_id": "recmsjGhXJWXC7AwY",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 139
+  },
+  {
+   "id": "cat-8a548ef4c1bb",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91515-S",
+   "airtable_rec_id": "recOxDsApAsq2F6oD",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 140
+  },
+  {
+   "id": "cat-41aa23597095",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91516-M",
+   "airtable_rec_id": "recQ0jM43jmj6llEr",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 141
+  },
+  {
+   "id": "cat-91b0976e4eac",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91516-N",
+   "airtable_rec_id": "recUjl1Win3DX0BJ9",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 142
+  },
+  {
+   "id": "cat-9c2940fe76e0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91516-P",
+   "airtable_rec_id": "recPFVNjtZsjR5nmp",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 143
+  },
+  {
+   "id": "cat-453928fa3830",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91516-S",
+   "airtable_rec_id": "recma7rrhDDy7NTo4",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 144
+  },
+  {
+   "id": "cat-52be0a80a05d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91517-M",
+   "airtable_rec_id": "recEqzH5WCWH8HEFk",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 145
+  },
+  {
+   "id": "cat-1283af501f85",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91517-N",
+   "airtable_rec_id": "recFRiHe6xJJI2RnX",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 146
+  },
+  {
+   "id": "cat-ba190de9aa13",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91517-P",
+   "airtable_rec_id": "recmgrSTHG8s7KKS2",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 147
+  },
+  {
+   "id": "cat-c0c73ca46f6c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "91517-S",
+   "airtable_rec_id": "recIitVwH1tk6rfmQ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 148
+  },
+  {
+   "id": "cat-d50bf12c19ae",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-HMPR-0002",
+   "airtable_rec_id": "recJ6Cg1D4b1ZkOo0",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-03-02"
+   },
+   "before": {
+    "Last price update": "2026-09-13"
+   },
+   "reason": "processing_date_corrected",
+   "list": "HOMESPRO PL-242",
+   "seq": 149
+  },
+  {
+   "id": "cat-69b80bfe3058",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-IMPR-HARDWOODTRIMNOSINGCUSTOMPREFINISHED",
+   "airtable_rec_id": "recOpT5e9YxTVWFDT",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 150
+  },
+  {
+   "id": "cat-c6549dcf3e66",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-IMPR-HARDWOODTRIMREDUCERCUSTOMPREFINISHED",
+   "airtable_rec_id": "recCiRCy3RqQdXSWQ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 151
+  },
+  {
+   "id": "cat-3576d059bc27",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-IMPR-HARDWOODTRIMTMOLDCUSTOMPREFINISHED",
+   "airtable_rec_id": "reciMKFz8B2m0rT1g",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 152
+  },
+  {
+   "id": "cat-62f64188851f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-IMPR-VINYLSPCTRIMNOSING",
+   "airtable_rec_id": "recZVECTiG2Oi8yNm",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 153
+  },
+  {
+   "id": "cat-5f59e58e2b76",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-IMPR-VINYLSPCTRIMREDUCER",
+   "airtable_rec_id": "recd3SOgFSqEETlJ5",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 154
+  },
+  {
+   "id": "cat-3584ca67202b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-IMPR-VINYLSPCTRIMSTAIRTHREADS",
+   "airtable_rec_id": "recltTci22wuIL5th",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 155
+  },
+  {
+   "id": "cat-abaa624fd803",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-IMPR-VINYLSPCTRIMTMOLD",
+   "airtable_rec_id": "recfq0kXzbXsL8vQW",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 156
+  },
+  {
+   "id": "cat-031532f4dc48",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-VIZN-0001",
+   "airtable_rec_id": "reci4DbY0w62D08G1",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 157
+  },
+  {
+   "id": "cat-7ea57d701158",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-VIZN-0002",
+   "airtable_rec_id": "rec42HbMvKzqyU5EY",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 158
+  },
+  {
+   "id": "cat-ef714e785204",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-VIZN-0003",
+   "airtable_rec_id": "recUml0CFtglRId7Z",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 159
+  },
+  {
+   "id": "cat-888f01b61593",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-VIZN-0004",
+   "airtable_rec_id": "rechRV5EVj7RCCm5w",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 160
+  },
+  {
+   "id": "cat-3147eca9b15e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-VIZN-0005",
+   "airtable_rec_id": "rec2Up0q8NC4OGnzT",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 161
+  },
+  {
+   "id": "cat-0bf5d2a40265",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-VIZN-0006",
+   "airtable_rec_id": "rechGbmtgf0BZxlX8",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 162
+  },
+  {
+   "id": "cat-89e397c368c7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-VIZN-0007",
+   "airtable_rec_id": "rec71951SuqZlDl7p",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 163
+  },
+  {
+   "id": "cat-2aae50e06fb9",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-VIZN-0008",
+   "airtable_rec_id": "recx8xq1DDa6FbJaR",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 164
+  },
+  {
+   "id": "cat-8e10f9ea7204",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-VIZN-0011",
+   "airtable_rec_id": "rec2NtpF72oQqb896",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 165
+  },
+  {
+   "id": "cat-e6e7516de9fc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-WEIS-0001",
+   "airtable_rec_id": "recNSazLtM6yqy9dQ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 166
+  },
+  {
+   "id": "cat-27f656cacb33",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-WEIS-0002",
+   "airtable_rec_id": "rec0NjJEbfO4tj3Px",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 167
+  },
+  {
+   "id": "cat-24d30f76750f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-WEIS-0003",
+   "airtable_rec_id": "reca6sClW9ApsOS9A",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 168
+  },
+  {
+   "id": "cat-7995b4944d14",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-WEIS-0004",
+   "airtable_rec_id": "recKJbiJBJgzk8IHY",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 169
+  },
+  {
+   "id": "cat-54372c3978e5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-WEIS-0005",
+   "airtable_rec_id": "recyG1lvs57EhXsm1",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 170
+  },
+  {
+   "id": "cat-88732b633e3f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-WEIS-0006",
+   "airtable_rec_id": "recvssSTnWGmtdEWc",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 171
+  },
+  {
+   "id": "cat-ca92d9e0445b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-WEIS-0007",
+   "airtable_rec_id": "rec0GCdFUdBkiMgOU",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 172
+  },
+  {
+   "id": "cat-d9df94635f09",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "EHDP-001",
+   "airtable_rec_id": "recwyuGCjB4voGUQJ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 173
+  },
+  {
+   "id": "cat-3da88c18636d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "EHDP-002",
+   "airtable_rec_id": "recvxRHTouQ7KPG8T",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 174
+  },
+  {
+   "id": "cat-616633825bb3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "EHDP-003",
+   "airtable_rec_id": "recBwrOPvDQ3elY99",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 175
+  },
+  {
+   "id": "cat-1b96f68e7988",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0001",
+   "airtable_rec_id": "recEMgv1r798hye4v",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 176
+  },
+  {
+   "id": "cat-b79d1a7d98b4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0003",
+   "airtable_rec_id": "recPThzsyB5RHoESf",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 177
+  },
+  {
+   "id": "cat-c055c34f3981",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0005",
+   "airtable_rec_id": "recJc1Q1m3TsJzrPh",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 178
+  },
+  {
+   "id": "cat-56aee4005593",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0008",
+   "airtable_rec_id": "recOg1lXUDgp2zIvs",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 179
+  },
+  {
+   "id": "cat-953428de8417",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0009",
+   "airtable_rec_id": "rec4DGNnckwi9cMSU",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 180
+  },
+  {
+   "id": "cat-324a93dba3c2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0025",
+   "airtable_rec_id": "recNXWClO1xNgthcG",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 181
+  },
+  {
+   "id": "cat-bf6ac86953fa",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0026",
+   "airtable_rec_id": "recdDfEE47QnKxSuB",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 182
+  },
+  {
+   "id": "cat-8379d6f077ee",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0027",
+   "airtable_rec_id": "recdXCy16CtkYJgAi",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 183
+  },
+  {
+   "id": "cat-e20429e4a1b7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0029",
+   "airtable_rec_id": "recDbfW4MAobJGtHb",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": "2026-07-09"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 184
+  },
+  {
+   "id": "cat-2f7f6ecad92b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0030",
+   "airtable_rec_id": "recQSjdBSsq9DNWBR",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": "2026-07-09"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 185
+  },
+  {
+   "id": "cat-0d6b892e412e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0031",
+   "airtable_rec_id": "recQGSnFCMzsot00Y",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": "2026-07-09"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 186
+  },
+  {
+   "id": "cat-36e92eaf6916",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0032",
+   "airtable_rec_id": "recjCKqfkpRl2sEQB",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": "2026-07-09"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 187
+  },
+  {
+   "id": "cat-a7953f14a601",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0033",
+   "airtable_rec_id": "rec0SSWqoZuwQQ266",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": "2026-07-09"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 188
+  },
+  {
+   "id": "cat-e338ef6b09b4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0034",
+   "airtable_rec_id": "recFtlxKwUdxzBpmf",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": "2026-07-09"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 189
+  },
+  {
+   "id": "cat-7d1f4342f97a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0035",
+   "airtable_rec_id": "recBiMtOgjr5N7ZzR",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 190
+  },
+  {
+   "id": "cat-a89fe3d29354",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0036",
+   "airtable_rec_id": "recGfFGfBIRYMbmgD",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 191
+  },
+  {
+   "id": "cat-3ad304ee333e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0037",
+   "airtable_rec_id": "rec4ws7sZSKXsw7Ha",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 192
+  },
+  {
+   "id": "cat-2a21b89a853a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0038",
+   "airtable_rec_id": "recYbhgc5qCyBedKY",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 193
+  },
+  {
+   "id": "cat-53589725c58f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0039",
+   "airtable_rec_id": "recnP1itRJbFMo8sg",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 194
+  },
+  {
+   "id": "cat-86a3baab26b3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0040",
+   "airtable_rec_id": "recNNhupEvZdh9AL2",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 195
+  },
+  {
+   "id": "cat-57978c3dc43c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0044",
+   "airtable_rec_id": "recFTOAite3ZzHQhO",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 196
+  },
+  {
+   "id": "cat-e06b1a5d02db",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0045",
+   "airtable_rec_id": "recRavvKj1TS0HJ8r",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 197
+  },
+  {
+   "id": "cat-fe5de9ae37ac",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0046",
+   "airtable_rec_id": "recHFadIhShbo2lvm",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 198
+  },
+  {
+   "id": "cat-25719dea211d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0047",
+   "airtable_rec_id": "rec52TshBv4BLw9B3",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 199
+  },
+  {
+   "id": "cat-cf5d468f7f00",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0049",
+   "airtable_rec_id": "rec2c8p1eWPloWN2m",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 200
+  },
+  {
+   "id": "cat-057501f90dd8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0050",
+   "airtable_rec_id": "recIPHIaxDJeOtsoI",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 201
+  },
+  {
+   "id": "cat-2c2528df25be",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0051",
+   "airtable_rec_id": "reca9JbNAb45SRmiD",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 202
+  },
+  {
+   "id": "cat-5b433296dff3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0052",
+   "airtable_rec_id": "recg69TueROHxPGjo",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 203
+  },
+  {
+   "id": "cat-a3e58079cb70",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0053",
+   "airtable_rec_id": "recyw0K8IRPAp530s",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 204
+  },
+  {
+   "id": "cat-64190dbcacb7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0054",
+   "airtable_rec_id": "recqCYLyMAso6TgZc",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 205
+  },
+  {
+   "id": "cat-dd27eb061fa4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0055",
+   "airtable_rec_id": "rec5PbVx2xEUDPO7s",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 206
+  },
+  {
+   "id": "cat-d004b800a980",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0065",
+   "airtable_rec_id": "recmPJOOccRxiYRev",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": "2026-07-09"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 207
+  },
+  {
+   "id": "cat-802f3258e4e8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0068",
+   "airtable_rec_id": "recuwDyjqsV4yw9jl",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 208
+  },
+  {
+   "id": "cat-8e2cab669470",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0070",
+   "airtable_rec_id": "rec7ZurREBVZqOVOn",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 209
+  },
+  {
+   "id": "cat-d98242f35b47",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0071",
+   "airtable_rec_id": "recidPa2yFsSt5aGB",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 210
+  },
+  {
+   "id": "cat-4db50a4eda88",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0072",
+   "airtable_rec_id": "recVbLVGbunvIU48c",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 211
+  },
+  {
+   "id": "cat-8d95e6d23767",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0073",
+   "airtable_rec_id": "recomDZDGwe9jBDCO",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 212
+  },
+  {
+   "id": "cat-d09911c211ae",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-FAWK-0074",
+   "airtable_rec_id": "rec0X0XT02zfw9INK",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 213
+  },
+  {
+   "id": "cat-cfc9b535a864",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4800",
+   "airtable_rec_id": "recTvRXZMlhmutGOv",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 214
+  },
+  {
+   "id": "cat-5d36ac76bf5c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4801",
+   "airtable_rec_id": "recdZxoZQK3UASIDG",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 215
+  },
+  {
+   "id": "cat-337e64f11dca",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4802",
+   "airtable_rec_id": "recL69itGgtX4f5tC",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 216
+  },
+  {
+   "id": "cat-6656352f2514",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4803",
+   "airtable_rec_id": "recs2TbrZZsR5R0EK",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 217
+  },
+  {
+   "id": "cat-cded5a3509d3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4804",
+   "airtable_rec_id": "recQmBRpC8DkCOfBV",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 218
+  },
+  {
+   "id": "cat-b97d55231f09",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4805",
+   "airtable_rec_id": "recfbVkAIJUYjtjUX",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 219
+  },
+  {
+   "id": "cat-d8a022e76405",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4806",
+   "airtable_rec_id": "recZxWrPL9bckByvZ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 220
+  },
+  {
+   "id": "cat-d246e38421ed",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4807",
+   "airtable_rec_id": "recPY5LEY28HWS9b1",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 221
+  },
+  {
+   "id": "cat-692210a17ee0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4808",
+   "airtable_rec_id": "recNyT5LOOUjUeM9T",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 222
+  },
+  {
+   "id": "cat-768f381bb72e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4850",
+   "airtable_rec_id": "recERppxm5hbQkamB",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 223
+  },
+  {
+   "id": "cat-7db256da385a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4851",
+   "airtable_rec_id": "recoyQnJMIjzCsFvl",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 224
+  },
+  {
+   "id": "cat-6eaaa616d5ba",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4852",
+   "airtable_rec_id": "rec6ZCnFE9B9A6k7k",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 225
+  },
+  {
+   "id": "cat-3278ffa7ac73",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4853",
+   "airtable_rec_id": "recUzikL9L0UvMf6S",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 226
+  },
+  {
+   "id": "cat-099c836cc1e5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4854",
+   "airtable_rec_id": "rectPotD8JHEZYCsZ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 227
+  },
+  {
+   "id": "cat-7ec0003cd2a6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4855",
+   "airtable_rec_id": "rec3P14YFQFM5hBVn",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 228
+  },
+  {
+   "id": "cat-a46775f030e2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4856",
+   "airtable_rec_id": "recSB3H1CBD7nmVOq",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 229
+  },
+  {
+   "id": "cat-408254babe91",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4857",
+   "airtable_rec_id": "recYBBb2BCBKYYOfZ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 230
+  },
+  {
+   "id": "cat-576af2036803",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4870",
+   "airtable_rec_id": "recSJXZT8iCqEPjLq",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 231
+  },
+  {
+   "id": "cat-01681f105c7d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4871",
+   "airtable_rec_id": "recaKKNrPyzMk1DUh",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 232
+  },
+  {
+   "id": "cat-74de2a0ec159",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4872",
+   "airtable_rec_id": "recxRaAqFm3velybl",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 233
+  },
+  {
+   "id": "cat-18ddb7322f5f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4873",
+   "airtable_rec_id": "recmiICAmoI5LnsGS",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 234
+  },
+  {
+   "id": "cat-d978a1f7ab65",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4874",
+   "airtable_rec_id": "recDOJE4AM2y94xBu",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 235
+  },
+  {
+   "id": "cat-7a5091d2018c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4875",
+   "airtable_rec_id": "rec5WOsUwmmlvTFFF",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 236
+  },
+  {
+   "id": "cat-82bacee75860",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4876",
+   "airtable_rec_id": "rec9AGWyyNNyad3Ek",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 237
+  },
+  {
+   "id": "cat-23c05988ef3c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-4877",
+   "airtable_rec_id": "recZ6nwZR4PFujXD6",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 238
+  },
+  {
+   "id": "cat-a04ce2255404",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91100-4MM",
+   "airtable_rec_id": "recSPpRhme1hiOHFQ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 239
+  },
+  {
+   "id": "cat-e58a0c91b9e0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91101-4MM",
+   "airtable_rec_id": "recu7T8r39U3ZUury",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 240
+  },
+  {
+   "id": "cat-0cf497383ad4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91102-4MM",
+   "airtable_rec_id": "recYI3lMrdxMvrcty",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 241
+  },
+  {
+   "id": "cat-057fe914e1ed",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91103-4MM",
+   "airtable_rec_id": "recdyYOll6mCPMVQQ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 242
+  },
+  {
+   "id": "cat-ca9bf6c819e3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91104-4MM",
+   "airtable_rec_id": "recD62CF1XkArMoSk",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 243
+  },
+  {
+   "id": "cat-6f015604250a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91105-4MM",
+   "airtable_rec_id": "recoc6Nb59YofJdfG",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 244
+  },
+  {
+   "id": "cat-de3218bfae76",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91106-4MM",
+   "airtable_rec_id": "recggcoWPpIOCyAaD",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 245
+  },
+  {
+   "id": "cat-14e0dc58d99a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91107-4MM",
+   "airtable_rec_id": "recyR4ex0ugcwlwnc",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 246
+  },
+  {
+   "id": "cat-d7b2ec4dd786",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91108-4MM",
+   "airtable_rec_id": "recOAsxmYjx114pQH",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 247
+  },
+  {
+   "id": "cat-8ffd4f9bd2d1",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91109-4MM",
+   "airtable_rec_id": "rec6BfAk2cooxULFs",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 248
+  },
+  {
+   "id": "cat-e7bada4889d2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91110-4MM",
+   "airtable_rec_id": "recIcPekBa937342m",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 249
+  },
+  {
+   "id": "cat-24a9adda3de6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91111-4MM",
+   "airtable_rec_id": "recAeiEeSszvVgXwX",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 250
+  },
+  {
+   "id": "cat-19bf10dab8ca",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91112-4MM",
+   "airtable_rec_id": "recTHCvkOP9by3blk",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 251
+  },
+  {
+   "id": "cat-c15fd5a69bf3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91208",
+   "airtable_rec_id": "recxzJc8oA2eKjLAx",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 252
+  },
+  {
+   "id": "cat-b0ea80a93957",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91306",
+   "airtable_rec_id": "recQwN2IsjtQ4Fz7R",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 253
+  },
+  {
+   "id": "cat-42681cc78f57",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91801",
+   "airtable_rec_id": "recWdETV9Adsi1rOU",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 254
+  },
+  {
+   "id": "cat-3d73c62a4cfa",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91802",
+   "airtable_rec_id": "reckpDaw6hSGihXqz",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 255
+  },
+  {
+   "id": "cat-e30dd2711771",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91803",
+   "airtable_rec_id": "recUlGEu963tclKSc",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 256
+  },
+  {
+   "id": "cat-75c374099d6d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91804",
+   "airtable_rec_id": "rec3NrNVft3yuHh2i",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 257
+  },
+  {
+   "id": "cat-773a4c29e5bf",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91805",
+   "airtable_rec_id": "recmrWgBRZaIW82DA",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 258
+  },
+  {
+   "id": "cat-72e09800584d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91806",
+   "airtable_rec_id": "rec26HIxmvvGG93qJ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 259
+  },
+  {
+   "id": "cat-5fd80a7f4d55",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91807",
+   "airtable_rec_id": "recDLfGTG5jMXlPer",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 260
+  },
+  {
+   "id": "cat-7acd2455d704",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91808",
+   "airtable_rec_id": "recwp5kk2J0uwj2xe",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 261
+  },
+  {
+   "id": "cat-60e5b932152b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91809",
+   "airtable_rec_id": "recRgjrt8MuJhVz4R",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 262
+  },
+  {
+   "id": "cat-328f959a7e77",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91810",
+   "airtable_rec_id": "recAHpSuVVxyQix7b",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 263
+  },
+  {
+   "id": "cat-aa60f9ac950c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91811",
+   "airtable_rec_id": "recQFLSymWcYtd5gR",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 264
+  },
+  {
+   "id": "cat-9165253d3583",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-IMPR-91812",
+   "airtable_rec_id": "recZArY8FVaHcmcUA",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 265
+  },
+  {
+   "id": "cat-b404eae66225",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0011",
+   "airtable_rec_id": "recU2FrYgjl3oqMPI",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 266
+  },
+  {
+   "id": "cat-ce7386f93bbd",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0012",
+   "airtable_rec_id": "rec0IaVCTKkJBh4Wd",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 267
+  },
+  {
+   "id": "cat-0a14fec4f5bb",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0013",
+   "airtable_rec_id": "recx93mnbVfUVkIbZ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 268
+  },
+  {
+   "id": "cat-009f23c92169",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0014",
+   "airtable_rec_id": "recK32IXOnxIWFUiq",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 269
+  },
+  {
+   "id": "cat-325d0c4d3c9c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0015",
+   "airtable_rec_id": "recN1qx2Hnb5VuloS",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 270
+  },
+  {
+   "id": "cat-768baeec6b5b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0016",
+   "airtable_rec_id": "recDWUveuaGk4sLtN",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 271
+  },
+  {
+   "id": "cat-4681922f2e74",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0017",
+   "airtable_rec_id": "recLb3E7mGPoEZ7yu",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 272
+  },
+  {
+   "id": "cat-4cd9828517f5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0018",
+   "airtable_rec_id": "recA5UcI5WW5iz1yB",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 273
+  },
+  {
+   "id": "cat-43825a73f9f6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0019",
+   "airtable_rec_id": "recm4exrmEvBL68Bl",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 274
+  },
+  {
+   "id": "cat-2feebdb5dd9e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0020",
+   "airtable_rec_id": "recUOyhdGM40jkJZ6",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 275
+  },
+  {
+   "id": "cat-ce9c8d3254fa",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0021",
+   "airtable_rec_id": "receyhCs5OOkMlzBs",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 276
+  },
+  {
+   "id": "cat-50aaaacbc021",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0022",
+   "airtable_rec_id": "recrv4LSgpyxFLPlw",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 277
+  },
+  {
+   "id": "cat-0e08955b4505",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0023",
+   "airtable_rec_id": "recdbiAqI3JBE3eIZ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 278
+  },
+  {
+   "id": "cat-b900e0f23a8e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0024",
+   "airtable_rec_id": "recSduMQTc0KSig97",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 279
+  },
+  {
+   "id": "cat-97bee96c9c68",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-WEIS-0025",
+   "airtable_rec_id": "recBokxjmhQe6MIFt",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 280
+  },
+  {
+   "id": "cat-a4280149d715",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HD-001",
+   "airtable_rec_id": "rec9fLXFsZI9tZInu",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 281
+  },
+  {
+   "id": "cat-7e2dc027b065",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HD-002",
+   "airtable_rec_id": "recRI1PAjITA67MGS",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 282
+  },
+  {
+   "id": "cat-4e6bbc263d74",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HD-003",
+   "airtable_rec_id": "recs917hSGREqqz8g",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 283
+  },
+  {
+   "id": "cat-6c1d1c851cf5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HD-004",
+   "airtable_rec_id": "recbyWVXcUkh57zI7",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 284
+  },
+  {
+   "id": "cat-409e6a7fc619",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HD-005",
+   "airtable_rec_id": "recoUEs3KuFJD2oWy",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 285
+  },
+  {
+   "id": "cat-3abef4f32418",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HD-006",
+   "airtable_rec_id": "recODPKjJQznPke5K",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 286
+  },
+  {
+   "id": "cat-a2341d37cde8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HD-007",
+   "airtable_rec_id": "rec0A29apm7eRziG7",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 287
+  },
+  {
+   "id": "cat-7a5e51627fbf",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HD-008",
+   "airtable_rec_id": "recLQLkyee1AWVozZ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 288
+  },
+  {
+   "id": "cat-3d461146ca6f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "IMP.LM.NS",
+   "airtable_rec_id": "recvIpXTeUoMSLwYX",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 289
+  },
+  {
+   "id": "cat-76a036f3ea39",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "IMP.LM.RED",
+   "airtable_rec_id": "rec12dGJ6WZlVtayk",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 290
+  },
+  {
+   "id": "cat-d7265631dd69",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "IMP.LM.TM",
+   "airtable_rec_id": "rece8EzlANbfcD5BW",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 291
+  },
+  {
+   "id": "cat-62d924c9b744",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0002",
+   "airtable_rec_id": "recizH4bMdKc5eXaQ",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "FAW PL-377",
+   "seq": 292
+  },
+  {
+   "id": "cat-d4fecb1d1d9f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0003",
+   "airtable_rec_id": "recXJ3QicVh5LXKvt",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "FAW PL-377",
+   "seq": 293
+  },
+  {
+   "id": "cat-66c56e5b4b71",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0004",
+   "airtable_rec_id": "recqyWZjYW78GDJUo",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "FAW PL-377",
+   "seq": 294
+  },
+  {
+   "id": "cat-aef3dde0811e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0005",
+   "airtable_rec_id": "recdoaQEcy3OzmdFv",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "FAW PL-377",
+   "seq": 295
+  },
+  {
+   "id": "cat-76777c774802",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0006",
+   "airtable_rec_id": "recdqlFgakMIQ55Wr",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "FAW PL-377",
+   "seq": 296
+  },
+  {
+   "id": "cat-099e8b85ccd8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0007",
+   "airtable_rec_id": "recuZ6OofVooraky2",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "FAW PL-377",
+   "seq": 297
+  },
+  {
+   "id": "cat-eb91ddf025d4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-FAWK-0008",
+   "airtable_rec_id": "recPVqfcVAebsn6gk",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "FAW PL-377",
+   "seq": 298
+  },
+  {
+   "id": "cat-3a0b5af927bf",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-HMPR-0001",
+   "airtable_rec_id": "reckz1nX1PivHSpCs",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-03-02"
+   },
+   "before": {
+    "Last price update": "2026-09-13"
+   },
+   "reason": "processing_date_corrected",
+   "list": "HOMESPRO PL-242",
+   "seq": 299
+  },
+  {
+   "id": "cat-eeb6dafac5ed",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-IMPR-4600",
+   "airtable_rec_id": "reca9KYAbK1pbNdLI",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 300
+  },
+  {
+   "id": "cat-35566af017f3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-IMPR-4601",
+   "airtable_rec_id": "recuwexwJRqy0KKPd",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 301
+  },
+  {
+   "id": "cat-e0edf7d1c9e0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-IMPR-4602",
+   "airtable_rec_id": "recthccfvg9r7cQ6g",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 302
+  },
+  {
+   "id": "cat-8fecc5901d0a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-IMPR-4603",
+   "airtable_rec_id": "recwISwNWwGka7F5R",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 303
+  },
+  {
+   "id": "cat-42eb3cbdab8c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-IMPR-4604",
+   "airtable_rec_id": "recIZ8OFuxkMK7dSx",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 304
+  },
+  {
+   "id": "cat-d0971570c331",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-IMPR-4605",
+   "airtable_rec_id": "rec4uW2eMdICtIvlh",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 305
+  },
+  {
+   "id": "cat-e64a0843e5bf",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-IMPR-4606",
+   "airtable_rec_id": "recFVNwxDrRq6lgWz",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 306
+  },
+  {
+   "id": "cat-98ec493fd78f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-IMPR-4607",
+   "airtable_rec_id": "recSKb1B82vsTC2TD",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 307
+  },
+  {
+   "id": "cat-581ab47a6e87",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-IMPR-4608",
+   "airtable_rec_id": "recKzJE0GfTALBxGN",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 308
+  },
+  {
+   "id": "cat-06427a6547d8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-IMPR-4609",
+   "airtable_rec_id": "recj0WTAol3W83Zcf",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 309
+  },
+  {
+   "id": "cat-754d395d66f5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-IMPR-4610",
+   "airtable_rec_id": "recZgbLTjsrPPbZoX",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 310
+  },
+  {
+   "id": "cat-8be1852c1701",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-IMPR-4611",
+   "airtable_rec_id": "rec3BuWSVTaxv7pR9",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 311
+  },
+  {
+   "id": "cat-8cb9650ed85b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-IMPR-4612",
+   "airtable_rec_id": "recxrME1ZVEBS3adf",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 312
+  },
+  {
+   "id": "cat-fe658f5394e8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-IMPR-4613",
+   "airtable_rec_id": "recY3zNLqpe0RPDvN",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 313
+  },
+  {
+   "id": "cat-3f8f08c40dac",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-IMPR-4614",
+   "airtable_rec_id": "receIElsUDK7ePRYa",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 314
+  },
+  {
+   "id": "cat-a7fc4f422404",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-IMPR-4615",
+   "airtable_rec_id": "recL4GoBae5flfbRG",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 315
+  },
+  {
+   "id": "cat-d436f9219080",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-VIZN-LV221",
+   "airtable_rec_id": "recW5iw7TXcRanTXA",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 316
+  },
+  {
+   "id": "cat-41ba1ecac4f2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-VIZN-LV222",
+   "airtable_rec_id": "recbwjdIoCp9wmtJs",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 317
+  },
+  {
+   "id": "cat-c60faf1e5c31",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-VIZN-LV223",
+   "airtable_rec_id": "recD86YBaKBIsMyin",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 318
+  },
+  {
+   "id": "cat-aae57d0ee96b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-VIZN-LV224",
+   "airtable_rec_id": "recssGC4GgmZVqD4O",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 319
+  },
+  {
+   "id": "cat-a1676fca1278",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-VIZN-LV225",
+   "airtable_rec_id": "rec3BRa7Lj4czETWA",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 320
+  },
+  {
+   "id": "cat-0e5c4c9d0cb6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-VIZN-LV226",
+   "airtable_rec_id": "recaiV9HxKl45I2S7",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 321
+  },
+  {
+   "id": "cat-5848058968fb",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-VIZN-LV227",
+   "airtable_rec_id": "recH3Hq7nxZeF9WHr",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 322
+  },
+  {
+   "id": "cat-931d24cfe256",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-VIZN-LV228",
+   "airtable_rec_id": "recBDF92yAzEn6kCc",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 323
+  },
+  {
+   "id": "cat-2e7c9dd526e4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-VIZN-LV229",
+   "airtable_rec_id": "recXDpVeXVMTpHTEI",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 324
+  },
+  {
+   "id": "cat-b517b29c2f0f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-VIZN-LV230",
+   "airtable_rec_id": "recBsAMBiLeWNxEvE",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 325
+  },
+  {
+   "id": "cat-143999ace7e1",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-VIZN-LV321",
+   "airtable_rec_id": "recaRuEpy89Ckn2tx",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 326
+  },
+  {
+   "id": "cat-d331c1bb0017",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-VIZN-LV322",
+   "airtable_rec_id": "recAx9rnPhlyTP3UX",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 327
+  },
+  {
+   "id": "cat-d2c4e8fa0fe3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-VIZN-LV323",
+   "airtable_rec_id": "recrOGVH0MxTqYuFw",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 328
+  },
+  {
+   "id": "cat-6f045c0d85c5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-VIZN-LV324",
+   "airtable_rec_id": "recooj4qUlLCip5Rw",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 329
+  },
+  {
+   "id": "cat-f0a4fb344c05",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-VIZN-LV325",
+   "airtable_rec_id": "recSfVuwRcUF3V5q4",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 330
+  },
+  {
+   "id": "cat-988586cab9a8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-VIZN-LV326",
+   "airtable_rec_id": "reccIDD9K1iAsxm3B",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 331
+  },
+  {
+   "id": "cat-0a15030f86cd",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-VIZN-LV327",
+   "airtable_rec_id": "recPit0XPkwlpaUGx",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 332
+  },
+  {
+   "id": "cat-5ec7c3e0b59d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-VIZN-LV328",
+   "airtable_rec_id": "rech9i96pGPYfe8Ui",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 333
+  },
+  {
+   "id": "cat-3bef595d4bbc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-VIZN-LV329",
+   "airtable_rec_id": "recveVXbMuLpvWEdS",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 334
+  },
+  {
+   "id": "cat-e9d17860df64",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LAM-VIZN-LV330",
+   "airtable_rec_id": "recUfPtmbXzJzKcsj",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 335
+  },
+  {
+   "id": "cat-c8ad177556cd",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0063",
+   "airtable_rec_id": "recdyM5MbUfgjmJ62",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 336
+  },
+  {
+   "id": "cat-5df9e7d2d540",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0069",
+   "airtable_rec_id": "recLmblYtKRHCI8Ks",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 337
+  },
+  {
+   "id": "cat-9c92841637a2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FAWK-0070",
+   "airtable_rec_id": "rec87ACbpUHoaqs5t",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-19"
+   },
+   "before": {
+    "Last price update": null
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "FAW PL-377",
+   "seq": 338
+  },
+  {
+   "id": "cat-a0d5980e65e0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-HMPR-0001",
+   "airtable_rec_id": "recBoxwaR2hKom0Zt",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-03-02"
+   },
+   "before": {
+    "Last price update": "2026-09-13"
+   },
+   "reason": "processing_date_corrected",
+   "list": "HOMESPRO PL-242",
+   "seq": 339
+  },
+  {
+   "id": "cat-447c87503da2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-HMPR-0004",
+   "airtable_rec_id": "rec68HbbUcx4wLOBB",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-03-02"
+   },
+   "before": {
+    "Last price update": "2026-09-13"
+   },
+   "reason": "processing_date_corrected",
+   "list": "HOMESPRO PL-242",
+   "seq": 340
+  },
+  {
+   "id": "cat-0a158a5c4c22",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-37050",
+   "airtable_rec_id": "recxqaVzrKAOr2IcR",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 341
+  },
+  {
+   "id": "cat-0632e0cdeabf",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-37051",
+   "airtable_rec_id": "rectkK6rZI8p6Vzh6",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 342
+  },
+  {
+   "id": "cat-4e5fcb808e70",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-37052",
+   "airtable_rec_id": "recp3kNX4geYSMhPo",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 343
+  },
+  {
+   "id": "cat-ad806cb36d43",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-37053",
+   "airtable_rec_id": "rec8RkMfmzod4vm0e",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 344
+  },
+  {
+   "id": "cat-9338fb8438bc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-37054",
+   "airtable_rec_id": "recVgp6ZCn9NOmo3m",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 345
+  },
+  {
+   "id": "cat-711dc09e6e5f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-37055",
+   "airtable_rec_id": "recHVWmDLYpheCxDE",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 346
+  },
+  {
+   "id": "cat-3e4fc24f5d1b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-37056",
+   "airtable_rec_id": "recoWta3BL2AI50t9",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 347
+  },
+  {
+   "id": "cat-457da1d8fc92",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-37057",
+   "airtable_rec_id": "rec3oo7PG0tphr6Dp",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 348
+  },
+  {
+   "id": "cat-110a93cb1eb3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-37070",
+   "airtable_rec_id": "recHv5hQ1WvnoZOns",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 349
+  },
+  {
+   "id": "cat-2557330f2fb3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-37071",
+   "airtable_rec_id": "recQadXejRq0W0RDC",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 350
+  },
+  {
+   "id": "cat-4bf89bf1b2dd",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-37072",
+   "airtable_rec_id": "recAkFK2itiXS0HkV",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 351
+  },
+  {
+   "id": "cat-71927f7ab044",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-37073",
+   "airtable_rec_id": "rec4XnBLBAtAU6h9h",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 352
+  },
+  {
+   "id": "cat-bf5b848b8566",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-37074",
+   "airtable_rec_id": "recibnbQhc4MI8ZHU",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 353
+  },
+  {
+   "id": "cat-6ae95d32fdd0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-37075",
+   "airtable_rec_id": "recARwvDLxGFSeoXd",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 354
+  },
+  {
+   "id": "cat-ef45120e5013",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-37076",
+   "airtable_rec_id": "rec5TJhuiys7wskcF",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 355
+  },
+  {
+   "id": "cat-c9d2bec26338",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-37077",
+   "airtable_rec_id": "recWoolrRLmnmQjxT",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 356
+  },
+  {
+   "id": "cat-4b0f00f1c781",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-38000",
+   "airtable_rec_id": "recPax2vB28XDAB5C",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 357
+  },
+  {
+   "id": "cat-cf3c0f2d1087",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-38001",
+   "airtable_rec_id": "rec7xdU0IPjUSbxfU",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 358
+  },
+  {
+   "id": "cat-589c269be312",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-38002",
+   "airtable_rec_id": "recQuRdHL2RIThpo9",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 359
+  },
+  {
+   "id": "cat-b465336a7492",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-38003",
+   "airtable_rec_id": "recUBhcfHiHndH4nB",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 360
+  },
+  {
+   "id": "cat-9054bc576300",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-38004",
+   "airtable_rec_id": "recZ98sH8lcSIk5FD",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 361
+  },
+  {
+   "id": "cat-bd82f83a9279",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-38005",
+   "airtable_rec_id": "recZVteO2xPywAmS6",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 362
+  },
+  {
+   "id": "cat-507f02f51602",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-38006",
+   "airtable_rec_id": "recf3zWq0umwBazP2",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 363
+  },
+  {
+   "id": "cat-20fa6488cdb7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-IMPR-38007",
+   "airtable_rec_id": "recR630N42sWnbunB",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-01"
+   },
+   "before": {
+    "Last price update": "2026-09-22"
+   },
+   "reason": "processing_date_corrected",
+   "list": "IMPRESSIVE PL-381",
+   "seq": 364
+  },
+  {
+   "id": "cat-2f59ba03969e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V7001",
+   "airtable_rec_id": "recRhuC0dHOndvGxd",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 365
+  },
+  {
+   "id": "cat-a87cb7c5b371",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V7002",
+   "airtable_rec_id": "recSMR62eLoSmzd3e",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 366
+  },
+  {
+   "id": "cat-843aef58b850",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V7003",
+   "airtable_rec_id": "reccUuZVidt1eYwaA",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 367
+  },
+  {
+   "id": "cat-12d348452568",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V7004",
+   "airtable_rec_id": "recAboAlgiA6K0v93",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 368
+  },
+  {
+   "id": "cat-09aad5ac3e2c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V7005",
+   "airtable_rec_id": "recJAl8UhijxcEOil",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 369
+  },
+  {
+   "id": "cat-eb83860d5cfd",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V7006",
+   "airtable_rec_id": "reclltEoNHvtKduE8",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 370
+  },
+  {
+   "id": "cat-1825a6f648df",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V7007",
+   "airtable_rec_id": "recOJJKu6q25wfQ7j",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 371
+  },
+  {
+   "id": "cat-aec0c2990246",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V7008",
+   "airtable_rec_id": "receaUPPtwIQYC6ZM",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 372
+  },
+  {
+   "id": "cat-000489681179",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V7009",
+   "airtable_rec_id": "recXi3ttmBh0cpNvS",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 373
+  },
+  {
+   "id": "cat-f9e5407f213f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V8001",
+   "airtable_rec_id": "recMQWGLoV7g46fHx",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 374
+  },
+  {
+   "id": "cat-4aa136aa9e40",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V8002",
+   "airtable_rec_id": "recrtEWmNU92r4XDz",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 375
+  },
+  {
+   "id": "cat-2f2b78089a97",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V8003",
+   "airtable_rec_id": "recAVZYPmZ0Naj2m0",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 376
+  },
+  {
+   "id": "cat-007554f6fefd",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V8004",
+   "airtable_rec_id": "rec4Rqytx4c9vZAoN",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 377
+  },
+  {
+   "id": "cat-520a5e5d94fc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V8005",
+   "airtable_rec_id": "recCxUYCT3zQKaV1V",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 378
+  },
+  {
+   "id": "cat-141acade4fd0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V8006",
+   "airtable_rec_id": "rec2wIjZFyfAlFH2R",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 379
+  },
+  {
+   "id": "cat-61b2922fca43",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V8007",
+   "airtable_rec_id": "reclSNVOpz3RKY1ND",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 380
+  },
+  {
+   "id": "cat-a39a5aed31d5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-V8008",
+   "airtable_rec_id": "reczDqUJT78E1ZKIg",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 381
+  },
+  {
+   "id": "cat-69d99238e5f3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-VL501",
+   "airtable_rec_id": "rec0WnmprFNgUmVTI",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 382
+  },
+  {
+   "id": "cat-10b202881e04",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-VL502",
+   "airtable_rec_id": "recp4SSYnRfodDeWx",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 383
+  },
+  {
+   "id": "cat-25cfb7c854ae",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-VL503",
+   "airtable_rec_id": "recLp0yVRYve9kLu5",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 384
+  },
+  {
+   "id": "cat-ddc780b1ecd0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-VIZN-VL504",
+   "airtable_rec_id": "recT2bfEQ33GPxcQI",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-08-01"
+   },
+   "before": {
+    "Last price update": "2026-07-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "VIZION PL-373",
+   "seq": 385
+  },
+  {
+   "id": "cat-64dd126af09a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0013",
+   "airtable_rec_id": "recVRRmNPQTIdr6JN",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 386
+  },
+  {
+   "id": "cat-5871af014ca0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0014",
+   "airtable_rec_id": "recb7tvmFbX9bpLez",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 387
+  },
+  {
+   "id": "cat-a684018b5b6e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0015",
+   "airtable_rec_id": "recNR0FFmVFp17UXA",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 388
+  },
+  {
+   "id": "cat-c92cc1543ccc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0016",
+   "airtable_rec_id": "recmbD26AHoX75XTM",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 389
+  },
+  {
+   "id": "cat-f3c191a064ca",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0017",
+   "airtable_rec_id": "recQFDdr2FwBXWrIc",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 390
+  },
+  {
+   "id": "cat-9cf791f90f6a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0018",
+   "airtable_rec_id": "recAa6zMzDYTSTVir",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 391
+  },
+  {
+   "id": "cat-174ad0f7f019",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-WEIS-0019",
+   "airtable_rec_id": "recr04xjxgQUJ2GER",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-09-21"
+   },
+   "before": {
+    "Last price update": "2026-08-01"
+   },
+   "reason": "newer_list_confirms_price",
+   "list": "WEISS PL-376",
+   "seq": 392
+  },
+  {
+   "id": "cat-c6a04322718e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVT-HMPR-0001",
+   "airtable_rec_id": "recfcTjBcSHNLkN5k",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2026-03-02"
+   },
+   "before": {
+    "Last price update": "2026-09-13"
+   },
+   "reason": "processing_date_corrected",
+   "list": "HOMESPRO PL-242",
+   "seq": 393
+  },
+  {
+   "id": "cat-be35b638b50a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-002",
+   "airtable_rec_id": "recM3rlwMbZCfIEq6",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 394
+  },
+  {
+   "id": "cat-a7b7b39c9e7c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-005",
+   "airtable_rec_id": "recMorORPuoh1Tu6H",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 395
+  },
+  {
+   "id": "cat-174cb4d0bd1d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-011",
+   "airtable_rec_id": "rec2W0BktXCUg13Lt",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 396
+  },
+  {
+   "id": "cat-bfc659f0e45d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-4210",
+   "airtable_rec_id": "recx1V65OmxHF6CHB",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 397
+  },
+  {
+   "id": "cat-48391e16739f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-A16215",
+   "airtable_rec_id": "recrRc7GV83FEdFzy",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 398
+  },
+  {
+   "id": "cat-9ea76800aadf",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-NGW1017-6",
+   "airtable_rec_id": "recrSaGQBWoGhlm2i",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 399
+  },
+  {
+   "id": "cat-bb68cf89b241",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-NGW61140-19",
+   "airtable_rec_id": "recTbt0kcMee8Ujdp",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 400
+  },
+  {
+   "id": "cat-0603ca62f1f8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-NGW61140-38",
+   "airtable_rec_id": "rech0MN6j5V7zYbqc",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 401
+  },
+  {
+   "id": "cat-922d31f050a7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "SPC-VN706",
+   "airtable_rec_id": "rece4H8eIiY900CGq",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 402
+  },
+  {
+   "id": "cat-828f35b5e7cc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "VL88035L-001",
+   "airtable_rec_id": "recb3yQq8vLHNQpBI",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 403
+  },
+  {
+   "id": "cat-7539d1a16a96",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "VL88171L-001",
+   "airtable_rec_id": "recsnchWHVkuGpNAI",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 404
+  },
+  {
+   "id": "cat-cdc75a293678",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "VL88174L-001",
+   "airtable_rec_id": "rec3DW6AiM4jaCGir",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 405
+  },
+  {
+   "id": "cat-1c68436ddfda",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "VL88174L-003",
+   "airtable_rec_id": "recilcCiWmfjOTU2Y",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 406
+  },
+  {
+   "id": "cat-43ad5600423c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "VL88174L-005",
+   "airtable_rec_id": "recvlVF4VxiDO0a0B",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 407
+  },
+  {
+   "id": "cat-efbc80a2df40",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "VL88174L-006",
+   "airtable_rec_id": "reca44dPaEsQE68i3",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 408
+  },
+  {
+   "id": "cat-20fa11e9a343",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "VL88174L-007",
+   "airtable_rec_id": "recBA1UYJeL3cjIO4",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 409
+  },
+  {
+   "id": "cat-3af6864797dc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "VL88204L-001",
+   "airtable_rec_id": "rec1TtqvNLzrql8Gg",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 410
+  },
+  {
+   "id": "cat-735a5f55ca7c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "VL88259L-001",
+   "airtable_rec_id": "recx988jtWsnmvD42",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 411
+  },
+  {
+   "id": "cat-06cf3a500e66",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "VL89724-002",
+   "airtable_rec_id": "recIXIxAQVtlKagFs",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 412
+  },
+  {
+   "id": "cat-60a1ab3acf5b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "VL89730-001",
+   "airtable_rec_id": "rectx0hU8mIqQay8T",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 413
+  },
+  {
+   "id": "cat-61e8e6ea79f7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "VL89745-006",
+   "airtable_rec_id": "recXbKotNVTIocqct",
+   "ls_id": null,
+   "handle": null,
+   "fields": {
+    "Last price update": "2025-10-09"
+   },
+   "before": {
+    "Last price update": "2026-09-24"
+   },
+   "reason": "processing_date_corrected",
+   "list": "BALTIC PL-170",
+   "seq": 414
+  }
+ ]
+}
