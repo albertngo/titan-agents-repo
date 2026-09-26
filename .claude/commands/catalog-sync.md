@@ -51,6 +51,32 @@ Ids, field names and option strings are never in this file. They live in
 
 ---
 
+## 0a. The effective-date gate — before anything else (Albert, 2026-09-25)
+
+*"Should we stage the list when it's in the future, so that it updates only when the
+month hits? … run it only then for LS and Airtable full update."*
+
+Read the row's `Effective Date` (`write_properties.effective_date` *(registry)*); if
+it is blank, take the `Effective Date` column of the committed upload CSV (every row
+carries the same date) and write it to the row. Compare it with today in Toronto
+(`TZ=America/Toronto date +%F`):
+
+- **After today → the list is STAGED. Stop here.** Pull nothing, plan nothing, write
+  nothing to Lightspeed or Airtable. Leave `Airtable Sync` at `Pending` and
+  `Extraction Status` where extraction left it; put `STAGED until <date>` at the front
+  of `Notes`, stamp `Last Agent Activity Date`, and report the date. No push: nothing
+  is wrong. `/price-list-sweep` runs this command again on the day.
+- **Today or earlier → carry on** with step 0.
+
+Planning now and executing later is deliberately not an option: prices, UUIDs and
+the catalogue can all move in between, so a plan is only good against the systems as
+they stand when it runs. The sweep re-pulls and re-plans on the day.
+
+`catalog_reconcile.py` enforces the same rule on its own (`--as-of`, default today):
+a row whose date is in the future is blocked `not_yet_effective`, so running the
+command early by hand writes nothing either. Only a person passes a later `--as-of`,
+deliberately, to apply a list ahead of its date.
+
 ## 0. Read back the reviewer's answers — read only
 
 Fetch the Notion row and read the **troubled table in the page body**, if one is

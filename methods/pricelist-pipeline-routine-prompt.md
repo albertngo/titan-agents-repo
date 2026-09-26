@@ -9,7 +9,8 @@ its own approval gate instead of waiting for Albert to review it.
 | Payload | Runs |
 |---|---|
 | `{"notionID": "<page id>"}` | `/process-price-list <notionID>`, then immediately `/catalog-sync <notionID>` — same session |
-| `{}` / no `notionID` | Nothing wired up yet — see "Backstop sweep, not wired up" below |
+| `{"sweep": true}` | `/price-list-sweep` — applies every staged list whose `Effective Date` has arrived (2026-09-25). Not yet scheduled |
+| `{}` / no `notionID` | Nothing — see "Backstop sweep" below |
 
 Both stages still point at their command files, not a copy of their procedures —
 same pointer rationale as always (2026-09-03: a routine that carries a copy of a
@@ -200,6 +201,14 @@ Six deliberate inclusions:
    Reason, the new-supplier check, the blocked-host message, the auto-approval
    rubric. Every one of those lives only in `/process-price-list`, `/catalog-sync`,
    or `catalog-plan-schema.md`, and this file points at them instead of quoting them.
+
+## Staged lists and the sweep (2026-09-25, Albert)
+
+A list whose `Effective Date` is after today is extracted on the fire as usual, then
+`/catalog-sync` step 0a stops before any write and leaves the row staged (`Effective
+Date` in the future, `Airtable Sync: Pending`, `Notes` starting `STAGED until`).
+`/price-list-sweep` applies it on the day. A daily trigger carrying `{"sweep": true}`
+is the intended way to fire it; none exists yet, and creating one is Albert's call.
 
 ## Backstop sweep, not wired up
 

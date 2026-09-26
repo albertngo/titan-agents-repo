@@ -386,6 +386,31 @@ class TestPriceDateAndChangedBy(unittest.TestCase):
         self.assertEqual(up["fields"]["Effective Date"], "2026-09-01")
         self.assertNotIn("Last price update", up["fields"])
 
+    def test_a_list_not_yet_in_effect_writes_nothing_anywhere(self):
+        """Albert, 2026-09-25: a list received early is staged and applied on its
+        effective date, never before. Both systems, creates included."""
+        rows = [row(SKU="A-1", **{"Lightspeed ID": "u-1", "Cost/unit": "1.10",
+                                  "Effective Date": "2026-10-01"}),
+                row(SKU="NEW-1", MatchStatus="new", **{
+                    "LS Handle / Parent ID": "HNEW", "Effective Date": "2026-10-01"})]
+        ls = [product(id="u-1", sku="A-1", supply_price=1.0)]
+        actions, blocked, _ = cr.reconcile(rows, fake_ls(ls), self.EXISTING, "Test",
+                                           LEAVES, ls_upload_row(sku="NEW-1"),
+                                           as_of="2026-09-25")
+        self.assertEqual(actions, [])
+        self.assertEqual({b["reason"] for b in blocked}, {"not_yet_effective"})
+        self.assertEqual({b["sku"] for b in blocked}, {"A-1", "NEW-1"})
+
+    def test_the_list_applies_on_its_effective_date(self):
+        rows = [row(SKU="A-1", **{"Lightspeed ID": "u-1", "Cost/unit": "1.10",
+                                  "Effective Date": "2026-10-01"})]
+        ls = [product(id="u-1", sku="A-1", supply_price=1.0)]
+        actions, blocked, _ = cr.reconcile(rows, fake_ls(ls), self.EXISTING, "Test",
+                                           LEAVES, as_of="2026-10-01")
+        self.assertEqual(blocked, [])
+        self.assertTrue(any(a["target_system"] == "lightspeed" for a in actions))
+        self.assertTrue(any(a["target_system"] == "airtable" for a in actions))
+
     def test_a_non_iso_date_warns_and_is_not_written(self):
         up, warnings = self.upsert([row(SKU="A-1", **{
             "Lightspeed ID": "u-1", "Cost/unit": "1.10",

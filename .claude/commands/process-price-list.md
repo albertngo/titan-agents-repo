@@ -252,6 +252,12 @@ month. Write it as `YYYY-MM-DD` — the reconciler refuses any other form. Say i
 which of the three it came from when it was not (1). Never the day the run processed
 the list: Baltic PL-170 and IMPRESSIVE PL-381 were created that way.
 
+**Write the same date to the row's `Effective Date` property**
+(`write_properties.effective_date` *(registry)*, a Notion date) in step 6's state
+write. It is where a person sees when a list takes effect, and what
+`/price-list-sweep` reads: a date after today means the list is **staged** — extracted
+and attached now, written to Lightspeed and Airtable only on that day.
+
 **Put the list's link beside it, as a `Price List URL` column** after the helper
 columns (Albert, 2026-09-25: "each SKU has a verifiable company list to look at with
 a click of a button from Airtable"). The value is the SharePoint share link decoded

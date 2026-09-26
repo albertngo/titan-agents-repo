@@ -224,6 +224,13 @@ sync no longer waits on Albert manually promoting a row before it runs. The stat
 still exists for the manual CSV path (whoever runs a stage by hand still uses it),
 per "all three trackers are kept" below.
 
+**Lists received before they take effect are staged (2026-09-25, Albert).** The row's
+`Effective Date` (Notion) is the list's date; when it is after today, extraction runs
+but `/catalog-sync` writes nothing and `catalog_reconcile.py` blocks every row
+`not_yet_effective`. `/price-list-sweep` applies due lists on the day, against a fresh
+pull. Staged = `Effective Date` in the future with `Airtable Sync: Pending`. The sweep
+is not scheduled yet — that is Albert's call, like the routine itself.
+
 **A periodic no-`notionID` sweep can still exist as a backstop**, not the primary
 path: it would pick up any row where `Airtable Sync` is still `Pending`/`Partial`
 after its own fire should have cleared it (an interrupted run, a Lightspeed outage

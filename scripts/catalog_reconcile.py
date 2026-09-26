@@ -223,11 +223,16 @@ def live_value(record, field):
 
 
 def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
-              airtable_snapshot=True, select_options=None):
+              airtable_snapshot=True, select_options=None, as_of=None):
     """Every row -> an action or a block. Never both, never neither.
 
     Warnings are separate: things worth a reader's attention that are not a
     reason to withhold a write.
+
+    `as_of` (YYYY-MM-DD, default today in Toronto) is the effective-date gate
+    (Albert, 2026-09-25): a row whose list takes effect after it is blocked
+    `not_yet_effective` on both systems, so a list received early is staged and
+    applied by /price-list-sweep on the day, never written ahead of it.
 
     `select_options` ({field: set of live option names}) is the pre-flight. A row
     whose Airtable write would name a select value Airtable does not have is
@@ -260,9 +265,18 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
     # appear. A row cannot answer this about itself.
     group_boxes = box_sizes_by_handle(upload_rows)
 
+    as_of = as_of or today()
+
     # Pass 2 — per row.
     for row in upload_rows:
         sku = clean(row.get(SKU))
+        effective = clean(row.get(PRICE_DATE)) or clean(row.get(LEGACY_PRICE_DATE))
+        if effective and ISO_DATE.match(effective) and effective > as_of:
+            block(sku, "not_yet_effective",
+                  f"the list takes effect {effective}; nothing is written to either "
+                  f"system before then (as of {as_of}). /price-list-sweep applies it "
+                  "on the day, against a fresh pull of both systems")
+            continue
         if not sku:
             name = clean(row.get("Product name")) or "<unnamed>"
             if clean(row.get(MATCH_STATUS)) == "new":
@@ -938,6 +952,9 @@ def main():
     ap.add_argument("--out", type=Path)
     ap.add_argument("--cost-basis", help="e.g. 'dealer'. Recorded, never inferred.")
     ap.add_argument("--confirmed-by", help="Who confirmed the cost basis, and when")
+    ap.add_argument("--as-of", help="YYYY-MM-DD for the effective-date gate. Default: "
+                    "today in Toronto. A row whose list takes effect later is blocked "
+                    "not_yet_effective; only a person passes a later date on purpose.")
     args = ap.parse_args()
 
     ls_path = args.lightspeed or (REPO_ROOT / "ingest" / today() / "lightspeed-products.json")
@@ -978,7 +995,8 @@ def main():
     select_options = load_select_options(args.airtable_options)
     actions, blocked, warnings = reconcile(rows, ls, existing, supplier, categories,
                                           ls_upload, airtable_snapshot=have_snapshot,
-                                          select_options=select_options)
+                                          select_options=select_options,
+                                          as_of=args.as_of)
     if have_snapshot and select_options is None:
         warnings.insert(0, {
             "sku": None,
@@ -1020,6 +1038,10 @@ def main():
              if args.ls_upload else []),
         "cost_basis": ({"value": args.cost_basis, "confirmed_by": args.confirmed_by}
                        if args.cost_basis else None),
+        "as_of": args.as_of or today(),
+        "effective_dates": sorted({d for r in rows
+                                   for d in [clean(r.get(PRICE_DATE))
+                                             or clean(r.get(LEGACY_PRICE_DATE))] if d}),
         "summary": {**dict(sorted(kinds.items())),
                     "actions_total": len(actions),
                     "uuid_recovered_by_sku": recovered,
