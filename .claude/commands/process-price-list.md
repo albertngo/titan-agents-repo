@@ -266,6 +266,12 @@ download used, so it opens for anyone at Titan. Same value on every row. Airtabl
 `Price List URL` field is a URL type, and the reconciler writes it together with the
 date, so a record always points at the list its `Effective Date` names.
 
+**A promo sheet is the exception** (Tags `Promo`, 2026-09-26, PL-383): it sets only
+`Promo cost` and `Promo end date` and confirms nothing about the regular price, so its
+rows carry each record's **live** `Effective Date` and `Price List URL`, unchanged.
+The row's own `Effective Date` property still gets the promo's start date (it is what
+decides whether the promo is in effect yet), and `Promo end date` gets the printed end.
+
 `catalog_reconcile.py` does the rest: a price change writes this date and
 `Price last changed by = Agent`; a confirmation moves the date forward only, never
 backward, and leaves the author alone.
