@@ -4,6 +4,12 @@
 > Albert asked for ("Plan first, don't implement until approved"). On approval it
 > becomes the method doc the command points to; until then it changes nothing that
 > runs. Decisions the plan needs are marked **D1–D6**; blockers **B1–B3**.
+>
+> **Amended 2026-09-26, same day (Albert):** `Images` is now **`Swatch images`** (same
+> id), and **`Room scene images`** and **`Detail images`** exist beside it, each with a
+> description telling staff what belongs in it. §4 carries his brief line verbatim and
+> every `Images` reference below was updated to match. Image kind is now a fact from
+> the source field, not something the model guesses.
 
 AI-suggested style tags for the Master Flooring Catalogue: fill the blank style
 fields on a record from its specs and its product images, mark the record
@@ -31,7 +37,7 @@ only an id that appears `approved` in an approval file.
 Edits: `.claude/agents/airtable-actions-agent.md` (one new action type),
 `contracts/actions-log-schema.md` (type vocabulary), `platform-settings/departments.json`
 (Catalogue `owns.commands` + route keywords), `platform-settings/airtable-master-catalogue-fields.json`
-(refresh — see Side findings), `CLAUDE.md` (a paragraph under the catalogue pipeline),
+(the `Effective Date` rename — see Side findings), `CLAUDE.md` (a paragraph under the catalogue pipeline),
 `.gitignore` (`ingest/*/style-images/`). No new agent. No Airtable schema change — the
 fields already exist (§2). No Notion database. No routine.
 
@@ -55,17 +61,18 @@ fields already exist (§2). No Notion database. No routine.
 
 **Blockers found while planning:**
 
-- **B1 — No record has an image yet.** `Images` is empty on all 8,253 records (checked
-  live 2026-09-26, two filters). v1 as built today is spec-only: Texture and Busyness
-  write; Undertone, Tone depth and Style hold. The image path is built and tested against
-  fixtures, and starts working the day images land.
+- **B1 — No record has an image yet.** `Swatch images` (the renamed `Images`, same id) is
+  empty on all 8,253 records (checked live 2026-09-26, two filters), and `Room scene
+  images` and `Detail images` were created empty the same day. v1 as built today is
+  spec-only: Texture and Busyness write; Undertone, Tone depth and Style hold. The image
+  path is built and tested against fixtures, and starts working the day swatches land.
 - **B2 — The cloud environment cannot reach Airtable's attachment host.** `CONNECT
   v5.airtableusercontent.com:443` returns 403 from the session proxy (so do
   `dl.airtable.com` and `api.airtable.com`; `api.notion.com` is allowed). Image
   originals cannot be downloaded from a cloud session until the environment's Network
   access allows that host, or the run happens on Albert's Mac. The pull step must fail
   soft on this — colour tags hold as `image_host_blocked`, spec tags still proceed.
-- **B3 — HEIC.** `Images` accepts HEIC; vendored Pillow 12.2 cannot decode it and the
+- **B3 — HEIC.** All three image fields accept HEIC; vendored Pillow 12.2 cannot decode it and the
   session's image reader will not either. Vendor `pillow-heif` (one-time pypi
   allowlist, per `vendor/wheels/README.md`) or hold HEIC-only records as
   `image_format_unsupported`. Recommend the hold for v1, the wheel when it bites.
@@ -79,7 +86,8 @@ Read-only checks through the Airtable MCP, all against `tblfLXD3zkSdNQGbS`.
 | Fact | Value |
 |---|---|
 | Records | 8,253 (7,852 `Active`) |
-| Records with anything in `Images` | **0** |
+| Records with anything in `Swatch images` (checked as `Images`, same id, before the rename) | **0** |
+| `Room scene images` / `Detail images` | created 2026-09-26, empty |
 | Records with `Style tags status` set | 0 (no `AI suggested`, no `Staff confirmed`) |
 | Records with any style field set | 0 |
 | Active flooring (non-tile) | 3,304 |
@@ -96,20 +104,22 @@ reason to defer: the spec half is the half with deterministic, testable rules, a
 reviewer loop is the same either way.
 
 **v1 eligibility (D2):** `Active` ✓, `Category` in the flooring set, `Style tags status`
-≠ `Staff confirmed`, at least one of the seven style fields blank, and (Images non-empty
-OR any of `Finish type` / `Grade` / `Species` / `Colour / tone` set). Accessory, STONE and
+≠ `Staff confirmed`, at least one of the seven style fields blank, and (any of the three image fields
+non-empty OR any of `Finish type` / `Grade` / `Species` / `Colour / tone` set). Accessory, STONE and
 Carpet excluded. Tile / Stone excluded from v1 because its finishes (polished, honed,
 glazed, splitface) need their own texture mapping and its "busyness" is veining, not
 grain — a second rule table, added when asked for.
 
 ## 2. The fields — live, verified
 
-All seven exist in Airtable already, after `Images`, with descriptions that name
-`/style-tag`. Ids go in the registry, never in prose that runs.
+All seven exist in Airtable already, after the three image fields, with descriptions
+that name `/style-tag`. Ids go in the registry, never in prose that runs.
 
 | Field | Id | Type | Live options / config |
 |---|---|---|---|
-| `Images` | `fldbRlqkxa7hp7quH` | multipleAttachments | "Product photos only… Supplier swatches preferred. JPEG/PNG/HEIC, long edge ≥1600px. Synced to Supabase by titan-desk." |
+| `Swatch images` | `fldbRlqkxa7hp7quH` | multipleAttachments | Renamed from `Images` 2026-09-26, same id. "Clean product swatch/plank photos only — the hero image and the source for colour tags (undertone, tone depth). Supplier swatches preferred. Room photos go in Room scene images; close-ups in Detail images; spec sheets in Attachments. JPEG/PNG/HEIC, long edge ≥1600px. Synced to Supabase by titan-desk." |
+| `Room scene images` | `fldcB1MQVqcPf6lKY` | multipleAttachments | Added 2026-09-26. "Installed / lifestyle photos showing the floor in a room. Used for style tags and website galleries. Not used for colour tags (room lighting skews undertone)." |
+| `Detail images` | `fldRH7GrND9w10KWH` | multipleAttachments | Added 2026-09-26. "Close-ups: texture, edge/click profile, bevel, finish, cross-section, packaging. Used for texture tags and product detail pages." |
 | `Undertone` | `fldrOvSEzOoxyNSpC` | singleSelect | `Warm` · `Neutral` · `Cool` |
 | `Tone depth` | `fldjlGQSOwPGJfEcA` | **rating**, max 5 | integer 1–5 (1 very light, 5 very dark). A rating, not a number field — write an int |
 | `Texture` | `fldCH08dVkm48BoiD` | singleSelect | `Smooth` · `Brushed` · `Rustic` |
@@ -171,10 +181,11 @@ stops before planning and names it. Never add the option.
 **Step 2 — pull.** `style_tag_pull.py --snapshot … --options … [--download]` writes
 `ingest/<date>/style-candidates-<scope>.json`: one entry per eligible record with
 `record_id`, `sku`, the input specs flattened to option names, which target fields are
-blank, and an image manifest (`attachment_id`, `filename`, `type`, `size`, `width`,
-`height`, local path). With `--download` it fetches each original (`url`, never
-`thumbnails.*` — thumbnails are re-encoded and can shift colour) to
-`ingest/<date>/style-images/<sku>/<attachment_id>-<filename>` (gitignored) and writes
+blank, and an image manifest (`field` — `swatch` | `room` | `detail`, from the Airtable field the
+attachment sits in — `attachment_id`, `filename`, `type`, `size`, `width`, `height`,
+local path). With `--download` it fetches each original (`url`, never `thumbnails.*` —
+thumbnails are re-encoded and can shift colour) to
+`ingest/<date>/style-images/<sku>/<field>/<attachment_id>-<filename>` (gitignored) and writes
 a downscaled ≤1568px sibling for the model read. Attachment URLs expire within hours,
 so the download happens in the same step as the snapshot and the manifest stores ids
 and filenames, never URLs. A 403 from the proxy sets `images.status = host_blocked`
@@ -189,8 +200,8 @@ trail of what the model saw:
 {
   "sku": "ENG-FAWK-0060",
   "images": [
-    {"attachment_id": "att…", "kind": "swatch", "usable_for_colour": true,
-     "note": "flat supplier swatch, neutral white border"}
+    {"attachment_id": "att…", "field": "swatch", "looks_like": "swatch",
+     "usable_for_colour": true, "note": "flat supplier swatch, neutral white border"}
   ],
   "undertone":  {"value": "Warm",   "confidence": 0.82, "from": "att…",
                  "evidence": "golden-brown cast on the swatch, no grey"},
@@ -203,11 +214,15 @@ trail of what the model saw:
 }
 ```
 
-`kind` is one of `swatch | showroom | phone | spec_sheet | other`; only `swatch` and
-`showroom` may be `usable_for_colour`. `texture_seen` and `busyness_seen` are
-observations used **only for conflict detection** against the spec rules — the image
-never writes those two fields by itself (source rules, §4). No images → the image
-keys are absent and `style.confidence` is capped by `spec_only_style_cap` (D4).
+`field` is where the attachment sits in Airtable and is what decides what the image may
+inform (§4); `looks_like` is the model's sanity check on it — `swatch | room | detail |
+spec_sheet | other`. A `Swatch images` attachment that looks like a room scene or a
+phone photo of an installed floor is **not** `usable_for_colour`, and is reported as
+`image_misfiled` so staff can move it. `texture_seen` from a `Detail images` close-up is
+a secondary source for Texture; from any other field it, like `busyness_seen`, is an
+observation used **only for conflict detection** against the spec rules. No images →
+the image keys are absent and `style.confidence` is capped by `spec_only_style_cap`
+(D4).
 
 The precedent is `/process-price-list` 2.3: the model transcribes an image into
 structured JSON, a script checks it. Option (b) — `scripts/style_tag_judge.py`
@@ -240,24 +255,34 @@ because a run whose files sit on a session branch is invisible to the next run.
 
 ## 4. Source rules — what may decide each field
 
+Albert's brief line, 2026-09-26, verbatim — the rule the table below implements:
+
+> Colour tags (Undertone, Tone depth) come from Swatch images only; never from Room
+> scene images (room lighting skews colour). Style uses swatch + room scenes. Texture
+> uses specs + Detail images. No swatch → hold colour tags for review.
+
 | Field | Primary | Secondary | Never |
 |---|---|---|---|
-| `Texture` | spec: `Finish type` (rule table) | `Grade` (Distressed Grade → Rustic) | image alone |
+| `Texture` | spec: `Finish type` (rule table) | `Detail images` (`texture_seen` from a close-up; agreement → `both`); `Grade` (Distressed Grade → Rustic) | a swatch or room scene alone |
 | `Busyness` | spec: `Grade` (rule table) + finish modifiers | `Colour / tone = Multi` → +1 step | image alone |
-| `Undertone` | image: the best `usable_for_colour` image | supplier colour words in `Product name` / `Collection` (`golden`, `honey`, `ash`, `smoke`, `grey`…) | spec alone |
-| `Tone depth` | image | `Colour / tone` (Light/Medium/Dark → 1–2 / 3 / 4–5, conf 0.5); colour words (`white`, `natural`, `espresso`) | spec alone |
-| `Style` | both: model judgement over specs + images, thresholded | — | spec alone (D4: `spec_only_style_cap = 0.65`, below threshold) |
+| `Undertone` | **`Swatch images` only** | supplier colour words in `Product name` / `Collection` (`golden`, `honey`, `ash`, `smoke`, `grey`…) | `Room scene images` (lighting), `Detail images`, spec alone |
+| `Tone depth` | **`Swatch images` only** | `Colour / tone` (Light/Medium/Dark → 1–2 / 3 / 4–5, conf 0.5); colour words (`white`, `natural`, `espresso`) | `Room scene images`, `Detail images`, spec alone |
+| `Style` | both: model judgement over specs + `Swatch images` + `Room scene images`, thresholded | — | `Detail images`; spec alone (D4: `spec_only_style_cap = 0.65`, below threshold) |
+
+**No swatch → the colour tags hold** (`no_swatch`), whatever else the record carries.
 
 `source` on every tag is one of `spec | image | both | reviewer`. `both` means two
 independent sources agreed; agreement raises confidence by `agreement_bonus` (0.1,
 capped at 1.0); disagreement is a conflict, not an average (§5).
 
-**Image preference.** When a record has several usable images, the best one wins in
-this order: `swatch` > `showroom`; within a kind, the largest. Confidence from an
-image is capped by its kind — registry `image_kind_caps`: `swatch 1.0`, `showroom
-0.75`, `phone 0.6`, others `0`. A phone photo alone can therefore never clear the
-0.7 threshold: it always lands with the reviewer, which is the point ("lighting skews
-undertone").
+**Image kind is the source field, not a guess.** Which field an attachment sits in
+decides what it may inform — registry `image_sources`: `swatch_images` → colour and
+style; `room_scene_images` → style only; `detail_images` → texture only. There are no
+per-kind confidence caps: a room scene never reaches the colour tags at any
+confidence, which is the rule the earlier `showroom 0.75` cap was approximating. The
+model's `looks_like` is a sanity check only — it can *withhold* a misfiled image
+(`image_misfiled`), never promote one. Among several swatches the largest wins; the
+others are named in evidence.
 
 **Spec rule tables — initial proposal, Albert edits them.** Matching normalises the
 option string (lowercase, letters only) because the live `Finish type` list carries a
@@ -294,8 +319,7 @@ Mirrors `catalog-plan-schema.md`'s "Policy auto-approval" in shape. A tag is
 
 1. The target field is **blank** in the snapshot — and blank again at write time (§7).
 2. `Style tags status` ≠ `Staff confirmed` — checked at pull, at plan, and at write.
-3. `confidence ≥ min_confidence` (0.7, registry) after image-kind caps and the
-   spec-only cap.
+3. `confidence ≥ min_confidence` (0.7, registry) after the spec-only cap.
 4. **No conflict**: where both a spec rule and an image observation exist for the
    field and both are ≥ 0.7, they name the same value. Disagreement holds the field
    as `spec_image_conflict` with both candidates in the row — never the higher score.
@@ -308,13 +332,13 @@ Everything else is **held**, per SKU × field, with a reason from the fixed voca
 |---|---|---|
 | `low_confidence` | Best candidate below 0.7; `proposed` carries it so the reviewer can just say yes | `held` |
 | `spec_image_conflict` | Spec rule and image disagree at ≥ 0.7 each; both named | `held` |
-| `no_usable_image` | Colour field on a record with no image, or images all `phone`/`spec_sheet`/`other` | `held` |
+| `no_swatch` | Colour field on a record with nothing usable in `Swatch images` — room scenes and detail images do not count | `held` |
+| `image_misfiled` | An attachment whose `looks_like` contradicts its field (a room scene sitting in `Swatch images`); nothing was read from it. One row per image — a TODO to move the file | `held` |
 | `image_host_blocked` | B2: images exist but could not be downloaded from this environment | `held` |
 | `image_format_unsupported` | B3: only HEIC (or undecodable) images | `held` |
 | `spec_unmapped` | `Finish type` / `Grade` value not in the rule table | `held` |
 | `needs_image` | D4: `Style` on a spec-only record | `held` |
 | `answer_unparsed` | A reviewer's `Action` cell could not be read as `Field: Value` | `held` |
-| `image_not_swatch` | Written from a `showroom` image (≥ 0.7 after the cap) — verify when convenient | `wrote_flagged` |
 | `spec_rule_provisional` | Written from a rule marked provisional in the registry | `wrote_flagged` |
 
 Held rows carry **no id** — like `held` in `social-plan-schema.md`, and unlike the
@@ -389,8 +413,8 @@ to filter on and worth it if style runs become frequent; not for v1.
 types. Rules, to be written into the agent file and enforced by prose tests:
 
 - **Update by record id, never upsert.** No merge key means no record can be created.
-- **Closed field list**: only the seven ids in §2. Never `Colour / tone`, never `Images`,
-  never anything else. `typecast` off — an option name that does not match live fails
+- **Closed field list**: only the seven ids in §2. Never `Colour / tone`, never any of
+  the three image fields, never anything else. `typecast` off — an option name that does not match live fails
   loudly rather than minting a choice.
 - **Read before write, every record.** Re-fetch it; if `Style tags status` is
   `Staff confirmed` → `refused` (`stale_staff_confirmed`), nothing written; drop any
@@ -430,12 +454,16 @@ types. Rules, to be written into the agent file and enforced by prose tests:
     "Style tags status":   {"id": "fldFEZIuna04JLFCr", "options": ["AI suggested", "Staff confirmed"], "run_writes": "AI suggested"},
     "Style tags evidence": {"id": "flduKhIN0PBEmnOMJ"}
   },
-  "inputs": {"Images": "fldbRlqkxa7hp7quH", "Finish type": "fldo6Em81uoydl9Jj", "Grade": "fld42aGNM67nKH2hp",
+  "inputs": {"swatch_images": "fldbRlqkxa7hp7quH",
+             "room_scene_images": "fldcB1MQVqcPf6lKY",
+             "detail_images": "fldRH7GrND9w10KWH",
+             "Finish type": "fldo6Em81uoydl9Jj", "Grade": "fld42aGNM67nKH2hp",
              "Species": "fldvWLfeSvsMnd1vL", "Colour / tone": "fldNTc3qponIjsNLV", "Salesperson notes": "fldm06jdSIM9o3PXI"},
   "eligible_categories": ["Engineered hardwood", "Solid hardwood", "LVP", "LVT", "Laminate"],
-  "policy": {"min_confidence": 0.7, "agreement_bonus": 0.1, "spec_only_style_cap": 0.65,
-             "image_kind_caps": {"swatch": 1.0, "showroom": 0.75, "phone": 0.6, "spec_sheet": 0, "other": 0}},
-  "source_rules": {"Texture": ["spec"], "Busyness": ["spec"], "Undertone": ["image"], "Tone depth": ["image"], "Style": ["both"]},
+  "policy": {"min_confidence": 0.7, "agreement_bonus": 0.1, "spec_only_style_cap": 0.65},
+  "image_sources": {"swatch_images": ["colour", "style"], "room_scene_images": ["style"], "detail_images": ["texture"]},
+  "source_rules": {"Texture": ["spec", "detail_images"], "Busyness": ["spec"], "Undertone": ["swatch_images"],
+                   "Tone depth": ["swatch_images"], "Style": ["spec", "swatch_images", "room_scene_images"]},
   "spec_rules": {"texture_from_finish": [...], "busyness_from_grade": {...}, "busyness_modifiers": [...],
                  "tone_depth_from_colour_tone": {"Light": [1, 2], "Medium": [3], "Dark": [4, 5]}},
   "notion_row": {"title_format": "Style tags — {supplier}", "tag": "Style Tags",
@@ -468,11 +496,13 @@ judgement file), never live:
    → `Texture` held `spec_image_conflict`, both candidates in `proposed`, no action.
 5. **Spec-only fills texture/busyness, holds colour**: `Finish type: Wire brushed`,
    `Grade: Character`, no images → action with `Texture: Brushed`, `Busyness: Moderate`;
-   `Undertone` and `Tone depth` held `no_usable_image`; `Style` held `needs_image`.
+   `Undertone` and `Tone depth` held `no_swatch`; `Style` held `needs_image`.
 6. **Threshold boundary**: 0.7 writes, 0.699 holds `low_confidence` with `proposed`.
-7. **Image-kind caps**: a phone-only record's `Undertone` at model confidence 0.9 is
-   capped to 0.6 and held; a showroom image at 0.9 → 0.75, written `wrote_flagged`
-   `image_not_swatch`.
+7. **Image sources**: a record with only a `Room scene images` attachment holds
+   `Undertone` and `Tone depth` as `no_swatch` even at model confidence 0.9, while the
+   same image informs `Style`; a `Detail images` close-up agreeing with the spec rule
+   lifts `Texture` to `source: both` and never touches colour; a `Swatch images`
+   attachment with `looks_like: room` is `image_misfiled`, read for nothing, colour held.
 8. **Host blocked**: candidates with `images.status: host_blocked` hold colour fields
    `image_host_blocked` and still write spec fields.
 9. **All held → no write**: a record with only held candidates has no action, so no
@@ -506,7 +536,7 @@ judgement file), never live:
    troubled CSV. Rule tables adjusted from what it held.
 4. Flip `write_mode` to `write` — a dated decision, vault note updated. Same supplier,
    real writes, `AI suggested` on the records, staff confirm in Airtable.
-5. Colour tags switch on by themselves once (a) images land in `Images` and (b) the
+5. Colour tags switch on by themselves once (a) swatches land in `Swatch images` and (b) the
    environment allows `v5.airtableusercontent.com`, or the run happens on the Mac.
 6. Calibration, tier 0: after a few hundred `Staff confirmed` records exist, one
    analysis compares `AI suggested` values to what staff kept or changed, per field and
@@ -517,9 +547,9 @@ judgement file), never live:
 - **After `/catalog-sync` creates products**: a final step in that command runs
   `/style-tag <SUPPLIER> --sku <created SKUs>` on the same session. New rows carry
   specs, rarely images, so this is the spec-only path.
-- **When `Images` changes**: an Airtable automation on `Images` → Make webhook → a
-  routine firing `{"supplier": …, "sku": …}`, or a periodic sweep over `Images is not
-  empty AND Style tags status is empty`. The sweep is the simpler and safer of the two
+- **When `Swatch images` changes**: an Airtable automation on `Swatch images` → Make
+  webhook → a routine firing `{"supplier": …, "sku": …}`, or a periodic sweep over
+  `Swatch images is not empty AND Style tags status is empty`. The sweep is the simpler and safer of the two
   (no per-edit fire storms while someone uploads 40 swatches), and is a natural fit
   for the not-yet-wired backstop sweep pattern.
 
@@ -529,7 +559,8 @@ re-enables anything scheduled.
 ## 12. Out of scope, deliberately
 
 - No change to `/catalog-sync`, `catalog_reconcile.py` or the catalogue contracts.
-- No write to `Colour / tone`, `Images`, `Attachments` or any non-style field.
+- No write to `Colour / tone`, any of the three image fields, `Attachments` or any
+  non-style field.
 - No `Staff confirmed` ever written by a run; no deletion or clearing of a style field.
 - No Tile / Stone in v1 (D2); no Design Rules rows written (that table is the consumer,
   owner-edited).
@@ -537,11 +568,15 @@ re-enables anything scheduled.
 
 ## 13. Side findings from the live read (not fixed here)
 
-- `platform-settings/airtable-master-catalogue-fields.json` (captured 2026-09-23) is
-  stale: the eight new fields are absent and `fld67650y8QClqoMc` is now named
-  **`Effective Date`**, not `Last price update`. `catalog_export.py` keys by id so it
-  still works, but the map should be refreshed in the implementation PR since the
-  style flow needs the new ids in it anyway.
+- `platform-settings/airtable-master-catalogue-fields.json` (captured 2026-09-23) was
+  stale: the ten new fields (three image, seven style) were absent, and
+  `fld67650y8QClqoMc` is now named **`Effective Date`**, not `Last price update`. The
+  ten new ids were **added 2026-09-26** with this amendment — that is where the three
+  image ids live in `platform-settings/` until `style-tags.json` exists. The rename is
+  deliberately **not** applied: `catalog_export.py` resolves upload-CSV columns by
+  name, so renaming the map entry would make every CSV's `Last price update` column
+  read as unknown. That rename belongs with the change that updates the canonical CSV
+  column list in bert-airtable-schema.
 - The test suite baseline is red on one pre-existing case:
   `test_social_registry.test_write_mode_is_draft_until_deliberately_changed` fails
   because commit `c5f5969` flipped `social-destinations.json` `write_mode.mode` to
