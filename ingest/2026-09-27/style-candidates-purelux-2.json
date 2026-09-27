@@ -1,0 +1,210 @@
+{
+ "contract_version": "style-candidates-2",
+ "scope": "purelux",
+ "supplier": "PURELUX",
+ "pulled_at": "2026-09-27T00:56:57.776095-04:00",
+ "registry": "platform-settings/style-tags.json",
+ "inputs": [
+  {
+   "file": "ingest/2026-09-27/purelux_style_snapshot_2.json"
+  }
+ ],
+ "images": {
+  "status": "not_requested",
+  "counts": {},
+  "dir": "/home/user/titan-agents-repo/ingest/2026-09-27/style-images"
+ },
+ "summary": {
+  "records_in": 4,
+  "candidates": 3,
+  "with_images": 3,
+  "blank_by_field": {
+   "Texture": 1,
+   "Busyness": 1
+  },
+  "excluded": {
+   "staff_confirmed": 1
+  }
+ },
+ "candidates": [
+  {
+   "record_id": "rec68f7WibC01EDrg",
+   "sku": "LVP-PLUX-0048",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Westgate (7.2\" x 9.0mm)",
+   "supplier": "PURELUX",
+   "category": "LVP",
+   "status": "AI suggested",
+   "evidence_existing": "AI suggested 2026-09-26 — plans/2026-09-26/style-plan-purelux.json\nTone depth: 4 (0.75, image: WESTGATE.webp) — swatch WESTGATE.webp: dark smoked-oak brown across the field; not espresso or black",
+   "specs": {
+    "Finish type": "Embossed in Register",
+    "Grade": null,
+    "Species": null,
+    "Colour / tone": "Medium",
+    "Collection": "Journey",
+    "Product name": "Purelux Journey 9mm SPC Vinyl — Westgate (7.2\" x 9.0mm)",
+    "Salesperson notes": "9mm SPC total (7mm SPC + 2mm attached pad). 22 mil wear layer. 1545 x 183mm plank (~7.2\" wide). EIR finish. 5G drop-lock. Underpad type assumed IXPE."
+   },
+   "blank_fields": [],
+   "current": {
+    "Undertone": "Neutral",
+    "Tone depth": 4,
+    "Texture": "Brushed",
+    "Style": [
+     "Modern"
+    ],
+    "Busyness": "Calm"
+   },
+   "review": {
+    "note": "",
+    "note_updated": "2026-09-27T04:43:49.000Z",
+    "note_read": null,
+    "note_is_new": false,
+    "questions": "❓ MISSING — answer in Style notes (type or dictate), or fill the field yourself\n• Undertone — my best guess is Cool (65%), not sure enough to write it: swatch: dark brown with a grey, smoked cast; no golden or red tones; could read Neutral. → Warm, Neutral or Cool?\n• Texture — the finish is \"Embossed in Register\", and whether that counts as Brushed is still an open question — my best guess is Brushed (60%), but I didn't write it. → Smooth, Brushed or Rustic?\n• Style — my best guess is Traditional, Rustic (60%), not sure enough to write it: dark knotty oak look with cathedral grain; room scene is a formal traditional interior; grey cast weakens Traditional. → which of Modern, Rustic, Scandinavian, Coastal, Traditional? (more than one is fine)\n• Busyness — there's no Grade on file, and a photo alone can't decide this. From the swatch it looks Moderate (70%): several knots, cathedral grain and plank-to-plank shade shifts; no heavy distressing. → Calm, Moderate or Busy?\n\n👀 TO CONFIRM — filled as AI suggested. If right, set Style tags status to Staff confirmed; if not, change the field or say so in Style notes\n• Tone depth: 4 (75%) — swatch: dark smoked-oak brown across the field; not espresso or black\n\nUpdated 2026-09-27 by /style-tag purelux"
+   },
+   "images": [
+    {
+     "field": "swatch",
+     "field_name": "Swatch images",
+     "attachment_id": "att8FT3yNNedCcvaN",
+     "filename": "WESTGATE.webp",
+     "type": "image/webp",
+     "size": 109596,
+     "width": 939,
+     "height": 1024,
+     "path": null,
+     "read_path": null,
+     "status": "not_downloaded"
+    },
+    {
+     "field": "room",
+     "field_name": "Room scene images",
+     "attachment_id": "attCo9eQU0C1jLc6T",
+     "filename": "Screenshot 2026-09-26 at 10.57.05 PM.png",
+     "type": "image/png",
+     "size": 5409333,
+     "width": 2452,
+     "height": 1538,
+     "path": null,
+     "read_path": null,
+     "status": "not_downloaded"
+    }
+   ]
+  },
+  {
+   "record_id": "rec7yjuFmA3T4d3p1",
+   "sku": "LVP-PLUX-0051",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Wynn (7.2\" x 9.0mm)",
+   "supplier": "PURELUX",
+   "category": "LVP",
+   "status": "AI suggested",
+   "evidence_existing": "AI suggested 2026-09-26 — plans/2026-09-26/style-plan-purelux.json\nUndertone: Cool (0.80, image: WYNN.webp) — swatch WYNN.webp: taupe-grey / greige oak; ashy cast, no gold or red\nTone depth: 3 (0.70, image: WYNN.webp) — swatch WYNN.webp: mid grey-brown; one lighter plank; darker than a pale grey, lighter than smoked oak\nStyle: Modern (0.70, spec + image WYNN.webp) — cool greige, long 1545mm plank, matte-looking, restrained grain (images: WYNN.webp)",
+   "specs": {
+    "Finish type": "Embossed in Register",
+    "Grade": null,
+    "Species": null,
+    "Colour / tone": "Dark",
+    "Collection": "Journey",
+    "Product name": "Purelux Journey 9mm SPC Vinyl — Wynn (7.2\" x 9.0mm)",
+    "Salesperson notes": "9mm SPC total (7mm SPC + 2mm attached pad). 22 mil wear layer. 1545 x 183mm plank (~7.2\" wide). EIR finish. 5G drop-lock. Underpad type assumed IXPE."
+   },
+   "blank_fields": [],
+   "current": {
+    "Undertone": "Cool",
+    "Tone depth": 3,
+    "Texture": "Rustic",
+    "Style": [
+     "Modern"
+    ],
+    "Busyness": "Calm"
+   },
+   "review": {
+    "note": "",
+    "note_updated": "2026-09-27T04:44:50.000Z",
+    "note_read": null,
+    "note_is_new": false,
+    "questions": "❓ MISSING — answer in Style notes (type or dictate), or fill the field yourself\n• Texture — the finish is \"Embossed in Register\", and whether that counts as Brushed is still an open question — my best guess is Brushed (60%), but I didn't write it. → Smooth, Brushed or Rustic?\n• Busyness — there's no Grade on file, and a photo alone can't decide this. From the swatch it looks Moderate (70%): a few small knots and cathedral grain; noticeable shade shift between planks. → Calm, Moderate or Busy?\n\n👀 TO CONFIRM — filled as AI suggested. If right, set Style tags status to Staff confirmed; if not, change the field or say so in Style notes\n• Undertone: Cool (80%) — swatch: taupe-grey / greige oak; ashy cast, no gold or red\n• Tone depth: 3 (70%) — swatch: mid grey-brown; one lighter plank; darker than a pale grey, lighter than smoked oak\n• Style: Modern (70%) — cool greige, long 1545mm plank, matte-looking, restrained grain\n\nUpdated 2026-09-27 by /style-tag purelux"
+   },
+   "images": [
+    {
+     "field": "swatch",
+     "field_name": "Swatch images",
+     "attachment_id": "attsTVrIhxaDIVeKY",
+     "filename": "WYNN.webp",
+     "type": "image/webp",
+     "size": 92048,
+     "width": 939,
+     "height": 1024,
+     "path": null,
+     "read_path": null,
+     "status": "not_downloaded"
+    },
+    {
+     "field": "room",
+     "field_name": "Room scene images",
+     "attachment_id": "attxXAW2bcPB6HpUg",
+     "filename": "Screenshot 2026-09-26 at 10.58.30 PM.png",
+     "type": "image/png",
+     "size": 4743494,
+     "width": 2450,
+     "height": 1518,
+     "path": null,
+     "read_path": null,
+     "status": "not_downloaded"
+    }
+   ]
+  },
+  {
+   "record_id": "recoI53xCaxoNmNeM",
+   "sku": "LVP-PLUX-0052",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Aria (7.2\" x 9.0mm)",
+   "supplier": "PURELUX",
+   "category": "LVP",
+   "status": "AI suggested",
+   "evidence_existing": "AI suggested 2026-09-26 — plans/2026-09-26/style-plan-purelux.json\nUndertone: Neutral (0.70, image: ARIA.webp) — swatch ARIA.webp: sandy beige oak; a faint warm tint but no honey or amber cast\nTone depth: 2 (0.85, image: ARIA.webp) — swatch ARIA.webp: light blonde / natural oak; lighter than mid oak, not bleached\nStyle: Scandinavian|Modern|Coastal (0.75, spec + image ARIA.webp) — pale, calm, neutral sandy oak on a long plank (images: ARIA.webp)",
+   "specs": {
+    "Finish type": "Embossed in Register",
+    "Grade": null,
+    "Species": null,
+    "Colour / tone": null,
+    "Collection": "Journey",
+    "Product name": "Purelux Journey 9mm SPC Vinyl — Aria (7.2\" x 9.0mm)",
+    "Salesperson notes": "9mm SPC total (7mm SPC + 2mm attached pad). 22 mil wear layer. 1545 x 183mm plank (~7.2\" wide). EIR finish. 5G drop-lock. Underpad type assumed IXPE."
+   },
+   "blank_fields": [
+    "Texture",
+    "Busyness"
+   ],
+   "current": {
+    "Undertone": "Neutral",
+    "Tone depth": 2,
+    "Style": [
+     "Scandinavian",
+     "Modern",
+     "Coastal"
+    ]
+   },
+   "review": {
+    "note": "a modern looking floor with neutral. tones. Medium depth, it is mooth to the touch and moderate patterns and variations.",
+    "note_updated": "2026-09-27T04:53:07.000Z",
+    "note_read": null,
+    "note_is_new": true,
+    "questions": "❓ MISSING — answer in Style notes (type or dictate), or fill the field yourself\n• Texture — the finish is \"Embossed in Register\", and whether that counts as Brushed is still an open question — my best guess is Brushed (60%), but I didn't write it. → Smooth, Brushed or Rustic?\n• Busyness — there's no Grade on file, and a photo alone can't decide this. From the swatch it looks Calm (85%): uniform colour, straight fine grain, essentially no knots. → Calm, Moderate or Busy?\n\n👀 TO CONFIRM — filled as AI suggested. If right, set Style tags status to Staff confirmed; if not, change the field or say so in Style notes\n• Undertone: Neutral (70%) — swatch: sandy beige oak; a faint warm tint but no honey or amber cast\n• Tone depth: 2 (85%) — swatch: light blonde / natural oak; lighter than mid oak, not bleached\n• Style: Scandinavian, Modern, Coastal (75%) — pale, calm, neutral sandy oak on a long plank\n\nUpdated 2026-09-27 by /style-tag purelux"
+   },
+   "images": [
+    {
+     "field": "swatch",
+     "field_name": "Swatch images",
+     "attachment_id": "attsMINPr8NOie3Pd",
+     "filename": "ARIA.webp",
+     "type": "image/webp",
+     "size": 41854,
+     "width": 939,
+     "height": 1024,
+     "path": null,
+     "read_path": null,
+     "status": "not_downloaded"
+    }
+   ]
+  }
+ ]
+}

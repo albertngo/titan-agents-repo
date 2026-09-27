@@ -1,0 +1,152 @@
+{
+ "contract_version": "style-plan-2",
+ "scope": "purelux",
+ "supplier": "PURELUX",
+ "run_at": "2026-09-27T00:57:55.986803-04:00",
+ "write_mode": "write",
+ "approved_by": "policy: style-tags auto-approval (v1 rubric)",
+ "inputs": [
+  {
+   "file": "ingest/2026-09-27/style-candidates-purelux-2.json"
+  },
+  {
+   "file": "ingest/2026-09-27/style-judgements-purelux-2.json"
+  },
+  {
+   "file": "ingest/2026-09-27/purelux_style_options.json"
+  }
+ ],
+ "summary": {
+  "records_in": 3,
+  "actions_total": 3,
+  "tags_total": 3,
+  "tags_by_field": {
+   "Tone depth": 1,
+   "Texture": 1,
+   "Busyness": 1
+  },
+  "held": 1,
+  "held_by_reason": {
+   "note_question": 1
+  },
+  "flagged": 0,
+  "no_information": {},
+  "images_status": "not_requested",
+  "note_tags": 3,
+  "note_replacements": 1,
+  "notes_read": 1,
+  "questions_written": 3,
+  "answers_applied": 0,
+  "answers_unmatched": []
+ },
+ "actions": [
+  {
+   "id": "sty-646d3828aa63",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "update_style_tags",
+   "record_id": "rec68f7WibC01EDrg",
+   "sku": "LVP-PLUX-0048",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Westgate (7.2\" x 9.0mm)",
+   "supplier": "PURELUX",
+   "fields": {},
+   "tags": {},
+   "overwrite": {},
+   "status_write": null,
+   "evidence_append": "",
+   "review_write": {
+    "Style questions": "✅ Nothing missing.\n\n👀 TO CONFIRM — if these are right, set Style tags status to Staff confirmed; if not, change the field or say so in Style notes\n• Undertone: Neutral (set by hand)\n• Tone depth: 4 (75%) — swatch: dark smoked-oak brown across the field; not espresso or black\n• Texture: Brushed (set by hand)\n• Style: Modern (set by hand)\n• Busyness: Calm (set by hand)\n\nUpdated 2026-09-27 by /style-tag purelux"
+   },
+   "flags": []
+  },
+  {
+   "id": "sty-c2b8e872f8f5",
+   "seq": 2,
+   "target_system": "airtable",
+   "op": "update_style_tags",
+   "record_id": "rec7yjuFmA3T4d3p1",
+   "sku": "LVP-PLUX-0051",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Wynn (7.2\" x 9.0mm)",
+   "supplier": "PURELUX",
+   "fields": {},
+   "tags": {},
+   "overwrite": {},
+   "status_write": null,
+   "evidence_append": "",
+   "review_write": {
+    "Style questions": "✅ Nothing missing.\n\n👀 TO CONFIRM — if these are right, set Style tags status to Staff confirmed; if not, change the field or say so in Style notes\n• Undertone: Cool (80%) — swatch: taupe-grey / greige oak; ashy cast, no gold or red\n• Tone depth: 3 (70%) — swatch: mid grey-brown; one lighter plank; darker than a pale grey, lighter than smoked oak\n• Texture: Rustic (set by hand)\n• Style: Modern (70%) — cool greige, long 1545mm plank, matte-looking, restrained grain\n• Busyness: Calm (set by hand)\n\nUpdated 2026-09-27 by /style-tag purelux"
+   },
+   "flags": []
+  },
+  {
+   "id": "sty-fa7e6ba6aabd",
+   "seq": 3,
+   "target_system": "airtable",
+   "op": "update_style_tags",
+   "record_id": "recoI53xCaxoNmNeM",
+   "sku": "LVP-PLUX-0052",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Aria (7.2\" x 9.0mm)",
+   "supplier": "PURELUX",
+   "fields": {
+    "Tone depth": 3,
+    "Texture": "Smooth",
+    "Busyness": "Moderate"
+   },
+   "tags": {
+    "Tone depth": {
+     "value": 3,
+     "confidence": 1.0,
+     "source": "reviewer_note",
+     "evidence": "replaces 2; your note: \"Medium depth\"",
+     "image": null,
+     "provisional": false,
+     "rule": ""
+    },
+    "Texture": {
+     "value": "Smooth",
+     "confidence": 1.0,
+     "source": "reviewer_note",
+     "evidence": "your note: \"it is mooth to the touch\"",
+     "image": null,
+     "provisional": false,
+     "rule": ""
+    },
+    "Busyness": {
+     "value": "Moderate",
+     "confidence": 1.0,
+     "source": "reviewer_note",
+     "evidence": "your note: \"moderate patterns and variations\"",
+     "image": null,
+     "provisional": false,
+     "rule": ""
+    }
+   },
+   "overwrite": {
+    "Tone depth": 2
+   },
+   "status_write": null,
+   "evidence_append": "AI suggested 2026-09-27 — plans/2026-09-27/style-plan-purelux-2.json\nTone depth: 3 (1.00, your note) — replaces 2; your note: \"Medium depth\"\nTexture: Smooth (1.00, your note) — your note: \"it is mooth to the touch\"\nBusyness: Moderate (1.00, your note) — your note: \"moderate patterns and variations\"",
+   "review_write": {
+    "Style questions": "✅ Nothing missing.\n\n❓ QUESTION — answer in Style notes\n• Style — You said \"a modern looking floor\". Style has Scandinavian, Modern and Coastal now — keep all three, or Modern only?\n\n👀 TO CONFIRM — if these are right, set Style tags status to Staff confirmed; if not, change the field or say so in Style notes\n• Undertone: Neutral (70%) — swatch: sandy beige oak; a faint warm tint but no honey or amber cast\n• Tone depth: 3 (from your note) — replaces 2; your note: \"Medium depth\"\n• Texture: Smooth (from your note)\n• Style: Scandinavian, Modern, Coastal (75%) — pale, calm, neutral sandy oak on a long plank\n• Busyness: Moderate (from your note)\n\n🎙 FROM YOUR NOTE\n• Tone depth → 3 (was 2) — your note: \"Medium depth\"\n• Texture → Smooth — your note: \"it is mooth to the touch\"\n• Busyness → Moderate — your note: \"moderate patterns and variations\"\n\nUpdated 2026-09-27 by /style-tag purelux",
+    "Style notes read": "2026-09-27T00:57:55-04:00"
+   },
+   "flags": []
+  }
+ ],
+ "held": [
+  {
+   "supplier": "PURELUX",
+   "sku": "LVP-PLUX-0052",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Aria (7.2\" x 9.0mm)",
+   "field": "Style",
+   "reason": "note_question",
+   "proposed": null,
+   "confidence": null,
+   "source": "reviewer_note",
+   "detail": "You said \"a modern looking floor\". Style has Scandinavian, Modern and Coastal now — keep all three, or Modern only?",
+   "disposition": "held",
+   "action_id": ""
+  }
+ ],
+ "flagged": []
+}
