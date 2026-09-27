@@ -110,7 +110,7 @@
     "texture_from_finish": [
       {"contains": ["handscraped", "hand scraped", "distressed", "sawmark", "saw marked", "arc saw", "tumbled", "splitface", "hand crafted"], "texture": "Rustic", "confidence": 0.85, "why": "scraping, distressing and saw marks are deliberate rustic texture"},
       {"contains": ["wirebrush", "wire brush", "brushed"], "texture": "Brushed", "confidence": 0.85, "why": "any wire-brushed finish, light or deep"},
-      {"contains": ["eir", "embossed in register", "embossed", "registered embossing", "registered embossed"], "texture": "Smooth", "confidence": 0.85, "why": "Albert ruled 2026-09-27: EIR is Smooth (the grain is embossed into a print, not brushed or scraped wood)"},
+      {"contains": ["eir", "embossed in register", "embossed", "registered embossing", "registered embossed"], "texture": "Brushed", "confidence": 0.6, "confidence_if_busy": 0.7, "busy_values": ["Moderate", "Busy"], "why": "Albert ruled 2026-09-27: EIR is somewhat textured, 60-70% depending on how the grain print looks and how busy it is. Brushed at 0.7 (writes) when the swatch/detail read or the record's Busyness is Moderate or Busy; 0.6 (held, asked) on a calm print"},
       {"contains": ["textured"], "texture": "Brushed", "confidence": 0.6, "provisional": true, "why": "PROVISIONAL: a bare 'textured' finish with no EIR/brush/scrape word is still unruled (the 2026-09-27 EIR ruling does not cover it). Held at 0.6 — see methods/style-tags.md, open rulings"},
       {"contains": ["smooth", "matte uv", "uv lacquer", "semi gloss", "semigloss", "gloss", "polished", "honed", "matte", "satin", "ceramic coating", "uv oil", "lacquer"], "texture": "Smooth", "confidence": 0.8, "why": "a coating with no brush or scrape word is a smooth face"}
     ],

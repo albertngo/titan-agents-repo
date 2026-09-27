@@ -120,6 +120,8 @@ def texture_from_finish(finish, reg):
         if any(norm(needle) in text for needle in rule["contains"]):
             return {"value": rule["texture"], "confidence": rule["confidence"],
                     "provisional": bool(rule.get("provisional")),
+                    "confidence_if_busy": rule.get("confidence_if_busy"),
+                    "busy_values": rule.get("busy_values") or [],
                     "detail": f'Finish type "{finish}" -> {rule["texture"]} ({rule.get("why", "rule table")})'}
     return None
 
@@ -352,6 +354,16 @@ def resolve_texture(cand, judgement, reg):
     specs = cand["specs"]
     spec = texture_from_finish(specs.get("Finish type"), reg)
     img = observation(judgement, "texture_seen", cand, {DETAIL})
+    if spec and spec.get("confidence_if_busy") is not None:
+        # EIR (Albert, 2026-09-27): how textured it reads depends on how busy the grain print is.
+        seen = observation(judgement, "busyness_seen", cand, {SWATCH, DETAIL})
+        busy = seen["value"] if seen else (cand.get("current") or {}).get("Busyness")
+        if busy in spec["busy_values"]:
+            spec = {**spec, "confidence": spec["confidence_if_busy"],
+                    "detail": spec["detail"] + f"; the grain print looks {str(busy).lower()}"}
+        else:
+            spec = {**spec, "detail": spec["detail"] + (f"; the grain print looks {str(busy).lower()}" if busy
+                                                         else "; can't tell how busy the print is")}
     if spec is None:
         if specs.get("Finish type"):
             return "held", _held("spec_unmapped", img["value"] if img else None,

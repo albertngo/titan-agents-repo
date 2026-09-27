@@ -308,7 +308,7 @@ Texture from `Finish type` (first match wins, top to bottom):
 | `handscraped`, `hand scraped`, `distressed`, `sawmark`, `saw marked`, `arc saw`, `tumbled`, `splitface` | `Rustic` | 0.85 |
 | `wirebrush`, `wire brush`, `brushed`, `smoked & wirebrushed` | `Brushed` | 0.85 |
 | `smooth`, `matte uv`, `uv lacquer`, `semi gloss`, `gloss`, `polished`, `honed`, `matte`, `satin` (and no brush/scrape word) | `Smooth` | 0.8 |
-| `eir`, `embossed in register`, `embossed`, `registered embossing`, `registered embossed` | `Smooth` | 0.85 — **Albert ruled 2026-09-27: "EIR is smooth"** |
+| `eir`, `embossed in register`, `embossed`, `registered embossing`, `registered embossed` | `Brushed` | **Albert ruled 2026-09-27: EIR is "somewhat textured, 60–70% depending on how the grains or print looks and how busy it is."** 0.7 (writes) when the swatch/detail read or the record's Busyness is Moderate/Busy; 0.6 (held, asked) on a calm print or when busyness is unknown |
 | `textured` (alone) | **provisional** `Brushed` | 0.6 → held; not covered by the EIR ruling |
 
 Busyness from `Grade`, then finish modifiers:
@@ -634,8 +634,8 @@ Judge the field of the plank, not the knots. `Colour / tone` (`Light` / `Medium`
 close-up confirms or conflicts. When you record `texture_seen` from a close-up:
 `Smooth` = no relief, a flat coated face; `Brushed` = open grain lines you could feel,
 from any wire-brushing; `Rustic` = scraping, distressing, saw marks, deliberate
-roughness. Grain *print* on vinyl or laminate (EIR) is `Smooth` (Albert, 2026-09-27) —
-record what you see and let the rule decide.
+roughness. Grain *print* on vinyl or laminate (EIR) reads as lightly textured → `Brushed`,
+surer on a busy print (Albert, 2026-09-27) — record `busyness_seen` honestly; the rule uses it.
 
 **Busyness** — how much visual variation across a box, decided by the grade rule;
 you record `busyness_seen` for the conflict check. `Calm` = uniform colour, few or no
@@ -666,10 +666,12 @@ are hints; the script already treats them as such.
 Held on purpose; each writes `spec_rule_provisional` or holds `low_confidence` until a
 line here changes and the registry with it.
 
-- ~~**EIR / embossed vinyl and laminate → `Texture`.**~~ **Ruled 2026-09-27 (Albert):
-  "EIR is smooth."** Registry maps EIR / embossed-in-register / embossed → `Smooth` at
-  0.85. A bare `textured` finish (no EIR word) is not covered and stays provisional
-  `Brushed` at 0.6, held.
+- ~~**EIR / embossed vinyl and laminate → `Texture`.**~~ **Ruled 2026-09-27 (Albert),
+  after a first "smooth" he corrected the same day:** EIR is "somewhat textured, 60–70%
+  depending on how the grains or print looks and how busy it is." Registry maps EIR →
+  `Brushed` at 0.6, raised to 0.7 (writes) when the grain print reads Moderate or Busy. A
+  bare `textured` finish (no EIR word) is not covered and stays provisional `Brushed` at
+  0.6, held.
 - **Busyness with no Grade** (vinyl, laminate, most LVP). The grade table cannot decide
   it and an image alone may not; these rows hold `spec_unmapped` with the image's read
   as the proposal. Albert answers per record in `Style notes` until a rule exists.

@@ -299,11 +299,21 @@ class TestSpecOnly(unittest.TestCase):
                                 ("Smoked & Wirebrushed", "Brushed"), ("Hand Scraped & Distressed", "Rustic"),
                                 ("Matte UV Bona", "Smooth"), ("Semi-Gloss", "Smooth")):
             self.assertEqual(plan.texture_from_finish(finish, REG)["value"], texture, finish)
-        eir = plan.texture_from_finish("Matte EIR", REG)  # ruled Smooth 2026-09-27
-        self.assertEqual((eir["value"], eir["provisional"]), ("Smooth", False))
-        self.assertEqual(plan.texture_from_finish("Embossed in Register", REG)["value"], "Smooth")
-        p = build(doc(cand(finish="Matte EIR")))
-        self.assertEqual(only_action(p)["fields"]["Texture"], "Smooth")
+        # EIR ruled 2026-09-27: somewhat textured -> Brushed, 0.7 on a moderate/busy print, 0.6 on a calm one
+        eir = plan.texture_from_finish("Matte EIR", REG)
+        self.assertEqual((eir["value"], eir["provisional"], eir["confidence"]), ("Brushed", False, 0.6))
+        self.assertEqual(plan.texture_from_finish("Embossed in Register", REG)["value"], "Brushed")
+        p = build(doc(cand(finish="Matte EIR")))  # no busyness known -> held
+        self.assertEqual(held_for(p, "Texture")[0]["reason"], "low_confidence")
+        busy = cand(finish="Embossed in Register", images=[image("swatch", "att1")])
+        p = plan.build_plan(doc(busy), {"records": [{"sku": busy["sku"], "busyness_seen": {
+            "value": "Moderate", "confidence": 0.7, "from": "att1", "evidence": "knots"}}]}, [], REG, "t", "plans/x.json")
+        self.assertEqual(only_action(p)["fields"]["Texture"], "Brushed")
+        self.assertIn("looks moderate", only_action(p)["tags"]["Texture"]["evidence"])
+        calm = copy.deepcopy(busy)
+        calm["current"] = {"Busyness": "Calm"}
+        p = plan.build_plan(doc(calm), None, [], REG, "t", "plans/x.json")
+        self.assertEqual(held_for(p, "Texture")[0]["proposed"], "Brushed")
         self.assertTrue(plan.texture_from_finish("Textured", REG)["provisional"])
         p = build(doc(cand(finish="Textured")))
         self.assertEqual(held_for(p, "Texture")[0]["reason"], "low_confidence")
