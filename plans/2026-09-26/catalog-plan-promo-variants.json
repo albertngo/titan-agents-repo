@@ -1,0 +1,2563 @@
+{
+  "contract_version": "catalog-plan-1",
+  "supplier": "PROMO SWEEP 2026-09-26",
+  "run_at": "2026-09-26T09:44:34-04:00",
+  "as_of": "2026-09-26",
+  "status": "needs_person",
+  "cost_basis": "airtable (the promo lane mirrors Airtable's Cost/unit, Promo cost and Rep cost)",
+  "summary": {
+    "airtable_records": 8253,
+    "with_promo": 398,
+    "active": 251,
+    "with_rep_rate": 0,
+    "rep_active": 0,
+    "not_in_lightspeed": 0,
+    "inactive_skipped": 5,
+    "actions": 107,
+    "promo_price_on": 0,
+    "rep_price_on": 0,
+    "price_off": 2,
+    "promo_marker_on": 56,
+    "rep_marker_on": 0,
+    "marker_off": 49,
+    "variant_markers": 56,
+    "blocked": 0,
+    "warnings": 110,
+    "recently_ended": 0,
+    "max_changes": 50
+  },
+  "actions": [
+    {
+      "id": "promo-8ddcebd176b9",
+      "target_system": "lightspeed",
+      "op": "update",
+      "sku": "ENG-VIDR-0183",
+      "ls_id": "8fe45fbf-383b-412b-a6fd-5f127c0d4cef",
+      "airtable_rec_id": null,
+      "fields": {
+        "supply_price": 3.29
+      },
+      "before": {
+        "supply_price": 3.59
+      },
+      "reason": "price_off",
+      "seq": 1
+    },
+    {
+      "id": "promo-5b8c63327062",
+      "target_system": "lightspeed",
+      "op": "update",
+      "sku": "ENG-VIDR-0187",
+      "ls_id": "aa95d192-145d-4d3f-a000-18e35152d73f",
+      "airtable_rec_id": null,
+      "fields": {
+        "supply_price": 3.49
+      },
+      "before": {
+        "supply_price": 3.79
+      },
+      "reason": "price_off",
+      "seq": 2
+    },
+    {
+      "id": "promo-1c19721b4e4d",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-GRAN-0040",
+      "ls_id": "10a44829-7326-45a8-8704-b35c3011ba01",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "ABCD",
+        "value": "(P 2026-09-30) ABCD",
+        "expect_sku": "ENG-GRAN-0040"
+      },
+      "before": {
+        "variant_value": "ABCD"
+      },
+      "reason": "promo_marker_on",
+      "seq": 3
+    },
+    {
+      "id": "promo-aa92e758249a",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-GRAN-0046",
+      "ls_id": "0a6f6e36-8b89-11eb-f3d6-7e8b626fc2c5",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "ABCD",
+        "value": "(P 2026-09-30) ABCD",
+        "expect_sku": "ENG-GRAN-0046"
+      },
+      "before": {
+        "variant_value": "ABCD"
+      },
+      "reason": "promo_marker_on",
+      "seq": 4
+    },
+    {
+      "id": "promo-71b27cc6c47c",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0001",
+      "ls_id": "aaef880a-2344-4e60-9bea-789fe116aad6",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0001"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 5
+    },
+    {
+      "id": "promo-05b5c572c633",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0002",
+      "ls_id": "77f035b0-5607-412d-83a0-e3c88b2a0927",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Select",
+        "value": "(P 2026-09-30) Select",
+        "expect_sku": "ENG-VIDR-0002"
+      },
+      "before": {
+        "variant_value": "Select"
+      },
+      "reason": "promo_marker_on",
+      "seq": 6
+    },
+    {
+      "id": "promo-f65bd7a95909",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0003",
+      "ls_id": "96ae1891-e8a3-47c7-92e5-16c620637bf6",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0003"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 7
+    },
+    {
+      "id": "promo-fc82eb1be4d7",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0004",
+      "ls_id": "5318abfa-b2ac-4229-8b31-625e44c3be5b",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0004"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 8
+    },
+    {
+      "id": "promo-9080acac3a99",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0005",
+      "ls_id": "29df811e-1ab4-420f-8972-08aeccfd1a98",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0005"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 9
+    },
+    {
+      "id": "promo-db3923dceb02",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0006",
+      "ls_id": "d1b96772-5182-4660-b016-cca3a36b6ff1",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0006"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 10
+    },
+    {
+      "id": "promo-5eed445d77de",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0007",
+      "ls_id": "06564601-23d4-4f4a-819e-0f324430109a",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0007"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 11
+    },
+    {
+      "id": "promo-949ff7d79850",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0008",
+      "ls_id": "d1de09f5-abca-48ea-8254-876a09351e87",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0008"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 12
+    },
+    {
+      "id": "promo-bb70276d11d0",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0010",
+      "ls_id": "687e2045-57e3-4e3b-9fc5-1e0b2dd6317e",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0010"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 13
+    },
+    {
+      "id": "promo-0ab4959bcd9d",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0018",
+      "ls_id": "21f1945d-2cdd-4788-9d38-4fb9db63b8b3",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0018"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 14
+    },
+    {
+      "id": "promo-38511f137704",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0025",
+      "ls_id": "b0d6be5e-334e-4986-aa58-91a833cadc51",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Select & Better",
+        "value": "(P 2026-09-30) Select & Better",
+        "expect_sku": "ENG-VIDR-0025"
+      },
+      "before": {
+        "variant_value": "Select & Better"
+      },
+      "reason": "promo_marker_on",
+      "seq": 15
+    },
+    {
+      "id": "promo-76aa8598f378",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0026",
+      "ls_id": "c8e31163-7847-4d48-8d15-06382514455b",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Select & Better",
+        "value": "(P 2026-09-30) Select & Better",
+        "expect_sku": "ENG-VIDR-0026"
+      },
+      "before": {
+        "variant_value": "Select & Better"
+      },
+      "reason": "promo_marker_on",
+      "seq": 16
+    },
+    {
+      "id": "promo-e3d8035835e4",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0027",
+      "ls_id": "33d42a88-d805-468a-9e97-28760c1d42c2",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Select & Better",
+        "value": "(P 2026-09-30) Select & Better",
+        "expect_sku": "ENG-VIDR-0027"
+      },
+      "before": {
+        "variant_value": "Select & Better"
+      },
+      "reason": "promo_marker_on",
+      "seq": 17
+    },
+    {
+      "id": "promo-bcc2eca1c886",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0028",
+      "ls_id": "74f28827-0778-47c3-a888-0b9ee80d99a5",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Select & Better",
+        "value": "(P 2026-09-30) Select & Better",
+        "expect_sku": "ENG-VIDR-0028"
+      },
+      "before": {
+        "variant_value": "Select & Better"
+      },
+      "reason": "promo_marker_on",
+      "seq": 18
+    },
+    {
+      "id": "promo-814344b97eb0",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0029",
+      "ls_id": "485246f5-4642-42e0-8233-e7649eea2b6e",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Select & Better",
+        "value": "(P 2026-09-30) Select & Better",
+        "expect_sku": "ENG-VIDR-0029"
+      },
+      "before": {
+        "variant_value": "Select & Better"
+      },
+      "reason": "promo_marker_on",
+      "seq": 19
+    },
+    {
+      "id": "promo-f498298f6b0e",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0031",
+      "ls_id": "ae16d74c-3ee7-4ac2-a17c-75e6e096ee70",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Select",
+        "value": "(P 2026-09-30) Select",
+        "expect_sku": "ENG-VIDR-0031"
+      },
+      "before": {
+        "variant_value": "Select"
+      },
+      "reason": "promo_marker_on",
+      "seq": 20
+    },
+    {
+      "id": "promo-8aa06d1bb2e7",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0032",
+      "ls_id": "7411a563-46ee-4e5a-93a5-bc31a32c6d36",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Select",
+        "value": "(P 2026-09-30) Select",
+        "expect_sku": "ENG-VIDR-0032"
+      },
+      "before": {
+        "variant_value": "Select"
+      },
+      "reason": "promo_marker_on",
+      "seq": 21
+    },
+    {
+      "id": "promo-e4523d879215",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0033",
+      "ls_id": "9f5b7ccb-f80a-4314-a035-125b488e8225",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0033"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 22
+    },
+    {
+      "id": "promo-1070161cb645",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0034",
+      "ls_id": "64889ff2-ef1d-48e1-8c04-f9cfb2213135",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0034"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 23
+    },
+    {
+      "id": "promo-e401ea65d368",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0035",
+      "ls_id": "6c4d2a7f-49b2-4005-ae73-378376d6d515",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0035"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 24
+    },
+    {
+      "id": "promo-9f454b24c763",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0040",
+      "ls_id": "fe1f81d9-f23b-4bae-993a-ef1ec213fa25",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0040"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 25
+    },
+    {
+      "id": "promo-3cc4be267749",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0043",
+      "ls_id": "bfb1c9f8-6003-4a93-acf3-3cab4f5cec01",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0043"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 26
+    },
+    {
+      "id": "promo-488535a61c7b",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0052",
+      "ls_id": "ee1d0884-dbb9-44bd-bc27-548d848639b6",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Rustic",
+        "value": "(P 2026-09-30) Rustic",
+        "expect_sku": "ENG-VIDR-0052"
+      },
+      "before": {
+        "variant_value": "Rustic"
+      },
+      "reason": "promo_marker_on",
+      "seq": 27
+    },
+    {
+      "id": "promo-804b7ed88e59",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0059",
+      "ls_id": "de430a70-11ab-44bb-b2d1-cf79c41ce674",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Rustic",
+        "value": "(P 2026-09-30) Rustic",
+        "expect_sku": "ENG-VIDR-0059"
+      },
+      "before": {
+        "variant_value": "Rustic"
+      },
+      "reason": "promo_marker_on",
+      "seq": 28
+    },
+    {
+      "id": "promo-a61af5f85759",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0067",
+      "ls_id": "8bc6924a-2323-4eb1-9730-d52ef86752a2",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Select & Better",
+        "value": "(P 2026-09-30) Select & Better",
+        "expect_sku": "ENG-VIDR-0067"
+      },
+      "before": {
+        "variant_value": "Select & Better"
+      },
+      "reason": "promo_marker_on",
+      "seq": 29
+    },
+    {
+      "id": "promo-c1aab610af9b",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0068",
+      "ls_id": "47e92dbb-7b8a-4308-9704-86378f842f17",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Select & Better",
+        "value": "(P 2026-09-30) Select & Better",
+        "expect_sku": "ENG-VIDR-0068"
+      },
+      "before": {
+        "variant_value": "Select & Better"
+      },
+      "reason": "promo_marker_on",
+      "seq": 30
+    },
+    {
+      "id": "promo-14be5b3be894",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0069",
+      "ls_id": "85f4fd1c-6461-4d47-9ce9-c64513033075",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Select & Better",
+        "value": "(P 2026-09-30) Select & Better",
+        "expect_sku": "ENG-VIDR-0069"
+      },
+      "before": {
+        "variant_value": "Select & Better"
+      },
+      "reason": "promo_marker_on",
+      "seq": 31
+    },
+    {
+      "id": "promo-bfa5550953cb",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0070",
+      "ls_id": "0334124a-6740-426d-a9f8-1ce3f9b8e79a",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Select & Better",
+        "value": "(P 2026-09-30) Select & Better",
+        "expect_sku": "ENG-VIDR-0070"
+      },
+      "before": {
+        "variant_value": "Select & Better"
+      },
+      "reason": "promo_marker_on",
+      "seq": 32
+    },
+    {
+      "id": "promo-215fe9ffcadc",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0071",
+      "ls_id": "284587cb-36f5-4673-bbb7-cc389a8abd86",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Select & Better",
+        "value": "(P 2026-09-30) Select & Better",
+        "expect_sku": "ENG-VIDR-0071"
+      },
+      "before": {
+        "variant_value": "Select & Better"
+      },
+      "reason": "promo_marker_on",
+      "seq": 33
+    },
+    {
+      "id": "promo-18705c12ef6d",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0072",
+      "ls_id": "7139783b-7e38-4381-a252-bfdee80bedc5",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Select",
+        "value": "(P 2026-09-30) Select",
+        "expect_sku": "ENG-VIDR-0072"
+      },
+      "before": {
+        "variant_value": "Select"
+      },
+      "reason": "promo_marker_on",
+      "seq": 34
+    },
+    {
+      "id": "promo-945831cff51e",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0073",
+      "ls_id": "56884347-ac82-4ffc-86be-02f2ca05c970",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Select",
+        "value": "(P 2026-09-30) Select",
+        "expect_sku": "ENG-VIDR-0073"
+      },
+      "before": {
+        "variant_value": "Select"
+      },
+      "reason": "promo_marker_on",
+      "seq": 35
+    },
+    {
+      "id": "promo-cd9c26fbb9b8",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0074",
+      "ls_id": "6cfa75c7-8472-4159-ab36-d8351df1a434",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Select",
+        "value": "(P 2026-09-30) Select",
+        "expect_sku": "ENG-VIDR-0074"
+      },
+      "before": {
+        "variant_value": "Select"
+      },
+      "reason": "promo_marker_on",
+      "seq": 36
+    },
+    {
+      "id": "promo-99985089c959",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0075",
+      "ls_id": "d6ea57b1-1360-4fa3-b59e-dc952c4fdeda",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Select",
+        "value": "(P 2026-09-30) Select",
+        "expect_sku": "ENG-VIDR-0075"
+      },
+      "before": {
+        "variant_value": "Select"
+      },
+      "reason": "promo_marker_on",
+      "seq": 37
+    },
+    {
+      "id": "promo-8b6ccb7dda96",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0076",
+      "ls_id": "8c1a40f6-4bab-49c4-9ebf-bbf92c0713d5",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Select",
+        "value": "(P 2026-09-30) Select",
+        "expect_sku": "ENG-VIDR-0076"
+      },
+      "before": {
+        "variant_value": "Select"
+      },
+      "reason": "promo_marker_on",
+      "seq": 38
+    },
+    {
+      "id": "promo-98b53f8e83d4",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0078",
+      "ls_id": "a0a7397b-5d7b-4d4e-8bfa-a5dbc5f5154e",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0078"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 39
+    },
+    {
+      "id": "promo-a1d2d910b5db",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0088",
+      "ls_id": "30ae8766-33be-4fd2-9e39-094476cbc765",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0088"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 40
+    },
+    {
+      "id": "promo-9f77aa78743e",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0102",
+      "ls_id": "1fba0cda-f650-447b-aed1-85eab1f1fc68",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0102"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 41
+    },
+    {
+      "id": "promo-1184763d2836",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0103",
+      "ls_id": "3135d8ec-3444-43b6-b029-4200bb2d8a31",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0103"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 42
+    },
+    {
+      "id": "promo-faddba5e74fe",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0104",
+      "ls_id": "17160852-ce3d-4d61-a5a8-9fe5ed77813f",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0104"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 43
+    },
+    {
+      "id": "promo-aa0848a6f4d8",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0105",
+      "ls_id": "ec496885-2578-4a9e-a114-1b3b0a87d6ae",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0105"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 44
+    },
+    {
+      "id": "promo-838fd127e23e",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0106",
+      "ls_id": "12caf379-4451-44ef-b01b-858d3463f92c",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0106"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 45
+    },
+    {
+      "id": "promo-19497f3d9a24",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0110",
+      "ls_id": "c34b1909-fc20-49d7-9342-224811de4009",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Select & Better",
+        "value": "(P 2026-09-30) Select & Better",
+        "expect_sku": "ENG-VIDR-0110"
+      },
+      "before": {
+        "variant_value": "Select & Better"
+      },
+      "reason": "promo_marker_on",
+      "seq": 46
+    },
+    {
+      "id": "promo-90345ee8a5cb",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0112",
+      "ls_id": "aa2f0fdd-c6cc-4d61-8a7f-eef303e8ba33",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0112"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 47
+    },
+    {
+      "id": "promo-5962944d6ca1",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0121",
+      "ls_id": "397ef67e-f8bd-4692-8ee9-c763d3a5835a",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0121"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 48
+    },
+    {
+      "id": "promo-6e128926add4",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0164",
+      "ls_id": "52df5fba-7756-486e-8d80-825cb1339534",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0164"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 49
+    },
+    {
+      "id": "promo-7cca419b37f6",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0165",
+      "ls_id": "5b1c94ba-5a70-459c-8de5-bbeb6eb10ff3",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0165"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 50
+    },
+    {
+      "id": "promo-a8ee6208784f",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0166",
+      "ls_id": "059034bb-3b89-4f81-a1fe-c83aa28e4d8d",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0166"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 51
+    },
+    {
+      "id": "promo-1e9e26f4a4d1",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0167",
+      "ls_id": "bb502689-243a-4083-b067-49bc2cd7b0e9",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0167"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 52
+    },
+    {
+      "id": "promo-1c604ea80c08",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0168",
+      "ls_id": "5fda4bfb-e1c8-4902-9960-23e4276fcfa2",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0168"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 53
+    },
+    {
+      "id": "promo-b1d3ed2e0c89",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0171",
+      "ls_id": "9d802be9-02c6-423f-b836-7b94387dbd11",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0171"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 54
+    },
+    {
+      "id": "promo-f97b53b04b20",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0174",
+      "ls_id": "759a70cf-a47a-429e-9ce2-98cfc04f8937",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0174"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 55
+    },
+    {
+      "id": "promo-a57b68225528",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0177",
+      "ls_id": "d3ff8192-6c44-4f40-b616-fe91530bf518",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0177"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 56
+    },
+    {
+      "id": "promo-f6176cafcfc0",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0180",
+      "ls_id": "3c048bc5-3a61-4467-808c-180d3877bfc3",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Character",
+        "value": "(P 2026-09-30) Character",
+        "expect_sku": "ENG-VIDR-0180"
+      },
+      "before": {
+        "variant_value": "Character"
+      },
+      "reason": "promo_marker_on",
+      "seq": 57
+    },
+    {
+      "id": "promo-9c908d934b79",
+      "target_system": "lightspeed",
+      "op": "variant_marker",
+      "sku": "ENG-VIDR-0188",
+      "ls_id": "dfc32506-b41f-4db4-a051-00201f38ec2d",
+      "airtable_rec_id": null,
+      "fields": {
+        "attribute_id": "02dcd191-ae89-11e8-ed44-946d1db08121",
+        "expect_value": "Rustic",
+        "value": "(P 2026-09-30) Rustic",
+        "expect_sku": "ENG-VIDR-0188"
+      },
+      "before": {
+        "variant_value": "Rustic"
+      },
+      "reason": "promo_marker_on",
+      "seq": 58
+    },
+    {
+      "id": "promo-8bb56593439a",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "ENG-VIDR-0194",
+      "ls_id": "c41f4348-838e-408c-918f-4f82ae7a0bec",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "VIDENG - 7 American White Oak (Wheat Berry) T&G | 7.5\" x 18mm x RL - 3mm top - 25.32sf/b - Character",
+        "expect_name": "(P 2026-09-30) VIDENG - 7 American White Oak (Wheat Berry) T&G | 7.5\" x 18mm x RL - 3mm top - 25.32sf/b - Character",
+        "expect_sku": "ENG-VIDR-0194"
+      },
+      "before": {
+        "name": "(P 2026-09-30) VIDENG - 7 American White Oak (Wheat Berry) T&G | 7.5\" x 18mm x RL - 3mm top - 25.32sf/b - Character"
+      },
+      "reason": "marker_off",
+      "seq": 59
+    },
+    {
+      "id": "promo-bcbbb07bf461",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "ENG-VIDR-0196",
+      "ls_id": "6db5e3f9-a7fe-49c0-a913-6523cec214c6",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "VIDENG - 7 European White Oak (Joffre Lake) T&G | 7.5\" x 18mm x RL - 3mm top - 24.56sf/b - Rustic",
+        "expect_name": "(P 2026-09-30) VIDENG - 7 European White Oak (Joffre Lake) T&G | 7.5\" x 18mm x RL - 3mm top - 24.56sf/b - Rustic",
+        "expect_sku": "ENG-VIDR-0196"
+      },
+      "before": {
+        "name": "(P 2026-09-30) VIDENG - 7 European White Oak (Joffre Lake) T&G | 7.5\" x 18mm x RL - 3mm top - 24.56sf/b - Rustic"
+      },
+      "reason": "marker_off",
+      "seq": 60
+    },
+    {
+      "id": "promo-cfe5f825392f",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "ENG-VIDR-0201",
+      "ls_id": "f4708248-6c24-4b9e-ae3b-939fbb87bc01",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "VIDENG - Herringbone American White Oak (Honey Wheat) T&G | 5\" x 18mm x RL - 3mm top - 20.18sf/b - Select",
+        "expect_name": "(P 2026-09-30) VIDENG - Herringbone American White Oak (Honey Wheat) T&G | 5\" x 18mm x RL - 3mm top - 20.18sf/b - Select",
+        "expect_sku": "ENG-VIDR-0201"
+      },
+      "before": {
+        "name": "(P 2026-09-30) VIDENG - Herringbone American White Oak (Honey Wheat) T&G | 5\" x 18mm x RL - 3mm top - 20.18sf/b - Select"
+      },
+      "reason": "marker_off",
+      "seq": 61
+    },
+    {
+      "id": "promo-f3bc593abd02",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "ENG-VIDR-0202",
+      "ls_id": "76ab2288-e3e7-4255-b01c-f21aadda5aeb",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "VIDENG - Herringbone European White Oak (Yukon) T&G | 5\" x 18mm x RL - 3mm top - 20.18sf/b - Character",
+        "expect_name": "(P 2026-09-30) VIDENG - Herringbone European White Oak (Yukon) T&G | 5\" x 18mm x RL - 3mm top - 20.18sf/b - Character",
+        "expect_sku": "ENG-VIDR-0202"
+      },
+      "before": {
+        "name": "(P 2026-09-30) VIDENG - Herringbone European White Oak (Yukon) T&G | 5\" x 18mm x RL - 3mm top - 20.18sf/b - Character"
+      },
+      "reason": "marker_off",
+      "seq": 62
+    },
+    {
+      "id": "promo-662e4500c31b",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "ENG-VIDR-0203",
+      "ls_id": "3f5ad239-a790-4403-a58c-eebcdbff913f",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "VIDENG - 7 European White Ash (Toffee Crunch) T&G | 7.5\" x 18mm x RL - 3mm top - 24.43sf/b - Select & Better",
+        "expect_name": "(P 2026-09-30) VIDENG - 7 European White Ash (Toffee Crunch) T&G | 7.5\" x 18mm x RL - 3mm top - 24.43sf/b - Select & Better",
+        "expect_sku": "ENG-VIDR-0203"
+      },
+      "before": {
+        "name": "(P 2026-09-30) VIDENG - 7 European White Ash (Toffee Crunch) T&G | 7.5\" x 18mm x RL - 3mm top - 24.43sf/b - Select & Better"
+      },
+      "reason": "marker_off",
+      "seq": 63
+    },
+    {
+      "id": "promo-08104f5b8a6b",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "ENG-VIDR-0204",
+      "ls_id": "3f15291c-3ef4-4cce-87fa-5b972c408243",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "VIDENG - 7 European White Ash (Natural) T&G | 7.5\" x 18mm x RL - 3mm top - 24.43sf/b - Select & Better",
+        "expect_name": "(P 2026-09-30) VIDENG - 7 European White Ash (Natural) T&G | 7.5\" x 18mm x RL - 3mm top - 24.43sf/b - Select & Better",
+        "expect_sku": "ENG-VIDR-0204"
+      },
+      "before": {
+        "name": "(P 2026-09-30) VIDENG - 7 European White Ash (Natural) T&G | 7.5\" x 18mm x RL - 3mm top - 24.43sf/b - Select & Better"
+      },
+      "reason": "marker_off",
+      "seq": 64
+    },
+    {
+      "id": "promo-2f1dd51df2cd",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "LAM-GRAN-0021",
+      "ls_id": "9a41372f-3d13-47f1-808e-9addf592b8d5",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLAM - Aquamate (Adelaide) Click | 12mm x RL - 23.31sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLAM - Aquamate (Adelaide) Click | 12mm x RL - 23.31sf/b",
+        "expect_sku": "LAM-GRAN-0021"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLAM - Aquamate (Adelaide) Click | 12mm x RL - 23.31sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 65
+    },
+    {
+      "id": "promo-d84ea6ec43c4",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "LAM-GRAN-0022",
+      "ls_id": "aca0fdd0-7677-4449-a9d4-d3f937d41a49",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLAM - Aquamate (Alice Springs) Click | 12mm x RL - 23.31sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLAM - Aquamate (Alice Springs) Click | 12mm x RL - 23.31sf/b",
+        "expect_sku": "LAM-GRAN-0022"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLAM - Aquamate (Alice Springs) Click | 12mm x RL - 23.31sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 66
+    },
+    {
+      "id": "promo-de2d35933605",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "LAM-GRAN-0023",
+      "ls_id": "f5f15bea-e4bf-400d-9244-a24bb56d9546",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLAM - Aquamate (Brisbane) Click | 12mm x RL - 23.31sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLAM - Aquamate (Brisbane) Click | 12mm x RL - 23.31sf/b",
+        "expect_sku": "LAM-GRAN-0023"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLAM - Aquamate (Brisbane) Click | 12mm x RL - 23.31sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 67
+    },
+    {
+      "id": "promo-da9cd0c5e760",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "LAM-GRAN-0024",
+      "ls_id": "18f2e9b5-73eb-4178-852e-e5a68b4305de",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLAM - Aquamate (Cairns) Click | 12mm x RL - 23.31sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLAM - Aquamate (Cairns) Click | 12mm x RL - 23.31sf/b",
+        "expect_sku": "LAM-GRAN-0024"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLAM - Aquamate (Cairns) Click | 12mm x RL - 23.31sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 68
+    },
+    {
+      "id": "promo-a0c343674481",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "LAM-GRAN-0025",
+      "ls_id": "19b2fdae-5ef1-432a-8574-7b930dccffbe",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLAM - Aquamate (Canberra) Click | 12mm x RL - 23.31sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLAM - Aquamate (Canberra) Click | 12mm x RL - 23.31sf/b",
+        "expect_sku": "LAM-GRAN-0025"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLAM - Aquamate (Canberra) Click | 12mm x RL - 23.31sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 69
+    },
+    {
+      "id": "promo-76415bf53412",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "LAM-GRAN-0026",
+      "ls_id": "94b8492b-5c24-41ad-84d8-f687a1a6d215",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLAM - Aquamate (Darwin) Click | 12mm x RL - 23.31sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLAM - Aquamate (Darwin) Click | 12mm x RL - 23.31sf/b",
+        "expect_sku": "LAM-GRAN-0026"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLAM - Aquamate (Darwin) Click | 12mm x RL - 23.31sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 70
+    },
+    {
+      "id": "promo-2a7fedcec1da",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "LAM-GRAN-0027",
+      "ls_id": "b172256c-158a-4c0b-8770-968029069c6a",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLAM - Aquamate (Hobart) Click | 12mm x RL - 23.31sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLAM - Aquamate (Hobart) Click | 12mm x RL - 23.31sf/b",
+        "expect_sku": "LAM-GRAN-0027"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLAM - Aquamate (Hobart) Click | 12mm x RL - 23.31sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 71
+    },
+    {
+      "id": "promo-3df4723ff927",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "LAM-GRAN-0028",
+      "ls_id": "c0ec0244-b58d-469b-9efc-3cfc96a47001",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLAM - Aquamate (Melbourne) Click | 12mm x RL - 23.31sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLAM - Aquamate (Melbourne) Click | 12mm x RL - 23.31sf/b",
+        "expect_sku": "LAM-GRAN-0028"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLAM - Aquamate (Melbourne) Click | 12mm x RL - 23.31sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 72
+    },
+    {
+      "id": "promo-f31907c0cb9c",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "LAM-GRAN-0029",
+      "ls_id": "ccf820a0-b109-4db9-9cb5-dacf2bcfcbe6",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLAM - Aquamate (Perth) Click | 12mm x RL - 23.31sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLAM - Aquamate (Perth) Click | 12mm x RL - 23.31sf/b",
+        "expect_sku": "LAM-GRAN-0029"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLAM - Aquamate (Perth) Click | 12mm x RL - 23.31sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 73
+    },
+    {
+      "id": "promo-5500b2a61551",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "LVP-GRAN-0011",
+      "ls_id": "091f95e3-9aee-4b70-817b-cbd930752b0d",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-DB - Entrepreneur (Canvaslight) Glue down | 7\" x 4mm x RL - 28.00sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-DB - Entrepreneur (Canvaslight) Glue down | 7\" x 4mm x RL - 28.00sf/b",
+        "expect_sku": "LVP-GRAN-0011"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-DB - Entrepreneur (Canvaslight) Glue down | 7\" x 4mm x RL - 28.00sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 74
+    },
+    {
+      "id": "promo-a9667bd06553",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "LVP-GRAN-0012",
+      "ls_id": "8e70dfbd-b3d9-41a5-b902-1d2476f5d581",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-DB - Entrepreneur (Chroma Drift) Glue down | 7\" x 4mm x RL - 28.00sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-DB - Entrepreneur (Chroma Drift) Glue down | 7\" x 4mm x RL - 28.00sf/b",
+        "expect_sku": "LVP-GRAN-0012"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-DB - Entrepreneur (Chroma Drift) Glue down | 7\" x 4mm x RL - 28.00sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 75
+    },
+    {
+      "id": "promo-c160d9a9bfb6",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "LVP-GRAN-0013",
+      "ls_id": "6548de12-95e4-4d66-866b-672a165aca9b",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-DB - Entrepreneur (Feathergrass) Glue down | 7\" x 4mm x RL - 28.00sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-DB - Entrepreneur (Feathergrass) Glue down | 7\" x 4mm x RL - 28.00sf/b",
+        "expect_sku": "LVP-GRAN-0013"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-DB - Entrepreneur (Feathergrass) Glue down | 7\" x 4mm x RL - 28.00sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 76
+    },
+    {
+      "id": "promo-2e858c42a52d",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "LVP-GRAN-0014",
+      "ls_id": "ad49e30c-695a-4034-892d-6be1c16a6dec",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-DB - Entrepreneur (Rainmoor) Glue down | 7\" x 4mm x RL - 28.00sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-DB - Entrepreneur (Rainmoor) Glue down | 7\" x 4mm x RL - 28.00sf/b",
+        "expect_sku": "LVP-GRAN-0014"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-DB - Entrepreneur (Rainmoor) Glue down | 7\" x 4mm x RL - 28.00sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 77
+    },
+    {
+      "id": "promo-556b886b852e",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "LVP-GRAN-0015",
+      "ls_id": "cca5474f-8a76-4574-b848-b2d019389b70",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-DB - Entrepreneur (Stone Veil) Glue down | 7\" x 4mm x RL - 28.00sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-DB - Entrepreneur (Stone Veil) Glue down | 7\" x 4mm x RL - 28.00sf/b",
+        "expect_sku": "LVP-GRAN-0015"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-DB - Entrepreneur (Stone Veil) Glue down | 7\" x 4mm x RL - 28.00sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 78
+    },
+    {
+      "id": "promo-64040f5a78f3",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "LVP-GRAN-0016",
+      "ls_id": "7f41ed68-c48a-4022-b49c-e440b886ba7e",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-DB - Entrepreneur (Woodmere) Glue down | 7\" x 4mm x RL - 28.00sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-DB - Entrepreneur (Woodmere) Glue down | 7\" x 4mm x RL - 28.00sf/b",
+        "expect_sku": "LVP-GRAN-0016"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-DB - Entrepreneur (Woodmere) Glue down | 7\" x 4mm x RL - 28.00sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 79
+    },
+    {
+      "id": "promo-d44c5f661a0b",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0001",
+      "ls_id": "3f1ed949-8615-4feb-b12c-ec27fcec7287",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Atlantic (GF8936) Click | 7\" x 5mm x RL - 26.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Atlantic (GF8936) Click | 7\" x 5mm x RL - 26.72sf/b",
+        "expect_sku": "SPC-GRAN-0001"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Atlantic (GF8936) Click | 7\" x 5mm x RL - 26.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 80
+    },
+    {
+      "id": "promo-5672d34c5f0a",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0003",
+      "ls_id": "c02e1829-666a-4129-8bfe-77985e67786b",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Atlantic (CDW340-2) Click | 7\" x 5mm x RL - 26.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Atlantic (CDW340-2) Click | 7\" x 5mm x RL - 26.72sf/b",
+        "expect_sku": "SPC-GRAN-0003"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Atlantic (CDW340-2) Click | 7\" x 5mm x RL - 26.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 81
+    },
+    {
+      "id": "promo-f406eeaffdaf",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0007",
+      "ls_id": "8dfbeb18-83a7-427f-8c23-dbb4ef538ec7",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Continental (Connecticut) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Continental (Connecticut) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_sku": "SPC-GRAN-0007"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Continental (Connecticut) Click | 7\" x 7mm x RL - 17.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 82
+    },
+    {
+      "id": "promo-6d394d7a5219",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0009",
+      "ls_id": "2c094a3a-b444-426c-a3fa-cc121b33e13c",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Continental (Iowa) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Continental (Iowa) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_sku": "SPC-GRAN-0009"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Continental (Iowa) Click | 7\" x 7mm x RL - 17.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 83
+    },
+    {
+      "id": "promo-efadc484b3a7",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0010",
+      "ls_id": "51ba985f-1f85-4450-b499-6d6e5742650c",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Continental (Kentucky) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Continental (Kentucky) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_sku": "SPC-GRAN-0010"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Continental (Kentucky) Click | 7\" x 7mm x RL - 17.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 84
+    },
+    {
+      "id": "promo-8faa000bd728",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0011",
+      "ls_id": "a9ee6ae7-f1b9-427d-93f8-3c493ce31c2b",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Continental (Michigan) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Continental (Michigan) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_sku": "SPC-GRAN-0011"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Continental (Michigan) Click | 7\" x 7mm x RL - 17.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 85
+    },
+    {
+      "id": "promo-f7d9fbd55d48",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0012",
+      "ls_id": "dea28770-f1a7-42da-8c24-24bfe7ce00ff",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Continental (New Jersey) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Continental (New Jersey) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_sku": "SPC-GRAN-0012"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Continental (New Jersey) Click | 7\" x 7mm x RL - 17.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 86
+    },
+    {
+      "id": "promo-beaaf6117c66",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0013",
+      "ls_id": "644efc0a-0f3e-41c0-a3da-f27bbc2c1e62",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Continental (New York) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Continental (New York) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_sku": "SPC-GRAN-0013"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Continental (New York) Click | 7\" x 7mm x RL - 17.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 87
+    },
+    {
+      "id": "promo-691cb30d9664",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0014",
+      "ls_id": "40f05451-8bdd-40f4-8fb2-580e6790f9d7",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Continental (Wisconsin) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Continental (Wisconsin) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_sku": "SPC-GRAN-0014"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Continental (Wisconsin) Click | 7\" x 7mm x RL - 17.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 88
+    },
+    {
+      "id": "promo-4317e5929fea",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0015",
+      "ls_id": "8d3f2ab3-47c1-49c1-b8ec-7fb80d1a3fa5",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Pacific (Canterbury) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Pacific (Canterbury) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_sku": "SPC-GRAN-0015"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Pacific (Canterbury) Click | 7\" x 7mm x RL - 17.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 89
+    },
+    {
+      "id": "promo-de8f2efef090",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0016",
+      "ls_id": "97183f72-210b-4c0d-a373-7e9308718f87",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Pacific (Golden Bay) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Pacific (Golden Bay) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_sku": "SPC-GRAN-0016"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Pacific (Golden Bay) Click | 7\" x 7mm x RL - 17.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 90
+    },
+    {
+      "id": "promo-44f65a52d044",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0017",
+      "ls_id": "b3cbf076-151f-4b0c-a4d4-dd6f2ba103a1",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Pacific (Queenstown) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Pacific (Queenstown) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_sku": "SPC-GRAN-0017"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Pacific (Queenstown) Click | 7\" x 7mm x RL - 17.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 91
+    },
+    {
+      "id": "promo-57ae3e3edc6a",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0018",
+      "ls_id": "6205d42d-6b91-4233-8ed1-06689c1cb76f",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Pacific (Wellington) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Pacific (Wellington) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_sku": "SPC-GRAN-0018"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Pacific (Wellington) Click | 7\" x 7mm x RL - 17.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 92
+    },
+    {
+      "id": "promo-26519891d34d",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0019",
+      "ls_id": "f5c4314f-3e85-44f9-b149-056fe1da7e45",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Pacific (88006-2) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Pacific (88006-2) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_sku": "SPC-GRAN-0019"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Pacific (88006-2) Click | 7\" x 7mm x RL - 17.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 93
+    },
+    {
+      "id": "promo-9984accb6e65",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0020",
+      "ls_id": "d7166002-eb03-47c3-8a80-b91918d6a625",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Anchor 7 (Battery Point) Click | 7\" x 7mm x RL - 18.91sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Anchor 7 (Battery Point) Click | 7\" x 7mm x RL - 18.91sf/b",
+        "expect_sku": "SPC-GRAN-0020"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Anchor 7 (Battery Point) Click | 7\" x 7mm x RL - 18.91sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 94
+    },
+    {
+      "id": "promo-5f47295180cc",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0021",
+      "ls_id": "de01fba1-041c-4110-9035-2c64f7e2025b",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Anchor 7 (North Head) Click | 7\" x 7mm x RL - 18.91sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Anchor 7 (North Head) Click | 7\" x 7mm x RL - 18.91sf/b",
+        "expect_sku": "SPC-GRAN-0021"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Anchor 7 (North Head) Click | 7\" x 7mm x RL - 18.91sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 95
+    },
+    {
+      "id": "promo-630294068777",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0022",
+      "ls_id": "e3a643ed-2fdc-4c67-93a3-af7baaff19fd",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Anchor 7 (Oak Island) Click | 7\" x 7mm x RL - 18.91sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Anchor 7 (Oak Island) Click | 7\" x 7mm x RL - 18.91sf/b",
+        "expect_sku": "SPC-GRAN-0022"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Anchor 7 (Oak Island) Click | 7\" x 7mm x RL - 18.91sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 96
+    },
+    {
+      "id": "promo-88bfe0644f8a",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0023",
+      "ls_id": "74953b54-82b4-4e71-9081-aaabd0616a54",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Anchor 7 (Peggy's Cove) Click | 7\" x 7mm x RL - 18.91sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Anchor 7 (Peggy's Cove) Click | 7\" x 7mm x RL - 18.91sf/b",
+        "expect_sku": "SPC-GRAN-0023"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Anchor 7 (Peggy's Cove) Click | 7\" x 7mm x RL - 18.91sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 97
+    },
+    {
+      "id": "promo-88c997e54950",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0024",
+      "ls_id": "dbb06d24-ac53-44c7-a67e-b28371fa0a8e",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Anchor 7 (Point Reyes) Click | 7\" x 7mm x RL - 18.91sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Anchor 7 (Point Reyes) Click | 7\" x 7mm x RL - 18.91sf/b",
+        "expect_sku": "SPC-GRAN-0024"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Anchor 7 (Point Reyes) Click | 7\" x 7mm x RL - 18.91sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 98
+    },
+    {
+      "id": "promo-c07db11b797e",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0025",
+      "ls_id": "bfc0b7c0-d6cc-41de-b515-cb3f88a59d5f",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Anchor 7 (Sambro) Click | 7\" x 7mm x RL - 18.91sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Anchor 7 (Sambro) Click | 7\" x 7mm x RL - 18.91sf/b",
+        "expect_sku": "SPC-GRAN-0025"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Anchor 7 (Sambro) Click | 7\" x 7mm x RL - 18.91sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 99
+    },
+    {
+      "id": "promo-8f4f64eef384",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0026",
+      "ls_id": "9be8b504-13c0-47ef-9dbd-079403167f0f",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Anchor 7 (Windpoint) Click | 7\" x 7mm x RL - 18.91sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Anchor 7 (Windpoint) Click | 7\" x 7mm x RL - 18.91sf/b",
+        "expect_sku": "SPC-GRAN-0026"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Anchor 7 (Windpoint) Click | 7\" x 7mm x RL - 18.91sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 100
+    },
+    {
+      "id": "promo-79ba8f8191b8",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0027",
+      "ls_id": "a5a43a51-979e-41b2-8621-5de2ad9c58ae",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Wonder 7 (Alexandria) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Wonder 7 (Alexandria) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_sku": "SPC-GRAN-0027"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Wonder 7 (Alexandria) Click | 7\" x 7mm x RL - 17.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 101
+    },
+    {
+      "id": "promo-e98f1825d095",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0028",
+      "ls_id": "4a42af64-7f68-4d0e-aeb0-2c3a624a658f",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Wonder 7 (Babylon) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Wonder 7 (Babylon) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_sku": "SPC-GRAN-0028"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Wonder 7 (Babylon) Click | 7\" x 7mm x RL - 17.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 102
+    },
+    {
+      "id": "promo-0d27dd639131",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0029",
+      "ls_id": "92de1677-ce49-436d-8242-b6b05429051b",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Wonder 7 (Coliseum) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Wonder 7 (Coliseum) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_sku": "SPC-GRAN-0029"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Wonder 7 (Coliseum) Click | 7\" x 7mm x RL - 17.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 103
+    },
+    {
+      "id": "promo-20c27b34cdf0",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0030",
+      "ls_id": "5d3e9397-b057-4727-a98a-1f2367aaedb8",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Wonder 7 (Giza) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Wonder 7 (Giza) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_sku": "SPC-GRAN-0030"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Wonder 7 (Giza) Click | 7\" x 7mm x RL - 17.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 104
+    },
+    {
+      "id": "promo-cbeb1acd09ff",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0031",
+      "ls_id": "70a85fa5-db40-488f-a6be-a4726afb61ad",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Wonder 7 (Olympia) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Wonder 7 (Olympia) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_sku": "SPC-GRAN-0031"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Wonder 7 (Olympia) Click | 7\" x 7mm x RL - 17.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 105
+    },
+    {
+      "id": "promo-0ce6bb95f004",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0032",
+      "ls_id": "1148ed5a-b219-4103-9d79-7fa556a926ea",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Wonder 7 (Petra) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Wonder 7 (Petra) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_sku": "SPC-GRAN-0032"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Wonder 7 (Petra) Click | 7\" x 7mm x RL - 17.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 106
+    },
+    {
+      "id": "promo-9b84527e3278",
+      "target_system": "lightspeed",
+      "op": "promo_marker",
+      "sku": "SPC-GRAN-0033",
+      "ls_id": "ff729b58-9ead-416a-9fd2-30b9922cbcd8",
+      "airtable_rec_id": null,
+      "fields": {
+        "name": "GRNDLVP-SPC - Wonder 7 (Rhodes) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_name": "(P 2026-09-30) GRNDLVP-SPC - Wonder 7 (Rhodes) Click | 7\" x 7mm x RL - 17.72sf/b",
+        "expect_sku": "SPC-GRAN-0033"
+      },
+      "before": {
+        "name": "(P 2026-09-30) GRNDLVP-SPC - Wonder 7 (Rhodes) Click | 7\" x 7mm x RL - 17.72sf/b"
+      },
+      "reason": "marker_off",
+      "seq": 107
+    }
+  ],
+  "blocked": [],
+  "warnings": [
+    {
+      "sku": "FP233",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "FP234",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HUA.V.NS",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HUA.V.RED",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HUA.V.TM",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.Cal.12x24x8mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.Car.12x24x8mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.NaoWhi.12x24x9mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.VisGre.12x24x9mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.ArkBla.12x24x10mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.SomBla.12x24x10mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.NaoWhi.24x24x8mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.VisGre.24x24x8mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.PulPriLigGre.24x24x8mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.PulPriDarGre.24x24x8mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.ArkBla.24x24x10mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.StaSmo.24x24x10mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.StaWhi.24x24x8mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.StaWhi.24x48x8mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0301",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0302",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0303",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0304",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0305",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0307",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0308",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0309",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0310",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0312",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0313",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0314",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0315",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0316",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0317",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0318",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0319",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0320",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0301",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0302",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0303",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0304",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0305",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0306",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0307",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0308",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0309",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0312",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0313",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0314",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0315",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0316",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0317",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0318",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0319",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0320",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0306",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "CAN.E.O.Pri.7",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "CAN.E.O.Sen.5",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "CAN.E.O.Enh.5",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "CAN.E.O.Bar.6.1",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "CAN.E.O.Tra.6",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "CAN.E.O.Soo.6",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "CAN.E.O.Nat.6",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "CAN.E.O.Cal.5",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "CAN.E.O.Pur.7",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "CAN.E.O.Ess.6",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "5081-L",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "5129-L",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "5219-L",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "5234-L",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "5255-L",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "EX-2011",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "GRA.T.C.Avi.1224",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "GRA.T.C.Emp.1224",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "GRA.T.C.GraSla.1224",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P3-690",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-M6-619",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P6-052",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P6-051",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P6-002",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P3-052",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P6-067",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P3-051",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P6-311",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P6-087",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P6-332",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P3-332",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P6-690",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "QP8320GMB",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ST05",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "DT918212",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "PY6600B",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "JT918510",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "PY12648L",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ST01",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "QGB32002",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "PM36B32",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "DN80331",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "BJ2412Q90-1/2",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "DM12341M",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "TD168003-1/2",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ST02",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "Panda.White.Matte",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "AM80325",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ST03",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "BPCK71501",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "BPCK8013",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "PY3600B",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "QGB32017",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "DT918010",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    }
+  ],
+  "recently_ended": []
+}

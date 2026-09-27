@@ -10,6 +10,8 @@ What it can do, and nothing more:
 
     create_family(payload)          POST   /api/2.0/products
     update_variant(id, details)     PUT    /api/2.1/products/{id}
+    set_promo_marker(id, ...)       PUT    /api/2.1/products/{id}  (name prefix only)
+    set_variant_marker(id, ...)     PUT    /api/2.1/products/{id}  (variant value prefix only)
     delete_product(id, expect_sku)  DELETE /api/2.0/products/{id}
     read_family(id)                 GET    /api/3.0/products/{id}
 
@@ -47,6 +49,7 @@ Environment: LIGHTSPEED_DOMAIN_PREFIX, LIGHTSPEED_PERSONAL_TOKEN.
 """
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -54,6 +57,15 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lightspeed_client import LightspeedClient, LightspeedError  # noqa: E402
 
 WRITE_METHODS = ("POST", "PUT", "PATCH", "DELETE")
+
+# `(P YYYY-MM-DD) `, `(R YYYY-MM-DD) `, `(P) ` or `(R) ` at the very start of a name
+# or variant value — the promo / rep-rate marker (ls-upload-instructions, "Marking a
+# promo"). Same pattern as scripts/promo_sweep.py; a test holds the two together.
+PROMO_MARKER = re.compile(r"^\([PR](?: \d{4}-\d{2}-\d{2})?\)\s*")
+
+
+def strip_promo_marker(name):
+    return PROMO_MARKER.sub("", name or "", count=1)
 
 
 class LightspeedWriter(LightspeedClient):
@@ -220,6 +232,90 @@ class LightspeedWriter(LightspeedClient):
         details["product_suppliers"] = self._product_suppliers_with_price(
             product_id, supply_price)
         return details
+
+    def set_promo_marker(self, product_id, expect_sku, expect_name, new_name):
+        """Put the promo marker on, or take it off, ONE standalone product's name.
+
+        Albert, 2026-09-26: the `(P YYYY-MM-DD)` prefix goes on when a promo starts
+        and comes off when it ends, during the morning sweep. A name is written
+        through `common`, and name is what groups a variant family, so this is the
+        narrowest name write that can exist:
+
+        - only the marker may differ — with it stripped, old and new are identical;
+        - the product is re-read first and must still carry `expect_sku` and
+          `expect_name` (a name someone changed since the pull is not overwritten);
+        - a variant family or a member of one is refused: its name is shared.
+        """
+        if not strip_promo_marker(new_name).strip():
+            raise LightspeedError(f"refusing an empty product name for {expect_sku}")
+        if strip_promo_marker(new_name) != strip_promo_marker(expect_name):
+            raise LightspeedError(
+                f"refusing to rename {expect_sku}: only the promo marker may change "
+                f"({expect_name!r} -> {new_name!r})")
+        product = self.read_product(product_id)
+        if product.get("sku") != expect_sku:
+            raise LightspeedError(
+                f"refusing the promo marker on {product_id}: its live sku is "
+                f"{product.get('sku')!r}, the plan expected {expect_sku!r}")
+        if product.get("name") != expect_name:
+            raise LightspeedError(
+                f"refusing the promo marker on {expect_sku}: its name changed since the "
+                f"pull ({product.get('name')!r}, plan expected {expect_name!r})")
+        if product.get("has_variants") or product.get("variant_parent_id"):
+            raise LightspeedError(
+                f"refusing the promo marker on {expect_sku}: it is in a variant family, "
+                "whose name is shared by every member")
+        return self.update_variant(
+            product_id, {}, common={"name": new_name},
+            allow_common_reason="promo marker on a standalone product (Albert, 2026-09-26)")
+
+    def set_variant_marker(self, product_id, expect_sku, attribute_id, expect_value, new_value):
+        """Put the marker on, or take it off, ONE variant member's own variant value.
+
+        A family shares one name, so a member's marker lives in its variant value —
+        column 11 in the CSV, `(P 2026-09-30) Character` (ls-upload-instructions).
+        Albert, 2026-09-26: "the P marker can go on variant names, not the parent one.
+        So it should still have a marker." Guarded like set_promo_marker():
+
+        - only the marker may differ between the old and new value;
+        - the product is re-read and must still carry `expect_sku` and, on
+          `attribute_id`, `expect_value`;
+        - it must be a family member (a standalone product takes the name marker);
+        - no sibling may already hold the new value — a Duplicate Variants rejection;
+        - every attribute the member has goes back, only the marked one changed.
+        """
+        if not strip_promo_marker(new_value).strip():
+            raise LightspeedError(f"refusing an empty variant value for {expect_sku}")
+        if strip_promo_marker(new_value) != strip_promo_marker(expect_value):
+            raise LightspeedError(
+                f"refusing to change {expect_sku}'s variant value beyond the marker "
+                f"({expect_value!r} -> {new_value!r})")
+        product = self.read_product(product_id)
+        if product.get("sku") != expect_sku:
+            raise LightspeedError(
+                f"refusing the variant marker on {product_id}: its live sku is "
+                f"{product.get('sku')!r}, the plan expected {expect_sku!r}")
+        if not (product.get("has_variants") or product.get("variant_parent_id")):
+            raise LightspeedError(
+                f"refusing the variant marker on {expect_sku}: it is not in a variant "
+                "family (a standalone product carries the marker in its name)")
+        options = product.get("variant_options") or []
+        target = [o for o in options if o.get("id") == attribute_id]
+        if len(target) != 1 or target[0].get("value") != expect_value:
+            raise LightspeedError(
+                f"refusing the variant marker on {expect_sku}: attribute {attribute_id} "
+                f"reads {[o.get('value') for o in target]!r}, the plan expected "
+                f"{expect_value!r}")
+        for vid, values in self.family_attribute_values(product_id).items():
+            if vid != product_id and any(v.get("attribute_id") == attribute_id
+                                         and v.get("value") == new_value for v in values):
+                raise LightspeedError(
+                    f"refusing the variant marker on {expect_sku}: sibling {vid} already "
+                    f"holds {new_value!r}")
+        values = [{"attribute_id": o["id"],
+                   "attribute_value": new_value if o is target[0] else o.get("value")}
+                  for o in options]
+        return self.update_variant(product_id, {"variant_attribute_values": values})
 
     def delete_product(self, product_id, expect_sku):
         """Delete (archive) ONE standalone product, after proving it is the one meant.

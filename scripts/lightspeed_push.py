@@ -348,6 +348,13 @@ def main():
     updates = [a for a in todo if a["op"] == "update"]
     creates = [a for a in todo if a["op"] == "create"]
     deletes = [a for a in todo if a["op"] == "delete"]
+    markers = [a for a in todo if a["op"] in ("promo_marker", "variant_marker")]
+    unknown = [a for a in todo if a["op"] not in ("update", "create", "delete",
+                                                  "promo_marker", "variant_marker")]
+    if unknown:
+        print(f"error: unknown op(s) {sorted({a['op'] for a in unknown})}; nothing was sent.",
+              file=sys.stderr)
+        return 1
     if deletes and not person_approved(approval):
         print(f"error: {len(deletes)} delete action(s) under a policy approval "
               f"({approval.get('approved_by')!r}). A delete is only ever a person's "
@@ -375,6 +382,35 @@ def main():
                            f"Set {', '.join(f'{k}={v}' for k, v in a['fields'].items())}.",
                            approved_by, "executed", raw_ref=a["ls_id"])
             print(f"  update {a['sku']:20} {a['ls_id']}")
+
+        # The promo lane (scripts/promo_sweep.py, Albert 2026-09-26): the name prefix
+        # only, guarded in set_promo_marker(), and confirmed by re-reading.
+        for a in sorted(markers, key=lambda a: a["seq"]):
+            current.update(type="lightspeed_update_product", target=f"{a['sku']} ({a['ls_id']})")
+            f = a["fields"]
+            if a["op"] == "promo_marker":
+                writer.set_promo_marker(a["ls_id"], f["expect_sku"], f["expect_name"], f["name"])
+                old, new = f["expect_name"], f["name"]
+            else:
+                writer.set_variant_marker(a["ls_id"], f["expect_sku"], f["attribute_id"],
+                                          f["expect_value"], f["value"])
+                old, new = f["expect_value"], f["value"]
+            if not args.dry_run:
+                after = writer.read_product(a["ls_id"])
+                got = (after.get("name") if a["op"] == "promo_marker" else
+                       next((o.get("value") for o in after.get("variant_options") or []
+                             if o.get("id") == f.get("attribute_id")), None))
+                if got != new or after.get("sku") != f["expect_sku"]:
+                    raise LightspeedError(
+                        f"{a['op']} on {a['sku']}: re-read shows {got!r}, sku "
+                        f"{after.get('sku')!r}")
+                where = "name" if a["op"] == "promo_marker" else "variant value"
+                log.append(a["id"], "lightspeed_update_product",
+                           f"{a['sku']} ({a['ls_id']})",
+                           f"Marker {'on' if a.get('reason', '').endswith('_on') else 'off'}: "
+                           f"{where} {old!r} -> {new!r}; confirmed by re-read.",
+                           approved_by, "executed", raw_ref=a["ls_id"])
+            print(f"  marker {a['sku']:20} {new[:60]}")
 
         for a in sorted(deletes, key=lambda a: a["seq"]):
             current.update(type="lightspeed_delete_product", target=f"{a['sku']} ({a['ls_id']})")

@@ -55,9 +55,66 @@ Each command closes its own row as it always does (`/catalog-sync` step 6 moves 
 fully written row to `Extracted [All Uploaded]`, or leaves `Needs Review` + `Partial`
 when something is held), so a row handled today does not match any lane tomorrow.
 
+## 3P. The promo lane — every sweep, after the rows
+
+Albert, 2026-09-26: the `(P)` marker "goes in when the promo goes in, and leaves when
+it goes out. During the sweep." Airtable keeps every promo (`Promo cost`, `Promo end
+date`, `Promo List URL`) and never clears it; Lightspeed is derived from it each
+morning. Runs after the rows, so a promo list synced this morning is already in
+Airtable. Not counted against the 5-row cap.
+
+1. **Fresh pull:** `python3 scripts/lightspeed_pull.py --refresh` (a sync this morning
+   changed Lightspeed after the cached walk).
+2. **Full Airtable read** of Master Flooring Catalogue, fields by id
+   *(`airtable-master-catalogue-fields.json`)*: `SKU`, `Lightspeed ID`, `Cost/unit`,
+   `Promo cost ($/sf)`, `Promo end date`, `Promo List URL`, `Rep cost ($/sf)`, `Rep cost
+   end date`, `Rep cost note`, `Supplier`. `pageSize`
+   8000 and follow `nextCursor` to the end — **every record**, because a record
+   missing from the read looks like "no promo" and would lose its marker. Flatten to
+   `{"total_record_count": N, "records": [{id, <field name>: value}]}` at
+   `ingest/<today>/airtable-promo-snapshot.json` (gitignored; the plan is the record).
+3. `python3 scripts/promo_sweep.py --airtable-raw <every saved MCP page>` (or
+   `--airtable ingest/<today>/airtable-promo-snapshot.json` once flattened)
+   → `plans/<today>/catalog-plan-promo-sweep.json`. It refuses a partial read.
+4. **`status: ready`** → write `catalog-approval-promo-sweep.json` approving every
+   action, `approved_by: "policy: promo lane (2026-09-26)"`; `lightspeed_push.py
+   --dry-run`, then live. **`status: needs_person`** (over 50 actions) → write
+   nothing, report the counts and push. A person approves it by hand or not at all.
+
+What the lane does, per Airtable record with a promo (active = promo cost set and end
+date on/after today):
+
+| Lightspeed | A discount is in force | None is |
+|---|---|---|
+| `supply_price` | the **lowest** of the active promo and active rep rate, if below `Cost/unit` | back to `Cost/unit` — **only if Lightspeed still holds a promo or rep cost** (any other mismatch is `/catalog-sync`'s) |
+| marker, for the winner | `(P YYYY-MM-DD) ` for a promo; `(R YYYY-MM-DD) ` or `(R) ` (undated, ongoing) for a rep rate | removed |
+| where the marker goes | standalone product: the **name**; variant-family member: **its own variant value** (`(P 2026-09-30) Character`), never the shared family name | |
+
+**Rep rates (Albert, 2026-09-26).** `Rep cost ($/sf)` is a rate a supplier rep gave
+Titan, entered by hand with `Rep cost note` (who, when, terms, email link). Its end date
+**may be empty** — ongoing until a person clears it. A list cost at or below it is
+warned `rep_rate_not_better`; a rep rate that ended in the last 14 days is listed with
+the promos to ask the rep about. A promo and a rep rate tie → the promo's marker.
+
+A promo with **no end date counts as over** (Albert, 2026-09-26: every promo is dated,
+strictly) and is reported `promo_end_missing` — date it in Airtable to turn it on.
+
+Never touched: retail, Airtable, anything but the marker in a name or variant value.
+A variant marker a sibling already holds is blocked (`variant_value_collision`), never
+sent. A marked product that matches no Airtable record is left alone. There is no `PROMO`
+tag in the account yet; the lane does not create one.
+
+**A verbal extension** = move `Promo end date` forward in Airtable. The next sweep
+re-dates the marker and, if it had come off, restores the promo cost.
+
 ## 4. Report, then publish
 
 One line per row run (PL, company, lane, result, writes per system), then counts
 for: held (waiting on a person), staged (with dates), queued for tomorrow, errors,
-backlog. Then the routine's publish step. **Push a notification only when something
-was written, held or failed** — a quiet morning stays quiet.
+backlog. Then the promo lane: markers on / off, prices on / off, blocked, and
+**"Promos ended in the last 14 days — ask the rep"**: one line per SKU from the plan's
+`recently_ended` (supplier, promo cost vs regular, end date, `Promo List URL`).
+
+Then the routine's publish step. **Push a notification only when something
+was written, held or failed** (the promo lane's writes and a `needs_person` plan
+included) — a quiet morning stays quiet.

@@ -205,9 +205,9 @@ tells the salesperson the promo is over without anyone having rebuilt the file. 
 what makes the verify-before-quoting rule practical rather than a discipline nobody can
 act on at the counter.
 
-**If `Promo end date` is blank, emit `(P)` alone** — and treat the blank as worth
-flagging, since a promo with no printed expiry is exactly the case where a person most
-needs to ask the supplier.
+**`Promo end date` is never blank (2026-09-26).** Every promo is dated at extraction,
+strictly (bert-airtable-schema, "Every promo has an end date"), so the marker always
+carries a date. An undated promo is not on: no `(P)`, no promo cost — flag it instead.
 
 **The `(P)` goes in the variant value, never in a variant family's shared name.** This
 is the whole reason the marker works, and it is worth being explicit about why:
@@ -236,13 +236,31 @@ their column 11 values *more* distinct, never less.
 marker's lifetime is `Promo cost ($/sf)`:
 
 - **Populated** → `tags: PROMO`, `(P)` prefix, `supply_price` = the promo cost.
-- **Cleared** (Cowork clears it on `Promo end date`) → the next build emits no tag, no
-  `(P)`, and `supply_price` back to `Cost/unit`.
+- **Over** (`Promo end date` before today — nothing clears the field, 2026-09-23) →
+  the next build emits no tag, no `(P)`, and `supply_price` back to `Cost/unit`.
 
 This only holds because **the file is regenerated, not hand-edited**. Every promo marker
 is derived from the Airtable field on each build, so it cannot go stale on its own — but
 a row that never gets rebuilt after its promo ends keeps the marker until it does.
 
+> **Superseded for standalone products (Albert, 2026-09-26).** `/price-list-sweep`'s
+> promo lane (`scripts/promo_sweep.py`) now puts the `(P YYYY-MM-DD) ` name prefix on
+> when a promo is active in Airtable and takes it off the morning after `Promo end
+> date`, and moves `supply_price` with it — every morning, derived from Airtable,
+> which is never cleared. The name write was verified live on LAM-FAWK-0004
+> (only `name`/`variant_name` changed). Still true below: **variant-family members**
+> get the price only (their marker lives in the variant value, which the lane does
+> not write), and there is **no `PROMO` tag** in the account, so column 16 still
+> reaches Lightspeed only through a CSV import. The paragraph below is kept for why.
+>
+> **Variant members too, and rep rates (Albert, 2026-09-26).** The lane now writes a
+> family member's own variant value — `(P 2026-09-30) Character`, never the family name
+> — verified live on ENG-VIDR-0046 (only that member's Grade moved; Lightspeed re-sorted
+> its button position). A supplier rep's special rate (`Rep cost ($/sf)` in Airtable)
+> carries `(R YYYY-MM-DD) ` or, undated, `(R) `; when a promo and a rep rate both run,
+> the lower cost wins and only the winner's marker shows. A CSV build follows the same
+> rule.
+>
 > **The API sync moves the promo PRICE, not the promo MARKER.** `/catalog-sync`'s
 > Lightspeed update writes prices and nothing else, by design. So on an existing product
 > `supply_price` follows `Promo cost ($/sf)` automatically in both directions, while

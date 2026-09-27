@@ -84,6 +84,23 @@ but every actions-log entry they lead to must set
 any person's name, so the log never overstates who looked at what.
 `raw_ref_action_id` is still set, same as any other execution.
 
+### The promo lane (2026-09-26, Albert)
+
+`/price-list-sweep` runs `scripts/promo_sweep.py` every morning and writes
+`plans/<date>/catalog-plan-promo-sweep.json`: Lightspeed-only actions that move
+`supply_price` into or out of a discount and put the `(P YYYY-MM-DD)` / `(R …)` marker
+on or off — on the name of a standalone product, on its own variant value for a family
+member — derived from Airtable's `Promo cost` / `Promo end date` and `Rep cost ($/sf)` /
+`Rep cost end date` (never written back). The lower active discount wins.
+Ids are `promo-<sha1[:12]>` over the date, sku, op and target value.
+
+Policy approves that plan whole when its `status` is `ready` (at most 50 actions), with
+`"approved_by": "policy: promo lane (2026-09-26)"`. A plan with `status:
+"needs_person"` is approved by nobody until a person has read it — a large morning
+means something upstream moved (a bulk Airtable edit, a first run, a bad read), and
+that is not a morning to write through. The lane never plans a delete, a create or an
+Airtable write.
+
 A person can still add ids by hand for anything held, the old way, into this same
 file — the two authorship paths write to one file, not two. Nothing can approve a
 `blocked` row, by either path.
@@ -156,7 +173,7 @@ changes every row.
 | `id` | `cat-<sha1[:12]>` over supplier + sku + target_system + op. **Stable across re-runs** — that is what makes the actions-log idempotency check work |
 | `seq` | Execution order. Ascending, gapless |
 | `target_system` | `airtable` \| `lightspeed` |
-| `op` | `upsert` \| `create` \| `update` \| `backfill_ls_id` \| `delete` (hand-planned only; person approval only — see carve-out 4) |
+| `op` | `upsert` \| `create` \| `update` \| `backfill_ls_id` \| `delete` (hand-planned only; person approval only — see carve-out 4) \| `promo_marker` (Lightspeed only, from `scripts/promo_sweep.py`; `fields` = `name`, `expect_name`, `expect_sku` — see "The promo lane") \| `variant_marker` (same lane, a family member's own variant value; `fields` = `attribute_id`, `expect_value`, `value`, `expect_sku`) |
 | `sku` | Airtable `SKU`. The join key across both systems |
 | `airtable_rec_id` | `MatchedRecId`, or `null` on a create |
 | `ls_id` | The Lightspeed UUID. `null` where Lightspeed will mint one |
