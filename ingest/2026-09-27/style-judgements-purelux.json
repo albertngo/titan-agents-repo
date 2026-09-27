@@ -1,0 +1,167 @@
+{
+  "contract_version": "style-judgements-1",
+  "scope": "purelux",
+  "judged_at": "2026-09-27T00:40:00-04:00",
+  "records": [
+    {
+      "sku": "LVP-PLUX-0048",
+      "images": [
+        {
+          "attachment_id": "att8FT3yNNedCcvaN",
+          "looks_like": "swatch",
+          "usable_for_colour": true,
+          "note": "flat supplier render, four plank widths, no border; judged against its own lightest plank"
+        },
+        {
+          "attachment_id": "attCo9eQU0C1jLc6T",
+          "looks_like": "room",
+          "usable_for_colour": false,
+          "note": "supplier visualiser screenshot; same room as Wynn's scene with the floor swapped; warm interior lighting"
+        }
+      ],
+      "undertone": {
+        "value": "Cool",
+        "confidence": 0.65,
+        "from": "att8FT3yNNedCcvaN",
+        "evidence": "dark brown with a grey, smoked cast; no golden or red tones; could read Neutral"
+      },
+      "tone_depth": {
+        "value": 4,
+        "confidence": 0.75,
+        "from": "att8FT3yNNedCcvaN",
+        "evidence": "dark smoked-oak brown across the field; not espresso or black"
+      },
+      "busyness_seen": {
+        "value": "Moderate",
+        "confidence": 0.7,
+        "from": "att8FT3yNNedCcvaN",
+        "evidence": "several knots, cathedral grain and plank-to-plank shade shifts; no heavy distressing"
+      },
+      "style": {
+        "values": [
+          "Traditional",
+          "Rustic"
+        ],
+        "confidence": 0.6,
+        "evidence": "dark knotty oak look with cathedral grain; room scene is a formal traditional interior; grey cast weakens Traditional"
+      }
+    },
+    {
+      "sku": "LVP-PLUX-0051",
+      "images": [
+        {
+          "attachment_id": "attsTVrIhxaDIVeKY",
+          "looks_like": "swatch",
+          "usable_for_colour": true,
+          "note": "flat supplier render, no border"
+        },
+        {
+          "attachment_id": "attxXAW2bcPB6HpUg",
+          "looks_like": "room",
+          "usable_for_colour": false,
+          "note": "supplier visualiser screenshot; same room as Westgate's scene with the floor swapped"
+        }
+      ],
+      "undertone": {
+        "value": "Cool",
+        "confidence": 0.8,
+        "from": "attsTVrIhxaDIVeKY",
+        "evidence": "taupe-grey / greige oak; ashy cast, no gold or red"
+      },
+      "tone_depth": {
+        "value": 3,
+        "confidence": 0.7,
+        "from": "attsTVrIhxaDIVeKY",
+        "evidence": "mid grey-brown; one lighter plank; darker than a pale grey, lighter than smoked oak"
+      },
+      "busyness_seen": {
+        "value": "Moderate",
+        "confidence": 0.7,
+        "from": "attsTVrIhxaDIVeKY",
+        "evidence": "a few small knots and cathedral grain; noticeable shade shift between planks"
+      },
+      "style": {
+        "values": [
+          "Modern"
+        ],
+        "confidence": 0.7,
+        "evidence": "cool greige, long 1545mm plank, matte-looking, restrained grain"
+      }
+    },
+    {
+      "sku": "LVP-PLUX-0043",
+      "images": [
+        {
+          "attachment_id": "att17j5xdheofecaI",
+          "looks_like": "swatch",
+          "usable_for_colour": true,
+          "note": "flat supplier render, no border; printed saw-mark pattern on several planks"
+        }
+      ],
+      "undertone": {
+        "value": "Neutral",
+        "confidence": 0.7,
+        "from": "att17j5xdheofecaI",
+        "evidence": "taupe-brown with a slight grey wash; neither golden nor clearly ashy"
+      },
+      "tone_depth": {
+        "value": 3,
+        "confidence": 0.75,
+        "from": "att17j5xdheofecaI",
+        "evidence": "mid oak brown across the field"
+      },
+      "busyness_seen": {
+        "value": "Moderate",
+        "confidence": 0.65,
+        "from": "att17j5xdheofecaI",
+        "evidence": "saw-mark print and shade shifts between planks; few knots; borderline Busy"
+      },
+      "style": {
+        "values": [
+          "Rustic"
+        ],
+        "confidence": 0.7,
+        "evidence": "saw-mark / rough-sawn visual and variation across planks"
+      }
+    },
+    {
+      "sku": "LVP-PLUX-0052",
+      "images": [
+        {
+          "attachment_id": "attsMINPr8NOie3Pd",
+          "looks_like": "swatch",
+          "usable_for_colour": true,
+          "note": "flat supplier render, no border"
+        }
+      ],
+      "undertone": {
+        "value": "Neutral",
+        "confidence": 0.7,
+        "from": "attsMINPr8NOie3Pd",
+        "evidence": "sandy beige oak; a faint warm tint but no honey or amber cast"
+      },
+      "tone_depth": {
+        "value": 2,
+        "confidence": 0.85,
+        "from": "attsMINPr8NOie3Pd",
+        "evidence": "light blonde / natural oak; lighter than mid oak, not bleached"
+      },
+      "busyness_seen": {
+        "value": "Calm",
+        "confidence": 0.85,
+        "from": "attsMINPr8NOie3Pd",
+        "evidence": "uniform colour, straight fine grain, essentially no knots"
+      },
+      "style": {
+        "values": [
+          "Scandinavian",
+          "Modern",
+          "Coastal"
+        ],
+        "confidence": 0.75,
+        "evidence": "pale, calm, neutral sandy oak on a long plank"
+      }
+    }
+  ],
+  "_reused": "Observations carried from ingest/2026-09-26/style-judgements-purelux.json: the same attachment ids are on each record (checked), and no record has a Style notes entry yet, so there is nothing new to read."
+}
