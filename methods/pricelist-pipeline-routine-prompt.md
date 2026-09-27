@@ -259,16 +259,18 @@ This file only controls what the routine *does* once it fires. What fires it —
 4381438's webhook — has to actually post a `notionID` on every fire for the table
 above to hold; confirm that at the trigger side, not in this repo.
 
-## Routine environment (as observed 2026-09-23)
+## Routine environment (as observed 2026-09-27)
 
 What fires the stored text, recorded here because none of it lives in the repo and
 all of it has drifted silently before. Re-read it live (`list_triggers`,
 `get_session`) before relying on it.
 
-| Item | Value on 2026-09-23 |
+| Item | Value on 2026-09-27 |
 |---|---|
 | Trigger | CCR routine "New Price Lists", `trig_01Vjj6UXF92MaPhAqWw6uoTN` |
-| Enabled | **No, deliberately.** Disabled 2026-09-23T03:29Z, three minutes after PR #57 merged. Albert, 2026-09-23 (asked whether to re-enable after the salvage merges): "Not yet. I'll do manual." Price lists are run by hand until he says otherwise; do not re-enable it on a session's own initiative |
+| Enabled | **Yes.** Re-enabled by Albert (2026-09-27: "Routine should be up and running now"). It had been disabled 2026-09-23T03:29Z ("Not yet. I'll do manual"). Do not disable it on a session's own initiative |
+| Schedule | `0 23 * * *` UTC — 7 pm Toronto in EDT, 6 pm after the switch to EST. The no-payload fire is `/price-list-sweep`. Because it runs in the evening, a promo ending on day D is still on through D and comes off at the evening run of D+1; a list effective D applies at the evening run of D. First fire 2026-09-26T23:04Z: succeeded, nothing due, no commit |
+| Retired | "Price List Sweep" `trig_015j7cxEz95rn5abXAnPfrWY` — disabled 2026-09-26, superseded by this routine's scheduled fire; deleting it is Albert's call |
 | Environment | `env_01XHGNpnEFthGu3i3VzP8xKp` |
 | Connectors | Airtable, Gmail, Make, Microsoft-365, Notion, visualize. The run uses Airtable and Notion. No GitHub MCP and no `gh`, so publishing goes through `scripts/publish_run.py` with `GH_TOKEN` |
 | Model | The trigger's stored model and the model sessions actually ran on differ. Check `get_session` rather than trusting the trigger record |
@@ -328,6 +330,10 @@ full. Change a step's procedure in its command file, as always; change this file
 only when the flow itself or the stored text needs to change.
 
 ## Changelog
+
+- **2026-09-27 (Albert, in chat).** The routine is enabled again ("Routine should be up
+  and running now"), with a daily no-payload fire at 23:00 UTC that runs the sweep and
+  its promo lane. Routine environment table updated; nothing in the procedure changed.
 
 - **2026-09-26 (Albert, in chat), rep rates.** New Airtable fields `Rep cost ($/sf)`,
   `Rep cost end date` (may be empty), `Rep cost note`. The promo lane prices Lightspeed at

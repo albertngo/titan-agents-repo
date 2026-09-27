@@ -135,12 +135,14 @@ that residue in one reply, but on an unattended run it is a digest, not a wait.
 Nothing changed about an action needing an id in the approval file before an
 `*-actions` agent touches it.
 
-> **⚠️ Scheduling status (2026-09-23).** The policy path has now run on real plans:
-> FAW PL-377 and PL-380, and IMPRESSIVE PL-381 (unattended on 09-22, finished by hand
-> on 09-23). **No unattended fire has yet completed both systems on one row.** The
-> routine trigger is **disabled, and stays that way** (Albert, 2026-09-23: "Not yet.
-> I'll do manual"). Make keeps creating rows, and price lists are run by hand. Do not
-> re-enable it on a session's own initiative. Detail:
+> **Scheduling status (2026-09-27).** The routine trigger is **enabled** (Albert,
+> 2026-09-27: "Routine should be up and running now"), reversing the 2026-09-23
+> "Not yet. I'll do manual". It fires on Make's `notionID` payload (extract → date
+> check → sync) and once a day with no payload (`/price-list-sweep`, which now includes
+> the promo lane), cron `0 23 * * *` UTC = 7 pm Toronto (EDT). First scheduled fire
+> 2026-09-26 23:04Z succeeded and wrote nothing (nothing was due). **No unattended fire
+> has yet completed both systems on one row.** Do not disable it, or change its
+> schedule, on a session's own initiative. Detail:
 > `methods/pricelist-pipeline-routine-prompt.md`, Routine environment and Still open.
 
 **Only two files can change the POS**: `scripts/lightspeed_write.py` and
