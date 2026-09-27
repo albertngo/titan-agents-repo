@@ -492,8 +492,10 @@ class TestOutputs(unittest.TestCase):
 
     def test_approval_refused_under_plan_only_and_lists_every_id_under_write(self):
         p = build(doc(cand(finish="Wire brushed", grade="Character")))
+        plan_only = copy.deepcopy(REG)
+        plan_only["write_mode"]["mode"] = "plan_only"
         with self.assertRaises(PermissionError):
-            plan.approval_for(p, "plans/x.json", REG)
+            plan.approval_for(p, "plans/x.json", plan_only)
         reg = copy.deepcopy(REG)
         reg["write_mode"]["mode"] = "write"
         approval = plan.approval_for(p, "plans/x.json", reg)
@@ -616,8 +618,9 @@ class TestRegistry(unittest.TestCase):
             if not key.startswith("_"):
                 self.assertEqual(fields[REG["inputs"][key]]["type"], "multipleAttachments", key)
 
-    def test_write_mode_is_plan_only_until_deliberately_changed(self):
-        self.assertEqual(REG["write_mode"]["mode"], "plan_only",
+    def test_write_mode_is_write_since_the_dated_flip(self):
+        # Flipped 2026-09-26 (Albert) after the PURELUX spot run; see the registry's _flipped note.
+        self.assertEqual(REG["write_mode"]["mode"], "write",
                          "staged rollout: flipping this is a dated decision recorded in the vault, "
                          "and this assertion is updated in the same commit")
 

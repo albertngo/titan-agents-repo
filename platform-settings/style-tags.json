@@ -6,8 +6,9 @@
   "table_id": "tblfLXD3zkSdNQGbS",
 
   "write_mode": {
-    "mode": "plan_only",
+    "mode": "write",
     "_values": ["plan_only", "write"],
+    "_flipped": "2026-09-26 (Albert, this session, after the PURELUX plan_only spot run, PR #62): 'The style tags should be in AIRTABLE' -> chose 'Write the 10' — write the tags that cleared min_confidence as AI suggested, blank fields only; held rows stay unwritten and go to the Notion review table. Vault note 05_decisions/2026-09-26-style-tags-write-mode.md still to be added (the session could not reach titan-vault).",
     "_flip": "Staged rollout, same shape as social-destinations.json write_mode. While `plan_only`, /style-tag builds the plan, the troubled CSV and the Notion report and writes NO approval file and NO Airtable record — scripts/style_tag_plan.py refuses --write-approval under it. Flipping to `write` is a dated decision recorded in the vault (05_decisions/), never an edit made to get a run through. tests/test_style_tags.py guards the value; update the test in the same commit as the flip (test_social_registry.py went stale exactly this way on 2026-09-2x)."
   },
 
