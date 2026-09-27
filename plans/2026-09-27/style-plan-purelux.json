@@ -1,0 +1,253 @@
+{
+ "contract_version": "style-plan-2",
+ "scope": "purelux",
+ "supplier": "PURELUX",
+ "run_at": "2026-09-27T00:32:43.144646-04:00",
+ "write_mode": "write",
+ "approved_by": "policy: style-tags auto-approval (v1 rubric)",
+ "inputs": [
+  {
+   "file": "ingest/2026-09-27/style-candidates-purelux.json"
+  },
+  {
+   "file": "ingest/2026-09-27/style-judgements-purelux.json"
+  },
+  {
+   "file": "ingest/2026-09-27/purelux_style_options.json"
+  }
+ ],
+ "summary": {
+  "records_in": 4,
+  "actions_total": 4,
+  "tags_total": 0,
+  "tags_by_field": {},
+  "held": 10,
+  "held_by_reason": {
+   "low_confidence": 6,
+   "spec_unmapped": 4
+  },
+  "flagged": 0,
+  "no_information": {},
+  "images_status": "downloaded",
+  "note_tags": 0,
+  "note_replacements": 0,
+  "notes_read": 0,
+  "questions_written": 4,
+  "answers_applied": 0,
+  "answers_unmatched": []
+ },
+ "actions": [
+  {
+   "id": "sty-84a43a5baa86",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "update_style_tags",
+   "record_id": "rec68f7WibC01EDrg",
+   "sku": "LVP-PLUX-0048",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Westgate (7.2\" x 9.0mm)",
+   "supplier": "PURELUX",
+   "fields": {},
+   "tags": {},
+   "overwrite": {},
+   "status_write": null,
+   "evidence_append": "",
+   "review_write": {
+    "Style questions": "❓ MISSING — answer in Style notes (type or dictate), or fill the field yourself\n• Undertone — my best guess is Cool (65%), not sure enough to write it: swatch: dark brown with a grey, smoked cast; no golden or red tones; could read Neutral. → Warm, Neutral or Cool?\n• Texture — the finish is \"Embossed in Register\", and whether that counts as Brushed is still an open question — my best guess is Brushed (60%), but I didn't write it. → Smooth, Brushed or Rustic?\n• Style — my best guess is Traditional, Rustic (60%), not sure enough to write it: dark knotty oak look with cathedral grain; room scene is a formal traditional interior; grey cast weakens Traditional. → which of Modern, Rustic, Scandinavian, Coastal, Traditional? (more than one is fine)\n• Busyness — there's no Grade on file, and a photo alone can't decide this. From the swatch it looks Moderate (70%): several knots, cathedral grain and plank-to-plank shade shifts; no heavy distressing. → Calm, Moderate or Busy?\n\n👀 TO CONFIRM — filled as AI suggested. If right, set Style tags status to Staff confirmed; if not, change the field or say so in Style notes\n• Tone depth: 4 (75%) — swatch: dark smoked-oak brown across the field; not espresso or black\n\nUpdated 2026-09-27 by /style-tag purelux"
+   },
+   "flags": []
+  },
+  {
+   "id": "sty-ee493501e29b",
+   "seq": 2,
+   "target_system": "airtable",
+   "op": "update_style_tags",
+   "record_id": "rec7yjuFmA3T4d3p1",
+   "sku": "LVP-PLUX-0051",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Wynn (7.2\" x 9.0mm)",
+   "supplier": "PURELUX",
+   "fields": {},
+   "tags": {},
+   "overwrite": {},
+   "status_write": null,
+   "evidence_append": "",
+   "review_write": {
+    "Style questions": "❓ MISSING — answer in Style notes (type or dictate), or fill the field yourself\n• Texture — the finish is \"Embossed in Register\", and whether that counts as Brushed is still an open question — my best guess is Brushed (60%), but I didn't write it. → Smooth, Brushed or Rustic?\n• Busyness — there's no Grade on file, and a photo alone can't decide this. From the swatch it looks Moderate (70%): a few small knots and cathedral grain; noticeable shade shift between planks. → Calm, Moderate or Busy?\n\n👀 TO CONFIRM — filled as AI suggested. If right, set Style tags status to Staff confirmed; if not, change the field or say so in Style notes\n• Undertone: Cool (80%) — swatch: taupe-grey / greige oak; ashy cast, no gold or red\n• Tone depth: 3 (70%) — swatch: mid grey-brown; one lighter plank; darker than a pale grey, lighter than smoked oak\n• Style: Modern (70%) — cool greige, long 1545mm plank, matte-looking, restrained grain\n\nUpdated 2026-09-27 by /style-tag purelux"
+   },
+   "flags": []
+  },
+  {
+   "id": "sty-cc35a0bb6baf",
+   "seq": 3,
+   "target_system": "airtable",
+   "op": "update_style_tags",
+   "record_id": "recFtdIbajMDEelfN",
+   "sku": "LVP-PLUX-0043",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Hansel (7.2\" x 9.0mm)",
+   "supplier": "PURELUX",
+   "fields": {},
+   "tags": {},
+   "overwrite": {},
+   "status_write": null,
+   "evidence_append": "",
+   "review_write": {
+    "Style questions": "❓ MISSING — answer in Style notes (type or dictate), or fill the field yourself\n• Texture — the finish is \"Embossed in Register\", and whether that counts as Brushed is still an open question — my best guess is Brushed (60%), but I didn't write it. → Smooth, Brushed or Rustic?\n• Busyness — there's no Grade on file, and a photo alone can't decide this. From the swatch it looks Moderate (65%): saw-mark print and shade shifts between planks; few knots; borderline Busy. → Calm, Moderate or Busy?\n\n👀 TO CONFIRM — filled as AI suggested. If right, set Style tags status to Staff confirmed; if not, change the field or say so in Style notes\n• Undertone: Neutral (70%) — swatch: taupe-brown with a slight grey wash; neither golden nor clearly ashy\n• Tone depth: 3 (75%) — swatch: mid oak brown across the field\n• Style: Rustic (70%) — saw-mark / rough-sawn visual and variation across planks\n\nUpdated 2026-09-27 by /style-tag purelux"
+   },
+   "flags": []
+  },
+  {
+   "id": "sty-bd82e207a68c",
+   "seq": 4,
+   "target_system": "airtable",
+   "op": "update_style_tags",
+   "record_id": "recoI53xCaxoNmNeM",
+   "sku": "LVP-PLUX-0052",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Aria (7.2\" x 9.0mm)",
+   "supplier": "PURELUX",
+   "fields": {},
+   "tags": {},
+   "overwrite": {},
+   "status_write": null,
+   "evidence_append": "",
+   "review_write": {
+    "Style questions": "❓ MISSING — answer in Style notes (type or dictate), or fill the field yourself\n• Texture — the finish is \"Embossed in Register\", and whether that counts as Brushed is still an open question — my best guess is Brushed (60%), but I didn't write it. → Smooth, Brushed or Rustic?\n• Busyness — there's no Grade on file, and a photo alone can't decide this. From the swatch it looks Calm (85%): uniform colour, straight fine grain, essentially no knots. → Calm, Moderate or Busy?\n\n👀 TO CONFIRM — filled as AI suggested. If right, set Style tags status to Staff confirmed; if not, change the field or say so in Style notes\n• Undertone: Neutral (70%) — swatch: sandy beige oak; a faint warm tint but no honey or amber cast\n• Tone depth: 2 (85%) — swatch: light blonde / natural oak; lighter than mid oak, not bleached\n• Style: Scandinavian, Modern, Coastal (75%) — pale, calm, neutral sandy oak on a long plank\n\nUpdated 2026-09-27 by /style-tag purelux"
+   },
+   "flags": []
+  }
+ ],
+ "held": [
+  {
+   "supplier": "PURELUX",
+   "sku": "LVP-PLUX-0048",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Westgate (7.2\" x 9.0mm)",
+   "field": "Undertone",
+   "reason": "low_confidence",
+   "proposed": "Cool",
+   "confidence": 0.65,
+   "source": "image",
+   "detail": "swatch WESTGATE.webp: dark brown with a grey, smoked cast; no golden or red tones; could read Neutral",
+   "disposition": "held",
+   "action_id": ""
+  },
+  {
+   "supplier": "PURELUX",
+   "sku": "LVP-PLUX-0048",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Westgate (7.2\" x 9.0mm)",
+   "field": "Texture",
+   "reason": "low_confidence",
+   "proposed": "Brushed",
+   "confidence": 0.6,
+   "source": "spec",
+   "detail": "Finish type \"Embossed in Register\" -> Brushed (PROVISIONAL: vinyl/laminate grain embossing is neither smooth nor brushed wood. Held at 0.6 until Albert rules on it — see methods/style-tags.md, open rulings)",
+   "disposition": "held",
+   "action_id": ""
+  },
+  {
+   "supplier": "PURELUX",
+   "sku": "LVP-PLUX-0048",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Westgate (7.2\" x 9.0mm)",
+   "field": "Style",
+   "reason": "low_confidence",
+   "proposed": [
+    "Traditional",
+    "Rustic"
+   ],
+   "confidence": 0.6,
+   "source": "both",
+   "detail": "dark knotty oak look with cathedral grain; room scene is a formal traditional interior; grey cast weakens Traditional (images: WESTGATE.webp)",
+   "disposition": "held",
+   "action_id": ""
+  },
+  {
+   "supplier": "PURELUX",
+   "sku": "LVP-PLUX-0048",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Westgate (7.2\" x 9.0mm)",
+   "field": "Busyness",
+   "reason": "spec_unmapped",
+   "proposed": "Moderate",
+   "confidence": 0.7,
+   "source": "image",
+   "detail": "no Grade; image WESTGATE.webp proposes Moderate (several knots, cathedral grain and plank-to-plank shade shifts; no heavy distressing) — an image cannot decide Busyness alone",
+   "disposition": "held",
+   "action_id": ""
+  },
+  {
+   "supplier": "PURELUX",
+   "sku": "LVP-PLUX-0051",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Wynn (7.2\" x 9.0mm)",
+   "field": "Texture",
+   "reason": "low_confidence",
+   "proposed": "Brushed",
+   "confidence": 0.6,
+   "source": "spec",
+   "detail": "Finish type \"Embossed in Register\" -> Brushed (PROVISIONAL: vinyl/laminate grain embossing is neither smooth nor brushed wood. Held at 0.6 until Albert rules on it — see methods/style-tags.md, open rulings)",
+   "disposition": "held",
+   "action_id": ""
+  },
+  {
+   "supplier": "PURELUX",
+   "sku": "LVP-PLUX-0051",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Wynn (7.2\" x 9.0mm)",
+   "field": "Busyness",
+   "reason": "spec_unmapped",
+   "proposed": "Moderate",
+   "confidence": 0.7,
+   "source": "image",
+   "detail": "no Grade; image WYNN.webp proposes Moderate (a few small knots and cathedral grain; noticeable shade shift between planks) — an image cannot decide Busyness alone",
+   "disposition": "held",
+   "action_id": ""
+  },
+  {
+   "supplier": "PURELUX",
+   "sku": "LVP-PLUX-0043",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Hansel (7.2\" x 9.0mm)",
+   "field": "Texture",
+   "reason": "low_confidence",
+   "proposed": "Brushed",
+   "confidence": 0.6,
+   "source": "spec",
+   "detail": "Finish type \"Embossed in Register\" -> Brushed (PROVISIONAL: vinyl/laminate grain embossing is neither smooth nor brushed wood. Held at 0.6 until Albert rules on it — see methods/style-tags.md, open rulings)",
+   "disposition": "held",
+   "action_id": ""
+  },
+  {
+   "supplier": "PURELUX",
+   "sku": "LVP-PLUX-0043",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Hansel (7.2\" x 9.0mm)",
+   "field": "Busyness",
+   "reason": "spec_unmapped",
+   "proposed": "Moderate",
+   "confidence": 0.65,
+   "source": "image",
+   "detail": "no Grade; image HANSEL.webp proposes Moderate (saw-mark print and shade shifts between planks; few knots; borderline Busy) — an image cannot decide Busyness alone",
+   "disposition": "held",
+   "action_id": ""
+  },
+  {
+   "supplier": "PURELUX",
+   "sku": "LVP-PLUX-0052",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Aria (7.2\" x 9.0mm)",
+   "field": "Texture",
+   "reason": "low_confidence",
+   "proposed": "Brushed",
+   "confidence": 0.6,
+   "source": "spec",
+   "detail": "Finish type \"Embossed in Register\" -> Brushed (PROVISIONAL: vinyl/laminate grain embossing is neither smooth nor brushed wood. Held at 0.6 until Albert rules on it — see methods/style-tags.md, open rulings)",
+   "disposition": "held",
+   "action_id": ""
+  },
+  {
+   "supplier": "PURELUX",
+   "sku": "LVP-PLUX-0052",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Aria (7.2\" x 9.0mm)",
+   "field": "Busyness",
+   "reason": "spec_unmapped",
+   "proposed": "Calm",
+   "confidence": 0.85,
+   "source": "image",
+   "detail": "no Grade; image ARIA.webp proposes Calm (uniform colour, straight fine grain, essentially no knots) — an image cannot decide Busyness alone",
+   "disposition": "held",
+   "action_id": ""
+  }
+ ],
+ "flagged": []
+}

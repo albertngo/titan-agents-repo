@@ -6,6 +6,16 @@
 > are the rules the scripts implement, §14 is the rubric the model judges by. The
 > blockers **B1–B3** are still live and are what the first real runs will meet.
 >
+> **Amended 2026-09-27 (Albert): review moved onto the record.** "I want to clearly see
+> what is missing; what is for me to confirm; and even do a voice note … talk through it
+> in natural language." The run now writes a `Style questions` checklist on each record;
+> Albert answers in `Style notes` (typed or dictated); a new note's clear values become
+> `reviewer_note` tags (fill a blank, or replace an AI value by compare-and-swap) and its
+> vague parts come back as questions. `Style review` (formula) drives the views. The
+> Notion page table is retired for style tags. Contract: `style-plan-2`; registry
+> `review_fields` and `note_policy`. Where this file still says "`Action` column" or
+> "page table", read "Style notes" and "Style questions".
+>
 > **Amended 2026-09-26, same day (Albert):** `Images` is now **`Swatch images`** (same
 > id), and **`Room scene images`** and **`Detail images`** exist beside it, each with a
 > description telling staff what belongs in it. §4 carries his brief line verbatim and
@@ -27,7 +37,7 @@ only an id that appears `approved` in an approval file.
 | File | Role |
 |---|---|
 | `.claude/commands/style-tag.md` | The command. Catalogue department, `kind: command`, like `/catalog-sync` |
-| `contracts/style-plan-schema.md` | `style-plan-1` (the diff), `style-approval-1` (the gate), the policy rubric, the judgement file |
+| `contracts/style-plan-schema.md` | `style-plan-2` (the diff), `style-approval-1` (the gate), the policy rubric, the judgement file |
 | `contracts/troubled-tags-schema.md` | The per-SKU-per-field exception report. Sibling of `troubled-skus-schema.md`, inherits its `Action` column rules by reference |
 | `platform-settings/style-tags.json` | Field ids, option strings, thresholds, image-kind caps, spec rule tables, `write_mode`, Notion row defaults, output names |
 | `scripts/style_tag_pull.py` | Pull, read-only: eligible records from a saved Airtable snapshot, image manifest, image download (soft-fails when the host is blocked) |

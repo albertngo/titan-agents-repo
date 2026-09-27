@@ -105,7 +105,15 @@ def build(candidates, judgements=None, answers=None, reg=REG):
 
 
 def only_action(p):
-    return p["actions"][0] if p["actions"] else None
+    """The first action that writes tags. Since 2026-09-27 every candidate also gets a
+    questions-only action (review_write) — tests of the tag policy look past those."""
+    tagged = [a for a in p["actions"] if a["fields"]]
+    return tagged[0] if tagged else None
+
+
+def review_of(p, sku="ENG-TEST-0001"):
+    """The review_write the plan makes for a record, or {}."""
+    return next((a["review_write"] for a in p["actions"] if a["sku"] == sku), {})
 
 
 def held_for(p, field, sku="ENG-TEST-0001"):
@@ -122,7 +130,7 @@ class TestContract(unittest.TestCase):
         for key in ("contract_version", "scope", "supplier", "run_at", "write_mode", "approved_by",
                     "inputs", "summary", "actions", "held", "flagged"):
             self.assertIn(key, p)
-        self.assertEqual(p["contract_version"], "style-plan-1")
+        self.assertEqual(p["contract_version"], "style-plan-2")
         a = only_action(p)
         self.assertEqual((a["target_system"], a["op"]), ("airtable", "update_style_tags"))
         for tag in a["tags"].values():
@@ -416,10 +424,12 @@ class TestEnvironmentHolds(unittest.TestCase):
         p = build(doc(c, images_status="partial"))
         self.assertEqual(held_for(p, "Undertone")[0]["reason"], "image_format_unsupported")
 
-    def test_all_held_means_no_write_at_all(self):
+    def test_all_held_means_no_tag_write_only_the_questions(self):
         p = build(doc(cand(name="Test Oak")))  # no specs, no images: only colour rows
-        self.assertEqual(p["actions"], [])
-        self.assertEqual(p["summary"]["actions_total"], 0)
+        self.assertIsNone(only_action(p))
+        (a,) = p["actions"]
+        self.assertEqual((a["fields"], a["status_write"], a["evidence_append"]), ({}, None, ""))
+        self.assertEqual(list(a["review_write"]), ["Style questions"])
         self.assertTrue(all(r["reason"] == "no_swatch" for r in p["held"]))
 
 
@@ -492,8 +502,10 @@ class TestOutputs(unittest.TestCase):
 
     def test_approval_refused_under_plan_only_and_lists_every_id_under_write(self):
         p = build(doc(cand(finish="Wire brushed", grade="Character")))
+        plan_only = copy.deepcopy(REG)
+        plan_only["write_mode"]["mode"] = "plan_only"
         with self.assertRaises(PermissionError):
-            plan.approval_for(p, "plans/x.json", REG)
+            plan.approval_for(p, "plans/x.json", plan_only)
         reg = copy.deepcopy(REG)
         reg["write_mode"]["mode"] = "write"
         approval = plan.approval_for(p, "plans/x.json", reg)
@@ -593,6 +605,160 @@ def _save_records(records):
 
 
 # ---------------------------------------------------------------------------
+# 11b. the review loop on the record (2026-09-27): Style notes in, Style questions out
+# ---------------------------------------------------------------------------
+
+def with_note(c, note="Hansel is a warm mid taupe", new=True, current=None, questions=""):
+    c = copy.deepcopy(c)
+    c["review"] = {"note": note, "note_is_new": new, "questions": questions,
+                   "note_updated": "2026-09-27T10:00:00.000Z", "note_read": None}
+    if current:
+        c["current"] = dict(current)
+        c["blank_fields"] = [f for f in c["blank_fields"] if f not in current]
+    return c
+
+
+def note_judgement(values=(), questions=()):
+    return {"sku": "ENG-TEST-0001", "from_note": {
+        "values": [{"field": f, "value": v, "quote": q} for f, v, q in values],
+        "questions": [{"field": f, "question": q} for f, q in questions]}}
+
+
+class TestReviewLoop(unittest.TestCase):
+    def plan_with(self, c, judgement):
+        return plan.build_plan(doc(c), {"records": [judgement]}, [], REG, "test", "plans/x.json")
+
+    def test_note_fills_a_blank_at_full_confidence_and_is_quoted(self):
+        p = self.plan_with(with_note(cand()), note_judgement([("Texture", "Smooth", "it feels smooth")]))
+        a = only_action(p)
+        self.assertEqual(a["fields"]["Texture"], "Smooth")
+        self.assertEqual(a["tags"]["Texture"]["source"], "reviewer_note")
+        self.assertEqual(a["tags"]["Texture"]["confidence"], 1.0)
+        self.assertIn('"it feels smooth"', a["evidence_append"])
+        self.assertIn("your note", a["evidence_append"])
+        self.assertEqual(a["overwrite"], {})
+
+    def test_note_replaces_an_ai_value_by_compare_and_swap(self):
+        c = with_note(cand(), current={"Undertone": "Neutral"})
+        p = self.plan_with(c, note_judgement([("Undertone", "warm", "a warm mid taupe")]))
+        a = only_action(p)
+        self.assertEqual(a["fields"]["Undertone"], "Warm")
+        self.assertEqual(a["overwrite"], {"Undertone": "Neutral"})
+        self.assertIn("Neutral", a["review_write"]["Style questions"])  # "(was Neutral)"
+
+    def test_note_agreeing_with_the_current_value_writes_nothing_for_it(self):
+        c = with_note(cand(), current={"Undertone": "Warm"})
+        p = self.plan_with(c, note_judgement([("Undertone", "Warm", "warm")]))
+        self.assertIsNone(only_action(p))
+
+    def test_an_old_note_is_not_re_applied(self):
+        c = with_note(cand(), new=False)
+        p = self.plan_with(c, note_judgement([("Texture", "Smooth", "smooth")]))
+        self.assertIsNone(only_action(p))
+        self.assertNotIn("Style notes read", review_of(p))
+
+    def test_a_value_that_is_not_an_option_becomes_a_question_never_a_tag(self):
+        p = self.plan_with(with_note(cand()), note_judgement([("Texture", "Silky", "silky")]))
+        self.assertIsNone(only_action(p))
+        (row,) = [r for r in held_for(p, "Texture") if r["reason"] == "note_question"]
+        self.assertIn("silky", row["detail"])
+
+    def test_vague_note_becomes_a_sharper_question(self):
+        p = self.plan_with(with_note(cand()),
+                           note_judgement(questions=[("Busyness", "You said 'a bit of character' — Moderate or Busy?")]))
+        text = review_of(p)["Style questions"]
+        self.assertIn("a bit of character", text)
+        self.assertIsNone(only_action(p))
+
+    def test_new_note_is_stamped_read(self):
+        p = self.plan_with(with_note(cand()), note_judgement())
+        self.assertIn("Style notes read", review_of(p))
+
+    def test_questions_list_missing_first_then_to_confirm(self):
+        c = with_note(cand(), new=False, current={"Undertone": "Neutral", "Tone depth": 3})
+        c["evidence_existing"] = ("AI suggested 2026-09-26 — plans/x.json\n"
+                                  "Undertone: Neutral (0.70, image: s.webp) — swatch s.webp: taupe")
+        p = plan.build_plan(doc(c), None, [], REG, "test", "plans/x.json")
+        text = review_of(p)["Style questions"]
+        self.assertTrue(text.startswith("❓ MISSING"))
+        self.assertLess(text.index("MISSING"), text.index("TO CONFIRM"))
+        self.assertIn("• Undertone: Neutral (70%)", text)
+        self.assertIn("→ Calm, Moderate or Busy?", text)
+        self.assertIn("→ 1 (lightest) to 5 (darkest)?", plan.ask_options("Tone depth", REG) and
+                      "→ " + plan.ask_options("Tone depth", REG))
+
+    def test_nothing_missing_says_so(self):
+        full = {"Undertone": "Warm", "Tone depth": 3, "Texture": "Smooth", "Style": ["Modern"], "Busyness": "Calm"}
+        c = with_note(cand(), new=False, current=full, questions="❓ MISSING — old")
+        p = plan.build_plan(doc(c), None, [], REG, "test", "plans/x.json")
+        text = review_of(p)["Style questions"]
+        self.assertTrue(text.startswith("✅ Nothing missing."))
+        self.assertNotIn("MISSING", text)
+
+    def test_unchanged_questions_are_not_rewritten(self):
+        c = with_note(cand(), new=False)
+        first = review_of(plan.build_plan(doc(c), None, [], REG, "test", "plans/x.json"))["Style questions"]
+        c["review"]["questions"] = first
+        self.assertEqual(plan.build_plan(doc(c), None, [], REG, "test", "plans/x.json")["actions"], [])
+
+    def test_questions_only_action_ids_differ_by_content(self):
+        c = with_note(cand(), new=False)
+        a = plan.build_plan(doc(c), None, [], REG, "test", "plans/x.json")["actions"][0]["id"]
+        c2 = copy.deepcopy(c)
+        c2["specs"]["Finish type"] = "Wire brushed"
+        b = plan.build_plan(doc(c2), None, [], REG, "test", "plans/x.json")["actions"][0]["id"]
+        self.assertNotEqual(a, b)
+
+
+class TestPullReview(unittest.TestCase):
+    def rec(self, **cells):
+        base = {REG["inputs"]["SKU"]: "ENG-TEST-0001", REG["inputs"]["Active"]: True,
+                REG["inputs"]["Category"]: {"id": "c", "name": "LVP", "color": "x"},
+                REG["inputs"]["Finish type"]: {"id": "f", "name": "Matte", "color": "x"}}
+        base.update(cells)
+        return {"id": "rec0001", "cellValuesByFieldId": base}
+
+    def load(self, rec):
+        import tempfile as tf
+        with tf.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "s.json"
+            path.write_text(json.dumps({"records": [rec]}))
+            return pull.candidate_from(pull.load_snapshot([path], REG)[0], REG)
+
+    def full_cells(self):
+        t = REG["targets"]
+        return {t["Undertone"]["id"]: {"id": "u", "name": "Warm", "color": "x"}, t["Tone depth"]["id"]: 3,
+                t["Texture"]["id"]: {"id": "t", "name": "Smooth", "color": "x"},
+                t["Style"]["id"]: [{"id": "s", "name": "Modern", "color": "x"}],
+                t["Busyness"]["id"]: {"id": "b", "name": "Calm", "color": "x"}}
+
+    def test_fully_filled_record_is_skipped_without_a_new_note(self):
+        cand_, why = self.load(self.rec(**self.full_cells()))
+        self.assertEqual((cand_, why), (None, "nothing_blank"))
+
+    def test_fully_filled_record_with_a_new_note_is_a_candidate(self):
+        rf = REG["review_fields"]
+        cells = {**self.full_cells(), rf["notes"]["id"]: "actually it's cool",
+                 rf["notes_updated"]["id"]: "2026-09-27T12:00:00.000Z",
+                 rf["notes_read"]["id"]: "2026-09-27T11:00:00.000Z"}
+        cand_, _ = self.load(self.rec(**cells))
+        self.assertTrue(cand_["review"]["note_is_new"])
+        self.assertEqual(cand_["current"]["Undertone"], "Warm")
+
+    def test_note_already_read_is_not_new(self):
+        rf = REG["review_fields"]
+        cells = {rf["notes"]["id"]: "cool", rf["notes_updated"]["id"]: "2026-09-27T10:00:00.000Z",
+                 rf["notes_read"]["id"]: "2026-09-27T11:00:00.000Z"}
+        cand_, _ = self.load(self.rec(**cells))
+        self.assertFalse(cand_["review"]["note_is_new"])
+
+    def test_stale_missing_questions_bring_a_filled_record_back(self):
+        rf = REG["review_fields"]
+        cand_, _ = self.load(self.rec(**{**self.full_cells(), rf["questions"]["id"]: "❓ MISSING — Texture"}))
+        self.assertIsNotNone(cand_)
+
+
+# ---------------------------------------------------------------------------
 # 12. registry <-> schema, write_mode guard, read-only guard
 # ---------------------------------------------------------------------------
 
@@ -616,8 +782,9 @@ class TestRegistry(unittest.TestCase):
             if not key.startswith("_"):
                 self.assertEqual(fields[REG["inputs"][key]]["type"], "multipleAttachments", key)
 
-    def test_write_mode_is_plan_only_until_deliberately_changed(self):
-        self.assertEqual(REG["write_mode"]["mode"], "plan_only",
+    def test_write_mode_is_write_since_the_dated_flip(self):
+        # Flipped 2026-09-26 (Albert) after the PURELUX spot run; see the registry's _flipped note.
+        self.assertEqual(REG["write_mode"]["mode"], "write",
                          "staged rollout: flipping this is a dated decision recorded in the vault, "
                          "and this assertion is updated in the same commit")
 
@@ -688,7 +855,7 @@ class TestProse(unittest.TestCase):
         self.assertIn("carry nothing", section)
 
     def test_plan_contract_states_the_gate_and_the_policy(self):
-        self.assertIn("style-plan-1", self.plan_contract)
+        self.assertIn("style-plan-2", self.plan_contract)
         self.assertIn("style-approval-1", self.plan_contract)
         self.assertIn("Absence of an approval file means nothing is approved", self.plan_contract)
         self.assertIn("Staff confirmed", self.plan_contract)

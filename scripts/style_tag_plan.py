@@ -8,6 +8,8 @@ contracts/style-plan-schema.md:
     judgements   the model's structured read of each candidate's images + specs
                  (contracts/style-plan-schema.md, "The judgement file"); optional
     answers      reviewer `Action` cells read back from the Notion page table; optional
+                 (legacy: since 2026-09-27 the reviewer answers in the record's own
+                 `Style notes`, which the model reads into the judgement file's `from_note`)
 
 and emits
 
@@ -52,7 +54,7 @@ from zoneinfo import ZoneInfo
 REPO_ROOT = Path(__file__).resolve().parent.parent
 REGISTRY = REPO_ROOT / "platform-settings" / "style-tags.json"
 TZ = ZoneInfo("America/Toronto")
-CONTRACT_VERSION = "style-plan-1"
+CONTRACT_VERSION = "style-plan-2"  # 2: review_write + overwrite per action; questions-only actions
 APPROVAL_VERSION = "style-approval-1"
 TARGET_SYSTEM = "airtable"
 OP = "update_style_tags"
@@ -81,9 +83,13 @@ def words(text):
     return set(re.findall(r"[a-z]+", (text or "").lower()))
 
 
-def action_id(sku, fields):
-    raw = f"{sku}|{TARGET_SYSTEM}|{OP}|{','.join(sorted(fields))}".encode()
-    return "sty-" + hashlib.sha1(raw).hexdigest()[:12]
+def action_id(sku, fields, content=None):
+    """Stable for the same writes (so an interrupted run resumes), different when what is written
+    differs (so a later run's questions-only action is not mistaken for an executed one)."""
+    raw = f"{sku}|{TARGET_SYSTEM}|{OP}|{','.join(sorted(fields))}"
+    if content is not None:
+        raw += "|" + json.dumps(content, sort_keys=True, ensure_ascii=False, default=str)
+    return "sty-" + hashlib.sha1(raw.encode()).hexdigest()[:12]
 
 
 def canonical_option(field, value, reg):
@@ -445,15 +451,78 @@ def resolve_style(cand, judgement, reg):
                                   image=names), reg)
 
 
+def same_value(a, b):
+    if isinstance(a, list) or isinstance(b, list):
+        return {str(x).lower() for x in (a or [])} == {str(x).lower() for x in (b or [])}
+    return str(a).strip().lower() == str(b).strip().lower()
+
+
+def note_answers(cand, judgement, reg):
+    """What Albert's `Style notes` clearly said, as read by the model into `from_note`.
+    ({field: {"value", "quote"} | {"invalid", "quote"}}, [{"field", "question"}]).
+    Only a note that is NEW since the last run read it counts; an old one is already applied."""
+    review = cand.get("review") or {}
+    fn = (judgement or {}).get("from_note") or {}
+    if not review.get("note_is_new") or not fn:
+        return {}, []
+    out = {}
+    for v in fn.get("values", []):
+        field = field_by_name(v.get("field", ""), reg)
+        quote = (v.get("quote") or "").strip()
+        if not field:
+            continue
+        raw = v.get("value")
+        if reg["targets"][field]["type"] == "multipleSelects":
+            raws = raw if isinstance(raw, list) else [raw]
+            canon = [canonical_option(field, x, reg) for x in raws]
+            ok = raws and all(canon)
+            value = canon if ok else None
+        else:
+            value = canonical_option(field, raw, reg)
+            ok = value is not None
+        out[field] = {"value": value, "quote": quote} if ok else {"invalid": raw, "quote": quote}
+    questions = [{"field": field_by_name(q.get("field", ""), reg), "question": q.get("question", "").strip()}
+                 for q in fn.get("questions", []) if (q.get("question") or "").strip()]
+    return out, questions
+
+
 def resolve_record(cand, judgement, answers, reg, images_status):
-    """(approved {field: tag}, held rows, no_information fields) for one candidate."""
-    approved, held, quiet = {}, [], []
+    """(approved {field: tag}, held rows, no_information fields, overwrite {field: expected current})
+    for one candidate. A clear value in Albert's new note is decided first: it fills a blank and may
+    replace an AI-suggested value (compare-and-swap on the value the snapshot showed)."""
+    approved, held, quiet, overwrite = {}, [], [], {}
+    current = cand.get("current") or {}
+    note_vals, note_qs = note_answers(cand, judgement, reg)
+    policy = reg.get("note_policy") or {}
+    for field in target_names(reg):
+        nv = note_vals.get(field)
+        if not nv:
+            continue
+        if "invalid" in nv:
+            held.append({"field": field, **_held(
+                "note_question", None, None, "reviewer_note",
+                f'you said "{nv["quote"] or nv["invalid"]}", but {nv["invalid"]!r} is not one of the '
+                f"{field} options")})
+            continue
+        evidence = f'your note: "{nv["quote"]}"' if nv["quote"] else "your note"
+        if field in cand["blank_fields"]:
+            approved[field] = _tag(nv["value"], policy.get("confidence", 1.0), "reviewer_note", evidence)
+        elif field in current and not same_value(current[field], nv["value"]) \
+                and policy.get("may_replace_ai_suggested"):
+            approved[field] = _tag(nv["value"], policy.get("confidence", 1.0), "reviewer_note",
+                                   f"replaces {value_text(current[field])}; {evidence}")
+            overwrite[field] = current[field]
+    for q in note_qs:
+        held.append({"field": q["field"] or "Style notes", **_held(
+            "note_question", None, None, "reviewer_note", q["question"])})
     for m in misfiled(cand, judgement):
         held.append({"field": "Swatch images", **_held(
             "image_misfiled", None, None, "image",
             f"{m['filename']} looks like a {m['looks_like']}, not a swatch; nothing was read from it. "
             f"Move it to the right field. {m['note']}".strip())})
     for field in cand["blank_fields"]:
+        if field in approved:
+            continue
         answer = answers.get((cand["sku"], field))
         if answer:
             if answer["kind"] == "skip":
@@ -482,7 +551,7 @@ def resolve_record(cand, judgement, answers, reg, images_status):
             held.append({"field": field, **payload})
         else:
             quiet.append(field)
-    return approved, held, quiet
+    return approved, held, quiet, overwrite
 
 
 # ---------------------------------------------------------------------------
@@ -498,6 +567,8 @@ def source_label(tag):
         return "spec"
     if tag["source"] == "reviewer":
         return "reviewer"
+    if tag["source"] == "reviewer_note":
+        return "your note"
     if tag["source"] == "image":
         return f"image: {tag.get('image') or ''}".rstrip(": ")
     return f"spec + image {tag.get('image') or ''}".rstrip()
@@ -512,6 +583,153 @@ def evidence_block(plan_path, tags, reg):
     return "\n".join(lines)
 
 
+# ---------------------------------------------------------------------------
+# Style questions — the plain-English checklist written onto the record
+# ---------------------------------------------------------------------------
+
+MISSING_MARK = "MISSING"  # style_tag_pull.MISSING_MARK: a record whose questions still hold it is re-pulled
+EVIDENCE_LINE = re.compile(r"^(?P<field>[A-Za-z ]+): (?P<value>.+?) \((?P<conf>\d\.\d\d), (?P<src>[^)]*)\) — (?P<why>.*)$")
+
+
+def earlier_tags(evidence_text, reg):
+    """{field: {"confidence", "source", "why"}} from the evidence earlier runs appended — the last
+    line per field wins. Lets the checklist show how sure an earlier run was."""
+    out = {}
+    names = set(target_names(reg))
+    for line in (evidence_text or "").splitlines():
+        m = EVIDENCE_LINE.match(line.strip())
+        if m and m.group("field") in names:
+            out[m.group("field")] = {"confidence": float(m.group("conf")), "source": m.group("src"),
+                                     "why": m.group("why")}
+    return out
+
+
+def ask_options(field, reg):
+    t = reg["targets"][field]
+    if t["type"] == "rating":
+        return f"{t['min']} (lightest) to {t['max']} (darkest)?"
+    opts = t["options"]
+    if t["type"] == "multipleSelects":
+        return "which of " + ", ".join(opts) + "? (more than one is fine)"
+    return ", ".join(opts[:-1]) + f" or {opts[-1]}?"
+
+
+def _pct(conf):
+    return f"{round(conf * 100)}%" if isinstance(conf, (int, float)) else ""
+
+
+def _clean(detail):
+    """Detail/evidence text minus what a reviewer does not need: rule-table bookkeeping,
+    image filenames (the photo is on the record), `(images: …)` suffixes."""
+    d = re.sub(r"\s*\(PROVISIONAL:[^)]*\)", "", detail or "")
+    d = re.sub(r"\s*— see methods/[^)]*", "", d)
+    d = re.sub(r"\s*\(images: [^)]*\)", "", d)
+    d = re.sub(r"\b(swatch|image|detail image) [^\s:;,()]+\.(?:webp|jpe?g|png|heic|tiff?)\b", r"\1", d, flags=re.I)
+    return d.replace(" -> ", " → ").replace("|", ", ").strip().rstrip(".")
+
+
+def _sentence(text):
+    text = text.strip()
+    return text if text.endswith((".", "?", "!")) else text + "."
+
+
+def explain_held(row):
+    """One sentence per held row, for Style questions."""
+    reason, p, c = row["reason"], row.get("proposed"), row.get("confidence")
+    shown = value_text(p).replace("|", ", ") if p not in (None, "", []) else ""
+    guess = f"my best guess is {shown} ({_pct(c)})" if shown and c is not None else ""
+    detail = _clean(row.get("detail", ""))
+    provisional = "PROVISIONAL" in (row.get("detail") or "")
+    finish = re.search(r'Finish type "([^"]+)"', row.get("detail") or "")
+    if provisional and finish:
+        return (f'the finish is "{finish.group(1)}", and whether that counts as {shown} is still an open '
+                f"question — {guess}, but I didn't write it")
+    no_grade = re.match(r"no Grade; image \S+ proposes (\w+) \((.*)\) — an image cannot decide", row.get("detail") or "")
+    if reason == "spec_unmapped" and no_grade:
+        return (f"there's no Grade on file, and a photo alone can't decide this. From the swatch it looks "
+                f"{no_grade.group(1)} ({_pct(c)}): {no_grade.group(2)}")
+    if reason == "note_question":
+        return detail
+    if reason == "reviewer_skipped":
+        return "you said skip, so I won't ask again"
+    if reason == "answer_unparsed":
+        return f"I couldn't use your answer — {detail}"
+    if reason == "spec_image_conflict":
+        return f"the specs and the photo disagree — {detail}"
+    if reason in ("no_swatch", "image_host_blocked", "image_format_unsupported"):
+        hint = f"; the name hints {value_text(p)}, not enough on its own" if p not in (None, "", []) else ""
+        return f"I need a usable photo in Swatch images to judge colour ({detail}){hint}"
+    if reason == "needs_image":
+        return f"there's no swatch or room photo to judge from; the specs alone suggest {shown}"
+    if reason == "image_misfiled":
+        return detail
+    if reason == "spec_unmapped":
+        return detail + (f"; {guess}" if guess and shown not in detail else "")
+    # low_confidence and anything new
+    why = f": {detail}" if detail else ""
+    return f"{guess or 'not sure'}, not sure enough to write it{why}"
+
+
+def render_questions(cand, approved, held, quiet, overwrite, reg, scope, note_read_at=None):
+    """The `Style questions` text: MISSING first (with a guess and why, and the options), then
+    TO CONFIRM (everything filled as AI suggested), then what the note changed."""
+    current = dict(cand.get("current") or {})
+    final = {**current, **{f: t["value"] for f, t in approved.items()}}
+    earlier = earlier_tags(cand.get("evidence_existing"), reg)
+    by_field = {}
+    other = []
+    for row in held:
+        if row["field"] in reg["targets"]:
+            by_field.setdefault(row["field"], []).append(row)
+        else:
+            other.append(row)
+    lines = []
+    missing = [f for f in target_names(reg) if f not in final]
+    if missing or other:
+        lines.append(f"❓ {MISSING_MARK} — answer in Style notes (type or dictate), or fill the field yourself")
+        for f in missing:
+            rows = by_field.get(f) or []
+            if rows:
+                said = "; ".join(explain_held(r) for r in rows)
+            elif f in quiet:
+                said = "nothing to go on yet (no spec or photo that decides it)"
+            else:
+                said = "not decided yet"
+            lines.append(f"• {f} — {_sentence(said)} → {ask_options(f, reg)}")
+        for row in other:
+            lines.append(f"• {row['field']} — {_sentence(explain_held(row))}")
+    else:
+        lines.append("✅ Nothing missing.")
+    filled = [f for f in target_names(reg) if f in final]
+    if filled:
+        lines.append("")
+        lines.append("👀 TO CONFIRM — filled as AI suggested. If right, set Style tags status to Staff "
+                     "confirmed; if not, change the field or say so in Style notes")
+        for f in filled:
+            if f in approved:
+                t = approved[f]
+                how = "from your note" if t["source"] == "reviewer_note" else f"{_pct(t['confidence'])}"
+                why = t["evidence"]
+            elif f in earlier:
+                how, why = _pct(earlier[f]["confidence"]), earlier[f]["why"]
+            else:
+                how, why = "set earlier", ""
+            why = _clean(why)
+            note = f" — {why}" if why and not why.startswith("your note") else ""
+            lines.append(f"• {f}: {value_text(final[f]).replace('|', ', ')} ({how}){note}")
+    noted = [f for f, t in approved.items() if t["source"] == "reviewer_note"]
+    if noted:
+        lines.append("")
+        lines.append("🎙 FROM YOUR NOTE")
+        for f in noted:
+            was = f" (was {value_text(overwrite[f]).replace('|', ', ')})" if f in overwrite else ""
+            lines.append(f"• {f} → {value_text(approved[f]['value']).replace('|', ', ')}{was} — "
+                         f"{approved[f]['evidence'].split('; ')[-1]}")
+    lines.append("")
+    lines.append(f"Updated {today()} by /style-tag {scope}")
+    return "\n".join(lines)
+
+
 def build_plan(candidates_doc, judgements_doc, answers_rows, reg, scope=None, plan_path=None):
     scope = scope or candidates_doc.get("scope") or "unknown"
     plan_path = plan_path or reg["outputs"]["plan"].format(date=today(), scope=scope)
@@ -523,7 +741,8 @@ def build_plan(candidates_doc, judgements_doc, answers_rows, reg, scope=None, pl
     actions, held_rows, flagged_rows = [], [], []
     quiet_total, used_answers = Counter(), set()
     for cand in candidates_doc.get("candidates", []):
-        approved, held, quiet = resolve_record(cand, judgements.get(cand["sku"]), answers, reg, images_status)
+        approved, held, quiet, overwrite = resolve_record(cand, judgements.get(cand["sku"]), answers, reg,
+                                                          images_status)
         for field in cand["blank_fields"]:
             if (cand["sku"], field) in answers:
                 used_answers.add((cand["sku"], field))
@@ -532,9 +751,22 @@ def build_plan(candidates_doc, judgements_doc, answers_rows, reg, scope=None, pl
                 "product_name": cand.get("product_name", "")}
         for row in held:
             held_rows.append({**base, **row, "disposition": "held", "action_id": ""})
-        if not approved:
+        review_write = {}
+        rf = reg.get("review_fields")
+        if rf:
+            review_write[rf["questions"]["name"]] = render_questions(cand, approved, held, quiet, overwrite,
+                                                                     reg, scope)
+            if (cand.get("review") or {}).get("note_is_new"):
+                review_write[rf["notes_read"]["name"]] = datetime.now(TZ).isoformat(timespec="seconds")
+            if review_write.get(rf["questions"]["name"]) == (cand.get("review") or {}).get("questions") \
+                    and len(review_write) == 1:
+                review_write = {}  # nothing changed; no write
+        if not approved and not review_write:
             continue
-        aid = action_id(cand["sku"], approved.keys())
+        fields = {f: approved[f]["value"] for f in target_names(reg) if f in approved}
+        content = {"fields": fields, "overwrite": overwrite,
+                   "questions": review_write.get(rf["questions"]["name"]) if rf else None}
+        aid = action_id(cand["sku"], approved.keys(), content if rf else None)
         action = {
             "id": aid,
             "seq": len(actions) + 1,
@@ -544,10 +776,12 @@ def build_plan(candidates_doc, judgements_doc, answers_rows, reg, scope=None, pl
             "sku": cand["sku"],
             "product_name": cand.get("product_name", ""),
             "supplier": base["supplier"],
-            "fields": {f: approved[f]["value"] for f in target_names(reg) if f in approved},
+            "fields": fields,
             "tags": {f: approved[f] for f in target_names(reg) if f in approved},
-            "status_write": None if cand.get("status") else reg["status_field"]["run_writes"],
-            "evidence_append": evidence_block(plan_path, approved, reg),
+            "overwrite": overwrite,
+            "status_write": None if (cand.get("status") or not approved) else reg["status_field"]["run_writes"],
+            "evidence_append": evidence_block(plan_path, approved, reg) if approved else "",
+            "review_write": review_write,
             "flags": [],
         }
         for field, tag in approved.items():
@@ -579,6 +813,10 @@ def build_plan(candidates_doc, judgements_doc, answers_rows, reg, scope=None, pl
             "flagged": len(flagged_rows),
             "no_information": dict(quiet_total),
             "images_status": images_status,
+            "note_tags": sum(1 for a in actions for t in a["tags"].values() if t["source"] == "reviewer_note"),
+            "note_replacements": sum(len(a.get("overwrite") or {}) for a in actions),
+            "notes_read": sum(1 for a in actions if len(a.get("review_write") or {}) > 1),
+            "questions_written": sum(1 for a in actions if a.get("review_write")),
             "answers_applied": len(used_answers),
             "answers_unmatched": unmatched,
         },
@@ -717,6 +955,9 @@ def main(argv=None):
     print(f"  actions      {s['actions_total']}   tags {s['tags_total']} {s['tags_by_field']}")
     print(f"  held         {s['held']} {s['held_by_reason']}")
     print(f"  flagged      {s['flagged']}")
+    if "questions_written" in s:
+        print(f"  review       questions on {s['questions_written']} records; notes read {s['notes_read']}; "
+              f"note tags {s['note_tags']} (replacing {s['note_replacements']} AI values)")
     if s["no_information"]:
         print(f"  no info      {s['no_information']}   (blank field, nothing to say; no row)")
     if s["answers_unmatched"]:

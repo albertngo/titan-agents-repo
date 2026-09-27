@@ -1,5 +1,13 @@
 # Troubled Tags Contract — troubled-tags-1
 
+> **2026-09-27: the Notion side of this contract is retired for new runs.** Review moved
+> onto the Airtable record (`Style notes` in, `Style questions` out — see
+> `contracts/style-plan-schema.md`, "Version 2"). The CSV below is still written by
+> `scripts/style_tag_plan.py --troubled-out` and committed as the run's audit copy, but
+> it is no longer attached to `Troubled Files` or rendered as a page table, and the
+> `Action` grammar is only read for the 2026-09-26 PURELUX row.
+
+
 The exception report for one `/style-tag` run. One CSV per scope per run:
 
 ```

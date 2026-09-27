@@ -6,8 +6,9 @@
   "table_id": "tblfLXD3zkSdNQGbS",
 
   "write_mode": {
-    "mode": "plan_only",
+    "mode": "write",
     "_values": ["plan_only", "write"],
+    "_flipped": "2026-09-26 (Albert, this session, after the PURELUX plan_only spot run, PR #62): 'The style tags should be in AIRTABLE' -> chose 'Write the 10' — write the tags that cleared min_confidence as AI suggested, blank fields only; held rows stay unwritten and go to the Notion review table. Vault note: 05_decisions/2026-09-26-style-tags-write-mode.md.",
     "_flip": "Staged rollout, same shape as social-destinations.json write_mode. While `plan_only`, /style-tag builds the plan, the troubled CSV and the Notion report and writes NO approval file and NO Airtable record — scripts/style_tag_plan.py refuses --write-approval under it. Flipping to `write` is a dated decision recorded in the vault (05_decisions/), never an edit made to get a run through. tests/test_style_tags.py guards the value; update the test in the same commit as the flip (test_social_registry.py went stale exactly this way on 2026-09-2x)."
   },
 
@@ -31,6 +32,26 @@
     "name": "Style tags evidence",
     "id": "flduKhIN0PBEmnOMJ",
     "_note": "Appended, never replaced: existing text + newline + this run's block. Block = header line `AI suggested <date> — <plan path>` then one line per written tag `Field: Value (confidence, source[: image filename]) — evidence`. No tag is written without an evidence line."
+  },
+
+  "review_fields": {
+    "_comment": "The review loop lives on the product record (Albert, 2026-09-27: 'I want to clearly see what is missing; what is for me to confirm; and even do a voice note ... talk through it in natural language'). Created 2026-09-27 via the Airtable connector. Staff-only working fields; titan-desk does not mirror them. `owner` says who may write: `person` = the run NEVER writes it; `run` = the run owns it and may overwrite it every run; `computed` = Airtable computes it, nobody writes it.",
+    "notes":         {"name": "Style notes",         "id": "fldByhlIE5gHZnpfZ", "owner": "person",   "_note": "Free text, typed or dictated with the phone keyboard mic. The run reads it when it changed since `notes_read`, and the model turns what it clearly says into tags (source `reviewer_note`, quoted in the evidence)."},
+    "questions":     {"name": "Style questions",     "id": "fldjSMDupKbxCaU5O", "owner": "run",      "_note": "Plain-English checklist rendered by scripts/style_tag_plan.py (render_questions): what is missing with the best guess and why, then what is filled as AI suggested. Rewritten every run."},
+    "notes_read":    {"name": "Style notes read",    "id": "fldJdEG2rDaF9bHCv", "owner": "run",      "_note": "dateTime, America/Toronto. Stamped when the run read a new note."},
+    "notes_updated": {"name": "Style notes updated", "id": "fldocCz0w91UHnOhk", "owner": "computed", "_note": "lastModifiedTime on Style notes only."},
+    "review":        {"name": "Style review",        "id": "fldaxg4i9abc75a00", "owner": "computed", "values": ["Needs your input", "Note waiting", "Ready to confirm", "Confirmed"], "_note": "Formula: Confirmed (Staff confirmed) > Note waiting (notes edited after notes_read) > Needs your input (any of the five tag fields blank) > Ready to confirm. Blank until the run or a person touches the record."}
+  },
+  "review_interface": {
+    "_comment": "Airtable Interface 'Style review' (created 2026-09-27 via the connector, published). One record-review page: list on the left (swatch thumbnail, product name, Style review), the record on the right (swatch, Style review, Style questions, Style notes, the five tags, status, room + detail photos, SKU, Finish type, Grade, evidence). Scoped to records whose Style review is not blank; tabs Needs your input / Note waiting / Ready to confirm / Confirmed; grouped by Supplier. The run's PushNotification links here.",
+    "interface_id": "pbdRxww3256ZauQWV",
+    "page_id": "pagpMN8hMuVZLniSB",
+    "url": "https://airtable.com/appWHOVZ0QCS0xQ3M/pagpMN8hMuVZLniSB"
+  },
+  "note_policy": {
+    "_comment": "What a reviewer note may do (Albert, 2026-09-27). A value the note CLEARLY states is a reviewer answer: it fills a blank field, and it may REPLACE a value the run wrote earlier (the record is still AI suggested), because a person said so. It never touches a Staff confirmed record (those are not candidates at all). A replacement is compare-and-swap: the action carries the value the plan saw, and the writer drops the field if Airtable holds anything else by write time. Anything vague becomes a sharper question in Style questions, never a guess. A note that speaks for many records ('all Journey EIR is smooth') is proposed as a rule-table change in the run's PR, never applied catalogue-wide by the run.",
+    "confidence": 1.0,
+    "may_replace_ai_suggested": true
   },
 
   "inputs": {
@@ -140,6 +161,7 @@
   "_style_note": "Style is the model's judgement over specs + swatch + room scene images (D6: the session model writes the judgement file; contracts/style-plan-schema.md 'The judgement file'). The rubric it follows is prose in methods/style-tags.md; the script only thresholds, caps and validates.",
 
   "notion_row": {
+    "_retired": "2026-09-27 (Albert): the review loop moved onto the Airtable record (review_fields). New runs write no Notion row, table or Troubled Files for style tags; the end-of-run PushNotification points at the Airtable `Style review` view instead. The PURELUX row created 2026-09-26 stays as the record of the first run. Kept below for that row's history only.",
     "_comment": "D1 (2026-09-26): one STANDING row per scope in the Price Lists database — data_source from platform-settings/pricelist-sources.json -> price_lists.data_source, property names from its read_properties / write_properties. Found by title; created on the first run; Troubled Files and the page table replaced each run with Action cells carried forward.",
     "title_format": "Style tags — {supplier}",
     "tag": "Style Tags",
@@ -170,6 +192,6 @@
   },
 
   "troubled_columns": ["supplier", "sku", "product_name", "field", "reason", "disposition", "proposed", "confidence", "source", "detail", "action_id", "Action"],
-  "held_reasons": ["low_confidence", "spec_image_conflict", "no_swatch", "image_host_blocked", "image_format_unsupported", "spec_unmapped", "needs_image", "answer_unparsed", "image_misfiled", "reviewer_skipped"],
+  "held_reasons": ["low_confidence", "spec_image_conflict", "no_swatch", "image_host_blocked", "image_format_unsupported", "spec_unmapped", "needs_image", "answer_unparsed", "image_misfiled", "reviewer_skipped", "note_question"],
   "flagged_reasons": ["spec_rule_provisional"]
 }

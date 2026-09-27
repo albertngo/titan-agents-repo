@@ -163,8 +163,13 @@ images, marks them `AI suggested`, and leaves staff to confirm. Same shape as
 `/catalog-sync`: `scripts/style_tag_pull.py` (read-only) → the session model's
 judgement file → `scripts/style_tag_plan.py` (read-only, deterministic) → a policy
 approval file → `airtable-actions-agent` (`airtable_update_style_tags`, blank fields
-only, read-before-write) → a troubled-tags CSV and page table on a standing Notion
-row plus a PushNotification. Contracts: `contracts/style-plan-schema.md`,
+only, read-before-write) → a plain-English `Style questions` checklist on each record
+plus a PushNotification. **Review happens on the record (2026-09-27, Albert):** he
+answers in `Style notes` (typed or dictated); the next run turns what a new note clearly
+says into tags (it may replace an earlier `AI suggested` value, compare-and-swap) and
+puts anything vague back as a question. The `Style review` formula sorts records into
+`Needs your input` / `Note waiting` / `Ready to confirm` / `Confirmed`. The Notion page
+table is retired for style tags. Contracts: `contracts/style-plan-schema.md`,
 `contracts/troubled-tags-schema.md`; registry `platform-settings/style-tags.json`;
 method and rubric `methods/style-tags.md`.
 

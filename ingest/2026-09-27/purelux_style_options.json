@@ -1,0 +1,212 @@
+{
+ "tables": [
+  {
+   "tableId": "tblfLXD3zkSdNQGbS",
+   "fields": [
+    {
+     "id": "fldrOvSEzOoxyNSpC",
+     "type": "singleSelect",
+     "config": {
+      "choices": [
+       {
+        "id": "selBrZOcMJaa2aXQz",
+        "name": "Warm",
+        "color": "orangeLight2"
+       },
+       {
+        "id": "selvrUAkx6UfMfpZ3",
+        "name": "Neutral",
+        "color": "grayLight2"
+       },
+       {
+        "id": "selwNQsOaVLt92NGV",
+        "name": "Cool",
+        "color": "blueLight2"
+       }
+      ]
+     }
+    },
+    {
+     "id": "fldjlGQSOwPGJfEcA",
+     "type": "rating",
+     "config": {
+      "icon": "dot",
+      "max": 5,
+      "color": "grayBright"
+     }
+    },
+    {
+     "id": "fldCH08dVkm48BoiD",
+     "type": "singleSelect",
+     "config": {
+      "choices": [
+       {
+        "id": "seleDxAeCmDjfdob8",
+        "name": "Smooth",
+        "color": "grayLight2"
+       },
+       {
+        "id": "sel8ez8daR9uY5vVl",
+        "name": "Brushed",
+        "color": "grayLight2"
+       },
+       {
+        "id": "sel5CfAyy6XgPJhtR",
+        "name": "Rustic",
+        "color": "grayLight2"
+       }
+      ]
+     }
+    },
+    {
+     "id": "fldMN7qErzn39NFcY",
+     "type": "multipleSelects",
+     "config": {
+      "choices": [
+       {
+        "id": "selsh6kIEPjdg1o75",
+        "name": "Modern",
+        "color": "grayLight2"
+       },
+       {
+        "id": "selSZ4lfmtuE8oT9y",
+        "name": "Rustic",
+        "color": "grayLight2"
+       },
+       {
+        "id": "sel4iTVlNn7NWhJeF",
+        "name": "Scandinavian",
+        "color": "grayLight2"
+       },
+       {
+        "id": "selXdLVWuZc67TN50",
+        "name": "Coastal",
+        "color": "grayLight2"
+       },
+       {
+        "id": "sel1Q2lQTaTANIT3j",
+        "name": "Traditional",
+        "color": "grayLight2"
+       }
+      ]
+     }
+    },
+    {
+     "id": "fldRMUIPEXOxvp7Xk",
+     "type": "singleSelect",
+     "config": {
+      "choices": [
+       {
+        "id": "sel7LCqNOSukRm0iW",
+        "name": "Calm",
+        "color": "grayLight2"
+       },
+       {
+        "id": "sel7IbuZaQTHCdYxY",
+        "name": "Moderate",
+        "color": "grayLight2"
+       },
+       {
+        "id": "seldaPgJ0WtL9tMyh",
+        "name": "Busy",
+        "color": "grayLight2"
+       }
+      ]
+     }
+    },
+    {
+     "id": "fldFEZIuna04JLFCr",
+     "type": "singleSelect",
+     "config": {
+      "choices": [
+       {
+        "id": "sel9LDoDaiCu795lO",
+        "name": "AI suggested",
+        "color": "yellowLight2"
+       },
+       {
+        "id": "selLPFzet0xTMkdOn",
+        "name": "Staff confirmed",
+        "color": "greenLight2"
+       }
+      ]
+     }
+    },
+    {
+     "id": "flduKhIN0PBEmnOMJ",
+     "type": "multilineText"
+    },
+    {
+     "id": "fldByhlIE5gHZnpfZ",
+     "type": "multilineText"
+    },
+    {
+     "id": "fldjSMDupKbxCaU5O",
+     "type": "multilineText"
+    },
+    {
+     "id": "fldJdEG2rDaF9bHCv",
+     "type": "dateTime",
+     "config": {
+      "dateFormat": {
+       "name": "iso",
+       "format": "YYYY-MM-DD"
+      },
+      "timeFormat": {
+       "name": "24hour",
+       "format": "HH:mm"
+      },
+      "timeZone": "America/Toronto"
+     }
+    },
+    {
+     "id": "fldocCz0w91UHnOhk",
+     "type": "lastModifiedTime",
+     "config": {
+      "isValid": true,
+      "referencedFieldIds": [
+       "fldByhlIE5gHZnpfZ"
+      ],
+      "result": {
+       "type": "dateTime",
+       "options": {
+        "dateFormat": {
+         "name": "local",
+         "format": "l"
+        },
+        "timeFormat": {
+         "name": "12hour",
+         "format": "h:mma"
+        },
+        "timeZone": "client"
+       }
+      }
+     }
+    },
+    {
+     "id": "fldaxg4i9abc75a00",
+     "type": "formula",
+     "config": {
+      "isValid": true,
+      "formula": "IF({fldFEZIuna04JLFCr}=\"Staff confirmed\",\"Confirmed\",IF(AND({fldFEZIuna04JLFCr}=\"\",{fldjSMDupKbxCaU5O}=\"\",{fldByhlIE5gHZnpfZ}=\"\"),BLANK(),IF(AND({fldByhlIE5gHZnpfZ}!=\"\",OR({fldJdEG2rDaF9bHCv}=\"\",IS_AFTER({fldocCz0w91UHnOhk},{fldJdEG2rDaF9bHCv}))),\"Note waiting\",IF(OR({fldrOvSEzOoxyNSpC}=\"\",NOT({fldjlGQSOwPGJfEcA}),{fldCH08dVkm48BoiD}=\"\",{fldMN7qErzn39NFcY}=\"\",{fldRMUIPEXOxvp7Xk}=\"\"),\"Needs your input\",\"Ready to confirm\"))))",
+      "referencedFieldIds": [
+       "fldFEZIuna04JLFCr",
+       "fldjSMDupKbxCaU5O",
+       "fldByhlIE5gHZnpfZ",
+       "fldJdEG2rDaF9bHCv",
+       "fldocCz0w91UHnOhk",
+       "fldrOvSEzOoxyNSpC",
+       "fldjlGQSOwPGJfEcA",
+       "fldCH08dVkm48BoiD",
+       "fldMN7qErzn39NFcY",
+       "fldRMUIPEXOxvp7Xk"
+      ],
+      "result": {
+       "type": "singleLineText"
+      }
+     }
+    }
+   ]
+  }
+ ]
+}
