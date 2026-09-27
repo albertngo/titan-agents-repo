@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-09-27T08:14:48-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $35.43 spend, 5 leads, $7.09 CPL — Flooring Problems Campaign",
+      "summary": "Yesterday (2026-09-26) Meta spent $35.43 CAD, all on the sole actively-delivering campaign, Flooring Problems Campaign, generating 5 leads at $7.09 CPL -- well under the 7-day baseline (2026-09-20 to 2026-09-26: $349.62 / 26 leads, ~$13.45 CPL), so no anomaly. Account is ACTIVE, no ads are flagged, and the other three campaigns (Tiles Carasoul 1.99, Dead Stock Inventory Campaign Campaign, Real Estate List Building) remain PAUSED with no budget delivering.",
+      "timestamp": "2026-09-26T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 3543,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 3543,
+    "impressions": 1267,
+    "clicks": 49,
+    "leads": 5,
+    "cpl_cents": 709,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "This branch's ingest/ directory has no meta-ads.json in the 7-day lookback (last local file is 2026-09-08). A cross-branch check (git log --all --diff-filter=A -- '*meta-ads.json') confirms a run completed normally on 2026-09-26 with window 2026-09-19 to 2026-09-25 -- the same branch-isolation artifact already flagged in the 2026-09-08 and 2026-09-26 runs (daily-ingest sessions landing on separate unmerged branches rather than genuinely missed runs). Since coverage already extends through 2026-09-25, today's pull correctly used the standard 1-day window (2026-09-26) rather than widening further.",
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads -- each valued at 5, matching the counted leads exactly), continuing the pattern flagged on 2026-08-31, 2026-09-02, 2026-09-07, 2026-09-08, and 2026-09-26. No discrepancy in the counted total across any of these runs, but the script's LEAD_ACTION_TYPES set should be extended to cover these rather than continuing to hand-note it every day."
+  ]
+}

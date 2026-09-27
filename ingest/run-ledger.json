@@ -491,5 +491,18 @@
     },
     "brief": true,
     "note": "scheduled run; local branch ledger last showed 2026-09-02, but all 5 ingesters cross-checked unmerged session branches and vault 01_daily notes and confirmed real runs happened through 2026-09-07 (branch-isolation artifact, not a real gap) -- no catch-up widening needed; bookkeeper still has no QBO/Intuit MCP connector (10th consecutive failed run since 2026-07-26)"
+  },
+  {
+    "date": "2026-09-27",
+    "run_at": "2026-09-27T08:35:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; local branch ledger last showed 2026-09-08, but vault 01_daily/ notes (present through 2026-09-26) and each ingester's own cross-branch check confirm real daily-ingest runs happened every day in between -- same branch-isolation artifact previously flagged in the 2026-09-08 note, not a real gap; bookkeeper still has no QBO/Intuit MCP connector (11th consecutive failed run since 2026-07-26)"
   }
 ]
