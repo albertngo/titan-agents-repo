@@ -299,9 +299,23 @@ class TestSpecOnly(unittest.TestCase):
                                 ("Smoked & Wirebrushed", "Brushed"), ("Hand Scraped & Distressed", "Rustic"),
                                 ("Matte UV Bona", "Smooth"), ("Semi-Gloss", "Smooth")):
             self.assertEqual(plan.texture_from_finish(finish, REG)["value"], texture, finish)
+        # EIR ruled 2026-09-27: somewhat textured -> Brushed, 0.7 on a moderate/busy print, 0.6 on a calm one
         eir = plan.texture_from_finish("Matte EIR", REG)
-        self.assertTrue(eir["provisional"])
-        p = build(doc(cand(finish="Matte EIR")))
+        self.assertEqual((eir["value"], eir["provisional"], eir["confidence"]), ("Brushed", False, 0.6))
+        self.assertEqual(plan.texture_from_finish("Embossed in Register", REG)["value"], "Brushed")
+        p = build(doc(cand(finish="Matte EIR")))  # no busyness known -> held
+        self.assertEqual(held_for(p, "Texture")[0]["reason"], "low_confidence")
+        busy = cand(finish="Embossed in Register", images=[image("swatch", "att1")])
+        p = plan.build_plan(doc(busy), {"records": [{"sku": busy["sku"], "busyness_seen": {
+            "value": "Moderate", "confidence": 0.7, "from": "att1", "evidence": "knots"}}]}, [], REG, "t", "plans/x.json")
+        self.assertEqual(only_action(p)["fields"]["Texture"], "Brushed")
+        self.assertIn("looks moderate", only_action(p)["tags"]["Texture"]["evidence"])
+        calm = copy.deepcopy(busy)
+        calm["current"] = {"Busyness": "Calm"}
+        p = plan.build_plan(doc(calm), None, [], REG, "t", "plans/x.json")
+        self.assertEqual(held_for(p, "Texture")[0]["proposed"], "Brushed")
+        self.assertTrue(plan.texture_from_finish("Textured", REG)["provisional"])
+        p = build(doc(cand(finish="Textured")))
         self.assertEqual(held_for(p, "Texture")[0]["reason"], "low_confidence")
         self.assertIsNone(plan.texture_from_finish("Reactive colour", REG))
         p = build(doc(cand(finish="Reactive colour")))
@@ -663,6 +677,13 @@ class TestReviewLoop(unittest.TestCase):
         (row,) = [r for r in held_for(p, "Texture") if r["reason"] == "note_question"]
         self.assertIn("silky", row["detail"])
 
+    def test_question_about_a_filled_field_is_still_asked(self):
+        c = with_note(cand(), current={"Style": ["Modern", "Coastal"]})
+        p = self.plan_with(c, note_judgement(questions=[("Style", "Modern only, or keep Coastal?")]))
+        text = review_of(p)["Style questions"]
+        self.assertIn("❓ QUESTION", text)
+        self.assertIn("Modern only, or keep Coastal?", text)
+
     def test_vague_note_becomes_a_sharper_question(self):
         p = self.plan_with(with_note(cand()),
                            note_judgement(questions=[("Busyness", "You said 'a bit of character' — Moderate or Busy?")]))
@@ -686,6 +707,17 @@ class TestReviewLoop(unittest.TestCase):
         self.assertIn("→ Calm, Moderate or Busy?", text)
         self.assertIn("→ 1 (lightest) to 5 (darkest)?", plan.ask_options("Tone depth", REG) and
                       "→ " + plan.ask_options("Tone depth", REG))
+
+    def test_hand_set_values_are_labelled_as_such(self):
+        full = {"Undertone": "Cool", "Tone depth": 3, "Texture": "Rustic", "Style": ["Modern"], "Busyness": "Calm"}
+        c = with_note(cand(), new=False, current=full, questions="❓ MISSING — old")
+        c["evidence_existing"] = ("AI suggested 2026-09-26 — plans/x.json\n"
+                                  "Undertone: Cool (0.80, image: s.webp) — swatch s.webp: ashy\n"
+                                  "Style: Modern|Coastal (0.70, spec + image s.webp) — calm")
+        text = review_of(plan.build_plan(doc(c), None, [], REG, "test", "plans/x.json"))["Style questions"]
+        self.assertIn("• Undertone: Cool (80%)", text)
+        self.assertIn("• Style: Modern (set by hand)", text)   # evidence said Modern|Coastal
+        self.assertIn("• Texture: Rustic (set by hand)", text)  # no evidence line at all
 
     def test_nothing_missing_says_so(self):
         full = {"Undertone": "Warm", "Tone depth": 3, "Texture": "Smooth", "Style": ["Modern"], "Busyness": "Calm"}
