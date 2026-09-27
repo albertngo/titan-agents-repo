@@ -5,21 +5,29 @@ description: Suggest style tags (Undertone, Tone depth, Texture, Style, Busyness
 # /style-tag `<SUPPLIER>` [`--sku SKU,SKU…`]
 
 Fill the blank style fields on Master Flooring Catalogue records for one supplier,
-from their specs and their images, as `AI suggested` — never touching a record staff
-have confirmed. Same shape as `/catalog-sync`: pull → decide → act, with a policy
-approval file, a per-item troubled report on a Notion row, and the `Action` column
-loop.
+from their specs, their images and **Albert's own notes on the record**, as
+`AI suggested` — never touching a record staff have confirmed. Same shape as
+`/catalog-sync`: pull → decide → act, with a policy approval file.
+
+**The review loop lives on the record (2026-09-27, Albert).** Every run writes a
+plain-English **`Style questions`** checklist onto each record it looked at — what is
+missing (best guess and why), then what is filled for him to confirm. He answers in
+**`Style notes`** (typed or dictated with the phone keyboard mic), or edits a field
+directly. The next run reads a new note, turns what it clearly says into tags, and puts
+anything vague back as a sharper question. The **`Style review`** formula drives the
+views: `Needs your input` · `Note waiting` · `Ready to confirm` · `Confirmed`. Field
+ids: registry `review_fields`; rules for a note: registry `note_policy`. The Notion
+page table is retired for style tags (registry `notion_row._retired`).
 
 ```
-[0] read back reviewer answers (Notion page table)               read only
 [1] Airtable snapshot + option pre-flight  (MCP, saved as JSON)    read only
 [2] scripts/style_tag_pull.py   -> candidates + image manifest     read only
                                 -> image originals to disk         (fails soft)
-[3] the model reads each candidate: images + specs -> judgement file
-[4] scripts/style_tag_plan.py   -> plans/<date>/style-plan-<scope>.json + troubled CSV
+[3] the model reads each candidate: images + specs + a NEW note -> judgement file
+[4] scripts/style_tag_plan.py   -> plans/<date>/style-plan-<scope>.json (+ audit CSV)
 [5] POLICY approves every action; everything else is held          (approval file)
-[6] airtable-actions-agent writes approved tags                    (actions log)
-[7] troubled CSV -> Troubled Files -> page table -> PushNotification; commit; PR
+[6] airtable-actions-agent writes tags + Style questions            (actions log)
+[7] PushNotification; commit; PR
 ```
 
 `<SUPPLIER>` is the Airtable `Supplier` option string, exactly (`FLOORS AT WORK`,
@@ -48,7 +56,14 @@ Check in order and **stop on the first failure**:
    rather than routing around it. Allow the host in the environment's Network access,
    or run the image steps on Albert's Mac.
 
-## 0. Read back the reviewer's answers — read only
+## 0. Reviewer answers — nothing to do (since 2026-09-27)
+
+Albert's answers now arrive in the snapshot itself (`Style notes`, with
+`Style notes updated` / `Style notes read` telling a new note from one already read),
+so there is no separate read-back step. The legacy Notion procedure below is kept for
+the 2026-09-26 PURELUX row only; do not run it for new scopes.
+
+### Legacy: read back the Notion page table
 
 Find the scope's **standing row** in the Price Lists database
 (`pricelist-sources.json` → `price_lists.data_source`): the page whose title
@@ -77,7 +92,8 @@ This runs **first** because an answer changes what the plan contains
    the supplier's choice id from it.
 2. `list_records_for_table` on the base and table in the registry, filtered
    `Supplier = <choice id>` **and** `Active = true`, `fieldIds` = every id under the
-   registry's `inputs`, `targets`, `status_field` and `evidence_field`, `pageSize`
+   registry's `inputs`, `targets`, `status_field`, `evidence_field` and
+   `review_fields`, `pageSize`
    2000; follow `nextCursor` until exhausted. Save each raw page as
    `ingest/<date>/<scope>_style_snapshot.json` (`_p2.json`, … for later pages). A
    large result lands in a file — copy that file; never retype records.
@@ -130,7 +146,24 @@ Discipline, because the plan script will enforce it anyway:
   surprised to be wrong. Do not inflate to clear the bar — a held row with a good
   `proposed` value is one click for a reviewer; a wrong tag written is a wrong tag.
 
-A record with no images and nothing to say about `Style` needs no entry.
+**Albert's note.** For every candidate whose `review.note_is_new` is true, read
+`review.note` next to the images and add `from_note` to its entry
+(`contracts/style-plan-schema.md`, "The judgement file"):
+
+- `values[]` — only what the note **clearly** says, one per field: the option name (a
+  list for `Style`) and the exact words (`quote`) it came from. "It's smooth
+  underfoot" → `Texture: Smooth`. "Warm, a bit darker than mid" → `Undertone: Warm`,
+  `Tone depth: 4`.
+- `questions[]` — whatever the note leaves open, phrased as the question to put back to
+  him: "You said 'a bit of character' — is that Moderate or Busy?" Never turn a vague
+  phrase into a value to fill a gap.
+- A note may contradict an earlier run's `AI suggested` value; record what he said —
+  the plan replaces the value by compare-and-swap. It may also contradict your own
+  image read; his word wins, and your observation stays in the file as the audit trail.
+- A note that speaks for many records ("all Journey EIR is smooth") is not a per-record
+  value: note it in the run's PR as a proposed rule-table change and ask.
+
+A record with no images, no new note and nothing to say about `Style` needs no entry.
 
 ## 4. Plan — read only
 
@@ -176,33 +209,22 @@ Hand the plan and the approval file to **`airtable-actions-agent`**, action type
   `raw_ref_action_id` = the `sty-` id. Interrupted → run the agent again; executed ids
   are skipped.
 
-## 7. Report — the troubled file, the row, the ping
+## 7. Report — the ping, the commit
 
-**Stamp `Last Agent Activity Date` on every write to the row**, same rule and same
-keys as `/catalog-sync` step 6.
+**No Notion row, table or Troubled Files for new runs (2026-09-27).** The review
+surface is the record: step 6 already wrote `Style questions` on every record the run
+looked at, and the `Style review` formula sorted them into `Needs your input` /
+`Ready to confirm`. The troubled CSV is still written by step 4 as an audit copy and
+committed with the run; it is attached nowhere.
 
-1. **The standing row.** First run for this supplier: create it in the Price Lists
-   data source with the title from `notion_row.title_format`, `Company` = the
-   supplier's Notion option where one exists (else blank), `Tags` = `notion_row.tag`
-   (a new gray option — colour that one option only, per the 2026-09-11 open-ended-tag
-   rule; never touch `Regular List` / `Promo`), and every `properties_on_create` value.
-   Log it `notion_create_page`. Later runs reuse the row.
-2. **The troubled CSV**, if step 4 wrote one: commit it, then attach it to
-   `Troubled Files`, replacing the previous file — same upload recipe as
-   `/process-price-list` step 6 (`;type=text/csv`). No file → attach nothing, and
-   leave any existing page table alone.
-3. **The page table**: render the CSV's rows as a table in the page body, replacing
-   the previous run's table, ` · ` in place of any `|` in a cell. The `Action` column
-   already carries every prior answer the script matched; the reviewer's cells are
-   theirs. Log it `notion_write_troubled_table`.
-4. **`Notes`** = the registry's `notes_format` line. Log the property writes
-   `notion_update_page`.
-5. **PushNotification** — always when the CSV exists — naming the scope, `write_mode`,
-   and the written / held / flagged counts. A file nobody is told about is not a
-   checkpoint.
-6. **Commit** the run's files (snapshot, options, answers, candidates, judgements,
-   plan, approval, CSV, actions-log) and open the run's PR with
-   `python3 scripts/publish_run.py`. Images are gitignored and stay local.
+1. **PushNotification** — always — naming the scope, the tags written (and how many came
+   from Albert's notes, and how many replaced an earlier value), and how many records
+   now read `Needs your input` / `Ready to confirm`, pointing at the Style review page
+   in Airtable.
+2. **Commit** the run's files (snapshot, options, candidates, judgements, plan, approval,
+   audit CSV, actions-log) and open the run's PR with `python3 scripts/publish_run.py`.
+   Images are gitignored and stay local. A note that proposed a rule-table change goes
+   in the PR body as a question.
 
 ## Done means
 
@@ -210,8 +232,8 @@ keys as `/catalog-sync` step 6.
 - Under `plan_only`: **nothing was written to Airtable**, and the report says so
   plainly. Under `write`: every approved action executed or explicitly logged as
   failed, one actions-log entry per record with the policy string.
-- Every held and flagged row is in the CSV, on `Troubled Files`, in the page table,
-  and notified — or the run was clean and none of that exists.
+- Every record the run looked at carries a current `Style questions` (or had an unchanged
+  one), every new note it read is stamped `Style notes read`, and the ping went out.
 - No record that was `Staff confirmed` was touched; no field that was non-blank was
   written. If the agent refused or dropped anything at write time, the report names it.
 - The host-blocked case, if it happened, is reported as an environment limit, not as

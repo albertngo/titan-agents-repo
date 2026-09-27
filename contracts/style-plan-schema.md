@@ -1,4 +1,4 @@
-# Style Plan Contract — style-plan-1
+# Style Plan Contract — style-plan-2
 
 The reviewable diff between what a catalogue record's specs and images say about its
 look and the blank style fields on that record. One file per scope per run:
@@ -17,6 +17,32 @@ stable ids, same "absence of an approval file means nothing is approved". Read t
 one first if this is unfamiliar; only the differences are explained here. Ids, option
 strings, thresholds and rule tables live in `platform-settings/style-tags.json`, never
 here and never in a prompt. Method and rubric: `methods/style-tags.md`.
+
+## Version 2 (2026-09-27): the review loop lives on the record
+
+Albert moved review off the Notion page table and onto the product record: *"I want to
+clearly see what is missing; what is for me to confirm; and even do a voice note …
+talk through it in natural language."* Three record fields carry it (registry
+`review_fields`): **`Style notes`** (his, typed or dictated; the run never writes it),
+**`Style questions`** (the run's plain-English checklist, rewritten every run) and
+**`Style notes read`** (stamped when the run reads a new note). A formula,
+**`Style review`**, turns them into `Needs your input` / `Note waiting` /
+`Ready to confirm` / `Confirmed` for the Airtable views.
+
+What changed in the plan:
+
+- **Every candidate gets an action**, even when no tag is written, because its
+  `Style questions` must be written — unless the text is unchanged, in which case there
+  is still no action (`An action only exists if it changes something` holds).
+- **A note is a reviewer answer.** The model reads a *new* note into the judgement
+  file's `from_note`; the script treats a clearly stated, valid value as
+  `source: reviewer_note` at confidence 1.0. It fills a blank, and it may **replace a
+  value an earlier run wrote** (the record is still `AI suggested`) — the one place a
+  run writes a non-blank field, and only by compare-and-swap (`overwrite`, below).
+  Anything the note leaves vague, or a value that is not an option, is a
+  `note_question` row, rendered as a sharper question — never a guess.
+- The Notion answers file still parses (legacy), but new runs do not write the Notion
+  page table.
 
 ## What this is for
 
@@ -107,6 +133,7 @@ Detail images. No swatch → hold colour tags for review."*
 | `Tone depth` | a `Swatch images` attachment the model read | `Colour / tone`, light/dark words | `Room scene images`, `Detail images`, spec alone |
 | `Style` | the model over specs + swatch + room scenes | — | `Detail images`; spec alone (capped below threshold) |
 | a reviewer's `Action` answer | any field, confidence 1.0, `source: reviewer` | | |
+| a clear value in a new `Style notes` | any field, confidence 1.0, `source: reviewer_note`; may replace an `AI suggested` value | | a `Staff confirmed` record |
 
 The image's **field is what decides**, not the model's impression: an attachment in
 `Room scene images` cannot reach `Undertone` at any confidence, structurally. The
@@ -131,6 +158,7 @@ Fixed vocabulary; the script's `_held(...)` calls are tested against the registr
 | `answer_unparsed` | A reviewer's `Action` cell could not be read as `Field: Value` | `held` |
 | `image_misfiled` | A `Swatch images` attachment the model says is a room scene or other non-swatch; nothing was read from it. One row per image, `field: Swatch images` | `held` |
 | `reviewer_skipped` | The reviewer wrote `skip`; not proposed again, carried so the decision stays visible | `held` |
+| `note_question` | Albert's `Style notes` left this unclear, or named a value that is not an option; `detail` is the sharper question put back to him in `Style questions` | `held` |
 | `spec_rule_provisional` | Written from a rule the registry marks provisional (BCDE grade, embossed finishes) | `wrote_flagged` |
 
 A blank field with **no information at all** — no spec value, no image, no judgement —
@@ -143,14 +171,14 @@ records with no `Finish type` would be 1,200 rows saying nothing.
 
 | Field | Notes |
 |---|---|
-| `contract_version` | `"style-plan-1"` |
+| `contract_version` | `"style-plan-2"` |
 | `scope` | The scope slug (`faw`), which names every file of the run |
 | `supplier` | Airtable `Supplier` value, verbatim |
 | `run_at` | ISO 8601, America/Toronto |
 | `write_mode` | The registry's `write_mode.mode` at plan time — `plan_only` or `write` |
 | `approved_by` | The policy string an approval of this plan will carry |
 | `inputs` | `[{file}]` — the candidates, judgements, answers and options files |
-| `summary` | `records_in`, `actions_total`, `tags_total`, `tags_by_field`, `held`, `held_by_reason`, `flagged`, `no_information`, `images_status`, `answers_applied`, `answers_unmatched` |
+| `summary` | `records_in`, `actions_total`, `tags_total`, `tags_by_field`, `held`, `held_by_reason`, `flagged`, `no_information`, `images_status`, `note_tags`, `note_replacements`, `notes_read`, `questions_written`, `answers_applied`, `answers_unmatched` |
 | `actions` | ordered; one per record; each independently executable and idempotent |
 | `held` | rows that must not be written, with the reason. Never carry an `id` |
 | `flagged` | rows that were written carrying something worth knowing |
@@ -162,7 +190,7 @@ status and appends the evidence, and those happen once per record.
 
 | Field | Notes |
 |---|---|
-| `id` | `sty-<sha1[:12]>` over sku + `airtable` + `update_style_tags` + the sorted field names written. **Stable across re-runs** for the same logical write; a different field set is a different write |
+| `id` | `sty-<sha1[:12]>` over sku + `airtable` + `update_style_tags` + the sorted field names written + (v2) the content written: `fields`, `overwrite` and the `Style questions` text. **Stable across re-runs** of the same plan, so an interrupted run resumes; different content is a different write, so a later run's questions-only action is never mistaken for an executed one |
 | `seq` | Execution order. Ascending, gapless |
 | `target_system` | `airtable` |
 | `op` | `update_style_tags` |
@@ -170,11 +198,29 @@ status and appends the evidence, and those happen once per record.
 | `sku` · `product_name` · `supplier` | For the reader; the SKU is never in the payload |
 | `fields` | `{field: value}` — exactly what the agent writes to the tag fields. `Style` is a list; `Tone depth` an int |
 | `tags` | `{field: {value, confidence, source, evidence, image, provisional, rule}}` — the reasoning behind each entry of `fields` |
-| `status_write` | `"AI suggested"` when the record's status is blank, else `null` (leave it) |
+| `overwrite` | `{field: value the snapshot showed}` for each field a note replaces. The writer writes that field only if Airtable still holds exactly this value (compare-and-swap); otherwise it drops it (`stale_changed`). Empty for every other write |
+| `status_write` | `"AI suggested"` when the record's status is blank **and** at least one tag is written, else `null` (leave it) |
 | `evidence_append` | The block to append to `Style tags evidence`: a header line naming this plan, then one line per written tag |
+| `review_write` | `{"Style questions": text, "Style notes read": iso?}` — run-owned review fields. `Style questions` is rewritten whole; `Style notes read` appears only when the run read a new note. Empty when nothing changed |
 | `flags` | `["spec_rule_provisional"]` where applicable |
 
-`tags[].source` is one of `spec | image | both | reviewer`.
+`tags[].source` is one of `spec | image | both | reviewer | reviewer_note`.
+
+### `Style questions` — the text
+
+Rendered by `render_questions` in the script, deterministic, in this order:
+
+1. `❓ MISSING — …` — one bullet per tag field still blank after this run's writes:
+   the best guess and why it was not written (from the held rows), then `→` the options
+   to choose from. Non-field items (a misfiled photo, a question about the note) follow.
+   Or `✅ Nothing missing.`
+2. `👀 TO CONFIRM — …` — every filled field, with how sure the run was (this run's tag, or
+   the last evidence line an earlier run appended) and the one-line reason.
+3. `🎙 FROM YOUR NOTE` — each value the note set, with what it replaced and his words.
+4. `Updated <date> by /style-tag <scope>`.
+
+A record whose last questions still say `MISSING` is re-pulled even when every field is
+now filled (he filled it by hand), so the checklist catches up.
 
 ## The judgement file — style-judgements-1
 
@@ -204,7 +250,11 @@ decides what each observation is worth — the model never writes a tag.
       "busyness_seen": {"value": "Moderate", "confidence": 0.75, "from": "attXXXX",
                         "evidence": "a few small knots, mild colour shift"},
       "style": {"values": ["Modern", "Scandinavian"], "confidence": 0.7,
-                "evidence": "light neutral oak, long plank, low knot count"}
+                "evidence": "light neutral oak, long plank, low knot count"},
+      "from_note": {
+        "values":    [{"field": "Texture", "value": "Smooth", "quote": "it's smooth underfoot"}],
+        "questions": [{"field": "Busyness", "question": "You said 'a bit of character' — Moderate or Busy?"}]
+      }
     }
   ]
 }
@@ -224,13 +274,21 @@ colour tag:
   `needs_image` at `spec_only_style_cap`.
 - A record with no images may still carry `style` (from specs) — it will be held. It
   may not carry `undertone` or `tone_depth` at all; if it does, they are ignored.
+- `from_note` (v2) is written only for a candidate whose `review.note_is_new` is true,
+  and holds only what the note **clearly** says: `values[].value` is the option name
+  (a list for `Style`), `quote` the exact words it came from. Anything the note leaves
+  open goes in `questions[]`, phrased as the question to put back to Albert. A note
+  that speaks for many records ("all Journey EIR is smooth") is not a per-record value:
+  propose it as a rule-table change in the run's PR. `from_note` on a record whose
+  note is not new is ignored — that note was already applied.
 
 ## What a write may set
 
 `airtable_update_style_tags` — the one action type this plan produces — writes, by
 record id, only: the five tag fields named in `fields`, `Style tags status` (to
-`AI suggested`, only when blank), and `Style tags evidence` (append). Nothing else,
-ever: not `Colour / tone`, not the image fields, not `Salesperson notes`. The full rules
+`AI suggested`, only when blank), `Style tags evidence` (append), and the run-owned
+review fields in `review_write` (`Style questions`, `Style notes read`). Never
+`Style notes` — that is Albert's. Nothing else, ever: not `Colour / tone`, not the image fields, not `Salesperson notes`. The full rules
 are in `.claude/agents/airtable-actions-agent.md`; the registry's `targets`,
 `status_field` and `evidence_field` are the closed list.
 
@@ -240,8 +298,9 @@ that is no longer blank (`stale_not_blank`) or refuses the record outright if it
 `Staff confirmed` (`stale_staff_confirmed`). The plan's blank-only promise is only true
 at write time if it is checked at write time.
 
-A record whose every candidate is held gets **no write at all** — not even the status.
-`AI suggested` is set only when at least one tag lands.
+A record whose every candidate is held gets **no tag write** — not the status, not
+evidence — only its `Style questions`. `AI suggested` is set only when at least one tag
+lands.
 
 ## An action only exists if it changes something
 

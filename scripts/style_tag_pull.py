@@ -49,11 +49,12 @@ from zoneinfo import ZoneInfo
 REPO_ROOT = Path(__file__).resolve().parent.parent
 REGISTRY = REPO_ROOT / "platform-settings" / "style-tags.json"
 TZ = ZoneInfo("America/Toronto")
-CONTRACT_VERSION = "style-candidates-1"
+CONTRACT_VERSION = "style-candidates-2"  # 2: `current` + `review` per candidate
 READ_LONG_EDGE = 1568  # px; keeps a swatch's colour, drops the token cost of a 4000px original
 SPEC_KEYS = ("Finish type", "Grade", "Species", "Colour / tone", "Collection",
              "Product name", "Salesperson notes")
 SIGNAL_KEYS = ("Finish type", "Grade", "Species", "Colour / tone")
+MISSING_MARK = "MISSING"  # the header style_tag_plan.render_questions opens its missing list with
 
 
 def today():
@@ -83,6 +84,9 @@ def field_names(reg):
         names[reg["targets"][name]["id"]] = name
     names[reg["status_field"]["id"]] = reg["status_field"]["name"]
     names[reg["evidence_field"]["id"]] = reg["evidence_field"]["name"]
+    for key, meta in (reg.get("review_fields") or {}).items():
+        if not key.startswith("_"):
+            names[meta["id"]] = meta["name"]
     return names
 
 
@@ -145,6 +149,30 @@ def manifest(rec, reg):
     return out
 
 
+def _parse_time(value):
+    if not value:
+        return None
+    try:
+        return datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    except ValueError:
+        return None
+
+
+def review_state(cells, reg):
+    """The record's review-loop fields: Albert's note, whether it is new since the last run read
+    it, and the questions the last run left. Empty dict when the registry has no review_fields."""
+    rf = reg.get("review_fields")
+    if not rf:
+        return {}
+    note = (cells.get(rf["notes"]["name"]) or "").strip()
+    updated = _parse_time(cells.get(rf["notes_updated"]["name"]))
+    read = _parse_time(cells.get(rf["notes_read"]["name"]))
+    new = bool(note) and (read is None or (updated is not None and updated > read))
+    return {"note": note, "note_updated": cells.get(rf["notes_updated"]["name"]),
+            "note_read": cells.get(rf["notes_read"]["name"]), "note_is_new": new,
+            "questions": cells.get(rf["questions"]["name"]) or ""}
+
+
 def candidate_from(rec, reg, sku_filter=None):
     """(candidate, None) when the record is eligible, else (None, exclusion reason)."""
     cells = rec["cells"]
@@ -161,10 +189,15 @@ def candidate_from(rec, reg, sku_filter=None):
     if status == reg["status_field"]["never_touch"]:
         return None, "staff_confirmed"
     blank_fields = [t for t in target_names(reg) if is_blank(t, cells.get(t))]
-    if not blank_fields:
+    review = review_state(cells, reg)
+    # A record with every field filled still comes back when Albert left a new note (it may
+    # replace an AI-suggested value) or when the last run's questions still list something
+    # missing (he filled it by hand; the checklist must catch up).
+    stale_questions = MISSING_MARK in review.get("questions", "")
+    if not blank_fields and not review.get("note_is_new") and not stale_questions:
         return None, "nothing_blank"
     images = manifest(rec, reg)
-    if not images and not any(cells.get(k) for k in SIGNAL_KEYS):
+    if not images and not any(cells.get(k) for k in SIGNAL_KEYS) and not review.get("note_is_new"):
         return None, "no_signal"
     return {
         "record_id": rec["record_id"],
@@ -176,6 +209,8 @@ def candidate_from(rec, reg, sku_filter=None):
         "evidence_existing": cells.get(reg["evidence_field"]["name"]) or "",
         "specs": {k: cells.get(k) for k in SPEC_KEYS},
         "blank_fields": blank_fields,
+        "current": {t: cells.get(t) for t in target_names(reg) if t not in blank_fields},
+        "review": review,
         "images": images,
     }, None
 
