@@ -116,6 +116,11 @@ ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 # column. It travels with `Effective Date` — the record points at the same list
 # its date names — and is never written on its own except to fill a blank.
 PRICE_URL = "Price List URL"
+# The linked list's own date (Albert, 2026-09-28), written with the link and never
+# alone, so the record says which list it points at even where Effective Date was set
+# from a different one (the legacy backfill links the newest list that carries the
+# product, which is not always the list that set its price).
+PRICE_LIST_DATE = "Price List Date"
 PROMO_COST = "Promo cost ($/sf)"
 PROMO_END = "Promo end date"
 
@@ -409,6 +414,10 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
                 new = clean(new_raw)
                 if new is not None:
                     fields[PRICE_DATE if field == LEGACY_PRICE_DATE else field] = new
+            created_date = fields.get(PRICE_DATE)
+            if (fields.get(PRICE_URL) and PRICE_LIST_DATE not in fields
+                    and created_date and ISO_DATE.match(created_date)):
+                fields[PRICE_LIST_DATE] = created_date
         else:
             for field in DIFF_FIELDS:
                 new = clean(row.get(field))
@@ -480,6 +489,12 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
                     if old_url != url:
                         fields[PRICE_URL] = url
                         before[PRICE_URL] = old_url if url_readable else None
+                        if effective:
+                            old_ld, ld_readable = (live_value(live, PRICE_LIST_DATE)
+                                                   if live else (None, False))
+                            fields[PRICE_LIST_DATE] = effective
+                            before[PRICE_LIST_DATE] = (clean(old_ld) if ld_readable
+                                                       else None)
 
         if airtable_snapshot and select_options:
             missing = missing_select_options(fields, select_options)

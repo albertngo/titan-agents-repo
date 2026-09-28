@@ -264,7 +264,8 @@ a click of a button from Airtable"). The value is the SharePoint share link deco
 from the row's `Files & media` (step 1's `.source`) — the same anonymous link the
 download used, so it opens for anyone at Titan. Same value on every row. Airtable's
 `Price List URL` field is a URL type, and the reconciler writes it together with the
-date, so a record always points at the list its `Effective Date` names.
+date, so a record always points at the list its `Effective Date` names. It also writes
+`Price List Date` (that list's date) beside the link — no extra CSV column needed.
 
 `catalog_reconcile.py` does the rest: a price change writes this date and
 `Price last changed by = Agent`; a confirmation moves the date forward only, never

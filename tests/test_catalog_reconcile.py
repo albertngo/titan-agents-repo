@@ -336,6 +336,7 @@ class TestPriceDateAndChangedBy(unittest.TestCase):
             "Price List URL": self.URL})])
         self.assertEqual(up["fields"]["Price List URL"], self.URL)
         self.assertEqual(up["fields"]["Effective Date"], "2026-09-21")
+        self.assertEqual(up["fields"]["Price List Date"], "2026-09-21")
 
     def test_an_older_list_does_not_repoint_the_link(self):
         existing = {"A-1": {**self.EXISTING["A-1"], "Price List URL": "old"}}
@@ -349,7 +350,8 @@ class TestPriceDateAndChangedBy(unittest.TestCase):
         up, _ = self.upsert([row(SKU="A-1", **{
             "Lightspeed ID": "u-1", "Effective Date": "2026-08-01",
             "Price List URL": self.URL})], existing)
-        self.assertEqual(up["fields"], {"Price List URL": self.URL})
+        self.assertEqual(up["fields"], {"Price List URL": self.URL,
+                                        "Price List Date": "2026-08-01"})
 
     def test_a_link_already_in_place_writes_nothing(self):
         existing = {"A-1": {**self.EXISTING["A-1"], "Price List URL": self.URL}}
@@ -360,10 +362,12 @@ class TestPriceDateAndChangedBy(unittest.TestCase):
 
     def test_a_create_carries_the_link(self):
         rows = [row(SKU="NEW-1", MatchStatus="new", **{
-            "LS Handle / Parent ID": "HNEW", "Price List URL": self.URL})]
+            "LS Handle / Parent ID": "HNEW", "Price List URL": self.URL,
+            "Effective Date": "2026-09-19"})]
         actions, _, _ = run(rows, [], ls_upload=ls_upload_row(sku="NEW-1"))
         up = next(a for a in actions if a["op"] == "upsert")
         self.assertEqual(up["fields"]["Price List URL"], self.URL)
+        self.assertEqual(up["fields"]["Price List Date"], "2026-09-19")
 
     def test_a_pre_rename_csv_and_snapshot_still_work(self):
         """Albert renamed `Last price update` to `Effective Date` on 2026-09-25.

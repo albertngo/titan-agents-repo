@@ -154,6 +154,11 @@ create carries it with the full row) — and only with a value that is an
 Price Lists rows hold. Any other host, or a blank that would clear an existing link,
 is refused. It is never an action type of its own and never originated by you.
 
+**`Price List Date` rides with it (Albert, 2026-09-28).** The date of the list the link
+points at. Write it only in the same action as `Price List URL` (or on a record that
+already carries that exact link), only as a `YYYY-MM-DD` value, and never clear it.
+It may differ from `Effective Date` — that difference is information, not an error.
+
 ## Field ids and batch caps
 
 All of them live in `platform-settings/airtable-destinations.json`. Read it first;
