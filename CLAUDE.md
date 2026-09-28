@@ -367,6 +367,17 @@ rather than an escape hatch. That matters because "link in bio" and hashtag bloc
 not travel between Instagram, YouTube and a Google listing — and because a live rollup
 would retroactively rewrite what already-posted rows appear to have said.
 
+**Each platform's caption is its own property on the idea** (2026-09-28, Albert).
+Titan Content Ideas' single `Caption` is gone. In its place: `Caption - Instagram`,
+`- TikTok`, `- Facebook`, `- YouTube`, `- Google Business`, plus `YouTube Title` and
+`First Comment`, all written by the `titan-content-scripts` skill. The **Send to
+Calendar** button picks one with an `ifs()` on `Next: Post To` and copies it into the new
+log row's `Caption`. It's a Notion formula on the button, so no Make scenario is involved.
+One press makes one row for one platform. There is **no fallback**: an empty field
+gives a blank Caption, which `/content-schedule` holds, instead of another platform's
+caption. The mapping is data in `content-sources.json` → `caption_fields`, and it has to
+match the button formula by hand, because the API can't read buttons.
+
 ## Analyses
 
 An analysis earns structure by being re-run, not by being interesting. The ladder:
