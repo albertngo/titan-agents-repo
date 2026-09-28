@@ -297,7 +297,15 @@
           "url": "view://3db596a4-505f-81d1-abe9-000c9ddc33a0",
           "purpose": "Every editable field in one place, ordered CORE (name, surface, date, status, readiness) -> CROSSOVER (caption override, first comment, alt text, video title, AI disclosure) -> PLATFORM-SPECIFIC (GBP type, YouTube tags/category/privacy, collaborators, branded content) -> PIPELINE OUTPUT (uuid, id, live url, posted caption, posted at). That grouping is the 'template layout' -- crossover fields first, platform tails after, machine-written fields last."
         },
-        "_caption_rollup_not_addable": "The Caption ROLLUP cannot be added to a view through the API -- SHOW \"Caption\" returns 'Could not find property with name or id'. Formula properties (Ready To Queue) work fine; rollups do not. Add that column by hand in the Notion UI if a view needs it."
+        "_caption_rollup_not_addable": "The Caption ROLLUP cannot be added to a view through the API -- SHOW \"Caption\" returns 'Could not find property with name or id'. Formula properties (Ready To Queue) work fine; rollups do not. Add that column by hand in the Notion UI if a view needs it.",
+        "📊 Performance": {
+          "id": "3e9596a4-505f-8126-adf2-000c4d907d28",
+          "purpose": "Posted rows grouped by Post To, sorted by Share Rate: day-7 counts, rates, Caption Formula/Edited. Grouped by platform because rankings never cross platforms. Hook Pattern and Series are rollups -- add by hand."
+        },
+        "🚀 Late Surges": {
+          "id": "3e9596a4-505f-8185-bae7-000c3e119cfa",
+          "purpose": "Tracking = Late Surge: day-7 vs 30d vs Latest side by side. Usually empty."
+        }
       },
       "_property_order_is_not_api_settable": "The DDL supports ADD/DROP/RENAME/ALTER COLUMN but not MOVE, so the database's canonical property order -- which is what an opened ROW shows -- cannot be set from here. Columns land in creation order. The '🗂 All Fields' view carries the intended grouping instead; matching the row layout to it is a one-time drag in the Notion UI, using that view's column order as the target.",
       "_why_a_copy_beats_a_rollup_here": "A rollup is LIVE: every row sees the idea's current caption, so editing one idea silently rewrites what every row for it appears to say -- including rows that already posted. A copy diverges the moment it is made, which is what you want when the whole point is that captions must differ by platform. 'Link in bio' is Instagram idiom and dead on a Google listing; a 30-hashtag block is native on Instagram and spam on LinkedIn; GBP caps at 1500 characters. Under a rollup those needed an override field to escape. Under a copy, per-platform captions are simply the default and nothing needs escaping.",
