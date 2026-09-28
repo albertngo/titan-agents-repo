@@ -307,7 +307,7 @@ executes. Full shape in `methods/departments.md`; ownership is data in
 | Sales | `ghl` | `planner-agent` | active — the reference build |
 | Operations | `notion` (5 sub-sources) | — | spec: source live, no rule table yet |
 | Catalogue | Airtable · Lightspeed · price lists | `/catalog-sync` | active — complete before this layer existed |
-| Marketing | `meta-ads` · `content` | `/content-schedule` | active — content posting built (draft mode), never run end to end; ad reporting still needs a framework doc |
+| Marketing | `meta-ads` · `content` | `/content-schedule` | active — content posting live (write mode permanent since 2026-09-28), feedback loop reporting; ad reporting still needs a framework doc |
 | Finance | `bookkeeper` | — | **blocked — the source has never worked** |
 | General | `outlook` | — (`/route` answers inline) | active — the fallback lane |
 

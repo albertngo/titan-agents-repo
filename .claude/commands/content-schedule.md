@@ -1,5 +1,5 @@
 ---
-description: Schedule one Notion content row into Metricool. Builds a reviewable plan, applies policy, and writes only what is approved. Draft mode until deliberately flipped.
+description: Schedule one Notion content row into Metricool. Builds a reviewable plan, applies policy, and writes only what is approved. Live mode (posts publish), by decision since 2026-09-14.
 ---
 
 # /content-schedule `<logID>`
