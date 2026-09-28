@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-09-28T08:19:00-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads: $341.23 spend, 23 leads, $14.84 CPL (7-day window) — Flooring Problems Campaign",
+      "summary": "The last successful meta-ads run was 2026-09-08 (covering through 2026-09-07), so this run widened to the 7-day cap (2026-09-21 to 2026-09-27) to close as much of the gap as allowed. Over that window Meta spent $341.23, entirely on the sole actively-delivering campaign, Flooring Problems Campaign, generating 23 leads at $14.84 CPL — close to its prior 7-day baseline (2026-09-14 to 2026-09-20: $352.41 / 26 leads, ~$13.55 CPL), so no anomaly. Account is ACTIVE and no ads are flagged.",
+      "timestamp": "2026-09-27T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 34123,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 34123,
+    "impressions": 9810,
+    "clicks": 232,
+    "leads": 23,
+    "cpl_cents": 1484,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Gap wider than the 7-day cap: the last successful meta-ads.json run was 2026-09-08 (window ended 2026-09-07). This run widened to the maximum 7 days (2026-09-21 to 2026-09-27), but 2026-09-08 through 2026-09-20 (13 days) has no Meta ads data ingested at all and cannot be recovered by this agent — needs either a manual backfill run with explicit --since/--until or acceptance of the gap.",
+    "Flooring Problems Campaign's raw actions again include lead-like conversion types outside the script's documented LEAD_ACTION_TYPES set (offsite_complete_registration_add_meta_leads, offsite_search_add_meta_leads, offsite_content_view_add_meta_leads — each valued at 23, matching the counted leads exactly, same pattern flagged on 2026-08-31, 2026-09-02, 2026-09-07, and 2026-09-08). No discrepancy in the counted total so far, but this has now recurred across every run on record — the script's lead-action set should be extended rather than continuing to hand-note it."
+  ]
+}

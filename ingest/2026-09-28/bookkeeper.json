@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "source": "bookkeeper",
+  "run_at": "2026-09-28T08:18:53-04:00",
+  "status": "error",
+  "error": "Intuit QuickBooks MCP connector unavailable this run: no QBO/Intuit MCP server is configured (.mcp.json only defines the 'ghl' server) and no QuickBooks/Intuit tools or credentials were present in this session (.env.example has no QBO/Intuit section at all). Unable to pull the last 24h of QuickBooks activity (new transactions, unmatched receipts, overdue invoices, or payments received). No QBO data was read or written. This is a standing configuration gap, not a transient outage: per the run ledger (ingest/run-ledger.json), bookkeeper has failed for this same reason on every recorded run since 2026-07-26, most recently logged 2026-09-08.",
+  "items": [],
+  "metrics": {
+    "payments_received_cents": 0,
+    "overdue_invoices": 0,
+    "uncategorized_txns": 0
+  },
+  "needs_attention": [
+    "QuickBooks MCP connector still not configured/reachable — bookkeeper ingest has produced zero data on every recorded run since 2026-07-26. This is a standing setup gap, not a one-off outage: add an Intuit QuickBooks MCP server entry to .mcp.json (plus corresponding credentials in .env) before the next scheduled run. Until then, all payments-received, overdue-invoice, and uncategorized-transaction figures for Titan Flooring are unknown — treat cash-in and overdue AR as blind for today."
+  ]
+}

@@ -491,5 +491,18 @@
     },
     "brief": true,
     "note": "scheduled run; local branch ledger last showed 2026-09-02, but all 5 ingesters cross-checked unmerged session branches and vault 01_daily notes and confirmed real runs happened through 2026-09-07 (branch-isolation artifact, not a real gap) -- no catch-up widening needed; bookkeeper still has no QBO/Intuit MCP connector (10th consecutive failed run since 2026-07-26)"
+  },
+  {
+    "date": "2026-09-28",
+    "run_at": "2026-09-28T08:38:26-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled run; local branch ledger last showed 2026-09-08, a 20-day gap, but titan-vault/01_daily/ has a daily note for every date 2026-09-09 through 2026-09-27 with real per-source numbers -- confirmed branch-isolation artifact (same pattern as the 2026-09-08 entry), not an actual missed run of the funnel. Two real, narrower gaps remain unrecovered: outlook and meta-ads both hit their 7-day catch-up cap and could not pull 2026-09-09 through roughly 2026-09-20 -- would need a manual wider backfill. bookkeeper still has no QBO/Intuit MCP connector (failing every run since 2026-07-26)."
   }
 ]
