@@ -1080,9 +1080,12 @@ Views must be created manually — they cannot be built via the API.
   `Gracious`, `JL Tile`, `Oakel`, `Impressive` — never with a bare collection or `Tiles —`.
 - **Colours in title case**, abbreviations spelled out (`LT GRY` → `Light Grey`); material
   acronyms (`IXPE`, `SPC`) and codes with digits (`EUT-14`) stay as printed.
-- **Tile sizes are nominal inches**, the size people say: a 60 x 120 cm tile is `24 x 48`,
-  not `23.62 x 47.24`; a true inch size keeps its fraction (`4-1/4`). No thickness in the
-  name — it has its own field. **The actual size is not thrown away**: for Olympia it is
+- **Tile sizes are the size people say**, not the measured one: `24 x 48`, not
+  `23.62 x 47.24`. For Olympia that is the supplier's own printed nominal size, which
+  its stock code carries (`…2448…` → `24 x 48`, `64X128` → `64 x 128`); when the code
+  and the measurement disagree by more than 12%, the name keeps the measured size.
+  **Never compute a nominal size from centimetres** — on 2026-09-28 that produced
+  `24 x 47`, `66 x 130` and `0 x 0`. No thickness in the name — it has its own field. **The actual size is not thrown away**: for Olympia it is
   kept in `Salesperson notes` as `Actual size: W x L x T in`, and the Lightspeed build
   reads it from there.
 - **Supplier notes never go in the name** ("other colours available", "wet areas excluding
@@ -3056,7 +3059,9 @@ Leave `Stock status` blank for all Olympia rows; set `Active = TRUE`. The Zone A
 #### Olympia Product name (2026-09-28)
 
 `Olympia [Collection] — [Colour] — [nominal W x L] ([Finish])`, e.g.
-`Olympia Maxstone — Light Grey — 24 x 48 (Matte)`. The colour in the name is the
+`Olympia Maxstone — Light Grey — 24 x 48 (Matte)`. The nominal size is the one in the
+stock code (`MX.LGR.2448.MT` → `24 x 48`), used only when it agrees with the measured
+size within 12%; otherwise the measured size. The colour in the name is the
 **clean** colour: everything the PDF merged after it (`AVAIL IN …`, `OTHER COLOURS
 AVAILABLE`, `WET AREAS …`, `THICKNESS …`) goes to `Salesperson notes` as
 `Supplier note: …`. `Colour / tone` keeps the raw value, because the live LS handles and

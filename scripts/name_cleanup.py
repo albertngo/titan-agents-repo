@@ -15,9 +15,10 @@ What this changes, and only this:
   ("GREY AVAILABLE IN FINISH POLISHED", "AQUA WET AREAS EXCLUDING SWIMMING POOLS").
   The note is cut off and moved to `Salesperson notes`; product descriptors that
   name a different piece (Cove Base Inner, Round Edge Corner, Decor, Bookmatch A)
-  stay. Sizes are actual measurements of metric tiles (23.62 = 60 cm): the name
-  carries the nominal inch size a salesperson says out loud (24 x 24), and drops the
-  thickness, which has its own field.
+  stay. Sizes in the old name are measurements (23.62 x 47.24): the name carries
+  the nominal size Olympia prints and its stock code repeats (…2448… -> 24 x 48),
+  or the measurement where the code disagrees, and drops the thickness. The actual
+  size goes to `Salesperson notes` (Albert's choice) — see the plan, not this script.
 - **Brand first** where the name started with a collection: Olympia, CIF, Gracious
   ("Tiles —" was not a collection), JL Tile, Oakel.
 - **ALL CAPS colours** become title case (IMPRESSIVE, Olympia, strays elsewhere).
@@ -120,14 +121,47 @@ def nominal(inches):
     return str(round(round(cm / step) * step / 2.5))
 
 
-def nominal_size(text):
+def code_size(sku):
+    """Olympia's printed nominal size, as its stock code carries it: `ES.AC.ALM.0416`
+    -> (4, 16); `FD.IN.FDB.64X128.PL` -> (64, 128); `CX.FC.BLK.2.4X10.GL` -> (2.4, 10)."""
+    sku = (sku or "").upper()
+    m = re.search(r"(?<!\d)(\d+(?:\.\d+)?)X(\d+(?:\.\d+)?)", sku)
+    if m:
+        return m.group(1), m.group(2)
+    for tok in sku.split("."):
+        m = re.fullmatch(r"(\d{2})(\d{2})", tok)
+        if m:
+            return str(int(m.group(1))), str(int(m.group(2)))
+    return None
+
+
+def _fmt(n):
+    n = float(n)
+    return str(int(n)) if n == int(n) else f"{n:g}"
+
+
+def nominal_size(text, sku=None):
+    """The size a name shows (2026-09-28, second pass). Olympia's own nominal size from
+    the stock code when it agrees with the measured size within 12%; otherwise the
+    measured size itself, thickness dropped — never a guessed conversion (the first
+    pass turned 110.24 into 112, 64.17 x 127.56 into 66 x 130, and corner pieces into
+    0 x 0)."""
     nums = re.findall(r"\d+(?:\.\d+)?", text)
     if len(nums) < 2 or not re.fullmatch(r"[\d.\sx]+", text.strip()):
         return None
-    return f"{nominal(nums[0])} x {nominal(nums[1])}"
+    w, l = float(nums[0]), float(nums[1])
+    code = code_size(sku)
+    if code:
+        cw, cl = float(code[0]), float(code[1])
+        close = lambda a, b: a > 0 and b > 0 and abs(a - b) / max(a, b) <= 0.12  # noqa: E731
+        if close(cw, w) and close(cl, l):
+            return f"{_fmt(cw)} x {_fmt(cl)}"
+        if close(cw, l) and close(cl, w):
+            return f"{_fmt(cl)} x {_fmt(cw)}"
+    return f"{nums[0]} x {nums[1]}"
 
 
-def olympia(name, notes):
+def olympia(name, notes, sku=None):
     parts = name.split(SEP)
     if len(parts) != 3:
         return None, ""
@@ -135,7 +169,7 @@ def olympia(name, notes):
     m = re.match(r"(.*?)\s*\(([^()]*)\)\s*$", colour_finish)
     colour, finish = (m.group(1), m.group(2)) if m else (colour_finish, "")
     colour, note = split_note(colour)
-    size_n = nominal_size(size) or size
+    size_n = nominal_size(size, sku) or size
     new = f"{BRAND_PREFIX['OLYMPIA TILE']} {collection}{SEP}{smart_title(colour)}{SEP}{size_n}"
     if finish:
         new += f" ({finish})"
@@ -179,7 +213,7 @@ def propose(records):
             continue
         note = ""
         if supplier == "OLYMPIA TILE":
-            new, note = olympia(name, r.get("Salesperson notes"))
+            new, note = olympia(name, r.get("Salesperson notes"), r.get("SKU"))
             new = new or name
         else:
             new = generic(supplier, name)

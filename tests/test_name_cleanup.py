@@ -24,20 +24,27 @@ class TestNominalSize(unittest.TestCase):
         self.assertEqual(nc.nominal("12.01"), "12")
         self.assertEqual(nc.nominal("4.25"), "4-1/4")
 
-    def test_thickness_is_dropped(self):
-        self.assertEqual(nc.nominal_size("23.62 x 47.24 x 0.35"), "24 x 48")
+    def test_the_size_comes_from_olympias_stock_code(self):
+        self.assertEqual(nc.nominal_size("23.62 x 47.24 x 0.35", "MC.AP.LIB.2448.MT"), "24 x 48")
+        self.assertEqual(nc.nominal_size("64.17 x 127.56 x 0.47", "FD.IN.FDB.64X128.PL"), "64 x 128")
+        self.assertEqual(nc.nominal_size("2.36 x 9.84 x 0.39", "CX.FC.BLK.2.4X10.GL"), "2.4 x 10")
+
+    def test_no_agreeing_code_keeps_the_measured_size(self):
+        """Second pass, 2026-09-28: 110.24 had become 112, corner pieces 0 x 0."""
+        self.assertEqual(nc.nominal_size("110.24 x 55.12 x 0.24", "OV.PS.XXX.SLAB"), "110.24 x 55.12")
+        self.assertEqual(nc.nominal_size("12.99 x 12.99", "GE.CE.GRY.0202"), "12.99 x 12.99")
 
 
 class TestOlympia(unittest.TestCase):
     def test_note_leaves_the_colour_and_descriptors_stay(self):
-        new, note = nc.olympia("Muse — GREY AVAILABLE IN FINISH POLISHED (Matte) — 23.62 x 23.62 x 0.41", "")
+        new, note = nc.olympia("Muse — GREY AVAILABLE IN FINISH POLISHED (Matte) — 23.62 x 23.62 x 0.41", "", "MU.GRY.2424.MT")
         self.assertEqual(new, "Olympia Muse — Grey — 24 x 24 (Matte)")
         self.assertEqual(note, "AVAILABLE IN FINISH POLISHED")
-        new, _ = nc.olympia("Quarry — ARCTIC WHITE COVE BASE INNER (Matte) — 5.91 x 5.91", "")
+        new, _ = nc.olympia("Quarry — ARCTIC WHITE COVE BASE INNER (Matte) — 5.91 x 5.91", "", "QT.ARW.0606.CBI")
         self.assertEqual(new, "Olympia Quarry — Arctic White Cove Base Inner — 6 x 6 (Matte)")
 
     def test_abbreviations_are_spelled_out(self):
-        new, _ = nc.olympia("Overlay — DOLPHIN (LT GRY) (Matte) — 11.81 x 23.62", "")
+        new, _ = nc.olympia("Overlay — DOLPHIN (LT GRY) (Matte) — 11.81 x 23.62", "", "OV.DLP.1224.MT")
         self.assertEqual(new, "Olympia Overlay — Dolphin (Light Grey) — 12 x 24 (Matte)")
 
     def test_a_note_already_in_salesperson_notes_is_not_repeated(self):
@@ -78,8 +85,8 @@ class TestCollisions(unittest.TestCase):
 
     def test_names_already_identical_may_still_be_cleaned(self):
         rows = nc.propose([
-            rec("r1", "OLYMPIA TILE", "Acanto — ALMOND (Matte) — 3.94 x 15.75 x 0.31"),
-            rec("r2", "OLYMPIA TILE", "Acanto — ALMOND (Matte) — 3.94 x 15.75 x 0.31")])
+            {**rec("r1", "OLYMPIA TILE", "Acanto — ALMOND (Matte) — 3.94 x 15.75 x 0.31"), "SKU": "ES.AC.ALM.0416.VR"},
+            {**rec("r2", "OLYMPIA TILE", "Acanto — ALMOND (Matte) — 3.94 x 15.75 x 0.31"), "SKU": "ES.AC.ALM.0416.RD"}])
         self.assertEqual({p["status"] for p in rows}, {"rename"})
         self.assertEqual(rows[0]["new_name"], "Olympia Acanto — Almond — 4 x 16 (Matte)")
 
