@@ -1082,8 +1082,9 @@ Views must be created manually — they cannot be built via the API.
   acronyms (`IXPE`, `SPC`) and codes with digits (`EUT-14`) stay as printed.
 - **Tile sizes are nominal inches**, the size people say: a 60 x 120 cm tile is `24 x 48`,
   not `23.62 x 47.24`; a true inch size keeps its fraction (`4-1/4`). No thickness in the
-  name — it has its own field. **The actual size is not thrown away**: `Width (in)`,
-  `Length` and `Thickness (mm)` hold it, and the Lightspeed build reads it from there.
+  name — it has its own field. **The actual size is not thrown away**: for Olympia it is
+  kept in `Salesperson notes` as `Actual size: W x L x T in`, and the Lightspeed build
+  reads it from there.
 - **Supplier notes never go in the name** ("other colours available", "wet areas excluding
   swimming pools", "avail in 12x24") — they go in `Salesperson notes`. Words that name a
   different piece stay: `Cove Base Inner`, `Round Edge Corner`, `Decor`, `Bookmatch A`.
@@ -3059,9 +3060,10 @@ Leave `Stock status` blank for all Olympia rows; set `Active = TRUE`. The Zone A
 **clean** colour: everything the PDF merged after it (`AVAIL IN …`, `OTHER COLOURS
 AVAILABLE`, `WET AREAS …`, `THICKNESS …`) goes to `Salesperson notes` as
 `Supplier note: …`. `Colour / tone` keeps the raw value, because the live LS handles and
-names were built from it. **Fill `Width (in)`, `Length` and `Thickness (mm)` with the
-ACTUAL printed size** (`23.62`, `47.24"`, `8.9`) — the name carries only the nominal one,
-and the LS build takes sizes from these fields.
+names were built from it. **The ACTUAL printed size is kept in `Salesperson notes` as
+`Actual size: 23.62 x 47.24 x 0.35 in`** (Albert, 2026-09-28: "Put it in Salesperson
+notes" — `Length` is not used), alongside `Width (in)` and `Thickness (mm)`. The name
+carries only the nominal size; the LS build reads the actual one from that note.
 
 #### Olympia ingest output format
 

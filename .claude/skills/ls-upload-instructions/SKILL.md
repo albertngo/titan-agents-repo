@@ -932,7 +932,7 @@ groups a variant family by name and a new product must join its family.
 |---|---|---|
 | Collection | Airtable `Collection` | the first `—` segment of `Product name` **with the leading brand word removed** (`Olympia `, `CIF `, `JL Tile `; Gracious's bare `Gracious` segment means `Tiles`) |
 | Colour | Airtable `Colour / tone`, verbatim (Olympia's still carries its supplier notes — that is what the live LS names hold) | the second `—` segment |
-| Size — **Olympia** | the **actual** size: `Width (in)` × `Length` (inches, the `"` stripped) × `Thickness (mm)` ÷ 25.4 to 2 dp when present → `23.62 x 47.24 x 0.35` | none — hold the row |
+| Size — **Olympia** | the **actual** size, from `Salesperson notes` → `Actual size: 23.62 x 47.24 x 0.35 in` (drop the ` in`) | a record still named the old way carries it as the last `—` segment of `Product name`; otherwise hold the row |
 | Size — CIF, Gracious, JL Tile | the third `—` segment minus the trailing `(Finish)`; these sizes are inch-native and did not change | — |
 | Finish | `Finish type` | the trailing parenthetical |
 
@@ -970,7 +970,7 @@ Per-piece tile and STONE (thresholds, jambs, benches, listellos, pencils, decors
 
 ### Olympia Tile — supplier-specific LS rules
 
-Olympia Tile is a tile/stone/vinyl supplier whose Zone AT catalogue produces ~3,028 LS rows across three product families. Its Airtable `Product name` has been `Olympia [Collection] — [Colour] — [nominal size] ([Finish])` since 2026-09-28 — a label, **not** a parse source: build the LS name from `Collection`, `Colour / tone`, `Finish type` and the actual size in `Width (in)` × `Length` × `Thickness (mm)` (see *Source sheet parsing — tile*). Three Olympia quirks broke the standard LS build and must be handled — all three trace back to the **name-identity principle** above.
+Olympia Tile is a tile/stone/vinyl supplier whose Zone AT catalogue produces ~3,028 LS rows across three product families. Its Airtable `Product name` has been `Olympia [Collection] — [Colour] — [nominal size] ([Finish])` since 2026-09-28 — a label, **not** a parse source: build the LS name from `Collection`, `Colour / tone`, `Finish type` and the actual size kept in `Salesperson notes` as `Actual size: … in` (see *Source sheet parsing — tile*). Three Olympia quirks broke the standard LS build and must be handled — all three trace back to the **name-identity principle** above.
 
 #### Family routing
 
