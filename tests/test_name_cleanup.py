@@ -58,6 +58,12 @@ class TestGeneric(unittest.TestCase):
         self.assertEqual(nc.generic("SIMBA", "Simba Underlayment — IXPE (3.0mm)"),
                          "Simba Underlayment — IXPE (3.0mm)")
 
+    def test_supplier_codes_keep_their_capitals(self):
+        """Run 1 (2026-09-28) wrote `Faos` and `Mk-Ag-Gl` over CIF codes."""
+        self.assertEqual(nc.generic("CIF DISTRIBUTORS", "Stainless Mosaic — FAOS — Random"),
+                         "CIF Stainless Mosaic — FAOS — Random")
+        self.assertEqual(nc.smart_title("BLACK RE-REX-CB"), "Black RE-REX-CB")
+
     def test_grandeur_repeated_width_is_dropped(self):
         self.assertEqual(nc.generic("GRANDEUR", 'Grandeur 6" EWO — Barossa (6") (AB)'),
                          'Grandeur 6" EWO — Barossa (AB)')

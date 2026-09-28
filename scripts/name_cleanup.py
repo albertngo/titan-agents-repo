@@ -60,6 +60,7 @@ NOTE_START = re.compile(
 ABBREV = {"GRY": "Grey", "LT": "Light", "LT.": "Light", "DK": "Dark", "DRK": "Dark",
           "MED": "Medium", "BGE": "Beige", "BWN": "Brown", "BLK": "Black", "WHT": "White",
           "IVO": "Ivory", "TPE": "Taupe", "DGR": "Dark Grey"}
+NO_TITLE_CASE = {"CIF DISTRIBUTORS"}
 ACRONYMS = {"EVA", "IXPE", "IPES", "SPC", "WPC", "LVT", "LVP", "PVC", "HDF", "MDF", "EIR"}
 LOWER = {"and", "or", "of", "di", "de", "del", "della", "la", "le", "in", "with", "w/"}
 
@@ -70,7 +71,9 @@ def smart_title(text):
         core = w.strip("()")
         pre, post = w[:len(w) - len(w.lstrip("("))], w[len(w.rstrip(")")):]
         up = core.upper()
-        if up in ABBREV:
+        if re.fullmatch(r"[A-Z]{1,3}(?:-[A-Z]{1,3}){2,}", core):     # a code: MK-AG-GL, RE-REX-CB
+            out = core
+        elif up in ABBREV:
             out = ABBREV[up]
         elif any(ch.isdigit() for ch in core):
             out = core.upper()
@@ -150,9 +153,11 @@ def generic(supplier, name):
         new = f"{prefix} {new}"
     if supplier == "IMPRESSIVE" and new.startswith("IMPRESSIVE "):
         new = "Impressive " + new[len("IMPRESSIVE "):]
-    # ALL CAPS colour segment(s) -> title case; parentheses (grade/specs) untouched
+    # ALL CAPS colour segment(s) -> title case; parentheses (grade/specs) untouched.
+    # Never for CIF: its colours are already mixed case, so an all-caps segment there
+    # is a supplier code (FAOS, MK-AG-GL) — run 1 of 2026-09-28 lowercased 14 of them.
     segs = new.split(SEP)
-    for i in range(1, len(segs)):
+    for i in range(1 if supplier not in NO_TITLE_CASE else len(segs), len(segs)):
         head, paren = re.match(r"([^(]*)(.*)", segs[i]).groups()
         if is_shouting(head) and not re.search(r"\d", head) \
                 and head.strip().upper() not in ACRONYMS:
