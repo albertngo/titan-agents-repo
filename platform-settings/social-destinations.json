@@ -351,7 +351,7 @@
     }
   },
   "write_mode": {
-    "_comment": "Staged rollout, Albert 2026-09-12, flipped live 2026-09-14 (Albert, explicit instruction in session -- see titan-vault decisions/2026-09-14-social-write-mode-live.md). Every write now goes out live; it no longer carries info.draft:true by default.",
+    "_comment": "Staged rollout, Albert 2026-09-12, flipped live 2026-09-14 (Albert, explicit instruction in session -- see titan-vault decisions/2026-09-14-social-write-mode-live.md). Every write now goes out live; it no longer carries info.draft:true by default. Kept live PERMANENTLY (Albert, 2026-09-28: 'switch it to write mode and not go to draft permanently'). Draft stays available as a mechanism, but returning to it needs a new dated decision.",
     "mode": "live",
     "draft_flag": "info.draft",
     "_mechanism": "info.draft:true is the draft switch. NOT createScheduledPostForReview — that is a different feature requiring a Metricool plan with team management and an explicit reviewer email list, which Pro does not include.",

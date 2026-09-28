@@ -107,9 +107,14 @@ class SocialRegistryCase(unittest.TestCase):
         self.assertIn("_video_trap", gmb,
                       "the GMB publication/photo split must stay documented in the registry")
 
-    def test_write_mode_is_draft_until_deliberately_changed(self):
-        self.assertEqual(self.dest["write_mode"]["mode"], "draft",
-                         "staged rollout: flipping this is a dated decision, not an edit")
+    def test_write_mode_is_live_by_decision(self):
+        """Staged rollout ended: flipped live 2026-09-14 and kept live permanently
+        (Albert, 2026-09-28). Going back to draft is a dated decision, not an edit, so
+        the registry must keep citing the decision that set the current mode."""
+        wm = self.dest["write_mode"]
+        self.assertEqual(wm["mode"], "live",
+                         "live is the decided mode; changing it needs a new dated decision")
+        self.assertIn("decisions/2026-09-14-social-write-mode-live.md", wm["_comment"])
 
     def test_drive_root_is_pinned_by_id(self):
         """Three folders in this account match 'Titan Flooring', one owned by an
