@@ -54,6 +54,14 @@ Each value belongs to exactly one agent's allowed-actions table.
 | `airtable_upsert_product`, `airtable_backfill_ls_id`, `airtable_create_price_history`, `airtable_update_style_tags` | `airtable-actions-agent` |
 | `social_schedule_post`, `social_update_post`, `social_reschedule_post`, `social_flag_manual` | `social-actions-agent` |
 | `notion_write_troubled_table`, `notion_update_page` | `.claude/commands/catalog-sync.md` |
+| `notion_update_content_stats` | `.claude/commands/content-feedback.md` |
+
+`notion_update_content_stats` (2026-09-28) is `/content-feedback`'s one write: Metricool
+post stats onto a Content Calendar Log row, for exactly one pull (`day7`, `day30` or
+`rolling`), plus that row's `Tracking`. `details` names the pull, how the row was matched
+(`url` or `slot`) and the values written. It's read-derived data, so there is no approval
+file, the same as `/content-sweep`'s `Post Status` writes. Day-7 and day-30 values are
+frozen, so an entry that overwrites one is a bug.
 
 `airtable_update_style_tags` (2026-09-26) is `/style-tag`'s one write: approved style tags
 onto a catalogue record, blank fields only, by record id, per `contracts/style-plan-schema.md`.

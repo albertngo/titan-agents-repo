@@ -378,6 +378,19 @@ gives a blank Caption, which `/content-schedule` holds, instead of another platf
 caption. The mapping is data in `content-sources.json` → `caption_fields`, and it has to
 match the button formula by hand, because the API can't read buttons.
 
+**Posts report back (`/content-feedback`, 2026-09-28, Albert).** From day 7 after a post goes
+live, Metricool's per-post stats land on its Content Calendar Log row: day-7 numbers, frozen,
+drive every ranking; day-30 numbers are frozen for the long tail; a rolling pull every 30
+days from day 60 watches for a **Late Surge** (2× the day-30 views) and stops once a post
+has gone quiet twice. Rankings are rates (saves, shares, comments and engagement per view)
+compared **within one platform only**, against Titan's own average, with fewer than 5 posts
+treated as an early signal. The join is `Live URL`, never `Metricool Post ID`. Metric ids are
+data in `social-destinations.json` → `analytics.surfaces.<surface>.stats`, and four gaps are
+permanent: no per-reel follows on Instagram, no saves on TikTok, 10-second (not 3-second)
+views on Facebook, and no % viewed or subscribers on YouTube. Results go to a **Performance
+notes** page that `titan-content-scripts` reads to weight its ★ picks, keeping about 20% of
+each batch exploratory. Until a transcript step exists, Hook A (AEO) is assumed filmed.
+
 ## Analyses
 
 An analysis earns structure by being re-run, not by being interesting. The ladder:

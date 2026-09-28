@@ -34,6 +34,9 @@ Write entries **straight into Notion without asking first.** Albert chose this.
 - Replace that page's caption section in place (use the page-update tool) without touching anything else on the page.
 - Also write every platform's caption into its **caption property** (Step 4). The properties are what actually posts, so they're never optional.
 
+**Feedback mode**: Albert asks how posts did, which hooks or captions are winning, or to "run feedback".
+- Run `/content-feedback` (`.claude/commands/content-feedback.md`). It owns the stats pull, the Content Calendar Log writes, the per-platform rankings and the **Performance notes** page. Follow it; don't restate it here.
+
 If it's both (e.g. "10 ideas, and use the Hwang job for some"), blend the two.
 
 ## Step 2 — Check before writing
@@ -41,6 +44,7 @@ If it's both (e.g. "10 ideas, and use the Hwang job for some"), blend the two.
 1. Fetch the data source to confirm current property options (Series, Content Type, Status can change).
 2. Search the database for each planned topic. Skip or re-angle anything already covered.
 3. Fetch the Facts & Myths reference page when working in Facts & Myths, This or That?, or Design Inspo.
+4. Fetch the **Performance notes** page under Content Creation (written by `/content-feedback`), if it exists. For each platform, lean the ★ recommended hook and each platform's caption formula toward patterns ranked as a **conclusion** (5+ posts) above that platform's average. Treat `early_signal` rankings as a tiebreaker, never a rule. Keep about **20% of every batch** on lower-ranked or untested hook patterns and formulas so the rankings keep learning. In the report, say which picks came from the notes.
 
 ## Step 3 — Write each entry
 
