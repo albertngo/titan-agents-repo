@@ -43,6 +43,26 @@ class TestOlympia(unittest.TestCase):
         new, _ = nc.olympia("Quarry — ARCTIC WHITE COVE BASE INNER (Matte) — 5.91 x 5.91", "", "QT.ARW.0606.CBI")
         self.assertEqual(new, "Olympia Quarry — Arctic White Cove Base Inner — 6 x 6 (Matte)")
 
+    def test_second_pass_capitals(self):
+        """Run 4 (2026-09-28) wrote Beyez(white), Cal.gold, Pisa Abc, Acero (Crm), Wht/Tgr/Tpe."""
+        self.assertEqual(nc.smart_title("BEYEZ(WHITE)"), "Beyez (White)")
+        self.assertEqual(nc.smart_title("CAL.GOLD"), "Cal.Gold")
+        self.assertEqual(nc.smart_title("PISA ABC"), "Pisa ABC")
+        self.assertEqual(nc.smart_title("ACERO (CRM)"), "Acero (Cream)")
+        self.assertEqual(nc.code_size("XD.MT.CTN.40X120.5MM"), ("40", "120"))
+
+    def test_dotted_shades_and_truncated_parens(self):
+        """Pass 3 (2026-09-28): Lt.grey / Med.gry, and NATURE(T cut off by the supplier."""
+        self.assertEqual(nc.smart_title("ETNA (LT.GREY)"), "Etna (Light Grey)")
+        self.assertEqual(nc.smart_title("CHARBONE(MED.GRY)"), "Charbone (Medium Grey)")
+        self.assertEqual(nc.smart_title("SILVER (LIGHT.GREY)"), "Silver (Light Grey)")
+        self.assertEqual(nc.smart_title("TRAV.NOCE"), "Trav.Noce")
+        self.assertEqual(nc.smart_title("NATURE(T"), "Nature(t")
+
+    def test_a_finish_only_in_the_note_is_kept(self):
+        new, _ = nc.olympia("Colossal — HEGEL (LT GREY) OTHER COLOURS AVAILABLE SEMI-POLISH — 62.99 x 125.98 x 0.24", "", "WI.CS.HGL.63X126.SP")
+        self.assertEqual(new, "Olympia Colossal — Hegel (Light Grey) — 63 x 126 (Semi-Polish)")
+
     def test_abbreviations_are_spelled_out(self):
         new, _ = nc.olympia("Overlay — DOLPHIN (LT GRY) (Matte) — 11.81 x 23.62", "", "OV.DLP.1224.MT")
         self.assertEqual(new, "Olympia Overlay — Dolphin (Light Grey) — 12 x 24 (Matte)")

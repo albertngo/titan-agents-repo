@@ -58,9 +58,11 @@ NOTE_START = re.compile(
     r"MOSAICS AVAILABLE|AND (?=\d|FINISH|POLISHED|POL\b|WALL|MATCHING|OTHER|MOSAICS|SECURA))",
     re.I)
 
-ABBREV = {"GRY": "Grey", "LT": "Light", "LT.": "Light", "DK": "Dark", "DRK": "Dark",
+GRADES = {"A", "AB", "ABC", "ABCD", "BC", "BCD", "CD"}
+ABBREV = {"CRM": "Cream", "GRY": "Grey", "LT": "Light", "LT.": "Light", "DK": "Dark", "DRK": "Dark",
           "MED": "Medium", "BGE": "Beige", "BWN": "Brown", "BLK": "Black", "WHT": "White",
           "IVO": "Ivory", "TPE": "Taupe", "DGR": "Dark Grey"}
+SHADES = {"LT", "DK", "DRK", "MED", "LIGHT", "DARK", "MEDIUM"}
 NO_TITLE_CASE = {"CIF DISTRIBUTORS"}
 ACRONYMS = {"EVA", "IXPE", "IPES", "SPC", "WPC", "LVT", "LVP", "PVC", "HDF", "MDF", "EIR"}
 LOWER = {"and", "or", "of", "di", "de", "del", "della", "la", "le", "in", "with", "w/"}
@@ -74,17 +76,26 @@ def smart_title(text):
         up = core.upper()
         if re.fullmatch(r"[A-Z]{1,3}(?:-[A-Z]{1,3}){2,}", core):     # a code: MK-AG-GL, RE-REX-CB
             out = core
+        elif up in GRADES and not first:                            # a letter grade: ABC
+            out = up
         elif up in ABBREV:
             out = ABBREV[up]
+        elif "/" in core and all(p.upper() in ABBREV for p in core.split("/") if p):
+            out = "/".join(ABBREV[p.upper()] if p else "" for p in core.split("/"))
+        elif "." in core and core.split(".")[0].upper() in SHADES and all(core.split(".")):
+            out = " ".join(ABBREV.get(q.upper(), q[:1].upper() + q[1:].lower())   # LT.GREY -> Light Grey
+                           for q in core.split("."))
         elif any(ch.isdigit() for ch in core):
             out = core.upper()
         elif core.lower() in LOWER and not first:
             out = core.lower()
         else:
-            out = "-".join("/".join(p[:1].upper() + p[1:].lower() for p in part.split("/"))
+            out = "-".join("/".join(".".join(q[:1].upper() + q[1:].lower() for q in p.split("."))
+                                    for p in part.split("/"))
                            for part in core.split("-"))
         return pre + out + post
-    words = text.split()
+    # BEYEZ(WHITE) -> BEYEZ (WHITE); a paren the source truncated (NATURE(T) is left alone
+    words = re.sub(r"(?<=[A-Za-z])\((?=[^()]*\))", " (", text).split()
     return " ".join(word(w, i == 0) for i, w in enumerate(words))
 
 
@@ -125,7 +136,8 @@ def code_size(sku):
     """Olympia's printed nominal size, as its stock code carries it: `ES.AC.ALM.0416`
     -> (4, 16); `FD.IN.FDB.64X128.PL` -> (64, 128); `CX.FC.BLK.2.4X10.GL` -> (2.4, 10)."""
     sku = (sku or "").upper()
-    m = re.search(r"(?<!\d)(\d+(?:\.\d+)?)X(\d+(?:\.\d+)?)", sku)
+    # (?!\d*MM): `40X120.5MM` is 40 x 120 with a 5 mm thickness, not 40 x 120.5
+    m = re.search(r"(?<!\d)(\d+(?:\.\d+)?)X(\d+(?:\.\d+)?)(?!\d*MM)", sku)
     if m:
         return m.group(1), m.group(2)
     for tok in sku.split("."):
@@ -169,6 +181,10 @@ def olympia(name, notes, sku=None):
     m = re.match(r"(.*?)\s*\(([^()]*)\)\s*$", colour_finish)
     colour, finish = (m.group(1), m.group(2)) if m else (colour_finish, "")
     colour, note = split_note(colour)
+    if not finish:      # Colossal: the finish was only in the merged note ("… SEMI-POLISH")
+        m = re.search(r"\b(SEMI[- ]?POLISH(?:ED)?|POLISHED|MATTE|HONED|SATIN)\s*$", note, re.I)
+        if m:
+            finish = smart_title(m.group(1).replace(" ", "-"))
     size_n = nominal_size(size, sku) or size
     new = f"{BRAND_PREFIX['OLYMPIA TILE']} {collection}{SEP}{smart_title(colour)}{SEP}{size_n}"
     if finish:
