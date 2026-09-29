@@ -494,13 +494,32 @@ def crawl(fetch, root, follow_words, max_pages, start_urls=None):
     return pages
 
 
-def supplier_sources(sup):
-    """The supplier's sources in preference order: `extra_sources` first (Albert, 2026-09-29:
-    "if the image is clearer or better, use it instead of the floorbox"), then the main
-    `site`. Each is {name, site, listing}."""
-    main = {"name": sup.get("source_name", "main"), "site": sup["site"],
-            "listing": sup.get("listing") or {}, "follow_words": sup.get("follow_words", [])}
-    return [*(sup.get("extra_sources") or []), main]
+def supplier_sources(sup, cfg=None):
+    """The supplier's sources in the registry's `source_policy.order` (Albert, 2026-09-29:
+    "search the main website -> externals (floorbox and speers)"): its `official` site,
+    then each shared retailer it lists under `retailers`, with the supplier's overrides
+    (e.g. Speers' `vendor` string) merged into that retailer's listing. Each is
+    {name, site, listing}. Older entries with a bare `site` still work."""
+    cfg = cfg or {}
+    order = (cfg.get("source_policy") or {}).get("order") or ["official", *(cfg.get("retailers") or {})]
+    out = []
+    for name in order:
+        if name == "official":
+            off = sup.get("official")
+            if off:
+                out.append({"name": "official", "site": off["site"], "listing": off.get("listing") or {},
+                            "follow_words": off.get("follow_words", [])})
+        elif name in (sup.get("retailers") or {}):
+            base = (cfg.get("retailers") or {}).get(name) or {}
+            over = sup["retailers"][name] or {}
+            out.append({"name": name, "site": over.get("site") or base["site"],
+                        "listing": {**(base.get("listing") or {}), **{k: v for k, v in over.items() if k != "site"}},
+                        "follow_words": over.get("follow_words", [])})
+    if not out and sup.get("site"):  # an entry from before source_policy
+        out = [*(sup.get("extra_sources") or []),
+               {"name": sup.get("source_name", "main"), "site": sup["site"],
+                "listing": sup.get("listing") or {}, "follow_words": sup.get("follow_words", [])}]
+    return out
 
 
 def list_pages(fetch, cfg, supplier_cfg, max_pages):
@@ -639,7 +658,7 @@ def main(argv=None):
     max_pages = args.max_pages or cfg["fetch"]["max_pages"]
     colours = {image_match.colour_of(r.get("Product name")) for r in records}
     pages, sources, wanted = [], {}, set()
-    for src in supplier_sources(sup):
+    for src in supplier_sources(sup, cfg):
         method, src_pages, tried = list_pages(fetch, cfg, src, max_pages)
         batches = None
         bb = (src.get("listing") or {}).get("brand_batches")

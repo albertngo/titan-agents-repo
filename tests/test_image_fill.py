@@ -39,9 +39,9 @@ NAKED_HB = rec("rec0000000000003", 'Vidar HB 5" AWO — Naked Oak (Character)', 
 WALNUT = rec("rec0000000000004", 'Vidar 6" ABW — Natural (Select)', "Black Walnut Collection", 6)
 
 
-def page(url, title, images=()):
+def page(url, title, images=(), source="floorbox"):
     return {"url": url, "title": title, "h1": "", "og_title": "", "product_name": "",
-            "codes": [], "images": list(images)}
+            "codes": [], "images": list(images), "source": source}
 
 
 def img(sha, url, w=2400, h=1600):
@@ -201,7 +201,7 @@ class TestFloorBoxSitemap(unittest.TestCase):
                b'<image:image><image:loc>https://cdn/v</image:loc></image:image></url></urlset>')
         f = pull.Fetcher({"fetch": {"delay_seconds": 0}},
                          opener=lambda req, timeout=0: FakeResp(b"Sitemap: https://cdn/sm.xml" if req.full_url.endswith("robots.txt") else xml))
-        pages = pull.list_sitemap(f, "https://s/brands/vidar", [], listing=VIDAR["listing"])
+        pages = pull.list_sitemap(f, "https://s/brands/vidar", [], listing=REG["retailers"]["floorbox"]["listing"])
         self.assertEqual(len(pages), 1)
         self.assertIn("/products/engineered-hardwood-naked-oak", pages[0]["url"])
         self.assertEqual(pages[0]["title"], 'Engineered Hardwood Naked Oak — Select — 6"')
@@ -377,14 +377,36 @@ class TestTwoSources(unittest.TestCase):
         self.assertEqual(a["source"], "floorbox")
         self.assertEqual(a["fields"]["Supplier product page"], "https://fb/p")
 
-    def test_a_tie_goes_to_the_preferred_source_and_duplicates_collapse(self):
-        pages = [self.pg("floorbox", "https://fb/p", [self.img("fb", 2100, self.stripes)]),
-                 self.pg("speers", "https://sp/p", [self.img("sp", 2100, self.stripes2),
-                                                    self.img("rm", 2100, self.checks)])]
+    def test_a_tie_goes_to_the_earlier_source_and_duplicates_collapse(self):
+        """Order is official, The Floor Box, Speers (Albert, 2026-09-29)."""
+        pages = [self.pg("speers", "https://sp/p", [self.img("sp", 2100, self.stripes2),
+                                                    self.img("rm", 2100, self.checks)]),
+                 self.pg("floorbox", "https://fb/p", [self.img("fb", 2100, self.stripes)])]
         a = self.build(pages, {"sp": {"kind": "swatch"}, "fb": {"kind": "swatch"}, "rm": {"kind": "room"}})["actions"][0]
-        self.assertEqual([i["sha1"] for i in a["images"] if i["target"] == "swatch"], ["sp"])
+        self.assertEqual([i["sha1"] for i in a["images"] if i["target"] == "swatch"], ["fb"])
         self.assertEqual([i["sha1"] for i in a["images"] if i["target"] == "room"], ["rm"])
-        self.assertEqual(a["source"], "speers")
+        self.assertEqual(a["fields"]["Supplier product page"], "https://fb/p")
+
+    def test_speers_photos_may_be_used_but_speers_is_never_linked(self):
+        """'I would not want speers because it is a local shop to ours' (Albert, 2026-09-29)."""
+        pages = [self.pg("speers", "https://sp/p", [self.img("sp", 2100, self.checks)])]
+        a = self.build(pages, {"sp": {"kind": "swatch"}})["actions"][0]
+        self.assertEqual([i["sha1"] for i in a["images"]], ["sp"])
+        self.assertNotIn("Supplier product page", a["fields"])
+        self.assertIn("no_product_page", a["flags"])
+
+    def test_the_official_site_is_the_first_link(self):
+        pages = [self.pg("floorbox", "https://fb/p", [self.img("fb", 2100, self.stripes)]),
+                 self.pg("official", "https://brand/p", [self.img("of", 1800, self.checks)])]
+        a = self.build(pages, {"fb": {"kind": "swatch"}, "of": {"kind": "swatch"}})["actions"][0]
+        self.assertEqual(a["fields"]["Supplier product page"], "https://brand/p")
+
+    def test_sources_follow_the_policy_order(self):
+        names = [s["name"] for s in pull.supplier_sources(REG["suppliers"]["BIYORK"], REG)]
+        self.assertEqual(names, ["official", "floorbox", "speers"])
+        self.assertEqual(REG["source_policy"]["product_page_sources"], ["official", "floorbox"])
+        speers = pull.supplier_sources(REG["suppliers"]["BIYORK"], REG)[2]
+        self.assertEqual(speers["listing"]["vendor"], "BiYork")
 
     def test_the_shopify_vendor_filter(self):
         body = json.dumps({"products": [

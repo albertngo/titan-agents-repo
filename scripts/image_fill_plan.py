@@ -151,9 +151,16 @@ def usable_images(page, judgements, rules, laying=None):
     return out, problems
 
 
-def source_order(sup):
-    """Registry order of a supplier's sources: extra_sources first, then the main site."""
-    return [*(sup.get("extra_sources") or []), {"name": sup.get("source_name", "main")}]
+def source_order(sup, cfg=None):
+    """The supplier's sources in the registry's `source_policy.order` (same as the pull)."""
+    from supplier_site_pull import supplier_sources
+    return supplier_sources(sup, cfg)
+
+
+def link_sources(cfg):
+    """Sources whose page may go in `Supplier product page`, in preference order
+    (Albert, 2026-09-29: official site, else The Floor Box, never Speers)."""
+    return (cfg.get("source_policy") or {}).get("product_page_sources") or ["official", "floorbox"]
 
 
 def photo_set(page):
@@ -250,8 +257,8 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
     by_source = {}
     for pg in pages.values():
         by_source.setdefault(pg.get("source") or "main", []).append(pg)
-    order = [src["name"] for src in source_order(sup) if src["name"] in by_source] + \
-        [name for name in by_source if name not in {s["name"] for s in source_order(sup)}]
+    order = [src["name"] for src in source_order(sup, cfg) if src["name"] in by_source] + \
+        [name for name in by_source if name not in {s["name"] for s in source_order(sup, cfg)}]
     matches = {name: image_match.match_records(records, by_source[name], sup, cfg["matching"])
                for name in order}
     actions, held, skipped = [], [], Counter()
@@ -259,6 +266,9 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
         rid, sku = rec["id"], rec.get("SKU")
         blank = [t for t in ("swatch", "room", "detail", "product_page")
                  if is_blank(rec.get(targets[t]["name"]))]
+        if rec.get("Category") in (rules.get("skip_categories") or []):
+            skipped["accessory"] += 1  # a moulding shares its floor's colour name, not its photo
+            continue
         if not any(t in blank for t in ("swatch", "room", "detail")):
             skipped["all_targets_filled"] += 1
             continue
@@ -316,18 +326,29 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
             continue
         lead = next((i for i in images if i["target"] == "swatch"), images[0])
         page_url = lead["page"]
-        product_page, pp_source = page_url, "image_page"
+        # The link is chosen apart from the photos: the official site's page, else The Floor
+        # Box's, never a source missing from product_page_sources (Speers, a local competitor).
+        product_page, pp_source = None, None
         ppm = pp_matches.get(rid)
         if ppm:
             product_page, pp_source = ppm["candidates"][0]["url"], "manufacturer"
-        if "product_page" in blank:
+        else:
+            by_name = {name: url for name, url, _ in chosen_pages}
+            for name in link_sources(cfg):
+                if name in by_name:
+                    product_page = by_name[name]
+                    pp_source = "manufacturer" if name == "official" else name
+                    break
+        if "product_page" in blank and product_page:
             fields[targets["product_page"]["name"]] = product_page
         flags = []
         if "swatch" in blank and targets["swatch"]["name"] not in fields:
             flags.append("no_swatch")
         if tier == "model_confirmed":
             flags.append("model_matched")
-        if pp_source != "manufacturer":
+        if not product_page:
+            flags.append("no_product_page")
+        elif pp_source != "manufacturer":
             flags.append("product_page_not_manufacturer")
         actions.append({
             "id": action_id(sku, fields), "seq": len(actions) + 1, "target_system": "airtable",

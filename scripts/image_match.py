@@ -90,6 +90,7 @@ def record_features(rec, supplier_cfg, matching):
         allowed_widths.add(exact_width)
     for n in re.findall(r"(?<![\d.])(\d{1,2}(?:\.\d)?)(?![\d.])", rec.get("Collection") or ""):
         allowed_widths.add(float(n))
+    line, line_no = product_line(f"{rec.get('Collection') or ''} {head}", supplier_cfg)
     head_and_collection = f"{head} {rec.get('Collection') or ''} {rec.get('Category') or ''}"
     patterns = {p for p in matching.get("pattern_words", []) if has_phrase(head_and_collection, p)}
     return {
@@ -102,7 +103,21 @@ def record_features(rec, supplier_cfg, matching):
         "exact_width": exact_width,
         "patterns": patterns,
         "grade": grade_of(rec),
+        "line": line,
+        "line_no": line_no,
     }
+
+
+def product_line(text, supplier_cfg):
+    """(line, number) from the supplier's `lines` (longest name first): BiYork's
+    `Hydrogen 6 Plank` -> ("hydrogen", "6"); `Hydrogen PRO 3mm` -> ("hydrogen pro", None).
+    A supplier that reuses colour names across lines needs this to keep them apart."""
+    t = norm(text)
+    for line in sorted(supplier_cfg.get("lines") or [], key=len, reverse=True):
+        m = re.search(rf"(?<![a-z0-9]){re.escape(norm(line))}(?![a-z0-9])(?:\s+(\d{{1,2}})(?![a-z0-9]))?", t)
+        if m:
+            return norm(line), m.group(1)
+    return None, None
 
 
 def page_title_text(page):
@@ -144,6 +159,12 @@ def score(feat, page, supplier_cfg, matching):
         if feat["species"] not in page_species:
             return 0, "species"
         s += 2
+    if feat.get("line"):
+        page_line, page_no = product_line(title, supplier_cfg)
+        if page_line and (page_line != feat["line"] or (page_no and feat["line_no"] and page_no != feat["line_no"])):
+            return 0, "line"
+        if page_line:
+            s += 2
     page_patterns = {p for p in matching.get("pattern_words", []) if has_phrase(title, p)}
     if page_patterns != feat["patterns"] and (page_patterns or feat["patterns"]):
         return 0, "pattern"
