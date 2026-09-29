@@ -1,0 +1,12 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-09-29T00:00:00-04:00",
+  "status": "error",
+  "error": "GHL MCP server tools (contacts, conversations, opportunities, calendars, locations) were not available in this agent session; no GHL data could be retrieved. Nothing was fabricated.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest failed for 2026-09-29: ghl MCP tools not exposed to the agent. Sales/lead data missing from today's brief; check .mcp.json / GHL_PIT_TOKEN / GHL_LOCATION_ID and re-run."
+  ]
+}
