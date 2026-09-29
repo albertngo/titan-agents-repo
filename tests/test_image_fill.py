@@ -78,6 +78,11 @@ class TestMatcher(unittest.TestCase):
         out = self.m([WALNUT], [page("https://x/o", "White Oak - Natural"), page("https://x/w", "Black Walnut - Natural")])
         self.assertEqual([c["url"] for c in out[WALNUT["id"]]["candidates"]], ["https://x/w"])
 
+    def test_joined_and_split_spellings_match(self):
+        self.assertTrue(im.has_phrase("9'' Collection American White Oak-Daybreak", "Day Break"))
+        self.assertTrue(im.has_phrase("7 Collection - Snow White", "Snowwhite"))
+        self.assertFalse(im.has_phrase("Naked Oak", "Oak Naked"))
+
     def test_a_tie_is_ambiguous(self):
         out = self.m([NAKED_9], [page("https://x/a", "Naked Oak"), page("https://x/b", "Naked Oak")])
         self.assertEqual(out[NAKED_9["id"]]["tier"], "ambiguous")

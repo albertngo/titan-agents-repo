@@ -83,10 +83,11 @@
       "hosts": ["thefloorbox.ca", "www.thefloorbox.ca", "cdn.thefloorbox.ca"],
       "follow_words": ["vidar"],
       "product_pages": {
-        "_comment": "Albert, 2026-09-29: 'the product image page should still be from vidar's main site if possible'. The manufacturer's own site is challenge-protected, so its product pages are found through the search index (WebSearch, allowed_domains = hosts) — reading an index, not the blocked site — and matched to records by TITLE with the same rules as image pages. Only URLs under path_prefix count.",
+        "_comment": "Albert, 2026-09-29: 'the product image page should still be from vidar's main site if possible'. The manufacturer's own site is challenge-protected, so its product pages are found through the search index (WebSearch, allowed_domains = hosts) — reading an index, not the blocked site — and matched to records by TITLE with the same rules as image pages. Only URLs under path_prefixes count.",
         "site": "https://www.vidarflooring.com/en",
         "hosts": ["www.vidarflooring.com", "vidarflooring.com"],
-        "path_prefix": "/en/product/"
+        "path_prefixes": ["/en/product/", "/en/component/content/article/", "/test-page/item/"],
+        "_prefixes_note": "In preference order. /en/product/ is the current site; the two older URL forms still serve the same product pages and are all the index holds for many colours (2026-09-29). Query strings are dropped. A lower-preference form is used only when no higher one matches the record at tier exact."
       },
       "_source_note": "2026-09-29: Vidar's own site (https://www.vidarflooring.com/en) answers every automated request, pages and image files alike, with SiteGround's anti-bot challenge (`sg-captcha: challenge`, HTTP 202). The run does not try to get past it. Albert pointed the run at The Floor Box's Vidar brand page instead. The Floor Box is a retailer, so a photo there may be its own rather than Vidar's; every written record carries the source in `Supplier product page`, which is what makes a later swap traceable.",
       "listing": {"method": "auto", "_note": "auto = try Shopify products.json, WooCommerce Store API, sitemap.xml, then a same-site crawl from `site` (path prefix kept). Pin the method that worked after the first pull."},

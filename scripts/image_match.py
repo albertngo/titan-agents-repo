@@ -33,8 +33,16 @@ def norm(text):
 
 
 def has_phrase(haystack, phrase):
-    phrase = norm(phrase)
-    return bool(phrase) and re.search(rf"(?<![a-z0-9]){re.escape(phrase)}(?![a-z0-9])", norm(haystack)) is not None
+    """Whole-word phrase match that forgives a joined or split word: `Day Break` finds
+    `Daybreak` and `Snowwhite` finds `Snow White` (both spellings are in the catalogue)."""
+    phrase, hay = norm(phrase), norm(haystack)
+    if not phrase:
+        return False
+    if re.search(rf"(?<![a-z0-9]){re.escape(phrase)}(?![a-z0-9])", hay):
+        return True
+    compact, words = phrase.replace(" ", ""), hay.split()
+    return any("".join(words[i:i + n]) == compact
+               for n in (1, 2, 3) for i in range(len(words) - n + 1))
 
 
 def to_width(token):
@@ -73,9 +81,10 @@ def record_features(rec, supplier_cfg, matching):
         if re.search(rf"(?<![A-Za-z]){re.escape(code)}(?![A-Za-z])", head, re.I):
             species = code
             break
-    allowed_widths = set()
+    allowed_widths, exact_width = set(), None
     if rec.get("Width (in)"):
-        allowed_widths.add(float(rec["Width (in)"]))
+        exact_width = float(rec["Width (in)"])
+        allowed_widths.add(exact_width)
     for n in re.findall(r"(?<![\d.])(\d{1,2}(?:\.\d)?)(?![\d.])", rec.get("Collection") or ""):
         allowed_widths.add(float(n))
     head_and_collection = f"{head} {rec.get('Collection') or ''} {rec.get('Category') or ''}"
@@ -87,6 +96,7 @@ def record_features(rec, supplier_cfg, matching):
         "supplier_sku": (rec.get("Supplier SKU") or "").strip(),
         "species": species,
         "widths": allowed_widths,
+        "exact_width": exact_width,
         "patterns": patterns,
         "grade": grade_of(rec),
     }
@@ -104,7 +114,7 @@ def page_title_text(page):
 def colour_segment_exact(title, colour):
     """True when a dash-separated segment of the title IS the colour: '...-Naked Oak'."""
     segs = re.split(r"\s*[-–—|:]\s*", title or "")
-    return any(norm(s) == norm(colour) for s in segs if s)
+    return any(norm(s).replace(" ", "") == norm(colour).replace(" ", "") for s in segs if s)
 
 
 def score(feat, page, supplier_cfg, matching):
@@ -120,7 +130,7 @@ def score(feat, page, supplier_cfg, matching):
     if page_widths:
         if feat["widths"] and not (page_widths & feat["widths"]):
             return 0, "width"
-        s += 3
+        s += 3 if feat["exact_width"] in page_widths else 2  # 7 1/2'' beats `7 Collection` for a 7.5" plank
     species_words = supplier_cfg.get("species_words") or {}
     page_species = {code for code, words in species_words.items() if any(has_phrase(title, w) for w in words)}
     if page_species and feat["species"]:

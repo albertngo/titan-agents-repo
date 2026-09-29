@@ -142,10 +142,19 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
     if product_pages:
         pp = [{"url": r["url"], "title": r.get("title", "")} for r in product_pages.get("results", [])]
         rule = sup.get("product_pages") or {}
-        hosts, prefix = set(rule.get("hosts") or []), rule.get("path_prefix") or "/"
+        hosts = set(rule.get("hosts") or [])
+        seen = set()
+        for r in pp:
+            r["url"] = r["url"].split("?")[0]
         pp = [r for r in pp if (not hosts or urlsplit(r["url"]).netloc in hosts)
-              and urlsplit(r["url"]).path.startswith(prefix)]
-        pp_matches = image_match.match_records(records, pp, sup, cfg["matching"])
+              and not (r["url"] in seen or seen.add(r["url"]))]
+        # One match per URL form, most preferred first: a record takes the first form that
+        # matches it at tier exact (the current site before its older URL generations).
+        for prefix in rule.get("path_prefixes") or ["/"]:
+            tier_pages = [r for r in pp if urlsplit(r["url"]).path.startswith(prefix)]
+            for rid, m in image_match.match_records(records, tier_pages, sup, cfg["matching"]).items():
+                if m["tier"] == "exact" and rid not in pp_matches:
+                    pp_matches[rid] = m
     actions, held, skipped = [], [], Counter()
     for rec in sorted(records, key=lambda r: r.get("SKU") or ""):
         rid, sku = rec["id"], rec.get("SKU")
@@ -181,7 +190,7 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
             continue
         product_page, pp_source = page_url, "image_page"
         ppm = pp_matches.get(rid)
-        if ppm and ppm["tier"] == "exact":
+        if ppm:
             product_page, pp_source = ppm["candidates"][0]["url"], "manufacturer"
         if "product_page" in blank:
             fields[targets["product_page"]["name"]] = product_page
