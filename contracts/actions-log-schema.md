@@ -51,7 +51,7 @@ Each value belongs to exactly one agent's allowed-actions table.
 | `send_sms`, `send_email`, `move_stage`, `add_tag`, `remove_tag`, `create_task` | `ghl-actions-agent` |
 | `notion_create_task`, `notion_update_task`, `notion_create_page` | `.claude/commands/notion-sync.md`, `project-status-meeting-processor` |
 | `lightspeed_create_product`, `lightspeed_update_product`, `lightspeed_delete_product` | `lightspeed-actions-agent` |
-| `airtable_upsert_product`, `airtable_backfill_ls_id`, `airtable_create_price_history`, `airtable_update_style_tags` | `airtable-actions-agent` |
+| `airtable_upsert_product`, `airtable_backfill_ls_id`, `airtable_create_price_history`, `airtable_update_style_tags`, `airtable_attach_images` | `airtable-actions-agent` |
 | `social_schedule_post`, `social_update_post`, `social_reschedule_post`, `social_flag_manual` | `social-actions-agent` |
 | `notion_write_troubled_table`, `notion_update_page` | `.claude/commands/catalog-sync.md` |
 | `notion_update_content_stats` | `.claude/commands/content-feedback.md` |
@@ -69,6 +69,13 @@ Its `approved_by` is always the policy string in `platform-settings/style-tags.j
 person; a `refused` entry with `stale_staff_confirmed` records that the record was confirmed
 by staff between the snapshot and the write, which is a success of the read-before-write
 rule, not a failure. `notion_write_troubled_table` covers the style report's page table too.
+
+`airtable_attach_images` (2026-09-29) is `/image-fill`'s one write: supplier product
+images into a catalogue record's **blank** `Swatch images` / `Room scene images` /
+`Detail images`, plus the blank `Supplier product page` link, by record id, per
+`contracts/image-plan-schema.md`. Its `approved_by` is the policy string in
+`platform-settings/supplier-sites.json`. A `refused` entry with `stale_not_blank` means a
+person filled the field between the snapshot and the write: the blank-only rule working.
 
 `notion_write_troubled_table` writes the troubled-SKU table into a Price Lists page
 body (`contracts/troubled-skus-schema.md`, "The `Action` column"). It replaces the

@@ -17,3 +17,7 @@ ingest/*/airtable-promo-snapshot.json
 # product photos would bloat the repo. The manifest in style-candidates-*.json is
 # the committed record of what was read.
 ingest/*/style-images/
+
+# /image-fill downloads of supplier-website product images: regenerable from the
+# site, and photos would bloat the repo. supplier-pages-*.json is the committed record.
+ingest/*/supplier-images/

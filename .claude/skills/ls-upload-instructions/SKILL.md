@@ -906,7 +906,7 @@ For STONE rows (per-piece fabricated marble/quartz):
 [NAME_PREFIX] - [Item type] [Colour] [| Size]
 ```
 
-Item type is parsed from Airtable Product name (the first em-dash-separated segment for STONE rows): `Threshold`, `Shower Jamb`, or `Bench`.
+Item type is parsed from Airtable Product name (the first em-dash-separated segment for STONE rows, **with a leading `CIF ` / `Olympia ` brand word removed** — names carry it since 2026-09-28): `Threshold`, `Shower Jamb`, or `Bench`.
 
 Examples:
 
@@ -917,17 +917,29 @@ Examples:
 
 STONE rows never carry sf/b — they're per-piece items by definition.
 
-### Source sheet parsing — tile Product name format
+### Source sheet parsing — tile: fields first, never the name alone
 
-Tile rows in Airtable use a four-segment em-dash-separated `Product name`:
+**Changed 2026-09-28 (Albert: Airtable `Product name` rewritten for readability).** Tile
+`Product name`s now read `[Brand] [Collection] — [Colour] — [nominal W x L] ([Finish])`
+— e.g. `Olympia Muse — Grey — 24 x 24 (Matte)`, `CIF Glacier — White — 12 x 24
+(Polished rectified)`, `Gracious — EUT-34 — 24 x 48 (Polished)`. That is a label for
+people. The LS name is **not** rebuilt from it; it keeps the convention the live
+products already carry (`OLYMTIL - Muse (WHITE) | 23.62 x 23.62 x 0.41 | Matte`,
+`GRACTIL - Tiles (Segway Satuario)`, `CIFDTIL - Midtown (Antracite)`), because Lightspeed
+groups a variant family by name and a new product must join its family.
 
-```
-[Collection] — [Colour] — [Size] ([Finish])
-```
+| LS name part | Take it from | Fallback when the field is blank |
+|---|---|---|
+| Collection | Airtable `Collection` | the first `—` segment of `Product name` **with the leading brand word removed** (`Olympia `, `CIF `, `JL Tile `; Gracious's bare `Gracious` segment means `Tiles`) |
+| Colour | Airtable `Colour / tone`, verbatim (Olympia's still carries its supplier notes — that is what the live LS names hold) | the second `—` segment |
+| Size — **Olympia** | the **actual** size, from `Salesperson notes` → `Actual size: 23.62 x 47.24 x 0.35 in` (drop the ` in`) | a record still named the old way carries it as the last `—` segment of `Product name`; otherwise hold the row |
+| Size — CIF, Gracious, JL Tile | the third `—` segment minus the trailing `(Finish)`; these sizes are inch-native and did not change | — |
+| Finish | `Finish type` | the trailing parenthetical |
 
-The LS upload parses this with a regex split on `\s+—\s+`. **Critical**: the Colour segment must always be present, even when Colour equals Collection (e.g. `Artico — Artico — 11.5 x 23.3 (Matte)`). Without the second segment, the splitter sees only three parts and the size parser collapses to the parens-only finish, leaving Size empty — which produces `variant_option_one_name = "Size"` with a blank value, which LS rejects with *"Name or value for option 1 of this variant is missing"*.
-
-If you encounter a 3-segment tile Product name during parsing, fall back: when `parts[-1]` is purely a parenthesized expression that strips to empty, use `parts[-2]` as the size. This is a defensive fallback for legacy or malformed Airtable rows — the proper fix is to repair the Airtable Product name so colour is always its own segment.
+**Never put the nominal size from the name into an Olympia LS name or variant value** —
+the live Olympia family uses actual sizes, and a nominal one would be a different
+string. The `Colour` segment rule still holds for CIF: when colour equals collection,
+the name carries it twice (`CIF Artico — Artico — 11.5 x 23.3 (Matte)`).
 
 ### STONE handle generation
 
@@ -939,7 +951,7 @@ If the source sheet has `STONE` rows with a blank `LS Handle / Parent ID`, gener
 
 Where:
 - `[SUPPLIER_PREFIX]STN` is the supplier's STONE prefix (e.g. `CIFDSTN`)
-- `[ITEMTYPE_TOKEN]` is `THRESHOLD`, `JAMB`, or `BENCH` (parsed from the first em-dash segment)
+- `[ITEMTYPE_TOKEN]` is `THRESHOLD`, `JAMB`, or `BENCH` (parsed from the first em-dash segment, brand word removed)
 - `[COLOUR_TOKEN]` is the Colour / tone value with all non-alphanumeric characters stripped, uppercased
 
 The proper fix is to populate Airtable `LS Handle / Parent ID` for all STONE rows at ingest time per the bert-airtable-schema CIF section — the LS-upload-side generation is a fallback.
@@ -958,7 +970,7 @@ Per-piece tile and STONE (thresholds, jambs, benches, listellos, pencils, decors
 
 ### Olympia Tile — supplier-specific LS rules
 
-Olympia Tile is a tile/stone/vinyl supplier whose Zone AT catalogue produces ~3,028 LS rows across three product families. Its source `Product name` format (from the bert-airtable-schema Olympia ingest) is `Collection — Colour (Finish) — Size`. Three Olympia quirks broke the standard LS build and must be handled — all three trace back to the **name-identity principle** above.
+Olympia Tile is a tile/stone/vinyl supplier whose Zone AT catalogue produces ~3,028 LS rows across three product families. Its Airtable `Product name` has been `Olympia [Collection] — [Colour] — [nominal size] ([Finish])` since 2026-09-28 — a label, **not** a parse source: build the LS name from `Collection`, `Colour / tone`, `Finish type` and the actual size kept in `Salesperson notes` as `Actual size: … in` (see *Source sheet parsing — tile*). Three Olympia quirks broke the standard LS build and must be handled — all three trace back to the **name-identity principle** above.
 
 #### Family routing
 

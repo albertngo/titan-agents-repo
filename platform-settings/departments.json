@@ -127,7 +127,8 @@
         "commands": [
           "catalog-sync",
           "process-price-list",
-          "style-tag"
+          "style-tag",
+          "image-fill"
         ]
       },
       "specialists": {
@@ -162,7 +163,7 @@
         "busyness",
         "swatch"
       ],
-      "_note": "kind is `command`, not `agent` \u2014 this department's lead is /catalog-sync plus scripts/catalog_reconcile.py, and it predates the lead-agent pattern. It is registered so routing is complete, not so it can be rebuilt. It contributes no ingest source: the catalogue pipeline is not part of /daily-ingest. /style-tag (2026-09-26) is the department's second command: same plan / approval-file / actions-agent shape, Airtable only, plan_only until its write_mode is flipped."
+      "_note": "kind is `command`, not `agent` \u2014 this department's lead is /catalog-sync plus scripts/catalog_reconcile.py, and it predates the lead-agent pattern. It is registered so routing is complete, not so it can be rebuilt. It contributes no ingest source: the catalogue pipeline is not part of /daily-ingest. /style-tag (2026-09-26) is the department's second command: same plan / approval-file / actions-agent shape, Airtable only, plan_only until its write_mode is flipped. /image-fill (2026-09-29) is the third: supplier-website images into the blank image fields, same shape."
     },
     "marketing": {
       "display_name": "Marketing",

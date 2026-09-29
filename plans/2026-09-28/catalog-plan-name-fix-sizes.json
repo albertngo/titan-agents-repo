@@ -1,0 +1,5955 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "NAME FIX OLYMPIA SIZES 2026-09-28",
+ "run_at": "2026-09-28T08:58:01-04:00",
+ "status": "ready",
+ "cost_basis": "n/a (names only)",
+ "summary": {
+  "airtable_upsert": 330
+ },
+ "actions": [
+  {
+   "id": "cat-69739635358c",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "BC.BD.BEA.2448",
+   "airtable_rec_id": "recvGi9xSj0oZ8dDK",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Bold — Beat (Co — 24 x 48 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Bold — Beat (Co — 24 x 47 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-02c743a38495",
+   "seq": 2,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "BC.BD.DYN.2448",
+   "airtable_rec_id": "recLxhOKBr93GCaHV",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Bold — Dynamic — 24 x 48 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Bold — Dynamic — 24 x 47 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-e46ad67572d2",
+   "seq": 3,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "BC.BD.FIR.2448",
+   "airtable_rec_id": "recwIqOwzgTQFuC4P",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Bold — Fire (Mo — 24 x 48 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Bold — Fire (Mo — 24 x 47 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-39151e09355f",
+   "seq": 4,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "BC.BD.SIL.2448",
+   "airtable_rec_id": "recbWExWjEVFCqvtM",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Bold — Silver (Light.grey) — 24 x 48 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Bold — Silver (Light.grey) — 24 x 47 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-2a22a50e1f0b",
+   "seq": 5,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "BC.BD.SPR.2448",
+   "airtable_rec_id": "recgj31AifHJE2NmF",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Bold — Supreme — 24 x 48 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Bold — Supreme — 24 x 47 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-07c6009be264",
+   "seq": 6,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "CE.DL.BRN.1725.MT",
+   "airtable_rec_id": "recEENlHeQcZvs82U",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Dalia — Branco (White) — 17 x 25 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Dalia — Branco (White) — 18 x 26 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-4ed1ae589c87",
+   "seq": 7,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "CE.DL.NRO.1725.MT",
+   "airtable_rec_id": "recEPJasvY8d9r5IG",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Dalia — Nero (Charcoal) — 17 x 25 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Dalia — Nero (Charcoal) — 18 x 26 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-e523c8c13716",
+   "seq": 8,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "CX.FC.BLK.2.4X10.GL",
+   "airtable_rec_id": "recLZxHZj2vyriEb2",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Forever Color — Black — 2.4 x 10 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Forever Color — Black — 2 x 10 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-9b26d92f07dc",
+   "seq": 9,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "CX.FC.BLK.2.4X10.MT",
+   "airtable_rec_id": "recxT2wxfoo3fV35X",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Forever Color — Black — 2.4 x 10 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Forever Color — Black — 2 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-357d7f97d1c2",
+   "seq": 10,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "CX.FC.IVO.2.4X10.GL",
+   "airtable_rec_id": "rec7GVA40CXHKNawA",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Forever Color — Ivory — 2.4 x 10 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Forever Color — Ivory — 2 x 10 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-f3a712a37e80",
+   "seq": 11,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "CX.FC.IVO.2.4X10.MT",
+   "airtable_rec_id": "recy6aUSJnrkxZLW5",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Forever Color — Ivory — 2.4 x 10 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Forever Color — Ivory — 2 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-d668dcd7d265",
+   "seq": 12,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "CX.FC.RED.2.4X10.GL",
+   "airtable_rec_id": "recmgxqUwl6rSosIC",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Forever Color — Red — 2.4 x 10 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Forever Color — Red — 2 x 10 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-0153b75d0415",
+   "seq": 13,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "CX.FC.RED.2.4X10.MT",
+   "airtable_rec_id": "recy9cJRXTSCnW9DS",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Forever Color — Red — 2.4 x 10 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Forever Color — Red — 2 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-eb947e989aaf",
+   "seq": 14,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "CX.FC.WHT.2.4X10.GL",
+   "airtable_rec_id": "recinz60fi2vsXvLo",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Forever Color — White — 2.4 x 10 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Forever Color — White — 2 x 10 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-77615ad902d5",
+   "seq": 15,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "CX.FC.WHT.2.4X10.MT",
+   "airtable_rec_id": "rec02hMySHHP890TX",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Forever Color — White — 2.4 x 10 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Forever Color — White — 2 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-8cd7b48b52c0",
+   "seq": 16,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "FD.AB.WHT.64X128.MT",
+   "airtable_rec_id": "rec2iVb9NJ7JO2NXq",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Absolute — White — 64 x 128 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Absolute — White — 66 x 130 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-24ed13f0c44b",
+   "seq": 17,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "FD.IN.FDB.64X128.PL",
+   "airtable_rec_id": "recouy3EnvFcrwqg5",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Infinito — Fior di Bosco ( Grey) — 64 x 128 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Infinito — Fior di Bosco ( Grey) — 66 x 130 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-e47463166996",
+   "seq": 18,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "FD.IN.LCN.64X128.PL",
+   "airtable_rec_id": "recmWcbYBXhg6GtwH",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Infinito — Lincoln (White) — 64 x 128 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Infinito — Lincoln (White) — 66 x 130 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-d1023f9f8e7e",
+   "seq": 19,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "FD.IN.SHN.64X128.PL",
+   "airtable_rec_id": "recsUS1cVWBWbtxp5",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Infinito — Sahara Noir (Black) — 64 x 128 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Infinito — Sahara Noir (Black) — 66 x 130 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-132f3f3bd099",
+   "seq": 20,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "FD.IN.STT.64X128.PL",
+   "airtable_rec_id": "recadWD5vm8Lfi4om",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Infinito — Stattuario — 64 x 128 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Infinito — Stattuario — 66 x 130 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-0b20fd2ffc95",
+   "seq": 21,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "FD.IN.STT.64X128PL.A",
+   "airtable_rec_id": "recnkLqlWqWGgNlsL",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Infinito — Stattuario Bookmatch A — 64 x 128 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Infinito — Stattuario Bookmatch A — 66 x 130 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-01dbf12acc74",
+   "seq": 22,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "FD.IN.STT.64X128PL.B",
+   "airtable_rec_id": "reci5B8QJ655LTDSF",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Infinito — Stattuario Bookmatch B — 64 x 128 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Infinito — Stattuario Bookmatch B — 66 x 130 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-d927bf7a8edd",
+   "seq": 23,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "FD.PL.HOO.64X128.MT",
+   "airtable_rec_id": "rec7hyV0zjfHl9hYx",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Portland — Hood (Grey) — 64 x 128 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Portland — Hood (Grey) — 66 x 130 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-897d027bf29b",
+   "seq": 24,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "FD.PL.JRD.64X128.MT",
+   "airtable_rec_id": "recCrzZ5qn0dcMdNN",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Portland — Jordan (Owt) Off-White — 64 x 128 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Portland — Jordan (Owt) Off-White — 66 x 130 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-d3aa9429f48c",
+   "seq": 25,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "FD.PL.TBR.64X128.MT",
+   "airtable_rec_id": "recsCLgwqkmS3Lagz",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Portland — Tabouri (Chia) Charcoal — 64 x 128 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Portland — Tabouri (Chia) Charcoal — 66 x 130 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-dd0c02611464",
+   "seq": 26,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "FO.RM.STT.1030FILO.N",
+   "airtable_rec_id": "recMU29BbneUfTtyV",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Roma — Statuario Filo Decor — 9.84 x 29.53 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Roma — Statuario Filo Decor — 10 x 30 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-37e40a41bb06",
+   "seq": 27,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GE.AP.BLK.10.HEX.MT",
+   "airtable_rec_id": "rechGnu6EogwEqbLv",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Apini — Black — 9.06 x 10.43 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Apini — Black — 9 x 11 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-5fb0ada2327e",
+   "seq": 28,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GE.AP.GFT.0210.MT",
+   "airtable_rec_id": "recGlqgsd48GhrUYg",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Apini — Grafite — 2.36 x 9.84 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Apini — Grafite — 2 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-e8ec282dbbff",
+   "seq": 29,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GE.AP.GFT.10.HEX.MT",
+   "airtable_rec_id": "recnRglj3KwcWiFL8",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Apini — Grafite — 9.06 x 10.43 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Apini — Grafite — 9 x 11 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-8e20770438b4",
+   "seq": 30,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GE.AP.GRY.10.HEX.MT",
+   "airtable_rec_id": "rece858qYpmFWwaSM",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Apini — Grey — 9.06 x 10.43 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Apini — Grey — 9 x 11 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-c6891b92ef06",
+   "seq": 31,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GE.AP.STT.0210.MT",
+   "airtable_rec_id": "recQAT2mMum9kCanF",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Apini — Statuario — 2.36 x 9.84 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Apini — Statuario — 2 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-24dac0e5421d",
+   "seq": 32,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GE.AP.STT.10.HEX.MT",
+   "airtable_rec_id": "recis4P7eavJkjVwz",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Apini — Statuario — 9.06 x 10.43 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Apini — Statuario — 9 x 11 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-a3b281eb085c",
+   "seq": 33,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GE.AP.WHT.10.HEX.MT",
+   "airtable_rec_id": "receGUHMD25u7TPcJ",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Apini — White — 9.06 x 10.43 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Apini — White — 9 x 11 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-a5fa8aa3d63b",
+   "seq": 34,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GE.CE.GRY.0202",
+   "airtable_rec_id": "rec23pJf2XAxBpnAw",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Castle — Grey — 12.99 x 12.99 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Castle — Grey — 13 x 13 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-45f8b64ffe7b",
+   "seq": 35,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.3D.BLUE.SB/FL/HN",
+   "airtable_rec_id": "recHh145BPwyAKc6F",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Limestone — Blue Sand/Flammed/ — 5.91 x 24.02 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Limestone — Blue Sand/Flammed/ — 6 x 24 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-f165810472ce",
+   "seq": 36,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.ATH.GRI.CHEV.0103",
+   "airtable_rec_id": "reccgYenhQE1vUAJT",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Athena Gris — 12.01 x 10.59 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Athena Gris — 12 x 11 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-3f60766dfab7",
+   "seq": 37,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.ATH.GRI.HEX.HN",
+   "airtable_rec_id": "rec1aXHO6n4e6fBu2",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Athena Gris — 11.30 x 12.01 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Athena Gris — 11 x 12 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-59337ecfa685",
+   "seq": 38,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.ATH.GRI.LN.12IRR",
+   "airtable_rec_id": "recXIIHUEG4ZFNMU7",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Athena Gris — 12.01 x 12.01 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Athena Gris — 12 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-9caa4a18000d",
+   "seq": 39,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.B.CAR/NRO.MAR.HEX",
+   "airtable_rec_id": "recVGPbfqFhOoAEeV",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Bia Carrara/Nero Marquina — 12.05 x 10.43 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Bia Carrara/Nero Marquina — 12 x 11 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-1acd68569e83",
+   "seq": 40,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.B.CARR.0306HNLO.N",
+   "airtable_rec_id": "recnYUZUCqklB0AWg",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Bianco Carrara — 2.95 x 5.91 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Bianco Carrara — 3 x 6 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-3abbc0cd21d8",
+   "seq": 41,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.B.CARRAR.0112",
+   "airtable_rec_id": "recqx0BCCZrJ5bv5O",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Marble Pencil Rail — Bianco Carrara — 0.59 x 12.01 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Marble Pencil Rail — Bianco Carrara — 1 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-d7a947f41217",
+   "seq": 42,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.B.CARRARA.FAN",
+   "airtable_rec_id": "recTAzWYUxi3mNZCz",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Bianco Carrara — 9.65 x 9.84 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Bianco Carrara — 10 x 10 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-eb384cf158a9",
+   "seq": 43,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.B.CARRARA.HEX",
+   "airtable_rec_id": "rec9YuYgEhm5JizBR",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Bianco Carrara Hexagon — 12.01 x 12.01 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Bianco Carrara Hexagon — 12 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-151de7b5ff7d",
+   "seq": 44,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.B.CARRARA.HEXHN.N",
+   "airtable_rec_id": "recJKTUxKIdAZvpBu",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Bianco Carrara — 12.01 x 12.01 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Bianco Carrara — 12 x 12 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-3319312cd6c3",
+   "seq": 45,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.B.STAT.0.4X1.6.RF",
+   "airtable_rec_id": "rec0HSeCrEZOzFLe0",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Boutique — Bianco Statuario — 11.81 x 11.73"
+   },
+   "before": {
+    "Product name": "Olympia Boutique — Bianco Statuario — 12 x 12"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-6e16c90abc5f",
+   "seq": 46,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.B.WD/ATH.GR.HEX",
+   "airtable_rec_id": "rec85moUT8rc08oZ4",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Bianco Wood/Athena Gris — 12.00 x 10.43 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Bianco Wood/Athena Gris — 12 x 11 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-17434f59445c",
+   "seq": 47,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.BAR.NUV.LT.1224HN",
+   "airtable_rec_id": "recDz8QE3x9s6dz4U",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Bardiglio Nuvolato Light — 12.01 x 24.02 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Bardiglio Nuvolato Light — 12 x 24 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-98cc53fe51d3",
+   "seq": 48,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.BASAL.HER.BN.HN.N",
+   "airtable_rec_id": "recdT50BDbDz5SEBc",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Granite — Basalt Herringbone Mosaic — 11.30 x 11.30 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Granite — Basalt Herringbone Mosaic — 11 x 11 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-a929acec1aaa",
+   "seq": 49,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.BASALT.0.4X1.9.HN",
+   "airtable_rec_id": "recQBEzIdhMYuAv0C",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Granite — Basalt — 12.01 x 12.01 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Granite — Basalt — 12 x 12 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-6e24d16647fb",
+   "seq": 50,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.BASALT.0112.HN",
+   "airtable_rec_id": "recoKNnGf95jrftjB",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Granite — Basalt Pencil Rail — 12.01 x 0.59 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Granite — Basalt Pencil Rail — 12 x 1 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-5044e1306a8b",
+   "seq": 51,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.BASALT.HEX.HN.N",
+   "airtable_rec_id": "recS51091PYou3waI",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Granite — Basalt — 11.26 x 10.83 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Granite — Basalt — 11-1/4 x 11 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-5389a7c6c11d",
+   "seq": 52,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.BASALT.LN.12IRR.N",
+   "airtable_rec_id": "recCTRTmAQslqV7MH",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Granite — Basalt — 12.01 x 12.01 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Granite — Basalt — 12 x 12 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-2555eea4036c",
+   "seq": 53,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.BASALT/BWD.BWHN.N",
+   "airtable_rec_id": "recqu2qDcxOHw7a5J",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Granite — Basalt — 12.01 x 12.01 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Granite — Basalt — 12 x 12 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-c859c29c66bf",
+   "seq": 54,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.BGE/WHT.5/8X5/8BL",
+   "airtable_rec_id": "reclkjlpe37RLVO6c",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Beige /White — 11.81 x 11.81 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Beige /White — 12 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-8f4bc23e9e1e",
+   "seq": 55,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.BIA.CARR.HN.HEX",
+   "airtable_rec_id": "recJS0EEdfsetZFhc",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Bianco Carrara — 6.00 x 6.00 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Bianco Carrara — 6 x 6 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-25912f0d1c6f",
+   "seq": 56,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.BIA.WD.CHEV.1X3.N",
+   "airtable_rec_id": "recVipdDcwXoxstbw",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Bianco Wood — 11.73 x 11.26 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Bianco Wood — 12 x 11-1/4 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-ce696be3f826",
+   "seq": 57,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.BIA.WD.ECH.IRR.N",
+   "airtable_rec_id": "rec9a7stxUiWN1yTe",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Bianco Wood — 11.73 x 11.81 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Bianco Wood — 12 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-6ccd7fbfa903",
+   "seq": 58,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.BIA.WD.HER.BON.N",
+   "airtable_rec_id": "recpQGkmJhMJmTvoP",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Bianco Wood — 11.30 x 11.30 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Bianco Wood — 11 x 11 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-98dc4f4cc49a",
+   "seq": 59,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.BIA.WD.HEX.HN.N",
+   "airtable_rec_id": "recGSX563kZi3Csw4",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Bianco Wood — 11.22 x 11.61 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Bianco Wood — 11 x 12 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-970e90dbbfec",
+   "seq": 60,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.CALACAT.02.HEX.HN",
+   "airtable_rec_id": "recqfBY7PwUkOpOgk",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Calacatta — 12.01 x 12.01 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Calacatta — 12 x 12 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-de839ac6c60a",
+   "seq": 61,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.CALACATA.0112.GL",
+   "airtable_rec_id": "rec9geD4l55uR3FSX",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Marble Pencil Rail — Calacatta — 0.59 x 12.01 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Marble Pencil Rail — Calacatta — 1 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-f0901d4ec8fc",
+   "seq": 62,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.CIN.G.CHEVRON.TXT",
+   "airtable_rec_id": "recSAxgBcomxSxL69",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Cinderella Grey Multi — 12.00 x 13.00 (Textured)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Cinderella Grey Multi — 12 x 13 (Textured)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-425ceb65b38c",
+   "seq": 63,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.CIN.G.HER.BN.TM.N",
+   "airtable_rec_id": "recmGGys73WV6dfun",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Cinderella Grey — 11.81 x 11.81 (Tumbled)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Cinderella Grey — 12 x 12 (Tumbled)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-5b7c89f38028",
+   "seq": 64,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.CIN.G.MOROCCAN.HN",
+   "airtable_rec_id": "recqUs6uZJFkbSYeg",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Cinderella Grey — 12.01 x 12.01 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Cinderella Grey — 12 x 12 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-d45f896627fc",
+   "seq": 65,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.CIN.G.PICKET.TXT",
+   "airtable_rec_id": "recNBX4csawTgxpWJ",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Cinderella Grey Multi — 12.75 x 11.50 (Textured)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Cinderella Grey Multi — 13 x 11-1/2 (Textured)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-c6ba7b3e63bb",
+   "seq": 66,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.CIN.GRY.0112.HN",
+   "airtable_rec_id": "rec6hNedsDK9zLK1v",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Marble Pencil Rail — Cinderella Grey — 0.59 x 12.01 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Marble Pencil Rail — Cinderella Grey — 1 x 12 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-1a0909a2c8f6",
+   "seq": 67,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.D.WHT.12IRR.HN.N",
+   "airtable_rec_id": "recbxnudVRyb6IrEF",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Bianco Dolomite — 12.01 x 12.01 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Bianco Dolomite — 12 x 12 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-97a84b316fc6",
+   "seq": 68,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.DOL.WH.PICKET.TXT",
+   "airtable_rec_id": "rec88upHgUvKc35ic",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Dolomite White Multi — 12.01 x 12.01 (Textured)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Dolomite White Multi — 12 x 12 (Textured)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-dc93e44e5b93",
+   "seq": 69,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.DOL.WHT.BW.TXT",
+   "airtable_rec_id": "reckUS8rZBCfvJGfs",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Dolomite White Multi — 12.01 x 12.01 (Textured)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Dolomite White Multi — 12 x 12 (Textured)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-b7b4bb321e98",
+   "seq": 70,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.G.BGE.0.4X1.6.RF",
+   "airtable_rec_id": "rece6NkRF4NZpMmbT",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Boutique — Gascogne Beige — 11.81 x 11.73"
+   },
+   "before": {
+    "Product name": "Olympia Boutique — Gascogne Beige — 12 x 12"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-6d5c342df8f1",
+   "seq": 71,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.GR/WH.0.4X1.2BL.N",
+   "airtable_rec_id": "rec6OCYfShbl3CnU0",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Grey White Blend — 11.73 x 11.26 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Grey White Blend — 12 x 11-1/4 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-50f84fd5ff2e",
+   "seq": 72,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.GRY.BL.0.6X1.3",
+   "airtable_rec_id": "recPGBm87Rt6Fatza",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Grey Blend — 12.01 x 12.01 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Grey Blend — 12 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-6a5fc4c31aee",
+   "seq": 73,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.GRY.BL.RAN.LIN",
+   "airtable_rec_id": "recQgQlNQT6BUbEmp",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Grey Blend — 12.01 x 12.01 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Grey Blend — 12 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-4363a581eca2",
+   "seq": 74,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.GRY/WHT.5/8X5/8BL",
+   "airtable_rec_id": "recQT4yGsNzG4e1j2",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Grey / White — 11.81 x 11.81 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Grey / White — 12 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-0ace75955bc8",
+   "seq": 75,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.ICE.BGE.0.6X1.3",
+   "airtable_rec_id": "recdWnB23ijv2Gqz4",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Ice Beige Brick — 12.01 x 12.01 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Ice Beige Brick — 12 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-ad2888a40c8d",
+   "seq": 76,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.ICE.BGE.HER.BON",
+   "airtable_rec_id": "rec9WZWngUHD69phW",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Ice Beige Herringbon — 12.01 x 12.01 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Ice Beige Herringbon — 12 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-a7a125afc93c",
+   "seq": 77,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.MARMARA.0.6X1.3",
+   "airtable_rec_id": "recjCt5CXxluccPbi",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Marmara Brick — 12.01 x 12.01 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Marmara Brick — 12 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-c102119f2d99",
+   "seq": 78,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.MARMARA.HER.BON",
+   "airtable_rec_id": "reczumIKCcOXNIKf7",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Marmara Herringbone — 11.42 x 11.42 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Marmara Herringbone — 12 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-5a0c3b81f569",
+   "seq": 79,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.MARMARA.RAN.LIN",
+   "airtable_rec_id": "recn1g47i7RnHWPyA",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Marmara Linear — 12.01 x 12.01 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Marmara Linear — 12 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-2e2c94730923",
+   "seq": 80,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.NERO.MARQ.0112",
+   "airtable_rec_id": "rec6KZObhcgrzpMUj",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Marble Pencil Rail — Nero Marquina — 0.59 x 12.01 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Marble Pencil Rail — Nero Marquina — 1 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-dd7322082932",
+   "seq": 81,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.NRO.MARQ.HEX",
+   "airtable_rec_id": "rec0qAslbLQXA8fj3",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Nero Marquina — 12.01 x 12.01 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Nero Marquina — 12 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-1156e17b100a",
+   "seq": 82,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.NRO.MARQ.HN.HEX",
+   "airtable_rec_id": "recU42agw5R3WeI6o",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Nero Marquina — 6.00 x 6.00 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Nero Marquina — 6 x 6 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-a1b09fa00736",
+   "seq": 83,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.ORT.W.CHEVRON.TXT",
+   "airtable_rec_id": "recXQgvQ5Tbj2Jt71",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Oriental White Multi — 12.00 x 13.00 (Textured)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Oriental White Multi — 12 x 13 (Textured)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-52d46cfcc81e",
+   "seq": 84,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.ORT.W.PICKET.TXT",
+   "airtable_rec_id": "recomh87QtQ72MivD",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Oriental White Multi — 12.75 x 11.50 (Textured)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Oriental White Multi — 13 x 11-1/2 (Textured)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-3c0fb889dfd2",
+   "seq": 85,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.ORT.WH/NMQ.DOT.BW",
+   "airtable_rec_id": "rec0PVgHSRPVQpnor",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Ort Wht/Nero Marquina — 12.01 x 12.01 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Ort Wht/Nero Marquina — 12 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-d5362451bca5",
+   "seq": 86,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.ORT.WHT.0112",
+   "airtable_rec_id": "recNaC2qk3SUQGWMP",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Marble Pencil Rail — Oriental White — 0.59 x 12.01 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Marble Pencil Rail — Oriental White — 1 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-a0758f5e9429",
+   "seq": 87,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.ORT.WHT.CHEV.0103",
+   "airtable_rec_id": "recwyDQgQXl8XPg8n",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Oriental White — 12.01 x 10.59 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Oriental White — 12 x 11 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-efc4c4c92456",
+   "seq": 88,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.ORT.WHT.HEX",
+   "airtable_rec_id": "recewOIYJ0AZ9jJ9p",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Oriental White — 11.22 x 10.79 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Oriental White — 11 x 11 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-9e9798232c2f",
+   "seq": 89,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.QZ.CHA.BK.COR",
+   "airtable_rec_id": "recfrgBAzT62L7uEp",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Quartzite — Charcoal Black — 0.00 x 0.00"
+   },
+   "before": {
+    "Product name": "Olympia Quartzite — Charcoal Black — 0 x 0"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-e7081c7d33e2",
+   "seq": 90,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.QZ.GSD.0106",
+   "airtable_rec_id": "recxezgr3KB5ZXIL9",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Quartzite — Golden Sand — 12.01 x 12.01 (Natural)"
+   },
+   "before": {
+    "Product name": "Olympia Quartzite — Golden Sand — 12 x 12 (Natural)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-2c09f9b1bd7e",
+   "seq": 91,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.QZ.SWT.PANEL.COR",
+   "airtable_rec_id": "recBM6yDl4W8md4fr",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Quartzite — Snow White — 0.00 x 0.00"
+   },
+   "before": {
+    "Product name": "Olympia Quartzite — Snow White — 0 x 0"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-38c45af16369",
+   "seq": 92,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.QZ.SWT.TACO.COR",
+   "airtable_rec_id": "recnA963WVn4KivGA",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Quartzite — Snow White — 24.02 x 7.01"
+   },
+   "before": {
+    "Product name": "Olympia Quartzite — Snow White — 24 x 7"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-55a4cc2d3350",
+   "seq": 93,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.RS.GREY.HN",
+   "airtable_rec_id": "recjcPFrfNf02WoZg",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Riverstone — Grey — 11.81 x 11.81 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Riverstone — Grey — 12 x 12 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-04638b3f0e15",
+   "seq": 94,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.RS.MULTICOLOUR",
+   "airtable_rec_id": "receBbluDmSezZhCG",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Riverstone — Multicolour — 12.01 x 12.01 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Riverstone — Multicolour — 12 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-dc9f0914b1ef",
+   "seq": 95,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.RS.PANU.MULTI.HN",
+   "airtable_rec_id": "recVKWzDV4CDig4DP",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Riverstone — Panu Multicolour — 11.81 x 11.81 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Riverstone — Panu Multicolour — 12 x 12 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-7a6d8d7f928b",
+   "seq": 96,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.RS.TIG.EYE",
+   "airtable_rec_id": "rec2HjM5QfJjsr8po",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Riverstone — Tiger Eye — 12.01 x 12.01 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Riverstone — Tiger Eye — 12 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-b7fecc159711",
+   "seq": 97,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.RS.WHITE.HN",
+   "airtable_rec_id": "recX9y8yU4ejSSWWs",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Riverstone — White — 11.81 x 11.81 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Riverstone — White — 12 x 12 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-df51519ef173",
+   "seq": 98,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.SF.SIL.SHA.IRR.LN",
+   "airtable_rec_id": "recWfpIGVMGd2rtqc",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Silver Shadow Linear Irregular Splitface — 11.02 x 15.75"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Silver Shadow Linear Irregular Splitface — 11 x 16"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-911f996280db",
+   "seq": 99,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.SF.TSV.IRR.LN",
+   "airtable_rec_id": "recTRuKn0OTHlzU6z",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Travertine — Silver Splitface — 11.02 x 15.94"
+   },
+   "before": {
+    "Product name": "Olympia Travertine — Silver Splitface — 11 x 16"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-d3bd520d76e4",
+   "seq": 100,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.SIL.GRY.VC.0624HN",
+   "airtable_rec_id": "recAqn2P5vk5qZrH3",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Silver Grey — 5.98 x 24.02 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Silver Grey — 6 x 24 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-406b97b16e24",
+   "seq": 101,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.SIL.GRY.VC.1224HN",
+   "airtable_rec_id": "recsHgVArNwGNvQh6",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Silver Grey — 12.01 x 24.02 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Silver Grey — 12 x 24 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-289883f24f21",
+   "seq": 102,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.SIL.GRY.VC1224F/B",
+   "airtable_rec_id": "recC1fZeb8Rgnc9nN",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Silver Grey Flamed — 12.01 x 24.02 (Brushed)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Silver Grey Flamed — 12 x 24 (Brushed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-e79fa94e4f41",
+   "seq": 103,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.SIL.SHA.0112.PL.N",
+   "airtable_rec_id": "recNrkJNSdwte5EI3",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Marble Pencil Rail — Silver Shadow — 0.75 x 12.01 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Marble Pencil Rail — Silver Shadow — 3/4 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-09b9c30b8fae",
+   "seq": 104,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.SL.MTK.BLK0624BDN",
+   "airtable_rec_id": "recY2HZTNHHct7gUQ",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Slate — Montauk Black — 5.91 x 23.62 (Brushed)"
+   },
+   "before": {
+    "Product name": "Olympia Slate — Montauk Black — 6 x 24 (Brushed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-3a25eb250746",
+   "seq": 105,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.SL.OCN.GRN",
+   "airtable_rec_id": "recWbEz8YALpkcfp2",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Slate — Ocean Green — 11.81 x 11.81 (Natural)"
+   },
+   "before": {
+    "Product name": "Olympia Slate — Ocean Green — 12 x 12 (Natural)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-b7d98d58e888",
+   "seq": 106,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.SS.B.CARRARA.L",
+   "airtable_rec_id": "reckxMjrJXArOtMZH",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Shower Sets — Bianco Carrara (Long) — 75.98 x 5.91 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Shower Sets — Bianco Carrara (Long) — 76 x 6 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-fb49a52cd471",
+   "seq": 107,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.SS.B.CARRARA.S",
+   "airtable_rec_id": "recn5NRXndsYRpdK8",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Shower Sets — Bianco Carrara (Short) — 27.95 x 5.91 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Shower Sets — Bianco Carrara (Short) — 28 x 6 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-7e179e8ff38e",
+   "seq": 108,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.SS.P.RIVIERA.L",
+   "airtable_rec_id": "recQ1nFMrhpMIVQHI",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Shower Sets — Perlato Riviera (Long) — 75.98 x 5.91 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Shower Sets — Perlato Riviera (Long) — 76 x 6 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-83fcb4fe95c0",
+   "seq": 109,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.SS.P.RIVIERA.S",
+   "airtable_rec_id": "reczLXipFrcpbVV2O",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Shower Sets — Perlato Riviera (Short) — 27.95 x 5.91 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Shower Sets — Perlato Riviera (Short) — 28 x 6 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-bdb4a382f7c2",
+   "seq": 110,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.SS.P.TIVOLI.L",
+   "airtable_rec_id": "recuXpzVeYBmAAHlZ",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Shower Sets — Tivoli (Long) — 75.98 x 5.91 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Shower Sets — Tivoli (Long) — 76 x 6 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-58d11d9d1c88",
+   "seq": 111,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.STATUARIET.1224HN",
+   "airtable_rec_id": "recDiyulOa0mlqKqK",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Statuarietto — 12.01 x 24.02 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Statuarietto — 12 x 24 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-c008b1f003e6",
+   "seq": 112,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.T.SILVER.0112.HN",
+   "airtable_rec_id": "recVkDU7OLjCAaUdv",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Travertine — Travertine Silver — 0.79 x 12.01 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Travertine — Travertine Silver — 1 x 12 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-273fe7874035",
+   "seq": 113,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.TM.BOT.0204",
+   "airtable_rec_id": "recqrOuLwGifpdSSZ",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Botticino — 11.81 x 11.81 (Tumbled)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Botticino — 12 x 12 (Tumbled)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-b6b66a399739",
+   "seq": 114,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.TM.TRN.2.5X12",
+   "airtable_rec_id": "rect0tLnjqjzF69PH",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Travertine — Trav.noce Chair Rail — 2.5 x 12 (Tumbled)"
+   },
+   "before": {
+    "Product name": "Olympia Travertine — Trav.noce Chair Rail — 3 x 12 (Tumbled)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-01063667f1c4",
+   "seq": 115,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.TR.LTE.1.75X12.HN",
+   "airtable_rec_id": "recACZJzbxOecpO87",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Travertine — Latte Chair Rail — 1.75 x 12 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Travertine — Latte Chair Rail — 2 x 12 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-b22c6d3f82c1",
+   "seq": 116,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.TS.BLK.IRR",
+   "airtable_rec_id": "rec9otLX4jVO85y89",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Slate — Black — 12.01 x 12.01 (Tumbled)"
+   },
+   "before": {
+    "Product name": "Olympia Slate — Black — 12 x 12 (Tumbled)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-0f643705cbce",
+   "seq": 117,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.TUANA.HER.BON",
+   "airtable_rec_id": "rec0H6kas4kmNUDSe",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Tuana — 11.42 x 11.42 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Tuana — 12 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-ea8a8eeca1eb",
+   "seq": 118,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.VERONA.BL.0.6X1.2",
+   "airtable_rec_id": "recTCdpoHEmXhTyFq",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Verona Brick — 12.01 x 12.01 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Verona Brick — 12 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-f2dce8491208",
+   "seq": 119,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.VERONA.BL.0.6X2",
+   "airtable_rec_id": "recY1vBu9papHwD45",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Verona Stacked — 12.01 x 12.01 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Verona Stacked — 12 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-5e4fcfc3160a",
+   "seq": 120,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.VERONA.BL.HER.BON",
+   "airtable_rec_id": "recNCUWEdlBFgkM0t",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Verona Herringbone — 11.22 x 10.43 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Verona Herringbone — 11 x 11 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-2a2888bd98a5",
+   "seq": 121,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.VERONA.BL.HEX",
+   "airtable_rec_id": "reciy6RAqdxnLYNAb",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Verona Hexagon — 12.01 x 10.43 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Verona Hexagon — 12 x 11 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-e150cbe2804d",
+   "seq": 122,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.VS.TTB.0102.PL",
+   "airtable_rec_id": "reco1XTxFQw1zCpWD",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Trenton Black — 11.81 x 11.81 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Trenton Black — 12 x 12 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-33aab43ee2fc",
+   "seq": 123,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.W08-09.12IRR.HN.N",
+   "airtable_rec_id": "recYHf8ds6bJ1AJcn",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Light Beige W/Lt Emp Dot — 12.01 x 12.01 (Honed)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Light Beige W/Lt Emp Dot — 12 x 12 (Honed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-4646f6c59f3e",
+   "seq": 124,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.WHT/GRY.T.DIAMOND",
+   "airtable_rec_id": "recitS9y9SuOYuF3M",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — Wht/Carr Grey/Ort Grey — 12.76 x 11.02 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — Wht/Carr Grey/Ort Grey — 13 x 11 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-842d3d2bf4f1",
+   "seq": 125,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.WT/BK.STAR.HX.BIN",
+   "airtable_rec_id": "recCoip9usy2mCAvQ",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — China White/Black — 12.91 x 9.92 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — China White/Black — 13 x 10 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-f26b8de6e384",
+   "seq": 126,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GM.WT/GR.STAR.HX.SIN",
+   "airtable_rec_id": "recm3iWHMywQfPB8E",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Composite Marble — B.carrara/Bardiglo — 12.91 x 9.92 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Composite Marble — B.carrara/Bardiglo — 13 x 10 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-2c8395869613",
+   "seq": 127,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "GW.BT.ORG.2.3X10",
+   "airtable_rec_id": "recaMr7kkpXU85CQI",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Brickstyle — Orange — 2.3 x 10 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Brickstyle — Orange — 2 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-a901d167cb2a",
+   "seq": 128,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.AL/BO.NOSING",
+   "airtable_rec_id": "recj7iECxjKWyKonr",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Al/Bo — 106.30 x 0.94 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Al/Bo — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-17ead7bb4f75",
+   "seq": 129,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.AL/BO.REDUCER",
+   "airtable_rec_id": "rec6LRNCmtSBz6sqE",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Al/Bo — 106.30 x 1.10 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Al/Bo — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-0f76d6be6f64",
+   "seq": 130,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.AL/BO.TBAR",
+   "airtable_rec_id": "recyOSRIujLdqkxRX",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Al/Bo — 106.30 x 0.98 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Al/Bo — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-d78f3f632499",
+   "seq": 131,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.ALM.0748.GLUE",
+   "airtable_rec_id": "rec0XtZC5eZjY0VZD",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Lvt Vinyl Glued Down — Almond — 7 x 48"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Lvt Vinyl Glued Down — Almond — 7-1/4 x 48"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-b6890f5c9047",
+   "seq": 132,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.ANT.NOSING",
+   "airtable_rec_id": "recIPXGdOFn11QHnP",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Anthracite — 106.30 x 0.94 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Anthracite — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-7ee6ef7ec207",
+   "seq": 133,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.ANT.REDUCER",
+   "airtable_rec_id": "recJQtJB4wTOwSODk",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Anthracite — 106.30 x 1.10 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Anthracite — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-97aaace61caa",
+   "seq": 134,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.ANT.TBAR",
+   "airtable_rec_id": "recRtWwr7QEUXPvyu",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Anthracite — 106.30 x 0.98 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Anthracite — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-304a21c1f7f2",
+   "seq": 135,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.BGE.NOSING",
+   "airtable_rec_id": "recTPPZzNCOEe8ZrY",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Beige — 106.30 x 0.94 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Beige — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-094ae020e6e9",
+   "seq": 136,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.BGE.REDUCER",
+   "airtable_rec_id": "recGTejCvMtTydehG",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Beige — 106.30 x 1.10 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Beige — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-9408ea621402",
+   "seq": 137,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.BGE.TBAR",
+   "airtable_rec_id": "recnNtOPWdmu1mbVu",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Beige — 106.30 x 0.98 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Beige — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-a7a85ffac97b",
+   "seq": 138,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.BON.0748.GLUE",
+   "airtable_rec_id": "recp3bJ6fS0uURLXO",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Lvt Vinyl Glued Down — Bone — 7 x 48"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Lvt Vinyl Glued Down — Bone — 7-1/4 x 48"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-ded218aa071a",
+   "seq": 139,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.BWN.NOSING",
+   "airtable_rec_id": "recMYSepnMU08AKhH",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Brown — 106.30 x 0.94 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Brown — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-27f41bc748d8",
+   "seq": 140,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.BWN.REDUCER",
+   "airtable_rec_id": "recHWhD1ROqQW4U3p",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Brown — 106.30 x 1.10 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Brown — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-267fda5e11de",
+   "seq": 141,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.BWN.TBAR",
+   "airtable_rec_id": "rechi590IMT68X6Rt",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Brown — 106.30 x 0.98 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Brown — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-7574218f7e21",
+   "seq": 142,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.CDG.0748.GLUE",
+   "airtable_rec_id": "recIhC20fhmwti876",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Lvt Vinyl Glued Down — Cold Gre — 7 x 48"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Lvt Vinyl Glued Down — Cold Gre — 7-1/4 x 48"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-11c0c5a6fe1f",
+   "seq": 143,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.EXP.0748.GLUE",
+   "airtable_rec_id": "recO2ZnDfjSDi7dPM",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Lvt Vinyl Glued Down — Expresso — 7 x 48"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Lvt Vinyl Glued Down — Expresso — 7-1/4 x 48"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-c4147d46d8da",
+   "seq": 144,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.EXP.NOSING",
+   "airtable_rec_id": "rec0LsWfuE7kNOCRQ",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Espresso — 106.30 x 0.94 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Espresso — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-327b4c83ede9",
+   "seq": 145,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.EXP.REDUCER",
+   "airtable_rec_id": "reckycSH9jDRiKJvH",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Espresso — 106.30 x 1.10 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Espresso — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-3874b653fcdb",
+   "seq": 146,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.EXP.TBAR",
+   "airtable_rec_id": "rec8Wura4RHdR575O",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Espresso — 106.30 x 0.98 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Espresso — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-f6326f96b72d",
+   "seq": 147,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.GTP.0748.GLUE",
+   "airtable_rec_id": "reca8vGO89EfTDZOa",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Lvt Vinyl Glued Down — Grey/Tau — 7 x 48"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Lvt Vinyl Glued Down — Grey/Tau — 7-1/4 x 48"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-c291aa2407be",
+   "seq": 148,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.ICE.NOSING",
+   "airtable_rec_id": "rec1lWmknNFzlqgfq",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Ice — 106.30 x 0.94 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Ice — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-89066456d3ad",
+   "seq": 149,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.ICE.REDUCER",
+   "airtable_rec_id": "recxc93E3uHgqKQar",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Ice — 106.30 x 1.10 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Ice — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-1d91bd412e0d",
+   "seq": 150,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.ICE.TBAR",
+   "airtable_rec_id": "recDTdkN7Oel88jbi",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Ice — 106.30 x 0.98 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Ice — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-dd8037e35568",
+   "seq": 151,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.LAL.0748.GLUE",
+   "airtable_rec_id": "recO5A1tIiGK6J3J1",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Lvt Vinyl Glued Down — Light Al — 7 x 48"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Lvt Vinyl Glued Down — Light Al — 7-1/4 x 48"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-29e2e0de8a2e",
+   "seq": 152,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.LBG.0748.GLUE",
+   "airtable_rec_id": "recFDShPT85HZgLdp",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Lvt Vinyl Glued Down — Light Beige — 7 x 48"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Lvt Vinyl Glued Down — Light Beige — 7-1/4 x 48"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-3533cca2cb69",
+   "seq": 153,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.LBW.0748.GLUE",
+   "airtable_rec_id": "rec0JwUNhDg6PFeT0",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Lvt Vinyl Glued Down — Light Brown — 7 x 48"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Lvt Vinyl Glued Down — Light Brown — 7-1/4 x 48"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-d6166063be2b",
+   "seq": 154,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.LBW.NOSING",
+   "airtable_rec_id": "recSlLvOZzaY4YO0I",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Light Brown — 106.30 x 0.94 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Light Brown — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-56e5378e91e5",
+   "seq": 155,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.LBW.REDUCER",
+   "airtable_rec_id": "recttALAumi2jV4AL",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Light Brown — 106.30 x 1.10 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Light Brown — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-a003163b2993",
+   "seq": 156,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.LBW.TBAR",
+   "airtable_rec_id": "rec420XqTAmf9N1Hi",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Light Brown — 106.30 x 0.98 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Light Brown — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-22e2bdb3b027",
+   "seq": 157,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.LGR.NOSING",
+   "airtable_rec_id": "rec5Ns3U1RxNAV5q5",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Light Grey — 106.30 x 0.94 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Light Grey — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-be6fc029cd5c",
+   "seq": 158,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.LGR.REDUCER",
+   "airtable_rec_id": "recRjJqPvj8QEXpGF",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Light Grey — 106.30 x 1.10 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Light Grey — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-4ed7c4398286",
+   "seq": 159,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.LGR.TBAR",
+   "airtable_rec_id": "recIDcbiJLBlFBoA6",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Light Grey — 106.30 x 0.98 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Light Grey — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-de7e41945ce7",
+   "seq": 160,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.LTP.NOSING",
+   "airtable_rec_id": "recsUOZUDlCJsCo3B",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Light Taupe — 106.30 x 0.94 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Light Taupe — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-e61c05c893f9",
+   "seq": 161,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.LTP.REDUCER",
+   "airtable_rec_id": "recduS2XoqNTBV1I4",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Light Taupe — 106.30 x 1.10 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Light Taupe — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-f8f041100f6f",
+   "seq": 162,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.LTP.TBAR",
+   "airtable_rec_id": "recc7dNMiNX4F5DsI",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Light Brown — 106.30 x 0.98 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Light Brown — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-f0cbdfc6b3e9",
+   "seq": 163,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.SIL.0748.GLUE",
+   "airtable_rec_id": "rec9YjjlchZKnrKoq",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Lvt Vinyl Glued Down — Silver — 7 x 48"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Lvt Vinyl Glued Down — Silver — 7-1/4 x 48"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-828d33e3c2e5",
+   "seq": 164,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.SIL.NOSING",
+   "airtable_rec_id": "rec3JEVPFsPday2kP",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Silver — 106.30 x 0.94 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Silver — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-144c61cc2fca",
+   "seq": 165,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.SIL.REDUCER",
+   "airtable_rec_id": "rec9wQTl6wK1NigoD",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Silver — 106.30 x 1.10 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Silver — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-4faa96ba7bb7",
+   "seq": 166,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.SIL.TBAR",
+   "airtable_rec_id": "recU2C02r5ytJzgtw",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Silver — 106.30 x 0.98 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Silver — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-4ef5d1397145",
+   "seq": 167,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.TAN.NOSING",
+   "airtable_rec_id": "recg0uszh7EWhdO01",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Tan — 106.30 x 0.94 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Tan — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-bbe7e47a63e4",
+   "seq": 168,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.TAN.REDUCER",
+   "airtable_rec_id": "rec5rZT0TyOWzMD3F",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Tan — 106.30 x 1.10 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Tan — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-7468ab22bfaf",
+   "seq": 169,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.TAN.TBAR",
+   "airtable_rec_id": "recJTo07QOEL0oGGT",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Tan — 106.30 x 0.98 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Tan — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-f160ac024aa5",
+   "seq": 170,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.TPE.0748.GLUE",
+   "airtable_rec_id": "reccAuFAZKM1kioeO",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Chimewood - Lvt Vinyl Glued Down — TAUPE — 7.25 x 48.00 x 0.1"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Lvt Vinyl Glued Down — Taupe — 7-1/4 x 48"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-b515796bdb47",
+   "seq": 171,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.TPE.NOSING",
+   "airtable_rec_id": "recUSpsuSiPiaLfwI",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Taupe — 106.30 x 0.94 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Nosing — Taupe — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-18c8ed74a004",
+   "seq": 172,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.TPE.REDUCER",
+   "airtable_rec_id": "rec17cuWjyql0vchI",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Taupe — 106.30 x 1.10 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl Reducer — Taupe — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-3fd65657f9da",
+   "seq": 173,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "HV.CW.TPE.TBAR",
+   "airtable_rec_id": "recM1l09xocSBGm2J",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Taupe — 106.30 x 0.98 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Chimewood - Vinyl T Bar — Taupe — 108 x 1 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-b700cb1944fe",
+   "seq": 174,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "IB.SU.BIM.48X110.SP",
+   "airtable_rec_id": "recCOSdGH3dR0zRYw",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Pietra Supreme — Breccia — 48 x 110"
+   },
+   "before": {
+    "Product name": "Olympia Pietra Supreme — Breccia — 47 x 112"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-3ae6a3c79c26",
+   "seq": 175,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "IB.SU.DVW.48X110.SP",
+   "airtable_rec_id": "recyZJhtYM4qYarAV",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Pietra Supreme — Dover White — 48 x 110"
+   },
+   "before": {
+    "Product name": "Olympia Pietra Supreme — Dover White — 47 x 112"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-f2bcf4a521f3",
+   "seq": 176,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "IB.SU.LBG.48X110.SP",
+   "airtable_rec_id": "recSm0DeDVdb7mgzI",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Pietra Supreme — Beige — 48 x 110"
+   },
+   "before": {
+    "Product name": "Olympia Pietra Supreme — Beige — 47 x 112"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-126c6489ee90",
+   "seq": 177,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "IB.SU.LWT.48X110.SP",
+   "airtable_rec_id": "recT63nS0UXtJfTGq",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Pietra Supreme — White — 48 x 110"
+   },
+   "before": {
+    "Product name": "Olympia Pietra Supreme — White — 47 x 112"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-9ff50a2817c5",
+   "seq": 178,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "IB.SU.QLU.48X110.SP",
+   "airtable_rec_id": "rec03XdQ5JHaHCDUn",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Pietra Supreme — Quartzit — 48 x 110"
+   },
+   "before": {
+    "Product name": "Olympia Pietra Supreme — Quartzit — 47 x 112"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-72b7885b115a",
+   "seq": 179,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "IC.AS.BLK.02.HEX.MT",
+   "airtable_rec_id": "recXhI37ebzPvl3MZ",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Ashima — Black — 12.72 x 12.40 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Ashima — Black — 13 x 13 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-8a41871b4588",
+   "seq": 180,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "IC.AS.GRY.02.HEX.MT",
+   "airtable_rec_id": "recrOFESarmnzhUIw",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Ashima — Grey — 12.72 x 12.40 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Ashima — Grey — 13 x 13 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-c8a9d241cd13",
+   "seq": 181,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "IC.AS.SND.02.HEX.MT",
+   "airtable_rec_id": "recwh1BVFZPSprHbG",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Ashima — Sand — 12.72 x 12.40 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Ashima — Sand — 13 x 13 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-eb79b1f5861e",
+   "seq": 182,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "IC.AS.WHT.02.HEX.MT",
+   "airtable_rec_id": "recpahNLUzP6Y0kVL",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Ashima — White — 12.72 x 12.40 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Ashima — White — 13 x 13 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-646c12453087",
+   "seq": 183,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "IO.ANG.BUT.0.48X0.48",
+   "airtable_rec_id": "recFprTySiJAmIgqm",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Boutique Angie — Butterfly (Multi-Colour) — 11.81 x 11.81 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Boutique Angie — Butterfly (Multi-Colour) — 12 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-144a93c76b54",
+   "seq": 184,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "IO.TYROL.0.6X1.2.N",
+   "airtable_rec_id": "recg4v66FC2QIoei7",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Boutique — Tyrol — 11.57 x 12.09 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Boutique — Tyrol — 12 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-a4e5bc2512d4",
+   "seq": 185,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "IO.WHT.PRL.0.6X1.2",
+   "airtable_rec_id": "recONeBaFtCE6XmC6",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Boutique — White Pearl — 12.01 x 12.01 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Boutique — White Pearl — 12 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-a629a0744001",
+   "seq": 186,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "IO.YAH.BLK.0.4X0.8.N",
+   "airtable_rec_id": "recAIHmXsdKABaNdo",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Yahly Boutique — Black Blend — 11.14 x 11.61 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Yahly Boutique — Black Blend — 11 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-520337b733c4",
+   "seq": 187,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "IO.YAH.BWN.0.4X0.8.N",
+   "airtable_rec_id": "recIsHu6FyxKiTYF2",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Yahly Boutique — Brown Blend — 11.14 x 11.61 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Yahly Boutique — Brown Blend — 11 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-e601e628fd89",
+   "seq": 188,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "IO.YAH.GRY.0.4X0.8.N",
+   "airtable_rec_id": "recpibTSLjpaGEfzi",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Yahly Boutique — Grey Blend — 11.22 x 12.24 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Yahly Boutique — Grey Blend — 11 x 12-1/4 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-4a97c2589850",
+   "seq": 189,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "IO.YAH.WHT.0.4X0.8.N",
+   "airtable_rec_id": "recM8ELpbtJp93DY6",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Yahly Boutique — White Blend — 11.14 x 11.61 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Yahly Boutique — White Blend — 11 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-89a4998ce9df",
+   "seq": 190,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "JU.FN.DGR.2.8X3.15GL",
+   "airtable_rec_id": "recWQQ7go6caQPfK0",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Fan — Dark Gre — 11.61 x 12.20 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Fan — Dark Gre — 12 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-02276bdb8a25",
+   "seq": 191,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "JU.FN.LGR.2.8X3.15GL",
+   "airtable_rec_id": "recHICrxA3t4ugetf",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Fan — Light Gr — 11.61 x 12.20 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Fan — Light Gr — 12 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-87f2d9e1fbf0",
+   "seq": 192,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "JU.FN.MST.2.8X3.15GL",
+   "airtable_rec_id": "rec0lxIrTntxbdgKu",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Fan — Mist — 11.61 x 12.20 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Fan — Mist — 12 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-b0401b1c9e21",
+   "seq": 193,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "JU.FN.WHT.2.8X3.15GL",
+   "airtable_rec_id": "recsoUgFowmEIb2aM",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Fan — White — 11.61 x 12.20 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Fan — White — 12 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-a8d32b5fa302",
+   "seq": 194,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "JU.FN.WHT.2.8X3.15MT",
+   "airtable_rec_id": "rechLSMso1BkWcHsL",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Fan — White — 11.61 x 12.20 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Fan — White — 12 x 12 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-3c66e0a404da",
+   "seq": 195,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "JU.PK.BGE.2X6.GL",
+   "airtable_rec_id": "rec3rWhGh6JKeNzlD",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Picket — Beige — 8.46 x 9.76 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Picket — Beige — 9 x 10 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-0b5626cca69b",
+   "seq": 196,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "JU.PK.LGR.2X6.GL",
+   "airtable_rec_id": "recx7EKoM2MnVxoLv",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Picket — Light Grey — 8.46 x 9.76 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Picket — Light Grey — 9 x 10 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-97a064fa90de",
+   "seq": 197,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "JW.CL.CGD.04.HEX.MT",
+   "airtable_rec_id": "recRfm6EqpOYpXXdt",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Classic — Calacatta Gold — 11.61 x 10.08 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Classic — Calacatta Gold — 12 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-26ed3d860ca8",
+   "seq": 198,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "JW.CL.CGD.3/4.PRMT",
+   "airtable_rec_id": "recqiNI0HuPlnEDyM",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Classic — Calacatta Gold — 12.40 x 11.46 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Classic — Calacatta Gold — 13 x 12 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-1ddaba5bd9cf",
+   "seq": 199,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "JW.CL.NMQ.04.HEX.MT",
+   "airtable_rec_id": "rec0zKJRPK8nCwkoe",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Classic — Nero Marquina — 11.61 x 10.08 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Classic — Nero Marquina — 12 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-6180635142ed",
+   "seq": 200,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "JW.CL.NMQ.3/4.PRMT",
+   "airtable_rec_id": "recTKsOgSntCuBWnT",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Classic — Nero Marquina — 12.40 x 11.46 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Classic — Nero Marquina — 13 x 12 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-ecb0a247a109",
+   "seq": 201,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "JW.CL.STW.04.HEX.MT",
+   "airtable_rec_id": "recbbdstCtnjL0sMB",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Classic — Statuario (White) — 11.61 x 10.08 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Classic — Statuario (White) — 12 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-b14eef8552ac",
+   "seq": 202,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "JW.CL.STW.3/4.PRMT",
+   "airtable_rec_id": "recObHPKT5eOGjv9G",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Classic — Statuario (White) — 12.40 x 11.46 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Classic — Statuario (White) — 13 x 12 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-5c523d7edcab",
+   "seq": 203,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "JW.JP.W/B.02.OCT.MT",
+   "airtable_rec_id": "recshNg5ofy6BUyW7",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Jasper — White / Black — 11.61 x 11.61 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Jasper — White / Black — 12 x 12 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-931ca67a493d",
+   "seq": 204,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "JW.JP.W/W.02.OCT.MT",
+   "airtable_rec_id": "receNxZ9rrA9gCeJe",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Jasper — White — 11.61 x 11.61 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Jasper — White — 12 x 12 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-a82d47668f82",
+   "seq": 205,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.GE.ARG.2.5X10",
+   "airtable_rec_id": "recwvcbYqAPu6ajkk",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Gem — Argent — 10 x 2.5 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Gem — Argent — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-cbaf1ece8e4d",
+   "seq": 206,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.GE.BIA.2.5X10",
+   "airtable_rec_id": "rec5J3HMh5zy7DkIi",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Gem — Bianco — 10 x 2.5 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Gem — Bianco — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-e48f5d789f1f",
+   "seq": 207,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.GE.CAR.2.5X10",
+   "airtable_rec_id": "recWB4qzJSXcYfyaZ",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Gem — Caraibi — 10 x 2.5 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Gem — Caraibi — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-f1d634bbb415",
+   "seq": 208,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.GE.COB.2.5X10",
+   "airtable_rec_id": "rec9UFznFcM1AZ48O",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Gem — Cobalto — 10 x 2.5 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Gem — Cobalto — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-41f6f4bd00be",
+   "seq": 209,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.GE.NRO.2.5X10",
+   "airtable_rec_id": "recMOqxT3wRbSi3lT",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Gem — Nero — 10 x 2.5 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Gem — Nero — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-7ed9d5738407",
+   "seq": 210,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.OC.AQU.2.5X10",
+   "airtable_rec_id": "reczZ6MQkNPBCqJGo",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Oceani — Aqua — 10 x 2.5 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Oceani — Aqua — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-82946314d545",
+   "seq": 211,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.OC.BLK.2.5X10",
+   "airtable_rec_id": "recIXE3RAGA6WHI5z",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Oceani — Black — 10 x 2.5 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Oceani — Black — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-efc348d037b5",
+   "seq": 212,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.OC.BLK.2.5X10.MT",
+   "airtable_rec_id": "recEgyc8iXTgJEZYJ",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Oceani — Black — 10 x 2.5 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Oceani — Black — 10 x 2 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-659aad17c803",
+   "seq": 213,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.OC.BLU.2.5X10",
+   "airtable_rec_id": "recYEYFo4JT4od9S4",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Oceani — Blue — 10 x 2.5 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Oceani — Blue — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-844550da8ad3",
+   "seq": 214,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.OC.CHY.2.5X10",
+   "airtable_rec_id": "recs0bvcnsX2UE7Qa",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Oceani — Cherry — 10 x 2.5 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Oceani — Cherry — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-7ac44d782ec4",
+   "seq": 215,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.OC.EMD.2.5X10",
+   "airtable_rec_id": "rect52l7eY4RN5Iko",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Oceani — Emerald — 10 x 2.5 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Oceani — Emerald — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-262039fab605",
+   "seq": 216,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.OC.GRN.2.5X10",
+   "airtable_rec_id": "recBE6MO9UFm0TT0Q",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Oceani — Green — 10 x 2.5 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Oceani — Green — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-91a5667d2af9",
+   "seq": 217,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.OC.JNS.2.5X10",
+   "airtable_rec_id": "recU4jfqcZobYDzT6",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Oceani — Jeans — 10 x 2.5 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Oceani — Jeans — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-5017c2d1347f",
+   "seq": 218,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.OC.JNS.2.5X10.MT",
+   "airtable_rec_id": "rechPI9dRr6XvYzZb",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Oceani — Jeans — 10 x 2.5 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Oceani — Jeans — 10 x 2 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-350487326e7e",
+   "seq": 219,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.OC.MLD.2.5X10",
+   "airtable_rec_id": "recVaPUtkh1IujM4l",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Oceani — Maldive — 10 x 2.5 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Oceani — Maldive — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-800eb7eaf5f3",
+   "seq": 220,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.OC.PNK.2.5X10",
+   "airtable_rec_id": "rec9ZV9ZKGSReQ3lr",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Oceani — Pink — 10 x 2.5 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Oceani — Pink — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-8c6f992434ab",
+   "seq": 221,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.OC.PRL.2.5X10",
+   "airtable_rec_id": "receHP0BPpp7PXxek",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Oceani — Pearl — 10 x 2.5 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Oceani — Pearl — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-e9572f48b81b",
+   "seq": 222,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.OC.PRL.2.5X10.MT",
+   "airtable_rec_id": "recA9Eg6nd4yrVGV8",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Oceani — Pearl — 10 x 2.5 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Oceani — Pearl — 10 x 2 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-ecf8fca2e9c4",
+   "seq": 223,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.OC.SMK.2.5X10",
+   "airtable_rec_id": "recJ4iwejQkzZAyT9",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Oceani — Smoke — 10 x 2.5 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Oceani — Smoke — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-441d22129742",
+   "seq": 224,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.OC.SMK.2.5X10.MT",
+   "airtable_rec_id": "recePpqAySMu8asgI",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Oceani — Smoke — 10 x 2.5 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Oceani — Smoke — 10 x 2 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-ae5f346fd4e3",
+   "seq": 225,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.OC.WHT.2.5X10",
+   "airtable_rec_id": "recYBYENyiEMzEcLB",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Oceani — White — 10 x 2.5 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Oceani — White — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-c3d81316f6e7",
+   "seq": 226,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.OC.WHT.2.5X10.MT",
+   "airtable_rec_id": "rec8hMlQ91dsBPdIp",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Oceani — White — 10 x 2.5 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Oceani — White — 10 x 2 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-743c18d73f4e",
+   "seq": 227,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.PU.CAL.2.5X10.MT",
+   "airtable_rec_id": "recFwP1KoqmLWCTB7",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Puro — Calacatta — 10 x 2.5 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Puro — Calacatta — 10 x 2 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-565ec7fbfbdc",
+   "seq": 228,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.PU.NMQ.2.5X10.MT",
+   "airtable_rec_id": "recXDPtPTMBR0W1Dq",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Puro — Nero Marquina — 10 x 2.5 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Puro — Nero Marquina — 10 x 2 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-6e587f00b04f",
+   "seq": 229,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KD.PU.STT.2.5X10.MT",
+   "airtable_rec_id": "recS9KLZQM0cMxCLs",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Puro — Statuario — 10 x 2.5 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Puro — Statuario — 10 x 2 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-13356c5023fe",
+   "seq": 230,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KJ.PB.BIA.3535",
+   "airtable_rec_id": "rec3Eu3ee4U1Lf80O",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Pietra Di Brera — Bianco — 35 x 35 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Pietra Di Brera — Bianco — 36 x 36 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-b23b514c9106",
+   "seq": 231,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KJ.PB.GRG.3535",
+   "airtable_rec_id": "recaQuXhCXRecZwhV",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Pietra Di Brera — Grigio — 35 x 35 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Pietra Di Brera — Grigio — 36 x 36 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-04dcc3563abc",
+   "seq": 232,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KM.OY.AGN.48X110.PL",
+   "airtable_rec_id": "recwWPkw9mnSmewfA",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Onyce — Argon (Taupe) — 48 x 110 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Onyce — Argon (Taupe) — 48 x 112 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-eb23e052bb63",
+   "seq": 233,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KM.OY.ALB.48X110.PL",
+   "airtable_rec_id": "recM7P2g0bWqux3bD",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Onyce — Alabaster — 48 x 110 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Onyce — Alabaster — 48 x 112 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-068b0da4f66b",
+   "seq": 234,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KM.OY.COC.48X110.PL",
+   "airtable_rec_id": "recFzsLKM5eMV8rxi",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Onyce — Coconut(ivory) — 48 x 110 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Onyce — Coconut(ivory) — 48 x 112 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-69e82857e85b",
+   "seq": 235,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KM.OY.CPG.48X110.PL",
+   "airtable_rec_id": "recZc1gp6aI2zx7U4",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Onyce — Champagne — 48 x 110 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Onyce — Champagne — 48 x 112 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-1f238595a691",
+   "seq": 236,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KM.OY.EMD.48X110.PL",
+   "airtable_rec_id": "recZaNuMdAN68jMqD",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Onyce — Emerald Green — 48 x 110 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Onyce — Emerald Green — 48 x 112 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-a2debfdffc9c",
+   "seq": 237,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KM.OY.LGY.48X110.PL",
+   "airtable_rec_id": "recN9EMNIsaidawtq",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Onyce — Lead Grey — 48 x 110 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Onyce — Lead Grey — 48 x 112 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-87d648652c82",
+   "seq": 238,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KM.OY.ROS.48X110.PL",
+   "airtable_rec_id": "recUeO026fbutqL6p",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Onyce — Rose Pink — 48 x 110 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Onyce — Rose Pink — 48 x 112 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-cf9a41e9c5e0",
+   "seq": 239,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.AQU.0.6X1.9.BL",
+   "airtable_rec_id": "reckmWKUkVjAkh9UW",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Aqua — 12.76 x 11.97 (Blend)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Aqua — 13 x 12 (Blend)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-00d899c575a9",
+   "seq": 240,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.AQU.0.6X1.9.GL",
+   "airtable_rec_id": "rechsaysmqnvwmRG4",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Aqua — 12.76 x 11.97 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Aqua — 13 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-cb825de26de2",
+   "seq": 241,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.BGE.0.6X1.9.BL",
+   "airtable_rec_id": "recanCJupPtlH7WyG",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Beige — 12.76 x 11.97 (Blend)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Beige — 13 x 12 (Blend)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-1cfb40d92f96",
+   "seq": 242,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.BGE.0.6X1.9.GL",
+   "airtable_rec_id": "recsBrqYtnBuDQNk8",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Beige — 12.76 x 11.97 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Beige — 13 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-185308de5a7b",
+   "seq": 243,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.BGN.0.6X1.9.BL",
+   "airtable_rec_id": "recNIqvbG6K4ZkHIb",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Bottle Green — 12.76 x 11.97 (Blend)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Bottle Green — 13 x 12 (Blend)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-1e07069f8735",
+   "seq": 244,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.BGN.0.6X1.9.GL",
+   "airtable_rec_id": "recSuAZCYi5QbtlI4",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Bottle Green — 12.76 x 11.97 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Bottle Green — 13 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-d32e5f80e209",
+   "seq": 245,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.BLK.0.6X1.9.BL",
+   "airtable_rec_id": "recXIbEUZUJdl1H54",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Black — 12.76 x 11.97 (Blend)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Black — 13 x 12 (Blend)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-cc8348958a7b",
+   "seq": 246,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.BLK.0.6X1.9.GL",
+   "airtable_rec_id": "recxNSCpGp1116LyK",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Black — 12.76 x 11.97 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Black — 13 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-acbb6aa63338",
+   "seq": 247,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.CGY.0.6X1.9.BL",
+   "airtable_rec_id": "recbkMhzH4quWP0Sk",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Charcoal Grey — 12.76 x 11.97 (Blend)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Charcoal Grey — 13 x 12 (Blend)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-683317da6d1d",
+   "seq": 248,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.CGY.0.6X1.9.GL",
+   "airtable_rec_id": "recyf3prEpUg4RwfF",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Charcoal Grey — 12.76 x 11.97 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Charcoal Grey — 13 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-546d02ee98a9",
+   "seq": 249,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.DGY.0.6X1.9.BL",
+   "airtable_rec_id": "recjXPK5vyhIT6ma5",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Dove Grey — 12.76 x 11.97 (Blend)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Dove Grey — 13 x 12 (Blend)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-18a18811628e",
+   "seq": 250,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.DGY.0.6X1.9.GL",
+   "airtable_rec_id": "recAipVrECFKXlPib",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Dove Grey — 12.76 x 11.97 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Dove Grey — 13 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-a1c65d66a3a5",
+   "seq": 251,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.GRY.0.6X1.9.BL",
+   "airtable_rec_id": "rec0UdX4ZWrDagKQx",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Grey — 12.76 x 11.97 (Blend)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Grey — 13 x 12 (Blend)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-1a85e88c8e6e",
+   "seq": 252,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.GRY.0.6X1.9.GL",
+   "airtable_rec_id": "reclL1eCTJvq3Cpj9",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Grey — 11.73 x 11.97 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Grey — 12 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-e72171e679b4",
+   "seq": 253,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.IVO.0.6X1.9.BL",
+   "airtable_rec_id": "recn7zxDBBtlv23rV",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Ivory — 12.76 x 11.97 (Blend)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Ivory — 13 x 12 (Blend)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-17c6590dd930",
+   "seq": 254,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.IVO.0.6X1.9.GL",
+   "airtable_rec_id": "rec2kTBJn8UnlTmxA",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Ivory — 12.76 x 11.97 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Ivory — 13 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-a4c85531d158",
+   "seq": 255,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.SGE.0.6X1.9.BL",
+   "airtable_rec_id": "recbTxWpfjkW3idPG",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Sage — 12.76 x 11.97 (Blend)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Sage — 13 x 12 (Blend)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-24bcaa50cd7d",
+   "seq": 256,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.SGE.0.6X1.9.GL",
+   "airtable_rec_id": "reckkeG1m1IxaoHdl",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Sage — 12.76 x 11.97 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Sage — 13 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-eed80d1efafe",
+   "seq": 257,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.SGY.0.6X1.9.BL",
+   "airtable_rec_id": "recI8KUeSuUZxI8CP",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Special Grey — 12.76 x 11.97 (Blend)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Special Grey — 13 x 12 (Blend)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-857938a875ef",
+   "seq": 258,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.SGY.0.6X1.9.GL",
+   "airtable_rec_id": "rec5oMPM04IGhPXYf",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Special Grey — 12.76 x 11.97 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Special Grey — 13 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-330f275a73e9",
+   "seq": 259,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.SWT.0.6X1.9.BL",
+   "airtable_rec_id": "recqkDOkhHChJdnqj",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Super White — 12.76 x 11.97 (Blend)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Super White — 13 x 12 (Blend)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-4eea8eb13818",
+   "seq": 260,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.SWT.0.6X1.9.GL",
+   "airtable_rec_id": "reckuLaUPSmHQpODy",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Super White — 12.76 x 11.97 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Super White — 13 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-d1235ca51a5f",
+   "seq": 261,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.TBL.0.6X1.9.BL",
+   "airtable_rec_id": "rec5iMDn0bbUTtBbG",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Teal Blue — 12.76 x 11.97 (Blend)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Teal Blue — 13 x 12 (Blend)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-d81a1e14b7ac",
+   "seq": 262,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.TBL.0.6X1.9.GL",
+   "airtable_rec_id": "recEfQdHrGxyxMbjN",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Teal Blue — 12.76 x 11.97 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Teal Blue — 13 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-db6e3e7efc60",
+   "seq": 263,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.TPE.0.6X1.9.BL",
+   "airtable_rec_id": "recnp7Z96WAW8pYsy",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Taupe — 12.76 x 11.97 (Blend)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Taupe — 13 x 12 (Blend)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-fbca9a5dfdf1",
+   "seq": 264,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.TPE.0.6X1.9.GL",
+   "airtable_rec_id": "recVh7ryEDWMJbiGL",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Taupe — 12.76 x 11.97 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Taupe — 13 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-5d80e26dff59",
+   "seq": 265,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.WGY.0.6X1.9.BL",
+   "airtable_rec_id": "recqP58Ck8gjxuyzm",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Warm Grey — 12.76 x 11.97 (Blend)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Warm Grey — 13 x 12 (Blend)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-6c4ef493cc7e",
+   "seq": 266,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.CR.WGY.0.6X1.9.GL",
+   "airtable_rec_id": "recsdeAHuLuzEFIoK",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Warm Grey — 12.76 x 11.97 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Warm Grey — 13 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-50298ef9b779",
+   "seq": 267,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.LN.ASH.0206",
+   "airtable_rec_id": "recQcoTKe2QOOMzQU",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Floral — Ash — 11.73 x 11.73 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Floral — Ash — 12 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-aadfc59d9190",
+   "seq": 268,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.LN.CHA.0206",
+   "airtable_rec_id": "recCsgMwkzUqpuTVI",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Floral — Charcoal — 11.73 x 11.73 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Floral — Charcoal — 12 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-7e48e22d5591",
+   "seq": 269,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.LN.DGR.0206",
+   "airtable_rec_id": "recoTFkS8v4SsCQEn",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Floral — Dark Grey — 11.73 x 11.73 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Floral — Dark Grey — 12 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-02cd95d08fd9",
+   "seq": 270,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.LN.SWT.0206",
+   "airtable_rec_id": "recStDJObiKyoD4YP",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Floral — Super White — 11.73 x 11.73 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Floral — Super White — 12 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-62fe1de7790f",
+   "seq": 271,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.VS.ASH.0206.GL",
+   "airtable_rec_id": "recM6iZYbiFc8YDws",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Vitro Slim — Ash — 11.73 x 11.73 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Vitro Slim — Ash — 12 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-0b0ad206f266",
+   "seq": 272,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.VS.BON.0206.GL",
+   "airtable_rec_id": "recOO2zzY4E7cYGod",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Vitro Slim — Bone — 11.73 x 11.73 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Vitro Slim — Bone — 12 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-b74bb1ee52ea",
+   "seq": 273,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.VS.DGR.0206.GL",
+   "airtable_rec_id": "recATbsjvn4a5EGbe",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Vitro Slim — Dark Grey — 11.73 x 11.73 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Vitro Slim — Dark Grey — 12 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-ab723ae57718",
+   "seq": 274,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.VS.IVO.0206.GL",
+   "airtable_rec_id": "recBN4DpgfhYfOWKI",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Vitro Slim — Ivory — 11.73 x 11.73 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Vitro Slim — Ivory — 12 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-64e86812d2f1",
+   "seq": 275,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.VS.IVO.0206.GL.N",
+   "airtable_rec_id": "recy7SZaKXj3Y557r",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Vitro Slim — Ivory Film Face — 11.73 x 11.73 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Vitro Slim — Ivory Film Face — 12 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-07c5bb06dd29",
+   "seq": 276,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.VS.LGR.0206.GL",
+   "airtable_rec_id": "recqo49nWensj9TRw",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Vitro Slim — Light Grey — 11.73 x 11.73 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Vitro Slim — Light Grey — 12 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-4994f7278957",
+   "seq": 277,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.VS.SWT.0206.GL",
+   "airtable_rec_id": "recVXBSJkdeg5U2eg",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Vitro Slim — Super White — 11.73 x 11.73 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Vitro Slim — Super White — 12 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-2fdf7f03b916",
+   "seq": 278,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "KV.VS.TPE.0206.GL",
+   "airtable_rec_id": "recetsq9JhXVHqvtR",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Vitro Slim — Taupe — 11.73 x 11.73 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Vitro Slim — Taupe — 12 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-f90a6f46bab0",
+   "seq": 279,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LQ.SP.ANT.0408.10.N",
+   "airtable_rec_id": "reczQD9x4rohDKqXe",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Spectra — Antracit (Charcoal) Cove Base — 3.15 x 7.80 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Spectra — Antracit (Charcoal) Cove Base — 3 x 8 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-319dce179c1e",
+   "seq": 280,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LQ.SP.NEG.0408.10.N",
+   "airtable_rec_id": "recQjibh8fgKGu6AO",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Spectra — Rio Negro (Black) Cove Base — 3.15 x 7.80 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Spectra — Rio Negro (Black) Cove Base — 3 x 8 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-389dc4af197d",
+   "seq": 281,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LQ.SP.NOR.0408.10.N",
+   "airtable_rec_id": "recbuyeawUbZZdNdy",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Spectra — Nordic (Medium Grey) Cove Base — 3.15 x 7.80 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Spectra — Nordic (Medium Grey) Cove Base — 3 x 8 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-e74a78ea9827",
+   "seq": 282,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LW.AL.BRZ.DIA.CUB.BD",
+   "airtable_rec_id": "recn9b4niaLPJswrD",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Aluminum Mosaic — Bronze — 12.64 x 10.98 (Brushed)"
+   },
+   "before": {
+    "Product name": "Olympia Aluminum Mosaic — Bronze — 13 x 11 (Brushed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-642abd15939b",
+   "seq": 283,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LW.AL.SIL.0.8X1.8.BD",
+   "airtable_rec_id": "recVoRh9aySf94Hqx",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Aluminum Mosaic — Silver Blend — 11.69 x 11.69 (Brushed)"
+   },
+   "before": {
+    "Product name": "Olympia Aluminum Mosaic — Silver Blend — 12 x 12 (Brushed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-e0374a8a53b0",
+   "seq": 284,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LW.AL.SIL.2.2.DIA.BD",
+   "airtable_rec_id": "receEjMuzHIYTsl9Y",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Aluminum Mosaic — Silver Blend — 11.81 x 11.30 (Brushed)"
+   },
+   "before": {
+    "Product name": "Olympia Aluminum Mosaic — Silver Blend — 12 x 11 (Brushed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-af66f33e6fa0",
+   "seq": 285,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LW.AL.SIL.DIA.CUB.BD",
+   "airtable_rec_id": "recWELFpNUjYx9ic3",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Aluminum Mosaic — Silver — 12.64 x 10.98 (Brushed)"
+   },
+   "before": {
+    "Product name": "Olympia Aluminum Mosaic — Silver — 13 x 11 (Brushed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-79fbbf23aab2",
+   "seq": 286,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.MN.ANR.0310.MT",
+   "airtable_rec_id": "recXL8iBUM8tVcaDt",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Moon — Argilla — 9.45 x 2.36 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Moon — Argilla — 10 x 2 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-59dd04a44ca0",
+   "seq": 287,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.MN.ANR.0310.MTFM",
+   "airtable_rec_id": "recGrzWs7y3RbtOk9",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Moon — Argilla — 9.45 x 2.36 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Moon — Argilla — 10 x 2 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-1adb3eeb1425",
+   "seq": 288,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.MN.BBR.0310.MT",
+   "airtable_rec_id": "recQzZBMS9UL3trgj",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Moon — Bruno Bi — 9.45 x 2.36 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Moon — Bruno Bi — 10 x 2 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-710ab25e9af1",
+   "seq": 289,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.MN.BBR.0310.MTFM",
+   "airtable_rec_id": "recMiYcUFc6wocFCx",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Moon — Bruno Bi — 9.45 x 2.36 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Moon — Bruno Bi — 10 x 2 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-79b73c7e8e69",
+   "seq": 290,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.MN.BML.0310.MT",
+   "airtable_rec_id": "recP6rAeJEWmSX5fv",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Moon — Bianco M — 9.45 x 2.36 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Moon — Bianco M — 10 x 2 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-e3c3d47914c5",
+   "seq": 291,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.MN.BML.0310.MTFM",
+   "airtable_rec_id": "recA4XTzvTmMw16ml",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Moon — Bianco M — 9.45 x 2.36 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Moon — Bianco M — 10 x 2 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-56e9a7219b0e",
+   "seq": 292,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.MN.NFM.0310.MT",
+   "airtable_rec_id": "rec52KBdnBdUES1et",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Moon — Nero Fum — 9.45 x 2.36 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Moon — Nero Fum — 10 x 2 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-8e3dff7b233c",
+   "seq": 293,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.MN.NFM.0310.MTFM",
+   "airtable_rec_id": "recPegjNIa9GVUNGJ",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Moon — Nero Fum — 9.45 x 2.36 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Moon — Nero Fum — 10 x 2 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-f3dd5dec8dee",
+   "seq": 294,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.MN.RMT.0310.MT",
+   "airtable_rec_id": "rec3IZg6S5omFunFv",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Moon — Rosso Ma — 9.45 x 2.36 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Moon — Rosso Ma — 10 x 2 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-addad3e5eb1c",
+   "seq": 295,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.MN.RMT.0310.MTFM",
+   "airtable_rec_id": "recVphaQXv7v1Fhqk",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Moon — Rosso Ma — 9.45 x 2.36 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Moon — Rosso Ma — 10 x 2 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-66cf712898ed",
+   "seq": 296,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.MN.VMS.0310.MT",
+   "airtable_rec_id": "recekLed218a533NV",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Moon — Verde Mu — 9.45 x 2.36 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Moon — Verde Mu — 10 x 2 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-1ef3d167235a",
+   "seq": 297,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.MN.VMS.0310.MTFM",
+   "airtable_rec_id": "recUcS9cULNvwDSug",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Moon — Verde — 9.45 x 2.36 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Moon — Verde — 10 x 2 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-2bf1a1f866be",
+   "seq": 298,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.MR.DRK.10.HEX",
+   "airtable_rec_id": "recwHXTUXU9SlMCSe",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Merino — Dark (Anthracite) — 8.50 x 9.84 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Merino — Dark (Anthracite) — 8-1/2 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-7ef40e8e0010",
+   "seq": 299,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.MR.IVO.10.HEX",
+   "airtable_rec_id": "recqs7To91ViOk0Xr",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Merino — Ivory — 8.50 x 9.84 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Merino — Ivory — 8-1/2 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-b7289812526b",
+   "seq": 300,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.MR.SIL.10.HEX",
+   "airtable_rec_id": "rec8tfTuEYYtlFsLe",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Merino — Silver — 8.50 x 9.84 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Merino — Silver — 8-1/2 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-4d05d52fc1be",
+   "seq": 301,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.MR.SND.10.HEX",
+   "airtable_rec_id": "recl7RhgST4WgpDLX",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Merino — Sand — 8.50 x 9.84 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Merino — Sand — 8-1/2 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-20ab4193cac0",
+   "seq": 302,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.MR.TPE.10.HEX",
+   "airtable_rec_id": "rec9oVu7rHNoju8wk",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Merino — Taupe — 8.50 x 9.84 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Merino — Taupe — 8-1/2 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-3c9b4471e4d1",
+   "seq": 303,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.MR.TRIMIX.10HEXDC",
+   "airtable_rec_id": "rec1uEqTV4stR1Vaw",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Merino — Triangle Mix Decor — 8.50 x 9.84 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Merino — Triangle Mix Decor — 8-1/2 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-52d524a9d619",
+   "seq": 304,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.ST.BGS.0310",
+   "airtable_rec_id": "reclbdDEo9hCOnqwl",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia PEI 4 — Blue Gal — 9.45 x 2.36 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia PEI 4 — Blue Gal — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-e02a9cd6185d",
+   "seq": 305,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.ST.BSL.0310",
+   "airtable_rec_id": "rec6keiGn2dHxQFBl",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia PEI 4 — Bianco S — 9.45 x 2.36 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia PEI 4 — Bianco S — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-a7ccc9acf381",
+   "seq": 306,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.ST.GLN.0310",
+   "airtable_rec_id": "recHylBk8lAei4EQo",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia PEI 4 — Grigio — 9.45 x 2.36 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia PEI 4 — Grigio — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-e7339dcbbafe",
+   "seq": 307,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.ST.NMM.0310",
+   "airtable_rec_id": "rec8MKyp6Y6x8p3al",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia PEI 4 — Nero (Charcoal) — 9.45 x 2.36 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia PEI 4 — Nero (Charcoal) — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-92db4945966a",
+   "seq": 308,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.ST.VMV.0310",
+   "airtable_rec_id": "recyifTRpvVQOgga0",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia PEI 4 — Verde (Green) — 9.45 x 2.36 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia PEI 4 — Verde (Green) — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-955527b4e13d",
+   "seq": 309,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MC.ST.VPL.0310",
+   "airtable_rec_id": "recVfYNl6IWhYi8TD",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia PEI 4 — Verde Pe — 9.45 x 2.36 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia PEI 4 — Verde Pe — 10 x 2 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-65b30ef75dc7",
+   "seq": 310,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MKV.CR.DGY.0.6X1.9GL",
+   "airtable_rec_id": "recb2ugDsQEB2DSx7",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Cristallo — Dove Grey — 12.76 x 11.97 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Cristallo — Dove Grey — 13 x 12 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-aa680f7be806",
+   "seq": 311,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MT.RB.BEC.3X8",
+   "airtable_rec_id": "recyv9tuE5XWfPGsc",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Royal Thin Brick — Beacon — 3 x 8 (Unglazed)"
+   },
+   "before": {
+    "Product name": "Olympia Royal Thin Brick — Beacon — 2-3/4 x 8 (Unglazed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-bbc03bf20fd9",
+   "seq": 312,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MT.RB.CBE.3X8",
+   "airtable_rec_id": "rec748tl5wsCAn7yP",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Royal Thin Brick — Cambridge — 3 x 8 (Unglazed)"
+   },
+   "before": {
+    "Product name": "Olympia Royal Thin Brick — Cambridge — 2-3/4 x 8 (Unglazed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-a9196474e8e6",
+   "seq": 313,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MT.RB.CGS.3X8",
+   "airtable_rec_id": "recSmbyMyaiKsitEL",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Royal Thin Brick — Congress — 3 x 8 (Unglazed)"
+   },
+   "before": {
+    "Product name": "Olympia Royal Thin Brick — Congress — 2-3/4 x 8 (Unglazed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-307d620fe07c",
+   "seq": 314,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MT.RB.NBR.3X8",
+   "airtable_rec_id": "reciNDkreyePb0VjH",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Royal Thin Brick — Newbury — 3 x 8 (Unglazed)"
+   },
+   "before": {
+    "Product name": "Olympia Royal Thin Brick — Newbury — 2-3/4 x 8 (Unglazed)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-e7796984743b",
+   "seq": 315,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MZ.BR.BIA.0312",
+   "airtable_rec_id": "recf1Yu2q16ysOmcu",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Bricco — Bianco — 3 x 12 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Bricco — Bianco — 2-3/4 x 11 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-3ecdaf426841",
+   "seq": 316,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MZ.BR.CAR.0312",
+   "airtable_rec_id": "recbD4Ii613sxVD8F",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Bricco — Carbone — 3 x 12 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Bricco — Carbone — 2-3/4 x 11 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-819f4625c43c",
+   "seq": 317,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MZ.BR.CMT.0312",
+   "airtable_rec_id": "recupRfagRwczLxPM",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Bricco — Cemento — 3 x 12 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Bricco — Cemento — 2-3/4 x 11 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-642ad8c5f2a2",
+   "seq": 318,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "MZ.BR.GRG.0312",
+   "airtable_rec_id": "recUnPtHAwtDSc5yT",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Bricco — Grigio — 3 x 12 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Bricco — Grigio — 2-3/4 x 11 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-aa9d27ea431a",
+   "seq": 319,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "NY.RG.CCB.LN.IRR.MT",
+   "airtable_rec_id": "recInUdcOKoyS7LFB",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Regal — Charcoal Black — 11.75 x 9.75 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Regal — Charcoal Black — 12 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-69268b3c2f5c",
+   "seq": 320,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "NY.RG.CRM.LN.IRR.MT",
+   "airtable_rec_id": "rec0357NLmCjxzMqV",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Regal — Cream — 11.75 x 9.75 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Regal — Cream — 12 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-89a03b4fc56c",
+   "seq": 321,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "NY.RG.DGR.LN.IRR.MT",
+   "airtable_rec_id": "recymVRzkUyELgCrv",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Regal — Dark Grey — 11.75 x 9.75 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Regal — Dark Grey — 12 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-1a262a310b1c",
+   "seq": 322,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "NY.RG.GRY.LN.IRR.MT",
+   "airtable_rec_id": "recUD7lZ1gyVsIJmB",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Regal — Grey — 11.75 x 9.75 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Regal — Grey — 12 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-3419b8f44246",
+   "seq": 323,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "NY.RG.GRY.LN.IRR.PL",
+   "airtable_rec_id": "recxTaa75CgDHf3er",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Regal — Grey — 11.75 x 9.75 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Regal — Grey — 12 x 10 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-948a960e107a",
+   "seq": 324,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "NY.RG.JBK.LN.IRR.MT",
+   "airtable_rec_id": "recSd0R3aAvoPXMvC",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Regal — Jet Black — 11.75 x 9.75 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Regal — Jet Black — 12 x 10 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-8bb87138da4f",
+   "seq": 325,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "NY.RG.JBK.LN.IRR.PL",
+   "airtable_rec_id": "rec8QYZ5mKAA7BsTo",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Regal — Jet Black — 11.75 x 9.75 (Polished)"
+   },
+   "before": {
+    "Product name": "Olympia Regal — Jet Black — 12 x 10 (Polished)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-1bd63673e749",
+   "seq": 326,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "OA.MT.BLU.SAV.MT12MM",
+   "airtable_rec_id": "recYKLQpcp3vw0sxP",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Marmotech — Blue de Savoie — 125.98 x 62.99 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Marmotech — Blue de Savoie — 126 x 63 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-dbc8a64f5994",
+   "seq": 327,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "OD.DC.BGE/BWN.BLGL.N",
+   "airtable_rec_id": "rec5aZWnagTIprvss",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Decor — Beige/Brown/Gold Glass — 11.81 x 12.91 (Blend)"
+   },
+   "before": {
+    "Product name": "Olympia Decor — Beige/Brown/Gold Glass — 12 x 13 (Blend)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-aaea57d721f1",
+   "seq": 328,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "OD.DC.WHT.BL.GL/MT.N",
+   "airtable_rec_id": "recdsjZhkK5Y1SsLh",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Decor — White Marble Gl/Mt Glass — 11.81 x 12.91 (Blend)"
+   },
+   "before": {
+    "Product name": "Olympia Decor — White Marble Gl/Mt Glass — 12 x 13 (Blend)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-468753e86ad8",
+   "seq": 329,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "OD.ON.BIS.02.HEX.MT",
+   "airtable_rec_id": "recyrCMM4QzrydvXn",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Ontario — Biscuit — 11.09 x 10.70 (Matte)"
+   },
+   "before": {
+    "Product name": "Olympia Ontario — Biscuit — 11 x 11 (Matte)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  },
+  {
+   "id": "cat-40c276a8566d",
+   "seq": 330,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "OD.ON.BIS.0202.MT.N",
+   "airtable_rec_id": "reckhVfNe8fHH7Aou",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "OLYMPIA TILE",
+   "fields": {
+    "Product name": "Olympia Ontario — Biscuit — 11.81 x 19.88 (Gloss)"
+   },
+   "before": {
+    "Product name": "Olympia Ontario — Biscuit — 12 x 20 (Gloss)"
+   },
+   "reason": "olympia_size_from_stock_code"
+  }
+ ],
+ "blocked": [],
+ "warnings": [],
+ "_note": "Run 3 wrote Olympia names whose size came from a guessed metric-to-inch conversion (24 x 47, 66 x 130, 2 x 10, 0 x 0). This corrects the size segment to Olympia's own stock-code size, or the measured size where the code disagrees. One record whose corrected name would collide goes back to its original name. Product name only."
+}

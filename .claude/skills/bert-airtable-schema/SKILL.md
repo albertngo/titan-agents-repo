@@ -665,6 +665,45 @@ These two fields are Bert's product-level intelligence. Filled from salesperson 
 | **Salesperson notes** | Long text | Pairing tips, common objections, install quirks, what this product sells best for. | Bert |
 | **Pairs well with** | Single line text | SKUs of complementary products. e.g. matching stair nosing, recommended underpad. | Bert |
 
+### Product images (2026-09-29)
+
+Filled by `/image-fill` (`.claude/commands/image-fill.md`) from supplier and retailer
+websites, **blank fields only**. A person's upload is never replaced.
+
+| Field name | Type | Description | Notes |
+|------------|------|-------------|-------|
+| **Swatch images** | Attachments | Clean flat plank/tile face, no room; long edge ≥ 1600 px. The hero image and the only source for colour tags. Max 2 from a run. | Auto |
+| **Room scene images** | Attachments | Installed / lifestyle photos. Max 4 from a run. | Auto |
+| **Detail images** | Attachments | Close-ups: texture, edge / click profile, bevel, box. Max 4 from a run. | Auto |
+| **Supplier product page** | URL | The web page the photos came from, so any image can be traced with one click. The manufacturer's own page when one can be confirmed current; else the retailer listing (Vidar, 2026-09-29: Speers / The Floor Box). | Auto |
+
+**Image file names — for search (SEO) and AI answers (AEO), Albert 2026-09-29.** Every
+file a run attaches is named from the record's own fields:
+
+`brand-colour-species-category-pattern-width-grade-code-kind[-n].ext`
+
+e.g. `vidar-naked-oak-american-white-oak-engineered-hardwood-9in-select-swatch.jpg`,
+`vidar-nk25-laminate-7-5in-swatch.jpg`. Lower case, hyphens, `&` → `and`, 7.5" → `7-5in`,
+a part already said in full is not repeated. The internal SKU is left out (no shopper
+searches it; Airtable already ties the file to the record); the **supplier's own code** is
+kept (contractors search codes like NK25, Olympia stock codes). Code:
+`scripts/image_fill_plan.py` `seo_filename`. Airtable cannot rename an existing file through
+the API (tried 2026-09-29), so older names are fixed by re-attaching the same source image
+under the new name (`--rename-to-seo`), only for files the pipeline itself named.
+
+**The file name is the smallest signal.** What search engines and answer engines weigh
+more, and what the website (titan-desk) should build from these same fields:
+
+1. **The product page text** — name, description, specs from this table.
+2. **Alt text** on every image, built the same way as the file name but as words:
+   `Vidar Naked Oak engineered hardwood, 9-inch American white oak, Select grade — swatch`.
+   Room scenes: `… installed in a living room`. Never "image of", never stuffed.
+3. **Product structured data** (schema.org `Product`, JSON-LD): `name` = Product name,
+   `brand` = Brand, `color` = the colour from the name, `material` = Species,
+   `image` = Swatch first then Room scenes, `sku` = our SKU, `mpn` = Supplier SKU when
+   there is one, `offers` from Retail price. This is what AI answer engines lean on most.
+4. **The file name** — as above.
+
 ---
 
 ## Table 2 — Price History Log
@@ -1066,6 +1105,35 @@ Views must be created manually — they cannot be built via the API.
 - **Stock status** — leave blank by default. Only populate when supplier explicitly indicates Clearance, Discontinued, or similar
 - **Active** — Bert will not surface inactive products. Always set to checked unless product is confirmed discontinued
 - **Radiant heat compatible** — especially important; Black Walnut and some rustic grades are FALSE
+
+### Product name — readable format (Albert, 2026-09-28)
+
+`Product name` is what staff and Bert read, so it is written for people:
+
+| Kind | Shape | Example |
+|---|---|---|
+| Wood, vinyl, laminate | `Brand Collection Size — Colour (Grade)` | `Vidar 7" AWO — Toffee Crunch (Select)` |
+| Tile | `Brand Collection — Colour — W x L (Finish)` | `Olympia Muse — Grey — 24 x 24 (Matte)` |
+
+- **Brand first.** Every name starts with the brand people know: `Olympia`, `CIF`,
+  `Gracious`, `JL Tile`, `Oakel`, `Impressive` — never with a bare collection or `Tiles —`.
+- **Colours in title case**, abbreviations spelled out (`LT GRY` → `Light Grey`); material
+  acronyms (`IXPE`, `SPC`) and codes with digits (`EUT-14`) stay as printed.
+- **Tile sizes are the size people say**, not the measured one: `24 x 48`, not
+  `23.62 x 47.24`. For Olympia that is the supplier's own printed nominal size, which
+  its stock code carries (`…2448…` → `24 x 48`, `64X128` → `64 x 128`); when the code
+  and the measurement disagree by more than 12%, the name keeps the measured size.
+  **Never compute a nominal size from centimetres** — on 2026-09-28 that produced
+  `24 x 47`, `66 x 130` and `0 x 0`. No thickness in the name — it has its own field. **The actual size is not thrown away**: for Olympia it is
+  kept in `Salesperson notes` as `Actual size: W x L x T in`, and the Lightspeed build
+  reads it from there.
+- **Supplier notes never go in the name** ("other colours available", "wet areas excluding
+  swimming pools", "avail in 12x24") — they go in `Salesperson notes`. Words that name a
+  different piece stay: `Cove Base Inner`, `Round Edge Corner`, `Decor`, `Bookmatch A`.
+- **Never make two records identical.** If cleaning a name would give it the same name as a
+  different product, keep the distinguishing words.
+- The Lightspeed name is **not** rebuilt from this label — see ls-upload-instructions,
+  *Source sheet parsing — tile*. `scripts/name_cleanup.py` holds these rules as code.
 
 ### Product name — accessories (transitions, mouldings, stair, sundries)
 
@@ -2829,11 +2897,13 @@ CIF's price list has no SALE or promo pricing in its regular pages. The clearanc
 
 #### Product name format — ALWAYS include Colour as a separate segment
 
-**CRITICAL parsing rule.** The Airtable `Product name` field for CIF rows must follow this exact four-segment em-dash pattern, even when the colour name equals the collection name:
+**CRITICAL parsing rule.** The Airtable `Product name` field for CIF rows must follow this exact four-segment em-dash pattern, even when the colour name equals the collection name — and since 2026-09-28 it starts with the brand word `CIF` (readable format, above):
 
 ```
-[Collection] — [Colour / tone] — [Size] ([Finish])
+CIF [Collection] — [Colour / tone] — [Size] ([Finish])
 ```
+
+The table below predates the brand word; every example gains a leading `CIF `.
 
 If you omit the colour segment when colour equals collection (e.g. writing `Artico — 11.5 x 23.3 — (Matte)` instead of `Artico — Artico — 11.5 x 23.3 (Matte)`), downstream parsers that grab the last em-dash-separated chunk and strip parens will return an empty string for size — breaking the Lightspeed variant import on every affected row.
 
@@ -3024,6 +3094,20 @@ LS Handle = "OLYM" + alnum(Collection) + alnum(Colour) + alnum(Finish)
 #### Stock status & promo
 
 Leave `Stock status` blank for all Olympia rows; set `Active = TRUE`. The Zone AT list has no SALE/promo pricing in its regular pages — never populate `Promo cost ($/sf)` / `Promo end date` from an Olympia ingest. If a future list adds promos, fall back to the global promo logic.
+
+#### Olympia Product name (2026-09-28)
+
+`Olympia [Collection] — [Colour] — [nominal W x L] ([Finish])`, e.g.
+`Olympia Maxstone — Light Grey — 24 x 48 (Matte)`. The nominal size is the one in the
+stock code (`MX.LGR.2448.MT` → `24 x 48`), used only when it agrees with the measured
+size within 12%; otherwise the measured size. The colour in the name is the
+**clean** colour: everything the PDF merged after it (`AVAIL IN …`, `OTHER COLOURS
+AVAILABLE`, `WET AREAS …`, `THICKNESS …`) goes to `Salesperson notes` as
+`Supplier note: …`. `Colour / tone` keeps the raw value, because the live LS handles and
+names were built from it. **The ACTUAL printed size is kept in `Salesperson notes` as
+`Actual size: 23.62 x 47.24 x 0.35 in`** (Albert, 2026-09-28: "Put it in Salesperson
+notes" — `Length` is not used), alongside `Width (in)` and `Thickness (mm)`. The name
+carries only the nominal size; the LS build reads the actual one from that note.
 
 #### Olympia ingest output format
 
@@ -3827,10 +3911,12 @@ Tile follows the CIF four-segment em-dash contract verbatim — **including the 
 colour segment**, since breaking it silently produces blank LS variant sizes:
 
 ```
-[Collection] — [Colour] — [Size] ([Finish])
+Gracious [Collection] — [Colour] — [Size] ([Finish])
 ```
 
-e.g. `Tiles — Amaretto Grey Matt — 12 x 24 (Matte)`, `Italian Series — VSK-02 Matt — 24 x 48 (Matte)`.
+e.g. `Gracious — Amaretto Grey Matt — 12 x 24 (Matte)` (the `Tiles` collection is not
+repeated in the name — `Collection` still says `Tiles`, and the LS name still uses it),
+`Gracious Italian Series — VSK-02 Matt — 24 x 48 (Matte)`. Brand first since 2026-09-28.
 The finish parenthetical is dropped only where neither the row nor its section states one.
 
 Vinyl and laminate have **no colours at all** on the sheet, so each series is one record:

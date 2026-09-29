@@ -1,0 +1,267 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "NAME FIX CIF CODES 2026-09-28",
+ "run_at": "2026-09-28T01:02:25-04:00",
+ "status": "ready",
+ "cost_basis": "n/a (names only)",
+ "summary": {
+  "airtable_upsert": 14
+ },
+ "actions": [
+  {
+   "id": "cat-17fb94c3ff4f",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-CIFD-0170",
+   "airtable_rec_id": "receKSRNgumaFfoLJ",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "CIF DISTRIBUTORS",
+   "fields": {
+    "Product name": "CIF Stainless Mosaic — FAOS — Random"
+   },
+   "before": {
+    "Product name": "CIF Stainless Mosaic — Faos — Random"
+   },
+   "reason": "restore_supplier_code_capitals"
+  },
+  {
+   "id": "cat-71b22232d284",
+   "seq": 2,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-CIFD-0455",
+   "airtable_rec_id": "rec8HLme9Kl5GVR2p",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "CIF DISTRIBUTORS",
+   "fields": {
+    "Product name": "CIF Monokini — MK-AG-GL — 4 x 12 (Glossy)"
+   },
+   "before": {
+    "Product name": "CIF Monokini — Mk-Ag-Gl — 4 x 12 (Glossy)"
+   },
+   "reason": "restore_supplier_code_capitals"
+  },
+  {
+   "id": "cat-b88ae152c05e",
+   "seq": 3,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-CIFD-0456",
+   "airtable_rec_id": "recYKruw4uR40lQM7",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "CIF DISTRIBUTORS",
+   "fields": {
+    "Product name": "CIF Monokini — MK-BL-GL — 4 x 12 (Glossy)"
+   },
+   "before": {
+    "Product name": "CIF Monokini — Mk-Bl-Gl — 4 x 12 (Glossy)"
+   },
+   "reason": "restore_supplier_code_capitals"
+  },
+  {
+   "id": "cat-f2ae4f5cab5f",
+   "seq": 4,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-CIFD-0457",
+   "airtable_rec_id": "recewcpxyc3qpkV5L",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "CIF DISTRIBUTORS",
+   "fields": {
+    "Product name": "CIF Monokini — MK-CW-GL — 4 x 12 (Glossy)"
+   },
+   "before": {
+    "Product name": "CIF Monokini — Mk-Cw-Gl — 4 x 12 (Glossy)"
+   },
+   "reason": "restore_supplier_code_capitals"
+  },
+  {
+   "id": "cat-dd57583a8d93",
+   "seq": 5,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-CIFD-0458",
+   "airtable_rec_id": "recTuZ4e8Rnycdz4D",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "CIF DISTRIBUTORS",
+   "fields": {
+    "Product name": "CIF Monokini — MK-SD-GL — 4 x 12 (Glossy)"
+   },
+   "before": {
+    "Product name": "CIF Monokini — Mk-Sd-Gl — 4 x 12 (Glossy)"
+   },
+   "reason": "restore_supplier_code_capitals"
+  },
+  {
+   "id": "cat-ebf08b9dfef9",
+   "seq": 6,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-CIFD-0459",
+   "airtable_rec_id": "recdOrvZbR4LdGp45",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "CIF DISTRIBUTORS",
+   "fields": {
+    "Product name": "CIF Monokini — MK-TB-GL — 4 x 12 (Glossy)"
+   },
+   "before": {
+    "Product name": "CIF Monokini — Mk-Tb-Gl — 4 x 12 (Glossy)"
+   },
+   "reason": "restore_supplier_code_capitals"
+  },
+  {
+   "id": "cat-865eaebbb9e7",
+   "seq": 7,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-CIFD-0460",
+   "airtable_rec_id": "recn2iJHdLwRbNc9h",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "CIF DISTRIBUTORS",
+   "fields": {
+    "Product name": "CIF Monokini — MK-BL-M — 4 x 12 (Matte)"
+   },
+   "before": {
+    "Product name": "CIF Monokini — Mk-Bl-M — 4 x 12 (Matte)"
+   },
+   "reason": "restore_supplier_code_capitals"
+  },
+  {
+   "id": "cat-a62ee422bbad",
+   "seq": 8,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-CIFD-0461",
+   "airtable_rec_id": "recFqKMGopljIcUXt",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "CIF DISTRIBUTORS",
+   "fields": {
+    "Product name": "CIF Monokini — MK-SD-M — 4 x 12 (Matte)"
+   },
+   "before": {
+    "Product name": "CIF Monokini — Mk-Sd-M — 4 x 12 (Matte)"
+   },
+   "reason": "restore_supplier_code_capitals"
+  },
+  {
+   "id": "cat-31c5021b229f",
+   "seq": 9,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-CIFD-0462",
+   "airtable_rec_id": "recYLSJdGf1Hitypd",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "CIF DISTRIBUTORS",
+   "fields": {
+    "Product name": "CIF Monokini Bevelled — MKB-AT-GL — 4 x 12 (Bevelled glossy)"
+   },
+   "before": {
+    "Product name": "CIF Monokini Bevelled — Mkb-At-Gl — 4 x 12 (Bevelled glossy)"
+   },
+   "reason": "restore_supplier_code_capitals"
+  },
+  {
+   "id": "cat-28439226bb70",
+   "seq": 10,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-CIFD-0463",
+   "airtable_rec_id": "rec7CuWWn9nBEOT4E",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "CIF DISTRIBUTORS",
+   "fields": {
+    "Product name": "CIF Monokini Bevelled — MKB-AW-GL — 4 x 12 (Bevelled glossy)"
+   },
+   "before": {
+    "Product name": "CIF Monokini Bevelled — Mkb-Aw-Gl — 4 x 12 (Bevelled glossy)"
+   },
+   "reason": "restore_supplier_code_capitals"
+  },
+  {
+   "id": "cat-b6f1d34d6f02",
+   "seq": 11,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-CIFD-0464",
+   "airtable_rec_id": "recYegcUJjnQXq8Sm",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "CIF DISTRIBUTORS",
+   "fields": {
+    "Product name": "CIF Monokini Bevelled — MKB-BG-GL — 4 x 12 (Bevelled glossy)"
+   },
+   "before": {
+    "Product name": "CIF Monokini Bevelled — Mkb-Bg-Gl — 4 x 12 (Bevelled glossy)"
+   },
+   "reason": "restore_supplier_code_capitals"
+  },
+  {
+   "id": "cat-71f8822fd36e",
+   "seq": 12,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-CIFD-0465",
+   "airtable_rec_id": "recBAKBQHNrruH8NX",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "CIF DISTRIBUTORS",
+   "fields": {
+    "Product name": "CIF Monokini Bevelled — MKB-BL-GL — 4 x 12 (Bevelled glossy)"
+   },
+   "before": {
+    "Product name": "CIF Monokini Bevelled — Mkb-Bl-Gl — 4 x 12 (Bevelled glossy)"
+   },
+   "reason": "restore_supplier_code_capitals"
+  },
+  {
+   "id": "cat-f7afada255fa",
+   "seq": 13,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-CIFD-0466",
+   "airtable_rec_id": "recGihwfwetr1LNd9",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "CIF DISTRIBUTORS",
+   "fields": {
+    "Product name": "CIF Monokini Bevelled — MKB-CW-GL — 4 x 12 (Bevelled glossy)"
+   },
+   "before": {
+    "Product name": "CIF Monokini Bevelled — Mkb-Cw-Gl — 4 x 12 (Bevelled glossy)"
+   },
+   "reason": "restore_supplier_code_capitals"
+  },
+  {
+   "id": "cat-ac22f2d68776",
+   "seq": 14,
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "TIL-CIFD-0467",
+   "airtable_rec_id": "recHO56vDOTkVBUjX",
+   "ls_id": null,
+   "handle": null,
+   "supplier": "CIF DISTRIBUTORS",
+   "fields": {
+    "Product name": "CIF Monokini Bevelled — MKB-TB-GL — 4 x 12 (Bevelled glossy)"
+   },
+   "before": {
+    "Product name": "CIF Monokini Bevelled — Mkb-Tb-Gl — 4 x 12 (Bevelled glossy)"
+   },
+   "reason": "restore_supplier_code_capitals"
+  }
+ ],
+ "blocked": [],
+ "warnings": [],
+ "_note": "Run 1 of the approved name clean-up title-cased 14 CIF supplier codes (FAOS -> Faos, MK-AG-GL -> Mk-Ag-Gl). CIF was only ever meant to gain the brand word. This puts the capitals back: name = 'CIF ' + the original name."
+}

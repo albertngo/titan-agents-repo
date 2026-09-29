@@ -135,12 +135,14 @@ that residue in one reply, but on an unattended run it is a digest, not a wait.
 Nothing changed about an action needing an id in the approval file before an
 `*-actions` agent touches it.
 
-> **⚠️ Scheduling status (2026-09-23).** The policy path has now run on real plans:
-> FAW PL-377 and PL-380, and IMPRESSIVE PL-381 (unattended on 09-22, finished by hand
-> on 09-23). **No unattended fire has yet completed both systems on one row.** The
-> routine trigger is **disabled, and stays that way** (Albert, 2026-09-23: "Not yet.
-> I'll do manual"). Make keeps creating rows, and price lists are run by hand. Do not
-> re-enable it on a session's own initiative. Detail:
+> **Scheduling status (2026-09-27).** The routine trigger is **enabled** (Albert,
+> 2026-09-27: "Routine should be up and running now"), reversing the 2026-09-23
+> "Not yet. I'll do manual". It fires on Make's `notionID` payload (extract → date
+> check → sync) and once a day with no payload (`/price-list-sweep`, which now includes
+> the promo lane), cron `0 23 * * *` UTC = 7 pm Toronto (EDT). First scheduled fire
+> 2026-09-26 23:04Z succeeded and wrote nothing (nothing was due). **No unattended fire
+> has yet completed both systems on one row.** Do not disable it, or change its
+> schedule, on a session's own initiative. Detail:
 > `methods/pricelist-pipeline-routine-prompt.md`, Routine environment and Still open.
 
 **Only two files can change the POS**: `scripts/lightspeed_write.py` and
@@ -178,6 +180,21 @@ Three rules that are not negotiable, all from Albert on 2026-09-26: a record who
 `Swatch images` only — never a room scene — and no swatch means hold; the run never
 writes `Staff confirmed`. `write_mode` starts at `plan_only` and flipping it is a
 dated vault decision, same as the social pipeline was.
+
+### Product images (`/image-fill`, 2026-09-29)
+
+Third catalogue flow, Airtable only, never scheduled. `/image-fill <SUPPLIER>` finds a
+supplier's product photos on the web and fills the **blank** `Swatch images`,
+`Room scene images` and `Detail images` fields, plus a new `Supplier product page` link:
+`scripts/supplier_site_pull.py` (read-only) → the session model judges each image's kind
+and any ambiguous match → `scripts/image_fill_plan.py` (read-only, deterministic; contact
+sheet + held CSV) → policy approval → `airtable-actions-agent` (`airtable_attach_images`,
+blank only, read-before-write). Registry `platform-settings/supplier-sites.json` (site URLs
+live only there); contract `contracts/image-plan-schema.md`; method `methods/image-fill.md`.
+`write_mode` starts `plan_only`; Albert chose auto-attach-and-report once a pilot looks
+right, and that flip is a dated vault decision. A site that answers with a bot challenge
+is reported, never worked around. First supplier: Vidar (images via The Floor Box; the
+product-page link from Vidar's own pages as found in the search index).
 
 ## Agent class rules
 

@@ -1,6 +1,6 @@
 ---
 name: airtable-actions-agent
-description: Writes an APPROVED catalogue plan into the Titan Airtable base — product upserts, Lightspeed ID backfills, Price History Log rows, and /style-tag's blank-only style-tag updates. Never decides what to change on its own. Requires an approval file naming the exact action ids. Use ONLY when Albert or /catalog-sync passes an approved plan.
+description: Writes an APPROVED catalogue plan into the Titan Airtable base — product upserts, Lightspeed ID backfills, Price History Log rows, /style-tag's blank-only style-tag updates, and /image-fill's blank-only product images. Never decides what to change on its own. Requires an approval file naming the exact action ids. Use ONLY when Albert or /catalog-sync passes an approved plan.
 tools: Read, Write, Bash, mcp__Airtable__list_records_for_table, mcp__Airtable__search_records, mcp__Airtable__get_table_schema, mcp__Airtable__update_records_for_table, mcp__Airtable__create_records_for_table
 ---
 
@@ -33,6 +33,41 @@ The Master Flooring Catalogue is what Bert quotes customers from. Treat it that 
 | `airtable_backfill_ls_id` | Write a `Lightspeed ID` onto an existing record | **Update by record id, not upsert** — no merge key means no record can be created by accident. Only where the field is currently empty. One field, nothing else. |
 | ~~`airtable_create_price_history`~~ | ~~Append a Price History Log v2 row~~ | **SUSPENDED — see below. Do not execute this type.** |
 | `airtable_update_style_tags` | Write approved style tags onto a record — blank fields, or a value Albert's note replaces by compare-and-swap — plus the run-owned review fields, per a `style-plan-2` plan | **Update by record id, never upsert.** Closed field list. Read before write. See below. |
+| `airtable_attach_images` | Attach approved supplier images to a record's **blank** image fields, plus the blank `Supplier product page` link, per an `image-plan-1` plan | **Update by record id, never upsert.** Closed field list. Read before write. See below. |
+
+### `airtable_attach_images` (2026-09-29, `/image-fill`)
+
+The plan is `plans/<date>/image-plan-<scope>.json` (`contracts/image-plan-schema.md`); the
+approval file is `plans/<date>/image-approval-<scope>.json`, written by policy,
+`approved_by` = the `policy.approved_by` string in `platform-settings/supplier-sites.json`.
+Field ids come from that registry's `targets` — read it first. This is the ONLY type that
+may write an image field; the ban under `airtable_update_style_tags` stands for every other.
+
+1. **Update by record id (`action.record_id`), never upsert.** `SKU` is never in the payload.
+2. **Closed field list:** `Swatch images`, `Room scene images`, `Detail images` (value: the
+   action's list of `{url, filename}` — Airtable fetches each URL itself) and
+   `Supplier product page` (a URL string). Nothing else, `typecast` off.
+3. **Read before write, every record.** Re-fetch it by id. Drop any field in
+   `action.fields` that is **no longer blank** (`stale_not_blank`, named in
+   `content_summary`) — blank only, never replace, never append. If nothing is left,
+   log `refused` with `error: stale_not_blank`; not a batch stop.
+4. **Verify after write.** Re-read: each attachment field holds exactly as many files
+   as the action sent (Airtable re-hosts them, so compare counts and filenames, not
+   URLs) and the product page equals the value sent. An attachment Airtable could not
+   fetch shows up here as a missing file: log that record `failed` and stop the batch.
+5. Max 50 records per call; one log entry per record, type `airtable_attach_images`,
+   `raw_ref_action_id` = the action id, `content_summary` naming the fields and file counts.
+6. **`op: reattach_renamed`** (2026-09-29, Albert: SEO file names). Airtable ignores a new
+   filename sent with an existing attachment id (tried 2026-09-29: the write succeeds and
+   the name stays), so a rename is a re-attach. Plan `plans/<date>/image-rename-<scope>.json`,
+   approval `image-rename-approval-<scope>.json`. This is the ONE exception to "never
+   replace", and it is narrow: send each field as the action's `[{url, filename}]` list —
+   the same source image the run attached, same count, same order, new name — which
+   replaces the field's files. Read before write: the field's live `[{id, filename}]` must
+   equal `action.expect` exactly (every file one this pipeline named, nothing added or
+   removed since), else `refused` (`stale_changed`). Re-read: same count, the new filenames.
+   Log type `airtable_attach_images`, `content_summary` starting `Re-attached under
+   descriptive names`.
 
 ### `airtable_update_style_tags` (2026-09-26, `/style-tag`)
 
