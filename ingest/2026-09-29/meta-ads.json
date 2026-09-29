@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-09-29T08:00:00-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-act_927167028457360",
+      "type": "spend_summary",
+      "title": "Meta spend 2026-09-22 to 09-28: $327.77, 19 leads, CPL $17.25",
+      "summary": "Flooring Problems Campaign was the only campaign with delivery, spending $327.77 for 19 leads (221 clicks, 9,936 impressions) over the 7-day window. Account is ACTIVE with no flagged ads.",
+      "timestamp": "2026-09-29T08:00:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 32777,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 32777,
+    "impressions": 9936,
+    "clicks": 221,
+    "leads": 19,
+    "cpl_cents": 1725,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Window widened to 7 days (2026-09-22 to 09-28): last prior meta-ads.json was 2026-09-08, a gap over 7 days (capped). Metrics are 7-day totals, not yesterday only; 09-09 to 09-21 is not covered.",
+    "No separate CPL baseline pull was made, so no anomaly comparison was run; the 7-day window is the baseline. CPL $17.25 is well under the $50/day budget pace."
+  ]
+}
