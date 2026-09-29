@@ -128,9 +128,13 @@ def score(feat, page, supplier_cfg, matching):
     s = 10 + (5 if colour_segment_exact(title, feat["colour"]) else 0)
     page_widths = widths_in(title)
     if page_widths:
-        if feat["widths"] and not (page_widths & feat["widths"]):
+        # A record's own width must be on the page. The collection number (`7 Collection`)
+        # stands in only for a record with no width: the catalogue holds 7" and 7.5" records
+        # of the same colour, so a 7" listing is not a 7.5" record's product.
+        allowed = {feat["exact_width"]} if feat["exact_width"] else feat["widths"]
+        if allowed and not (page_widths & allowed):
             return 0, "width"
-        s += 3 if feat["exact_width"] in page_widths else 2  # 7 1/2'' beats `7 Collection` for a 7.5" plank
+        s += 3
     species_words = supplier_cfg.get("species_words") or {}
     page_species = {code for code, words in species_words.items() if any(has_phrase(title, w) for w in words)}
     if page_species and feat["species"]:
@@ -143,6 +147,10 @@ def score(feat, page, supplier_cfg, matching):
     if feat["patterns"]:
         s += 1
     page_grades = {g for g in matching.get("grade_words", []) if has_phrase(title, g)}
+    # Longest match wins: `Select & Better` on the page is not also `Select`.
+    page_grades = {norm(g) for g in page_grades}  # `Select & Better` == `Select and Better`
+    page_grades = {g for g in page_grades
+                   if not any(g != h and has_phrase(h, g) for h in page_grades)}
     if page_grades and feat["grade"]:
         if not any(norm(g) == norm(feat["grade"]) for g in page_grades):
             return 0, "grade"

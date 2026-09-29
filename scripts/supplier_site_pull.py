@@ -335,9 +335,101 @@ def sitemap_roots(fetch, root):
     return roots or [f"{base}/sitemap.xml"]
 
 
-def list_sitemap(fetch, root, follow_words, max_sitemaps=60):
+FRACTIONS = {"12": .5, "14": .25, "34": .75, "38": .375, "58": .625, "916": .5625}
+GRADE_TOKENS = {"select", "character", "rustic", "premium", "prime", "cabin"}
+UUID_V1 = re.compile(r"[0-9a-f]{8}-([0-9a-f]{4}-1[0-9a-f]{3})-[0-9a-f]{4}-[0-9a-f]{12}")
+SLUG_CODE = re.compile(r"^[a-z]{1,4}\d{2,5}[a-z]?$")
+
+
+def slug_title(slug):
+    """A readable title from a slug-only sitemap entry (The Floor Box):
+    `engineered-hardwood-american-oak-7-macaroon-select-better-7-12-34-2532-sqftbox`
+      -> `Engineered Hardwood American Oak 7 Macaroon — Select & Better — 7.5"`.
+    The width is the number right after the grade (a number earlier in the slug is a
+    collection, `american-oak-7`); with no grade, the trailing run of numbers. A fraction
+    token after the width adds to it (7-12-34 = 7 1/2" wide, 3/4" thick). Thickness is
+    left out: the matcher would read `3/4"` as a width."""
+    tokens = [t for t in slug.lower().split("-") if t]
+    while tokens and tokens[-1] in ("sqft", "sqftbox", "box", "sf", "sqftcarton"):
+        tokens.pop()
+    grade, g_start, n = "", None, None
+    for i in range(len(tokens) - 1, 0, -1):
+        if tokens[i] in GRADE_TOKENS | {"better"} and i + 1 < len(tokens) and tokens[i + 1].isdigit():
+            n = i + 1
+            if tokens[i - 1:i + 1] == ["select", "better"]:
+                grade, g_start = "Select & Better", i - 1
+                if tokens[i - 2:i] == ["select", "and"]:
+                    g_start = i - 2
+            elif tokens[i] == "better":
+                continue
+            else:
+                grade, g_start = tokens[i].title(), i
+            break
+    if n is None:
+        n = len(tokens)
+        while n > 1 and tokens[n - 1].isdigit():
+            n -= 1
+        g_start = n
+        if n == len(tokens):
+            n = None
+    words = tokens[:g_start] if g_start is not None else tokens
+    width = None
+    if n is not None:
+        width = float(tokens[n])
+        rest = tokens[n + 1:]
+        if len(rest) >= 2 and rest[0] in FRACTIONS and rest[1] in FRACTIONS:
+            width += FRACTIONS[rest[0]]
+    name = " ".join(w.upper() if SLUG_CODE.match(w) else w.title() for w in words)
+    parts = [name] + ([grade] if grade else []) + ([f'{width:g}"'] if width else [])
+    return " — ".join(parts)
+
+
+def slug_codes(slug):
+    return sorted({t.upper() for t in slug.lower().split("-") if SLUG_CODE.match(t)})
+
+
+def brand_batches(pages, colours, min_distinct):
+    """Keep only pages from import batches that carry the supplier's colour names.
+
+    A version-1 UUID's time field groups the products a site imported together; a batch
+    holding at least `min_distinct` of the supplier's distinctive (multi-word) colour names
+    is taken to be that supplier's. Returns (kept_pages, {batch: {"products", "colours"}})."""
+    variants = {}
+    for c in colours:
+        low = c.lower().strip()
+        if " " not in low:
+            continue
+        for v in (low.replace(" ", "-"), low.replace(" ", "")):
+            variants[v] = low
+    info, by_batch = {}, {}
+    for p in pages:
+        m = UUID_V1.search(p["url"])
+        key = m.group(1) if m else None
+        by_batch.setdefault(key, []).append(p)
+        slug = urllib.parse.urlsplit(p["url"]).path.rstrip("/").split("/")[-2 if m else -1]
+        hits = {variants[v] for v in variants if re.search(rf"(^|-){re.escape(v)}(-|$)", slug)}
+        rec = info.setdefault(key, {"products": 0, "colours": set()})
+        rec["products"] += 1
+        rec["colours"] |= hits
+    keep = {k for k, v in info.items() if k and len(v["colours"]) >= min_distinct}
+    kept = [p for k in keep for p in by_batch[k]]
+    report = {k: {"products": v["products"], "colours": sorted(v["colours"])}
+              for k, v in sorted(info.items(), key=lambda kv: -len(kv[1]["colours"])) if k in keep}
+    return kept, report
+
+
+def list_sitemap(fetch, root, follow_words, max_sitemaps=60, listing=None):
     """Product entries from sitemaps. Uses <image:image> blocks when present, so no product
-    page needs loading; otherwise returns bare URLs for the crawl step to load."""
+    page needs loading; otherwise returns bare URLs for the crawl step to load.
+
+    `listing` (the supplier's registry `listing`) may set `path_contains` (keep only these
+    URLs, e.g. `/products/` to drop the French duplicates), `skip_words` (slug tokens that
+    mark an accessory), and `slug_parser: "floorbox"` (a title from the slug, for sitemaps
+    whose images carry no title)."""
+    listing = listing or {}
+    keep_path = listing.get("path_contains")
+    skip = set(listing.get("skip_words") or [])
+    parse = listing.get("slug_parser") == "floorbox"
     queue, seen, pages = sitemap_roots(fetch, root), set(), []
     while queue and len(seen) < max_sitemaps:
         sm = queue.pop(0)
@@ -355,18 +447,25 @@ def list_sitemap(fetch, root, follow_words, max_sitemaps=60):
             if not locs:
                 continue
             url = locs[0]
+            if keep_path and keep_path not in url:
+                continue
+            path_parts = urllib.parse.urlsplit(url).path.rstrip("/").split("/")
+            slug = path_parts[-2] if UUID_V1.fullmatch(path_parts[-1] or "") else path_parts[-1]
+            if skip and skip & set(slug.lower().split("-")):
+                continue
             imgs = []
             for ib in IMAGE_BLOCK.findall(block):
                 loc = IMAGE_LOC.search(ib)
                 if loc:
                     t = IMAGE_TITLE.search(ib)
                     imgs.append({"url": loc.group(1), "alt": (t.group(1).strip() if t else "")})
-            title = next((i["alt"] for i in imgs if i["alt"]), "")
+            title = next((i["alt"] for i in imgs if i["alt"]), "") or (slug_title(slug) if parse else "")
             hay = f"{url} {title}".lower()
             if follow_words and not any(w in hay for w in follow_words):
                 continue
             pages.append({"url": url, "title": title, "h1": "", "og_title": "", "product_name": "",
-                          "is_product": "product" in url.lower(), "codes": [], "images": imgs,
+                          "is_product": "product" in url.lower(),
+                          "codes": slug_codes(slug) if parse else [], "images": imgs,
                           "_needs_page": not imgs})
     return pages
 
@@ -393,8 +492,9 @@ def crawl(fetch, root, follow_words, max_pages, start_urls=None):
 
 def list_pages(fetch, cfg, supplier_cfg, max_pages):
     root = supplier_cfg["site"]
-    method = (supplier_cfg.get("listing") or {}).get("method", "auto")
-    follow = [w.lower() for w in supplier_cfg.get("follow_words", [])]
+    listing = supplier_cfg.get("listing") or {}
+    method = listing.get("method", "auto")
+    follow = [] if listing.get("brand_batches") else [w.lower() for w in supplier_cfg.get("follow_words", [])]
     order = ["shopify", "woocommerce", "sitemap", "crawl"] if method == "auto" else [method]
     tried = {}
     for m in order:
@@ -404,7 +504,7 @@ def list_pages(fetch, cfg, supplier_cfg, max_pages):
             elif m == "woocommerce":
                 pages = list_woocommerce(fetch, root)
             elif m == "sitemap":
-                pages = list_sitemap(fetch, root, follow)
+                pages = list_sitemap(fetch, root, follow, listing=listing)
                 bare = [p["url"] for p in pages if p.get("_needs_page")]
                 if bare:
                     loaded = crawl(fetch, root, follow, max_pages, start_urls=bare[:max_pages])
@@ -524,6 +624,11 @@ def main(argv=None):
     records = load_snapshot(args.snapshot)
     fetch = Fetcher(cfg)
     method, pages, tried = list_pages(fetch, cfg, sup, args.max_pages or cfg["fetch"]["max_pages"])
+    batches = None
+    bb = (sup.get("listing") or {}).get("brand_batches")
+    if bb and pages:
+        colours = {image_match.colour_of(r.get("Product name")) for r in records}
+        pages, batches = brand_batches(pages, colours, bb.get("min_distinct_colours", 3))
     status = "ok" if pages else next((v for v in tried.values() if v in ("challenged", "host_blocked")), "empty")
     for p in pages:
         p.pop("_needs_page", None)
@@ -542,6 +647,7 @@ def main(argv=None):
         "pulled_at": datetime.now(TZ).isoformat(),
         "status": status,
         "listing": {"method": method, "tried": tried, "requests": fetch.count},
+        "batches": batches,
         "images": {"dir": str(images_dir.relative_to(REPO_ROOT)), "counts": dict(counts)},
         "summary": {"records": len(records), "pages": len(pages), "pages_matched": len(wanted),
                     "tiers": dict(Counter(m["tier"] for m in matches.values()))},

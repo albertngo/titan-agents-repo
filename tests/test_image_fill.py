@@ -7,6 +7,7 @@ planner's blank-only and image rules, the policy gate, and the prose.
 Stdlib unittest, fixtures inline. No network: fetches go through a fake opener.
 """
 
+import copy
 import io
 import json
 import sys
@@ -61,12 +62,18 @@ class TestMatcher(unittest.TestCase):
         out = self.m([NAKED_9], [page("https://x/naked-oak-daybreak", "9'' Collection American White Oak-Daybreak")])
         self.assertEqual(out[NAKED_9["id"]]["tier"], "none")
 
-    def test_width_vetoes_and_collection_number_counts(self):
+    def test_the_records_own_width_must_be_on_the_page(self):
+        """2026-09-29: a 7.5" record took a 7" listing via its `7 Collection` number; the
+        catalogue holds both widths, so the collection number only counts with no width."""
         pages = [page("https://x/6", "American Oak 6 Collection-Naked Oak"),
-                 page("https://x/7", "American White Oak 7 Collection - Naked Oak")]
+                 page("https://x/7", "American White Oak 7 Collection - Naked Oak"),
+                 page("https://x/75", "7 1/2'' Collection American White Oak-Naked Oak")]
         out = self.m([NAKED_75, NAKED_9], pages)
-        self.assertEqual(out[NAKED_75["id"]]["candidates"][0]["url"], "https://x/7")
+        self.assertEqual([c["url"] for c in out[NAKED_75["id"]]["candidates"]], ["https://x/75"])
         self.assertEqual(out[NAKED_9["id"]]["tier"], "none")
+        no_width = {**NAKED_75, "id": "rec0000000000099", "Width (in)": None}
+        out = self.m([no_width], pages[:2])
+        self.assertEqual([c["url"] for c in out[no_width["id"]]["candidates"]], ["https://x/7"])
 
     def test_pattern_must_agree_both_ways(self):
         pages = [page("https://x/plank", "Naked Oak"), page("https://x/hb", "Herringbone Naked Oak")]
@@ -152,6 +159,60 @@ class TestPull(unittest.TestCase):
         self.assertTrue(pull.keep_image("https://s/naked-oak.jpg", rules))
 
 
+class TestFloorBoxSitemap(unittest.TestCase):
+    """2026-09-29: The Floor Box's pages are Cloudflare-challenged; its CDN sitemap is not."""
+
+    def test_slug_titles(self):
+        cases = {
+            "engineered-hardwood-american-oak-7-macaroon-select-better-7-12-34-2532-sqftbox":
+                'Engineered Hardwood American Oak 7 Macaroon — Select & Better — 7.5"',
+            "engineered-hardwood-american-oak-6-naked-oak-select-6-34":
+                'Engineered Hardwood American Oak 6 Naked Oak — Select — 6"',
+            "engineered-hardwood-click-moon-light-character-5-12":
+                'Engineered Hardwood Click Moon Light — Character — 5"',
+            "engineered-hardwood-naked-oak-character-9-34-2030-sqft":
+                'Engineered Hardwood Naked Oak — Character — 9"',
+            "laminate-nk25-7-12-12": 'Laminate NK25 — 7.5"',
+        }
+        for slug, title in cases.items():
+            self.assertEqual(pull.slug_title(slug), title, slug)
+
+    def test_the_slug_title_matches_the_right_record(self):
+        s75 = rec("rec0000000000011", 'Vidar 7.5" AWO — Macaroon (Select & Better)', "7 Collection", 7.5, "Select & Better")
+        s75_sel = rec("rec0000000000012", 'Vidar 7.5" AWO — Macaroon (Select)', "7 Collection", 7.5, "Select")
+        p = page("https://fb/products/x/2b686265-333c-11ef-baed-f6968cef729a",
+                 pull.slug_title("engineered-hardwood-american-oak-7-macaroon-select-better-7-12-34-2532-sqftbox"))
+        out = im.match_records([s75, s75_sel], [p], VIDAR, REG["matching"])
+        self.assertEqual(out[s75["id"]]["tier"], "exact")
+        self.assertEqual(out[s75_sel["id"]]["tier"], "none")  # Select never takes Select & Better
+
+    def test_french_duplicates_and_accessories_are_dropped(self):
+        xml = (b'<urlset>'
+               b'<url><loc>https://s/products/engineered-hardwood-naked-oak-select-6-34/2b6bd755-333c-11ef-baed-f6968cef729a</loc>'
+               b'<image:image><image:loc>https://cdn/a</image:loc></image:image></url>'
+               b'<url><loc>https://s/fr/produits/bois-naked-oak-select-6-34/2b6bd755-333c-11ef-baed-f6968cef729a</loc>'
+               b'<image:image><image:loc>https://cdn/a</image:loc></image:image></url>'
+               b'<url><loc>https://s/products/hardwood-american-oak-naked-oak-matte-floor-vent-4-x-10/06a4e7bb-9981-11f0-bc10-f6968cef729a</loc>'
+               b'<image:image><image:loc>https://cdn/v</image:loc></image:image></url></urlset>')
+        f = pull.Fetcher({"fetch": {"delay_seconds": 0}},
+                         opener=lambda req, timeout=0: FakeResp(b"Sitemap: https://cdn/sm.xml" if req.full_url.endswith("robots.txt") else xml))
+        pages = pull.list_sitemap(f, "https://s/brands/vidar", [], listing=VIDAR["listing"])
+        self.assertEqual(len(pages), 1)
+        self.assertIn("/products/engineered-hardwood-naked-oak", pages[0]["url"])
+        self.assertEqual(pages[0]["title"], 'Engineered Hardwood Naked Oak — Select — 6"')
+
+    def test_brand_batches_keep_only_the_suppliers_imports(self):
+        def pg(slug, batch):
+            return page(f"https://s/products/{slug}/2b6bd755-{batch}-baed-f6968cef729a", "")
+        pages = [pg("eh-naked-oak-select-6-34", "333c-11ef"), pg("eh-toffee-crunch-select-6-34", "333c-11ef"),
+                 pg("eh-wheat-berry-select-6-34", "333c-11ef"), pg("eh-natural-select-6-34", "333c-11ef"),
+                 pg("eh-naked-oak-select-6-34", "fb0e-11eb"), pg("eh-natural-select-6-34", "fb0e-11eb")]
+        kept, report = pull.brand_batches(pages, {"Naked Oak", "Toffee Crunch", "Wheat Berry", "Natural"}, 3)
+        self.assertEqual(len(kept), 4)
+        self.assertEqual(list(report), ["333c-11ef"])
+        self.assertEqual(report["333c-11ef"]["colours"], ["naked oak", "toffee crunch", "wheat berry"])
+
+
 class TestPlan(unittest.TestCase):
     def build(self, records, pages, judgements, product_pages=None):
         pf = {"pages": pages}
@@ -203,16 +264,43 @@ class TestPlan(unittest.TestCase):
         self.assertEqual(a["match_tier"], "model_confirmed")
         self.assertIn("model_matched", a["flags"])
 
+    def test_a_photo_laid_in_another_pattern_is_dropped(self):
+        """The Floor Box reused a herringbone room shot on a plank listing (2026-09-29)."""
+        j = {"contract_version": "image-judgements-1", "images": {
+            "s1": {"kind": "swatch", "laying": "plank"}, "r1": {"kind": "room", "laying": "herringbone"},
+            "s2": {"kind": "swatch", "laying": "plank"}}}
+        a = self.build([NAKED_9], self.pages, j)["actions"][0]
+        self.assertIn("Swatch images", a["fields"])
+        self.assertNotIn("Room scene images", a["fields"])
+
+    def test_a_tie_between_identical_photos_is_not_a_choice(self):
+        pages = self.pages + [page("https://fb/naked-9-dup", "9'' Collection American White Oak-Naked Oak",
+                                   [img("s1", "https://cdn/sw2.jpg"), img("r1", "https://cdn/room2.jpg"),
+                                    img("s2", "https://cdn/small2.jpg", 1000, 800)])]
+        a = self.build([NAKED_9], pages, self.j)["actions"][0]
+        self.assertEqual(a["match_tier"], "exact")
+
     def test_product_page_prefers_the_manufacturer(self):
         idx = {"results": [
             {"title": "9'' Collection American White Oak-Naked Oak - Vidar Flooring",
              "url": "https://www.vidarflooring.com/en/product/engineered-hardwood/american-oak-naked-oak"},
             {"title": "American White Oak 9 Collection - Naked Oak",
              "url": "https://www.vidarflooring.com/test-page/item/72-naked-oak"}]}
-        a = self.build([NAKED_9], self.pages, self.j, idx)["actions"][0]
+        reg = copy.deepcopy(REG)
+        reg["suppliers"]["VIDAR"]["product_pages"]["enabled"] = True
+        a = plan.build([NAKED_9], {"pages": self.pages}, self.j, idx, reg, "VIDAR", "vidar")["actions"][0]
         self.assertEqual(a["fields"]["Supplier product page"],
                          "https://www.vidarflooring.com/en/product/engineered-hardwood/american-oak-naked-oak")
         self.assertEqual(a["product_page_source"], "manufacturer")
+
+    def test_disabled_product_pages_are_never_used(self):
+        """2026-09-29: the search-index Vidar links were dead (Albert: 'go to 404')."""
+        self.assertIs(VIDAR["product_pages"]["enabled"], False)
+        idx = {"results": [{"title": "9'' Collection American White Oak-Naked Oak",
+                            "url": "https://www.vidarflooring.com/en/product/engineered-hardwood/american-oak-naked-oak"}]}
+        a = self.build([NAKED_9], self.pages, self.j, idx)["actions"][0]
+        self.assertEqual(a["fields"]["Supplier product page"], "https://fb/naked-9")
+        self.assertNotIn("vidarflooring.com", json.dumps(a))
         a = self.build([NAKED_9], self.pages, self.j)["actions"][0]
         self.assertEqual(a["fields"]["Supplier product page"], "https://fb/naked-9")
         self.assertIn("product_page_not_manufacturer", a["flags"])

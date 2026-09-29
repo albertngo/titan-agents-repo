@@ -65,6 +65,17 @@ Replace or append to a filled image field; write anything but the four target fi
 write while `write_mode` is `plan_only`; get past a bot challenge; guess a URL.
 
 ## Log
+- 2026-09-29 — Pilot (plan_only), Vidar via The Floor Box's CDN sitemap. The
+  search-index Vidar links turned out dead (Albert: "go to 404"); product_pages disabled,
+  `Supplier product page` = the Floor Box listing (Albert's choice). Swatch only from this
+  source (one image per sitemap entry; Albert: "Swatch only is fine"). Brand from import
+  batches: 333c-11ef, 1f64-11f0, 18f2-11ed, 9981-11f0 (4-8 distinct Vidar colours each).
+  72 distinct photos judged by eye. Plan: 37 records (32 swatch, 5 room), 195 held
+  (124 not listed, 66 swatch under 1600 px, 5 wrong laying pattern). Two rules added from
+  what the pilot showed: a record's own width must be on the listing (the catalogue holds
+  7" and 7.5" of the same colour), and a photo laid in another pattern is dropped (The
+  Floor Box reused a herringbone room shot on a plank listing). Speers Flooring suggested
+  for room photos; host not yet allowed.
 
 - 2026-09-29 — built; registry, contract, scripts, agent type `airtable_attach_images`,
   field `Supplier product page`. `plan_only`. Pilot pending the CDN host.

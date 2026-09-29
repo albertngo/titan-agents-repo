@@ -1,0 +1,3274 @@
+{
+ "contract_version": "image-plan-1",
+ "scope": "vidar",
+ "supplier": "VIDAR",
+ "run_at": "2026-09-28T21:39:23.638646-04:00",
+ "expires": "2026-09-28T23:59:59-0400",
+ "write_mode": "plan_only",
+ "registry": "platform-settings/supplier-sites.json",
+ "inputs": {
+  "pages": "ingest/2026-09-28/supplier-pages-vidar.json",
+  "judgements": "ingest/2026-09-28/image-judgements-vidar.json",
+  "product_pages": null
+ },
+ "summary": {
+  "records": 232,
+  "actions": 37,
+  "held": 195,
+  "skipped": {},
+  "held_by_reason": {
+   "no_match": 124,
+   "low_res_swatch": 66,
+   "no_usable_image": 5
+  },
+  "fields": {
+   "Swatch images": 32,
+   "Supplier product page": 37,
+   "Room scene images": 5
+  },
+  "tiers": {
+   "exact": 37
+  },
+  "manufacturer_pages": 0
+ },
+ "actions": [
+  {
+   "id": "img-98bc067ddc11",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recttepYhaiaQfqC1",
+   "sku": "ENG-VIDR-0003",
+   "product_name": "Vidar 6\" AWO — Smoke Grey (Character)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b709290-333c-11ef-baed-f6968cef729a/2c7290d5-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0003-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-smoke-grey-character-6-34/2b709290-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-smoke-grey-character-6-34/2b709290-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b709290-333c-11ef-baed-f6968cef729a/2c7290d5-333c-11ef-baed-f6968cef729a",
+     "sha1": "189602b9aed85bf7f327f7152cc7a63432477668",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-c3a894fb657e",
+   "seq": 2,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recLwpOfJuLEOaaah",
+   "sku": "ENG-VIDR-0006",
+   "product_name": "Vidar 6\" AWO — Camel (Character)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/b05bb2e0-18f2-11ed-98bd-f6968cef729a/b07517f7-18f2-11ed-98bd-f6968cef729a",
+      "filename": "ENG-VIDR-0006-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-camel-character-6-075/b05bb2e0-18f2-11ed-98bd-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-camel-character-6-075/b05bb2e0-18f2-11ed-98bd-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/b05bb2e0-18f2-11ed-98bd-f6968cef729a/b07517f7-18f2-11ed-98bd-f6968cef729a",
+     "sha1": "e6bda1baf1009ea2bb5341550ceaf219dc62a157",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-d438fee5b154",
+   "seq": 3,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec5mATNJFqjl14lK",
+   "sku": "ENG-VIDR-0007",
+   "product_name": "Vidar 6\" AWO — Coffee (Character)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/b05bb56b-18f2-11ed-98bd-f6968cef729a/b0751690-18f2-11ed-98bd-f6968cef729a",
+      "filename": "ENG-VIDR-0007-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-coffee-character-6-075/b05bb56b-18f2-11ed-98bd-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-coffee-character-6-075/b05bb56b-18f2-11ed-98bd-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/b05bb56b-18f2-11ed-98bd-f6968cef729a/b0751690-18f2-11ed-98bd-f6968cef729a",
+     "sha1": "089effdd9f2ddf3fc168fb2659ea51d04bdca4d5",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-e234f1359f0f",
+   "seq": 4,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recpTnXR0mdLxKeJA",
+   "sku": "ENG-VIDR-0009",
+   "product_name": "Vidar 6\" AWO — Wheat Berry (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b727566-333c-11ef-baed-f6968cef729a/2c72bef1-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0009-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-wheat-berry-select-6-34/2b727566-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-wheat-berry-select-6-34/2b727566-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b727566-333c-11ef-baed-f6968cef729a/2c72bef1-333c-11ef-baed-f6968cef729a",
+     "sha1": "a15bdfe87ba6e18fc48642e59b7dc665fc177da3",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-28b9387c636c",
+   "seq": 5,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recVQiRYPAYmdykF6",
+   "sku": "ENG-VIDR-0011",
+   "product_name": "Vidar 6\" AWO — Fortino (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/b05bc027-18f2-11ed-98bd-f6968cef729a/b075196f-18f2-11ed-98bd-f6968cef729a",
+      "filename": "ENG-VIDR-0011-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-fortino-select-6-34/b05bc027-18f2-11ed-98bd-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-fortino-select-6-34/b05bc027-18f2-11ed-98bd-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/b05bc027-18f2-11ed-98bd-f6968cef729a/b075196f-18f2-11ed-98bd-f6968cef729a",
+     "sha1": "d7ceee1c884906eac0a561e8af789306e827a847",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-7468d50cf66f",
+   "seq": 6,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recsgLCDwBj070dXK",
+   "sku": "ENG-VIDR-0012",
+   "product_name": "Vidar 6\" AWO — Naked Oak (Character)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b6ab41e-333c-11ef-baed-f6968cef729a/2c719442-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0012-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-naked-oak-character-6-34/2b6ab41e-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-naked-oak-character-6-34/2b6ab41e-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b6ab41e-333c-11ef-baed-f6968cef729a/2c719442-333c-11ef-baed-f6968cef729a",
+     "sha1": "d031554c162be2c3849dcb95b7bff5a107e7060e",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-8086cb274981",
+   "seq": 7,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recVP5THKZoXnl79L",
+   "sku": "ENG-VIDR-0013",
+   "product_name": "Vidar 6\" AWO — Naked Oak (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b6bd755-333c-11ef-baed-f6968cef729a/2c71e791-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0013-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-naked-oak-select-6-34/2b6bd755-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-naked-oak-select-6-34/2b6bd755-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b6bd755-333c-11ef-baed-f6968cef729a/2c71e791-333c-11ef-baed-f6968cef729a",
+     "sha1": "d031554c162be2c3849dcb95b7bff5a107e7060e",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-3cf95e7e351a",
+   "seq": 8,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recCxyMcaY4ZQ7DsL",
+   "sku": "ENG-VIDR-0014",
+   "product_name": "Vidar 6\" AWO — Naked Oak (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b6b6969-333c-11ef-baed-f6968cef729a/2c71e1a7-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0014-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-naked-oak-select-better-6-34/2b6b6969-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-naked-oak-select-better-6-34/2b6b6969-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b6b6969-333c-11ef-baed-f6968cef729a/2c71e1a7-333c-11ef-baed-f6968cef729a",
+     "sha1": "d031554c162be2c3849dcb95b7bff5a107e7060e",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-91ea063eaa14",
+   "seq": 9,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recxk71WWHBU4g57q",
+   "sku": "ENG-VIDR-0015",
+   "product_name": "Vidar 6\" AWO — Macaroon (Character)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b669034-333c-11ef-baed-f6968cef729a/2c716202-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0015-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-macaroon-character-6-34/2b669034-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-macaroon-character-6-34/2b669034-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b669034-333c-11ef-baed-f6968cef729a/2c716202-333c-11ef-baed-f6968cef729a",
+     "sha1": "911bd69f13e4d705adb24179ff3a4cce528ba6d2",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-ca4cbef1188a",
+   "seq": 10,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recHdC2OAXvcnTDab",
+   "sku": "ENG-VIDR-0016",
+   "product_name": "Vidar 6\" AWO — Macaroon (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b681283-333c-11ef-baed-f6968cef729a/2c717b0e-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0016-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-macaroon-select-6-34/2b681283-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-macaroon-select-6-34/2b681283-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b681283-333c-11ef-baed-f6968cef729a/2c717b0e-333c-11ef-baed-f6968cef729a",
+     "sha1": "911bd69f13e4d705adb24179ff3a4cce528ba6d2",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-506e38a3df6a",
+   "seq": 11,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recK3IFWWzSTcZAUi",
+   "sku": "ENG-VIDR-0017",
+   "product_name": "Vidar 6\" AWO — Macaroon (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b673c12-333c-11ef-baed-f6968cef729a/2c716a48-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0017-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-macaroon-select-better-6-34/2b673c12-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-macaroon-select-better-6-34/2b673c12-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b673c12-333c-11ef-baed-f6968cef729a/2c716a48-333c-11ef-baed-f6968cef729a",
+     "sha1": "911bd69f13e4d705adb24179ff3a4cce528ba6d2",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-46bdde7139c0",
+   "seq": 12,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec9j4sYsUshnG9TG",
+   "sku": "ENG-VIDR-0019",
+   "product_name": "Vidar 6\" AWO — Toffee Crunch (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b723f41-333c-11ef-baed-f6968cef729a/2c72a3a3-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0019-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-toffee-crunch-select-6-34/2b723f41-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-toffee-crunch-select-6-34/2b723f41-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b723f41-333c-11ef-baed-f6968cef729a/2c72a3a3-333c-11ef-baed-f6968cef729a",
+     "sha1": "9d6b40d4499aaecb7094b0701151778155dab4f6",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-23dd9b3d3430",
+   "seq": 13,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recLRBsU8bRm9gjZ9",
+   "sku": "ENG-VIDR-0020",
+   "product_name": "Vidar 6\" AWO — Toffee Crunch (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b722ff3-333c-11ef-baed-f6968cef729a/2c729edb-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0020-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-toffee-crunch-select-better-6-34-2532-sqftbox/2b722ff3-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-toffee-crunch-select-better-6-34-2532-sqftbox/2b722ff3-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b722ff3-333c-11ef-baed-f6968cef729a/2c729edb-333c-11ef-baed-f6968cef729a",
+     "sha1": "9d6b40d4499aaecb7094b0701151778155dab4f6",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-580cc43a0766",
+   "seq": 14,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recQlVuJ3TOHn7zXe",
+   "sku": "ENG-VIDR-0039",
+   "product_name": "Vidar 7.5\" AWO — Wheat Berry (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b727a8d-333c-11ef-baed-f6968cef729a/2c72c238-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0039-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-7-wheat-berry-select-7-12-34-2532-sqftbox/2b727a8d-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-7-wheat-berry-select-7-12-34-2532-sqftbox/2b727a8d-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b727a8d-333c-11ef-baed-f6968cef729a/2c72c238-333c-11ef-baed-f6968cef729a",
+     "sha1": "a15bdfe87ba6e18fc48642e59b7dc665fc177da3",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-683877415b75",
+   "seq": 15,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec8gzxUl0gWcz1VT",
+   "sku": "ENG-VIDR-0044",
+   "product_name": "Vidar 7.5\" AWO — Macaroon (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b686265-333c-11ef-baed-f6968cef729a/2c7182e9-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0044-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-7-macaroon-select-7-12-34-2532-sqftbox/2b686265-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-7-macaroon-select-7-12-34-2532-sqftbox/2b686265-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b686265-333c-11ef-baed-f6968cef729a/2c7182e9-333c-11ef-baed-f6968cef729a",
+     "sha1": "caae76b00b87edba7a86480e596d4e23ceea165a",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-56cac1b79c54",
+   "seq": 16,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recAkmPrUK2pjAOTi",
+   "sku": "ENG-VIDR-0045",
+   "product_name": "Vidar 7.5\" AWO — Macaroon (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b679cbd-333c-11ef-baed-f6968cef729a/2c7175d2-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0045-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-7-macaroon-select-better-7-12-34-2532-sqftbox/2b679cbd-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-7-macaroon-select-better-7-12-34-2532-sqftbox/2b679cbd-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b679cbd-333c-11ef-baed-f6968cef729a/2c7175d2-333c-11ef-baed-f6968cef729a",
+     "sha1": "caae76b00b87edba7a86480e596d4e23ceea165a",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-2f0ab8567611",
+   "seq": 17,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recETI71tFDoi70Z4",
+   "sku": "ENG-VIDR-0054",
+   "product_name": "Vidar 7.5\" EWO — Banff (Select)",
+   "fields": {
+    "Room scene images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b5d6eeb-333c-11ef-baed-f6968cef729a/2c6f93dc-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0054-room-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-european-oak-banff-select-7-12-34/2b5d6eeb-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-european-oak-banff-select-7-12-34/2b5d6eeb-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "room",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b5d6eeb-333c-11ef-baed-f6968cef729a/2c6f93dc-333c-11ef-baed-f6968cef729a",
+     "sha1": "f04c60fdda6da8b5da996cac8390cd1cf4f4b5eb",
+     "width": 1311,
+     "height": 984
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-49dab9fe837f",
+   "seq": 18,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recD3dck0o8MiLPsE",
+   "sku": "ENG-VIDR-0071",
+   "product_name": "Vidar 7.5\" EWA — Day Break (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/06a2bbc3-9981-11f0-bc10-f6968cef729a/085cc248-9981-11f0-bc10-f6968cef729a",
+      "filename": "ENG-VIDR-0071-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-7-day-break-select-better-7-12-34/06a2bbc3-9981-11f0-bc10-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-7-day-break-select-better-7-12-34/06a2bbc3-9981-11f0-bc10-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/06a2bbc3-9981-11f0-bc10-f6968cef729a/085cc248-9981-11f0-bc10-f6968cef729a",
+     "sha1": "bc5524e65901e80fbdbdfb401d61ce7ef6a0842f",
+     "width": 1600,
+     "height": 992
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-bd095a76502a",
+   "seq": 19,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recGycg9p6xXrRxnR",
+   "sku": "ENG-VIDR-0078",
+   "product_name": "Vidar 9\" AWO — Sandy Grey (Character)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/b05bd7e1-18f2-11ed-98bd-f6968cef729a/b07528d3-18f2-11ed-98bd-f6968cef729a",
+      "filename": "ENG-VIDR-0078-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-sandy-grey-character-9-34-2030-sqft/b05bd7e1-18f2-11ed-98bd-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-sandy-grey-character-9-34-2030-sqft/b05bd7e1-18f2-11ed-98bd-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/b05bd7e1-18f2-11ed-98bd-f6968cef729a/b07528d3-18f2-11ed-98bd-f6968cef729a",
+     "sha1": "3fd394f57682251c63ad578442aa44641bb05585",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-6363dde73e1a",
+   "seq": 20,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recFMkPXfq7JtyJXf",
+   "sku": "ENG-VIDR-0081",
+   "product_name": "Vidar 9\" AWO — Daisy (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b5e5660-333c-11ef-baed-f6968cef729a/2c6fec28-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0081-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-9-daisy-select-better-9-34/2b5e5660-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-9-daisy-select-better-9-34/2b5e5660-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b5e5660-333c-11ef-baed-f6968cef729a/2c6fec28-333c-11ef-baed-f6968cef729a",
+     "sha1": "988a40e230f2dde81d3a14f2c59b5d8cb9c42b9d",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-456e204eea8d",
+   "seq": 21,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec7Rmh4qvZQSKBgn",
+   "sku": "ENG-VIDR-0082",
+   "product_name": "Vidar 9\" AWO — Macaroon (Character)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b66e18d-333c-11ef-baed-f6968cef729a/2c71676a-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0082-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-9-macaroon-character-9-34/2b66e18d-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-9-macaroon-character-9-34/2b66e18d-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b66e18d-333c-11ef-baed-f6968cef729a/2c71676a-333c-11ef-baed-f6968cef729a",
+     "sha1": "9c6469a8eda3cb3711cd8077b57cd56b6abd3ea6",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-7117707095e6",
+   "seq": 22,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec0iS3E18nipulie",
+   "sku": "ENG-VIDR-0084",
+   "product_name": "Vidar 9\" AWO — Macaroon (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b67bad1-333c-11ef-baed-f6968cef729a/2c7177e7-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0084-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-9-macaroon-select-better-9-34/2b67bad1-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-9-macaroon-select-better-9-34/2b67bad1-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b67bad1-333c-11ef-baed-f6968cef729a/2c7177e7-333c-11ef-baed-f6968cef729a",
+     "sha1": "9c6469a8eda3cb3711cd8077b57cd56b6abd3ea6",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-c5f4fd2b2980",
+   "seq": 23,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recmfnQEPwCouoAS6",
+   "sku": "ENG-VIDR-0085",
+   "product_name": "Vidar 9\" AWO — Wheat Berry (Character)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/b05bed0d-18f2-11ed-98bd-f6968cef729a/35bfab35-1a81-11ed-98bd-f6968cef729a",
+      "filename": "ENG-VIDR-0085-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-wheat-berry-character-9-34-2030-sqft/b05bed0d-18f2-11ed-98bd-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-wheat-berry-character-9-34-2030-sqft/b05bed0d-18f2-11ed-98bd-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/b05bed0d-18f2-11ed-98bd-f6968cef729a/35bfab35-1a81-11ed-98bd-f6968cef729a",
+     "sha1": "a15bdfe87ba6e18fc48642e59b7dc665fc177da3",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-e7b6cc6f535e",
+   "seq": 24,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recgL05sE9NpcQN1Z",
+   "sku": "ENG-VIDR-0086",
+   "product_name": "Vidar 9\" AWO — Wheat Berry (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/b05be96f-18f2-11ed-98bd-f6968cef729a/35bfaa92-1a81-11ed-98bd-f6968cef729a",
+      "filename": "ENG-VIDR-0086-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-wheat-berry-select-9-34-2030-sqft/b05be96f-18f2-11ed-98bd-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-wheat-berry-select-9-34-2030-sqft/b05be96f-18f2-11ed-98bd-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/b05be96f-18f2-11ed-98bd-f6968cef729a/35bfaa92-1a81-11ed-98bd-f6968cef729a",
+     "sha1": "a15bdfe87ba6e18fc48642e59b7dc665fc177da3",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-fe9a7086eabb",
+   "seq": 25,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recZjRUN8GkAHAZui",
+   "sku": "ENG-VIDR-0087",
+   "product_name": "Vidar 9\" AWO — Wheat Berry (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/b05be5da-18f2-11ed-98bd-f6968cef729a/35bfa9b7-1a81-11ed-98bd-f6968cef729a",
+      "filename": "ENG-VIDR-0087-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-wheat-berry-select-better-9-34-2030-sqft/b05be5da-18f2-11ed-98bd-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-wheat-berry-select-better-9-34-2030-sqft/b05be5da-18f2-11ed-98bd-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/b05be5da-18f2-11ed-98bd-f6968cef729a/35bfa9b7-1a81-11ed-98bd-f6968cef729a",
+     "sha1": "a15bdfe87ba6e18fc48642e59b7dc665fc177da3",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-1d4dd5aa994e",
+   "seq": 26,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recyoR0UY6FYkLWfp",
+   "sku": "ENG-VIDR-0091",
+   "product_name": "Vidar 9\" AWO — Naked Oak (Character)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/b05bcf38-18f2-11ed-98bd-f6968cef729a/c18c42b2-19b9-11ed-98bd-f6968cef729a",
+      "filename": "ENG-VIDR-0091-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-naked-oak-character-9-34-2030-sqft/b05bcf38-18f2-11ed-98bd-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-naked-oak-character-9-34-2030-sqft/b05bcf38-18f2-11ed-98bd-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/b05bcf38-18f2-11ed-98bd-f6968cef729a/c18c42b2-19b9-11ed-98bd-f6968cef729a",
+     "sha1": "32d302feb469e43106b65d5633ab2b9ad3ed462b",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-2e10179edac2",
+   "seq": 27,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recRJg1UDXa5xA5H1",
+   "sku": "ENG-VIDR-0092",
+   "product_name": "Vidar 9\" AWO — Naked Oak (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/b05bcc9b-18f2-11ed-98bd-f6968cef729a/c18c4205-19b9-11ed-98bd-f6968cef729a",
+      "filename": "ENG-VIDR-0092-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-naked-oak-select-9-34-2030-sqft/b05bcc9b-18f2-11ed-98bd-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-naked-oak-select-9-34-2030-sqft/b05bcc9b-18f2-11ed-98bd-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/b05bcc9b-18f2-11ed-98bd-f6968cef729a/c18c4205-19b9-11ed-98bd-f6968cef729a",
+     "sha1": "32d302feb469e43106b65d5633ab2b9ad3ed462b",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-a7dae5537b42",
+   "seq": 28,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recMUnTbFLjTBwqG2",
+   "sku": "ENG-VIDR-0105",
+   "product_name": "Vidar HB 5\" AWO — Silver Stone (Character)",
+   "fields": {
+    "Room scene images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b62dcf6-333c-11ef-baed-f6968cef729a/2c70afa5-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0105-room-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-herringbone-silver-stone-herringbone-character-5-34-1819-sqftbox/2b62dcf6-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-herringbone-silver-stone-herringbone-character-5-34-1819-sqftbox/2b62dcf6-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "room",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b62dcf6-333c-11ef-baed-f6968cef729a/2c70afa5-333c-11ef-baed-f6968cef729a",
+     "sha1": "d04835ec53a61149d0d6361adfc4399b212b2b93",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-dee45f221149",
+   "seq": 29,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recwx3Jf0e2VYSP6s",
+   "sku": "ENG-VIDR-0108",
+   "product_name": "Vidar HB 5\" AWO — Wheat Berry (Select & Better)",
+   "fields": {
+    "Room scene images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/22da31ae-1f64-11f0-8aa9-f6968cef729a/29f9905c-1f64-11f0-8aa9-f6968cef729a",
+      "filename": "ENG-VIDR-0108-room-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-white-oak-herringbone-wheat-berry-select-better-5-34/22da31ae-1f64-11f0-8aa9-f6968cef729a"
+   },
+   "field_ids": {
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-white-oak-herringbone-wheat-berry-select-better-5-34/22da31ae-1f64-11f0-8aa9-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "room",
+     "url": "https://cdn.thefloorbox.ca/images/products/22da31ae-1f64-11f0-8aa9-f6968cef729a/29f9905c-1f64-11f0-8aa9-f6968cef729a",
+     "sha1": "681bc56caad5525c3d42e5bd4e2ad8d15cad02a0",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-73b0cbb96e39",
+   "seq": 30,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec2fQ0NpopPsn5Wr",
+   "sku": "ENG-VIDR-0112",
+   "product_name": "Vidar HB 5\" AWO — Naked Oak (Character)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b618e65-333c-11ef-baed-f6968cef729a/2c705b49-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0112-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-herringbone-naked-oak-herringbone-character-5-34-1819-sqftbox/2b618e65-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-herringbone-naked-oak-herringbone-character-5-34-1819-sqftbox/2b618e65-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b618e65-333c-11ef-baed-f6968cef729a/2c705b49-333c-11ef-baed-f6968cef729a",
+     "sha1": "69ebe9eec2c8f997ef0b9053511fa8d9973ff99b",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-9dff83222ece",
+   "seq": 31,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recM56IIvmqnRAdEb",
+   "sku": "ENG-VIDR-0124",
+   "product_name": "Vidar HB 5\" ABW — Chocolate (Character)",
+   "fields": {
+    "Room scene images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b5f5ca2-333c-11ef-baed-f6968cef729a/2c7023df-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0124-room-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-black-walnut-herringbone-chocolate-herringbone-character-5-34/2b5f5ca2-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-black-walnut-herringbone-chocolate-herringbone-character-5-34/2b5f5ca2-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "room",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b5f5ca2-333c-11ef-baed-f6968cef729a/2c7023df-333c-11ef-baed-f6968cef729a",
+     "sha1": "b148b031d7a6c567f507469ac6999a498fe39cd8",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-87131684d39c",
+   "seq": 32,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec9dbuYn9OGjcXpG",
+   "sku": "ENG-VIDR-0145",
+   "product_name": "Vidar 7\" ABW — Provence (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/22d7c910-1f64-11f0-8aa9-f6968cef729a/29f94472-1f64-11f0-8aa9-f6968cef729a",
+      "filename": "ENG-VIDR-0145-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-black-walnut-provence-select-7-34/22d7c910-1f64-11f0-8aa9-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-black-walnut-provence-select-7-34/22d7c910-1f64-11f0-8aa9-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/22d7c910-1f64-11f0-8aa9-f6968cef729a/29f94472-1f64-11f0-8aa9-f6968cef729a",
+     "sha1": "e34383c4a2648d6cbbe648742f946c88d64eb267",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-e4270ae74456",
+   "seq": 33,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recxwNn2CaESTEAjh",
+   "sku": "ENG-VIDR-0146",
+   "product_name": "Vidar 7\" ABW — Provence (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/22d7e764-1f64-11f0-8aa9-f6968cef729a/29f94a11-1f64-11f0-8aa9-f6968cef729a",
+      "filename": "ENG-VIDR-0146-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-black-walnut-provence-select-better-7-34/22d7e764-1f64-11f0-8aa9-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-black-walnut-provence-select-better-7-34/22d7e764-1f64-11f0-8aa9-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/22d7e764-1f64-11f0-8aa9-f6968cef729a/29f94a11-1f64-11f0-8aa9-f6968cef729a",
+     "sha1": "e34383c4a2648d6cbbe648742f946c88d64eb267",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-76ab726544b9",
+   "seq": 34,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recxWV2EKarS6XsgK",
+   "sku": "ENG-VIDR-0171",
+   "product_name": "Vidar 5\" AWO — Macaroon (Character)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b66737c-333c-11ef-baed-f6968cef729a/2c716114-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0171-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-click-macaroon-character-5-12/2b66737c-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-click-macaroon-character-5-12/2b66737c-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b66737c-333c-11ef-baed-f6968cef729a/2c716114-333c-11ef-baed-f6968cef729a",
+     "sha1": "caae76b00b87edba7a86480e596d4e23ceea165a",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-76e57f5e9984",
+   "seq": 35,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recIWQJHPbY9grcRV",
+   "sku": "ENG-VIDR-0172",
+   "product_name": "Vidar 5\" AWO — Macaroon (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b67dd1a-333c-11ef-baed-f6968cef729a/2c7179fe-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0172-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-click-macaroon-select-5-12/2b67dd1a-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-click-macaroon-select-5-12/2b67dd1a-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b67dd1a-333c-11ef-baed-f6968cef729a/2c7179fe-333c-11ef-baed-f6968cef729a",
+     "sha1": "9c6469a8eda3cb3711cd8077b57cd56b6abd3ea6",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-bb64f964fc8b",
+   "seq": 36,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reczdV06sCYEpf8fu",
+   "sku": "ENG-VIDR-0173",
+   "product_name": "Vidar 5\" AWO — Macaroon (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b670dae-333c-11ef-baed-f6968cef729a/2c71695d-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0173-swatch-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-click-macaroon-select-better-5-12/2b670dae-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-click-macaroon-select-better-5-12/2b670dae-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b670dae-333c-11ef-baed-f6968cef729a/2c71695d-333c-11ef-baed-f6968cef729a",
+     "sha1": "caae76b00b87edba7a86480e596d4e23ceea165a",
+     "width": 2100,
+     "height": 1575
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-ddae474a3a45",
+   "seq": 37,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recxMqVBmGcHdpJuG",
+   "sku": "ENG-VIDR-0186",
+   "product_name": "Vidar 7.5\" EWO — Yukon (Rustic)",
+   "fields": {
+    "Room scene images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/2b728f1f-333c-11ef-baed-f6968cef729a/2c72cb13-333c-11ef-baed-f6968cef729a",
+      "filename": "ENG-VIDR-0186-room-1.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-european-oak-yukon-rustic-7-12-34/2b728f1f-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-european-oak-yukon-rustic-7-12-34/2b728f1f-333c-11ef-baed-f6968cef729a",
+   "product_page_source": "image_page",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "room",
+     "url": "https://cdn.thefloorbox.ca/images/products/2b728f1f-333c-11ef-baed-f6968cef729a/2c72cb13-333c-11ef-baed-f6968cef729a",
+     "sha1": "9ac6c029470b5f0c7078c85af289ce9ca2b7c6ea",
+     "width": 1311,
+     "height": 984
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "product_page_not_manufacturer"
+   ]
+  }
+ ],
+ "held": [
+  {
+   "sku": "ACC-VIDR-0001",
+   "record_id": "receNkqOssMzHOPtf",
+   "product_name": "Vidar AWO Stairboard — 37\" Both Sides Closed",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour '37\" Both Sides Closed'; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIDR-0002",
+   "record_id": "recYvLVs0NegqzViJ",
+   "product_name": "Vidar AWO Stairboard — 44\" Both Sides Open w/ Return",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour '44\" Both Sides Open w/ Return'; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIDR-0003",
+   "record_id": "recZB0XR1EasckTOe",
+   "product_name": "Vidar AWO Stair Riser — 48\"",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour '48\"'; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIDR-0004",
+   "record_id": "rec7x0vpmuZtCScsO",
+   "product_name": "Vidar AWO Stair Nosing — 94.5\" Square",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour '94.5\" Square'; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIDR-0005",
+   "record_id": "recT2K9vyXMf0SXXJ",
+   "product_name": "Vidar European Oak Stair Nosing — 70.86\" Square",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour '70.86\" Square'; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIDR-0006",
+   "record_id": "recpX5gThOx4zlbST",
+   "product_name": "Vidar Ash Stair Nosing — 70.86\" Square",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour '70.86\" Square'; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIDR-0007",
+   "record_id": "receRj7CbHSUFYVHb",
+   "product_name": "Vidar Hardwood Vent — 4\"x10\"",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour '4\"x10\"'; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIDR-0008",
+   "record_id": "recz7S3PlA6yA38QB",
+   "product_name": "Vidar SPC Nosing — Cut Order",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Cut Order'; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIDR-0009",
+   "record_id": "rec3hSNVHDMnI8ecn",
+   "product_name": "Vidar SPC Nosing",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIDR-0010",
+   "record_id": "recloqtSRUZx4jtpx",
+   "product_name": "Vidar SPC Reducer — Cut Order",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Cut Order'; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIDR-0011",
+   "record_id": "recr8qdI4EBsaEVvJ",
+   "product_name": "Vidar SPC Reducer",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIDR-0012",
+   "record_id": "reckSwHNygWEd4zUV",
+   "product_name": "Vidar SPC T-Molding — Cut Order",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Cut Order'; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIDR-0013",
+   "record_id": "recbOULqA66YIMrYI",
+   "product_name": "Vidar SPC T-Molding",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIDR-0014",
+   "record_id": "rec58zVegxQ7XPBqm",
+   "product_name": "Vidar Laminate Nosing",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIDR-0015",
+   "record_id": "receSuhJWwHIU2PCD",
+   "product_name": "Vidar Laminate Reducer",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIDR-0016",
+   "record_id": "reclrZLSkvvYwTSQo",
+   "product_name": "Vidar Laminate T-Molding",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIDR-0017",
+   "record_id": "rec75owb3deVWUUp9",
+   "product_name": "Vidar 3mm IXPE Underpad — 200sf Roll",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour '200sf Roll'; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIDR-0018",
+   "record_id": "recZKBmh1QqdyJ7RS",
+   "product_name": "Vidar ProGuard Floor Protection — 200sf Roll",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour '200sf Roll'; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIDR-0019",
+   "record_id": "rece0fyvSDRhLAO2a",
+   "product_name": "Vidar MONOSIL 600 Sausage — Box (20pc)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Box'; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIDR-0020",
+   "record_id": "recrCAdXVMuMoLCtu",
+   "product_name": "Vidar MONOSIL P — 2 Gallon Bucket",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour '2 Gallon Bucket'; vetoes {}"
+  },
+  {
+   "sku": "ENG-VIDR-0001",
+   "record_id": "recRugbXzK84mLRBI",
+   "product_name": "Vidar 6\" AWO — Silver Stone (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Silver Stone'; vetoes {'width': 3}"
+  },
+  {
+   "sku": "ENG-VIDR-0002",
+   "record_id": "recLDbcpfYBcyZ3Hz",
+   "product_name": "Vidar 6\" AWO — Silver Stone (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Silver Stone'; vetoes {'width': 3}"
+  },
+  {
+   "sku": "ENG-VIDR-0004",
+   "record_id": "reck3M5ubIct6f8hA",
+   "product_name": "Vidar 6\" AWO — Sky (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sky'; vetoes {'width': 2}"
+  },
+  {
+   "sku": "ENG-VIDR-0005",
+   "record_id": "reciewNpglOxm5xTe",
+   "product_name": "Vidar 6\" AWO — Black Brown (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Black Brown'; vetoes {'width': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0008",
+   "record_id": "recLR4ezRlKGbCp8y",
+   "product_name": "Vidar 6\" AWO — Wheat Berry (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Wheat Berry'; vetoes {'width': 5, 'grade': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0010",
+   "record_id": "recdfBCAWOQ7MOofI",
+   "product_name": "Vidar 6\" AWO — Fortino (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Fortino'; vetoes {'grade': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0018",
+   "record_id": "rec5Pu44jGFxqkzvB",
+   "product_name": "Vidar 6\" AWO — Toffee Crunch (Character)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-toffee-crunch-character-6-34/06a21996-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-toffee-crunch-character-6-34/06a21996-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0021",
+   "record_id": "recWBDaXufNpOxzFs",
+   "product_name": "Vidar 6\" AWO — Honey Wheat (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Honey Wheat'; vetoes {'width': 6}"
+  },
+  {
+   "sku": "ENG-VIDR-0022",
+   "record_id": "recwxzpwqPSsXTGJk",
+   "product_name": "Vidar 6\" AWO — Honey Wheat (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Honey Wheat'; vetoes {'width': 6}"
+  },
+  {
+   "sku": "ENG-VIDR-0023",
+   "record_id": "rec39c7G2XqyvFnPt",
+   "product_name": "Vidar 6\" AWO — Moon Light (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-moon-light-select-6-34/2b6a486c-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-moon-light-select-6-34/2b6a486c-333c-11ef-baed-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0024",
+   "record_id": "rec9lr4xGrgKNcu6k",
+   "product_name": "Vidar 6\" AWO — Moon Light (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-moon-light-select-better-6-34/2b698a93-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-moon-light-select-better-6-34/2b698a93-333c-11ef-baed-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0025",
+   "record_id": "recdoAZWhOqqdqst7",
+   "product_name": "Vidar 6\" EWA — Sandy (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-6-sandy-select-better-6-34/06a22169-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-6-sandy-select-better-6-34/06a22169-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0026",
+   "record_id": "recgu8EaS2f0QLO3W",
+   "product_name": "Vidar 6\" EWA — Day Break (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-6-day-break-select-better-6-34/06a239aa-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-6-day-break-select-better-6-34/06a239aa-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0027",
+   "record_id": "recMJL9cRrXvC4n7V",
+   "product_name": "Vidar 6\" EWA — Macaroon (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-6-macaroon-select-better-6-34/06a23e5f-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-6-macaroon-select-better-6-34/06a23e5f-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0028",
+   "record_id": "recfpcDQaztwkDhbf",
+   "product_name": "Vidar 6\" EWA — Natural (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-6-natural-select-better-6-34/06a24296-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-6-natural-select-better-6-34/06a24296-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0029",
+   "record_id": "recccuIXCKBFo6p7i",
+   "product_name": "Vidar 6\" EWA — Toffee Crunch (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-6-toffee-crunch-select-better-6-34/06a246fb-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-6-toffee-crunch-select-better-6-34/06a246fb-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0030",
+   "record_id": "recHH2D09INK9aZhb",
+   "product_name": "Vidar 6\" EWA — Whistler (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Whistler'; vetoes {'width': 1, 'grade': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0031",
+   "record_id": "recbdfIuDifKqcZC3",
+   "product_name": "Vidar 6\" EWA — Frost White (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-6-frost-white-select-6-34/06a255bb-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-6-frost-white-select-6-34/06a255bb-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0032",
+   "record_id": "rectih03L6KXqoCuj",
+   "product_name": "Vidar 6\" EWA — Landmark (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-6-landmark-select-6-34/06a25aa8-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-6-landmark-select-6-34/06a25aa8-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0033",
+   "record_id": "rec4xyLeDOX5fGbda",
+   "product_name": "Vidar 7.5\" AWO — Coyote (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Coyote'; vetoes {}"
+  },
+  {
+   "sku": "ENG-VIDR-0034",
+   "record_id": "rechrGv8ltbERjFVt",
+   "product_name": "Vidar 7.5\" AWO — Sky (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sky'; vetoes {'width': 2}"
+  },
+  {
+   "sku": "ENG-VIDR-0035",
+   "record_id": "rec6PBV0oyCnGe2Gm",
+   "product_name": "Vidar 7.5\" AWO — Charcoal (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Charcoal'; vetoes {}"
+  },
+  {
+   "sku": "ENG-VIDR-0036",
+   "record_id": "recS3PId89XXFacjl",
+   "product_name": "Vidar 7.5\" AWO — Silver Stone (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Silver Stone'; vetoes {'width': 3}"
+  },
+  {
+   "sku": "ENG-VIDR-0037",
+   "record_id": "recYWPNBU2N5tlGwR",
+   "product_name": "Vidar 7.5\" AWO — Silver Stone (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Silver Stone'; vetoes {'width': 3}"
+  },
+  {
+   "sku": "ENG-VIDR-0038",
+   "record_id": "recPvVevRwCzk4d0e",
+   "product_name": "Vidar 7.5\" AWO — Snowwhite (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Snowwhite'; vetoes {'width': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0040",
+   "record_id": "recvEg0mY5jtqcljq",
+   "product_name": "Vidar 7.5\" AWO — Pearl (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Pearl'; vetoes {'width': 2}"
+  },
+  {
+   "sku": "ENG-VIDR-0041",
+   "record_id": "recntFqTKtxjlI3O7",
+   "product_name": "Vidar 7.5\" AWO — Pearl (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Pearl'; vetoes {'width': 2}"
+  },
+  {
+   "sku": "ENG-VIDR-0042",
+   "record_id": "recv4IKSHSBGoFbA5",
+   "product_name": "Vidar 7.5\" AWO — Pearl (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Pearl'; vetoes {'width': 2}"
+  },
+  {
+   "sku": "ENG-VIDR-0043",
+   "record_id": "recG75fkkhBysp6AY",
+   "product_name": "Vidar 7.5\" AWO — Macaroon (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Macaroon'; vetoes {'width': 13, 'grade': 2, 'species': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0046",
+   "record_id": "rec0OkikDts7a4fJR",
+   "product_name": "Vidar 7.5\" AWO — Naked Oak (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Naked Oak'; vetoes {'width': 13}"
+  },
+  {
+   "sku": "ENG-VIDR-0047",
+   "record_id": "recJDLUvd4b0b7XuG",
+   "product_name": "Vidar 7.5\" AWO — Naked Oak (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Naked Oak'; vetoes {'width': 13}"
+  },
+  {
+   "sku": "ENG-VIDR-0048",
+   "record_id": "recshNB7d5kxjuRMu",
+   "product_name": "Vidar 7.5\" AWO — Naked Oak (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Naked Oak'; vetoes {'width': 13}"
+  },
+  {
+   "sku": "ENG-VIDR-0049",
+   "record_id": "recrxjNZVAOmnmZ1q",
+   "product_name": "Vidar 7.5\" EWO — Joffre Lake (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Joffre Lake'; vetoes {}"
+  },
+  {
+   "sku": "ENG-VIDR-0050",
+   "record_id": "recAeRsRbh9AQwnEy",
+   "product_name": "Vidar 7.5\" EWO — Joffre Lake (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Joffre Lake'; vetoes {}"
+  },
+  {
+   "sku": "ENG-VIDR-0051",
+   "record_id": "recJKGplIKbsbqM7Y",
+   "product_name": "Vidar 7.5\" EWO — Joffre Lake (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Joffre Lake'; vetoes {}"
+  },
+  {
+   "sku": "ENG-VIDR-0052",
+   "record_id": "recQOSo1EbpqLN6VR",
+   "product_name": "Vidar 7.5\" EWO — Banff (Rustic)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-banff-rustic-7-12-34/22db69ee-1f64-11f0-8aa9-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-banff-rustic-7-12-34/22db69ee-1f64-11f0-8aa9-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0053",
+   "record_id": "rec415K9p5FgjEHzs",
+   "product_name": "Vidar 7.5\" EWO — Banff (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Banff'; vetoes {'grade': 3, 'width': 2}"
+  },
+  {
+   "sku": "ENG-VIDR-0055",
+   "record_id": "rec7siEn9EMXbhuUX",
+   "product_name": "Vidar 7.5\" EWO — Banff (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-oak-7-banff-select-better-7-12-34/06a27b0d-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-oak-7-banff-select-better-7-12-34/06a27b0d-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0056",
+   "record_id": "recSy7KOJKDbdvCeb",
+   "product_name": "Vidar 7.5\" EWO — Clear (Character)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-oak-7-clear-character-7-12-34/06a28204-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-oak-7-clear-character-7-12-34/06a28204-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0057",
+   "record_id": "recGJ9rWurR5aLZde",
+   "product_name": "Vidar 7.5\" EWO — Clear (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-oak-clear-select-7-12-34/2b5dcb59-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-oak-clear-select-7-12-34/2b5dcb59-333c-11ef-baed-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0058",
+   "record_id": "recUrzi7Nyzhx69oh",
+   "product_name": "Vidar 7.5\" EWO — Clear (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Clear'; vetoes {'grade': 3, 'width': 2}"
+  },
+  {
+   "sku": "ENG-VIDR-0059",
+   "record_id": "recVznty0ZNO6DWDs",
+   "product_name": "Vidar 7.5\" EWO — Toffee Crunch (Rustic)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-toffee-crunch-rustic-7-12-34/22dbbc6a-1f64-11f0-8aa9-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-toffee-crunch-rustic-7-12-34/22dbbc6a-1f64-11f0-8aa9-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0060",
+   "record_id": "recAO4yVNjmlciuQm",
+   "product_name": "Vidar 7.5\" EWO — Toffee Crunch (Character)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-oak-7-toffee-crunch-character-7-12-34/06a28882-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-oak-7-toffee-crunch-character-7-12-34/06a28882-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0061",
+   "record_id": "recp8XESAYh3O7Urn",
+   "product_name": "Vidar 7.5\" EWO — Toffee Crunch (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-toffee-crunch-select-7-12-34/22dbe354-1f64-11f0-8aa9-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-toffee-crunch-select-7-12-34/22dbe354-1f64-11f0-8aa9-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0062",
+   "record_id": "recUNiPbL8zBpK9kx",
+   "product_name": "Vidar 7.5\" EWO — Toffee Crunch (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-oak-7-toffee-crunch-select-better-7-12-34/06a29093-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-oak-7-toffee-crunch-select-better-7-12-34/06a29093-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0063",
+   "record_id": "recEyJDf3i2r0sbVb",
+   "product_name": "Vidar 7.5\" EWO — Yukon (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Yukon'; vetoes {'grade': 3, 'width': 3}"
+  },
+  {
+   "sku": "ENG-VIDR-0064",
+   "record_id": "rec2YlECM4C07RiiL",
+   "product_name": "Vidar 7.5\" EWO — Yukon (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-yukon-select-7-12-34/22db464d-1f64-11f0-8aa9-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-yukon-select-7-12-34/22db464d-1f64-11f0-8aa9-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0065",
+   "record_id": "recdVmAjjTbQvl4uV",
+   "product_name": "Vidar 7.5\" EWO — Yukon (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-oak-7-yukon-select-better-7-12-34/06a2712d-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-oak-7-yukon-select-better-7-12-34/06a2712d-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0066",
+   "record_id": "recawFEz9pfmmXX7q",
+   "product_name": "Vidar 7.5\" EWO — Jasper (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Jasper'; vetoes {'grade': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0067",
+   "record_id": "rec52R3fCZDhuC6nE",
+   "product_name": "Vidar 7.5\" EWA — Clear (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Clear'; vetoes {'species': 3, 'width': 2}"
+  },
+  {
+   "sku": "ENG-VIDR-0068",
+   "record_id": "recOYFhjtQz7BmqCc",
+   "product_name": "Vidar 7.5\" EWA — Raw (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Raw'; vetoes {}"
+  },
+  {
+   "sku": "ENG-VIDR-0069",
+   "record_id": "recDBYwzpnSvOsXxG",
+   "product_name": "Vidar 7.5\" EWA — Sandy (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-7-sandy-select-better-7-12-34/06a2a997-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-7-sandy-select-better-7-12-34/06a2a997-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0070",
+   "record_id": "recAPpR82i9dB0Wdk",
+   "product_name": "Vidar 7.5\" EWA — Macaroon (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-7-macaroon-select-better-7-12-34/06a2b15c-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-7-macaroon-select-better-7-12-34/06a2b15c-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0072",
+   "record_id": "rec9tibx6zDwv5d4b",
+   "product_name": "Vidar 7.5\" EWA — Whistler (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-whistler-select-7-12-34/22dcb285-1f64-11f0-8aa9-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-whistler-select-7-12-34/22dcb285-1f64-11f0-8aa9-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0073",
+   "record_id": "rec6Imbn3DJAo6Gao",
+   "product_name": "Vidar 7.5\" EWA — Ebony (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-7-ebony-select-7-12-34/06a2c6b2-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-7-ebony-select-7-12-34/06a2c6b2-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0074",
+   "record_id": "recL4ZClUGac24J9G",
+   "product_name": "Vidar 7.5\" EWA — Sunset (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-7-sunset-select-7-12-34/06a2d20e-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-7-sunset-select-7-12-34/06a2d20e-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0075",
+   "record_id": "reczTaAqzhwmzqM5t",
+   "product_name": "Vidar 7.5\" EWA — Frost White (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-frost-white-select-7-12-34/22dcdfc6-1f64-11f0-8aa9-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-frost-white-select-7-12-34/22dcdfc6-1f64-11f0-8aa9-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0076",
+   "record_id": "recQEkqTmvdXkCXQU",
+   "product_name": "Vidar 7.5\" EWA — Night Owl (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-night-owl-select-7-12-34/22dd12c0-1f64-11f0-8aa9-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-night-owl-select-7-12-34/22dd12c0-1f64-11f0-8aa9-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0077",
+   "record_id": "recyls8RYorxs9pV3",
+   "product_name": "Vidar 9\" AWO — Silver Stone (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Silver Stone'; vetoes {'width': 3}"
+  },
+  {
+   "sku": "ENG-VIDR-0079",
+   "record_id": "recijLL6SYFMSSpZx",
+   "product_name": "Vidar 9\" AWO — Daisy (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Daisy'; vetoes {'grade': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0080",
+   "record_id": "recoqsQ29YHpJ5yBG",
+   "product_name": "Vidar 9\" AWO — Daisy (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Daisy'; vetoes {'grade': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0083",
+   "record_id": "recYWV2ZkqnitL1Es",
+   "product_name": "Vidar 9\" AWO — Macaroon (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Macaroon'; vetoes {'width': 14, 'grade': 2}"
+  },
+  {
+   "sku": "ENG-VIDR-0088",
+   "record_id": "rec4fg7DKNuYlmWBO",
+   "product_name": "Vidar 9\" AWO — Sunset (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sunset'; vetoes {'width': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0089",
+   "record_id": "recoUL6DcttY3rX2N",
+   "product_name": "Vidar 9\" AWO — Sunset (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sunset'; vetoes {'width': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0090",
+   "record_id": "recZP33sUHrRB5h6A",
+   "product_name": "Vidar 9\" AWO — Sunset (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sunset'; vetoes {'width': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0093",
+   "record_id": "recLSOFVw1n5y59Fz",
+   "product_name": "Vidar 9\" AWO — Naked Oak (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Naked Oak'; vetoes {'width': 11, 'grade': 2}"
+  },
+  {
+   "sku": "ENG-VIDR-0094",
+   "record_id": "recytagVFCQHFP4s9",
+   "product_name": "Vidar HB 4.25\" AWO — Toffee Crunch (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Toffee Crunch'; vetoes {'width': 11}"
+  },
+  {
+   "sku": "ENG-VIDR-0095",
+   "record_id": "recuuG1z3CWEabs9s",
+   "product_name": "Vidar HB 4.25\" AWO — Toffee Crunch (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Toffee Crunch'; vetoes {'width': 11}"
+  },
+  {
+   "sku": "ENG-VIDR-0096",
+   "record_id": "rec8J974rtDIjgI6a",
+   "product_name": "Vidar HB 4.25\" AWO — Toffee Crunch (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Toffee Crunch'; vetoes {'width': 11}"
+  },
+  {
+   "sku": "ENG-VIDR-0097",
+   "record_id": "recFMD8mgJ4giotuy",
+   "product_name": "Vidar HB 5\" AWO — Macaroon (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Macaroon'; vetoes {'pattern': 7, 'width': 9}"
+  },
+  {
+   "sku": "ENG-VIDR-0098",
+   "record_id": "recZ9CuZYDt8Gnzok",
+   "product_name": "Vidar HB 5\" AWO — Macaroon (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Macaroon'; vetoes {'pattern': 7, 'width': 9}"
+  },
+  {
+   "sku": "ENG-VIDR-0099",
+   "record_id": "recGZLRxCDWmkzVwT",
+   "product_name": "Vidar 7\" AWO — Toffee Crunch (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Toffee Crunch'; vetoes {'width': 11}"
+  },
+  {
+   "sku": "ENG-VIDR-0100",
+   "record_id": "recQSaIt3sLvVIGl6",
+   "product_name": "Vidar 7\" AWO — Macaroon (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Macaroon'; vetoes {'width': 16}"
+  },
+  {
+   "sku": "ENG-VIDR-0100C",
+   "record_id": "recfKRYdAdv1jnavU",
+   "product_name": "Vidar 7\" AWO — Macaroon (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Macaroon'; vetoes {'width': 16}"
+  },
+  {
+   "sku": "ENG-VIDR-0101",
+   "record_id": "recdmxuZ6fPoR1CeU",
+   "product_name": "Vidar 7\" AWO — Macaroon (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Macaroon'; vetoes {'width': 16}"
+  },
+  {
+   "sku": "ENG-VIDR-0102",
+   "record_id": "reckhiDx5sPXGJ4VJ",
+   "product_name": "Vidar HB 5\" AWO — Sky (Character)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-american-white-oak-herringbone-sky-character-5-34-1819-sqft/22d92d72-1f64-11f0-8aa9-f6968cef729a",
+    "https://thefloorbox.ca/products/engineered-hardwood-american-white-oak-herringbone-sky-character-5-34-2099-sqft/22d8ef9c-1f64-11f0-8aa9-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-american-white-oak-herringbone-sky-character-5-34-1819-sqft/22d92d72-1f64-11f0-8aa9-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0103",
+   "record_id": "reczhzfXd7eJNNcxm",
+   "product_name": "Vidar HB 5\" AWO — Black Brown (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Black Brown'; vetoes {'width': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0104",
+   "record_id": "recejqRM7juhQrKid",
+   "product_name": "Vidar HB 5\" AWO — Camel (Character)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-american-white-oak-herringbone-camel-character-5-34-1819-sqft/22d986a6-1f64-11f0-8aa9-f6968cef729a",
+    "https://thefloorbox.ca/products/engineered-hardwood-american-white-oak-herringbone-camel-character-5-34-2099-sqft/22d90db2-1f64-11f0-8aa9-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-american-white-oak-herringbone-camel-character-5-34-1819-sqft/22d986a6-1f64-11f0-8aa9-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0106",
+   "record_id": "recQUl3WzHhJunQa5",
+   "product_name": "Vidar HB 5\" AWO — Pearl (Character)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-american-oak-herringbone-pearl-herringbone-character-5-34/2b622dc3-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-american-oak-herringbone-pearl-herringbone-character-5-34/2b622dc3-333c-11ef-baed-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0107",
+   "record_id": "rec77iAZJtTuaX4Yd",
+   "product_name": "Vidar HB 5\" AWO — Pearl (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-american-oak-herringbone-pearl-herringbone-select-5-34/2b62772c-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-american-oak-herringbone-pearl-herringbone-select-5-34/2b62772c-333c-11ef-baed-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0109",
+   "record_id": "recqn2XwgQ58IB0Qo",
+   "product_name": "Vidar HB 5\" AWO — Moon Light (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-american-oak-herringbone-moon-light-herringbone-select-better-5-34/2b615249-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-american-oak-herringbone-moon-light-herringbone-select-better-5-34/2b615249-333c-11ef-baed-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0110",
+   "record_id": "recxZF8rY355wChoE",
+   "product_name": "Vidar HB 5\" AWO — Honey Wheat (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-american-oak-herringbone-honey-wheat-herringbone-select-better-5-34/2b5f8f02-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-american-oak-herringbone-honey-wheat-herringbone-select-better-5-34/2b5f8f02-333c-11ef-baed-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0113",
+   "record_id": "recwPP3lY1eYLXcGP",
+   "product_name": "Vidar HB 5\" EWO — Banff (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-oak-herringbone-banff-select-5-34/06a2dd1c-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "no_usable_image",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-oak-herringbone-banff-select-5-34/06a2dd1c-9981-11f0-bc10-f6968cef729a; {'pattern_mismatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0114",
+   "record_id": "recIz3OdX6Oxmeoqy",
+   "product_name": "Vidar HB 5\" EWO — Banff (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-oak-herringbone-banff-select-better-5-34/06a2e969-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "no_usable_image",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-oak-herringbone-banff-select-better-5-34/06a2e969-9981-11f0-bc10-f6968cef729a; {'pattern_mismatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0115",
+   "record_id": "recZfQHdAw4KQZ06A",
+   "product_name": "Vidar HB 5\" EWO — Clear (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-herringbone-clear-select-5-34/22da90a9-1f64-11f0-8aa9-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-herringbone-clear-select-5-34/22da90a9-1f64-11f0-8aa9-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0116",
+   "record_id": "rece1ecCUIl0CAn74",
+   "product_name": "Vidar HB 5\" EWO — Clear (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-herringbone-clear-select-better-5-34/22dab458-1f64-11f0-8aa9-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-herringbone-clear-select-better-5-34/22dab458-1f64-11f0-8aa9-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0117",
+   "record_id": "recOeSNsE2nDel6p4",
+   "product_name": "Vidar HB 5\" EWO — Joffre Lake (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Joffre Lake'; vetoes {}"
+  },
+  {
+   "sku": "ENG-VIDR-0118",
+   "record_id": "rec6bNl3R6dGklMUK",
+   "product_name": "Vidar HB 5\" EWO — Joffre Lake (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Joffre Lake'; vetoes {}"
+  },
+  {
+   "sku": "ENG-VIDR-0119",
+   "record_id": "recDwxz2DIkxmtXbG",
+   "product_name": "Vidar HB 5\" EWO — Yukon (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-herringbone-yukon-select-5-34/22da5264-1f64-11f0-8aa9-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-herringbone-yukon-select-5-34/22da5264-1f64-11f0-8aa9-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0120",
+   "record_id": "recgDiEj0VNn6INFy",
+   "product_name": "Vidar HB 5\" EWO — Yukon (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-herringbone-yukon-select-better-5-34/22da703a-1f64-11f0-8aa9-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-herringbone-yukon-select-better-5-34/22da703a-1f64-11f0-8aa9-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0121",
+   "record_id": "recdKm9Xd77Xa48sH",
+   "product_name": "Vidar HB 5\" EWO — Toffee Crunch (Character)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-herringbone-toffee-crunch-character-5-34/22dad8eb-1f64-11f0-8aa9-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-herringbone-toffee-crunch-character-5-34/22dad8eb-1f64-11f0-8aa9-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0122",
+   "record_id": "recgUMNTB72Ue9YYw",
+   "product_name": "Vidar HB 5\" EWO — Toffee Crunch (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-herringbone-toffee-crunch-select-5-34/22dafd13-1f64-11f0-8aa9-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-herringbone-toffee-crunch-select-5-34/22dafd13-1f64-11f0-8aa9-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0123",
+   "record_id": "recOZWDNwS3eg6M1h",
+   "product_name": "Vidar HB 5\" EWO — Toffee Crunch (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-herringbone-toffee-crunch-select-better-5-34/22db218b-1f64-11f0-8aa9-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-herringbone-toffee-crunch-select-better-5-34/22db218b-1f64-11f0-8aa9-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0125",
+   "record_id": "recqDsoyXReZLRaiE",
+   "product_name": "Vidar HB 5\" ABW — Natural (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Natural'; vetoes {'width': 23, 'grade': 2}"
+  },
+  {
+   "sku": "ENG-VIDR-0126",
+   "record_id": "recdUKp1oyYRmvebi",
+   "product_name": "Vidar HB 5\" ABW — Natural (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-american-black-walnut-herringbone-natural-herringbone-select-better-5-34-1819-sqftbox/2b61d7a5-333c-11ef-baed-f6968cef729a",
+    "https://thefloorbox.ca/products/engineered-hardwood-american-black-walnut-herringbone-natural-herringbone-select-better-5-34-2099-sqftbox/2b61ff8d-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "no_usable_image",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-american-black-walnut-herringbone-natural-herringbone-select-better-5-34-1819-sqftbox/2b61d7a5-333c-11ef-baed-f6968cef729a; {'pattern_mismatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0127",
+   "record_id": "recpNVAn4FY1I12Gc",
+   "product_name": "Vidar HB 5\" ABW — Provence (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-american-black-walnut-herringbone-provence-herringbone-select-5-34/2b62bd07-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "no_usable_image",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-american-black-walnut-herringbone-provence-herringbone-select-5-34/2b62bd07-333c-11ef-baed-f6968cef729a; {'pattern_mismatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0128",
+   "record_id": "recSf0Z7869VHpAvZ",
+   "product_name": "Vidar HB 5\" ABW — Provence (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-black-walnut-5-herringbone-provence-select-better-5-34/06a2f4ab-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-black-walnut-5-herringbone-provence-select-better-5-34/06a2f4ab-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0129",
+   "record_id": "recaumXrULLNCX7yS",
+   "product_name": "Vidar Chev 5\" AWO — Macaroon (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Macaroon'; vetoes {'pattern': 7, 'width': 9}"
+  },
+  {
+   "sku": "ENG-VIDR-0130",
+   "record_id": "rec63JH3ezwME6zzV",
+   "product_name": "Vidar Chev 5\" AWO — Naked Oak (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Naked Oak'; vetoes {'width': 7, 'pattern': 6}"
+  },
+  {
+   "sku": "ENG-VIDR-0131",
+   "record_id": "recpDPpKeEvasbvs0",
+   "product_name": "Vidar Chev 5\" AWO — Honey Wheat (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-american-oak-chevron-honey-wheat-select-better-5-34/06a325d6-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-american-oak-chevron-honey-wheat-select-better-5-34/06a325d6-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0132",
+   "record_id": "recyfBdgUKE7AHQDm",
+   "product_name": "Vidar Chev 5\" AWO — Moon Light (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-american-oak-chevron-moon-light-chevron-select-better-5-34/2b5d8ff8-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-american-oak-chevron-moon-light-chevron-select-better-5-34/2b5d8ff8-333c-11ef-baed-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0133",
+   "record_id": "recNG3FLd6looYWKW",
+   "product_name": "Vidar Chev 5\" EO — Clear (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Clear'; vetoes {'width': 3, 'pattern': 2}"
+  },
+  {
+   "sku": "ENG-VIDR-0134",
+   "record_id": "reczWXRvq2ezAU3gC",
+   "product_name": "Vidar Chev 5\" EO — Toffee Crunch (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Toffee Crunch'; vetoes {'width': 8, 'pattern': 3}"
+  },
+  {
+   "sku": "ENG-VIDR-0135",
+   "record_id": "recBR0DpcWFGnJvcS",
+   "product_name": "Vidar Chev 5\" EO — Toffee Crunch (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Toffee Crunch'; vetoes {'width': 8, 'pattern': 3}"
+  },
+  {
+   "sku": "ENG-VIDR-0136",
+   "record_id": "recufFTLsZatfwwGQ",
+   "product_name": "Vidar Vers 31.5\" EWO — Yukon (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Yukon'; vetoes {'width': 6}"
+  },
+  {
+   "sku": "ENG-VIDR-0137",
+   "record_id": "recpCEiJuDHHJoN4X",
+   "product_name": "Vidar Vers 31.5\" EWO — Clear (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Clear'; vetoes {'width': 5}"
+  },
+  {
+   "sku": "ENG-VIDR-0138",
+   "record_id": "recOqeSKdVwn9N7ob",
+   "product_name": "Vidar Vers 31.5\" EWO — Toffee Crunch (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Toffee Crunch'; vetoes {'width': 11}"
+  },
+  {
+   "sku": "ENG-VIDR-0139",
+   "record_id": "recwcJWonOxEWuAqt",
+   "product_name": "Vidar 6\" ABW — Natural (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-american-black-walnut-natural-select-better-6-34/2b6d46e2-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-american-black-walnut-natural-select-better-6-34/2b6d46e2-333c-11ef-baed-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0140",
+   "record_id": "rec1Osp55hWpiqF3h",
+   "product_name": "Vidar 6\" ABW — Provence (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Provence'; vetoes {'width': 4}"
+  },
+  {
+   "sku": "ENG-VIDR-0141",
+   "record_id": "recqFd71E2BtARadM",
+   "product_name": "Vidar 6\" ABW — Provence (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Provence'; vetoes {'width': 4}"
+  },
+  {
+   "sku": "ENG-VIDR-0142",
+   "record_id": "recfyBEoVUPXnQuuz",
+   "product_name": "Vidar 6\" ABW — Chocolate (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/enginereed-hardwood-american-black-walnut6-chocolate-select-6-34/06a3312d-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/enginereed-hardwood-american-black-walnut6-chocolate-select-6-34/06a3312d-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0143",
+   "record_id": "recEUlmNtlZVMtXmO",
+   "product_name": "Vidar 7\" ABW — Natural (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Natural'; vetoes {'width': 25}"
+  },
+  {
+   "sku": "ENG-VIDR-0144",
+   "record_id": "recR7kN1iVV7kZuCd",
+   "product_name": "Vidar 7\" ABW — Natural (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Natural'; vetoes {'width': 25}"
+  },
+  {
+   "sku": "ENG-VIDR-0147",
+   "record_id": "recm5kzsOX8vG7KeD",
+   "product_name": "Vidar 7\" ABW — Chocolate (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-black-walnut-chocolate-select-7-34/22d80185-1f64-11f0-8aa9-f6968cef729a"
+   ],
+   "reason": "no_usable_image",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-black-walnut-chocolate-select-7-34/22d80185-1f64-11f0-8aa9-f6968cef729a; {'pattern_mismatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0149",
+   "record_id": "recFpPQctvwxAzRvX",
+   "product_name": "Vidar 9\" ABW — Natural (Character)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-black-walnut-natural-character-9-34-208-sqft/22d729fa-1f64-11f0-8aa9-f6968cef729a",
+    "https://thefloorbox.ca/products/engineered-hardwood-natural-character-9-34-208-sqft/b05c1238-18f2-11ed-98bd-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-black-walnut-natural-character-9-34-208-sqft/22d729fa-1f64-11f0-8aa9-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0150",
+   "record_id": "rec1aJ5WoZDCxuaLD",
+   "product_name": "Vidar 9\" ABW — Natural (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-black-walnut-natural-select-9-34-208-sqft/22d73e22-1f64-11f0-8aa9-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-black-walnut-natural-select-9-34-208-sqft/22d73e22-1f64-11f0-8aa9-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0151",
+   "record_id": "reczPR4XX60bQm5sY",
+   "product_name": "Vidar 9\" ABW — Natural (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-black-walnut-natural-select-better-9-34-208-sqft/22d752d3-1f64-11f0-8aa9-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-black-walnut-natural-select-better-9-34-208-sqft/22d752d3-1f64-11f0-8aa9-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0152",
+   "record_id": "rec8zn65iEPY7sVEN",
+   "product_name": "Vidar 10.25\" ABW — Natural (Character)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-natural-character-10-14-34-2687-sqft/b05c0f01-18f2-11ed-98bd-f6968cef729a",
+    "https://thefloorbox.ca/products/engineered-hardwood-natural-character-10-14-34-3023-sqft/b05c0f76-18f2-11ed-98bd-f6968cef729a",
+    "https://thefloorbox.ca/products/engineered-hardwood-natural-character-10-14-34-3358-sqft/b05c0e16-18f2-11ed-98bd-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-natural-character-10-14-34-2687-sqft/b05c0f01-18f2-11ed-98bd-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0153",
+   "record_id": "recC2xoZzwQeZOaSM",
+   "product_name": "Vidar 10.25\" ABW — Natural (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-natural-select-10-14-34-2687-sqft/b05c0a59-18f2-11ed-98bd-f6968cef729a",
+    "https://thefloorbox.ca/products/engineered-hardwood-natural-select-10-14-34-3023-sqft/b05c0acf-18f2-11ed-98bd-f6968cef729a",
+    "https://thefloorbox.ca/products/engineered-hardwood-natural-select-10-14-34-3358-sqft/b05c0970-18f2-11ed-98bd-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-natural-select-10-14-34-2687-sqft/b05c0a59-18f2-11ed-98bd-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0154",
+   "record_id": "recpXoZtFV4q89aYV",
+   "product_name": "Vidar 10.25\" ABW — Natural (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-natural-select-better-10-14-34-2687-sqft/b05c05b3-18f2-11ed-98bd-f6968cef729a",
+    "https://thefloorbox.ca/products/engineered-hardwood-natural-select-better-10-14-34-3023-sqft/b05c0623-18f2-11ed-98bd-f6968cef729a",
+    "https://thefloorbox.ca/products/engineered-hardwood-natural-select-better-10-14-34-3358-sqft/b05c04c7-18f2-11ed-98bd-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-natural-select-better-10-14-34-2687-sqft/b05c05b3-18f2-11ed-98bd-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0155",
+   "record_id": "rec7ghopaZWdYIl5H",
+   "product_name": "Vidar 10.25\" ABW — Naked Walnut (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Naked Walnut'; vetoes {'width': 12}"
+  },
+  {
+   "sku": "ENG-VIDR-0156",
+   "record_id": "recd6EJYPQrkuGrn9",
+   "product_name": "Vidar 10.25\" ABW — Naked Walnut (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Naked Walnut'; vetoes {'width': 12}"
+  },
+  {
+   "sku": "ENG-VIDR-0157",
+   "record_id": "recKbW5lWvHiKNEhz",
+   "product_name": "Vidar 10.25\" ABW — Naked Walnut (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Naked Walnut'; vetoes {'width': 12}"
+  },
+  {
+   "sku": "ENG-VIDR-0158",
+   "record_id": "recRXMNjyYSIusBK7",
+   "product_name": "Vidar 10.25\" ABW — Chocolate (Character)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-black-walnut-chocolate-character-10-14-34-2351-sqft/06a36864-9981-11f0-bc10-f6968cef729a",
+    "https://thefloorbox.ca/products/engineered-hardwood-black-walnut-chocolate-character-10-14-34-2687-sqft/06a37462-9981-11f0-bc10-f6968cef729a",
+    "https://thefloorbox.ca/products/engineered-hardwood-black-walnut-chocolate-character-10-14-34-3023-sqft/06a37dbb-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-black-walnut-chocolate-character-10-14-34-2351-sqft/06a36864-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0159",
+   "record_id": "recTpvz3eXFeyKJH2",
+   "product_name": "Vidar 11.67\" ABW — Natural (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Natural'; vetoes {'width': 25}"
+  },
+  {
+   "sku": "ENG-VIDR-0160",
+   "record_id": "recIW9J0YrZX1vlXZ",
+   "product_name": "Vidar 11.67\" ABW — Natural (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Natural'; vetoes {'width': 25}"
+  },
+  {
+   "sku": "ENG-VIDR-0161",
+   "record_id": "recgOQUzkpYTg1OK4",
+   "product_name": "Vidar 11.67\" ABW — Naked Walnut (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Naked Walnut'; vetoes {'width': 12}"
+  },
+  {
+   "sku": "ENG-VIDR-0162",
+   "record_id": "recrhcUq6kchzRb8f",
+   "product_name": "Vidar 11.67\" ABW — Naked Walnut (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Naked Walnut'; vetoes {'width': 12}"
+  },
+  {
+   "sku": "ENG-VIDR-0163",
+   "record_id": "recDFN20E0EWZP2bO",
+   "product_name": "Vidar 11.67\" ABW — Naked Walnut (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Naked Walnut'; vetoes {'width': 12}"
+  },
+  {
+   "sku": "ENG-VIDR-0164",
+   "record_id": "recZuxJlpUDTFFcQt",
+   "product_name": "Vidar 5\" AWO — Sky (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sky'; vetoes {'pattern': 2}"
+  },
+  {
+   "sku": "ENG-VIDR-0165",
+   "record_id": "recAYcBS46XxPUyAk",
+   "product_name": "Vidar 5\" AWO — Smoke Grey (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Smoke Grey'; vetoes {'width': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0166",
+   "record_id": "recrmjDZsCtD7rTeR",
+   "product_name": "Vidar 5\" AWO — Camel (Character)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-american-oak-5-click-camel-character-5-13/06a39724-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-american-oak-5-click-camel-character-5-13/06a39724-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0167",
+   "record_id": "recU4Qz1sWCQedZ0K",
+   "product_name": "Vidar 5\" AWO — Coffee (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Coffee'; vetoes {'width': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0168",
+   "record_id": "recKymAKTwz50hKTn",
+   "product_name": "Vidar 5\" AWO — Naked Oak (Character)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-click-naked-oak-character-5-12/2b6a962b-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-click-naked-oak-character-5-12/2b6a962b-333c-11ef-baed-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0169",
+   "record_id": "recfaE04abujK3ZjE",
+   "product_name": "Vidar 5\" AWO — Naked Oak (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-click-naked-oak-select-5-12/2b6bbd83-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-click-naked-oak-select-5-12/2b6bbd83-333c-11ef-baed-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0170",
+   "record_id": "recos2uwmFHDRxk8g",
+   "product_name": "Vidar 5\" AWO — Naked Oak (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-click-naked-oak-select-better-5-12/2b6b4846-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-click-naked-oak-select-better-5-12/2b6b4846-333c-11ef-baed-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0174",
+   "record_id": "recMft25ANTwaBZcm",
+   "product_name": "Vidar 5\" AWO — Honey Wheat (Character)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-click-honey-wheat-character-5-12/2b6472a3-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-click-honey-wheat-character-5-12/2b6472a3-333c-11ef-baed-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0175",
+   "record_id": "recbcHKaJCEurCTxN",
+   "product_name": "Vidar 5\" AWO — Honey Wheat (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-click-honey-wheat-select-5-12/2b657500-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-click-honey-wheat-select-5-12/2b657500-333c-11ef-baed-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0176",
+   "record_id": "reckrUOktHse13QeA",
+   "product_name": "Vidar 5\" AWO — Honey Wheat (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-click-honey-wheat-select-better-5-12/2b65090f-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-click-honey-wheat-select-better-5-12/2b65090f-333c-11ef-baed-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0177",
+   "record_id": "recTpnAI1PFS2RM3Y",
+   "product_name": "Vidar 5\" AWO — Moon Light (Character)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-click-moon-light-character-5-12/2b68a2e2-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-click-moon-light-character-5-12/2b68a2e2-333c-11ef-baed-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0178",
+   "record_id": "rec3mIxYtQqfD48OE",
+   "product_name": "Vidar 5\" AWO — Moon Light (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-click-moon-light-select-5-12/2b69ee58-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-click-moon-light-select-5-12/2b69ee58-333c-11ef-baed-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0179",
+   "record_id": "recMTxsbndnOt0nNz",
+   "product_name": "Vidar 5\" AWO — Moon Light (Select & Better)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-click-moon-light-select-better-5-12/2b6951bc-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-click-moon-light-select-better-5-12/2b6951bc-333c-11ef-baed-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0180",
+   "record_id": "recotFXNggpu2q2Uv",
+   "product_name": "Vidar 5\" AWO — Fortino (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Fortino'; vetoes {'width': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0181",
+   "record_id": "recqjy0pcAjjWDs2O",
+   "product_name": "Vidar 5\" AWO — Fortino (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Fortino'; vetoes {'width': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0182",
+   "record_id": "recAVuw06R5Zyufq1",
+   "product_name": "Vidar 7\" AWO — Macaroon (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Macaroon'; vetoes {'width': 16}"
+  },
+  {
+   "sku": "ENG-VIDR-0183",
+   "record_id": "recoJzFEtV84PS3Ix",
+   "product_name": "Vidar 6\" EWA — Whistler (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-6-whistler-select-6-34/06a250b9-9981-11f0-bc10-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-ash-6-whistler-select-6-34/06a250b9-9981-11f0-bc10-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0184",
+   "record_id": "recwSUGqLbwpiJPdV",
+   "product_name": "Vidar 5\" Hickory — San Marino (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'San Marino'; vetoes {}"
+  },
+  {
+   "sku": "ENG-VIDR-0185",
+   "record_id": "recYDcPjPFBAE0AIO",
+   "product_name": "Vidar 5\" Hickory — Natural (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Natural'; vetoes {'width': 23, 'species': 2}"
+  },
+  {
+   "sku": "ENG-VIDR-0187",
+   "record_id": "recjE2FfmO9fVInGU",
+   "product_name": "Vidar 7.5\" EWO — Clear (Rustic)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-clear-rustic-7-12-34/22db911e-1f64-11f0-8aa9-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-white-oak-clear-rustic-7-12-34/22db911e-1f64-11f0-8aa9-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0188",
+   "record_id": "recbLDBwAOqTt5TA1",
+   "product_name": "Vidar 7.5\" EWO — Jasper (Rustic)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-european-oak-jasper-rustic-7-12-34/2b662af3-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-european-oak-jasper-rustic-7-12-34/2b662af3-333c-11ef-baed-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0189",
+   "record_id": "recgv25H4hqFmQKq4",
+   "product_name": "Vidar 7.5\" EWA — Night Owl (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Night Owl'; vetoes {'grade': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0190",
+   "record_id": "recRpc5f6rP6KWoWb",
+   "product_name": "Vidar 7.5\" EWA — Sunset (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sunset'; vetoes {'grade': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0191",
+   "record_id": "recexr3OTNmDaugbs",
+   "product_name": "Vidar 7.5\" EWA — Ebony (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Ebony'; vetoes {'grade': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0192",
+   "record_id": "recKyHiWvkwWK7vm9",
+   "product_name": "Vidar 7.5\" EWA — Whistler (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Whistler'; vetoes {'grade': 1, 'width': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0194",
+   "record_id": "rec9r3L8ZeOe7G3tV",
+   "product_name": "Vidar 7.5\" AWO — Wheat Berry (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Wheat Berry'; vetoes {'width': 5, 'grade': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0195",
+   "record_id": "recwNeIoZEivJhpNx",
+   "product_name": "Vidar 7.5\" AWO — Snow White (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Snow White'; vetoes {'width': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0196",
+   "record_id": "recT16AbVMs3uEyLm",
+   "product_name": "Vidar 7.5\" EWO — Joffre Lake (Rustic)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Joffre Lake'; vetoes {}"
+  },
+  {
+   "sku": "ENG-VIDR-0198",
+   "record_id": "recJTYWjIYwDUtiXA",
+   "product_name": "Vidar HB 5\" AWO — Silver Stone (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Silver Stone'; vetoes {'width': 1, 'grade': 2}"
+  },
+  {
+   "sku": "ENG-VIDR-0201",
+   "record_id": "recgA9AyDijKDJrZ8",
+   "product_name": "Vidar HB 5\" AWO — Honey Wheat (Select)",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/engineered-hardwood-american-oak-herringbone-honey-wheat-herringbone-select-5-34/2b5fa820-333c-11ef-baed-f6968cef729a"
+   ],
+   "reason": "low_res_swatch",
+   "detail": "page https://thefloorbox.ca/products/engineered-hardwood-american-oak-herringbone-honey-wheat-herringbone-select-5-34/2b5fa820-333c-11ef-baed-f6968cef729a; {'low_res_swatch': 1}"
+  },
+  {
+   "sku": "ENG-VIDR-0202",
+   "record_id": "rec5NioGkQmpAGO5r",
+   "product_name": "Vidar HB 5\" EWO — Yukon (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Yukon'; vetoes {'width': 4, 'grade': 2}"
+  },
+  {
+   "sku": "ENG-VIDR-0203",
+   "record_id": "recigrjGgfNY1f2WZ",
+   "product_name": "Vidar 7.5\" EWA — Toffee Crunch (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Toffee Crunch'; vetoes {'species': 4, 'width': 7}"
+  },
+  {
+   "sku": "ENG-VIDR-0204",
+   "record_id": "recJ3cHYXx12dOcBo",
+   "product_name": "Vidar 7.5\" EWA — Natural (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Natural'; vetoes {'width': 25}"
+  },
+  {
+   "sku": "LAM-VIDR-0001",
+   "record_id": "reczlLaMrs98hwA9a",
+   "product_name": "Vidar Laminate — SD25",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'SD25'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIDR-0002",
+   "record_id": "rec0Yh92ie2Lxg59D",
+   "product_name": "Vidar Laminate — NK25",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'NK25'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIDR-0003",
+   "record_id": "rechx2iVRqmwidTbS",
+   "product_name": "Vidar Laminate — TF25",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'TF25'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIDR-0004",
+   "record_id": "rec5fNW5J1wJaKjGk",
+   "product_name": "Vidar Laminate — DB25",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'DB25'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIDR-0005",
+   "record_id": "rec4uUbYeHETg2Y77",
+   "product_name": "Vidar Laminate — HZ",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'HZ'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIDR-0006",
+   "record_id": "recODtd8RwzOPGukK",
+   "product_name": "Vidar Laminate — LP",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'LP'; vetoes {}"
+  },
+  {
+   "sku": "SPC-VIDR-0001",
+   "record_id": "recmKIT3zvTtENHuF",
+   "product_name": "Vidar SPC 7\" — Macaroon",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Macaroon'; vetoes {'width': 16}"
+  },
+  {
+   "sku": "SPC-VIDR-0002",
+   "record_id": "recmMi2AVyW97xKyK",
+   "product_name": "Vidar SPC 7\" — Yukon",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Yukon'; vetoes {'width': 5, 'pattern': 1}"
+  },
+  {
+   "sku": "SPC-VIDR-0003",
+   "record_id": "reclksrcvyyhz6lDI",
+   "product_name": "Vidar SPC 7\" — Naked Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Naked Oak'; vetoes {'width': 11, 'pattern': 2}"
+  },
+  {
+   "sku": "SPC-VIDR-0004",
+   "record_id": "reciFRg5jdpql5yIh",
+   "product_name": "Vidar SPC 7\" — Toffee Crunch",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Toffee Crunch'; vetoes {'width': 11}"
+  },
+  {
+   "sku": "SPC-VIDR-0005",
+   "record_id": "reclLBWwbqeKKXdeN",
+   "product_name": "Vidar SPC 7\" — Camel",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Camel'; vetoes {'width': 4}"
+  },
+  {
+   "sku": "SPC-VIDR-0006",
+   "record_id": "recy9my3w92jMMSzg",
+   "product_name": "Vidar SPC 7\" — Sunset",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sunset'; vetoes {'width': 1}"
+  },
+  {
+   "sku": "SPC-VIDR-0007",
+   "record_id": "recJF9ThruwtrnQzO",
+   "product_name": "Vidar SPC 7\" — Sky",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sky'; vetoes {'width': 2}"
+  }
+ ]
+}

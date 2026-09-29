@@ -75,8 +75,25 @@ def page_index(pages_file):
     return {p["url"]: p for p in pages_file.get("pages", [])}
 
 
-def usable_images(page, judgements, rules):
-    """[(target, image)] for one page, after the rules; plus problems Counter."""
+LAYING = ("herringbone", "chevron")
+
+
+def record_laying(rec):
+    """`herringbone`, `chevron` or `plank`, from the record's name and collection."""
+    text = image_match.norm(f"{rec.get('Product name') or ''} {rec.get('Collection') or ''}")
+    words = set(text.split())
+    if "herringbone" in words or "hb" in words:
+        return "herringbone"
+    if "chevron" in words or "chev" in words:
+        return "chevron"
+    return "plank"
+
+
+def usable_images(page, judgements, rules, laying=None):
+    """[(target, image)] for one page, after the rules; plus problems Counter.
+
+    `laying` is the record's pattern: an image the model saw laid in a different pattern
+    is dropped (2026-09-29: The Floor Box put a herringbone room photo on a plank listing)."""
     problems = Counter()
     out = []
     seen = set()
@@ -95,6 +112,9 @@ def usable_images(page, judgements, rules):
         if any(j.get(flag) for flag in ("watermarked",)) or j.get("colour_matches_page") is False:
             problems["excluded"] += 1
             continue
+        if laying and j.get("laying") and j["laying"] != laying:
+            problems["pattern_mismatch"] += 1
+            continue
         target = rules["kind_to_target"].get(j.get("kind"))
         if not target:
             continue
@@ -110,12 +130,24 @@ def usable_images(page, judgements, rules):
     return out, problems
 
 
-def choose_page(rid, m, judgements):
-    """(page_url or None, tier, held_reason or None)."""
+def photo_set(page):
+    return frozenset(i["sha1"] for i in page.get("images", []) if i.get("sha1"))
+
+
+def choose_page(rid, m, judgements, pages=None):
+    """(page_url or None, tier, held_reason or None).
+
+    A tie between listings that carry byte-identical photos is not a real choice (a site
+    listing the same product twice, e.g. per box size): it resolves to the first, tier
+    `exact`, without asking the model."""
     if m["tier"] == "exact":
         return m["candidates"][0]["url"], "exact", None
     if m["tier"] == "none":
         return None, "none", "no_match"
+    if pages is not None:
+        sets = {photo_set(pages[c["url"]]) for c in m["candidates"] if c["url"] in pages}
+        if len(sets) == 1 and next(iter(sets)):
+            return m["candidates"][0]["url"], "exact", None
     verdict = (judgements or {}).get("matches", {}).get(rid)
     if not verdict:
         return None, "ambiguous", "ambiguous_match"
@@ -139,7 +171,7 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
     pages = page_index(pages_file)
     matches = image_match.match_records(records, list(pages.values()), sup, cfg["matching"])
     pp_matches = {}
-    if product_pages:
+    if product_pages and (sup.get("product_pages") or {}).get("enabled", True):
         pp = [{"url": r["url"], "title": r.get("title", "")} for r in product_pages.get("results", [])]
         rule = sup.get("product_pages") or {}
         hosts = set(rule.get("hosts") or [])
@@ -164,13 +196,13 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
             skipped["all_targets_filled"] += 1
             continue
         m = matches[rid]
-        page_url, tier, why = choose_page(rid, m, judgements)
+        page_url, tier, why = choose_page(rid, m, judgements, pages)
         base = {"sku": sku, "record_id": rid, "product_name": rec.get("Product name") or "",
                 "candidate_pages": [c["url"] for c in m["candidates"]]}
         if why:
             held.append({**base, "reason": why, "detail": f"colour '{m['colour']}'; vetoes {m['vetoes']}"})
             continue
-        picked, problems = usable_images(pages[page_url], judgements, rules)
+        picked, problems = usable_images(pages[page_url], judgements, rules, record_laying(rec))
         fields, images = {}, []
         for target in ("swatch", "room", "detail"):
             if target not in blank:
@@ -242,6 +274,8 @@ def todo(records, pages_file, judgements, cfg, supplier, scope):
             need_pages.add(m["candidates"][0]["url"])
         elif m["tier"] == "ambiguous":
             need_pages.update(c["url"] for c in m["candidates"])
+            if choose_page(rid, m, None, pages)[1] == "exact":
+                continue
             if rid not in decided:
                 ambiguous.append({"record_id": rid, "sku": by_id[rid].get("SKU"),
                                   "product_name": by_id[rid].get("Product name"),

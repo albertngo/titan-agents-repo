@@ -10,7 +10,9 @@ Written by `scripts/supplier_site_pull.py`. `status` is `ok`, `empty`, `challeng
 site answered with a bot challenge — never worked around) or `host_blocked` (the
 environment's network policy). `pages[]`: `url`, `title`, `h1`, `og_title`,
 `product_name`, `is_product`, `codes[]`, `images[]` (`url`, `alt`, and after download
-`sha1`, `width`, `height`, `read_path`, `status`). Local paths point into the gitignored
+`sha1`, `width`, `height`, `read_path`, `status`). `batches` (sitemap sources with
+`brand_batches`): the import batches kept, with product counts and the supplier colours
+that identified each — review it when a supplier's matches look off. Local paths point into the gitignored
 `ingest/<date>/supplier-images/<scope>/`.
 
 ## `ingest/<date>/product-page-index-<scope>.json` — optional
@@ -28,7 +30,8 @@ Written by the session model after reading `image-todo-<scope>.json`:
   "contract_version": "image-judgements-1",
   "images": {
     "<sha1>": {"kind": "swatch|room|detail|spec_sheet|other",
-               "watermarked": false, "colour_matches_page": true, "note": "short"}
+               "watermarked": false, "colour_matches_page": true,
+               "laying": "plank|herringbone|chevron", "note": "short"}
   },
   "matches": {
     "<record_id>": {"page": "<one candidate url>" , "why": "short"}
@@ -40,6 +43,9 @@ Written by the session model after reading `image-todo-<scope>.json`:
   `room` = installed or lifestyle; `detail` = close-up of texture, edge, bevel, profile,
   cross-section or box; `spec_sheet` / `other` go nowhere.
 - `colour_matches_page: false` when the photo plainly is not the colour the page names.
+- `laying` is the pattern the floor in the photo is laid in. An image whose laying differs
+  from the record's (a herringbone room shot on a plank record) is dropped — sites reuse
+  one photo across listings (The Floor Box, 2026-09-29).
 - `matches` only for records the todo lists as ambiguous. `"page": null` means none of
   the candidates is this product — a valid, preferred answer when unsure.
 
