@@ -124,6 +124,12 @@
       "hickory",
       "spc",
       "laminate"
+    ],
+    "tag_pattern_words": [
+      "herringbone",
+      "chevron",
+      "versailles",
+      "laminate"
     ]
   },
   "policy": {
@@ -246,6 +252,9 @@
       },
       "retailers": {
         "floorbox": {},
+        "wordofmouth": {
+          "vendor": "BIYORK"
+        },
         "speers": {
           "vendor": "BiYork"
         }
@@ -281,7 +290,11 @@
         "Riptide",
         "Traktion"
       ],
-      "_lines_note": "BiYork reuses colour names across lines; a listing naming a different line, or a different line number (Hydrogen 6 vs 7), is vetoed."
+      "_lines_note": "BiYork reuses colour names across lines; a listing naming a different line, or a different line number (Hydrogen 6 vs 7), is vetoed.",
+      "ignore_pattern_words": [
+        "hickory"
+      ],
+      "_ignore_pattern_words_note": "BiYork's own shop titles its hickory products `Hickory - Derby Sample*` while the catalogue names them `Nouveau 7 — Derby`: here hickory is the species (species_words), not a pattern to agree on."
     }
   },
   "source_policy": {
@@ -289,12 +302,15 @@
     "order": [
       "official",
       "floorbox",
+      "wordofmouth",
       "speers"
     ],
     "product_page_sources": [
       "official",
-      "floorbox"
-    ]
+      "floorbox",
+      "wordofmouth"
+    ],
+    "_comment_2": "Albert, 2026-09-29 (later): 'lets use https://www.wordofmouthfloors.com/ as the 2nd/third backup same level as floorbox. and speers as the very last'. Word of Mouth Floors sits beside The Floor Box: its photos compete on size like any source, and its page may be the product link when neither the official site nor The Floor Box has one. Speers is last and never linked."
   },
   "retailers": {
     "floorbox": {
@@ -328,6 +344,18 @@
         }
       },
       "_note": "2026-09-29. The Floor Box's product pages are Cloudflare-challenged and never loaded; its robots.txt allows all and names a sitemap on cdn.thefloorbox.ca (18 product sitemaps, ~64k English URLs, updated 2026-09-26). Each entry is a slug + version-1 UUID + ONE main image (the plank swatch; sample 2100x1575). Slugs carry collection, colour, grade and width but not the brand, so brand_batches keeps only import batches (UUID time field) holding >= 3 distinct multi-word supplier colour names (333c-11ef, 1f64-11f0, 18f2-11ed, 9981-11f0 on 2026-09-29; the big mixed batches hold <= 2). Swatch only from this source (Albert: 'Swatch only is fine')."
+    },
+    "wordofmouth": {
+      "site": "https://www.wordofmouthfloors.com",
+      "hosts": [
+        "www.wordofmouthfloors.com",
+        "wordofmouthfloors.com",
+        "cdn.shopify.com"
+      ],
+      "listing": {
+        "method": "shopify"
+      },
+      "_note": "2026-09-29. Shopify store; products.json is public and names the brand in `vendor` (BiYork = 'BIYORK'). Behind Cloudflare: one request that day answered 429 with cf-mitigated: challenge. A challenged fetch stops this source for the run; it is never retried to get past."
     },
     "speers": {
       "site": "https://www.speersflooring.com",

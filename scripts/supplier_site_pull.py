@@ -293,6 +293,10 @@ def list_shopify(fetch, root, vendor=None):
             pages.append({
                 "url": f"{base}/products/{p['handle']}", "title": p.get("title", ""), "h1": "",
                 "og_title": "", "product_name": p.get("title", ""), "is_product": True,
+                # BiYork's own shop titles a product `Brume Air Sample*`: the line and species
+                # are only in its tags and product type.
+                "tags": [t for t in (p.get("tags") or []) if isinstance(t, str)],
+                "product_type": p.get("product_type") or "",
                 "codes": sorted({v["sku"] for v in p.get("variants", []) if v.get("sku")}),
                 "images": [{"url": i["src"], "alt": i.get("alt") or "", "width_hint": i.get("width"),
                             "height_hint": i.get("height")} for i in p.get("images", [])],

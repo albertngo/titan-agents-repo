@@ -141,6 +141,20 @@ class TestProductLine(unittest.TestCase):
         self.assertEqual([c["url"] for c in out["candidates"]], [good["url"]])
 
 
+    def test_shopify_tags_name_the_line_a_bare_title_leaves_out(self):
+        r = {"id": "recB000000000003", "SKU": "LVP-BIYK-0003", "Product name": "Biyork Hydrogen 8 — Brume Air"}
+        p = {**page("https://brand/products/brume-air-sample", "Brume Air Sample*", source="official"),
+             "tags": ["Hydrogen 8", "SPC Floors", "SPC Plank"], "product_type": "WaterProof Floors | Plank"}
+        self.assertEqual(self.m([r], [p])[r["id"]]["tier"], "exact")  # SPC tags are not a pattern
+        wrong = {**p, "tags": ["HydroGen 6"]}
+        self.assertEqual(self.m([r], [wrong])[r["id"]]["tier"], "none")
+
+    def test_hickory_is_biyorks_species_not_a_pattern(self):
+        r = {"id": "recB000000000004", "SKU": "ENG-BIYK-0004", "Product name": 'Biyork Nouveau 7 7.5" — Derby'}
+        p = {**page("https://brand/products/derby-sample", "Hickory - Derby Sample*", source="official"),
+             "tags": ["7-1/2 Inch", "Hickory", "Nouveau 7"], "product_type": "Engineered Hardwood | Hickory"}
+        self.assertEqual(self.m([r], [p])[r["id"]]["tier"], "exact")
+
 class TestPull(unittest.TestCase):
     def fetcher(self, routes):
         def opener(req, timeout=0):
@@ -427,10 +441,11 @@ class TestTwoSources(unittest.TestCase):
 
     def test_sources_follow_the_policy_order(self):
         names = [s["name"] for s in pull.supplier_sources(REG["suppliers"]["BIYORK"], REG)]
-        self.assertEqual(names, ["official", "floorbox", "speers"])
-        self.assertEqual(REG["source_policy"]["product_page_sources"], ["official", "floorbox"])
-        speers = pull.supplier_sources(REG["suppliers"]["BIYORK"], REG)[2]
-        self.assertEqual(speers["listing"]["vendor"], "BiYork")
+        self.assertEqual(names, ["official", "floorbox", "wordofmouth", "speers"])  # Speers last
+        self.assertEqual(REG["source_policy"]["product_page_sources"], ["official", "floorbox", "wordofmouth"])
+        by = {s["name"]: s for s in pull.supplier_sources(REG["suppliers"]["BIYORK"], REG)}
+        self.assertEqual(by["speers"]["listing"]["vendor"], "BiYork")
+        self.assertEqual(by["wordofmouth"]["listing"]["vendor"], "BIYORK")
 
     def test_the_shopify_vendor_filter(self):
         body = json.dumps({"products": [
