@@ -161,10 +161,11 @@ def score(feat, page, supplier_cfg, matching):
         s += 2
     if feat.get("line"):
         page_line, page_no = product_line(title, supplier_cfg)
-        if page_line and (page_line != feat["line"] or (page_no and feat["line_no"] and page_no != feat["line_no"])):
+        # A page naming no line is another brand's product more often than not (The Floor
+        # Box's `smartdrop-elite-chalk` for BiYork `Hydrogen PRO Tile — Chalk`): veto it too.
+        if not page_line or page_line != feat["line"] or (page_no and feat["line_no"] and page_no != feat["line_no"]):
             return 0, "line"
-        if page_line:
-            s += 2
+        s += 2
     page_patterns = {p for p in matching.get("pattern_words", []) if has_phrase(title, p)}
     if page_patterns != feat["patterns"] and (page_patterns or feat["patterns"]):
         return 0, "pattern"

@@ -434,7 +434,7 @@ def list_sitemap(fetch, root, follow_words, max_sitemaps=60, listing=None):
     keep_path = listing.get("path_contains")
     skip = set(listing.get("skip_words") or [])
     parse = listing.get("slug_parser") == "floorbox"
-    queue, seen, pages = sitemap_roots(fetch, root), set(), []
+    queue, seen, pages, urls = sitemap_roots(fetch, root), set(), [], set()
     while queue and len(seen) < max_sitemaps:
         sm = queue.pop(0)
         if sm in seen:
@@ -451,8 +451,9 @@ def list_sitemap(fetch, root, follow_words, max_sitemaps=60, listing=None):
             if not locs:
                 continue
             url = locs[0]
-            if keep_path and keep_path not in url:
-                continue
+            if (keep_path and keep_path not in url) or url in urls:
+                continue  # the same product can sit in two sitemap files
+            urls.add(url)
             path_parts = urllib.parse.urlsplit(url).path.rstrip("/").split("/")
             slug = path_parts[-2] if UUID_V1.fullmatch(path_parts[-1] or "") else path_parts[-1]
             if skip and skip & set(slug.lower().split("-")):
@@ -688,7 +689,7 @@ def main(argv=None):
         "contract_version": CONTRACT_VERSION,
         "scope": args.scope,
         "supplier": args.supplier,
-        "site": sup["site"],
+        "site": (sup.get("official") or {}).get("site") or sup.get("site"),
         "pulled_at": datetime.now(TZ).isoformat(),
         "status": status,
         "listing": {"method": method, "tried": tried, "requests": fetch.count},
@@ -707,6 +708,13 @@ def main(argv=None):
     print(f"  {len(pages)} pages; {len(wanted)} matched a record; tiers {out['summary']['tiers']}")
     if counts:
         print(f"  images {dict(counts)}")
+    # A source the environment refuses is fixable, and blank-only writes mean whatever the
+    # later sources fill now could never be improved by it later: stop rather than skip it.
+    blocked = [k for k, v in sources.items() if "host_blocked" in v["tried"].values() and not v["pages"]]
+    if blocked and status == "ok":
+        print(f"\n  {', '.join(blocked)} refused by the environment's network policy (host_blocked).\n"
+              "  Allow it and re-run; the later sources are not used alone while an earlier one is fixable.")
+        return 3
     if status in ("challenged", "host_blocked"):
         print(f"\n  The site refused automated reading ({status}). Not worked around: allow the host in the\n"
               "  environment's Network access (host_blocked), or use another source (challenged).")

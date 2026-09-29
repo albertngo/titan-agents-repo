@@ -191,10 +191,13 @@ and any ambiguous match → `scripts/image_fill_plan.py` (read-only, determinist
 sheet + held CSV) → policy approval → `airtable-actions-agent` (`airtable_attach_images`,
 blank only, read-before-write). Registry `platform-settings/supplier-sites.json` (site URLs
 live only there); contract `contracts/image-plan-schema.md`; method `methods/image-fill.md`.
-`write_mode` starts `plan_only`; Albert chose auto-attach-and-report once a pilot looks
-right, and that flip is a dated vault decision. A site that answers with a bot challenge
-is reported, never worked around. First supplier: Vidar (images via The Floor Box; the
-product-page link from Vidar's own pages as found in the search index).
+`write_mode` is `write` since 2026-09-29 (vault `05_decisions/2026-09-29-image-fill-write-mode.md`):
+policy attaches confident matches and reports the rest. Files get descriptive SEO names.
+**Sources, in order (Albert, 2026-09-29):** the supplier's official site, then The Floor Box,
+then Speers; `Supplier product page` is the official page, else The Floor Box — **never Speers**
+(a local competitor). An official site the environment refuses stops the run (blank-only means
+retailer photos filled first could never be replaced); one behind a bot challenge (Vidar) is
+reported, never worked around, and the retailers run alone.
 
 ## Agent class rules
 

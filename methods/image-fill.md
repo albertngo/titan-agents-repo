@@ -65,6 +65,16 @@ Replace or append to a filled image field; write anything but the four target fi
 write while `write_mode` is `plan_only`; get past a bot challenge; guess a URL.
 
 ## Log
+- 2026-09-29 (night) — Source policy (Albert): official site, then The Floor Box, then
+  Speers; product page from official, else The Floor Box, never Speers ("a local shop to
+  ours"). Registry restructured (`source_policy`, shared `retailers`). BiYork added: 402
+  records, 236 accessories skipped; `biyorkcanada.com` refused by the environment, so the
+  run waits (retailers alone would take the blank fields first). Retailer probe: Speers 93
+  exact, The Floor Box 44 exact + 4 ambiguous, 96 of 178 floor records covered. Two fixes
+  from the probe: a page naming no BiYork line is vetoed (Floor Box matched a Fuzion
+  `Chalk` tile and a Quickstyle `Valencia` vinyl through generic colour names), and a
+  product listed in two sitemap files is kept once. Vidar: 63 records link a Speers page,
+  which the new policy excludes (29 have a Floor Box match); relink/clear waits on Albert.
 - 2026-09-29 (later) — Speers Flooring added as the first Vidar source (Shopify feed, brand
   in `vendor`, swatch + room scene per product at 1920-3000 px). write_mode flipped to
   `write` (Albert: "go for it"; vault 05_decisions/2026-09-29-image-fill-write-mode.md).

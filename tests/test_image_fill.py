@@ -117,6 +117,30 @@ class FakeResp(io.BytesIO):
         return False
 
 
+class TestProductLine(unittest.TestCase):
+    """BiYork reuses colour names across lines and shares them with other brands."""
+    BIYORK = REG["suppliers"]["BIYORK"]
+
+    def m(self, records, pages):
+        return im.match_records(records, pages, self.BIYORK, REG["matching"])
+
+    def test_line_number_stands_alone(self):
+        self.assertEqual(im.product_line("BiYork Hydrogen PRO 3mm Oak", self.BIYORK), ("hydrogen pro", None))
+        self.assertEqual(im.product_line("biyork hydrogen 8 brume air", self.BIYORK), ("hydrogen", "8"))
+
+    def test_a_page_naming_no_line_is_vetoed(self):
+        r = {"id": "recB000000000001", "SKU": "LVT-BIYK-0001", "Product name": "Biyork Hydrogen PRO Tile 3mm — Chalk"}
+        p = page("https://x/fuzion-vinyl-tiles-smartdrop-elite-chalk-18x36", "Fuzion Vinyl Tiles Smartdrop Elite Chalk 18x36")
+        self.assertEqual(self.m([r], [p])[r["id"]]["tier"], "none")
+
+    def test_another_line_number_is_vetoed(self):
+        r = {"id": "recB000000000002", "SKU": "LVP-BIYK-0002", "Product name": "Biyork Hydrogen 8 — Brume Air"}
+        good = page("https://x/biyork-hydrogen-8-brume-air", "BiYork Hydrogen 8 Brume Air 9 x 72 x 8mm", source="speers")
+        other = page("https://x/biyork-hydrogen-6-brume-air", "BiYork Hydrogen 6 Brume Air", source="speers")
+        out = self.m([r], [good, other])[r["id"]]
+        self.assertEqual([c["url"] for c in out["candidates"]], [good["url"]])
+
+
 class TestPull(unittest.TestCase):
     def fetcher(self, routes):
         def opener(req, timeout=0):
