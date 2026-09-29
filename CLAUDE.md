@@ -193,9 +193,9 @@ blank only, read-before-write). Registry `platform-settings/supplier-sites.json`
 live only there); contract `contracts/image-plan-schema.md`; method `methods/image-fill.md`.
 `write_mode` is `write` since 2026-09-29 (vault `05_decisions/2026-09-29-image-fill-write-mode.md`):
 policy attaches confident matches and reports the rest. Files get descriptive SEO names.
-**Sources, in order (Albert, 2026-09-29):** the supplier's official site, then The Floor Box,
-then Speers; `Supplier product page` is the official page, else The Floor Box — **never Speers**
-(a local competitor). An official site the environment refuses stops the run (blank-only means
+**Sources, in order (Albert, 2026-09-29):** the supplier's official site, then The Floor Box
+and Word of Mouth Floors side by side, then Speers last; `Supplier product page` is the official
+page, else The Floor Box, else Word of Mouth — **never Speers** (a local competitor). An official site the environment refuses stops the run (blank-only means
 retailer photos filled first could never be replaced); one behind a bot challenge (Vidar) is
 reported, never worked around, and the retailers run alone.
 

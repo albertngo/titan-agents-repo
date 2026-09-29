@@ -65,6 +65,16 @@ Replace or append to a filled image field; write anything but the four target fi
 write while `write_mode` is `plan_only`; get past a bot challenge; guess a URL.
 
 ## Log
+- 2026-09-29 (late) — BiYork run. Albert added Word of Mouth Floors ("2nd/third backup same
+  level as floorbox. and speers as the very last"); order is now official, The Floor Box +
+  Word of Mouth, Speers. `biyorkcanada.com` is a Shopify store selling only samples, titled
+  `Brume Air Sample*`: the line and species live in its tags and product type, which the
+  matcher now reads (official matches 45 -> 151 of 178 floor records). Hickory is BiYork's
+  species, not a pattern (`ignore_pattern_words`). 487 photos judged by eye in 31 grids.
+  Plan: 131 records (128 room scene, 31 swatch, 129 product page, 127 of them BiYork's own
+  page); 47 held (16 not found, 22 no usable photo, 9 swatch under 1600 px); 224 accessories
+  skipped. Most BiYork swatches are 580-1300 px, so 100 written records carry `no_swatch`:
+  their swatch field stays blank for a later source or a lower bar.
 - 2026-09-29 (night) — Source policy (Albert): official site, then The Floor Box, then
   Speers; product page from official, else The Floor Box, never Speers ("a local shop to
   ours"). Registry restructured (`source_policy`, shared `retailers`). BiYork added: 402

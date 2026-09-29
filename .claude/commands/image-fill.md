@@ -74,13 +74,20 @@ lower-case slug. No entry → stop and ask Albert for the site URL; never put a 
 page should be from the official company website; otherwise pick the floorbox as the
 backup. I would not want speers because it is a local shop to ours."
 
-- Registry `source_policy.order`: the supplier's `official` site, then The Floor Box, then
-  Speers (`retailers`, shared; a supplier names only its overrides, e.g. Speers `vendor`).
+Then, same night: "lets use wordofmouthfloors.com as the 2nd/third backup same level as
+floorbox. and speers as the very last."
+
+- Registry `source_policy.order`: the supplier's `official` site, then The Floor Box and
+  Word of Mouth Floors (peers), then Speers last (`retailers`, shared; a supplier names only
+  the retailers that carry it and its overrides, e.g. the Shopify `vendor` string).
 - Each source is matched on its own; per field the larger photo wins, a tie goes to the
   earlier source, and the same photo from two sites (visual fingerprint within 6 bits) is
   kept once. Speers photos may be used; **a Speers page is never linked**.
-- `Supplier product page` = the official page, else The Floor Box page
-  (`source_policy.product_page_sources`). Neither → left blank, flag `no_product_page`.
+- `Supplier product page` = the official page, else The Floor Box, else Word of Mouth
+  (`source_policy.product_page_sources`). None → left blank, flag `no_product_page`.
+- A Shopify store's tags and product type count for line and species (BiYork's own shop
+  titles products `Brume Air Sample*`); of their pattern words only `tag_pattern_words`
+  count, since a `SPC Floors` tag is a department, not a pattern.
 - An official site the **environment** refuses (`host_blocked`) stops the run: the retailers
   would fill the blank fields first and blank-only means the official photos could never
   replace them. Allow the host and re-run. An official site behind a **bot challenge**
