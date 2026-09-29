@@ -155,6 +155,40 @@ class TestProductLine(unittest.TestCase):
              "tags": ["7-1/2 Inch", "Hickory", "Nouveau 7"], "product_type": "Engineered Hardwood | Hickory"}
         self.assertEqual(self.m([r], [p])[r["id"]]["tier"], "exact")
 
+class TestRelink(unittest.TestCase):
+    """Albert, 2026-09-29: move Vidar's Speers links to Word of Mouth, else The Floor Box;
+    never clear one."""
+
+    def plan(self, pages):
+        rec = dict(NAKED_9)
+        src = {"actions": [{"id": "img-1", "record_id": rec["id"], "sku": rec["SKU"], "product_name": rec["Product name"],
+                            "fields": {"Supplier product page": "https://www.speersflooring.com/products/naked-oak-9"}}]}
+        return plan.relink_plan([rec], {"pages": pages}, REG, "VIDAR", "vidar", src)
+
+    def test_word_of_mouth_first_then_the_floor_box(self):
+        wom = page("https://www.wordofmouthfloors.com/products/vidar-9-naked-oak", "VIDAR 9'' American White Oak - Naked Oak", source="wordofmouth")
+        fb = page("https://thefloorbox.ca/products/x", "9'' American White Oak Naked Oak", source="floorbox")
+        a = self.plan([fb, wom])["actions"][0]
+        self.assertEqual(a["fields"]["Supplier product page"], wom["url"])
+        self.assertEqual(a["expect"]["Supplier product page"], "https://www.speersflooring.com/products/naked-oak-9")
+        self.assertEqual(self.plan([fb])["actions"][0]["source"], "floorbox")
+
+    def test_a_vinyl_listing_never_links_an_engineered_record(self):
+        rec = {**NAKED_9, "Category": "Engineered hardwood"}
+        vinyl = {**page("https://w/vidar-luxury-rigid-core-vinyl-plank-naked-oak", "VIDAR Luxury Rigid Core Vinyl Plank - Naked Oak",
+                        source="wordofmouth"), "product_type": "SPC RIGID CORE VINYL"}
+        self.assertEqual(im.match_records([rec], [vinyl], VIDAR, REG["matching"])[rec["id"]]["tier"], "none")
+
+    def test_no_alternative_keeps_the_link(self):
+        p = self.plan([])
+        self.assertEqual(p["actions"], [])
+        self.assertEqual(p["held"][0]["reason"], "no_alternative_link")
+
+    def test_a_supplier_may_lower_the_swatch_bar(self):
+        self.assertEqual(REG["suppliers"]["BIYORK"]["image_rules"]["min_swatch_long_edge_px"], 1000)
+        self.assertEqual(REG["image_rules"]["min_swatch_long_edge_px"], 1600)
+
+
 class TestPull(unittest.TestCase):
     def fetcher(self, routes):
         def opener(req, timeout=0):

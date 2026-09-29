@@ -107,6 +107,7 @@ def record_features(rec, supplier_cfg, matching):
         "grade": grade_of(rec),
         "line": line,
         "line_no": line_no,
+        "category": rec.get("Category") or "",
     }
 
 
@@ -160,6 +161,12 @@ def score(feat, page, supplier_cfg, matching):
     # `SPC Floors` or `Hickory` tag is a department, not the pattern the record names).
     meta = " | ".join([*(page.get("tags") or []), page.get("product_type") or ""])
     title_meta = f"{title} | {meta}" if meta.strip(" |") else title
+    # Category: an engineered record never takes a vinyl listing of the same colour name
+    # (Word of Mouth's `Vidar Luxury Rigid Core Vinyl Plank - Naked Oak`, 2026-09-29).
+    cat_words = matching.get("category_words") or {}
+    page_cats = {c for c, words in cat_words.items() if any(has_phrase(title_meta, w) for w in words)}
+    if page_cats and feat.get("category") in cat_words and feat["category"] not in page_cats:
+        return 0, "category"
     species_words = supplier_cfg.get("species_words") or {}
     page_species = {code for code, words in species_words.items() if any(has_phrase(title_meta, w) for w in words)}
     if page_species and feat["species"]:

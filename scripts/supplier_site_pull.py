@@ -277,12 +277,12 @@ def keep_image(url, rules):
 
 # --------------------------------------------------------------------------- listing methods
 
-def list_shopify(fetch, root, vendor=None):
+def list_shopify(fetch, root, vendor=None, max_pages=40):
     """Every product in a Shopify store's public products.json; `vendor` keeps one brand
     (Shopify's own brand field, e.g. `Vidar Design Flooring` at Speers)."""
     base = f"{urllib.parse.urlsplit(root).scheme}://{urllib.parse.urlsplit(root).netloc}"
     pages, n = [], 1
-    while n <= 40:
+    while n <= max_pages:
         data = json.loads(fetch.get(f"{base}/products.json?limit=250&page={n}"))
         items = data.get("products") or []
         if not items:
@@ -537,7 +537,7 @@ def list_pages(fetch, cfg, supplier_cfg, max_pages):
     for m in order:
         try:
             if m == "shopify":
-                pages = list_shopify(fetch, root, listing.get("vendor"))
+                pages = list_shopify(fetch, root, listing.get("vendor"), listing.get("max_pages", 40))
             elif m == "woocommerce":
                 pages = list_woocommerce(fetch, root)
             elif m == "sitemap":

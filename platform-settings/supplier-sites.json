@@ -130,7 +130,29 @@
       "chevron",
       "versailles",
       "laminate"
-    ]
+    ],
+    "category_words": {
+      "Engineered hardwood": [
+        "engineered",
+        "hardwood"
+      ],
+      "LVP": [
+        "vinyl",
+        "spc",
+        "rigid core",
+        "lvp"
+      ],
+      "LVT": [
+        "vinyl",
+        "spc",
+        "rigid core",
+        "lvt"
+      ],
+      "Laminate": [
+        "laminate"
+      ]
+    },
+    "_category_words_note": "2026-09-29: a listing that names a category (title, Shopify tags or product type) must name the record's own `Category`; Word of Mouth sells a Vidar vinyl and a Vidar engineered oak both called Naked Oak."
   },
   "policy": {
     "_comment": "Albert, 2026-09-29: 'Auto-attach, report held'. Applies ONLY while write_mode is `write`. Approves every planned action whose match tier is `exact` or `model_confirmed` and whose images passed image_rules; everything else is held and reported in the troubled CSV + PushNotification. Never approves a held row (it has no id).",
@@ -233,6 +255,9 @@
       },
       "retailers": {
         "floorbox": {},
+        "wordofmouth": {
+          "vendor": "VIDAR"
+        },
         "speers": {
           "vendor": "Vidar Design Flooring"
         }
@@ -294,7 +319,11 @@
       "ignore_pattern_words": [
         "hickory"
       ],
-      "_ignore_pattern_words_note": "BiYork's own shop titles its hickory products `Hickory - Derby Sample*` while the catalogue names them `Nouveau 7 — Derby`: here hickory is the species (species_words), not a pattern to agree on."
+      "_ignore_pattern_words_note": "BiYork's own shop titles its hickory products `Hickory - Derby Sample*` while the catalogue names them `Nouveau 7 — Derby`: here hickory is the species (species_words), not a pattern to agree on.",
+      "image_rules": {
+        "min_swatch_long_edge_px": 1000
+      },
+      "_image_rules_note": "Albert, 2026-09-29: 'yes rerun' — BiYork's own swatch photos are 580-1300 px, clean and sharp; 1000 px for BiYork only. The shared 1600 stays."
     }
   },
   "source_policy": {
@@ -353,9 +382,10 @@
         "cdn.shopify.com"
       ],
       "listing": {
-        "method": "shopify"
+        "method": "shopify",
+        "max_pages": 120
       },
-      "_note": "2026-09-29. Shopify store; products.json is public and names the brand in `vendor` (BiYork = 'BIYORK'). Behind Cloudflare: one request that day answered 429 with cf-mitigated: challenge. A challenged fetch stops this source for the run; it is never retried to get past."
+      "_note": "2026-09-29. Shopify store; products.json is public and names the brand in `vendor` (BiYork = 'BIYORK'). Behind Cloudflare: one request that day answered 429 with cf-mitigated: challenge. A challenged fetch stops this source for the run; it is never retried to get past. 82 pages of 250 (20,466 products) on 2026-09-29, so listing.max_pages is 120; the default 40 had cut it in half."
     },
     "speers": {
       "site": "https://www.speersflooring.com",

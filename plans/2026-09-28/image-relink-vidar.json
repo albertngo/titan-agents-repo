@@ -1,0 +1,864 @@
+{
+ "contract_version": "image-plan-1",
+ "scope": "vidar",
+ "supplier": "VIDAR",
+ "op": "relink_product_page",
+ "run_at": "2026-09-28T23:46:53.089289-04:00",
+ "expires": "2026-09-28T23:59:59-0400",
+ "summary": {
+  "records": 31,
+  "kept": 32,
+  "by_source": {
+   "floorbox": 24,
+   "wordofmouth": 7
+  }
+ },
+ "actions": [
+  {
+   "id": "img-a0624664d448",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recttepYhaiaQfqC1",
+   "sku": "ENG-VIDR-0003",
+   "product_name": "Vidar 6\" AWO — Smoke Grey (Character)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-smoke-grey-character-6-34/2b709290-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-smoke-grey-3-4-18mm-x-6-2mm-wire-brushed-character-abcd"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-38de5ea1028a",
+   "seq": 2,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "reciewNpglOxm5xTe",
+   "sku": "ENG-VIDR-0005",
+   "product_name": "Vidar 6\" AWO — Black Brown (Character)",
+   "fields": {
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/vidar-american-oak-6-collection-black-brown"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-black-brown-3-4-18mm-x-6-2mm-wire-brushed-character-abcd"
+   },
+   "source": "wordofmouth",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-d96d30632fe8",
+   "seq": 3,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recLwpOfJuLEOaaah",
+   "sku": "ENG-VIDR-0006",
+   "product_name": "Vidar 6\" AWO — Camel (Character)",
+   "fields": {
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/vidar-american-oak-6-collection-camel"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-camel-3-4-18mm-x-6-2mm-wire-brushed-character-abcd"
+   },
+   "source": "wordofmouth",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-fd1fa334ba31",
+   "seq": 4,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "rec5mATNJFqjl14lK",
+   "sku": "ENG-VIDR-0007",
+   "product_name": "Vidar 6\" AWO — Coffee (Character)",
+   "fields": {
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/vidar-american-oak-6-collection-coffee"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-coffee-3-4-18mm-x-6-2mm-wire-brushed-character-abcd"
+   },
+   "source": "wordofmouth",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-2f421f855915",
+   "seq": 5,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recpTnXR0mdLxKeJA",
+   "sku": "ENG-VIDR-0009",
+   "product_name": "Vidar 6\" AWO — Wheat Berry (Select)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-wheat-berry-select-6-34/2b727566-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-wheat-berry-3-4-18mm-x-6-2mm-wire-brushed-select-abc"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-d9f8f5c1a689",
+   "seq": 6,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recVQiRYPAYmdykF6",
+   "sku": "ENG-VIDR-0011",
+   "product_name": "Vidar 6\" AWO — Fortino (Select)",
+   "fields": {
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/vidar-american-oak-6-collection-fortino-select-grade"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-fortino-3-4-18mm-x-6-2mm-wire-brushed-select-abc"
+   },
+   "source": "wordofmouth",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-564a36d2fa86",
+   "seq": 7,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recsgLCDwBj070dXK",
+   "sku": "ENG-VIDR-0012",
+   "product_name": "Vidar 6\" AWO — Naked Oak (Character)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-naked-oak-character-6-34/2b6ab41e-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-naked-oak-3-4-18mm-x-6-2mm-wire-brushed-character-abcd"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-7c3254adc253",
+   "seq": 8,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recVP5THKZoXnl79L",
+   "sku": "ENG-VIDR-0013",
+   "product_name": "Vidar 6\" AWO — Naked Oak (Select)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-naked-oak-select-6-34/2b6bd755-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-naked-oak-3-4-18mm-x-6-2mm-wire-brushed-select-abc"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-327726f0b443",
+   "seq": 9,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recCxyMcaY4ZQ7DsL",
+   "sku": "ENG-VIDR-0014",
+   "product_name": "Vidar 6\" AWO — Naked Oak (Select & Better)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-naked-oak-select-better-6-34/2b6b6969-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-naked-oak-3-4-18mm-x-6-2mm-wire-brushed-select-and-better-ab"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-3e2727fa257a",
+   "seq": 10,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recxk71WWHBU4g57q",
+   "sku": "ENG-VIDR-0015",
+   "product_name": "Vidar 6\" AWO — Macaroon (Character)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-macaroon-character-6-34/2b669034-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-macaroon-3-4-18mm-x-6-2mm-wire-brushed-character-abcd"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-479f8d8c8fa9",
+   "seq": 11,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recHdC2OAXvcnTDab",
+   "sku": "ENG-VIDR-0016",
+   "product_name": "Vidar 6\" AWO — Macaroon (Select)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-macaroon-select-6-34/2b681283-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-macaroon-3-4-18mm-x-6-2mm-wire-brushed-select-abc"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-ce51d61d65bb",
+   "seq": 12,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recK3IFWWzSTcZAUi",
+   "sku": "ENG-VIDR-0017",
+   "product_name": "Vidar 6\" AWO — Macaroon (Select & Better)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-6-macaroon-select-better-6-34/2b673c12-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-macaroon-3-4-18mm-x-6-2mm-wire-brushed-select-and-better-ab"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-9f12a842277f",
+   "seq": 13,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recQlVuJ3TOHn7zXe",
+   "sku": "ENG-VIDR-0039",
+   "product_name": "Vidar 7.5\" AWO — Wheat Berry (Select)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-7-wheat-berry-select-7-12-34-2532-sqftbox/2b727a8d-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-wheat-berry-3-4-18mm-x-7-3mm-wire-brushed-select-abc"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-4b8bd52331bc",
+   "seq": 14,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "rec8gzxUl0gWcz1VT",
+   "sku": "ENG-VIDR-0044",
+   "product_name": "Vidar 7.5\" AWO — Macaroon (Select)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-7-macaroon-select-7-12-34-2532-sqftbox/2b686265-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-macaroon-3-4-18mm-x-7-3mm-wire-brushed-select-abc"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-d7114fd9949c",
+   "seq": 15,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recAkmPrUK2pjAOTi",
+   "sku": "ENG-VIDR-0045",
+   "product_name": "Vidar 7.5\" AWO — Macaroon (Select & Better)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-7-macaroon-select-better-7-12-34-2532-sqftbox/2b679cbd-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-macaroon-3-4-18mm-x-7-3mm-wire-brushed-select-better-ab"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-608a6e68d1bd",
+   "seq": 16,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recdVmAjjTbQvl4uV",
+   "sku": "ENG-VIDR-0065",
+   "product_name": "Vidar 7.5\" EWO — Yukon (Select & Better)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-european-oak-7-yukon-select-better-7-12-34/06a2712d-9981-11f0-bc10-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-european-oak-yukon-3-4-18mm-x-7-1-2-wire-brushed-select-better"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-8933f18f700b",
+   "seq": 17,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recFMkPXfq7JtyJXf",
+   "sku": "ENG-VIDR-0081",
+   "product_name": "Vidar 9\" AWO — Daisy (Select & Better)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-9-daisy-select-better-9-34/2b5e5660-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-daisy-4-0-mm-3-4-18mm-x-9-wire-brushed-select-better-ab"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-de6a85183718",
+   "seq": 18,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "rec7Rmh4qvZQSKBgn",
+   "sku": "ENG-VIDR-0082",
+   "product_name": "Vidar 9\" AWO — Macaroon (Character)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-9-macaroon-character-9-34/2b66e18d-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-macaroon-4-0-mm-3-4-18mm-x-9-wire-brushed-character-abcd"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-238a6f4818ae",
+   "seq": 19,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "rec0iS3E18nipulie",
+   "sku": "ENG-VIDR-0084",
+   "product_name": "Vidar 9\" AWO — Macaroon (Select & Better)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-9-macaroon-select-better-9-34/2b67bad1-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-macaroon-4-0-mm-3-4-18mm-x-9-wire-brushed-select-better-ab"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-3725aa6560bb",
+   "seq": 20,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recyoR0UY6FYkLWfp",
+   "sku": "ENG-VIDR-0091",
+   "product_name": "Vidar 9\" AWO — Naked Oak (Character)",
+   "fields": {
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/vidar-american-oak-9-collection-naked-oak"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-naked-oak-4-0-mm-3-4-18mm-x-9-wire-brushed-character-abcd"
+   },
+   "source": "wordofmouth",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-324ac4c4d37a",
+   "seq": 21,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recRJg1UDXa5xA5H1",
+   "sku": "ENG-VIDR-0092",
+   "product_name": "Vidar 9\" AWO — Naked Oak (Select)",
+   "fields": {
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/vidar-american-oak-9-collection-naked-oak-select-grade"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-naked-oak-4-0-mm-3-4-18mm-x-9-wire-brushed-select-abc"
+   },
+   "source": "wordofmouth",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-97eef39b9bf3",
+   "seq": 22,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recLSOFVw1n5y59Fz",
+   "sku": "ENG-VIDR-0093",
+   "product_name": "Vidar 9\" AWO — Naked Oak (Select & Better)",
+   "fields": {
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/vidar-american-oak-9-collection-naked-oak-select-better-grade"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-naked-oak-4-0-mm-3-4-18mm-x-9-wire-brushed-select-better-ab"
+   },
+   "source": "wordofmouth",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-502f44cf1261",
+   "seq": 23,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recwx3Jf0e2VYSP6s",
+   "sku": "ENG-VIDR-0108",
+   "product_name": "Vidar HB 5\" AWO — Wheat Berry (Select & Better)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-white-oak-herringbone-wheat-berry-select-better-5-34/22da31ae-1f64-11f0-8aa9-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-wheat-berry-3-4-18mm-x-5-x-30-wire-brushed-select-better-ab-herringbone"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-cd9dad2436b9",
+   "seq": 24,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "rec9dbuYn9OGjcXpG",
+   "sku": "ENG-VIDR-0145",
+   "product_name": "Vidar 7\" ABW — Provence (Select)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-black-walnut-provence-select-7-34/22d7c910-1f64-11f0-8aa9-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-black-walnut-provence-3-4-x-7-wire-brushed-select-abc"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-f7800f2a4be7",
+   "seq": 25,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recrmjDZsCtD7rTeR",
+   "sku": "ENG-VIDR-0166",
+   "product_name": "Vidar 5\" AWO — Camel (Character)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-5-click-camel-character-5-13/06a39724-9981-11f0-bc10-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-hazelnut-1-2-x-5-click-wire-brushed-character-abcd"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-c540c731cc37",
+   "seq": 26,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recKymAKTwz50hKTn",
+   "sku": "ENG-VIDR-0168",
+   "product_name": "Vidar 5\" AWO — Naked Oak (Character)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-click-naked-oak-character-5-12/2b6a962b-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-naked-oak-1-2-x-5-click-wire-brushed-character-abcd"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-9e28b42a80ff",
+   "seq": 27,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recfaE04abujK3ZjE",
+   "sku": "ENG-VIDR-0169",
+   "product_name": "Vidar 5\" AWO — Naked Oak (Select)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-click-naked-oak-select-5-12/2b6bbd83-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-naked-oak-1-2-x-5-click-wire-brushed-select-abc"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-41266a491762",
+   "seq": 28,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recos2uwmFHDRxk8g",
+   "sku": "ENG-VIDR-0170",
+   "product_name": "Vidar 5\" AWO — Naked Oak (Select & Better)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-click-naked-oak-select-better-5-12/2b6b4846-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-naked-oak-1-2-x-5-click-wire-brushed-select-and-better-ab"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-04c6645e8dce",
+   "seq": 29,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recxWV2EKarS6XsgK",
+   "sku": "ENG-VIDR-0171",
+   "product_name": "Vidar 5\" AWO — Macaroon (Character)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-click-macaroon-character-5-12/2b66737c-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-macaroon-1-2-x-5-click-wire-brushed-character-abcd"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-f01040000ced",
+   "seq": 30,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "recIWQJHPbY9grcRV",
+   "sku": "ENG-VIDR-0172",
+   "product_name": "Vidar 5\" AWO — Macaroon (Select)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-click-macaroon-select-5-12/2b67dd1a-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-macaroon-1-2-x-5-click-wire-brushed-select-abc"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  },
+  {
+   "id": "img-337d8ea6f2bb",
+   "seq": 31,
+   "target_system": "airtable",
+   "op": "relink_product_page",
+   "record_id": "reczdV06sCYEpf8fu",
+   "sku": "ENG-VIDR-0173",
+   "product_name": "Vidar 5\" AWO — Macaroon (Select & Better)",
+   "fields": {
+    "Supplier product page": "https://thefloorbox.ca/products/engineered-hardwood-click-macaroon-select-better-5-12/2b670dae-333c-11ef-baed-f6968cef729a"
+   },
+   "field_ids": {
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect": {
+    "Supplier product page": "https://www.speersflooring.com/products/vidar-american-oak-macaroon-1-2-x-5-click-wire-brushed-select-better-ab"
+   },
+   "source": "floorbox",
+   "match_tier": "exact"
+  }
+ ],
+ "held": [
+  {
+   "sku": "ENG-VIDR-0001",
+   "record_id": "recRugbXzK84mLRBI",
+   "product_name": "Vidar 6\" AWO — Silver Stone (Character)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-oak-silver-stone-3-4-18mm-x-6-2mm-wire-brushed-character-abcd"
+  },
+  {
+   "sku": "ENG-VIDR-0002",
+   "record_id": "recLDbcpfYBcyZ3Hz",
+   "product_name": "Vidar 6\" AWO — Silver Stone (Select)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-oak-silver-stone-3-4-18mm-x-6-2mm-wire-brushed-select-abc"
+  },
+  {
+   "sku": "ENG-VIDR-0010",
+   "record_id": "recdfBCAWOQ7MOofI",
+   "product_name": "Vidar 6\" AWO — Fortino (Character)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-oak-fortino-3-4-18mm-x-6-2mm-wire-brushed-character-abcd"
+  },
+  {
+   "sku": "ENG-VIDR-0033",
+   "record_id": "rec4xyLeDOX5fGbda",
+   "product_name": "Vidar 7.5\" AWO — Coyote (Character)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-oak-coyote-3-4-18mm-x-7-3mm-wire-brushed-character-abcd"
+  },
+  {
+   "sku": "ENG-VIDR-0034",
+   "record_id": "rechrGv8ltbERjFVt",
+   "product_name": "Vidar 7.5\" AWO — Sky (Character)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-oak-sky-3-4-18mm-x-7-3mm-wire-brushed-character-abcd"
+  },
+  {
+   "sku": "ENG-VIDR-0035",
+   "record_id": "rec6PBV0oyCnGe2Gm",
+   "product_name": "Vidar 7.5\" AWO — Charcoal (Character)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-oak-charcoal-3-4-18mm-x-7-3mm-wire-brushed-character-abcd"
+  },
+  {
+   "sku": "ENG-VIDR-0036",
+   "record_id": "recS3PId89XXFacjl",
+   "product_name": "Vidar 7.5\" AWO — Silver Stone (Character)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-oak-silver-stone-3-4-18mm-x-7-3mm-wire-brushed-character-abcd"
+  },
+  {
+   "sku": "ENG-VIDR-0037",
+   "record_id": "recYWPNBU2N5tlGwR",
+   "product_name": "Vidar 7.5\" AWO — Silver Stone (Select)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-oak-silver-stone-3-4-18mm-x-7-3mm-wire-brushed-select-abc"
+  },
+  {
+   "sku": "ENG-VIDR-0038",
+   "record_id": "recPvVevRwCzk4d0e",
+   "product_name": "Vidar 7.5\" AWO — Snowwhite (Select)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-oak-snowwhite-3-4-18mm-x-7-3mm-wire-brushed-select-abc"
+  },
+  {
+   "sku": "ENG-VIDR-0048",
+   "record_id": "recshNB7d5kxjuRMu",
+   "product_name": "Vidar 7.5\" AWO — Naked Oak (Select & Better)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-oak-naked-oak-3-4-18mm-x-7-2mm-wire-brushed-select-better-ab"
+  },
+  {
+   "sku": "ENG-VIDR-0079",
+   "record_id": "recijLL6SYFMSSpZx",
+   "product_name": "Vidar 9\" AWO — Daisy (Character)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-oak-daisy-4-0-mm-3-4-18mm-x-9-wire-brushed-character-abcd"
+  },
+  {
+   "sku": "ENG-VIDR-0080",
+   "record_id": "recoqsQ29YHpJ5yBG",
+   "product_name": "Vidar 9\" AWO — Daisy (Select)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-oak-daisy-4-0-mm-3-4-18mm-x-9-wire-brushed-select-abc"
+  },
+  {
+   "sku": "ENG-VIDR-0083",
+   "record_id": "recYWV2ZkqnitL1Es",
+   "product_name": "Vidar 9\" AWO — Macaroon (Select)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-oak-macaroon-4-0-mm-3-4-18mm-x-9-wire-brushed-select-abc"
+  },
+  {
+   "sku": "ENG-VIDR-0100C",
+   "record_id": "recfKRYdAdv1jnavU",
+   "product_name": "Vidar 7\" AWO — Macaroon (Character)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-oak-macaroon-3-4-18mm-x-7-3mm-wire-brushed-character-abcd"
+  },
+  {
+   "sku": "ENG-VIDR-0112",
+   "record_id": "rec2fQ0NpopPsn5Wr",
+   "product_name": "Vidar HB 5\" AWO — Naked Oak (Character)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-oak-naked-oak-3-4-18mm-x-5-x-30-wire-brushed-character-abcd-herringbone"
+  },
+  {
+   "sku": "ENG-VIDR-0140",
+   "record_id": "rec1Osp55hWpiqF3h",
+   "product_name": "Vidar 6\" ABW — Provence (Select)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-black-walnut-provence-3-4-x-6-wire-brushed-select-abc"
+  },
+  {
+   "sku": "ENG-VIDR-0141",
+   "record_id": "recqFd71E2BtARadM",
+   "product_name": "Vidar 6\" ABW — Provence (Select & Better)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-black-walnut-provence-3-4-x-6-wire-brushed-select-better-ab"
+  },
+  {
+   "sku": "ENG-VIDR-0155",
+   "record_id": "rec7ghopaZWdYIl5H",
+   "product_name": "Vidar 10.25\" ABW — Naked Walnut (Character)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-black-walnut-naked-walnut-3-4-x-10-1-4-wire-brushed-character-abcd"
+  },
+  {
+   "sku": "ENG-VIDR-0156",
+   "record_id": "recd6EJYPQrkuGrn9",
+   "product_name": "Vidar 10.25\" ABW — Naked Walnut (Select)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-black-walnut-naked-walnut-3-4-x-10-1-4-wire-brushed-select-abc"
+  },
+  {
+   "sku": "ENG-VIDR-0157",
+   "record_id": "recKbW5lWvHiKNEhz",
+   "product_name": "Vidar 10.25\" ABW — Naked Walnut (Select & Better)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-black-walnut-naked-walnut-3-4-x-10-1-4-wire-brushed-select-better-ab"
+  },
+  {
+   "sku": "ENG-VIDR-0164",
+   "record_id": "recZuxJlpUDTFFcQt",
+   "product_name": "Vidar 5\" AWO — Sky (Character)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-oak-sky-1-2-x-5-click-wire-brushed-character-abcd"
+  },
+  {
+   "sku": "ENG-VIDR-0165",
+   "record_id": "recAYcBS46XxPUyAk",
+   "product_name": "Vidar 5\" AWO — Smoke Grey (Character)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-oak-smoke-grey-1-2-x-5-click-wire-brushed-character-abcd"
+  },
+  {
+   "sku": "ENG-VIDR-0167",
+   "record_id": "recU4Qz1sWCQedZ0K",
+   "product_name": "Vidar 5\" AWO — Coffee (Character)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-oak-coffee-1-2-x-5-click-wire-brushed-character-abcd"
+  },
+  {
+   "sku": "ENG-VIDR-0181",
+   "record_id": "recqjy0pcAjjWDs2O",
+   "product_name": "Vidar 5\" AWO — Fortino (Select)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-oak-fortino-1-2-x-5-click-wire-brushed-select-abc"
+  },
+  {
+   "sku": "ENG-VIDR-0182",
+   "record_id": "recAVuw06R5Zyufq1",
+   "product_name": "Vidar 7\" AWO — Macaroon (Character)",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-american-oak-macaroon-3-4-18mm-x-7-3mm-wire-brushed-character-abcd"
+  },
+  {
+   "sku": "SPC-VIDR-0001",
+   "record_id": "recmKIT3zvTtENHuF",
+   "product_name": "Vidar SPC 7\" — Macaroon",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-premium-flex-spc-macaroon-7-x-60-x-8-mm"
+  },
+  {
+   "sku": "SPC-VIDR-0002",
+   "record_id": "recmMi2AVyW97xKyK",
+   "product_name": "Vidar SPC 7\" — Yukon",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-premium-flex-spc-yukon-7-x-60-x-8-mm"
+  },
+  {
+   "sku": "SPC-VIDR-0003",
+   "record_id": "reclksrcvyyhz6lDI",
+   "product_name": "Vidar SPC 7\" — Naked Oak",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-premium-flex-spc-naked-oak-7-x-60-x-8-mm"
+  },
+  {
+   "sku": "SPC-VIDR-0004",
+   "record_id": "reciFRg5jdpql5yIh",
+   "product_name": "Vidar SPC 7\" — Toffee Crunch",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-premium-flex-spc-toffee-crunch-7-x-60-x-8-mm"
+  },
+  {
+   "sku": "SPC-VIDR-0005",
+   "record_id": "reclLBWwbqeKKXdeN",
+   "product_name": "Vidar SPC 7\" — Camel",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-premium-flex-spc-camel-7-x-60-x-8-mm"
+  },
+  {
+   "sku": "SPC-VIDR-0006",
+   "record_id": "recy9my3w92jMMSzg",
+   "product_name": "Vidar SPC 7\" — Sunset",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-premium-flex-spc-sunset-7-x-60-x-8-mm"
+  },
+  {
+   "sku": "SPC-VIDR-0007",
+   "record_id": "recJF9ThruwtrnQzO",
+   "product_name": "Vidar SPC 7\" — Sky",
+   "reason": "no_alternative_link",
+   "detail": "kept https://www.speersflooring.com/products/vidar-premium-flex-spc-sky-7-x-60-x-8-mm"
+  }
+ ]
+}

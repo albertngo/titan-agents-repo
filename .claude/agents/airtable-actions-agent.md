@@ -68,6 +68,15 @@ may write an image field; the ban under `airtable_update_style_tags` stands for 
    removed since), else `refused` (`stale_changed`). Re-read: same count, the new filenames.
    Log type `airtable_attach_images`, `content_summary` starting `Re-attached under
    descriptive names`.
+7. **`op: relink_product_page`** (2026-09-29, Albert: "Switch if available but do not
+   delete. Replace with Word of Mouth (the speers one)"). Plan
+   `plans/<date>/image-relink-<scope>.json`, approval `image-relink-approval-<scope>.json`.
+   The second and last exception to "never replace", narrower still: it writes ONLY
+   `Supplier product page`, and only when the live value equals `action.expect` exactly
+   (compare-and-swap), else `refused` (`stale_changed`). The new value is never empty and
+   never a Speers URL (`speersflooring.com`) — refuse the action if it is. Nothing else on
+   the record is touched; images stay. Re-read: the field equals the value sent. Log type
+   `airtable_attach_images`, `content_summary` starting `Relinked product page`.
 
 ### `airtable_update_style_tags` (2026-09-26, `/style-tag`)
 
