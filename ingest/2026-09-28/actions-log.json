@@ -58500,6 +58500,30 @@
    "error": null,
    "raw_ref": "recJF9ThruwtrnQzO",
    "raw_ref_action_id": "img-6392f386679d"
+  },
+  {
+   "logged_at": "2026-09-28T22:09:32-04:00",
+   "agent": "airtable-actions-agent",
+   "type": "airtable_attach_images",
+   "target": "ENG-VIDR-0001 (recRugbXzK84mLRBI)",
+   "content_summary": "Renamed 0 of 1 file(s): update by record id sent Swatch images [{id: attAKoKowOyhlAOMj, filename: vidar-silver-stone-american-white-oak-engineered-hardwood-6in-character-swatch.jpg}] (typecast off); Airtable returned success but the write response and a re-read both still show filename ENG-VIDR-0001-swatch-1.jpg on the same attachment id. The API ignores filename on an existing attachment id. Record unchanged. Batch stopped; seq 2-75 not attempted.",
+   "approved_by": "Albert, chat 2026-09-29 ('yes. Do all that you recommend and put it in the skill'): rename this run's image files to descriptive SEO names; filename only",
+   "result": "failed",
+   "error": "rename_not_applied",
+   "raw_ref": "recRugbXzK84mLRBI",
+   "raw_ref_action_id": "img-141592504cff"
+  },
+  {
+   "logged_at": "2026-09-28T22:12:37-04:00",
+   "agent": "airtable-actions-agent",
+   "type": "airtable_attach_images",
+   "target": "ENG-VIDR-0001 (recRugbXzK84mLRBI)",
+   "content_summary": "Re-attached under descriptive names (same source images, replacing the field's files; op reattach_renamed). Swatch images: 1 file(s). Confirmed by re-read. New names: Swatch images: vidar-silver-stone-american-white-oak-engineered-hardwood-6in-character-swatch.jpg",
+   "approved_by": "Albert, chat 2026-09-29 ('yes. Do all that you recommend and put it in the skill'): descriptive SEO file names; the API cannot rename, so re-attach the same source images under the new names (the fallback named in the recommendation); only files this pipeline named",
+   "result": "executed",
+   "error": null,
+   "raw_ref": "recRugbXzK84mLRBI",
+   "raw_ref_action_id": "img-b0d4f636c348"
   }
  ]
 }
