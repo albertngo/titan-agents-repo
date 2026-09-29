@@ -181,6 +181,21 @@ Three rules that are not negotiable, all from Albert on 2026-09-26: a record who
 writes `Staff confirmed`. `write_mode` starts at `plan_only` and flipping it is a
 dated vault decision, same as the social pipeline was.
 
+### Product images (`/image-fill`, 2026-09-29)
+
+Third catalogue flow, Airtable only, never scheduled. `/image-fill <SUPPLIER>` finds a
+supplier's product photos on the web and fills the **blank** `Swatch images`,
+`Room scene images` and `Detail images` fields, plus a new `Supplier product page` link:
+`scripts/supplier_site_pull.py` (read-only) → the session model judges each image's kind
+and any ambiguous match → `scripts/image_fill_plan.py` (read-only, deterministic; contact
+sheet + held CSV) → policy approval → `airtable-actions-agent` (`airtable_attach_images`,
+blank only, read-before-write). Registry `platform-settings/supplier-sites.json` (site URLs
+live only there); contract `contracts/image-plan-schema.md`; method `methods/image-fill.md`.
+`write_mode` starts `plan_only`; Albert chose auto-attach-and-report once a pilot looks
+right, and that flip is a dated vault decision. A site that answers with a bot challenge
+is reported, never worked around. First supplier: Vidar (images via The Floor Box; the
+product-page link from Vidar's own pages as found in the search index).
+
 ## Agent class rules
 
 | | `*-ingest` | `*-actions` |

@@ -1,0 +1,102 @@
+{
+  "_comment": "Registry for /image-fill (.claude/commands/image-fill.md): which supplier websites a run may read, how to list their products, how a page is matched to catalogue records, which Airtable fields a run may fill, the caps and thresholds scripts/image_fill_plan.py applies, the staged write_mode, and where a run writes. Consumed by scripts/supplier_site_pull.py, scripts/image_match.py, scripts/image_fill_plan.py, .claude/agents/airtable-actions-agent.md (the closed field list for airtable_attach_images) and the command. Method: methods/image-fill.md. Albert, 2026-09-29: 'comb through the supplier's website (I can supply) to find the product images; analyze them; and then download and attach them into the swatch, room, details airtable rows itself'.",
+  "_maintenance": "A supplier's site URL lives HERE and nowhere else (never in a prompt). Adding a supplier = one entry under `suppliers` (Albert supplies the URL). tests/test_image_fill.py holds the field ids to platform-settings/airtable-master-catalogue-fields.json and pins write_mode.",
+  "config_version": "1",
+  "base_id": "appWHOVZ0QCS0xQ3M",
+  "table_id": "tblfLXD3zkSdNQGbS",
+
+  "write_mode": {
+    "mode": "plan_only",
+    "_values": ["plan_only", "write"],
+    "_flip": "While `plan_only`, /image-fill builds the plan, the contact sheet and the held CSV and writes NO approval file and NO Airtable record; scripts/image_fill_plan.py refuses --write-approval under it. Albert chose (2026-09-29) 'Auto-attach, report held' AFTER a plan_only pilot: flipping to `write` is a dated decision recorded in the vault (05_decisions/), made once he has looked at the pilot's contact sheet. tests/test_image_fill.py pins the value; update the test in the same commit as the flip."
+  },
+
+  "targets": {
+    "_comment": "The fields a run may fill, BLANK ONLY: a field that already holds anything (a person's upload, an earlier run's) is never replaced or appended to. The image's KIND decides its field, and the kind is the model's judgement of the downloaded image (image-judgements file), checked by the planner's rules below.",
+    "swatch":       {"name": "Swatch images",         "id": "fldbRlqkxa7hp7quH", "type": "multipleAttachments", "cap": 2},
+    "room":         {"name": "Room scene images",     "id": "fldcB1MQVqcPf6lKY", "type": "multipleAttachments", "cap": 4},
+    "detail":       {"name": "Detail images",         "id": "fldRH7GrND9w10KWH", "type": "multipleAttachments", "cap": 4},
+    "product_page": {"name": "Supplier product page", "id": "flduFw93z4YwnOA3I", "type": "url"}
+  },
+  "snapshot_fields": {
+    "_comment": "What /image-fill step 2 reads for the supplier's records (list_records_for_table fieldIds). Read only.",
+    "ids": ["fldx3byCOht5HbKmH", "fldRZJ5JW4G6Yig8x", "fldPSbURaP3wp0Tce", "fldLOrMqh4aBftjtu", "fldL8miCdB55TWmfJ", "fldNTc3qponIjsNLV", "fld42aGNM67nKH2hp", "fldb9VH0GrYL2y8OK", "fldo6Em81uoydl9Jj", "fldvWLfeSvsMnd1vL", "fldPPKZFhN91SDDbI", "fldPsKISM495IjaWU", "fldbRlqkxa7hp7quH", "fldcB1MQVqcPf6lKY", "fldRH7GrND9w10KWH", "flduFw93z4YwnOA3I"]
+  },
+
+  "image_rules": {
+    "_comment": "Applied by scripts/image_fill_plan.py to every judged image. Meaning: methods/image-fill.md.",
+    "min_swatch_long_edge_px": 1600,
+    "min_any_long_edge_px": 800,
+    "kinds": ["swatch", "room", "detail", "spec_sheet", "other"],
+    "kind_to_target": {"swatch": "swatch", "room": "room", "detail": "detail"},
+    "exclude_if": ["watermarked", "colour_mismatch"],
+    "skip_url_substrings": ["logo", "icon", "sprite", "placeholder", "favicon", "banner", "social"],
+    "skip_extensions": [".svg", ".gif", ".ico"]
+  },
+
+  "matching": {
+    "_comment": "scripts/image_match.py. A page matches a record only when the record's colour name appears in the page's TITLE (title, h1, og:title, product name, or URL slug) — body text never counts, because a generic colour ('Natural') appears everywhere. Width, species and pattern then either agree, say nothing, or veto. Tiers: `exact` = the supplier's own code equals the record's Supplier SKU, OR exactly one page is the top score with the colour in its title and no veto; `ambiguous` = more than one page ties at the top (the model picks at most one, and 'none' is a valid answer); `none` = no page. A wrong photo on a product is worse than no photo.",
+    "grade_words": ["Select & Better", "Select and Better", "Select", "Character", "Rustic", "Premium", "Natural Grade", "Prime", "ABCD", "ABC", "AB"],
+    "pattern_words": ["herringbone", "chevron", "versailles", "click", "r&q", "rq", "hickory", "spc", "laminate"]
+  },
+
+  "policy": {
+    "_comment": "Albert, 2026-09-29: 'Auto-attach, report held'. Applies ONLY while write_mode is `write`. Approves every planned action whose match tier is `exact` or `model_confirmed` and whose images passed image_rules; everything else is held and reported in the troubled CSV + PushNotification. Never approves a held row (it has no id).",
+    "approved_by": "policy: platform-settings/supplier-sites.json auto-approval (Albert, chat 2026-09-29: 'Auto-attach, report held')",
+    "auto_approve_tiers": ["exact", "model_confirmed"],
+    "max_actions_per_run": 300
+  },
+
+  "held_reasons": {
+    "no_match": "No page on the supplier's site carries this colour in its title.",
+    "ambiguous_match": "More than one page could be this product and the model did not confirm exactly one.",
+    "model_rejected": "The model looked at the candidate page(s) and said none is this product.",
+    "no_usable_image": "The matched page has no image that passed the rules (size, watermark, colour, kind).",
+    "low_res_swatch": "The only swatch-kind images are below min_swatch_long_edge_px.",
+    "not_judged": "An image was downloaded but the judgements file has no verdict for it.",
+    "host_blocked": "The site or its image host refused the connection (environment network policy).",
+    "all_targets_filled": "Every target field already holds something; nothing to fill."
+  },
+
+  "outputs": {
+    "pages": "supplier-pages-{scope}.json",
+    "images_dir": "supplier-images",
+    "judgements": "image-judgements-{scope}.json",
+    "plan": "image-plan-{scope}.json",
+    "approval": "image-approval-{scope}.json",
+    "contact_sheet": "image-contact-{scope}.html",
+    "troubled": "image-troubled-{scope}.csv",
+    "_where": "pages, judgements and images_dir under ingest/<date>/ (images_dir gitignored); plan, approval, contact sheet and troubled CSV under plans/<date>/."
+  },
+
+  "fetch": {
+    "user_agent": "TitanFlooringCatalogueBot/1.0 (dealer catalogue; contact info@titanfloors.ca)",
+    "delay_seconds": 0.5,
+    "timeout_seconds": 30,
+    "max_pages": 600
+  },
+
+  "suppliers": {
+    "VIDAR": {
+      "_added": "2026-09-29, Albert: 'this is vidars website https://www.vidarflooring.com/en'. First pilot (wood/vinyl).",
+      "site": "https://thefloorbox.ca/brands/vidar/flooring/24718bc3-4e01-11eb-b321-f6968cef729a",
+      "hosts": ["thefloorbox.ca", "www.thefloorbox.ca", "cdn.thefloorbox.ca"],
+      "follow_words": ["vidar"],
+      "product_pages": {
+        "_comment": "Albert, 2026-09-29: 'the product image page should still be from vidar's main site if possible'. The manufacturer's own site is challenge-protected, so its product pages are found through the search index (WebSearch, allowed_domains = hosts) — reading an index, not the blocked site — and matched to records by TITLE with the same rules as image pages. Only URLs under path_prefix count.",
+        "site": "https://www.vidarflooring.com/en",
+        "hosts": ["www.vidarflooring.com", "vidarflooring.com"],
+        "path_prefix": "/en/product/"
+      },
+      "_source_note": "2026-09-29: Vidar's own site (https://www.vidarflooring.com/en) answers every automated request, pages and image files alike, with SiteGround's anti-bot challenge (`sg-captcha: challenge`, HTTP 202). The run does not try to get past it. Albert pointed the run at The Floor Box's Vidar brand page instead. The Floor Box is a retailer, so a photo there may be its own rather than Vidar's; every written record carries the source in `Supplier product page`, which is what makes a later swap traceable.",
+      "listing": {"method": "auto", "_note": "auto = try Shopify products.json, WooCommerce Store API, sitemap.xml, then a same-site crawl from `site` (path prefix kept). Pin the method that worked after the first pull."},
+      "species_words": {
+        "AWO": ["american white oak", "white oak"],
+        "EWO": ["european white oak", "european oak"],
+        "ABW": ["american black walnut", "black walnut", "walnut"],
+        "HICKORY": ["hickory"]
+      },
+      "_matching_note": "Vidar publishes no codes for engineered/laminate (bert-airtable-schema: Supplier SKU blank), so matching keys on the colour name from Product name (`Vidar 7.5\" AWO — Naked Oak (Character)` -> `Naked Oak`) plus width / species / pattern. One page's images may go to every width and grade record of that colour unless the page names a grade or width that the record is not."
+    }
+  }
+}
