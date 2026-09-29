@@ -34,6 +34,7 @@ import csv
 import hashlib
 import html
 import json
+import re
 import sys
 from collections import Counter
 from datetime import datetime
@@ -184,10 +185,45 @@ def choose_page(rid, m, judgements, pages=None):
     return chosen, "model_confirmed", None
 
 
-def filename_for(sku, target, n, url):
+KIND_WORD = {"swatch": "swatch", "room": "room-scene", "detail": "detail"}
+
+
+def slug(text):
+    return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", (text or "").lower())).strip("-")
+
+
+def width_word(width):
+    """9 -> `9in`, 7.5 -> `7-5in`, 10.25 -> `10-25in` (a dot reads badly in a file name)."""
+    if not width:
+        return ""
+    return f"{float(width):g}".replace(".", "-") + "in"
+
+
+def seo_filename(rec, target, n, url, sup, matching):
+    """A file name a shopper's search could land on (Albert, 2026-09-29: SEO/AEO):
+    brand-colour-species-category-pattern-width-grade-code-kind[-n].ext, every part taken
+    from the record's own fields, e.g.
+    `vidar-naked-oak-american-white-oak-engineered-hardwood-9in-select-swatch.jpg`.
+    The internal SKU is left out: Airtable already ties the file to the record, and no
+    one searches it. The supplier's own code is kept when there is one (contractors search
+    codes like NK25)."""
     ext = Path(url.split("?")[0]).suffix.lower()
     ext = ext if ext in (".jpg", ".jpeg", ".png", ".webp", ".heic") else ".jpg"
-    return f"{sku}-{target}-{n}{ext}"
+    feat = image_match.record_features(rec, sup, matching)
+    species_words = (sup.get("species_words") or {}).get(feat["species"] or "", [])
+    laying = record_laying(rec)
+    parts = [rec.get("Brand") or (rec.get("Supplier") or "").title(), feat["colour"],
+             species_words[0] if species_words else "", rec.get("Category") or "",
+             laying if laying != "plank" else "", width_word(rec.get("Width (in)")),
+             rec.get("Grade") or "", rec.get("Supplier SKU") or "", KIND_WORD.get(target, target)]
+    kept = []
+    for part in (slug((p or "").replace("&", " and ")) for p in parts):
+        # Drop a part already said in full (the code NK25 is also the colour), never a
+        # word inside one: `naked-oak` must not shorten `american-white-oak`.
+        if part and not any(f"-{part}-" in f"-{k}-" for k in kept):
+            kept.append(part)
+    name = "-".join(kept)[:150].rstrip("-")
+    return f"{name}-{n}{ext}" if n > 1 else f"{name}{ext}"
 
 
 def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
@@ -267,7 +303,7 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
                 chosen.append(img)
             if chosen:
                 fields[targets[target]["name"]] = [
-                    {"url": img["url"], "filename": filename_for(sku, target, i + 1, img["url"])}
+                    {"url": img["url"], "filename": seo_filename(rec, target, i + 1, img["url"], sup, cfg["matching"])}
                     for i, img in enumerate(chosen)]
                 images += [{"target": target, "url": img["url"], "sha1": img["sha1"], "page": img["_page"],
                             "width": img.get("width"), "height": img.get("height")} for img in chosen]
@@ -359,9 +395,63 @@ def todo(records, pages_file, judgements, cfg, supplier, scope):
             "images_to_judge": list(images.values()), "ambiguous_records": ambiguous}
 
 
+OLD_RUN_NAME = re.compile(r"^(?P<sku>.+)-(?P<kind>swatch|room|detail)-(?P<n>\d+)\.[a-z]+$")
+
+
+def rename_plan(records, cfg, supplier, scope, source_plan=None):
+    """Give files an earlier /image-fill run named `<SKU>-<kind>-<n>.<ext>` the SEO name
+    (2026-09-29).
+
+    Airtable ignores a new filename sent with an existing attachment id (tried 2026-09-29:
+    the write succeeds, the name does not change), so a rename is a RE-ATTACH: the same
+    source image URL the run attached, under the new name, which replaces the file. That
+    is only allowed for a field whose every file carries that run's name pattern for THIS
+    record, so a person's upload is never replaced; the writer compares the live ids and
+    filenames with `expect` first. `source_plan` (the run's image plan) gives the URLs."""
+    sup = cfg["suppliers"][supplier]
+    targets = cfg["targets"]
+    sources = {}
+    for a in (source_plan or {}).get("actions", []):
+        for name, value in a["fields"].items():
+            if isinstance(value, list):
+                sources[(a["record_id"], name)] = [v["url"] for v in value]
+    actions = []
+    for rec in sorted(records, key=lambda r: r.get("SKU") or ""):
+        fields, expect = {}, {}
+        for target in ("swatch", "room", "detail"):
+            name = targets[target]["name"]
+            atts = rec.get(name) or []
+            if not atts:
+                continue
+            urls = sources.get((rec["id"], name))
+            ours = all((m := OLD_RUN_NAME.match(a.get("filename") or "")) and m["sku"] == rec.get("SKU")
+                       and m["kind"] == target for a in atts)
+            if not ours or not urls or len(urls) != len(atts):
+                continue  # a person's file is in the field, or the source URLs are unknown
+            new = [{"url": urls[i], "filename": seo_filename(rec, target, i + 1, att["filename"], sup, cfg["matching"])}
+                   for i, att in enumerate(atts)]
+            changed = any(n["filename"] != a["filename"] for n, a in zip(new, atts))
+            if changed:
+                fields[name] = new
+                expect[name] = [{"id": a["id"], "filename": a.get("filename")} for a in atts]
+        if fields:
+            actions.append({"id": action_id(rec.get("SKU"), {"rename": fields}), "seq": len(actions) + 1,
+                            "target_system": "airtable", "op": "reattach_renamed",
+                            "record_id": rec["id"], "sku": rec.get("SKU"),
+                            "product_name": rec.get("Product name") or "", "fields": fields,
+                            "field_ids": {n: next(t["id"] for t in targets.values()
+                                                  if isinstance(t, dict) and t["name"] == n) for n in fields},
+                            "expect": expect})
+    return {"contract_version": PLAN_VERSION, "scope": scope, "supplier": supplier, "op": "reattach_renamed",
+            "run_at": now().isoformat(), "expires": now().strftime("%Y-%m-%dT23:59:59%z"),
+            "summary": {"records": len(actions), "files": sum(len(v) for a in actions for v in a["fields"].values())},
+            "actions": actions, "held": []}
+
+
 def approval(plan, cfg, plan_path):
     pol = cfg["policy"]
-    ok = [a for a in plan["actions"] if a["match_tier"] in pol["auto_approve_tiers"]]
+    ok = [a for a in plan["actions"]
+          if a.get("op") == "reattach_renamed" or a.get("match_tier") in pol["auto_approve_tiers"]]
     ok = ok[: pol["max_actions_per_run"]]
     at = now().isoformat()
     return {"contract_version": APPROVAL_VERSION, "supplier": plan["supplier"], "scope": plan["scope"],
@@ -427,10 +517,14 @@ def main(argv=None):
     ap.add_argument("--supplier", required=True)
     ap.add_argument("--scope", required=True)
     ap.add_argument("--snapshot", action="append", required=True, type=Path)
-    ap.add_argument("--pages", required=True, type=Path)
+    ap.add_argument("--pages", type=Path, help="Required except with --rename-to-seo")
     ap.add_argument("--judgements", type=Path)
     ap.add_argument("--product-pages", type=Path)
     ap.add_argument("--prepare", action="store_true")
+    ap.add_argument("--source-plan", type=Path, help="With --rename-to-seo: the image plan that attached the files")
+    ap.add_argument("--rename-to-seo", action="store_true",
+                    help="Plan renaming this pipeline's earlier <SKU>-<kind>-<n> files to SEO names "
+                         "(needs a snapshot that includes the image fields)")
     ap.add_argument("--write-approval", action="store_true")
     ap.add_argument("--registry", type=Path, default=REGISTRY)
     ap.add_argument("--date", help="Default today (America/Toronto)")
@@ -442,7 +536,10 @@ def main(argv=None):
         return 2
     date = args.date or now().strftime("%Y-%m-%d")
     records = load_snapshot(args.snapshot)
-    pages_file = {**load_json(args.pages), "_path": str(args.pages)}
+    if not args.pages and not args.rename_to_seo:
+        print("error: --pages is required", file=sys.stderr)
+        return 2
+    pages_file = {**load_json(args.pages), "_path": str(args.pages)} if args.pages else {"pages": []}
     judgements = load_json(args.judgements)
     if judgements is not None:
         if judgements.get("contract_version") != JUDGEMENTS_VERSION:
@@ -453,6 +550,22 @@ def main(argv=None):
     if product_pages is not None:
         product_pages["_path"] = str(args.product_pages)
     out = cfg["outputs"]
+
+    if args.rename_to_seo:
+        if args.write_approval and cfg["write_mode"]["mode"] != "write":
+            print("error: write_mode is plan_only", file=sys.stderr)
+            return 4
+        plan = rename_plan(records, cfg, args.supplier, args.scope, load_json(args.source_plan))
+        plans = REPO_ROOT / "plans" / date
+        plans.mkdir(parents=True, exist_ok=True)
+        path = plans / f"image-rename-{args.scope}.json"
+        path.write_text(json.dumps(plan, indent=1, ensure_ascii=False) + "\n")
+        print(path, plan["summary"])
+        if args.write_approval:
+            ap_path = plans / f"image-rename-approval-{args.scope}.json"
+            ap_path.write_text(json.dumps(approval(plan, cfg, path.relative_to(REPO_ROOT)), indent=1) + "\n")
+            print("  approval ->", ap_path)
+        return 0
 
     if args.prepare:
         t = todo(records, pages_file, judgements, cfg, args.supplier, args.scope)

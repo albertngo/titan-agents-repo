@@ -65,6 +65,13 @@ Replace or append to a filled image field; write anything but the four target fi
 write while `write_mode` is `plan_only`; get past a bot challenge; guess a URL.
 
 ## Log
+- 2026-09-29 (later) — Speers Flooring added as the first Vidar source (Shopify feed, brand
+  in `vendor`, swatch + room scene per product at 1920-3000 px). write_mode flipped to
+  `write` (Albert: "go for it"; vault 05_decisions/2026-09-29-image-fill-write-mode.md).
+  75 records written: 69 swatch, 44 room, 1 detail. File names changed to descriptive
+  SEO names (Albert: "Do all that you recommend and put it in the skill"); Airtable's API
+  ignored a rename of an existing attachment id, so the 121 files were re-attached from
+  the same source URLs under the new names.
 - 2026-09-29 — Pilot (plan_only), Vidar via The Floor Box's CDN sitemap. The
   search-index Vidar links turned out dead (Albert: "go to 404"); product_pages disabled,
   `Supplier product page` = the Floor Box listing (Albert's choice). Swatch only from this

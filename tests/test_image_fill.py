@@ -396,6 +396,46 @@ class TestTwoSources(unittest.TestCase):
                          ["https://sp/products/a"])
 
 
+class TestSeoNames(unittest.TestCase):
+    """Albert, 2026-09-29: file names for search and AI answers, built from the record."""
+
+    def rec(self, **kw):
+        base = {"id": "recAAAAAAAAAAAAAA", "SKU": "ENG-VIDR-0087", "Brand": "Vidar", "Supplier": "VIDAR",
+                "Product name": 'Vidar 9" AWO — Wheat Berry (Select & Better)', "Collection": "9 Collection",
+                "Category": "Engineered hardwood", "Width (in)": 9, "Grade": "Select & Better"}
+        return {**base, **kw}
+
+    def name(self, rec, target="swatch", n=1, url="https://x/a.jpg"):
+        return plan.seo_filename(rec, target, n, url, VIDAR, REG["matching"])
+
+    def test_descriptive_name_without_the_internal_sku(self):
+        n = self.name(self.rec())
+        self.assertEqual(n, "vidar-wheat-berry-american-white-oak-engineered-hardwood-9in-select-and-better-swatch.jpg")
+        self.assertNotIn("eng-vidr", n)
+
+    def test_pattern_width_code_and_kind(self):
+        hb = self.rec(**{"Product name": 'Vidar HB 5" AWO — Naked Oak (Character)', "Collection": "Herringbone Collection",
+                         "Width (in)": 5, "Grade": "Character"})
+        self.assertEqual(self.name(hb, "room", 2, "https://x/a.png?v=1"),
+                         "vidar-naked-oak-american-white-oak-engineered-hardwood-herringbone-5in-character-room-scene-2.png")
+        lam = self.rec(**{"Product name": "Vidar Laminate — NK25", "Category": "Laminate", "Width (in)": 7.5,
+                          "Grade": None, "Supplier SKU": "NK25", "Collection": "Laminate Collection"})
+        self.assertEqual(self.name(lam), "vidar-nk25-laminate-7-5in-swatch.jpg")
+
+    def test_reattach_plan_touches_only_this_pipelines_files(self):
+        ours = self.rec(**{"Swatch images": [{"id": "att1", "filename": "ENG-VIDR-0087-swatch-1.jpg"}],
+                           "Room scene images": [{"id": "att2", "filename": "my-own-photo.jpg"}]})
+        src = {"actions": [{"record_id": ours["id"], "fields": {
+            "Swatch images": [{"url": "https://cdn/s.jpg", "filename": "ENG-VIDR-0087-swatch-1.jpg"}],
+            "Room scene images": [{"url": "https://cdn/r.jpg", "filename": "x"}]}}]}
+        p = plan.rename_plan([ours], REG, "VIDAR", "t", src)
+        a = p["actions"][0]
+        self.assertEqual(a["op"], "reattach_renamed")
+        self.assertEqual(list(a["fields"]), ["Swatch images"])
+        self.assertEqual(a["fields"]["Swatch images"][0]["url"], "https://cdn/s.jpg")
+        self.assertEqual(a["expect"]["Swatch images"], [{"id": "att1", "filename": "ENG-VIDR-0087-swatch-1.jpg"}])
+
+
 class TestRegistryAndProse(unittest.TestCase):
     def test_target_ids_match_the_live_field_registry(self):
         for key, t in REG["targets"].items():

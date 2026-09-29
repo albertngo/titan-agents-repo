@@ -57,6 +57,17 @@ may write an image field; the ban under `airtable_update_style_tags` stands for 
    fetch shows up here as a missing file: log that record `failed` and stop the batch.
 5. Max 50 records per call; one log entry per record, type `airtable_attach_images`,
    `raw_ref_action_id` = the action id, `content_summary` naming the fields and file counts.
+6. **`op: reattach_renamed`** (2026-09-29, Albert: SEO file names). Airtable ignores a new
+   filename sent with an existing attachment id (tried 2026-09-29: the write succeeds and
+   the name stays), so a rename is a re-attach. Plan `plans/<date>/image-rename-<scope>.json`,
+   approval `image-rename-approval-<scope>.json`. This is the ONE exception to "never
+   replace", and it is narrow: send each field as the action's `[{url, filename}]` list —
+   the same source image the run attached, same count, same order, new name — which
+   replaces the field's files. Read before write: the field's live `[{id, filename}]` must
+   equal `action.expect` exactly (every file one this pipeline named, nothing added or
+   removed since), else `refused` (`stale_changed`). Re-read: same count, the new filenames.
+   Log type `airtable_attach_images`, `content_summary` starting `Re-attached under
+   descriptive names`.
 
 ### `airtable_update_style_tags` (2026-09-26, `/style-tag`)
 

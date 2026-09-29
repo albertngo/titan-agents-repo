@@ -665,6 +665,45 @@ These two fields are Bert's product-level intelligence. Filled from salesperson 
 | **Salesperson notes** | Long text | Pairing tips, common objections, install quirks, what this product sells best for. | Bert |
 | **Pairs well with** | Single line text | SKUs of complementary products. e.g. matching stair nosing, recommended underpad. | Bert |
 
+### Product images (2026-09-29)
+
+Filled by `/image-fill` (`.claude/commands/image-fill.md`) from supplier and retailer
+websites, **blank fields only**. A person's upload is never replaced.
+
+| Field name | Type | Description | Notes |
+|------------|------|-------------|-------|
+| **Swatch images** | Attachments | Clean flat plank/tile face, no room; long edge ≥ 1600 px. The hero image and the only source for colour tags. Max 2 from a run. | Auto |
+| **Room scene images** | Attachments | Installed / lifestyle photos. Max 4 from a run. | Auto |
+| **Detail images** | Attachments | Close-ups: texture, edge / click profile, bevel, box. Max 4 from a run. | Auto |
+| **Supplier product page** | URL | The web page the photos came from, so any image can be traced with one click. The manufacturer's own page when one can be confirmed current; else the retailer listing (Vidar, 2026-09-29: Speers / The Floor Box). | Auto |
+
+**Image file names — for search (SEO) and AI answers (AEO), Albert 2026-09-29.** Every
+file a run attaches is named from the record's own fields:
+
+`brand-colour-species-category-pattern-width-grade-code-kind[-n].ext`
+
+e.g. `vidar-naked-oak-american-white-oak-engineered-hardwood-9in-select-swatch.jpg`,
+`vidar-nk25-laminate-7-5in-swatch.jpg`. Lower case, hyphens, `&` → `and`, 7.5" → `7-5in`,
+a part already said in full is not repeated. The internal SKU is left out (no shopper
+searches it; Airtable already ties the file to the record); the **supplier's own code** is
+kept (contractors search codes like NK25, Olympia stock codes). Code:
+`scripts/image_fill_plan.py` `seo_filename`. Airtable cannot rename an existing file through
+the API (tried 2026-09-29), so older names are fixed by re-attaching the same source image
+under the new name (`--rename-to-seo`), only for files the pipeline itself named.
+
+**The file name is the smallest signal.** What search engines and answer engines weigh
+more, and what the website (titan-desk) should build from these same fields:
+
+1. **The product page text** — name, description, specs from this table.
+2. **Alt text** on every image, built the same way as the file name but as words:
+   `Vidar Naked Oak engineered hardwood, 9-inch American white oak, Select grade — swatch`.
+   Room scenes: `… installed in a living room`. Never "image of", never stuffed.
+3. **Product structured data** (schema.org `Product`, JSON-LD): `name` = Product name,
+   `brand` = Brand, `color` = the colour from the name, `material` = Species,
+   `image` = Swatch first then Room scenes, `sku` = our SKU, `mpn` = Supplier SKU when
+   there is one, `offers` from Retail price. This is what AI answer engines lean on most.
+4. **The file name** — as above.
+
 ---
 
 ## Table 2 — Price History Log

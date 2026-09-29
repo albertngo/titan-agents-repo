@@ -1,5 +1,5 @@
 ---
-description: Fill a supplier's blank Swatch / Room scene / Detail image fields in Airtable from the supplier's website. Builds a reviewable plan, applies policy, writes only what is approved. plan_only until deliberately flipped.
+description: Fill a supplier's blank Swatch / Room scene / Detail image fields in Airtable from supplier and retailer websites, with descriptive SEO file names. Builds a reviewable plan, applies policy, writes only what is approved (write mode since 2026-09-29).
 ---
 
 # /image-fill `<SUPPLIER>`
@@ -52,6 +52,27 @@ lower-case slug. No entry → stop and ask Albert for the site URL; never put a 
    when anything is held. Commit the pages file, judgements, index, plan, contact sheet,
    troubled CSV and log (the images folder is gitignored), push, and open the PR per the
    repo's git workflow.
+
+## Names, alt text and schema (SEO / AEO, Albert 2026-09-29)
+
+- Files are named from the record's fields by `seo_filename`:
+  `brand-colour-species-category-pattern-width-grade-code-kind[-n].ext`
+  (`vidar-naked-oak-american-white-oak-engineered-hardwood-9in-select-swatch.jpg`). The
+  internal SKU is never in a file name; the supplier's own code is.
+- Files attached before this rule: `--rename-to-seo --source-plan <that run's plan>`
+  plans a re-attach of the same source images under the new names (Airtable's API ignores
+  a rename). Only fields whose every file carries the old `<SKU>-<kind>-<n>` name are
+  touched; the writer checks the live files against `expect` first.
+- The website should build **alt text** and **Product JSON-LD** from the same fields;
+  the recipe is in bert-airtable-schema, "Product images". Those carry more weight than
+  the file name.
+
+## Several sources per supplier
+
+A supplier may list `extra_sources` (e.g. Vidar: Speers first, then The Floor Box). Each
+source is matched on its own; per field the larger photo wins, a tie goes to the earlier
+source, and the same photo from two sites (a visual fingerprint within 6 bits) is kept
+once. `Supplier product page` is the page the swatch came from (else the room scene).
 
 ## Rules that do not bend
 
