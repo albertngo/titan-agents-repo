@@ -107,9 +107,14 @@ class SocialRegistryCase(unittest.TestCase):
         self.assertIn("_video_trap", gmb,
                       "the GMB publication/photo split must stay documented in the registry")
 
-    def test_write_mode_is_draft_until_deliberately_changed(self):
-        self.assertEqual(self.dest["write_mode"]["mode"], "draft",
-                         "staged rollout: flipping this is a dated decision, not an edit")
+    def test_write_mode_is_live_by_decision(self):
+        """Staged rollout ended: flipped live 2026-09-14 and kept live permanently
+        (Albert, 2026-09-28). Going back to draft is a dated decision, not an edit, so
+        the registry must keep citing the decision that set the current mode."""
+        wm = self.dest["write_mode"]
+        self.assertEqual(wm["mode"], "live",
+                         "live is the decided mode; changing it needs a new dated decision")
+        self.assertIn("decisions/2026-09-14-social-write-mode-live.md", wm["_comment"])
 
     def test_drive_root_is_pinned_by_id(self):
         """Three folders in this account match 'Titan Flooring', one owned by an
@@ -145,7 +150,12 @@ class SocialRegistryCase(unittest.TestCase):
         'Next: Post To' or 'Caption' has crossed from executing into originating."""
         w = self.src["sources"]["titan_content_ideas"]["write_properties"]
         written = {v for k, v in w.items() if not k.startswith("_")}
-        for forbidden in ("Status", "Next: Post To", "Caption", "Post Date", "Link to Files"):
+        ideas = self.src["sources"]["titan_content_ideas"]
+        cf = ideas["caption_fields"]
+        caption_props = set(cf["caption"].values()) | {
+            cf["video_title"]["property"], cf["first_comment"]["property"]}
+        for forbidden in ("Status", "Next: Post To", "Post Date", "Link to Files",
+                          *sorted(caption_props)):
             self.assertNotIn(forbidden, written,
                              f"{forbidden} must never be writable by the pipeline")
 
@@ -229,6 +239,48 @@ class SocialRegistryCase(unittest.TestCase):
         self.assertIn("LinkedIn", surfaces(self.dest))
         self.assertFalse(surfaces(self.dest)["LinkedIn"]["enabled"])
         self.assertIsNone(self.dest["connected_networks"]["linkedin"])
+
+    # ---- per-platform captions (2026-09-28) ------------------------------------
+
+    def test_every_enabled_surface_has_a_caption_field(self):
+        """The Send to Calendar button copies caption_fields[Post To] into the new row.
+        An enabled surface missing from the map gets a blank caption on every row, forever,
+        and nothing says why -- the silent-miss failure again."""
+        mapping = self.src["sources"]["titan_content_ideas"]["caption_fields"]["caption"]
+        for name, s in surfaces(self.dest).items():
+            if s.get("enabled"):
+                self.assertIn(name, mapping, f"{name} is enabled but has no caption field")
+
+    def test_caption_field_keys_are_real_surfaces(self):
+        mapping = self.src["sources"]["titan_content_ideas"]["caption_fields"]["caption"]
+        stray = set(mapping) - set(surfaces(self.dest))
+        self.assertFalse(stray, f"caption_fields names surfaces that do not exist: {stray}")
+
+    def test_caption_fields_are_read_from_the_idea(self):
+        ideas = self.src["sources"]["titan_content_ideas"]
+        cf = ideas["caption_fields"]
+        for prop in set(cf["caption"].values()) | {cf["video_title"]["property"],
+                                                    cf["first_comment"]["property"]}:
+            self.assertIn(prop, ideas["read_properties"], prop)
+        self.assertNotIn("Caption", ideas["read_properties"],
+                         "the single idea Caption was dropped 2026-09-28")
+
+    def test_youtube_surfaces_carry_a_title_and_no_first_comment(self):
+        cf = self.src["sources"]["titan_content_ideas"]["caption_fields"]
+        self.assertEqual(set(cf["video_title"]["surfaces"]), {"YouTube - Shorts", "YouTube - Long"})
+        self.assertFalse(set(cf["first_comment"]["surfaces"]) & {"YouTube - Shorts", "YouTube - Long",
+                                                                   "Google Business Profile"})
+
+    def test_button_formula_mirrors_the_mapping_and_has_no_fallback(self):
+        """The button is maintained by hand from this reference copy. Every mapped surface
+        must appear in it with its own field, and the default branch must be empty --
+        a non-empty default posts one platform's caption on another."""
+        cf = self.src["sources"]["titan_content_ideas"]["caption_fields"]
+        formula = cf["button_formula"]["Caption"]
+        for surface, prop in cf["caption"].items():
+            self.assertIn(f'== "{surface}", This page.{prop}', formula, surface)
+        self.assertTrue(formula.rstrip().endswith('"")'),
+                        "the ifs() default must be an empty string")
 
 
 if __name__ == "__main__":

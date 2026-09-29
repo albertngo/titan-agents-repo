@@ -1,5 +1,5 @@
 ---
-description: Schedule one Notion content row into Metricool. Builds a reviewable plan, applies policy, and writes only what is approved. Draft mode until deliberately flipped.
+description: Schedule one Notion content row into Metricool. Builds a reviewable plan, applies policy, and writes only what is approved. Live mode (posts publish), by decision since 2026-09-14.
 ---
 
 # /content-schedule `<logID>`
@@ -48,9 +48,11 @@ two rollups that ride on the `Content Series` relation: `Content ID` and
 One fetch is enough — the caption is on the row and the Drive content folder arrives as
 a rollup. Do not fetch the idea separately unless something is missing.
 
-**The caption is `Caption` on the row. That is the whole rule.** It is a text field
-copied from the idea when the row is created, not a rollup, so every row carries its
-own — which is what you want, because captions do not travel. "Link in bio" is
+**The caption is `Caption` on the row. That is the whole rule.** It is a text field,
+not a rollup. The Send to Calendar button copies it from the idea's field **for this
+row's platform** (`Caption - Instagram`, `Caption - TikTok`, … per
+`content-sources.json` → `titan_content_ideas.caption_fields`), so every row carries its
+own, which is what you want, because captions do not travel. "Link in bio" is
 Instagram and TikTok idiom and a dead instruction on Facebook, YouTube or a Google
 listing, where a real URL works. A thirty-hashtag block is native on Instagram,
 renders three deep on YouTube, and reads as spam on a business listing. GBP also caps
@@ -146,10 +148,11 @@ Apply the holds in that contract. The three that are easiest to get wrong:
 - **Stories.** A Story has no caption of its own. If every provider on the post is a
   Story, do not send `info.text` at all.
 - **Google Business Profile.** A row with both a video and a caption is not
-  expressible as one GMB post. Hold it; do not choose a half to discard. Also note the
-  caption is a **rollup shared with every other platform on that idea**, so it can
-  arrive over GMB's 1500-character limit through no fault of this row. Hold it — never
-  truncate, which would publish a sentence nobody wrote.
+  expressible as one GMB post. Hold it; do not choose a half to discard. A caption over
+  GMB's 1500-character limit is also a hold: never truncate, which would publish a
+  sentence nobody wrote. Since 2026-09-28 the row's caption comes from the idea's own
+  `Caption - Google Business` field, so an over-limit caption is that field's to fix,
+  not a side effect of another platform's caption.
 
 ### 4 — Approve
 

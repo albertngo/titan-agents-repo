@@ -54,7 +54,7 @@ READ_LONG_EDGE = 1568  # px; keeps a swatch's colour, drops the token cost of a 
 SPEC_KEYS = ("Finish type", "Grade", "Species", "Colour / tone", "Collection",
              "Product name", "Salesperson notes")
 SIGNAL_KEYS = ("Finish type", "Grade", "Species", "Colour / tone")
-MISSING_MARK = "MISSING"  # the header style_tag_plan.render_questions opens its missing list with
+OPEN_MARK = "❓"  # style_tag_plan.render_questions marks every open item (missing or asked) with it
 
 
 def today():
@@ -193,7 +193,7 @@ def candidate_from(rec, reg, sku_filter=None):
     # A record with every field filled still comes back when Albert left a new note (it may
     # replace an AI-suggested value) or when the last run's questions still list something
     # missing (he filled it by hand; the checklist must catch up).
-    stale_questions = MISSING_MARK in review.get("questions", "")
+    stale_questions = OPEN_MARK in review.get("questions", "")
     if not blank_fields and not review.get("note_is_new") and not stale_questions:
         return None, "nothing_blank"
     images = manifest(rec, reg)

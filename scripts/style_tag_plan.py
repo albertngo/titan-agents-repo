@@ -120,6 +120,8 @@ def texture_from_finish(finish, reg):
         if any(norm(needle) in text for needle in rule["contains"]):
             return {"value": rule["texture"], "confidence": rule["confidence"],
                     "provisional": bool(rule.get("provisional")),
+                    "confidence_if_busy": rule.get("confidence_if_busy"),
+                    "busy_values": rule.get("busy_values") or [],
                     "detail": f'Finish type "{finish}" -> {rule["texture"]} ({rule.get("why", "rule table")})'}
     return None
 
@@ -352,6 +354,16 @@ def resolve_texture(cand, judgement, reg):
     specs = cand["specs"]
     spec = texture_from_finish(specs.get("Finish type"), reg)
     img = observation(judgement, "texture_seen", cand, {DETAIL})
+    if spec and spec.get("confidence_if_busy") is not None:
+        # EIR (Albert, 2026-09-27): how textured it reads depends on how busy the grain print is.
+        seen = observation(judgement, "busyness_seen", cand, {SWATCH, DETAIL})
+        busy = seen["value"] if seen else (cand.get("current") or {}).get("Busyness")
+        if busy in spec["busy_values"]:
+            spec = {**spec, "confidence": spec["confidence_if_busy"],
+                    "detail": spec["detail"] + f"; the grain print looks {str(busy).lower()}"}
+        else:
+            spec = {**spec, "detail": spec["detail"] + (f"; the grain print looks {str(busy).lower()}" if busy
+                                                         else "; can't tell how busy the print is")}
     if spec is None:
         if specs.get("Finish type"):
             return "held", _held("spec_unmapped", img["value"] if img else None,
@@ -587,7 +599,7 @@ def evidence_block(plan_path, tags, reg):
 # Style questions — the plain-English checklist written onto the record
 # ---------------------------------------------------------------------------
 
-MISSING_MARK = "MISSING"  # style_tag_pull.MISSING_MARK: a record whose questions still hold it is re-pulled
+OPEN_MARK = "❓"  # style_tag_pull.OPEN_MARK: questions holding it are open (re-pulled; Style review formula)
 EVIDENCE_LINE = re.compile(r"^(?P<field>[A-Za-z ]+): (?P<value>.+?) \((?P<conf>\d\.\d\d), (?P<src>[^)]*)\) — (?P<why>.*)$")
 
 
@@ -600,7 +612,7 @@ def earlier_tags(evidence_text, reg):
         m = EVIDENCE_LINE.match(line.strip())
         if m and m.group("field") in names:
             out[m.group("field")] = {"confidence": float(m.group("conf")), "source": m.group("src"),
-                                     "why": m.group("why")}
+                                     "why": m.group("why"), "value": m.group("value")}
     return out
 
 
@@ -685,8 +697,10 @@ def render_questions(cand, approved, held, quiet, overwrite, reg, scope, note_re
             other.append(row)
     lines = []
     missing = [f for f in target_names(reg) if f not in final]
+    # questions about a field that IS filled (e.g. a note that left Style unclear) — asked, never dropped
+    asked = [row for f in target_names(reg) if f in final for row in by_field.get(f, [])]
     if missing or other:
-        lines.append(f"❓ {MISSING_MARK} — answer in Style notes (type or dictate), or fill the field yourself")
+        lines.append(f"{OPEN_MARK} MISSING — answer in Style notes (type or dictate), or fill the field yourself")
         for f in missing:
             rows = by_field.get(f) or []
             if rows:
@@ -700,20 +714,26 @@ def render_questions(cand, approved, held, quiet, overwrite, reg, scope, note_re
             lines.append(f"• {row['field']} — {_sentence(explain_held(row))}")
     else:
         lines.append("✅ Nothing missing.")
+    if asked:
+        lines.append("")
+        lines.append(f"{OPEN_MARK} QUESTION — answer in Style notes")
+        for row in asked:
+            lines.append(f"• {row['field']} — {_sentence(explain_held(row))}")
     filled = [f for f in target_names(reg) if f in final]
     if filled:
         lines.append("")
-        lines.append("👀 TO CONFIRM — filled as AI suggested. If right, set Style tags status to Staff "
-                     "confirmed; if not, change the field or say so in Style notes")
+        lines.append("👀 TO CONFIRM — if these are right, set Style tags status to Staff confirmed; "
+                     "if not, change the field or say so in Style notes")
         for f in filled:
             if f in approved:
                 t = approved[f]
                 how = "from your note" if t["source"] == "reviewer_note" else f"{_pct(t['confidence'])}"
                 why = t["evidence"]
-            elif f in earlier:
+            elif f in earlier and same_value(earlier[f]["value"].split("|"), final[f] if isinstance(final[f], list)
+                                              else [final[f]]):
                 how, why = _pct(earlier[f]["confidence"]), earlier[f]["why"]
             else:
-                how, why = "set earlier", ""
+                how, why = "set by hand", ""  # no evidence line, or someone changed it since the run wrote it
             why = _clean(why)
             note = f" — {why}" if why and not why.startswith("your note") else ""
             lines.append(f"• {f}: {value_text(final[f]).replace('|', ', ')} ({how}){note}")

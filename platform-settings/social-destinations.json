@@ -351,7 +351,7 @@
     }
   },
   "write_mode": {
-    "_comment": "Staged rollout, Albert 2026-09-12, flipped live 2026-09-14 (Albert, explicit instruction in session -- see titan-vault decisions/2026-09-14-social-write-mode-live.md). Every write now goes out live; it no longer carries info.draft:true by default.",
+    "_comment": "Staged rollout, Albert 2026-09-12, flipped live 2026-09-14 (Albert, explicit instruction in session -- see titan-vault decisions/2026-09-14-social-write-mode-live.md). Every write now goes out live; it no longer carries info.draft:true by default. Kept live PERMANENTLY (Albert, 2026-09-28: 'switch it to write mode and not go to draft permanently'). Draft stays available as a mechanism, but returning to it needs a new dated decision.",
     "mode": "live",
     "draft_flag": "info.draft",
     "_mechanism": "info.draft:true is the draft switch. NOT createScheduledPostForReview — that is a different feature requiring a Metricool plan with team management and an explicit reviewer email list, which Pro does not include.",
@@ -378,7 +378,7 @@
   "analytics": {
     "_comment": "Per-surface mapping for the PUBLISH RECONCILIATION path: once a post publishes it disappears from getScheduledPosts, and these metrics are the only way to read back what actually went out. Consumed by scripts/social_publish_reconcile.py via getAnalyticsDataByMetrics. Captured live 2026-09-14 from getAnalyticsAvailableMetrics -- every fieldId below was read off the API, none inferred.",
     "_response_shape": "getAnalyticsDataByMetrics returns {\"rows\": [[v1, v2, ...]]} -- POSITIONAL arrays with no field names. The column order IS the order the metrics were requested in. So the request list and the unpacking must be built from the same ordered mapping or the columns silently transpose: a caption lands in the URL field and nothing errors. That is why `fields` below is an ordered object, read once and used for both.",
-    "_timestamp_format": "The 'with time' metrics return a compact YYYYMMDDHHMMSS string, e.g. '20260806033114', and it appears to be UTC -- that sample is 03:31, which as America/Toronto local would be a strange hour to post and as UTC is 23:31 the previous evening. NOT CONFIRMED. Because it is unconfirmed, the matcher deliberately does not depend on it: it uses a wide tolerance window rather than exact times, so a timezone error costs nothing. Confirm it against a post whose publish time we set ourselves, then tighten.",
+    "_timestamp_format": "The 'with time' metrics return a compact YYYYMMDDHHMMSS string, e.g. '20260806033114', and it appears to be UTC -- that sample is 03:31, which as America/Toronto local would be a strange hour to post and as UTC is 23:31 the previous evening. NOT CONFIRMED. Because it is unconfirmed, the matcher deliberately does not depend on it: it uses a wide tolerance window rather than exact times, so a timezone error costs nothing. Confirm it against a post whose publish time we set ourselves, then tighten. CONFIRMED UTC 2026-09-28: TC-86's reel was scheduled for 2026-09-15T01:30Z and analytics returned 20260915013113. The matcher still uses a tolerance window, which is now margin rather than a hedge.",
     "_lag": "Analytics is not instant. A post can be gone from getScheduledPosts before it appears here. That gap is not a deletion -- the reconciler reports awaiting_analytics rather than concluding anything.",
     "surfaces": {
       "Instagram Reels": {
@@ -389,7 +389,20 @@
           "text": "IGRE03",
           "post_id": "IGRE04",
           "url": "IGRE06"
-        }
+        },
+        "stats": {
+          "posted_at": "IGRE02",
+          "url": "IGRE06",
+          "views": "IGRE23",
+          "reach": "IGRE11",
+          "avg_watch_s": "IGRE24",
+          "completion_pct": "IGRE27",
+          "likes": "IGRE10",
+          "comments": "IGRE07",
+          "saves": "IGRE12",
+          "shares": "IGRE21"
+        },
+        "_stats_note": "No per-reel follows metric exists (the Follows Gained column was dropped 2026-09-28 for that reason). IGRE13/IGRE15 are deprecated ('Do not use'); IGRE23 is the live views field. IGRE27 retention came back null on TC-86 (2026-09-28): blank, never estimated."
       },
       "Facebook Page": {
         "network": "facebook",
@@ -399,7 +412,18 @@
           "text": "FBPO03",
           "post_id": "FBPO04",
           "url": "FBPO06"
-        }
+        },
+        "stats": {
+          "posted_at": "FBPO02",
+          "url": "FBPO06",
+          "views": "FBPO16",
+          "reach": "FBPO12",
+          "avg_watch_s": "FBPO15",
+          "likes": "FBPO13",
+          "comments": "FBPO08",
+          "shares": "FBPO14"
+        },
+        "_stats_note": "No 3-second view metric. FBPO16 counts views of at least 10 seconds (or nearly the full length), so Facebook Views and every per-view rate are on a 10-second basis. Comparable inside Facebook only, which is the only way this pipeline compares. likes = total reactions (FBPO13)."
       },
       "TikTok": {
         "network": "tiktok",
@@ -409,7 +433,19 @@
           "posted_at": "TKPO02",
           "text": "TKPO05",
           "url": "TKPO03"
-        }
+        },
+        "stats": {
+          "posted_at": "TKPO02",
+          "url": "TKPO03",
+          "views": "TKPO07",
+          "reach": "TKPO11",
+          "avg_watch_s": "TKPO15",
+          "completion_pct": "TKPO13",
+          "likes": "TKPO08",
+          "comments": "TKPO09",
+          "shares": "TKPO10"
+        },
+        "_stats_note": "TikTok exposes no saves metric, so Saves and Save Rate stay blank on TikTok rows. completion_pct is the full-video-watched rate."
       },
       "YouTube - Shorts": {
         "network": "youtube",
@@ -421,7 +457,17 @@
           "title": "YTVV17",
           "post_id": "YTVV04",
           "url": "YTVV05"
-        }
+        },
+        "stats": {
+          "posted_at": "YTVV02",
+          "url": "YTVV05",
+          "views": "YTVV06",
+          "avg_watch_s": "YTVV08",
+          "likes": "YTVV09",
+          "comments": "YTVV11",
+          "shares": "YTVV12"
+        },
+        "_stats_note": "No average-percent-viewed and no subscribers-gained per video in this connector. Completion % stays blank."
       },
       "YouTube - Long": {
         "network": "youtube",
@@ -432,7 +478,17 @@
           "title": "YTVV17",
           "post_id": "YTVV04",
           "url": "YTVV05"
-        }
+        },
+        "stats": {
+          "posted_at": "YTVV02",
+          "url": "YTVV05",
+          "views": "YTVV06",
+          "avg_watch_s": "YTVV08",
+          "likes": "YTVV09",
+          "comments": "YTVV11",
+          "shares": "YTVV12"
+        },
+        "_stats_note": "No average-percent-viewed and no subscribers-gained per video in this connector. Completion % stays blank."
       },
       "Google Business Profile": {
         "network": "googleBusinessProfile",
@@ -441,13 +497,15 @@
         "fields": {
           "posted_at": "GMPO02",
           "text": "GMPO10"
-        }
+        },
+        "_stats_note": "No stats block: outside the feedback loop's platforms, and GBP exposes no permalink to join a post to its row."
       },
       "LinkedIn": {
         "_unavailable": "LinkedIn is not connected in Metricool (Albert declined the tier, 2026-09-12), so there is no analytics to read. Fill this in if connected_networks.linkedin ever stops being null."
       }
     },
-    "_field_order_is_load_bearing": "The order of `fields` IS the order the metrics are requested in, and the order the positional response is unpacked in. Both come from this one mapping, so they cannot disagree -- but only while nothing reorders it by hand. Reordering these keys without reordering the request transposes columns SILENTLY: a caption lands in Live URL, a url in Posted Caption, both well-formed, no error anywhere. That exact mistake was made here on 2026-09-14 while writing this block and was caught only because a test asserted against a verbatim live response. Keep a test pinned to real captured rows."
+    "_field_order_is_load_bearing": "The order of `fields` IS the order the metrics are requested in, and the order the positional response is unpacked in. Both come from this one mapping, so they cannot disagree -- but only while nothing reorders it by hand. Reordering these keys without reordering the request transposes columns SILENTLY: a caption lands in Live URL, a url in Posted Caption, both well-formed, no error anywhere. That exact mistake was made here on 2026-09-14 while writing this block and was caught only because a test asserted against a verbatim live response. Keep a test pinned to real captured rows.",
+    "_stats_comment": "Added 2026-09-28 for /content-feedback. Per-post, LIFETIME-TO-DATE counts, returned as strings (null = not available). Ordered exactly like `fields`: this is the request order AND the unpack order, and scripts/social_feedback.py uses both from this one mapping. The join to a log row is `url` == the row's Live URL; posted_at is kept for the slot fallback."
   },
   "_row_fields_comment": "Per-surface mapping from a Content Calendar Log COLUMN to the Metricool field it fills. Added 2026-09-14 (Albert: 'whatever the platform NEEDS, make a column, so we can filter by platform and fill those in'). `required: true` means /content-schedule HOLDS the row when it is blank -- the post would be rejected or malformed without it. The dividing line for adding a column at all: it must VARY per post. Anything constant for every Titan post (madeForKids, TikTok privacyOption, YouTube privacy) stays registry config, because a column for an invariant is pure friction on every row forever."
 }

@@ -52,7 +52,13 @@
         "Post Date",
         "Next: Post To",
         "Story Variant",
-        "Caption",
+        "Caption - Instagram",
+        "Caption - TikTok",
+        "Caption - Facebook",
+        "Caption - YouTube",
+        "Caption - Google Business",
+        "YouTube Title",
+        "First Comment",
         "Cover Image URL",
         "Cover Frame (ms)",
         "Link to Files",
@@ -60,6 +66,43 @@
         "Content Type",
         "Series"
       ],
+      "caption_fields": {
+        "_comment": "Added 2026-09-28 (Albert). One caption property per platform on the IDEA, replacing the single 'Caption' (dropped the same day, after its six values were copied into 'Caption - Instagram' and verified character for character). The Send to Calendar button's 'Add page to Content Calendar Log' action picks one with an ifs() on 'Next: Post To' and COPIES it into the new row's Caption. This block is the data that formula mirrors -- change one, change the other.",
+        "caption": {
+          "Instagram Reels": "Caption - Instagram",
+          "TikTok": "Caption - TikTok",
+          "Facebook Page": "Caption - Facebook",
+          "YouTube - Shorts": "Caption - YouTube",
+          "YouTube - Long": "Caption - YouTube",
+          "Google Business Profile": "Caption - Google Business"
+        },
+        "_linkedin": "No field. LinkedIn is disabled and not connected in Metricool, so its row gets a blank Caption, which /content-schedule holds as missing_caption.",
+        "video_title": {
+          "property": "YouTube Title",
+          "log_column": "Video Title",
+          "surfaces": [
+            "YouTube - Shorts",
+            "YouTube - Long"
+          ]
+        },
+        "first_comment": {
+          "property": "First Comment",
+          "log_column": "First Comment",
+          "surfaces": [
+            "Instagram Reels",
+            "TikTok"
+          ]
+        },
+        "_no_fallback": "The formula's last branch is \"\" on purpose. A platform whose field is empty gets a blank Caption and is HELD, never given another platform's caption. Falling back is exactly the failure this replaces: an Instagram caption ('link in bio', a hashtag block) posted to YouTube or a Google listing.",
+        "_one_press_one_row": "The button creates ONE log row, for whatever 'Next: Post To' says at the moment it is pressed. To fan an idea out, change the select and press again. Everything downstream is already keyed per row.",
+        "_why_properties_not_page_body": "titan-content-scripts also writes the captions into the page body (with its Formula | Hook | CTA label lines). The body is for reading; the properties are what posts. A button formula cannot read page body text, and a parser keyed on a heading's wording would post the wrong platform's caption the first time someone renamed a heading.",
+        "button_formula": {
+          "Caption": "ifs(This page.Next: Post To == \"Instagram Reels\", This page.Caption - Instagram, This page.Next: Post To == \"TikTok\", This page.Caption - TikTok, This page.Next: Post To == \"Facebook Page\", This page.Caption - Facebook, This page.Next: Post To == \"YouTube - Shorts\", This page.Caption - YouTube, This page.Next: Post To == \"YouTube - Long\", This page.Caption - YouTube, This page.Next: Post To == \"Google Business Profile\", This page.Caption - Google Business, \"\")",
+          "Video Title": "if(This page.Next: Post To.contains(\"YouTube\"), This page.YouTube Title, \"\")",
+          "First Comment": "if(or(This page.Next: Post To == \"Instagram Reels\", This page.Next: Post To == \"TikTok\"), This page.First Comment, \"\")",
+          "_comment": "Reference copy of what lives on the button. Notion buttons cannot be read or edited through the API, so this is maintained by hand and verified by pressing it."
+        }
+      },
       "write_properties": {
         "_comment": "The ONLY properties any part of this pipeline may write. Everything else on the row is Albert's and the team's. Mirrors the read/write split in pricelist-sources.json.",
         "post_status": "Post Status",
@@ -80,7 +123,7 @@
         "Decorated Story"
       ],
       "surface_values": "see destination_vocabulary.names -- one list, four consumers. Do not copy it here again.",
-      "_never_write": "Never write Status, Next: Post To, Caption, Post Date or Link to Files. Those are the plan; the pipeline reports against them and does not edit them. An agent that 'corrects' Next: Post To has decided what to post, which is the one thing it must never do.",
+      "_never_write": "Never write Status, Next: Post To, Post Date, Link to Files, or any of the caption_fields properties (Caption - Instagram/TikTok/Facebook/YouTube/Google Business, YouTube Title, First Comment). Those are the plan; the pipeline reports against them and does not edit them. An agent that 'corrects' Next: Post To has decided what to post, which is the one thing it must never do. The titan-content-scripts skill writes the caption fields -- that is Albert's own authoring tool, not the pipeline.",
       "page_template": {
         "url": "https://app.notion.com/p/3db596a4505f81dcad13e36eec8c21cf",
         "name": "Content Item Template v2 — shared core + platform tails",
@@ -98,7 +141,7 @@
       "sensitivity": "team",
       "row_naming": "CC: <Content Name>",
       "relation_to_idea": "Content Series",
-      "_relation_comment": "Relation back to Titan Content Ideas. Three rollups ride on it and save the pipeline a second fetch: Content ID (the idea's TC number), Link to Files (the Drive content folder) and Caption.",
+      "_relation_comment": "Relation back to Titan Content Ideas. Two rollups ride on it and save the pipeline a second fetch: Content ID (the idea's TC number) and Link to Files (the Drive content folder). Caption is NOT a rollup -- it is a text field on the row, copied from the idea's platform caption field when the row is created (see titan_content_ideas.caption_fields).",
       "select_columns": [
         "url",
         "Content Name",
@@ -124,7 +167,31 @@
         "YouTube Category",
         "Branded Content",
         "Privacy",
-        "Ready To Queue"
+        "Ready To Queue",
+        "Views",
+        "Reach",
+        "Likes",
+        "Comments",
+        "Saves",
+        "Shares",
+        "Avg Watch Time (s)",
+        "Completion %",
+        "Caption Formula",
+        "Caption Edited",
+        "Stats Pulled At",
+        "Views 30d",
+        "Saves 30d",
+        "Shares 30d",
+        "Comments 30d",
+        "30d Pulled At",
+        "Views Latest",
+        "Saves Latest",
+        "Shares Latest",
+        "Comments Latest",
+        "Latest Pulled At",
+        "Tracking",
+        "Hook Pattern",
+        "Series"
       ],
       "destination_property": "Post To",
       "_destination_comment": "The authoritative per-post destination. Its option names are destination_vocabulary.names, character for character, and so are the surface keys in social-destinations.json and 'Next: Post To' on the idea. See that block for why an exact match is load-bearing.",
@@ -137,7 +204,29 @@
         "Metricool UUID",
         "Live URL",
         "Posted Caption",
-        "Posted At"
+        "Posted At",
+        "Views",
+        "Reach",
+        "Likes",
+        "Comments",
+        "Saves",
+        "Shares",
+        "Avg Watch Time (s)",
+        "Completion %",
+        "Caption Formula",
+        "Caption Edited",
+        "Stats Pulled At",
+        "Views 30d",
+        "Saves 30d",
+        "Shares 30d",
+        "Comments 30d",
+        "30d Pulled At",
+        "Views Latest",
+        "Saves Latest",
+        "Shares Latest",
+        "Comments Latest",
+        "Latest Pulled At",
+        "Tracking"
       ],
       "_write_comment": "The only six properties this pipeline may write, and it writes them HERE, never on the idea. Post Date, Post To, Caption, Content Series and Content Name are the plan -- the pipeline reports against them and never edits them. Caption is now editable per row, which does NOT make it writable by the pipeline: what to say is still a person's decision.",
       "idempotency_key": "Metricool UUID",
@@ -208,11 +297,25 @@
           "url": "view://3db596a4-505f-81d1-abe9-000c9ddc33a0",
           "purpose": "Every editable field in one place, ordered CORE (name, surface, date, status, readiness) -> CROSSOVER (caption override, first comment, alt text, video title, AI disclosure) -> PLATFORM-SPECIFIC (GBP type, YouTube tags/category/privacy, collaborators, branded content) -> PIPELINE OUTPUT (uuid, id, live url, posted caption, posted at). That grouping is the 'template layout' -- crossover fields first, platform tails after, machine-written fields last."
         },
-        "_caption_rollup_not_addable": "The Caption ROLLUP cannot be added to a view through the API -- SHOW \"Caption\" returns 'Could not find property with name or id'. Formula properties (Ready To Queue) work fine; rollups do not. Add that column by hand in the Notion UI if a view needs it."
+        "_caption_rollup_not_addable": "The Caption ROLLUP cannot be added to a view through the API -- SHOW \"Caption\" returns 'Could not find property with name or id'. Formula properties (Ready To Queue) work fine; rollups do not. Add that column by hand in the Notion UI if a view needs it.",
+        "📊 Performance": {
+          "id": "3e9596a4-505f-8126-adf2-000c4d907d28",
+          "purpose": "Posted rows grouped by Post To, sorted by Share Rate: day-7 counts, rates, Caption Formula/Edited. Grouped by platform because rankings never cross platforms. Hook Pattern and Series are rollups -- add by hand."
+        },
+        "🚀 Late Surges": {
+          "id": "3e9596a4-505f-8185-bae7-000c3e119cfa",
+          "purpose": "Tracking = Late Surge: day-7 vs 30d vs Latest side by side. Usually empty."
+        }
       },
       "_property_order_is_not_api_settable": "The DDL supports ADD/DROP/RENAME/ALTER COLUMN but not MOVE, so the database's canonical property order -- which is what an opened ROW shows -- cannot be set from here. Columns land in creation order. The '🗂 All Fields' view carries the intended grouping instead; matching the row layout to it is a one-time drag in the Notion UI, using that view's column order as the target.",
       "_why_a_copy_beats_a_rollup_here": "A rollup is LIVE: every row sees the idea's current caption, so editing one idea silently rewrites what every row for it appears to say -- including rows that already posted. A copy diverges the moment it is made, which is what you want when the whole point is that captions must differ by platform. 'Link in bio' is Instagram idiom and dead on a Google listing; a 30-hashtag block is native on Instagram and spam on LinkedIn; GBP caps at 1500 characters. Under a rollup those needed an override field to escape. Under a copy, per-platform captions are simply the default and nothing needs escaping.",
-      "_caption_still_starts_from_the_idea": "The inheritance Albert wanted is preserved, it just happens ONCE, at row creation, instead of continuously. Whatever copies the idea's caption into a new log row owns that -- today the 'Publish Content' button. A row created without a caption has nothing to fall back on, so that copy is load-bearing, not a convenience."
+      "_caption_still_starts_from_the_idea": "The inheritance Albert wanted is preserved, it just happens ONCE, at row creation, instead of continuously. Since 2026-09-28 the Send to Calendar button copies the idea's caption FOR THIS ROW'S PLATFORM (titan_content_ideas.caption_fields), not one shared caption. A row created without a caption has nothing to fall back on, so that copy is load-bearing, not a convenience.",
+      "_stats_comment": "Added 2026-09-28. Written ONLY by /content-feedback (scripts/social_feedback.py decides), read-derived from Metricool analytics, logged as notion_update_content_stats. Day-7 columns and '... 30d' columns are frozen once written; only '... Latest' and Tracking are overwritten. Follows Gained was dropped 2026-09-28 (Albert): no platform exposes follows per post. Save/Share/Comment/Engagement Rate are Notion formulas (not in SQL results) -- the script recomputes them from the counts.",
+      "performance_notes_page": {
+        "id": "3e9596a4-505f-8167-847a-ed0fd79297a2",
+        "parent": "Content Creation (131596a4505f80a2bdb7cbf3e2d6583b)",
+        "_comment": "Created 2026-09-28 by the first /content-feedback run. Rewritten every run; titan-content-scripts reads it. Never create a second one."
+      }
     }
   },
   "drive": {
