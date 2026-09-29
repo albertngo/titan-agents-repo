@@ -85,6 +85,10 @@ floorbox. and speers as the very last."
   kept once. Speers photos may be used; **a Speers page is never linked**.
 - `Supplier product page` = the official page, else The Floor Box, else Word of Mouth
   (`source_policy.product_page_sources`). None → left blank, flag `no_product_page`.
+- A supplier may lower the swatch bar for itself (`suppliers.<S>.image_rules`; BiYork 1000 px).
+- Links an earlier run put on a source that may no longer be linked: `--relink-product-page-from
+  speers --source-plan <that run's plan>` (op `relink_product_page`, compare-and-swap; no
+  alternative keeps the old link).
 - A Shopify store's tags and product type count for line and species (BiYork's own shop
   titles products `Brume Air Sample*`); of their pattern words only `tag_pattern_words`
   count, since a `SPC Floors` tag is a department, not a pattern.

@@ -74,6 +74,17 @@ Action:
 They are also written to `image-troubled-<scope>.csv`, and `image-contact-<scope>.html`
 shows every action's images beside its record for review.
 
+### The two replace ops (narrow exceptions to blank-only)
+
+- `reattach_renamed` (`image-rename-<scope>.json`): same source images under SEO names;
+  `expect` = the field's live `[{id, filename}]`, every file one this pipeline named.
+- `relink_product_page` (`image-relink-<scope>.json`, 2026-09-29, Albert: "Switch if
+  available but do not delete. Replace with Word of Mouth (the speers one)"): `fields` holds
+  only `Supplier product page`; `expect` holds the live URL it replaces (compare-and-swap);
+  `source` is `wordofmouth` or `floorbox`. Built by `--relink-product-page-from speers
+  --source-plan <the run that linked it>`. A record with no exact alternative stays in
+  `held[]` (`no_alternative_link`) and keeps its link — nothing is ever cleared.
+
 ## `plans/<date>/image-approval-<scope>.json` — `image-approval-1`
 
 `{plan, approved_by, decisions: [{id, status: "approved", at}]}`. Written only by

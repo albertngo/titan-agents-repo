@@ -65,6 +65,15 @@ Replace or append to a filled image field; write anything but the four target fi
 write while `write_mode` is `plan_only`; get past a bot challenge; guess a URL.
 
 ## Log
+- 2026-09-29 (after midnight) — Albert: "1. yes rerun 2. Switch if available but do not
+  delete. Replace with Word of Mouth (the speers one)". BiYork swatch bar 1000 px
+  (`suppliers.BIYORK.image_rules`; the shared 1600 stays). Word of Mouth has 82 Shopify
+  pages; the pull stopped at 40, so `listing.max_pages` is per retailer now (120). A
+  category veto added after Word of Mouth's Vidar vinyl `Naked Oak` matched engineered
+  records. Vidar: 31 product links moved off Speers (Floor Box 24, Word of Mouth 7) by the
+  new `relink_product_page` op; 32 with no alternative keep Speers. Found on the way: the
+  Vidar Camel 5" record (ENG-VIDR-0166) carries Speers' "Camel - Hazelnut" photo, named
+  `AmericanOakHazelnut.jpg` — left for Albert.
 - 2026-09-29 (late) — BiYork run. Albert added Word of Mouth Floors ("2nd/third backup same
   level as floorbox. and speers as the very last"); order is now official, The Floor Box +
   Word of Mouth, Speers. `biyorkcanada.com` is a Shopify store selling only samples, titled
