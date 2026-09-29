@@ -63,6 +63,24 @@ def load_json(path):
     return json.loads(Path(path).read_text()) if path else None
 
 
+def ahash(path):
+    """64-bit average hash of an image file (None if unreadable): the same photo re-encoded
+    by two sites hashes within a few bits."""
+    try:
+        from PIL import Image
+        with Image.open(path) as im:
+            small = im.convert("L").resize((8, 8))
+            px = [small.getpixel((x, y)) for y in range(8) for x in range(8)]
+    except Exception:
+        return None
+    mean = sum(px) / 64
+    return sum(1 << i for i, v in enumerate(px) if v >= mean)
+
+
+def near_same(a, b, bits=6):
+    return a is not None and b is not None and bin(a ^ b).count("1") <= bits
+
+
 def is_blank(value):
     return value in (None, "", [])
 
@@ -75,17 +93,19 @@ def page_index(pages_file):
     return {p["url"]: p for p in pages_file.get("pages", [])}
 
 
-LAYING = ("herringbone", "chevron")
+LAYING = ("herringbone", "chevron", "versailles")
 
 
 def record_laying(rec):
-    """`herringbone`, `chevron` or `plank`, from the record's name and collection."""
+    """`herringbone`, `chevron`, `versailles` or `plank`, from the record's name and collection."""
     text = image_match.norm(f"{rec.get('Product name') or ''} {rec.get('Collection') or ''}")
     words = set(text.split())
     if "herringbone" in words or "hb" in words:
         return "herringbone"
     if "chevron" in words or "chev" in words:
         return "chevron"
+    if "versailles" in words:
+        return "versailles"
     return "plank"
 
 
@@ -130,6 +150,11 @@ def usable_images(page, judgements, rules, laying=None):
     return out, problems
 
 
+def source_order(sup):
+    """Registry order of a supplier's sources: extra_sources first, then the main site."""
+    return [*(sup.get("extra_sources") or []), {"name": sup.get("source_name", "main")}]
+
+
 def photo_set(page):
     return frozenset(i["sha1"] for i in page.get("images", []) if i.get("sha1"))
 
@@ -169,7 +194,6 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
     sup = cfg["suppliers"][supplier]
     targets, rules = cfg["targets"], cfg["image_rules"]
     pages = page_index(pages_file)
-    matches = image_match.match_records(records, list(pages.values()), sup, cfg["matching"])
     pp_matches = {}
     if product_pages and (sup.get("product_pages") or {}).get("enabled", True):
         pp = [{"url": r["url"], "title": r.get("title", "")} for r in product_pages.get("results", [])]
@@ -187,6 +211,13 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
             for rid, m in image_match.match_records(records, tier_pages, sup, cfg["matching"]).items():
                 if m["tier"] == "exact" and rid not in pp_matches:
                     pp_matches[rid] = m
+    by_source = {}
+    for pg in pages.values():
+        by_source.setdefault(pg.get("source") or "main", []).append(pg)
+    order = [src["name"] for src in source_order(sup) if src["name"] in by_source] + \
+        [name for name in by_source if name not in {s["name"] for s in source_order(sup)}]
+    matches = {name: image_match.match_records(records, by_source[name], sup, cfg["matching"])
+               for name in order}
     actions, held, skipped = [], [], Counter()
     for rec in sorted(records, key=lambda r: r.get("SKU") or ""):
         rid, sku = rec["id"], rec.get("SKU")
@@ -195,31 +226,60 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
         if not any(t in blank for t in ("swatch", "room", "detail")):
             skipped["all_targets_filled"] += 1
             continue
-        m = matches[rid]
-        page_url, tier, why = choose_page(rid, m, judgements, pages)
+        chosen_pages, whys, candidates, colour, vetoes = [], [], [], "", {}
+        for name in order:
+            m = matches[name][rid]
+            colour = colour or m["colour"]
+            candidates += [c["url"] for c in m["candidates"]]
+            for k, n in m["vetoes"].items():
+                vetoes[k] = vetoes.get(k, 0) + n
+            url, tier_s, why_s = choose_page(rid, m, judgements, pages)
+            if url:
+                chosen_pages.append((name, url, tier_s))
+            else:
+                whys.append(why_s)
         base = {"sku": sku, "record_id": rid, "product_name": rec.get("Product name") or "",
-                "candidate_pages": [c["url"] for c in m["candidates"]]}
-        if why:
-            held.append({**base, "reason": why, "detail": f"colour '{m['colour']}'; vetoes {m['vetoes']}"})
+                "candidate_pages": candidates}
+        if not chosen_pages:
+            why = next((w for w in ("model_rejected", "ambiguous_match") if w in whys), "no_match")
+            held.append({**base, "reason": why, "detail": f"colour '{colour}'; vetoes {vetoes}"})
             continue
-        picked, problems = usable_images(pages[page_url], judgements, rules, record_laying(rec))
-        fields, images = {}, []
+        tier = "model_confirmed" if any(t == "model_confirmed" for _, _, t in chosen_pages) else "exact"
+        picked, problems, rank = [], Counter(), {name: i for i, name in enumerate(order)}
+        for name, url, _ in chosen_pages:
+            got, prob = usable_images(pages[url], judgements, rules, record_laying(rec))
+            picked += [(t, {**img, "_page": url, "_rank": rank[name]}) for t, img in got]
+            problems.update(prob)
+        # Best first: larger long edge, then the preferred source.
+        picked.sort(key=lambda ti: (-ti[1]["long_edge"], ti[1]["_rank"]))
+        fields, images, kept_hashes = {}, [], []
         for target in ("swatch", "room", "detail"):
             if target not in blank:
                 continue
-            chosen = [img for t, img in picked if t == target][: targets[target]["cap"]]
+            chosen = []
+            for t, img in picked:
+                if t != target or len(chosen) >= targets[target]["cap"]:
+                    continue
+                h = ahash(img.get("read_path") or img.get("path") or "")
+                if any(near_same(h, k) for k in kept_hashes):
+                    continue  # the same photo from another site
+                kept_hashes.append(h)
+                chosen.append(img)
             if chosen:
                 fields[targets[target]["name"]] = [
                     {"url": img["url"], "filename": filename_for(sku, target, i + 1, img["url"])}
                     for i, img in enumerate(chosen)]
-                images += [{"target": target, "url": img["url"], "sha1": img["sha1"],
+                images += [{"target": target, "url": img["url"], "sha1": img["sha1"], "page": img["_page"],
                             "width": img.get("width"), "height": img.get("height")} for img in chosen]
         if not fields:
             reason = ("host_blocked" if problems.get("host_blocked") else
                       "not_judged" if problems.get("not_judged") else
                       "low_res_swatch" if problems.get("low_res_swatch") else "no_usable_image")
-            held.append({**base, "reason": reason, "detail": f"page {page_url}; {dict(problems)}"})
+            held.append({**base, "reason": reason,
+                         "detail": f"pages {[u for _, u, _ in chosen_pages]}; {dict(problems)}"})
             continue
+        lead = next((i for i in images if i["target"] == "swatch"), images[0])
+        page_url = lead["page"]
         product_page, pp_source = page_url, "image_page"
         ppm = pp_matches.get(rid)
         if ppm:
@@ -241,7 +301,8 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
             "field_ids": {name: next(t["id"] for t in targets.values() if isinstance(t, dict) and t["name"] == name)
                           for name in fields},
             "expect_blank": list(fields),
-            "source_page": page_url, "product_page_source": pp_source, "match_tier": tier,
+            "source_page": page_url, "source": pages[page_url].get("source"),
+            "product_page_source": pp_source, "match_tier": tier,
             "images": images, "flags": flags,
         })
     return {
@@ -264,12 +325,15 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
 def todo(records, pages_file, judgements, cfg, supplier, scope):
     sup = cfg["suppliers"][supplier]
     pages = page_index(pages_file)
-    matches = image_match.match_records(records, list(pages.values()), sup, cfg["matching"])
+    by_source = {}
+    for pg in pages.values():
+        by_source.setdefault(pg.get("source") or "main", []).append(pg)
+    per_source = [image_match.match_records(records, pgs, sup, cfg["matching"]) for pgs in by_source.values()]
     by_id = {r["id"]: r for r in records}
     judged = set((judgements or {}).get("images", {}))
     decided = set((judgements or {}).get("matches", {}))
     images, ambiguous, need_pages = {}, [], set()
-    for rid, m in matches.items():
+    for rid, m in ((rid, m) for matches in per_source for rid, m in matches.items()):
         if m["tier"] == "exact":
             need_pages.add(m["candidates"][0]["url"])
         elif m["tier"] == "ambiguous":

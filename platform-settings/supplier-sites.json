@@ -5,12 +5,13 @@
   "base_id": "appWHOVZ0QCS0xQ3M",
   "table_id": "tblfLXD3zkSdNQGbS",
   "write_mode": {
-    "mode": "plan_only",
+    "mode": "write",
     "_values": [
       "plan_only",
       "write"
     ],
-    "_flip": "While `plan_only`, /image-fill builds the plan, the contact sheet and the held CSV and writes NO approval file and NO Airtable record; scripts/image_fill_plan.py refuses --write-approval under it. Albert chose (2026-09-29) 'Auto-attach, report held' AFTER a plan_only pilot: flipping to `write` is a dated decision recorded in the vault (05_decisions/), made once he has looked at the pilot's contact sheet. tests/test_image_fill.py pins the value; update the test in the same commit as the flip."
+    "_flip": "While `plan_only`, /image-fill builds the plan, the contact sheet and the held CSV and writes NO approval file and NO Airtable record; scripts/image_fill_plan.py refuses --write-approval under it. Albert chose (2026-09-29) 'Auto-attach, report held' AFTER a plan_only pilot: flipping to `write` is a dated decision recorded in the vault (05_decisions/), made once he has looked at the pilot's contact sheet. tests/test_image_fill.py pins the value; update the test in the same commit as the flip.",
+    "_flipped": "2026-09-29, Albert in chat after the Vidar pilot proof sheet (https://claude.ai/artifact/2F7hFJCDXrpzPkJVGcCd1U): '1. go for it' — attach with policy auto-approval (tiers exact / model_confirmed), held rows reported. Same message added Speers as a second source ('if the image is clearer or better, use it instead of the floorbox'). Vault note: 05_decisions/2026-09-29-image-fill-write-mode.md."
   },
   "targets": {
     "_comment": "The fields a run may fill, BLANK ONLY: a field that already holds anything (a person's upload, an earlier run's) is never replaced or appended to. The image's KIND decides its field, and the kind is the model's judgement of the downloaded image (image-judgements file), checked by the planner's rules below.",
@@ -161,9 +162,12 @@
       "_added": "2026-09-29, Albert: 'this is vidars website https://www.vidarflooring.com/en'. First pilot (wood/vinyl).",
       "site": "https://thefloorbox.ca/brands/vidar/flooring/24718bc3-4e01-11eb-b321-f6968cef729a",
       "hosts": [
+        "cdn.shopify.com",
+        "cdn.thefloorbox.ca",
+        "speersflooring.com",
         "thefloorbox.ca",
-        "www.thefloorbox.ca",
-        "cdn.thefloorbox.ca"
+        "www.speersflooring.com",
+        "www.thefloorbox.ca"
       ],
       "product_pages": {
         "_comment": "Albert, 2026-09-29: 'the product image page should still be from vidar's main site if possible'. The manufacturer's own site is challenge-protected, so its product pages are found through the search index (WebSearch, allowed_domains = hosts) — reading an index, not the blocked site — and matched to records by TITLE with the same rules as image pages. Only URLs under path_prefixes count.",
@@ -233,7 +237,20 @@
           "european white oak"
         ]
       },
-      "_matching_note": "Vidar publishes no codes for engineered/laminate (bert-airtable-schema: Supplier SKU blank), so matching keys on the colour name from Product name (`Vidar 7.5\" AWO — Naked Oak (Character)` -> `Naked Oak`) plus width / species / pattern. One page's images may go to every width and grade record of that colour unless the page names a grade or width that the record is not."
+      "_matching_note": "Vidar publishes no codes for engineered/laminate (bert-airtable-schema: Supplier SKU blank), so matching keys on the colour name from Product name (`Vidar 7.5\" AWO — Naked Oak (Character)` -> `Naked Oak`) plus width / species / pattern. One page's images may go to every width and grade record of that colour unless the page names a grade or width that the record is not.",
+      "source_name": "floorbox",
+      "extra_sources": [
+        {
+          "name": "speers",
+          "site": "https://www.speersflooring.com",
+          "listing": {
+            "method": "shopify",
+            "vendor": "Vidar Design Flooring"
+          },
+          "_added": "2026-09-29, Albert: 'You can also check https://www.speersflooring.com/ as well for vidar if they have the room one' and 'if the image is clearer or better, use it instead of the floorbox. If it has more detail and room scenes; download them too'. Shopify store; products.json is public and names the brand in `vendor` (82 Vidar Design Flooring products on 2026-09-29, most with a 2100x1575 swatch and a room scene). Images on cdn.shopify.com (allowed 2026-09-29)."
+        }
+      ],
+      "_source_order": "Sources are tried per record in order: extra_sources, then the main site. Per field the larger photo wins; equal size goes to the earlier source. Near-duplicate photos across sites (same picture, re-encoded) are collapsed by a visual fingerprint."
     }
   }
 }

@@ -31,7 +31,7 @@ Written by the session model after reading `image-todo-<scope>.json`:
   "images": {
     "<sha1>": {"kind": "swatch|room|detail|spec_sheet|other",
                "watermarked": false, "colour_matches_page": true,
-               "laying": "plank|herringbone|chevron", "note": "short"}
+               "laying": "plank|herringbone|chevron|versailles", "note": "short"}
   },
   "matches": {
     "<record_id>": {"page": "<one candidate url>" , "why": "short"}

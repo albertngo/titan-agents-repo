@@ -20,8 +20,8 @@ import re
 
 SPACE = re.compile(r"\s+")
 WIDTH_IN_TEXT = re.compile(
-    r"(?<![\d.])(\d{1,2}(?:\.\d{1,2})?|\d{1,2} ?\d/\d)\s*(?:''|\"|″|”|in\b|inch|-inch|\s*collection)", re.I)
-FRACTIONS = {"1/4": .25, "1/2": .5, "3/4": .75, "½": .5, "¼": .25, "¾": .75}
+    r"(?<![\d./])(\d{1,2}(?:\.\d{1,2})?|\d{1,2} ?\d/\d)\s*(?:''|\"|″|”|in\b|inch|-inch|\s*collection)", re.I)
+FRACTIONS = {"1/4": .25, "1/2": .5, "3/4": .75, "1/3": 1 / 3, "2/3": 2 / 3, "½": .5, "¼": .25, "¾": .75}
 
 
 def norm(text):
@@ -57,7 +57,9 @@ def to_width(token):
 
 
 def widths_in(text):
-    return {w for w in (to_width(m.group(1)) for m in WIDTH_IN_TEXT.finditer(text or "")) if w}
+    """Widths in inches, rounded to 2 places (`11 2/3"` -> 11.67, matching the catalogue).
+    A bare fraction is a thickness, never a width: `3/4" (18mm)` yields nothing."""
+    return {round(w, 2) for w in (to_width(m.group(1)) for m in WIDTH_IN_TEXT.finditer(text or "")) if w}
 
 
 def colour_of(product_name):
@@ -65,8 +67,9 @@ def colour_of(product_name):
     name = product_name or ""
     if " — " not in name:
         return ""
-    seg = name.split(" — ")[1]
-    return re.sub(r"\s*\(.*$", "", seg).strip()
+    seg = re.sub(r"\s*\(.*$", "", name.split(" — ")[1]).strip()
+    # A size (`4"x10"`, an accessory's segment) is not a colour: a colour has letters.
+    return seg if re.search(r"[A-Za-z]{2}", seg) else ""
 
 
 def grade_of(rec):
@@ -83,7 +86,7 @@ def record_features(rec, supplier_cfg, matching):
             break
     allowed_widths, exact_width = set(), None
     if rec.get("Width (in)"):
-        exact_width = float(rec["Width (in)"])
+        exact_width = round(float(rec["Width (in)"]), 2)
         allowed_widths.add(exact_width)
     for n in re.findall(r"(?<![\d.])(\d{1,2}(?:\.\d)?)(?![\d.])", rec.get("Collection") or ""):
         allowed_widths.add(float(n))

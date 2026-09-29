@@ -277,15 +277,19 @@ def keep_image(url, rules):
 
 # --------------------------------------------------------------------------- listing methods
 
-def list_shopify(fetch, root):
+def list_shopify(fetch, root, vendor=None):
+    """Every product in a Shopify store's public products.json; `vendor` keeps one brand
+    (Shopify's own brand field, e.g. `Vidar Design Flooring` at Speers)."""
     base = f"{urllib.parse.urlsplit(root).scheme}://{urllib.parse.urlsplit(root).netloc}"
     pages, n = [], 1
-    while n <= 20:
+    while n <= 40:
         data = json.loads(fetch.get(f"{base}/products.json?limit=250&page={n}"))
         items = data.get("products") or []
         if not items:
             break
         for p in items:
+            if vendor and (p.get("vendor") or "").strip().lower() != vendor.strip().lower():
+                continue
             pages.append({
                 "url": f"{base}/products/{p['handle']}", "title": p.get("title", ""), "h1": "",
                 "og_title": "", "product_name": p.get("title", ""), "is_product": True,
@@ -490,6 +494,15 @@ def crawl(fetch, root, follow_words, max_pages, start_urls=None):
     return pages
 
 
+def supplier_sources(sup):
+    """The supplier's sources in preference order: `extra_sources` first (Albert, 2026-09-29:
+    "if the image is clearer or better, use it instead of the floorbox"), then the main
+    `site`. Each is {name, site, listing}."""
+    main = {"name": sup.get("source_name", "main"), "site": sup["site"],
+            "listing": sup.get("listing") or {}, "follow_words": sup.get("follow_words", [])}
+    return [*(sup.get("extra_sources") or []), main]
+
+
 def list_pages(fetch, cfg, supplier_cfg, max_pages):
     root = supplier_cfg["site"]
     listing = supplier_cfg.get("listing") or {}
@@ -500,7 +513,7 @@ def list_pages(fetch, cfg, supplier_cfg, max_pages):
     for m in order:
         try:
             if m == "shopify":
-                pages = list_shopify(fetch, root)
+                pages = list_shopify(fetch, root, listing.get("vendor"))
             elif m == "woocommerce":
                 pages = list_woocommerce(fetch, root)
             elif m == "sitemap":
@@ -623,18 +636,31 @@ def main(argv=None):
         return 2
     records = load_snapshot(args.snapshot)
     fetch = Fetcher(cfg)
-    method, pages, tried = list_pages(fetch, cfg, sup, args.max_pages or cfg["fetch"]["max_pages"])
-    batches = None
-    bb = (sup.get("listing") or {}).get("brand_batches")
-    if bb and pages:
-        colours = {image_match.colour_of(r.get("Product name")) for r in records}
-        pages, batches = brand_batches(pages, colours, bb.get("min_distinct_colours", 3))
-    status = "ok" if pages else next((v for v in tried.values() if v in ("challenged", "host_blocked")), "empty")
-    for p in pages:
-        p.pop("_needs_page", None)
-        p["images"] = [i for i in p["images"] if keep_image(i["url"], cfg["image_rules"])]
-    matches = image_match.match_records(records, pages, sup, cfg["matching"])
-    wanted = {c["url"] for m in matches.values() for c in m["candidates"]}
+    max_pages = args.max_pages or cfg["fetch"]["max_pages"]
+    colours = {image_match.colour_of(r.get("Product name")) for r in records}
+    pages, sources, wanted = [], {}, set()
+    for src in supplier_sources(sup):
+        method, src_pages, tried = list_pages(fetch, cfg, src, max_pages)
+        batches = None
+        bb = (src.get("listing") or {}).get("brand_batches")
+        if bb and src_pages:
+            src_pages, batches = brand_batches(src_pages, colours, bb.get("min_distinct_colours", 3))
+        for p in src_pages:
+            p.pop("_needs_page", None)
+            p["source"] = src["name"]
+            p["images"] = [i for i in p["images"] if keep_image(i["url"], cfg["image_rules"])]
+        # Matched per source: the same product on two sites is two candidates, not a tie.
+        m = image_match.match_records(records, src_pages, sup, cfg["matching"])
+        wanted |= {c["url"] for x in m.values() for c in x["candidates"]}
+        sources[src["name"]] = {"site": src["site"], "method": method, "tried": tried,
+                                "pages": len(src_pages), "batches": batches,
+                                "tiers": dict(Counter(x["tier"] for x in m.values()))}
+        pages += src_pages
+    status = "ok" if pages else next((v for s in sources.values() for v in s["tried"].values()
+                                      if v in ("challenged", "host_blocked")), "empty")
+    method = {k: v["method"] for k, v in sources.items()}
+    tried = {k: v["tried"] for k, v in sources.items()}
+    batches = {k: v["batches"] for k, v in sources.items() if v["batches"]}
     counts = Counter()
     images_dir = REPO_ROOT / "ingest" / today() / cfg["outputs"]["images_dir"] / args.scope
     if args.download and pages:
@@ -649,8 +675,9 @@ def main(argv=None):
         "listing": {"method": method, "tried": tried, "requests": fetch.count},
         "batches": batches,
         "images": {"dir": str(images_dir.relative_to(REPO_ROOT)), "counts": dict(counts)},
+        "sources": sources,
         "summary": {"records": len(records), "pages": len(pages), "pages_matched": len(wanted),
-                    "tiers": dict(Counter(m["tier"] for m in matches.values()))},
+                    "tiers": {k: v["tiers"] for k, v in sources.items()}},
         "pages": pages,
     }
     path = args.out or (REPO_ROOT / "ingest" / today() / cfg["outputs"]["pages"].format(scope=args.scope))

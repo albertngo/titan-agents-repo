@@ -85,6 +85,11 @@ class TestMatcher(unittest.TestCase):
         out = self.m([WALNUT], [page("https://x/o", "White Oak - Natural"), page("https://x/w", "Black Walnut - Natural")])
         self.assertEqual([c["url"] for c in out[WALNUT["id"]]["candidates"]], ["https://x/w"])
 
+    def test_a_size_is_not_a_colour(self):
+        """2026-09-29: `Vidar Hardwood Vent — 4"x10"` matched a walnut plank listing."""
+        self.assertEqual(im.colour_of('Vidar Hardwood Vent — 4"x10"'), "")
+        self.assertEqual(im.colour_of("Vidar Laminate — NK25"), "NK25")
+
     def test_joined_and_split_spellings_match(self):
         self.assertTrue(im.has_phrase("9'' Collection American White Oak-Daybreak", "Day Break"))
         self.assertTrue(im.has_phrase("7 Collection - Snow White", "Snowwhite"))
@@ -312,13 +317,17 @@ class TestPlan(unittest.TestCase):
         self.assertTrue(a1.startswith("img-"))
 
     def test_approval_is_refused_while_plan_only(self):
+        reg = copy.deepcopy(REG)
+        reg["write_mode"]["mode"] = "plan_only"
         with tempfile.TemporaryDirectory() as d:
+            (Path(d) / "reg.json").write_text(json.dumps(reg))
             snap = Path(d) / "snap.json"
             snap.write_text(json.dumps({"records": [{"id": NAKED_9["id"], "cellValuesByFieldId": {}}]}))
             pages = Path(d) / "pages.json"
             pages.write_text(json.dumps({"pages": []}))
             rc = plan.main(["--supplier", "VIDAR", "--scope", "t", "--snapshot", str(snap),
-                            "--pages", str(pages), "--write-approval", "--date", "1999-01-01"])
+                            "--pages", str(pages), "--write-approval", "--date", "1999-01-01",
+                            "--registry", str(Path(d) / "reg.json")])
         self.assertEqual(rc, 4)
 
     def test_policy_approves_only_its_tiers(self):
@@ -328,6 +337,63 @@ class TestPlan(unittest.TestCase):
         appr = plan.approval(p, REG, "plans/x.json")
         self.assertEqual([d["id"] for d in appr["decisions"]], ["img-a", "img-b"])
         self.assertTrue(appr["approved_by"].startswith("policy:"))
+
+
+class TestTwoSources(unittest.TestCase):
+    """Albert, 2026-09-29: 'if the image is clearer or better, use it instead of the floorbox'."""
+
+    def setUp(self):
+        from PIL import Image
+        self.tmp = tempfile.TemporaryDirectory()
+        d = Path(self.tmp.name)
+        def pic(name, pattern):
+            im = Image.new("L", (64, 64))
+            im.putdata([(255 if pattern(x, y) else 0) for y in range(64) for x in range(64)])
+            im.save(d / name)
+            return str(d / name)
+        self.stripes = pic("a.png", lambda x, y: (x // 8) % 2 == 0)
+        self.stripes2 = pic("b.png", lambda x, y: (x // 8) % 2 == 0 and not (x == 3 and y == 3))
+        self.checks = pic("c.png", lambda x, y: ((x // 16) + (y // 16)) % 2 == 0)
+        self.reg = copy.deepcopy(REG)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def pg(self, source, url, imgs):
+        return {**page(url, "9'' Collection American White Oak-Naked Oak", imgs), "source": source}
+
+    def img(self, sha, w, path):
+        return {**img(sha, f"https://cdn/{sha}.jpg", w, round(w * .75)), "read_path": path}
+
+    def build(self, pages, judged):
+        j = {"contract_version": "image-judgements-1", "images": judged}
+        return plan.build([NAKED_9], {"pages": pages}, j, None, self.reg, "VIDAR", "vidar")
+
+    def test_the_bigger_photo_wins_across_sources(self):
+        pages = [self.pg("speers", "https://sp/p", [self.img("sp", 1800, self.checks)]),
+                 self.pg("floorbox", "https://fb/p", [self.img("fb", 2100, self.stripes)])]
+        a = self.build(pages, {"sp": {"kind": "swatch"}, "fb": {"kind": "swatch"}})["actions"][0]
+        self.assertEqual([i["sha1"] for i in a["images"]], ["fb", "sp"])
+        self.assertEqual(a["source"], "floorbox")
+        self.assertEqual(a["fields"]["Supplier product page"], "https://fb/p")
+
+    def test_a_tie_goes_to_the_preferred_source_and_duplicates_collapse(self):
+        pages = [self.pg("floorbox", "https://fb/p", [self.img("fb", 2100, self.stripes)]),
+                 self.pg("speers", "https://sp/p", [self.img("sp", 2100, self.stripes2),
+                                                    self.img("rm", 2100, self.checks)])]
+        a = self.build(pages, {"sp": {"kind": "swatch"}, "fb": {"kind": "swatch"}, "rm": {"kind": "room"}})["actions"][0]
+        self.assertEqual([i["sha1"] for i in a["images"] if i["target"] == "swatch"], ["sp"])
+        self.assertEqual([i["sha1"] for i in a["images"] if i["target"] == "room"], ["rm"])
+        self.assertEqual(a["source"], "speers")
+
+    def test_the_shopify_vendor_filter(self):
+        body = json.dumps({"products": [
+            {"handle": "a", "title": "Vidar Naked Oak 9\"", "vendor": "Vidar Design Flooring", "images": [], "variants": []},
+            {"handle": "b", "title": "Other Naked Oak", "vendor": "Mirage Floors", "images": [], "variants": []}]}).encode()
+        f = pull.Fetcher({"fetch": {"delay_seconds": 0}},
+                         opener=lambda req, timeout=0: FakeResp(body if req.full_url.endswith("page=1") else b'{"products": []}'))
+        self.assertEqual([p["url"] for p in pull.list_shopify(f, "https://sp", "Vidar Design Flooring")],
+                         ["https://sp/products/a"])
 
 
 class TestRegistryAndProse(unittest.TestCase):
@@ -342,7 +408,8 @@ class TestRegistryAndProse(unittest.TestCase):
             self.assertIn(fid, FIELDS)
 
     def test_write_mode_is_pinned(self):
-        self.assertEqual(REG["write_mode"]["mode"], "plan_only")
+        # Flipped 2026-09-29 (Albert: "go for it" after the Vidar pilot); change only with a dated decision.
+        self.assertEqual(REG["write_mode"]["mode"], "write")
 
     def test_held_reasons_cover_what_the_planner_emits(self):
         text = (REPO_ROOT / "scripts" / "image_fill_plan.py").read_text()
