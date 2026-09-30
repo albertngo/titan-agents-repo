@@ -1,0 +1,12 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-09-30T07:00:00-04:00",
+  "status": "error",
+  "error": "GHL MCP server tools (contacts, conversations, opportunities, calendars, pipelines) were not available in this agent session, so no GHL data could be pulled. No data was fabricated. Config platform-settings/ghl-workflow.json was read successfully. Re-run when the ghl MCP server is connected.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest failed for 2026-09-30: GHL MCP unavailable. No leads, conversations, appointments, or drift findings are reported today. This is a gap, not a quiet day."
+  ]
+}
