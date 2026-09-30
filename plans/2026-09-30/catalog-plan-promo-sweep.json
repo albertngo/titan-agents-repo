@@ -1,0 +1,1484 @@
+{
+  "contract_version": "catalog-plan-1",
+  "supplier": "PROMO SWEEP 2026-09-30",
+  "run_at": "2026-09-30T05:51:58-04:00",
+  "as_of": "2026-09-30",
+  "status": "ready",
+  "cost_basis": "airtable (the promo lane mirrors Airtable's Cost/unit, Promo cost and Rep cost)",
+  "summary": {
+    "airtable_records": 8253,
+    "with_promo": 0,
+    "active": 0,
+    "with_rep_rate": 0,
+    "rep_active": 0,
+    "not_in_lightspeed": 0,
+    "inactive_skipped": 0,
+    "actions": 0,
+    "promo_price_on": 0,
+    "rep_price_on": 0,
+    "price_off": 0,
+    "promo_marker_on": 0,
+    "rep_marker_on": 0,
+    "marker_off": 0,
+    "variant_markers": 0,
+    "blocked": 0,
+    "warnings": 290,
+    "recently_ended": 0,
+    "max_changes": 50
+  },
+  "actions": [],
+  "blocked": [],
+  "warnings": [
+    {
+      "sku": "FP233",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "FP234",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.Cal.12x24x8mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.Car.12x24x8mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.NaoWhi.12x24x9mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.VisGre.12x24x9mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.ArkBla.12x24x10mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.SomBla.12x24x10mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.NaoWhi.24x24x8mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.VisGre.24x24x8mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.PulPriLigGre.24x24x8mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.PulPriDarGre.24x24x8mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.ArkBla.24x24x10mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.StaSmo.24x24x10mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.StaWhi.24x24x8mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "MAR.T.StaWhi.24x48x8mm",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "5081-L",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "5129-L",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "5219-L",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "5234-L",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "5255-L",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "EX-2011",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "GRA.T.C.Avi.1224",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "GRA.T.C.Emp.1224",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "GRA.T.C.GraSla.1224",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P3-690",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-M6-619",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P6-052",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P6-051",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P6-002",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P3-052",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P6-067",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P3-051",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P6-311",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P6-087",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P6-332",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P3-332",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-P6-690",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "QP8320GMB",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ST05",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "DT918212",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "PY6600B",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "JT918510",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "PY12648L",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ST01",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "QGB32002",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "PM36B32",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "DN80331",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "BJ2412Q90-1/2",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "DM12341M",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "TD168003-1/2",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ST02",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "Panda.White.Matte",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "AM80325",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ST03",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "BPCK71501",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "BPCK8013",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "PY3600B",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "QGB32017",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "DT918010",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-FAWK-0004",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0001",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0002",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0003",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0004",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0005",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0006",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0007",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0008",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0009",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0010",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0011",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0012",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0013",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0014",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0015",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0050",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0053",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0054",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0055",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0056",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0057",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0079",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0080",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0081",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0082",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0083",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0084",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0085",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0086",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0087",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-CANS-0088",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0008",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0010",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0012",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0014",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0015",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0019",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0022",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0025",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0029",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0037",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0038",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0043",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0045",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0047",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0051",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0054",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0055",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0059",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0061",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0064",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0068",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0071",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0073",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0079",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-FAWK-0083",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-GRAN-0102",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-WODN-0006",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-WODN-0007",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-WODN-0008",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-WODN-0009",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-WODN-0021",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-WODN-0022",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-WODN-0038",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-WODN-0039",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-WODN-0040",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-WODN-0041",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-WODN-0049",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-CANS-0001",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-CANS-0002",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-CANS-0003",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-CANS-0004",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-CANS-0005",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-CANS-0006",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-CANS-0007",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-CANS-0008",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-CANS-0010",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-CANS-0011",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-CANS-0012",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-CANS-0013",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-CANS-0014",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-CANS-0015",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-CANS-0016",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-FAWK-0005",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-FAWK-0006",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-FAWK-0007",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-FAWK-0008",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-FAWK-0017",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-FAWK-0020",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LAM-FAWK-0022",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-CANS-0001",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-CANS-0002",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-CANS-0003",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-CANS-0004",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-CANS-0005",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-CANS-0006",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-CANS-0007",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-CANS-0008",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-CANS-0009",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-CANS-0010",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-CANS-0011",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-CANS-0012",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-CANS-0013",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-CANS-0014",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-CANS-0015",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-CANS-0016",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-CANS-0017",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-CANS-0018",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-FAWK-0003",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-FAWK-0013",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-FAWK-0024",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-FAWK-0027",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-FAWK-0034",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-FAWK-0038",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-FAWK-0060",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-FAWK-0070",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-FAWK-0071",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-FAWK-0073",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVP-FAWK-0075",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVT-FAWK-0004",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVT-FAWK-0015",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "LVT-FAWK-0016",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0046",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-GRAN-0040",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-GRAN-0046",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0002",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0001",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0003",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0004",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0005",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0006",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0007",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0008",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0010",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0018",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0025",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0026",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0027",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0028",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0029",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0031",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0032",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0033",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0034",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0035",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0040",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0043",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0052",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0059",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0067",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0068",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0069",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0070",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0071",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0072",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0073",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0074",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0075",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0076",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0078",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0088",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0102",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0103",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0104",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0105",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0106",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0110",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0112",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0121",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0164",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0165",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0166",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0167",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0168",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0171",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0174",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0177",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0180",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "ENG-VIDR-0188",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HUA.V.NS",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HUA.V.RED",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HUA.V.TM",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0301",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0302",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0303",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0304",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0305",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0307",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0308",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0309",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0310",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0312",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0313",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0314",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0315",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0316",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0317",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0318",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0319",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0320",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0301",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0302",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0303",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0304",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0305",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0306",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0307",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0308",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0309",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0312",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0313",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0314",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0315",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0316",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0317",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0318",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0319",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-151-0320",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "HX-141-0306",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "CAN.E.O.Pri.7",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "CAN.E.O.Sen.5",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "CAN.E.O.Enh.5",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "CAN.E.O.Bar.6.1",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "CAN.E.O.Tra.6",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "CAN.E.O.Soo.6",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "CAN.E.O.Nat.6",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "CAN.E.O.Cal.5",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "CAN.E.O.Pur.7",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    },
+    {
+      "sku": "CAN.E.O.Ess.6",
+      "reason": "marker_without_airtable_record",
+      "detail": "carries a marker but matches no Airtable record; left alone"
+    }
+  ],
+  "recently_ended": []
+}
