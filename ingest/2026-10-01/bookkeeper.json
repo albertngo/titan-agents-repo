@@ -1,0 +1,16 @@
+{
+  "contract_version": "1",
+  "source": "bookkeeper",
+  "run_at": "2026-10-01T07:00:00-04:00",
+  "status": "error",
+  "error": "Intuit QuickBooks MCP connector unavailable in this session (no QBO tools exposed). No data retrieved.",
+  "items": [],
+  "metrics": {
+    "payments_received_cents": 0,
+    "overdue_invoices": 0,
+    "uncategorized_txns": 0
+  },
+  "needs_attention": [
+    "Bookkeeper source unavailable today: QBO connector not reachable. Metrics are placeholders, not real zeros."
+  ]
+}

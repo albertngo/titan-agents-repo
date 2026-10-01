@@ -1,0 +1,12 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-10-01T07:00:00-04:00",
+  "status": "error",
+  "error": "GHL MCP server (ghl, per .mcp.json) exposes no tools in this session; no contacts, opportunities, conversations, calendar events or pipelines could be read. No data was retrieved, so nothing is reported rather than guessing. platform-settings/ghl-workflow.json and contracts/ingest-schema.md were read successfully.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest failed for 2026-10-01: GHL MCP tools unavailable. Today's leads, conversations, appointments and workflow drift are NOT in the brief. Check GHL_PIT_TOKEN / GHL_LOCATION_ID and MCP connectivity, then re-run."
+  ]
+}
