@@ -140,9 +140,17 @@ class TestRegistry(unittest.TestCase):
         self.assertEqual(snap["scenario_id"], sc["id"])
         mods = {m["id"]: m for m in snap["blueprint"]["flow"]}
         self.assertEqual(mods[1]["parameters"]["hook"], sc["hook_id"])
-        self.assertEqual(mods[7]["parameters"]["apiKeyKeychain"], sc["keychains"]["ghl_read_pit"])
+        # Every GHL read goes through the read key: Make's GHL connection has no
+        # conversations scope (401 on /conversations/search, 2026-10-02).
+        for mid in (2, 3, 7):
+            self.assertEqual(mods[mid]["module"], "http:MakeRequest")
+            self.assertEqual(mods[mid]["parameters"]["apiKeyKeychain"], sc["keychains"]["ghl_read_pit"])
+            self.assertEqual(mods[mid]["mapper"]["method"], "get")
         self.assertEqual(mods[8]["parameters"]["apiKeyKeychain"], sc["keychains"]["elevenlabs"])
         self.assertEqual(mods[13]["module"], "highlevel:addNotetoContact")
+        self.assertEqual(mods[13]["parameters"]["__IMTCONN__"], sc["ghl_connection_id"])
+        # Make formula regexes must be quoted strings; a bare /…[…]/ fails "Unexpected [".
+        self.assertNotIn("; /", mods[9]["mapper"]["variables"][0]["value"])
         self.assertTrue(snap["blueprint"]["metadata"]["scenario"]["sequential"])
         sent = [f["value"] for f in mods[8]["mapper"]["multipartBodyContent"] if f["name"] == "keyterms"]
         published = json.loads((REPO_ROOT / CFG["keyterms"]["published_file"]).read_text())["terms"]

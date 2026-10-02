@@ -132,13 +132,13 @@ it in the Make UI, Make is the source of truth: re-snapshot after any UI change
 ```
 GHL workflow "Call Status" (completed / voicemail) → Webhook action → Make webhook 2836060
  1  Webhook                         body carries contact_id (custom data, belt and braces)
- 2  GHL API call: conversation search for the contact
- 3  GHL API call: last 20 messages of that conversation
+ 2  HTTP GET conversation search for the contact   key 97841 "GHL read PIT (call recordings)"
+ 3  HTTP GET last 20 messages of that conversation  key 97841
  4  Iterator over the messages
  5  Data store "GHL call notes written": seen?   [filter: TYPE_CALL, completed or
                                                   voicemail, ≥ 8 s, in the last 3 h]
  6  Sleep 90 s                                   [filter: not seen]
- 7  HTTP GET recording        key 97835 "GHL read PIT (call recordings)"
+ 7  HTTP GET recording        key 97841
  8  HTTP POST ElevenLabs      key 97834 "ElevenLabs STT (call notes)": scribe_v2,
                                diarize, audio events, 178 keyterm fields, txt format
  9  Set variables: transcript ("[mm:ss] Speaker N: …" lines), staff name
@@ -161,6 +161,19 @@ Things that matter:
   speech-to-text module has no keyterms field and its "Make an API call" module cannot
   upload a file. Keyterms must be separate form fields: one JSON-array field is
   rejected (`invalid_keyword`, tested 2026-10-02).
+- **Reads go through the read key, never Make's GHL connection.** Connection 4426112
+  is not authorized for the conversations scope: `/conversations/search` answered
+  `401 The token is not authorized for this scope` (2026-10-02), and module 2's
+  Ignore handler hid it — the run simply stopped after 2 operations. Modules 2, 3 and 7
+  are plain HTTP GETs with key 97841; the connection is used only by module 13.
+- **The key's value is `Bearer <token>`.** The first key (97835) was saved with the
+  bare token and GHL answered `401 Invalid JWT`.
+- **Quote every regex in a Make formula.** `replace(x; "/…[^\n]…/g"; …)` works; a bare
+  `/…[…]/` fails with "Invalid IML … Unexpected [". `validate_module_configuration`
+  does not parse formulas, so only a run catches it.
+- **Replay one call** by posting `{"contact_id": "…", "message_id": "…"}` to the
+  webhook. The `message_id` lane of module 5's filter skips the 3-hour window, so an
+  older call can be re-run (a call already in the data store still stops at module 6).
 - **Sequential processing is on**, so two fires for the same contact cannot both write.
 - **Failures are silent by design.** Steps 2, 3, 7 and 8 ignore errors: no note, and
   the daily script transcribes the call instead.
