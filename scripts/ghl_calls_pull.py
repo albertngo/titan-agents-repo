@@ -588,6 +588,20 @@ def _section(body, name, nxt):
     return m.group(1).strip() if m else ""
 
 
+TRANSCRIPT_HEAD_RE = re.compile(r"(?m)^Transcript \([^\n]*\)[ \t]*\n")
+
+
+def _transcript_raw(body):
+    """The transcript chunk of one note part, unstripped: everything after its
+    'Transcript (…)' header line up to the blank line before the footer."""
+    m = TRANSCRIPT_HEAD_RE.search(body or "")
+    if not m:
+        return ""
+    rest = body[m.end():]
+    end = rest.find("\n\n[call-note v1")
+    return rest if end < 0 else rest[:end]
+
+
 def parse_call_note(bodies):
     """Reassemble a call note from its parts (any order). None if no part is a call note.
 
@@ -606,13 +620,20 @@ def parse_call_note(bodies):
     summary = _section(main, "Summary", ["Next steps", "Transcript"])
     steps_txt = _section(main, "Next steps", ["Transcript"])
     steps = [ln.lstrip("-• ").strip() for ln in steps_txt.splitlines() if ln.strip()]
+    # Make cuts the transcript at fixed character offsets, so a line can be split
+    # across two parts. Joining the raw chunks in part order restores it exactly.
+    text = "".join(_transcript_raw(b) for _, _, b in parts)
     utts = []
-    for _, _, b in parts:
-        for ln in _section(b, "Transcript", []).splitlines():
-            m = LINE_RE.match(ln.strip())
-            if m:
-                utts.append({"start_s": int(m.group(1)) * 60 + int(m.group(2)),
-                             "speaker": m.group(3).strip(), "text": m.group(4).strip()})
+    for ln in text.splitlines():
+        s = ln.strip()
+        if not s:
+            continue
+        m = LINE_RE.match(s)
+        if m:
+            utts.append({"start_s": int(m.group(1)) * 60 + int(m.group(2)),
+                         "speaker": m.group(3).strip(), "text": m.group(4).strip()})
+        elif utts:  # a wrapped line: belongs to the previous turn
+            utts[-1]["text"] += " " + s
     return {"message_id": head.get("messageId"), "conversation_id": head.get("conversationId"),
             "engine": head.get("engine"), "summary": summary,
             "next_steps": [s for s in steps if s.lower() != "none"],
@@ -647,7 +668,7 @@ def render_call_note(summary, next_steps, utterances, meta, split_chars=4800):
     n = len(chunks)
     bodies = []
     for k, chunk in enumerate(chunks, 1):
-        text = "\n".join(chunk)
+        text = "\n".join(chunk) + "\n"  # each chunk ends a line, so raw parts rejoin cleanly
         body = (lead if k == 1 else f"Transcript ({k}/{n}, continued)\n") + text
         bodies.append(body + "\n\n" + footer(k, n, len(body)))
     return bodies

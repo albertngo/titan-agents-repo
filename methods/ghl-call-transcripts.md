@@ -9,8 +9,8 @@ after processing, as the call ends … 1. Summary 2. Next steps 3. The transcrip
 
 Registry: `platform-settings/ghl-calls.json`. Script: `scripts/ghl_calls_pull.py`
 (read-only; GHL only through `scripts/ghl_client.py`, which can only GET). Agent:
-`.claude/agents/ghl-ingest-agent.md` → "Call recordings". Make draft:
-`platform-settings/blueprints/ghl-call-notes-DRAFT.json`. Tests:
+`.claude/agents/ghl-ingest-agent.md` → "Call recordings". Make scenario 4951497:
+`platform-settings/blueprints/ghl-call-notes-4951497.json`. Tests:
 `tests/test_ghl_calls.py`.
 
 ## Decisions (2026-10-01, Albert, in chat)
@@ -30,7 +30,7 @@ Registry: `platform-settings/ghl-calls.json`. Script: `scripts/ghl_calls_pull.py
 
 ```
 call ends
- ├─ Make "GHL Call -> Note" (real time, ~2-3 min)            [drafted, not yet built]
+ ├─ Make "GHL Call -> Note" 4951497 (real time, ~2-3 min)    [created, inactive]
  │    GHL message event → filter → seen? → sleep 90 s → GET recording
  │    → keyterms → ElevenLabs Scribe v2 → Claude: Summary + Next steps
  │    → GHL contact note(s) → data store
@@ -122,31 +122,60 @@ not a decision: the engine is locked in.
 - `--engine ghl --limit 2` transcribed two real calls end to end (44 and 8
   utterances, absolute Toronto timestamps) into the gitignored cache.
 
-## The Make scenario (drafted, not built)
+## The Make scenario (4951497, created 2026-10-02, inactive)
 
-Module list, filters, prompt and error handling are in
-`platform-settings/blueprints/ghl-call-notes-DRAFT.json`. Build it in the Make UI —
-API pushes and UI edits overwrote each other on 2026-09-13
-(`methods/content-folder-scenario.md`). Things that matter:
+Blueprint snapshot: `platform-settings/blueprints/ghl-call-notes-4951497.json`. Ids are
+in `platform-settings/ghl-calls.json` → `make_scenarios.call_notes`. Once Albert edits
+it in the Make UI, Make is the source of truth: re-snapshot after any UI change
+(`methods/content-folder-scenario.md`).
 
-- **A new GHL message-events hook.** The existing GHL hooks all watch opportunities.
+```
+GHL workflow "Call Status" (completed / voicemail) → Webhook action → Make webhook 2836060
+ 1  Webhook                         body carries contact_id (custom data, belt and braces)
+ 2  GHL API call: conversation search for the contact
+ 3  GHL API call: last 20 messages of that conversation
+ 4  Iterator over the messages
+ 5  Data store "GHL call notes written": seen?   [filter: TYPE_CALL, completed or
+                                                  voicemail, ≥ 8 s, in the last 3 h]
+ 6  Sleep 90 s                                   [filter: not seen]
+ 7  HTTP GET recording        key 97835 "GHL read PIT (call recordings)"
+ 8  HTTP POST ElevenLabs      key 97834 "ElevenLabs STT (call notes)": scribe_v2,
+                               diarize, audio events, 178 keyterm fields, txt format
+ 9  Set variables: transcript ("[mm:ss] Speaker N: …" lines), staff name
+10  Claude (claude-sonnet-4-5, Make's Claude app): Summary + Next steps
+11  Set variables: note header, part count (3,000 characters a part)
+12  Repeater N → 1
+13  GHL: Add a note to the contact (continuations first, Summary note last = on top)
+14  Data store: record the messageId                 [filter: last part]
+```
+
+Things that matter:
+
+- **The trigger is a GHL workflow, not Make's GHL app.** Make's GHL "Watch Events"
+  covers contacts and opportunities only. The workflow needs **re-entry allowed**, or a
+  contact gets a note for their first call only.
+- **The scenario finds the call itself.** The webhook only has to carry the contact.
+  Steps 2–5 find every recent completed call or voicemail on that contact that has no
+  note yet, so a missed fire is caught by the contact's next call.
 - **Transcription through the HTTP module, not the ElevenLabs app.** The app's
-  speech-to-text module has no keyterms field.
-- **Recording lag.** Sleep 90 s, retry once after 120 s on 404, then give up; the
-  daily script picks the call up.
-- **Idempotence.** A data store keyed on messageId stops a second note for the same
-  call (`datastore:ExistRecord` outputs `exist`, singular).
-- **Ops.** About 9 per call — about 7,000 a month at 25 calls a day, on a 40,000-op
-  Core plan that already carries ~25 scenarios. Drop the voicemail lane first if the
-  budget bites.
+  speech-to-text module has no keyterms field and its "Make an API call" module cannot
+  upload a file. Keyterms must be separate form fields: one JSON-array field is
+  rejected (`invalid_keyword`, tested 2026-10-02).
+- **Sequential processing is on**, so two fires for the same contact cannot both write.
+- **Failures are silent by design.** Steps 2, 3, 7 and 8 ignore errors: no note, and
+  the daily script transcribes the call instead.
+- **Splitting.** Parts are cut every 3,000 characters, which can fall mid-line;
+  `parse_call_note()` rejoins the raw chunks in part order (tested).
+- **Ops.** About 14 per transcribed call and 4 for a fire that finds nothing new:
+  roughly 10,000 a month at 25 calls a day, on a 40,000-op Core plan that already
+  carries ~25 scenarios. Drop the voicemail lane first if the budget bites.
 - **Governance.** The note is a GHL write performed by Make, outside the
   `ghl-actions-agent` approval gate, like Website Inquiry Ingester and the Stage
   scenarios. It writes exactly one thing.
 
-Before activating: keychain entries for ElevenLabs and the read PIT, one manual run
-on a real call, the note-length limit confirmed, and Albert's click. Then snapshot
-the real blueprint into `platform-settings/blueprints/` and fill
-`make_scenarios.call_notes`.
+Still to confirm on the first live run: GHL's contact-note length limit (3,000-character
+parts assume about 5,000), that Make's `replace()` honours `$n` back-references in
+module 9, and the webhook body's field name for the contact id.
 
 ## What it never does
 
@@ -159,6 +188,11 @@ the real blueprint into `platform-settings/blueprints/` and fill
 
 ## Log
 
+- **2026-10-02.** Albert created the two Make keys through a credential request
+  (97834, 97835). Make scenario 4951497 created inactive, with webhook 2836060 and data
+  store 94694. Make's GHL trigger cannot watch messages, so a GHL "Call Status"
+  workflow fires it. Tested against ElevenLabs first: one JSON-array keyterms field is
+  rejected, repeated fields work, and the txt format gives one line per speaker turn.
 - **2026-10-02 (Albert, in chat).** Confirmed D5–D7 as built: we owe the next reply
   only if we promised something on the call; summaries are team-level unless the call
   is personal; coaching stays in the private section. Asked how to add the Make keys —

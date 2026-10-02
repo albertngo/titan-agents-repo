@@ -164,26 +164,22 @@
   },
   "make_scenarios": {
     "call_notes": {
-      "id": null,
+      "id": 4951497,
       "name": "GHL Call -> Note",
-      "status": "drafted, keys ready, not created",
+      "status": "created 2026-10-02, inactive — waiting on the GHL workflow and one test call",
       "team_id": 459654,
-      "hook_id": null,
-      "hook_events": [
-        "InboundMessage",
-        "OutboundMessage"
-      ],
+      "hook_id": 2836060,
       "ghl_connection_id": 4426112,
-      "draft_blueprint": "platform-settings/blueprints/ghl-call-notes-DRAFT.json",
-      "datastore": "ghl-call-notes",
+      "datastore": {
+        "id": 94694,
+        "name": "GHL call notes written",
+        "data_structure_id": 295179
+      },
       "writes": [
         "GHL contact note"
       ],
-      "split_chars": 4800,
-      "sleep_seconds": [
-        90,
-        120
-      ],
+      "split_chars": 3000,
+      "sleep_seconds": 90,
       "edited_in": "the Make UI",
       "isActive": false,
       "_write_note": "A GHL write performed by Make, outside the ghl-actions-agent approval gate — the same class as the existing Make GHL writers (Website Inquiry Ingester, Stage scenarios). Recorded here and in CLAUDE.md (Albert, 2026-10-01). It writes exactly one thing: the note.",
@@ -191,7 +187,12 @@
         "elevenlabs": 97834,
         "ghl_read_pit": 97835
       },
-      "_keychains": "Two Make keys of type API Key Auth, created 2026-10-02 by Albert through a Make credential request (840c2a6b-df9d-4b44-8d25-cd49092061b4). 97834 'ElevenLabs STT (call notes)': header xi-api-key, used by the speech-to-text HTTP module. 97835 'GHL read PIT (call recordings)': header Authorization ('Bearer <read PIT>'), used by the recording download. The note itself is written through ghl_connection_id, not this token. Albert's ElevenLabs app connection 4875733 also exists; the scenario does not need it (the app's modules cannot send keyterms or upload a file)."
+      "_keychains": "Two Make keys of type API Key Auth, created 2026-10-02 by Albert through a Make credential request (840c2a6b-df9d-4b44-8d25-cd49092061b4). 97834 'ElevenLabs STT (call notes)': header xi-api-key, used by the speech-to-text HTTP module. 97835 'GHL read PIT (call recordings)': header Authorization ('Bearer <read PIT>'), used by the recording download. The note itself is written through ghl_connection_id, not this token. Albert's ElevenLabs app connection 4875733 also exists; the scenario does not need it (the app's modules cannot send keyterms or upload a file).",
+      "webhook_url": "https://hook.us1.make.com/foh85gqj8kq9sepk5d156z4n6psvjbgf",
+      "trigger": "GHL workflow 'Call Status' (completed, voicemail) -> Webhook action POST to webhook_url with custom data contact_id={{contact.id}}. Make's own GHL 'Watch Events' trigger only covers contacts and opportunities, not messages (checked 2026-10-02).",
+      "blueprint": "platform-settings/blueprints/ghl-call-notes-4951497.json",
+      "sequential": true,
+      "ops_per_new_call": "about 14 (4 when a webhook fire finds nothing new)"
     }
   },
   "_observed_2026_10_02": "Live dry run, 72 h: 87 conversations, 71 TYPE_CALL messages (51 completed, 16 no-answer, 4 voicemail; 43 inbound / 28 outbound). The messages endpoint IGNORES type=TYPE_CALL (1,418 messages scanned for 71 calls) — the script filters messageType itself. Status and duration live in meta.call. GHL's own transcription returns {sentenceIndex, startTime, endTime (seconds), speaker, mediaChannel, transcript, words}."

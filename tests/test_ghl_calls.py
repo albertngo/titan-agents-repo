@@ -136,7 +136,17 @@ class TestRegistry(unittest.TestCase):
         self.assertFalse(sc["isActive"])
         for k in ("id", "hook_id"):
             self.assertTrue(sc[k] is None or isinstance(sc[k], int))
-        self.assertTrue((REPO_ROOT / sc["draft_blueprint"]).exists())
+        snap = json.loads((REPO_ROOT / sc["blueprint"]).read_text())
+        self.assertEqual(snap["scenario_id"], sc["id"])
+        mods = {m["id"]: m for m in snap["blueprint"]["flow"]}
+        self.assertEqual(mods[1]["parameters"]["hook"], sc["hook_id"])
+        self.assertEqual(mods[7]["parameters"]["apiKeyKeychain"], sc["keychains"]["ghl_read_pit"])
+        self.assertEqual(mods[8]["parameters"]["apiKeyKeychain"], sc["keychains"]["elevenlabs"])
+        self.assertEqual(mods[13]["module"], "highlevel:addNotetoContact")
+        self.assertTrue(snap["blueprint"]["metadata"]["scenario"]["sequential"])
+        sent = [f["value"] for f in mods[8]["mapper"]["multipartBodyContent"] if f["name"] == "keyterms"]
+        published = json.loads((REPO_ROOT / CFG["keyterms"]["published_file"]).read_text())["terms"]
+        self.assertEqual(sent, published, "module 8's keyterm fields drifted from the published list")
 
     def test_env_example_declares_engine_key(self):
         env = (REPO_ROOT / ".env.example").read_text()
@@ -349,6 +359,31 @@ class TestCallNote(unittest.TestCase):
         self.assertEqual(parsed["summary"], "S.")
         self.assertEqual(parsed["next_steps"], [])
         self.assertEqual(len(parsed["utterances"]), 200)
+        self.assertEqual(parsed["utterances"][1]["speaker"], "Speaker 1")
+        self.assertTrue(parsed["complete"])
+
+    def test_make_style_fixed_offset_split(self):
+        """The Make scenario cuts at fixed 3,000-character offsets (mid-line) and writes
+        the parts last-first; the reader must rebuild every turn exactly."""
+        turns = self.utts(120)
+        transcript = "\n".join(f"[{gp.fmt_clock(u['start_s'])}] {u['speaker']}: {u['text']}" for u in turns)
+        head = ("Summary\nWants an LVP quote for two rooms.\n\nNext steps\n- Us: send quote — by Friday\n"
+                "- Customer: send photos — no date given\n\nTranscript (Scribe v2 · 212s · inbound · "
+                "2026-10-01 09:02 · Albert)\n")
+        size = 3000
+        n = -(-len(transcript) // size)
+        bodies = []
+        for k in range(n, 0, -1):
+            chunk = transcript[(k - 1) * size:k * size]
+            lead = head if k == 1 else "Transcript (continued)\n"
+            bodies.append(f"{lead}{chunk}\n\n[call-note v1 messageId=m1 conversationId=c1 "
+                          f"engine=scribe_v2 part={k}/{n}]")
+        self.assertGreater(n, 2)
+        parsed = gp.parse_call_note(bodies)
+        self.assertEqual(parsed["summary"], "Wants an LVP quote for two rooms.")
+        self.assertEqual(parsed["next_steps"], ["Us: send quote — by Friday",
+                                                "Customer: send photos — no date given"])
+        self.assertEqual([u["text"] for u in parsed["utterances"]], [u["text"] for u in turns])
         self.assertEqual(parsed["utterances"][1]["speaker"], "Speaker 1")
         self.assertTrue(parsed["complete"])
 

@@ -212,7 +212,9 @@ file's `status` — it reports under `reporting.calls` plus one `needs_attention
 writes nothing.
 
 **The contact note is a Make write.** Make scenario "GHL Call -> Note" (drafted in
-`platform-settings/blueprints/ghl-call-notes-DRAFT.json`, **not yet built**) writes
+scenario 4951497, created 2026-10-02 **inactive**, blueprint
+`platform-settings/blueprints/ghl-call-notes-4951497.json`; fired by a GHL "Call Status"
+workflow's webhook, because Make's GHL trigger cannot watch messages) writes
 Summary → Next steps → Transcript onto the GHL contact right after each call. It is a
 GHL write outside the `ghl-actions-agent` approval gate, the same class as Website
 Inquiry Ingester and the Stage scenarios, and writes nothing else. Registry
