@@ -189,7 +189,7 @@
     "call_notes": {
       "id": 4951497,
       "name": "GHL Call -> Note",
-      "status": "v2 live-tested 2026-10-02 (one replayed call: 3 transcript notes + 1 internal comment read back as TYPE_INTERNAL_COMMENT; a second replay stopped at the data-store check), inactive — waiting on the GHL workflow",
+      "status": "LIVE since 2026-10-02 14:17 UTC (Albert switched it on after building the GHL 'Call Status' workflow). First real call 14:19 UTC: 11-minute inbound call on Pourya's line, Sonnet route, 4 transcript notes, one comment read back as TYPE_INTERNAL_COMMENT, no alarm; 26 operations, ~42 credits.",
       "team_id": 459654,
       "hook_id": 2836060,
       "ghl_connection_id": 4426112,
@@ -206,7 +206,7 @@
       "split_chars": 3000,
       "sleep_seconds": 90,
       "edited_in": "the Make UI",
-      "isActive": false,
+      "isActive": true,
       "_write_note": "A GHL write performed by Make, outside the ghl-actions-agent approval gate — the same class as the existing Make GHL writers (Website Inquiry Ingester, Stage scenarios). Recorded here and in CLAUDE.md (Albert, 2026-10-01). It writes exactly one thing: the note.",
       "keychains": {
         "elevenlabs": 97834,

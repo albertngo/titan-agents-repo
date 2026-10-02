@@ -212,8 +212,8 @@ file's `status` — it reports under `reporting.calls` plus one `needs_attention
 writes nothing.
 
 **The contact note and the summary comment are Make writes.** Make scenario "GHL Call
--> Note" (4951497, live-tested 2026-10-02, **inactive** until Albert builds the GHL "Call
-Status" workflow that fires it; blueprint
+-> Note" (4951497, **live since 2026-10-02**, fired by Albert's GHL "Call Status" workflow;
+blueprint
 `platform-settings/blueprints/ghl-call-notes-4951497.json`) writes the transcript as
 contact notes and, since 2026-10-02 (Albert), posts Summary + Next steps as an
 **internal comment** on the conversation, both stamped with the call's date, time, staff

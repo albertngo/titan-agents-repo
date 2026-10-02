@@ -150,7 +150,7 @@ not a decision: the engine is locked in.
 - `--engine ghl --limit 2` transcribed two real calls end to end (44 and 8
   utterances, absolute Toronto timestamps) into the gitignored cache.
 
-## The Make scenario (4951497, v2 live-tested 2026-10-02, inactive)
+## The Make scenario (4951497, live since 2026-10-02)
 
 Blueprint snapshot: `platform-settings/blueprints/ghl-call-notes-4951497.json`. Ids are
 in `platform-settings/ghl-calls.json` → `make_scenarios.call_notes`. Once Albert edits
@@ -242,8 +242,8 @@ Things that matter:
 
 Confirmed on the first live run (2026-10-02): GHL accepts a 4,028-character note, and
 Make's `replace()` honours `$n` back-references (module 9's output is clean
-`[mm:ss] Speaker N:` lines). Still to confirm: the webhook body's field name for the
-contact id once the GHL workflow exists.
+`[mm:ss] Speaker N:` lines). The GHL workflow's webhook body works with the scenario's
+`ifempty(contact_id; customData.contact_id)` lookup (first live call, 2026-10-02).
 
 ## Other languages (2026-10-02)
 
@@ -329,6 +329,13 @@ What the gate cannot stop: a person editing module 18 in the Make UI, or using k
 - Coaching never reaches a GHL note, `items` or `needs_attention`.
 
 ## Log
+
+- **2026-10-02 14:17 UTC, live.** Albert built the GHL "Call Status" workflow and switched
+  the scenario on. First real call two minutes later: an 11-minute inbound call on Pourya's
+  line took the Sonnet route; 4 transcript notes, one comment read back as
+  `TYPE_INTERNAL_COMMENT`, staff named Pourya, no alarm, kill switch clear. 26 operations,
+  ~42 credits. GHL's own workflows sent their usual SMS and email around the same minute;
+  none came from Make.
 
 - **2026-10-02, instant alarm.** Kill switch + WhatsApp alarm on the comment route
   (modules 45, 47, 46). Probe-tested, pushed, scenario left inactive. Albert confirmed he

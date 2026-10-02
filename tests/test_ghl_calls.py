@@ -148,7 +148,7 @@ class TestRegistry(unittest.TestCase):
         sc, snap, mods = self._snapshot()
         self.assertEqual(sc["team_id"], 459654)
         self.assertEqual(sc["writes"], ["GHL contact note", "GHL internal comment"])
-        self.assertFalse(sc["isActive"])
+        self.assertTrue(sc["isActive"])  # live since 2026-10-02 14:17 UTC
         for k in ("id", "hook_id"):
             self.assertTrue(sc[k] is None or isinstance(sc[k], int))
         self.assertEqual(snap["scenario_id"], sc["id"])
