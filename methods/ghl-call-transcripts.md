@@ -170,7 +170,7 @@ GHL workflow "Call Status" (completed / voicemail) → Webhook action → Make w
  8  HTTP POST ElevenLabs      key 97834 "ElevenLabs STT (call notes)": scribe_v2,
                                diarize, audio events, 181 keyterm fields, txt format
  9  Set variables: transcript ("[mm:ss] Speaker N: …" lines), ghl_user (a person or "")
-10  Claude (claude-sonnet-4-5, Make's Claude app): Staff, Speakers, Summary, Next steps
+10  Claude (claude-haiku-4-5, Make's Claude app): Staff, Speakers, Summary, Next steps
 11  Set variables: staff (D10 rule), speaker key, summary block, Ref, date, duration
 12  Set variables: note header, continuation header, comment text
 13  Repeater N → 1
@@ -217,9 +217,9 @@ Things that matter:
   transcribed call — about half of it the Claude module's tokens (claude-sonnet-4-5,
   billed in Make credits, no connection). At 25 calls a day that is ~24,000 credits a
   month on a 40,000 Core plan that already carries ~25 scenarios: well above the first
-  estimate of 10,000. Cheaper options: Haiku 4.5 in module 10 (about a third of the
-  token credits), or Anthropic's API through an HTTP module with Titan's own key. A fire
-  that finds nothing new costs 4 operations.
+  estimate of 10,000. **Module 10 runs Haiku 4.5 since 2026-10-02 (Albert)** for about a
+  third of the summary's credits; the next lever would be Anthropic's API through an HTTP
+  module with Titan's own key. A fire that finds nothing new costs 4–5 operations.
 - **Governance.** The notes and the comment are GHL writes performed by Make, outside
   the `ghl-actions-agent` approval gate, like Website Inquiry Ingester and the Stage
   scenarios. It writes exactly those two things.

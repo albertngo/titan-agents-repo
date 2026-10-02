@@ -1,7 +1,7 @@
 {
   "_comment": "Blueprint of Make scenario 4951497 'GHL Call -> Note', v2 (2026-10-02): transcript in contact notes, Summary + Next steps as an internal comment behind the comment gate (modules 15-20; registry make_scenarios.call_notes.comment_gate). Make is the source of truth once Albert edits it in the UI: re-snapshot this file after any UI change (methods/content-folder-scenario.md lesson); tests/test_ghl_calls.py then re-checks every gate layer. Keyterm fields are generated from platform-settings/ghl-calls-keyterms.json.",
   "scenario_id": 4951497,
-  "snapshot_of": "2026-10-02T03:49:21Z",
+  "snapshot_of": "2026-10-02T12:15:06Z",
   "blueprint": {
     "name": "GHL Call -> Note",
     "flow": [
@@ -1338,7 +1338,7 @@
         "version": 1,
         "parameters": {},
         "mapper": {
-          "model": "claude-sonnet-4-5",
+          "model": "claude-haiku-4-5",
           "max_tokens": 600,
           "textPrompt": "You are writing an internal call summary for Titan Flooring, a flooring retailer and installer in the Greater Toronto Area. Below is the transcript of one phone call, one line per speaker turn. Direction: {{4.direction}}. Titan phone user: {{ifempty(9.ghl_user; \"the shared Front Desk line (several people answer it)\")}}. Titan staff who take calls: Joey, Helen, David, Albert, Pourya, Mike.\n\nWrite exactly this, as plain text, and nothing else:\n\nStaff: <the Titan staff member's first name, only if it is said on the call (they introduce themselves or are addressed by it) and it is one of the staff names listed above; otherwise Staff>\nSpeakers: <who each speaker label is, e.g. Speaker 1 = Helen (Titan) · Speaker 2 = customer; cover every label in the transcript; write unclear for any you cannot tell>\nSummary\n<at most 3 sentences: who called, what they want, and what was agreed. Name products, rooms, square footage and prices if they were said.>\n\nNext steps\n- Us: <what Titan promised> — by <date, or 'no date given'>\n- Customer: <what the customer will do> — by <date, or 'no date given'>\n(one line per commitment; write '- none' if nobody committed to anything)\n\nRules: use only what was actually said; never invent dates, prices or names; never guess a staff name that is not said on the call. No remarks about how the staff member handled the call. If the recording has no real conversation, write 'Summary' then 'No conversation recorded.' and 'Next steps' then '- none'.\n\nTranscript:\n{{9.transcript}}"
         },

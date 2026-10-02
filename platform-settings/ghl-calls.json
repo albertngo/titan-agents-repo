@@ -236,7 +236,9 @@
           "7. tests/test_ghl_calls.py pins all of the above against the blueprint snapshot."
         ],
         "_record_first": "Module 17 records the call in the data store BEFORE the comment is posted, so a failed comment can never cause a re-run that duplicates the notes; the record says comment pending until module 20 overwrites it with posted + the read-back type."
-      }
+      },
+      "summary_model": "claude-haiku-4-5",
+      "_summary_model": "Albert, 2026-10-02: Haiku 4.5, switched from claude-sonnet-4-5 after the v2 test cost ~38 Make credits a call (about half of it the summary). Make's Claude app bills in Make credits; no connection."
     }
   },
   "_observed_2026_10_02": "Live dry run, 72 h: 87 conversations, 71 TYPE_CALL messages (51 completed, 16 no-answer, 4 voicemail; 43 inbound / 28 outbound). The messages endpoint IGNORES type=TYPE_CALL (1,418 messages scanned for 71 calls) — the script filters messageType itself. Status and duration live in meta.call. GHL's own transcription returns {sentenceIndex, startTime, endTime (seconds), speaker, mediaChannel, transcript, words}."

@@ -151,6 +151,7 @@ class TestRegistry(unittest.TestCase):
             self.assertEqual(mods[mid]["parameters"]["apiKeyKeychain"], sc["keychains"]["ghl_read_pit"])
             self.assertEqual(mods[mid]["mapper"]["method"], "get")
         self.assertEqual(mods[8]["parameters"]["apiKeyKeychain"], sc["keychains"]["elevenlabs"])
+        self.assertEqual(mods[10]["mapper"]["model"], sc["summary_model"])
         # The GHL connection writes notes and nothing else.
         conn = [m["id"] for m in snap["blueprint"]["flow"]
                 if (m.get("parameters") or {}).get("__IMTCONN__") == sc["ghl_connection_id"]]
