@@ -11,8 +11,8 @@ Where a transcript comes from, in order:
      the durable cache — cloud containers are ephemeral.
   2. This run's own cache, analysis/cache/ghl-calls/<messageId>.<engine>.json.
   3. The recording (.wav) from GHL, sent to the configured engine
-     (platform-settings/ghl-calls.json engine.default: ElevenLabs Scribe v2, with
-     Deepgram Nova-3 as the alternate).
+     (platform-settings/ghl-calls.json engine.default: ElevenLabs Scribe v2, locked
+     in 2026-10-02).
   4. GHL's own transcription, when the engine fails (recording: "fallback-ghl").
 
 Read-only against GHL: every GHL request goes through scripts/ghl_client.py, which
@@ -27,7 +27,7 @@ Usage:
     python3 scripts/ghl_calls_pull.py --dry-run --hours 72 --verbose
     python3 scripts/ghl_calls_pull.py --probe <messageId>
     python3 scripts/ghl_calls_pull.py --hours 168 --message-id A --message-id B \
-        --ignore-notes --bakeoff elevenlabs,deepgram --compare-ghl
+        --ignore-notes --bakeoff elevenlabs,ghl
     python3 scripts/ghl_calls_pull.py --write-keyterms
 
 Exit codes: 0 ok or partial; 1 error (nothing could be listed); 2 bad config,
@@ -35,8 +35,8 @@ credentials or usage; 3 host_blocked (allow the host in the environment's Networ
 access — never worked around).
 
 Env (see .env.example): GHL_PIT_TOKEN, GHL_LOCATION_ID, and the engine's key
-(ELEVENLABS_API_KEY or DEEPGRAM_API_KEY; ASSEMBLYAI_API_KEY / OPENAI_API_KEY only if
-those adapters are chosen).
+(ELEVENLABS_API_KEY; ASSEMBLYAI_API_KEY / OPENAI_API_KEY only if those adapters are
+chosen).
 """
 
 import argparse
@@ -456,54 +456,6 @@ class ElevenLabsEngine(Engine):
                 "request_id": raw.get("transcription_id")}
 
 
-class DeepgramEngine(Engine):
-    """Deepgram Nova-3. Raw audio body; stereo -> multichannel with channel_map."""
-    name = "deepgram"
-
-    def mode(self, info):
-        return {"multichannel": "true"} if (info.get("channels") or 1) >= 2 else {"diarize": "true"}
-
-    def request(self, audio, info, keyterms, language="en"):
-        params = [(k, str(v).lower() if isinstance(v, bool) else v)
-                  for k, v in self.cfg.get("params", {}).items()]
-        params = [("model", self.cfg.get("model", "nova-3"))] + params + list(self.mode(info).items())
-        params += [("keyterm", t) for t in keyterms[:50]]
-        url = self.cfg["url"] + "?" + urllib.parse.urlencode(params)
-        ctype = "audio/wav" if info.get("container") == "riff" else "application/octet-stream"
-        headers = {"Authorization": "Token " + (self.key or ""), "Content-Type": ctype,
-                   "Accept": "application/json"}
-        return url, audio, headers
-
-    def transcribe(self, audio, info, keyterms, language="en"):
-        url, body, headers = self.request(audio, info, keyterms, language)
-        return _send(self.opener, url, body, headers, self.cfg.get("timeout_s", 600))
-
-    def normalize(self, raw, started_at, direction=None, cfg=None):
-        res = raw.get("results") or {}
-        cmap = ((cfg or {}).get("channel_map") or {}).get(direction or "", {})
-        multichannel = len(res.get("channels") or []) > 1
-        out = []
-        for u in res.get("utterances") or []:
-            ch = u.get("channel")
-            if multichannel:
-                spk = cmap.get(str(ch), f"channel_{ch}")
-            else:
-                spk = f"speaker_{u.get('speaker', 0)}"
-            out.append(_utt(u.get("start"), u.get("end"), spk, u.get("transcript", ""), started_at,
-                            channel=ch, confidence=u.get("confidence")))
-        out.sort(key=lambda x: x["start_s"])
-        alts = [((c.get("alternatives") or [{}])[0]) for c in res.get("channels") or []]
-        confs = [a.get("confidence") for a in alts if isinstance(a.get("confidence"), (int, float))]
-        text = " ".join(u["text"] for u in out) or " ".join(a.get("transcript", "") for a in alts)
-        lang = None
-        for c in res.get("channels") or []:
-            lang = lang or c.get("detected_language")
-        return {"text": text.strip(), "language": lang or "en",
-                "confidence": round(sum(confs) / len(confs), 3) if confs else None,
-                "utterances": out, "audio_events": [],
-                "request_id": (raw.get("metadata") or {}).get("request_id")}
-
-
 class AssemblyAIEngine(Engine):
     """AssemblyAI: upload, create, poll. Comparison adapter."""
     name = "assemblyai"
@@ -591,8 +543,8 @@ class GhlTranscriptionEngine(Engine):
                 "utterances": out, "audio_events": [], "request_id": None}
 
 
-ENGINES = {"elevenlabs": ElevenLabsEngine, "deepgram": DeepgramEngine,
-           "assemblyai": AssemblyAIEngine, "openai": OpenAIEngine}
+ENGINES = {"elevenlabs": ElevenLabsEngine, "assemblyai": AssemblyAIEngine,
+           "openai": OpenAIEngine}
 
 
 def make_engine(name, cfg, opener=None):

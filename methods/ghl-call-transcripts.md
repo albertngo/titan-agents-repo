@@ -18,7 +18,7 @@ Registry: `platform-settings/ghl-calls.json`. Script: `scripts/ghl_calls_pull.py
 | # | Question | Answer |
 |---|---|---|
 | D1 | Where does transcription run? | **Both.** A Make scenario writes the note on the contact right after the call; the daily script reads that note, and transcribes only what Make missed |
-| D2 | Which engine? | **ElevenLabs Scribe v2**, Deepgram Nova-3 as the swappable alternate. Lock in after a bake-off on 10 real calls including transfers and crosstalk |
+| D2 | Which engine? | **ElevenLabs Scribe v2, locked in 2026-10-02.** Deepgram dropped and no bake-off gate (Albert, 2026-10-02, superseding "Deepgram alternate, decide after a 10-call bake-off") |
 | D3 | What does the ingester extract? | Sales and lead insight, commitments and follow-ups, quote and order details, and staff call-quality notes |
 | D4 | What if transcription fails? | `ghl.json` stays `status: "ok"`; `reporting.calls.status` says `error` and one `needs_attention` line says why |
 | D8 | The contact note | Summary, then Next steps, then the transcript, written right after processing |
@@ -79,8 +79,7 @@ team-visible in GHL by design.
 
 | Engine | Price | Vocabulary | Speakers | Notes |
 |---|---|---|---|---|
-| **ElevenLabs Scribe v2** (default) | ≈ $0.22/h + $0.05/h keyterms | up to 1,000 keyterms | diarization, up to 32 | audio-event tags; 3 GB upload; sync |
-| Deepgram Nova-3 (alternate) | ≈ $0.0043/min + $0.0013/min keyterms | up to 100 (50 used) | diarization, or multichannel on stereo | fastest; sync |
+| **ElevenLabs Scribe v2** (in use) | ≈ $0.22/h + $0.05/h keyterms | up to 1,000 keyterms | diarization, up to 32 | audio-event tags; 3 GB upload; sync |
 | AssemblyAI | ≈ $0.21/h | up to 1,000 `keyterms_prompt` | speaker labels | async upload → poll |
 | OpenAI gpt-4o-transcribe | $0.006/min | free-text prompt | none in the plain model | 25 MB upload cap |
 | GHL's own | free | none | 2 speakers | fallback, and the stand-in until the engine key exists (`--engine ghl` selects it explicitly) — the quality Albert is replacing |
@@ -94,18 +93,18 @@ bound the script regardless.
 the newest committed Airtable upload CSVs. `--write-keyterms` publishes the list to
 `platform-settings/ghl-calls-keyterms.json` (no customer data) for Make to read.
 
-## The bake-off
+## Checking quality (optional)
 
 ```
-python3 scripts/ghl_calls_pull.py --hours 168 --message-id <id> … (10 calls) \
-    --ignore-notes --bakeoff elevenlabs,deepgram --compare-ghl
+python3 scripts/ghl_calls_pull.py --hours 168 --message-id <id> … \
+    --ignore-notes --bakeoff elevenlabs,ghl
 ```
 
-Pick 10 real calls with at least one transfer and one crosstalk-heavy call. The run
-writes `analysis/cache/ghl-calls/bakeoff/<date>.md` (full text, gitignored) and
-prints a scorecard with no transcript text. Score each call on supplier and product
-names, speaker turns, numbers and dates, and invented words. Record the winner by
-setting `engine.default` and `engine._locked_in` in the registry.
+Runs Scribe v2 and GHL's own transcript on the same calls. It writes
+`analysis/cache/ghl-calls/bakeoff/<date>.md` (full text, gitignored) and prints a
+scorecard with no transcript text: speakers found, keyterms heard, confidence, cost.
+A transfer and a crosstalk-heavy call are the useful ones to include. This is a check,
+not a decision: the engine is locked in.
 
 ## What the live account showed (2026-10-02)
 
@@ -115,8 +114,8 @@ setting `engine.default` and `engine._locked_in` in the registry.
   calls). The script filters `messageType` itself.
 - Call status and duration live in `meta.call`.
 - Recordings answer with `Version: 2021-04-15` as `audio/x-wav`, **mono, 8 kHz,
-  16-bit PCM**, for completed calls and voicemails. Mono means diarization, not
-  channel mapping; `channel_map` is unused.
+  16-bit PCM**, for completed calls and voicemails. Mono means speakers come from
+  diarization, which Scribe v2 does.
 - GHL's own transcript returns sentences with times in seconds, a `speaker` 0/1 and
   `mediaChannel` 1/2.
 - The read token already reads recordings, transcriptions and contact notes.
@@ -160,6 +159,9 @@ the real blueprint into `platform-settings/blueprints/` and fill
 
 ## Log
 
+- **2026-10-02 (Albert, in chat).** "I think I'm going to switch to ElevenLabs":
+  Scribe v2 locked in, Deepgram adapter and key removed, bake-off no longer a gate
+  (kept as an optional Scribe v2 vs GHL check). Setup is now one key and one host.
 - **2026-10-02.** Built the script, client, registry, tests and agent changes. Live
   dry run and recording probe against the account (findings above). Make scenario
   drafted, not created: it needs an ElevenLabs key and keychain entries first.

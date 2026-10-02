@@ -202,8 +202,8 @@ product-page link from Vidar's own pages as found in the search index).
 `scripts/ghl_calls_pull.py` (read-only; reaches GHL only through the GET-only
 `scripts/ghl_client.py`): it lists the window's call messages, takes each transcript
 from the contact's `[call-note v1]` note if one exists, else downloads the `.wav` and
-transcribes it (ElevenLabs Scribe v2 by default, Deepgram Nova-3 alternate — the
-default locks in after a 10-call bake-off), else falls back to GHL's own transcript.
+transcribes it (ElevenLabs Scribe v2, locked in 2026-10-02 by Albert; Deepgram
+dropped), else falls back to GHL's own transcript.
 Audio and full text stay in the gitignored `analysis/cache/ghl-calls/`; only
 summaries reach `ghl.json` (`extensions.ghl.calls[]`, `call_quality` (private,
 coaching), `reporting.calls`, template v4). A transcript failure never flips the

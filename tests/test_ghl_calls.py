@@ -118,9 +118,13 @@ class TestRegistry(unittest.TestCase):
         self.assertTrue(CFG["prefer_note"])
 
     def test_engine_decision(self):
+        """Albert, 2026-10-02: ElevenLabs Scribe v2 locked in, Deepgram dropped."""
         self.assertEqual(CFG["engine"]["default"], "elevenlabs")
+        self.assertEqual(CFG["engine"]["_locked_in"], "2026-10-02")
         self.assertEqual(CFG["engine"]["elevenlabs"]["model_id"], "scribe_v2")
-        self.assertEqual(CFG["engine"]["deepgram"]["model"], "nova-3")
+        self.assertNotIn("deepgram", CFG["engine"])
+        self.assertNotIn("deepgram", gp.ENGINES)
+        self.assertNotIn("channel_map", CFG)
         for name in gp.ENGINES:
             self.assertIn("env_var", CFG["engine"][name])
             self.assertIn(name, CFG["keyterms"]["cap_by_engine"])
@@ -134,10 +138,10 @@ class TestRegistry(unittest.TestCase):
             self.assertTrue(sc[k] is None or isinstance(sc[k], int))
         self.assertTrue((REPO_ROOT / sc["draft_blueprint"]).exists())
 
-    def test_env_example_declares_engine_keys(self):
+    def test_env_example_declares_engine_key(self):
         env = (REPO_ROOT / ".env.example").read_text()
-        for name in ("elevenlabs", "deepgram"):
-            self.assertIn(CFG["engine"][name]["env_var"] + "=", env)
+        self.assertIn(CFG["engine"]["elevenlabs"]["env_var"] + "=", env)
+        self.assertNotIn("DEEPGRAM_API_KEY", env)
 
 
 class TestGating(unittest.TestCase):
@@ -191,16 +195,14 @@ class TestListing(unittest.TestCase):
 
 
 class TestWav(unittest.TestCase):
+    def test_stereo_header(self):
+        self.assertEqual(gp.wav_info(make_wav(channels=2))["channels"], 2)
+
     def test_pcm_header(self):
         info = gp.wav_info(make_wav(channels=1, seconds=2))
         self.assertEqual((info["container"], info["channels"], info["sample_rate"], info["format_tag"]),
                          ("riff", 1, 8000, 1))
         self.assertAlmostEqual(info["duration_s"], 2.0)
-
-    def test_stereo_picks_deepgram_multichannel(self):
-        dg = gp.DeepgramEngine(CFG["engine"]["deepgram"], key="k")
-        self.assertEqual(dg.mode(gp.wav_info(make_wav(channels=2))), {"multichannel": "true"})
-        self.assertEqual(dg.mode(gp.wav_info(make_wav(channels=1))), {"diarize": "true"})
 
     def test_mulaw_header_parsed_by_hand(self):
         import struct
@@ -237,15 +239,6 @@ class TestEngines(unittest.TestCase):
                        'name="keyterms"\r\n\r\nVidar', 'name="keyterms"\r\n\r\nSPC', 'name="file"'):
             self.assertIn(needle, body)
 
-    def test_deepgram_request_shape(self):
-        seen, op = self.capture({"results": {}})
-        dg = gp.DeepgramEngine(CFG["engine"]["deepgram"], key="secret", opener=op)
-        dg.transcribe(make_wav(), gp.wav_info(make_wav()), [f"t{i}" for i in range(80)])
-        self.assertTrue(seen["url"].startswith("https://api.deepgram.com/v1/listen?model=nova-3"))
-        self.assertIn("diarize=true", seen["url"])
-        self.assertEqual(seen["url"].count("keyterm="), 50)
-        self.assertEqual(seen["headers"].get("Authorization"), "Token secret")
-
     def test_elevenlabs_normalize(self):
         raw = {"language_code": "en", "text": "Hi there. Hello.", "transcription_id": "tr1", "words": [
             {"text": "Hi", "type": "word", "start": 0.0, "end": 0.3, "speaker_id": "speaker_0", "logprob": 0},
@@ -260,16 +253,6 @@ class TestEngines(unittest.TestCase):
         self.assertEqual(n["utterances"][1]["start_at"], "2026-10-01T09:01:01-04:00")
         self.assertEqual(n["confidence"], 1.0)
         self.assertEqual(n["audio_events"][0]["text"], "(music)")
-
-    def test_deepgram_normalize_with_channel_map(self):
-        raw = {"metadata": {"request_id": "r"}, "results": {
-            "channels": [{"alternatives": [{"transcript": "a", "confidence": 0.9}]},
-                         {"alternatives": [{"transcript": "b", "confidence": 0.7}]}],
-            "utterances": [{"start": 2, "end": 3, "channel": 1, "transcript": "b", "confidence": 0.7},
-                           {"start": 0, "end": 1, "channel": 0, "transcript": "a", "confidence": 0.9}]}}
-        n = gp.DeepgramEngine(CFG["engine"]["deepgram"]).normalize(raw, T0, "inbound", CFG)
-        self.assertEqual([u["speaker"] for u in n["utterances"]], ["customer", "staff"])
-        self.assertEqual(n["confidence"], 0.8)
 
     def test_ghl_normalize_seconds(self):
         raw = {"sentences": [
@@ -336,7 +319,7 @@ class TestTranscribeOne(unittest.TestCase):
     def test_empty_recording_fails(self):
         self.client.recording.return_value = (b"", "audio/x-wav")
         eng = mock.Mock(cfg={})
-        eng.name = "deepgram"
+        eng.name = "elevenlabs"
         self.assertEqual(self.run_one(eng)["recording"], "failed")
         eng.transcribe.assert_not_called()
 
@@ -438,8 +421,8 @@ class TestKeyterms(unittest.TestCase):
         terms = gp.build_keyterms(cfg, "elevenlabs", suppliers=["Vidar", "spc"], people=["Albert"],
                                   catalogue=["Heritage Hills", "vidar"])
         self.assertEqual(terms, ["LVP", "SPC", "Vidar", "Albert", "Heritage Hills"])
-        cfg["keyterms"]["cap_by_engine"]["deepgram"] = 3
-        self.assertEqual(len(gp.build_keyterms(cfg, "deepgram", suppliers=["A1", "B1"], people=[],
+        cfg["keyterms"]["cap_by_engine"]["elevenlabs"] = 3
+        self.assertEqual(len(gp.build_keyterms(cfg, "elevenlabs", suppliers=["A1", "B1"], people=[],
                                                catalogue=[])), 3)
 
     def test_catalogue_harvest_cleans_terms(self):
@@ -470,8 +453,8 @@ class TestKeyterms(unittest.TestCase):
 class TestCost(unittest.TestCase):
     def test_estimates(self):
         self.assertAlmostEqual(gp.estimate_cost_usd(60, "elevenlabs", CFG["engine"]["elevenlabs"]), 0.27)
-        self.assertAlmostEqual(gp.estimate_cost_usd(10, "deepgram", CFG["engine"]["deepgram"]), 0.056)
-        self.assertAlmostEqual(gp.estimate_cost_usd(10, "deepgram", CFG["engine"]["deepgram"], False), 0.043)
+        self.assertAlmostEqual(gp.estimate_cost_usd(60, "elevenlabs", CFG["engine"]["elevenlabs"], False), 0.22)
+        self.assertEqual(gp.estimate_cost_usd(10, "ghl", CFG["engine"]["ghl"]), 0.0)
 
 
 class TestBakeoff(unittest.TestCase):
@@ -482,11 +465,12 @@ class TestBakeoff(unittest.TestCase):
                    engine={"est_cost_usd": 0.01, "wall_s": 2})
         with tempfile.TemporaryDirectory() as d:
             path = Path(d) / "b.md"
-            card = gp.write_bakeoff(path, {"m1": {"elevenlabs": rec, "deepgram": dict(rec, text="")}},
+            card = gp.write_bakeoff(path, {"m1": {"elevenlabs": rec, "ghl": dict(rec, text="")}},
                                     ["Vidar", "herringbone"])
             self.assertIn("Vidar herringbone quote", path.read_text())
         self.assertEqual(card["elevenlabs"]["keyterm_hits"], 2)
-        self.assertEqual(card["deepgram"]["keyterm_hits"], 0)
+        self.assertEqual(card["ghl"]["keyterm_hits"], 0)
+        self.assertEqual(CFG["bakeoff"]["engines"], ["elevenlabs", "ghl"])
         self.assertNotIn("text", json.dumps(card))
 
 

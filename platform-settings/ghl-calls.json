@@ -1,6 +1,6 @@
 {
   "_comment": "Registry for call-recording transcription (methods/ghl-call-transcripts.md). Read by scripts/ghl_calls_pull.py (run by .claude/agents/ghl-ingest-agent.md via Bash during /daily-ingest, and by hand) and documents the Make scenario 'GHL Call -> Note' that writes the Summary / Next steps / Transcript note onto the GHL contact right after a call. Engine choice, gating, caps, keyterm sources and output paths live HERE, never in a prompt. Albert, 2026-10-01: ingest voice calls 'at a high level' — download the .wav, run it through a better transcriber than GHL's, cross-reference customer, message id and timestamps, feed it to the ingester; and put the transcript in the customer's note section right after processing, as Summary, Next steps, Transcript.",
-  "_maintenance": "Prices were web-searched 2026-10-01 and drive only est_cost_usd — verify at signup. If GHL changes the recording endpoint or Version header, change api.* and re-run `ghl_calls_pull.py --probe`. channel_map and make_scenarios.call_notes.split_chars are UNVERIFIED until the first live probe / scenario run. engine.default flips only after the bake-off; record the date in engine._locked_in. tests/test_ghl_calls.py pins the caps, the default engine and the output paths.",
+  "_maintenance": "Prices were web-searched 2026-10-01 and drive only est_cost_usd — verify at signup. If GHL changes the recording endpoint or Version header, change api.* and re-run `ghl_calls_pull.py --probe`. make_scenarios.call_notes.split_chars is UNVERIFIED until the first live scenario run. tests/test_ghl_calls.py pins the caps, the engine and the output paths.",
   "config_version": "1",
   "api": {
     "base_url": "https://services.leadconnectorhq.com",
@@ -43,8 +43,8 @@
   "_prefer_note": "When the Make scenario already wrote a [call-note v1 messageId=…] note on the contact, the daily run reads the transcript from it and does not download or transcribe the call again. The note is the durable cache; cloud containers are ephemeral.",
   "engine": {
     "default": "elevenlabs",
-    "_locked_in": null,
-    "_decision": "Albert, 2026-10-01: Scribe v2 default, Deepgram Nova-3 as the swappable alternate; run both on 10 real Titan calls (including transfers and crosstalk) before locking in. Switching is this one value.",
+    "_locked_in": "2026-10-02",
+    "_decision": "Albert, 2026-10-02, in chat: switch to ElevenLabs — lock in Scribe v2 now, drop Deepgram, no bake-off gate (superseding 2026-10-01's 'Scribe default, Deepgram alternate, decide after a 10-call bake-off'). GHL recordings are mono (probe 2026-10-02), so Deepgram's multichannel speaker mapping never applied. AssemblyAI and OpenAI stay as comparison adapters; GHL's own transcript stays the automatic fallback.",
     "elevenlabs": {
       "url": "https://api.elevenlabs.io/v1/speech-to-text",
       "model_id": "scribe_v2",
@@ -59,21 +59,6 @@
       "keyterm_surcharge_per_hour_usd": 0.05,
       "max_keyterms": 1000,
       "max_upload_mb": 3000,
-      "timeout_s": 600
-    },
-    "deepgram": {
-      "url": "https://api.deepgram.com/v1/listen",
-      "model": "nova-3",
-      "env_var": "DEEPGRAM_API_KEY",
-      "params": {
-        "smart_format": true,
-        "utterances": true,
-        "punctuate": true,
-        "language": "en"
-      },
-      "price_per_minute_usd": 0.0043,
-      "keyterm_surcharge_per_minute_usd": 0.0013,
-      "max_keyterms": 100,
       "timeout_s": 600
     },
     "assemblyai": {
@@ -97,17 +82,6 @@
     },
     "ghl": {
       "_note": "GHL's own transcription. Fallback only: no cost, no diarization or vocabulary control."
-    }
-  },
-  "channel_map": {
-    "_comment": "Deepgram multichannel only. Observed 2026-10-02 (--probe on a completed call and a voicemail): GHL recordings are MONO, 8 kHz, 16-bit PCM WAV, so this map is unused today — speakers come from diarization. Kept for a stereo recording should one ever appear.",
-    "inbound": {
-      "0": "customer",
-      "1": "staff"
-    },
-    "outbound": {
-      "0": "staff",
-      "1": "customer"
     }
   },
   "keyterms": {
@@ -157,21 +131,16 @@
     },
     "cap_by_engine": {
       "elevenlabs": 1000,
-      "deepgram": 50,
       "assemblyai": 1000,
       "openai": 50
     },
     "published_file": "platform-settings/ghl-calls-keyterms.json"
   },
   "bakeoff": {
+    "_comment": "Optional quality check, not a decision step (the engine is locked in). Compares engines on the same calls; 'ghl' is GHL's own transcript, i.e. what Scribe v2 replaced.",
     "engines": [
       "elevenlabs",
-      "deepgram"
-    ],
-    "calls": 10,
-    "must_include": [
-      "transfer",
-      "crosstalk"
+      "ghl"
     ],
     "output": "analysis/cache/ghl-calls/bakeoff/{date}.md"
   },
