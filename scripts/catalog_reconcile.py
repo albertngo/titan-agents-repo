@@ -243,7 +243,8 @@ def live_value(record, field):
 
 
 def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
-              airtable_snapshot=True, select_options=None, as_of=None):
+              airtable_snapshot=True, select_options=None, as_of=None,
+              category_map=None):
     """Every row -> an action or a block. Never both, never neither.
 
     Warnings are separate: things worth a reader's attention that are not a
@@ -411,12 +412,12 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
                 continue
 
         category = clean(row.get("Category"))
-        if category and not category_resolves(category, categories):
+        resolved_ls_cat = category_resolves(category, categories, category_map, row) if category else None
+        if category and not resolved_ls_cat:
             warn(sku, "category_unresolved",
-                 f"Airtable category {category!r} does not map to a Lightspeed leaf on its "
-                 "own — LVP/LVT are formats, and Lightspeed classifies vinyl by core and "
-                 "install (SPC / WPC / GLUE DOWN / LOOSE LAY). Needs Material type and "
-                 "Install method. Not blocking: no write path sets a category yet.")
+                 f"Airtable category {category!r} does not map to any Lightspeed leaf — "
+                 "not in the leaves list and not in airtable_to_ls_leaf. "
+                 "Not blocking: no write path sets a category yet.")
 
         # ---- Airtable side ----
         # Without a live snapshot there is no honest way to say what Airtable needs.
@@ -808,23 +809,30 @@ def sfb_not_exposed(upload_row, ls_row, group_boxes=None):
             "tile size groups carry it in the variant value.")
 
 
-def category_resolves(category, leaves):
-    """Does an Airtable category correspond, unambiguously, to a Lightspeed leaf?
+def category_resolves(category, leaves, category_map=None, row=None):
+    """Does an Airtable category resolve to a Lightspeed leaf?
 
-    Compared on the final path segment because the two systems disagree on form:
-    the API returns leaf names alone ('SPC', 'ENGINEERED HARDWOOD') while the CSV
-    importer takes ' / '-separated paths.
+    Direct match on the final path segment first (case-insensitive).  When that
+    misses, falls back to ``airtable_to_ls_leaf`` from lightspeed.json — Albert
+    2026-10-02: LVT/LVP default to SPC (95 % of suppliers), overridden to WPC when
+    Material type says so; Dryback always maps to GLUE DOWN.
 
-    'Laminate', 'Engineered hardwood' and 'Solid hardwood' resolve. 'LVP' and
-    'LVT' do NOT, and that is correct rather than a gap in this function: they name
-    a FORMAT, while Lightspeed classifies vinyl by core and install method — the
-    live catalogue holds SPC, WPC, GLUE DOWN and LOOSE LAY as separate leaves.
-    Deriving the right one needs Material type and Install method, and the live
-    catalogue also uses leaves the documented list does not cover. That mapping is
-    an open question for the Phase 3 spike, so a miss here is a warning.
+    Returns the resolved LS leaf path (str) or None.
     """
     want = category.strip().lower().replace("-", " ")
-    return any(want == leaf.split("/")[-1].strip().lower() for leaf in leaves)
+    for leaf in leaves:
+        if want == leaf.split("/")[-1].strip().lower():
+            return leaf
+
+    if category_map and category in category_map:
+        entry = category_map[category]
+        if "override_field" in entry and row:
+            override_val = (row.get(entry["override_field"]) or "").strip()
+            if override_val in entry.get("overrides", {}):
+                return entry["overrides"][override_val]
+        return entry["default"]
+
+    return None
 
 
 def ls_update_fields(row, as_of=None):
@@ -1082,16 +1090,19 @@ def main():
         with open(args.ls_upload, newline="", encoding="utf-8") as fh:
             ls_upload = {clean(r.get("sku")): r for r in csv.DictReader(fh)
                          if clean(r.get("sku"))}
-    categories = json.loads(
+    _pc = json.loads(
         (REPO_ROOT / "platform-settings" / "lightspeed.json").read_text()
-    )["product_categories"]["leaves"]
+    )["product_categories"]
+    categories = _pc["leaves"]
+    category_map = _pc.get("airtable_to_ls_leaf")
 
     have_snapshot = bool(args.airtable_existing)
     select_options = load_select_options(args.airtable_options)
     actions, blocked, warnings = reconcile(rows, ls, existing, supplier, categories,
                                           ls_upload, airtable_snapshot=have_snapshot,
                                           select_options=select_options,
-                                          as_of=args.as_of)
+                                          as_of=args.as_of,
+                                          category_map=category_map)
     if have_snapshot and select_options is None:
         warnings.insert(0, {
             "sku": None,

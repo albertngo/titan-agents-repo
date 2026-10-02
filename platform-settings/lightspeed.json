@@ -96,6 +96,18 @@
     "_vinyl_note": "The vinyl subcategory is decided by the product's CORE (SPC or WPC), never by its format (LVP or LVT).",
     "_accessories_note": "Accessories (transitions, mouldings, stair treads/risers, underlay, glue) use the standalone ACCESSORIES category \u2014 not nested under FLOORING.",
     "_unmapped_policy": "A product whose category does not resolve to one of `leaves` is BLOCKED, never guessed.",
+    "airtable_to_ls_leaf": {
+      "_comment": "Maps Airtable Category values that do not directly match an LS leaf to the correct leaf. Albert 2026-10-02: 95% of suppliers are SPC for LVT/LVP, so SPC is the default; Dryback is always GLUE DOWN. Material type 'WPC' overrides the SPC default.",
+      "LVT": {"default": "FLOORING / VINYL / SPC", "override_field": "Material type", "overrides": {"WPC": "FLOORING / VINYL / WPC"}},
+      "LVP": {"default": "FLOORING / VINYL / SPC", "override_field": "Material type", "overrides": {"WPC": "FLOORING / VINYL / WPC"}},
+      "Dryback": {"default": "FLOORING / VINYL / GLUE DOWN"},
+      "Engineered hardwood": {"default": "FLOORING / ENGINEERED HARDWOOD"},
+      "Solid hardwood": {"default": "FLOORING / SOLID HARDWOOD"},
+      "Laminate": {"default": "FLOORING / LAMINATE"},
+      "Tile": {"default": "FLOORING / TILE"},
+      "SPC": {"default": "FLOORING / VINYL / SPC"},
+      "WPC": {"default": "FLOORING / VINYL / WPC"}
+    },
     "_csv_vs_api": "The `leaves` list below is the CSV-IMPORTER form. The API returns leaf names alone \u2014 see api_shape.category. Keep both straight: a write path built on the API cannot reuse this list unchanged.",
     "api_write_category_ids": {
       "_comment": "REFERENCE ONLY \u2014 no code reads this block. Salvaged 2026-09-23 from funny-rubin-4puvl1 (d75ff7b, 2026-09-11). It records that LAMINATE, TILE and VINYL each have TWO live product_type ids, a pre-existing duplicate in the account. Since 70f142f (salvaged the same day), scripts/lightspeed_push.py Lookups.resolve() REFUSES a duplicated name rather than picking one, so a laminate/tile/vinyl create stops until either the duplicate is merged in the Lightspeed UI or the resolver is taught to read a pin from here. That is Albert's call; the ids below are the evidence for it.",
