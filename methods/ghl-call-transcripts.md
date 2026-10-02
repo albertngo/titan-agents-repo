@@ -168,8 +168,10 @@ GHL workflow "Call Status" (completed / voicemail) → Webhook action → Make w
  6  Sleep 90 s                                   [filter: not seen]
  7  HTTP GET recording        key 97841
  8  HTTP POST ElevenLabs      key 97834 "ElevenLabs STT (call notes)": scribe_v2,
-                               diarize, audio events, 181 keyterm fields, txt format
- 9  Set variables: transcript ("[mm:ss] Speaker N: …" lines), ghl_user (a person or "")
+                               diarize, audio events, 181 keyterm fields, txt format,
+                               NO language_code (Scribe detects the language)
+ 9  Set variables: transcript ("[mm:ss] Speaker N: …" lines), ghl_user (a person or ""),
+                   lang, lang_name, is_english
 30  Router on call length (summary_model.long_from_seconds, 300 s):
       route 1  10 Claude haiku-4-5 (under 300 s) → 31 save "call_summary"
       route 2  21 Claude sonnet-4-5 (300 s+)     → 32 save "call_summary"
@@ -182,10 +184,13 @@ GHL workflow "Call Status" (completed / voicemail) → Webhook action → Make w
 14  GHL: Add a note to the contact — transcript only   (GHL connection 4426112)
 15  Transform to JSON: the comment text                [filter: last part]
 16  Set variables: the request body
-17  Data store: record the call, comment "pending"
-18  HTTP POST /conversations/messages  key 97843       [COMMENT GATE]
-19  HTTP GET the new message           key 97841       (read back)
-20  Data store: comment "posted" + the type GHL reports
+17  Data store: record the call, comment "pending", language
+40  Router (routes run independently):
+      route 1  18 HTTP POST /conversations/messages  key 97843   [COMMENT GATE]
+               19 HTTP GET the new message           key 97841   (read back)
+               20 Data store: comment "posted" + the type GHL reports
+      route 2  41 Claude sonnet-4-5: translate to English   [only if not English]
+               42 Set variables → 43 Repeater → 44 GHL note "Translation (English, from …)"
 ```
 
 Things that matter:
@@ -237,6 +242,29 @@ Make's `replace()` honours `$n` back-references (module 9's output is clean
 `[mm:ss] Speaker N:` lines). Still to confirm: the webhook body's field name for the
 contact id once the GHL workflow exists.
 
+## Other languages (2026-10-02)
+
+Albert: *"Can you also do language detection and translation? Eg, chinese/vietnamese/farsi"*.
+Chinese means Mandarin **and** Cantonese.
+
+- **Detection.** Scribe v2 detects the language when no `language_code` is sent. Until
+  this change the request forced `en`, which renders a Vietnamese call as garbled
+  English; both the Make module and `ElevenLabsEngine` now leave it out. The detected
+  code lands in the data-store record and, through the translation notes, in the run file.
+- **The comment is always English**, whatever the call's language; its first line names the
+  language and points to the translation (`📞 Call summary · Ref … · Vietnamese call,
+  transcript + English translation in Notes`).
+- **The translation** is its own note series next to the original transcript:
+  `Translation (English, from Vietnamese) · Ref C-… · <call line>`, one line per original
+  line with the same `[mm:ss] Speaker N:` prefix, footer
+  `[call-translation v1 messageId=… ref=… lang=… part=k/N]`. Sonnet writes it — non-English
+  calls are the minority and quality matters there. It runs on its own route, so it can
+  neither block nor be blocked by the comment. `parse_call_translation()` reads it back;
+  the run file carries it as `translation`.
+- **Not verified yet:** Cantonese is not in ElevenLabs' published list as found on
+  2026-10-02, and no non-English call has been through the scenario. The first one of each
+  is the test. GHL's own transcript (the daily fallback) is English-only.
+
 ## The comment gate
 
 Albert, 2026-10-02: *"make it explicit to internal comments only. Make a barrier to do
@@ -287,6 +315,11 @@ snapshot is re-taken and the tests re-run after every UI change.
 - Coaching never reaches a GHL note, `items` or `needs_attention`.
 
 ## Log
+
+- **2026-10-02, languages.** Language detection (no forced `en`), English summaries for
+  every call, and an English translation note series for non-English calls (router 40,
+  route 2). Pushed to Make, scenario left inactive; waiting on a real Vietnamese, Chinese
+  or Farsi call to test.
 
 - **2026-10-02, model by call length (Albert: "make it switch depend on length").**
   Router 30 sends calls under 300 s to Haiku and longer ones to Sonnet; both write one

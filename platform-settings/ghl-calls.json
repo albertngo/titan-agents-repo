@@ -52,14 +52,14 @@
       "params": {
         "diarize": true,
         "tag_audio_events": true,
-        "timestamps_granularity": "word",
-        "language_code": "en"
+        "timestamps_granularity": "word"
       },
       "price_per_hour_usd": 0.22,
       "keyterm_surcharge_per_hour_usd": 0.05,
       "max_keyterms": 1000,
       "max_upload_mb": 3000,
-      "timeout_s": 600
+      "timeout_s": 600,
+      "_language": "No language_code: Scribe v2 detects the language (2026-10-02, Albert: Chinese — Mandarin and Cantonese —, Vietnamese and Farsi callers). It used to be forced to 'en', which renders a non-English call as garbled English. Cantonese is not confirmed in ElevenLabs' published list as of 2026-10-02: verify on the first real Cantonese call."
     },
     "assemblyai": {
       "url": "https://api.assemblyai.com/v2",
@@ -242,7 +242,23 @@
         "long": "claude-sonnet-4-5",
         "long_from_seconds": 300
       },
-      "_summary_model": "Albert, 2026-10-02: switch on call length. Calls under long_from_seconds get Haiku 4.5, longer ones Sonnet 4.5 (long, messy calls are where Sonnet is worth its ~2.4x token cost). Make's Claude module cannot take its model from a formula, so router 30 holds one Claude module per route (10 short, 21 long), each saves its result to the execution variable call_summary prefixed with the call's messageId, and the third route reads it back (33) and carries on; module 11 only accepts a value tagged with this call's id. Probe-tested 2026-10-02: routes run in order, the variable comes back under its name."
+      "_summary_model": "Albert, 2026-10-02: switch on call length. Calls under long_from_seconds get Haiku 4.5, longer ones Sonnet 4.5 (long, messy calls are where Sonnet is worth its ~2.4x token cost). Make's Claude module cannot take its model from a formula, so router 30 holds one Claude module per route (10 short, 21 long), each saves its result to the execution variable call_summary prefixed with the call's messageId, and the third route reads it back (33) and carries on; module 11 only accepts a value tagged with this call's id. Probe-tested 2026-10-02: routes run in order, the variable comes back under its name.",
+      "language": {
+        "detect": "auto (Scribe v2, no language_code)",
+        "english_codes": [
+          "en",
+          "eng"
+        ],
+        "summary": "always written in English, whatever the call's language",
+        "translation": {
+          "model": "claude-sonnet-4-5",
+          "max_tokens": 8000,
+          "when": "the detected language is not English",
+          "notes": "Translation (English, from <language>) · Ref … — its own note series, footer [call-translation v1 messageId=… ref=… lang=… part=k/N]"
+        },
+        "_decision": "Albert, 2026-10-02: 'Can you also do language detection and translation? Eg, chinese/vietnamese/farsi' — an English summary in the comment plus the full English translation in Notes, next to the original-language transcript. Chinese means both Mandarin and Cantonese. Translation runs on Sonnet: non-English calls are a minority and the quality matters more than the credits. It sits on its own route of router 40, after the call is recorded, so a failed translation never stops the comment and a failed comment never stops the translation.",
+        "_unverified": "Cantonese is not confirmed in ElevenLabs' published language list (2026-10-02): check the first real Cantonese call."
+      }
     }
   },
   "_observed_2026_10_02": "Live dry run, 72 h: 87 conversations, 71 TYPE_CALL messages (51 completed, 16 no-answer, 4 voicemail; 43 inbound / 28 outbound). The messages endpoint IGNORES type=TYPE_CALL (1,418 messages scanned for 71 calls) — the script filters messageType itself. Status and duration live in meta.call. GHL's own transcription returns {sentenceIndex, startTime, endTime (seconds), speaker, mediaChannel, transcript, words}."

@@ -401,13 +401,17 @@ class ElevenLabsEngine(Engine):
     """ElevenLabs Scribe v2. Multipart upload; diarizes (no channel mapping)."""
     name = "elevenlabs"
 
-    def request(self, audio, info, keyterms, language="en"):
+    def request(self, audio, info, keyterms, language=None):
         p = self.cfg.get("params", {})
         fields = [("model_id", self.cfg.get("model_id", "scribe_v2")),
                   ("diarize", str(p.get("diarize", True)).lower()),
                   ("tag_audio_events", str(p.get("tag_audio_events", True)).lower()),
-                  ("timestamps_granularity", p.get("timestamps_granularity", "word")),
-                  ("language_code", p.get("language_code", language))]
+                  ("timestamps_granularity", p.get("timestamps_granularity", "word"))]
+        # No language_code means Scribe detects it (2026-10-02: Chinese, Vietnamese, Farsi
+        # callers). Forcing "en" turned a non-English call into garbled English.
+        lang = p.get("language_code", language)
+        if lang:
+            fields.append(("language_code", lang))
         # Repeated form field, one term each (to confirm on the first live call).
         fields += [("keyterms", t) for t in keyterms[: self.cfg.get("max_keyterms", 1000)]]
         ctype = "audio/wav" if info.get("container") == "riff" else "application/octet-stream"
@@ -415,7 +419,7 @@ class ElevenLabsEngine(Engine):
         headers = {"xi-api-key": self.key or "", "Content-Type": content_type, "Accept": "application/json"}
         return self.cfg["url"], body, headers
 
-    def transcribe(self, audio, info, keyterms, language="en"):
+    def transcribe(self, audio, info, keyterms, language=None):
         url, body, headers = self.request(audio, info, keyterms, language)
         return _send(self.opener, url, body, headers, self.cfg.get("timeout_s", 600))
 
@@ -565,6 +569,10 @@ FOOTER_RE = re.compile(r"\[call-note v(\d+) ([^\]]*)\]")
 # v2 (2026-10-02, Albert): the note holds the transcript only; Summary and Next steps go
 # in an internal comment on the conversation, carrying this footer.
 SUMMARY_FOOTER_RE = re.compile(r"\[call-summary v(\d+) ([^\]]*)\]")
+# Non-English calls (2026-10-02): an English translation in its own notes, same Ref.
+TRANSLATION_FOOTER_RE = re.compile(r"\[call-translation v(\d+) ([^\]]*)\]")
+TRANSLATION_HEAD_RE = re.compile(r"(?m)^Translation[^\n]*\n")
+ENGLISH_CODES = ("en", "eng")
 INTERNAL_COMMENT = "TYPE_INTERNAL_COMMENT"
 LINE_RE = re.compile(r"^\[(\d+):(\d{2})\]\s*([^:]{1,40}):\s*(.*)$")
 
@@ -602,7 +610,8 @@ def _section(body, name, nxt):
 
 # v1: "Transcript (Scribe v2 · …)" / "Transcript (continued)".
 # v2: "Transcript · Ref C-… · <call line>" + "Speakers: …" / "Transcript (continued) · Ref C-…".
-TRANSCRIPT_HEAD_RE = re.compile(r"(?m)^Transcript(?: \([^\n]*\)| ·)[^\n]*\n(?:Speakers:[^\n]*\n)?")
+TRANSCRIPT_HEAD_RE = re.compile(r"(?m)^Transcript(?: \([^\n]*\)| ·)[^\n]*\n(?:Speakers:[^\n]*\n)?"
+                                r"(?:Language:[^\n]*\n)?")
 
 
 def _transcript_raw(body):
@@ -651,12 +660,69 @@ def parse_call_note(bodies):
     hm = re.search(r"(?m)^Transcript · ([^\n]*)$", main)
     call_line = [x.strip() for x in hm.group(1).split("·")] if hm else []
     sp = re.search(r"(?m)^Speakers:[ \t]*([^\n]*)$", main)
+    lang = re.search(r"(?m)^Language:[ \t]*([^\n(]*)", main)
     return {"message_id": head.get("messageId"), "conversation_id": head.get("conversationId"),
             "engine": head.get("engine"), "version": head.get("version", 1), "ref": head.get("ref"),
             "staff_named": call_line[-1] if len(call_line) > 1 else None,
             "speakers": sp.group(1).strip() if sp else None, "summary": summary,
+            "language_name": lang.group(1).strip() if lang else None,
             "next_steps": [s for s in steps if s.lower() != "none"],
             "utterances": utts, "parts": len(parts), "complete": len(parts) == head["part_n"]}
+
+
+def _utterances(text):
+    utts = []
+    for ln in text.splitlines():
+        s = ln.strip()
+        if not s:
+            continue
+        m = LINE_RE.match(s)
+        if m:
+            utts.append({"start_s": int(m.group(1)) * 60 + int(m.group(2)),
+                         "speaker": m.group(3).strip(), "text": m.group(4).strip()})
+        elif utts:
+            utts[-1]["text"] += " " + s
+    return utts
+
+
+def parse_call_translation(bodies, message_id=None):
+    """Reassemble the English translation notes of one call (any order). None if none."""
+    parts = []
+    for b in bodies:
+        m = TRANSLATION_FOOTER_RE.search(b or "")
+        if not m:
+            continue
+        f = _footer_fields(m)
+        if message_id and f.get("messageId") != message_id:
+            continue
+        try:
+            k, n = (int(x) for x in f.get("part", "1/1").split("/"))
+        except ValueError:
+            k, n = 1, 1
+        h = TRANSLATION_HEAD_RE.search(b)
+        chunk = b[h.end():] if h else ""
+        end = chunk.find("\n\n[call-translation v")
+        parts.append((k, n, f, chunk if end < 0 else chunk[:end]))
+    if not parts:
+        return None
+    parts.sort(key=lambda p: p[0])
+    head = parts[0][2]
+    return {"message_id": head.get("messageId"), "ref": head.get("ref"), "language": head.get("lang"),
+            "utterances": _utterances("".join(p[3] for p in parts)), "parts": len(parts),
+            "complete": len(parts) == parts[0][1]}
+
+
+def render_call_translation(utterances, meta, language, split_chars=3000):
+    """Reference format of the translation notes, cut like Make cuts them."""
+    text = "\n".join(f"[{fmt_clock(u.get('start_s'))}] {u.get('speaker')}: {u.get('text')}" for u in utterances)
+    n = max(1, -(-len(text) // split_chars))
+    out = []
+    for k in range(1, n + 1):
+        head = (f"Translation (English, from {meta.get('language_name', language)}) · Ref {meta['ref']} · "
+                f"{meta['call_line']}\n" if k == 1 else f"Translation (continued) · Ref {meta['ref']}\n")
+        out.append(f"{head}{text[(k - 1) * split_chars:k * split_chars]}\n\n[call-translation v1 "
+                   f"messageId={meta['message_id']} ref={meta['ref']} lang={language} part={k}/{n}]")
+    return out
 
 
 def parse_call_summary(body):
@@ -744,6 +810,7 @@ def find_call_note(notes, message_id):
     parsed = parse_call_note(bodies) if bodies else None
     if parsed:
         parsed["note_ids"] = ids
+        parsed["translation"] = parse_call_translation([n.get("body") or "" for n in notes], message_id)
     return parsed
 
 
@@ -880,6 +947,11 @@ def apply_note(rec, note):
                    "ref": note.get("ref"), "speakers": note.get("speakers")}
     if note.get("staff_named"):
         rec["staff_named"] = note["staff_named"]
+    tr = note.get("translation")
+    if tr:
+        rec["language"] = tr["language"]
+        rec["translation"] = {"language": tr["language"], "utterances": tr["utterances"],
+                              "complete": tr["complete"]}
     return rec
 
 

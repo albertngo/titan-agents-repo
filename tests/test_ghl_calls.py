@@ -165,7 +165,7 @@ class TestRegistry(unittest.TestCase):
         # The GHL connection writes notes and nothing else.
         conn = [m["id"] for m in snap["all"]
                 if (m.get("parameters") or {}).get("__IMTCONN__") == sc["ghl_connection_id"]]
-        self.assertEqual(conn, [14])
+        self.assertEqual(conn, [14, 44])  # transcript notes, translation notes
         self.assertEqual(mods[14]["module"], "highlevel:addNotetoContact")
         self.assertIn("[call-note v2 messageId={{4.id}}", mods[14]["mapper"]["body"])
         # Make formula regexes must be quoted strings; a bare /…[…]/ fails "Unexpected [".
@@ -205,6 +205,43 @@ class TestRegistry(unittest.TestCase):
         body11 = json.dumps(mods[11]["mapper"])
         self.assertNotIn("10.result", body11)
         self.assertNotIn("21.result", body11)
+
+    def test_language_detection_and_translation(self):
+        """Albert, 2026-10-02: detect the language; English summary; full English translation."""
+        sc, snap, mods = self._snapshot()
+        lang = sc["language"]
+        fields = [f["name"] for f in mods[8]["mapper"]["multipartBodyContent"]]
+        self.assertNotIn("language_code", fields)  # Scribe detects it
+        v9 = {v["name"]: v["value"] for v in mods[9]["mapper"]["variables"]}
+        for code in lang["english_codes"]:
+            self.assertIn(f'"{code}"; "yes"', v9["is_english"])
+        self.assertTrue(v9["is_english"].endswith('; "no")}}'))
+        for code, name in (("vie", "Vietnamese"), ("cmn", "Mandarin"), ("yue", "Cantonese"), ("fas", "Farsi")):
+            self.assertIn(f'"{code}"; "{name}"', v9["lang_name"])
+        for mid in (10, 21):
+            self.assertIn("write everything below in English", mods[mid]["mapper"]["textPrompt"])
+        # Router 40: route 1 is the comment, route 2 the translation — independent.
+        a, b = (r["flow"] for r in mods[40]["routes"])
+        self.assertEqual([m["id"] for m in a], [18, 19, 20])
+        self.assertEqual([m["id"] for m in b], [41, 42, 43, 44])
+        self.assertEqual(mods[41]["mapper"]["model"], lang["translation"]["model"])
+        self.assertEqual(mods[41]["mapper"]["max_tokens"], lang["translation"]["max_tokens"])
+        self.assertEqual(mods[41]["filter"]["conditions"],
+                         [[{"a": "{{9.is_english}}", "b": "no", "o": "text:equal"}]])
+        self.assertIn("[call-translation v1 messageId={{4.id}} ref={{11.ref}} lang={{9.lang}}",
+                      mods[44]["mapper"]["body"])
+        # The translation route never touches the comment key or the messages endpoint.
+        for m in b:
+            self.assertNotEqual((m.get("parameters") or {}).get("apiKeyKeychain"), sc["keychains"]["ghl_internal_comment"])
+        # A Language line in the transcript header is not read as a transcript line.
+        body = ("Transcript · Ref C-1001-0902 · Thu Oct 1, 9:02 am · Inbound · 3m 32s · Staff\n"
+                "Speakers: Speaker 1 = Staff (Titan) · Speaker 2 = customer\n"
+                "Language: Vietnamese (English translation in Notes)\n"
+                "[00:01] Speaker 1: Xin chào\n\n[call-note v2 messageId=m1 conversationId=c1 "
+                "engine=scribe_v2 ref=C-1001-0902 part=1/1]")
+        p = gp.parse_call_note([body])
+        self.assertEqual(len(p["utterances"]), 1)
+        self.assertEqual(p["language_name"], "Vietnamese")
 
     def test_staff_rule(self):
         """Albert, 2026-10-02: a person's own GHL user -> that name; the shared Front Desk
@@ -403,6 +440,9 @@ class TestEngines(unittest.TestCase):
         for needle in ('name="model_id"\r\n\r\nscribe_v2', 'name="diarize"\r\n\r\ntrue',
                        'name="keyterms"\r\n\r\nVidar', 'name="keyterms"\r\n\r\nSPC', 'name="file"'):
             self.assertIn(needle, body)
+        # Language is detected, never forced (2026-10-02: Chinese, Vietnamese, Farsi callers).
+        self.assertNotIn('name="language_code"', body)
+        self.assertNotIn("language_code", CFG["engine"]["elevenlabs"]["params"])
 
     def test_elevenlabs_normalize(self):
         raw = {"language_code": "en", "text": "Hi there. Hello.", "transcription_id": "tr1", "words": [
@@ -610,6 +650,27 @@ class TestCallNoteV2(unittest.TestCase):
         self.assertEqual(c["summary"], "Wants an LVP quote.")
         self.assertEqual(c["next_steps"], ["Us: send quote — by Fri"])
         self.assertIsNone(gp.parse_call_summary("called, waiting on contractor"))
+
+    def test_translation_notes_round_trip_and_attach(self):
+        turns = [{"start_s": i * 4, "speaker": f"Speaker {1 + i % 2}", "text": f"translated line {i} " + "y" * 70}
+                 for i in range(90)]
+        tr = gp.render_call_translation(turns, dict(self.META, language_name="Vietnamese"), "vie")
+        self.assertGreater(len(tr), 1)
+        self.assertTrue(tr[0].startswith("Translation (English, from Vietnamese) · Ref C-1001-0902"))
+        parsed = gp.parse_call_translation(list(reversed(tr)), "m1")
+        self.assertEqual(parsed["language"], "vie")
+        self.assertEqual([u["text"] for u in parsed["utterances"]], [u["text"] for u in turns])
+        self.assertTrue(parsed["complete"])
+        self.assertIsNone(gp.parse_call_translation(tr, "other-call"))
+        # The transcript reader ignores translation notes, and attaches them to the call.
+        notes = [{"id": f"n{k}", "body": b} for k, b in enumerate(
+            gp.render_call_note_v2(self.utts(4), self.META, "Speaker 1 = Helen (Titan)") + tr, 1)]
+        found = gp.find_call_note(notes, "m1")
+        self.assertEqual(len(found["utterances"]), 4)
+        self.assertEqual(found["translation"]["language"], "vie")
+        rec = gp.apply_note({"message_id": "m1"}, found)
+        self.assertEqual(rec["language"], "vie")
+        self.assertEqual(len(rec["translation"]["utterances"]), 90)
 
     def test_summary_footer_on_anything_but_a_comment_raises_an_alarm(self):
         body = gp.render_call_summary("S.", [], self.META)

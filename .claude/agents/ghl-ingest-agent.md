@@ -378,6 +378,13 @@ summary with the path. Read that file. Each entry in `calls[]` carries
   three sections in the note itself. Both are **machine-written**: use the transcript;
   never read Next steps as a promise already kept, and never count either as a
   response to the customer.
+- **Other languages (2026-10-02).** `language` is the code Scribe detected. When it is
+  not English, the call usually carries `translation` (English, line for line, from the
+  Make scenario's translation notes): analyse the call from it and quote from it, and say
+  in the summary which language the call was in. With no translation, read the original
+  yourself; everything you write stays in English. A `fallback-ghl` transcript of a
+  non-English call is unusable (GHL transcribes English only): say so rather than
+  summarising it.
 - `transcribed` / `fallback-ghl` — this run transcribed it (Scribe v2 by default;
   `fallback-ghl` is GHL's own weaker transcript after an engine failure). Until the
   engine key exists, the run uses GHL's own transcript for every call, sets
