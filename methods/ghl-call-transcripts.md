@@ -170,7 +170,12 @@ GHL workflow "Call Status" (completed / voicemail) → Webhook action → Make w
  8  HTTP POST ElevenLabs      key 97834 "ElevenLabs STT (call notes)": scribe_v2,
                                diarize, audio events, 181 keyterm fields, txt format
  9  Set variables: transcript ("[mm:ss] Speaker N: …" lines), ghl_user (a person or "")
-10  Claude (claude-haiku-4-5, Make's Claude app): Staff, Speakers, Summary, Next steps
+30  Router on call length (summary_model.long_from_seconds, 300 s):
+      route 1  10 Claude haiku-4-5 (under 300 s) → 31 save "call_summary"
+      route 2  21 Claude sonnet-4-5 (300 s+)     → 32 save "call_summary"
+      route 3  33 read "call_summary" → 11 …     (runs after both; continues below)
+    Claude writes Staff, Speakers, Summary, Next steps; the saved value is
+    "<messageId>|||<text>" and module 11 accepts only this call's
 11  Set variables: staff (D10 rule), speaker key, summary block, Ref, date, duration
 12  Set variables: note header, continuation header, comment text
 13  Repeater N → 1
@@ -217,9 +222,12 @@ Things that matter:
   transcribed call — about half of it the Claude module's tokens (claude-sonnet-4-5,
   billed in Make credits, no connection). At 25 calls a day that is ~24,000 credits a
   month on a 40,000 Core plan that already carries ~25 scenarios: well above the first
-  estimate of 10,000. **Module 10 runs Haiku 4.5 since 2026-10-02 (Albert)** for about a
-  third of the summary's credits; the next lever would be Anthropic's API through an HTTP
-  module with Titan's own key. A fire that finds nothing new costs 4–5 operations.
+  estimate of 10,000. **The summary model switches on call length (Albert, 2026-10-02):**
+  Haiku 4.5 under 5 minutes (~7 credits of summary on a 9.5-minute call), Sonnet 4.5 from
+  5 minutes, where messy calls make the stronger model worth ~2.4× the tokens. The
+  router costs 2 operations (save, read). Make's Claude module cannot take its model
+  from a formula, hence one module per route. A fire that finds nothing new costs 4–5
+  operations.
 - **Governance.** The notes and the comment are GHL writes performed by Make, outside
   the `ghl-actions-agent` approval gate, like Website Inquiry Ingester and the Stage
   scenarios. It writes exactly those two things.
@@ -279,6 +287,12 @@ snapshot is re-taken and the tests re-run after every UI change.
 - Coaching never reaches a GHL note, `items` or `needs_attention`.
 
 ## Log
+
+- **2026-10-02, model by call length (Albert: "make it switch depend on length").**
+  Router 30 sends calls under 300 s to Haiku and longer ones to Sonnet; both write one
+  execution variable tagged with the call's messageId and a third route reads it back
+  into the unchanged notes-and-comment chain. The pattern was proven on a throwaway probe
+  first (route order, variable output name, tag check, multi-line value).
 
 - **2026-10-02, Haiku test.** Patricia Nelson's 570 s outbound call re-run in v2 with
   module 10 on Haiku 4.5: 4 transcript notes, one comment read back as

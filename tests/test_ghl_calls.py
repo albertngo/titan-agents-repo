@@ -130,10 +130,19 @@ class TestRegistry(unittest.TestCase):
             self.assertIn("env_var", CFG["engine"][name])
             self.assertIn(name, CFG["keyterms"]["cap_by_engine"])
 
+    @staticmethod
+    def _walk(flow):
+        """Every module in execution order, router routes included."""
+        for m in flow:
+            yield m
+            for route in m.get("routes") or []:
+                yield from TestRegistry._walk(route["flow"])
+
     def _snapshot(self):
         sc = CFG["make_scenarios"]["call_notes"]
         snap = json.loads((REPO_ROOT / sc["blueprint"]).read_text())
-        return sc, snap, {m["id"]: m for m in snap["blueprint"]["flow"]}
+        snap["all"] = list(self._walk(snap["blueprint"]["flow"]))
+        return sc, snap, {m["id"]: m for m in snap["all"]}
 
     def test_make_scenario_entry(self):
         sc, snap, mods = self._snapshot()
@@ -151,9 +160,10 @@ class TestRegistry(unittest.TestCase):
             self.assertEqual(mods[mid]["parameters"]["apiKeyKeychain"], sc["keychains"]["ghl_read_pit"])
             self.assertEqual(mods[mid]["mapper"]["method"], "get")
         self.assertEqual(mods[8]["parameters"]["apiKeyKeychain"], sc["keychains"]["elevenlabs"])
-        self.assertEqual(mods[10]["mapper"]["model"], sc["summary_model"])
+        ids = [m["id"] for m in snap["all"]]
+        self.assertEqual(len(ids), len(set(ids)))
         # The GHL connection writes notes and nothing else.
-        conn = [m["id"] for m in snap["blueprint"]["flow"]
+        conn = [m["id"] for m in snap["all"]
                 if (m.get("parameters") or {}).get("__IMTCONN__") == sc["ghl_connection_id"]]
         self.assertEqual(conn, [14])
         self.assertEqual(mods[14]["module"], "highlevel:addNotetoContact")
@@ -164,6 +174,37 @@ class TestRegistry(unittest.TestCase):
         sent = [f["value"] for f in mods[8]["mapper"]["multipartBodyContent"] if f["name"] == "keyterms"]
         published = json.loads((REPO_ROOT / CFG["keyterms"]["published_file"]).read_text())["terms"]
         self.assertEqual(sent, published, "module 8's keyterm fields drifted from the published list")
+
+    def test_summary_model_by_call_length(self):
+        """Albert, 2026-10-02: Haiku for short calls, Sonnet for long ones."""
+        sc, snap, mods = self._snapshot()
+        rule = sc["summary_model"]
+        router = mods[30]
+        self.assertEqual(router["module"], "builtin:BasicRouter")
+        short, long_, rest = (r["flow"] for r in router["routes"])
+        self.assertEqual([m["id"] for m in short], [10, 31])
+        self.assertEqual([m["id"] for m in long_], [21, 32])
+        self.assertEqual(rest[0]["id"], 33)  # the continuation route runs after both
+        self.assertEqual(mods[10]["mapper"]["model"], rule["short"])
+        self.assertEqual(mods[21]["mapper"]["model"], rule["long"])
+        self.assertEqual(mods[10]["mapper"]["textPrompt"], mods[21]["mapper"]["textPrompt"])
+        for mid, op in ((10, "number:less"), (21, "number:greaterorequal")):
+            groups = mods[mid]["filter"]["conditions"]
+            self.assertEqual(len(groups), 1)
+            self.assertIn({"a": "{{4.meta.call.duration}}", "b": str(rule["long_from_seconds"]), "o": op}, groups[0])
+            self.assertIn({"a": "{{9.transcript}}", "o": "exist"}, groups[0])
+        for mid, src in ((31, 10), (32, 21)):
+            self.assertEqual(mods[mid]["module"], "util:SetVariable2")
+            self.assertEqual(mods[mid]["mapper"]["name"], "call_summary")
+            self.assertEqual(mods[mid]["mapper"]["value"], "{{4.id}}|||{{%d.result}}" % src)
+        self.assertEqual(mods[33]["module"], "util:GetVariable2")
+        self.assertEqual(mods[33]["mapper"]["name"], "call_summary")
+        # A summary is only used by the call it was written for.
+        self.assertEqual(mods[11]["filter"]["conditions"],
+                         [[{"a": "{{33.call_summary}}", "b": "{{4.id}}|||", "o": "text:startwith"}]])
+        body11 = json.dumps(mods[11]["mapper"])
+        self.assertNotIn("10.result", body11)
+        self.assertNotIn("21.result", body11)
 
     def test_staff_rule(self):
         """Albert, 2026-10-02: a person's own GHL user -> that name; the shared Front Desk
@@ -194,7 +235,7 @@ class TestRegistry(unittest.TestCase):
         sc, snap, mods = self._snapshot()
         gate = sc["comment_gate"]
         key = sc["keychains"]["ghl_internal_comment"]
-        flow = snap["blueprint"]["flow"]
+        flow = snap["all"]
         order = [m["id"] for m in flow]
         # 1. The comment key is used by one module, in this and every other snapshot.
         users = [m["id"] for m in flow if (m.get("parameters") or {}).get("apiKeyKeychain") == key]

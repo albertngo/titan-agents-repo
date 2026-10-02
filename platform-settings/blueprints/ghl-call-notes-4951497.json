@@ -1,7 +1,7 @@
 {
-  "_comment": "Blueprint of Make scenario 4951497 'GHL Call -> Note', v2 (2026-10-02): transcript in contact notes, Summary + Next steps as an internal comment behind the comment gate (modules 15-20; registry make_scenarios.call_notes.comment_gate). Make is the source of truth once Albert edits it in the UI: re-snapshot this file after any UI change (methods/content-folder-scenario.md lesson); tests/test_ghl_calls.py then re-checks every gate layer. Keyterm fields are generated from platform-settings/ghl-calls-keyterms.json.",
+  "_comment": "Blueprint of Make scenario 4951497 'GHL Call -> Note', v2 (2026-10-02; v3 router for the summary model, same day): transcript in contact notes, Summary + Next steps as an internal comment behind the comment gate (modules 15-20; registry make_scenarios.call_notes.comment_gate). Make is the source of truth once Albert edits it in the UI: re-snapshot this file after any UI change (methods/content-folder-scenario.md lesson); tests/test_ghl_calls.py then re-checks every gate layer. Keyterm fields are generated from platform-settings/ghl-calls-keyterms.json.",
   "scenario_id": 4951497,
-  "snapshot_of": "2026-10-02T12:15:06Z",
+  "snapshot_of": "2026-10-02T12:40:53Z",
   "blueprint": {
     "name": "GHL Call -> Note",
     "flow": [
@@ -1333,376 +1333,513 @@
         }
       },
       {
-        "id": 10,
-        "module": "anthropic-claude:simpleTextPrompt",
+        "id": 30,
+        "module": "builtin:BasicRouter",
         "version": 1,
         "parameters": {},
-        "mapper": {
-          "model": "claude-haiku-4-5",
-          "max_tokens": 600,
-          "textPrompt": "You are writing an internal call summary for Titan Flooring, a flooring retailer and installer in the Greater Toronto Area. Below is the transcript of one phone call, one line per speaker turn. Direction: {{4.direction}}. Titan phone user: {{ifempty(9.ghl_user; \"the shared Front Desk line (several people answer it)\")}}. Titan staff who take calls: Joey, Helen, David, Albert, Pourya, Mike.\n\nWrite exactly this, as plain text, and nothing else:\n\nStaff: <the Titan staff member's first name, only if it is said on the call (they introduce themselves or are addressed by it) and it is one of the staff names listed above; otherwise Staff>\nSpeakers: <who each speaker label is, e.g. Speaker 1 = Helen (Titan) · Speaker 2 = customer; cover every label in the transcript; write unclear for any you cannot tell>\nSummary\n<at most 3 sentences: who called, what they want, and what was agreed. Name products, rooms, square footage and prices if they were said.>\n\nNext steps\n- Us: <what Titan promised> — by <date, or 'no date given'>\n- Customer: <what the customer will do> — by <date, or 'no date given'>\n(one line per commitment; write '- none' if nobody committed to anything)\n\nRules: use only what was actually said; never invent dates, prices or names; never guess a staff name that is not said on the call. No remarks about how the staff member handled the call. If the recording has no real conversation, write 'Summary' then 'No conversation recorded.' and 'Next steps' then '- none'.\n\nTranscript:\n{{9.transcript}}"
+        "mapper": null,
+        "metadata": {
+          "designer": {
+            "x": 2550,
+            "y": 0
+          }
         },
-        "filter": {
-          "name": "Transcript is not empty",
-          "conditions": [
-            [
+        "routes": [
+          {
+            "flow": [
               {
-                "a": "{{9.transcript}}",
-                "o": "exist"
-              }
-            ]
-          ]
-        },
-        "metadata": {
-          "designer": {
-            "x": 2700,
-            "y": 0
-          }
-        }
-      },
-      {
-        "id": 11,
-        "module": "util:SetVariables",
-        "version": 1,
-        "parameters": {},
-        "metadata": {
-          "designer": {
-            "x": 3000,
-            "y": 0
-          }
-        },
-        "mapper": {
-          "variables": [
-            {
-              "name": "staff",
-              "value": "{{ifempty(9.ghl_user; switch(trim(replace(10.result; \"/^[\\s\\S]*?Staff:[ \\t]*([^\\n]*)[\\s\\S]*$/\"; \"$1\")); \"Joey\"; \"Joey\"; \"Helen\"; \"Helen\"; \"David\"; \"David\"; \"Albert\"; \"Albert\"; \"Pourya\"; \"Pourya\"; \"Mike\"; \"Mike\"; \"Staff\"))}}"
-            },
-            {
-              "name": "speakers",
-              "value": "{{if(contains(10.result; \"Speakers:\"); trim(replace(10.result; \"/^[\\s\\S]*?Speakers:[ \\t]*([^\\n]*)[\\s\\S]*$/\"; \"$1\")); \"unclear\")}}"
-            },
-            {
-              "name": "summary_block",
-              "value": "{{if(contains(10.result; \"Summary\"); trim(replace(10.result; \"/^[\\s\\S]*?(Summary\\n[\\s\\S]*)$/\"; \"$1\")); trim(10.result))}}"
-            },
-            {
-              "name": "ref",
-              "value": "C-{{formatDate(4.dateAdded; \"MMDD-HHmm\"; \"America/Toronto\")}}"
-            },
-            {
-              "name": "when",
-              "value": "{{formatDate(4.dateAdded; \"ddd MMM D, h:mm a\"; \"America/Toronto\")}}"
-            },
-            {
-              "name": "dir",
-              "value": "{{capitalize(4.direction)}}"
-            },
-            {
-              "name": "dur",
-              "value": "{{floor(4.meta.call.duration / 60)}}m {{4.meta.call.duration - floor(4.meta.call.duration / 60) * 60}}s"
-            },
-            {
-              "name": "n_parts",
-              "value": "{{max(1; ceil(length(9.transcript) / 3000))}}"
-            }
-          ]
-        }
-      },
-      {
-        "id": 12,
-        "module": "util:SetVariables",
-        "version": 1,
-        "parameters": {},
-        "metadata": {
-          "designer": {
-            "x": 3300,
-            "y": 0
-          }
-        },
-        "mapper": {
-          "variables": [
-            {
-              "name": "note_head",
-              "value": "Transcript · Ref {{11.ref}} · {{11.when}} · {{11.dir}} · {{11.dur}} · {{11.staff}}\nSpeakers: {{11.speakers}}\n"
-            },
-            {
-              "name": "cont_head",
-              "value": "Transcript (continued) · Ref {{11.ref}}\n"
-            },
-            {
-              "name": "comment_text",
-              "value": "📞 Call summary · Ref {{11.ref}} · transcript in Notes\n{{11.when}} · {{11.dir}} · {{11.dur}} · {{11.staff}}\n\n{{11.summary_block}}\n\n[call-summary v1 messageId={{4.id}} ref={{11.ref}}]"
-            }
-          ]
-        }
-      },
-      {
-        "id": 13,
-        "module": "builtin:BasicRepeater",
-        "version": 1,
-        "parameters": {},
-        "mapper": {
-          "step": -1,
-          "start": "{{11.n_parts}}",
-          "repeats": "{{11.n_parts}}"
-        },
-        "metadata": {
-          "designer": {
-            "x": 3600,
-            "y": 0
-          }
-        }
-      },
-      {
-        "id": 14,
-        "module": "highlevel:addNotetoContact",
-        "version": 1,
-        "parameters": {
-          "__IMTCONN__": 4426112
-        },
-        "mapper": {
-          "contactId": "{{4.contactId}}",
-          "body": "{{if(13.i = 1; 12.note_head; 12.cont_head)}}{{substring(9.transcript; (13.i - 1) * 3000; 13.i * 3000)}}\n\n[call-note v2 messageId={{4.id}} conversationId={{4.conversationId}} engine=scribe_v2 ref={{11.ref}} part={{13.i}}/{{11.n_parts}}]",
-          "userId": ""
-        },
-        "metadata": {
-          "designer": {
-            "x": 3900,
-            "y": 0
-          }
-        }
-      },
-      {
-        "id": 15,
-        "module": "json:TransformToJSON",
-        "version": 1,
-        "parameters": {},
-        "metadata": {
-          "designer": {
-            "x": 4200,
-            "y": 0
-          }
-        },
-        "mapper": {
-          "object": "{{12.comment_text}}"
-        },
-        "filter": {
-          "name": "Last note part written",
-          "conditions": [
-            [
-              {
-                "a": "{{13.i}}",
-                "b": "1",
-                "o": "number:equal"
-              }
-            ]
-          ]
-        }
-      },
-      {
-        "id": 16,
-        "module": "util:SetVariables",
-        "version": 1,
-        "parameters": {},
-        "metadata": {
-          "designer": {
-            "x": 4500,
-            "y": 0
-          }
-        },
-        "mapper": {
-          "variables": [
-            {
-              "name": "comment_body",
-              "value": "{\"contactId\":\"{{4.contactId}}\",\"message\":{{15.json}},\"mentions\":[],\"type\":\"InternalComment\"}"
-            }
-          ]
-        }
-      },
-      {
-        "id": 17,
-        "module": "datastore:AddRecord",
-        "version": 1,
-        "parameters": {
-          "datastore": 94694
-        },
-        "metadata": {
-          "designer": {
-            "x": 4800,
-            "y": 0
-          }
-        },
-        "mapper": {
-          "key": "{{4.id}}",
-          "data": {
-            "contact_id": "{{4.contactId}}",
-            "parts": "{{11.n_parts}}",
-            "engine": "scribe_v2",
-            "duration_s": "{{4.meta.call.duration}}",
-            "written_at": "{{now}}",
-            "ref": "{{11.ref}}",
-            "comment": "pending"
-          },
-          "overwrite": true
-        }
-      },
-      {
-        "id": 18,
-        "module": "http:MakeRequest",
-        "version": 4,
-        "parameters": {
-          "tlsType": "",
-          "apiKeyKeychain": 97843,
-          "authenticationType": "apiKey"
-        },
-        "mapper": {
-          "url": "https://services.leadconnectorhq.com/conversations/messages",
-          "method": "post",
-          "headers": [
-            {
-              "name": "Version",
-              "value": "2021-04-15"
-            },
-            {
-              "name": "Accept",
-              "value": "application/json"
-            }
-          ],
-          "contentType": "json",
-          "inputMethod": "jsonString",
-          "jsonStringBodyContent": "{{16.comment_body}}",
-          "timeout": 40,
-          "shareCookies": false,
-          "parseResponse": true,
-          "allowRedirects": false,
-          "stopOnHttpError": true,
-          "requestCompressedContent": true
-        },
-        "filter": {
-          "name": "COMMENT GATE: internal comment only",
-          "conditions": [
-            [
-              {
-                "a": "{{16.comment_body}}",
-                "b": "^\\{\"contactId\":\"[A-Za-z0-9]{10,40}\",\"message\":\"(?:[^\"\\\\]|\\\\.)*\",\"mentions\":\\[\\],\"type\":\"InternalComment\"\\}$",
-                "o": "text:pattern"
+                "id": 10,
+                "module": "anthropic-claude:simpleTextPrompt",
+                "version": 1,
+                "parameters": {},
+                "mapper": {
+                  "model": "claude-haiku-4-5",
+                  "max_tokens": 600,
+                  "textPrompt": "You are writing an internal call summary for Titan Flooring, a flooring retailer and installer in the Greater Toronto Area. Below is the transcript of one phone call, one line per speaker turn. Direction: {{4.direction}}. Titan phone user: {{ifempty(9.ghl_user; \"the shared Front Desk line (several people answer it)\")}}. Titan staff who take calls: Joey, Helen, David, Albert, Pourya, Mike.\n\nWrite exactly this, as plain text, and nothing else:\n\nStaff: <the Titan staff member's first name, only if it is said on the call (they introduce themselves or are addressed by it) and it is one of the staff names listed above; otherwise Staff>\nSpeakers: <who each speaker label is, e.g. Speaker 1 = Helen (Titan) · Speaker 2 = customer; cover every label in the transcript; write unclear for any you cannot tell>\nSummary\n<at most 3 sentences: who called, what they want, and what was agreed. Name products, rooms, square footage and prices if they were said.>\n\nNext steps\n- Us: <what Titan promised> — by <date, or 'no date given'>\n- Customer: <what the customer will do> — by <date, or 'no date given'>\n(one line per commitment; write '- none' if nobody committed to anything)\n\nRules: use only what was actually said; never invent dates, prices or names; never guess a staff name that is not said on the call. No remarks about how the staff member handled the call. If the recording has no real conversation, write 'Summary' then 'No conversation recorded.' and 'Next steps' then '- none'.\n\nTranscript:\n{{9.transcript}}"
+                },
+                "filter": {
+                  "name": "Transcript, call under 300 s",
+                  "conditions": [
+                    [
+                      {
+                        "a": "{{9.transcript}}",
+                        "o": "exist"
+                      },
+                      {
+                        "a": "{{4.meta.call.duration}}",
+                        "b": "300",
+                        "o": "number:less"
+                      }
+                    ]
+                  ]
+                },
+                "metadata": {
+                  "designer": {
+                    "x": 2700,
+                    "y": -150
+                  }
+                }
               },
               {
-                "a": "{{13.i}}",
-                "b": "1",
-                "o": "number:equal"
+                "id": 31,
+                "module": "util:SetVariable2",
+                "version": 1,
+                "parameters": {},
+                "metadata": {
+                  "designer": {
+                    "x": 3000,
+                    "y": -150
+                  }
+                },
+                "mapper": {
+                  "name": "call_summary",
+                  "value": "{{4.id}}|||{{10.result}}",
+                  "scope": "roundtrip"
+                }
               }
             ]
-          ]
-        },
-        "onerror": [
-          {
-            "id": 118,
-            "mapper": null,
-            "module": "builtin:Ignore",
-            "version": 1,
-            "metadata": {
-              "designer": {
-                "x": 0,
-                "y": 0
-              }
-            },
-            "parameters": {}
-          }
-        ],
-        "metadata": {
-          "designer": {
-            "x": 5100,
-            "y": 0
-          }
-        }
-      },
-      {
-        "id": 19,
-        "module": "http:MakeRequest",
-        "version": 4,
-        "parameters": {
-          "tlsType": "",
-          "apiKeyKeychain": 97841,
-          "authenticationType": "apiKey"
-        },
-        "mapper": {
-          "url": "https://services.leadconnectorhq.com/conversations/messages/{{18.data.messageId}}",
-          "method": "get",
-          "headers": [
-            {
-              "name": "Version",
-              "value": "2021-04-15"
-            }
-          ],
-          "timeout": 40,
-          "shareCookies": false,
-          "parseResponse": true,
-          "allowRedirects": true,
-          "stopOnHttpError": true,
-          "requestCompressedContent": true
-        },
-        "filter": {
-          "name": "Comment was created",
-          "conditions": [
-            [
-              {
-                "a": "{{18.data.messageId}}",
-                "o": "exist"
-              }
-            ]
-          ]
-        },
-        "onerror": [
-          {
-            "id": 119,
-            "mapper": null,
-            "module": "builtin:Ignore",
-            "version": 1,
-            "metadata": {
-              "designer": {
-                "x": 0,
-                "y": 0
-              }
-            },
-            "parameters": {}
-          }
-        ],
-        "metadata": {
-          "designer": {
-            "x": 5400,
-            "y": 0
-          }
-        }
-      },
-      {
-        "id": 20,
-        "module": "datastore:AddRecord",
-        "version": 1,
-        "parameters": {
-          "datastore": 94694
-        },
-        "metadata": {
-          "designer": {
-            "x": 5700,
-            "y": 0
-          }
-        },
-        "mapper": {
-          "key": "{{4.id}}",
-          "data": {
-            "contact_id": "{{4.contactId}}",
-            "parts": "{{11.n_parts}}",
-            "engine": "scribe_v2",
-            "duration_s": "{{4.meta.call.duration}}",
-            "written_at": "{{now}}",
-            "ref": "{{11.ref}}",
-            "comment": "posted",
-            "comment_message_id": "{{18.data.messageId}}",
-            "comment_type": "{{ifempty(19.data.message.messageType; 19.data.messageType)}}"
           },
-          "overwrite": true
-        }
+          {
+            "flow": [
+              {
+                "id": 21,
+                "module": "anthropic-claude:simpleTextPrompt",
+                "version": 1,
+                "parameters": {},
+                "mapper": {
+                  "model": "claude-sonnet-4-5",
+                  "max_tokens": 600,
+                  "textPrompt": "You are writing an internal call summary for Titan Flooring, a flooring retailer and installer in the Greater Toronto Area. Below is the transcript of one phone call, one line per speaker turn. Direction: {{4.direction}}. Titan phone user: {{ifempty(9.ghl_user; \"the shared Front Desk line (several people answer it)\")}}. Titan staff who take calls: Joey, Helen, David, Albert, Pourya, Mike.\n\nWrite exactly this, as plain text, and nothing else:\n\nStaff: <the Titan staff member's first name, only if it is said on the call (they introduce themselves or are addressed by it) and it is one of the staff names listed above; otherwise Staff>\nSpeakers: <who each speaker label is, e.g. Speaker 1 = Helen (Titan) · Speaker 2 = customer; cover every label in the transcript; write unclear for any you cannot tell>\nSummary\n<at most 3 sentences: who called, what they want, and what was agreed. Name products, rooms, square footage and prices if they were said.>\n\nNext steps\n- Us: <what Titan promised> — by <date, or 'no date given'>\n- Customer: <what the customer will do> — by <date, or 'no date given'>\n(one line per commitment; write '- none' if nobody committed to anything)\n\nRules: use only what was actually said; never invent dates, prices or names; never guess a staff name that is not said on the call. No remarks about how the staff member handled the call. If the recording has no real conversation, write 'Summary' then 'No conversation recorded.' and 'Next steps' then '- none'.\n\nTranscript:\n{{9.transcript}}"
+                },
+                "filter": {
+                  "name": "Transcript, call 300 s or longer",
+                  "conditions": [
+                    [
+                      {
+                        "a": "{{9.transcript}}",
+                        "o": "exist"
+                      },
+                      {
+                        "a": "{{4.meta.call.duration}}",
+                        "b": "300",
+                        "o": "number:greaterorequal"
+                      }
+                    ]
+                  ]
+                },
+                "metadata": {
+                  "designer": {
+                    "x": 2700,
+                    "y": 150
+                  }
+                }
+              },
+              {
+                "id": 32,
+                "module": "util:SetVariable2",
+                "version": 1,
+                "parameters": {},
+                "metadata": {
+                  "designer": {
+                    "x": 3000,
+                    "y": 150
+                  }
+                },
+                "mapper": {
+                  "name": "call_summary",
+                  "value": "{{4.id}}|||{{21.result}}",
+                  "scope": "roundtrip"
+                }
+              }
+            ]
+          },
+          {
+            "flow": [
+              {
+                "id": 33,
+                "module": "util:GetVariable2",
+                "version": 1,
+                "parameters": {},
+                "metadata": {
+                  "designer": {
+                    "x": 3000,
+                    "y": 450
+                  }
+                },
+                "mapper": {
+                  "name": "call_summary"
+                },
+                "filter": {
+                  "name": "Transcript is not empty",
+                  "conditions": [
+                    [
+                      {
+                        "a": "{{9.transcript}}",
+                        "o": "exist"
+                      }
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": 11,
+                "module": "util:SetVariables",
+                "version": 1,
+                "parameters": {},
+                "metadata": {
+                  "designer": {
+                    "x": 3300,
+                    "y": 450
+                  }
+                },
+                "mapper": {
+                  "variables": [
+                    {
+                      "name": "staff",
+                      "value": "{{ifempty(9.ghl_user; switch(trim(replace(substring(33.call_summary; length(4.id) + 3); \"/^[\\s\\S]*?Staff:[ \\t]*([^\\n]*)[\\s\\S]*$/\"; \"$1\")); \"Joey\"; \"Joey\"; \"Helen\"; \"Helen\"; \"David\"; \"David\"; \"Albert\"; \"Albert\"; \"Pourya\"; \"Pourya\"; \"Mike\"; \"Mike\"; \"Staff\"))}}"
+                    },
+                    {
+                      "name": "speakers",
+                      "value": "{{if(contains(substring(33.call_summary; length(4.id) + 3); \"Speakers:\"); trim(replace(substring(33.call_summary; length(4.id) + 3); \"/^[\\s\\S]*?Speakers:[ \\t]*([^\\n]*)[\\s\\S]*$/\"; \"$1\")); \"unclear\")}}"
+                    },
+                    {
+                      "name": "summary_block",
+                      "value": "{{if(contains(substring(33.call_summary; length(4.id) + 3); \"Summary\"); trim(replace(substring(33.call_summary; length(4.id) + 3); \"/^[\\s\\S]*?(Summary\\n[\\s\\S]*)$/\"; \"$1\")); trim(substring(33.call_summary; length(4.id) + 3)))}}"
+                    },
+                    {
+                      "name": "ref",
+                      "value": "C-{{formatDate(4.dateAdded; \"MMDD-HHmm\"; \"America/Toronto\")}}"
+                    },
+                    {
+                      "name": "when",
+                      "value": "{{formatDate(4.dateAdded; \"ddd MMM D, h:mm a\"; \"America/Toronto\")}}"
+                    },
+                    {
+                      "name": "dir",
+                      "value": "{{capitalize(4.direction)}}"
+                    },
+                    {
+                      "name": "dur",
+                      "value": "{{floor(4.meta.call.duration / 60)}}m {{4.meta.call.duration - floor(4.meta.call.duration / 60) * 60}}s"
+                    },
+                    {
+                      "name": "n_parts",
+                      "value": "{{max(1; ceil(length(9.transcript) / 3000))}}"
+                    }
+                  ]
+                },
+                "filter": {
+                  "name": "Summary is for this call",
+                  "conditions": [
+                    [
+                      {
+                        "a": "{{33.call_summary}}",
+                        "b": "{{4.id}}|||",
+                        "o": "text:startwith"
+                      }
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": 12,
+                "module": "util:SetVariables",
+                "version": 1,
+                "parameters": {},
+                "metadata": {
+                  "designer": {
+                    "x": 3600,
+                    "y": 450
+                  }
+                },
+                "mapper": {
+                  "variables": [
+                    {
+                      "name": "note_head",
+                      "value": "Transcript · Ref {{11.ref}} · {{11.when}} · {{11.dir}} · {{11.dur}} · {{11.staff}}\nSpeakers: {{11.speakers}}\n"
+                    },
+                    {
+                      "name": "cont_head",
+                      "value": "Transcript (continued) · Ref {{11.ref}}\n"
+                    },
+                    {
+                      "name": "comment_text",
+                      "value": "📞 Call summary · Ref {{11.ref}} · transcript in Notes\n{{11.when}} · {{11.dir}} · {{11.dur}} · {{11.staff}}\n\n{{11.summary_block}}\n\n[call-summary v1 messageId={{4.id}} ref={{11.ref}}]"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": 13,
+                "module": "builtin:BasicRepeater",
+                "version": 1,
+                "parameters": {},
+                "mapper": {
+                  "step": -1,
+                  "start": "{{11.n_parts}}",
+                  "repeats": "{{11.n_parts}}"
+                },
+                "metadata": {
+                  "designer": {
+                    "x": 3900,
+                    "y": 450
+                  }
+                }
+              },
+              {
+                "id": 14,
+                "module": "highlevel:addNotetoContact",
+                "version": 1,
+                "parameters": {
+                  "__IMTCONN__": 4426112
+                },
+                "mapper": {
+                  "contactId": "{{4.contactId}}",
+                  "body": "{{if(13.i = 1; 12.note_head; 12.cont_head)}}{{substring(9.transcript; (13.i - 1) * 3000; 13.i * 3000)}}\n\n[call-note v2 messageId={{4.id}} conversationId={{4.conversationId}} engine=scribe_v2 ref={{11.ref}} part={{13.i}}/{{11.n_parts}}]",
+                  "userId": ""
+                },
+                "metadata": {
+                  "designer": {
+                    "x": 4200,
+                    "y": 450
+                  }
+                }
+              },
+              {
+                "id": 15,
+                "module": "json:TransformToJSON",
+                "version": 1,
+                "parameters": {},
+                "metadata": {
+                  "designer": {
+                    "x": 4500,
+                    "y": 450
+                  }
+                },
+                "mapper": {
+                  "object": "{{12.comment_text}}"
+                },
+                "filter": {
+                  "name": "Last note part written",
+                  "conditions": [
+                    [
+                      {
+                        "a": "{{13.i}}",
+                        "b": "1",
+                        "o": "number:equal"
+                      }
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": 16,
+                "module": "util:SetVariables",
+                "version": 1,
+                "parameters": {},
+                "metadata": {
+                  "designer": {
+                    "x": 4800,
+                    "y": 450
+                  }
+                },
+                "mapper": {
+                  "variables": [
+                    {
+                      "name": "comment_body",
+                      "value": "{\"contactId\":\"{{4.contactId}}\",\"message\":{{15.json}},\"mentions\":[],\"type\":\"InternalComment\"}"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": 17,
+                "module": "datastore:AddRecord",
+                "version": 1,
+                "parameters": {
+                  "datastore": 94694
+                },
+                "metadata": {
+                  "designer": {
+                    "x": 5100,
+                    "y": 450
+                  }
+                },
+                "mapper": {
+                  "key": "{{4.id}}",
+                  "data": {
+                    "contact_id": "{{4.contactId}}",
+                    "parts": "{{11.n_parts}}",
+                    "engine": "scribe_v2",
+                    "duration_s": "{{4.meta.call.duration}}",
+                    "written_at": "{{now}}",
+                    "ref": "{{11.ref}}",
+                    "comment": "pending"
+                  },
+                  "overwrite": true
+                }
+              },
+              {
+                "id": 18,
+                "module": "http:MakeRequest",
+                "version": 4,
+                "parameters": {
+                  "tlsType": "",
+                  "apiKeyKeychain": 97843,
+                  "authenticationType": "apiKey"
+                },
+                "mapper": {
+                  "url": "https://services.leadconnectorhq.com/conversations/messages",
+                  "method": "post",
+                  "headers": [
+                    {
+                      "name": "Version",
+                      "value": "2021-04-15"
+                    },
+                    {
+                      "name": "Accept",
+                      "value": "application/json"
+                    }
+                  ],
+                  "contentType": "json",
+                  "inputMethod": "jsonString",
+                  "jsonStringBodyContent": "{{16.comment_body}}",
+                  "timeout": 40,
+                  "shareCookies": false,
+                  "parseResponse": true,
+                  "allowRedirects": false,
+                  "stopOnHttpError": true,
+                  "requestCompressedContent": true
+                },
+                "filter": {
+                  "name": "COMMENT GATE: internal comment only",
+                  "conditions": [
+                    [
+                      {
+                        "a": "{{16.comment_body}}",
+                        "b": "^\\{\"contactId\":\"[A-Za-z0-9]{10,40}\",\"message\":\"(?:[^\"\\\\]|\\\\.)*\",\"mentions\":\\[\\],\"type\":\"InternalComment\"\\}$",
+                        "o": "text:pattern"
+                      },
+                      {
+                        "a": "{{13.i}}",
+                        "b": "1",
+                        "o": "number:equal"
+                      }
+                    ]
+                  ]
+                },
+                "onerror": [
+                  {
+                    "id": 118,
+                    "mapper": null,
+                    "module": "builtin:Ignore",
+                    "version": 1,
+                    "metadata": {
+                      "designer": {
+                        "x": 0,
+                        "y": 0
+                      }
+                    },
+                    "parameters": {}
+                  }
+                ],
+                "metadata": {
+                  "designer": {
+                    "x": 5400,
+                    "y": 450
+                  }
+                }
+              },
+              {
+                "id": 19,
+                "module": "http:MakeRequest",
+                "version": 4,
+                "parameters": {
+                  "tlsType": "",
+                  "apiKeyKeychain": 97841,
+                  "authenticationType": "apiKey"
+                },
+                "mapper": {
+                  "url": "https://services.leadconnectorhq.com/conversations/messages/{{18.data.messageId}}",
+                  "method": "get",
+                  "headers": [
+                    {
+                      "name": "Version",
+                      "value": "2021-04-15"
+                    }
+                  ],
+                  "timeout": 40,
+                  "shareCookies": false,
+                  "parseResponse": true,
+                  "allowRedirects": true,
+                  "stopOnHttpError": true,
+                  "requestCompressedContent": true
+                },
+                "filter": {
+                  "name": "Comment was created",
+                  "conditions": [
+                    [
+                      {
+                        "a": "{{18.data.messageId}}",
+                        "o": "exist"
+                      }
+                    ]
+                  ]
+                },
+                "onerror": [
+                  {
+                    "id": 119,
+                    "mapper": null,
+                    "module": "builtin:Ignore",
+                    "version": 1,
+                    "metadata": {
+                      "designer": {
+                        "x": 0,
+                        "y": 0
+                      }
+                    },
+                    "parameters": {}
+                  }
+                ],
+                "metadata": {
+                  "designer": {
+                    "x": 5700,
+                    "y": 450
+                  }
+                }
+              },
+              {
+                "id": 20,
+                "module": "datastore:AddRecord",
+                "version": 1,
+                "parameters": {
+                  "datastore": 94694
+                },
+                "metadata": {
+                  "designer": {
+                    "x": 6000,
+                    "y": 450
+                  }
+                },
+                "mapper": {
+                  "key": "{{4.id}}",
+                  "data": {
+                    "contact_id": "{{4.contactId}}",
+                    "parts": "{{11.n_parts}}",
+                    "engine": "scribe_v2",
+                    "duration_s": "{{4.meta.call.duration}}",
+                    "written_at": "{{now}}",
+                    "ref": "{{11.ref}}",
+                    "comment": "posted",
+                    "comment_message_id": "{{18.data.messageId}}",
+                    "comment_type": "{{ifempty(19.data.message.messageType; 19.data.messageType)}}"
+                  },
+                  "overwrite": true
+                }
+              }
+            ]
+          }
+        ]
       }
     ],
     "metadata": {
