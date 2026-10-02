@@ -36,6 +36,7 @@ import html
 import json
 import re
 import sys
+import urllib.parse
 from collections import Counter
 from datetime import datetime
 from pathlib import Path
@@ -151,9 +152,16 @@ def usable_images(page, judgements, rules, laying=None):
     return out, problems
 
 
-def source_order(sup):
-    """Registry order of a supplier's sources: extra_sources first, then the main site."""
-    return [*(sup.get("extra_sources") or []), {"name": sup.get("source_name", "main")}]
+def source_order(sup, cfg=None):
+    """The supplier's sources in the registry's `source_policy.order` (same as the pull)."""
+    from supplier_site_pull import supplier_sources
+    return supplier_sources(sup, cfg)
+
+
+def link_sources(cfg):
+    """Sources whose page may go in `Supplier product page`, in preference order
+    (Albert, 2026-09-29: official site, else The Floor Box, never Speers)."""
+    return (cfg.get("source_policy") or {}).get("product_page_sources") or ["official", "floorbox"]
 
 
 def photo_set(page):
@@ -228,7 +236,10 @@ def seo_filename(rec, target, n, url, sup, matching):
 
 def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
     sup = cfg["suppliers"][supplier]
-    targets, rules = cfg["targets"], cfg["image_rules"]
+    targets = cfg["targets"]
+    # A supplier may lower the swatch bar for itself (BiYork's own swatches are 580-1300 px;
+    # Albert, 2026-09-29: "yes rerun" at 1000). The shared rule stays.
+    rules = {**cfg["image_rules"], **(sup.get("image_rules") or {})}
     pages = page_index(pages_file)
     pp_matches = {}
     if product_pages and (sup.get("product_pages") or {}).get("enabled", True):
@@ -250,8 +261,8 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
     by_source = {}
     for pg in pages.values():
         by_source.setdefault(pg.get("source") or "main", []).append(pg)
-    order = [src["name"] for src in source_order(sup) if src["name"] in by_source] + \
-        [name for name in by_source if name not in {s["name"] for s in source_order(sup)}]
+    order = [src["name"] for src in source_order(sup, cfg) if src["name"] in by_source] + \
+        [name for name in by_source if name not in {s["name"] for s in source_order(sup, cfg)}]
     matches = {name: image_match.match_records(records, by_source[name], sup, cfg["matching"])
                for name in order}
     actions, held, skipped = [], [], Counter()
@@ -259,6 +270,9 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
         rid, sku = rec["id"], rec.get("SKU")
         blank = [t for t in ("swatch", "room", "detail", "product_page")
                  if is_blank(rec.get(targets[t]["name"]))]
+        if rec.get("Category") in (rules.get("skip_categories") or []):
+            skipped["accessory"] += 1  # a moulding shares its floor's colour name, not its photo
+            continue
         if not any(t in blank for t in ("swatch", "room", "detail")):
             skipped["all_targets_filled"] += 1
             continue
@@ -316,18 +330,29 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
             continue
         lead = next((i for i in images if i["target"] == "swatch"), images[0])
         page_url = lead["page"]
-        product_page, pp_source = page_url, "image_page"
+        # The link is chosen apart from the photos: the official site's page, else The Floor
+        # Box's, never a source missing from product_page_sources (Speers, a local competitor).
+        product_page, pp_source = None, None
         ppm = pp_matches.get(rid)
         if ppm:
             product_page, pp_source = ppm["candidates"][0]["url"], "manufacturer"
-        if "product_page" in blank:
+        else:
+            by_name = {name: url for name, url, _ in chosen_pages}
+            for name in link_sources(cfg):
+                if name in by_name:
+                    product_page = by_name[name]
+                    pp_source = "manufacturer" if name == "official" else name
+                    break
+        if "product_page" in blank and product_page:
             fields[targets["product_page"]["name"]] = product_page
         flags = []
         if "swatch" in blank and targets["swatch"]["name"] not in fields:
             flags.append("no_swatch")
         if tier == "model_confirmed":
             flags.append("model_matched")
-        if pp_source != "manufacturer":
+        if not product_page:
+            flags.append("no_product_page")
+        elif pp_source != "manufacturer":
             flags.append("product_page_not_manufacturer")
         actions.append({
             "id": action_id(sku, fields), "seq": len(actions) + 1, "target_system": "airtable",
@@ -448,10 +473,53 @@ def rename_plan(records, cfg, supplier, scope, source_plan=None):
             "actions": actions, "held": []}
 
 
+def relink_plan(records, pages_file, cfg, supplier, scope, source_plan, from_source="speers",
+                to_sources=("wordofmouth", "floorbox")):
+    """Move `Supplier product page` off a source that may no longer be linked (2026-09-29,
+    Albert: "Switch if available but do not delete. Replace with Word of Mouth (the speers
+    one)"). For each record an earlier run linked to `from_source`, the first of
+    `to_sources` whose listings match the record exactly becomes the link. No match, or
+    more than one, keeps the old link: nothing is cleared. The writer swaps only when the
+    field still holds exactly `expect` (compare-and-swap)."""
+    sup = cfg["suppliers"][supplier]
+    field = cfg["targets"]["product_page"]
+    hosts = set((cfg.get("retailers") or {}).get(from_source, {}).get("hosts") or [])
+    by_id = {r["id"]: r for r in records}
+    pages = [p for p in pages_file.get("pages", [])]
+    actions, held = [], []
+    for a in (source_plan or {}).get("actions", []):
+        old = (a.get("fields") or {}).get(field["name"])
+        if not old or urllib.parse.urlsplit(old).netloc not in hosts:
+            continue
+        rec = by_id.get(a["record_id"])
+        new = src = None
+        for name in to_sources:
+            m = image_match.match_records([rec], [p for p in pages if p.get("source") == name],
+                                          sup, cfg["matching"])[rec["id"]] if rec else None
+            if m and m["tier"] == "exact":
+                new, src = m["candidates"][0]["url"], name
+                break
+        if not new:
+            held.append({"sku": a.get("sku"), "record_id": a["record_id"], "product_name": a.get("product_name"),
+                         "reason": "no_alternative_link", "detail": f"kept {old}"})
+            continue
+        actions.append({"id": action_id(a.get("sku"), {"relink": new}), "seq": len(actions) + 1,
+                        "target_system": "airtable", "op": "relink_product_page",
+                        "record_id": a["record_id"], "sku": a.get("sku"), "product_name": a.get("product_name") or "",
+                        "fields": {field["name"]: new}, "field_ids": {field["name"]: field["id"]},
+                        "expect": {field["name"]: old}, "source": src, "match_tier": "exact"})
+    return {"contract_version": PLAN_VERSION, "scope": scope, "supplier": supplier, "op": "relink_product_page",
+            "run_at": now().isoformat(), "expires": now().strftime("%Y-%m-%dT23:59:59%z"),
+            "summary": {"records": len(actions), "kept": len(held),
+                        "by_source": dict(Counter(x["source"] for x in actions))},
+            "actions": actions, "held": held}
+
+
 def approval(plan, cfg, plan_path):
     pol = cfg["policy"]
     ok = [a for a in plan["actions"]
-          if a.get("op") == "reattach_renamed" or a.get("match_tier") in pol["auto_approve_tiers"]]
+          if a.get("op") in ("reattach_renamed", "relink_product_page")
+          or a.get("match_tier") in pol["auto_approve_tiers"]]
     ok = ok[: pol["max_actions_per_run"]]
     at = now().isoformat()
     return {"contract_version": APPROVAL_VERSION, "supplier": plan["supplier"], "scope": plan["scope"],
@@ -525,6 +593,9 @@ def main(argv=None):
     ap.add_argument("--rename-to-seo", action="store_true",
                     help="Plan renaming this pipeline's earlier <SKU>-<kind>-<n> files to SEO names "
                          "(needs a snapshot that includes the image fields)")
+    ap.add_argument("--relink-product-page-from", metavar="SOURCE",
+                    help="Plan moving Supplier product page off SOURCE (e.g. speers) to Word of Mouth, else "
+                         "The Floor Box, for records --source-plan linked there; needs --pages")
     ap.add_argument("--write-approval", action="store_true")
     ap.add_argument("--registry", type=Path, default=REGISTRY)
     ap.add_argument("--date", help="Default today (America/Toronto)")
@@ -550,6 +621,23 @@ def main(argv=None):
     if product_pages is not None:
         product_pages["_path"] = str(args.product_pages)
     out = cfg["outputs"]
+
+    if args.relink_product_page_from:
+        if args.write_approval and cfg["write_mode"]["mode"] != "write":
+            print("error: write_mode is plan_only", file=sys.stderr)
+            return 4
+        plan = relink_plan(records, pages_file, cfg, args.supplier, args.scope, load_json(args.source_plan),
+                           args.relink_product_page_from)
+        plans = REPO_ROOT / "plans" / date
+        plans.mkdir(parents=True, exist_ok=True)
+        path = plans / f"image-relink-{args.scope}.json"
+        path.write_text(json.dumps(plan, indent=1, ensure_ascii=False) + "\n")
+        print(path, plan["summary"])
+        if args.write_approval:
+            ap_path = plans / f"image-relink-approval-{args.scope}.json"
+            ap_path.write_text(json.dumps(approval(plan, cfg, path.relative_to(REPO_ROOT)), indent=1) + "\n")
+            print("  approval ->", ap_path)
+        return 0
 
     if args.rename_to_seo:
         if args.write_approval and cfg["write_mode"]["mode"] != "write":

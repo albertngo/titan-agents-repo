@@ -277,12 +277,12 @@ def keep_image(url, rules):
 
 # --------------------------------------------------------------------------- listing methods
 
-def list_shopify(fetch, root, vendor=None):
+def list_shopify(fetch, root, vendor=None, max_pages=40):
     """Every product in a Shopify store's public products.json; `vendor` keeps one brand
     (Shopify's own brand field, e.g. `Vidar Design Flooring` at Speers)."""
     base = f"{urllib.parse.urlsplit(root).scheme}://{urllib.parse.urlsplit(root).netloc}"
     pages, n = [], 1
-    while n <= 40:
+    while n <= max_pages:
         data = json.loads(fetch.get(f"{base}/products.json?limit=250&page={n}"))
         items = data.get("products") or []
         if not items:
@@ -293,6 +293,10 @@ def list_shopify(fetch, root, vendor=None):
             pages.append({
                 "url": f"{base}/products/{p['handle']}", "title": p.get("title", ""), "h1": "",
                 "og_title": "", "product_name": p.get("title", ""), "is_product": True,
+                # BiYork's own shop titles a product `Brume Air Sample*`: the line and species
+                # are only in its tags and product type.
+                "tags": [t for t in (p.get("tags") or []) if isinstance(t, str)],
+                "product_type": p.get("product_type") or "",
                 "codes": sorted({v["sku"] for v in p.get("variants", []) if v.get("sku")}),
                 "images": [{"url": i["src"], "alt": i.get("alt") or "", "width_hint": i.get("width"),
                             "height_hint": i.get("height")} for i in p.get("images", [])],
@@ -434,7 +438,7 @@ def list_sitemap(fetch, root, follow_words, max_sitemaps=60, listing=None):
     keep_path = listing.get("path_contains")
     skip = set(listing.get("skip_words") or [])
     parse = listing.get("slug_parser") == "floorbox"
-    queue, seen, pages = sitemap_roots(fetch, root), set(), []
+    queue, seen, pages, urls = sitemap_roots(fetch, root), set(), [], set()
     while queue and len(seen) < max_sitemaps:
         sm = queue.pop(0)
         if sm in seen:
@@ -451,8 +455,9 @@ def list_sitemap(fetch, root, follow_words, max_sitemaps=60, listing=None):
             if not locs:
                 continue
             url = locs[0]
-            if keep_path and keep_path not in url:
-                continue
+            if (keep_path and keep_path not in url) or url in urls:
+                continue  # the same product can sit in two sitemap files
+            urls.add(url)
             path_parts = urllib.parse.urlsplit(url).path.rstrip("/").split("/")
             slug = path_parts[-2] if UUID_V1.fullmatch(path_parts[-1] or "") else path_parts[-1]
             if skip and skip & set(slug.lower().split("-")):
@@ -494,13 +499,32 @@ def crawl(fetch, root, follow_words, max_pages, start_urls=None):
     return pages
 
 
-def supplier_sources(sup):
-    """The supplier's sources in preference order: `extra_sources` first (Albert, 2026-09-29:
-    "if the image is clearer or better, use it instead of the floorbox"), then the main
-    `site`. Each is {name, site, listing}."""
-    main = {"name": sup.get("source_name", "main"), "site": sup["site"],
-            "listing": sup.get("listing") or {}, "follow_words": sup.get("follow_words", [])}
-    return [*(sup.get("extra_sources") or []), main]
+def supplier_sources(sup, cfg=None):
+    """The supplier's sources in the registry's `source_policy.order` (Albert, 2026-09-29:
+    "search the main website -> externals (floorbox and speers)"): its `official` site,
+    then each shared retailer it lists under `retailers`, with the supplier's overrides
+    (e.g. Speers' `vendor` string) merged into that retailer's listing. Each is
+    {name, site, listing}. Older entries with a bare `site` still work."""
+    cfg = cfg or {}
+    order = (cfg.get("source_policy") or {}).get("order") or ["official", *(cfg.get("retailers") or {})]
+    out = []
+    for name in order:
+        if name == "official":
+            off = sup.get("official")
+            if off:
+                out.append({"name": "official", "site": off["site"], "listing": off.get("listing") or {},
+                            "follow_words": off.get("follow_words", [])})
+        elif name in (sup.get("retailers") or {}):
+            base = (cfg.get("retailers") or {}).get(name) or {}
+            over = sup["retailers"][name] or {}
+            out.append({"name": name, "site": over.get("site") or base["site"],
+                        "listing": {**(base.get("listing") or {}), **{k: v for k, v in over.items() if k != "site"}},
+                        "follow_words": over.get("follow_words", [])})
+    if not out and sup.get("site"):  # an entry from before source_policy
+        out = [*(sup.get("extra_sources") or []),
+               {"name": sup.get("source_name", "main"), "site": sup["site"],
+                "listing": sup.get("listing") or {}, "follow_words": sup.get("follow_words", [])}]
+    return out
 
 
 def list_pages(fetch, cfg, supplier_cfg, max_pages):
@@ -513,7 +537,7 @@ def list_pages(fetch, cfg, supplier_cfg, max_pages):
     for m in order:
         try:
             if m == "shopify":
-                pages = list_shopify(fetch, root, listing.get("vendor"))
+                pages = list_shopify(fetch, root, listing.get("vendor"), listing.get("max_pages", 40))
             elif m == "woocommerce":
                 pages = list_woocommerce(fetch, root)
             elif m == "sitemap":
@@ -639,7 +663,7 @@ def main(argv=None):
     max_pages = args.max_pages or cfg["fetch"]["max_pages"]
     colours = {image_match.colour_of(r.get("Product name")) for r in records}
     pages, sources, wanted = [], {}, set()
-    for src in supplier_sources(sup):
+    for src in supplier_sources(sup, cfg):
         method, src_pages, tried = list_pages(fetch, cfg, src, max_pages)
         batches = None
         bb = (src.get("listing") or {}).get("brand_batches")
@@ -669,7 +693,7 @@ def main(argv=None):
         "contract_version": CONTRACT_VERSION,
         "scope": args.scope,
         "supplier": args.supplier,
-        "site": sup["site"],
+        "site": (sup.get("official") or {}).get("site") or sup.get("site"),
         "pulled_at": datetime.now(TZ).isoformat(),
         "status": status,
         "listing": {"method": method, "tried": tried, "requests": fetch.count},
@@ -688,6 +712,13 @@ def main(argv=None):
     print(f"  {len(pages)} pages; {len(wanted)} matched a record; tiers {out['summary']['tiers']}")
     if counts:
         print(f"  images {dict(counts)}")
+    # A source the environment refuses is fixable, and blank-only writes mean whatever the
+    # later sources fill now could never be improved by it later: stop rather than skip it.
+    blocked = [k for k, v in sources.items() if "host_blocked" in v["tried"].values() and not v["pages"]]
+    if blocked and status == "ok":
+        print(f"\n  {', '.join(blocked)} refused by the environment's network policy (host_blocked).\n"
+              "  Allow it and re-run; the later sources are not used alone while an earlier one is fixable.")
+        return 3
     if status in ("challenged", "host_blocked"):
         print(f"\n  The site refused automated reading ({status}). Not worked around: allow the host in the\n"
               "  environment's Network access (host_blocked), or use another source (challenged).")

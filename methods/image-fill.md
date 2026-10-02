@@ -65,6 +65,35 @@ Replace or append to a filled image field; write anything but the four target fi
 write while `write_mode` is `plan_only`; get past a bot challenge; guess a URL.
 
 ## Log
+- 2026-09-29 (after midnight) — Albert: "1. yes rerun 2. Switch if available but do not
+  delete. Replace with Word of Mouth (the speers one)". BiYork swatch bar 1000 px
+  (`suppliers.BIYORK.image_rules`; the shared 1600 stays). Word of Mouth has 82 Shopify
+  pages; the pull stopped at 40, so `listing.max_pages` is per retailer now (120). A
+  category veto added after Word of Mouth's Vidar vinyl `Naked Oak` matched engineered
+  records. Vidar: 31 product links moved off Speers (Floor Box 24, Word of Mouth 7) by the
+  new `relink_product_page` op; 32 with no alternative keep Speers. Found on the way: the
+  Vidar Camel 5" record (ENG-VIDR-0166) carries Speers' "Camel - Hazelnut" photo, named
+  `AmericanOakHazelnut.jpg` — left for Albert.
+- 2026-09-29 (late) — BiYork run. Albert added Word of Mouth Floors ("2nd/third backup same
+  level as floorbox. and speers as the very last"); order is now official, The Floor Box +
+  Word of Mouth, Speers. `biyorkcanada.com` is a Shopify store selling only samples, titled
+  `Brume Air Sample*`: the line and species live in its tags and product type, which the
+  matcher now reads (official matches 45 -> 151 of 178 floor records). Hickory is BiYork's
+  species, not a pattern (`ignore_pattern_words`). 487 photos judged by eye in 31 grids.
+  Plan: 131 records (128 room scene, 31 swatch, 129 product page, 127 of them BiYork's own
+  page); 47 held (16 not found, 22 no usable photo, 9 swatch under 1600 px); 224 accessories
+  skipped. Most BiYork swatches are 580-1300 px, so 100 written records carry `no_swatch`:
+  their swatch field stays blank for a later source or a lower bar.
+- 2026-09-29 (night) — Source policy (Albert): official site, then The Floor Box, then
+  Speers; product page from official, else The Floor Box, never Speers ("a local shop to
+  ours"). Registry restructured (`source_policy`, shared `retailers`). BiYork added: 402
+  records, 236 accessories skipped; `biyorkcanada.com` refused by the environment, so the
+  run waits (retailers alone would take the blank fields first). Retailer probe: Speers 93
+  exact, The Floor Box 44 exact + 4 ambiguous, 96 of 178 floor records covered. Two fixes
+  from the probe: a page naming no BiYork line is vetoed (Floor Box matched a Fuzion
+  `Chalk` tile and a Quickstyle `Valencia` vinyl through generic colour names), and a
+  product listed in two sitemap files is kept once. Vidar: 63 records link a Speers page,
+  which the new policy excludes (29 have a Floor Box match); relink/clear waits on Albert.
 - 2026-09-29 (later) — Speers Flooring added as the first Vidar source (Shopify feed, brand
   in `vendor`, swatch + room scene per product at 1920-3000 px). write_mode flipped to
   `write` (Albert: "go for it"; vault 05_decisions/2026-09-29-image-fill-write-mode.md).

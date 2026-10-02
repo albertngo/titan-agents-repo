@@ -93,7 +93,11 @@
       ".svg",
       ".gif",
       ".ico"
-    ]
+    ],
+    "skip_categories": [
+      "Accessory"
+    ],
+    "_skip_categories_note": "2026-09-29 (BIYORK): 236 of 402 records are stair nosings, T-mouldings and reducers named after their floor's colour; a floor photo on them would be wrong. Skipped, counted as `accessory`."
   },
   "matching": {
     "_comment": "scripts/image_match.py. A page matches a record only when the record's colour name appears in the page's TITLE (title, h1, og:title, product name, or URL slug) — body text never counts, because a generic colour ('Natural') appears everywhere. Width, species and pattern then either agree, say nothing, or veto. Tiers: `exact` = the supplier's own code equals the record's Supplier SKU, OR exactly one page is the top score with the colour in its title and no veto; `ambiguous` = more than one page ties at the top (the model picks at most one, and 'none' is a valid answer); `none` = no page. A wrong photo on a product is worse than no photo.",
@@ -120,7 +124,35 @@
       "hickory",
       "spc",
       "laminate"
-    ]
+    ],
+    "tag_pattern_words": [
+      "herringbone",
+      "chevron",
+      "versailles",
+      "laminate"
+    ],
+    "category_words": {
+      "Engineered hardwood": [
+        "engineered",
+        "hardwood"
+      ],
+      "LVP": [
+        "vinyl",
+        "spc",
+        "rigid core",
+        "lvp"
+      ],
+      "LVT": [
+        "vinyl",
+        "spc",
+        "rigid core",
+        "lvt"
+      ],
+      "Laminate": [
+        "laminate"
+      ]
+    },
+    "_category_words_note": "2026-09-29: a listing that names a category (title, Shopify tags or product type) must name the record's own `Category`; Word of Mouth sells a Vidar vinyl and a Vidar engineered oak both called Naked Oak."
   },
   "policy": {
     "_comment": "Albert, 2026-09-29: 'Auto-attach, report held'. Applies ONLY while write_mode is `write`. Approves every planned action whose match tier is `exact` or `model_confirmed` and whose images passed image_rules; everything else is held and reported in the troubled CSV + PushNotification. Never approves a held row (it has no id).",
@@ -160,14 +192,9 @@
   "suppliers": {
     "VIDAR": {
       "_added": "2026-09-29, Albert: 'this is vidars website https://www.vidarflooring.com/en'. First pilot (wood/vinyl).",
-      "site": "https://thefloorbox.ca/brands/vidar/flooring/24718bc3-4e01-11eb-b321-f6968cef729a",
       "hosts": [
-        "cdn.shopify.com",
-        "cdn.thefloorbox.ca",
-        "speersflooring.com",
-        "thefloorbox.ca",
-        "www.speersflooring.com",
-        "www.thefloorbox.ca"
+        "www.vidarflooring.com",
+        "vidarflooring.com"
       ],
       "product_pages": {
         "_comment": "Albert, 2026-09-29: 'the product image page should still be from vidar's main site if possible'. The manufacturer's own site is challenge-protected, so its product pages are found through the search index (WebSearch, allowed_domains = hosts) — reading an index, not the blocked site — and matched to records by TITLE with the same rules as image pages. Only URLs under path_prefixes count.",
@@ -186,30 +213,6 @@
         "_disabled": "2026-09-29, Albert: 'the vidar links sources you send go to 404'. The search index still lists pages Vidar has removed, and Vidar's site challenges automated readers, so no link can be confirmed before writing. Disabled; Supplier product page = The Floor Box page the photo came from (Albert chose that the same day). A link is written only when the run's own source confirms it is current (a site's current sitemap counts; a search-index result does not)."
       },
       "_source_note": "2026-09-29: Vidar's own site (https://www.vidarflooring.com/en) answers every automated request, pages and image files alike, with SiteGround's anti-bot challenge (`sg-captcha: challenge`, HTTP 202). The run does not try to get past it. Albert pointed the run at The Floor Box's Vidar brand page instead. The Floor Box is a retailer, so a photo there may be its own rather than Vidar's; every written record carries the source in `Supplier product page`, which is what makes a later swap traceable. Update later on 2026-09-29: pages challenged; images and slugs come from the CDN sitemap instead (listing._note).",
-      "listing": {
-        "method": "sitemap",
-        "path_contains": "/products/",
-        "slug_parser": "floorbox",
-        "brand_batches": {
-          "min_distinct_colours": 3
-        },
-        "skip_words": [
-          "vent",
-          "stair",
-          "nose",
-          "nosing",
-          "reducer",
-          "molding",
-          "moulding",
-          "threshold",
-          "quarter",
-          "trim",
-          "stairnose",
-          "riser",
-          "tread"
-        ],
-        "_note": "2026-09-29. The Floor Box's product pages are Cloudflare-challenged and never loaded; its robots.txt allows all and names a sitemap on cdn.thefloorbox.ca (18 product sitemaps, ~64k English URLs, updated 2026-09-26). Each entry is a slug + version-1 UUID + ONE main image (the plank swatch; sample 2100x1575). Slugs carry collection, colour, grade and width but not the brand, so brand_batches keeps only import batches (UUID time field) holding >= 3 distinct multi-word Vidar colour names (333c-11ef, 1f64-11f0, 18f2-11ed, 9981-11f0 on 2026-09-29; the big mixed batches hold <= 2). Swatch only from this source (Albert: 'Swatch only is fine')."
-      },
       "species_words": {
         "AWO": [
           "american white oak",
@@ -238,19 +241,164 @@
         ]
       },
       "_matching_note": "Vidar publishes no codes for engineered/laminate (bert-airtable-schema: Supplier SKU blank), so matching keys on the colour name from Product name (`Vidar 7.5\" AWO — Naked Oak (Character)` -> `Naked Oak`) plus width / species / pattern. One page's images may go to every width and grade record of that colour unless the page names a grade or width that the record is not.",
-      "source_name": "floorbox",
-      "extra_sources": [
-        {
-          "name": "speers",
-          "site": "https://www.speersflooring.com",
-          "listing": {
-            "method": "shopify",
-            "vendor": "Vidar Design Flooring"
-          },
-          "_added": "2026-09-29, Albert: 'You can also check https://www.speersflooring.com/ as well for vidar if they have the room one' and 'if the image is clearer or better, use it instead of the floorbox. If it has more detail and room scenes; download them too'. Shopify store; products.json is public and names the brand in `vendor` (82 Vidar Design Flooring products on 2026-09-29, most with a 2100x1575 swatch and a room scene). Images on cdn.shopify.com (allowed 2026-09-29)."
+      "_source_order": "Sources are tried per record in order: extra_sources, then the main site. Per field the larger photo wins; equal size goes to the earlier source. Near-duplicate photos across sites (same picture, re-encoded) are collapsed by a visual fingerprint.",
+      "official": {
+        "site": "https://www.vidarflooring.com/en",
+        "hosts": [
+          "www.vidarflooring.com",
+          "vidarflooring.com"
+        ],
+        "listing": {
+          "method": "auto"
+        },
+        "_note": "Answers every automated request with SiteGround's bot challenge (2026-09-29); the pull reports it and moves on to the retailers."
+      },
+      "retailers": {
+        "floorbox": {},
+        "wordofmouth": {
+          "vendor": "VIDAR"
+        },
+        "speers": {
+          "vendor": "Vidar Design Flooring"
         }
+      }
+    },
+    "BIYORK": {
+      "_added": "2026-09-29, Albert: '/image-fill BIYORK using https://www.biyorkcanada.com/ for the images; then the other two external.'",
+      "official": {
+        "site": "https://www.biyorkcanada.com",
+        "hosts": [
+          "www.biyorkcanada.com",
+          "biyorkcanada.com"
+        ],
+        "listing": {
+          "method": "auto"
+        }
+      },
+      "retailers": {
+        "floorbox": {},
+        "wordofmouth": {
+          "vendor": "BIYORK"
+        },
+        "speers": {
+          "vendor": "BiYork"
+        }
+      },
+      "hosts": [
+        "www.biyorkcanada.com",
+        "biyorkcanada.com"
       ],
-      "_source_order": "Sources are tried per record in order: extra_sources, then the main site. Per field the larger photo wins; equal size goes to the earlier source. Near-duplicate photos across sites (same picture, re-encoded) are collapsed by a visual fingerprint."
+      "species_words": {
+        "AWO": [
+          "american white oak",
+          "white oak"
+        ],
+        "EWO": [
+          "european white oak",
+          "european oak",
+          "french oak"
+        ],
+        "HICKORY": [
+          "hickory"
+        ],
+        "MAPLE": [
+          "maple"
+        ],
+        "WALNUT": [
+          "walnut"
+        ]
+      },
+      "lines": [
+        "Hydrogen PRO",
+        "Hydrogen",
+        "Nouveau",
+        "Riptide",
+        "Traktion"
+      ],
+      "_lines_note": "BiYork reuses colour names across lines; a listing naming a different line, or a different line number (Hydrogen 6 vs 7), is vetoed.",
+      "ignore_pattern_words": [
+        "hickory"
+      ],
+      "_ignore_pattern_words_note": "BiYork's own shop titles its hickory products `Hickory - Derby Sample*` while the catalogue names them `Nouveau 7 — Derby`: here hickory is the species (species_words), not a pattern to agree on.",
+      "image_rules": {
+        "min_swatch_long_edge_px": 1000
+      },
+      "_image_rules_note": "Albert, 2026-09-29: 'yes rerun' — BiYork's own swatch photos are 580-1300 px, clean and sharp; 1000 px for BiYork only. The shared 1600 stays."
+    }
+  },
+  "source_policy": {
+    "_comment": "Albert, 2026-09-29 (/image-fill BIYORK): 'The future for the skills should be; search the main website -> externals (floorbox and speers) but the link to the product url page should be from the official company website; otherwise pick the floorbox as the backup. I would not want speers because it is a local shop to ours.' Applies to every supplier. Images: each source is matched on its own; per field the larger photo wins and a tie goes to the earlier source in `order`. Supplier product page: the first source in `product_page_sources` that matched the record — never a source missing from that list, even when its photos were used; no allowed match leaves the field blank.",
+    "order": [
+      "official",
+      "floorbox",
+      "wordofmouth",
+      "speers"
+    ],
+    "product_page_sources": [
+      "official",
+      "floorbox",
+      "wordofmouth"
+    ],
+    "_comment_2": "Albert, 2026-09-29 (later): 'lets use https://www.wordofmouthfloors.com/ as the 2nd/third backup same level as floorbox. and speers as the very last'. Word of Mouth Floors sits beside The Floor Box: its photos compete on size like any source, and its page may be the product link when neither the official site nor The Floor Box has one. Speers is last and never linked."
+  },
+  "retailers": {
+    "floorbox": {
+      "site": "https://thefloorbox.ca",
+      "hosts": [
+        "thefloorbox.ca",
+        "www.thefloorbox.ca",
+        "cdn.thefloorbox.ca"
+      ],
+      "listing": {
+        "method": "sitemap",
+        "path_contains": "/products/",
+        "slug_parser": "floorbox",
+        "skip_words": [
+          "vent",
+          "stair",
+          "nose",
+          "nosing",
+          "reducer",
+          "molding",
+          "moulding",
+          "threshold",
+          "quarter",
+          "trim",
+          "stairnose",
+          "riser",
+          "tread"
+        ],
+        "brand_batches": {
+          "min_distinct_colours": 3
+        }
+      },
+      "_note": "2026-09-29. The Floor Box's product pages are Cloudflare-challenged and never loaded; its robots.txt allows all and names a sitemap on cdn.thefloorbox.ca (18 product sitemaps, ~64k English URLs, updated 2026-09-26). Each entry is a slug + version-1 UUID + ONE main image (the plank swatch; sample 2100x1575). Slugs carry collection, colour, grade and width but not the brand, so brand_batches keeps only import batches (UUID time field) holding >= 3 distinct multi-word supplier colour names (333c-11ef, 1f64-11f0, 18f2-11ed, 9981-11f0 on 2026-09-29; the big mixed batches hold <= 2). Swatch only from this source (Albert: 'Swatch only is fine')."
+    },
+    "wordofmouth": {
+      "site": "https://www.wordofmouthfloors.com",
+      "hosts": [
+        "www.wordofmouthfloors.com",
+        "wordofmouthfloors.com",
+        "cdn.shopify.com"
+      ],
+      "listing": {
+        "method": "shopify",
+        "max_pages": 120
+      },
+      "_note": "2026-09-29. Shopify store; products.json is public and names the brand in `vendor` (BiYork = 'BIYORK'). Behind Cloudflare: one request that day answered 429 with cf-mitigated: challenge. A challenged fetch stops this source for the run; it is never retried to get past. 82 pages of 250 (20,466 products) on 2026-09-29, so listing.max_pages is 120; the default 40 had cut it in half."
+    },
+    "speers": {
+      "site": "https://www.speersflooring.com",
+      "hosts": [
+        "www.speersflooring.com",
+        "speersflooring.com",
+        "cdn.shopify.com"
+      ],
+      "listing": {
+        "method": "shopify"
+      },
+      "_note": "Shopify store; products.json is public and names the brand in `vendor` (each supplier sets its own vendor string). Images on cdn.shopify.com. A local competitor: its photos may be used, its pages are never linked (Albert, 2026-09-29).",
+      "link_allowed": false
     }
   }
 }

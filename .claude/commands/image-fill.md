@@ -30,7 +30,8 @@ lower-case slug. No entry → stop and ask Albert for the site URL; never put a 
    `snapshot_fields.ids`, filtered to the supplier's `Supplier` option (choice id from
    `get_table_schema`). Save the raw output as `ingest/<date>/<scope>_image_snapshot.json`.
 2. **Pull.** `python3 scripts/supplier_site_pull.py --supplier <SUPPLIER> --scope <scope>
-   --snapshot <snapshot> --download`. Exit 3 = challenged / host_blocked → report, stop.
+   --snapshot <snapshot> --download`. Exit 3 = challenged / host_blocked (any source the
+   environment refuses, the official site included) → report, stop.
 3. **Manufacturer pages** (only if the supplier entry has `product_pages`). Its site may be
    unreadable directly, so use **WebSearch** with `allowed_domains` = `product_pages.hosts`,
    one query per collection and colour family, and save every result's title + url to
@@ -67,12 +68,37 @@ lower-case slug. No entry → stop and ask Albert for the site URL; never put a 
   the recipe is in bert-airtable-schema, "Product images". Those carry more weight than
   the file name.
 
-## Several sources per supplier
+## Sources, in order (Albert, 2026-09-29)
 
-A supplier may list `extra_sources` (e.g. Vidar: Speers first, then The Floor Box). Each
-source is matched on its own; per field the larger photo wins, a tie goes to the earlier
-source, and the same photo from two sites (a visual fingerprint within 6 bits) is kept
-once. `Supplier product page` is the page the swatch came from (else the room scene).
+"search the main website -> externals (floorbox and speers) but the link to the product url
+page should be from the official company website; otherwise pick the floorbox as the
+backup. I would not want speers because it is a local shop to ours."
+
+Then, same night: "lets use wordofmouthfloors.com as the 2nd/third backup same level as
+floorbox. and speers as the very last."
+
+- Registry `source_policy.order`: the supplier's `official` site, then The Floor Box and
+  Word of Mouth Floors (peers), then Speers last (`retailers`, shared; a supplier names only
+  the retailers that carry it and its overrides, e.g. the Shopify `vendor` string).
+- Each source is matched on its own; per field the larger photo wins, a tie goes to the
+  earlier source, and the same photo from two sites (visual fingerprint within 6 bits) is
+  kept once. Speers photos may be used; **a Speers page is never linked**.
+- `Supplier product page` = the official page, else The Floor Box, else Word of Mouth
+  (`source_policy.product_page_sources`). None → left blank, flag `no_product_page`.
+- A supplier may lower the swatch bar for itself (`suppliers.<S>.image_rules`; BiYork 1000 px).
+- Links an earlier run put on a source that may no longer be linked: `--relink-product-page-from
+  speers --source-plan <that run's plan>` (op `relink_product_page`, compare-and-swap; no
+  alternative keeps the old link).
+- A Shopify store's tags and product type count for line and species (BiYork's own shop
+  titles products `Brume Air Sample*`); of their pattern words only `tag_pattern_words`
+  count, since a `SPC Floors` tag is a department, not a pattern.
+- An official site the **environment** refuses (`host_blocked`) stops the run: the retailers
+  would fill the blank fields first and blank-only means the official photos could never
+  replace them. Allow the host and re-run. An official site behind a **bot challenge**
+  (Vidar) is permanent, so the retailers run alone.
+- Accessories (`image_rules.skip_categories`) are skipped. A supplier that reuses colour
+  names across product lines lists `lines` (BiYork); the page must name the record's line
+  and number, or it is vetoed.
 
 ## Rules that do not bend
 
@@ -80,5 +106,4 @@ once. `Supplier product page` is the page the swatch came from (else the room sc
   never replaced or appended to. The writer re-checks at write time.
 - The kind comes from looking at the image; a swatch must meet `min_swatch_long_edge_px`.
 - Never write `SKU`, `Colour / tone`, style tags, or any field outside the closed list.
-- `Supplier product page` is the manufacturer's page when the index matched it, else the
-  page the images came from (flag `product_page_not_manufacturer`).
+- `Supplier product page` is never a Speers page (see Sources).

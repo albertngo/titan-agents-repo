@@ -39,9 +39,9 @@ NAKED_HB = rec("rec0000000000003", 'Vidar HB 5" AWO — Naked Oak (Character)', 
 WALNUT = rec("rec0000000000004", 'Vidar 6" ABW — Natural (Select)', "Black Walnut Collection", 6)
 
 
-def page(url, title, images=()):
+def page(url, title, images=(), source="floorbox"):
     return {"url": url, "title": title, "h1": "", "og_title": "", "product_name": "",
-            "codes": [], "images": list(images)}
+            "codes": [], "images": list(images), "source": source}
 
 
 def img(sha, url, w=2400, h=1600):
@@ -115,6 +115,78 @@ class FakeResp(io.BytesIO):
 
     def __exit__(self, *a):
         return False
+
+
+class TestProductLine(unittest.TestCase):
+    """BiYork reuses colour names across lines and shares them with other brands."""
+    BIYORK = REG["suppliers"]["BIYORK"]
+
+    def m(self, records, pages):
+        return im.match_records(records, pages, self.BIYORK, REG["matching"])
+
+    def test_line_number_stands_alone(self):
+        self.assertEqual(im.product_line("BiYork Hydrogen PRO 3mm Oak", self.BIYORK), ("hydrogen pro", None))
+        self.assertEqual(im.product_line("biyork hydrogen 8 brume air", self.BIYORK), ("hydrogen", "8"))
+
+    def test_a_page_naming_no_line_is_vetoed(self):
+        r = {"id": "recB000000000001", "SKU": "LVT-BIYK-0001", "Product name": "Biyork Hydrogen PRO Tile 3mm — Chalk"}
+        p = page("https://x/fuzion-vinyl-tiles-smartdrop-elite-chalk-18x36", "Fuzion Vinyl Tiles Smartdrop Elite Chalk 18x36")
+        self.assertEqual(self.m([r], [p])[r["id"]]["tier"], "none")
+
+    def test_another_line_number_is_vetoed(self):
+        r = {"id": "recB000000000002", "SKU": "LVP-BIYK-0002", "Product name": "Biyork Hydrogen 8 — Brume Air"}
+        good = page("https://x/biyork-hydrogen-8-brume-air", "BiYork Hydrogen 8 Brume Air 9 x 72 x 8mm", source="speers")
+        other = page("https://x/biyork-hydrogen-6-brume-air", "BiYork Hydrogen 6 Brume Air", source="speers")
+        out = self.m([r], [good, other])[r["id"]]
+        self.assertEqual([c["url"] for c in out["candidates"]], [good["url"]])
+
+
+    def test_shopify_tags_name_the_line_a_bare_title_leaves_out(self):
+        r = {"id": "recB000000000003", "SKU": "LVP-BIYK-0003", "Product name": "Biyork Hydrogen 8 — Brume Air"}
+        p = {**page("https://brand/products/brume-air-sample", "Brume Air Sample*", source="official"),
+             "tags": ["Hydrogen 8", "SPC Floors", "SPC Plank"], "product_type": "WaterProof Floors | Plank"}
+        self.assertEqual(self.m([r], [p])[r["id"]]["tier"], "exact")  # SPC tags are not a pattern
+        wrong = {**p, "tags": ["HydroGen 6"]}
+        self.assertEqual(self.m([r], [wrong])[r["id"]]["tier"], "none")
+
+    def test_hickory_is_biyorks_species_not_a_pattern(self):
+        r = {"id": "recB000000000004", "SKU": "ENG-BIYK-0004", "Product name": 'Biyork Nouveau 7 7.5" — Derby'}
+        p = {**page("https://brand/products/derby-sample", "Hickory - Derby Sample*", source="official"),
+             "tags": ["7-1/2 Inch", "Hickory", "Nouveau 7"], "product_type": "Engineered Hardwood | Hickory"}
+        self.assertEqual(self.m([r], [p])[r["id"]]["tier"], "exact")
+
+class TestRelink(unittest.TestCase):
+    """Albert, 2026-09-29: move Vidar's Speers links to Word of Mouth, else The Floor Box;
+    never clear one."""
+
+    def plan(self, pages):
+        rec = dict(NAKED_9)
+        src = {"actions": [{"id": "img-1", "record_id": rec["id"], "sku": rec["SKU"], "product_name": rec["Product name"],
+                            "fields": {"Supplier product page": "https://www.speersflooring.com/products/naked-oak-9"}}]}
+        return plan.relink_plan([rec], {"pages": pages}, REG, "VIDAR", "vidar", src)
+
+    def test_word_of_mouth_first_then_the_floor_box(self):
+        wom = page("https://www.wordofmouthfloors.com/products/vidar-9-naked-oak", "VIDAR 9'' American White Oak - Naked Oak", source="wordofmouth")
+        fb = page("https://thefloorbox.ca/products/x", "9'' American White Oak Naked Oak", source="floorbox")
+        a = self.plan([fb, wom])["actions"][0]
+        self.assertEqual(a["fields"]["Supplier product page"], wom["url"])
+        self.assertEqual(a["expect"]["Supplier product page"], "https://www.speersflooring.com/products/naked-oak-9")
+        self.assertEqual(self.plan([fb])["actions"][0]["source"], "floorbox")
+
+    def test_a_vinyl_listing_never_links_an_engineered_record(self):
+        rec = {**NAKED_9, "Category": "Engineered hardwood"}
+        vinyl = {**page("https://w/vidar-luxury-rigid-core-vinyl-plank-naked-oak", "VIDAR Luxury Rigid Core Vinyl Plank - Naked Oak",
+                        source="wordofmouth"), "product_type": "SPC RIGID CORE VINYL"}
+        self.assertEqual(im.match_records([rec], [vinyl], VIDAR, REG["matching"])[rec["id"]]["tier"], "none")
+
+    def test_no_alternative_keeps_the_link(self):
+        p = self.plan([])
+        self.assertEqual(p["actions"], [])
+        self.assertEqual(p["held"][0]["reason"], "no_alternative_link")
+
+    def test_a_supplier_may_lower_the_swatch_bar(self):
+        self.assertEqual(REG["suppliers"]["BIYORK"]["image_rules"]["min_swatch_long_edge_px"], 1000)
+        self.assertEqual(REG["image_rules"]["min_swatch_long_edge_px"], 1600)
 
 
 class TestPull(unittest.TestCase):
@@ -201,7 +273,7 @@ class TestFloorBoxSitemap(unittest.TestCase):
                b'<image:image><image:loc>https://cdn/v</image:loc></image:image></url></urlset>')
         f = pull.Fetcher({"fetch": {"delay_seconds": 0}},
                          opener=lambda req, timeout=0: FakeResp(b"Sitemap: https://cdn/sm.xml" if req.full_url.endswith("robots.txt") else xml))
-        pages = pull.list_sitemap(f, "https://s/brands/vidar", [], listing=VIDAR["listing"])
+        pages = pull.list_sitemap(f, "https://s/brands/vidar", [], listing=REG["retailers"]["floorbox"]["listing"])
         self.assertEqual(len(pages), 1)
         self.assertIn("/products/engineered-hardwood-naked-oak", pages[0]["url"])
         self.assertEqual(pages[0]["title"], 'Engineered Hardwood Naked Oak — Select — 6"')
@@ -377,14 +449,37 @@ class TestTwoSources(unittest.TestCase):
         self.assertEqual(a["source"], "floorbox")
         self.assertEqual(a["fields"]["Supplier product page"], "https://fb/p")
 
-    def test_a_tie_goes_to_the_preferred_source_and_duplicates_collapse(self):
-        pages = [self.pg("floorbox", "https://fb/p", [self.img("fb", 2100, self.stripes)]),
-                 self.pg("speers", "https://sp/p", [self.img("sp", 2100, self.stripes2),
-                                                    self.img("rm", 2100, self.checks)])]
+    def test_a_tie_goes_to_the_earlier_source_and_duplicates_collapse(self):
+        """Order is official, The Floor Box, Speers (Albert, 2026-09-29)."""
+        pages = [self.pg("speers", "https://sp/p", [self.img("sp", 2100, self.stripes2),
+                                                    self.img("rm", 2100, self.checks)]),
+                 self.pg("floorbox", "https://fb/p", [self.img("fb", 2100, self.stripes)])]
         a = self.build(pages, {"sp": {"kind": "swatch"}, "fb": {"kind": "swatch"}, "rm": {"kind": "room"}})["actions"][0]
-        self.assertEqual([i["sha1"] for i in a["images"] if i["target"] == "swatch"], ["sp"])
+        self.assertEqual([i["sha1"] for i in a["images"] if i["target"] == "swatch"], ["fb"])
         self.assertEqual([i["sha1"] for i in a["images"] if i["target"] == "room"], ["rm"])
-        self.assertEqual(a["source"], "speers")
+        self.assertEqual(a["fields"]["Supplier product page"], "https://fb/p")
+
+    def test_speers_photos_may_be_used_but_speers_is_never_linked(self):
+        """'I would not want speers because it is a local shop to ours' (Albert, 2026-09-29)."""
+        pages = [self.pg("speers", "https://sp/p", [self.img("sp", 2100, self.checks)])]
+        a = self.build(pages, {"sp": {"kind": "swatch"}})["actions"][0]
+        self.assertEqual([i["sha1"] for i in a["images"]], ["sp"])
+        self.assertNotIn("Supplier product page", a["fields"])
+        self.assertIn("no_product_page", a["flags"])
+
+    def test_the_official_site_is_the_first_link(self):
+        pages = [self.pg("floorbox", "https://fb/p", [self.img("fb", 2100, self.stripes)]),
+                 self.pg("official", "https://brand/p", [self.img("of", 1800, self.checks)])]
+        a = self.build(pages, {"fb": {"kind": "swatch"}, "of": {"kind": "swatch"}})["actions"][0]
+        self.assertEqual(a["fields"]["Supplier product page"], "https://brand/p")
+
+    def test_sources_follow_the_policy_order(self):
+        names = [s["name"] for s in pull.supplier_sources(REG["suppliers"]["BIYORK"], REG)]
+        self.assertEqual(names, ["official", "floorbox", "wordofmouth", "speers"])  # Speers last
+        self.assertEqual(REG["source_policy"]["product_page_sources"], ["official", "floorbox", "wordofmouth"])
+        by = {s["name"]: s for s in pull.supplier_sources(REG["suppliers"]["BIYORK"], REG)}
+        self.assertEqual(by["speers"]["listing"]["vendor"], "BiYork")
+        self.assertEqual(by["wordofmouth"]["listing"]["vendor"], "BIYORK")
 
     def test_the_shopify_vendor_filter(self):
         body = json.dumps({"products": [
