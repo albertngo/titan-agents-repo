@@ -179,16 +179,21 @@ Things that matter:
   the daily script transcribes the call instead.
 - **Splitting.** Parts are cut every 3,000 characters, which can fall mid-line;
   `parse_call_note()` rejoins the raw chunks in part order (tested).
-- **Ops.** About 14 per transcribed call and 4 for a fire that finds nothing new:
-  roughly 10,000 a month at 25 calls a day, on a 40,000-op Core plan that already
-  carries ~25 scenarios. Drop the voicemail lane first if the budget bites.
+- **Cost.** Measured 2026-10-02: 16–17 operations and **31–33 Make credits** per
+  transcribed call — about half of it the Claude module's tokens (claude-sonnet-4-5,
+  billed in Make credits, no connection). At 25 calls a day that is ~24,000 credits a
+  month on a 40,000 Core plan that already carries ~25 scenarios: well above the first
+  estimate of 10,000. Cheaper options: Haiku 4.5 in module 10 (about a third of the
+  token credits), or Anthropic's API through an HTTP module with Titan's own key. A fire
+  that finds nothing new costs 4 operations.
 - **Governance.** The note is a GHL write performed by Make, outside the
   `ghl-actions-agent` approval gate, like Website Inquiry Ingester and the Stage
   scenarios. It writes exactly one thing.
 
-Still to confirm on the first live run: GHL's contact-note length limit (3,000-character
-parts assume about 5,000), that Make's `replace()` honours `$n` back-references in
-module 9, and the webhook body's field name for the contact id.
+Confirmed on the first live run (2026-10-02): GHL accepts a 4,028-character note, and
+Make's `replace()` honours `$n` back-references (module 9's output is clean
+`[mm:ss] Speaker N:` lines). Still to confirm: the webhook body's field name for the
+contact id once the GHL workflow exists.
 
 ## What it never does
 
@@ -200,6 +205,18 @@ module 9, and the webhook body's field name for the contact id.
 - Coaching never reaches a GHL note, `items` or `needs_attention`.
 
 ## Log
+
+- **2026-10-02, live test (Albert asked: "give me 2 contacts' transcriptions and do the
+  operation in GHL notes so I can see it happen").** Two real calls replayed through the
+  webhook with `{contact_id, message_id}`: a 570 s outbound call (4 note parts) and a
+  389 s inbound call (3 parts). Both landed Summary-on-top, Next steps, then every
+  transcript line as `[mm:ss] Speaker N:`, and `parse_call_note()` reassembled both
+  exactly. Three blockers on the way, all silent behind Ignore handlers and found with a
+  throwaway probe scenario that wrote status codes to the data store: Make's GHL
+  connection has no conversations scope (401); the first GHL key lacked `Bearer `
+  (401 Invalid JWT); the ElevenLabs key held the key's *ID*, not the `sk_` secret
+  (400 `api_key_id_used_as_api_key`). Albert then asked for named staff, the call's date
+  and time on top, and raised posting the summary as an internal comment instead.
 
 - **2026-10-02.** Albert created the two Make keys through a credential request
   (97834, 97835). Make scenario 4951497 created inactive, with webhook 2836060 and data
