@@ -201,7 +201,7 @@ product-page link from Vidar's own pages as found in the search index).
 `ghl-ingest-agent` now reads call content. Step 0 of its run is
 `scripts/ghl_calls_pull.py` (read-only; reaches GHL only through the GET-only
 `scripts/ghl_client.py`): it lists the window's call messages, takes each transcript
-from the contact's `[call-note v1]` note if one exists, else downloads the `.wav` and
+from the contact's `[call-note]` notes if they exist, else downloads the `.wav` and
 transcribes it (ElevenLabs Scribe v2, locked in 2026-10-02 by Albert; Deepgram
 dropped), else falls back to GHL's own transcript.
 Audio and full text stay in the gitignored `analysis/cache/ghl-calls/`; only
@@ -211,13 +211,19 @@ file's `status` — it reports under `reporting.calls` plus one `needs_attention
 (Albert, 2026-10-01). The read PIT reads recordings and contact notes; it still
 writes nothing.
 
-**The contact note is a Make write.** Make scenario "GHL Call -> Note" (drafted in
-scenario 4951497, created 2026-10-02 **inactive**, blueprint
-`platform-settings/blueprints/ghl-call-notes-4951497.json`; fired by a GHL "Call Status"
-workflow's webhook, because Make's GHL trigger cannot watch messages) writes
-Summary → Next steps → Transcript onto the GHL contact right after each call. It is a
-GHL write outside the `ghl-actions-agent` approval gate, the same class as Website
-Inquiry Ingester and the Stage scenarios, and writes nothing else. Registry
+**The contact note and the summary comment are Make writes.** Make scenario "GHL Call
+-> Note" (4951497, live-tested 2026-10-02, **inactive** until Albert builds the GHL "Call
+Status" workflow that fires it; blueprint
+`platform-settings/blueprints/ghl-call-notes-4951497.json`) writes the transcript as
+contact notes and, since 2026-10-02 (Albert), posts Summary + Next steps as an
+**internal comment** on the conversation, both stamped with the call's date, time, staff
+name and `Ref C-MMDD-HHmm`. They are GHL writes outside the `ghl-actions-agent` approval
+gate, the same class as Website Inquiry Ingester and the Stage scenarios. **The comment
+sits behind a gate** ("internal comments only … no slip ups", Albert): its own one-scope
+token used by one module, a literal last-key `type`, JSON-escaped text, an exact-body
+pattern filter, a read-back of the type, and a daily alarm if a summary ever lands as
+anything else — every layer pinned by `tests/test_ghl_calls.py` on the snapshot. Do not
+edit that module in Make without re-snapshotting and re-running the tests. Registry
 `platform-settings/ghl-calls.json`; method `methods/ghl-call-transcripts.md`.
 
 ## Agent class rules

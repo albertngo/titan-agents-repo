@@ -120,6 +120,7 @@
     "from_suppliers": true,
     "_from_suppliers": "platform-settings/airtable-destinations.json supplier_aliases values, title-cased",
     "from_people": true,
+    "from_staff_roster": true,
     "_from_people": "platform-settings/notion-destinations.json people[].name, bots excluded",
     "from_catalogue": {
       "glob": "ingest/*/*_airtable_upload_*.csv",
@@ -153,20 +154,42 @@
     "_never": "Nothing under ingest/<date>/ — the orchestrator reads every *.json there (contracts/ingest-schema.md). Audio and transcripts are customer PII and the repo is public: analysis/cache/ is gitignored."
   },
   "note_format": {
-    "version": "call-note v1",
-    "footer_regex": "\\[call-note v1 ([^\\]]*)\\]",
+    "version": "call-note v2",
+    "footer_regex": "\\[call-note v(\\d+) ([^\\]]*)\\]",
     "sections": [
-      "Summary",
-      "Next steps",
       "Transcript"
     ],
-    "_order": "Albert, 2026-10-01: Summary first, then Next steps, then the transcription. Continuation parts (Transcript k/N) are written BEFORE the main note so the Summary note is the newest and shows on top."
+    "comment_version": "call-summary v1",
+    "comment_footer_regex": "\\[call-summary v(\\d+) ([^\\]]*)\\]",
+    "comment_sections": [
+      "Summary",
+      "Next steps"
+    ],
+    "ref_format": "C-MMDD-HHmm (call start, America/Toronto)",
+    "_split": "Albert, 2026-10-02: Summary and Next steps go in an INTERNAL COMMENT on the conversation, beside the recording; the full transcript stays in contact Notes. Both carry the call line (date and time, direction, duration, staff) and the same Ref code. v1 notes (Summary, Next steps and Transcript in one note) still parse.",
+    "_order": "Transcript parts are written last-first so part 1 (call line + speaker key) is the newest note; the comment is posted after the last note part."
+  },
+  "staff": {
+    "roster": [
+      "Joey",
+      "Helen",
+      "David",
+      "Albert",
+      "Pourya",
+      "Mike"
+    ],
+    "default": "Staff",
+    "shared_line_user_ids": [
+      "edv6p75Y79cYsPS0jPv0"
+    ],
+    "_rule": "Albert, 2026-10-02: if the call is on a person's own GHL user, use that name (platform-settings/notion-destinations.json people). If it is on the shared Front Desk line, use a roster name only when the name is said on the call; otherwise 'Staff'. Make applies the first part itself (module 9's switch on userId) and only trusts the summary model for the second, through a switch that accepts roster names and nothing else.",
+    "_roster": "Who answers the phones. Albert named Joey, Helen, David and Albert on 2026-10-02 ('etc.'); Pourya and Mike have their own GHL users. Add a name here, then: --write-keyterms, and the same name in Make modules 10 (prompt) and 11 (switch)."
   },
   "make_scenarios": {
     "call_notes": {
       "id": 4951497,
       "name": "GHL Call -> Note",
-      "status": "live-tested 2026-10-02 (two calls replayed through the webhook, both notes correct), inactive — waiting on the note-format changes and the GHL workflow",
+      "status": "v2 live-tested 2026-10-02 (one replayed call: 3 transcript notes + 1 internal comment read back as TYPE_INTERNAL_COMMENT; a second replay stopped at the data-store check), inactive — waiting on the GHL workflow",
       "team_id": 459654,
       "hook_id": 2836060,
       "ghl_connection_id": 4426112,
@@ -177,7 +200,8 @@
         "data_structure_id": 295179
       },
       "writes": [
-        "GHL contact note"
+        "GHL contact note",
+        "GHL internal comment"
       ],
       "split_chars": 3000,
       "sleep_seconds": 90,
@@ -186,14 +210,33 @@
       "_write_note": "A GHL write performed by Make, outside the ghl-actions-agent approval gate — the same class as the existing Make GHL writers (Website Inquiry Ingester, Stage scenarios). Recorded here and in CLAUDE.md (Albert, 2026-10-01). It writes exactly one thing: the note.",
       "keychains": {
         "elevenlabs": 97834,
-        "ghl_read_pit": 97841
+        "ghl_read_pit": 97841,
+        "ghl_internal_comment": 97843
       },
-      "_keychains": "Two Make keys of type API Key Auth, added by Albert through Make credential requests. 97834 'ElevenLabs STT (call notes)' (2026-10-02, request 840c2a6b-df9d-4b44-8d25-cd49092061b4): header xi-api-key, used by the speech-to-text module (8). 97841 'GHL read PIT (call recordings)' (2026-10-02, request 2f780b9f-695d-4aca-bc81-0dc5a9f03df7, replacing 97835, which had been saved without the Bearer prefix and answered 401 Invalid JWT): header Authorization, value 'Bearer <read PIT>' — used by every GHL read: conversation search (2), messages (3), recording (7). The note itself is written through ghl_connection_id, not this token. Albert's ElevenLabs app connection 4875733 also exists; the scenario does not need it (the app's modules cannot send keyterms or upload a file).",
+      "_keychains": "Two Make keys of type API Key Auth, added by Albert through Make credential requests. 97834 'ElevenLabs STT (call notes)' (2026-10-02, request 840c2a6b-df9d-4b44-8d25-cd49092061b4): header xi-api-key, used by the speech-to-text module (8). 97841 'GHL read PIT (call recordings)' (2026-10-02, request 2f780b9f-695d-4aca-bc81-0dc5a9f03df7, replacing 97835, which had been saved without the Bearer prefix and answered 401 Invalid JWT): header Authorization, value 'Bearer <read PIT>' — used by every GHL read: conversation search (2), messages (3), recording (7). The note itself is written through ghl_connection_id, not this token. Albert's ElevenLabs app connection 4875733 also exists; the scenario does not need it (the app's modules cannot send keyterms or upload a file). 97843 'GHL internal comments ONLY (call notes)' (2026-10-02, request 3c2fcab6-aa31-4e85-8d5d-d9ebd4442acf): header Authorization, a dedicated GHL private integration whose only scope is conversations/message.write. Used by exactly one module, the comment POST behind the gate.",
       "webhook_url": "https://hook.us1.make.com/foh85gqj8kq9sepk5d156z4n6psvjbgf",
       "trigger": "GHL workflow 'Call Status' (completed, voicemail) -> Webhook action POST to webhook_url with custom data contact_id={{contact.id}}. Make's own GHL 'Watch Events' trigger only covers contacts and opportunities, not messages (checked 2026-10-02).",
       "blueprint": "platform-settings/blueprints/ghl-call-notes-4951497.json",
       "sequential": true,
-      "ops_per_new_call": "16-17 operations, 31-33 Make credits per transcribed call (2026-10-02 test; about half the credits are the Claude module's tokens on claude-sonnet-4-5). 4 operations when a fire finds nothing new."
+      "ops_per_new_call": "v2: about 22 operations and ~38 Make credits per transcribed call (2026-10-02, 389 s call); about half the credits are the Claude module's tokens on claude-sonnet-4-5. 4-5 operations when a fire finds nothing new.",
+      "comment_gate": {
+        "module": 18,
+        "url": "https://services.leadconnectorhq.com/conversations/messages",
+        "type": "InternalComment",
+        "body_regex": "^\\{\"contactId\":\"[A-Za-z0-9]{10,40}\",\"message\":\"(?:[^\"\\\\]|\\\\.)*\",\"mentions\":\\[\\],\"type\":\"InternalComment\"\\}$",
+        "readback_type": "TYPE_INTERNAL_COMMENT",
+        "_why": "Albert, 2026-10-02: 'make it explicit to internal comments only. Make a barrier to do so with no slip ups.' GHL has no scope narrower than conversations/message.write, which can also send SMS and email, so the barrier is in the request, not the token.",
+        "_layers": [
+          "1. Separate token (key 97843), one scope, used by module 18 only; reads keep the read key, notes keep the GHL connection.",
+          "2. The type is a literal and the LAST key of the body, so an earlier duplicate could never win.",
+          "3. The comment text passes through Make's Transform to JSON (module 15): quotes, backslashes and newlines are escaped, so text cannot break out of the message string.",
+          "4. Module 18's only filter matches the exact body against body_regex: exactly contactId, message (one valid JSON string), mentions [] and type InternalComment, in that order, nothing else. One AND group, so there is no OR path around it. Proven in Make on 2026-10-02: a well-formed body passed, a raw-injected type:SMS body was blocked.",
+          "5. URL is a literal, redirects are off.",
+          "6. Read-back: module 19 GETs the new message with the read key; module 20 records its messageType. The daily script raises an alarm if a [call-summary] footer is ever found on anything but TYPE_INTERNAL_COMMENT.",
+          "7. tests/test_ghl_calls.py pins all of the above against the blueprint snapshot."
+        ],
+        "_record_first": "Module 17 records the call in the data store BEFORE the comment is posted, so a failed comment can never cause a re-run that duplicates the notes; the record says comment pending until module 20 overwrites it with posted + the read-back type."
+      }
     }
   },
   "_observed_2026_10_02": "Live dry run, 72 h: 87 conversations, 71 TYPE_CALL messages (51 completed, 16 no-answer, 4 voicemail; 43 inbound / 28 outbound). The messages endpoint IGNORES type=TYPE_CALL (1,418 messages scanned for 71 calls) — the script filters messageType itself. Status and duration live in meta.call. GHL's own transcription returns {sentenceIndex, startTime, endTime (seconds), speaker, mediaChannel, transcript, words}."

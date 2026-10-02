@@ -1,7 +1,7 @@
 {
-  "_comment": "Blueprint of Make scenario 4951497 'GHL Call -> Note' as live after the 2026-10-02 test fixes (reads moved to HTTP modules with the read key 97841, quoted regexes in module 9, the message_id replay lane in module 5). Make is the source of truth once Albert edits it in the UI: re-snapshot this file after any UI change (methods/content-folder-scenario.md lesson). Keyterm fields are generated from platform-settings/ghl-calls-keyterms.json; a vocabulary change means editing module 8 in the UI.",
+  "_comment": "Blueprint of Make scenario 4951497 'GHL Call -> Note', v2 (2026-10-02): transcript in contact notes, Summary + Next steps as an internal comment behind the comment gate (modules 15-20; registry make_scenarios.call_notes.comment_gate). Make is the source of truth once Albert edits it in the UI: re-snapshot this file after any UI change (methods/content-folder-scenario.md lesson); tests/test_ghl_calls.py then re-checks every gate layer. Keyterm fields are generated from platform-settings/ghl-calls-keyterms.json.",
   "scenario_id": 4951497,
-  "snapshot_of": "2026-10-02T03:07:35Z",
+  "snapshot_of": "2026-10-02T03:49:21Z",
   "blueprint": {
     "name": "GHL Call -> Note",
     "flow": [
@@ -375,893 +375,908 @@
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Titan Flooring"
+              "value": "Titan Flooring",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "LVP"
+              "value": "LVP",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "SPC"
+              "value": "SPC",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "WPC"
+              "value": "WPC",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "vinyl plank"
+              "value": "vinyl plank",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "laminate"
+              "value": "laminate",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "engineered hardwood"
+              "value": "engineered hardwood",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "solid hardwood"
+              "value": "solid hardwood",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "herringbone"
+              "value": "herringbone",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "chevron"
+              "value": "chevron",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "underlay"
+              "value": "underlay",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "underlayment"
+              "value": "underlayment",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "subfloor"
+              "value": "subfloor",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "baseboard"
+              "value": "baseboard",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "quarter round"
+              "value": "quarter round",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "reducer"
+              "value": "reducer",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "T-molding"
+              "value": "T-molding",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "stair nosing"
+              "value": "stair nosing",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "square feet"
+              "value": "square feet",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "click lock"
+              "value": "click lock",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "glue down"
+              "value": "glue down",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "floating floor"
+              "value": "floating floor",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Mississauga"
+              "value": "Mississauga",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Oakville"
+              "value": "Oakville",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Etobicoke"
+              "value": "Etobicoke",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Brampton"
+              "value": "Brampton",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Milton"
+              "value": "Milton",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Burlington"
+              "value": "Burlington",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Toronto"
+              "value": "Toronto",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Vaughan"
+              "value": "Vaughan",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Biyork"
+              "value": "Biyork",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Canadian Standard"
+              "value": "Canadian Standard",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "CIF Distributors"
+              "value": "CIF Distributors",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Dragona"
+              "value": "Dragona",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Evergreen"
+              "value": "Evergreen",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Floors at Work"
+              "value": "Floors at Work",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Floordi"
+              "value": "Floordi",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Gracious"
+              "value": "Gracious",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Grandeur"
+              "value": "Grandeur",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Greentouch"
+              "value": "Greentouch",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Bella Flooring Plus"
+              "value": "Bella Flooring Plus",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "LEE Flooring"
+              "value": "LEE Flooring",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Olympia Tile"
+              "value": "Olympia Tile",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Purelux"
+              "value": "Purelux",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Simba"
+              "value": "Simba",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Sunshiny"
+              "value": "Sunshiny",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Tosca"
+              "value": "Tosca",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Triforest"
+              "value": "Triforest",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Umbrellar"
+              "value": "Umbrellar",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Vidar"
+              "value": "Vidar",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Vizion"
+              "value": "Vizion",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Weiss"
+              "value": "Weiss",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Woden"
+              "value": "Woden",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Northway"
+              "value": "Northway",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Homespro"
+              "value": "Homespro",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Impressive"
+              "value": "Impressive",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Baltic Homes"
+              "value": "Baltic Homes",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "JL Tile"
+              "value": "JL Tile",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Floor & Decor"
+              "value": "Floor & Decor",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Albert"
+              "value": "Albert",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Pourya"
+              "value": "Pourya",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Mike"
+              "value": "Mike",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "NAF"
+              "value": "Joey",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Handscraped Laminates"
+              "value": "Helen",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Waterproof Laminate Plus"
+              "value": "David",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Aqua Commercial"
+              "value": "NAF",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Aqua Tile"
+              "value": "Handscraped Laminates",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Aqualuuuz"
+              "value": "Waterproof Laminate Plus",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Aquaplus Gold"
+              "value": "Aqua Commercial",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Classic"
+              "value": "Aqua Tile",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Aquaplus Select"
+              "value": "Aqualuuuz",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Aquaplus Gold with Cork"
+              "value": "Aquaplus Gold",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Aquaplus Platinum"
+              "value": "Classic",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Hickory Engineered"
+              "value": "Aquaplus Select",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Designer"
+              "value": "Aquaplus Gold with Cork",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Elegant"
+              "value": "Aquaplus Platinum",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "White Oak Click"
+              "value": "Hickory Engineered",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "White Oak T&G"
+              "value": "Designer",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Regal"
+              "value": "Elegant",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Handscraped Maple"
+              "value": "White Oak Click",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Toucan"
+              "value": "White Oak T&G",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Matt / Hand Scraped"
+              "value": "Regal",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "EIR"
+              "value": "Handscraped Maple",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Looselay"
+              "value": "Toucan",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Studio"
+              "value": "Matt / Hand Scraped",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Towne"
+              "value": "EIR",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Premier"
+              "value": "Looselay",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Home's Pro"
+              "value": "Studio",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Vancouver"
+              "value": "Towne",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Milan"
+              "value": "Premier",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Holland"
+              "value": "Home's Pro",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Tuscany"
+              "value": "Vancouver",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Venice"
+              "value": "Milan",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Moscow"
+              "value": "Holland",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Sydney"
+              "value": "Tuscany",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Seoul"
+              "value": "Venice",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Porcelain Tile Collection"
+              "value": "Moscow",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Designer Click"
+              "value": "Sydney",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Engineered Hardwood Collection"
+              "value": "Seoul",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Vinyl Click Collection"
+              "value": "Porcelain Tile Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Vinyl Loose Lay Collection"
+              "value": "Designer Click",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Essential Collection"
+              "value": "Engineered Hardwood Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Elegant Collection"
+              "value": "Vinyl Click Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Volterra"
+              "value": "Vinyl Loose Lay Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Ventura"
+              "value": "Essential Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Essex"
+              "value": "Elegant Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Eterna"
+              "value": "Volterra",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Elite"
+              "value": "Ventura",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Platina"
+              "value": "Essex",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Sahara"
+              "value": "Eterna",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Huron"
+              "value": "Elite",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Tremblant"
+              "value": "Platina",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Contempa"
+              "value": "Sahara",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Paramount"
+              "value": "Huron",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Oriental"
+              "value": "Tremblant",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Imperial"
+              "value": "Contempa",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Heritage"
+              "value": "Paramount",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Great Lakes"
+              "value": "Oriental",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Classic Oak"
+              "value": "Imperial",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Rosewood"
+              "value": "Heritage",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Waterproof Laminate"
+              "value": "Great Lakes",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Waterproof Laminate Pro"
+              "value": "Classic Oak",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Royal"
+              "value": "Rosewood",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Aquawood"
+              "value": "Waterproof Laminate",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Handscraped Exotic Walnut"
+              "value": "Waterproof Laminate Pro",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Essex Collection"
+              "value": "Royal",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Eterna Collection"
+              "value": "Aquawood",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Legant Collection"
+              "value": "Handscraped Exotic Walnut",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Volterra Collection"
+              "value": "Essex Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Ventura Collection"
+              "value": "Eterna Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Regal Collection"
+              "value": "Legant Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Platinum Collection"
+              "value": "Volterra Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Sahara Collection"
+              "value": "Ventura Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Huron Collection"
+              "value": "Regal Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Tremblant Collection"
+              "value": "Platinum Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Great Lakes Collection"
+              "value": "Sahara Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Contempo Collection"
+              "value": "Huron Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Paramount Collection"
+              "value": "Tremblant Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Oriental Collection"
+              "value": "Great Lakes Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Classic Red Oak Collection"
+              "value": "Contempo Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Vinyl trims"
+              "value": "Paramount Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Laminate trims"
+              "value": "Oriental Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Hardwood trims"
+              "value": "Classic Red Oak Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Prestige Collection"
+              "value": "Vinyl trims",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Ondine"
+              "value": "Laminate trims",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Gluedown"
+              "value": "Hardwood trims",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Hickory"
+              "value": "Prestige Collection",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "New Prefinished"
+              "value": "Ondine",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Oakel"
+              "value": "Gluedown",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "European Oak Multi-Ply Chevron"
+              "value": "Hickory",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "DESTINY Aqua Expert"
+              "value": "New Prefinished",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Master Step"
+              "value": "Oakel",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Artisan Origins"
+              "value": "European Oak Multi-Ply Chevron",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Vista"
+              "value": "DESTINY Aqua Expert",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Carrara"
+              "value": "Master Step",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Penny Round"
+              "value": "Artisan Origins",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Carrara Essence"
+              "value": "Vista",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Ivory Sand"
+              "value": "Carrara",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Loft Concrete"
+              "value": "Penny Round",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Lakeshore Terrazzo"
+              "value": "Carrara Essence",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Muskoka Mist"
+              "value": "Ivory Sand",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "ArtiStone"
+              "value": "Loft Concrete",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Trezza"
+              "value": "Lakeshore Terrazzo",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Golden Choice"
+              "value": "Muskoka Mist",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Engineered White Oak"
+              "value": "ArtiStone",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Engineered Hickory"
+              "value": "Trezza",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Transitions — Finished Oak"
+              "value": "Golden Choice",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Transitions — Unfinished Oak"
+              "value": "Engineered White Oak",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Trim"
+              "value": "Engineered Hickory",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "SOHO Laminate"
+              "value": "Transitions — Finished Oak",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Heritage Hills"
+              "value": "Transitions — Unfinished Oak",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Solvara"
+              "value": "Trim",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Solid Handscraped"
+              "value": "SOHO Laminate",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "KS/DE Series"
+              "value": "Heritage Hills",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "GS Series"
+              "value": "Solvara",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "NP Series"
+              "value": "Solid Handscraped",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Italian Series"
+              "value": "KS/DE Series",
+              "multipartFieldType": "text"
             },
             {
               "name": "keyterms",
-              "multipartFieldType": "text",
-              "value": "Designer Series"
+              "value": "GS Series",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "NP Series",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Italian Series",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Designer Series",
+              "multipartFieldType": "text"
             }
           ],
           "parseResponse": true,
@@ -1305,8 +1320,8 @@
               "value": "{{replace(replace(replace(replace(replace(8.data.additional_formats[1].content; \"/([0-9][0-9]):([0-9][0-9]):([0-9][0-9]),[0-9]+ [^\\n]*?.speaker_([0-9]+).\\n/g\"; \"[$2:$3] speaker_$4: \"); \"/\\n\\n+/g\"; newline); \"speaker_2: \"; \"Speaker 3: \"); \"speaker_1: \"; \"Speaker 2: \"); \"speaker_0: \"; \"Speaker 1: \")}}"
             },
             {
-              "name": "staff",
-              "value": "{{switch(4.userId; \"ooPNab06Ka04uZ1yQ4w6\"; \"Albert\"; \"rAMFCiXbAjJOEjtyyvmn\"; \"Pourya\"; \"GH0XAA6gD38CEMR9oREm\"; \"Mike\"; \"edv6p75Y79cYsPS0jPv0\"; \"Front Desk\"; \"unassigned\")}}"
+              "name": "ghl_user",
+              "value": "{{switch(4.userId; \"ooPNab06Ka04uZ1yQ4w6\"; \"Albert\"; \"rAMFCiXbAjJOEjtyyvmn\"; \"Pourya\"; \"GH0XAA6gD38CEMR9oREm\"; \"Mike\"; \"\")}}"
             }
           ]
         },
@@ -1325,7 +1340,7 @@
         "mapper": {
           "model": "claude-sonnet-4-5",
           "max_tokens": 600,
-          "textPrompt": "You are writing the top of a call note for Titan Flooring, a flooring retailer and installer in the Greater Toronto Area. Below is a transcript of one phone call, split into speaker turns. Direction: {{4.direction}}. Titan staff member on the line: {{9.staff}}.\n\nWrite exactly this, as plain text, and nothing else:\n\nSummary\n<at most 3 sentences: who called, what they want, and what was agreed. Name products, rooms, square footage and prices if they were said.>\n\nNext steps\n- Us: <what Titan promised> — by <date, or 'no date given'>\n- Customer: <what the customer will do> — by <date, or 'no date given'>\n(one line per commitment; write '- none' if nobody committed to anything)\n\nRules: use only what was actually said; never invent dates, prices or names; if it is unclear who is speaking, say 'unclear'. No remarks about how the staff member handled the call. If the recording has no real conversation, write 'Summary' then 'No conversation recorded.' and 'Next steps' then '- none'.\n\nTranscript:\n{{9.transcript}}"
+          "textPrompt": "You are writing an internal call summary for Titan Flooring, a flooring retailer and installer in the Greater Toronto Area. Below is the transcript of one phone call, one line per speaker turn. Direction: {{4.direction}}. Titan phone user: {{ifempty(9.ghl_user; \"the shared Front Desk line (several people answer it)\")}}. Titan staff who take calls: Joey, Helen, David, Albert, Pourya, Mike.\n\nWrite exactly this, as plain text, and nothing else:\n\nStaff: <the Titan staff member's first name, only if it is said on the call (they introduce themselves or are addressed by it) and it is one of the staff names listed above; otherwise Staff>\nSpeakers: <who each speaker label is, e.g. Speaker 1 = Helen (Titan) · Speaker 2 = customer; cover every label in the transcript; write unclear for any you cannot tell>\nSummary\n<at most 3 sentences: who called, what they want, and what was agreed. Name products, rooms, square footage and prices if they were said.>\n\nNext steps\n- Us: <what Titan promised> — by <date, or 'no date given'>\n- Customer: <what the customer will do> — by <date, or 'no date given'>\n(one line per commitment; write '- none' if nobody committed to anything)\n\nRules: use only what was actually said; never invent dates, prices or names; never guess a staff name that is not said on the call. No remarks about how the staff member handled the call. If the recording has no real conversation, write 'Summary' then 'No conversation recorded.' and 'Next steps' then '- none'.\n\nTranscript:\n{{9.transcript}}"
         },
         "filter": {
           "name": "Transcript is not empty",
@@ -1350,57 +1365,86 @@
         "module": "util:SetVariables",
         "version": 1,
         "parameters": {},
+        "metadata": {
+          "designer": {
+            "x": 3000,
+            "y": 0
+          }
+        },
         "mapper": {
           "variables": [
             {
-              "name": "head1",
-              "value": "{{trim(10.result)}}\n\nTranscript (Scribe v2 · {{4.meta.call.duration}}s · {{4.direction}} · {{formatDate(4.dateAdded; \"YYYY-MM-DD HH:mm\"; \"America/Toronto\")}} · {{9.staff}})\n"
+              "name": "staff",
+              "value": "{{ifempty(9.ghl_user; switch(trim(replace(10.result; \"/^[\\s\\S]*?Staff:[ \\t]*([^\\n]*)[\\s\\S]*$/\"; \"$1\")); \"Joey\"; \"Joey\"; \"Helen\"; \"Helen\"; \"David\"; \"David\"; \"Albert\"; \"Albert\"; \"Pourya\"; \"Pourya\"; \"Mike\"; \"Mike\"; \"Staff\"))}}"
             },
             {
-              "name": "cont_head",
-              "value": "Transcript (continued)\n"
+              "name": "speakers",
+              "value": "{{if(contains(10.result; \"Speakers:\"); trim(replace(10.result; \"/^[\\s\\S]*?Speakers:[ \\t]*([^\\n]*)[\\s\\S]*$/\"; \"$1\")); \"unclear\")}}"
+            },
+            {
+              "name": "summary_block",
+              "value": "{{if(contains(10.result; \"Summary\"); trim(replace(10.result; \"/^[\\s\\S]*?(Summary\\n[\\s\\S]*)$/\"; \"$1\")); trim(10.result))}}"
+            },
+            {
+              "name": "ref",
+              "value": "C-{{formatDate(4.dateAdded; \"MMDD-HHmm\"; \"America/Toronto\")}}"
+            },
+            {
+              "name": "when",
+              "value": "{{formatDate(4.dateAdded; \"ddd MMM D, h:mm a\"; \"America/Toronto\")}}"
+            },
+            {
+              "name": "dir",
+              "value": "{{capitalize(4.direction)}}"
+            },
+            {
+              "name": "dur",
+              "value": "{{floor(4.meta.call.duration / 60)}}m {{4.meta.call.duration - floor(4.meta.call.duration / 60) * 60}}s"
             },
             {
               "name": "n_parts",
               "value": "{{max(1; ceil(length(9.transcript) / 3000))}}"
             }
           ]
-        },
-        "metadata": {
-          "designer": {
-            "x": 3000,
-            "y": 0
-          }
         }
       },
       {
         "id": 12,
-        "module": "builtin:BasicRepeater",
+        "module": "util:SetVariables",
         "version": 1,
         "parameters": {},
-        "mapper": {
-          "start": "{{11.n_parts}}",
-          "repeats": "{{11.n_parts}}",
-          "step": -1
-        },
         "metadata": {
           "designer": {
             "x": 3300,
             "y": 0
           }
+        },
+        "mapper": {
+          "variables": [
+            {
+              "name": "note_head",
+              "value": "Transcript · Ref {{11.ref}} · {{11.when}} · {{11.dir}} · {{11.dur}} · {{11.staff}}\nSpeakers: {{11.speakers}}\n"
+            },
+            {
+              "name": "cont_head",
+              "value": "Transcript (continued) · Ref {{11.ref}}\n"
+            },
+            {
+              "name": "comment_text",
+              "value": "📞 Call summary · Ref {{11.ref}} · transcript in Notes\n{{11.when}} · {{11.dir}} · {{11.dur}} · {{11.staff}}\n\n{{11.summary_block}}\n\n[call-summary v1 messageId={{4.id}} ref={{11.ref}}]"
+            }
+          ]
         }
       },
       {
         "id": 13,
-        "module": "highlevel:addNotetoContact",
+        "module": "builtin:BasicRepeater",
         "version": 1,
-        "parameters": {
-          "__IMTCONN__": 4426112
-        },
+        "parameters": {},
         "mapper": {
-          "contactId": "{{4.contactId}}",
-          "body": "{{if(12.i = 1; 11.head1; 11.cont_head)}}{{substring(9.transcript; (12.i - 1) * 3000; 12.i * 3000)}}\n\n[call-note v1 messageId={{4.id}} conversationId={{4.conversationId}} engine=scribe_v2 part={{12.i}}/{{11.n_parts}}]",
-          "userId": ""
+          "step": -1,
+          "start": "{{11.n_parts}}",
+          "repeats": "{{11.n_parts}}"
         },
         "metadata": {
           "designer": {
@@ -1411,39 +1455,253 @@
       },
       {
         "id": 14,
-        "module": "datastore:AddRecord",
+        "module": "highlevel:addNotetoContact",
         "version": 1,
         "parameters": {
-          "datastore": 94694
+          "__IMTCONN__": 4426112
         },
         "mapper": {
-          "key": "{{4.id}}",
-          "overwrite": true,
-          "data": {
-            "contact_id": "{{4.contactId}}",
-            "parts": "{{11.n_parts}}",
-            "engine": "scribe_v2",
-            "duration_s": "{{4.meta.call.duration}}",
-            "written_at": "{{now}}"
-          }
-        },
-        "filter": {
-          "name": "Last part written",
-          "conditions": [
-            [
-              {
-                "a": "{{12.i}}",
-                "o": "number:equal",
-                "b": "1"
-              }
-            ]
-          ]
+          "contactId": "{{4.contactId}}",
+          "body": "{{if(13.i = 1; 12.note_head; 12.cont_head)}}{{substring(9.transcript; (13.i - 1) * 3000; 13.i * 3000)}}\n\n[call-note v2 messageId={{4.id}} conversationId={{4.conversationId}} engine=scribe_v2 ref={{11.ref}} part={{13.i}}/{{11.n_parts}}]",
+          "userId": ""
         },
         "metadata": {
           "designer": {
             "x": 3900,
             "y": 0
           }
+        }
+      },
+      {
+        "id": 15,
+        "module": "json:TransformToJSON",
+        "version": 1,
+        "parameters": {},
+        "metadata": {
+          "designer": {
+            "x": 4200,
+            "y": 0
+          }
+        },
+        "mapper": {
+          "object": "{{12.comment_text}}"
+        },
+        "filter": {
+          "name": "Last note part written",
+          "conditions": [
+            [
+              {
+                "a": "{{13.i}}",
+                "b": "1",
+                "o": "number:equal"
+              }
+            ]
+          ]
+        }
+      },
+      {
+        "id": 16,
+        "module": "util:SetVariables",
+        "version": 1,
+        "parameters": {},
+        "metadata": {
+          "designer": {
+            "x": 4500,
+            "y": 0
+          }
+        },
+        "mapper": {
+          "variables": [
+            {
+              "name": "comment_body",
+              "value": "{\"contactId\":\"{{4.contactId}}\",\"message\":{{15.json}},\"mentions\":[],\"type\":\"InternalComment\"}"
+            }
+          ]
+        }
+      },
+      {
+        "id": 17,
+        "module": "datastore:AddRecord",
+        "version": 1,
+        "parameters": {
+          "datastore": 94694
+        },
+        "metadata": {
+          "designer": {
+            "x": 4800,
+            "y": 0
+          }
+        },
+        "mapper": {
+          "key": "{{4.id}}",
+          "data": {
+            "contact_id": "{{4.contactId}}",
+            "parts": "{{11.n_parts}}",
+            "engine": "scribe_v2",
+            "duration_s": "{{4.meta.call.duration}}",
+            "written_at": "{{now}}",
+            "ref": "{{11.ref}}",
+            "comment": "pending"
+          },
+          "overwrite": true
+        }
+      },
+      {
+        "id": 18,
+        "module": "http:MakeRequest",
+        "version": 4,
+        "parameters": {
+          "tlsType": "",
+          "apiKeyKeychain": 97843,
+          "authenticationType": "apiKey"
+        },
+        "mapper": {
+          "url": "https://services.leadconnectorhq.com/conversations/messages",
+          "method": "post",
+          "headers": [
+            {
+              "name": "Version",
+              "value": "2021-04-15"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ],
+          "contentType": "json",
+          "inputMethod": "jsonString",
+          "jsonStringBodyContent": "{{16.comment_body}}",
+          "timeout": 40,
+          "shareCookies": false,
+          "parseResponse": true,
+          "allowRedirects": false,
+          "stopOnHttpError": true,
+          "requestCompressedContent": true
+        },
+        "filter": {
+          "name": "COMMENT GATE: internal comment only",
+          "conditions": [
+            [
+              {
+                "a": "{{16.comment_body}}",
+                "b": "^\\{\"contactId\":\"[A-Za-z0-9]{10,40}\",\"message\":\"(?:[^\"\\\\]|\\\\.)*\",\"mentions\":\\[\\],\"type\":\"InternalComment\"\\}$",
+                "o": "text:pattern"
+              },
+              {
+                "a": "{{13.i}}",
+                "b": "1",
+                "o": "number:equal"
+              }
+            ]
+          ]
+        },
+        "onerror": [
+          {
+            "id": 118,
+            "mapper": null,
+            "module": "builtin:Ignore",
+            "version": 1,
+            "metadata": {
+              "designer": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "parameters": {}
+          }
+        ],
+        "metadata": {
+          "designer": {
+            "x": 5100,
+            "y": 0
+          }
+        }
+      },
+      {
+        "id": 19,
+        "module": "http:MakeRequest",
+        "version": 4,
+        "parameters": {
+          "tlsType": "",
+          "apiKeyKeychain": 97841,
+          "authenticationType": "apiKey"
+        },
+        "mapper": {
+          "url": "https://services.leadconnectorhq.com/conversations/messages/{{18.data.messageId}}",
+          "method": "get",
+          "headers": [
+            {
+              "name": "Version",
+              "value": "2021-04-15"
+            }
+          ],
+          "timeout": 40,
+          "shareCookies": false,
+          "parseResponse": true,
+          "allowRedirects": true,
+          "stopOnHttpError": true,
+          "requestCompressedContent": true
+        },
+        "filter": {
+          "name": "Comment was created",
+          "conditions": [
+            [
+              {
+                "a": "{{18.data.messageId}}",
+                "o": "exist"
+              }
+            ]
+          ]
+        },
+        "onerror": [
+          {
+            "id": 119,
+            "mapper": null,
+            "module": "builtin:Ignore",
+            "version": 1,
+            "metadata": {
+              "designer": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "parameters": {}
+          }
+        ],
+        "metadata": {
+          "designer": {
+            "x": 5400,
+            "y": 0
+          }
+        }
+      },
+      {
+        "id": 20,
+        "module": "datastore:AddRecord",
+        "version": 1,
+        "parameters": {
+          "datastore": 94694
+        },
+        "metadata": {
+          "designer": {
+            "x": 5700,
+            "y": 0
+          }
+        },
+        "mapper": {
+          "key": "{{4.id}}",
+          "data": {
+            "contact_id": "{{4.contactId}}",
+            "parts": "{{11.n_parts}}",
+            "engine": "scribe_v2",
+            "duration_s": "{{4.meta.call.duration}}",
+            "written_at": "{{now}}",
+            "ref": "{{11.ref}}",
+            "comment": "posted",
+            "comment_message_id": "{{18.data.messageId}}",
+            "comment_type": "{{ifempty(19.data.message.messageType; 19.data.messageType)}}"
+          },
+          "overwrite": true
         }
       }
     ],

@@ -15,6 +15,7 @@ import csv
 import importlib.util
 import io
 import json
+import re
 import sys
 import tempfile
 import unittest
@@ -129,32 +130,136 @@ class TestRegistry(unittest.TestCase):
             self.assertIn("env_var", CFG["engine"][name])
             self.assertIn(name, CFG["keyterms"]["cap_by_engine"])
 
-    def test_make_scenario_entry(self):
+    def _snapshot(self):
         sc = CFG["make_scenarios"]["call_notes"]
+        snap = json.loads((REPO_ROOT / sc["blueprint"]).read_text())
+        return sc, snap, {m["id"]: m for m in snap["blueprint"]["flow"]}
+
+    def test_make_scenario_entry(self):
+        sc, snap, mods = self._snapshot()
         self.assertEqual(sc["team_id"], 459654)
-        self.assertEqual(sc["writes"], ["GHL contact note"])
+        self.assertEqual(sc["writes"], ["GHL contact note", "GHL internal comment"])
         self.assertFalse(sc["isActive"])
         for k in ("id", "hook_id"):
             self.assertTrue(sc[k] is None or isinstance(sc[k], int))
-        snap = json.loads((REPO_ROOT / sc["blueprint"]).read_text())
         self.assertEqual(snap["scenario_id"], sc["id"])
-        mods = {m["id"]: m for m in snap["blueprint"]["flow"]}
         self.assertEqual(mods[1]["parameters"]["hook"], sc["hook_id"])
         # Every GHL read goes through the read key: Make's GHL connection has no
         # conversations scope (401 on /conversations/search, 2026-10-02).
-        for mid in (2, 3, 7):
+        for mid in (2, 3, 7, 19):
             self.assertEqual(mods[mid]["module"], "http:MakeRequest")
             self.assertEqual(mods[mid]["parameters"]["apiKeyKeychain"], sc["keychains"]["ghl_read_pit"])
             self.assertEqual(mods[mid]["mapper"]["method"], "get")
         self.assertEqual(mods[8]["parameters"]["apiKeyKeychain"], sc["keychains"]["elevenlabs"])
-        self.assertEqual(mods[13]["module"], "highlevel:addNotetoContact")
-        self.assertEqual(mods[13]["parameters"]["__IMTCONN__"], sc["ghl_connection_id"])
+        # The GHL connection writes notes and nothing else.
+        conn = [m["id"] for m in snap["blueprint"]["flow"]
+                if (m.get("parameters") or {}).get("__IMTCONN__") == sc["ghl_connection_id"]]
+        self.assertEqual(conn, [14])
+        self.assertEqual(mods[14]["module"], "highlevel:addNotetoContact")
+        self.assertIn("[call-note v2 messageId={{4.id}}", mods[14]["mapper"]["body"])
         # Make formula regexes must be quoted strings; a bare /…[…]/ fails "Unexpected [".
         self.assertNotIn("; /", mods[9]["mapper"]["variables"][0]["value"])
         self.assertTrue(snap["blueprint"]["metadata"]["scenario"]["sequential"])
         sent = [f["value"] for f in mods[8]["mapper"]["multipartBodyContent"] if f["name"] == "keyterms"]
         published = json.loads((REPO_ROOT / CFG["keyterms"]["published_file"]).read_text())["terms"]
         self.assertEqual(sent, published, "module 8's keyterm fields drifted from the published list")
+
+    def test_staff_rule(self):
+        """Albert, 2026-10-02: a person's own GHL user -> that name; the shared Front Desk
+        line -> a roster name only if said on the call; otherwise 'Staff'."""
+        sc, snap, mods = self._snapshot()
+        staff = CFG["staff"]
+        people = json.loads((REPO_ROOT / "platform-settings/notion-destinations.json").read_text())["people"]
+        named = {p["ghl_user_id"]: p["name"] for k, p in people.items()
+                 if isinstance(p, dict) and p.get("ghl_user_id") and "bot" not in p["name"].lower()
+                 and p["ghl_user_id"] not in staff["shared_line_user_ids"]}
+        ghl_user = [v["value"] for v in mods[9]["mapper"]["variables"] if v["name"] == "ghl_user"][0]
+        for uid, name in named.items():
+            self.assertIn(f'"{uid}"; "{name}"', ghl_user)
+        for uid in staff["shared_line_user_ids"]:
+            self.assertNotIn(uid, ghl_user)  # the shared line never names a person
+        self.assertTrue(ghl_user.endswith('; "")}}'))
+        rule = [v["value"] for v in mods[11]["mapper"]["variables"] if v["name"] == "staff"][0]
+        self.assertTrue(rule.startswith("{{ifempty(9.ghl_user; switch("))
+        self.assertTrue(rule.endswith(f'; "{staff["default"]}"))}}}}'))
+        for name in staff["roster"]:
+            self.assertIn(f'"{name}"; "{name}"', rule)
+            self.assertIn(name, mods[10]["mapper"]["textPrompt"])
+            self.assertIn(name, json.loads((REPO_ROOT / CFG["keyterms"]["published_file"]).read_text())["terms"])
+
+    def test_comment_gate(self):
+        """Albert, 2026-10-02: internal comments only, with a barrier against any slip.
+        Every layer of make_scenarios.call_notes.comment_gate, checked on the snapshot."""
+        sc, snap, mods = self._snapshot()
+        gate = sc["comment_gate"]
+        key = sc["keychains"]["ghl_internal_comment"]
+        flow = snap["blueprint"]["flow"]
+        order = [m["id"] for m in flow]
+        # 1. The comment key is used by one module, in this and every other snapshot.
+        users = [m["id"] for m in flow if (m.get("parameters") or {}).get("apiKeyKeychain") == key]
+        self.assertEqual(users, [gate["module"]])
+        for other in (REPO_ROOT / "platform-settings/blueprints").glob("*.json"):
+            if other.name != Path(sc["blueprint"]).name:
+                self.assertNotIn(f'"apiKeyKeychain": {key}', other.read_text(), other.name)
+        self.assertNotIn(key, (sc["keychains"]["ghl_read_pit"], sc["keychains"]["elevenlabs"]))
+        # Nothing else in the scenario can post to the messages endpoint.
+        posters = [m["id"] for m in flow if m["module"] == "http:MakeRequest"
+                   and "/conversations/messages" in m["mapper"]["url"] and m["mapper"]["method"] != "get"]
+        self.assertEqual(posters, [gate["module"]])
+        post = mods[gate["module"]]
+        # 5. Literal URL, POST, no redirects, body is exactly the gate variable.
+        self.assertEqual(post["mapper"]["url"], gate["url"])
+        self.assertEqual(post["mapper"]["method"], "post")
+        self.assertFalse(post["mapper"]["allowRedirects"])
+        self.assertEqual(post["mapper"]["inputMethod"], "jsonString")
+        self.assertEqual(post["mapper"]["jsonStringBodyContent"], "{{16.comment_body}}")
+        # 3. The comment text is JSON-encoded by Make before it is spliced in.
+        self.assertEqual(mods[15]["module"], "json:TransformToJSON")
+        self.assertEqual(mods[15]["mapper"]["object"], "{{12.comment_text}}")
+        # 2. The body template: literal type, last key, only two placeholders.
+        body = mods[16]["mapper"]["variables"][0]["value"]
+        self.assertEqual(body, '{"contactId":"{{4.contactId}}","message":{{15.json}},'
+                               '"mentions":[],"type":"' + gate["type"] + '"}')
+        self.assertEqual(re.findall(r"\{\{[^}]*\}\}", body), ["{{4.contactId}}", "{{15.json}}"])
+        # 4. One AND group (no OR path around it) holding the exact-body pattern.
+        groups = post["filter"]["conditions"]
+        self.assertEqual(len(groups), 1)
+        cond = [c for c in groups[0] if c["a"] == "{{16.comment_body}}"]
+        self.assertEqual(len(cond), 1)
+        self.assertEqual((cond[0]["o"], cond[0]["b"]), ("text:pattern", gate["body_regex"]))
+        # The call is recorded BEFORE the comment, then again with the read-back type.
+        self.assertLess(order.index(17), order.index(gate["module"]))
+        self.assertEqual(mods[17]["mapper"]["data"]["comment"], "pending")
+        self.assertEqual(mods[20]["mapper"]["data"]["comment"], "posted")
+        self.assertIn("19.data", mods[20]["mapper"]["data"]["comment_type"])
+        self.assertIn("{{18.data.messageId}}", mods[19]["mapper"]["url"])
+
+    def test_comment_gate_regex(self):
+        """The same pattern Make applies, on bodies built the way Make builds them."""
+        gate = re.compile(CFG["make_scenarios"]["call_notes"]["comment_gate"]["body_regex"])
+
+        def body(cid, text, tail='"mentions":[],"type":"InternalComment"}'):
+            return '{"contactId":"%s","message":%s,%s' % (cid, json.dumps(text, ensure_ascii=False), tail)
+        cid = "jMaagJIOI8l6kL2BFHgf"
+        summary = gp.render_call_summary('Wants "Aquaplus" LVP \\ $3.49/sf.', ["Us: quote — by Fri"],
+                                         {"ref": "C-1001-1432", "message_id": "m1",
+                                          "call_line": "Thu Oct 1, 2:32 pm · Outbound · 9m 30s · Helen"})
+        allowed = [body(cid, summary), body(cid, 'x","type":"SMS","toNumber":"+14165550000'), body(cid, "")]
+        blocked = [
+            '{"contactId":"%s","message":"x","type":"SMS","mentions":[],"type":"InternalComment"}' % cid,
+            body(cid, "hi", '"mentions":[],"type":"SMS"}'),
+            body(cid, "hi", '"mentions":[],"type":"Email"}'),
+            body(cid, "hi", '"mentions":[],"type":"InternalComment","toNumber":"+14165550000"}'),
+            body(cid, "hi", '"mentions":[],"emailTo":"a@b.c","type":"InternalComment"}'),
+            body(cid, "hi", '"mentions":["u1"],"type":"InternalComment"}'),
+            body('k1","type":"SMS', "hi"),
+            body("", "hi"),
+        ]
+        for b in allowed:
+            self.assertRegex(b, gate)
+            self.assertEqual(json.loads(b)["type"], "InternalComment")  # an escaped injection stays text
+        for b in blocked:
+            self.assertIsNone(gate.match(b), b)
 
     def test_env_example_declares_engine_key(self):
         env = (REPO_ROOT / ".env.example").read_text()
@@ -429,6 +534,86 @@ class TestCallNote(unittest.TestCase):
                          ["from-note", "would-transcribe", "over-cap"])
 
 
+class TestCallNoteV2(unittest.TestCase):
+    """2026-10-02 (Albert): Summary and Next steps go in an internal comment; the note
+    holds the transcript only; a reference code ties the two together."""
+    META = {"message_id": "m1", "conversation_id": "c1", "engine": "scribe_v2", "ref": "C-1001-0902",
+            "call_line": "Thu Oct 1, 9:02 am · Inbound · 3m 32s · Helen"}
+
+    def utts(self, n):
+        return [{"start_s": i * 3, "speaker": f"Speaker {1 + i % 2}", "text": f"line {i} " + "x" * 60}
+                for i in range(n)]
+
+    def test_note_is_transcript_only_and_reassembles(self):
+        turns = self.utts(150)
+        bodies = gp.render_call_note_v2(turns, self.META, "Speaker 1 = Helen (Titan) · Speaker 2 = customer")
+        self.assertGreater(len(bodies), 2)
+        self.assertTrue(bodies[0].startswith("Transcript · Ref C-1001-0902 · Thu Oct 1, 9:02 am"))
+        self.assertTrue(all("Summary" not in b and "Next steps" not in b for b in bodies))
+        parsed = gp.parse_call_note(list(reversed(bodies)))  # Make writes them last-first
+        self.assertEqual(parsed["version"], 2)
+        self.assertEqual(parsed["ref"], "C-1001-0902")
+        self.assertEqual(parsed["staff_named"], "Helen")
+        self.assertEqual(parsed["speakers"], "Speaker 1 = Helen (Titan) · Speaker 2 = customer")
+        self.assertEqual(parsed["summary"], "")
+        self.assertEqual([u["text"] for u in parsed["utterances"]], [u["text"] for u in turns])
+        self.assertTrue(parsed["complete"])
+
+    def test_summary_comment_round_trip(self):
+        body = gp.render_call_summary("Wants an LVP quote.", ["Us: send quote — by Fri"], self.META)
+        self.assertTrue(body.startswith("📞 Call summary · Ref C-1001-0902"))
+        self.assertLess(body.index("Summary\n"), body.index("Next steps"))
+        c = gp.parse_call_summary(body)
+        self.assertEqual((c["message_id"], c["ref"], c["staff_named"]), ("m1", "C-1001-0902", "Helen"))
+        self.assertEqual(c["summary"], "Wants an LVP quote.")
+        self.assertEqual(c["next_steps"], ["Us: send quote — by Fri"])
+        self.assertIsNone(gp.parse_call_summary("called, waiting on contractor"))
+
+    def test_summary_footer_on_anything_but_a_comment_raises_an_alarm(self):
+        body = gp.render_call_summary("S.", [], self.META)
+        comments, alarms = {}, []
+        gp.note_summary_comment({"id": "x1", "messageType": "TYPE_INTERNAL_COMMENT", "body": body,
+                                 "conversationId": "c1"}, comments, alarms)
+        self.assertEqual(alarms, [])
+        self.assertEqual(comments["m1"]["comment_id"], "x1")
+        for leaked in ("TYPE_SMS", "TYPE_EMAIL", None):
+            alarms = []
+            gp.note_summary_comment({"id": "x2", "messageType": leaked, "body": body,
+                                     "conversationId": "c1"}, {}, alarms)
+            self.assertEqual(len(alarms), 1, leaked)
+            self.assertIn("not an internal comment", alarms[0])
+
+    def test_dry_run_takes_summary_from_the_comment(self):
+        notes = [{"id": f"n{k}", "body": b} for k, b in
+                 enumerate(gp.render_call_note_v2(self.utts(4), self.META, "Speaker 1 = Helen (Titan)"), 1)]
+        comment = {"id": "x1", "conversationId": "c1", "messageType": "TYPE_INTERNAL_COMMENT",
+                   "direction": "outbound", "dateAdded": T0.isoformat(),
+                   "body": gp.render_call_summary("Wants a quote.", ["Us: call back — by Mon"], self.META)}
+        cl = mock.Mock()
+        cl.search_conversations.return_value = [{"id": "c1", "contactId": "k1"}]
+        cl.list_messages.return_value = [msg("m1"), comment]
+        cl.notes.return_value = notes
+        cl.stats.return_value = {}
+        with tempfile.TemporaryDirectory() as d:
+            out = Path(d) / "run.json"
+            args = gp.argparse.Namespace(hours=None, since=(T0 - timedelta(hours=1)).isoformat(),
+                                         until=(T0 + timedelta(hours=1)).isoformat(), out=str(out),
+                                         message_id=[], engine=None, bakeoff=None, dry_run=True, limit=None,
+                                         ignore_notes=False, refresh=False, compare_ghl=False,
+                                         no_audio_cache=False, print=False, verbose=False)
+            with mock.patch("sys.stdout", io.StringIO()):
+                self.assertEqual(gp.run(cl, CFG, args), 0)
+            doc = json.loads(out.read_text())
+        self.assertEqual(doc["alarms"], [])
+        self.assertEqual(len(doc["calls"]), 1)  # the comment is not a call
+        call = doc["calls"][0]
+        self.assertEqual(call["recording"], "from-note")
+        self.assertEqual(call["note"]["summary"], "Wants a quote.")
+        self.assertEqual(call["note"]["next_steps"], ["Us: call back — by Mon"])
+        self.assertEqual(call["note"]["comment_id"], "x1")
+        self.assertEqual(call["staff_named"], "Helen")
+
+
 class TestMissingEngineKey(unittest.TestCase):
     def test_daily_run_falls_back_to_ghl_and_says_so(self):
         cl = mock.Mock()
@@ -461,9 +646,10 @@ class TestKeyterms(unittest.TestCase):
     def test_order_dedupe_cap(self):
         cfg = json.loads(json.dumps(CFG))
         cfg["keyterms"]["static"] = ["LVP", "SPC"]
+        cfg["staff"]["roster"] = ["Helen", "albert"]  # the phone roster follows people, deduped
         terms = gp.build_keyterms(cfg, "elevenlabs", suppliers=["Vidar", "spc"], people=["Albert"],
                                   catalogue=["Heritage Hills", "vidar"])
-        self.assertEqual(terms, ["LVP", "SPC", "Vidar", "Albert", "Heritage Hills"])
+        self.assertEqual(terms, ["LVP", "SPC", "Vidar", "Albert", "Helen", "Heritage Hills"])
         cfg["keyterms"]["cap_by_engine"]["elevenlabs"] = 3
         self.assertEqual(len(gp.build_keyterms(cfg, "elevenlabs", suppliers=["A1", "B1"], people=[],
                                                catalogue=[])), 3)

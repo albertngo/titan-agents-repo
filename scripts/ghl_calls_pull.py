@@ -299,6 +299,8 @@ def build_keyterms(cfg, engine=None, root=REPO_ROOT, suppliers=None, people=None
         groups.append(_supplier_names() if suppliers is None else suppliers)
     if kt.get("from_people"):
         groups.append(_people_names() if people is None else people)
+    if kt.get("from_staff_roster"):
+        groups.append(cfg.get("staff", {}).get("roster", []))
     if kt.get("from_catalogue"):
         groups.append(catalogue_terms(kt["from_catalogue"], root) if catalogue is None else catalogue)
     seen, out = set(), []
@@ -559,7 +561,11 @@ def make_engine(name, cfg, opener=None):
 
 # --------------------------------------------------------------------------- call notes
 
-FOOTER_RE = re.compile(r"\[call-note v1 ([^\]]*)\]")
+FOOTER_RE = re.compile(r"\[call-note v(\d+) ([^\]]*)\]")
+# v2 (2026-10-02, Albert): the note holds the transcript only; Summary and Next steps go
+# in an internal comment on the conversation, carrying this footer.
+SUMMARY_FOOTER_RE = re.compile(r"\[call-summary v(\d+) ([^\]]*)\]")
+INTERNAL_COMMENT = "TYPE_INTERNAL_COMMENT"
 LINE_RE = re.compile(r"^\[(\d+):(\d{2})\]\s*([^:]{1,40}):\s*(.*)$")
 
 
@@ -568,11 +574,17 @@ def fmt_clock(seconds):
     return f"{s // 60:02d}:{s % 60:02d}"
 
 
+def _footer_fields(m):
+    fields = dict(kv.split("=", 1) for kv in m.group(2).split() if "=" in kv)
+    fields["version"] = int(m.group(1))
+    return fields
+
+
 def parse_footer(body):
     m = FOOTER_RE.search(body or "")
     if not m:
         return None
-    fields = dict(kv.split("=", 1) for kv in m.group(1).split() if "=" in kv)
+    fields = _footer_fields(m)
     part = fields.get("part", "1/1")
     try:
         k, n = (int(x) for x in part.split("/"))
@@ -583,12 +595,14 @@ def parse_footer(body):
 
 
 def _section(body, name, nxt):
-    pat = rf"(?ms)^{name}[^\n]*\n(.*?)(?=^(?:{'|'.join(nxt)})\b|\[call-note v1|\Z)"
+    pat = rf"(?ms)^{name}[^\n]*\n(.*?)(?=^(?:{'|'.join(nxt)})\b|\[call-(?:note|summary) v\d|\Z)"
     m = re.search(pat, body)
     return m.group(1).strip() if m else ""
 
 
-TRANSCRIPT_HEAD_RE = re.compile(r"(?m)^Transcript \([^\n]*\)[ \t]*\n")
+# v1: "Transcript (Scribe v2 · …)" / "Transcript (continued)".
+# v2: "Transcript · Ref C-… · <call line>" + "Speakers: …" / "Transcript (continued) · Ref C-…".
+TRANSCRIPT_HEAD_RE = re.compile(r"(?m)^Transcript(?: \([^\n]*\)| ·)[^\n]*\n(?:Speakers:[^\n]*\n)?")
 
 
 def _transcript_raw(body):
@@ -598,7 +612,7 @@ def _transcript_raw(body):
     if not m:
         return ""
     rest = body[m.end():]
-    end = rest.find("\n\n[call-note v1")
+    end = rest.find("\n\n[call-note v")
     return rest if end < 0 else rest[:end]
 
 
@@ -634,10 +648,58 @@ def parse_call_note(bodies):
                          "speaker": m.group(3).strip(), "text": m.group(4).strip()})
         elif utts:  # a wrapped line: belongs to the previous turn
             utts[-1]["text"] += " " + s
+    hm = re.search(r"(?m)^Transcript · ([^\n]*)$", main)
+    call_line = [x.strip() for x in hm.group(1).split("·")] if hm else []
+    sp = re.search(r"(?m)^Speakers:[ \t]*([^\n]*)$", main)
     return {"message_id": head.get("messageId"), "conversation_id": head.get("conversationId"),
-            "engine": head.get("engine"), "summary": summary,
+            "engine": head.get("engine"), "version": head.get("version", 1), "ref": head.get("ref"),
+            "staff_named": call_line[-1] if len(call_line) > 1 else None,
+            "speakers": sp.group(1).strip() if sp else None, "summary": summary,
             "next_steps": [s for s in steps if s.lower() != "none"],
             "utterances": utts, "parts": len(parts), "complete": len(parts) == head["part_n"]}
+
+
+def parse_call_summary(body):
+    """The internal comment the Make scenario posts (v2): call line, Summary, Next steps.
+    None if the body carries no [call-summary …] footer."""
+    m = SUMMARY_FOOTER_RE.search(body or "")
+    if not m:
+        return None
+    f = _footer_fields(m)
+    lines = (body or "").splitlines()
+    call_line = [x.strip() for x in lines[1].split("·")] if len(lines) > 1 and "·" in lines[1] else []
+    steps_txt = _section(body, "Next steps", ["Summary"])
+    steps = [ln.lstrip("-• ").strip() for ln in steps_txt.splitlines() if ln.strip()]
+    return {"message_id": f.get("messageId"), "ref": f.get("ref"), "version": f["version"],
+            "staff_named": call_line[-1] if len(call_line) > 1 else None,
+            "summary": _section(body, "Summary", ["Next steps"]),
+            "next_steps": [s for s in steps if s.lower() != "none"]}
+
+
+def render_call_summary(summary, next_steps, meta):
+    """Reference format of the v2 internal comment (methods/ghl-call-transcripts.md)."""
+    steps = "\n".join(f"- {s}" for s in next_steps) or "- none"
+    return (f"📞 Call summary · Ref {meta['ref']} · transcript in Notes\n{meta['call_line']}\n\n"
+            f"Summary\n{summary.strip()}\n\nNext steps\n{steps}\n\n"
+            f"[call-summary v1 messageId={meta['message_id']} ref={meta['ref']}]")
+
+
+def render_call_note_v2(utterances, meta, speakers, split_chars=3000):
+    """Reference format of the v2 transcript notes, cut like Make cuts them: fixed
+    split_chars offsets, part 1 carries the call line and the speaker key. Bodies in
+    reading order; Make writes them last-first."""
+    transcript = "\n".join(f"[{fmt_clock(u.get('start_s'))}] {u.get('speaker')}: {u.get('text')}"
+                           for u in utterances)
+    n = max(1, -(-len(transcript) // split_chars))
+    bodies = []
+    for k in range(1, n + 1):
+        head = (f"Transcript · Ref {meta['ref']} · {meta['call_line']}\nSpeakers: {speakers}\n" if k == 1
+                else f"Transcript (continued) · Ref {meta['ref']}\n")
+        chunk = transcript[(k - 1) * split_chars:k * split_chars]
+        bodies.append(f"{head}{chunk}\n\n[call-note v2 messageId={meta['message_id']} "
+                      f"conversationId={meta['conversation_id']} engine={meta.get('engine', '')} "
+                      f"ref={meta['ref']} part={k}/{n}]")
+    return bodies
 
 
 def render_call_note(summary, next_steps, utterances, meta, split_chars=4800):
@@ -814,13 +876,52 @@ def apply_note(rec, note):
                engine={"name": note.get("engine"), "model": note.get("engine"), "source": "contact note"})
     rec["note"] = {"ids": note.get("note_ids", []), "summary": note["summary"],
                    "next_steps": note["next_steps"], "parts": note["parts"],
-                   "complete": note["complete"]}
+                   "complete": note["complete"], "version": note.get("version", 1),
+                   "ref": note.get("ref"), "speakers": note.get("speakers")}
+    if note.get("staff_named"):
+        rec["staff_named"] = note["staff_named"]
+    return rec
+
+
+def apply_summary_comment(rec, comment):
+    """v2: Summary and Next steps live in the internal comment, not the note."""
+    note = rec.setdefault("note", {"ids": [], "summary": "", "next_steps": [], "parts": 0,
+                                   "complete": False, "version": 2})
+    note.update(summary=comment["summary"], next_steps=comment["next_steps"],
+                comment_id=comment.get("comment_id"), ref=note.get("ref") or comment.get("ref"))
+    if comment.get("staff_named"):
+        rec["staff_named"] = comment["staff_named"]
     return rec
 
 
 # --------------------------------------------------------------------------- listing
 
-def list_call_messages(client, cfg, since, until, message_ids=None, verbose=False):
+def note_summary_comment(m, comments, alarms):
+    """Collect the Make scenario's call-summary comments while scanning messages, and
+    raise an alarm if that footer ever sits on anything but an internal comment: the
+    one way the summary could have reached a customer (methods/ghl-call-transcripts.md,
+    the comment gate)."""
+    body = m.get("body") or ""
+    if "[call-summary v" not in body:
+        return
+    parsed = parse_call_summary(body)
+    if not parsed:
+        return
+    if m.get("messageType") != INTERNAL_COMMENT:
+        alarms.append(f"call summary posted as {m.get('messageType') or 'unknown type'} "
+                      f"(message {m.get('id')}, conversation {m.get('conversationId')}, "
+                      f"call {parsed['message_id']}) — not an internal comment; check whether "
+                      f"the customer received it")
+        return
+    parsed.update(comment_id=m.get("id"), comment_type=m.get("messageType"),
+                  author_user_id=m.get("userId"))
+    comments.setdefault(parsed["message_id"], parsed)
+
+
+def list_call_messages(client, cfg, since, until, message_ids=None, verbose=False,
+                       comments=None, alarms=None):
+    comments = {} if comments is None else comments
+    alarms = [] if alarms is None else alarms
     convs = client.search_conversations(since)
     if verbose:
         print(f"[calls] {len(convs)} conversations active since {since.isoformat()}", file=sys.stderr)
@@ -832,6 +933,7 @@ def list_call_messages(client, cfg, since, until, message_ids=None, verbose=Fals
             for m in msgs:
                 m.setdefault("conversationId", c["id"])
                 m.setdefault("contactId", c.get("contactId"))
+                note_summary_comment(m, comments, alarms)
                 if m.get("messageType") not in cfg["message_types"]:
                     continue  # the endpoint's type filter is not trusted
                 if message_ids and m.get("id") not in message_ids:
@@ -993,9 +1095,10 @@ def run(client, cfg, args):
     people = people_by_ghl_id()
     errors = []
 
+    comments, alarms = {}, []
     try:
         msgs, scan = list_call_messages(client, cfg, since, until, set(args.message_id) or None,
-                                        args.verbose)
+                                        args.verbose, comments=comments, alarms=alarms)
     except ghl_client.GhlBlocked:
         raise
     except ghl_client.GhlError as exc:
@@ -1045,6 +1148,8 @@ def run(client, cfg, args):
             note = find_call_note(notes_cache[rec["contact_id"]], rec["message_id"])
             if note:
                 apply_note(rec, note)
+                if rec["message_id"] in comments:
+                    apply_summary_comment(rec, comments[rec["message_id"]])
                 counts["from_note"] += 1
                 calls.append(rec)
                 continue
@@ -1086,7 +1191,8 @@ def run(client, cfg, args):
         "engine": {"name": engine_names[0], **({k: v for k, v in (engines[0].describe().items() if engines else [])}),
                    "keyterms_used": len(kt.get(engine_names[0], []))},
         "minutes_transcribed": round(minutes, 1), "est_cost_usd": round(cost, 4),
-        "ghl": client.stats(), "host_blocked": False, "calls": calls,
+        "ghl": client.stats(), "host_blocked": False, "alarms": alarms,
+        "summary_comments": len(comments), "calls": calls,
     }
     if args.bakeoff and bake:
         bpath = REPO_ROOT / cfg["bakeoff"]["output"].format(date=today())
@@ -1096,7 +1202,7 @@ def run(client, cfg, args):
     out_path.write_text(json.dumps(doc, indent=1, ensure_ascii=False) + "\n")
     summary = {"status": status, "run_file": str(out_path.relative_to(REPO_ROOT)) if out_path.is_relative_to(REPO_ROOT) else str(out_path),
                "counts": counts, "minutes": doc["minutes_transcribed"], "est_cost_usd": doc["est_cost_usd"],
-               "errors": len(errors)}
+               "errors": len(errors), "alarms": alarms}
     if "bakeoff" in doc:
         summary["bakeoff"] = doc["bakeoff"]
     print(json.dumps(doc if args.print else summary, indent=1, ensure_ascii=False))

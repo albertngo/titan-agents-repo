@@ -347,6 +347,12 @@ transcript outage must not cost the day's Notion tasks, plan and dashboards. A
 `partial` run file (some calls failed) is `reporting.calls.status: "partial"` with no
 `needs_attention` line unless a failed call is one that matters.
 
+**One exception to the exception: `alarms[]` (2026-10-02).** If the run file's
+`alarms[]` is non-empty, a machine-written call summary was found on a message that is
+not an internal comment — it may have reached a customer. Each alarm is one
+`needs_attention` line, verbatim, at the top ("ALARM: …"), and a `high` item. It does not
+change the file's `status`. See `methods/ghl-call-transcripts.md`, The comment gate.
+
 ## Call recordings — via Bash, not MCP (2026-10-01)
 
 No GHL MCP tool reads a recording, so call content comes from a read-only script.
@@ -363,10 +369,14 @@ summary with the path. Read that file. Each entry in `calls[]` carries
 `recording`, and — when there is one — `text`, `utterances[]` (speaker, absolute
 `start_at`) and `note` (`summary`, `next_steps`, `ids`).
 
-- `recording: "from-note"` — the Make scenario "GHL Call -> Note" already wrote a
-  `[call-note v1 messageId=…]` note on the contact (Summary, Next steps, Transcript).
-  That note is **machine-written, not a human internal comment**: use its transcript;
-  never read its Next steps as a promise already kept, and never count it as a
+- `recording: "from-note"` — the Make scenario "GHL Call -> Note" already wrote the
+  transcript as `[call-note … messageId=…]` notes on the contact. Since 2026-10-02 (v2)
+  its Summary and Next steps are in an **internal comment** on the conversation, footer
+  `[call-summary v1 messageId=… ref=…]`; the run file has already joined the two into
+  `note.summary` / `note.next_steps`, with `note.comment_id`, `note.ref` and
+  `staff_named` (the staff member named on the call, or `Staff`). v1 notes carry all
+  three sections in the note itself. Both are **machine-written**: use the transcript;
+  never read Next steps as a promise already kept, and never count either as a
   response to the customer.
 - `transcribed` / `fallback-ghl` — this run transcribed it (Scribe v2 by default;
   `fallback-ghl` is GHL's own weaker transcript after an engine failure). Until the
@@ -501,6 +511,15 @@ outreach. A thread sitting on an auto-SMS with no reply is handled; a thread
 where they wrote back and nobody followed up is a *worse* miss than one we never
 touched, and must surface accordingly.
 
+**Machine-written call summaries are not anyone picking the thread up (2026-10-02).**
+An internal comment whose body ends in `[call-summary v1 messageId=… ref=…]` (it opens
+"📞 Call summary · Ref C-…") is posted by the Make scenario a couple of minutes after
+every transcribed call, as the system user. It is the call's summary, already in the
+run file — do not read it again as a separate thread event, do not treat it as
+evidence that a person reviewed or actioned the lead, and do not attribute it to
+anyone. The call itself is the activity; the comment is its label. Its "Next steps"
+are promises made on the call: open until something in the thread shows them done.
+
 **Author vs. mention — get this right, it has already been wrong once.** The
 author of an internal comment is the message's own top-level `userId` field.
 People *mentioned* inside it appear as `@Name<userId>…</userId>` markup **in the
@@ -526,7 +545,7 @@ history before filling `contact_notion`, `agent_read`, `needs_followup` and
 | Field | |
 |---|---|
 | `id` | `ghl-call-<messageId>` |
-| `message_id`, `conversation_id`, `contact_id`, `contact`, `direction`, `staff`, `started_at`, `ended_at`, `duration_s`, `call_status`, `recording`, `note_ids`, `engine`, `language`, `confidence` | from the run file |
+| `message_id`, `conversation_id`, `contact_id`, `contact`, `direction`, `staff`, `staff_named`, `started_at`, `ended_at`, `duration_s`, `call_status`, `recording`, `note_ids`, `engine`, `language`, `confidence` | from the run file (`staff` is the GHL user, e.g. Front Desk; `staff_named` is who was actually on the call, or `Staff`) |
 | `summary` | ≤ 3 sentences: who, why, outcome. At most one short quoted phrase |
 | `intent` | `quote-request` · `booking` · `status-check` · `warranty-complaint` · `supplier-vendor` · `spam-robocall` · `personal` · `other` |
 | `commitments` | `[{by: us\|customer, what, due}]` — only what was actually promised; `due` YYYY-MM-DD or null |

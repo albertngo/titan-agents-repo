@@ -6,6 +6,10 @@ customer" — download the .wav, run it through a better transcriber than GHL's,
 cross-reference customer and message id, and feed it to the ingester. Then: "the
 transcription [should be] inputted into the note section of each customer … right
 after processing, as the call ends … 1. Summary 2. Next steps 3. The transcription."
+**Then (2026-10-02):** name the staff member, put the call's date and time on top, and
+post the Summary and Next steps as an **internal comment** on the conversation, with a
+reference code into the transcript in Notes — "explicit to internal comments only. Make
+a barrier to do so with no slip ups." See The comment gate.
 
 Registry: `platform-settings/ghl-calls.json`. Script: `scripts/ghl_calls_pull.py`
 (read-only; GHL only through `scripts/ghl_client.py`, which can only GET). Agent:
@@ -21,7 +25,9 @@ Registry: `platform-settings/ghl-calls.json`. Script: `scripts/ghl_calls_pull.py
 | D2 | Which engine? | **ElevenLabs Scribe v2, locked in 2026-10-02.** Deepgram dropped and no bake-off gate (Albert, 2026-10-02, superseding "Deepgram alternate, decide after a 10-call bake-off") |
 | D3 | What does the ingester extract? | Sales and lead insight, commitments and follow-ups, quote and order details, and staff call-quality notes |
 | D4 | What if transcription fails? | `ghl.json` stays `status: "ok"`; `reporting.calls.status` says `error` and one `needs_attention` line says why |
-| D8 | The contact note | Summary, then Next steps, then the transcript, written right after processing |
+| D8 | The contact note | Summary, then Next steps, then the transcript, written right after processing. **Superseded 2026-10-02 by D9** |
+| D9 | Summary placement (2026-10-02) | Summary + Next steps → **internal comment** on the conversation, behind the comment gate; transcript → contact Notes; both carry the call line and `Ref C-MMDD-HHmm` |
+| D10 | Staff name (2026-10-02) | The call's own GHL user if it is a person; on the shared Front Desk line a roster name only when it is said on the call; otherwise `Staff`. Roster: `ghl-calls.json` → `staff` |
 | D5 | Ownership (confirmed 2026-10-02) | After a connected call, `next_response_owner` is `us` only if a commitment by us is still open |
 | D6 | Sensitivity (confirmed 2026-10-02) | Provenance rule unchanged: team-level; `private` only for `intent: personal` |
 | D7 | Coaching notes (confirmed 2026-10-02) | `extensions.ghl.call_quality` (private), rubric + one neutral sentence, never in items, needs_attention or the GHL note |
@@ -30,10 +36,11 @@ Registry: `platform-settings/ghl-calls.json`. Script: `scripts/ghl_calls_pull.py
 
 ```
 call ends
- ├─ Make "GHL Call -> Note" 4951497 (real time, ~2-3 min)    [created, inactive]
- │    GHL message event → filter → seen? → sleep 90 s → GET recording
- │    → keyterms → ElevenLabs Scribe v2 → Claude: Summary + Next steps
- │    → GHL contact note(s) → data store
+ ├─ Make "GHL Call -> Note" 4951497 (real time, ~2-3 min)    [live-tested, inactive]
+ │    GHL workflow webhook → recent calls on the contact → seen? → sleep 90 s
+ │    → GET recording → ElevenLabs Scribe v2 → Claude: Staff, Speakers, Summary,
+ │    Next steps → transcript note(s) → data store → COMMENT GATE → internal
+ │    comment → read back its type → data store
  └─ daily, inside /daily-ingest (ghl-ingest-agent, step 0)
       scripts/ghl_calls_pull.py
         list call messages in the window → gate → contact note? → else cache?
@@ -52,9 +59,14 @@ Every call message carries `id` (messageId), `conversationId`, `contactId`, `use
 `messageId` and `conversationId`, so note ↔ message ↔ conversation ↔ contact is exact
 both ways.
 
-## The note
+## The comment and the note (v2, 2026-10-02)
+
+The **internal comment**, in the conversation next to the recording:
 
 ```
+📞 Call summary · Ref C-1001-1432 · transcript in Notes
+Thu Oct 1, 2:32 pm · Outbound · 9m 30s · Joey
+
 Summary
 <≤ 3 sentences>
 
@@ -62,18 +74,34 @@ Next steps
 - Us: <what> — by <when>
 - Customer: <what> — by <when>
 
-Transcript (Scribe v2 · 03:32 · inbound · 2026-10-01 09:02 · Albert)
-[00:00] Speaker 1: …
-[00:07] Albert: …
-
-[call-note v1 messageId=… conversationId=… engine=scribe_v2 part=1/1 chars=…]
+[call-summary v1 messageId=… ref=C-1001-1432]
 ```
 
-The footer is the only machine-readable line; `parse_call_note()` keys on it and
-`render_call_note()` is the reference format. Over ~4,800 characters the transcript
-splits into `part=k/N` notes. The continuations are written **first** so the Summary
-note is the newest and shows on top. Coaching never goes in the note. The note is
-team-visible in GHL by design.
+The **transcript**, in contact Notes, cut every 3,000 characters and written last-first
+so part 1 is on top:
+
+```
+Transcript · Ref C-1001-1432 · Thu Oct 1, 2:32 pm · Outbound · 9m 30s · Joey
+Speakers: Speaker 1 = Joey (Titan) · Speaker 2 = customer
+[00:03] Speaker 1: …
+[00:07] Speaker 2: …
+
+[call-note v2 messageId=… conversationId=… engine=scribe_v2 ref=C-1001-1432 part=1/3]
+```
+
+`Ref` is the call's start in Toronto time (`C-MMDD-HHmm`), the same on both, so a
+reader can go from the comment to the notes and to the recording at that time in the
+conversation. The footers are the only machine-readable lines: `parse_call_summary()`
+and `parse_call_note()` key on them; `render_call_summary()` and
+`render_call_note_v2()` are the reference formats. v1 notes (Summary, Next steps and
+transcript in one note, before 2026-10-02) still parse. Coaching never goes in either.
+
+**Staff (D10).** Make decides the easy half itself: module 9 maps the call's `userId`
+to a person (Albert, Pourya, Mike — `notion-destinations.json` people). On the Front
+Desk line the summary model reports a name only if it is said on the call, and module
+11 accepts it through a switch that knows the roster and nothing else; anything else
+becomes `Staff`. The speaker key is the model's reading, `unclear` where it cannot
+tell — speaker labels in the transcript itself stay `Speaker N`.
 
 ## Engines (prices web-searched 2026-10-01; verify at signup)
 
@@ -122,7 +150,7 @@ not a decision: the engine is locked in.
 - `--engine ghl --limit 2` transcribed two real calls end to end (44 and 8
   utterances, absolute Toronto timestamps) into the gitignored cache.
 
-## The Make scenario (4951497, created 2026-10-02, inactive)
+## The Make scenario (4951497, v2 live-tested 2026-10-02, inactive)
 
 Blueprint snapshot: `platform-settings/blueprints/ghl-call-notes-4951497.json`. Ids are
 in `platform-settings/ghl-calls.json` → `make_scenarios.call_notes`. Once Albert edits
@@ -140,13 +168,19 @@ GHL workflow "Call Status" (completed / voicemail) → Webhook action → Make w
  6  Sleep 90 s                                   [filter: not seen]
  7  HTTP GET recording        key 97841
  8  HTTP POST ElevenLabs      key 97834 "ElevenLabs STT (call notes)": scribe_v2,
-                               diarize, audio events, 178 keyterm fields, txt format
- 9  Set variables: transcript ("[mm:ss] Speaker N: …" lines), staff name
-10  Claude (claude-sonnet-4-5, Make's Claude app): Summary + Next steps
-11  Set variables: note header, part count (3,000 characters a part)
-12  Repeater N → 1
-13  GHL: Add a note to the contact (continuations first, Summary note last = on top)
-14  Data store: record the messageId                 [filter: last part]
+                               diarize, audio events, 181 keyterm fields, txt format
+ 9  Set variables: transcript ("[mm:ss] Speaker N: …" lines), ghl_user (a person or "")
+10  Claude (claude-sonnet-4-5, Make's Claude app): Staff, Speakers, Summary, Next steps
+11  Set variables: staff (D10 rule), speaker key, summary block, Ref, date, duration
+12  Set variables: note header, continuation header, comment text
+13  Repeater N → 1
+14  GHL: Add a note to the contact — transcript only   (GHL connection 4426112)
+15  Transform to JSON: the comment text                [filter: last part]
+16  Set variables: the request body
+17  Data store: record the call, comment "pending"
+18  HTTP POST /conversations/messages  key 97843       [COMMENT GATE]
+19  HTTP GET the new message           key 97841       (read back)
+20  Data store: comment "posted" + the type GHL reports
 ```
 
 Things that matter:
@@ -165,7 +199,7 @@ Things that matter:
   is not authorized for the conversations scope: `/conversations/search` answered
   `401 The token is not authorized for this scope` (2026-10-02), and module 2's
   Ignore handler hid it — the run simply stopped after 2 operations. Modules 2, 3 and 7
-  are plain HTTP GETs with key 97841; the connection is used only by module 13.
+  are plain HTTP GETs with key 97841; the connection is used only by module 14.
 - **The key's value is `Bearer <token>`.** The first key (97835) was saved with the
   bare token and GHL answered `401 Invalid JWT`.
 - **Quote every regex in a Make formula.** `replace(x; "/…[^\n]…/g"; …)` works; a bare
@@ -186,18 +220,58 @@ Things that matter:
   estimate of 10,000. Cheaper options: Haiku 4.5 in module 10 (about a third of the
   token credits), or Anthropic's API through an HTTP module with Titan's own key. A fire
   that finds nothing new costs 4 operations.
-- **Governance.** The note is a GHL write performed by Make, outside the
-  `ghl-actions-agent` approval gate, like Website Inquiry Ingester and the Stage
-  scenarios. It writes exactly one thing.
+- **Governance.** The notes and the comment are GHL writes performed by Make, outside
+  the `ghl-actions-agent` approval gate, like Website Inquiry Ingester and the Stage
+  scenarios. It writes exactly those two things.
 
 Confirmed on the first live run (2026-10-02): GHL accepts a 4,028-character note, and
 Make's `replace()` honours `$n` back-references (module 9's output is clean
 `[mm:ss] Speaker N:` lines). Still to confirm: the webhook body's field name for the
 contact id once the GHL workflow exists.
 
+## The comment gate
+
+Albert, 2026-10-02: *"make it explicit to internal comments only. Make a barrier to do
+so with no slip ups."* The risk is real: GHL has no permission narrower than
+`conversations/message.write`, and the endpoint that posts an internal comment is the
+one that texts and emails customers — only the body's `type` differs. So the barrier is
+built into the request, in layers, each of which alone would stop a different slip:
+
+1. **One token, one module.** Key 97843 holds a GHL private integration whose only
+   scope is `conversations/message.write`. Module 18 is the only module that uses it;
+   reads keep the read key, notes keep the GHL connection.
+2. **The type is a literal and the last key.** Module 16 builds
+   `{"contactId":"…","message":…,"mentions":[],"type":"InternalComment"}`. JSON parsers
+   keep the last duplicate key, so even an earlier injected `type` could not win.
+3. **The text is escaped.** Module 15 runs the comment through Make's Transform to JSON,
+   so quotes, backslashes and newlines in a summary cannot leave the message string.
+4. **The exact body is checked before sending.** Module 18's only filter — one AND
+   group, so there is no OR path around it — matches the whole body against
+   `comment_gate.body_regex`: these four keys, in this order, `message` a single valid
+   JSON string, `mentions` empty, `type` `InternalComment`, nothing else. Tested in Make
+   itself on 2026-10-02: a real body passed; a body with a raw-injected `"type":"SMS"`
+   was blocked.
+5. **Literal URL, redirects off.**
+6. **Read-back.** Module 19 reads the new message with the read key and module 20
+   records the type GHL reports. The daily script raises an **alarm** if a
+   `[call-summary …]` footer is ever found on anything but `TYPE_INTERNAL_COMMENT`; the
+   agent turns that into a high-priority `needs_attention` line.
+7. **Tests.** `test_comment_gate` and `test_comment_gate_regex` check every layer on
+   the blueprint snapshot, so a Make UI edit that weakens one fails the suite at the
+   next re-snapshot.
+
+The call is recorded in the data store (module 17) **before** the comment is posted, so a
+failed comment never re-runs the notes. A record left at `comment: pending` is a
+comment that did not post; the transcript is still there.
+
+What the gate cannot stop: a person editing module 18 in the Make UI. That is why the
+snapshot is re-taken and the tests re-run after every UI change.
+
 ## What it never does
 
-- The script never writes to GHL. Make writes the note and nothing else.
+- The script never writes to GHL. Make writes the transcript notes and one internal
+  comment per call, and nothing else.
+- The comment never reaches a customer: see The comment gate.
 - Nothing lands in `ingest/<date>/` except the agent's own `ghl.json`.
 - Audio, transcripts and bake-off sheets are never committed (repo is public).
 - Transcript text never enters `ghl.json`; no `metrics` key is added for calls.
@@ -205,6 +279,17 @@ contact id once the GHL workflow exists.
 - Coaching never reaches a GHL note, `items` or `needs_attention`.
 
 ## Log
+
+- **2026-10-02, v2 (Albert: "internal comment … make it explicit to internal comments
+  only. Make a barrier to do so with no slip ups"; staff: "if the call is from or to a
+  particular user, use their name; if the call is to front desk, … unless the name is
+  deciphered in the context as one of the names specified. Otherwise resort to
+  'Staff'").** Albert created the comment-only integration (key 97843). The gate was
+  tested in Make on a probe before any write, then live on one replayed call: three
+  transcript notes, then one comment that GHL read back as `TYPE_INTERNAL_COMMENT`,
+  posted as the system user (no `userId`), staff named from the call on the Front Desk
+  line, Ref identical in both. The other replayed call stopped at the data-store check
+  (5 operations), as intended. Cost: 22 operations, ~38 credits for a 389 s call.
 
 - **2026-10-02, live test (Albert asked: "give me 2 contacts' transcriptions and do the
   operation in GHL notes so I can see it happen").** Two real calls replayed through the
