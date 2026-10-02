@@ -280,6 +280,12 @@ snapshot is re-taken and the tests re-run after every UI change.
 
 ## Log
 
+- **2026-10-02, Haiku test.** Patricia Nelson's 570 s outbound call re-run in v2 with
+  module 10 on Haiku 4.5: 4 transcript notes, one comment read back as
+  `TYPE_INTERNAL_COMMENT`, Ref identical, staff named from the call (Joey), every
+  speaker label keyed, summary and next steps parse. 23 operations, ~29 Make credits;
+  the summary step cost ~7 credits against ~16 on Sonnet for a shorter call.
+
 - **2026-10-02, v2 (Albert: "internal comment … make it explicit to internal comments
   only. Make a barrier to do so with no slip ups"; staff: "if the call is from or to a
   particular user, use their name; if the call is to front desk, … unless the name is
