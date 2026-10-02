@@ -186,9 +186,12 @@ GHL workflow "Call Status" (completed / voicemail) → Webhook action → Make w
 16  Set variables: the request body
 17  Data store: record the call, comment "pending", language
 40  Router (routes run independently):
-      route 1  18 HTTP POST /conversations/messages  key 97843   [COMMENT GATE]
+      route 1  45 Data store: kill switch set?
+               18 HTTP POST /conversations/messages  key 97843   [COMMENT GATE + kill switch]
                19 HTTP GET the new message           key 97841   (read back)
                20 Data store: comment "posted" + the type GHL reports
+               47 Data store: SET the kill switch      [only if the type is not an internal comment]
+               46 WhatsApp Albert (2Chat): ALARM + contact link
       route 2  41 Claude sonnet-4-5: translate to English   [only if not English]
                42 Set variables → 43 Repeater → 44 GHL note "Translation (English, from …)"
 ```
@@ -292,16 +295,27 @@ built into the request, in layers, each of which alone would stop a different sl
    records the type GHL reports. The daily script raises an **alarm** if a
    `[call-summary …]` footer is ever found on anything but `TYPE_INTERNAL_COMMENT`; the
    agent turns that into a high-priority `needs_attention` line.
-7. **Tests.** `test_comment_gate` and `test_comment_gate_regex` check every layer on
-   the blueprint snapshot, so a Make UI edit that weakens one fails the suite at the
-   next re-snapshot.
+7. **Instant alarm and kill switch** (Albert, 2026-10-02: "yes add the instant alarm").
+   If the read-back is anything but `TYPE_INTERNAL_COMMENT` (a missing type included),
+   module 47 sets the kill-switch record `comment-gate-tripped` **first** and module 46
+   then WhatsApps Albert — through the same 2Chat line as the Bookkeeper Watchdog — with
+   the contact's link. Module 45 reads the switch before every post, so from then on no
+   summary comment is posted; transcripts and translations keep flowing. **To unblock**,
+   after checking the conversation, delete `comment-gate-tripped` in data store 94694.
+   Probe-tested: a simulated `TYPE_SMS` read-back tripped the switch and sent a TEST
+   WhatsApp; with the switch set the gated step did not post.
+8. **Tests.** `test_comment_gate`, `test_comment_gate_regex` and
+   `test_instant_alarm_and_kill_switch` check every layer on the blueprint snapshot, so a
+   Make UI edit that weakens one fails the suite at the next re-snapshot. The snapshot
+   redacts the alarm's phone numbers (public repo).
 
 The call is recorded in the data store (module 17) **before** the comment is posted, so a
 failed comment never re-runs the notes. A record left at `comment: pending` is a
 comment that did not post; the transcript is still there.
 
-What the gate cannot stop: a person editing module 18 in the Make UI. That is why the
-snapshot is re-taken and the tests re-run after every UI change.
+What the gate cannot stop: a person editing module 18 in the Make UI, or using key
+97843 in another scenario. Albert is the only person who edits in Make (confirmed
+2026-10-02); the snapshot is re-taken and the tests re-run after every UI change.
 
 ## What it never does
 
@@ -315,6 +329,10 @@ snapshot is re-taken and the tests re-run after every UI change.
 - Coaching never reaches a GHL note, `items` or `needs_attention`.
 
 ## Log
+
+- **2026-10-02, instant alarm.** Kill switch + WhatsApp alarm on the comment route
+  (modules 45, 47, 46). Probe-tested, pushed, scenario left inactive. Albert confirmed he
+  is the only person who edits in Make.
 
 - **2026-10-02, languages.** Language detection (no forced `en`), English summaries for
   every call, and an English translation note series for non-English calls (router 40,

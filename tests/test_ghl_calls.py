@@ -222,7 +222,7 @@ class TestRegistry(unittest.TestCase):
             self.assertIn("write everything below in English", mods[mid]["mapper"]["textPrompt"])
         # Router 40: route 1 is the comment, route 2 the translation — independent.
         a, b = (r["flow"] for r in mods[40]["routes"])
-        self.assertEqual([m["id"] for m in a], [18, 19, 20])
+        self.assertEqual([m["id"] for m in a], [45, 18, 19, 20, 47, 46])  # gate, read-back, alarm
         self.assertEqual([m["id"] for m in b], [41, 42, 43, 44])
         self.assertEqual(mods[41]["mapper"]["model"], lang["translation"]["model"])
         self.assertEqual(mods[41]["mapper"]["max_tokens"], lang["translation"]["max_tokens"])
@@ -312,6 +312,29 @@ class TestRegistry(unittest.TestCase):
         self.assertEqual(mods[20]["mapper"]["data"]["comment"], "posted")
         self.assertIn("19.data", mods[20]["mapper"]["data"]["comment_type"])
         self.assertIn("{{18.data.messageId}}", mods[19]["mapper"]["url"])
+
+    def test_instant_alarm_and_kill_switch(self):
+        """Albert, 2026-10-02: an instant alarm if a summary is ever not an internal comment."""
+        sc, snap, mods = self._snapshot()
+        alarm = sc["comment_gate"]["alarm"]
+        route = [m["id"] for m in mods[40]["routes"][0]["flow"]]
+        self.assertEqual(route, [45, 18, 19, 20, 47, 46])
+        # The kill switch is read before every post and is part of the gate's one AND group.
+        self.assertEqual(mods[45]["module"], "datastore:ExistRecord")
+        self.assertEqual(mods[45]["mapper"]["key"], alarm["kill_switch_key"])
+        self.assertIn({"a": "{{45.exist}}", "b": "false", "o": "boolean:equal"},
+                      mods[18]["filter"]["conditions"][0])
+        # On a read-back that is not an internal comment: trip the switch first, then alert.
+        readback = "{{ifempty(19.data.message.messageType; 19.data.messageType)}}"
+        self.assertEqual(mods[47]["mapper"]["key"], alarm["kill_switch_key"])
+        self.assertEqual(mods[47]["filter"]["conditions"],
+                         [[{"a": readback, "b": "TYPE_INTERNAL_COMMENT", "o": "text:notequal"}]])
+        self.assertEqual(mods[46]["module"], "two-chat:WhatsappSendMessage")
+        self.assertIn("ALARM", mods[46]["mapper"]["text"])
+        self.assertIn("{{4.contactId}}", mods[46]["mapper"]["text"])
+        # Phone numbers never reach this public repo.
+        text = (REPO_ROOT / sc["blueprint"]).read_text()
+        self.assertIsNone(re.search(r"\+1\d{10}", text))
 
     def test_comment_gate_regex(self):
         """The same pattern Make applies, on bodies built the way Make builds them."""

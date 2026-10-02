@@ -1,7 +1,7 @@
 {
-  "_comment": "Blueprint of Make scenario 4951497 'GHL Call -> Note', v2 (2026-10-02; v3 router for the summary model and v4 language detection + translation, same day): transcript in contact notes, Summary + Next steps as an internal comment behind the comment gate (modules 15-20; registry make_scenarios.call_notes.comment_gate). Make is the source of truth once Albert edits it in the UI: re-snapshot this file after any UI change (methods/content-folder-scenario.md lesson); tests/test_ghl_calls.py then re-checks every gate layer. Keyterm fields are generated from platform-settings/ghl-calls-keyterms.json.",
+  "_comment": "Blueprint of Make scenario 4951497 'GHL Call -> Note', v2 (2026-10-02; v3 router for the summary model and v4 language detection + translation and v5 instant alarm + kill switch, same day): transcript in contact notes, Summary + Next steps as an internal comment behind the comment gate (modules 15-20; registry make_scenarios.call_notes.comment_gate). Make is the source of truth once Albert edits it in the UI: re-snapshot this file after any UI change (methods/content-folder-scenario.md lesson); tests/test_ghl_calls.py then re-checks every gate layer. Keyterm fields are generated from platform-settings/ghl-calls-keyterms.json.",
   "scenario_id": 4951497,
-  "snapshot_of": "2026-10-02T13:30:51Z",
+  "snapshot_of": "2026-10-02T14:10:11Z",
   "blueprint": {
     "name": "GHL Call -> Note",
     "flow": [
@@ -1703,6 +1703,23 @@
                   {
                     "flow": [
                       {
+                        "id": 45,
+                        "module": "datastore:ExistRecord",
+                        "version": 1,
+                        "parameters": {
+                          "datastore": 94694
+                        },
+                        "metadata": {
+                          "designer": {
+                            "x": 5400,
+                            "y": 300
+                          }
+                        },
+                        "mapper": {
+                          "key": "comment-gate-tripped"
+                        }
+                      },
+                      {
                         "id": 18,
                         "module": "http:MakeRequest",
                         "version": 4,
@@ -1747,6 +1764,11 @@
                                 "a": "{{13.i}}",
                                 "b": "1",
                                 "o": "number:equal"
+                              },
+                              {
+                                "a": "{{45.exist}}",
+                                "b": "false",
+                                "o": "boolean:equal"
                               }
                             ]
                           ]
@@ -1859,6 +1881,63 @@
                             "language": "{{9.lang}}"
                           },
                           "overwrite": true
+                        }
+                      },
+                      {
+                        "id": 47,
+                        "module": "datastore:AddRecord",
+                        "version": 1,
+                        "parameters": {
+                          "datastore": 94694
+                        },
+                        "metadata": {
+                          "designer": {
+                            "x": 6300,
+                            "y": 450
+                          }
+                        },
+                        "mapper": {
+                          "key": "comment-gate-tripped",
+                          "overwrite": true,
+                          "data": {
+                            "contact_id": "{{4.contactId}}",
+                            "ref": "{{11.ref}}",
+                            "comment": "TRIPPED",
+                            "comment_message_id": "{{18.data.messageId}}",
+                            "comment_type": "{{ifempty(19.data.message.messageType; 19.data.messageType)}}",
+                            "written_at": "{{now}}"
+                          }
+                        },
+                        "filter": {
+                          "name": "ALARM: read-back is not an internal comment",
+                          "conditions": [
+                            [
+                              {
+                                "a": "{{ifempty(19.data.message.messageType; 19.data.messageType)}}",
+                                "b": "TYPE_INTERNAL_COMMENT",
+                                "o": "text:notequal"
+                              }
+                            ]
+                          ]
+                        }
+                      },
+                      {
+                        "id": 46,
+                        "module": "two-chat:WhatsappSendMessage",
+                        "version": 1,
+                        "parameters": {
+                          "__IMTCONN__": 3776292
+                        },
+                        "metadata": {
+                          "designer": {
+                            "x": 6600,
+                            "y": 450
+                          }
+                        },
+                        "mapper": {
+                          "text": "🚨 *Titan call notes — ALARM* 🚨\n\nA call summary was just posted to GHL as {{ifempty(19.data.message.messageType; 19.data.messageType)}}, not as an internal comment. It may have reached the customer. Please check the conversation now.\n\nContact: https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/{{4.contactId}}\nCall ref: {{11.ref}}\n\nAll further call-summary comments are now BLOCKED (transcripts still go to Notes). To unblock after checking: delete the record \"comment-gate-tripped\" in the Make data store \"GHL call notes written\".",
+                          "to_number": "<REDACTED: Albert's mobile, set in Make>",
+                          "from_number": "<REDACTED: Titan 2Chat line, set in Make>"
                         }
                       }
                     ]
@@ -2000,5 +2079,6 @@
         "autoCommitTriggerLast": true
       }
     }
-  }
+  },
+  "_redacted": "Module 46's to_number and from_number are phone numbers; this repo is public, so the snapshot replaces them with <REDACTED …> placeholders. The live values are the ones the Bookkeeper Watchdog (Make 4824368) already uses."
 }

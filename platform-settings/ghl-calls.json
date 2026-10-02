@@ -233,9 +233,20 @@
           "4. Module 18's only filter matches the exact body against body_regex: exactly contactId, message (one valid JSON string), mentions [] and type InternalComment, in that order, nothing else. One AND group, so there is no OR path around it. Proven in Make on 2026-10-02: a well-formed body passed, a raw-injected type:SMS body was blocked.",
           "5. URL is a literal, redirects are off.",
           "6. Read-back: module 19 GETs the new message with the read key; module 20 records its messageType. The daily script raises an alarm if a [call-summary] footer is ever found on anything but TYPE_INTERNAL_COMMENT.",
-          "7. tests/test_ghl_calls.py pins all of the above against the blueprint snapshot."
+          "7. Instant alarm + kill switch (2026-10-02, Albert: 'yes add the instant alarm'): if the read-back type is anything but TYPE_INTERNAL_COMMENT (missing included), module 47 writes the kill-switch record FIRST and module 46 then WhatsApps Albert with the contact link. Module 45 reads the kill switch before every post and module 18's gate refuses while it exists, so every later comment is blocked; transcripts and translations keep flowing.",
+          "8. tests/test_ghl_calls.py pins all of the above against the blueprint snapshot."
         ],
-        "_record_first": "Module 17 records the call in the data store BEFORE the comment is posted, so a failed comment can never cause a re-run that duplicates the notes; the record says comment pending until module 20 overwrites it with posted + the read-back type."
+        "_record_first": "Module 17 records the call in the data store BEFORE the comment is posted, so a failed comment can never cause a re-run that duplicates the notes; the record says comment pending until module 20 overwrites it with posted + the read-back type.",
+        "alarm": {
+          "kill_switch_key": "comment-gate-tripped",
+          "check_module": 45,
+          "trip_module": 47,
+          "alert_module": 46,
+          "channel": "WhatsApp through 2Chat connection 3776292, the same line and recipient as the Bookkeeper Watchdog (Make 4824368)",
+          "_reset": "After checking the conversation: delete the record 'comment-gate-tripped' in data store 94694 ('GHL call notes written'). Until then no summary comment is posted.",
+          "_not_covered": "A failed read-back (module 19 errors) ends the route with no alarm; the comment's type is then checked by the next daily run's alarm.",
+          "_tested": "2026-10-02 on a throwaway probe: a simulated TYPE_SMS read-back wrote the kill switch and sent a TEST WhatsApp; with the switch set the gated step did not post; without it, it did."
+        }
       },
       "summary_model": {
         "short": "claude-haiku-4-5",

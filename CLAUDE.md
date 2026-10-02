@@ -221,7 +221,8 @@ name and `Ref C-MMDD-HHmm`. They are GHL writes outside the `ghl-actions-agent` 
 gate, the same class as Website Inquiry Ingester and the Stage scenarios. **The comment
 sits behind a gate** ("internal comments only … no slip ups", Albert): its own one-scope
 token used by one module, a literal last-key `type`, JSON-escaped text, an exact-body
-pattern filter, a read-back of the type, and a daily alarm if a summary ever lands as
+pattern filter, a read-back of the type, an instant WhatsApp alarm that also
+blocks every later comment (kill switch), and a daily alarm if a summary ever lands as
 anything else — every layer pinned by `tests/test_ghl_calls.py` on the snapshot. Calls in
 other languages (Chinese, Vietnamese, Farsi, …) are detected, summarised in English, and get
 an English translation note series beside the original transcript. Do not
