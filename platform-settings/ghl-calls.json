@@ -166,7 +166,7 @@
     "call_notes": {
       "id": null,
       "name": "GHL Call -> Note",
-      "status": "drafted, not created",
+      "status": "drafted, keys ready, not created",
       "team_id": 459654,
       "hook_id": null,
       "hook_events": [
@@ -188,10 +188,10 @@
       "isActive": false,
       "_write_note": "A GHL write performed by Make, outside the ghl-actions-agent approval gate — the same class as the existing Make GHL writers (Website Inquiry Ingester, Stage scenarios). Recorded here and in CLAUDE.md (Albert, 2026-10-01). It writes exactly one thing: the note.",
       "keychains": {
-        "elevenlabs": null,
-        "ghl_read_pit": null
+        "elevenlabs": 97834,
+        "ghl_read_pit": 97835
       },
-      "_keychains": "Two Make keys of type API Key Auth (2026-10-02). 'ElevenLabs STT (call notes)': header xi-api-key, used by the speech-to-text HTTP module. 'GHL read PIT (call recordings)': header Authorization, value 'Bearer <read PIT>', used by the recording download. Fill the key ids here when the scenario is built; the note itself is written through ghl_connection_id, not this token."
+      "_keychains": "Two Make keys of type API Key Auth, created 2026-10-02 by Albert through a Make credential request (840c2a6b-df9d-4b44-8d25-cd49092061b4). 97834 'ElevenLabs STT (call notes)': header xi-api-key, used by the speech-to-text HTTP module. 97835 'GHL read PIT (call recordings)': header Authorization ('Bearer <read PIT>'), used by the recording download. The note itself is written through ghl_connection_id, not this token. Albert's ElevenLabs app connection 4875733 also exists; the scenario does not need it (the app's modules cannot send keyterms or upload a file)."
     }
   },
   "_observed_2026_10_02": "Live dry run, 72 h: 87 conversations, 71 TYPE_CALL messages (51 completed, 16 no-answer, 4 voicemail; 43 inbound / 28 outbound). The messages endpoint IGNORES type=TYPE_CALL (1,418 messages scanned for 71 calls) — the script filters messageType itself. Status and duration live in meta.call. GHL's own transcription returns {sentenceIndex, startTime, endTime (seconds), speaker, mediaChannel, transcript, words}."
