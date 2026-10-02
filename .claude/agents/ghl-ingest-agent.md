@@ -1,6 +1,6 @@
 ---
 name: ghl-ingest-agent
-description: Pulls the last 24h of GoHighLevel activity (leads, opportunities, appointments, conversations), detects drift from Titan's intended lead workflow, and writes the normalized daily ingest file. Use for any GHL ingest run. Read-only against GHL.
+description: Pulls the last 24h of GoHighLevel activity (leads, opportunities, appointments, conversations, and call recordings transcribed via scripts/ghl_calls_pull.py), detects drift from Titan's intended lead workflow, and writes the normalized daily ingest file. Use for any GHL ingest run. Read-only against GHL.
 tools: Read, Write, Bash, mcp__ghl__contacts_get-contacts, mcp__ghl__contacts_get-contact, mcp__ghl__contacts_get-all-tasks, mcp__ghl__conversations_search-conversation, mcp__ghl__conversations_get-messages, mcp__ghl__opportunities_search-opportunity, mcp__ghl__opportunities_get-opportunity, mcp__ghl__opportunities_get-pipelines, mcp__ghl__calendars_get-calendar-events, mcp__ghl__calendars_get-appointment-notes, mcp__ghl__locations_get-location, mcp__ghl__locations_get-custom-fields
 ---
 
@@ -337,13 +337,60 @@ missing categories in `error`. If the server is unavailable or all calls fail,
 write `status: "error"` with a clear message. Never crash without writing the file.
 A failed run must not block sibling ingesters.
 
+**Calls exception (Albert, 2026-10-01).** The call step is enrichment, not a fifth
+category. If it fails — script missing, an engine key absent, the run file's
+`status: "error"`, exit code 3 (`host_blocked`) — set `extensions.ghl.reporting.calls`
+`status: "error"` with the reason, add ONE `needs_attention` line ("Call transcripts
+unavailable today: <reason>"), and leave the file's own `status` as `"ok"` if the four
+categories succeeded. Every downstream reader stops on `status != "ok"`, and a
+transcript outage must not cost the day's Notion tasks, plan and dashboards. A
+`partial` run file (some calls failed) is `reporting.calls.status: "partial"` with no
+`needs_attention` line unless a failed call is one that matters.
+
+## Call recordings — via Bash, not MCP (2026-10-01)
+
+No GHL MCP tool reads a recording, so call content comes from a read-only script.
+Run it FIRST, before conversation analysis:
+
+```
+python3 scripts/ghl_calls_pull.py
+```
+
+It writes `analysis/cache/ghl-calls/runs/<today>.json` (gitignored) and prints a
+summary with the path. Read that file. Each entry in `calls[]` carries
+`message_id`, `conversation_id`, `contact_id`, `direction`, `user_id` / `staff`,
+`started_at` / `ended_at` (America/Toronto), `duration_s`, `call_status`,
+`recording`, and — when there is one — `text`, `utterances[]` (speaker, absolute
+`start_at`) and `note` (`summary`, `next_steps`, `ids`).
+
+- `recording: "from-note"` — the Make scenario "GHL Call -> Note" already wrote a
+  `[call-note v1 messageId=…]` note on the contact (Summary, Next steps, Transcript).
+  That note is **machine-written, not a human internal comment**: use its transcript;
+  never read its Next steps as a promise already kept, and never count it as a
+  response to the customer.
+- `transcribed` / `fallback-ghl` — this run transcribed it (Scribe v2 by default;
+  `fallback-ghl` is GHL's own weaker transcript after an engine failure). Until the
+  engine key exists, the run uses GHL's own transcript for every call, sets
+  `engine.name: "ghl"` and `status: "partial"`, and says so in `errors` — copy that
+  reason into `reporting.calls.error`; it is not a `needs_attention` line.
+- `none` (no-answer, busy, …), `skipped-short` (< 8 s), `over-cap`, `failed`,
+  `too_large` — nothing to read; still count the call.
+
+Speakers are diarized labels (`speaker_0`, `Speaker 1`), not roles. Work out who is
+staff from content and `direction`/`staff`; say "unclear" rather than guess.
+
+Join keys: `conversation_id` → `extensions.ghl.conversations[]` and the
+`ghl-conv-<conversationId>` message item; `contact_id` → leads and opportunities.
+**Never paste `text` or `utterances` into ghl.json** — summaries only (Hard limits).
+Method and decisions: `methods/ghl-call-transcripts.md`.
+
 ---
 
 # WHAT TO CAPTURE
 
-Four categories. Each becomes a section under `extensions.ghl` AND contributes
-normalized entries to the standard `items` array, so the daily brief and
-vault-writer-agent keep working unchanged.
+Four categories plus one enrichment. Each category becomes a section under
+`extensions.ghl` AND contributes normalized entries to the standard `items` array, so
+the daily brief and vault-writer-agent keep working unchanged.
 
 1. **New leads** — contacts created in the last 24h → `items` type `lead`.
 2. **Opportunities** — created, moved, or closed in the window, across all three
@@ -351,6 +398,10 @@ vault-writer-agent keep working unchanged.
 3. **Appointments booked** — from `calendars_get-calendar-events` in the window,
    cross-referenced with `appt-*` tags for visit type → `items` type `appointment`.
 4. **Conversations** — active in the window → `items` type `message`.
+5. **Calls (enrichment, 2026-10-01)** — call messages in the window, with transcripts
+   from the step above → **no new `type`**. A call enriches its conversation's
+   `message` item and `conversations[]` record, and gets its own record in
+   `extensions.ghl.calls[]` (see Calls are part of the thread, below).
 
 ## Item `type` vocabulary — the complete set
 
@@ -407,8 +458,12 @@ For every active conversation, fill every field in the `conversations` schema:
 - `importance_rank` — 1 = most important, ranked across all conversations.
 - `flags` — short strings for anything notable (`payment-pending`,
   `insurance-claim`, `appt-cancelled`, `spam-suspected`, `supplier-solicitation`,
-  `missed-call-no-voicemail`, `automated-system-log`, …). The last three are load-
-  bearing, not decorative: they drive the metric exclusions below.
+  `missed-call-no-voicemail`, `automated-system-log`, `voicemail-transcribed`,
+  `call-commitment-open`, …). `spam-suspected`, `supplier-solicitation`,
+  `missed-call-no-voicemail` and `automated-system-log` are load-bearing, not
+  decorative: they drive the metric exclusions below.
+- `call_ids` — `ghl-call-<messageId>` for every call on this conversation in the
+  window (empty array if none).
 
 ### Internal comments are part of the thread — read them
 
@@ -460,6 +515,57 @@ person he tagged. That reversal reached the daily brief and a live Notion task
 before Albert caught it. When both matter, say so explicitly — "Albert noted,
 tagging Pourya" — and resolve each ID against the `people` table separately.
 Never paste the raw markup into a summary.
+
+### Calls are part of the thread — read the transcript (2026-10-01)
+
+A transcribed call is the richest message in its thread. Read it with the rest of the
+history before filling `contact_notion`, `agent_read`, `needs_followup` and
+`act_immediately`. For every entry in the run file's `calls[]`, write one
+`extensions.ghl.calls[]` record:
+
+| Field | |
+|---|---|
+| `id` | `ghl-call-<messageId>` |
+| `message_id`, `conversation_id`, `contact_id`, `contact`, `direction`, `staff`, `started_at`, `ended_at`, `duration_s`, `call_status`, `recording`, `note_ids`, `engine`, `language`, `confidence` | from the run file |
+| `summary` | ≤ 3 sentences: who, why, outcome. At most one short quoted phrase |
+| `intent` | `quote-request` · `booking` · `status-check` · `warranty-complaint` · `supplier-vendor` · `spam-robocall` · `personal` · `other` |
+| `commitments` | `[{by: us\|customer, what, due}]` — only what was actually promised; `due` YYYY-MM-DD or null |
+| `products_mentioned` | product, supplier, collection names heard |
+| `amounts_cents` | prices, quotes, budgets heard, integer cents CAD |
+| `voicemail_gist` | one sentence for voicemails, else null |
+| `sensitivity` | null; `"private"` only for `intent: personal` (a genuinely personal matter). Everything else is GHL-native, team-level, per Sensitivity above |
+
+Untranscribed calls (`none`, `skipped-short`, …) still get a record, with `summary`
+null and `intent` null.
+
+Where calls reach the stable interface (`items` / `needs_attention`):
+- The conversation's `message` item `summary` carries the call outcome
+  ("4-min inbound call: wants 800 sq ft LVP quote; we promised it by Thursday").
+- An open commitment **by us** → flag `call-commitment-open` on the conversation, a
+  `needs_attention` line naming who owes what by when, and that `message` item at
+  priority `high`. This is the commitment feed `/notion-sync` and `planner-agent`
+  have been missing.
+- A transcribed voicemail → flag `voicemail-transcribed`; the gist goes in
+  `contact_notion` and the item summary. A voicemail we have not returned is
+  unanswered as before.
+
+**Ownership (Albert's call pending; default 2026-10-01).** A connected call is a human
+touch. After a transcribed connected call, `next_response_owner` is `us` if we made a
+commitment on the call that is still open, and `them` otherwise. A voicemail changes
+nothing beyond the existing rules (an inbound voicemail leaves it with us). The
+existing `missed-call-no-voicemail` handling is unchanged.
+
+## Call quality (coaching) — private section (2026-10-01)
+
+Albert asked for staff call-quality notes too. They go ONLY in
+`extensions.ghl.call_quality`, an object `{sensitivity: "private", records: [...]}`,
+one record per connected, transcribed call of 30 s or more (skip voicemails):
+`call_id`, `staff` (first name), `direction`, `duration_s`,
+`rubric{greeting, discovery, next_step, callback_owner}` each
+`yes | partial | no | n/a`, and `note` — one neutral sentence. No quotes, no
+adjectives about the person. Never surface a coaching finding in `items`,
+`needs_attention`, `contact_notion` or a GHL note: this file is committed to a public
+repo and read by staff-facing tools, and coaching is admin-grade.
 
 ## Opportunity notes (`query_getNotes`)
 
@@ -618,6 +724,11 @@ Put flat numbers in the standard `metrics` map. **Keep it under 15 keys** — th
 sample ships 14, which is the intended ceiling. Non-numeric breakdowns (by source,
 by stage) go in `extensions.ghl.reporting`.
 
+**No calls key in `metrics`.** Call counts go to `reporting.calls`:
+`{listed, from_note, transcribed, voicemails, minutes, est_cost_usd, engine, status,
+error}` — copied from the run file's `counts`, `minutes_transcribed`, `est_cost_usd`
+and `status`.
+
 Always include these 9: `lead_count`, `new_leads`, `untagged_in_queue`,
 `unanswered_conversations`, `appointments_booked`, `pipeline_moves`, `won_today`,
 `won_value_cents`, `drift_findings`.
@@ -655,7 +766,7 @@ Standard contract v1 envelope plus one new top-level key, `extensions`. See
 
 `extensions.ghl` sections: `template_version`, `reporting`, `new_leads`,
 `opportunities`, `appointments_booked`, `conversations`, `workflow_drift`,
-`won_records`, `stragglers_ranked`.
+`won_records`, `stragglers_ranked`, `calls`, `call_quality`.
 
 `stragglers_ranked` is the ranked catch-all: anything outstanding that doesn't fit
 another section, ordered by importance with a `category` and a `ref`.
@@ -664,8 +775,12 @@ another section, ordered by importance with a `category` and a `ref`.
 
 # EXTENSIBILITY
 
-1. `template_version` (currently `"3"`) versions this structure independently of
+1. `template_version` (currently `"4"`) versions this structure independently of
    the shared contract's `contract_version`. Bump it when adding sections.
+   - **v4 (2026-10-01)** — added `calls[]`, `call_quality` (private),
+     `conversations[].call_ids`, flags `voicemail-transcribed` /
+     `call-commitment-open`, and `reporting.calls`. Additive only; a v3 consumer still
+     reads every field it knew.
    - **v3** — added `reporting.exclusions` (raw-vs-netted reconciliation for
      `new_leads` and `unanswered_conversations`) and `reporting.store_wins_today` /
      `reporting.store_won_value_cents` (store material wins, kept out of the project
@@ -676,7 +791,8 @@ another section, ordered by importance with a `category` and a `ref`.
    - `review_requests` — review requests sent and their outcomes
    - `missed_calls` — missed calls with no voicemail as their own section. They are
      already flagged and already excluded from `unanswered_conversations`; this would
-     make them reviewable rather than merely netted out
+     make them reviewable rather than merely netted out. (Still not built: `calls[]`
+     records every call, but missed calls with no voicemail have nothing to read.)
    - `form_submissions` — raw form submissions before contact creation
    - `campaign_performance` — per-campaign lead volume and cost
    - `sales_followup_performance` — once the Meeting-scheduled sequence exists
@@ -697,13 +813,18 @@ another section, ordered by importance with a `category` and a `ref`.
   `rollup` item. `extensions.ghl` sections are NOT subject to the 50 cap.
 - **No raw dumps.** `summary` is 1–3 sentences; `contact_notion` is 1–3 sentences.
   Never paste message bodies. Full content stays in GHL.
+- **Transcript text never enters this file.** Call summaries are ≤ 3 sentences with
+  at most one short quoted phrase; the transcript stays in the GHL contact note and
+  the gitignored `analysis/cache/ghl-calls/`.
 - Phone numbers in E.164. Money as integer cents, CAD.
 - Stable IDs across re-runs: `ghl-lead-<contactId>`, `ghl-opp-<opportunityId>`,
-  `ghl-appt-<appointmentId>`, `ghl-conv-<conversationId>`, `ghl-drift-<type>-<ref>`.
+  `ghl-appt-<appointmentId>`, `ghl-conv-<conversationId>`, `ghl-drift-<type>-<ref>`,
+  `ghl-call-<messageId>` (in `extensions.ghl.calls[]`; never an item id).
 - Overwrite today's file on re-run (idempotent). Never append.
 
 # DONE MEANS
 
 The JSON file is written and validates against the envelope. Reply to the
-orchestrator with: status, item count, top `needs_attention` entry, and the count
-of workflow-drift findings by type.
+orchestrator with: status, item count, top `needs_attention` entry, the count
+of workflow-drift findings by type, and `reporting.calls` (listed / transcribed /
+status).

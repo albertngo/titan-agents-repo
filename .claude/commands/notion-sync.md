@@ -49,7 +49,10 @@ re-derive or guess.
    items (see `notion-task-schema.md`'s Reference-only owner line section for
    why they should agree and what to do if they don't). Also collect `types`:
    the set of distinct `item.type` values among the merged items (see
-   "Grouping by finding type" in that same contract).
+   "Grouping by finding type" in that same contract). And `sensitivity`: if any
+   merged item carries `"private"`, the whole candidate is private
+   (escalation-only, same as step 4) — a private call summary must never ride a
+   team item into the shared board.
 
 4. **Route each candidate** using `notion-destinations.json`
    (`source_defaults`, then the item's own `sensitivity` field if set,

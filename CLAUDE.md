@@ -196,6 +196,28 @@ right, and that flip is a dated vault decision. A site that answers with a bot c
 is reported, never worked around. First supplier: Vidar (images via The Floor Box; the
 product-page link from Vidar's own pages as found in the search index).
 
+### Call transcripts and call notes (2026-10-01)
+
+`ghl-ingest-agent` now reads call content. Step 0 of its run is
+`scripts/ghl_calls_pull.py` (read-only; reaches GHL only through the GET-only
+`scripts/ghl_client.py`): it lists the window's call messages, takes each transcript
+from the contact's `[call-note v1]` note if one exists, else downloads the `.wav` and
+transcribes it (ElevenLabs Scribe v2 by default, Deepgram Nova-3 alternate — the
+default locks in after a 10-call bake-off), else falls back to GHL's own transcript.
+Audio and full text stay in the gitignored `analysis/cache/ghl-calls/`; only
+summaries reach `ghl.json` (`extensions.ghl.calls[]`, `call_quality` (private,
+coaching), `reporting.calls`, template v4). A transcript failure never flips the
+file's `status` — it reports under `reporting.calls` plus one `needs_attention` line
+(Albert, 2026-10-01). The read PIT reads recordings and contact notes; it still
+writes nothing.
+
+**The contact note is a Make write.** Make scenario "GHL Call -> Note" (drafted in
+`platform-settings/blueprints/ghl-call-notes-DRAFT.json`, **not yet built**) writes
+Summary → Next steps → Transcript onto the GHL contact right after each call. It is a
+GHL write outside the `ghl-actions-agent` approval gate, the same class as Website
+Inquiry Ingester and the Stage scenarios, and writes nothing else. Registry
+`platform-settings/ghl-calls.json`; method `methods/ghl-call-transcripts.md`.
+
 ## Agent class rules
 
 | | `*-ingest` | `*-actions` |

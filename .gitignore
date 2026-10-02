@@ -3,6 +3,9 @@
 __pycache__/
 *.pyc
 analysis/cache/
+# analysis/cache/ghl-calls/ holds call recordings, transcripts and bake-off sheets
+# from scripts/ghl_calls_pull.py: customer PII, regenerable from GHL, never committed
+# (the repo is public). The rule above already covers it; this is the record.
 .venv/
 
 # Lightspeed product bodies: regenerable from the API, ~9-41 MB per run.

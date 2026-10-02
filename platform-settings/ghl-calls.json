@@ -1,0 +1,224 @@
+{
+  "_comment": "Registry for call-recording transcription (methods/ghl-call-transcripts.md). Read by scripts/ghl_calls_pull.py (run by .claude/agents/ghl-ingest-agent.md via Bash during /daily-ingest, and by hand) and documents the Make scenario 'GHL Call -> Note' that writes the Summary / Next steps / Transcript note onto the GHL contact right after a call. Engine choice, gating, caps, keyterm sources and output paths live HERE, never in a prompt. Albert, 2026-10-01: ingest voice calls 'at a high level' — download the .wav, run it through a better transcriber than GHL's, cross-reference customer, message id and timestamps, feed it to the ingester; and put the transcript in the customer's note section right after processing, as Summary, Next steps, Transcript.",
+  "_maintenance": "Prices were web-searched 2026-10-01 and drive only est_cost_usd — verify at signup. If GHL changes the recording endpoint or Version header, change api.* and re-run `ghl_calls_pull.py --probe`. channel_map and make_scenarios.call_notes.split_chars are UNVERIFIED until the first live probe / scenario run. engine.default flips only after the bake-off; record the date in engine._locked_in. tests/test_ghl_calls.py pins the caps, the default engine and the output paths.",
+  "config_version": "1",
+  "api": {
+    "base_url": "https://services.leadconnectorhq.com",
+    "version": "2021-04-15",
+    "_version_note": "Verified 2026-10-02: the recording endpoint answers with Version 2021-04-15 (audio/x-wav). analysis/ghl_*.py use 2021-07-28 for other endpoints; the notes endpoint is called with 2021-07-28.",
+    "endpoints": {
+      "conversations_search": "/conversations/search",
+      "messages": "/conversations/{conversationId}/messages",
+      "contact_notes": "/contacts/{contactId}/notes",
+      "recording": "/conversations/messages/{messageId}/locations/{locationId}/recording",
+      "ghl_transcription": "/conversations/locations/{locationId}/messages/{messageId}/transcription"
+    },
+    "scopes_required": [
+      "conversations.readonly",
+      "conversations/message.readonly",
+      "contacts.readonly"
+    ],
+    "_scope_note": "Read scopes only. conversations/message.readonly (recordings) and contacts.readonly (notes) were added to the read PIT 2026-10-01 — recorded against methods/architecture.md 'never widen the read token': these widen what the token can READ, never what it can write."
+  },
+  "rate_limits": {
+    "min_interval_ms": 170,
+    "max_retries": 5,
+    "_burst": "PIT burst limit 100 requests / 10 s; 401 retried too (GHL rejects a valid PIT mid-burst intermittently)."
+  },
+  "window_hours": 24,
+  "message_types": [
+    "TYPE_CALL"
+  ],
+  "_message_types_note": "TYPE_IVR_CALL, TYPE_CAMPAIGN_CALL, TYPE_CAMPAIGN_MANUAL_CALL, TYPE_CUSTOM_CALL and TYPE_CAMPAIGN_VOICEMAIL also exist (analysis/ghl_win_timeline.py). Deliberately excluded until a pilot shows they carry recordings worth reading.",
+  "transcribe_statuses": [
+    "completed",
+    "voicemail"
+  ],
+  "min_duration_seconds": 8,
+  "max_calls_per_run": 40,
+  "max_minutes_per_run": 120,
+  "max_recording_mb": 100,
+  "fallback_to_ghl_transcription": true,
+  "prefer_note": true,
+  "_prefer_note": "When the Make scenario already wrote a [call-note v1 messageId=…] note on the contact, the daily run reads the transcript from it and does not download or transcribe the call again. The note is the durable cache; cloud containers are ephemeral.",
+  "engine": {
+    "default": "elevenlabs",
+    "_locked_in": null,
+    "_decision": "Albert, 2026-10-01: Scribe v2 default, Deepgram Nova-3 as the swappable alternate; run both on 10 real Titan calls (including transfers and crosstalk) before locking in. Switching is this one value.",
+    "elevenlabs": {
+      "url": "https://api.elevenlabs.io/v1/speech-to-text",
+      "model_id": "scribe_v2",
+      "env_var": "ELEVENLABS_API_KEY",
+      "params": {
+        "diarize": true,
+        "tag_audio_events": true,
+        "timestamps_granularity": "word",
+        "language_code": "en"
+      },
+      "price_per_hour_usd": 0.22,
+      "keyterm_surcharge_per_hour_usd": 0.05,
+      "max_keyterms": 1000,
+      "max_upload_mb": 3000,
+      "timeout_s": 600
+    },
+    "deepgram": {
+      "url": "https://api.deepgram.com/v1/listen",
+      "model": "nova-3",
+      "env_var": "DEEPGRAM_API_KEY",
+      "params": {
+        "smart_format": true,
+        "utterances": true,
+        "punctuate": true,
+        "language": "en"
+      },
+      "price_per_minute_usd": 0.0043,
+      "keyterm_surcharge_per_minute_usd": 0.0013,
+      "max_keyterms": 100,
+      "timeout_s": 600
+    },
+    "assemblyai": {
+      "url": "https://api.assemblyai.com/v2",
+      "model": "universal",
+      "env_var": "ASSEMBLYAI_API_KEY",
+      "price_per_hour_usd": 0.21,
+      "poll_interval_s": 3,
+      "poll_timeout_s": 600,
+      "max_keyterms": 1000,
+      "timeout_s": 600
+    },
+    "openai": {
+      "url": "https://api.openai.com/v1/audio/transcriptions",
+      "model": "gpt-4o-transcribe",
+      "env_var": "OPENAI_API_KEY",
+      "price_per_minute_usd": 0.006,
+      "max_upload_mb": 25,
+      "max_keyterms": 50,
+      "timeout_s": 600
+    },
+    "ghl": {
+      "_note": "GHL's own transcription. Fallback only: no cost, no diarization or vocabulary control."
+    }
+  },
+  "channel_map": {
+    "_comment": "Deepgram multichannel only. Observed 2026-10-02 (--probe on a completed call and a voicemail): GHL recordings are MONO, 8 kHz, 16-bit PCM WAV, so this map is unused today — speakers come from diarization. Kept for a stereo recording should one ever appear.",
+    "inbound": {
+      "0": "customer",
+      "1": "staff"
+    },
+    "outbound": {
+      "0": "staff",
+      "1": "customer"
+    }
+  },
+  "keyterms": {
+    "static": [
+      "Titan Flooring",
+      "LVP",
+      "SPC",
+      "WPC",
+      "vinyl plank",
+      "laminate",
+      "engineered hardwood",
+      "solid hardwood",
+      "herringbone",
+      "chevron",
+      "underlay",
+      "underlayment",
+      "subfloor",
+      "baseboard",
+      "quarter round",
+      "reducer",
+      "T-molding",
+      "stair nosing",
+      "square feet",
+      "click lock",
+      "glue down",
+      "floating floor",
+      "Mississauga",
+      "Oakville",
+      "Etobicoke",
+      "Brampton",
+      "Milton",
+      "Burlington",
+      "Toronto",
+      "Vaughan"
+    ],
+    "from_suppliers": true,
+    "_from_suppliers": "platform-settings/airtable-destinations.json supplier_aliases values, title-cased",
+    "from_people": true,
+    "_from_people": "platform-settings/notion-destinations.json people[].name, bots excluded",
+    "from_catalogue": {
+      "glob": "ingest/*/*_airtable_upload_*.csv",
+      "columns": [
+        "Brand",
+        "Collection"
+      ],
+      "newest_files": 30
+    },
+    "cap_by_engine": {
+      "elevenlabs": 1000,
+      "deepgram": 50,
+      "assemblyai": 1000,
+      "openai": 50
+    },
+    "published_file": "platform-settings/ghl-calls-keyterms.json"
+  },
+  "bakeoff": {
+    "engines": [
+      "elevenlabs",
+      "deepgram"
+    ],
+    "calls": 10,
+    "must_include": [
+      "transfer",
+      "crosstalk"
+    ],
+    "output": "analysis/cache/ghl-calls/bakeoff/{date}.md"
+  },
+  "audio": {
+    "keep": true
+  },
+  "outputs": {
+    "cache_dir": "analysis/cache/ghl-calls",
+    "run_file": "analysis/cache/ghl-calls/runs/{date}.json",
+    "_never": "Nothing under ingest/<date>/ — the orchestrator reads every *.json there (contracts/ingest-schema.md). Audio and transcripts are customer PII and the repo is public: analysis/cache/ is gitignored."
+  },
+  "note_format": {
+    "version": "call-note v1",
+    "footer_regex": "\\[call-note v1 ([^\\]]*)\\]",
+    "sections": [
+      "Summary",
+      "Next steps",
+      "Transcript"
+    ],
+    "_order": "Albert, 2026-10-01: Summary first, then Next steps, then the transcription. Continuation parts (Transcript k/N) are written BEFORE the main note so the Summary note is the newest and shows on top."
+  },
+  "make_scenarios": {
+    "call_notes": {
+      "id": null,
+      "name": "GHL Call -> Note",
+      "status": "drafted, not created",
+      "team_id": 459654,
+      "hook_id": null,
+      "hook_events": [
+        "InboundMessage",
+        "OutboundMessage"
+      ],
+      "ghl_connection_id": 4426112,
+      "draft_blueprint": "platform-settings/blueprints/ghl-call-notes-DRAFT.json",
+      "datastore": "ghl-call-notes",
+      "writes": [
+        "GHL contact note"
+      ],
+      "split_chars": 4800,
+      "sleep_seconds": [
+        90,
+        120
+      ],
+      "edited_in": "the Make UI",
+      "isActive": false,
+      "_write_note": "A GHL write performed by Make, outside the ghl-actions-agent approval gate — the same class as the existing Make GHL writers (Website Inquiry Ingester, Stage scenarios). Recorded here and in CLAUDE.md (Albert, 2026-10-01). It writes exactly one thing: the note."
+    }
+  },
+  "_observed_2026_10_02": "Live dry run, 72 h: 87 conversations, 71 TYPE_CALL messages (51 completed, 16 no-answer, 4 voicemail; 43 inbound / 28 outbound). The messages endpoint IGNORES type=TYPE_CALL (1,418 messages scanned for 71 calls) — the script filters messageType itself. Status and duration live in meta.call. GHL's own transcription returns {sentenceIndex, startTime, endTime (seconds), speaker, mediaChannel, transcript, words}."
+}

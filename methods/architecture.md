@@ -182,7 +182,9 @@ not from the agent's name. Renaming an agent never changes its output.
 - Counts come from `reporting`, never from counting `items` (50-item cap + rollup).
 - Project pipeline and STORE pipeline are **separate businesses**. Never summed.
 - Two tokens, two blast radii: read-only PIT for ingest, separate write PIT for
-  actions. Never widen the read token.
+  actions. Never widen the read token. (2026-10-01: the read PIT also reads call
+  recordings and contact notes — `conversations/message.readonly`,
+  `contacts.readonly`. Read scopes only; see `methods/ghl-call-transcripts.md`.)
 
 ---
 
