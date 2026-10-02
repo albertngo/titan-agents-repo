@@ -533,7 +533,7 @@ history before filling `contact_notion`, `agent_read`, `needs_followup` and
 | `products_mentioned` | product, supplier, collection names heard |
 | `amounts_cents` | prices, quotes, budgets heard, integer cents CAD |
 | `voicemail_gist` | one sentence for voicemails, else null |
-| `sensitivity` | null; `"private"` only for `intent: personal` (a genuinely personal matter). Everything else is GHL-native, team-level, per Sensitivity above |
+| `sensitivity` | null; `"private"` only for `intent: personal` (a genuinely personal matter). Everything else is GHL-native, team-level, per Sensitivity above (Albert, confirmed 2026-10-02) |
 
 Untranscribed calls (`none`, `skipped-short`, …) still get a record, with `summary`
 null and `intent` null.
@@ -549,13 +549,13 @@ Where calls reach the stable interface (`items` / `needs_attention`):
   `contact_notion` and the item summary. A voicemail we have not returned is
   unanswered as before.
 
-**Ownership (Albert's call pending; default 2026-10-01).** A connected call is a human
+**Ownership (Albert, confirmed 2026-10-02).** A connected call is a human
 touch. After a transcribed connected call, `next_response_owner` is `us` if we made a
 commitment on the call that is still open, and `them` otherwise. A voicemail changes
 nothing beyond the existing rules (an inbound voicemail leaves it with us). The
 existing `missed-call-no-voicemail` handling is unchanged.
 
-## Call quality (coaching) — private section (2026-10-01)
+## Call quality (coaching) — private section (2026-10-01, confirmed by Albert 2026-10-02)
 
 Albert asked for staff call-quality notes too. They go ONLY in
 `extensions.ghl.call_quality`, an object `{sensitivity: "private", records: [...]}`,

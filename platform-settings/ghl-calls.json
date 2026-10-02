@@ -186,7 +186,12 @@
       ],
       "edited_in": "the Make UI",
       "isActive": false,
-      "_write_note": "A GHL write performed by Make, outside the ghl-actions-agent approval gate — the same class as the existing Make GHL writers (Website Inquiry Ingester, Stage scenarios). Recorded here and in CLAUDE.md (Albert, 2026-10-01). It writes exactly one thing: the note."
+      "_write_note": "A GHL write performed by Make, outside the ghl-actions-agent approval gate — the same class as the existing Make GHL writers (Website Inquiry Ingester, Stage scenarios). Recorded here and in CLAUDE.md (Albert, 2026-10-01). It writes exactly one thing: the note.",
+      "keychains": {
+        "elevenlabs": null,
+        "ghl_read_pit": null
+      },
+      "_keychains": "Two Make keys of type API Key Auth (2026-10-02). 'ElevenLabs STT (call notes)': header xi-api-key, used by the speech-to-text HTTP module. 'GHL read PIT (call recordings)': header Authorization, value 'Bearer <read PIT>', used by the recording download. Fill the key ids here when the scenario is built; the note itself is written through ghl_connection_id, not this token."
     }
   },
   "_observed_2026_10_02": "Live dry run, 72 h: 87 conversations, 71 TYPE_CALL messages (51 completed, 16 no-answer, 4 voicemail; 43 inbound / 28 outbound). The messages endpoint IGNORES type=TYPE_CALL (1,418 messages scanned for 71 calls) — the script filters messageType itself. Status and duration live in meta.call. GHL's own transcription returns {sentenceIndex, startTime, endTime (seconds), speaker, mediaChannel, transcript, words}."

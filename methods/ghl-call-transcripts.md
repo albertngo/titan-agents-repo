@@ -22,9 +22,9 @@ Registry: `platform-settings/ghl-calls.json`. Script: `scripts/ghl_calls_pull.py
 | D3 | What does the ingester extract? | Sales and lead insight, commitments and follow-ups, quote and order details, and staff call-quality notes |
 | D4 | What if transcription fails? | `ghl.json` stays `status: "ok"`; `reporting.calls.status` says `error` and one `needs_attention` line says why |
 | D8 | The contact note | Summary, then Next steps, then the transcript, written right after processing |
-| D5 | *Default, not yet confirmed:* ownership | After a connected call, `next_response_owner` is `us` only if a commitment by us is still open |
-| D6 | *Default, not yet confirmed:* sensitivity | Provenance rule unchanged: team-level; `private` only for `intent: personal` |
-| D7 | *Default, not yet confirmed:* coaching notes | `extensions.ghl.call_quality` (private), rubric + one neutral sentence, never in items, needs_attention or the GHL note |
+| D5 | Ownership (confirmed 2026-10-02) | After a connected call, `next_response_owner` is `us` only if a commitment by us is still open |
+| D6 | Sensitivity (confirmed 2026-10-02) | Provenance rule unchanged: team-level; `private` only for `intent: personal` |
+| D7 | Coaching notes (confirmed 2026-10-02) | `extensions.ghl.call_quality` (private), rubric + one neutral sentence, never in items, needs_attention or the GHL note |
 
 ## How a call flows
 
@@ -159,6 +159,10 @@ the real blueprint into `platform-settings/blueprints/` and fill
 
 ## Log
 
+- **2026-10-02 (Albert, in chat).** Confirmed D5–D7 as built: we owe the next reply
+  only if we promised something on the call; summaries are team-level unless the call
+  is personal; coaching stays in the private section. Asked how to add the Make keys —
+  two `API Key Auth` keys are needed (ElevenLabs and the GHL read token).
 - **2026-10-02 (Albert, in chat).** "I think I'm going to switch to ElevenLabs":
   Scribe v2 locked in, Deepgram adapter and key removed, bake-off no longer a gate
   (kept as an optional Scribe v2 vs GHL check). Setup is now one key and one host.
