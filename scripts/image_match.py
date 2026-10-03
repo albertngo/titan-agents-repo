@@ -162,6 +162,11 @@ def score(feat, page, supplier_cfg, matching):
     # `SPC Floors` or `Hickory` tag is a department, not the pattern the record names).
     meta = " | ".join([*(page.get("tags") or []), page.get("product_type") or ""])
     title_meta = f"{title} | {meta}" if meta.strip(" |") else title
+    # Trim sold under the floor's colour (`Afterburn Reducer`, `Cashmere Stairnose` at Word of
+    # Mouth, 2026-10-03) is never the floor's page.
+    if feat.get("category") != "Accessory" and any(
+            has_phrase(title, w) for w in matching.get("accessory_words") or []):
+        return 0, "accessory"
     # Category: an engineered record never takes a vinyl listing of the same colour name
     # (Word of Mouth's `Vidar Luxury Rigid Core Vinyl Plank - Naked Oak`, 2026-09-29).
     cat_words = matching.get("category_words") or {}

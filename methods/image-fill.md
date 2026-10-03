@@ -71,6 +71,11 @@ write while `write_mode` is `plan_only`; get past a bot challenge; guess a URL.
   field still wins. Vidar Camel 5" (ENG-VIDR-0166): Speers' Hazelnut photo replaced with The
   Floor Box's Camel swatch (Albert: "Yes"), new op `replace_images` (agent rule 8: a
   person's approval, compare-and-swap on the live file).
+  Rerun at the new bar: Vidar 76, BiYork 58, Toucan 96 records planned. Two fixes from the
+  rerun: Word of Mouth lists BiYork trim under the floor's colour (`Afterburn Reducer`), so a
+  page naming a trim piece (`accessory_words`) never matches a floor record; and a source that
+  errors during a pull (The Floor Box's sitemap under three parallel pulls) stops the run like
+  a refused host instead of being skipped.
 - 2026-10-02 (Toronto) — Triforest, sold as Toucan (Albert: "Lets try Triforest now." +
   toucanflooring.com). Toucan's own Shopify store matched 168 of 173 records; Speers carries
   no Toucan, and Word of Mouth timed out mid-catalogue twice, so it was left out. The Floor

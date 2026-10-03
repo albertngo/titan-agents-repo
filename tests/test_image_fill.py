@@ -179,6 +179,11 @@ class TestRelink(unittest.TestCase):
                         source="wordofmouth"), "product_type": "SPC RIGID CORE VINYL"}
         self.assertEqual(im.match_records([rec], [vinyl], VIDAR, REG["matching"])[rec["id"]]["tier"], "none")
 
+    def test_trim_named_after_the_floor_is_not_the_floor(self):
+        rec = {"id": "recB000000000009", "SKU": "LVP-BIYK-0009", "Product name": "Biyork Traktion — Afterburn", "Category": "LVP"}
+        trim = page("https://w/afterburn-reducer", "Traktion Afterburn Reducer", source="wordofmouth")
+        self.assertEqual(im.match_records([rec], [trim], REG["suppliers"]["BIYORK"], REG["matching"])[rec["id"]]["tier"], "none")
+
     def test_no_alternative_keeps_the_link(self):
         p = self.plan([])
         self.assertEqual(p["actions"], [])

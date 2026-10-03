@@ -1,0 +1,4795 @@
+{
+ "contract_version": "image-plan-1",
+ "scope": "triforest",
+ "supplier": "TRIFOREST",
+ "run_at": "2026-10-03T08:27:32.935461-04:00",
+ "expires": "2026-10-03T23:59:59-0400",
+ "write_mode": "write",
+ "registry": "platform-settings/supplier-sites.json",
+ "inputs": {
+  "pages": "ingest/2026-10-03/supplier-pages-triforest.json",
+  "judgements": "ingest/2026-10-03/image-judgements-triforest.json",
+  "product_pages": null
+ },
+ "summary": {
+  "records": 173,
+  "actions": 96,
+  "held": 77,
+  "skipped": {},
+  "held_by_reason": {
+   "no_usable_image": 72,
+   "no_match": 5
+  },
+  "fields": {
+   "Swatch images": 96,
+   "Supplier product page": 15
+  },
+  "tiers": {
+   "exact": 96
+  },
+  "manufacturer_pages": 96
+ },
+ "actions": [
+  {
+   "id": "img-3d59cd03e7de",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reckuqQzZiB2nGau5",
+   "sku": "LAM-TRIF-TF1108-F",
+   "product_name": "Toucan Matt/Hand Scraped Laminate — TF1108-F (5.0\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF1108-F_sideview-detail_9049fdde-2d06-43cc-9776-00933df82497.webp?v=1742509622",
+      "filename": "toucan-tf1108-f-laminate-5in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf1108-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF1108-F_sideview-detail_9049fdde-2d06-43cc-9776-00933df82497.webp?v=1742509622",
+     "sha1": "ad2e573bb890828042ad2761f0680f8900308c1e",
+     "page": "https://www.toucanflooring.com/products/tf1108-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-3f1a31194d58",
+   "seq": 2,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reck0HRiFg7klEEbB",
+   "sku": "LAM-TRIF-TF1119-F",
+   "product_name": "Toucan Matt/Hand Scraped Laminate — TF1119-F (5.0\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF1119-F_sideview-detail_d15b56dc-4cd4-4d1d-a608-37c9725c6be1.webp?v=1742509621",
+      "filename": "toucan-tf1119-f-laminate-5in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf1119-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF1119-F_sideview-detail_d15b56dc-4cd4-4d1d-a608-37c9725c6be1.webp?v=1742509621",
+     "sha1": "585184b57ed6226c164c56f433d2e63a5bc64b7b",
+     "page": "https://www.toucanflooring.com/products/tf1119-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-723ba81713b0",
+   "seq": 3,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec20fvDBwKHCXjdK",
+   "sku": "LAM-TRIF-TF1123-F",
+   "product_name": "Toucan Matt/Hand Scraped Laminate — TF1123-F (5.0\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF1123-F_sideview-detail_382df6dc-3a75-4145-ae29-6518066468d1.webp?v=1742509455",
+      "filename": "toucan-tf1123-f-laminate-5in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf1123-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF1123-F_sideview-detail_382df6dc-3a75-4145-ae29-6518066468d1.webp?v=1742509455",
+     "sha1": "a778d57654ed70f6de75ec347f3e24fed4caffef",
+     "page": "https://www.toucanflooring.com/products/tf1123-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b529e38f5324",
+   "seq": 4,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recHYKMjG6VPla4u9",
+   "sku": "LAM-TRIF-TF3101-F",
+   "product_name": "Toucan Matt/Hand Scraped Laminate — TF3101-F (5.0\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF3101-F_sideview-detail_91496ea6-ffb5-4f74-9f3b-bca3a8b13dbc.webp?v=1742509619",
+      "filename": "toucan-tf3101-f-laminate-5in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf3101-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF3101-F_sideview-detail_91496ea6-ffb5-4f74-9f3b-bca3a8b13dbc.webp?v=1742509619",
+     "sha1": "2fac0250bcc7d41e9db0e800f6d988e8745a83bc",
+     "page": "https://www.toucanflooring.com/products/tf3101-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-33879e5c7d15",
+   "seq": 5,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reciaPY52LonQn61M",
+   "sku": "LAM-TRIF-TF6005-F",
+   "product_name": "Toucan EIR Laminate — TF6005-F (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6005-F_sideview-detail_e766e994-e851-4c1e-a2e8-dd2e1ec4c3ad.webp?v=1742509453",
+      "filename": "toucan-tf6005-f-laminate-7-7in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6005-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6005-F_sideview-detail_e766e994-e851-4c1e-a2e8-dd2e1ec4c3ad.webp?v=1742509453",
+     "sha1": "754e6668ff91348d65e40d61490563ebc7bd0a02",
+     "page": "https://www.toucanflooring.com/products/tf6005-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-cd256fd4d672",
+   "seq": 6,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec7q9iPSEXTl63bD",
+   "sku": "LAM-TRIF-TF6008-F",
+   "product_name": "Toucan EIR Laminate — TF6008-F (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6008-F_sideview-detail_b4426cd7-25b4-44d2-b407-99cb525e7b3c.webp?v=1742509617",
+      "filename": "toucan-tf6008-f-laminate-7-7in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6008-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6008-F_sideview-detail_b4426cd7-25b4-44d2-b407-99cb525e7b3c.webp?v=1742509617",
+     "sha1": "1aeec3db9f261bf0177b8e12127bb3f10989676f",
+     "page": "https://www.toucanflooring.com/products/tf6008-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5263848af318",
+   "seq": 7,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "receWqdvmKCNV9PuT",
+   "sku": "LAM-TRIF-TF6010-F",
+   "product_name": "Toucan EIR Laminate — TF6010-F (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6010-F_sideview-detail_f10517dc-0bdf-4484-bebc-d63552969d34.webp?v=1742509451",
+      "filename": "toucan-tf6010-f-laminate-7-7in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6010-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6010-F_sideview-detail_f10517dc-0bdf-4484-bebc-d63552969d34.webp?v=1742509451",
+     "sha1": "798d9f1af5c399b2d061c30da640835851c05763",
+     "page": "https://www.toucanflooring.com/products/tf6010-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8fb35c8dacaf",
+   "seq": 8,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recPD3hpSoT2XQsWE",
+   "sku": "LAM-TRIF-TF6011-F",
+   "product_name": "Toucan EIR Laminate — TF6011-F (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6011-F_sideview-detail_19796650-9f30-4d11-9b7c-6d555bffbccb.webp?v=1742509616",
+      "filename": "toucan-tf6011-f-laminate-7-7in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6011-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6011-F_sideview-detail_19796650-9f30-4d11-9b7c-6d555bffbccb.webp?v=1742509616",
+     "sha1": "0aa8beb6a846557d5e8dd021195b85f4ad70017c",
+     "page": "https://www.toucanflooring.com/products/tf6011-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a292b667d70c",
+   "seq": 9,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rechdhccVtTOr8vW4",
+   "sku": "LAM-TRIF-TF6012-F",
+   "product_name": "Toucan EIR Laminate — TF6012-F (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6012-F_sideview-detail_48b022c1-1213-4ac6-ad51-1a7a4fd5abef.webp?v=1742509615",
+      "filename": "toucan-tf6012-f-laminate-7-7in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6012-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6012-F_sideview-detail_48b022c1-1213-4ac6-ad51-1a7a4fd5abef.webp?v=1742509615",
+     "sha1": "221ed2fd4b230f675ab3a64222717027b0952231",
+     "page": "https://www.toucanflooring.com/products/tf6012-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-526cf3504e06",
+   "seq": 10,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reci3Jw2cONifzBvJ",
+   "sku": "LAM-TRIF-TF6019-F",
+   "product_name": "Toucan EIR Laminate — TF6019-F (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6019-F_sideview-detail_db65fb61-38fe-4c5b-b7cc-9097231f4992.webp?v=1742509615",
+      "filename": "toucan-tf6019-f-laminate-7-7in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6019-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6019-F_sideview-detail_db65fb61-38fe-4c5b-b7cc-9097231f4992.webp?v=1742509615",
+     "sha1": "dc3ffaaeeff4d1400c2790023a5e86eb1293dae6",
+     "page": "https://www.toucanflooring.com/products/tf6019-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-d12a1a3ff973",
+   "seq": 11,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recPQw0gd4OQw3ZTT",
+   "sku": "LAM-TRIF-TF6021-F",
+   "product_name": "Toucan EIR Laminate — TF6021-F (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6021-F_sideview-detail_252d356c-c50f-4cb7-80de-899f522dab7a.webp?v=1742509614",
+      "filename": "toucan-tf6021-f-laminate-7-7in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6021-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6021-F_sideview-detail_252d356c-c50f-4cb7-80de-899f522dab7a.webp?v=1742509614",
+     "sha1": "496951299ec9bc98516d84265468ebb1f0ddfdf9",
+     "page": "https://www.toucanflooring.com/products/tf6021-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b3894f5cd060",
+   "seq": 12,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recSToIP5eghtKRca",
+   "sku": "LAM-TRIF-TF6206-F",
+   "product_name": "Toucan EIR Laminate — TF6206-F (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6206-F_sideview-detail_216c07a8-ad5e-4ee1-8d56-492e56630842.webp?v=1742509612",
+      "filename": "toucan-tf6206-f-laminate-7-7in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6206-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6206-F_sideview-detail_216c07a8-ad5e-4ee1-8d56-492e56630842.webp?v=1742509612",
+     "sha1": "69a3517372b42c02be4ae215217bb94b22a08d79",
+     "page": "https://www.toucanflooring.com/products/tf6206-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-cb4e09204095",
+   "seq": 13,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recpHpzZ8sy6jY9Zi",
+   "sku": "LAM-TRIF-TF6307-F",
+   "product_name": "Toucan EIR Laminate — TF6307-F (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6307-F_sideview-detail_f607c8b9-9d61-476e-80fc-9e7886091411.webp?v=1742509438",
+      "filename": "toucan-tf6307-f-laminate-7-7in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6307-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6307-F_sideview-detail_f607c8b9-9d61-476e-80fc-9e7886091411.webp?v=1742509438",
+     "sha1": "4c416c27b13f11e38689f00b1ca7819105a33fce",
+     "page": "https://www.toucanflooring.com/products/tf6307-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-e65f7759a5fe",
+   "seq": 14,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recs8b3I3OvEZ9EYl",
+   "sku": "LAM-TRIF-TF6310-F",
+   "product_name": "Toucan EIR Laminate — TF6310-F (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6310-F_sideview-detail_53ac35b1-b6b4-4f93-947a-4431a463bbdd.webp?v=1742509606",
+      "filename": "toucan-tf6310-f-laminate-7-7in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6310-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6310-F_sideview-detail_53ac35b1-b6b4-4f93-947a-4431a463bbdd.webp?v=1742509606",
+     "sha1": "58ca254a4a09c46237653c718b9903ceb0426653",
+     "page": "https://www.toucanflooring.com/products/tf6310-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a0510bf83cae",
+   "seq": 15,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec13CZoiOoBt6rX2",
+   "sku": "LAM-TRIF-TF6601",
+   "product_name": "Toucan TF66 Waterproof Laminate — Mesilla (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6601-F_1_7564e4ac-6b00-4e7f-983c-152de5c2ef79.webp?v=1742509604",
+      "filename": "toucan-mesilla-laminate-7-7in-tf6601-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6601-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6601-F_1_7564e4ac-6b00-4e7f-983c-152de5c2ef79.webp?v=1742509604",
+     "sha1": "624f1cb2ca91bc7fab485d1ba3268de9dd01b41c",
+     "page": "https://www.toucanflooring.com/products/tf6601-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-0addfc901188",
+   "seq": 16,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recsICX4h87mRqVEv",
+   "sku": "LAM-TRIF-TF6603",
+   "product_name": "Toucan TF66 Waterproof Laminate — Santa Fe (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6603-F_1_7a977a18-d375-4691-aa2c-e4fe61eeed5d.webp?v=1742509602",
+      "filename": "toucan-santa-fe-laminate-7-7in-tf6603-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6603-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6603-F_1_7a977a18-d375-4691-aa2c-e4fe61eeed5d.webp?v=1742509602",
+     "sha1": "8ae757b5cfe885d3f43ef98b49e471792f320c9b",
+     "page": "https://www.toucanflooring.com/products/tf6603-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-aebf335f9358",
+   "seq": 17,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recPTK8rF0CUhnk6Z",
+   "sku": "LAM-TRIF-TF6604",
+   "product_name": "Toucan TF66 Waterproof Laminate — Roswell (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6604-F_1_2838cb50-b106-4644-9ef1-38b8d21eac9a.webp?v=1742509602",
+      "filename": "toucan-roswell-laminate-7-7in-tf6604-swatch.webp"
+     },
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/311507a5-3f04-11ef-baed-f6968cef729a/324533c8-3f04-11ef-baed-f6968cef729a",
+      "filename": "toucan-roswell-laminate-7-7in-tf6604-swatch-2.jpg"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6604-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6604-F_1_2838cb50-b106-4644-9ef1-38b8d21eac9a.webp?v=1742509602",
+     "sha1": "25736e370625f89ec13a014a7c4d97b85b912d53",
+     "page": "https://www.toucanflooring.com/products/tf6604-f",
+     "width": 1200,
+     "height": 1200
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/311507a5-3f04-11ef-baed-f6968cef729a/324533c8-3f04-11ef-baed-f6968cef729a",
+     "sha1": "8088443fa5894f8f8ca6857fd26ed04251bdccad",
+     "page": "https://thefloorbox.ca/products/laminate-flooring-tf66-series-6604-roswell-7-34-x-47-1516/311507a5-3f04-11ef-baed-f6968cef729a",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b19451cee08b",
+   "seq": 18,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec4TEGIJlDCSNRje",
+   "sku": "LAM-TRIF-TF6605",
+   "product_name": "Toucan TF66 Waterproof Laminate — Taos (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6605-F_1_b195876b-80d3-4eea-a93a-ad3a2b703f9f.webp?v=1742509601",
+      "filename": "toucan-taos-laminate-7-7in-tf6605-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6605-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6605-F_1_b195876b-80d3-4eea-a93a-ad3a2b703f9f.webp?v=1742509601",
+     "sha1": "74e8f94425d304de23c0df6462ea4860fa0444bf",
+     "page": "https://www.toucanflooring.com/products/tf6605-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-dc4a893d8a2a",
+   "seq": 19,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recBvHITZOyfdbKzI",
+   "sku": "LAM-TRIF-TF6606",
+   "product_name": "Toucan TF66 Waterproof Laminate — Cedar Crest (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6606-F_1_99e457a5-7af3-4828-996b-3f973efd924a.webp?v=1742509600",
+      "filename": "toucan-cedar-crest-laminate-7-7in-tf6606-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6606-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6606-F_1_99e457a5-7af3-4828-996b-3f973efd924a.webp?v=1742509600",
+     "sha1": "5428bc1a52cd0830d3f28fbf03d5240d9e655252",
+     "page": "https://www.toucanflooring.com/products/tf6606-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-4d1359496f42",
+   "seq": 20,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reckjX9PqAzSrvY27",
+   "sku": "LAM-TRIF-TF6607",
+   "product_name": "Toucan TF66 Waterproof Laminate — Edgewood (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6607-F_1_ac80581e-9beb-4480-8026-981324b93470.webp?v=1742509435",
+      "filename": "toucan-edgewood-laminate-7-7in-tf6607-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6607-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6607-F_1_ac80581e-9beb-4480-8026-981324b93470.webp?v=1742509435",
+     "sha1": "c653e378ffddac0c3dad9ad6c85aedae199b8d1e",
+     "page": "https://www.toucanflooring.com/products/tf6607-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-aaf75fe91ad1",
+   "seq": 21,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recVnzrD7UDbJafJV",
+   "sku": "LAM-TRIF-TF6608",
+   "product_name": "Toucan TF66 Waterproof Laminate — Silver City (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6608-F_1_20d8a329-31d1-4078-a944-8f5b48b37a9b.webp?v=1742509599",
+      "filename": "toucan-silver-city-laminate-7-7in-tf6608-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6608-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6608-F_1_20d8a329-31d1-4078-a944-8f5b48b37a9b.webp?v=1742509599",
+     "sha1": "358e25f60042fe315f149e50a1955f7508fd6786",
+     "page": "https://www.toucanflooring.com/products/tf6608-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5ee787ca7cda",
+   "seq": 22,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recuwjPEvU6hxWskw",
+   "sku": "LAM-TRIF-TF6609",
+   "product_name": "Toucan TF66 Waterproof Laminate — Reserve (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6609-F_1_f64b0f42-ee25-447a-8b63-b8c0a1cba683.webp?v=1742509599",
+      "filename": "toucan-reserve-laminate-7-7in-tf6609-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6609-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6609-F_1_f64b0f42-ee25-447a-8b63-b8c0a1cba683.webp?v=1742509599",
+     "sha1": "be11970c706eaf05fb62edf06138b7e28052d750",
+     "page": "https://www.toucanflooring.com/products/tf6609-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-093a3673c94e",
+   "seq": 23,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recMpgYB74V6D2HqE",
+   "sku": "LAM-TRIF-TF6610",
+   "product_name": "Toucan TF66 Waterproof Laminate — Gila (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6610-F_1_3d366ce5-0461-45ba-a2d9-3db488d346fb.webp?v=1742509598",
+      "filename": "toucan-gila-laminate-7-7in-tf6610-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6610-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6610-F_1_3d366ce5-0461-45ba-a2d9-3db488d346fb.webp?v=1742509598",
+     "sha1": "7b5e4f5564dd1d285aee4a546f24954523638895",
+     "page": "https://www.toucanflooring.com/products/tf6610-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-fa3fd0a3b435",
+   "seq": 24,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recOfZDVPQ0JvRUOY",
+   "sku": "LAM-TRIF-TF6611",
+   "product_name": "Toucan TF66 Waterproof Laminate — Las Cruces (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6611-F_1_71e956ce-da0b-40b1-8c3a-01687b5c69f8.webp?v=1742509434",
+      "filename": "toucan-las-cruces-laminate-7-7in-tf6611-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6611-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6611-F_1_71e956ce-da0b-40b1-8c3a-01687b5c69f8.webp?v=1742509434",
+     "sha1": "fd1f30491cc3753f6b61a8c18545c87bb22d2b6c",
+     "page": "https://www.toucanflooring.com/products/tf6611-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2a95f9c4d579",
+   "seq": 25,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recEgSa4UHdfBnill",
+   "sku": "LAM-TRIF-TF6612",
+   "product_name": "Toucan TF66 Waterproof Laminate — Melrose (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6612-F_1_8595ca46-93a2-4a1f-8e1c-abea1f091de7.webp?v=1742509597",
+      "filename": "toucan-melrose-laminate-7-7in-tf6612-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf6612-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF6612-F_1_8595ca46-93a2-4a1f-8e1c-abea1f091de7.webp?v=1742509597",
+     "sha1": "7cfdcc9c44391470b5959f7556b707fcc5cb9b06",
+     "page": "https://www.toucanflooring.com/products/tf6612-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-9a8bf7841f6d",
+   "seq": 26,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recQTqbzvMrYMrE4B",
+   "sku": "LAM-TRIF-TF8001",
+   "product_name": "Toucan TF80 Luxury Waterproof Laminate — TF8001 (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8001_Sideview_3276dccf-2c40-4ebe-b2a3-de1f125a0322.webp?v=1742509596",
+      "filename": "toucan-tf8001-laminate-7-7in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8001-Sideview_68cd4c04-5edc-487e-b9a4-0c2d92df1a21.webp?v=1742509597",
+      "filename": "toucan-tf8001-laminate-7-7in-swatch-2.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8001",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8001_Sideview_3276dccf-2c40-4ebe-b2a3-de1f125a0322.webp?v=1742509596",
+     "sha1": "18060e7f69bac93308bfe0ccbf30e4fc9257b3b7",
+     "page": "https://www.toucanflooring.com/products/tf8001",
+     "width": 1200,
+     "height": 1200
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8001-Sideview_68cd4c04-5edc-487e-b9a4-0c2d92df1a21.webp?v=1742509597",
+     "sha1": "35c2dc147c9efdeca7cebdddeab5319b7c890b23",
+     "page": "https://www.toucanflooring.com/products/tf8001",
+     "width": 1200,
+     "height": 675
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a813e77dc8c2",
+   "seq": 27,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recLP7RmrGDJRtgl4",
+   "sku": "LAM-TRIF-TF8003",
+   "product_name": "Toucan TF80 Luxury Waterproof Laminate — TF8003 (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8003_Sideview_9f288895-e14d-43eb-bab5-dd419fdfc5d4.webp?v=1742509595",
+      "filename": "toucan-tf8003-laminate-7-7in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8003-Sideview.jpg?v=1742509595",
+      "filename": "toucan-tf8003-laminate-7-7in-swatch-2.jpg"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8003",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8003_Sideview_9f288895-e14d-43eb-bab5-dd419fdfc5d4.webp?v=1742509595",
+     "sha1": "ed68042811c67bda4e5d2c1565b105936ef5c625",
+     "page": "https://www.toucanflooring.com/products/tf8003",
+     "width": 1200,
+     "height": 1200
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8003-Sideview.jpg?v=1742509595",
+     "sha1": "fb375c55e57bdb03f137c881e0f394fdfea3ae57",
+     "page": "https://www.toucanflooring.com/products/tf8003",
+     "width": 1200,
+     "height": 675
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b387110d12f4",
+   "seq": 28,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recfyHATTvblkaoZa",
+   "sku": "LAM-TRIF-TF8004",
+   "product_name": "Toucan TF80 Luxury Waterproof Laminate — TF8004 (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8004-Sideview_63209107-43b3-4530-ae0e-01d98ffa561d.webp?v=1742509431",
+      "filename": "toucan-tf8004-laminate-7-7in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8004_Sideview_319095f1-9ebf-42fa-b942-15a36da04fbc.webp?v=1742509431",
+      "filename": "toucan-tf8004-laminate-7-7in-swatch-2.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8004",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8004-Sideview_63209107-43b3-4530-ae0e-01d98ffa561d.webp?v=1742509431",
+     "sha1": "761010a6a2b6e8885e999bf2020ab70820bf19dc",
+     "page": "https://www.toucanflooring.com/products/tf8004",
+     "width": 1200,
+     "height": 675
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8004_Sideview_319095f1-9ebf-42fa-b942-15a36da04fbc.webp?v=1742509431",
+     "sha1": "a382b432c7e0e4c539a7a5c9536ae8ac94f5304a",
+     "page": "https://www.toucanflooring.com/products/tf8004",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-28ce31275a5c",
+   "seq": 29,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recwZpyeWidkU8L6I",
+   "sku": "LAM-TRIF-TF8005",
+   "product_name": "Toucan TF80 Luxury Waterproof Laminate — TF8005 (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8005_Sideview_5cdf048f-9be7-4e71-ab6c-58fe45aa94c8.webp?v=1742509594",
+      "filename": "toucan-tf8005-laminate-7-7in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8005-Sideview_14b4308d-7a43-440e-b691-5498e162f599.webp?v=1742509594",
+      "filename": "toucan-tf8005-laminate-7-7in-swatch-2.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8005",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8005_Sideview_5cdf048f-9be7-4e71-ab6c-58fe45aa94c8.webp?v=1742509594",
+     "sha1": "7c5497dfc8cc4ef4eff204fe4cd8a369c44bd766",
+     "page": "https://www.toucanflooring.com/products/tf8005",
+     "width": 1200,
+     "height": 1200
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8005-Sideview_14b4308d-7a43-440e-b691-5498e162f599.webp?v=1742509594",
+     "sha1": "f4cd554000890ad06b389871655a97dea20768d2",
+     "page": "https://www.toucanflooring.com/products/tf8005",
+     "width": 1200,
+     "height": 675
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-20eee8530316",
+   "seq": 30,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec3EFiucv0VnuxjT",
+   "sku": "LAM-TRIF-TF8006",
+   "product_name": "Toucan TF80 Luxury Waterproof Laminate — TF8006 (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8006_Sideview_26a2c7f7-27ae-4231-be48-5a5e2a5152d0.webp?v=1742509593",
+      "filename": "toucan-tf8006-laminate-7-7in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8006-Sideview_838267b2-284a-4875-99d0-04ce7102504d.webp?v=1742509593",
+      "filename": "toucan-tf8006-laminate-7-7in-swatch-2.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8006",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8006_Sideview_26a2c7f7-27ae-4231-be48-5a5e2a5152d0.webp?v=1742509593",
+     "sha1": "227b9dca1f16d32d1b65706bd16bed60cb40cd3a",
+     "page": "https://www.toucanflooring.com/products/tf8006",
+     "width": 1200,
+     "height": 1200
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8006-Sideview_838267b2-284a-4875-99d0-04ce7102504d.webp?v=1742509593",
+     "sha1": "946a04e31f67ddf9abe3c92683be4061e4617b91",
+     "page": "https://www.toucanflooring.com/products/tf8006",
+     "width": 1200,
+     "height": 675
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-06918746ad52",
+   "seq": 31,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recBbUAu2kGUKaXVP",
+   "sku": "LAM-TRIF-TF8007",
+   "product_name": "Toucan TF80 Luxury Waterproof Laminate — TF8007 (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8007_Sideview_8b89f8b7-2860-48f3-942d-6b08aae51dce.webp?v=1742509592",
+      "filename": "toucan-tf8007-laminate-7-7in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8007-Sideview.jpg?v=1742509593",
+      "filename": "toucan-tf8007-laminate-7-7in-swatch-2.jpg"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8007",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8007_Sideview_8b89f8b7-2860-48f3-942d-6b08aae51dce.webp?v=1742509592",
+     "sha1": "a57514f203f5e1820ef4b90855047c9ecb361899",
+     "page": "https://www.toucanflooring.com/products/tf8007",
+     "width": 1200,
+     "height": 1200
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8007-Sideview.jpg?v=1742509593",
+     "sha1": "d0e6aac9c930a56c79b1de2c83f727c46f4badf9",
+     "page": "https://www.toucanflooring.com/products/tf8007",
+     "width": 1200,
+     "height": 675
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-e9d30dcbbbd6",
+   "seq": 32,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recyiM7pSKYMs6V61",
+   "sku": "LAM-TRIF-TF8008",
+   "product_name": "Toucan TF80 Luxury Waterproof Laminate — TF8008 (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8008_Sideview_1869de4a-0ff2-4b35-9382-a4e0464deafe.webp?v=1742509592",
+      "filename": "toucan-tf8008-laminate-7-7in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8008-Sideview_baeeafe6-bb65-4cae-a3a1-054d03078260.webp?v=1742509592",
+      "filename": "toucan-tf8008-laminate-7-7in-swatch-2.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8008",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8008_Sideview_1869de4a-0ff2-4b35-9382-a4e0464deafe.webp?v=1742509592",
+     "sha1": "b03a6097535b756fb7e6b64dea243b2a454d0c15",
+     "page": "https://www.toucanflooring.com/products/tf8008",
+     "width": 1200,
+     "height": 1200
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8008-Sideview_baeeafe6-bb65-4cae-a3a1-054d03078260.webp?v=1742509592",
+     "sha1": "88743c95d2594e50e982fa90d6f28c0262327703",
+     "page": "https://www.toucanflooring.com/products/tf8008",
+     "width": 1200,
+     "height": 675
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-1d6166eaccd7",
+   "seq": 33,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recNkMaCU3SmNYf0p",
+   "sku": "LAM-TRIF-TF8010",
+   "product_name": "Toucan TF80 Luxury Waterproof Laminate — TF8010 (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8010_Sideview_aab32d30-90cf-46ba-8704-1b32efc43ced.webp?v=1742509430",
+      "filename": "toucan-tf8010-laminate-7-7in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8010-Sideview_337e416e-dccb-4c50-8f37-53f0db5ff15e.webp?v=1742509430",
+      "filename": "toucan-tf8010-laminate-7-7in-swatch-2.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8010",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8010_Sideview_aab32d30-90cf-46ba-8704-1b32efc43ced.webp?v=1742509430",
+     "sha1": "d759746255d79b6353ef20c8c8068138ee4f5c0a",
+     "page": "https://www.toucanflooring.com/products/tf8010",
+     "width": 1200,
+     "height": 1200
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8010-Sideview_337e416e-dccb-4c50-8f37-53f0db5ff15e.webp?v=1742509430",
+     "sha1": "d1daa06249ea6c554a6fc6de7a474e26d7d92253",
+     "page": "https://www.toucanflooring.com/products/tf8010",
+     "width": 1200,
+     "height": 675
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-d5b8c32f5b35",
+   "seq": 34,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recYYVvtdXKs3rHIw",
+   "sku": "LAM-TRIF-TF8011",
+   "product_name": "Toucan TF80 Luxury Waterproof Laminate — TF8011 (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8011_Sideview_5ba8e6a2-9a94-47c1-a4d9-b779f6f02fb4.webp?v=1742509590",
+      "filename": "toucan-tf8011-laminate-7-7in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8011-Sideview_c990c877-396b-4fcc-86b3-06321b53ce08.webp?v=1742509590",
+      "filename": "toucan-tf8011-laminate-7-7in-swatch-2.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8011",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8011_Sideview_5ba8e6a2-9a94-47c1-a4d9-b779f6f02fb4.webp?v=1742509590",
+     "sha1": "e7f4ae11b9f2f46041cdc716b5049e3c089c3b41",
+     "page": "https://www.toucanflooring.com/products/tf8011",
+     "width": 1200,
+     "height": 1200
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8011-Sideview_c990c877-396b-4fcc-86b3-06321b53ce08.webp?v=1742509590",
+     "sha1": "b091266e9acc679a4826c99a95c5f1867ba0bdc3",
+     "page": "https://www.toucanflooring.com/products/tf8011",
+     "width": 1200,
+     "height": 675
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2f991ea733af",
+   "seq": 35,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recbplr9PeNBBW3Hi",
+   "sku": "LAM-TRIF-TF8012",
+   "product_name": "Toucan TF80 Luxury Waterproof Laminate — TF8012 (7.7\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8012_Sideview_ba895641-eb68-4246-8788-388e5ff653d6.webp?v=1742509429",
+      "filename": "toucan-tf8012-laminate-7-7in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8012-Sideview_d818ec50-ac6c-4c44-89a5-2dcb678b2ddb.webp?v=1742509429",
+      "filename": "toucan-tf8012-laminate-7-7in-swatch-2.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8012",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8012_Sideview_ba895641-eb68-4246-8788-388e5ff653d6.webp?v=1742509429",
+     "sha1": "0326ec2d08d788a799a7657a74614fd21e9b2a2c",
+     "page": "https://www.toucanflooring.com/products/tf8012",
+     "width": 1200,
+     "height": 1200
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8012-Sideview_d818ec50-ac6c-4c44-89a5-2dcb678b2ddb.webp?v=1742509429",
+     "sha1": "4fef48dad8b220880207c76176f9b7de43546288",
+     "page": "https://www.toucanflooring.com/products/tf8012",
+     "width": 1200,
+     "height": 675
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-75e115dfc276",
+   "seq": 36,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recGPQbMGLBUvcwou",
+   "sku": "LAM-TRIF-TF8301",
+   "product_name": "Toucan TF83 Waterproof Laminate — Arctic Hare (9.37\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8301_1_e1e1c854-8bd0-4a76-9fa8-dc712308e8c8.webp?v=1752008450",
+      "filename": "toucan-arctic-hare-laminate-9-37in-tf8301-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8301-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8301_1_e1e1c854-8bd0-4a76-9fa8-dc712308e8c8.webp?v=1752008450",
+     "sha1": "32169a1317c9f13bb5808371a79194232345a12f",
+     "page": "https://www.toucanflooring.com/products/tf8301-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-1656ad184d4b",
+   "seq": 37,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recpTZVD1nwtnNrFl",
+   "sku": "LAM-TRIF-TF8302",
+   "product_name": "Toucan TF83 Waterproof Laminate — Beaver (9.37\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8302_1_ca6e43f7-2b4f-4648-be20-4b9cdb9a8ab5.webp?v=1752008459",
+      "filename": "toucan-beaver-laminate-9-37in-tf8302-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8302-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8302_1_ca6e43f7-2b4f-4648-be20-4b9cdb9a8ab5.webp?v=1752008459",
+     "sha1": "07727f4ec39b11af917eddfd513c5b5221d126cb",
+     "page": "https://www.toucanflooring.com/products/tf8302-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-e923e1f29c1e",
+   "seq": 38,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recY297idVgOlfeCI",
+   "sku": "LAM-TRIF-TF8303",
+   "product_name": "Toucan TF83 Waterproof Laminate — Caribou (9.37\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8303_1_5bdd58f1-bfa0-4004-b309-16c87f4cc722.webp?v=1752008464",
+      "filename": "toucan-caribou-laminate-9-37in-tf8303-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8303-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8303_1_5bdd58f1-bfa0-4004-b309-16c87f4cc722.webp?v=1752008464",
+     "sha1": "7a9bb43baed4ce885b12efc6aa8988782140ed14",
+     "page": "https://www.toucanflooring.com/products/tf8303-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5bb817422709",
+   "seq": 39,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recXdv9lOMsgfnp8b",
+   "sku": "LAM-TRIF-TF8304",
+   "product_name": "Toucan TF83 Waterproof Laminate — Pika (9.37\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8304_1_189393ed-a05e-4e24-9ffb-7075b6780459.webp?v=1752008470",
+      "filename": "toucan-pika-laminate-9-37in-tf8304-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8304-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8304_1_189393ed-a05e-4e24-9ffb-7075b6780459.webp?v=1752008470",
+     "sha1": "7fc5855df73d6e19d8361ba8e82c4709e2b5f31c",
+     "page": "https://www.toucanflooring.com/products/tf8304-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b015a4c7e3d3",
+   "seq": 40,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recHzcVAzALOFJuei",
+   "sku": "LAM-TRIF-TF8305",
+   "product_name": "Toucan TF83 Waterproof Laminate — Otter (9.37\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8305_1_8fb69383-9f8a-4635-94f3-c21031e278cf.webp?v=1752008476",
+      "filename": "toucan-otter-laminate-9-37in-tf8305-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8305-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8305_1_8fb69383-9f8a-4635-94f3-c21031e278cf.webp?v=1752008476",
+     "sha1": "4f0496b14fba4024802157f1565208b1e6295177",
+     "page": "https://www.toucanflooring.com/products/tf8305-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-358fb4fd081d",
+   "seq": 41,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recqm5szJnArzCb8W",
+   "sku": "LAM-TRIF-TF8306",
+   "product_name": "Toucan TF83 Waterproof Laminate — Canadian Goose (9.37\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8306_1_ed7c926c-8c3f-4797-b8de-b5278337560d.webp?v=1752008483",
+      "filename": "toucan-canadian-goose-laminate-9-37in-tf8306-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8306-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8306_1_ed7c926c-8c3f-4797-b8de-b5278337560d.webp?v=1752008483",
+     "sha1": "6ac710696937fcb208f97728e0fddec05c720dc0",
+     "page": "https://www.toucanflooring.com/products/tf8306-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-714d116bbe84",
+   "seq": 42,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recy6PHA79fkVNNVL",
+   "sku": "LAM-TRIF-TF8307",
+   "product_name": "Toucan TF83 Waterproof Laminate — Prairie Dog (9.37\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8307_1_1579fb75-f38c-4b62-a7af-60248ec38bd2.webp?v=1752008489",
+      "filename": "toucan-prairie-dog-laminate-9-37in-tf8307-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8307-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8307_1_1579fb75-f38c-4b62-a7af-60248ec38bd2.webp?v=1752008489",
+     "sha1": "19a2bb8158b76d067a4a882c66efc99aa00ea08b",
+     "page": "https://www.toucanflooring.com/products/tf8307-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2fb5fc26c4ad",
+   "seq": 43,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recAyQO3irMejSCtv",
+   "sku": "LAM-TRIF-TF8308",
+   "product_name": "Toucan TF83 Waterproof Laminate — Ferret (9.37\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8308_1_229c7af7-2dc0-48c8-90c9-27c569501ea6.webp?v=1752008494",
+      "filename": "toucan-ferret-laminate-9-37in-tf8308-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8308-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8308_1_229c7af7-2dc0-48c8-90c9-27c569501ea6.webp?v=1752008494",
+     "sha1": "66c150e3009fd91541c2498cd107df95750c4d37",
+     "page": "https://www.toucanflooring.com/products/tf8308-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b8704b8d7c4d",
+   "seq": 44,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec8LQN6rekB4tcPL",
+   "sku": "LAM-TRIF-TF8309",
+   "product_name": "Toucan TF83 Waterproof Laminate — Grizzly (9.37\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8309_1_47dbe5c4-1add-4233-9da2-1c8390a96d5f.webp?v=1752008500",
+      "filename": "toucan-grizzly-laminate-9-37in-tf8309-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8309-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8309_1_47dbe5c4-1add-4233-9da2-1c8390a96d5f.webp?v=1752008500",
+     "sha1": "72cccc9621fad6c2cd8d9770c5d202edf2e0e942",
+     "page": "https://www.toucanflooring.com/products/tf8309-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-512013bd1b97",
+   "seq": 45,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recRwWVRNaiHDnSjE",
+   "sku": "LAM-TRIF-TF8310",
+   "product_name": "Toucan TF83 Waterproof Laminate — Walrus (9.37\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8310_1_983210f4-c481-426b-a113-e7f8b2e4df2e.webp?v=1752008506",
+      "filename": "toucan-walrus-laminate-9-37in-tf8310-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8310-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8310_1_983210f4-c481-426b-a113-e7f8b2e4df2e.webp?v=1752008506",
+     "sha1": "ae545873bf93945105f72b1175d8dddfc41ba16e",
+     "page": "https://www.toucanflooring.com/products/tf8310-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-c81b6c1c2316",
+   "seq": 46,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec7NjvDcKftFOHIU",
+   "sku": "LAM-TRIF-TF8311",
+   "product_name": "Toucan TF83 Waterproof Laminate — Chipmunk (9.37\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8311_1_78d79d97-8f34-4e18-b798-a1e0946a13eb.webp?v=1752008512",
+      "filename": "toucan-chipmunk-laminate-9-37in-tf8311-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8311-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8311_1_78d79d97-8f34-4e18-b798-a1e0946a13eb.webp?v=1752008512",
+     "sha1": "b5a933459e1f76996a897e668e9910dc5a4431b8",
+     "page": "https://www.toucanflooring.com/products/tf8311-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-572a2a41f6ae",
+   "seq": 47,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec2kRkSon8eG9apB",
+   "sku": "LAM-TRIF-TF8312",
+   "product_name": "Toucan TF83 Waterproof Laminate — Lynx (9.37\" x 12.3mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8312_1_d915c70e-bfe7-473a-939d-08e7d6165f19.webp?v=1752008518",
+      "filename": "toucan-lynx-laminate-9-37in-tf8312-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tf8312-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TF8312_1_d915c70e-bfe7-473a-939d-08e7d6165f19.webp?v=1752008518",
+     "sha1": "9fcf96da5d2e446100ded7f49d923b973959799f",
+     "page": "https://www.toucanflooring.com/products/tf8312-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-23d41a118810",
+   "seq": 48,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recw2C6jizJh4vNgl",
+   "sku": "LVP-TRIF-TFL605",
+   "product_name": "Toucan Looselay Vinyl — TFL605 (7.4\" x 5.0mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFL605_sideview-detail_1588ce65-c85f-468e-a695-85b33b80f246.webp?v=1742509575",
+      "filename": "toucan-tfl605-lvp-7-4in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfl605",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFL605_sideview-detail_1588ce65-c85f-468e-a695-85b33b80f246.webp?v=1742509575",
+     "sha1": "f7c86c7bcd6ce420f5ffe05d73225eef5699c643",
+     "page": "https://www.toucanflooring.com/products/tfl605",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8f08fbda5a09",
+   "seq": 49,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recVBxbzo3PObzM9d",
+   "sku": "LVP-TRIF-TFL610",
+   "product_name": "Toucan Looselay Vinyl — TFL610 (7.4\" x 5.0mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFL610_Vinyl.webp?v=1744751033",
+      "filename": "toucan-tfl610-lvp-7-4in-swatch.webp"
+     }
+    ],
+    "Supplier product page": "https://www.toucanflooring.com/products/tfl610"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfl610",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFL610_Vinyl.webp?v=1744751033",
+     "sha1": "6415c01a91f83a66dc18254cbd40b7773d6d5462",
+     "page": "https://www.toucanflooring.com/products/tfl610",
+     "width": 1200,
+     "height": 800
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b79b95043ea2",
+   "seq": 50,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reciH6OY6pqPCU2Pk",
+   "sku": "LVP-TRIF-TFL623",
+   "product_name": "Toucan Looselay Vinyl — Northern Fog (7.4\" x 5.0mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFL623_1_aba77465-a1f1-4d28-9079-8683949f0dfe.jpg?v=1752681222",
+      "filename": "toucan-northern-fog-lvp-7-4in-tfl623-swatch.jpg"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfl623",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFL623_1_aba77465-a1f1-4d28-9079-8683949f0dfe.jpg?v=1752681222",
+     "sha1": "39586fc2bfcf881d5ad7fdc35be76ba1e7e5ccf0",
+     "page": "https://www.toucanflooring.com/products/tfl623",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-59997071f3c6",
+   "seq": 51,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recYYaAEkq8ce7DQH",
+   "sku": "LVP-TRIF-TFSPC202-F",
+   "product_name": "Toucan SPC2 Vinyl — TFSPC202-F (7.2\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC202P-F_sideview-detail_3c0bfb73-0701-40c2-b55e-953c92d7b6e7.webp?v=1742509570",
+      "filename": "toucan-tfspc202-f-lvp-7-2in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc202-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC202P-F_sideview-detail_3c0bfb73-0701-40c2-b55e-953c92d7b6e7.webp?v=1742509570",
+     "sha1": "ab82471ff92609b7b1e9134b182369b3b9eab288",
+     "page": "https://www.toucanflooring.com/products/tfspc202-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ffec0ad96394",
+   "seq": 52,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recgQHrLmF1e4mH4h",
+   "sku": "LVP-TRIF-TFSPC208-F",
+   "product_name": "Toucan SPC2 Vinyl — TFSPC208-F (7.2\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC208P-F_sideview-detail.webp?v=1742509567",
+      "filename": "toucan-tfspc208-f-lvp-7-2in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC208-F_sideview-searchresults.webp?v=1742509567",
+      "filename": "toucan-tfspc208-f-lvp-7-2in-swatch-2.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc208-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC208P-F_sideview-detail.webp?v=1742509567",
+     "sha1": "031110b19f24975e899446b187da62c36b92e5dd",
+     "page": "https://www.toucanflooring.com/products/tfspc208-f",
+     "width": 1200,
+     "height": 900
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC208-F_sideview-searchresults.webp?v=1742509567",
+     "sha1": "74a14ee3dc4b0895f73318f9498a2205a4d2df15",
+     "page": "https://www.toucanflooring.com/products/tfspc208-f",
+     "width": 600,
+     "height": 600
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f66ab25e05ec",
+   "seq": 53,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recR3KZGpLrYJE5YR",
+   "sku": "LVP-TRIF-TFSPC216-F",
+   "product_name": "Toucan SPC2 Vinyl — TFSPC216-F (7.2\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC216P-F_sideview-detail.webp?v=1742509562",
+      "filename": "toucan-tfspc216-f-lvp-7-2in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc216-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC216P-F_sideview-detail.webp?v=1742509562",
+     "sha1": "4bf3f613d17d63f1fd114a62e0d503e0a81f0094",
+     "page": "https://www.toucanflooring.com/products/tfspc216-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-44b768a14239",
+   "seq": 54,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recPhJRWkMUf4GShU",
+   "sku": "LVP-TRIF-TFSPC251-F",
+   "product_name": "Toucan SPC2 Vinyl — TFSPC251-F (7.2\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC251-F_sideview-detail_633a49d7-12f4-426f-973d-5286637a6d3d.webp?v=1742509561",
+      "filename": "toucan-tfspc251-f-lvp-7-2in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc251-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC251-F_sideview-detail_633a49d7-12f4-426f-973d-5286637a6d3d.webp?v=1742509561",
+     "sha1": "1ec8d684538080699650547d452d97ee9ddaa6ee",
+     "page": "https://www.toucanflooring.com/products/tfspc251-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f65b6f943973",
+   "seq": 55,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recMCIgXZJq489Hbr",
+   "sku": "LVP-TRIF-TFSPC253-F",
+   "product_name": "Toucan SPC2 Vinyl — TFSPC253-F (7.2\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC253P-F_sideview-detail.webp?v=1742509558",
+      "filename": "toucan-tfspc253-f-lvp-7-2in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC253-F_sideview-searchresults.webp?v=1742509558",
+      "filename": "toucan-tfspc253-f-lvp-7-2in-swatch-2.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc253-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC253P-F_sideview-detail.webp?v=1742509558",
+     "sha1": "b703c7e0c3ecef897f2e2890f065ae965e719118",
+     "page": "https://www.toucanflooring.com/products/tfspc253-f",
+     "width": 1200,
+     "height": 900
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC253-F_sideview-searchresults.webp?v=1742509558",
+     "sha1": "6f6398a7bc6623e2e137a14f5236a75c47c613eb",
+     "page": "https://www.toucanflooring.com/products/tfspc253-f",
+     "width": 600,
+     "height": 600
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b4cd32485f36",
+   "seq": 56,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recllgylULmGf0wiB",
+   "sku": "LVP-TRIF-TFSPC301-F",
+   "product_name": "Toucan SPC3 Vinyl — TFSPC301-F (7.2\" x 4.2mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC301P-F_sideview-detail.webp?v=1742509548",
+      "filename": "toucan-tfspc301-f-lvp-7-2in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC301-F_sideview-searchresults.webp?v=1742509548",
+      "filename": "toucan-tfspc301-f-lvp-7-2in-swatch-2.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc301-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC301P-F_sideview-detail.webp?v=1742509548",
+     "sha1": "a6f10e893ecc7b8c9a5790d7ec9e4558e029c0da",
+     "page": "https://www.toucanflooring.com/products/tfspc301-f",
+     "width": 1200,
+     "height": 900
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC301-F_sideview-searchresults.webp?v=1742509548",
+     "sha1": "fd58ac038b03d4a5965955422ce917d9d4081ad4",
+     "page": "https://www.toucanflooring.com/products/tfspc301-f",
+     "width": 600,
+     "height": 600
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-847b1555d753",
+   "seq": 57,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recvDyzLNwEMkIsqr",
+   "sku": "LVP-TRIF-TFSPC304-F",
+   "product_name": "Toucan SPC3 Vinyl — TFSPC304-F (7.2\" x 4.2mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC304P-F_sideview-detail_fdfecde6-2a6a-45c4-91d4-f720473a731d.webp?v=1742509545",
+      "filename": "toucan-tfspc304-f-lvp-7-2in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc304-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC304P-F_sideview-detail_fdfecde6-2a6a-45c4-91d4-f720473a731d.webp?v=1742509545",
+     "sha1": "45039ded018dc7ed5201ffc1d622989c2d3c40a6",
+     "page": "https://www.toucanflooring.com/products/tfspc304-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-496681b3f589",
+   "seq": 58,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rechV0itCgZTtvz4Z",
+   "sku": "LVP-TRIF-TFSPC307-F",
+   "product_name": "Toucan SPC3 Vinyl — TFSPC307-F (7.2\" x 4.2mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC307P-F_sideview-detail.webp?v=1742509541",
+      "filename": "toucan-tfspc307-f-lvp-7-2in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC307-F_sideview-searchresults.webp?v=1742509541",
+      "filename": "toucan-tfspc307-f-lvp-7-2in-swatch-2.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc307-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC307P-F_sideview-detail.webp?v=1742509541",
+     "sha1": "d2d4f7fbdb918df041c6007ba8ccc4fffb4bdcf1",
+     "page": "https://www.toucanflooring.com/products/tfspc307-f",
+     "width": 1200,
+     "height": 900
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC307-F_sideview-searchresults.webp?v=1742509541",
+     "sha1": "f0f5ed639cac6226fb609630fb8adbf07328b690",
+     "page": "https://www.toucanflooring.com/products/tfspc307-f",
+     "width": 600,
+     "height": 600
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-397922a26fdd",
+   "seq": 59,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recP4WC9LLLoYOC1J",
+   "sku": "LVP-TRIF-TFSPC310-F",
+   "product_name": "Toucan SPC3 Vinyl — TFSPC310-F (7.2\" x 4.2mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC310P-F_sideview-detail.webp?v=1742509537",
+      "filename": "toucan-tfspc310-f-lvp-7-2in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc310-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC310P-F_sideview-detail.webp?v=1742509537",
+     "sha1": "5e501fdccb25cb4027a03ccb7c2c2121699c90bd",
+     "page": "https://www.toucanflooring.com/products/tfspc310-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-119daab7fd58",
+   "seq": 60,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recKylLRoZLGKjArK",
+   "sku": "LVP-TRIF-TFSPC311-F",
+   "product_name": "Toucan SPC3 Vinyl — TFSPC311-F (7.2\" x 4.2mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC311P-F_sideview-detail.webp?v=1742509536",
+      "filename": "toucan-tfspc311-f-lvp-7-2in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc311-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC311P-F_sideview-detail.webp?v=1742509536",
+     "sha1": "fc4cb0d347baeb0023689752bfc7caf1b7cd5800",
+     "page": "https://www.toucanflooring.com/products/tfspc311-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-65e7ecac390c",
+   "seq": 61,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recPxJKCRjT4o07rQ",
+   "sku": "LVP-TRIF-TFSPC312-F",
+   "product_name": "Toucan SPC3 Vinyl — TFSPC312-F (7.2\" x 4.2mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC312P-F_sideview-detail_a5aa725a-fdf3-4906-8681-328702249711.webp?v=1742509535",
+      "filename": "toucan-tfspc312-f-lvp-7-2in-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc312-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC312P-F_sideview-detail_a5aa725a-fdf3-4906-8681-328702249711.webp?v=1742509535",
+     "sha1": "a334751bb246d55b083c68f95a135138c9b8b9f1",
+     "page": "https://www.toucanflooring.com/products/tfspc312-f",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-76ff100581f8",
+   "seq": 62,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recxIlCktHwUkwt0I",
+   "sku": "LVP-TRIF-TFSPC401-F",
+   "product_name": "Toucan SPC4 Vinyl — TFSPC401-F (9.0\" x 7.0mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC401_Sideview.webp?v=1742509530",
+      "filename": "toucan-tfspc401-f-lvp-9in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC401-Sideview.webp?v=1742509530",
+      "filename": "toucan-tfspc401-f-lvp-9in-swatch-2.webp"
+     }
+    ],
+    "Supplier product page": "https://www.toucanflooring.com/products/tfspc401-f"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc401-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC401_Sideview.webp?v=1742509530",
+     "sha1": "adfd8bcabe84e580ef12967a323fec3c840752e5",
+     "page": "https://www.toucanflooring.com/products/tfspc401-f",
+     "width": 1200,
+     "height": 1200
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC401-Sideview.webp?v=1742509530",
+     "sha1": "37d9035421003039e209a88972375eba1f56be25",
+     "page": "https://www.toucanflooring.com/products/tfspc401-f",
+     "width": 1200,
+     "height": 675
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8b4edafe5023",
+   "seq": 63,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recFsEZmqafZW6TsV",
+   "sku": "LVP-TRIF-TFSPC402-F",
+   "product_name": "Toucan SPC4 Vinyl — TFSPC402-F (9.0\" x 7.0mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC402_Sideview.webp?v=1742509421",
+      "filename": "toucan-tfspc402-f-lvp-9in-swatch.webp"
+     }
+    ],
+    "Supplier product page": "https://www.toucanflooring.com/products/tfspc402-f"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc402-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC402_Sideview.webp?v=1742509421",
+     "sha1": "106e220059f66e855207fb01b21d3825080a853b",
+     "page": "https://www.toucanflooring.com/products/tfspc402-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-49d59906ca53",
+   "seq": 64,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec1eTDucHev92gx6",
+   "sku": "LVP-TRIF-TFSPC403-F",
+   "product_name": "Toucan SPC4 Vinyl — TFSPC403-F (9.0\" x 7.0mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC403_Sideview.webp?v=1742509420",
+      "filename": "toucan-tfspc403-f-lvp-9in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC403-Sideview.webp?v=1742509420",
+      "filename": "toucan-tfspc403-f-lvp-9in-swatch-2.webp"
+     }
+    ],
+    "Supplier product page": "https://www.toucanflooring.com/products/tfspc403-f"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc403-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC403_Sideview.webp?v=1742509420",
+     "sha1": "f9e60b9f363366dbdd99583f8f59f105ec1b6f56",
+     "page": "https://www.toucanflooring.com/products/tfspc403-f",
+     "width": 1200,
+     "height": 1200
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC403-Sideview.webp?v=1742509420",
+     "sha1": "7313c9435049ec7a689c6319f798e7c27cafe0f3",
+     "page": "https://www.toucanflooring.com/products/tfspc403-f",
+     "width": 1200,
+     "height": 675
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-690cd6801ffb",
+   "seq": 65,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec8B04bQyomKz4LA",
+   "sku": "LVP-TRIF-TFSPC404-F",
+   "product_name": "Toucan SPC4 Vinyl — TFSPC404-F (9.0\" x 7.0mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC404_Sideview.webp?v=1742509529",
+      "filename": "toucan-tfspc404-f-lvp-9in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC404-Sideview.webp?v=1742509529",
+      "filename": "toucan-tfspc404-f-lvp-9in-swatch-2.webp"
+     }
+    ],
+    "Supplier product page": "https://www.toucanflooring.com/products/tfspc404-f"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc404-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC404_Sideview.webp?v=1742509529",
+     "sha1": "2c938d2b6d2073d1bfa537b5ef45141443dc0890",
+     "page": "https://www.toucanflooring.com/products/tfspc404-f",
+     "width": 1200,
+     "height": 1200
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC404-Sideview.webp?v=1742509529",
+     "sha1": "2851ddf236b43f478751a29fe5c2f8d3bd7a831c",
+     "page": "https://www.toucanflooring.com/products/tfspc404-f",
+     "width": 1200,
+     "height": 675
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ac7fe0cc635d",
+   "seq": 66,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recDP2yWuS0KjJYjv",
+   "sku": "LVP-TRIF-TFSPC405-F",
+   "product_name": "Toucan SPC4 Vinyl — TFSPC405-F (9.0\" x 7.0mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC405_Sideview.webp?v=1742509527",
+      "filename": "toucan-tfspc405-f-lvp-9in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC405-Sideview.webp?v=1742509528",
+      "filename": "toucan-tfspc405-f-lvp-9in-swatch-2.webp"
+     }
+    ],
+    "Supplier product page": "https://www.toucanflooring.com/products/tfspc405-f"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc405-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC405_Sideview.webp?v=1742509527",
+     "sha1": "354654f19519f26845ec32d9f36ae1f2ab391b9e",
+     "page": "https://www.toucanflooring.com/products/tfspc405-f",
+     "width": 1200,
+     "height": 1200
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC405-Sideview.webp?v=1742509528",
+     "sha1": "36cd136cc70ded45e4d27437cb247c5bc3d94427",
+     "page": "https://www.toucanflooring.com/products/tfspc405-f",
+     "width": 1200,
+     "height": 675
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-3a4c456918ad",
+   "seq": 67,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec1mOgAcx6E3XXFV",
+   "sku": "LVP-TRIF-TFSPC407-F",
+   "product_name": "Toucan SPC4 Vinyl — TFSPC407-F (9.0\" x 7.0mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC407_Sideview.webp?v=1742509525",
+      "filename": "toucan-tfspc407-f-lvp-9in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC407-Sideview.webp?v=1742509525",
+      "filename": "toucan-tfspc407-f-lvp-9in-swatch-2.webp"
+     }
+    ],
+    "Supplier product page": "https://www.toucanflooring.com/products/tfspc407-f"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc407-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC407_Sideview.webp?v=1742509525",
+     "sha1": "1e01705f311923b15d5d551be0f40c83cecbabc3",
+     "page": "https://www.toucanflooring.com/products/tfspc407-f",
+     "width": 1200,
+     "height": 1200
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC407-Sideview.webp?v=1742509525",
+     "sha1": "ea7dab390f0476392667fd52da56dcb988e4463e",
+     "page": "https://www.toucanflooring.com/products/tfspc407-f",
+     "width": 1200,
+     "height": 675
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-6268214d34c1",
+   "seq": 68,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reczZmbhYNxamTtSB",
+   "sku": "LVP-TRIF-TFSPC408-F",
+   "product_name": "Toucan SPC4 Vinyl — TFSPC408-F (9.0\" x 7.0mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC408_Sideview.webp?v=1742509524",
+      "filename": "toucan-tfspc408-f-lvp-9in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC408-Sideview.webp?v=1742509524",
+      "filename": "toucan-tfspc408-f-lvp-9in-swatch-2.webp"
+     }
+    ],
+    "Supplier product page": "https://www.toucanflooring.com/products/tfspc408-f"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc408-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC408_Sideview.webp?v=1742509524",
+     "sha1": "a7f06600529eefb3ace84e9a59ce7db49e692ba5",
+     "page": "https://www.toucanflooring.com/products/tfspc408-f",
+     "width": 1200,
+     "height": 1200
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC408-Sideview.webp?v=1742509524",
+     "sha1": "a03ee132530ca2439d863affae92ed3409e8b3e9",
+     "page": "https://www.toucanflooring.com/products/tfspc408-f",
+     "width": 1200,
+     "height": 675
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-9a1b05b21f80",
+   "seq": 69,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reclrVfAMVztyGX1J",
+   "sku": "LVP-TRIF-TFSPC409-F",
+   "product_name": "Toucan SPC4 Vinyl — TFSPC409-F (9.0\" x 7.0mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC409_Sideview.webp?v=1742509523",
+      "filename": "toucan-tfspc409-f-lvp-9in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC409-Sideview.webp?v=1742509523",
+      "filename": "toucan-tfspc409-f-lvp-9in-swatch-2.webp"
+     }
+    ],
+    "Supplier product page": "https://www.toucanflooring.com/products/tfspc409-f"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc409-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC409_Sideview.webp?v=1742509523",
+     "sha1": "df0423ec13537a54b17c91617fca86c7b8dcfd2b",
+     "page": "https://www.toucanflooring.com/products/tfspc409-f",
+     "width": 1200,
+     "height": 1200
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC409-Sideview.webp?v=1742509523",
+     "sha1": "1775d96df1c797b9890116e6ecbcea31fbdc5abe",
+     "page": "https://www.toucanflooring.com/products/tfspc409-f",
+     "width": 1200,
+     "height": 675
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-01f8a71c5c09",
+   "seq": 70,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "receQtpUlzw9PoVVa",
+   "sku": "LVP-TRIF-TFSPC410-F",
+   "product_name": "Toucan SPC4 Vinyl — TFSPC410-F (9.0\" x 7.0mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC410_Sideview.webp?v=1742509419",
+      "filename": "toucan-tfspc410-f-lvp-9in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC410_square.default.webp?v=1742509419",
+      "filename": "toucan-tfspc410-f-lvp-9in-swatch-2.webp"
+     }
+    ],
+    "Supplier product page": "https://www.toucanflooring.com/products/tfspc410-f"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc410-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC410_Sideview.webp?v=1742509419",
+     "sha1": "1e658bb0d1252307cb2d10c8df727cab6f0d4003",
+     "page": "https://www.toucanflooring.com/products/tfspc410-f",
+     "width": 1200,
+     "height": 675
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC410_square.default.webp?v=1742509419",
+     "sha1": "fe6a5daa80677bb29a17528358fd31fc0e6b4ac3",
+     "page": "https://www.toucanflooring.com/products/tfspc410-f",
+     "width": 675,
+     "height": 675
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-71aed003d607",
+   "seq": 71,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec8PIxXTJWLnGBmN",
+   "sku": "LVP-TRIF-TFSPC421",
+   "product_name": "Toucan SPC4 Cork-Backed Vinyl — TFSPC421 (9.0\" x 7.0mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC421_Sideview_4ecbc806-a2fd-4fb4-8271-ce4a42222944.webp?v=1742509533",
+      "filename": "toucan-tfspc421-lvp-9in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC421-Sideview.jpg?v=1742509533",
+      "filename": "toucan-tfspc421-lvp-9in-swatch-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.toucanflooring.com/products/tfspc421"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc421",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC421_Sideview_4ecbc806-a2fd-4fb4-8271-ce4a42222944.webp?v=1742509533",
+     "sha1": "55f0e34bc4363cb4b9ed670863ce71077f6ee77d",
+     "page": "https://www.toucanflooring.com/products/tfspc421",
+     "width": 1200,
+     "height": 1200
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC421-Sideview.jpg?v=1742509533",
+     "sha1": "fd1941da01a6ef1ece0b79e999bed495091e5a20",
+     "page": "https://www.toucanflooring.com/products/tfspc421",
+     "width": 1200,
+     "height": 675
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b38757a284d4",
+   "seq": 72,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recKHe4DKsb5o2y36",
+   "sku": "LVP-TRIF-TFSPC422",
+   "product_name": "Toucan SPC4 Cork-Backed Vinyl — TFSPC422 (9.0\" x 7.0mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC422_Sideview_480d4abe-dcfe-4d46-8881-40fda5a2f53e.webp?v=1742509532",
+      "filename": "toucan-tfspc422-lvp-9in-swatch.webp"
+     }
+    ],
+    "Supplier product page": "https://www.toucanflooring.com/products/tfspc422"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc422",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC422_Sideview_480d4abe-dcfe-4d46-8881-40fda5a2f53e.webp?v=1742509532",
+     "sha1": "38e52290ff537aa0c39003c17c12a3d39b07cdb8",
+     "page": "https://www.toucanflooring.com/products/tfspc422",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-1e75ecc15f6a",
+   "seq": 73,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recPVBwwI7wzM977R",
+   "sku": "LVP-TRIF-TFSPC423",
+   "product_name": "Toucan SPC4 Cork-Backed Vinyl — TFSPC423 (9.0\" x 7.0mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC423_SIDEVIEW_fce32435-6271-4a97-8900-c4fa7ee8f127.webp?v=1742509422",
+      "filename": "toucan-tfspc423-lvp-9in-swatch.webp"
+     }
+    ],
+    "Supplier product page": "https://www.toucanflooring.com/products/tfspc423"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc423",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC423_SIDEVIEW_fce32435-6271-4a97-8900-c4fa7ee8f127.webp?v=1742509422",
+     "sha1": "ca7b9b0bc89fedcd96af3fb03fc8815dd50cf9f4",
+     "page": "https://www.toucanflooring.com/products/tfspc423",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-87b7e38181ba",
+   "seq": 74,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recyPudrX3YrnixzT",
+   "sku": "LVP-TRIF-TFSPC424",
+   "product_name": "Toucan SPC4 Cork-Backed Vinyl — TFSPC424 (9.0\" x 7.0mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC424_Sideview_45ebcfab-5db2-4b3c-a472-67e85b9e4e60.webp?v=1742509531",
+      "filename": "toucan-tfspc424-lvp-9in-swatch.webp"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC424-Sideview_37b7b1e4-e50a-41fc-b7e4-2e1970164d37.webp?v=1742509531",
+      "filename": "toucan-tfspc424-lvp-9in-swatch-2.webp"
+     }
+    ],
+    "Supplier product page": "https://www.toucanflooring.com/products/tfspc424"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc424",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC424_Sideview_45ebcfab-5db2-4b3c-a472-67e85b9e4e60.webp?v=1742509531",
+     "sha1": "cb552509bc2a7f519d90e01e222c92e1aaeaa6f2",
+     "page": "https://www.toucanflooring.com/products/tfspc424",
+     "width": 1200,
+     "height": 1200
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC424-Sideview_37b7b1e4-e50a-41fc-b7e4-2e1970164d37.webp?v=1742509531",
+     "sha1": "58162ae089dc343fad29a77556fe5fb495437577",
+     "page": "https://www.toucanflooring.com/products/tfspc424",
+     "width": 1200,
+     "height": 675
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-c02a2b5fd3d9",
+   "seq": 75,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reciYIEzXuurZfW39",
+   "sku": "LVP-TRIF-TFSPC601-F",
+   "product_name": "Toucan SPC6 Vinyl — Barcelona (9.0\" x 5.5+1.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC601-F_1_f4cc9324-8383-4ce9-b1bf-31ee93bba32c.webp?v=1742509512",
+      "filename": "toucan-barcelona-lvp-9in-tfspc601-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc601-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC601-F_1_f4cc9324-8383-4ce9-b1bf-31ee93bba32c.webp?v=1742509512",
+     "sha1": "46002a6737befbb8803f1c944fdb9be6f7e836cc",
+     "page": "https://www.toucanflooring.com/products/tfspc601-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-d4a249f19750",
+   "seq": 76,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recl34aLdsMSPRlir",
+   "sku": "LVP-TRIF-TFSPC602-F",
+   "product_name": "Toucan SPC6 Vinyl — Rome (9.0\" x 5.5+1.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC602-F_1_7366bc31-f89f-46cc-b42b-4a9d2487af90.webp?v=1742509511",
+      "filename": "toucan-rome-lvp-9in-tfspc602-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc602-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC602-F_1_7366bc31-f89f-46cc-b42b-4a9d2487af90.webp?v=1742509511",
+     "sha1": "3eb79abb3caa14c25dee5df7cbea840024e5040b",
+     "page": "https://www.toucanflooring.com/products/tfspc602-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-7cfa64d1fea1",
+   "seq": 77,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recuvkpZ6sMftp8V0",
+   "sku": "LVP-TRIF-TFSPC603-F",
+   "product_name": "Toucan SPC6 Vinyl — London (9.0\" x 5.5+1.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC603-F_1_055fc350-7a14-440c-981b-18156bbf368b.webp?v=1742509510",
+      "filename": "toucan-london-lvp-9in-tfspc603-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc603-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC603-F_1_055fc350-7a14-440c-981b-18156bbf368b.webp?v=1742509510",
+     "sha1": "a09fbed910314181356b299de12e19c86a53d538",
+     "page": "https://www.toucanflooring.com/products/tfspc603-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a068edcc2241",
+   "seq": 78,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recFkLbU4Hi7u7dm4",
+   "sku": "LVP-TRIF-TFSPC604-F",
+   "product_name": "Toucan SPC6 Vinyl — Paris (9.0\" x 5.5+1.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC604-F_1_8c9cfe6c-b3ac-463d-a251-edaa30889dd5.webp?v=1742509508",
+      "filename": "toucan-paris-lvp-9in-tfspc604-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc604-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC604-F_1_8c9cfe6c-b3ac-463d-a251-edaa30889dd5.webp?v=1742509508",
+     "sha1": "21681f91ea490c93c14a3d3a8ffa9c6974430890",
+     "page": "https://www.toucanflooring.com/products/tfspc604-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-3c09edb09311",
+   "seq": 79,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec0str29f1qakN6I",
+   "sku": "LVP-TRIF-TFSPC605-F",
+   "product_name": "Toucan SPC6 Vinyl — Amsterdam (9.0\" x 5.5+1.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC605-F_1_8b0d495d-f329-4d09-a7f9-3c1ec893cf20.webp?v=1742509507",
+      "filename": "toucan-amsterdam-lvp-9in-tfspc605-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc605-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC605-F_1_8b0d495d-f329-4d09-a7f9-3c1ec893cf20.webp?v=1742509507",
+     "sha1": "a91776f0f2934da78e4cb0efa12b58682a940dc4",
+     "page": "https://www.toucanflooring.com/products/tfspc605-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-495782bd32d4",
+   "seq": 80,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recul2aUdKIpQ54je",
+   "sku": "LVP-TRIF-TFSPC606-F",
+   "product_name": "Toucan SPC6 Vinyl — Venice (9.0\" x 5.5+1.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC606-F_1_14e94369-4b16-4162-b3a2-182ff899762c.webp?v=1742509506",
+      "filename": "toucan-venice-lvp-9in-tfspc606-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc606-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC606-F_1_14e94369-4b16-4162-b3a2-182ff899762c.webp?v=1742509506",
+     "sha1": "47506a350652ce4500f809cb56b08ebc4f658602",
+     "page": "https://www.toucanflooring.com/products/tfspc606-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-d1e56084bc1e",
+   "seq": 81,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec3Z4cs5yBl72d02",
+   "sku": "LVP-TRIF-TFSPC607-F",
+   "product_name": "Toucan SPC6 Vinyl — Lion (9.0\" x 5.5+1.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC607-F_1_31f542fb-52d1-4de4-8385-6b7e2cb60173.webp?v=1742509505",
+      "filename": "toucan-lion-lvp-9in-tfspc607-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc607-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC607-F_1_31f542fb-52d1-4de4-8385-6b7e2cb60173.webp?v=1742509505",
+     "sha1": "2d79974de349c79a801db9705743eacea88815bc",
+     "page": "https://www.toucanflooring.com/products/tfspc607-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-922ef97b796e",
+   "seq": 82,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec1PEnm6dLHQWtrd",
+   "sku": "LVP-TRIF-TFSPC608-F",
+   "product_name": "Toucan SPC6 Vinyl — Istanbul (9.0\" x 5.5+1.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC608-F_1_50918bce-fdf6-43f0-8814-3e1a1def5c0d.webp?v=1742509503",
+      "filename": "toucan-istanbul-lvp-9in-tfspc608-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc608-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC608-F_1_50918bce-fdf6-43f0-8814-3e1a1def5c0d.webp?v=1742509503",
+     "sha1": "0353cff59a0395ec86a4a19c2bf900d63b2655dd",
+     "page": "https://www.toucanflooring.com/products/tfspc608-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-57155f927d82",
+   "seq": 83,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recmPKLmjDmAY9bna",
+   "sku": "LVP-TRIF-TFSPC609-F",
+   "product_name": "Toucan SPC6 Vinyl — Madrid (9.0\" x 5.5+1.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC609-F_1_a7f1d344-8746-4c6e-acca-1d6b251b9658.webp?v=1742509502",
+      "filename": "toucan-madrid-lvp-9in-tfspc609-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc609-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC609-F_1_a7f1d344-8746-4c6e-acca-1d6b251b9658.webp?v=1742509502",
+     "sha1": "e2429486ea42eb917a5a7640de7678e1acc08205",
+     "page": "https://www.toucanflooring.com/products/tfspc609-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ab4140e5f45d",
+   "seq": 84,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recUUF9iCs4pHK4FT",
+   "sku": "LVP-TRIF-TFSPC610-F",
+   "product_name": "Toucan SPC6 Vinyl — Athens (9.0\" x 5.5+1.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC610-F_1_31e54527-8252-4ca0-8c33-d046bf495708.webp?v=1742509501",
+      "filename": "toucan-athens-lvp-9in-tfspc610-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc610-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC610-F_1_31e54527-8252-4ca0-8c33-d046bf495708.webp?v=1742509501",
+     "sha1": "90ed8866d7b44a53fda2cc06d2caa5d703cf6636",
+     "page": "https://www.toucanflooring.com/products/tfspc610-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2ac07b9feb85",
+   "seq": 85,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recbXzVPaINgvWDVj",
+   "sku": "LVP-TRIF-TFSPC611-F",
+   "product_name": "Toucan SPC6 Vinyl — Vienna (9.0\" x 5.5+1.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC611-F_1_aa394ace-b2a7-42a4-8f45-49ce9d09443a.webp?v=1742509414",
+      "filename": "toucan-vienna-lvp-9in-tfspc611-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc611-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC611-F_1_aa394ace-b2a7-42a4-8f45-49ce9d09443a.webp?v=1742509414",
+     "sha1": "d52a3301ffae8115b5c94d38067277b6fe5b8362",
+     "page": "https://www.toucanflooring.com/products/tfspc611-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-d90ba5b3882b",
+   "seq": 86,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recfKzIjd5YrVnbSO",
+   "sku": "LVP-TRIF-TFSPC612-F",
+   "product_name": "Toucan SPC6 Vinyl — Belgrade (9.0\" x 5.5+1.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC612-F_1_0a266d4b-01c6-4705-acdd-65a0fc077284.webp?v=1742509500",
+      "filename": "toucan-belgrade-lvp-9in-tfspc612-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc612-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC612-F_1_0a266d4b-01c6-4705-acdd-65a0fc077284.webp?v=1742509500",
+     "sha1": "e57c7de08ea538769a23993e396b9043fd0b4a73",
+     "page": "https://www.toucanflooring.com/products/tfspc612-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-d8a8aa105a8e",
+   "seq": 87,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recs7xEMWx693fzzP",
+   "sku": "LVP-TRIF-TFSPC701-F",
+   "product_name": "Toucan SPC7 Vinyl — Bar Harbor (6.0\" x 5+2mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC701-F_1_58b54b53-2866-4891-ac48-38ffe32601b3.webp?v=1742509499",
+      "filename": "toucan-bar-harbor-lvp-6in-tfspc701-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc701-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC701-F_1_58b54b53-2866-4891-ac48-38ffe32601b3.webp?v=1742509499",
+     "sha1": "26ef0cabe15330db13b96529cf333a99ea0db5f6",
+     "page": "https://www.toucanflooring.com/products/tfspc701-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-c53d4e2f0a5d",
+   "seq": 88,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec9UNQ2pm5pwsKsu",
+   "sku": "LVP-TRIF-TFSPC702-F",
+   "product_name": "Toucan SPC7 Vinyl — Stonington (6.0\" x 5+2mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC702-F_1_3ea7bdde-56f3-41dc-a9ee-f96ab1c78368.webp?v=1742509498",
+      "filename": "toucan-stonington-lvp-6in-tfspc702-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc702-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC702-F_1_3ea7bdde-56f3-41dc-a9ee-f96ab1c78368.webp?v=1742509498",
+     "sha1": "d3f56fa9064deda02d05f170678486641950ea66",
+     "page": "https://www.toucanflooring.com/products/tfspc702-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5f30db91370d",
+   "seq": 89,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recqA8UMoSYzbOfFu",
+   "sku": "LVP-TRIF-TFSPC703-F",
+   "product_name": "Toucan SPC7 Vinyl — Newcastle (6.0\" x 5+2mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC703-F_1_e6cdd7ed-4fbb-497e-b153-86d02e37baf2.webp?v=1742509496",
+      "filename": "toucan-newcastle-lvp-6in-tfspc703-f-swatch.webp"
+     }
+    ],
+    "Supplier product page": "https://www.toucanflooring.com/products/tfspc703-f"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc703-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC703-F_1_e6cdd7ed-4fbb-497e-b153-86d02e37baf2.webp?v=1742509496",
+     "sha1": "04941dc7079710ad96e2fe4f2da73fdaf760a788",
+     "page": "https://www.toucanflooring.com/products/tfspc703-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-93057c426540",
+   "seq": 90,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec4shbygdYiNGyKN",
+   "sku": "LVP-TRIF-TFSPC704-F",
+   "product_name": "Toucan SPC7 Vinyl — Castine (6.0\" x 5+2mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC704-F_1_f07f26d3-91bd-4488-ae92-46a1f7129c88.webp?v=1742509495",
+      "filename": "toucan-castine-lvp-6in-tfspc704-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc704-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC704-F_1_f07f26d3-91bd-4488-ae92-46a1f7129c88.webp?v=1742509495",
+     "sha1": "78af8e0b0c810f3a300573c1e7398c7ffc81d45a",
+     "page": "https://www.toucanflooring.com/products/tfspc704-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-407f1854316d",
+   "seq": 91,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recMFzpedhyo7pXTx",
+   "sku": "LVP-TRIF-TFSPC705-F",
+   "product_name": "Toucan SPC7 Vinyl — Lubec (6.0\" x 5+2mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC705-F_1_98ea5147-12dd-4504-bf95-1ba2fc3579e4.webp?v=1742509413",
+      "filename": "toucan-lubec-lvp-6in-tfspc705-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc705-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC705-F_1_98ea5147-12dd-4504-bf95-1ba2fc3579e4.webp?v=1742509413",
+     "sha1": "25e632ebf5ff2ebdce68db9daa9c68df9a0009c8",
+     "page": "https://www.toucanflooring.com/products/tfspc705-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-cf9372ce042c",
+   "seq": 92,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recfl2DWh5YgtPecz",
+   "sku": "LVP-TRIF-TFSPC706-F",
+   "product_name": "Toucan SPC7 Vinyl — Camden (6.0\" x 5+2mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC706-F_1_1ad3e873-9bb7-406a-a0b6-802cf2f4d53e.webp?v=1742509412",
+      "filename": "toucan-camden-lvp-6in-tfspc706-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc706-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC706-F_1_1ad3e873-9bb7-406a-a0b6-802cf2f4d53e.webp?v=1742509412",
+     "sha1": "5be818b74c797c3a6af8205ecfc6a13af887f724",
+     "page": "https://www.toucanflooring.com/products/tfspc706-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-998f7028a6bf",
+   "seq": 93,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recgr7zqzgCnsTUUY",
+   "sku": "LVP-TRIF-TFSPC707-F",
+   "product_name": "Toucan SPC7 Vinyl — Cape Elizabeth (6.0\" x 5+2mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC707-F_1_b9e5df69-fdaf-42d2-8dd8-7ae3bc126359.webp?v=1742509494",
+      "filename": "toucan-cape-elizabeth-lvp-6in-tfspc707-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc707-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC707-F_1_b9e5df69-fdaf-42d2-8dd8-7ae3bc126359.webp?v=1742509494",
+     "sha1": "0f583ecb7564321ae11fdf1188bbf63209fb7dd5",
+     "page": "https://www.toucanflooring.com/products/tfspc707-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f3dcf10d7d7d",
+   "seq": 94,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recA2SZY0J39jKaJs",
+   "sku": "LVP-TRIF-TFSPC708-F",
+   "product_name": "Toucan SPC7 Vinyl — Kennebunkport (6.0\" x 5+2mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC708-F_1_c7d4daa0-faad-4cb1-a222-e273393bc515.webp?v=1742509493",
+      "filename": "toucan-kennebunkport-lvp-6in-tfspc708-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc708-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC708-F_1_c7d4daa0-faad-4cb1-a222-e273393bc515.webp?v=1742509493",
+     "sha1": "1dbee61151b12c814190305d0519ba6962946bac",
+     "page": "https://www.toucanflooring.com/products/tfspc708-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5fdf90c25edd",
+   "seq": 95,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recIA0oXSL3kWF1EW",
+   "sku": "LVP-TRIF-TFSPC709-F",
+   "product_name": "Toucan SPC7 Vinyl — Revere (6.0\" x 5+2mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC709-F_1_52654c01-f8c5-40f2-b468-71526bfaa5c4.webp?v=1742509411",
+      "filename": "toucan-revere-lvp-6in-tfspc709-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc709-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC709-F_1_52654c01-f8c5-40f2-b468-71526bfaa5c4.webp?v=1742509411",
+     "sha1": "30cc2f80496e563edb23547bb13b7036d835f117",
+     "page": "https://www.toucanflooring.com/products/tfspc709-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ea0644878094",
+   "seq": 96,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec9qYRQZFo0THt2B",
+   "sku": "LVP-TRIF-TFSPC710-F",
+   "product_name": "Toucan SPC7 Vinyl — Oyster Bay (6.0\" x 5+2mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC710-F_1_JPG_2c72958f-4b61-4d31-9694-a348804de750.webp?v=1742509492",
+      "filename": "toucan-oyster-bay-lvp-6in-tfspc710-f-swatch.webp"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.toucanflooring.com/products/tfspc710-f",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0910/9726/8503/files/TFSPC710-F_1_JPG_2c72958f-4b61-4d31-9694-a348804de750.webp?v=1742509492",
+     "sha1": "35a71fe2f30acc5c341bf726fc1619f9faf4d70e",
+     "page": "https://www.toucanflooring.com/products/tfspc710-f",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  }
+ ],
+ "held": [
+  {
+   "sku": "ENG-TRIF-TCN101",
+   "record_id": "recez7yplL6Oe6Axl",
+   "product_name": "Toucan Studio Engineered White Oak — Oyster (6.5\" x 18.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tcn101"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tcn101']; {}"
+  },
+  {
+   "sku": "ENG-TRIF-TCN102",
+   "record_id": "recwEEL7iKl5lTTpU",
+   "product_name": "Toucan Studio Engineered White Oak — Tusk (6.5\" x 18.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tcn102"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tcn102']; {}"
+  },
+  {
+   "sku": "ENG-TRIF-TCN103",
+   "record_id": "recQKgWhOtXeddSVj",
+   "product_name": "Toucan Studio Engineered White Oak — Sable (6.5\" x 18.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tcn103"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tcn103']; {}"
+  },
+  {
+   "sku": "ENG-TRIF-TCN104",
+   "record_id": "recc0PoAUqkCEWggk",
+   "product_name": "Toucan Studio Engineered White Oak — Woodland (6.5\" x 18.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tcn104"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tcn104']; {}"
+  },
+  {
+   "sku": "ENG-TRIF-TCN105",
+   "record_id": "recsg8PWWFDK8MdhC",
+   "product_name": "Toucan Studio Engineered White Oak — Sky (6.5\" x 18.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tcn105"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tcn105']; {}"
+  },
+  {
+   "sku": "ENG-TRIF-TCN106",
+   "record_id": "recLED3QKPMIVqnbK",
+   "product_name": "Toucan Studio Engineered White Oak — Shadow (6.5\" x 18.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tcn106"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tcn106']; {}"
+  },
+  {
+   "sku": "ENG-TRIF-TCN201",
+   "record_id": "recxRKMR7iAiwCrtu",
+   "product_name": "Toucan Towne Engineered European Oak — Silk (7.5\" x 18.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tcn201"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tcn201']; {}"
+  },
+  {
+   "sku": "ENG-TRIF-TCN202",
+   "record_id": "recDKGqpweIpclv5B",
+   "product_name": "Toucan Towne Engineered European Oak — Shell (7.5\" x 18.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tcn202"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tcn202']; {}"
+  },
+  {
+   "sku": "ENG-TRIF-TCN203",
+   "record_id": "rec6tQZy5zfWxAgkC",
+   "product_name": "Toucan Towne Engineered European Oak — Satin (7.5\" x 18.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tcn203"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tcn203']; {}"
+  },
+  {
+   "sku": "ENG-TRIF-TCN204",
+   "record_id": "rec7i4D3JJ2dgHNH1",
+   "product_name": "Toucan Towne Engineered European Oak — Hazelnut (7.5\" x 18.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tcn204"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tcn204']; {}"
+  },
+  {
+   "sku": "ENG-TRIF-TCN205",
+   "record_id": "recHKoaI3ug8WIwBO",
+   "product_name": "Toucan Towne Engineered European Oak — Cashmere (7.5\" x 18.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tcn205"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tcn205']; {}"
+  },
+  {
+   "sku": "ENG-TRIF-TCN206",
+   "record_id": "recDyG50eaXVqx2AB",
+   "product_name": "Toucan Towne Engineered European Oak — Solitude (7.5\" x 18.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tcn206"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tcn206']; {}"
+  },
+  {
+   "sku": "LAM-TRIF-FL202",
+   "record_id": "rec8wx2ogrtCucfk3",
+   "product_name": "Toucan FL2 Waterproof Laminate — FL202 (7.7\" x 12.3mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'FL202'; vetoes {}"
+  },
+  {
+   "sku": "LAM-TRIF-FL204",
+   "record_id": "reccEqane8ht1gISI",
+   "product_name": "Toucan FL2 Waterproof Laminate — FL204 (7.7\" x 12.3mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'FL204'; vetoes {}"
+  },
+  {
+   "sku": "LAM-TRIF-FL210",
+   "record_id": "recZGOEmZsmd07VIU",
+   "product_name": "Toucan FL2 Waterproof Laminate — FL210 (7.7\" x 12.3mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'FL210'; vetoes {}"
+  },
+  {
+   "sku": "LAM-TRIF-FL212",
+   "record_id": "recJapnIyWM4gDMQB",
+   "product_name": "Toucan FL2 Waterproof Laminate — FL212 (7.7\" x 12.3mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'FL212'; vetoes {}"
+  },
+  {
+   "sku": "LAM-TRIF-TF6602",
+   "record_id": "recO2uuqoAEoaIR7X",
+   "product_name": "Toucan TF66 Waterproof Laminate — Santa Rosa (7.7\" x 12.3mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Santa Rosa'; vetoes {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFCET1001-F",
+   "record_id": "rec9jkVRQxZ4R6Wy7",
+   "product_name": "Toucan CET10 Vinyl — Archon (9.0\" x 10.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfcet1001"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfcet1001']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFCET1002-F",
+   "record_id": "recmHORvwrujxpaC7",
+   "product_name": "Toucan CET10 Vinyl — Ignis (9.0\" x 10.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfcet1002"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfcet1002']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFCET1003-F",
+   "record_id": "recMOp50De2Dd5jXz",
+   "product_name": "Toucan CET10 Vinyl — Forma (9.0\" x 10.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfcet1003"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfcet1003']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFCET1004-F",
+   "record_id": "recxRysXhJV6are7c",
+   "product_name": "Toucan CET10 Vinyl — Lumina (9.0\" x 10.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfcet1004"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfcet1004']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFCET1005-F",
+   "record_id": "recyX0cO9BynGbnBg",
+   "product_name": "Toucan CET10 Vinyl — Moda (9.0\" x 10.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfcet1005"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfcet1005']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFCET1006-F",
+   "record_id": "rec9ax2abumchVUfS",
+   "product_name": "Toucan CET10 Vinyl — Altura (9.0\" x 10.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfcet1006"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfcet1006']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFCET1007-F",
+   "record_id": "recGAwHwsk263eV55",
+   "product_name": "Toucan CET10 Vinyl — Synrgy (9.0\" x 10.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfcet1007"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfcet1007']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFCET1008-F",
+   "record_id": "recTEVwWbpCoIkLwF",
+   "product_name": "Toucan CET10 Vinyl — Linea (9.0\" x 10.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfcet1008"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfcet1008']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFCET1009-F",
+   "record_id": "recElHRQ8zcOQG5iD",
+   "product_name": "Toucan CET10 Vinyl — Terra (9.0\" x 10.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfcet1009"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfcet1009']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFCET1010-F",
+   "record_id": "recOBFGd6hxmit8KS",
+   "product_name": "Toucan CET10 Vinyl — Ascend (9.0\" x 10.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfcet1010"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfcet1010']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFCET1011-F",
+   "record_id": "rectxIRs5HXA0nGEg",
+   "product_name": "Toucan CET10 Vinyl — Madera (9.0\" x 10.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfcet1011"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfcet1011']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFCET1012-F",
+   "record_id": "recKwB3FxPFsuTQ01",
+   "product_name": "Toucan CET10 Vinyl — Axios (9.0\" x 10.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfcet1012"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfcet1012']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFL621",
+   "record_id": "recQeS98txn3a8Wa9",
+   "product_name": "Toucan Looselay Vinyl — Espresso Cedar (7.4\" x 5.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfl621",
+    "https://thefloorbox.ca/products/vinyl-planks-tfl62-series-621-espresso-cedar-loose-lay-7-38-x-48-38/791628d3-8a84-11f0-9d91-f6968cef729a"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfl621', 'https://thefloorbox.ca/products/vinyl-planks-tfl62-series-621-espresso-cedar-loose-lay-7-38-x-48-38/791628d3-8a84-11f0-9d91-f6968cef729a']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFL622",
+   "record_id": "receJg5bJANnJEf4O",
+   "product_name": "Toucan Looselay Vinyl — Chestnut Canyon (7.4\" x 5.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfl622"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfl622']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFL624",
+   "record_id": "recEaG0EtRx6k1dvH",
+   "product_name": "Toucan Looselay Vinyl — Autumn Glow (7.4\" x 5.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfl624",
+    "https://thefloorbox.ca/products/vinyl-planks-tfl62-series-624-autumn-glow-loose-lay-7-38-x-48-38/7917c166-8a84-11f0-9d91-f6968cef729a"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfl624', 'https://thefloorbox.ca/products/vinyl-planks-tfl62-series-624-autumn-glow-loose-lay-7-38-x-48-38/7917c166-8a84-11f0-9d91-f6968cef729a']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFL625",
+   "record_id": "recW4hjmwhbnU7S3X",
+   "product_name": "Toucan Looselay Vinyl — Whistler Pine (7.4\" x 5.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfl625",
+    "https://thefloorbox.ca/products/vinyl-planks-tfl62-series-625-whistler-pine-loose-lay-7-38-x-48-38/7917c7d5-8a84-11f0-9d91-f6968cef729a"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfl625', 'https://thefloorbox.ca/products/vinyl-planks-tfl62-series-625-whistler-pine-loose-lay-7-38-x-48-38/7917c7d5-8a84-11f0-9d91-f6968cef729a']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFL626",
+   "record_id": "recE96nIAHQ3GpCd2",
+   "product_name": "Toucan Looselay Vinyl — Prairie Wheat (7.4\" x 5.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfl626",
+    "https://thefloorbox.ca/products/vinyl-planks-tfl62-series-626-prairie-wheat-loose-lay-7-38-x-48-38/7917cd8d-8a84-11f0-9d91-f6968cef729a"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfl626', 'https://thefloorbox.ca/products/vinyl-planks-tfl62-series-626-prairie-wheat-loose-lay-7-38-x-48-38/7917cd8d-8a84-11f0-9d91-f6968cef729a']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFL627",
+   "record_id": "rec40CecKCvBeXqIx",
+   "product_name": "Toucan Looselay Vinyl — Honey Birch (7.4\" x 5.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfl627",
+    "https://thefloorbox.ca/products/vinyl-planks-tfl62-series-627-honey-birch-loose-lay-7-38-x-48-38/7917d30d-8a84-11f0-9d91-f6968cef729a"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfl627', 'https://thefloorbox.ca/products/vinyl-planks-tfl62-series-627-honey-birch-loose-lay-7-38-x-48-38/7917d30d-8a84-11f0-9d91-f6968cef729a']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFL628",
+   "record_id": "reccKWcm6ETfUnkg4",
+   "product_name": "Toucan Looselay Vinyl — Hudson Sand (7.4\" x 5.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfl628",
+    "https://thefloorbox.ca/products/vinyl-planks-tfl62-series-628-hudson-sand-loose-lay-7-38-x-48-38/7917d81f-8a84-11f0-9d91-f6968cef729a"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfl628', 'https://thefloorbox.ca/products/vinyl-planks-tfl62-series-628-hudson-sand-loose-lay-7-38-x-48-38/7917d81f-8a84-11f0-9d91-f6968cef729a']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC261-F",
+   "record_id": "recSn1gHdt2o5GwDC",
+   "product_name": "Toucan SPC2 Vinyl — TFSPC261-F (7.2\" x 6.5mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc261-f"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc261-f']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC262-F",
+   "record_id": "recPDiajLqwdsyRnz",
+   "product_name": "Toucan SPC2 Vinyl — TFSPC262-F (7.2\" x 6.5mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc262-f"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc262-f']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC263-F",
+   "record_id": "rec4rMDWnIF4EnxEt",
+   "product_name": "Toucan SPC2 Vinyl — TFSPC263-F (7.2\" x 6.5mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc263-f"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc263-f']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC264-F",
+   "record_id": "recjSJI5TOAJAaPNl",
+   "product_name": "Toucan SPC2 Vinyl — TFSPC264-F (7.2\" x 6.5mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc264-f"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc264-f']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC265-F",
+   "record_id": "recByIKbnuM1jkQ2o",
+   "product_name": "Toucan SPC2 Vinyl — TFSPC265-F (7.2\" x 6.5mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc265-f"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc265-f']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC267-F",
+   "record_id": "recjnzd1xcxzyWSkL",
+   "product_name": "Toucan SPC2 Vinyl — TFSPC267-F (7.2\" x 6.5mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc267"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc267']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC268-F",
+   "record_id": "recA1NHiEhE7Wf2jn",
+   "product_name": "Toucan SPC2 Vinyl — TFSPC268-F (7.2\" x 6.5mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc268"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc268']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC501-F",
+   "record_id": "recKj6Eg3GWE2BqXR",
+   "product_name": "Toucan SPC5 Vinyl — TFSPC501-F (9.0\" x 6.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc501-f"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc501-f']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC502-F",
+   "record_id": "rec4KXZPqlLSf3ioc",
+   "product_name": "Toucan SPC5 Vinyl — TFSPC502-F (9.0\" x 6.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc502-f"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc502-f']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC503-F",
+   "record_id": "recjDjmwFydz3Sex5",
+   "product_name": "Toucan SPC5 Vinyl — TFSPC503-F (9.0\" x 6.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc503-f"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc503-f']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC504-F",
+   "record_id": "recupqMxU2unUlpsO",
+   "product_name": "Toucan SPC5 Vinyl — TFSPC504-F (9.0\" x 6.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc504-f"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc504-f']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC505-F",
+   "record_id": "recmaZqoLes3oLWab",
+   "product_name": "Toucan SPC5 Vinyl — TFSPC505-F (9.0\" x 6.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc505-f"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc505-f']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC506-F",
+   "record_id": "recHLnA2ZZmm5NCUE",
+   "product_name": "Toucan SPC5 Vinyl — TFSPC506-F (9.0\" x 6.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc506-f"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc506-f']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC507-F",
+   "record_id": "recT7KESnXgYCd86K",
+   "product_name": "Toucan SPC5 Vinyl — TFSPC507-F (9.0\" x 6.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc507-f"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc507-f']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC508-F",
+   "record_id": "recdSHujDjGGsF1DF",
+   "product_name": "Toucan SPC5 Vinyl — TFSPC508-F (9.0\" x 6.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc508-f"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc508-f']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC509-F",
+   "record_id": "recOOltVfihYIV7um",
+   "product_name": "Toucan SPC5 Vinyl — TFSPC509-F (9.0\" x 6.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc509-f"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc509-f']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC510-F",
+   "record_id": "recYX7MKzlholSBld",
+   "product_name": "Toucan SPC5 Vinyl — TFSPC510-F (9.0\" x 6.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc510-f"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc510-f']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC511-F",
+   "record_id": "recteyjy3h4PxFpTq",
+   "product_name": "Toucan SPC5 Vinyl — TFSPC511-F (9.0\" x 6.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc511-f"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc511-f']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC512-F",
+   "record_id": "recK7C4bXwluwLaVt",
+   "product_name": "Toucan SPC5 Vinyl — TFSPC512-F (9.0\" x 6.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc512-f"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc512-f']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC8601-F",
+   "record_id": "recyYuXkWD4PaNIq7",
+   "product_name": "Toucan SPC86 Vinyl — Morning Mist (9.0\" x 8.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc8601"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc8601']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC8602-F",
+   "record_id": "rec15cQqgjpsc9hWI",
+   "product_name": "Toucan SPC86 Vinyl — Northern Linen (9.0\" x 8.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc8602"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc8602']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC8603-F",
+   "record_id": "recgzzWCaVWzAkpG0",
+   "product_name": "Toucan SPC86 Vinyl — Rocky Trail (9.0\" x 8.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc8603"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc8603']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC8604-F",
+   "record_id": "recbHLueBb4gykJhl",
+   "product_name": "Toucan SPC86 Vinyl — Maple Dusk (9.0\" x 8.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc8604"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc8604']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC8605-F",
+   "record_id": "recx3VZVdULpSnvBx",
+   "product_name": "Toucan SPC86 Vinyl — Boreal Light (9.0\" x 8.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc8605"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc8605']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC8606-F",
+   "record_id": "recXfdNiFB6tnt7oA",
+   "product_name": "Toucan SPC86 Vinyl — Harvest Amber (9.0\" x 8.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc8606"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc8606']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC8607-F",
+   "record_id": "recbsZF1T7T1gki4U",
+   "product_name": "Toucan SPC86 Vinyl — Maple Glow (9.0\" x 8.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc8607"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc8607']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC8608-F",
+   "record_id": "recndeSDBQnlJ65De",
+   "product_name": "Toucan SPC86 Vinyl — Prairie Dawn (9.0\" x 8.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc8608"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc8608']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC8609-F",
+   "record_id": "recoM90sYhYZrXdcZ",
+   "product_name": "Toucan SPC86 Vinyl — Driftwood Shore (9.0\" x 8.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc8609"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc8609']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC8610-F",
+   "record_id": "recQeIj6j4gWOOBd8",
+   "product_name": "Toucan SPC86 Vinyl — Birch Whisper (9.0\" x 8.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc8610"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc8610']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC901-F",
+   "record_id": "rec1AhnAjDurF7LOT",
+   "product_name": "Toucan SPC9 Vinyl — Deep Walnut (7.0\" x 9.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc901"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc901']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC902-F",
+   "record_id": "recux52YNlaTtxeeT",
+   "product_name": "Toucan SPC9 Vinyl — Cocoa (7.0\" x 9.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc902"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc902']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC903-F",
+   "record_id": "reczHnX28IF59wJ4O",
+   "product_name": "Toucan SPC9 Vinyl — Patina Grey (7.0\" x 9.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc903"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc903']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC904-F",
+   "record_id": "recSMY3lJXW6IiZ9M",
+   "product_name": "Toucan SPC9 Vinyl — Sawn Maple (7.0\" x 9.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc904"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc904']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC905-F",
+   "record_id": "recoq6NvFViEIbU0m",
+   "product_name": "Toucan SPC9 Vinyl — Night Breeze (7.0\" x 9.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc905"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc905']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC906-F",
+   "record_id": "recqB1TOdrEGxDv3a",
+   "product_name": "Toucan SPC9 Vinyl — Snowfall (7.0\" x 9.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc906"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc906']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC907-F",
+   "record_id": "rec8vdqmWvXBMPQDI",
+   "product_name": "Toucan SPC9 Vinyl — Tudor (7.0\" x 9.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc907"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc907']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC908-F",
+   "record_id": "recxIvbPytNC4hJvp",
+   "product_name": "Toucan SPC9 Vinyl — Smoked Oak (7.0\" x 9.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc908"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc908']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC909-F",
+   "record_id": "recswrSW4T3ODkfwQ",
+   "product_name": "Toucan SPC9 Vinyl — American Oak (7.0\" x 9.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc909"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc909']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC910-F",
+   "record_id": "recNHCEeruqsSqT4J",
+   "product_name": "Toucan SPC9 Vinyl — Century Oak (7.0\" x 9.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc910"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc910']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC911-F",
+   "record_id": "recZi71Eh8uXr60DX",
+   "product_name": "Toucan SPC9 Vinyl — Sawn Oak (7.0\" x 9.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc911"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc911']; {}"
+  },
+  {
+   "sku": "LVP-TRIF-TFSPC912-F",
+   "record_id": "recYZ3jzBmi1Z5LJZ",
+   "product_name": "Toucan SPC9 Vinyl — Windstorm (7.0\" x 9.0mm)",
+   "candidate_pages": [
+    "https://www.toucanflooring.com/products/tfspc912"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.toucanflooring.com/products/tfspc912']; {}"
+  }
+ ]
+}
