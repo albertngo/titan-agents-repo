@@ -273,9 +273,10 @@
         }
       },
       "summary_model": {
-        "short": "claude-haiku-4-5",
+        "short": "claude-sonnet-4-5",
         "long": "claude-sonnet-4-5",
-        "long_from_seconds": 300
+        "long_from_seconds": 300,
+        "_changed": "2026-10-03 (Albert: 'Switch to smarter output option for all'): calls under 300 s moved from claude-haiku-4-5 to claude-sonnet-4-5. In the v8 probe Haiku summarised a 52 s supplier call as 'Titan confirmed it is in stock' (the supplier had) in 2 of 2 runs, against the prompt's rule; Sonnet was right in 2 of 2. Router 30 and its two routes stay, so going back is one field per route."
       },
       "_summary_model": "Albert, 2026-10-02: switch on call length. Calls under long_from_seconds get Haiku 4.5, longer ones Sonnet 4.5 (long, messy calls are where Sonnet is worth its ~2.4x token cost). Make's Claude module cannot take its model from a formula, so router 30 holds one Claude module per route (10 short, 21 long), each saves its result to the execution variable call_summary prefixed with the call's messageId, and the third route reads it back (33) and carries on; module 11 only accepts a value tagged with this call's id. Probe-tested 2026-10-02: routes run in order, the variable comes back under its name.",
       "language": {

@@ -141,7 +141,8 @@ name ("Titan called <contact>" or "<contact> called Titan"); the model only cont
 The other party is not assumed to be a customer (Titan calls suppliers and installers
 too), the other side's commitments are `- Them:`, and when the roles are unclear the
 model is told not to say who said what. Sonnet follows that; Haiku, on a 52-second
-supplier call, still wrote "Titan confirmed it is in stock" in 2 of 2 probe runs.
+supplier call, still wrote "Titan confirmed it is in stock" in 2 of 2 probe runs, which
+is why every call now goes to Sonnet.
 Staff can make this reliable by answering "Titan Flooring, this is Joey".
 
 ## Engines (prices web-searched 2026-10-01; verify at signup)
@@ -214,7 +215,7 @@ GHL workflow "Call Status" (completed / voicemail) → Webhook action → Make w
  9  Set variables: transcript ("[mm:ss] Speaker N: …" lines), ghl_user (a person or ""),
                    lang, lang_name, is_english
 30  Router on call length (summary_model.long_from_seconds, 300 s):
-      route 1  10 Claude haiku-4-5 (under 300 s) → 31 save "call_summary"
+      route 1  10 Claude sonnet-4-5 (under 300 s; Haiku until 2026-10-03) → 31 save "call_summary"
       route 2  21 Claude sonnet-4-5 (300 s+)     → 32 save "call_summary"
       route 3  33 read "call_summary" → 11 …     (runs after both; continues below)
     Claude writes Name evidence, Staff, Roles, Summary, Next steps; the saved value is
@@ -274,10 +275,13 @@ Things that matter:
   transcribed call — about half of it the Claude module's tokens (claude-sonnet-4-5,
   billed in Make credits, no connection). At 25 calls a day that is ~24,000 credits a
   month on a 40,000 Core plan that already carries ~25 scenarios: well above the first
-  estimate of 10,000. **The summary model switches on call length (Albert, 2026-10-02):**
-  Haiku 4.5 under 5 minutes (~7 credits of summary on a 9.5-minute call), Sonnet 4.5 from
-  5 minutes, where messy calls make the stronger model worth ~2.4× the tokens. The
-  router costs 2 operations (save, read). Make's Claude module cannot take its model
+  estimate of 10,000. **Sonnet 4.5 summarises every call (Albert, 2026-10-03: "Switch to
+  smarter output option for all").** From 2026-10-02 the model switched on call length,
+  Haiku 4.5 under 5 minutes (~7 credits of summary on a 9.5-minute call) and Sonnet from
+  5 minutes; Haiku then reversed who said what on a short supplier call in both probe
+  runs. Short calls now cost a few credits more each. The length router is kept with
+  Sonnet on both routes, so a model change stays one field per route. The router costs 2
+  operations (save, read). Make's Claude module cannot take its model
   from a formula, hence one module per route. A fire that finds nothing new costs 4–5
   operations.
 - **Governance.** The notes and the comment are GHL writes performed by Make, outside
@@ -376,6 +380,11 @@ the same day).
 - Coaching never reaches a GHL note, `items` or `needs_attention`.
 
 ## Log
+
+- **2026-10-03 21:31 UTC, Sonnet for every call (Albert: "Switch to smarter output option
+  for all").** Module 10 (calls under 5 minutes) moved from Haiku 4.5 to Sonnet 4.5; the
+  long-call route and the translation were Sonnet already. Nothing else changed; live
+  blueprint read back identical.
 
 - **2026-10-03 20:53 UTC, v8: labels and names only on checked evidence (Albert, after a
   supplier call came out reversed: "I want to make sure that if the call is outbound and

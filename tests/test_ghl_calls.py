@@ -176,7 +176,8 @@ class TestRegistry(unittest.TestCase):
         self.assertEqual(sent, published, "module 8's keyterm fields drifted from the published list")
 
     def test_summary_model_by_call_length(self):
-        """Albert, 2026-10-02: Haiku for short calls, Sonnet for long ones."""
+        """Albert, 2026-10-02: the model switched on call length; 2026-10-03: "Switch to smarter
+        output option for all", so both routes are Sonnet and the router stays."""
         sc, snap, mods = self._snapshot()
         rule = sc["summary_model"]
         router = mods[30]
@@ -187,6 +188,7 @@ class TestRegistry(unittest.TestCase):
         self.assertEqual(rest[0]["id"], 33)  # the continuation route runs after both
         self.assertEqual(mods[10]["mapper"]["model"], rule["short"])
         self.assertEqual(mods[21]["mapper"]["model"], rule["long"])
+        self.assertEqual({rule["short"], rule["long"], mods[41]["mapper"]["model"]}, {"claude-sonnet-4-5"})
         self.assertEqual(mods[10]["mapper"]["textPrompt"], mods[21]["mapper"]["textPrompt"])
         for mid, op in ((10, "number:less"), (21, "number:greaterorequal")):
             groups = mods[mid]["filter"]["conditions"]
