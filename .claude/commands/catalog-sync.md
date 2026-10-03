@@ -152,7 +152,7 @@ SKU · Product name · Supplier SKU · Category · Cost/unit · Retail price/uni
 Stock status · Promo cost ($/sf) · Promo end date · Lightspeed ID
 ```
 
-**Also select `Effective Date`, `Price last changed by`, `Price List URL`, `Price List Date`, `Promo List URL`, `Rep cost ($/sf)` and `Rep cost end date`.** They are not in
+**Also select `Effective Date`, `Price last changed by`, `Price List URL`, `Promo List URL`, `Rep cost ($/sf)` and `Rep cost end date`.** They are not in
 `DIFF_FIELDS` but the reconciler needs them (Albert, 2026-09-25): a cost/retail change
 writes the list's effective date and `Agent`, and a list that only *confirms* a price
 moves `Effective Date` forward to its date — never backward. Without the date in
@@ -160,11 +160,7 @@ the snapshot, that confirmation is silently skipped (a blind write could regress
 newer date), so every re-confirmed product would keep looking stale. `Price List URL` (the
 list's SharePoint link, an extra upload-CSV column) travels with the date: written
 whenever the date is, and to fill a blank when the same list is re-run.
-`Price List Date` (Albert, 2026-10-03: "It should always follow the effective date so it
-carries through to Airtable and supabase") is the linked list's date: written with the
-date or the link, always the same value as `Effective Date`, and corrected when a re-run
-confirms the record's own list. Titan Desk shows it beside the link and syncs it to
-Supabase, so a stale one shows staff the wrong list date.
+`Effective Date` **is** the price list date (Albert, 2026-10-03: "Effective date IS the price list date. Am I to keep them both?"). A separate `Price List Date` field was retired that day, after every record was matched to the higher of the two; nothing writes it.
 `Promo List URL` (2026-09-26) does the same for the promo: written whenever `Promo cost`
 or `Promo end date` is, and to fill a blank when the same promo is re-run — only if the
 snapshot carried it, so an unread link is never overwritten.
