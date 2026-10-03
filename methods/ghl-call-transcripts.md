@@ -27,7 +27,8 @@ Registry: `platform-settings/ghl-calls.json`. Script: `scripts/ghl_calls_pull.py
 | D4 | What if transcription fails? | `ghl.json` stays `status: "ok"`; `reporting.calls.status` says `error` and one `needs_attention` line says why |
 | D8 | The contact note | Summary, then Next steps, then the transcript, written right after processing. **Superseded 2026-10-02 by D9** |
 | D9 | Summary placement (2026-10-02) | Summary + Next steps → **internal comment** on the conversation, behind the comment gate; transcript → contact Notes; both carry the call line and `Ref C-MMDD-HHmm` |
-| D10 | Staff name (2026-10-02) | The call's own GHL user if it is a person; on the shared Front Desk line a roster name only when the Titan person says it as their own or the customer calls them by it (a name called out to a colleague is not theirs); otherwise `Staff`. Roster: `ghl-calls.json` → `staff` |
+| D10 | Staff name (2026-10-02) | The call's own GHL user if it is a person; on the shared Front Desk line `Staff`, unless the Titan person introduces themselves ("this is Joey"). Nothing else names them: not the customer using a name, not a colleague called out. Roster: `ghl-calls.json` → `staff` |
+| D11 | Role labels (2026-10-02) | Every transcript line says who is talking: `Customer`, `Staff`, `Staff (Joey)` (only when D10 named Joey), `Other`; `Speaker N` only where the model could not tell. Vocabulary: `ghl-calls.json` → `staff.labels` |
 | D5 | Ownership (confirmed 2026-10-02) | After a connected call, `next_response_owner` is `us` only if a commitment by us is still open |
 | D6 | Sensitivity (confirmed 2026-10-02) | Provenance rule unchanged: team-level; `private` only for `intent: personal` |
 | D7 | Coaching notes (confirmed 2026-10-02) | `extensions.ghl.call_quality` (private), rubric + one neutral sentence, never in items, needs_attention or the GHL note |
@@ -82,9 +83,8 @@ so part 1 is on top:
 
 ```
 Transcript · Ref C-1001-1432 · Thu Oct 1, 2:32 pm · Outbound · 9m 30s · Joey
-Speakers: Speaker 1 = Joey (Titan) · Speaker 2 = customer
-[00:03] Speaker 1: …
-[00:07] Speaker 2: …
+[00:03] Staff (Joey): …
+[00:07] Customer: …
 
 [call-note v2 messageId=… conversationId=… engine=scribe_v2 ref=C-1001-1432 part=1/3]
 ```
@@ -98,15 +98,24 @@ transcript in one note, before 2026-10-02) still parse. Coaching never goes in e
 
 **Staff (D10).** Make decides the easy half itself: module 9 maps the call's `userId`
 to a person (Albert, Pourya, Mike — `notion-destinations.json` people). On the Front
-Desk line the summary model reports a name only if it is said on the call, and module
-11 accepts it through a switch that knows the roster and nothing else; anything else
-becomes `Staff`. The speaker key is the model's reading, `unclear` where it cannot
-tell — speaker labels in the transcript itself stay `Speaker N`.
+Desk line the summary model reports a name only if the Titan person introduces
+themselves by it, and module 11 accepts it through a switch that knows the roster and
+nothing else; anything else becomes `Staff`.
 
-"Said on the call" is narrow (v6, after the first live call): the model must first
-write a `Name evidence:` line quoting the words in which the Titan person says their
-own name ("this is Helen") or the customer calls them by it ("thanks, Mike"), or
-`none`, and only then the `Staff:` line. A name the staff member calls out or asks
+**Labels (D11).** The model also writes a `Roles:` line in a closed vocabulary
+(`customer`, `staff`, `staff Joey`, `other`, `unclear`). Module 11 reads one role per
+speaker, module 12 turns each into a label, and module 34 swaps every `] Speaker N:`
+prefix for it. `staff Joey` becomes `Staff (Joey)` only when the Staff line is Joey; on
+a person's own GHL user every staff line is `Staff (<that person>)`; anything the switch
+does not know leaves `Speaker N`. Speakers 1–3 are relabelled; a fourth keeps its raw
+label. Notes before v7 keep their `Speaker N` lines and `Speakers:` key.
+
+"Introduces themselves" is narrow (v6 after the first live call, v7 the same
+evening): the model must first write a `Name evidence:` line quoting the words in
+which the Titan person says their own name ("this is Helen"), or `none`, and only then
+the `Staff:` line. The customer using a name does not count (v6 let it; Albert: "Only
+IF the context explicitly has us saying 'this is Joey' … then you can name the
+staff"). A name the staff member calls out or asks
 for while getting a colleague ("Pourya?", "let me ask Mike"), a name said about
 someone else, a name used to spell something ("D for David"), or a guess that the
 call was passed on are listed as not evidence. With `Staff` unnamed the Summary says
@@ -188,12 +197,14 @@ GHL workflow "Call Status" (completed / voicemail) → Webhook action → Make w
       route 1  10 Claude haiku-4-5 (under 300 s) → 31 save "call_summary"
       route 2  21 Claude sonnet-4-5 (300 s+)     → 32 save "call_summary"
       route 3  33 read "call_summary" → 11 …     (runs after both; continues below)
-    Claude writes Staff, Speakers, Summary, Next steps; the saved value is
+    Claude writes Name evidence, Staff, Roles, Summary, Next steps; the saved value is
     "<messageId>|||<text>" and module 11 accepts only this call's
-11  Set variables: staff (D10 rule), speaker key, summary block, Ref, date, duration
-12  Set variables: note header, continuation header, comment text
+11  Set variables: staff (D10 rule), staff_label, role_1..3, summary block, Ref, date,
+                   duration
+12  Set variables: note header, continuation header, comment text, lab_1..3 (D11)
+34  Set variables: tx — the transcript with every "] Speaker N:" swapped for its label
 13  Repeater N → 1
-14  GHL: Add a note to the contact — transcript only   (GHL connection 4426112)
+14  GHL: Add a note to the contact — labelled transcript, n equal parts (GHL connection 4426112)
 15  Transform to JSON: the comment text                [filter: last part]
 16  Set variables: the request body
 17  Data store: record the call, comment "pending", language
@@ -271,7 +282,7 @@ Chinese means Mandarin **and** Cantonese.
   transcript + English translation in Notes`).
 - **The translation** is its own note series next to the original transcript:
   `Translation (English, from Vietnamese) · Ref C-… · <call line>`, one line per original
-  line with the same `[mm:ss] Speaker N:` prefix, footer
+  line with the same `[mm:ss] Label:` prefix as the labelled transcript (D11), footer
   `[call-translation v1 messageId=… ref=… lang=… part=k/N]`. Sonnet writes it — non-English
   calls are the minority and quality matters there. It runs on its own route, so it can
   neither block nor be blocked by the comment. `parse_call_translation()` reads it back;
@@ -341,6 +352,22 @@ What the gate cannot stop: a person editing module 18 in the Make UI, or using k
 - Coaching never reaches a GHL note, `items` or `needs_attention`.
 
 ## Log
+
+- **2026-10-03 02:09 UTC (22:09 Toronto), v7: self-introduction only, and role labels
+  (Albert: "From now on, Front desk is a general 'staff'. Only IF the context explicitly
+  has us saying 'this is Joey, or this is Helen, or this is Albert, etc' then you can
+  name the staff deliberately. While if the number being reached is Pourya's or Albert's
+  number etc, you can be sure of the name. For the transcript in notes. Can you make it
+  perfectly clear speaker 1 and speaker 2 is? Customer vs staff(name) if apparent").**
+  The customer greeting someone by name no longer counts (D10). The free-text speaker key
+  became a closed-vocabulary `Roles:` line that Make turns into a label on every
+  transcript line (D11), so a note now reads `[00:02] Staff: Good morning, Titan
+  Flooring.` / `[00:04] Customer: Hi …`. The translation route reads the same labelled
+  text. Probe before the push, real expressions on real model output from two calls:
+  all four model runs `Staff`; roles staff/customer, plus `other` for the installer on
+  the second call's speakerphone; no `Speaker N` left in either relabelled transcript.
+  Live blueprint read back identical. Four real calls ran on v6 between the two pushes
+  and are unchanged.
 
 - **2026-10-02 14:58 UTC, v6: staff-name evidence (Albert: "The receiver is the front
   desk, and Joey is the one that talked as staff. Why was Pourya made as the staff?").**

@@ -167,7 +167,7 @@
     ],
     "ref_format": "C-MMDD-HHmm (call start, America/Toronto)",
     "_split": "Albert, 2026-10-02: Summary and Next steps go in an INTERNAL COMMENT on the conversation, beside the recording; the full transcript stays in contact Notes. Both carry the call line (date and time, direction, duration, staff) and the same Ref code. v1 notes (Summary, Next steps and Transcript in one note) still parse.",
-    "_order": "Transcript parts are written last-first so part 1 (call line + speaker key) is the newest note; the comment is posted after the last note part."
+    "_order": "Transcript parts are written last-first so part 1 (call line) is the newest note; the comment is posted after the last note part. Since v7 the transcript is cut into n_parts equal pieces of the labelled text (about 3,000 characters each) instead of fixed 3,000-character offsets."
   },
   "staff": {
     "roster": [
@@ -182,16 +182,25 @@
     "shared_line_user_ids": [
       "edv6p75Y79cYsPS0jPv0"
     ],
-    "_rule": "Albert, 2026-10-02: if the call is on a person's own GHL user, use that name (platform-settings/notion-destinations.json people). If it is on the shared Front Desk line, use a roster name only when the name is said on the call; otherwise 'Staff'. Make applies the first part itself (module 9's switch on userId) and only trusts the summary model for the second, through a switch that accepts roster names and nothing else.",
+    "_rule": "Albert, 2026-10-02 (tightened the same evening: 'Front desk is a general staff. Only IF the context explicitly has us saying this is Joey, or this is Helen, or this is Albert, etc then you can name the staff deliberately. While if the number being reached is Pourya's or Albert's number etc, you can be sure of the name'): if the call is on a person's own GHL user, use that name (platform-settings/notion-destinations.json people). On the shared Front Desk line the default is 'Staff'; a roster name only when the Titan person introduces themselves by it. The customer greeting them by a name does not count. Make applies the first part itself (module 9's switch on userId) and only trusts the summary model for the second, through a switch that accepts roster names and nothing else.",
     "_roster": "Who answers the phones. Albert named Joey, Helen, David and Albert on 2026-10-02 ('etc.'); Pourya and Mike have their own GHL users. Add a name here, then: --write-keyterms, and the same name in Make modules 10 (prompt) and 11 (switch).",
     "evidence_line": "Name evidence:",
-    "_evidence": "2026-10-02 (Albert: 'The receiver is the front desk, and Joey is the one that talked as staff. Why was Pourya made as the staff?'). 'Said on the call' means the Titan person says their own name or the customer calls them by it. On the first live call Joey answered Front Desk and called out 'Pourya?' to a colleague; the model took that as his name and the summary said 'Pourya explained'. Since v6 the model first writes a Name evidence line quoting those exact words (or none) and then the Staff line from it; calling out to or asking for a colleague, mentioning someone, spelling ('D for David') and guessing that the call was passed on are listed as not evidence, and the Summary says 'Titan staff' whenever Staff is unnamed. Module 11 reads Staff only at the start of a line, so the evidence line can never be read as the Staff value. Tested on two real calls before the push: the first live call (no self-introduction) came out Staff on Sonnet and Haiku; an earlier test call where the customer greets the staff member by name came out Joey on Sonnet and Staff on Haiku, a miss in the safe direction."
+    "_evidence": "2026-10-02 (Albert: 'The receiver is the front desk, and Joey is the one that talked as staff. Why was Pourya made as the staff?'). v6 counted the Titan person saying their own name or the customer calling them by it; v7 counts only the first (_rule). On the first live call Joey answered Front Desk and called out 'Pourya?' to a colleague; the model took that as his name and the summary said 'Pourya explained'. Since v6 the model first writes a Name evidence line quoting those exact words (or none) and then the Staff line from it; calling out to or asking for a colleague, mentioning someone, spelling ('D for David') and guessing that the call was passed on are listed as not evidence, and the Summary says 'Titan staff' whenever Staff is unnamed. Module 11 reads Staff only at the start of a line, so the evidence line can never be read as the Staff value. Tested on two real calls before the push: the first live call (no self-introduction) came out Staff on Sonnet and Haiku; an earlier test call where the customer greets the staff member by name came out Joey on Sonnet and Staff on Haiku, a miss in the safe direction. Under v7 both calls come out Staff on both models.",
+    "labels": {
+      "customer": "Customer",
+      "caller": "Customer",
+      "other": "Other",
+      "staff": "Staff, or Staff (<name>) on a person's own GHL user",
+      "staff <name>": "Staff (<name>) only when the Staff line has that name; otherwise as staff",
+      "unclear or missing": "Speaker N (unchanged)"
+    },
+    "_labels": "Albert, 2026-10-02 evening: 'For the transcript in notes. Can you make it perfectly clear speaker 1 and speaker 2 is? Customer vs staff(name) if apparent'. Since v7 the summary model writes a Roles line in a closed vocabulary (left column); Make modules 11 and 12 turn it into the label on the right and module 34 swaps every '] Speaker N:' prefix for it, so a note reads '[00:02] Staff: Good morning, Titan Flooring.' / '[00:04] Customer: Hi …'. A named label needs the Staff line to carry that same name, so a model slip cannot put a name on a line the call-level rule did not allow. Speakers 1-3 are relabelled (Scribe's speaker_0-2); a fourth speaker keeps its raw label. The free-text 'Speakers:' key line is gone from the note header."
   },
   "make_scenarios": {
     "call_notes": {
       "id": 4951497,
       "name": "GHL Call -> Note",
-      "status": "LIVE since 2026-10-02 14:17 UTC (Albert switched it on after building the GHL 'Call Status' workflow). First real call 14:19 UTC: 11-minute inbound call on the Front Desk line, Sonnet route, 4 transcript notes, one comment read back as TYPE_INTERNAL_COMMENT, no alarm; 26 operations, ~42 credits. Its comment wrongly named Pourya (staff._evidence); v6 pushed 14:58 UTC.",
+      "status": "LIVE since 2026-10-02 14:17 UTC (Albert switched it on after building the GHL 'Call Status' workflow). First real call 14:19 UTC: 11-minute inbound call on the Front Desk line, Sonnet route, 4 transcript notes, one comment read back as TYPE_INTERNAL_COMMENT, no alarm; 26 operations, ~42 credits. Its comment wrongly named Pourya (staff._evidence); v6 pushed 14:58 UTC; v7 (self-introduction only, role labels on every transcript line, staff.labels) pushed 2026-10-03 02:09 UTC.",
       "team_id": 459654,
       "hook_id": 2836060,
       "ghl_connection_id": 4426112,

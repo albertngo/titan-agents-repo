@@ -750,18 +750,22 @@ def render_call_summary(summary, next_steps, meta):
             f"[call-summary v1 messageId={meta['message_id']} ref={meta['ref']}]")
 
 
-def render_call_note_v2(utterances, meta, speakers, split_chars=3000):
-    """Reference format of the v2 transcript notes, cut like Make cuts them: fixed
-    split_chars offsets, part 1 carries the call line and the speaker key. Bodies in
-    reading order; Make writes them last-first."""
+def render_call_note_v2(utterances, meta, speakers=None, split_chars=3000):
+    """Reference format of the v2 transcript notes, cut like Make cuts them: n parts of
+    equal size, part 1 carries the call line. Bodies in reading order; Make writes them
+    last-first. Since the v7 scenario each line is already labelled by role (Customer,
+    Staff, Staff (Joey), Other) and there is no speaker key: pass speakers=None. A
+    speakers string renders the earlier 'Speakers:' key line."""
     transcript = "\n".join(f"[{fmt_clock(u.get('start_s'))}] {u.get('speaker')}: {u.get('text')}"
                            for u in utterances)
     n = max(1, -(-len(transcript) // split_chars))
+    size = -(-len(transcript) // n)
+    key = f"Speakers: {speakers}\n" if speakers else ""
     bodies = []
     for k in range(1, n + 1):
-        head = (f"Transcript · Ref {meta['ref']} · {meta['call_line']}\nSpeakers: {speakers}\n" if k == 1
+        head = (f"Transcript · Ref {meta['ref']} · {meta['call_line']}\n{key}" if k == 1
                 else f"Transcript (continued) · Ref {meta['ref']}\n")
-        chunk = transcript[(k - 1) * split_chars:k * split_chars]
+        chunk = transcript[(k - 1) * size:k * size]
         bodies.append(f"{head}{chunk}\n\n[call-note v2 messageId={meta['message_id']} "
                       f"conversationId={meta['conversation_id']} engine={meta.get('engine', '')} "
                       f"ref={meta['ref']} part={k}/{n}]")

@@ -393,8 +393,12 @@ summary with the path. Read that file. Each entry in `calls[]` carries
 - `none` (no-answer, busy, …), `skipped-short` (< 8 s), `over-cap`, `failed`,
   `too_large` — nothing to read; still count the call.
 
-Speakers are diarized labels (`speaker_0`, `Speaker 1`), not roles. Work out who is
-staff from content and `direction`/`staff`; say "unclear" rather than guess.
+Speaker labels are roles in notes Make wrote since 2026-10-03 (`Customer`, `Staff`,
+`Staff (Joey)`, `Other`) and trust them as given; a name in a label means the person
+introduced themselves or it was their own line. Where a label is still `Speaker N` (older
+notes, a fourth speaker, a call this run transcribed itself, or one the model could not
+place) it is a diarized label, not a role: work out who is staff from content and
+`direction`/`staff`, and say "unclear" rather than guess.
 
 Join keys: `conversation_id` → `extensions.ghl.conversations[]` and the
 `ghl-conv-<conversationId>` message item; `contact_id` → leads and opportunities.

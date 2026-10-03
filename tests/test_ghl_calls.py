@@ -266,34 +266,112 @@ class TestRegistry(unittest.TestCase):
             self.assertIn(name, mods[10]["mapper"]["textPrompt"])
             self.assertIn(name, json.loads((REPO_ROOT / CFG["keyterms"]["published_file"]).read_text())["terms"])
 
-    def test_staff_name_needs_evidence(self):
-        """Albert, 2026-10-02: 'Joey is the one that talked as staff. Why was Pourya made as
-        the staff?' A name called out to a colleague is not the speaker's name: the model
-        quotes its evidence first, and module 11 reads Staff only at a line start."""
-        sc, snap, mods = self._snapshot()
-        ev = CFG["staff"]["evidence_line"]
-        prompt = mods[10]["mapper"]["textPrompt"]
-        self.assertLess(prompt.index(ev), prompt.index("\nStaff: <"))
-        self.assertLess(prompt.index("\nStaff: <"), prompt.index("\nSpeakers: <"))
-        for not_evidence in ('calls out or asks for while getting a colleague ("Pourya?"',
-                             '"D for David"', "a guess that the call was passed to someone",
-                             '"Titan staff" if it says Staff'):
-            self.assertIn(not_evidence, prompt)
+    def _module11_staff(self, mods):
+        """Module 11's Staff rule, emulated: the line-start regex, then the roster switch."""
         rule = [v["value"] for v in mods[11]["mapper"]["variables"] if v["name"] == "staff"][0]
         pattern = re.search(r'"/(\^\[\\s\\S\]\*\?\(\?:\^\|\\n\)Staff:[^"]*)/"', rule).group(1)
         roster = set(CFG["staff"]["roster"])
 
-        def staff_of(output):  # module 11, emulated: the regex, then the roster switch
+        def staff_of(output, ghl_user=""):
+            if ghl_user:
+                return ghl_user
             got = re.sub(pattern, r"\1", output).strip()
             return got if got in roster else CFG["staff"]["default"]
+        return staff_of
 
+    def test_staff_name_needs_evidence(self):
+        """Albert, 2026-10-02: 'Joey is the one that talked as staff. Why was Pourya made as
+        the staff?', then: 'Front desk is a general staff. Only IF the context explicitly has
+        us saying this is Joey … then you can name the staff.' Only a self-introduction is
+        evidence; the model quotes it first, and module 11 reads Staff only at a line start."""
+        sc, snap, mods = self._snapshot()
+        ev = CFG["staff"]["evidence_line"]
+        prompt = mods[10]["mapper"]["textPrompt"]
+        self.assertLess(prompt.index(ev), prompt.index("\nStaff: <"))
+        self.assertLess(prompt.index("\nStaff: <"), prompt.index("\nRoles: <"))
+        self.assertNotIn("\nSpeakers: <", prompt)
+        for rule in ("the Titan person introduces themselves by name", "not the customer using a name",
+                     'calls out or asks for while getting a colleague ("Pourya?"', '"D for David"',
+                     "not a guess that the call was passed to someone", '"Titan staff" if it says Staff'):
+            self.assertIn(rule, prompt)
+        staff_of = self._module11_staff(mods)
         self.assertEqual(staff_of('Name evidence: none ("Pourya?" is a colleague)\n\nStaff: Staff\n'
-                                  'Speakers: Speaker 1 = Titan staff\nSummary\nx'), "Staff")
+                                  'Roles: Speaker 1 = staff\nSummary\nx'), "Staff")
         self.assertEqual(staff_of('Name evidence: not Staff: Pourya\nStaff: Staff\nSummary\nx'), "Staff")
-        self.assertEqual(staff_of('Name evidence: "Hi, uh, Joey."\n\nStaff: Joey\nSummary\nx'), "Joey")
-        self.assertEqual(staff_of("Staff: Joey\nSpeakers: Speaker 1 = Joey (Titan)\nSummary\nx"), "Joey")
+        self.assertEqual(staff_of('Name evidence: "this is Joey"\n\nStaff: Joey\nSummary\nx'), "Joey")
         self.assertEqual(staff_of("Staff: <the name was not said>\nSummary\nx"), "Staff")
         self.assertEqual(staff_of("Summary\nNo conversation recorded."), "Staff")
+        self.assertEqual(staff_of("Staff: Joey\nSummary\nx", ghl_user="Pourya"), "Pourya")
+
+    def test_transcript_role_labels(self):
+        """Albert, 2026-10-02: 'make it perfectly clear speaker 1 and speaker 2 is? Customer vs
+        staff(name) if apparent'. The model's Roles line becomes a label on every transcript
+        line; a name only where the Staff line already has it (staff.labels)."""
+        sc, snap, mods = self._snapshot()
+        roster = CFG["staff"]["roster"]
+        v11 = {v["name"]: v["value"] for v in mods[11]["mapper"]["variables"]}
+        v12 = {v["name"]: v["value"] for v in mods[12]["mapper"]["variables"]}
+        self.assertNotIn("speakers", v11)
+        self.assertNotIn("Speakers:", v12["note_head"])
+        # staff_label: a person's own line names them; anything else is plain Staff.
+        sl = v11["staff_label"]
+        self.assertTrue(sl.startswith("{{switch(9.ghl_user; ") and sl.endswith('; "Staff")}}'))
+        sl_cases = dict(re.findall(r'"(\w+)"; "(Staff \(\w+\))"', sl))
+        self.assertEqual(sl_cases, {x: f"Staff ({x})" for x in roster})
+        staff_of = self._module11_staff(mods)
+
+        def role_of(n, output):  # module 11 role_N, emulated
+            pat = re.search(r'"/(\^.*?Roles:.*?)/"; "\$1"', v11[f"role_{n}"]).group(1)
+            return re.sub(r"[()]", "", re.sub(pat, r"\1", output)).strip().lower()
+
+        def label_of(n, role, staff, staff_label):  # module 12 lab_N, emulated
+            expr = v12[f"lab_{n}"]
+            self.assertTrue(expr.startswith(f"] {{{{switch(11.role_{n}; ") and
+                            expr.endswith(f'; "Speaker {n}")}}}}:'))
+            for key, named, name, plain in re.findall(
+                    r'"([a-z ]+)"; (?:if\(11\.staff = "(\w+)"; "([^"]+)"; 11\.staff_label\)|11\.staff_label|"([^"]+)")',
+                    expr):
+                if key == role:
+                    return name if named and staff == named else (plain or staff_label)
+            return f"Speaker {n}"
+
+        def notes_for(output, ghl_user=""):  # modules 11, 12, 34: the relabelled transcript
+            staff = staff_of(output, ghl_user)
+            staff_label = sl_cases.get(ghl_user, "Staff")
+            labs = {n: f"] {label_of(n, role_of(n, output), staff, staff_label)}:" for n in (1, 2, 3)}
+            tx = "[00:02] Speaker 1: Good morning.\n[00:04] Speaker 2: Hi.\n[00:09] Speaker 3: Yes."
+            chain = mods[34]["mapper"]["variables"][0]["value"]
+            for n in (1, 2, 3):
+                self.assertIn(f'"] Speaker {n}:"; 12.lab_{n})', chain)
+                tx = tx.replace(f"] Speaker {n}:", labs[n])
+            return [u["speaker"] for u in gp._utterances(tx)]
+
+        front = "Name evidence: none\n\nStaff: Staff\n\nRoles: Speaker 1 = staff · Speaker 2 = customer"
+        self.assertEqual(notes_for(front + " · Speaker 3 = other\nSummary\nx"), ["Staff", "Customer", "Other"])
+        self.assertEqual(notes_for(front + "\nSummary\nx"), ["Staff", "Customer", "Speaker 3"])
+        self.assertEqual(notes_for('Name evidence: "this is Joey"\nStaff: Joey\n'
+                                   "Roles: Speaker 1 = Staff (Joey), Speaker 2 = Customer\nSummary\nx"),
+                         ["Staff (Joey)", "Customer", "Speaker 3"])
+        # A named role the Staff line does not carry stays plain Staff (no slip-through).
+        self.assertEqual(notes_for("Name evidence: none\nStaff: Staff\n"
+                                   "Roles: Speaker 1 = staff Pourya · Speaker 2 = customer\nSummary\nx"),
+                         ["Staff", "Customer", "Speaker 3"])
+        # A person's own line: certain, whatever the model wrote.
+        self.assertEqual(notes_for(front + "\nSummary\nx", ghl_user="Pourya"),
+                         ["Staff (Pourya)", "Customer", "Speaker 3"])
+        self.assertEqual(notes_for("Summary\nNo conversation recorded."), ["Speaker 1", "Speaker 2", "Speaker 3"])
+        # Every vocabulary word the registry documents is a case in the switch.
+        for key in ("customer", "caller", "other", "staff"):
+            self.assertIn(f'"{key}"; ', v12["lab_1"])
+        # Notes and the translation both read the labelled text; parts split it evenly.
+        route3 = [m["id"] for m in mods[30]["routes"][2]["flow"]]
+        self.assertLess(route3.index(12), route3.index(34))
+        self.assertLess(route3.index(34), route3.index(13))
+        body = mods[14]["mapper"]["body"]
+        self.assertIn("{{substring(34.tx; (13.i - 1) * ceil(length(34.tx) / 11.n_parts); "
+                      "13.i * ceil(length(34.tx) / 11.n_parts))}}", body)
+        self.assertNotIn("9.transcript", body)
+        self.assertTrue(mods[41]["mapper"]["textPrompt"].endswith("{{34.tx}}"))
 
     def test_comment_gate(self):
         """Albert, 2026-10-02: internal comments only, with a barrier against any slip.
