@@ -294,8 +294,9 @@ class TestPriceDateAndChangedBy(unittest.TestCase):
         author does not (nobody changed the price)."""
         up, _ = self.upsert([row(SKU="A-1", **{
             "Lightspeed ID": "u-1", "Effective Date": "2026-09-21"})])
-        self.assertEqual(up["fields"], {"Effective Date": "2026-09-21"})
-        self.assertEqual(up["before"], {"Effective Date": "2026-08-01"})
+        # `Price List Date` follows the date (Albert, 2026-10-03).
+        self.assertEqual(up["fields"], {"Effective Date": "2026-09-21", "Price List Date": "2026-09-21"})
+        self.assertEqual(up["before"], {"Effective Date": "2026-08-01", "Price List Date": None})
 
     def test_non_price_change_on_a_newer_list_moves_the_date_not_the_author(self):
         up, _ = self.upsert([row(SKU="A-1", **{
@@ -349,7 +350,37 @@ class TestPriceDateAndChangedBy(unittest.TestCase):
         up, _ = self.upsert([row(SKU="A-1", **{
             "Lightspeed ID": "u-1", "Effective Date": "2026-08-01",
             "Price List URL": self.URL})], existing)
-        self.assertEqual(up["fields"], {"Price List URL": self.URL})
+        self.assertEqual(up["fields"], {"Price List URL": self.URL, "Price List Date": "2026-08-01"})
+
+    def test_price_list_date_always_follows_the_effective_date(self):
+        """Albert, 2026-10-03: "It should always follow the effective date so it carries
+        through to Airtable and supabase." Triforest PL-382 moved Effective Date to
+        2026-10-01 and left Price List Date at 2026-08-15 on 160 records."""
+        existing = {"A-1": {**self.EXISTING["A-1"], "Price List URL": "old", "Price List Date": "2026-08-01"}}
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Effective Date": "2026-10-01", "Price List URL": self.URL})], existing)
+        self.assertEqual(up["fields"]["Effective Date"], "2026-10-01")
+        self.assertEqual(up["fields"]["Price List Date"], "2026-10-01")
+        self.assertEqual(up["before"]["Price List Date"], "2026-08-01")
+
+    def test_a_rerun_of_the_same_list_corrects_a_stale_list_date(self):
+        existing = {"A-1": {**self.EXISTING["A-1"], "Price List URL": self.URL, "Price List Date": "2026-05-01"}}
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Effective Date": "2026-08-01", "Price List URL": self.URL})], existing)
+        self.assertEqual(up["fields"], {"Price List Date": "2026-08-01"})
+
+    def test_an_older_list_never_moves_the_list_date(self):
+        existing = {"A-1": {**self.EXISTING["A-1"], "Price List Date": "2026-08-01"}}
+        up, _ = self.upsert([row(SKU="A-1", **{
+            "Lightspeed ID": "u-1", "Effective Date": "2026-07-01"})], existing)
+        self.assertIsNone(up)
+
+    def test_a_create_carries_the_list_date(self):
+        rows = [row(SKU="NEW-1", MatchStatus="new", **{
+            "LS Handle / Parent ID": "HNEW", "Effective Date": "2026-10-01", "Price List URL": self.URL})]
+        actions, _, _ = run(rows, [], ls_upload=ls_upload_row(sku="NEW-1"))
+        up = next(a for a in actions if a["op"] == "upsert")
+        self.assertEqual(up["fields"]["Price List Date"], "2026-10-01")
 
     def test_a_link_already_in_place_writes_nothing(self):
         existing = {"A-1": {**self.EXISTING["A-1"], "Price List URL": self.URL}}
