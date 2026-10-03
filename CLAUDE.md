@@ -308,9 +308,8 @@ per "all three trackers are kept" below.
 **`Effective Date` IS the price list date (2026-10-03, Albert).** One field, not two: a separate
 `Price List Date` (added 2026-09-28, read by Titan Desk) drifted behind it — Triforest's PL-382 moved
 160 records to 2026-10-01 and left it at 2026-08-15. Every record was matched to the higher of the two
-(1,859 written) and nothing writes it any more. Order to finish: Titan Desk (its own repo) reads
-`Effective Date` instead, then Albert deletes `Price List Date` in Airtable — Titan Desk's 30-minute
-sync checks the schema, so the reverse order breaks it.
+(1,859 written) and nothing writes it any more. Albert deleted the field in Airtable the same day
+and moved Titan Desk's mapping to `Effective Date` (titan-desk commit 9b03625, migration 008).
 
 **Lists received before they take effect are staged (2026-09-25, Albert).** The row's
 `Effective Date` (Notion) is the list's date; when it is after today, extraction runs
