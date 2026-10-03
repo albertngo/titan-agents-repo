@@ -27,7 +27,7 @@ Registry: `platform-settings/ghl-calls.json`. Script: `scripts/ghl_calls_pull.py
 | D4 | What if transcription fails? | `ghl.json` stays `status: "ok"`; `reporting.calls.status` says `error` and one `needs_attention` line says why |
 | D8 | The contact note | Summary, then Next steps, then the transcript, written right after processing. **Superseded 2026-10-02 by D9** |
 | D9 | Summary placement (2026-10-02) | Summary + Next steps → **internal comment** on the conversation, behind the comment gate; transcript → contact Notes; both carry the call line and `Ref C-MMDD-HHmm` |
-| D10 | Staff name (2026-10-02) | The call's own GHL user if it is a person; on the shared Front Desk line a roster name only when it is said on the call; otherwise `Staff`. Roster: `ghl-calls.json` → `staff` |
+| D10 | Staff name (2026-10-02) | The call's own GHL user if it is a person; on the shared Front Desk line a roster name only when the Titan person says it as their own or the customer calls them by it (a name called out to a colleague is not theirs); otherwise `Staff`. Roster: `ghl-calls.json` → `staff` |
 | D5 | Ownership (confirmed 2026-10-02) | After a connected call, `next_response_owner` is `us` only if a commitment by us is still open |
 | D6 | Sensitivity (confirmed 2026-10-02) | Provenance rule unchanged: team-level; `private` only for `intent: personal` |
 | D7 | Coaching notes (confirmed 2026-10-02) | `extensions.ghl.call_quality` (private), rubric + one neutral sentence, never in items, needs_attention or the GHL note |
@@ -102,6 +102,18 @@ Desk line the summary model reports a name only if it is said on the call, and m
 11 accepts it through a switch that knows the roster and nothing else; anything else
 becomes `Staff`. The speaker key is the model's reading, `unclear` where it cannot
 tell — speaker labels in the transcript itself stay `Speaker N`.
+
+"Said on the call" is narrow (v6, after the first live call): the model must first
+write a `Name evidence:` line quoting the words in which the Titan person says their
+own name ("this is Helen") or the customer calls them by it ("thanks, Mike"), or
+`none`, and only then the `Staff:` line. A name the staff member calls out or asks
+for while getting a colleague ("Pourya?", "let me ask Mike"), a name said about
+someone else, a name used to spell something ("D for David"), or a guess that the
+call was passed on are listed as not evidence. With `Staff` unnamed the Summary says
+"Titan staff". Module 11 matches `Staff:` only at the start of a line, so the evidence
+line is never read as the Staff value; the evidence line itself is dropped. The miss
+this allows is the safe one: a name that was said but not picked up becomes `Staff`.
+Staff can make this reliable by answering "Titan Flooring, this is Joey".
 
 ## Engines (prices web-searched 2026-10-01; verify at signup)
 
@@ -330,10 +342,26 @@ What the gate cannot stop: a person editing module 18 in the Make UI, or using k
 
 ## Log
 
+- **2026-10-02 14:58 UTC, v6: staff-name evidence (Albert: "The receiver is the front
+  desk, and Joey is the one that talked as staff. Why was Pourya made as the staff?").**
+  GHL logged the first live call on Front Desk, so Make correctly left the name to the
+  summary model. Joey never said his own name; 18 seconds in he called out "Pourya?"
+  to a colleague, and the model took that as his name, so the comment's call line, its
+  speaker key and its Summary all said Pourya. A first fix that only told the model
+  such names don't count still gave Pourya on Haiku (and on Sonnet, until a probe bug
+  that fed it the old note headers was fixed). v6 adds the `Name evidence:` line ahead
+  of `Staff:` and anchors module 11's Staff match to a line start. Probe on two real
+  calls before the push: the first live call → `Staff` on Sonnet and Haiku, no Pourya
+  anywhere; an earlier test call where the customer greets Joey by name → Joey on
+  Sonnet, `Staff` on Haiku (safe-side miss; that call is long enough for Sonnet). Live blueprint read back identical to the snapshot. The
+  comment and notes already written for the first live call still say Pourya; nothing
+  rewrites them automatically.
+
 - **2026-10-02 14:17 UTC, live.** Albert built the GHL "Call Status" workflow and switched
-  the scenario on. First real call two minutes later: an 11-minute inbound call on Pourya's
-  line took the Sonnet route; 4 transcript notes, one comment read back as
-  `TYPE_INTERNAL_COMMENT`, staff named Pourya, no alarm, kill switch clear. 26 operations,
+  the scenario on. First real call two minutes later: an 11-minute inbound call on the
+  Front Desk line took the Sonnet route; 4 transcript notes, one comment read back as
+  `TYPE_INTERNAL_COMMENT`, staff named Pourya (wrongly, see v6 above), no alarm, kill
+  switch clear. 26 operations,
   ~42 credits. GHL's own workflows sent their usual SMS and email around the same minute;
   none came from Make.
 

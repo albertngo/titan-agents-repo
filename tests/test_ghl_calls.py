@@ -266,6 +266,35 @@ class TestRegistry(unittest.TestCase):
             self.assertIn(name, mods[10]["mapper"]["textPrompt"])
             self.assertIn(name, json.loads((REPO_ROOT / CFG["keyterms"]["published_file"]).read_text())["terms"])
 
+    def test_staff_name_needs_evidence(self):
+        """Albert, 2026-10-02: 'Joey is the one that talked as staff. Why was Pourya made as
+        the staff?' A name called out to a colleague is not the speaker's name: the model
+        quotes its evidence first, and module 11 reads Staff only at a line start."""
+        sc, snap, mods = self._snapshot()
+        ev = CFG["staff"]["evidence_line"]
+        prompt = mods[10]["mapper"]["textPrompt"]
+        self.assertLess(prompt.index(ev), prompt.index("\nStaff: <"))
+        self.assertLess(prompt.index("\nStaff: <"), prompt.index("\nSpeakers: <"))
+        for not_evidence in ('calls out or asks for while getting a colleague ("Pourya?"',
+                             '"D for David"', "a guess that the call was passed to someone",
+                             '"Titan staff" if it says Staff'):
+            self.assertIn(not_evidence, prompt)
+        rule = [v["value"] for v in mods[11]["mapper"]["variables"] if v["name"] == "staff"][0]
+        pattern = re.search(r'"/(\^\[\\s\\S\]\*\?\(\?:\^\|\\n\)Staff:[^"]*)/"', rule).group(1)
+        roster = set(CFG["staff"]["roster"])
+
+        def staff_of(output):  # module 11, emulated: the regex, then the roster switch
+            got = re.sub(pattern, r"\1", output).strip()
+            return got if got in roster else CFG["staff"]["default"]
+
+        self.assertEqual(staff_of('Name evidence: none ("Pourya?" is a colleague)\n\nStaff: Staff\n'
+                                  'Speakers: Speaker 1 = Titan staff\nSummary\nx'), "Staff")
+        self.assertEqual(staff_of('Name evidence: not Staff: Pourya\nStaff: Staff\nSummary\nx'), "Staff")
+        self.assertEqual(staff_of('Name evidence: "Hi, uh, Joey."\n\nStaff: Joey\nSummary\nx'), "Joey")
+        self.assertEqual(staff_of("Staff: Joey\nSpeakers: Speaker 1 = Joey (Titan)\nSummary\nx"), "Joey")
+        self.assertEqual(staff_of("Staff: <the name was not said>\nSummary\nx"), "Staff")
+        self.assertEqual(staff_of("Summary\nNo conversation recorded."), "Staff")
+
     def test_comment_gate(self):
         """Albert, 2026-10-02: internal comments only, with a barrier against any slip.
         Every layer of make_scenarios.call_notes.comment_gate, checked on the snapshot."""

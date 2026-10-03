@@ -183,13 +183,15 @@
       "edv6p75Y79cYsPS0jPv0"
     ],
     "_rule": "Albert, 2026-10-02: if the call is on a person's own GHL user, use that name (platform-settings/notion-destinations.json people). If it is on the shared Front Desk line, use a roster name only when the name is said on the call; otherwise 'Staff'. Make applies the first part itself (module 9's switch on userId) and only trusts the summary model for the second, through a switch that accepts roster names and nothing else.",
-    "_roster": "Who answers the phones. Albert named Joey, Helen, David and Albert on 2026-10-02 ('etc.'); Pourya and Mike have their own GHL users. Add a name here, then: --write-keyterms, and the same name in Make modules 10 (prompt) and 11 (switch)."
+    "_roster": "Who answers the phones. Albert named Joey, Helen, David and Albert on 2026-10-02 ('etc.'); Pourya and Mike have their own GHL users. Add a name here, then: --write-keyterms, and the same name in Make modules 10 (prompt) and 11 (switch).",
+    "evidence_line": "Name evidence:",
+    "_evidence": "2026-10-02 (Albert: 'The receiver is the front desk, and Joey is the one that talked as staff. Why was Pourya made as the staff?'). 'Said on the call' means the Titan person says their own name or the customer calls them by it. On the first live call Joey answered Front Desk and called out 'Pourya?' to a colleague; the model took that as his name and the summary said 'Pourya explained'. Since v6 the model first writes a Name evidence line quoting those exact words (or none) and then the Staff line from it; calling out to or asking for a colleague, mentioning someone, spelling ('D for David') and guessing that the call was passed on are listed as not evidence, and the Summary says 'Titan staff' whenever Staff is unnamed. Module 11 reads Staff only at the start of a line, so the evidence line can never be read as the Staff value. Tested on two real calls before the push: the first live call (no self-introduction) came out Staff on Sonnet and Haiku; an earlier test call where the customer greets the staff member by name came out Joey on Sonnet and Staff on Haiku, a miss in the safe direction."
   },
   "make_scenarios": {
     "call_notes": {
       "id": 4951497,
       "name": "GHL Call -> Note",
-      "status": "LIVE since 2026-10-02 14:17 UTC (Albert switched it on after building the GHL 'Call Status' workflow). First real call 14:19 UTC: 11-minute inbound call on Pourya's line, Sonnet route, 4 transcript notes, one comment read back as TYPE_INTERNAL_COMMENT, no alarm; 26 operations, ~42 credits.",
+      "status": "LIVE since 2026-10-02 14:17 UTC (Albert switched it on after building the GHL 'Call Status' workflow). First real call 14:19 UTC: 11-minute inbound call on the Front Desk line, Sonnet route, 4 transcript notes, one comment read back as TYPE_INTERNAL_COMMENT, no alarm; 26 operations, ~42 credits. Its comment wrongly named Pourya (staff._evidence); v6 pushed 14:58 UTC.",
       "team_id": 459654,
       "hook_id": 2836060,
       "ghl_connection_id": 4426112,
