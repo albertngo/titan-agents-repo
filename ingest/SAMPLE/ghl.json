@@ -102,10 +102,23 @@
 
   "extensions": {
     "ghl": {
-      "template_version": "3",
+      "template_version": "4",
 
       "reporting": {
         "lead_count": "[FILL: number]",
+
+        "calls": {
+          "_comment": "v4. From scripts/ghl_calls_pull.py's run file. Call counts live HERE, never in metrics (metrics is at its 14-of-15 ceiling). A calls-step failure sets status error and one needs_attention line; the file's own status stays ok (Albert, 2026-10-01).",
+          "listed": "[FILL: number — TYPE_CALL messages in the window]",
+          "from_note": "[FILL: number — transcript read from the Make-written [call-note v1] contact note]",
+          "transcribed": "[FILL: number — transcribed by this run]",
+          "voicemails": "[FILL: number]",
+          "minutes": "[FILL: number]",
+          "est_cost_usd": "[FILL: number]",
+          "engine": "[FILL: e.g. elevenlabs/scribe_v2]",
+          "status": "[FILL: ok | partial | error]",
+          "error": "[FILL: reason, or null]"
+        },
 
         "exclusions": {
           "_comment": "Reconciles the netted metrics back to raw. A netted metric with no visible raw is indistinguishable from a quiet day, so both halves ship. Excluded records are NOT dropped — they stay in conversations[] / new_leads[] carrying the flag that excluded them.",
@@ -245,10 +258,64 @@
           "followup_intent": "[FILL: the intent driving the follow-up, or null]",
           "importance_rank": "[FILL: number, 1 = most important]",
           "flags": [
-            "[FILL: payment-pending | insurance-claim | appt-cancelled | spam-suspected | supplier-solicitation | missed-call-no-voicemail]"
+            "[FILL: payment-pending | insurance-claim | appt-cancelled | spam-suspected | supplier-solicitation | missed-call-no-voicemail | voicemail-transcribed | call-commitment-open]"
+          ],
+          "call_ids": [
+            "[FILL: ghl-call-<messageId> for each call on this conversation in the window; empty array if none]"
           ]
         }
       ],
+
+      "calls": [
+        {
+          "_comment": "v4. One record per TYPE_CALL message in the window. Summaries only: transcript text never enters this file (it stays in the GHL contact note and the gitignored analysis/cache/ghl-calls/).",
+          "id": "[FILL: ghl-call-<messageId>]",
+          "message_id": "[FILL: id]",
+          "conversation_id": "[FILL: id]",
+          "contact_id": "[FILL: id]",
+          "contact": "[FILL: name]",
+          "direction": "[FILL: inbound | outbound]",
+          "staff": "[FILL: people-table name, else raw userId, or null]",
+          "started_at": "[FILL: ISO timestamp, America/Toronto]",
+          "ended_at": "[FILL: ISO timestamp, or null]",
+          "duration_s": "[FILL: number]",
+          "call_status": "[FILL: completed | voicemail | no-answer | busy | …]",
+          "recording": "[FILL: from-note | transcribed | fallback-ghl | failed | none | skipped-short | over-cap | too_large]",
+          "note_ids": ["[FILL: GHL note ids of the call note, if any]"],
+          "engine": "[FILL: e.g. elevenlabs/scribe_v2]",
+          "language": "[FILL: e.g. en]",
+          "confidence": "[FILL: 0-1, or null]",
+          "summary": "[FILL: <= 3 sentences: who, why, outcome]",
+          "intent": "[FILL: quote-request | booking | status-check | warranty-complaint | supplier-vendor | spam-robocall | personal | other]",
+          "commitments": [
+            {"by": "[FILL: us | customer]", "what": "[FILL: short]", "due": "[FILL: YYYY-MM-DD, or null]"}
+          ],
+          "products_mentioned": ["[FILL: product, supplier or collection names]"],
+          "amounts_cents": ["[FILL: integer cents CAD mentioned on the call]"],
+          "voicemail_gist": "[FILL: one sentence for voicemails, else null]",
+          "sensitivity": "[FILL: null, or private only for intent personal]"
+        }
+      ],
+
+      "call_quality": {
+        "sensitivity": "private",
+        "_comment": "v4. Staff coaching, admin-only. Never surfaced as items or needs_attention, never in the GHL note. Rubric scores and one neutral sentence; no quotes.",
+        "records": [
+          {
+            "call_id": "[FILL: ghl-call-<messageId>]",
+            "staff": "[FILL: first name]",
+            "direction": "[FILL: inbound | outbound]",
+            "duration_s": "[FILL: number]",
+            "rubric": {
+              "greeting": "[FILL: yes | partial | no | n/a]",
+              "discovery": "[FILL: yes | partial | no | n/a — asked about rooms, size, timeline, budget]",
+              "next_step": "[FILL: yes | partial | no | n/a — a concrete next step was set]",
+              "callback_owner": "[FILL: yes | partial | no | n/a — it is clear who calls back, by when]"
+            },
+            "note": "[FILL: one neutral sentence]"
+          }
+        ]
+      },
 
       "workflow_drift": [
         {

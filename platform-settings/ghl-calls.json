@@ -1,0 +1,287 @@
+{
+  "_comment": "Registry for call-recording transcription (methods/ghl-call-transcripts.md). Read by scripts/ghl_calls_pull.py (run by .claude/agents/ghl-ingest-agent.md via Bash during /daily-ingest, and by hand) and documents the Make scenario 'GHL Call -> Note' that writes the Summary / Next steps / Transcript note onto the GHL contact right after a call. Engine choice, gating, caps, keyterm sources and output paths live HERE, never in a prompt. Albert, 2026-10-01: ingest voice calls 'at a high level' — download the .wav, run it through a better transcriber than GHL's, cross-reference customer, message id and timestamps, feed it to the ingester; and put the transcript in the customer's note section right after processing, as Summary, Next steps, Transcript.",
+  "_maintenance": "Prices were web-searched 2026-10-01 and drive only est_cost_usd — verify at signup. If GHL changes the recording endpoint or Version header, change api.* and re-run `ghl_calls_pull.py --probe`. make_scenarios.call_notes.split_chars is UNVERIFIED until the first live scenario run. tests/test_ghl_calls.py pins the caps, the engine and the output paths.",
+  "config_version": "1",
+  "api": {
+    "base_url": "https://services.leadconnectorhq.com",
+    "version": "2021-04-15",
+    "_version_note": "Verified 2026-10-02: the recording endpoint answers with Version 2021-04-15 (audio/x-wav). analysis/ghl_*.py use 2021-07-28 for other endpoints; the notes endpoint is called with 2021-07-28.",
+    "endpoints": {
+      "conversations_search": "/conversations/search",
+      "messages": "/conversations/{conversationId}/messages",
+      "contact_notes": "/contacts/{contactId}/notes",
+      "recording": "/conversations/messages/{messageId}/locations/{locationId}/recording",
+      "ghl_transcription": "/conversations/locations/{locationId}/messages/{messageId}/transcription"
+    },
+    "scopes_required": [
+      "conversations.readonly",
+      "conversations/message.readonly",
+      "contacts.readonly"
+    ],
+    "_scope_note": "Read scopes only. conversations/message.readonly (recordings) and contacts.readonly (notes) were added to the read PIT 2026-10-01 — recorded against methods/architecture.md 'never widen the read token': these widen what the token can READ, never what it can write."
+  },
+  "rate_limits": {
+    "min_interval_ms": 170,
+    "max_retries": 5,
+    "_burst": "PIT burst limit 100 requests / 10 s; 401 retried too (GHL rejects a valid PIT mid-burst intermittently)."
+  },
+  "window_hours": 24,
+  "message_types": [
+    "TYPE_CALL"
+  ],
+  "_message_types_note": "TYPE_IVR_CALL, TYPE_CAMPAIGN_CALL, TYPE_CAMPAIGN_MANUAL_CALL, TYPE_CUSTOM_CALL and TYPE_CAMPAIGN_VOICEMAIL also exist (analysis/ghl_win_timeline.py). Deliberately excluded until a pilot shows they carry recordings worth reading.",
+  "transcribe_statuses": [
+    "completed",
+    "voicemail"
+  ],
+  "min_duration_seconds": 8,
+  "max_calls_per_run": 40,
+  "max_minutes_per_run": 120,
+  "max_recording_mb": 100,
+  "fallback_to_ghl_transcription": true,
+  "prefer_note": true,
+  "_prefer_note": "When the Make scenario already wrote a [call-note v1 messageId=…] note on the contact, the daily run reads the transcript from it and does not download or transcribe the call again. The note is the durable cache; cloud containers are ephemeral.",
+  "engine": {
+    "default": "elevenlabs",
+    "_locked_in": "2026-10-02",
+    "_decision": "Albert, 2026-10-02, in chat: switch to ElevenLabs — lock in Scribe v2 now, drop Deepgram, no bake-off gate (superseding 2026-10-01's 'Scribe default, Deepgram alternate, decide after a 10-call bake-off'). GHL recordings are mono (probe 2026-10-02), so Deepgram's multichannel speaker mapping never applied. AssemblyAI and OpenAI stay as comparison adapters; GHL's own transcript stays the automatic fallback.",
+    "elevenlabs": {
+      "url": "https://api.elevenlabs.io/v1/speech-to-text",
+      "model_id": "scribe_v2",
+      "env_var": "ELEVENLABS_API_KEY",
+      "params": {
+        "diarize": true,
+        "tag_audio_events": true,
+        "timestamps_granularity": "word"
+      },
+      "price_per_hour_usd": 0.22,
+      "keyterm_surcharge_per_hour_usd": 0.05,
+      "max_keyterms": 1000,
+      "max_upload_mb": 3000,
+      "timeout_s": 600,
+      "_language": "No language_code: Scribe v2 detects the language (2026-10-02, Albert: Chinese — Mandarin and Cantonese —, Vietnamese and Farsi callers). It used to be forced to 'en', which renders a non-English call as garbled English. Cantonese is not confirmed in ElevenLabs' published list as of 2026-10-02: verify on the first real Cantonese call."
+    },
+    "assemblyai": {
+      "url": "https://api.assemblyai.com/v2",
+      "model": "universal",
+      "env_var": "ASSEMBLYAI_API_KEY",
+      "price_per_hour_usd": 0.21,
+      "poll_interval_s": 3,
+      "poll_timeout_s": 600,
+      "max_keyterms": 1000,
+      "timeout_s": 600
+    },
+    "openai": {
+      "url": "https://api.openai.com/v1/audio/transcriptions",
+      "model": "gpt-4o-transcribe",
+      "env_var": "OPENAI_API_KEY",
+      "price_per_minute_usd": 0.006,
+      "max_upload_mb": 25,
+      "max_keyterms": 50,
+      "timeout_s": 600
+    },
+    "ghl": {
+      "_note": "GHL's own transcription. Fallback only: no cost, no diarization or vocabulary control."
+    }
+  },
+  "keyterms": {
+    "static": [
+      "Titan Flooring",
+      "LVP",
+      "SPC",
+      "WPC",
+      "vinyl plank",
+      "laminate",
+      "engineered hardwood",
+      "solid hardwood",
+      "herringbone",
+      "chevron",
+      "underlay",
+      "underlayment",
+      "subfloor",
+      "baseboard",
+      "quarter round",
+      "reducer",
+      "T-molding",
+      "stair nosing",
+      "square feet",
+      "click lock",
+      "glue down",
+      "floating floor",
+      "Mississauga",
+      "Oakville",
+      "Etobicoke",
+      "Brampton",
+      "Milton",
+      "Burlington",
+      "Toronto",
+      "Vaughan"
+    ],
+    "from_suppliers": true,
+    "_from_suppliers": "platform-settings/airtable-destinations.json supplier_aliases values, title-cased",
+    "from_people": true,
+    "from_staff_roster": true,
+    "_from_people": "platform-settings/notion-destinations.json people[].name, bots excluded",
+    "from_catalogue": {
+      "glob": "ingest/*/*_airtable_upload_*.csv",
+      "columns": [
+        "Brand",
+        "Collection"
+      ],
+      "newest_files": 30
+    },
+    "cap_by_engine": {
+      "elevenlabs": 1000,
+      "assemblyai": 1000,
+      "openai": 50
+    },
+    "published_file": "platform-settings/ghl-calls-keyterms.json"
+  },
+  "bakeoff": {
+    "_comment": "Optional quality check, not a decision step (the engine is locked in). Compares engines on the same calls; 'ghl' is GHL's own transcript, i.e. what Scribe v2 replaced.",
+    "engines": [
+      "elevenlabs",
+      "ghl"
+    ],
+    "output": "analysis/cache/ghl-calls/bakeoff/{date}.md"
+  },
+  "audio": {
+    "keep": true
+  },
+  "outputs": {
+    "cache_dir": "analysis/cache/ghl-calls",
+    "run_file": "analysis/cache/ghl-calls/runs/{date}.json",
+    "_never": "Nothing under ingest/<date>/ — the orchestrator reads every *.json there (contracts/ingest-schema.md). Audio and transcripts are customer PII and the repo is public: analysis/cache/ is gitignored."
+  },
+  "note_format": {
+    "version": "call-note v2",
+    "footer_regex": "\\[call-note v(\\d+) ([^\\]]*)\\]",
+    "sections": [
+      "Transcript"
+    ],
+    "comment_version": "call-summary v1",
+    "comment_footer_regex": "\\[call-summary v(\\d+) ([^\\]]*)\\]",
+    "comment_sections": [
+      "Summary",
+      "Next steps"
+    ],
+    "ref_format": "C-MMDD-HHmm (call start, America/Toronto)",
+    "_split": "Albert, 2026-10-02: Summary and Next steps go in an INTERNAL COMMENT on the conversation, beside the recording; the full transcript stays in contact Notes. Both carry the call line (date and time, direction, duration, staff) and the same Ref code. v1 notes (Summary, Next steps and Transcript in one note) still parse.",
+    "_order": "Transcript parts are written last-first so part 1 (call line) is the newest note; the comment is posted after the last note part. Since v7 the transcript is cut into n_parts equal pieces of the labelled text (about 3,000 characters each) instead of fixed 3,000-character offsets."
+  },
+  "staff": {
+    "roster": [
+      "Joey",
+      "Helen",
+      "David",
+      "Albert",
+      "Pourya",
+      "Mike"
+    ],
+    "default": "Staff",
+    "shared_line_user_ids": [
+      "edv6p75Y79cYsPS0jPv0"
+    ],
+    "_rule": "Albert, 2026-10-02 (tightened the same evening: 'Front desk is a general staff. Only IF the context explicitly has us saying this is Joey, or this is Helen, or this is Albert, etc then you can name the staff deliberately. While if the number being reached is Pourya's or Albert's number etc, you can be sure of the name'): if the call is on a person's own GHL user, use that name (platform-settings/notion-destinations.json people). On the shared Front Desk line the default is 'Staff'; a roster name only when the Titan person introduces themselves by it. The customer greeting them by a name does not count. Make applies the first part itself (module 9's switch on userId) and only trusts the summary model for the second, through a switch that accepts roster names and nothing else.",
+    "_roster": "Who answers the phones. Albert named Joey, Helen, David and Albert on 2026-10-02 ('etc.'); Pourya and Mike have their own GHL users. Add a name here, then: --write-keyterms, and the same name in Make modules 10 (prompt) and 11 (switch).",
+    "evidence_line": "Name evidence:",
+    "_evidence": "2026-10-02 (Albert: 'The receiver is the front desk, and Joey is the one that talked as staff. Why was Pourya made as the staff?'). v6 counted the Titan person saying their own name or the customer calling them by it; v7 counts only the first (_rule). On the first live call Joey answered Front Desk and called out 'Pourya?' to a colleague; the model took that as his name and the summary said 'Pourya explained'. Since v6 the model first writes a Name evidence line quoting those exact words (or none) and then the Staff line from it; calling out to or asking for a colleague, mentioning someone, spelling ('D for David') and guessing that the call was passed on are listed as not evidence, and the Summary says 'Titan staff' whenever Staff is unnamed. Module 11 reads Staff only at the start of a line, so the evidence line can never be read as the Staff value. Tested on two real calls before the push: the first live call (no self-introduction) came out Staff on Sonnet and Haiku; an earlier test call where the customer greets the staff member by name came out Joey on Sonnet and Staff on Haiku, a miss in the safe direction. Under v7 both calls come out Staff on both models.",
+    "labels": {
+      "customer": "Customer",
+      "caller": "Customer",
+      "other": "Other",
+      "staff": "Staff, or Staff (<name>) on a person's own GHL user",
+      "staff <name>": "Staff (<name>) only when the Staff line has that name; otherwise as staff",
+      "unclear or missing": "Speaker N (unchanged)"
+    },
+    "_labels": "Albert, 2026-10-02 evening: 'For the transcript in notes. Can you make it perfectly clear speaker 1 and speaker 2 is? Customer vs staff(name) if apparent'. Since v7 the summary model writes a Roles line in a closed vocabulary (left column); Make modules 11 and 12 turn it into the label on the right and module 34 swaps every '] Speaker N:' prefix for it, so a note reads '[00:02] Staff: Good morning, Titan Flooring.' / '[00:04] Customer: Hi …'. A named label needs the Staff line to carry that same name, so a model slip cannot put a name on a line the call-level rule did not allow. Speakers 1-3 are relabelled (Scribe's speaker_0-2); a fourth speaker keeps its raw label. The free-text 'Speakers:' key line is gone from the note header."
+  },
+  "make_scenarios": {
+    "call_notes": {
+      "id": 4951497,
+      "name": "GHL Call -> Note",
+      "status": "LIVE since 2026-10-02 14:17 UTC (Albert switched it on after building the GHL 'Call Status' workflow). First real call 14:19 UTC: 11-minute inbound call on the Front Desk line, Sonnet route, 4 transcript notes, one comment read back as TYPE_INTERNAL_COMMENT, no alarm; 26 operations, ~42 credits. Its comment wrongly named Pourya (staff._evidence); v6 pushed 14:58 UTC; v7 (self-introduction only, role labels on every transcript line, staff.labels) pushed 2026-10-03 02:09 UTC.",
+      "team_id": 459654,
+      "hook_id": 2836060,
+      "ghl_connection_id": 4426112,
+      "_ghl_connection": "Make's GoHighLevel app connection. It is NOT authorized for the conversations scope (/conversations/search answered 401 'The token is not authorized for this scope', 2026-10-02), so it is used for exactly one job, adding notes: module 14 (transcript) and module 44 (translation). Every read goes through keychains.ghl_read_pit instead.",
+      "datastore": {
+        "id": 94694,
+        "name": "GHL call notes written",
+        "data_structure_id": 295179
+      },
+      "writes": [
+        "GHL contact note",
+        "GHL internal comment"
+      ],
+      "split_chars": 3000,
+      "sleep_seconds": 90,
+      "edited_in": "the Make UI",
+      "isActive": true,
+      "_write_note": "A GHL write performed by Make, outside the ghl-actions-agent approval gate — the same class as the existing Make GHL writers (Website Inquiry Ingester, Stage scenarios). Recorded here and in CLAUDE.md (Albert, 2026-10-01). It writes exactly one thing: the note.",
+      "keychains": {
+        "elevenlabs": 97834,
+        "ghl_read_pit": 97841,
+        "ghl_internal_comment": 97843
+      },
+      "_keychains": "Two Make keys of type API Key Auth, added by Albert through Make credential requests. 97834 'ElevenLabs STT (call notes)' (2026-10-02, request 840c2a6b-df9d-4b44-8d25-cd49092061b4): header xi-api-key, used by the speech-to-text module (8). 97841 'GHL read PIT (call recordings)' (2026-10-02, request 2f780b9f-695d-4aca-bc81-0dc5a9f03df7, replacing 97835, which had been saved without the Bearer prefix and answered 401 Invalid JWT): header Authorization, value 'Bearer <read PIT>' — used by every GHL read: conversation search (2), messages (3), recording (7). The note itself is written through ghl_connection_id, not this token. Albert's ElevenLabs app connection 4875733 also exists; the scenario does not need it (the app's modules cannot send keyterms or upload a file). 97843 'GHL internal comments ONLY (call notes)' (2026-10-02, request 3c2fcab6-aa31-4e85-8d5d-d9ebd4442acf): header Authorization, a dedicated GHL private integration whose only scope is conversations/message.write. Used by exactly one module, the comment POST behind the gate.",
+      "webhook_url": "https://hook.us1.make.com/foh85gqj8kq9sepk5d156z4n6psvjbgf",
+      "trigger": "GHL workflow 'Call Status' (completed, voicemail) -> Webhook action POST to webhook_url with custom data contact_id={{contact.id}}. Make's own GHL 'Watch Events' trigger only covers contacts and opportunities, not messages (checked 2026-10-02). Albert confirmed the workflow's only action is the webhook (2026-10-02), so the SMS and email seen around a call come from other GHL workflows, not this one.",
+      "blueprint": "platform-settings/blueprints/ghl-call-notes-4951497.json",
+      "sequential": true,
+      "ops_per_new_call": "v2 on Haiku 4.5: 23 operations, ~29 Make credits for a 570 s call (2026-10-02); on Sonnet the summary step cost ~2.4x as much (~38 credits for a 389 s call). 5 operations when a fire finds nothing new.",
+      "comment_gate": {
+        "module": 18,
+        "url": "https://services.leadconnectorhq.com/conversations/messages",
+        "type": "InternalComment",
+        "body_regex": "^\\{\"contactId\":\"[A-Za-z0-9]{10,40}\",\"message\":\"(?:[^\"\\\\]|\\\\.)*\",\"mentions\":\\[\\],\"type\":\"InternalComment\"\\}$",
+        "readback_type": "TYPE_INTERNAL_COMMENT",
+        "_why": "Albert, 2026-10-02: 'make it explicit to internal comments only. Make a barrier to do so with no slip ups.' GHL has no scope narrower than conversations/message.write, which can also send SMS and email, so the barrier is in the request, not the token.",
+        "_layers": [
+          "1. Separate token (key 97843), one scope, used by module 18 only; reads keep the read key, notes keep the GHL connection.",
+          "2. The type is a literal and the LAST key of the body, so an earlier duplicate could never win.",
+          "3. The comment text passes through Make's Transform to JSON (module 15): quotes, backslashes and newlines are escaped, so text cannot break out of the message string.",
+          "4. Module 18's only filter matches the exact body against body_regex: exactly contactId, message (one valid JSON string), mentions [] and type InternalComment, in that order, nothing else. One AND group, so there is no OR path around it. Proven in Make on 2026-10-02: a well-formed body passed, a raw-injected type:SMS body was blocked.",
+          "5. URL is a literal, redirects are off.",
+          "6. Read-back: module 19 GETs the new message with the read key; module 20 records its messageType. The daily script raises an alarm if a [call-summary] footer is ever found on anything but TYPE_INTERNAL_COMMENT.",
+          "7. Instant alarm + kill switch (2026-10-02, Albert: 'yes add the instant alarm'): if the read-back type is anything but TYPE_INTERNAL_COMMENT (missing included), module 47 writes the kill-switch record FIRST and module 46 then WhatsApps Albert with the contact link. Module 45 reads the kill switch before every post and module 18's gate refuses while it exists, so every later comment is blocked; transcripts and translations keep flowing.",
+          "8. tests/test_ghl_calls.py pins all of the above against the blueprint snapshot."
+        ],
+        "_record_first": "Module 17 records the call in the data store BEFORE the comment is posted, so a failed comment can never cause a re-run that duplicates the notes; the record says comment pending until module 20 overwrites it with posted + the read-back type.",
+        "alarm": {
+          "kill_switch_key": "comment-gate-tripped",
+          "check_module": 45,
+          "trip_module": 47,
+          "alert_module": 46,
+          "channel": "WhatsApp through 2Chat connection 3776292, the same line and recipient as the Bookkeeper Watchdog (Make 4824368)",
+          "_reset": "After checking the conversation: delete the record 'comment-gate-tripped' in data store 94694 ('GHL call notes written'). Until then no summary comment is posted.",
+          "_not_covered": "A failed read-back (module 19 errors) ends the route with no alarm; the comment's type is then checked by the next daily run's alarm.",
+          "_tested": "2026-10-02 on a throwaway probe: a simulated TYPE_SMS read-back wrote the kill switch and sent a TEST WhatsApp; with the switch set the gated step did not post; without it, it did. Albert confirmed the TEST WhatsApp reached his phone (2026-10-02)."
+        }
+      },
+      "summary_model": {
+        "short": "claude-haiku-4-5",
+        "long": "claude-sonnet-4-5",
+        "long_from_seconds": 300
+      },
+      "_summary_model": "Albert, 2026-10-02: switch on call length. Calls under long_from_seconds get Haiku 4.5, longer ones Sonnet 4.5 (long, messy calls are where Sonnet is worth its ~2.4x token cost). Make's Claude module cannot take its model from a formula, so router 30 holds one Claude module per route (10 short, 21 long), each saves its result to the execution variable call_summary prefixed with the call's messageId, and the third route reads it back (33) and carries on; module 11 only accepts a value tagged with this call's id. Probe-tested 2026-10-02: routes run in order, the variable comes back under its name.",
+      "language": {
+        "detect": "auto (Scribe v2, no language_code)",
+        "english_codes": [
+          "en",
+          "eng"
+        ],
+        "summary": "always written in English, whatever the call's language",
+        "translation": {
+          "model": "claude-sonnet-4-5",
+          "max_tokens": 8000,
+          "when": "the detected language is not English",
+          "notes": "Translation (English, from <language>) · Ref … — its own note series, footer [call-translation v1 messageId=… ref=… lang=… part=k/N]"
+        },
+        "_decision": "Albert, 2026-10-02: 'Can you also do language detection and translation? Eg, chinese/vietnamese/farsi' — an English summary in the comment plus the full English translation in Notes, next to the original-language transcript. Chinese means both Mandarin and Cantonese. Translation runs on Sonnet: non-English calls are a minority and the quality matters more than the credits. It sits on its own route of router 40, after the call is recorded, so a failed translation never stops the comment and a failed comment never stops the translation.",
+        "_unverified": "Cantonese is not confirmed in ElevenLabs' published language list (2026-10-02): check the first real Cantonese call."
+      }
+    }
+  },
+  "_observed_2026_10_02": "Live dry run, 72 h: 87 conversations, 71 TYPE_CALL messages (51 completed, 16 no-answer, 4 voicemail; 43 inbound / 28 outbound). The messages endpoint IGNORES type=TYPE_CALL (1,418 messages scanned for 71 calls) — the script filters messageType itself. Status and duration live in meta.call. GHL's own transcription returns {sentenceIndex, startTime, endTime (seconds), speaker, mediaChannel, transcript, words}."
+}

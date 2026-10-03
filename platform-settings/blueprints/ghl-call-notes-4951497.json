@@ -1,0 +1,2128 @@
+{
+  "_comment": "Blueprint of Make scenario 4951497 'GHL Call -> Note', v2 (2026-10-02; v3 router for the summary model and v4 language detection + translation and v5 instant alarm + kill switch, v6 staff-name evidence rule, v7 role labels on every transcript line, same day): transcript in contact notes, Summary + Next steps as an internal comment behind the comment gate (modules 15-20; registry make_scenarios.call_notes.comment_gate). Make is the source of truth once Albert edits it in the UI: re-snapshot this file after any UI change (methods/content-folder-scenario.md lesson); tests/test_ghl_calls.py then re-checks every gate layer. Keyterm fields are generated from platform-settings/ghl-calls-keyterms.json.",
+  "scenario_id": 4951497,
+  "snapshot_of": "2026-10-03T02:09:06Z",
+  "blueprint": {
+    "name": "GHL Call -> Note",
+    "flow": [
+      {
+        "id": 1,
+        "module": "gateway:CustomWebHook",
+        "version": 1,
+        "parameters": {
+          "hook": 2836060,
+          "maxResults": 1
+        },
+        "mapper": {},
+        "metadata": {
+          "designer": {
+            "x": 0,
+            "y": 0
+          }
+        }
+      },
+      {
+        "id": 2,
+        "module": "http:MakeRequest",
+        "version": 4,
+        "parameters": {
+          "authenticationType": "apiKey",
+          "apiKeyKeychain": 97841,
+          "tlsType": ""
+        },
+        "mapper": {
+          "url": "https://services.leadconnectorhq.com/conversations/search",
+          "method": "get",
+          "headers": [
+            {
+              "name": "Version",
+              "value": "2021-04-15"
+            }
+          ],
+          "queryParameters": [
+            {
+              "name": "locationId",
+              "value": "4BwjVRlyDCR4ZRdcSrFR"
+            },
+            {
+              "name": "contactId",
+              "value": "{{ifempty(1.contact_id; 1.customData.contact_id)}}"
+            }
+          ],
+          "parseResponse": true,
+          "stopOnHttpError": true,
+          "timeout": 40,
+          "allowRedirects": true,
+          "shareCookies": false,
+          "requestCompressedContent": true
+        },
+        "filter": {
+          "name": "Has a contact id",
+          "conditions": [
+            [
+              {
+                "a": "{{ifempty(1.contact_id; 1.customData.contact_id)}}",
+                "o": "exist"
+              }
+            ]
+          ]
+        },
+        "onerror": [
+          {
+            "id": 102,
+            "module": "builtin:Ignore",
+            "version": 1,
+            "parameters": {},
+            "mapper": null,
+            "metadata": {
+              "designer": {
+                "x": 0,
+                "y": 0
+              }
+            }
+          }
+        ],
+        "metadata": {
+          "designer": {
+            "x": 300,
+            "y": 0
+          }
+        }
+      },
+      {
+        "id": 3,
+        "module": "http:MakeRequest",
+        "version": 4,
+        "parameters": {
+          "authenticationType": "apiKey",
+          "apiKeyKeychain": 97841,
+          "tlsType": ""
+        },
+        "mapper": {
+          "url": "https://services.leadconnectorhq.com/conversations/{{2.data.conversations[1].id}}/messages",
+          "method": "get",
+          "headers": [
+            {
+              "name": "Version",
+              "value": "2021-04-15"
+            }
+          ],
+          "queryParameters": [
+            {
+              "name": "limit",
+              "value": "20"
+            }
+          ],
+          "parseResponse": true,
+          "stopOnHttpError": true,
+          "timeout": 40,
+          "allowRedirects": true,
+          "shareCookies": false,
+          "requestCompressedContent": true
+        },
+        "filter": {
+          "name": "Contact has a conversation",
+          "conditions": [
+            [
+              {
+                "a": "{{2.data.conversations[1].id}}",
+                "o": "exist"
+              }
+            ]
+          ]
+        },
+        "onerror": [
+          {
+            "id": 103,
+            "module": "builtin:Ignore",
+            "version": 1,
+            "parameters": {},
+            "mapper": null,
+            "metadata": {
+              "designer": {
+                "x": 0,
+                "y": 0
+              }
+            }
+          }
+        ],
+        "metadata": {
+          "designer": {
+            "x": 600,
+            "y": 0
+          }
+        }
+      },
+      {
+        "id": 4,
+        "module": "builtin:BasicFeeder",
+        "version": 1,
+        "parameters": {},
+        "mapper": {
+          "array": "{{3.data.messages.messages}}"
+        },
+        "metadata": {
+          "designer": {
+            "x": 900,
+            "y": 0
+          }
+        }
+      },
+      {
+        "id": 5,
+        "module": "datastore:ExistRecord",
+        "version": 1,
+        "parameters": {
+          "datastore": 94694
+        },
+        "mapper": {
+          "key": "{{4.id}}"
+        },
+        "filter": {
+          "name": "Recent completed call or voicemail (8 s+), or the replayed message_id",
+          "conditions": [
+            [
+              {
+                "a": "{{4.messageType}}",
+                "o": "text:equal",
+                "b": "TYPE_CALL"
+              },
+              {
+                "a": "{{4.meta.call.status}}",
+                "o": "text:equal:ci",
+                "b": "completed"
+              },
+              {
+                "a": "{{4.meta.call.duration}}",
+                "o": "number:greaterorequal",
+                "b": "8"
+              },
+              {
+                "a": "{{4.dateAdded}}",
+                "o": "date:greaterorequal",
+                "b": "{{addHours(now; -3)}}"
+              },
+              {
+                "a": "{{1.message_id}}",
+                "o": "notexist"
+              }
+            ],
+            [
+              {
+                "a": "{{4.messageType}}",
+                "o": "text:equal",
+                "b": "TYPE_CALL"
+              },
+              {
+                "a": "{{4.meta.call.status}}",
+                "o": "text:equal:ci",
+                "b": "voicemail"
+              },
+              {
+                "a": "{{4.meta.call.duration}}",
+                "o": "number:greaterorequal",
+                "b": "8"
+              },
+              {
+                "a": "{{4.dateAdded}}",
+                "o": "date:greaterorequal",
+                "b": "{{addHours(now; -3)}}"
+              },
+              {
+                "a": "{{1.message_id}}",
+                "o": "notexist"
+              }
+            ],
+            [
+              {
+                "a": "{{4.messageType}}",
+                "o": "text:equal",
+                "b": "TYPE_CALL"
+              },
+              {
+                "a": "{{4.id}}",
+                "o": "text:equal",
+                "b": "{{1.message_id}}"
+              }
+            ]
+          ]
+        },
+        "metadata": {
+          "designer": {
+            "x": 1200,
+            "y": 0
+          }
+        }
+      },
+      {
+        "id": 6,
+        "module": "util:FunctionSleep",
+        "version": 1,
+        "parameters": {},
+        "mapper": {
+          "duration": 90
+        },
+        "filter": {
+          "name": "No note written yet",
+          "conditions": [
+            [
+              {
+                "a": "{{5.exist}}",
+                "o": "boolean:equal",
+                "b": "false"
+              }
+            ]
+          ]
+        },
+        "metadata": {
+          "designer": {
+            "x": 1500,
+            "y": 0
+          }
+        }
+      },
+      {
+        "id": 7,
+        "module": "http:MakeRequest",
+        "version": 4,
+        "parameters": {
+          "authenticationType": "apiKey",
+          "apiKeyKeychain": 97841,
+          "tlsType": ""
+        },
+        "mapper": {
+          "url": "https://services.leadconnectorhq.com/conversations/messages/{{4.id}}/locations/{{4.locationId}}/recording",
+          "method": "get",
+          "headers": [
+            {
+              "name": "Version",
+              "value": "2021-04-15"
+            }
+          ],
+          "parseResponse": false,
+          "stopOnHttpError": true,
+          "timeout": 60,
+          "allowRedirects": true,
+          "shareCookies": false,
+          "requestCompressedContent": true
+        },
+        "onerror": [
+          {
+            "id": 107,
+            "module": "builtin:Ignore",
+            "version": 1,
+            "parameters": {},
+            "mapper": null,
+            "metadata": {
+              "designer": {
+                "x": 0,
+                "y": 0
+              }
+            }
+          }
+        ],
+        "metadata": {
+          "designer": {
+            "x": 1800,
+            "y": 0
+          }
+        }
+      },
+      {
+        "id": 8,
+        "module": "http:MakeRequest",
+        "version": 4,
+        "parameters": {
+          "authenticationType": "apiKey",
+          "apiKeyKeychain": 97834,
+          "tlsType": ""
+        },
+        "mapper": {
+          "url": "https://api.elevenlabs.io/v1/speech-to-text",
+          "method": "post",
+          "contentType": "multipart",
+          "multipartBodyContent": [
+            {
+              "name": "file",
+              "multipartFieldType": "file",
+              "data": "{{7.data}}",
+              "fileName": "call.wav"
+            },
+            {
+              "name": "model_id",
+              "multipartFieldType": "text",
+              "value": "scribe_v2"
+            },
+            {
+              "name": "diarize",
+              "multipartFieldType": "text",
+              "value": "true"
+            },
+            {
+              "name": "tag_audio_events",
+              "multipartFieldType": "text",
+              "value": "true"
+            },
+            {
+              "name": "additional_formats",
+              "multipartFieldType": "text",
+              "value": "[{\"format\": \"txt\", \"include_speakers\": true, \"include_timestamps\": true, \"max_characters_per_line\": 10000, \"segment_on_silence_longer_than_s\": 1.5, \"max_segment_chars\": 600}]"
+            },
+            {
+              "name": "keyterms",
+              "value": "Titan Flooring",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "LVP",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "SPC",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "WPC",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "vinyl plank",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "laminate",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "engineered hardwood",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "solid hardwood",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "herringbone",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "chevron",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "underlay",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "underlayment",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "subfloor",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "baseboard",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "quarter round",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "reducer",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "T-molding",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "stair nosing",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "square feet",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "click lock",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "glue down",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "floating floor",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Mississauga",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Oakville",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Etobicoke",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Brampton",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Milton",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Burlington",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Toronto",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Vaughan",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Biyork",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Canadian Standard",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "CIF Distributors",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Dragona",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Evergreen",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Floors at Work",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Floordi",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Gracious",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Grandeur",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Greentouch",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Bella Flooring Plus",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "LEE Flooring",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Olympia Tile",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Purelux",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Simba",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Sunshiny",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Tosca",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Triforest",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Umbrellar",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Vidar",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Vizion",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Weiss",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Woden",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Northway",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Homespro",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Impressive",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Baltic Homes",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "JL Tile",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Floor & Decor",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Albert",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Pourya",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Mike",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Joey",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Helen",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "David",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "NAF",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Handscraped Laminates",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Waterproof Laminate Plus",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Aqua Commercial",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Aqua Tile",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Aqualuuuz",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Aquaplus Gold",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Classic",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Aquaplus Select",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Aquaplus Gold with Cork",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Aquaplus Platinum",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Hickory Engineered",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Designer",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Elegant",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "White Oak Click",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "White Oak T&G",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Regal",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Handscraped Maple",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Toucan",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Matt / Hand Scraped",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "EIR",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Looselay",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Studio",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Towne",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Premier",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Home's Pro",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Vancouver",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Milan",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Holland",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Tuscany",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Venice",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Moscow",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Sydney",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Seoul",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Porcelain Tile Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Designer Click",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Engineered Hardwood Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Vinyl Click Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Vinyl Loose Lay Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Essential Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Elegant Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Volterra",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Ventura",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Essex",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Eterna",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Elite",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Platina",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Sahara",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Huron",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Tremblant",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Contempa",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Paramount",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Oriental",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Imperial",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Heritage",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Great Lakes",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Classic Oak",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Rosewood",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Waterproof Laminate",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Waterproof Laminate Pro",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Royal",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Aquawood",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Handscraped Exotic Walnut",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Essex Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Eterna Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Legant Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Volterra Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Ventura Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Regal Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Platinum Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Sahara Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Huron Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Tremblant Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Great Lakes Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Contempo Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Paramount Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Oriental Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Classic Red Oak Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Vinyl trims",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Laminate trims",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Hardwood trims",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Prestige Collection",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Ondine",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Gluedown",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Hickory",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "New Prefinished",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Oakel",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "European Oak Multi-Ply Chevron",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "DESTINY Aqua Expert",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Master Step",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Artisan Origins",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Vista",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Carrara",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Penny Round",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Carrara Essence",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Ivory Sand",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Loft Concrete",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Lakeshore Terrazzo",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Muskoka Mist",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "ArtiStone",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Trezza",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Golden Choice",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Engineered White Oak",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Engineered Hickory",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Transitions — Finished Oak",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Transitions — Unfinished Oak",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Trim",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "SOHO Laminate",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Heritage Hills",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Solvara",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Solid Handscraped",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "KS/DE Series",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "GS Series",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "NP Series",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Italian Series",
+              "multipartFieldType": "text"
+            },
+            {
+              "name": "keyterms",
+              "value": "Designer Series",
+              "multipartFieldType": "text"
+            }
+          ],
+          "parseResponse": true,
+          "stopOnHttpError": true,
+          "timeout": 300,
+          "allowRedirects": true,
+          "shareCookies": false,
+          "requestCompressedContent": true
+        },
+        "onerror": [
+          {
+            "id": 108,
+            "module": "builtin:Ignore",
+            "version": 1,
+            "parameters": {},
+            "mapper": null,
+            "metadata": {
+              "designer": {
+                "x": 0,
+                "y": 0
+              }
+            }
+          }
+        ],
+        "metadata": {
+          "designer": {
+            "x": 2100,
+            "y": 0
+          }
+        }
+      },
+      {
+        "id": 9,
+        "module": "util:SetVariables",
+        "version": 1,
+        "parameters": {},
+        "mapper": {
+          "variables": [
+            {
+              "name": "transcript",
+              "value": "{{replace(replace(replace(replace(replace(8.data.additional_formats[1].content; \"/([0-9][0-9]):([0-9][0-9]):([0-9][0-9]),[0-9]+ [^\\n]*?.speaker_([0-9]+).\\n/g\"; \"[$2:$3] speaker_$4: \"); \"/\\n\\n+/g\"; newline); \"speaker_2: \"; \"Speaker 3: \"); \"speaker_1: \"; \"Speaker 2: \"); \"speaker_0: \"; \"Speaker 1: \")}}"
+            },
+            {
+              "name": "ghl_user",
+              "value": "{{switch(4.userId; \"ooPNab06Ka04uZ1yQ4w6\"; \"Albert\"; \"rAMFCiXbAjJOEjtyyvmn\"; \"Pourya\"; \"GH0XAA6gD38CEMR9oREm\"; \"Mike\"; \"\")}}"
+            },
+            {
+              "name": "lang",
+              "value": "{{ifempty(8.data.language_code; \"eng\")}}"
+            },
+            {
+              "name": "lang_name",
+              "value": "{{switch(ifempty(8.data.language_code; \"eng\"); \"en\"; \"English\"; \"eng\"; \"English\"; \"vi\"; \"Vietnamese\"; \"vie\"; \"Vietnamese\"; \"zh\"; \"Chinese\"; \"zho\"; \"Chinese\"; \"cmn\"; \"Mandarin\"; \"yue\"; \"Cantonese\"; \"fa\"; \"Farsi\"; \"fas\"; \"Farsi\"; \"pes\"; \"Farsi\"; \"ko\"; \"Korean\"; \"kor\"; \"Korean\"; \"hi\"; \"Hindi\"; \"hin\"; \"Hindi\"; \"pa\"; \"Punjabi\"; \"pan\"; \"Punjabi\"; \"ur\"; \"Urdu\"; \"urd\"; \"Urdu\"; \"tl\"; \"Tagalog\"; \"tgl\"; \"Tagalog\"; \"fil\"; \"Tagalog\"; \"es\"; \"Spanish\"; \"spa\"; \"Spanish\"; \"pt\"; \"Portuguese\"; \"por\"; \"Portuguese\"; \"ar\"; \"Arabic\"; \"ara\"; \"Arabic\"; \"ru\"; \"Russian\"; \"rus\"; \"Russian\"; \"uk\"; \"Ukrainian\"; \"ukr\"; \"Ukrainian\"; \"pl\"; \"Polish\"; \"pol\"; \"Polish\"; \"it\"; \"Italian\"; \"ita\"; \"Italian\"; \"fr\"; \"French\"; \"fra\"; \"French\"; \"ta\"; \"Tamil\"; \"tam\"; \"Tamil\"; \"gu\"; \"Gujarati\"; \"guj\"; \"Gujarati\"; ifempty(8.data.language_code; \"eng\"))}}"
+            },
+            {
+              "name": "is_english",
+              "value": "{{switch(ifempty(8.data.language_code; \"eng\"); \"en\"; \"yes\"; \"eng\"; \"yes\"; \"no\")}}"
+            }
+          ]
+        },
+        "metadata": {
+          "designer": {
+            "x": 2400,
+            "y": 0
+          }
+        }
+      },
+      {
+        "id": 30,
+        "module": "builtin:BasicRouter",
+        "version": 1,
+        "parameters": {},
+        "mapper": null,
+        "metadata": {
+          "designer": {
+            "x": 2550,
+            "y": 0
+          }
+        },
+        "routes": [
+          {
+            "flow": [
+              {
+                "id": 10,
+                "module": "anthropic-claude:simpleTextPrompt",
+                "version": 1,
+                "parameters": {},
+                "mapper": {
+                  "model": "claude-haiku-4-5",
+                  "max_tokens": 600,
+                  "textPrompt": "You are writing an internal call summary for Titan Flooring, a flooring retailer and installer in the Greater Toronto Area. Below is the transcript of one phone call, one line per speaker turn. The call is in {{9.lang_name}} (detected automatically; it may switch languages). Whatever language it is in, write everything below in English; keep names, product names, addresses and prices exactly as said. Direction: {{4.direction}}. Titan phone user: {{ifempty(9.ghl_user; \"the shared Front Desk line (several people answer it)\")}}. Titan staff who take calls: Joey, Helen, David, Albert, Pourya, Mike.\n\nWrite exactly this, as plain text, and nothing else:\n\nName evidence: <copy the exact words in which the Titan person introduces themselves by name: \"this is Joey\", \"Joey speaking\", \"my name is Helen\", \"it's Albert from Titan\". Write none if there are no such words. Nothing else counts as evidence: not the customer using a name, not a name the Titan person calls out or asks for while getting a colleague (\"Pourya?\", \"let me ask Mike\"), not a name said about someone else (\"David will send the quote\"), not a name used to spell something (\"D for David\"), and not a guess that the call was passed to someone>\nStaff: <if the Titan phone user above is a person's name, that name; otherwise Staff when Name evidence is none, else the first name from Name evidence if it is one of Joey, Helen, David, Albert, Pourya, Mike, else Staff>\nRoles: <every speaker label in the transcript, written as Speaker 1 = staff · Speaker 2 = customer, using only these words: customer (the person who called Titan, or whom Titan called), staff (anyone from Titan), staff Joey (a Titan person who introduced themselves as Joey; only a name that is in Name evidence), other (anyone else on the line, such as an installer or a family member), unclear (you cannot tell)>\nSummary\n<at most 3 sentences: who called, what they want, and what was agreed. Name products, rooms, square footage and prices if they were said.>\n\nNext steps\n- Us: <what Titan promised> — by <date, or 'no date given'>\n- Customer: <what the customer will do> — by <date, or 'no date given'>\n(one line per commitment; write '- none' if nobody committed to anything)\n\nRules: use only what was actually said; never invent dates, prices or names; never guess a staff name. In the Summary and Next steps, call the Titan person by the name on the Staff line, or \"Titan staff\" if it says Staff, even if the call seems to have been passed to a colleague; colleagues who are only mentioned may be named as mentioned (\"will check with Mike\"). No remarks about how the staff member handled the call. If the recording has no real conversation, write 'Summary' then 'No conversation recorded.' and 'Next steps' then '- none'.\n\nTranscript:\n{{9.transcript}}"
+                },
+                "filter": {
+                  "name": "Transcript, call under 300 s",
+                  "conditions": [
+                    [
+                      {
+                        "a": "{{9.transcript}}",
+                        "o": "exist"
+                      },
+                      {
+                        "a": "{{4.meta.call.duration}}",
+                        "b": "300",
+                        "o": "number:less"
+                      }
+                    ]
+                  ]
+                },
+                "metadata": {
+                  "designer": {
+                    "x": 2700,
+                    "y": -150
+                  }
+                }
+              },
+              {
+                "id": 31,
+                "module": "util:SetVariable2",
+                "version": 1,
+                "parameters": {},
+                "metadata": {
+                  "designer": {
+                    "x": 3000,
+                    "y": -150
+                  }
+                },
+                "mapper": {
+                  "name": "call_summary",
+                  "value": "{{4.id}}|||{{10.result}}",
+                  "scope": "roundtrip"
+                }
+              }
+            ]
+          },
+          {
+            "flow": [
+              {
+                "id": 21,
+                "module": "anthropic-claude:simpleTextPrompt",
+                "version": 1,
+                "parameters": {},
+                "mapper": {
+                  "model": "claude-sonnet-4-5",
+                  "max_tokens": 600,
+                  "textPrompt": "You are writing an internal call summary for Titan Flooring, a flooring retailer and installer in the Greater Toronto Area. Below is the transcript of one phone call, one line per speaker turn. The call is in {{9.lang_name}} (detected automatically; it may switch languages). Whatever language it is in, write everything below in English; keep names, product names, addresses and prices exactly as said. Direction: {{4.direction}}. Titan phone user: {{ifempty(9.ghl_user; \"the shared Front Desk line (several people answer it)\")}}. Titan staff who take calls: Joey, Helen, David, Albert, Pourya, Mike.\n\nWrite exactly this, as plain text, and nothing else:\n\nName evidence: <copy the exact words in which the Titan person introduces themselves by name: \"this is Joey\", \"Joey speaking\", \"my name is Helen\", \"it's Albert from Titan\". Write none if there are no such words. Nothing else counts as evidence: not the customer using a name, not a name the Titan person calls out or asks for while getting a colleague (\"Pourya?\", \"let me ask Mike\"), not a name said about someone else (\"David will send the quote\"), not a name used to spell something (\"D for David\"), and not a guess that the call was passed to someone>\nStaff: <if the Titan phone user above is a person's name, that name; otherwise Staff when Name evidence is none, else the first name from Name evidence if it is one of Joey, Helen, David, Albert, Pourya, Mike, else Staff>\nRoles: <every speaker label in the transcript, written as Speaker 1 = staff · Speaker 2 = customer, using only these words: customer (the person who called Titan, or whom Titan called), staff (anyone from Titan), staff Joey (a Titan person who introduced themselves as Joey; only a name that is in Name evidence), other (anyone else on the line, such as an installer or a family member), unclear (you cannot tell)>\nSummary\n<at most 3 sentences: who called, what they want, and what was agreed. Name products, rooms, square footage and prices if they were said.>\n\nNext steps\n- Us: <what Titan promised> — by <date, or 'no date given'>\n- Customer: <what the customer will do> — by <date, or 'no date given'>\n(one line per commitment; write '- none' if nobody committed to anything)\n\nRules: use only what was actually said; never invent dates, prices or names; never guess a staff name. In the Summary and Next steps, call the Titan person by the name on the Staff line, or \"Titan staff\" if it says Staff, even if the call seems to have been passed to a colleague; colleagues who are only mentioned may be named as mentioned (\"will check with Mike\"). No remarks about how the staff member handled the call. If the recording has no real conversation, write 'Summary' then 'No conversation recorded.' and 'Next steps' then '- none'.\n\nTranscript:\n{{9.transcript}}"
+                },
+                "filter": {
+                  "name": "Transcript, call 300 s or longer",
+                  "conditions": [
+                    [
+                      {
+                        "a": "{{9.transcript}}",
+                        "o": "exist"
+                      },
+                      {
+                        "a": "{{4.meta.call.duration}}",
+                        "b": "300",
+                        "o": "number:greaterorequal"
+                      }
+                    ]
+                  ]
+                },
+                "metadata": {
+                  "designer": {
+                    "x": 2700,
+                    "y": 150
+                  }
+                }
+              },
+              {
+                "id": 32,
+                "module": "util:SetVariable2",
+                "version": 1,
+                "parameters": {},
+                "metadata": {
+                  "designer": {
+                    "x": 3000,
+                    "y": 150
+                  }
+                },
+                "mapper": {
+                  "name": "call_summary",
+                  "value": "{{4.id}}|||{{21.result}}",
+                  "scope": "roundtrip"
+                }
+              }
+            ]
+          },
+          {
+            "flow": [
+              {
+                "id": 33,
+                "module": "util:GetVariable2",
+                "version": 1,
+                "parameters": {},
+                "metadata": {
+                  "designer": {
+                    "x": 3000,
+                    "y": 450
+                  }
+                },
+                "mapper": {
+                  "name": "call_summary"
+                },
+                "filter": {
+                  "name": "Transcript is not empty",
+                  "conditions": [
+                    [
+                      {
+                        "a": "{{9.transcript}}",
+                        "o": "exist"
+                      }
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": 11,
+                "module": "util:SetVariables",
+                "version": 1,
+                "parameters": {},
+                "metadata": {
+                  "designer": {
+                    "x": 3300,
+                    "y": 450
+                  }
+                },
+                "mapper": {
+                  "variables": [
+                    {
+                      "name": "staff",
+                      "value": "{{ifempty(9.ghl_user; switch(trim(replace(substring(33.call_summary; length(4.id) + 3); \"/^[\\s\\S]*?(?:^|\\n)Staff:[ \\t]*([^\\n]*)[\\s\\S]*$/\"; \"$1\")); \"Joey\"; \"Joey\"; \"Helen\"; \"Helen\"; \"David\"; \"David\"; \"Albert\"; \"Albert\"; \"Pourya\"; \"Pourya\"; \"Mike\"; \"Mike\"; \"Staff\"))}}"
+                    },
+                    {
+                      "name": "staff_label",
+                      "value": "{{switch(9.ghl_user; \"Joey\"; \"Staff (Joey)\"; \"Helen\"; \"Staff (Helen)\"; \"David\"; \"Staff (David)\"; \"Albert\"; \"Staff (Albert)\"; \"Pourya\"; \"Staff (Pourya)\"; \"Mike\"; \"Staff (Mike)\"; \"Staff\")}}"
+                    },
+                    {
+                      "name": "role_1",
+                      "value": "{{lower(trim(replace(replace(substring(33.call_summary; length(4.id) + 3); \"/^[\\s\\S]*?(?:^|\\n)Roles:[^\\n]*?Speaker 1 ?[=:] ?([^·;,\\n]*)[\\s\\S]*$/\"; \"$1\"); \"/[()]/g\"; \"\")))}}"
+                    },
+                    {
+                      "name": "role_2",
+                      "value": "{{lower(trim(replace(replace(substring(33.call_summary; length(4.id) + 3); \"/^[\\s\\S]*?(?:^|\\n)Roles:[^\\n]*?Speaker 2 ?[=:] ?([^·;,\\n]*)[\\s\\S]*$/\"; \"$1\"); \"/[()]/g\"; \"\")))}}"
+                    },
+                    {
+                      "name": "role_3",
+                      "value": "{{lower(trim(replace(replace(substring(33.call_summary; length(4.id) + 3); \"/^[\\s\\S]*?(?:^|\\n)Roles:[^\\n]*?Speaker 3 ?[=:] ?([^·;,\\n]*)[\\s\\S]*$/\"; \"$1\"); \"/[()]/g\"; \"\")))}}"
+                    },
+                    {
+                      "name": "summary_block",
+                      "value": "{{if(contains(substring(33.call_summary; length(4.id) + 3); \"Summary\"); trim(replace(substring(33.call_summary; length(4.id) + 3); \"/^[\\s\\S]*?(Summary\\n[\\s\\S]*)$/\"; \"$1\")); trim(substring(33.call_summary; length(4.id) + 3)))}}"
+                    },
+                    {
+                      "name": "ref",
+                      "value": "C-{{formatDate(4.dateAdded; \"MMDD-HHmm\"; \"America/Toronto\")}}"
+                    },
+                    {
+                      "name": "when",
+                      "value": "{{formatDate(4.dateAdded; \"ddd MMM D, h:mm a\"; \"America/Toronto\")}}"
+                    },
+                    {
+                      "name": "dir",
+                      "value": "{{capitalize(4.direction)}}"
+                    },
+                    {
+                      "name": "dur",
+                      "value": "{{floor(4.meta.call.duration / 60)}}m {{4.meta.call.duration - floor(4.meta.call.duration / 60) * 60}}s"
+                    },
+                    {
+                      "name": "n_parts",
+                      "value": "{{max(1; ceil(length(9.transcript) / 3000))}}"
+                    }
+                  ]
+                },
+                "filter": {
+                  "name": "Summary is for this call",
+                  "conditions": [
+                    [
+                      {
+                        "a": "{{33.call_summary}}",
+                        "b": "{{4.id}}|||",
+                        "o": "text:startwith"
+                      }
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": 12,
+                "module": "util:SetVariables",
+                "version": 1,
+                "parameters": {},
+                "metadata": {
+                  "designer": {
+                    "x": 3600,
+                    "y": 450
+                  }
+                },
+                "mapper": {
+                  "variables": [
+                    {
+                      "name": "note_head",
+                      "value": "Transcript · Ref {{11.ref}} · {{11.when}} · {{11.dir}} · {{11.dur}} · {{11.staff}}\n{{if(9.is_english = \"yes\"; \"\"; \"Language: \")}}{{if(9.is_english = \"yes\"; \"\"; 9.lang_name)}}{{if(9.is_english = \"yes\"; \"\"; \" (English translation in Notes)\")}}{{if(9.is_english = \"yes\"; \"\"; newline)}}"
+                    },
+                    {
+                      "name": "cont_head",
+                      "value": "Transcript (continued) · Ref {{11.ref}}\n"
+                    },
+                    {
+                      "name": "comment_text",
+                      "value": "📞 Call summary · Ref {{11.ref}} · {{if(9.is_english = \"yes\"; \"transcript in Notes\"; \"\")}}{{if(9.is_english = \"yes\"; \"\"; 9.lang_name)}}{{if(9.is_english = \"yes\"; \"\"; \" call, transcript + English translation in Notes\")}}\n{{11.when}} · {{11.dir}} · {{11.dur}} · {{11.staff}}\n\n{{11.summary_block}}\n\n[call-summary v1 messageId={{4.id}} ref={{11.ref}}]"
+                    },
+                    {
+                      "name": "lab_1",
+                      "value": "] {{switch(11.role_1; \"customer\"; \"Customer\"; \"caller\"; \"Customer\"; \"other\"; \"Other\"; \"staff\"; 11.staff_label; \"titan staff\"; 11.staff_label; \"staff joey\"; if(11.staff = \"Joey\"; \"Staff (Joey)\"; 11.staff_label); \"joey\"; if(11.staff = \"Joey\"; \"Staff (Joey)\"; 11.staff_label); \"staff helen\"; if(11.staff = \"Helen\"; \"Staff (Helen)\"; 11.staff_label); \"helen\"; if(11.staff = \"Helen\"; \"Staff (Helen)\"; 11.staff_label); \"staff david\"; if(11.staff = \"David\"; \"Staff (David)\"; 11.staff_label); \"david\"; if(11.staff = \"David\"; \"Staff (David)\"; 11.staff_label); \"staff albert\"; if(11.staff = \"Albert\"; \"Staff (Albert)\"; 11.staff_label); \"albert\"; if(11.staff = \"Albert\"; \"Staff (Albert)\"; 11.staff_label); \"staff pourya\"; if(11.staff = \"Pourya\"; \"Staff (Pourya)\"; 11.staff_label); \"pourya\"; if(11.staff = \"Pourya\"; \"Staff (Pourya)\"; 11.staff_label); \"staff mike\"; if(11.staff = \"Mike\"; \"Staff (Mike)\"; 11.staff_label); \"mike\"; if(11.staff = \"Mike\"; \"Staff (Mike)\"; 11.staff_label); \"Speaker 1\")}}:"
+                    },
+                    {
+                      "name": "lab_2",
+                      "value": "] {{switch(11.role_2; \"customer\"; \"Customer\"; \"caller\"; \"Customer\"; \"other\"; \"Other\"; \"staff\"; 11.staff_label; \"titan staff\"; 11.staff_label; \"staff joey\"; if(11.staff = \"Joey\"; \"Staff (Joey)\"; 11.staff_label); \"joey\"; if(11.staff = \"Joey\"; \"Staff (Joey)\"; 11.staff_label); \"staff helen\"; if(11.staff = \"Helen\"; \"Staff (Helen)\"; 11.staff_label); \"helen\"; if(11.staff = \"Helen\"; \"Staff (Helen)\"; 11.staff_label); \"staff david\"; if(11.staff = \"David\"; \"Staff (David)\"; 11.staff_label); \"david\"; if(11.staff = \"David\"; \"Staff (David)\"; 11.staff_label); \"staff albert\"; if(11.staff = \"Albert\"; \"Staff (Albert)\"; 11.staff_label); \"albert\"; if(11.staff = \"Albert\"; \"Staff (Albert)\"; 11.staff_label); \"staff pourya\"; if(11.staff = \"Pourya\"; \"Staff (Pourya)\"; 11.staff_label); \"pourya\"; if(11.staff = \"Pourya\"; \"Staff (Pourya)\"; 11.staff_label); \"staff mike\"; if(11.staff = \"Mike\"; \"Staff (Mike)\"; 11.staff_label); \"mike\"; if(11.staff = \"Mike\"; \"Staff (Mike)\"; 11.staff_label); \"Speaker 2\")}}:"
+                    },
+                    {
+                      "name": "lab_3",
+                      "value": "] {{switch(11.role_3; \"customer\"; \"Customer\"; \"caller\"; \"Customer\"; \"other\"; \"Other\"; \"staff\"; 11.staff_label; \"titan staff\"; 11.staff_label; \"staff joey\"; if(11.staff = \"Joey\"; \"Staff (Joey)\"; 11.staff_label); \"joey\"; if(11.staff = \"Joey\"; \"Staff (Joey)\"; 11.staff_label); \"staff helen\"; if(11.staff = \"Helen\"; \"Staff (Helen)\"; 11.staff_label); \"helen\"; if(11.staff = \"Helen\"; \"Staff (Helen)\"; 11.staff_label); \"staff david\"; if(11.staff = \"David\"; \"Staff (David)\"; 11.staff_label); \"david\"; if(11.staff = \"David\"; \"Staff (David)\"; 11.staff_label); \"staff albert\"; if(11.staff = \"Albert\"; \"Staff (Albert)\"; 11.staff_label); \"albert\"; if(11.staff = \"Albert\"; \"Staff (Albert)\"; 11.staff_label); \"staff pourya\"; if(11.staff = \"Pourya\"; \"Staff (Pourya)\"; 11.staff_label); \"pourya\"; if(11.staff = \"Pourya\"; \"Staff (Pourya)\"; 11.staff_label); \"staff mike\"; if(11.staff = \"Mike\"; \"Staff (Mike)\"; 11.staff_label); \"mike\"; if(11.staff = \"Mike\"; \"Staff (Mike)\"; 11.staff_label); \"Speaker 3\")}}:"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": 34,
+                "module": "util:SetVariables",
+                "version": 1,
+                "parameters": {},
+                "metadata": {
+                  "designer": {
+                    "x": 3750,
+                    "y": 450
+                  }
+                },
+                "mapper": {
+                  "variables": [
+                    {
+                      "name": "tx",
+                      "value": "{{replace(replace(replace(9.transcript; \"] Speaker 1:\"; 12.lab_1); \"] Speaker 2:\"; 12.lab_2); \"] Speaker 3:\"; 12.lab_3)}}"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": 13,
+                "module": "builtin:BasicRepeater",
+                "version": 1,
+                "parameters": {},
+                "mapper": {
+                  "step": -1,
+                  "start": "{{11.n_parts}}",
+                  "repeats": "{{11.n_parts}}"
+                },
+                "metadata": {
+                  "designer": {
+                    "x": 3900,
+                    "y": 450
+                  }
+                }
+              },
+              {
+                "id": 14,
+                "module": "highlevel:addNotetoContact",
+                "version": 1,
+                "parameters": {
+                  "__IMTCONN__": 4426112
+                },
+                "mapper": {
+                  "contactId": "{{4.contactId}}",
+                  "body": "{{if(13.i = 1; 12.note_head; 12.cont_head)}}{{substring(34.tx; (13.i - 1) * ceil(length(34.tx) / 11.n_parts); 13.i * ceil(length(34.tx) / 11.n_parts))}}\n\n[call-note v2 messageId={{4.id}} conversationId={{4.conversationId}} engine=scribe_v2 ref={{11.ref}} part={{13.i}}/{{11.n_parts}}]",
+                  "userId": ""
+                },
+                "metadata": {
+                  "designer": {
+                    "x": 4200,
+                    "y": 450
+                  }
+                }
+              },
+              {
+                "id": 15,
+                "module": "json:TransformToJSON",
+                "version": 1,
+                "parameters": {},
+                "metadata": {
+                  "designer": {
+                    "x": 4500,
+                    "y": 450
+                  }
+                },
+                "mapper": {
+                  "object": "{{12.comment_text}}"
+                },
+                "filter": {
+                  "name": "Last note part written",
+                  "conditions": [
+                    [
+                      {
+                        "a": "{{13.i}}",
+                        "b": "1",
+                        "o": "number:equal"
+                      }
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": 16,
+                "module": "util:SetVariables",
+                "version": 1,
+                "parameters": {},
+                "metadata": {
+                  "designer": {
+                    "x": 4800,
+                    "y": 450
+                  }
+                },
+                "mapper": {
+                  "variables": [
+                    {
+                      "name": "comment_body",
+                      "value": "{\"contactId\":\"{{4.contactId}}\",\"message\":{{15.json}},\"mentions\":[],\"type\":\"InternalComment\"}"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": 17,
+                "module": "datastore:AddRecord",
+                "version": 1,
+                "parameters": {
+                  "datastore": 94694
+                },
+                "metadata": {
+                  "designer": {
+                    "x": 5100,
+                    "y": 450
+                  }
+                },
+                "mapper": {
+                  "key": "{{4.id}}",
+                  "data": {
+                    "contact_id": "{{4.contactId}}",
+                    "parts": "{{11.n_parts}}",
+                    "engine": "scribe_v2",
+                    "duration_s": "{{4.meta.call.duration}}",
+                    "written_at": "{{now}}",
+                    "ref": "{{11.ref}}",
+                    "comment": "pending",
+                    "language": "{{9.lang}}"
+                  },
+                  "overwrite": true
+                }
+              },
+              {
+                "id": 40,
+                "module": "builtin:BasicRouter",
+                "version": 1,
+                "parameters": {},
+                "mapper": null,
+                "metadata": {
+                  "designer": {
+                    "x": 5250,
+                    "y": 450
+                  }
+                },
+                "routes": [
+                  {
+                    "flow": [
+                      {
+                        "id": 45,
+                        "module": "datastore:ExistRecord",
+                        "version": 1,
+                        "parameters": {
+                          "datastore": 94694
+                        },
+                        "metadata": {
+                          "designer": {
+                            "x": 5400,
+                            "y": 300
+                          }
+                        },
+                        "mapper": {
+                          "key": "comment-gate-tripped"
+                        }
+                      },
+                      {
+                        "id": 18,
+                        "module": "http:MakeRequest",
+                        "version": 4,
+                        "parameters": {
+                          "tlsType": "",
+                          "apiKeyKeychain": 97843,
+                          "authenticationType": "apiKey"
+                        },
+                        "mapper": {
+                          "url": "https://services.leadconnectorhq.com/conversations/messages",
+                          "method": "post",
+                          "headers": [
+                            {
+                              "name": "Version",
+                              "value": "2021-04-15"
+                            },
+                            {
+                              "name": "Accept",
+                              "value": "application/json"
+                            }
+                          ],
+                          "contentType": "json",
+                          "inputMethod": "jsonString",
+                          "jsonStringBodyContent": "{{16.comment_body}}",
+                          "timeout": 40,
+                          "shareCookies": false,
+                          "parseResponse": true,
+                          "allowRedirects": false,
+                          "stopOnHttpError": true,
+                          "requestCompressedContent": true
+                        },
+                        "filter": {
+                          "name": "COMMENT GATE: internal comment only",
+                          "conditions": [
+                            [
+                              {
+                                "a": "{{16.comment_body}}",
+                                "b": "^\\{\"contactId\":\"[A-Za-z0-9]{10,40}\",\"message\":\"(?:[^\"\\\\]|\\\\.)*\",\"mentions\":\\[\\],\"type\":\"InternalComment\"\\}$",
+                                "o": "text:pattern"
+                              },
+                              {
+                                "a": "{{13.i}}",
+                                "b": "1",
+                                "o": "number:equal"
+                              },
+                              {
+                                "a": "{{45.exist}}",
+                                "b": "false",
+                                "o": "boolean:equal"
+                              }
+                            ]
+                          ]
+                        },
+                        "onerror": [
+                          {
+                            "id": 118,
+                            "mapper": null,
+                            "module": "builtin:Ignore",
+                            "version": 1,
+                            "metadata": {
+                              "designer": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            "parameters": {}
+                          }
+                        ],
+                        "metadata": {
+                          "designer": {
+                            "x": 5400,
+                            "y": 450
+                          }
+                        }
+                      },
+                      {
+                        "id": 19,
+                        "module": "http:MakeRequest",
+                        "version": 4,
+                        "parameters": {
+                          "tlsType": "",
+                          "apiKeyKeychain": 97841,
+                          "authenticationType": "apiKey"
+                        },
+                        "mapper": {
+                          "url": "https://services.leadconnectorhq.com/conversations/messages/{{18.data.messageId}}",
+                          "method": "get",
+                          "headers": [
+                            {
+                              "name": "Version",
+                              "value": "2021-04-15"
+                            }
+                          ],
+                          "timeout": 40,
+                          "shareCookies": false,
+                          "parseResponse": true,
+                          "allowRedirects": true,
+                          "stopOnHttpError": true,
+                          "requestCompressedContent": true
+                        },
+                        "filter": {
+                          "name": "Comment was created",
+                          "conditions": [
+                            [
+                              {
+                                "a": "{{18.data.messageId}}",
+                                "o": "exist"
+                              }
+                            ]
+                          ]
+                        },
+                        "onerror": [
+                          {
+                            "id": 119,
+                            "mapper": null,
+                            "module": "builtin:Ignore",
+                            "version": 1,
+                            "metadata": {
+                              "designer": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            "parameters": {}
+                          }
+                        ],
+                        "metadata": {
+                          "designer": {
+                            "x": 5700,
+                            "y": 450
+                          }
+                        }
+                      },
+                      {
+                        "id": 20,
+                        "module": "datastore:AddRecord",
+                        "version": 1,
+                        "parameters": {
+                          "datastore": 94694
+                        },
+                        "metadata": {
+                          "designer": {
+                            "x": 6000,
+                            "y": 450
+                          }
+                        },
+                        "mapper": {
+                          "key": "{{4.id}}",
+                          "data": {
+                            "contact_id": "{{4.contactId}}",
+                            "parts": "{{11.n_parts}}",
+                            "engine": "scribe_v2",
+                            "duration_s": "{{4.meta.call.duration}}",
+                            "written_at": "{{now}}",
+                            "ref": "{{11.ref}}",
+                            "comment": "posted",
+                            "comment_message_id": "{{18.data.messageId}}",
+                            "comment_type": "{{ifempty(19.data.message.messageType; 19.data.messageType)}}",
+                            "language": "{{9.lang}}"
+                          },
+                          "overwrite": true
+                        }
+                      },
+                      {
+                        "id": 47,
+                        "module": "datastore:AddRecord",
+                        "version": 1,
+                        "parameters": {
+                          "datastore": 94694
+                        },
+                        "metadata": {
+                          "designer": {
+                            "x": 6300,
+                            "y": 450
+                          }
+                        },
+                        "mapper": {
+                          "key": "comment-gate-tripped",
+                          "overwrite": true,
+                          "data": {
+                            "contact_id": "{{4.contactId}}",
+                            "ref": "{{11.ref}}",
+                            "comment": "TRIPPED",
+                            "comment_message_id": "{{18.data.messageId}}",
+                            "comment_type": "{{ifempty(19.data.message.messageType; 19.data.messageType)}}",
+                            "written_at": "{{now}}"
+                          }
+                        },
+                        "filter": {
+                          "name": "ALARM: read-back is not an internal comment",
+                          "conditions": [
+                            [
+                              {
+                                "a": "{{ifempty(19.data.message.messageType; 19.data.messageType)}}",
+                                "b": "TYPE_INTERNAL_COMMENT",
+                                "o": "text:notequal"
+                              }
+                            ]
+                          ]
+                        }
+                      },
+                      {
+                        "id": 46,
+                        "module": "two-chat:WhatsappSendMessage",
+                        "version": 1,
+                        "parameters": {
+                          "__IMTCONN__": 3776292
+                        },
+                        "metadata": {
+                          "designer": {
+                            "x": 6600,
+                            "y": 450
+                          }
+                        },
+                        "mapper": {
+                          "text": "🚨 *Titan call notes — ALARM* 🚨\n\nA call summary was just posted to GHL as {{ifempty(19.data.message.messageType; 19.data.messageType)}}, not as an internal comment. It may have reached the customer. Please check the conversation now.\n\nContact: https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/{{4.contactId}}\nCall ref: {{11.ref}}\n\nAll further call-summary comments are now BLOCKED (transcripts still go to Notes). To unblock after checking: delete the record \"comment-gate-tripped\" in the Make data store \"GHL call notes written\".",
+                          "to_number": "<REDACTED: Albert's mobile, set in Make>",
+                          "from_number": "<REDACTED: Titan 2Chat line, set in Make>"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "flow": [
+                      {
+                        "id": 41,
+                        "module": "anthropic-claude:simpleTextPrompt",
+                        "version": 1,
+                        "parameters": {},
+                        "metadata": {
+                          "designer": {
+                            "x": 5400,
+                            "y": 750
+                          }
+                        },
+                        "mapper": {
+                          "model": "claude-sonnet-4-5",
+                          "max_tokens": 8000,
+                          "textPrompt": "Translate this phone call transcript from {{9.lang_name}} into English. It is a call between Titan Flooring (a flooring retailer and installer in the Greater Toronto Area) and a customer. Output exactly one line per input line, in the same order, and keep each line's \"[mm:ss] Name:\" prefix (for example \"[00:04] Customer:\") unchanged; translate only the words after it. Keep names, product names, brands, addresses, numbers and prices exactly as said. If a line is already in English, copy it as is. Write nothing else: no heading, no notes, no explanation.\n\nTranscript:\n{{34.tx}}"
+                        },
+                        "filter": {
+                          "name": "Call is not in English",
+                          "conditions": [
+                            [
+                              {
+                                "a": "{{9.is_english}}",
+                                "b": "no",
+                                "o": "text:equal"
+                              }
+                            ]
+                          ]
+                        }
+                      },
+                      {
+                        "id": 42,
+                        "module": "util:SetVariables",
+                        "version": 1,
+                        "parameters": {},
+                        "metadata": {
+                          "designer": {
+                            "x": 5700,
+                            "y": 750
+                          }
+                        },
+                        "mapper": {
+                          "variables": [
+                            {
+                              "name": "tr_text",
+                              "value": "{{trim(41.result)}}"
+                            },
+                            {
+                              "name": "tr_parts",
+                              "value": "{{max(1; ceil(length(trim(41.result)) / 3000))}}"
+                            },
+                            {
+                              "name": "tr_head",
+                              "value": "Translation (English, from {{9.lang_name}}) · Ref {{11.ref}} · {{11.when}} · {{11.dir}} · {{11.dur}} · {{11.staff}}\n"
+                            },
+                            {
+                              "name": "tr_cont",
+                              "value": "Translation (continued) · Ref {{11.ref}}\n"
+                            }
+                          ]
+                        },
+                        "filter": {
+                          "name": "Translation came back",
+                          "conditions": [
+                            [
+                              {
+                                "a": "{{41.result}}",
+                                "o": "exist"
+                              }
+                            ]
+                          ]
+                        }
+                      },
+                      {
+                        "id": 43,
+                        "module": "builtin:BasicRepeater",
+                        "version": 1,
+                        "parameters": {},
+                        "metadata": {
+                          "designer": {
+                            "x": 6000,
+                            "y": 750
+                          }
+                        },
+                        "mapper": {
+                          "step": -1,
+                          "start": "{{42.tr_parts}}",
+                          "repeats": "{{42.tr_parts}}"
+                        }
+                      },
+                      {
+                        "id": 44,
+                        "module": "highlevel:addNotetoContact",
+                        "version": 1,
+                        "parameters": {
+                          "__IMTCONN__": 4426112
+                        },
+                        "metadata": {
+                          "designer": {
+                            "x": 6300,
+                            "y": 750
+                          }
+                        },
+                        "mapper": {
+                          "contactId": "{{4.contactId}}",
+                          "userId": "",
+                          "body": "{{if(43.i = 1; 42.tr_head; 42.tr_cont)}}{{substring(42.tr_text; (43.i - 1) * 3000; 43.i * 3000)}}\n\n[call-translation v1 messageId={{4.id}} ref={{11.ref}} lang={{9.lang}} part={{43.i}}/{{42.tr_parts}}]"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "instant": true,
+      "version": 1,
+      "designer": {
+        "orphans": []
+      },
+      "scenario": {
+        "dlq": false,
+        "slots": null,
+        "dataloss": false,
+        "maxErrors": 3,
+        "autoCommit": true,
+        "roundtrips": 1,
+        "sequential": true,
+        "confidential": false,
+        "autoCommitTriggerLast": true
+      }
+    }
+  },
+  "_redacted": "Module 46's to_number and from_number are phone numbers; this repo is public, so the snapshot replaces them with <REDACTED …> placeholders. The live values are the ones the Bookkeeper Watchdog (Make 4824368) already uses."
+}
