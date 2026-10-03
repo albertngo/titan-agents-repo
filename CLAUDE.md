@@ -310,7 +310,8 @@ the effective date so it carries through to Airtable and supabase.")** The recon
 Airtable's `Price List Date` (the date of the list `Price List URL` links to) whenever it writes
 the date or the link, always the same value; Titan Desk shows it and syncs it to Supabase.
 Nothing wrote it before, so Triforest's PL-382 moved 160 records to 2026-10-01 and left the list
-date at 2026-08-15. A newer `Price List Date` is never moved backward by a sync.
+date at 2026-08-15. Like `Effective Date`, a confirming list never moves it backward; a price
+change sets it to the list that set the price.
 
 **Lists received before they take effect are staged (2026-09-25, Albert).** The row's
 `Effective Date` (Notion) is the list's date; when it is after today, extraction runs
