@@ -65,6 +65,16 @@ Replace or append to a filled image field; write anything but the four target fi
 write while `write_mode` is `plan_only`; get past a bot challenge; guess a URL.
 
 ## Log
+- 2026-10-02 (Toronto) — Triforest, sold as Toucan (Albert: "Lets try Triforest now." +
+  toucanflooring.com). Toucan's own Shopify store matched 168 of 173 records; Speers carries
+  no Toucan, and Word of Mouth timed out mid-catalogue twice, so it was left out. The Floor
+  Box lists Toucan sizes as `7-38-x-48` (width x length): the slug parser reads that now, and
+  widths match within a twentieth of an inch (the catalogue rounds 7 3/8" to 7.4). File
+  names use the registry's `brand` (Toucan) when a record's Brand is blank. 406 photos
+  judged: a flat swatch and an angled close-up per product (the angle is a detail), 4 room
+  scenes. Plan: 153 records (131 detail, 62 swatch, 4 room, 153 product pages, all
+  Toucan's own); 20 held (15 swatches at 1200 px under the 1600 bar, 5 not listed); 91
+  written without a swatch for the same reason.
 - 2026-09-29 (after midnight) — Albert: "1. yes rerun 2. Switch if available but do not
   delete. Replace with Word of Mouth (the speers one)". BiYork swatch bar 1000 px
   (`suppliers.BIYORK.image_rules`; the shared 1600 stays). Word of Mouth has 82 Shopify

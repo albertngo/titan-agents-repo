@@ -220,7 +220,9 @@ def seo_filename(rec, target, n, url, sup, matching):
     feat = image_match.record_features(rec, sup, matching)
     species_words = (sup.get("species_words") or {}).get(feat["species"] or "", [])
     laying = record_laying(rec)
-    parts = [rec.get("Brand") or (rec.get("Supplier") or "").title(), feat["colour"],
+    # The name a shopper knows: the record's Brand, else the registry's `brand` (Triforest
+    # sells as Toucan), else the supplier.
+    parts = [rec.get("Brand") or sup.get("brand") or (rec.get("Supplier") or "").title(), feat["colour"],
              species_words[0] if species_words else "", rec.get("Category") or "",
              laying if laying != "plank" else "", width_word(rec.get("Width (in)")),
              rec.get("Grade") or "", rec.get("Supplier SKU") or "", KIND_WORD.get(target, target)]

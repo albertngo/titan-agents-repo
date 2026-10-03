@@ -189,6 +189,20 @@ class TestRelink(unittest.TestCase):
         self.assertEqual(REG["image_rules"]["min_swatch_long_edge_px"], 1600)
 
 
+class TestFloorBoxSizes(unittest.TestCase):
+    def test_width_by_length_slugs(self):
+        self.assertEqual(pull.slug_title("vinyl-planks-tfl62-series-627-honey-birch-loose-lay-7-38-x-48-38"),
+                         'Vinyl Planks TFL62 Series 627 Honey Birch Loose Lay — 7.375"')
+        self.assertTrue(pull.slug_title("laminate-flooring-tf66-series-6603-santa-fe-7-34-x-47").endswith('7.75"'))
+        self.assertTrue(pull.slug_title("click-vinyl-planks-spc7-series-710-oyster-bay-click-lock-6-x-48").endswith('— 6"'))
+
+    def test_rounded_catalogue_widths_match(self):
+        rec = {"id": "recT000000000001", "SKU": "LVP-TRIF-0001", "Product name": 'Toucan Looselay Vinyl — Honey Birch (7.4" x 5.0mm)',
+               "Width (in)": 7.4, "Category": "LVP"}
+        p = page("https://thefloorbox.ca/products/x", 'Vinyl Planks TFL62 Series 627 Honey Birch Loose Lay — 7.375"')
+        self.assertEqual(im.match_records([rec], [p], REG["suppliers"]["TRIFOREST"], REG["matching"])[rec["id"]]["tier"], "exact")
+
+
 class TestPull(unittest.TestCase):
     def fetcher(self, routes):
         def opener(req, timeout=0):

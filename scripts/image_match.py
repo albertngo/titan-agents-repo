@@ -153,7 +153,8 @@ def score(feat, page, supplier_cfg, matching):
         # stands in only for a record with no width: the catalogue holds 7" and 7.5" records
         # of the same colour, so a 7" listing is not a 7.5" record's product.
         allowed = {feat["exact_width"]} if feat["exact_width"] else feat["widths"]
-        if allowed and not (page_widths & allowed):
+        # A twentieth of an inch either way: the catalogue rounds 7 3/4" to 7.7 and 7 3/8" to 7.4.
+        if allowed and not any(abs(a - b) <= 0.06 for a in page_widths for b in allowed):
             return 0, "width"
         s += 3
     # Shopify tags / product type say what a bare title does not. They feed species and line

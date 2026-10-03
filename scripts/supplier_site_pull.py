@@ -373,6 +373,18 @@ def slug_title(slug):
             else:
                 grade, g_start = tokens[i].title(), i
             break
+    if n is None and "x" in tokens:
+        # `...-loose-lay-7-38-x-48-38` (Triforest/Toucan listings): width x length, each with an
+        # optional fraction token; the width is the number run just before the last `x`.
+        xi = len(tokens) - 1 - tokens[::-1].index("x")
+        j = xi
+        while j > 0 and tokens[j - 1].isdigit():
+            j -= 1
+        if j < xi:
+            w = float(tokens[j]) + (FRACTIONS.get(tokens[j + 1], 0) if j + 1 < xi else 0)
+            words = tokens[:j]
+            name = " ".join(t.upper() if SLUG_CODE.match(t) else t.title() for t in words)
+            return " — ".join([name, f'{w:g}"'])
     if n is None:
         n = len(tokens)
         while n > 1 and tokens[n - 1].isdigit():
