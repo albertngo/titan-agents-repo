@@ -1,0 +1,39 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-10-03T08:00:00-04:00",
+  "status": "error",
+  "error": "GHL MCP server tools (contacts, conversations, opportunities, calendars, locations) were not available in this agent session, so none of the four categories (new leads, opportunities, appointments, conversations) or drift detection could be pulled. Only the call-recording step (scripts/ghl_calls_pull.py) ran; its counts are under extensions.ghl.reporting.calls. No data was guessed.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest failed: GHL MCP tools unavailable in this session. No leads, pipeline, appointments, conversations or drift findings for 2026-10-03. Re-run once the ghl MCP server is connected."
+  ],
+  "extensions": {
+    "ghl": {
+      "template_version": "4",
+      "reporting": {
+        "calls": {
+          "listed": 8,
+          "from_note": 5,
+          "transcribed": 0,
+          "voicemails": null,
+          "minutes": 0.0,
+          "est_cost_usd": 0,
+          "engine": null,
+          "status": "ok",
+          "error": "Calls listed and counted only; not joined to conversations or summarised because the MCP-backed categories could not be pulled."
+        }
+      },
+      "new_leads": [],
+      "opportunities": [],
+      "appointments_booked": [],
+      "conversations": [],
+      "workflow_drift": [],
+      "won_records": [],
+      "stragglers_ranked": [],
+      "calls": [],
+      "call_quality": {"sensitivity": "private", "records": []}
+    }
+  }
+}

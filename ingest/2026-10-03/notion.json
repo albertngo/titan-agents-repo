@@ -1,0 +1,488 @@
+{
+  "contract_version": "1",
+  "source": "notion",
+  "run_at": "2026-10-03T08:00:00-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "notion-new_won_project-3e9596a4505f8084a071cdd644b13627",
+      "type": "new_won_project",
+      "title": "Won: Jeevan, Mississuaga (Flooring)",
+      "summary": "Flooring project at 3334 Dwiggin Ave, Mississuaga. Approx value $3,200. No sales person or Opportunity ID on the row.",
+      "timestamp": "2026-09-28T20:45:53+00:00",
+      "priority": "high",
+      "link": "https://app.notion.com/3e9596a4505f8084a071cdd644b13627",
+      "amount_cents": 320000,
+      "raw_ref": "notion:titan-projects:https://app.notion.com/3e9596a4505f8084a071cdd644b13627",
+      "sensitivity": null,
+      "assigned_to": null
+    },
+    {
+      "id": "notion-new_won_project-3e9596a4505f810e98feffe995a08ade",
+      "type": "new_won_project",
+      "title": "Won: Arika, Mississauga (Both)",
+      "summary": "Both project at 4230 Fieldgate drive unit 4, Mississauga. Approx value $12,826. Sales: Pourya Lalee.",
+      "timestamp": "2026-09-28T19:25:58+00:00",
+      "priority": "high",
+      "link": "https://app.notion.com/3e9596a4505f810e98feffe995a08ade",
+      "amount_cents": 1282550,
+      "raw_ref": "notion:titan-projects:opp=7LcC0KucRSoIbHPiuRqi",
+      "sensitivity": null,
+      "assigned_to": null
+    },
+    {
+      "id": "notion-new_won_project-3e7596a4505f81588a90c25c45fba60f",
+      "type": "new_won_project",
+      "title": "Won: Mayuri Bhatti, Missisauga (Both)",
+      "summary": "Both project at 4485 Full Moon Circle, Missisauga. Approx value $16,498. Sales: Pourya Lalee.",
+      "timestamp": "2026-09-26T16:52:26+00:00",
+      "priority": "high",
+      "link": "https://app.notion.com/3e7596a4505f81588a90c25c45fba60f",
+      "amount_cents": 1649800,
+      "raw_ref": "notion:titan-projects:opp=GewzcnR0hclCKNtQq4rZ",
+      "sensitivity": null,
+      "assigned_to": null
+    },
+    {
+      "id": "notion-payment-3ee596a4505f81c4a1d0d4b0e6223988",
+      "type": "payment",
+      "title": "Payment $3,044.80 from Simplicity Financial Inc.",
+      "summary": "e-Transfer received 2026-10-02.",
+      "timestamp": "2026-10-02T00:00:00-04:00",
+      "priority": "normal",
+      "link": "https://app.notion.com/3ee596a4505f81c4a1d0d4b0e6223988",
+      "amount_cents": 304480,
+      "raw_ref": "notion:payments:https://app.notion.com/3ee596a4505f81c4a1d0d4b0e6223988",
+      "sensitivity": null,
+      "assigned_to": null
+    },
+    {
+      "id": "notion-payment-3ed596a4505f81dea864f7fc9493762c",
+      "type": "payment",
+      "title": "Payment $652.68 from Mayuri S Bhatti",
+      "summary": "e-Transfer received 2026-10-01.",
+      "timestamp": "2026-10-01T00:00:00-04:00",
+      "priority": "normal",
+      "link": "https://app.notion.com/3ed596a4505f81dea864f7fc9493762c",
+      "amount_cents": 65268,
+      "raw_ref": "notion:payments:https://app.notion.com/3ed596a4505f81dea864f7fc9493762c",
+      "sensitivity": null,
+      "assigned_to": null
+    },
+    {
+      "id": "notion-payment-3ed596a4505f816fab45d8cd9e22b2c5",
+      "type": "payment",
+      "title": "Payment $4,187.71 from Julie Ann Matriz Ohlman",
+      "summary": "e-Transfer received 2026-10-01.",
+      "timestamp": "2026-10-01T00:00:00-04:00",
+      "priority": "normal",
+      "link": "https://app.notion.com/3ed596a4505f816fab45d8cd9e22b2c5",
+      "amount_cents": 418771,
+      "raw_ref": "notion:payments:https://app.notion.com/3ed596a4505f816fab45d8cd9e22b2c5",
+      "sensitivity": null,
+      "assigned_to": null
+    },
+    {
+      "id": "notion-rollup-tactical_task_stale",
+      "type": "rollup",
+      "title": "40 stale Tactical Tasks (Not started >14d)",
+      "summary": "40 open Tactical Tasks exceed their staleness threshold; oldest 24d ('NAF August promo expired'). Mostly GHL drift/message tasks, price-list blockers and gift-box tasks; full list in extensions.notion.reporting.stale_tactical.",
+      "timestamp": "2026-10-03T08:00:00-04:00",
+      "priority": "normal",
+      "link": null,
+      "amount_cents": null,
+      "raw_ref": "notion:tactical:rollup",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "new_won_projects": 3,
+    "new_won_value_cents": 3252350,
+    "open_work_orders": 0,
+    "work_orders_in_error": 0,
+    "work_orders_completed": 0,
+    "payments_count": 3,
+    "payments_received_cents": 788519,
+    "stale_tactical_tasks": 40,
+    "new_meetings": 0
+  },
+  "needs_attention": [
+    "Titan Projects row 'Jeevan' (won 2026-09-28) has no Opportunity ID, sales person or contact; keyed by page url, cannot be cross-referenced to GHL.",
+    "Cold start: no notion.json within 7 days (latest 2026-09-08), snapshot seeded; only in-window activity reported.",
+    "Meeting row 'Project Status \u2014 Oct 6/26' exists with no Meeting Summary (future-dated, unprocessed); not emitted as meeting_logged on cold start.",
+    "QA Work Orders: settings error_statuses lists 'Pending Status', which no longer exists in the Status schema (also 'Budget Expense' and 'Description To Send' column names changed); queried with the two real error statuses. Update platform-settings/notion-ingest-sources.json."
+  ],
+  "extensions": {
+    "notion": {
+      "template_version": "1",
+      "snapshot": {
+        "titan_projects": [
+          "notion:titan-projects:https://app.notion.com/3e9596a4505f8084a071cdd644b13627",
+          "notion:titan-projects:opp=7LcC0KucRSoIbHPiuRqi",
+          "notion:titan-projects:opp=GewzcnR0hclCKNtQq4rZ"
+        ],
+        "qa_work_orders": [],
+        "master_payments_log": [
+          "notion:payments:https://app.notion.com/3ee596a4505f81c4a1d0d4b0e6223988",
+          "notion:payments:https://app.notion.com/3ed596a4505f81dea864f7fc9493762c",
+          "notion:payments:https://app.notion.com/3ed596a4505f816fab45d8cd9e22b2c5"
+        ],
+        "tactical_tasks_list": [
+          "notion:tactical:https://app.notion.com/3ed596a4505f81f9bc88c5379316bbeb",
+          "notion:tactical:https://app.notion.com/3ed596a4505f81498c1aed46c8f20a34",
+          "notion:tactical:https://app.notion.com/3ed596a4505f81a1ab53c459b9eaef4e",
+          "notion:tactical:https://app.notion.com/3ea596a4505f8120a4f6c49fba9d1ba2",
+          "notion:tactical:https://app.notion.com/3ea596a4505f815ba675eabc6f8756f4",
+          "notion:tactical:https://app.notion.com/3ea596a4505f819480f5f062683e2f73",
+          "notion:tactical:https://app.notion.com/3ea596a4505f81b28507c688a4dfd278",
+          "notion:tactical:https://app.notion.com/3ea596a4505f81b9b9d7f4fae879aa34",
+          "notion:tactical:https://app.notion.com/3ea596a4505f81c996c2d923083aba05",
+          "notion:tactical:https://app.notion.com/3ea596a4505f81fc9297c251d819a9a5",
+          "notion:tactical:https://app.notion.com/3ea596a4505f81babbb1cb851c0428e7",
+          "notion:tactical:https://app.notion.com/3ea596a4505f8120915cf1ec4be4a2f8",
+          "notion:tactical:https://app.notion.com/3ea596a4505f81bd99c4fc3312f04adb",
+          "notion:tactical:https://app.notion.com/3ea596a4505f81cead5cfbe73f3ca58e",
+          "notion:tactical:https://app.notion.com/3e9596a4505f8127afe7fb7442869dc1",
+          "notion:tactical:https://app.notion.com/3e9596a4505f81aa9f02f415f33a7cd4",
+          "notion:tactical:https://app.notion.com/3e9596a4505f8045a89bccd62dd2eee0",
+          "notion:tactical:https://app.notion.com/3e9596a4505f81189508c5fe8d7a2cc4",
+          "notion:tactical:https://app.notion.com/3e9596a4505f81308a39e3629c7e51e9",
+          "notion:tactical:https://app.notion.com/3e9596a4505f81588bcffb3db7955424",
+          "notion:tactical:https://app.notion.com/3e9596a4505f818c8dddeea4b243d563",
+          "notion:tactical:https://app.notion.com/3e9596a4505f8196bdd7df4a4a1d47ea",
+          "notion:tactical:https://app.notion.com/3e9596a4505f8197a9e0ea361e383377",
+          "notion:tactical:https://app.notion.com/3e9596a4505f81c7a9d9dcd6d59007a3",
+          "notion:tactical:https://app.notion.com/3e9596a4505f81d3b793d95da57bdfe5",
+          "notion:tactical:https://app.notion.com/3e9596a4505f81d9bf5bf5b5f7ce7b57",
+          "notion:tactical:https://app.notion.com/3e9596a4505f81eba027e33f6f2f0a9a",
+          "notion:tactical:https://app.notion.com/3e9596a4505f8107b1affeec0d1968bb",
+          "notion:tactical:https://app.notion.com/3e8596a4505f81d598c5d21458b94a23",
+          "notion:tactical:https://app.notion.com/3e8596a4505f81e79cd7ee571e39e04a",
+          "notion:tactical:https://app.notion.com/3e7596a4505f8128a5bee272a6f27d7b",
+          "notion:tactical:https://app.notion.com/3e7596a4505f81d5878ed9133ec2dd01",
+          "notion:tactical:https://app.notion.com/3e6596a4505f812db3cbf843d2a1bbe2",
+          "notion:tactical:https://app.notion.com/3e6596a4505f81d3a42bcccdcafa3a55",
+          "notion:tactical:https://app.notion.com/3e6596a4505f81ff937ce9436e273cad",
+          "notion:tactical:https://app.notion.com/3e6596a4505f8121bedfc7c1a9117723",
+          "notion:tactical:https://app.notion.com/3e6596a4505f8181b06ae28fccedf13b",
+          "notion:tactical:https://app.notion.com/3e6596a4505f81c6b855c1c3278f8f69",
+          "notion:tactical:https://app.notion.com/3e4596a4505f81de9fb5d8a77c59c8a8",
+          "notion:tactical:https://app.notion.com/3e4596a4505f81dfb989d28d3f7168a0",
+          "notion:tactical:https://app.notion.com/3e4596a4505f81009891e6044bafa037",
+          "notion:tactical:https://app.notion.com/3e3596a4505f81889abcd51796df04a3",
+          "notion:tactical:https://app.notion.com/3e2596a4505f80c3967bd604f1f37da3",
+          "notion:tactical:https://app.notion.com/3e2596a4505f8146856ec6fa301fb982",
+          "notion:tactical:https://app.notion.com/3e2596a4505f81a2873dd96307fcc402",
+          "notion:tactical:https://app.notion.com/3e2596a4505f81549f56ed87f3ea2682",
+          "notion:tactical:https://app.notion.com/3e1596a4505f818daea5f8a991da9c46",
+          "notion:tactical:https://app.notion.com/3e0596a4505f81f682cafb675c4f2d29",
+          "notion:tactical:https://app.notion.com/3e0596a4505f8104b92accaedefbe91b",
+          "notion:tactical:https://app.notion.com/3e0596a4505f81168a00fa1a0a58d093",
+          "notion:tactical:https://app.notion.com/3e0596a4505f812d8366c043070231c4",
+          "notion:tactical:https://app.notion.com/3e0596a4505f8135bca9c82ae87b9e39",
+          "notion:tactical:https://app.notion.com/3e0596a4505f8136a68af7467e2e27b8",
+          "notion:tactical:https://app.notion.com/3e0596a4505f817b9087c316ad56cb7b",
+          "notion:tactical:https://app.notion.com/3e0596a4505f8194be9be4d0d6e0aacf",
+          "notion:tactical:https://app.notion.com/3e0596a4505f8199b2e6ced0cc2b6617",
+          "notion:tactical:https://app.notion.com/3e0596a4505f81a6846bcc0717719b4d",
+          "notion:tactical:https://app.notion.com/3e0596a4505f81db86e4c46779280bba",
+          "notion:tactical:https://app.notion.com/3e0596a4505f81e181cdd45abb8d64d6",
+          "notion:tactical:https://app.notion.com/3df596a4505f81479395e3e47d99b590",
+          "notion:tactical:https://app.notion.com/3de596a4505f8199aea6cd9e9a048a7f",
+          "notion:tactical:https://app.notion.com/3de596a4505f814f9907d417b1f0187c",
+          "notion:tactical:https://app.notion.com/3de596a4505f81519ce7c59abce338b4",
+          "notion:tactical:https://app.notion.com/3de596a4505f8165b5f0d829799f0e72",
+          "notion:tactical:https://app.notion.com/3de596a4505f817f873bc807fbeffe17",
+          "notion:tactical:https://app.notion.com/3de596a4505f81bba5b4ccff9f049867",
+          "notion:tactical:https://app.notion.com/3de596a4505f81c29f69c30f18cc8fba",
+          "notion:tactical:https://app.notion.com/3de596a4505f81d485f3d6c3600b7159",
+          "notion:tactical:https://app.notion.com/3de596a4505f81de8869e8a143087474",
+          "notion:tactical:https://app.notion.com/3dd596a4505f81648f92c7c8af3b6a95",
+          "notion:tactical:https://app.notion.com/3dd596a4505f8163bbcbc5132677fa48",
+          "notion:tactical:https://app.notion.com/3dd596a4505f816c8457df4d26aa1581",
+          "notion:tactical:https://app.notion.com/3dc596a4505f814f984ffe5399e9debe",
+          "notion:tactical:https://app.notion.com/3db596a4505f818ba278e03be50fc00f",
+          "notion:tactical:https://app.notion.com/3db596a4505f81aea5e5de27dff91300",
+          "notion:tactical:https://app.notion.com/3d8596a4505f810b9ef0fc705c8a7e7d",
+          "notion:tactical:https://app.notion.com/3d8596a4505f8164bd25f3073c2a7135",
+          "notion:tactical:https://app.notion.com/3d8596a4505f81839131de1ed94e4f0f",
+          "notion:tactical:https://app.notion.com/3d8596a4505f8124b5d1ea45688139d2",
+          "notion:tactical:https://app.notion.com/3d8596a4505f812bb97ef3a0323a62d4",
+          "notion:tactical:https://app.notion.com/3d8596a4505f8134895ee42d447f3524",
+          "notion:tactical:https://app.notion.com/3d8596a4505f8134b664d825c908a8da",
+          "notion:tactical:https://app.notion.com/3d8596a4505f81379922d6663323a064",
+          "notion:tactical:https://app.notion.com/3d8596a4505f815596b6d7f710abe3c4",
+          "notion:tactical:https://app.notion.com/3d8596a4505f81768871f45a561a479f",
+          "notion:tactical:https://app.notion.com/3d8596a4505f8196828bda20964ddcc0",
+          "notion:tactical:https://app.notion.com/3d8596a4505f81c58b0bc2b8f65c863c",
+          "notion:tactical:https://app.notion.com/3d7596a4505f817a89bac073711d0744",
+          "notion:tactical:https://app.notion.com/3d7596a4505f813f928cf145a5425f33",
+          "notion:tactical:https://app.notion.com/3d7596a4505f8169a22de96e5a5b094f",
+          "notion:tactical:https://app.notion.com/3d6596a4505f815caef0faea0fd3859e",
+          "notion:tactical:https://app.notion.com/3d6596a4505f8154993cc6851519fe9b",
+          "notion:tactical:https://app.notion.com/3d6596a4505f8100afb8f259c8735c76",
+          "notion:tactical:https://app.notion.com/3d6596a4505f811b9c29c40dd9ed7209",
+          "notion:tactical:https://app.notion.com/3d6596a4505f8178a8e5eb6fac91156d",
+          "notion:tactical:https://app.notion.com/3d6596a4505f81f2a3d1e52763d4486f",
+          "notion:tactical:https://app.notion.com/3d6596a4505f81f6a3cede46ad8327dc",
+          "notion:tactical:https://app.notion.com/3d6596a4505f81619879d6e0ea4756c7",
+          "notion:tactical:https://app.notion.com/3d6596a4505f8148b527dd8788b13916",
+          "notion:tactical:https://app.notion.com/3e8596a4505f80589396f373521a374b"
+        ],
+        "project_status_meetings": [
+          "notion:meeting:https://app.notion.com/3ea596a4505f81a2ab52d634df5a48ec",
+          "notion:meeting:https://app.notion.com/3ea596a4505f80d4aa5ac7acbc1b24a5",
+          "notion:meeting:https://app.notion.com/3cf596a4505f81f1b872c8a5be87ac69"
+        ]
+      },
+      "reporting": {
+        "stale_tactical": [
+          {
+            "url": "https://app.notion.com/3d6596a4505f8100afb8f259c8735c76",
+            "name": "NAF August promo expired",
+            "status": "Not started",
+            "age_days": 24
+          },
+          {
+            "url": "https://app.notion.com/3d6596a4505f811b9c29c40dd9ed7209",
+            "name": "Gracious tiles box size missing",
+            "status": "Not started",
+            "age_days": 24
+          },
+          {
+            "url": "https://app.notion.com/3d6596a4505f8178a8e5eb6fac91156d",
+            "name": "Gracious markup/brand",
+            "status": "Not started",
+            "age_days": 24
+          },
+          {
+            "url": "https://app.notion.com/3d6596a4505f81f2a3d1e52763d4486f",
+            "name": "Lee Flooring SKU convention",
+            "status": "Not started",
+            "age_days": 24
+          },
+          {
+            "url": "https://app.notion.com/3d6596a4505f81f6a3cede46ad8327dc",
+            "name": "Dragona category/markup",
+            "status": "Not started",
+            "age_days": 24
+          },
+          {
+            "url": "https://app.notion.com/3d6596a4505f81619879d6e0ea4756c7",
+            "name": "TOSCA import reconcile",
+            "status": "Not started",
+            "age_days": 24
+          },
+          {
+            "url": "https://app.notion.com/3d6596a4505f8148b527dd8788b13916",
+            "name": "Simba LS backfill conflicts",
+            "status": "Not started",
+            "age_days": 24
+          },
+          {
+            "url": "https://app.notion.com/3d7596a4505f813f928cf145a5425f33",
+            "name": "Weiss 13 LS colours",
+            "status": "Not started",
+            "age_days": 23
+          },
+          {
+            "url": "https://app.notion.com/3d7596a4505f8169a22de96e5a5b094f",
+            "name": "Vizion Stairboard Steps Set",
+            "status": "Not started",
+            "age_days": 23
+          },
+          {
+            "url": "https://app.notion.com/3d6596a4505f815caef0faea0fd3859e",
+            "name": "Gift Box Gina Martino",
+            "status": "Not started",
+            "age_days": 23
+          },
+          {
+            "url": "https://app.notion.com/3d6596a4505f8154993cc6851519fe9b",
+            "name": "Gift Box Mien",
+            "status": "Not started",
+            "age_days": 23
+          },
+          {
+            "url": "https://app.notion.com/3d7596a4505f817a89bac073711d0744",
+            "name": "Golden Choice PL-252 cost column",
+            "status": "Not started",
+            "age_days": 22
+          },
+          {
+            "url": "https://app.notion.com/3d8596a4505f810b9ef0fc705c8a7e7d",
+            "name": "JL TILE PL-372 pdfplumber",
+            "status": "Not started",
+            "age_days": 21
+          },
+          {
+            "url": "https://app.notion.com/3d8596a4505f8164bd25f3073c2a7135",
+            "name": "Add CCAM Tags Gina Martino",
+            "status": "Not started",
+            "age_days": 21
+          },
+          {
+            "url": "https://app.notion.com/3d8596a4505f81839131de1ed94e4f0f",
+            "name": "Confirm final images Gina Martino",
+            "status": "Not started",
+            "age_days": 21
+          },
+          {
+            "url": "https://app.notion.com/3d8596a4505f8124b5d1ea45688139d2",
+            "name": "GHL message Dante Spizziri",
+            "status": "Not started",
+            "age_days": 21
+          },
+          {
+            "url": "https://app.notion.com/3d8596a4505f812bb97ef3a0323a62d4",
+            "name": "GHL lead Sharif Barakzai",
+            "status": "Not started",
+            "age_days": 21
+          },
+          {
+            "url": "https://app.notion.com/3d8596a4505f8134895ee42d447f3524",
+            "name": "GHL message Brooks Persad quote",
+            "status": "Not started",
+            "age_days": 21
+          },
+          {
+            "url": "https://app.notion.com/3d8596a4505f8134b664d825c908a8da",
+            "name": "GHL drift Chandara Thileepan",
+            "status": "Not started",
+            "age_days": 21
+          },
+          {
+            "url": "https://app.notion.com/3d8596a4505f81379922d6663323a064",
+            "name": "GHL drift Avishekh Pal",
+            "status": "Not started",
+            "age_days": 21
+          },
+          {
+            "url": "https://app.notion.com/3d8596a4505f815596b6d7f710abe3c4",
+            "name": "GHL message Ali Abdel Fattah",
+            "status": "Not started",
+            "age_days": 21
+          },
+          {
+            "url": "https://app.notion.com/3d8596a4505f81768871f45a561a479f",
+            "name": "GHL drift Shahid Brampton",
+            "status": "Not started",
+            "age_days": 21
+          },
+          {
+            "url": "https://app.notion.com/3d8596a4505f8196828bda20964ddcc0",
+            "name": "GHL message Mhay Cunanan",
+            "status": "Not started",
+            "age_days": 21
+          },
+          {
+            "url": "https://app.notion.com/3d8596a4505f81c58b0bc2b8f65c863c",
+            "name": "GHL lead (905) 815-3889",
+            "status": "Not started",
+            "age_days": 21
+          },
+          {
+            "url": "https://app.notion.com/3db596a4505f818ba278e03be50fc00f",
+            "name": "IMPRESSIVE brand PL-226",
+            "status": "Not started",
+            "age_days": 18
+          },
+          {
+            "url": "https://app.notion.com/3db596a4505f81aea5e5de27dff91300",
+            "name": "JL TILE cost basis PL-372",
+            "status": "Not started",
+            "age_days": 18
+          },
+          {
+            "url": "https://app.notion.com/3dc596a4505f814f984ffe5399e9debe",
+            "name": "Weiss PL-376 cannot parse",
+            "status": "Not started",
+            "age_days": 17
+          },
+          {
+            "url": "https://app.notion.com/3dd596a4505f81648f92c7c8af3b6a95",
+            "name": "Gift Box blank",
+            "status": "Not started",
+            "age_days": 16
+          },
+          {
+            "url": "https://app.notion.com/3dd596a4505f8163bbcbc5132677fa48",
+            "name": "Gift Box Sabrina Agard",
+            "status": "Not started",
+            "age_days": 16
+          },
+          {
+            "url": "https://app.notion.com/3dd596a4505f816c8457df4d26aa1581",
+            "name": "Gift Box Diego Contecha",
+            "status": "Not started",
+            "age_days": 16
+          },
+          {
+            "url": "https://app.notion.com/3df596a4505f81479395e3e47d99b590",
+            "name": "Vizion PL-373 findings",
+            "status": "Not started",
+            "age_days": 15
+          },
+          {
+            "url": "https://app.notion.com/3de596a4505f8199aea6cd9e9a048a7f",
+            "name": "Gift Box Edwin Wong",
+            "status": "Not started",
+            "age_days": 15
+          },
+          {
+            "url": "https://app.notion.com/3de596a4505f814f9907d417b1f0187c",
+            "name": "GHL message Marco Di Franco",
+            "status": "Not started",
+            "age_days": 15
+          },
+          {
+            "url": "https://app.notion.com/3de596a4505f81519ce7c59abce338b4",
+            "name": "GHL drift (437) 245-6099",
+            "status": "Not started",
+            "age_days": 15
+          },
+          {
+            "url": "https://app.notion.com/3de596a4505f8165b5f0d829799f0e72",
+            "name": "GHL drift Moumita Arora",
+            "status": "Not started",
+            "age_days": 15
+          },
+          {
+            "url": "https://app.notion.com/3de596a4505f817f873bc807fbeffe17",
+            "name": "GHL drift Muhammad Rafiq",
+            "status": "Not started",
+            "age_days": 15
+          },
+          {
+            "url": "https://app.notion.com/3de596a4505f81bba5b4ccff9f049867",
+            "name": "GHL drift (416) 568-0214",
+            "status": "Not started",
+            "age_days": 15
+          },
+          {
+            "url": "https://app.notion.com/3de596a4505f81c29f69c30f18cc8fba",
+            "name": "GHL message Firoz Rajan",
+            "status": "Not started",
+            "age_days": 15
+          },
+          {
+            "url": "https://app.notion.com/3de596a4505f81d485f3d6c3600b7159",
+            "name": "GHL message Moenad Nadeem",
+            "status": "Not started",
+            "age_days": 15
+          },
+          {
+            "url": "https://app.notion.com/3de596a4505f81de8869e8a143087474",
+            "name": "GHL lead Mayuri Bhatti",
+            "status": "Not started",
+            "age_days": 15
+          }
+        ],
+        "cold_start": true,
+        "qa_work_orders_in_window": 0
+      }
+    }
+  }
+}
