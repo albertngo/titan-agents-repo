@@ -264,9 +264,7 @@ a click of a button from Airtable"). The value is the SharePoint share link deco
 from the row's `Files & media` (step 1's `.source`) — the same anonymous link the
 download used, so it opens for anyone at Titan. Same value on every row. Airtable's
 `Price List URL` field is a URL type, and the reconciler writes it together with the
-date, so a record always points at the list its `Effective Date` names. It also writes
-`Price List Date` = the same date (Albert, 2026-10-03: "It should always follow the
-effective date"), which Titan Desk shows and syncs to Supabase — no extra CSV column needed.
+date, so a record always points at the list its `Effective Date` names. `Effective Date` **is** the price list date (Albert, 2026-10-03: "Effective date IS the price list date. Am I to keep them both?"). A separate `Price List Date` field was retired that day, after every record was matched to the higher of the two; nothing writes it.
 
 **A promo sheet is the exception** (Tags `Promo`, 2026-09-26, PL-383): it sets only
 `Promo cost` and `Promo end date` and confirms nothing about the regular price, so its

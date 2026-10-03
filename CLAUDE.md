@@ -305,13 +305,12 @@ sync no longer waits on Albert manually promoting a row before it runs. The stat
 still exists for the manual CSV path (whoever runs a stage by hand still uses it),
 per "all three trackers are kept" below.
 
-**`Price List Date` follows `Effective Date` (2026-10-03, Albert: "It should always follow
-the effective date so it carries through to Airtable and supabase.")** The reconciler writes
-Airtable's `Price List Date` (the date of the list `Price List URL` links to) whenever it writes
-the date or the link, always the same value; Titan Desk shows it and syncs it to Supabase.
-Nothing wrote it before, so Triforest's PL-382 moved 160 records to 2026-10-01 and left the list
-date at 2026-08-15. Like `Effective Date`, a confirming list never moves it backward; a price
-change sets it to the list that set the price.
+**`Effective Date` IS the price list date (2026-10-03, Albert).** One field, not two: a separate
+`Price List Date` (added 2026-09-28, read by Titan Desk) drifted behind it — Triforest's PL-382 moved
+160 records to 2026-10-01 and left it at 2026-08-15. Every record was matched to the higher of the two
+(1,859 written) and nothing writes it any more. Order to finish: Titan Desk (its own repo) reads
+`Effective Date` instead, then Albert deletes `Price List Date` in Airtable — Titan Desk's 30-minute
+sync checks the schema, so the reverse order breaks it.
 
 **Lists received before they take effect are staged (2026-09-25, Albert).** The row's
 `Effective Date` (Notion) is the list's date; when it is after today, extraction runs
