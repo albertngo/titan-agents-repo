@@ -338,7 +338,10 @@ comment that did not post; the transcript is still there.
 
 What the gate cannot stop: a person editing module 18 in the Make UI, or using key
 97843 in another scenario. Albert is the only person who edits in Make (confirmed
-2026-10-02); the snapshot is re-taken and the tests re-run after every UI change.
+2026-10-02); the snapshot is re-taken and the tests re-run after every UI change. The
+alarm's WhatsApp was confirmed received on Albert's phone (2026-10-02, the probe's TEST
+message), and the "Call Status" workflow has the webhook as its only action (confirmed
+the same day).
 
 ## What it never does
 

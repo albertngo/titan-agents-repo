@@ -226,7 +226,7 @@
       },
       "_keychains": "Two Make keys of type API Key Auth, added by Albert through Make credential requests. 97834 'ElevenLabs STT (call notes)' (2026-10-02, request 840c2a6b-df9d-4b44-8d25-cd49092061b4): header xi-api-key, used by the speech-to-text module (8). 97841 'GHL read PIT (call recordings)' (2026-10-02, request 2f780b9f-695d-4aca-bc81-0dc5a9f03df7, replacing 97835, which had been saved without the Bearer prefix and answered 401 Invalid JWT): header Authorization, value 'Bearer <read PIT>' — used by every GHL read: conversation search (2), messages (3), recording (7). The note itself is written through ghl_connection_id, not this token. Albert's ElevenLabs app connection 4875733 also exists; the scenario does not need it (the app's modules cannot send keyterms or upload a file). 97843 'GHL internal comments ONLY (call notes)' (2026-10-02, request 3c2fcab6-aa31-4e85-8d5d-d9ebd4442acf): header Authorization, a dedicated GHL private integration whose only scope is conversations/message.write. Used by exactly one module, the comment POST behind the gate.",
       "webhook_url": "https://hook.us1.make.com/foh85gqj8kq9sepk5d156z4n6psvjbgf",
-      "trigger": "GHL workflow 'Call Status' (completed, voicemail) -> Webhook action POST to webhook_url with custom data contact_id={{contact.id}}. Make's own GHL 'Watch Events' trigger only covers contacts and opportunities, not messages (checked 2026-10-02).",
+      "trigger": "GHL workflow 'Call Status' (completed, voicemail) -> Webhook action POST to webhook_url with custom data contact_id={{contact.id}}. Make's own GHL 'Watch Events' trigger only covers contacts and opportunities, not messages (checked 2026-10-02). Albert confirmed the workflow's only action is the webhook (2026-10-02), so the SMS and email seen around a call come from other GHL workflows, not this one.",
       "blueprint": "platform-settings/blueprints/ghl-call-notes-4951497.json",
       "sequential": true,
       "ops_per_new_call": "v2 on Haiku 4.5: 23 operations, ~29 Make credits for a 570 s call (2026-10-02); on Sonnet the summary step cost ~2.4x as much (~38 credits for a 389 s call). 5 operations when a fire finds nothing new.",
@@ -256,7 +256,7 @@
           "channel": "WhatsApp through 2Chat connection 3776292, the same line and recipient as the Bookkeeper Watchdog (Make 4824368)",
           "_reset": "After checking the conversation: delete the record 'comment-gate-tripped' in data store 94694 ('GHL call notes written'). Until then no summary comment is posted.",
           "_not_covered": "A failed read-back (module 19 errors) ends the route with no alarm; the comment's type is then checked by the next daily run's alarm.",
-          "_tested": "2026-10-02 on a throwaway probe: a simulated TYPE_SMS read-back wrote the kill switch and sent a TEST WhatsApp; with the switch set the gated step did not post; without it, it did."
+          "_tested": "2026-10-02 on a throwaway probe: a simulated TYPE_SMS read-back wrote the kill switch and sent a TEST WhatsApp; with the switch set the gated step did not post; without it, it did. Albert confirmed the TEST WhatsApp reached his phone (2026-10-02)."
         }
       },
       "summary_model": {
