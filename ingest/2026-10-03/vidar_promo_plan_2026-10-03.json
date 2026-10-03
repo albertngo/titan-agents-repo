@@ -1,0 +1,1534 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "VIDAR",
+ "run_at": "2026-10-03T12:29:46.482712-04:00",
+ "status": "ok",
+ "inputs": [
+  {
+   "file": "ingest/2026-10-03/vidar_promo_airtable_upload_2026-10-03.csv",
+   "rows": 62
+  },
+  {
+   "file": "ingest/2026-10-03/lightspeed-products.json",
+   "products": 15092,
+   "run_at": "2026-10-03T12:24:45.832880-04:00"
+  },
+  {
+   "file": "ingest/2026-10-03/vidar_airtable_existing_flat.json",
+   "records": 232
+  },
+  {
+   "file": "ingest/2026-10-03/vidar_airtable_options.json",
+   "select_fields": 3
+  }
+ ],
+ "cost_basis": {
+  "value": "dealer",
+  "confirmed_by": "Albert 2026-09-10"
+ },
+ "as_of": "2026-10-03",
+ "effective_dates": [
+  "2026-04-01",
+  "2026-09-08"
+ ],
+ "summary": {
+  "airtable_upsert": 62,
+  "actions_total": 62,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 0,
+  "warnings": 0,
+  "rows_in": 62
+ },
+ "actions": [
+  {
+   "id": "cat-f40bdb5f6da1",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0001",
+   "airtable_rec_id": "recRugbXzK84mLRBI",
+   "ls_id": "aaef880a-2344-4e60-9bea-789fe116aad6",
+   "handle": "VIDR6AWOSILVERSTONE",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 1
+  },
+  {
+   "id": "cat-2556c9166481",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0002",
+   "airtable_rec_id": "recLDbcpfYBcyZ3Hz",
+   "ls_id": "77f035b0-5607-412d-83a0-e3c88b2a0927",
+   "handle": "VIDR6AWOSILVERSTONE",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 2
+  },
+  {
+   "id": "cat-a1e5d8967787",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0003",
+   "airtable_rec_id": "recttepYhaiaQfqC1",
+   "ls_id": "96ae1891-e8a3-47c7-92e5-16c620637bf6",
+   "handle": "VIDR6AWOSMOKEGREY",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 3
+  },
+  {
+   "id": "cat-a8972beae618",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0004",
+   "airtable_rec_id": "reck3M5ubIct6f8hA",
+   "ls_id": "5318abfa-b2ac-4229-8b31-625e44c3be5b",
+   "handle": "VIDR6AWOSKY",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 4
+  },
+  {
+   "id": "cat-9b125b8d0bb0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0005",
+   "airtable_rec_id": "reciewNpglOxm5xTe",
+   "ls_id": "29df811e-1ab4-420f-8972-08aeccfd1a98",
+   "handle": "VIDR6AWOBLACKBROWN",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 5
+  },
+  {
+   "id": "cat-81ae45d242c4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0006",
+   "airtable_rec_id": "recLwpOfJuLEOaaah",
+   "ls_id": "d1b96772-5182-4660-b016-cca3a36b6ff1",
+   "handle": "VIDR6AWOCAMEL",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 6
+  },
+  {
+   "id": "cat-577bbdf3f696",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0007",
+   "airtable_rec_id": "rec5mATNJFqjl14lK",
+   "ls_id": "06564601-23d4-4f4a-819e-0f324430109a",
+   "handle": "VIDR6AWOCOFFEE",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 7
+  },
+  {
+   "id": "cat-3a2a0bdb7859",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0008",
+   "airtable_rec_id": "recLR4ezRlKGbCp8y",
+   "ls_id": "d1de09f5-abca-48ea-8254-876a09351e87",
+   "handle": "VIDR6AWOWHEATBERRY",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 8
+  },
+  {
+   "id": "cat-1395bdc216ab",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0010",
+   "airtable_rec_id": "recdfBCAWOQ7MOofI",
+   "ls_id": "687e2045-57e3-4e3b-9fc5-1e0b2dd6317e",
+   "handle": "VIDR6AWOFORTINO",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 9
+  },
+  {
+   "id": "cat-ffd6a5345aa5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0018",
+   "airtable_rec_id": "rec5Pu44jGFxqkzvB",
+   "ls_id": "21f1945d-2cdd-4788-9d38-4fb9db63b8b3",
+   "handle": "VIDR6AWOTOFFEECRUNCH",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 10
+  },
+  {
+   "id": "cat-be5783460c5e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0025",
+   "airtable_rec_id": "recdoAZWhOqqdqst7",
+   "ls_id": "b0d6be5e-334e-4986-aa58-91a833cadc51",
+   "handle": "VIDR6EWASANDY",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 11
+  },
+  {
+   "id": "cat-8b3f60272c23",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0026",
+   "airtable_rec_id": "recgu8EaS2f0QLO3W",
+   "ls_id": "c8e31163-7847-4d48-8d15-06382514455b",
+   "handle": "VIDR6EWADAYBREAK",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 12
+  },
+  {
+   "id": "cat-e425c7b97724",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0027",
+   "airtable_rec_id": "recMJL9cRrXvC4n7V",
+   "ls_id": "33d42a88-d805-468a-9e97-28760c1d42c2",
+   "handle": "VIDR6EWAMACAROON",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 13
+  },
+  {
+   "id": "cat-0656f694f0f3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0028",
+   "airtable_rec_id": "recfpcDQaztwkDhbf",
+   "ls_id": "74f28827-0778-47c3-a888-0b9ee80d99a5",
+   "handle": "VIDR6EWANATURAL",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 14
+  },
+  {
+   "id": "cat-559972eb4ac7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0029",
+   "airtable_rec_id": "recccuIXCKBFo6p7i",
+   "ls_id": "485246f5-4642-42e0-8233-e7649eea2b6e",
+   "handle": "VIDR6EWATOFFEECRUNCH",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 15
+  },
+  {
+   "id": "cat-4d31834bee3f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0031",
+   "airtable_rec_id": "recbdfIuDifKqcZC3",
+   "ls_id": "ae16d74c-3ee7-4ac2-a17c-75e6e096ee70",
+   "handle": "VIDR6EWAFROSTWHITE",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 16
+  },
+  {
+   "id": "cat-6371c470d66f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0032",
+   "airtable_rec_id": "rectih03L6KXqoCuj",
+   "ls_id": "7411a563-46ee-4e5a-93a5-bc31a32c6d36",
+   "handle": "VIDR6EWALANDMARK",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 17
+  },
+  {
+   "id": "cat-8f449b629f17",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0033",
+   "airtable_rec_id": "rec4xyLeDOX5fGbda",
+   "ls_id": "9f5b7ccb-f80a-4314-a035-125b488e8225",
+   "handle": "VIDR75AWOCOYOTE",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 18
+  },
+  {
+   "id": "cat-174d6cc5238c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0034",
+   "airtable_rec_id": "rechrGv8ltbERjFVt",
+   "ls_id": "64889ff2-ef1d-48e1-8c04-f9cfb2213135",
+   "handle": "VIDR75AWOSKY",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 19
+  },
+  {
+   "id": "cat-987435f0abd0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0035",
+   "airtable_rec_id": "rec6PBV0oyCnGe2Gm",
+   "ls_id": "6c4d2a7f-49b2-4005-ae73-378376d6d515",
+   "handle": "VIDR75AWOCHARCOAL",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 20
+  },
+  {
+   "id": "cat-4aac7391b498",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0040",
+   "airtable_rec_id": "recvEg0mY5jtqcljq",
+   "ls_id": "fe1f81d9-f23b-4bae-993a-ef1ec213fa25",
+   "handle": "VIDR75AWOPEARL",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 21
+  },
+  {
+   "id": "cat-3202a5b35fca",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0043",
+   "airtable_rec_id": "recG75fkkhBysp6AY",
+   "ls_id": "bfb1c9f8-6003-4a93-acf3-3cab4f5cec01",
+   "handle": "VIDR75AWOMACAROON",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 22
+  },
+  {
+   "id": "cat-84e597e4d48b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0046",
+   "airtable_rec_id": "rec0OkikDts7a4fJR",
+   "ls_id": "2efa1ef6-5474-49aa-855f-8abf938d4979",
+   "handle": "VIDR75AWONAKEDOAK",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 23
+  },
+  {
+   "id": "cat-c1e0e7e29aef",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0052",
+   "airtable_rec_id": "recQOSo1EbpqLN6VR",
+   "ls_id": "ee1d0884-dbb9-44bd-bc27-548d848639b6",
+   "handle": "VIDR75EWOBANFF",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 24
+  },
+  {
+   "id": "cat-a6d882315cc6",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0059",
+   "airtable_rec_id": "recVznty0ZNO6DWDs",
+   "ls_id": "de430a70-11ab-44bb-b2d1-cf79c41ce674",
+   "handle": "VIDR75EWOTOFFEECRUNCH",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 25
+  },
+  {
+   "id": "cat-b0c53f3e3115",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0067",
+   "airtable_rec_id": "rec52R3fCZDhuC6nE",
+   "ls_id": "8bc6924a-2323-4eb1-9730-d52ef86752a2",
+   "handle": "VIDR75EWACLEAR",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 26
+  },
+  {
+   "id": "cat-d7459fd6a46d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0068",
+   "airtable_rec_id": "recOYFhjtQz7BmqCc",
+   "ls_id": "47e92dbb-7b8a-4308-9704-86378f842f17",
+   "handle": "VIDR75EWARAW",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 27
+  },
+  {
+   "id": "cat-03b79fe7a72d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0069",
+   "airtable_rec_id": "recDBYwzpnSvOsXxG",
+   "ls_id": "85f4fd1c-6461-4d47-9ce9-c64513033075",
+   "handle": "VIDR75EWASANDY",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 28
+  },
+  {
+   "id": "cat-11d5be16c593",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0070",
+   "airtable_rec_id": "recAPpR82i9dB0Wdk",
+   "ls_id": "0334124a-6740-426d-a9f8-1ce3f9b8e79a",
+   "handle": "VIDR75EWAMACAROON",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 29
+  },
+  {
+   "id": "cat-bd3c62fb137a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0072",
+   "airtable_rec_id": "rec9tibx6zDwv5d4b",
+   "ls_id": "7139783b-7e38-4381-a252-bfdee80bedc5",
+   "handle": "VIDR75EWAWHISTLER",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 30
+  },
+  {
+   "id": "cat-76c904e7b7d0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0073",
+   "airtable_rec_id": "rec6Imbn3DJAo6Gao",
+   "ls_id": "56884347-ac82-4ffc-86be-02f2ca05c970",
+   "handle": "VIDR75EWAEBONY",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 31
+  },
+  {
+   "id": "cat-c460730b6165",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0074",
+   "airtable_rec_id": "recL4ZClUGac24J9G",
+   "ls_id": "6cfa75c7-8472-4159-ab36-d8351df1a434",
+   "handle": "VIDR75EWASUNSET",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 32
+  },
+  {
+   "id": "cat-18647c958e02",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0075",
+   "airtable_rec_id": "reczTaAqzhwmzqM5t",
+   "ls_id": "d6ea57b1-1360-4fa3-b59e-dc952c4fdeda",
+   "handle": "VIDR75EWAFROSTWHITE",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 33
+  },
+  {
+   "id": "cat-b303d5c0899f",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0076",
+   "airtable_rec_id": "recQEkqTmvdXkCXQU",
+   "ls_id": "8c1a40f6-4bab-49c4-9ebf-bbf92c0713d5",
+   "handle": "VIDR75EWANIGHTOWL",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 34
+  },
+  {
+   "id": "cat-ac66cc2982d8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0078",
+   "airtable_rec_id": "recGycg9p6xXrRxnR",
+   "ls_id": "a0a7397b-5d7b-4d4e-8bfa-a5dbc5f5154e",
+   "handle": "VIDR9AWOSANDYGREY",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 35
+  },
+  {
+   "id": "cat-a81e345f76bc",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0088",
+   "airtable_rec_id": "rec4fg7DKNuYlmWBO",
+   "ls_id": "30ae8766-33be-4fd2-9e39-094476cbc765",
+   "handle": "VIDR9AWOSUNSET",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 36
+  },
+  {
+   "id": "cat-4d3e19ff131d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0102",
+   "airtable_rec_id": "reckhiDx5sPXGJ4VJ",
+   "ls_id": "1fba0cda-f650-447b-aed1-85eab1f1fc68",
+   "handle": "VIDRHB5AWOSKY",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 37
+  },
+  {
+   "id": "cat-742dabfdfc05",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0103",
+   "airtable_rec_id": "reczhzfXd7eJNNcxm",
+   "ls_id": "3135d8ec-3444-43b6-b029-4200bb2d8a31",
+   "handle": "VIDRHB5AWOBLACKBROWN",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 38
+  },
+  {
+   "id": "cat-7fdda692bb8a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0104",
+   "airtable_rec_id": "recejqRM7juhQrKid",
+   "ls_id": "17160852-ce3d-4d61-a5a8-9fe5ed77813f",
+   "handle": "VIDRHB5AWOCAMEL",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 39
+  },
+  {
+   "id": "cat-5f916c5ce7c3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0105",
+   "airtable_rec_id": "recMUnTbFLjTBwqG2",
+   "ls_id": "ec496885-2578-4a9e-a114-1b3b0a87d6ae",
+   "handle": "VIDRHB5AWOSILVERSTONE",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 40
+  },
+  {
+   "id": "cat-3ab8be50bd39",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0106",
+   "airtable_rec_id": "recQUl3WzHhJunQa5",
+   "ls_id": "12caf379-4451-44ef-b01b-858d3463f92c",
+   "handle": "VIDRHB5AWOPEARL",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 41
+  },
+  {
+   "id": "cat-f2cd6551c80b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0110",
+   "airtable_rec_id": "recxZF8rY355wChoE",
+   "ls_id": "c34b1909-fc20-49d7-9342-224811de4009",
+   "handle": "VIDRHB5AWOHONEYWHEAT",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 42
+  },
+  {
+   "id": "cat-dbd592f43bbd",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0112",
+   "airtable_rec_id": "rec2fQ0NpopPsn5Wr",
+   "ls_id": "aa2f0fdd-c6cc-4d61-8a7f-eef303e8ba33",
+   "handle": "VIDRHB5AWONAKEDOAK",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 43
+  },
+  {
+   "id": "cat-f09fe3985b9d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0121",
+   "airtable_rec_id": "recdKm9Xd77Xa48sH",
+   "ls_id": "397ef67e-f8bd-4692-8ee9-c763d3a5835a",
+   "handle": "VIDRHB5EWOTOFFEECRUNCH",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 44
+  },
+  {
+   "id": "cat-1b886adda5e8",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0164",
+   "airtable_rec_id": "recZuxJlpUDTFFcQt",
+   "ls_id": "52df5fba-7756-486e-8d80-825cb1339534",
+   "handle": "VIDR5AWOSKY",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 45
+  },
+  {
+   "id": "cat-92d15882e83d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0165",
+   "airtable_rec_id": "recAYcBS46XxPUyAk",
+   "ls_id": "5b1c94ba-5a70-459c-8de5-bbeb6eb10ff3",
+   "handle": "VIDR5AWOSMOKEGREY",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 46
+  },
+  {
+   "id": "cat-47e2113f65d3",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0166",
+   "airtable_rec_id": "recrmjDZsCtD7rTeR",
+   "ls_id": "059034bb-3b89-4f81-a1fe-c83aa28e4d8d",
+   "handle": "VIDR5AWOCAMEL",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 47
+  },
+  {
+   "id": "cat-6bd6b375365e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0167",
+   "airtable_rec_id": "recU4Qz1sWCQedZ0K",
+   "ls_id": "bb502689-243a-4083-b067-49bc2cd7b0e9",
+   "handle": "VIDR5AWOCOFFEE",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 48
+  },
+  {
+   "id": "cat-a3216546de22",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0168",
+   "airtable_rec_id": "recKymAKTwz50hKTn",
+   "ls_id": "5fda4bfb-e1c8-4902-9960-23e4276fcfa2",
+   "handle": "VIDR5AWONAKEDOAK",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 49
+  },
+  {
+   "id": "cat-458897a251b9",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0171",
+   "airtable_rec_id": "recxWV2EKarS6XsgK",
+   "ls_id": "9d802be9-02c6-423f-b836-7b94387dbd11",
+   "handle": "VIDR5AWOMACAROON",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 50
+  },
+  {
+   "id": "cat-54d690aa79d4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0174",
+   "airtable_rec_id": "recMft25ANTwaBZcm",
+   "ls_id": "759a70cf-a47a-429e-9ce2-98cfc04f8937",
+   "handle": "VIDR5AWOHONEYWHEAT",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 51
+  },
+  {
+   "id": "cat-0fa6eefe5f10",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0180",
+   "airtable_rec_id": "recotFXNggpu2q2Uv",
+   "ls_id": "3c048bc5-3a61-4467-808c-180d3877bfc3",
+   "handle": "VIDR5AWOFORTINO",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 52
+  },
+  {
+   "id": "cat-681dad4ca868",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0183",
+   "airtable_rec_id": "recoJzFEtV84PS3Ix",
+   "ls_id": "8fe45fbf-383b-412b-a6fd-5f127c0d4cef",
+   "handle": null,
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 53
+  },
+  {
+   "id": "cat-47b5df2699a7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0187",
+   "airtable_rec_id": "recjE2FfmO9fVInGU",
+   "ls_id": "aa95d192-145d-4d3f-a000-18e35152d73f",
+   "handle": null,
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 54
+  },
+  {
+   "id": "cat-cbc7babed275",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0188",
+   "airtable_rec_id": "recbLDBwAOqTt5TA1",
+   "ls_id": "dfc32506-b41f-4db4-a051-00201f38ec2d",
+   "handle": null,
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 55
+  },
+  {
+   "id": "cat-426e31fe874b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0194",
+   "airtable_rec_id": "rec9r3L8ZeOe7G3tV",
+   "ls_id": "c41f4348-838e-408c-918f-4f82ae7a0bec",
+   "handle": "VIDR75AWOWHEATBERRYCHAR",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 56
+  },
+  {
+   "id": "cat-8bb3aa5e140e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0195",
+   "airtable_rec_id": "recwNeIoZEivJhpNx",
+   "ls_id": "fce88792-6d4f-4281-b2fc-12c3d89cf078",
+   "handle": "VIDR75AWOSNOWWHITE",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 57
+  },
+  {
+   "id": "cat-5d926caa1fd7",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0196",
+   "airtable_rec_id": "recT16AbVMs3uEyLm",
+   "ls_id": "6db5e3f9-a7fe-49c0-a913-6523cec214c6",
+   "handle": "VIDR75EWOJOFFRELAKERUS",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 58
+  },
+  {
+   "id": "cat-4e1b61c5797d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0198",
+   "airtable_rec_id": "recJTYWjIYwDUtiXA",
+   "ls_id": "fccaad95-93ed-4cc1-b515-452cedc7ec5a",
+   "handle": "VIDRHB5AWOSILVERSTONE",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 59
+  },
+  {
+   "id": "cat-f37f516f8e29",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0202",
+   "airtable_rec_id": "rec5NioGkQmpAGO5r",
+   "ls_id": "76ab2288-e3e7-4255-b01c-f21aadda5aeb",
+   "handle": "VIDRHB5EWOYUKONCHAR",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 60
+  },
+  {
+   "id": "cat-7b21a7fbb179",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0203",
+   "airtable_rec_id": "recigrjGgfNY1f2WZ",
+   "ls_id": "3f5ad239-a790-4403-a58c-eebcdbff913f",
+   "handle": "VIDR75EWATOFFEECRUNCH",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 61
+  },
+  {
+   "id": "cat-bcca496cd015",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0204",
+   "airtable_rec_id": "recJ3cHYXx12dOcBo",
+   "ls_id": "3f15291c-3ef4-4cce-87fa-5b972c408243",
+   "handle": "VIDR75EWANATURAL",
+   "fields": {
+    "Category": "Engineered hardwood",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQDdj6RXJW-MRotTp7IjjEuLAU1xGI80HdfrXBzNEgU1ENc"
+   },
+   "before": {
+    "Promo end date": "2026-09-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 62
+  }
+ ],
+ "blocked": [],
+ "warnings": []
+}
