@@ -207,6 +207,12 @@ create carries it with the full row) — and only with a value that is an
 Price Lists rows hold. Any other host, or a blank that would clear an existing link,
 is refused. It is never an action type of its own and never originated by you.
 
+`Price List Date` (Albert, 2026-10-03: "It should always follow the effective date so it
+carries through to Airtable and supabase.") rides with them: the date of the list
+`Price List URL` links to, always equal to the `Effective Date` the same action writes or
+confirms. Write it only inside an approved upsert's `fields`, only as a `YYYY-MM-DD`
+date, never blank. Titan Desk syncs it to Supabase.
+
 `Promo List URL` (Albert, 2026-09-26: "It's possible that some SKUs are updated from
 BOTH a regular list, and a promo list in one given time period. So a promo URL is
 useful.") follows the identical rules: only inside an approved upsert's `fields` (the

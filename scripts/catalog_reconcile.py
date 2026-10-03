@@ -117,6 +117,13 @@ ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 # column. It travels with `Effective Date` — the record points at the same list
 # its date names — and is never written on its own except to fill a blank.
 PRICE_URL = "Price List URL"
+# The date of the list `Price List URL` links to (Airtable field added 2026-09-28; Titan
+# Desk shows it beside the link and syncs it to Supabase). Albert, 2026-10-03: "It should
+# always follow the effective date so it carries through to Airtable and supabase."
+# Nothing wrote it before, so a new list moved `Effective Date` and the link and left this
+# behind (Triforest: 2026-10-01 vs 2026-08-15 on 160 records). It is written whenever the
+# date or the link is, and on a create, always equal to `Effective Date`.
+PRICE_LIST_DATE = "Price List Date"
 PROMO_COST = "Promo cost ($/sf)"
 PROMO_END = "Promo end date"
 # The list that set the PROMO, one click from the record (Albert, 2026-09-26). A SKU
@@ -442,6 +449,8 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
                 new = clean(new_raw)
                 if new is not None:
                     fields[PRICE_DATE if field == LEGACY_PRICE_DATE else field] = new
+            if ISO_DATE.match(str(fields.get(PRICE_DATE) or "")):
+                fields[PRICE_LIST_DATE] = fields[PRICE_DATE]
         else:
             for field in DIFF_FIELDS:
                 new = clean(row.get(field))
@@ -513,6 +522,21 @@ def reconcile(upload_rows, ls, existing, supplier, categories, ls_upload=None,
                     if old_url != url:
                         fields[PRICE_URL] = url
                         before[PRICE_URL] = old_url if url_readable else None
+            # `Price List Date` follows `Effective Date` (Albert, 2026-10-03): written with
+            # the date or the link, or to correct it when this run confirms the record's
+            # own list. Never blind: an unread value is only overwritten when the date moved.
+            if effective:
+                list_date = fields.get(PRICE_DATE) or (str(old_date) if date_readable else None)
+                if list_date and ISO_DATE.match(str(list_date)):
+                    old_pld, pld_readable = (live_value(live, PRICE_LIST_DATE) if live
+                                             else (None, False))
+                    old_pld = clean(old_pld)
+                    touched = PRICE_DATE in fields or PRICE_URL in fields
+                    confirms = (date_readable and str(old_date or "") == effective
+                                and pld_readable)
+                    if (touched or confirms) and old_pld != list_date:
+                        fields[PRICE_LIST_DATE] = list_date
+                        before[PRICE_LIST_DATE] = old_pld if pld_readable else None
             promo_url = clean(row.get(PROMO_URL))
             carries_promo = clean(row.get(PROMO_COST)) or clean(row.get(PROMO_END))
             if promo_url and carries_promo:
