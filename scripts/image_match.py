@@ -153,7 +153,8 @@ def score(feat, page, supplier_cfg, matching):
         # stands in only for a record with no width: the catalogue holds 7" and 7.5" records
         # of the same colour, so a 7" listing is not a 7.5" record's product.
         allowed = {feat["exact_width"]} if feat["exact_width"] else feat["widths"]
-        if allowed and not (page_widths & allowed):
+        # A twentieth of an inch either way: the catalogue rounds 7 3/4" to 7.7 and 7 3/8" to 7.4.
+        if allowed and not any(abs(a - b) <= 0.06 for a in page_widths for b in allowed):
             return 0, "width"
         s += 3
     # Shopify tags / product type say what a bare title does not. They feed species and line
@@ -161,6 +162,11 @@ def score(feat, page, supplier_cfg, matching):
     # `SPC Floors` or `Hickory` tag is a department, not the pattern the record names).
     meta = " | ".join([*(page.get("tags") or []), page.get("product_type") or ""])
     title_meta = f"{title} | {meta}" if meta.strip(" |") else title
+    # Trim sold under the floor's colour (`Afterburn Reducer`, `Cashmere Stairnose` at Word of
+    # Mouth, 2026-10-03) is never the floor's page.
+    if feat.get("category") != "Accessory" and any(
+            has_phrase(title, w) for w in matching.get("accessory_words") or []):
+        return 0, "accessory"
     # Category: an engineered record never takes a vinyl listing of the same colour name
     # (Word of Mouth's `Vidar Luxury Rigid Core Vinyl Plank - Naked Oak`, 2026-09-29).
     cat_words = matching.get("category_words") or {}

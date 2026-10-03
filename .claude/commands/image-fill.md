@@ -85,7 +85,8 @@ floorbox. and speers as the very last."
   kept once. Speers photos may be used; **a Speers page is never linked**.
 - `Supplier product page` = the official page, else The Floor Box, else Word of Mouth
   (`source_policy.product_page_sources`). None → left blank, flag `no_product_page`.
-- A supplier may lower the swatch bar for itself (`suppliers.<S>.image_rules`; BiYork 1000 px).
+- A lower quality photo beats none (Albert, 2026-10-03): the size bar is 300 px, against icons
+  and thumbnails only. A supplier may still set its own `image_rules`.
 - Links an earlier run put on a source that may no longer be linked: `--relink-product-page-from
   speers --source-plan <that run's plan>` (op `relink_product_page`, compare-and-swap; no
   alternative keeps the old link).
@@ -104,6 +105,6 @@ floorbox. and speers as the very last."
 
 - **Blank only.** A field that holds anything — a person's upload, an earlier run's — is
   never replaced or appended to. The writer re-checks at write time.
-- The kind comes from looking at the image; a swatch must meet `min_swatch_long_edge_px`.
+- The kind comes from looking at the image; the largest photo per field goes first.
 - Never write `SKU`, `Colour / tone`, style tags, or any field outside the closed list.
 - `Supplier product page` is never a Speers page (see Sources).

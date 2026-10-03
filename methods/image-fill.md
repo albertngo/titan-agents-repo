@@ -65,6 +65,27 @@ Replace or append to a filled image field; write anything but the four target fi
 write while `write_mode` is `plan_only`; get past a bot challenge; guess a URL.
 
 ## Log
+- 2026-10-03 — Albert: "a lower quality image it still ok to grab. Having it is better than
+  none." Swatch bar 1600 -> 300 px and any-image bar 800 -> 300 px (a floor against icons and
+  thumbnails); BiYork's own 1000 px override removed as redundant. The largest photo per
+  field still wins. Vidar Camel 5" (ENG-VIDR-0166): Speers' Hazelnut photo replaced with The
+  Floor Box's Camel swatch (Albert: "Yes"), new op `replace_images` (agent rule 8: a
+  person's approval, compare-and-swap on the live file).
+  Rerun at the new bar: Vidar 76, BiYork 58, Toucan 96 records planned. Two fixes from the
+  rerun: Word of Mouth lists BiYork trim under the floor's colour (`Afterburn Reducer`), so a
+  page naming a trim piece (`accessory_words`) never matches a floor record; and a source that
+  errors during a pull (The Floor Box's sitemap under three parallel pulls) stops the run like
+  a refused host instead of being skipped.
+- 2026-10-02 (Toronto) — Triforest, sold as Toucan (Albert: "Lets try Triforest now." +
+  toucanflooring.com). Toucan's own Shopify store matched 168 of 173 records; Speers carries
+  no Toucan, and Word of Mouth timed out mid-catalogue twice, so it was left out. The Floor
+  Box lists Toucan sizes as `7-38-x-48` (width x length): the slug parser reads that now, and
+  widths match within a twentieth of an inch (the catalogue rounds 7 3/8" to 7.4). File
+  names use the registry's `brand` (Toucan) when a record's Brand is blank. 406 photos
+  judged: a flat swatch and an angled close-up per product (the angle is a detail), 4 room
+  scenes. Plan: 153 records (131 detail, 62 swatch, 4 room, 153 product pages, all
+  Toucan's own); 20 held (15 swatches at 1200 px under the 1600 bar, 5 not listed); 91
+  written without a swatch for the same reason.
 - 2026-09-29 (after midnight) — Albert: "1. yes rerun 2. Switch if available but do not
   delete. Replace with Word of Mouth (the speers one)". BiYork swatch bar 1000 px
   (`suppliers.BIYORK.image_rules`; the shared 1600 stays). Word of Mouth has 82 Shopify

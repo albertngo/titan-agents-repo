@@ -78,6 +78,15 @@ may write an image field; the ban under `airtable_update_style_tags` stands for 
    the record is touched; images stay. Re-read: the field equals the value sent. Log type
    `airtable_attach_images`, `content_summary` starting `Relinked product page`.
 
+8. **`op: replace_images`** (2026-10-03, Albert: "Yes" to swapping the Hazelnut photo on
+   Vidar Camel 5"). A wrong photo a person has named, replaced by the right one. Plan
+   `plans/<date>/image-replace-<scope>.json`; the approval file is **a person's**, never
+   policy (`approved_by` quotes them). Read before write: the field's live `[{id, filename}]`
+   must equal `action.expect` exactly, else `refused` (`stale_changed`). Send the action's
+   `[{url, filename}]`, which replaces the field's files; touch no other field. Re-read: the
+   count and filenames sent. Log type `airtable_attach_images`, `content_summary` starting
+   `Replaced wrong photo`.
+
 ### `airtable_update_style_tags` (2026-09-26, `/style-tag`)
 
 The plan is `plans/<date>/style-plan-<scope>.json` (`contracts/style-plan-schema.md`);

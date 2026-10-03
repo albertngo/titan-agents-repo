@@ -1,0 +1,4478 @@
+{
+ "contract_version": "image-plan-1",
+ "scope": "biyork",
+ "supplier": "BIYORK",
+ "run_at": "2026-10-03T08:27:28.569194-04:00",
+ "expires": "2026-10-03T23:59:59-0400",
+ "write_mode": "write",
+ "registry": "platform-settings/supplier-sites.json",
+ "inputs": {
+  "pages": "ingest/2026-10-03/supplier-pages-biyork.json",
+  "judgements": "ingest/2026-10-03/image-judgements-biyork.json",
+  "product_pages": null
+ },
+ "summary": {
+  "records": 402,
+  "actions": 58,
+  "held": 120,
+  "skipped": {
+   "accessory": 224
+  },
+  "held_by_reason": {
+   "no_usable_image": 105,
+   "no_match": 15
+  },
+  "fields": {
+   "Swatch images": 54,
+   "Room scene images": 28,
+   "Supplier product page": 26
+  },
+  "tiers": {
+   "exact": 56,
+   "model_confirmed": 2
+  },
+  "manufacturer_pages": 49
+ },
+ "actions": [
+  {
+   "id": "img-cc0f1512f990",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recYiXyv0vzR22Hwi",
+   "sku": "ENG-BIYK-BYKEN22018BB",
+   "product_name": "Biyork Nouveau 8 8.5\" — Barely Beige",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2023-12-27at11.45.22AM.png?v=1703695530",
+      "filename": "biyork-barely-beige-engineered-hardwood-8-5in-byken22018bb-swatch.png"
+     },
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/370d018c-baa7-11ec-aa5d-f6968cef729a/372340ba-baa7-11ec-aa5d-f6968cef729a",
+      "filename": "biyork-barely-beige-engineered-hardwood-8-5in-byken22018bb-swatch-2.jpg"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/european-oak-barely-beige-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2023-12-27at11.45.22AM.png?v=1703695530",
+     "sha1": "f24f3f84966bbd20d82db80996db07ded0fa18f2",
+     "page": "https://www.biyorkcanada.com/products/european-oak-barely-beige-sample",
+     "width": 899,
+     "height": 897
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/370d018c-baa7-11ec-aa5d-f6968cef729a/372340ba-baa7-11ec-aa5d-f6968cef729a",
+     "sha1": "790812baaf2c08e5c5ae231e7ae45581c0ae04a0",
+     "page": "https://thefloorbox.ca/products/engineered-hardwood-nouveau-8-barely-beige-8-12-34/370d018c-baa7-11ec-aa5d-f6968cef729a",
+     "width": 840,
+     "height": 840
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-9b62e55bf1b4",
+   "seq": 2,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recCtgr6g5eVrydjS",
+   "sku": "ENG-BIYK-BYKEN22018ME",
+   "product_name": "Biyork Nouveau 8 8.5\" — Messier",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau8Triangulum.jpg?v=1713971369",
+      "filename": "biyork-messier-engineered-hardwood-8-5in-byken22018me-swatch.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Messier.png?v=1629991177",
+      "filename": "biyork-messier-engineered-hardwood-8-5in-byken22018me-swatch-2.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-nouveau-8-european-oak-wire-brushed-triangulum-8-1-2-x-3-4",
+   "source": "speers",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau8Triangulum.jpg?v=1713971369",
+     "sha1": "b6110078491dd9a106162308599b92f2d5325419",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-8-european-oak-wire-brushed-triangulum-8-1-2-x-3-4",
+     "width": 876,
+     "height": 877
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Messier.png?v=1629991177",
+     "sha1": "2c581d06f0ff6257eb64d725bd705723a84aa232",
+     "page": "https://www.wordofmouthfloors.com/products/biyork-nouveau-8-collection-messier",
+     "width": 628,
+     "height": 628
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-51f5baaa2a43",
+   "seq": 3,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recnA0Gm1Rg6Gv1lq",
+   "sku": "ENG-BIYK-BYKEN22018SB",
+   "product_name": "Biyork Nouveau 8 8.5\" — Salted Biscotti",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/370d0471-baa7-11ec-aa5d-f6968cef729a/37234101-baa7-11ec-aa5d-f6968cef729a",
+      "filename": "biyork-salted-biscotti-engineered-hardwood-8-5in-byken22018sb-swatch.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau8SaltedBiscotti.jpg?v=1713971366",
+      "filename": "biyork-salted-biscotti-engineered-hardwood-8-5in-byken22018sb-swatch-2.jpg"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-nouveau-8-salted-biscotti-8-12-34/370d0471-baa7-11ec-aa5d-f6968cef729a",
+   "source": "floorbox",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/370d0471-baa7-11ec-aa5d-f6968cef729a/37234101-baa7-11ec-aa5d-f6968cef729a",
+     "sha1": "aca14f50a2c1db38cc1e6a9b3affe28dea40c467",
+     "page": "https://thefloorbox.ca/products/engineered-hardwood-nouveau-8-salted-biscotti-8-12-34/370d0471-baa7-11ec-aa5d-f6968cef729a",
+     "width": 840,
+     "height": 840
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau8SaltedBiscotti.jpg?v=1713971366",
+     "sha1": "85b5f39f3a2d9fcdad8d83d934f8ba1d55feb750",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-8-european-oak-wire-brushed-salted-biscotti-8-1-2-x-3-4",
+     "width": 797,
+     "height": 796
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-974a235f3760",
+   "seq": 4,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recqimu7XCAIcVC3x",
+   "sku": "ENG-BIYK-BYKENEO18BW",
+   "product_name": "Biyork Nouveau 6 6.5\" — Breath of Winter",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6BreathofWinter.png?v=1713883312",
+      "filename": "biyork-breath-of-winter-engineered-hardwood-6-5in-bykeneo18bw-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at12.01.31PM.png?v=1731603696",
+      "filename": "biyork-breath-of-winter-engineered-hardwood-6-5in-bykeneo18bw-swatch-2.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-wire-brushed-breath-of-winter-6-1-2-x-3-11",
+   "source": "speers",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6BreathofWinter.png?v=1713883312",
+     "sha1": "415280e55c7d49f31cdfe59d3275753000281d34",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-wire-brushed-breath-of-winter-6-1-2-x-3-11",
+     "width": 891,
+     "height": 907
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at12.01.31PM.png?v=1731603696",
+     "sha1": "0c4368da108f205daf8bee762004dc47c0cb16d7",
+     "page": "https://www.biyorkcanada.com/products/european-oak-breath-of-winter-sample",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f3f5a0badb2b",
+   "seq": 5,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recWkxZIMmbEiBSvI",
+   "sku": "ENG-BIYK-BYKENEO18CE",
+   "product_name": "Biyork Nouveau 6 6.5\" — Cervino",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6Cervino.png?v=1713882964",
+      "filename": "biyork-cervino-engineered-hardwood-6-5in-bykeneo18ce-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at12.09.04PM.png?v=1731604161",
+      "filename": "biyork-cervino-engineered-hardwood-6-5in-bykeneo18ce-swatch-2.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-wire-brushed-cervino-6-1-2-x-3-11",
+   "source": "speers",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6Cervino.png?v=1713882964",
+     "sha1": "24cff45111ace614f89378ca1de850807be8bc03",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-wire-brushed-cervino-6-1-2-x-3-11",
+     "width": 912,
+     "height": 914
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at12.09.04PM.png?v=1731604161",
+     "sha1": "6bf92974d2d314cbb27145cd25d8899d094b6b19",
+     "page": "https://www.biyorkcanada.com/products/copy-of-european-cervino-sample",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-831be7036759",
+   "seq": 6,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recEyQw1qdJtcV3hv",
+   "sku": "ENG-BIYK-BYKENEO18DA",
+   "product_name": "Biyork Nouveau 6 6.5\" — Desert Ark",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6DesertArk.png?v=1713883322",
+      "filename": "biyork-desert-ark-engineered-hardwood-6-5in-bykeneo18da-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at12.02.43PM.png?v=1731603778",
+      "filename": "biyork-desert-ark-engineered-hardwood-6-5in-bykeneo18da-swatch-2.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-wire-brushed-desert-ark-6-1-2-x-3-11",
+   "source": "speers",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6DesertArk.png?v=1713883322",
+     "sha1": "5a976d2e4ea763436b0f3047bc7155d5e6dd77c5",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-wire-brushed-desert-ark-6-1-2-x-3-11",
+     "width": 915,
+     "height": 915
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at12.02.43PM.png?v=1731603778",
+     "sha1": "0718246702607a9fc6b09280025a6c3d61fbac75",
+     "page": "https://www.biyorkcanada.com/products/nouveau-6-european-oak-desert-ark-sample",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-58142f25ffbe",
+   "seq": 7,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recrjdtUhclstElG7",
+   "sku": "ENG-BIYK-BYKENEO18MO",
+   "product_name": "Biyork Nouveau 6 6.5\" — Morning Oats",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6MorningOats.png?v=1713883329",
+      "filename": "biyork-morning-oats-engineered-hardwood-6-5in-bykeneo18mo-swatch.png"
+     },
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/370d0b88-baa7-11ec-aa5d-f6968cef729a/37233ee2-baa7-11ec-aa5d-f6968cef729a",
+      "filename": "biyork-morning-oats-engineered-hardwood-6-5in-bykeneo18mo-swatch-2.jpg"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-wire-brushed-morning-oats-6-1-2-x-3-11",
+   "source": "speers",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6MorningOats.png?v=1713883329",
+     "sha1": "363242aa11784f1eafc869f7e8b1bbfd5a988f8a",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-wire-brushed-morning-oats-6-1-2-x-3-11",
+     "width": 915,
+     "height": 917
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/370d0b88-baa7-11ec-aa5d-f6968cef729a/37233ee2-baa7-11ec-aa5d-f6968cef729a",
+     "sha1": "b9a02a5426471689935402b8ae9e4d8d2357516f",
+     "page": "https://thefloorbox.ca/products/engineered-hardwood-nouveau-6-morning-oats-6-12-34/370d0b88-baa7-11ec-aa5d-f6968cef729a",
+     "width": 840,
+     "height": 840
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-548af8269fb7",
+   "seq": 8,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recsKqImXSj9CR2bs",
+   "sku": "ENG-BIYK-BYKENEO18SL",
+   "product_name": "Biyork Nouveau 6 6.5\" — Silver Lace",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6SilverLace.png?v=1713883332",
+      "filename": "biyork-silver-lace-engineered-hardwood-6-5in-bykeneo18sl-swatch.png"
+     },
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/370d0ce6-baa7-11ec-aa5d-f6968cef729a/37233f8f-baa7-11ec-aa5d-f6968cef729a",
+      "filename": "biyork-silver-lace-engineered-hardwood-6-5in-bykeneo18sl-swatch-2.jpg"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-wire-brushed-silver-lace-6-1-2-x-3-11",
+   "source": "speers",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6SilverLace.png?v=1713883332",
+     "sha1": "80802037a0348a1b944a66ad9a4d7d7a86958c46",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-wire-brushed-silver-lace-6-1-2-x-3-11",
+     "width": 917,
+     "height": 918
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/370d0ce6-baa7-11ec-aa5d-f6968cef729a/37233f8f-baa7-11ec-aa5d-f6968cef729a",
+     "sha1": "24d8e956e4b6394b69166d66de93e3c99f0c5853",
+     "page": "https://thefloorbox.ca/products/engineered-hardwood-nouveau-6-silver-lace-6-12-34/370d0ce6-baa7-11ec-aa5d-f6968cef729a",
+     "width": 840,
+     "height": 840
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-93ccacc9ca2f",
+   "seq": 9,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recAsE72s44bh1MRS",
+   "sku": "ENG-BIYK-BYKENEO18VA",
+   "product_name": "Biyork Nouveau 6 6.5\" — Valencia",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Valencia.png?v=1629916036",
+      "filename": "biyork-valencia-engineered-hardwood-6-5in-bykeneo18va-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/ValenciaRS.png?v=1629916017",
+      "filename": "biyork-valencia-engineered-hardwood-6-5in-bykeneo18va-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/biyork-nouveau-6-collection-valencia"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/biyork-nouveau-6-collection-valencia",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Valencia.png?v=1629916036",
+     "sha1": "30de1eeaae7ad492f03af00e740f83db65ada087",
+     "page": "https://www.wordofmouthfloors.com/products/biyork-nouveau-6-collection-valencia",
+     "width": 620,
+     "height": 620
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/ValenciaRS.png?v=1629916017",
+     "sha1": "947bb5342d88391ab84bc921076df4c30b742b84",
+     "page": "https://www.wordofmouthfloors.com/products/biyork-nouveau-6-collection-valencia",
+     "width": 655,
+     "height": 491
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-1e458253020b",
+   "seq": 10,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recy86v9Q8fGNShaI",
+   "sku": "ENG-BIYK-BYKENH118GR",
+   "product_name": "Biyork Nouveau 6 6.5\" — Greystone",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/products/ScreenShot2022-06-29at3.32.37PM.png?v=1660832792",
+      "filename": "biyork-greystone-engineered-hardwood-6-5in-bykenh118gr-swatch.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/greystone",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/products/ScreenShot2022-06-29at3.32.37PM.png?v=1660832792",
+     "sha1": "4c43042b8752b7f0c0a9599e07584f479e02e530",
+     "page": "https://www.biyorkcanada.com/products/greystone",
+     "width": 814,
+     "height": 814
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f565a618a0d1",
+   "seq": 11,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recRIc7VmD9FpIGmu",
+   "sku": "ENG-BIYK-BYKENH118NA",
+   "product_name": "Biyork Nouveau 6 6.5\" — Natural",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6HickoryNatural.png?v=1713883128",
+      "filename": "biyork-natural-engineered-hardwood-6-5in-bykenh118na-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at12.06.33PM.png?v=1731603998",
+      "filename": "biyork-natural-engineered-hardwood-6-5in-bykenh118na-swatch-2.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-hand-scraped-natural-6-1-2-x-3-4",
+   "source": "speers",
+   "product_page_source": "manufacturer",
+   "match_tier": "model_confirmed",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6HickoryNatural.png?v=1713883128",
+     "sha1": "5276803a73b1f21f5fe58df20603b977c2fffe2a",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-hand-scraped-natural-6-1-2-x-3-4",
+     "width": 913,
+     "height": 915
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at12.06.33PM.png?v=1731603998",
+     "sha1": "2565fd457593a313b199121c2f7c42344a84e5fd",
+     "page": "https://www.biyorkcanada.com/products/natural-hickory",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": [
+    "model_matched"
+   ]
+  },
+  {
+   "id": "img-4a87aa37d1eb",
+   "seq": 12,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recRnYYZRTZvzRyfu",
+   "sku": "ENG-BIYK-BYKENH118SP",
+   "product_name": "Biyork Nouveau 6 6.5\" — Summer Peach",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6SummerPeach.png?v=1713883370",
+      "filename": "biyork-summer-peach-engineered-hardwood-6-5in-bykenh118sp-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at12.05.10PM.png?v=1731603916",
+      "filename": "biyork-summer-peach-engineered-hardwood-6-5in-bykenh118sp-swatch-2.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-hand-scraped-summer-peach-6-1-2-x-3-10",
+   "source": "speers",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6SummerPeach.png?v=1713883370",
+     "sha1": "130f64989a38cc8c61517b028c5cda174dca41b4",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-hand-scraped-summer-peach-6-1-2-x-3-10",
+     "width": 916,
+     "height": 914
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at12.05.10PM.png?v=1731603916",
+     "sha1": "70eddf84d1393694ae20f9eb6b35b3058a9c6bf0",
+     "page": "https://www.biyorkcanada.com/products/summer-peach",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-0b844255e083",
+   "seq": 13,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recYWSC2b1cndBT7g",
+   "sku": "ENG-BIYK-BYKN5AOAB",
+   "product_name": "Biyork Nouveau 5 American Oak 5\" — Abode",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at5.04.47PM.png?v=1770242693",
+      "filename": "biyork-abode-engineered-hardwood-5in-bykn5aoab-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at5.05.17PM.png?v=1770242726",
+      "filename": "biyork-abode-engineered-hardwood-5in-bykn5aoab-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/american-oak-abode-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/american-oak-abode-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at5.04.47PM.png?v=1770242693",
+     "sha1": "6c9aaf5ac46affce914c67cd45a24e485f2b25e3",
+     "page": "https://www.biyorkcanada.com/products/american-oak-abode-sample",
+     "width": 620,
+     "height": 620
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at5.05.17PM.png?v=1770242726",
+     "sha1": "6536a329304c5277c75c4b161e7e467e100d2fa9",
+     "page": "https://www.biyorkcanada.com/products/american-oak-abode-sample",
+     "width": 620,
+     "height": 620
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a034926d715f",
+   "seq": 14,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recngM0KWJVpJU4Ae",
+   "sku": "ENG-BIYK-BYKN5AOAN",
+   "product_name": "Biyork Nouveau 5 American Oak 5\" — Anchor",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at5.08.00PM.png?v=1770242897",
+      "filename": "biyork-anchor-engineered-hardwood-5in-bykn5aoan-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at5.07.37PM.png?v=1770242897",
+      "filename": "biyork-anchor-engineered-hardwood-5in-bykn5aoan-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/american-oak-anchor-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/american-oak-anchor-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at5.08.00PM.png?v=1770242897",
+     "sha1": "bd90b57824013587a2ae1e4b83d2210479d4e326",
+     "page": "https://www.biyorkcanada.com/products/american-oak-anchor-sample",
+     "width": 620,
+     "height": 620
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at5.07.37PM.png?v=1770242897",
+     "sha1": "1e9b2b4ab8326bc1fcc67d61440422713910b296",
+     "page": "https://www.biyorkcanada.com/products/american-oak-anchor-sample",
+     "width": 620,
+     "height": 620
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-6fd0e1a6b9b7",
+   "seq": 15,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recP88aOukKazPHwS",
+   "sku": "ENG-BIYK-BYKN5AOEM",
+   "product_name": "Biyork Nouveau 5 American Oak 5\" — Embrace",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at5.00.16PM.png?v=1770242423",
+      "filename": "biyork-embrace-engineered-hardwood-5in-bykn5aoem-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at5.01.28PM.png?v=1770242494",
+      "filename": "biyork-embrace-engineered-hardwood-5in-bykn5aoem-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/american-oak-embrace-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/american-oak-embrace-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at5.00.16PM.png?v=1770242423",
+     "sha1": "998af6e8d82767239ed51aecefda9c87b456b9cb",
+     "page": "https://www.biyorkcanada.com/products/american-oak-embrace-sample",
+     "width": 620,
+     "height": 620
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at5.01.28PM.png?v=1770242494",
+     "sha1": "1abd99c31c9d135cd369bc630595f1974c3cbe62",
+     "page": "https://www.biyorkcanada.com/products/american-oak-embrace-sample",
+     "width": 620,
+     "height": 620
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-21febeba8f68",
+   "seq": 16,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recNa4SuGMBcTfChU",
+   "sku": "ENG-BIYK-BYKN5AOET",
+   "product_name": "Biyork Nouveau 5 American Oak 5\" — Eternal",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at5.04.04PM.png?v=1770242655",
+      "filename": "biyork-eternal-engineered-hardwood-5in-bykn5aoet-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at5.02.31PM.png?v=1770242655",
+      "filename": "biyork-eternal-engineered-hardwood-5in-bykn5aoet-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/american-oak-eternal-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/american-oak-eternal-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at5.04.04PM.png?v=1770242655",
+     "sha1": "ea27469d242e6206e855fb424f0660c8395e5803",
+     "page": "https://www.biyorkcanada.com/products/american-oak-eternal-sample",
+     "width": 620,
+     "height": 620
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at5.02.31PM.png?v=1770242655",
+     "sha1": "a9dea7ee075acdb117fd858f7793bc6a401f2e77",
+     "page": "https://www.biyorkcanada.com/products/american-oak-eternal-sample",
+     "width": 620,
+     "height": 620
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f61f069a8eb5",
+   "seq": 17,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec14tyuuJDj6O78C",
+   "sku": "ENG-BIYK-BYKN5AOSE",
+   "product_name": "Biyork Nouveau 5 American Oak 5\" — Serenity",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at4.59.01PM.png?v=1770242355",
+      "filename": "biyork-serenity-engineered-hardwood-5in-bykn5aose-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at4.55.47PM.png?v=1770242355",
+      "filename": "biyork-serenity-engineered-hardwood-5in-bykn5aose-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/american-oak-serenity-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/american-oak-serenity-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at4.59.01PM.png?v=1770242355",
+     "sha1": "982787a7714b8f9e534daffefde968fe17fcc2ec",
+     "page": "https://www.biyorkcanada.com/products/american-oak-serenity-sample",
+     "width": 620,
+     "height": 620
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at4.55.47PM.png?v=1770242355",
+     "sha1": "df3b0840fb385f9641a4c2201cf153b9734daad1",
+     "page": "https://www.biyorkcanada.com/products/american-oak-serenity-sample",
+     "width": 620,
+     "height": 620
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-0fde47680059",
+   "seq": 18,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recgjHoU9jv6r8siJ",
+   "sku": "ENG-BIYK-BYKN5AOTR",
+   "product_name": "Biyork Nouveau 5 American Oak 5\" — Tranquil",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at4.47.26PM.png?v=1770241651",
+      "filename": "biyork-tranquil-engineered-hardwood-5in-bykn5aotr-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at4.48.16PM.png?v=1770241700",
+      "filename": "biyork-tranquil-engineered-hardwood-5in-bykn5aotr-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/american-oak-tranquil-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/american-oak-tranquil-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at4.47.26PM.png?v=1770241651",
+     "sha1": "944e3571b7724c3f989abd0fc907327118e55865",
+     "page": "https://www.biyorkcanada.com/products/american-oak-tranquil-sample",
+     "width": 620,
+     "height": 620
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2026-02-04at4.48.16PM.png?v=1770241700",
+     "sha1": "9c9be7821186a34b770d6a920a720eb06ff74815",
+     "page": "https://www.biyorkcanada.com/products/american-oak-tranquil-sample",
+     "width": 620,
+     "height": 620
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-77494b5a54af",
+   "seq": 19,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recKKmXMNeBVHUmSq",
+   "sku": "ENG-BIYK-BYKN6AOBP",
+   "product_name": "Biyork Nouveau 6 American Oak 6.5\" — Bavarian Palace",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at11.29.25AM.png?v=1731601832",
+      "filename": "biyork-bavarian-palace-engineered-hardwood-6-5in-bykn6aobp-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Bavarian_Palace_RS.png?v=1731093454",
+      "filename": "biyork-bavarian-palace-engineered-hardwood-6-5in-bykn6aobp-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/american-oak-bavarian-palace-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/american-oak-bavarian-palace-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at11.29.25AM.png?v=1731601832",
+     "sha1": "7f9bc19bf3ca03888a22c578bef463587c352a83",
+     "page": "https://www.biyorkcanada.com/products/american-oak-bavarian-palace-sample",
+     "width": 580,
+     "height": 580
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Bavarian_Palace_RS.png?v=1731093454",
+     "sha1": "db9f2db7940abdb74a2124c4b7059cec35160251",
+     "page": "https://www.biyorkcanada.com/products/american-oak-bavarian-palace-sample",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2e335cef6c4f",
+   "seq": 20,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recR7vP1LcvvMK6vg",
+   "sku": "ENG-BIYK-BYKN6AOLF",
+   "product_name": "Biyork Nouveau 6 American Oak 6.5\" — Loire Forest",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at11.28.37AM.png?v=1731601732",
+      "filename": "biyork-loire-forest-engineered-hardwood-6-5in-bykn6aolf-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Loire_Forest_RS.png?v=1731093331",
+      "filename": "biyork-loire-forest-engineered-hardwood-6-5in-bykn6aolf-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/american-oak-loire-forest-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/american-oak-loire-forest-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at11.28.37AM.png?v=1731601732",
+     "sha1": "8f1fb95f9ca3411b12872cdf0a8781df212b96cf",
+     "page": "https://www.biyorkcanada.com/products/american-oak-loire-forest-sample",
+     "width": 580,
+     "height": 580
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Loire_Forest_RS.png?v=1731093331",
+     "sha1": "79d235c34be9fc00e56e76738b1f7bdbfa037958",
+     "page": "https://www.biyorkcanada.com/products/american-oak-loire-forest-sample",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-0e25b18fad0f",
+   "seq": 21,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recp2eI0Fyenik3Z0",
+   "sku": "ENG-BIYK-BYKN6AOLL",
+   "product_name": "Biyork Nouveau 6 American Oak 6.5\" — Lake Lemano",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at11.33.36AM.png?v=1731602043",
+      "filename": "biyork-lake-lemano-engineered-hardwood-6-5in-bykn6aoll-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Lake_Lemano_RS.png?v=1731093628",
+      "filename": "biyork-lake-lemano-engineered-hardwood-6-5in-bykn6aoll-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/american-oak-lake-lemano-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/american-oak-lake-lemano-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at11.33.36AM.png?v=1731602043",
+     "sha1": "29957b10b62f24b89188aa7d6fb7cfd273ffe625",
+     "page": "https://www.biyorkcanada.com/products/american-oak-lake-lemano-sample",
+     "width": 580,
+     "height": 580
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Lake_Lemano_RS.png?v=1731093628",
+     "sha1": "1b7dafb50d0a8e40f03df44a428d6174ee0bee4d",
+     "page": "https://www.biyorkcanada.com/products/american-oak-lake-lemano-sample",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-7c0150887813",
+   "seq": 22,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec2rgI0S8wbKiwel",
+   "sku": "ENG-BIYK-BYKN6AONI",
+   "product_name": "Biyork Nouveau 6 American Oak 6.5\" — Normandy Isle",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at11.27.41AM.png?v=1731601681",
+      "filename": "biyork-normandy-isle-engineered-hardwood-6-5in-bykn6aoni-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6AmericanOakNormandyIsleRoomShot.png?v=1734713626",
+      "filename": "biyork-normandy-isle-engineered-hardwood-6-5in-bykn6aoni-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/american-oak-normandy-isle-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/american-oak-normandy-isle-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at11.27.41AM.png?v=1731601681",
+     "sha1": "f9a6840ea6d72464c188e9190224efd10ef5f763",
+     "page": "https://www.biyorkcanada.com/products/american-oak-normandy-isle-sample",
+     "width": 580,
+     "height": 580
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6AmericanOakNormandyIsleRoomShot.png?v=1734713626",
+     "sha1": "74643c398a10c91d553f9da614c9e259d0ca32ea",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-6-american-oak-normandy-isle-6-1-2-x-3-4-18mm-wire-brushed-character-plus",
+     "width": 581,
+     "height": 578
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-693483ead77f",
+   "seq": 23,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec3jqyXZhQmR6AYh",
+   "sku": "ENG-BIYK-BYKN6AONS",
+   "product_name": "Biyork Nouveau 6 American Oak 6.5\" — Nordic Stave",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Nordic_Stave_S.png?v=1731601357",
+      "filename": "biyork-nordic-stave-engineered-hardwood-6-5in-bykn6aons-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Nordic_Stave_RS.png?v=1731092835",
+      "filename": "biyork-nordic-stave-engineered-hardwood-6-5in-bykn6aons-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/american-oak-nordic-stave-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/american-oak-nordic-stave-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Nordic_Stave_S.png?v=1731601357",
+     "sha1": "59310862ae3a82db6d461179049c7d29e3794230",
+     "page": "https://www.biyorkcanada.com/products/american-oak-nordic-stave-sample",
+     "width": 580,
+     "height": 580
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Nordic_Stave_RS.png?v=1731092835",
+     "sha1": "11cb253c016f80acf2841e1888dbe7e39f710302",
+     "page": "https://www.biyorkcanada.com/products/american-oak-nordic-stave-sample",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ec04879a891a",
+   "seq": 24,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec2yZT9bMb1LxqCc",
+   "sku": "ENG-BIYK-BYKN6AOPG",
+   "product_name": "Biyork Nouveau 6 American Oak 6.5\" — Polynesian Grove",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at11.26.47AM.png?v=1731601624",
+      "filename": "biyork-polynesian-grove-engineered-hardwood-6-5in-bykn6aopg-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/PolynesianGrove.webp?v=1732054328",
+      "filename": "biyork-polynesian-grove-engineered-hardwood-6-5in-bykn6aopg-swatch-2.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6AmericanOakPolynesianGroveRoomShot.png?v=1734713630",
+      "filename": "biyork-polynesian-grove-engineered-hardwood-6-5in-bykn6aopg-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/american-oak-polynesian-grove-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/american-oak-polynesian-grove-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at11.26.47AM.png?v=1731601624",
+     "sha1": "6bb357fddc04e47039476f6494e517fe56e38a7d",
+     "page": "https://www.biyorkcanada.com/products/american-oak-polynesian-grove-sample",
+     "width": 580,
+     "height": 580
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/PolynesianGrove.webp?v=1732054328",
+     "sha1": "e4df0413818be4e0a16e1d46f5f8fa1bde45bc7b",
+     "page": "https://www.wordofmouthfloors.com/products/biyork-nouveau-6-american-oak-collection-polynesian-grove",
+     "width": 580,
+     "height": 580
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6AmericanOakPolynesianGroveRoomShot.png?v=1734713630",
+     "sha1": "d68c882bcabfb693a13d34f64ae30cb61423d64d",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-6-american-oak-polynesian-grove-6-1-2-x-3-4-18mm-wire-brushed-character-plus",
+     "width": 577,
+     "height": 581
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-03c5fa0fe7c3",
+   "seq": 25,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reciUYYx0HTJrg4aC",
+   "sku": "ENG-BIYK-BYKN6AOSC",
+   "product_name": "Biyork Nouveau 6 American Oak 6.5\" — Segovia Castle",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Segovia_Castle_S.png?v=1731601562",
+      "filename": "biyork-segovia-castle-engineered-hardwood-6-5in-bykn6aosc-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Segovia_Castle_RS.png?v=1731093102",
+      "filename": "biyork-segovia-castle-engineered-hardwood-6-5in-bykn6aosc-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/american-oak-segovia-castle-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/american-oak-segovia-castle-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Segovia_Castle_S.png?v=1731601562",
+     "sha1": "c1f23185a0d84c70519efcbcf60b97ad96844e47",
+     "page": "https://www.biyorkcanada.com/products/american-oak-segovia-castle-sample",
+     "width": 580,
+     "height": 580
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Segovia_Castle_RS.png?v=1731093102",
+     "sha1": "18af547213695eb91a4a8767233db2eb757bd14a",
+     "page": "https://www.biyorkcanada.com/products/american-oak-segovia-castle-sample",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f7327665a8eb",
+   "seq": 26,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recPJYP7WrTx4mhQr",
+   "sku": "ENG-BIYK-BYKN6AOTC",
+   "product_name": "Biyork Nouveau 6 American Oak 6.5\" — Tremaine Chateau",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at11.31.09AM.png?v=1731601886",
+      "filename": "biyork-tremaine-chateau-engineered-hardwood-6-5in-bykn6aotc-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Tremaine_Chateau_RS.png?v=1731093538",
+      "filename": "biyork-tremaine-chateau-engineered-hardwood-6-5in-bykn6aotc-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/american-oak-tremaine-chateau-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/american-oak-tremaine-chateau-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at11.31.09AM.png?v=1731601886",
+     "sha1": "a4ca06b0ea410b14ed5f72e5a95ebf58534562fc",
+     "page": "https://www.biyorkcanada.com/products/american-oak-tremaine-chateau-sample",
+     "width": 580,
+     "height": 580
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Tremaine_Chateau_RS.png?v=1731093538",
+     "sha1": "753ac4471bfa9a587b08795874a9dd5013eef62a",
+     "page": "https://www.biyorkcanada.com/products/american-oak-tremaine-chateau-sample",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-4c4339c51896",
+   "seq": 27,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec8sgvaJxMuNp5s9",
+   "sku": "ENG-BIYK-BYKN6EOBF",
+   "product_name": "Biyork Nouveau 6 6.5\" — Black Forest",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6BlackForest.png?v=1713882952",
+      "filename": "biyork-black-forest-engineered-hardwood-6-5in-bykn6eobf-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at12.12.05PM.png?v=1731604331",
+      "filename": "biyork-black-forest-engineered-hardwood-6-5in-bykn6eobf-swatch-2.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-wire-brushed-black-forest-6-1-2-x-3-11",
+   "source": "speers",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6BlackForest.png?v=1713882952",
+     "sha1": "484e08b787d1ade2e3fdd6f2456148828d7d2fd4",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-wire-brushed-black-forest-6-1-2-x-3-11",
+     "width": 928,
+     "height": 916
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at12.12.05PM.png?v=1731604331",
+     "sha1": "91384a252d063a656e8670db40c873fa217c53a0",
+     "page": "https://www.biyorkcanada.com/products/new-european-oak-black-forest-sample",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ff7157e339bd",
+   "seq": 28,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recXHG6kZHJweNdqp",
+   "sku": "ENG-BIYK-BYKN6EOCG",
+   "product_name": "Biyork Nouveau 6 6.5\" — Chelsea Grey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6ChelseaGrey.png?v=1713883318",
+      "filename": "biyork-chelsea-grey-engineered-hardwood-6-5in-bykn6eocg-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at12.10.19PM.png?v=1731604226",
+      "filename": "biyork-chelsea-grey-engineered-hardwood-6-5in-bykn6eocg-swatch-2.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-wire-brushed-chelsea-grey-6-1-2-x-3-11",
+   "source": "speers",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6ChelseaGrey.png?v=1713883318",
+     "sha1": "2ee89c2d41bc3c990ccbbcdc8e5e9c249abcc323",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-wire-brushed-chelsea-grey-6-1-2-x-3-11",
+     "width": 937,
+     "height": 916
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at12.10.19PM.png?v=1731604226",
+     "sha1": "8e7ce23b309dacb5c0d298ce18dcc8cfaeac4470",
+     "page": "https://www.biyorkcanada.com/products/new-european-oak-chelsea-grey-sample",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-bee0d9f1ea05",
+   "seq": 29,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recwH8f7IyHYJUHuN",
+   "sku": "ENG-BIYK-BYKN6HISC",
+   "product_name": "Biyork Nouveau 6 6.5\" — Seaside Cabin",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6SeasideCabin.png?v=1713883132",
+      "filename": "biyork-seaside-cabin-engineered-hardwood-6-5in-bykn6hisc-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at12.11.12PM.png?v=1731604279",
+      "filename": "biyork-seaside-cabin-engineered-hardwood-6-5in-bykn6hisc-swatch-2.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2023-12-05at10.34.05AM.png?v=1703178160",
+      "filename": "biyork-seaside-cabin-engineered-hardwood-6-5in-bykn6hisc-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/new-european-oak-seaside-cabin-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-hand-scraped-seaside-cabin-6-1-2-x-3-8",
+   "source": "speers",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau6SeasideCabin.png?v=1713883132",
+     "sha1": "925291efedb8b48274bb6f97957d760c6b95bd9a",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-hand-scraped-seaside-cabin-6-1-2-x-3-8",
+     "width": 916,
+     "height": 918
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at12.11.12PM.png?v=1731604279",
+     "sha1": "73b59fce8d9986b3250feff71662d6ae5ed06080",
+     "page": "https://www.biyorkcanada.com/products/new-european-oak-seaside-cabin-sample",
+     "width": 580,
+     "height": 580
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2023-12-05at10.34.05AM.png?v=1703178160",
+     "sha1": "33eb5c353555c69365960759e6d6d69a19c16229",
+     "page": "https://www.biyorkcanada.com/products/new-european-oak-seaside-cabin-sample",
+     "width": 735,
+     "height": 735
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-16277ae148c5",
+   "seq": 30,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recuyOIsuc8hAItAE",
+   "sku": "ENG-BIYK-BYKN7EOBC",
+   "product_name": "Biyork Nouveau 7 7.5\" — Barrel Char",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau7BarrelChar.png?v=1713887832",
+      "filename": "biyork-barrel-char-engineered-hardwood-7-5in-bykn7eobc-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-06-14at4.24.15PM.png?v=1718396668",
+      "filename": "biyork-barrel-char-engineered-hardwood-7-5in-bykn7eobc-swatch-2.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-nouveau-7-european-oak-wire-brushed-barrel-char-7-1-2-x-3-4",
+   "source": "speers",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau7BarrelChar.png?v=1713887832",
+     "sha1": "6d9935d0dd5159201bca5ff59116d44bde14276a",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-7-european-oak-wire-brushed-barrel-char-7-1-2-x-3-4",
+     "width": 850,
+     "height": 821
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-06-14at4.24.15PM.png?v=1718396668",
+     "sha1": "4493f1a96e013fe5e069b72c692ca964254d9229",
+     "page": "https://www.biyorkcanada.com/products/european-oak-barrel-char-sample",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-381da4a8c869",
+   "seq": 31,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recZPcRVCmNUjLfOL",
+   "sku": "ENG-BIYK-BYKN7EOSR",
+   "product_name": "Biyork Nouveau 7 7.5\" — Southern Ridge",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau7SouthernRidge.png?v=1713887834",
+      "filename": "biyork-southern-ridge-engineered-hardwood-7-5in-bykn7eosr-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-06-14at4.26.06PM.png?v=1718396775",
+      "filename": "biyork-southern-ridge-engineered-hardwood-7-5in-bykn7eosr-swatch-2.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-nouveau-7-european-oak-wire-brushed-southern-ridge-7-1-2-x-3-4",
+   "source": "speers",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau7SouthernRidge.png?v=1713887834",
+     "sha1": "23d1f37c76651b2b43fe0193ab795da2379b2a68",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-7-european-oak-wire-brushed-southern-ridge-7-1-2-x-3-4",
+     "width": 832,
+     "height": 819
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-06-14at4.26.06PM.png?v=1718396775",
+     "sha1": "b1d39ec3adf69c3308687558d0aea38f1d565d59",
+     "page": "https://www.biyorkcanada.com/products/european-oak-southern-ridge-sample",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-208fee0a7a04",
+   "seq": 32,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recAmp42IkiKRD6VG",
+   "sku": "ENG-BIYK-BYKN7EOWD",
+   "product_name": "Biyork Nouveau 7 7.5\" — Wheated Dram",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau7WheatedDram.png?v=1713887837",
+      "filename": "biyork-wheated-dram-engineered-hardwood-7-5in-bykn7eowd-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-06-14at4.23.40PM.png?v=1718396635",
+      "filename": "biyork-wheated-dram-engineered-hardwood-7-5in-bykn7eowd-swatch-2.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-nouveau-7-european-oak-wire-brushed-wheated-dram-7-1-2-x-3-4",
+   "source": "speers",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau7WheatedDram.png?v=1713887837",
+     "sha1": "594fca0f66fb64093e93d2a83445037b0352b299",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-7-european-oak-wire-brushed-wheated-dram-7-1-2-x-3-4",
+     "width": 841,
+     "height": 808
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-06-14at4.23.40PM.png?v=1718396635",
+     "sha1": "3687c52757d228987be4263ecb40df35181fb464",
+     "page": "https://www.biyorkcanada.com/products/european-oak-wheated-dram-sample",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2e2daafcb9ed",
+   "seq": 33,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recdMLjBFsYX2qUcU",
+   "sku": "ENG-BIYK-BYKN7PRGE",
+   "product_name": "Biyork Nouveau 7 Prelude 7.5\" — Graceful Ember",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau7GracefulEmber.png?v=1713899599",
+      "filename": "biyork-graceful-ember-engineered-hardwood-7-5in-bykn7prge-swatch.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-nouveau-7-prelude-european-oak-graceful-ember-7-1-2-x-1-2-random-length",
+   "source": "speers",
+   "product_page_source": null,
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau7GracefulEmber.png?v=1713899599",
+     "sha1": "80d0f1f9ab31d8df3e613cb5f2faf95ebc107ed9",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-7-prelude-european-oak-graceful-ember-7-1-2-x-1-2-random-length",
+     "width": 814,
+     "height": 817
+    }
+   ],
+   "flags": [
+    "no_product_page"
+   ]
+  },
+  {
+   "id": "img-553ad370f6f2",
+   "seq": 34,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recPB4iTs3aB9b49r",
+   "sku": "ENG-BIYK-BYKN7PRIW",
+   "product_name": "Biyork Nouveau 7 Prelude 7.5\" — Ivory Wisp",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau7PreludeIvoryWhisp.png?v=1713899605",
+      "filename": "biyork-ivory-wisp-engineered-hardwood-7-5in-bykn7priw-swatch.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-nouveau-7-prelude-european-oak-ivory-whisp-7-1-2-x-1-2-random-length",
+   "source": "speers",
+   "product_page_source": null,
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau7PreludeIvoryWhisp.png?v=1713899605",
+     "sha1": "4fbdb97cc29e44dab93e83c1df95f6cde589330f",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-7-prelude-european-oak-ivory-whisp-7-1-2-x-1-2-random-length",
+     "width": 819,
+     "height": 818
+    }
+   ],
+   "flags": [
+    "no_product_page"
+   ]
+  },
+  {
+   "id": "img-81554b66240f",
+   "seq": 35,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recdeSYZJ9UWdgflZ",
+   "sku": "ENG-BIYK-BYKN8EOBP",
+   "product_name": "Biyork Nouveau 8 8.5\" — Butter Pecan",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau8ButterPecan.jpg?v=1713971357",
+      "filename": "biyork-butter-pecan-engineered-hardwood-8-5in-bykn8eobp-swatch.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Butter_Pecan_S.png?v=1731600523",
+      "filename": "biyork-butter-pecan-engineered-hardwood-8-5in-bykn8eobp-swatch-2.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-nouveau-8-european-oak-wire-brushed-pecan-8-1-2-x-3-4",
+   "source": "speers",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau8ButterPecan.jpg?v=1713971357",
+     "sha1": "de35dd3d4156a5d1c6aaf79bac4c05259c843a80",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-8-european-oak-wire-brushed-pecan-8-1-2-x-3-4",
+     "width": 874,
+     "height": 875
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Butter_Pecan_S.png?v=1731600523",
+     "sha1": "17059ab0d721960076cbf04971617e8787d6e909",
+     "page": "https://www.biyorkcanada.com/products/new-european-oak-butter-pecan-sample",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-7b4c158476e2",
+   "seq": 36,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recdLQgb07NzWfKH7",
+   "sku": "ENG-BIYK-BYKN8EOBT",
+   "product_name": "Biyork Nouveau 8 8.5\" — Black Truffle",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau8BlackTruffle.jpg?v=1713971352",
+      "filename": "biyork-black-truffle-engineered-hardwood-8-5in-bykn8eobt-swatch.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at11.17.29AM.png?v=1731601099",
+      "filename": "biyork-black-truffle-engineered-hardwood-8-5in-bykn8eobt-swatch-2.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-nouveau-8-european-oak-wire-brushed-black-truffle-8-1-2-x-3-4",
+   "source": "speers",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau8BlackTruffle.jpg?v=1713971352",
+     "sha1": "8b520c37a85e99daa37cefde430e5c0a7c4c0505",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-8-european-oak-wire-brushed-black-truffle-8-1-2-x-3-4",
+     "width": 875,
+     "height": 874
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-11-14at11.17.29AM.png?v=1731601099",
+     "sha1": "def68b6c75f87a1062e2405ed9ef3161f3749325",
+     "page": "https://www.biyorkcanada.com/products/new-european-oak-black-truffle-sample",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a50286f1ab93",
+   "seq": 37,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reccXepjPDdAaGez2",
+   "sku": "ENG-BIYK-BYKN8EOMR",
+   "product_name": "Biyork Nouveau 8 8.5\" — Merino",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau8Merino.jpg?v=1713971360",
+      "filename": "biyork-merino-engineered-hardwood-8-5in-bykn8eomr-swatch.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Merino_S.png?v=1731600647",
+      "filename": "biyork-merino-engineered-hardwood-8-5in-bykn8eomr-swatch-2.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-nouveau-8-european-oak-wire-brushed-merino-8-1-2-x-3-4",
+   "source": "speers",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau8Merino.jpg?v=1713971360",
+     "sha1": "45a071cc12725fc5008029e6c586375cd0f0225d",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-8-european-oak-wire-brushed-merino-8-1-2-x-3-4",
+     "width": 874,
+     "height": 877
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Merino_S.png?v=1731600647",
+     "sha1": "b7e5e877f4918d53680215778908abe7eb45fd35",
+     "page": "https://www.biyorkcanada.com/products/new-european-oak-merino-sample",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8fbc53fec5d0",
+   "seq": 38,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recawStZB1i2ZIXsy",
+   "sku": "ENG-BIYK-BYKNOU7BEHERNV",
+   "product_name": "Biyork Nouveau 7 Bespoke (Herringbone) 5\" — Northern Veranda",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/f781b391-03c2-11ed-86ce-f6968cef729a/f78d4c43-03c2-11ed-86ce-f6968cef729a",
+      "filename": "biyork-northern-veranda-engineered-hardwood-herringbone-5in-byknou7behernv-swatch.jpg"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-herringbone-northern-veranda-5-075/f781b391-03c2-11ed-86ce-f6968cef729a",
+   "source": "floorbox",
+   "product_page_source": "floorbox",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/f781b391-03c2-11ed-86ce-f6968cef729a/f78d4c43-03c2-11ed-86ce-f6968cef729a",
+     "sha1": "b046e73182d887fc83d88384b95766a69635ccce",
+     "page": "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-herringbone-northern-veranda-5-075/f781b391-03c2-11ed-86ce-f6968cef729a",
+     "width": 840,
+     "height": 840
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-aeae24e03d95",
+   "seq": 39,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rectRrVo8eJKyfeiY",
+   "sku": "ENG-BIYK-BYKNOU7HI19DE",
+   "product_name": "Biyork Nouveau 7 7.5\" — Derby",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau7Derby.png?v=1713887839",
+      "filename": "biyork-derby-engineered-hardwood-7-5in-byknou7hi19de-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-05-09at4.07.11PM.png?v=1715285257",
+      "filename": "biyork-derby-engineered-hardwood-7-5in-byknou7hi19de-swatch-2.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-nouveau-7-hickory-wire-brushed-derby-7-1-2-x-3-4",
+   "source": "speers",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Nouveau7Derby.png?v=1713887839",
+     "sha1": "6575d689d3727eb52edff590a1820299b1c39b5b",
+     "page": "https://www.speersflooring.com/products/biyork-nouveau-7-hickory-wire-brushed-derby-7-1-2-x-3-4",
+     "width": 818,
+     "height": 819
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-05-09at4.07.11PM.png?v=1715285257",
+     "sha1": "6524694eb16578f752a6217ebaea5f357b3e9745",
+     "page": "https://www.biyorkcanada.com/products/hickory-derby-sample",
+     "width": 676,
+     "height": 675
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5caf99cd393c",
+   "seq": 40,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recTubGr30dmAfhsn",
+   "sku": "ENG-BIYK-BYKNOU7HI19EB",
+   "product_name": "Biyork Nouveau 7 7.5\" — Evening Barnyard",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-04-01at3.02.12PM.png?v=1711998156",
+      "filename": "biyork-evening-barnyard-engineered-hardwood-7-5in-byknou7hi19eb-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/EveningBarnyard.png?v=1629926500",
+      "filename": "biyork-evening-barnyard-engineered-hardwood-7-5in-byknou7hi19eb-swatch-2.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/hickory-evening-barnyard-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-04-01at3.02.12PM.png?v=1711998156",
+     "sha1": "fb05b74c8d7dcd41c6934de8becd7aef063b3ee8",
+     "page": "https://www.biyorkcanada.com/products/hickory-evening-barnyard-sample",
+     "width": 669,
+     "height": 669
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/EveningBarnyard.png?v=1629926500",
+     "sha1": "34c21272e88f8d81ba554ffd31ddcb361d8c6f67",
+     "page": "https://www.wordofmouthfloors.com/products/biyork-nouveau-7-collection-evening-barnyard",
+     "width": 607,
+     "height": 607
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-876fbb44a5cb",
+   "seq": 41,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recl1M97L1dAL6qX6",
+   "sku": "LVP-BIYK-BYKH5PRO12NI",
+   "product_name": "Biyork Hydrogen PRO 2mm — Nickel",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Nickel_6c459d5d-d5b0-4159-947c-93474f7ca0cd.png?v=1671814213",
+      "filename": "biyork-nickel-lvp-7-36in-bykh5pro12ni-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-06-26at12.23.12PM.png?v=1719418998",
+      "filename": "biyork-nickel-lvp-7-36in-bykh5pro12ni-swatch-2.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/NIckelRoomScene_efead035-e15f-4175-8f98-4520af2ada75.png?v=1671814194",
+      "filename": "biyork-nickel-lvp-7-36in-bykh5pro12ni-room-scene.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-06-26at12.23.23PM.png?v=1719419008",
+      "filename": "biyork-nickel-lvp-7-36in-bykh5pro12ni-room-scene-2.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/h5-pro-nickel-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-2mm-nickel",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Nickel_6c459d5d-d5b0-4159-947c-93474f7ca0cd.png?v=1671814213",
+     "sha1": "00488e05333f8333abb3575fe72402baf042bb8a",
+     "page": "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-2mm-nickel",
+     "width": 599,
+     "height": 599
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-06-26at12.23.12PM.png?v=1719418998",
+     "sha1": "fd02f1a06b0ab9f647846056206cc02c6384534a",
+     "page": "https://www.biyorkcanada.com/products/h5-pro-nickel-sample",
+     "width": 580,
+     "height": 580
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/NIckelRoomScene_efead035-e15f-4175-8f98-4520af2ada75.png?v=1671814194",
+     "sha1": "b0d37210d1e288722925de5c683291e0162c2ab2",
+     "page": "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-2mm-nickel",
+     "width": 657,
+     "height": 491
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-06-26at12.23.23PM.png?v=1719419008",
+     "sha1": "8bc3195d41cdd2eb0ac8fe7c1bf0712373bbd748",
+     "page": "https://www.biyorkcanada.com/products/h5-pro-nickel-sample",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-df9e19d121b0",
+   "seq": 42,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec5vUGyizrMIqtbk",
+   "sku": "LVP-BIYK-BYKH5PRO20NI",
+   "product_name": "Biyork Hydrogen PRO 3mm — Nickel",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Nickel_84b3c219-16b0-4ee0-acca-9bb0c310355e.png?v=1671816894",
+      "filename": "biyork-nickel-lvp-7-36in-bykh5pro20ni-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-06-26at12.23.12PM.png?v=1719418998",
+      "filename": "biyork-nickel-lvp-7-36in-bykh5pro20ni-swatch-2.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/NIckelRoomScene_5e48b034-c1cb-4943-b6d0-c0beb388ddd7.png?v=1671816877",
+      "filename": "biyork-nickel-lvp-7-36in-bykh5pro20ni-room-scene.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-06-26at12.23.23PM.png?v=1719419008",
+      "filename": "biyork-nickel-lvp-7-36in-bykh5pro20ni-room-scene-2.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/h5-pro-nickel-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-3mm-nickel",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Nickel_84b3c219-16b0-4ee0-acca-9bb0c310355e.png?v=1671816894",
+     "sha1": "00488e05333f8333abb3575fe72402baf042bb8a",
+     "page": "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-3mm-nickel",
+     "width": 599,
+     "height": 599
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-06-26at12.23.12PM.png?v=1719418998",
+     "sha1": "fd02f1a06b0ab9f647846056206cc02c6384534a",
+     "page": "https://www.biyorkcanada.com/products/h5-pro-nickel-sample",
+     "width": 580,
+     "height": 580
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/NIckelRoomScene_5e48b034-c1cb-4943-b6d0-c0beb388ddd7.png?v=1671816877",
+     "sha1": "254a9bd4d7bdeb1262d125551571e0c4ef354cf4",
+     "page": "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-3mm-nickel",
+     "width": 657,
+     "height": 491
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-06-26at12.23.23PM.png?v=1719419008",
+     "sha1": "8bc3195d41cdd2eb0ac8fe7c1bf0712373bbd748",
+     "page": "https://www.biyorkcanada.com/products/h5-pro-nickel-sample",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-82b83c8a9c1b",
+   "seq": 43,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recS9c0IYJxVnY0mI",
+   "sku": "LVP-BIYK-BYKHY6HP50LC",
+   "product_name": "Biyork Hydrogen 6 Plank 7.0\" — Lily Canvas",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/products/ScreenShot2022-06-02at9.07.27AM.png?v=1660832361",
+      "filename": "biyork-lily-canvas-lvp-7in-bykhy6plc-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/LilyCanvas.jpg?v=1639524953",
+      "filename": "biyork-lily-canvas-lvp-7in-bykhy6plc-swatch-2.jpg"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/lily-canvas-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/products/ScreenShot2022-06-02at9.07.27AM.png?v=1660832361",
+     "sha1": "1a0cd35039a0be5236f0a654fb6fedffc8e650f7",
+     "page": "https://www.biyorkcanada.com/products/lily-canvas-sample",
+     "width": 816,
+     "height": 816
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/LilyCanvas.jpg?v=1639524953",
+     "sha1": "b1f17739c96e43955857f51634ca548607d75a20",
+     "page": "https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-lily-canvas",
+     "width": 480,
+     "height": 480
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-409fed61a17c",
+   "seq": 44,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec0lSKh05LjOJPsb",
+   "sku": "LVP-BIYK-BYKHY6PHA",
+   "product_name": "Biyork Hydrogen 6 Plank — Harvest",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2025-09-22at5.24.20PM.png?v=1758576272",
+      "filename": "biyork-harvest-lvp-7in-bykhy6pha-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2025-09-22at5.23.59PM.png?v=1758576272",
+      "filename": "biyork-harvest-lvp-7in-bykhy6pha-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/harvest-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/harvest-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2025-09-22at5.24.20PM.png?v=1758576272",
+     "sha1": "ed98913c948688b418f7078dbdeae352331bbb60",
+     "page": "https://www.biyorkcanada.com/products/harvest-sample",
+     "width": 620,
+     "height": 620
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2025-09-22at5.23.59PM.png?v=1758576272",
+     "sha1": "24cf2b76185be2276aa0b31e0aa03b5465fd429a",
+     "page": "https://www.biyorkcanada.com/products/harvest-sample",
+     "width": 620,
+     "height": 620
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-9ced62f11251",
+   "seq": 45,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recCrDm46Qwz27for",
+   "sku": "LVP-BIYK-BYKHYDRO7DO",
+   "product_name": "Biyork Hydrogen 7 — Dockside",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/BiYorkHydroGen7Dockside.jpg?v=1710268759",
+      "filename": "biyork-dockside-lvp-bykhydro7do-swatch.jpg"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-hydrogen-7-dockside-9-x-60-x-7mm",
+   "source": "speers",
+   "product_page_source": null,
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/BiYorkHydroGen7Dockside.jpg?v=1710268759",
+     "sha1": "e703d03107fd542c801c916481d172b2681449f3",
+     "page": "https://www.speersflooring.com/products/biyork-hydrogen-7-dockside-9-x-60-x-7mm",
+     "width": 700,
+     "height": 700
+    }
+   ],
+   "flags": [
+    "no_product_page"
+   ]
+  },
+  {
+   "id": "img-b9430e3569ca",
+   "seq": 46,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recA6an0CEX8A5SHd",
+   "sku": "LVP-BIYK-BYKHYDRO7ED",
+   "product_name": "Biyork Hydrogen 7 — Early Dawn",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/BiYorkHydroGen7EarlyDawn.png?v=1710268826",
+      "filename": "biyork-early-dawn-lvp-bykhydro7ed-swatch.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-hydrogen-7-early-dawn-9-x-60-x-7mm",
+   "source": "speers",
+   "product_page_source": null,
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/BiYorkHydroGen7EarlyDawn.png?v=1710268826",
+     "sha1": "6a3c6428dad408c79bdce4278dfe9df6e921c505",
+     "page": "https://www.speersflooring.com/products/biyork-hydrogen-7-early-dawn-9-x-60-x-7mm",
+     "width": 793,
+     "height": 798
+    }
+   ],
+   "flags": [
+    "no_product_page"
+   ]
+  },
+  {
+   "id": "img-577f589753d5",
+   "seq": 47,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recr6xD2GgvZCUjWj",
+   "sku": "LVP-BIYK-BYKHYDRO7MS",
+   "product_name": "Biyork Hydrogen 7 — Me Siento",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/1e3aa8bf-db7b-11eb-bd35-f6968cef729a/afdd8e55-78d5-11ec-bd35-f6968cef729a",
+      "filename": "biyork-me-siento-lvp-bykhydro7ms-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/biyork-vinyl-planks-hydrogen-7-me-siento-60x9/1e3aa8bf-db7b-11eb-bd35-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/biyork-vinyl-planks-hydrogen-7-me-siento-60x9/1e3aa8bf-db7b-11eb-bd35-f6968cef729a",
+   "source": "floorbox",
+   "product_page_source": "floorbox",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/1e3aa8bf-db7b-11eb-bd35-f6968cef729a/afdd8e55-78d5-11ec-bd35-f6968cef729a",
+     "sha1": "6cb402f862acd39c4c3cfa3f891e2780a6a3a159",
+     "page": "https://thefloorbox.ca/products/biyork-vinyl-planks-hydrogen-7-me-siento-60x9/1e3aa8bf-db7b-11eb-bd35-f6968cef729a",
+     "width": 900,
+     "height": 900
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-a84dc995a56b",
+   "seq": 48,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recZQw5iwPIqLD8vC",
+   "sku": "LVP-BIYK-BYKHYDRO7OH",
+   "product_name": "Biyork Hydrogen 7 — Opal Horizon",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/BiYorkHydroGen7OpalHorizon.jpg?v=1710268879",
+      "filename": "biyork-opal-horizon-lvp-bykhydro7oh-swatch.jpg"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-hydrogen-7-opal-horizon-9-x-60-x-7mm",
+   "source": "speers",
+   "product_page_source": null,
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/BiYorkHydroGen7OpalHorizon.jpg?v=1710268879",
+     "sha1": "4aed676287798d8ccf960ed52849dd9dc82e00a2",
+     "page": "https://www.speersflooring.com/products/biyork-hydrogen-7-opal-horizon-9-x-60-x-7mm",
+     "width": 795,
+     "height": 797
+    }
+   ],
+   "flags": [
+    "no_product_page"
+   ]
+  },
+  {
+   "id": "img-bf8dfcee6877",
+   "seq": 49,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recWwzMofoZAO1fj6",
+   "sku": "LVP-BIYK-BYKHYDRO7WI",
+   "product_name": "Biyork Hydrogen 7 — Winter in Zurich",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/1e3aaa6d-db7b-11eb-bd35-f6968cef729a/5cf368c6-532f-11ec-bd35-f6968cef729a",
+      "filename": "biyork-winter-in-zurich-lvp-bykhydro7wi-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://thefloorbox.ca/products/biyork-vinyl-planks-hydrogen-7-winter-in-zurich-60x9/1e3aaa6d-db7b-11eb-bd35-f6968cef729a"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://thefloorbox.ca/products/biyork-vinyl-planks-hydrogen-7-winter-in-zurich-60x9/1e3aaa6d-db7b-11eb-bd35-f6968cef729a",
+   "source": "floorbox",
+   "product_page_source": "floorbox",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.thefloorbox.ca/images/products/1e3aaa6d-db7b-11eb-bd35-f6968cef729a/5cf368c6-532f-11ec-bd35-f6968cef729a",
+     "sha1": "f119b391624f468c35a32786b827865d60602fe1",
+     "page": "https://thefloorbox.ca/products/biyork-vinyl-planks-hydrogen-7-winter-in-zurich-60x9/1e3aaa6d-db7b-11eb-bd35-f6968cef729a",
+     "width": 900,
+     "height": 900
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-a847fd91656a",
+   "seq": 50,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec30ZL993KzbaNPx",
+   "sku": "LVP-BIYK-BYKRCH7BO",
+   "product_name": "Biyork Hydrogen 7 — Boulevard",
+   "fields": {
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/BoulevardRS.png?v=1777301167",
+      "filename": "biyork-boulevard-lvp-bykrch7bo-room-scene.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Room scene images": "fldcB1MQVqcPf6lKY"
+   },
+   "expect_blank": [
+    "Room scene images"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/boulevard-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/BoulevardRS.png?v=1777301167",
+     "sha1": "d2aed10546926088c0173d091646b936fd63056d",
+     "page": "https://www.biyorkcanada.com/products/boulevard-sample",
+     "width": 705,
+     "height": 705
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-47b8e6291d08",
+   "seq": 51,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recT2bKpAPSOvTJZp",
+   "sku": "LVP-BIYK-BYKRCH7RA",
+   "product_name": "Biyork Hydrogen 7 — Ravine",
+   "fields": {
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Ravine_RS.png?v=1781620991",
+      "filename": "biyork-ravine-lvp-bykrch7ra-room-scene.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Room scene images": "fldcB1MQVqcPf6lKY"
+   },
+   "expect_blank": [
+    "Room scene images"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/ravine-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Ravine_RS.png?v=1781620991",
+     "sha1": "c104b44fdf3d26340e3dc3515490f9017df80381",
+     "page": "https://www.biyorkcanada.com/products/ravine-sample",
+     "width": 705,
+     "height": 705
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f361120857a8",
+   "seq": 52,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recJWZ9crrQAuoFF8",
+   "sku": "LVP-BIYK-BYKRCH7SP",
+   "product_name": "Biyork Hydrogen 7 — Sunpath",
+   "fields": {
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Sunpath_RS.png?v=1781621084",
+      "filename": "biyork-sunpath-lvp-bykrch7sp-room-scene.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Room scene images": "fldcB1MQVqcPf6lKY"
+   },
+   "expect_blank": [
+    "Room scene images"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/sunpath-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Sunpath_RS.png?v=1781621084",
+     "sha1": "df476ed0d0ba6faed61a8830b52d5386f6923a6f",
+     "page": "https://www.biyorkcanada.com/products/sunpath-sample",
+     "width": 705,
+     "height": 705
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-46c8b1148f5e",
+   "seq": 53,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recokpF5TwVVkwuFO",
+   "sku": "LVP-BIYK-BYKRCHY50MS-2",
+   "product_name": "Biyork Hydrogen 5 — Morning Splendour",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/products/ScreenShot2022-10-06at11.45.22AM.png?v=1665071181",
+      "filename": "biyork-morning-splendour-lvp-7in-bykrchy50ms-2-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/products/ScreenShot2022-10-06at11.48.23AM.png?v=1665071329",
+      "filename": "biyork-morning-splendour-lvp-7in-bykrchy50ms-2-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/morning-splendour-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/morning-splendour-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/products/ScreenShot2022-10-06at11.45.22AM.png?v=1665071181",
+     "sha1": "1b7fb9cf235aa24f887ad930b0b1bbdaf48ce336",
+     "page": "https://www.biyorkcanada.com/products/morning-splendour-sample",
+     "width": 858,
+     "height": 858
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/products/ScreenShot2022-10-06at11.48.23AM.png?v=1665071329",
+     "sha1": "aef15b8f0af6acc893d54ec520e55768dd30d9e5",
+     "page": "https://www.biyorkcanada.com/products/morning-splendour-sample",
+     "width": 647,
+     "height": 647
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-81814a9b5d03",
+   "seq": 54,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recxlncCwdjs2kll4",
+   "sku": "LVP-BIYK-BYKRCHY50NI-2",
+   "product_name": "Biyork Hydrogen 5 — Nickel",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/BiYorkHydroGen5Nickel.jpg?v=1710187827",
+      "filename": "biyork-nickel-lvp-7in-bykrchy50ni-2-swatch.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-06-26at12.25.39PM.png?v=1719419144",
+      "filename": "biyork-nickel-lvp-7in-bykrchy50ni-2-swatch-2.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/NIckelRoomScene.png?v=1633128251",
+      "filename": "biyork-nickel-lvp-7in-bykrchy50ni-2-room-scene.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-06-26at12.25.47PM.png?v=1719419152",
+      "filename": "biyork-nickel-lvp-7in-bykrchy50ni-2-room-scene-2.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/nickel"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.speersflooring.com/products/biyork-hydrogen-5-nickel-7-x-48-x-5mm",
+   "source": "speers",
+   "product_page_source": "manufacturer",
+   "match_tier": "model_confirmed",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/BiYorkHydroGen5Nickel.jpg?v=1710187827",
+     "sha1": "ec03b809c623ab1017f47e4ea9701dcf3079d3f4",
+     "page": "https://www.speersflooring.com/products/biyork-hydrogen-5-nickel-7-x-48-x-5mm",
+     "width": 816,
+     "height": 819
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-06-26at12.25.39PM.png?v=1719419144",
+     "sha1": "c3623074ba475c1f5a812dec8b70b90a207beb49",
+     "page": "https://www.biyorkcanada.com/products/nickel",
+     "width": 580,
+     "height": 580
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/NIckelRoomScene.png?v=1633128251",
+     "sha1": "254a9bd4d7bdeb1262d125551571e0c4ef354cf4",
+     "page": "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-nickel",
+     "width": 657,
+     "height": 491
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2024-06-26at12.25.47PM.png?v=1719419152",
+     "sha1": "b467e5beaac7eb7d683156b1dacb114cea6f32e9",
+     "page": "https://www.biyorkcanada.com/products/nickel",
+     "width": 580,
+     "height": 580
+    }
+   ],
+   "flags": [
+    "model_matched"
+   ]
+  },
+  {
+   "id": "img-5ac4787f7d45",
+   "seq": 55,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec3SbI6jU0EfHb6c",
+   "sku": "LVP-BIYK-BYKRCHY50SP-2",
+   "product_name": "Biyork Hydrogen 5 — Silk Palace",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/products/ScreenShot2022-10-06at11.53.54AM.png?v=1665071655",
+      "filename": "biyork-silk-palace-lvp-7in-bykrchy50sp-2-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/products/ScreenShot2022-10-06at11.54.37AM.png?v=1665071698",
+      "filename": "biyork-silk-palace-lvp-7in-bykrchy50sp-2-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/new-silk-palace-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/new-silk-palace-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/products/ScreenShot2022-10-06at11.53.54AM.png?v=1665071655",
+     "sha1": "e4a25a05776baed07692bd864b10fba2e1bd5673",
+     "page": "https://www.biyorkcanada.com/products/new-silk-palace-sample",
+     "width": 816,
+     "height": 816
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/products/ScreenShot2022-10-06at11.54.37AM.png?v=1665071698",
+     "sha1": "e24227b52b67e1d3690c9fca0262a5a29c3a75e7",
+     "page": "https://www.biyorkcanada.com/products/new-silk-palace-sample",
+     "width": 719,
+     "height": 719
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ab7b94da0cc2",
+   "seq": 56,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recmn5QyBQRipVGsh",
+   "sku": "LVT-BIYK-BYKRCET50CH",
+   "product_name": "Biyork Hydrogen 6 Tile 24.0\" — Chalk",
+   "fields": {
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2023-12-27at11.50.24AM.png?v=1703695830",
+      "filename": "biyork-chalk-lvt-24in-bykrcet50ck-room-scene.png"
+     }
+    ]
+   },
+   "field_ids": {
+    "Room scene images": "fldcB1MQVqcPf6lKY"
+   },
+   "expect_blank": [
+    "Room scene images"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/chalk",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2023-12-27at11.50.24AM.png?v=1703695830",
+     "sha1": "9d93465d629dba002f0e15b5d07061b5ab6c9a92",
+     "page": "https://www.biyorkcanada.com/products/chalk",
+     "width": 735,
+     "height": 735
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-94fd859fc75f",
+   "seq": 57,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recSBFaNFvE1LBoMu",
+   "sku": "LVT-BIYK-BYKRCET50ON",
+   "product_name": "Biyork Hydrogen 6 Tile — Onyx",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2025-09-22at5.28.55PM.png?v=1758576541",
+      "filename": "biyork-onyx-lvt-12in-bykrcet50on-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2025-09-22at5.29.09PM.png?v=1758576555",
+      "filename": "biyork-onyx-lvt-12in-bykrcet50on-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/onyx-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/onyx-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2025-09-22at5.28.55PM.png?v=1758576541",
+     "sha1": "882941d59e1f99f5bd661174c4dfc0524be77a90",
+     "page": "https://www.biyorkcanada.com/products/onyx-sample",
+     "width": 620,
+     "height": 620
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2025-09-22at5.29.09PM.png?v=1758576555",
+     "sha1": "3a56b7a84b86c3e871ff70900aa015896de56cb8",
+     "page": "https://www.biyorkcanada.com/products/onyx-sample",
+     "width": 620,
+     "height": 620
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-28312ce30c10",
+   "seq": 58,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recU3Vv0q11tEfXoi",
+   "sku": "LVT-BIYK-BYKRCET50RI",
+   "product_name": "Biyork Hydrogen 6 Tile — River",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2025-09-22at5.26.33PM.png?v=1758576403",
+      "filename": "biyork-river-lvt-12in-bykrcet50ri-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/R1_97f02f68-d76a-4f58-8eb0-b087a2c33b28.webp?v=1762280078",
+      "filename": "biyork-river-lvt-12in-bykrcet50ri-swatch-2.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2025-09-22at5.26.10PM.png?v=1758576403",
+      "filename": "biyork-river-lvt-12in-bykrcet50ri-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://www.biyorkcanada.com/products/river-sample"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.biyorkcanada.com/products/river-sample",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2025-09-22at5.26.33PM.png?v=1758576403",
+     "sha1": "f1b0fa1d380e2ae07e7fd77d1e78b94b13adfd9f",
+     "page": "https://www.biyorkcanada.com/products/river-sample",
+     "width": 620,
+     "height": 620
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/R1_97f02f68-d76a-4f58-8eb0-b087a2c33b28.webp?v=1762280078",
+     "sha1": "9e37088ef5be1225fca237e350b180a74b634805",
+     "page": "https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-tile-river",
+     "width": 620,
+     "height": 620
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0271/4422/4879/files/Screenshot2025-09-22at5.26.10PM.png?v=1758576403",
+     "sha1": "104c0963ee0fa46ac22cfec9a2aae7c7f0faf25e",
+     "page": "https://www.biyorkcanada.com/products/river-sample",
+     "width": 620,
+     "height": 620
+    }
+   ],
+   "flags": []
+  }
+ ],
+ "held": [
+  {
+   "sku": "ENG-BIYK-BYKEN22018CE",
+   "record_id": "recU70FQwTIwT3hm0",
+   "product_name": "Biyork Nouveau 8 8.5\" — Centaurus",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/centaurus",
+    "https://www.wordofmouthfloors.com/products/biyork-nouveau-8-collection-centaurus"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/centaurus', 'https://www.wordofmouthfloors.com/products/biyork-nouveau-8-collection-centaurus']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKEN22018TR",
+   "record_id": "reciYAw2LUFE5xwjY",
+   "product_name": "Biyork Nouveau 8 8.5\" — Triangulum",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/triangulum",
+    "https://www.wordofmouthfloors.com/products/biyork-nouveau-8-collection-triangulum",
+    "https://www.speersflooring.com/products/biyork-nouveau-8-european-oak-wire-brushed-triangulum-8-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/triangulum', 'https://www.wordofmouthfloors.com/products/biyork-nouveau-8-collection-triangulum', 'https://www.speersflooring.com/products/biyork-nouveau-8-european-oak-wire-brushed-triangulum-8-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKENEO18AC",
+   "record_id": "recwPPi0P7crZq4ER",
+   "product_name": "Biyork Nouveau 6 6.5\" — Alpine Chalet",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Alpine Chalet'; vetoes {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKENEO18BI",
+   "record_id": "recE6cCjrULlNpKbb",
+   "product_name": "Biyork Nouveau 6 6.5\" — Birmingham",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/birmingham",
+    "https://www.wordofmouthfloors.com/products/biyork-nouveau-6-collection-birmingham",
+    "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-wire-brushed-birmingham-6-1-2-x-3-11"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/birmingham', 'https://www.wordofmouthfloors.com/products/biyork-nouveau-6-collection-birmingham', 'https://www.speersflooring.com/products/biyork-nouveau-6-hickory-wire-brushed-birmingham-6-1-2-x-3-11']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKENEO18FR",
+   "record_id": "recXeg10efqXlBDkn",
+   "product_name": "Biyork Nouveau 6 6.5\" — Frankfurt",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/oak-frankfurt",
+    "https://www.wordofmouthfloors.com/products/biyork-nouveau-6-collection-frankfurt",
+    "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-wire-brushed-frankfurt-6-1-2-x-3-11"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/oak-frankfurt', 'https://www.wordofmouthfloors.com/products/biyork-nouveau-6-collection-frankfurt', 'https://www.speersflooring.com/products/biyork-nouveau-6-hickory-wire-brushed-frankfurt-6-1-2-x-3-11']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKENEO18SK",
+   "record_id": "recPFdYtSB3NfNGEo",
+   "product_name": "Biyork Nouveau 6 6.5\" — Skagen",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Skagen'; vetoes {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKENEO18ST",
+   "record_id": "recUD9eyox12pCJeB",
+   "product_name": "Biyork Nouveau 6 6.5\" — Stockholm",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Stockholm'; vetoes {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKENH118BA",
+   "record_id": "recIzFaFACaqZZXGk",
+   "product_name": "Biyork Nouveau 6 6.5\" — Baywood",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Baywood'; vetoes {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKENH118CO",
+   "record_id": "recKG6fjMjhtJ8lFd",
+   "product_name": "Biyork Nouveau 6 6.5\" — Coffee",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Coffee'; vetoes {'line': 1, 'width': 3}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKENH118EG",
+   "record_id": "recikWGHU8GIXxhpI",
+   "product_name": "Biyork Nouveau 6 6.5\" — Euro Grey",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/euro-grey",
+    "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-hand-scraped-euro-grey-6-1-2-x-3-5"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/euro-grey', 'https://www.speersflooring.com/products/biyork-nouveau-6-hickory-hand-scraped-euro-grey-6-1-2-x-3-5']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKENH118SF",
+   "record_id": "recyodBDozKYP8mIY",
+   "product_name": "Biyork Nouveau 6 6.5\" — Silver Fox",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/silver-fox",
+    "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-hand-scraped-silver-fox-6-1-2-x-3-9"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/silver-fox', 'https://www.speersflooring.com/products/biyork-nouveau-6-hickory-hand-scraped-silver-fox-6-1-2-x-3-9']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKENWA18NA",
+   "record_id": "recUT2MHHEMPTJthD",
+   "product_name": "Biyork Nouveau 6 6.5\" — Natural",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/hickory-natural-twine-sample",
+    "https://www.biyorkcanada.com/products/natural-hickory",
+    "https://www.biyorkcanada.com/products/walnut-natural",
+    "https://www.wordofmouthfloors.com/products/walnut-natural",
+    "https://www.speersflooring.com/products/biyork-nouveau-6-american-walnut-wire-brushed-natural-6-1-2-x-3-4",
+    "https://www.speersflooring.com/products/biyork-nouveau-6-hickory-hand-scraped-natural-6-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/walnut-natural', 'https://www.wordofmouthfloors.com/products/walnut-natural', 'https://www.speersflooring.com/products/biyork-nouveau-6-american-walnut-wire-brushed-natural-6-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKN6CLEOCS",
+   "record_id": "recpCp2m595CF3egc",
+   "product_name": "Biyork Nouveau 6 Clic 6.5\" — Coral Shell",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/european-oak-coral-shell-sample-1",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-6-clic-coral-shell-6-12-12/62fd7bdf-6492-11ef-beaa-f6968cef729a"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/european-oak-coral-shell-sample-1', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-6-clic-coral-shell-6-12-12/62fd7bdf-6492-11ef-beaa-f6968cef729a']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKN6CLEOGG",
+   "record_id": "reckKoLky0F21wr5U",
+   "product_name": "Biyork Nouveau 6 Clic 6.5\" — Gentle Glade",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/european-oak-gentle-glade-sample",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-6-clic-gentle-glade-6-12-12/62fd94da-6492-11ef-beaa-f6968cef729a"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/european-oak-gentle-glade-sample', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-6-clic-gentle-glade-6-12-12/62fd94da-6492-11ef-beaa-f6968cef729a']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKN6CLEOWT",
+   "record_id": "recBc2DtLWPUbgmzQ",
+   "product_name": "Biyork Nouveau 6 Clic 6.5\" — Windward Trail",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/european-oak-windward-trail-sample",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-6-clic-windward-trail-6-12-12/62fdb1c6-6492-11ef-beaa-f6968cef729a"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/european-oak-windward-trail-sample', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-6-clic-windward-trail-6-12-12/62fdb1c6-6492-11ef-beaa-f6968cef729a']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKN7EOSI",
+   "record_id": "recNIjt3FWnBNDlEv",
+   "product_name": "Biyork Nouveau 7 7.5\" — Sunlit Ivory",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/european-oak-sunlit-ivory-sample",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-sunlit-ivory-7-12-34/d0f95204-720c-11ef-88e5-f6968cef729a",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-european-oak-wire-brushed-sunlit-ivory-7-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/european-oak-sunlit-ivory-sample', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-sunlit-ivory-7-12-34/d0f95204-720c-11ef-88e5-f6968cef729a', 'https://www.speersflooring.com/products/biyork-nouveau-7-european-oak-wire-brushed-sunlit-ivory-7-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKN7PRBF",
+   "record_id": "recP5MRJ7yu3OcT7D",
+   "product_name": "Biyork Nouveau 7 Prelude 7.5\" — Blacksmith Forge",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/european-oak-blacksmith-forge-sample",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-prelude-blacksmith-forge-7-12-12/cdd7034a-5af1-11ed-aa67-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-nouveau-7-prelude-blacksmith-forge",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-prelude-european-oak-blacksmith-forge-7-1-2-x-1-2-random-length"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/european-oak-blacksmith-forge-sample', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-prelude-blacksmith-forge-7-12-12/cdd7034a-5af1-11ed-aa67-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-nouveau-7-prelude-blacksmith-forge', 'https://www.speersflooring.com/products/biyork-nouveau-7-prelude-european-oak-blacksmith-forge-7-1-2-x-1-2-random-length']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKN7PRGW",
+   "record_id": "recQXi9j9GHPrKrN7",
+   "product_name": "Biyork Nouveau 7 Prelude 7.5\" — Golden Wheat",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/european-oak-golden-wheat-sample",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-prelude-golden-wheat-7-12-12/cdd704e5-5af1-11ed-aa67-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-nouveau-7-prelude-golden-wheat",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-prelude-european-oak-golden-wheat-7-1-2-x-1-2-random-length"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/european-oak-golden-wheat-sample', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-prelude-golden-wheat-7-12-12/cdd704e5-5af1-11ed-aa67-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-nouveau-7-prelude-golden-wheat', 'https://www.speersflooring.com/products/biyork-nouveau-7-prelude-european-oak-golden-wheat-7-1-2-x-1-2-random-length']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKN7PRHS",
+   "record_id": "rec2XjbZSxeaR9Z62",
+   "product_name": "Biyork Nouveau 7 Prelude 7.5\" — Heaven's Sage",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/european-oak-heavens-sage-sample",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-prelude-heavens-sage-7-12-12/cdd705b5-5af1-11ed-aa67-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-nouveau-7-prelude-heavens-sage",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-prelude-european-oak-heavens-sage-7-1-2-x-1-2-random-length"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/european-oak-heavens-sage-sample', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-prelude-heavens-sage-7-12-12/cdd705b5-5af1-11ed-aa67-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-nouveau-7-prelude-heavens-sage', 'https://www.speersflooring.com/products/biyork-nouveau-7-prelude-european-oak-heavens-sage-7-1-2-x-1-2-random-length']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKN7PRRC",
+   "record_id": "recaVE8LfpO1FRCGE",
+   "product_name": "Biyork Nouveau 7 Prelude 7.5\" — Roasted Chestnut",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/european-oak-roasted-chestnut-sample",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-prelude-roasted-chestnut-7-12-12/cdd70752-5af1-11ed-aa67-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-nouveau-7-prelude-roasted-chestnut",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-prelude-european-oak-roasted-chestnut-7-1-2-x-1-2-random-length"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/european-oak-roasted-chestnut-sample', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-prelude-roasted-chestnut-7-12-12/cdd70752-5af1-11ed-aa67-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-nouveau-7-prelude-roasted-chestnut', 'https://www.speersflooring.com/products/biyork-nouveau-7-prelude-european-oak-roasted-chestnut-7-1-2-x-1-2-random-length']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKN7PRSD",
+   "record_id": "recr8pFcqHo5614A6",
+   "product_name": "Biyork Nouveau 7 Prelude 7.5\" — Sandy Dream",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/european-oak-sandy-dream-sample",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-prelude-sandy-dream-7-12-12/cdd7081c-5af1-11ed-aa67-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-nouveau-7-prelude-sandy-dream",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-prelude-european-oak-sandy-dream-7-1-2-x-1-2-random-length"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/european-oak-sandy-dream-sample', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-prelude-sandy-dream-7-12-12/cdd7081c-5af1-11ed-aa67-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-nouveau-7-prelude-sandy-dream', 'https://www.speersflooring.com/products/biyork-nouveau-7-prelude-european-oak-sandy-dream-7-1-2-x-1-2-random-length']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKN7PRSW",
+   "record_id": "recmEdxuGa1kT8X93",
+   "product_name": "Biyork Nouveau 7 Prelude 7.5\" — Snow Willow",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/european-oak-snow-willow-sample",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-prelude-snow-willow-7-12-12/cdd708e5-5af1-11ed-aa67-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-nouveau-7-prelude-snow-willow",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-prelude-european-oak-snow-willow-7-1-2-x-1-2-random-length"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/european-oak-snow-willow-sample', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-prelude-snow-willow-7-12-12/cdd708e5-5af1-11ed-aa67-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-nouveau-7-prelude-snow-willow', 'https://www.speersflooring.com/products/biyork-nouveau-7-prelude-european-oak-snow-willow-7-1-2-x-1-2-random-length']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKN7PRTT",
+   "record_id": "recOuIhHROBml20Cb",
+   "product_name": "Biyork Nouveau 7 Prelude 7.5\" — Tortuga",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/european-oak-tortuga-sample",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-prelude-tortuga-7-12-12/cdd709b1-5af1-11ed-aa67-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-nouveau-7-prelude-tortuga",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-prelude-european-oak-tortuga-7-1-2-x-1-2-random-length"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/european-oak-tortuga-sample', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-prelude-tortuga-7-12-12/cdd709b1-5af1-11ed-aa67-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-nouveau-7-prelude-tortuga', 'https://www.speersflooring.com/products/biyork-nouveau-7-prelude-european-oak-tortuga-7-1-2-x-1-2-random-length']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKN7PRVB",
+   "record_id": "rec4t8kYC3xOTJyiu",
+   "product_name": "Biyork Nouveau 7 Prelude 7.5\" — Velvet Breeze",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/european-oak-velvet-breeze-sample",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-prelude-velvet-breeze-7-12-12/cdd70a8f-5af1-11ed-aa67-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-nouveau-7-prelude-velvet-breeze",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-prelude-european-oak-velvet-breeze-7-1-2-x-1-2-random-length"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/european-oak-velvet-breeze-sample', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-prelude-velvet-breeze-7-12-12/cdd70a8f-5af1-11ed-aa67-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-nouveau-7-prelude-velvet-breeze', 'https://www.speersflooring.com/products/biyork-nouveau-7-prelude-european-oak-velvet-breeze-7-1-2-x-1-2-random-length']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU6EO18NC",
+   "record_id": "recfH3GKn0MwTPIOe",
+   "product_name": "Biyork Nouveau 6 Clic 6.5\" — Nimbus Cloud",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/european-oak-nimbus-clous-sample",
+    "https://www.speersflooring.com/products/biyork-nouveau-6-clic-european-oak-wire-brushed-nimbus-cloud-6-1-2-x-1-2"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/european-oak-nimbus-clous-sample', 'https://www.speersflooring.com/products/biyork-nouveau-6-clic-european-oak-wire-brushed-nimbus-cloud-6-1-2-x-1-2']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU6HI18NT",
+   "record_id": "recfHGQoZTv6BF4Td",
+   "product_name": "Biyork Nouveau 6 Clic 6.5\" — Natural Twine",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/hickory-natural-twine-sample"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/hickory-natural-twine-sample']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU6HI18SU",
+   "record_id": "rec3RqOfAYu3tu06r",
+   "product_name": "Biyork Nouveau 6 Clic 6.5\" — Sumatra",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/european-oak-sumatra-sample",
+    "https://www.speersflooring.com/products/biyork-nouveau-6-clic-hickory-wire-brushed-sumatra-6-1-2-x-1-2"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/european-oak-sumatra-sample', 'https://www.speersflooring.com/products/biyork-nouveau-6-clic-hickory-wire-brushed-sumatra-6-1-2-x-1-2']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU7BEEOBN",
+   "record_id": "recjzzA6Tw4II0hgh",
+   "product_name": "Biyork Nouveau 7 Bespoke (Plank) 7.5\" — Barcelona Noon",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/nouveau-7-bespoke-barcelona-noon",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-plank-barcelona-noon-7-12-34/f781a87f-03c2-11ed-86ce-f6968cef729a",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-wire-brushed-barcelona-noon-c-7-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/nouveau-7-bespoke-barcelona-noon', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-plank-barcelona-noon-7-12-34/f781a87f-03c2-11ed-86ce-f6968cef729a', 'https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-wire-brushed-barcelona-noon-c-7-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU7BEEOBR",
+   "record_id": "rec7oVLRoWlgEq1Oe",
+   "product_name": "Biyork Nouveau 7 Bespoke (Plank) 7.5\" — Breezy Boardwalk",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/nouveau-7-bespoke-breezy-boardwalk",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-plank-breezy-boardwalk-7-12-34/f781a97c-03c2-11ed-86ce-f6968cef729a",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-wire-brushed-breezy-boardwalk-c-7-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/nouveau-7-bespoke-breezy-boardwalk', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-plank-breezy-boardwalk-7-12-34/f781a97c-03c2-11ed-86ce-f6968cef729a', 'https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-wire-brushed-breezy-boardwalk-c-7-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU7BEEOCP",
+   "record_id": "recJ1hdZvMl6G6J36",
+   "product_name": "Biyork Nouveau 7 Bespoke (Plank) 7.5\" — Cottage Plank",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/nouveau-7-bespoke-cottage-plank",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-plank-cottage-plank-7-12-34/f781aa14-03c2-11ed-86ce-f6968cef729a",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-wire-brushed-cottage-plank-c-7-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/nouveau-7-bespoke-cottage-plank', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-plank-cottage-plank-7-12-34/f781aa14-03c2-11ed-86ce-f6968cef729a', 'https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-wire-brushed-cottage-plank-c-7-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU7BEEOFG",
+   "record_id": "rece6xmsB9VvPcOuT",
+   "product_name": "Biyork Nouveau 7 Bespoke (Plank) 7.5\" — Forest Grotto",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/nouveau-7-bespoke-forest-grotto",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-plank-forest-grotto-7-12-34/f781aa97-03c2-11ed-86ce-f6968cef729a",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-wire-brushed-forest-grotto-c-7-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/nouveau-7-bespoke-forest-grotto', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-plank-forest-grotto-7-12-34/f781aa97-03c2-11ed-86ce-f6968cef729a', 'https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-wire-brushed-forest-grotto-c-7-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU7BEEOHC",
+   "record_id": "recF9Rp8EncbZrOLA",
+   "product_name": "Biyork Nouveau 7 Bespoke (Plank) 7.5\" — Hidden Cabin",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/nouveau-7-bespoke-hidden-cabin",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-plank-hidden-cabin-7-12-34/f781ab1b-03c2-11ed-86ce-f6968cef729a",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-wire-brushed-hidden-cabin-c-7-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/nouveau-7-bespoke-hidden-cabin', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-plank-hidden-cabin-7-12-34/f781ab1b-03c2-11ed-86ce-f6968cef729a', 'https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-wire-brushed-hidden-cabin-c-7-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU7BEEOLP",
+   "record_id": "recBSo0P15navLQGS",
+   "product_name": "Biyork Nouveau 7 Bespoke (Plank) 7.5\" — Lake Promenade",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/nouveau-7-bespoke-lake-promenade",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-plank-lake-promenade-7-12-34/f781abc3-03c2-11ed-86ce-f6968cef729a",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-wire-brushed-lake-promenade-c-7-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/nouveau-7-bespoke-lake-promenade', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-plank-lake-promenade-7-12-34/f781abc3-03c2-11ed-86ce-f6968cef729a', 'https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-wire-brushed-lake-promenade-c-7-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU7BEEONV",
+   "record_id": "recfrGcGm8Q3EdFsC",
+   "product_name": "Biyork Nouveau 7 Bespoke (Plank) 7.5\" — Northern Veranda",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/nouveau-7-bespoke-northern-veranda",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-plank-northern-veranda-7-12-34/f781aca6-03c2-11ed-86ce-f6968cef729a",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-wire-brushed-northern-veranda-c-7-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/nouveau-7-bespoke-northern-veranda', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-plank-northern-veranda-7-12-34/f781aca6-03c2-11ed-86ce-f6968cef729a', 'https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-wire-brushed-northern-veranda-c-7-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU7BEEORL",
+   "record_id": "recndaELbjUpF3OdA",
+   "product_name": "Biyork Nouveau 7 Bespoke (Plank) 7.5\" — Rooftop Loft",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/nouveau-7-bespoke-rooftop-loft",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-plank-rooftop-loft-7-12-34/f781ada5-03c2-11ed-86ce-f6968cef729a",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-wire-brushed-rooftop-loft-c-7-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/nouveau-7-bespoke-rooftop-loft', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-plank-rooftop-loft-7-12-34/f781ada5-03c2-11ed-86ce-f6968cef729a', 'https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-wire-brushed-rooftop-loft-c-7-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU7BEHERBN",
+   "record_id": "rec2whJpJWuZSBdEc",
+   "product_name": "Biyork Nouveau 7 Bespoke (Herringbone) 5\" — Barcelona Noon",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/nouveau-7-bespoke-herringbone-barcelona-noon",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-herringbone-barcelona-noon-5-075/f781ae67-03c2-11ed-86ce-f6968cef729a",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-herringbone-wire-brushed-barcelona-noon-c-5-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/nouveau-7-bespoke-herringbone-barcelona-noon', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-herringbone-barcelona-noon-5-075/f781ae67-03c2-11ed-86ce-f6968cef729a', 'https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-herringbone-wire-brushed-barcelona-noon-c-5-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU7BEHERBR",
+   "record_id": "recKSS2clgygA1ZBZ",
+   "product_name": "Biyork Nouveau 7 Bespoke (Herringbone) 5\" — Breezy Boardwalk",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/nouveau-7-bespoke-herringbone-breezy-boardwalk",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-herringbone-breezy-boardwalk-5-075/f781af1a-03c2-11ed-86ce-f6968cef729a",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-herringbone-wire-brushed-breezy-boardwalk-c-7-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/nouveau-7-bespoke-herringbone-breezy-boardwalk', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-herringbone-breezy-boardwalk-5-075/f781af1a-03c2-11ed-86ce-f6968cef729a', 'https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-herringbone-wire-brushed-breezy-boardwalk-c-7-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU7BEHERCP",
+   "record_id": "recNYUf5ypQ6N0e0g",
+   "product_name": "Biyork Nouveau 7 Bespoke (Herringbone) 5\" — Cottage Plank",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/nouveau-7-bespoke-herringbone-cottage-plank",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-herringbone-wire-brushed-cottage-plank-c-7-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/nouveau-7-bespoke-herringbone-cottage-plank', 'https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-herringbone-wire-brushed-cottage-plank-c-7-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU7BEHERFG",
+   "record_id": "recz2Hj0T6Jzo5RMp",
+   "product_name": "Biyork Nouveau 7 Bespoke (Herringbone) 5\" — Forest Grotto",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/copy-of-nouveau-7-bespoke-herringbone-forest-grotto",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-herringbone-forest-grotto-5-075/f781b0e7-03c2-11ed-86ce-f6968cef729a",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-herringbone-wire-brushed-forest-grotto-c-7-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/copy-of-nouveau-7-bespoke-herringbone-forest-grotto', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-herringbone-forest-grotto-5-075/f781b0e7-03c2-11ed-86ce-f6968cef729a', 'https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-herringbone-wire-brushed-forest-grotto-c-7-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU7BEHERHC",
+   "record_id": "recBPrnku3iKCXflx",
+   "product_name": "Biyork Nouveau 7 Bespoke (Herringbone) 5\" — Hidden Cabin",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/nouveau-7-bespoke-herringbone-hidden-cabin",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-herringbone-hidden-cabin-5-075/f781b189-03c2-11ed-86ce-f6968cef729a",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-herringbone-wire-brushed-hidden-cabin-c-7-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/nouveau-7-bespoke-herringbone-hidden-cabin', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-herringbone-hidden-cabin-5-075/f781b189-03c2-11ed-86ce-f6968cef729a', 'https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-herringbone-wire-brushed-hidden-cabin-c-7-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU7BEHERLP",
+   "record_id": "recELDD4SMcVxvl0O",
+   "product_name": "Biyork Nouveau 7 Bespoke (Herringbone) 5\" — Lake Promenade",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/nouveau-7-bespoke-herringbone-lake-promenade",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-herringbone-lake-promenade-5-075/f781b2da-03c2-11ed-86ce-f6968cef729a",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-herringbone-wire-brushed-lake-promenade-c-7-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/nouveau-7-bespoke-herringbone-lake-promenade', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-herringbone-lake-promenade-5-075/f781b2da-03c2-11ed-86ce-f6968cef729a', 'https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-herringbone-wire-brushed-lake-promenade-c-7-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU7BEHERRL",
+   "record_id": "recRtYGoKTf5aCdJd",
+   "product_name": "Biyork Nouveau 7 Bespoke (Herringbone) 5\" — Rooftop Loft",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/nouveau-7-bespoke-herringbone-rooftop-loft",
+    "https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-herringbone-rooftop-loft-5-075/f781b454-03c2-11ed-86ce-f6968cef729a",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-herringbone-wire-brushed-rooftop-loft-c-7-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/nouveau-7-bespoke-herringbone-rooftop-loft', 'https://thefloorbox.ca/products/engineered-hardwood-nouveau-7-bespoke-herringbone-rooftop-loft-5-075/f781b454-03c2-11ed-86ce-f6968cef729a', 'https://www.speersflooring.com/products/biyork-nouveau-7-bespoke-european-oak-herringbone-wire-brushed-rooftop-loft-c-7-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU7EO19TR",
+   "record_id": "recrLgctBY4lb8TDY",
+   "product_name": "Biyork Nouveau 7 7.5\" — Tribeca",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/european-oak-tribeca-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-nouveau-7-collection-tribeca",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-european-oak-wire-brushed-tribeca-7-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/european-oak-tribeca-sample', 'https://www.wordofmouthfloors.com/products/biyork-nouveau-7-collection-tribeca', 'https://www.speersflooring.com/products/biyork-nouveau-7-european-oak-wire-brushed-tribeca-7-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU7HI19DP",
+   "record_id": "rec1kZ38O6wZgpjfq",
+   "product_name": "Biyork Nouveau 7 7.5\" — Distant Prairie",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/hickory-distant-prairie-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-nouveau-7-collection-distant-prairie",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-hickory-wire-brushed-distant-prairie-7-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/hickory-distant-prairie-sample', 'https://www.wordofmouthfloors.com/products/biyork-nouveau-7-collection-distant-prairie', 'https://www.speersflooring.com/products/biyork-nouveau-7-hickory-wire-brushed-distant-prairie-7-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU7HI19HC",
+   "record_id": "rec9JK6WAWhBfWct1",
+   "product_name": "Biyork Nouveau 7 7.5\" — Havana Coffee",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/hickory-havana-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-nouveau-7-collection-havana-coffee",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-hickory-wire-brushed-havana-coffee-7-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/hickory-havana-sample', 'https://www.wordofmouthfloors.com/products/biyork-nouveau-7-collection-havana-coffee', 'https://www.speersflooring.com/products/biyork-nouveau-7-hickory-wire-brushed-havana-coffee-7-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "ENG-BIYK-BYKNOU7HI19SU",
+   "record_id": "rec9jM17wc4e1Vn3y",
+   "product_name": "Biyork Nouveau 7 7.5\" — Summer Saloon",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/hickory-summer-saloon-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-nouveau-7-collection-summer-saloon",
+    "https://www.speersflooring.com/products/biyork-nouveau-7-hickory-wire-brushed-summer-saloon-7-1-2-x-3-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/hickory-summer-saloon-sample', 'https://www.wordofmouthfloors.com/products/biyork-nouveau-7-collection-summer-saloon', 'https://www.speersflooring.com/products/biyork-nouveau-7-hickory-wire-brushed-summer-saloon-7-1-2-x-3-4']; {}"
+  },
+  {
+   "sku": "LAM-BIYK-BYKRPTDWP12BP",
+   "record_id": "recKv1tLJWcFwOHQz",
+   "product_name": "Biyork Riptide — Black Pearl",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/black-pearl-1",
+    "https://thefloorbox.ca/products/laminate-flooring-riptide-black-pearl-7-12-x-48/02fb8d9b-95c2-11ed-a651-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-riptide-waterproof-laminate-black-pearl"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/black-pearl-1', 'https://thefloorbox.ca/products/laminate-flooring-riptide-black-pearl-7-12-x-48/02fb8d9b-95c2-11ed-a651-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-riptide-waterproof-laminate-black-pearl']; {}"
+  },
+  {
+   "sku": "LAM-BIYK-BYKRPTDWP12HU",
+   "record_id": "recIGIHgiYylBaWGU",
+   "product_name": "Biyork Riptide — Hurricane",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/hurricane",
+    "https://www.wordofmouthfloors.com/products/biyork-riptide-waterproof-laminate-hurricane"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/hurricane', 'https://www.wordofmouthfloors.com/products/biyork-riptide-waterproof-laminate-hurricane']; {}"
+  },
+  {
+   "sku": "LAM-BIYK-BYKRPTDWP12OS",
+   "record_id": "recWmDvgdfA7noLgC",
+   "product_name": "Biyork Riptide — Offshore",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/offshore",
+    "https://thefloorbox.ca/products/laminate-flooring-riptide-offshore-7-12-x-48/02fbba29-95c2-11ed-a651-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-riptide-waterproof-laminate-offshore"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/offshore', 'https://thefloorbox.ca/products/laminate-flooring-riptide-offshore-7-12-x-48/02fbba29-95c2-11ed-a651-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-riptide-waterproof-laminate-offshore']; {}"
+  },
+  {
+   "sku": "LAM-BIYK-BYKRPTDWP12PB",
+   "record_id": "recH0Kt8pD5BLMmrH",
+   "product_name": "Biyork Riptide — Point Break",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/rain-dance",
+    "https://thefloorbox.ca/products/laminate-flooring-riptide-point-break-7-12-x-48/02fbb0f6-95c2-11ed-a651-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-riptide-waterproof-laminate-point-break"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/rain-dance', 'https://thefloorbox.ca/products/laminate-flooring-riptide-point-break-7-12-x-48/02fbb0f6-95c2-11ed-a651-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-riptide-waterproof-laminate-point-break']; {}"
+  },
+  {
+   "sku": "LAM-BIYK-BYKRPTDWP12RD",
+   "record_id": "recXTuNmjJK0TL3kd",
+   "product_name": "Biyork Riptide — Rain Dance",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/rain-dance-1",
+    "https://thefloorbox.ca/products/laminate-flooring-riptide-rain-dance-7-12-x-48/02fb9824-95c2-11ed-a651-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-riptide-waterproof-laminate-rain-dance"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/rain-dance-1', 'https://thefloorbox.ca/products/laminate-flooring-riptide-rain-dance-7-12-x-48/02fb9824-95c2-11ed-a651-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-riptide-waterproof-laminate-rain-dance']; {}"
+  },
+  {
+   "sku": "LAM-BIYK-BYKRPTDWP12RF",
+   "record_id": "recLO0YpuKGMCQ1cs",
+   "product_name": "Biyork Riptide — Reef",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/reef",
+    "https://thefloorbox.ca/products/laminate-flooring-riptide-reef-7-12-x-48/02fbc3f3-95c2-11ed-a651-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-riptide-waterproof-laminate-reef"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/reef', 'https://thefloorbox.ca/products/laminate-flooring-riptide-reef-7-12-x-48/02fbc3f3-95c2-11ed-a651-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-riptide-waterproof-laminate-reef']; {}"
+  },
+  {
+   "sku": "LAM-BIYK-BYKRPTDWP12TW",
+   "record_id": "recjr4mfrQrDaJm1t",
+   "product_name": "Biyork Riptide — Tidal Wave",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/tidal-wave",
+    "https://thefloorbox.ca/products/laminate-flooring-riptide-tidal-wave-7-12-x-48/02fba897-95c2-11ed-a651-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-riptide-waterproof-laminate-tidal-wave"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/tidal-wave', 'https://thefloorbox.ca/products/laminate-flooring-riptide-tidal-wave-7-12-x-48/02fba897-95c2-11ed-a651-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-riptide-waterproof-laminate-tidal-wave']; {}"
+  },
+  {
+   "sku": "LAM-BIYK-BYKRPTDWP12WP",
+   "record_id": "recgTqE60H34ZJaQx",
+   "product_name": "Biyork Riptide — Whirlpool",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/whirlpool",
+    "https://thefloorbox.ca/products/laminate-flooring-riptide-whirlpool-7-12-x-48/02fa2b96-95c2-11ed-a651-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-riptide-waterproof-laminate-whirlpool"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/whirlpool', 'https://thefloorbox.ca/products/laminate-flooring-riptide-whirlpool-7-12-x-48/02fa2b96-95c2-11ed-a651-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-riptide-waterproof-laminate-whirlpool']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKH5PRO12CA",
+   "record_id": "recsPUGP6FbhL1ze5",
+   "product_name": "Biyork Hydrogen PRO 2mm — Cashmere",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/h5-pro-cashmere-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-2mm-cashmere"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/h5-pro-cashmere-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-2mm-cashmere']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKH5PRO12EV",
+   "record_id": "recd55lmLvprUk1lD",
+   "product_name": "Biyork Hydrogen PRO 2mm — Everest",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/h5-pro-everest-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-2mm-everest"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/h5-pro-everest-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-2mm-everest']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKH5PRO12GO",
+   "record_id": "recRE6JdlnzMSvmXG",
+   "product_name": "Biyork Hydrogen PRO 2mm — Gold Coast",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/h5-pro-gold-coast-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-2mm-gold-coast"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/h5-pro-gold-coast-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-2mm-gold-coast']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKH5PRO20CA",
+   "record_id": "rechzhp9yQ1MqDkpr",
+   "product_name": "Biyork Hydrogen PRO 3mm — Cashmere",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/h5-pro-cashmere-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-3mm-cashmere"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/h5-pro-cashmere-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-3mm-cashmere']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKH5PRO20EV",
+   "record_id": "recgIYWBKn9Le3dxW",
+   "product_name": "Biyork Hydrogen PRO 3mm — Everest",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/h5-pro-everest-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-3mm-everest"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/h5-pro-everest-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-3mm-everest']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKH5PRO20GO",
+   "record_id": "recwADEJGAcrgvZh1",
+   "product_name": "Biyork Hydrogen PRO 3mm — Gold Coast",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/h5-pro-gold-coast-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-3mm-gold-coast"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/h5-pro-gold-coast-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-3mm-gold-coast']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHPRO12LC",
+   "record_id": "recGUGkfk2seVXf4q",
+   "product_name": "Biyork Hydrogen PRO 2mm — Lily Canvas",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/hydrogen-pro-lily-canvas-sample",
+    "https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-lily-canvas-glue-down-7-38-x-48-516/a93fa726-09ae-11f0-9a1c-f6968cef729a",
+    "https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-lily-canvas-glue-down-7-38-x-48-516/a9411e35-09ae-11f0-9a1c-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-2mm-lily-canvas",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-3mm-lily-canvas"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/hydrogen-pro-lily-canvas-sample', 'https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-lily-canvas-glue-down-7-38-x-48-516/a93fa726-09ae-11f0-9a1c-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-2mm-lily-canvas']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHPRO12MS",
+   "record_id": "recjVVczWqj9p2Z0b",
+   "product_name": "Biyork Hydrogen PRO 2mm — Morning Splendour",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/hydrogen-pro-morning-splendour-sample",
+    "https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-morning-splendour-glue-down-7-38-x-48-516/a93fb87d-09ae-11f0-9a1c-f6968cef729a",
+    "https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-morning-splendour-glue-down-7-38-x-48-516/a941675a-09ae-11f0-9a1c-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-2mm-morning-splendour",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-3mm-morning-splendour"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/hydrogen-pro-morning-splendour-sample', 'https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-morning-splendour-glue-down-7-38-x-48-516/a93fb87d-09ae-11f0-9a1c-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-2mm-morning-splendour']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHPRO12PL",
+   "record_id": "recU2tEBhiqw7WVZu",
+   "product_name": "Biyork Hydrogen PRO 2mm — Playful Otter",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/hydrogen-pro-playful-otter-sample",
+    "https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-playful-otter-glue-down-7-38-x-48-516/a93f28d8-09ae-11f0-9a1c-f6968cef729a",
+    "https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-playful-otter-glue-down-7-38-x-48-516/a941013d-09ae-11f0-9a1c-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-2mm-playful-otter",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-3mm-playful-otter"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/hydrogen-pro-playful-otter-sample', 'https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-playful-otter-glue-down-7-38-x-48-516/a93f28d8-09ae-11f0-9a1c-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-2mm-playful-otter']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHPRO12RA",
+   "record_id": "recIsr4ZwvuzWesb0",
+   "product_name": "Biyork Hydrogen PRO 2mm — Raw",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/hydrogen-pro-raw-sample",
+    "https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-raw-glue-down-7-38-x-48-516/a93fb096-09ae-11f0-9a1c-f6968cef729a",
+    "https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-raw-glue-down-7-38-x-48-516/a9412884-09ae-11f0-9a1c-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-2mm-raw",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-3mm-raw"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/hydrogen-pro-raw-sample', 'https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-raw-glue-down-7-38-x-48-516/a93fb096-09ae-11f0-9a1c-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-2mm-raw']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHPRO20LC",
+   "record_id": "recgzlyYMc1za1nqy",
+   "product_name": "Biyork Hydrogen PRO 3mm — Lily Canvas",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/hydrogen-pro-lily-canvas-sample",
+    "https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-lily-canvas-glue-down-7-38-x-48-516/a93fa726-09ae-11f0-9a1c-f6968cef729a",
+    "https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-lily-canvas-glue-down-7-38-x-48-516/a9411e35-09ae-11f0-9a1c-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-3mm-lily-canvas",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-2mm-lily-canvas"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/hydrogen-pro-lily-canvas-sample', 'https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-lily-canvas-glue-down-7-38-x-48-516/a93fa726-09ae-11f0-9a1c-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-3mm-lily-canvas']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHPRO20MS",
+   "record_id": "reci9FKFdakT8RiHS",
+   "product_name": "Biyork Hydrogen PRO 3mm — Morning Splendour",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/hydrogen-pro-morning-splendour-sample",
+    "https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-morning-splendour-glue-down-7-38-x-48-516/a93fb87d-09ae-11f0-9a1c-f6968cef729a",
+    "https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-morning-splendour-glue-down-7-38-x-48-516/a941675a-09ae-11f0-9a1c-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-3mm-morning-splendour",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-2mm-morning-splendour"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/hydrogen-pro-morning-splendour-sample', 'https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-morning-splendour-glue-down-7-38-x-48-516/a93fb87d-09ae-11f0-9a1c-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-3mm-morning-splendour']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHPRO20PL",
+   "record_id": "rectMR8KMMwFTjAUH",
+   "product_name": "Biyork Hydrogen PRO 3mm — Playful Otter",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/hydrogen-pro-playful-otter-sample",
+    "https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-playful-otter-glue-down-7-38-x-48-516/a93f28d8-09ae-11f0-9a1c-f6968cef729a",
+    "https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-playful-otter-glue-down-7-38-x-48-516/a941013d-09ae-11f0-9a1c-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-3mm-playful-otter",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-2mm-playful-otter"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/hydrogen-pro-playful-otter-sample', 'https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-playful-otter-glue-down-7-38-x-48-516/a93f28d8-09ae-11f0-9a1c-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-3mm-playful-otter']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHPRO20RA",
+   "record_id": "recfgLq0FSf9DCUEW",
+   "product_name": "Biyork Hydrogen PRO 3mm — Raw",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/hydrogen-pro-raw-sample",
+    "https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-raw-glue-down-7-38-x-48-516/a93fb096-09ae-11f0-9a1c-f6968cef729a",
+    "https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-raw-glue-down-7-38-x-48-516/a9412884-09ae-11f0-9a1c-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-3mm-raw",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-2mm-raw"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/hydrogen-pro-raw-sample', 'https://thefloorbox.ca/products/vinyl-planks-hydrogen-pro-raw-glue-down-7-38-x-48-516/a93fb096-09ae-11f0-9a1c-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-3mm-raw']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHY6HP50AL",
+   "record_id": "recb1VLnvjatBR0mt",
+   "product_name": "Biyork Hydrogen 6 Plank 7.0\" — Almond Paste",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Almond Paste'; vetoes {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHY6HP50MS",
+   "record_id": "recydEJ7FpZ9qtcnW",
+   "product_name": "Biyork Hydrogen 6 Plank 7.0\" — Midday Sunrise",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/midday-sunrise",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-midday-sunrise"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/midday-sunrise', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-midday-sunrise']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHY6HP50OU",
+   "record_id": "recyX2tyQqEX5DPng",
+   "product_name": "Biyork Hydrogen 6 Plank 7.0\" — Outback",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Outback'; vetoes {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHY6HP50PL",
+   "record_id": "recFczwRLecQuAHSi",
+   "product_name": "Biyork Hydrogen 6 Plank 7.0\" — Playful Otter",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Playful Otter'; vetoes {'line': 5}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHY6HP50RC",
+   "record_id": "recpXslZ27r0sazWb",
+   "product_name": "Biyork Hydrogen 6 Plank 7.0\" — Rock Cliffs",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Rock Cliffs'; vetoes {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHY6PAN",
+   "record_id": "recRAkd4lqgHcvgH1",
+   "product_name": "Biyork Hydrogen 6 Plank — Angelica",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/angelica-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-angelica"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/angelica-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-angelica']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHY6PFI",
+   "record_id": "recbqFBQLUhGAaBiS",
+   "product_name": "Biyork Hydrogen 6 Plank — Firewood",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/firewood-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-firewood"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/firewood-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-firewood']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHY6PLU",
+   "record_id": "recX30txG5OFdr5PA",
+   "product_name": "Biyork Hydrogen 6 Plank — Lush",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/lush-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-lush"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/lush-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-lush']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHY6PSE",
+   "record_id": "recbOxDXPXyTfduL6",
+   "product_name": "Biyork Hydrogen 6 Plank — Solstice",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/solstice-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-solstice"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/solstice-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-solstice']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHY6PWO",
+   "record_id": "recx4uJhuWgOT0GZX",
+   "product_name": "Biyork Hydrogen 6 Plank — Woodland",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/woodland-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-woodland"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/woodland-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-woodland']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHYDRO7DA",
+   "record_id": "recgwMS4FNmVc4W6c",
+   "product_name": "Biyork Hydrogen 7 — Daliwood",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/daliwood-sample",
+    "https://www.speersflooring.com/products/biyork-hydrogen-7-daliwood-9-x-60-x-7mm"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/daliwood-sample', 'https://www.speersflooring.com/products/biyork-hydrogen-7-daliwood-9-x-60-x-7mm']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHYDRO7KA",
+   "record_id": "recPHSql2ykk1KlrQ",
+   "product_name": "Biyork Hydrogen 7 — Kashmir",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/kashmir-sample",
+    "https://thefloorbox.ca/products/biyork-vinyl-planks-hydrogen-7-kashmir-60x9/1e3aa7b0-db7b-11eb-bd35-f6968cef729a",
+    "https://www.speersflooring.com/products/biyork-hydrogen-7-kashmir-9-x-60-x-7mm"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/kashmir-sample', 'https://thefloorbox.ca/products/biyork-vinyl-planks-hydrogen-7-kashmir-60x9/1e3aa7b0-db7b-11eb-bd35-f6968cef729a', 'https://www.speersflooring.com/products/biyork-hydrogen-7-kashmir-9-x-60-x-7mm']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKHYDRO7LA",
+   "record_id": "receglyz52hxsTzoU",
+   "product_name": "Biyork Hydrogen 7 — La Luna",
+   "candidate_pages": [
+    "https://thefloorbox.ca/products/biyork-vinyl-planks-hydrogen-7-la-luna-60x9/1e3aa82b-db7b-11eb-bd35-f6968cef729a",
+    "https://www.speersflooring.com/products/biyork-hydrogen-7-la-luna-9-x-60-x-7mm"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://thefloorbox.ca/products/biyork-vinyl-planks-hydrogen-7-la-luna-60x9/1e3aa82b-db7b-11eb-bd35-f6968cef729a', 'https://www.speersflooring.com/products/biyork-hydrogen-7-la-luna-9-x-60-x-7mm']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCEH50CH",
+   "record_id": "recxrOlZW0WbIfuUx",
+   "product_name": "Biyork Hydrogen 6 Plank 7.0\" — Chop",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Chop'; vetoes {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCEH50DU",
+   "record_id": "recjTyGV7DJXAKjSa",
+   "product_name": "Biyork Hydrogen 6 Plank 7.0\" — Dusty",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/dusty",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-dusty"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/dusty', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-dusty']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCEH50NU",
+   "record_id": "rec1Be1pEUzXk5jQE",
+   "product_name": "Biyork Hydrogen 6 Plank 7.0\" — Nudie",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Nudie'; vetoes {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCEH50RA",
+   "record_id": "recb8QLGryyib2GEI",
+   "product_name": "Biyork Hydrogen 6 Plank 7.0\" — Raw",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/raw",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-raw"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/raw', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-raw']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCH7DB",
+   "record_id": "recXPMCHQbSUMRZGk",
+   "product_name": "Biyork Hydrogen 7 — Daybreak",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/daybreak-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-7-daybreak"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/daybreak-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-7-daybreak']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCH7IR",
+   "record_id": "recxY067j0hVWsnwj",
+   "product_name": "Biyork Hydrogen 7 — Ironvale",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/ironvale-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-7-ironvale"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/ironvale-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-7-ironvale']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCH7SA",
+   "record_id": "recJVxdC6NnOkQnTN",
+   "product_name": "Biyork Hydrogen 7 — Sable",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/sable-sample"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/sable-sample']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCH7SI",
+   "record_id": "recLjKFw1zE3ZSo0z",
+   "product_name": "Biyork Hydrogen 7 — Silhouette",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/silhouette-sample-1",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-7-silhouette"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/silhouette-sample-1', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-7-silhouette']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCH7SO",
+   "record_id": "reciGzmex1wwbZBCD",
+   "product_name": "Biyork Hydrogen 7 — Sonnet",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/sonnet-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-7-sonnet"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/sonnet-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-7-sonnet']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCH8BA",
+   "record_id": "rec2bUmg0h8Ulixbm",
+   "product_name": "Biyork Hydrogen 8 — Brume Air",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/brume-air-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-8-brume-air",
+    "https://www.speersflooring.com/products/biyork-hydrogen-8-brume-air-9-x-72-x-8mm"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/brume-air-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-8-brume-air', 'https://www.speersflooring.com/products/biyork-hydrogen-8-brume-air-9-x-72-x-8mm']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCH8BB",
+   "record_id": "recKbhHHV9m5Df5fN",
+   "product_name": "Biyork Hydrogen 8 — Breezy Billow",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/breezy-billow-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-8-breezy-billow",
+    "https://www.speersflooring.com/products/biyork-hydrogen-8-breezy-billow-9-x-72-x-8mm"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/breezy-billow-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-8-breezy-billow', 'https://www.speersflooring.com/products/biyork-hydrogen-8-breezy-billow-9-x-72-x-8mm']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCH8CC",
+   "record_id": "rec86R0GxUSyweqPn",
+   "product_name": "Biyork Hydrogen 8 — Cumulus Cloud",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/cumulus-cloud-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-8-cumulus-cloud",
+    "https://www.speersflooring.com/products/biyork-hydrogen-8-cumulus-cloud-9-x-72-x-8mm"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/cumulus-cloud-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-8-cumulus-cloud', 'https://www.speersflooring.com/products/biyork-hydrogen-8-cumulus-cloud-9-x-72-x-8mm']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCH8CH",
+   "record_id": "recYn76Gxl25b4MCL",
+   "product_name": "Biyork Hydrogen 8 — Cool Haze",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/cool-haze-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-8-cool-haze",
+    "https://www.speersflooring.com/products/biyork-hydrogen-8-cool-haze-9-x-72-x-8mm"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/cool-haze-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-8-cool-haze', 'https://www.speersflooring.com/products/biyork-hydrogen-8-cool-haze-9-x-72-x-8mm']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCH8EE",
+   "record_id": "recSD98VRhXJY36gP",
+   "product_name": "Biyork Hydrogen 8 — Ether Essence",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/ether-essence",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-8-ether-essence",
+    "https://www.speersflooring.com/products/biyork-hydrogen-8-ether-essence-9-x-72-x-8mm"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/ether-essence', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-8-ether-essence', 'https://www.speersflooring.com/products/biyork-hydrogen-8-ether-essence-9-x-72-x-8mm']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCH8MM",
+   "record_id": "recosyBASbsn9209a",
+   "product_name": "Biyork Hydrogen 8 — Mellow Mist",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/mellow-mist-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-8-mellow-mist",
+    "https://www.speersflooring.com/products/biyork-hydrogen-8-mellow-mist-9-x-72-x-8mm"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/mellow-mist-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-8-mellow-mist', 'https://www.speersflooring.com/products/biyork-hydrogen-8-mellow-mist-9-x-72-x-8mm']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCH8SM",
+   "record_id": "recx490iPs9BFaMTu",
+   "product_name": "Biyork Hydrogen 8 — Silent Morning",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/silent-morning-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-8-silent-morning",
+    "https://www.speersflooring.com/products/biyork-hydrogen-8-silent-morning-9-x-72-x-8mm"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/silent-morning-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-8-silent-morning', 'https://www.speersflooring.com/products/biyork-hydrogen-8-silent-morning-9-x-72-x-8mm']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCH8VB",
+   "record_id": "recgT87BRdC8xembX",
+   "product_name": "Biyork Hydrogen 8 — Valley Bliss",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/valley-bliss-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-8-valley-bliss",
+    "https://www.speersflooring.com/products/biyork-hydrogen-8-valley-bliss-9-x-72-x-8mm"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/valley-bliss-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-8-valley-bliss', 'https://www.speersflooring.com/products/biyork-hydrogen-8-valley-bliss-9-x-72-x-8mm']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCHY50CA-2",
+   "record_id": "recfEADFbyzvZ1Yqm",
+   "product_name": "Biyork Hydrogen 5 — Cashmere",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/cashmere",
+    "https://thefloorbox.ca/products/biyork-vinyl-planks-hydrogen-5-pro-cashmere-7x48-2mm/1e3a9dd6-db7b-11eb-bd35-f6968cef729a",
+    "https://thefloorbox.ca/products/biyork-vinyl-planks-hydrogen-5-pro-cashmere-7x48-3mm/1e3aa181-db7b-11eb-bd35-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-cashmere",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-2mm-cashmere",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-3mm-cashmere",
+    "https://www.speersflooring.com/products/biyork-hydrogen-5-cashmere-7-x-48-x-5mm"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/cashmere', 'https://thefloorbox.ca/products/biyork-vinyl-planks-hydrogen-5-pro-cashmere-7x48-2mm/1e3a9dd6-db7b-11eb-bd35-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-cashmere', 'https://www.speersflooring.com/products/biyork-hydrogen-5-cashmere-7-x-48-x-5mm']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCHY50EV-2",
+   "record_id": "recBTFcpnVWDAgvb2",
+   "product_name": "Biyork Hydrogen 5 — Everest",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/everest",
+    "https://thefloorbox.ca/products/biyork-vinyl-planks-hydrogen-5-pro-everest-7x48-2mm/1e3a9e50-db7b-11eb-bd35-f6968cef729a",
+    "https://thefloorbox.ca/products/biyork-vinyl-planks-hydrogen-5-pro-everest-7x48-3mm/1e3aa24e-db7b-11eb-bd35-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-everest",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-2mm-everest",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-3mm-everest",
+    "https://www.speersflooring.com/products/biyork-hydrogen-5-everest-7-x-48-x-5mm"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/everest', 'https://thefloorbox.ca/products/biyork-vinyl-planks-hydrogen-5-pro-everest-7x48-2mm/1e3a9e50-db7b-11eb-bd35-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-everest', 'https://www.speersflooring.com/products/biyork-hydrogen-5-everest-7-x-48-x-5mm']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCHY50GO-2",
+   "record_id": "recj581OiXpOgjoaK",
+   "product_name": "Biyork Hydrogen 5 — Gold coast",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/gold-coast",
+    "https://thefloorbox.ca/products/biyork-vinyl-planks-hydrogen-5-pro-gold-coast-7x48-2mm/1e3a9ec8-db7b-11eb-bd35-f6968cef729a",
+    "https://thefloorbox.ca/products/biyork-vinyl-planks-hydrogen-5-pro-gold-coast-7x48-3mm/1e3aa2e5-db7b-11eb-bd35-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-goldcoast",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-2mm-gold-coast",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-pro-3mm-gold-coast",
+    "https://www.speersflooring.com/products/biyork-hydrogen-5-goldcoast-7-x-48-x-5mm"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/gold-coast', 'https://thefloorbox.ca/products/biyork-vinyl-planks-hydrogen-5-pro-gold-coast-7x48-2mm/1e3a9ec8-db7b-11eb-bd35-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-goldcoast', 'https://www.speersflooring.com/products/biyork-hydrogen-5-goldcoast-7-x-48-x-5mm']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCHY50LI-2",
+   "record_id": "recOSScICgOCCkeXN",
+   "product_name": "Biyork Hydrogen 5 — Liberty",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/liberty",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-liberty",
+    "https://www.speersflooring.com/products/biyork-hydrogen-5-liberty-7-x-48-x-5mm"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/liberty', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-liberty', 'https://www.speersflooring.com/products/biyork-hydrogen-5-liberty-7-x-48-x-5mm']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKRCHY50OV-2",
+   "record_id": "recnvQnp3uYhl9qR1",
+   "product_name": "Biyork Hydrogen 5 — Overcast",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/overcast",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-overcast",
+    "https://www.speersflooring.com/products/biyork-hydrogen-5-overcast-7-x-48-x-5mm"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/overcast', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-5-overcast', 'https://www.speersflooring.com/products/biyork-hydrogen-5-overcast-7-x-48-x-5mm']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKTRAKLLP5AB",
+   "record_id": "recd0SlvAycvwFElx",
+   "product_name": "Biyork Traktion — Afterburn",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/afterburn",
+    "https://thefloorbox.ca/products/vinyl-plank-traktion-afterburn-loose-lay-7-38-x-48/02fed275-95c2-11ed-a651-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-traktion-loose-lay-collection-afterburn"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/afterburn', 'https://thefloorbox.ca/products/vinyl-plank-traktion-afterburn-loose-lay-7-38-x-48/02fed275-95c2-11ed-a651-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-traktion-loose-lay-collection-afterburn']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKTRAKLLP5BS",
+   "record_id": "receV5FqIdOPmwLbz",
+   "product_name": "Biyork Traktion — Brimstone",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/brimstone",
+    "https://thefloorbox.ca/products/vinyl-plank-traktion-brimstone-loose-lay-7-38-x-48/02fe29b4-95c2-11ed-a651-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-traktion-loose-lay-collection-brimstone"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/brimstone', 'https://thefloorbox.ca/products/vinyl-plank-traktion-brimstone-loose-lay-7-38-x-48/02fe29b4-95c2-11ed-a651-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-traktion-loose-lay-collection-brimstone']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKTRAKLLP5HW",
+   "record_id": "recFyPiAHsRqvsuGR",
+   "product_name": "Biyork Traktion — Haywire",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/haywire",
+    "https://thefloorbox.ca/products/vinyl-plank-traktion-haywire-loose-lay-7-38-x-48/02fe8119-95c2-11ed-a651-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-traktion-loose-lay-collection-haywire"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/haywire', 'https://thefloorbox.ca/products/vinyl-plank-traktion-haywire-loose-lay-7-38-x-48/02fe8119-95c2-11ed-a651-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-traktion-loose-lay-collection-haywire']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKTRAKLLP5QU",
+   "record_id": "recCFqAndfz5AEoKO",
+   "product_name": "Biyork Traktion — Quake",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/quake",
+    "https://thefloorbox.ca/products/vinyl-plank-traktion-quake-loose-lay-7-38-x-48/02feb7aa-95c2-11ed-a651-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-traktion-loose-lay-collection-quake"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/quake', 'https://thefloorbox.ca/products/vinyl-plank-traktion-quake-loose-lay-7-38-x-48/02feb7aa-95c2-11ed-a651-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-traktion-loose-lay-collection-quake']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKTRAKLLP5SB",
+   "record_id": "recEstDC7rM3OiHTL",
+   "product_name": "Biyork Traktion — Silverbolt",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/silverbolt",
+    "https://thefloorbox.ca/products/vinyl-plank-traktion-silverbolt-loose-lay-7-38-x-48/02fe9b25-95c2-11ed-a651-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-traktion-loose-lay-collection-silverbolt"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/silverbolt', 'https://thefloorbox.ca/products/vinyl-plank-traktion-silverbolt-loose-lay-7-38-x-48/02fe9b25-95c2-11ed-a651-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-traktion-loose-lay-collection-silverbolt']; {}"
+  },
+  {
+   "sku": "LVP-BIYK-BYKTRAKLLP5TB",
+   "record_id": "recwcwbuCapx84Ke9",
+   "product_name": "Biyork Traktion — Trailbreak",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/trailbreak",
+    "https://thefloorbox.ca/products/vinyl-plank-traktion-trailbreak-loose-lay-7-38-x-48/02fe654b-95c2-11ed-a651-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-traktion-loose-lay-collection-trailbreak"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/trailbreak', 'https://thefloorbox.ca/products/vinyl-plank-traktion-trailbreak-loose-lay-7-38-x-48/02fe654b-95c2-11ed-a651-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-traktion-loose-lay-collection-trailbreak']; {}"
+  },
+  {
+   "sku": "LVT-BIYK-BYKHPROT12CH",
+   "record_id": "recTF11CxfiZNasAU",
+   "product_name": "Biyork Hydrogen PRO Tile 2mm — Chalk",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/hydrogen-pro-chalk-sample",
+    "https://thefloorbox.ca/products/vinyl-tiles-hydrogen-pro-chalk-glue-down-24-x-12/a93fc548-09ae-11f0-9a1c-f6968cef729a",
+    "https://thefloorbox.ca/products/vinyl-tiles-hydrogen-pro-chalk-glue-down-24-x-12/a9417c32-09ae-11f0-9a1c-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-tile-2mm-chalk",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-tile-3mm-chalk"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/hydrogen-pro-chalk-sample', 'https://thefloorbox.ca/products/vinyl-tiles-hydrogen-pro-chalk-glue-down-24-x-12/a93fc548-09ae-11f0-9a1c-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-tile-2mm-chalk']; {}"
+  },
+  {
+   "sku": "LVT-BIYK-BYKHPROT12PO",
+   "record_id": "recujTco2DYwXaGry",
+   "product_name": "Biyork Hydrogen PRO Tile 2mm — Porcelain",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/hydrogen-pro-porcelain-sample",
+    "https://thefloorbox.ca/products/vinyl-tiles-hydrogen-pro-porcelain-glue-down-24-x-12/a93feb1e-09ae-11f0-9a1c-f6968cef729a",
+    "https://thefloorbox.ca/products/vinyl-tiles-hydrogen-pro-porcelain-glue-down-24-x-12/a9418cfe-09ae-11f0-9a1c-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-tile-2mm-porcelain",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-tile-3mm-porcelain"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/hydrogen-pro-porcelain-sample', 'https://thefloorbox.ca/products/vinyl-tiles-hydrogen-pro-porcelain-glue-down-24-x-12/a93feb1e-09ae-11f0-9a1c-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-tile-2mm-porcelain']; {}"
+  },
+  {
+   "sku": "LVT-BIYK-BYKHPROT20CH",
+   "record_id": "rec6Sa8AFvUTuH5nN",
+   "product_name": "Biyork Hydrogen PRO Tile 3mm — Chalk",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/hydrogen-pro-chalk-sample",
+    "https://thefloorbox.ca/products/vinyl-tiles-hydrogen-pro-chalk-glue-down-24-x-12/a93fc548-09ae-11f0-9a1c-f6968cef729a",
+    "https://thefloorbox.ca/products/vinyl-tiles-hydrogen-pro-chalk-glue-down-24-x-12/a9417c32-09ae-11f0-9a1c-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-tile-3mm-chalk",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-tile-2mm-chalk"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/hydrogen-pro-chalk-sample', 'https://thefloorbox.ca/products/vinyl-tiles-hydrogen-pro-chalk-glue-down-24-x-12/a93fc548-09ae-11f0-9a1c-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-tile-3mm-chalk']; {}"
+  },
+  {
+   "sku": "LVT-BIYK-BYKHPROT20PO",
+   "record_id": "recFXlvnse5NZFOEI",
+   "product_name": "Biyork Hydrogen PRO Tile 3mm — Porcelain",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/hydrogen-pro-porcelain-sample",
+    "https://thefloorbox.ca/products/vinyl-tiles-hydrogen-pro-porcelain-glue-down-24-x-12/a93feb1e-09ae-11f0-9a1c-f6968cef729a",
+    "https://thefloorbox.ca/products/vinyl-tiles-hydrogen-pro-porcelain-glue-down-24-x-12/a9418cfe-09ae-11f0-9a1c-f6968cef729a",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-tile-3mm-porcelain",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-tile-2mm-porcelain"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/hydrogen-pro-porcelain-sample', 'https://thefloorbox.ca/products/vinyl-tiles-hydrogen-pro-porcelain-glue-down-24-x-12/a93feb1e-09ae-11f0-9a1c-f6968cef729a', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-pro-tile-3mm-porcelain']; {}"
+  },
+  {
+   "sku": "LVT-BIYK-BYKHY6HT50BO",
+   "record_id": "recLbta19xLysbt9R",
+   "product_name": "Biyork Hydrogen 6 Tile 24.0\" — Bourbon",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Bourbon'; vetoes {}"
+  },
+  {
+   "sku": "LVT-BIYK-BYKHY6HT50CO",
+   "record_id": "receuSWiAhj0wr22L",
+   "product_name": "Biyork Hydrogen 6 Tile 24.0\" — Combed Cotton",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/combed-cotton-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-tile-combed-cotton"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/combed-cotton-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-tile-combed-cotton']; {}"
+  },
+  {
+   "sku": "LVT-BIYK-BYKRCET50CL",
+   "record_id": "recPvajSCTsPXBSd9",
+   "product_name": "Biyork Hydrogen 6 Tile 24.0\" — Clay",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Clay'; vetoes {'line': 1}"
+  },
+  {
+   "sku": "LVT-BIYK-BYKRCET50MA",
+   "record_id": "recraAwEs2I1HvvFm",
+   "product_name": "Biyork Hydrogen 6 Tile 24.0\" — Marble",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Marble'; vetoes {'line': 7}"
+  },
+  {
+   "sku": "LVT-BIYK-BYKRCET50PO",
+   "record_id": "rec10WjY40xUOE0QU",
+   "product_name": "Biyork Hydrogen 6 Tile 24.0\" — Porcelain",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Porcelain'; vetoes {'line': 5}"
+  },
+  {
+   "sku": "LVT-BIYK-BYKRCET50RH",
+   "record_id": "rece3JsgOAz2Nny93",
+   "product_name": "Biyork Hydrogen 6 Tile — Rhino",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/rhino-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-tile-rhino"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/rhino-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-tile-rhino']; {}"
+  },
+  {
+   "sku": "LVT-BIYK-BYKRCET50TH",
+   "record_id": "recYqmgDzB33pkk3s",
+   "product_name": "Biyork Hydrogen 6 Tile — Thunder",
+   "candidate_pages": [
+    "https://www.biyorkcanada.com/products/thunder-sample",
+    "https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-tile-thunder"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.biyorkcanada.com/products/thunder-sample', 'https://www.wordofmouthfloors.com/products/biyork-hydrogen-6-tile-thunder']; {}"
+  }
+ ]
+}

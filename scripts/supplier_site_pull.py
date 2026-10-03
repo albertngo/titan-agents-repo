@@ -373,6 +373,18 @@ def slug_title(slug):
             else:
                 grade, g_start = tokens[i].title(), i
             break
+    if n is None and "x" in tokens:
+        # `...-loose-lay-7-38-x-48-38` (Triforest/Toucan listings): width x length, each with an
+        # optional fraction token; the width is the number run just before the last `x`.
+        xi = len(tokens) - 1 - tokens[::-1].index("x")
+        j = xi
+        while j > 0 and tokens[j - 1].isdigit():
+            j -= 1
+        if j < xi:
+            w = float(tokens[j]) + (FRACTIONS.get(tokens[j + 1], 0) if j + 1 < xi else 0)
+            words = tokens[:j]
+            name = " ".join(t.upper() if SLUG_CODE.match(t) else t.title() for t in words)
+            return " — ".join([name, f'{w:g}"'])
     if n is None:
         n = len(tokens)
         while n > 1 and tokens[n - 1].isdigit():
@@ -714,10 +726,15 @@ def main(argv=None):
         print(f"  images {dict(counts)}")
     # A source the environment refuses is fixable, and blank-only writes mean whatever the
     # later sources fill now could never be improved by it later: stop rather than skip it.
-    blocked = [k for k, v in sources.items() if "host_blocked" in v["tried"].values() and not v["pages"]]
+    # Also a source that simply failed this time (HTTP 5xx, a timeout): retryable, and the same
+    # blank-only reasoning applies (2026-10-03: The Floor Box's sitemap errored during three
+    # parallel pulls and Speers would have filled Vidar's blanks first).
+    blocked = [k for k, v in sources.items() if not v["pages"] and any(
+        t == "host_blocked" or str(t).startswith("unavailable") for t in v["tried"].values())
+        and "challenged" not in v["tried"].values()]
     if blocked and status == "ok":
-        print(f"\n  {', '.join(blocked)} refused by the environment's network policy (host_blocked).\n"
-              "  Allow it and re-run; the later sources are not used alone while an earlier one is fixable.")
+        print(f"\n  {', '.join(blocked)} refused or unavailable this run ({ {k: sources[k]['tried'] for k in blocked} }).\n"
+              "  Allow it / retry; the later sources are not used alone while an earlier one is fixable.")
         return 3
     if status in ("challenged", "host_blocked"):
         print(f"\n  The site refused automated reading ({status}). Not worked around: allow the host in the\n"

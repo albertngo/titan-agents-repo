@@ -179,14 +179,34 @@ class TestRelink(unittest.TestCase):
                         source="wordofmouth"), "product_type": "SPC RIGID CORE VINYL"}
         self.assertEqual(im.match_records([rec], [vinyl], VIDAR, REG["matching"])[rec["id"]]["tier"], "none")
 
+    def test_trim_named_after_the_floor_is_not_the_floor(self):
+        rec = {"id": "recB000000000009", "SKU": "LVP-BIYK-0009", "Product name": "Biyork Traktion — Afterburn", "Category": "LVP"}
+        trim = page("https://w/afterburn-reducer", "Traktion Afterburn Reducer", source="wordofmouth")
+        self.assertEqual(im.match_records([rec], [trim], REG["suppliers"]["BIYORK"], REG["matching"])[rec["id"]]["tier"], "none")
+
     def test_no_alternative_keeps_the_link(self):
         p = self.plan([])
         self.assertEqual(p["actions"], [])
         self.assertEqual(p["held"][0]["reason"], "no_alternative_link")
 
-    def test_a_supplier_may_lower_the_swatch_bar(self):
-        self.assertEqual(REG["suppliers"]["BIYORK"]["image_rules"]["min_swatch_long_edge_px"], 1000)
-        self.assertEqual(REG["image_rules"]["min_swatch_long_edge_px"], 1600)
+    def test_a_lower_quality_photo_beats_none(self):
+        # Albert, 2026-10-03: "Having it is better than none." Only icons and thumbnails are cut.
+        self.assertEqual(REG["image_rules"]["min_swatch_long_edge_px"], 300)
+        self.assertEqual(REG["image_rules"]["min_any_long_edge_px"], 300)
+
+
+class TestFloorBoxSizes(unittest.TestCase):
+    def test_width_by_length_slugs(self):
+        self.assertEqual(pull.slug_title("vinyl-planks-tfl62-series-627-honey-birch-loose-lay-7-38-x-48-38"),
+                         'Vinyl Planks TFL62 Series 627 Honey Birch Loose Lay — 7.375"')
+        self.assertTrue(pull.slug_title("laminate-flooring-tf66-series-6603-santa-fe-7-34-x-47").endswith('7.75"'))
+        self.assertTrue(pull.slug_title("click-vinyl-planks-spc7-series-710-oyster-bay-click-lock-6-x-48").endswith('— 6"'))
+
+    def test_rounded_catalogue_widths_match(self):
+        rec = {"id": "recT000000000001", "SKU": "LVP-TRIF-0001", "Product name": 'Toucan Looselay Vinyl — Honey Birch (7.4" x 5.0mm)',
+               "Width (in)": 7.4, "Category": "LVP"}
+        p = page("https://thefloorbox.ca/products/x", 'Vinyl Planks TFL62 Series 627 Honey Birch Loose Lay — 7.375"')
+        self.assertEqual(im.match_records([rec], [p], REG["suppliers"]["TRIFOREST"], REG["matching"])[rec["id"]]["tier"], "exact")
 
 
 class TestPull(unittest.TestCase):
@@ -316,9 +336,16 @@ class TestPlan(unittest.TestCase):
         self.assertEqual(p["actions"], [])
         self.assertEqual(p["summary"]["skipped"], {"all_targets_filled": 1})
 
-    def test_small_swatch_never_lands(self):
+    def test_a_smaller_swatch_lands_after_the_larger_one(self):
+        # 2026-10-03: a lower quality photo is better than none; the larger still goes first.
         p = self.build([NAKED_9], self.pages, self.j)
-        self.assertEqual([x["url"] for x in p["actions"][0]["fields"]["Swatch images"]], ["https://cdn/sw.jpg"])
+        self.assertEqual([x["url"] for x in p["actions"][0]["fields"]["Swatch images"]],
+                         ["https://cdn/sw.jpg", "https://cdn/small.jpg"])
+
+    def test_a_thumbnail_never_lands(self):
+        pages = [page("https://fb/t", "9'' Collection American White Oak-Naked Oak", [img("t1", "https://cdn/thumb.jpg", 200, 150)])]
+        p = self.build([NAKED_9], pages, {"contract_version": "image-judgements-1", "images": {"t1": {"kind": "swatch"}}})
+        self.assertEqual(p["actions"], [])
 
     def test_unjudged_images_are_held(self):
         p = self.build([NAKED_9], self.pages, {"contract_version": "image-judgements-1", "images": {}})
@@ -329,7 +356,9 @@ class TestPlan(unittest.TestCase):
             "s1": {"kind": "swatch", "watermarked": True}, "r1": {"kind": "room", "colour_matches_page": False},
             "s2": {"kind": "swatch"}}}
         p = self.build([NAKED_9], self.pages, j)
-        self.assertEqual(p["held"][0]["reason"], "low_res_swatch")
+        a = p["actions"][0]
+        self.assertEqual([x["url"] for x in a["fields"]["Swatch images"]], ["https://cdn/small.jpg"])
+        self.assertNotIn("Room scene images", a["fields"])
 
     def test_ambiguous_needs_a_verdict_and_null_is_respected(self):
         pages = self.pages + [page("https://fb/naked-9b", "9'' Collection American White Oak-Naked Oak", [img("s3", "https://cdn/b.jpg")])]
