@@ -393,12 +393,15 @@ summary with the path. Read that file. Each entry in `calls[]` carries
 - `none` (no-answer, busy, …), `skipped-short` (< 8 s), `over-cap`, `failed`,
   `too_large` — nothing to read; still count the call.
 
-Speaker labels are roles in notes Make wrote since 2026-10-03 (`Customer`, `Staff`,
-`Staff (Joey)`, `Other`) and trust them as given; a name in a label means the person
-introduced themselves or it was their own line. Where a label is still `Speaker N` (older
-notes, a fourth speaker, a call this run transcribed itself, or one the model could not
-place) it is a diarized label, not a role: work out who is staff from content and
-`direction`/`staff`, and say "unclear" rather than guess.
+Speaker labels are roles in notes Make wrote since 2026-10-03 (`Customer`, `Supplier`,
+`Staff`, `Staff (Joey)`, `Other`): trust them as given. They appear only when the call
+made the Titan side explicit and Make checked it, and a name in a label means the person
+introduced themselves or it was their own line. `Speaker N` means the Titan side was not
+explicit (by rule, not by accident: Albert, 2026-10-03), or an older note, a fourth
+speaker, or a call this run transcribed itself. Then it is a diarized label, not a role:
+do not infer roles from who speaks first or from `direction` (on an outbound call the
+other side usually answers first); say "unclear" rather than guess. The other party is
+not always a customer: Titan also calls suppliers and installers.
 
 Join keys: `conversation_id` → `extensions.ghl.conversations[]` and the
 `ghl-conv-<conversationId>` message item; `contact_id` → leads and opportunities.

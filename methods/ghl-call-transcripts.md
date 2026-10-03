@@ -27,8 +27,8 @@ Registry: `platform-settings/ghl-calls.json`. Script: `scripts/ghl_calls_pull.py
 | D4 | What if transcription fails? | `ghl.json` stays `status: "ok"`; `reporting.calls.status` says `error` and one `needs_attention` line says why |
 | D8 | The contact note | Summary, then Next steps, then the transcript, written right after processing. **Superseded 2026-10-02 by D9** |
 | D9 | Summary placement (2026-10-02) | Summary + Next steps → **internal comment** on the conversation, behind the comment gate; transcript → contact Notes; both carry the call line and `Ref C-MMDD-HHmm` |
-| D10 | Staff name (2026-10-02) | The call's own GHL user if it is a person; on the shared Front Desk line `Staff`, unless the Titan person introduces themselves ("this is Joey"). Nothing else names them: not the customer using a name, not a colleague called out. Roster: `ghl-calls.json` → `staff` |
-| D11 | Role labels (2026-10-02) | Every transcript line says who is talking: `Customer`, `Staff`, `Staff (Joey)` (only when D10 named Joey), `Other`; `Speaker N` only where the model could not tell. Vocabulary: `ghl-calls.json` → `staff.labels` |
+| D10 | Staff name (2026-10-02, checked by Make since 2026-10-03) | The call's own GHL user if it is a person; on the shared Front Desk line `Staff`, unless the transcript itself contains the person's self-introduction ("this is Joey", "Joey speaking"). Nothing else names them: not the customer using a name, not a colleague called out. Roster and phrases: `ghl-calls.json` → `staff` |
+| D11 | Role labels (2026-10-02; only on checked evidence since 2026-10-03) | When the Titan side is explicit in the call (a line where the Titan person names Titan or themselves, quoted by the model and checked by Make against the transcript), every line says who is talking: `Customer`, `Supplier`, `Staff`, `Staff (Joey)` (only when D10 named Joey), `Other`. Otherwise every line stays `Speaker 1` / `Speaker 2`, inbound or outbound. Vocabulary: `ghl-calls.json` → `staff.labels` |
 | D5 | Ownership (confirmed 2026-10-02) | After a connected call, `next_response_owner` is `us` only if a commitment by us is still open |
 | D6 | Sensitivity (confirmed 2026-10-02) | Provenance rule unchanged: team-level; `private` only for `intent: personal` |
 | D7 | Coaching notes (confirmed 2026-10-02) | `extensions.ghl.call_quality` (private), rubric + one neutral sentence, never in items, needs_attention or the GHL note |
@@ -73,7 +73,7 @@ Summary
 
 Next steps
 - Us: <what> — by <when>
-- Customer: <what> — by <when>
+- Them: <what> — by <when>
 
 [call-summary v1 messageId=… ref=C-1001-1432]
 ```
@@ -102,10 +102,18 @@ Desk line the summary model reports a name only if the Titan person introduces
 themselves by it, and module 11 accepts it through a switch that knows the roster and
 nothing else; anything else becomes `Staff`.
 
-**Labels (D11).** The model also writes a `Roles:` line in a closed vocabulary
-(`customer`, `staff`, `staff Joey`, `other`, `unclear`). Module 11 reads one role per
-speaker, module 12 turns each into a label, and module 34 swaps every `] Speaker N:`
-prefix for it. `staff Joey` becomes `Staff (Joey)` only when the Staff line is Joey; on
+**Labels (D11).** The model writes a `Role evidence:` line, one transcript line copied
+exactly in which the Titan person names Titan or themselves ("Good morning, Titan
+Flooring", "Hi, this is Joey from Titan"), or `none`, and then a `Roles:` line in a
+closed vocabulary (`customer`, `supplier`, `staff`, `staff Joey`, `other`, `unclear`).
+Make relabels only if three things hold (module 12 `ev_ok` / `ev_role`, module 34): the
+quoted line appears word for word in the transcript; it mentions Titan, or the staff
+name D10 already accepted; and its speaker is the one the Roles line calls staff. Who
+speaks first, who asks and who answers, and the call direction are never evidence: on
+an outbound call the other side often answers first (2026-10-03, a supplier picked up
+with "Hello?" and was labelled Staff). If any check fails, every line stays `Speaker N`.
+When they pass, module 11 reads one role per speaker, module 12 turns each into a label,
+and module 34 swaps every `] Speaker N:` prefix for it. `staff Joey` becomes `Staff (Joey)` only when the Staff line is Joey; on
 a person's own GHL user every staff line is `Staff (<that person>)`; anything the switch
 does not know leaves `Speaker N`. Speakers 1–3 are relabelled; a fourth keeps its raw
 label. Notes before v7 keep their `Speaker N` lines and `Speakers:` key.
@@ -122,6 +130,18 @@ call was passed on are listed as not evidence. With `Staff` unnamed the Summary 
 "Titan staff". Module 11 matches `Staff:` only at the start of a line, so the evidence
 line is never read as the Staff value; the evidence line itself is dropped. The miss
 this allows is the safe one: a name that was said but not picked up becomes `Staff`.
+Since 2026-10-03 Make no longer takes the model's word for it: module 11 keeps a roster
+name only if the transcript itself contains that person's self-introduction ("this is",
+"it's", "I'm", "my name is", "name's" + the name, or "<name> speaking"); the model had
+twice named Joey from a customer's "Hi, uh, Joey". If Make rejects the model's name,
+that name is replaced by "Titan staff" in the comment text too.
+
+**Summary (2026-10-03).** Make writes the first words from GHL's direction and contact
+name ("Titan called <contact>" or "<contact> called Titan"); the model only continues.
+The other party is not assumed to be a customer (Titan calls suppliers and installers
+too), the other side's commitments are `- Them:`, and when the roles are unclear the
+model is told not to say who said what. Sonnet follows that; Haiku, on a 52-second
+supplier call, still wrote "Titan confirmed it is in stock" in 2 of 2 probe runs.
 Staff can make this reliable by answering "Titan Flooring, this is Joey".
 
 ## Engines (prices web-searched 2026-10-01; verify at signup)
@@ -199,10 +219,11 @@ GHL workflow "Call Status" (completed / voicemail) → Webhook action → Make w
       route 3  33 read "call_summary" → 11 …     (runs after both; continues below)
     Claude writes Name evidence, Staff, Roles, Summary, Next steps; the saved value is
     "<messageId>|||<text>" and module 11 accepts only this call's
-11  Set variables: staff (D10 rule), staff_label, role_1..3, summary block, Ref, date,
-                   duration
-12  Set variables: note header, continuation header, comment text, lab_1..3 (D11)
-34  Set variables: tx — the transcript with every "] Speaker N:" swapped for its label
+11  Set variables: staff (D10 rule + self-introduction check), staff_said, staff_label,
+                   role_1..3, role_ev, summary block, Ref, date, duration
+12  Set variables: note header, continuation header, comment text (rejected name ->
+                   "Titan staff"), lab_1..3, ev_ok, ev_role (D11)
+34  Set variables: tx — the transcript relabelled, only if ev_ok and ev_role pass
 13  Repeater N → 1
 14  GHL: Add a note to the contact — labelled transcript, n equal parts (GHL connection 4426112)
 15  Transform to JSON: the comment text                [filter: last part]
@@ -355,6 +376,23 @@ the same day).
 - Coaching never reaches a GHL note, `items` or `needs_attention`.
 
 ## Log
+
+- **2026-10-03 20:53 UTC, v8: labels and names only on checked evidence (Albert, after a
+  supplier call came out reversed: "I want to make sure that if the call is outbound and
+  not sure of the speakers explicitly, from the callers user, or from the conversation.
+  Then the transcript is speaker 1 speaker 2 to avoid mistakes. Same for inbound.").**
+  Titan rang a supplier from the Front Desk line; the supplier answered "Hello?", and the
+  model labelled the supplier Staff and Titan Customer and summarised "A customer called
+  to check if Titan has Aspen in stock". Nobody on the call said Titan or a name. Make now
+  checks the evidence itself (D10, D11, Summary above), so that call would stay
+  `Speaker 1 / 2`. Probed with the real expressions on three real calls before the push:
+  the supplier call → `Speaker N` on both models; an inbound Front Desk call that answers
+  "Good morning, Titan Flooring" → `Staff` / `Customer` on both; a call where only the
+  customer says "Joey" → `Staff` and raw labels on both, with the model's "Joey"
+  overruled by Make. The self-introduction check, run over the nine calls written so far,
+  finds exactly one ("this is Joey") and no false ones. One Sonnet run returned "No
+  conversation recorded" for a real 6-minute call; the rerun was normal (watch item).
+  Live blueprint read back identical.
 
 - **2026-10-03 02:09 UTC (22:09 Toronto), v7: self-introduction only, and role labels
   (Albert: "From now on, Front desk is a general 'staff'. Only IF the context explicitly

@@ -189,12 +189,25 @@
     "labels": {
       "customer": "Customer",
       "caller": "Customer",
+      "supplier": "Supplier",
       "other": "Other",
       "staff": "Staff, or Staff (<name>) on a person's own GHL user",
       "staff <name>": "Staff (<name>) only when the Staff line has that name; otherwise as staff",
-      "unclear or missing": "Speaker N (unchanged)"
+      "unclear, missing, or no checked Role evidence": "Speaker N (unchanged) on every line"
     },
-    "_labels": "Albert, 2026-10-02 evening: 'For the transcript in notes. Can you make it perfectly clear speaker 1 and speaker 2 is? Customer vs staff(name) if apparent'. Since v7 the summary model writes a Roles line in a closed vocabulary (left column); Make modules 11 and 12 turn it into the label on the right and module 34 swaps every '] Speaker N:' prefix for it, so a note reads '[00:02] Staff: Good morning, Titan Flooring.' / '[00:04] Customer: Hi …'. A named label needs the Staff line to carry that same name, so a model slip cannot put a name on a line the call-level rule did not allow. Speakers 1-3 are relabelled (Scribe's speaker_0-2); a fourth speaker keeps its raw label. The free-text 'Speakers:' key line is gone from the note header."
+    "_labels": "Albert, 2026-10-02 evening: 'For the transcript in notes. Can you make it perfectly clear speaker 1 and speaker 2 is? Customer vs staff(name) if apparent'. Since v7 the summary model writes a Roles line in a closed vocabulary (left column); Make modules 11 and 12 turn it into the label on the right and module 34 swaps every '] Speaker N:' prefix for it, so a note reads '[00:02] Staff: Good morning, Titan Flooring.' / '[00:04] Customer: Hi …'. A named label needs the Staff line to carry that same name, so a model slip cannot put a name on a line the call-level rule did not allow. Speakers 1-3 are relabelled (Scribe's speaker_0-2); a fourth speaker keeps its raw label. The free-text 'Speakers:' key line is gone from the note header.",
+    "role_evidence_line": "Role evidence:",
+    "self_intro_phrases": [
+      "this is <name>",
+      "it's <name>",
+      "it is <name>",
+      "i'm <name>",
+      "i am <name>",
+      "my name is <name>",
+      "name's <name>",
+      "<name> speaking"
+    ],
+    "_v8": "2026-10-03 (Albert, after an outbound call to a supplier came out with the supplier labelled Staff and Titan labelled Customer: 'I want to make sure that if the call is outbound and not sure of the speakers explicitly, from the callers user, or from the conversation. Then the transcript is speaker 1 speaker 2 to avoid mistakes. Same for inbound.'). Make, not the model, now decides both things. (1) Front Desk staff name: the model's Staff line counts only if the transcript itself contains a self-introduction of that name (self_intro_phrases); a customer saying 'Hi, Joey' no longer names anyone. (2) Line labels: the model must quote one transcript line in which the Titan person names Titan or themselves (Role evidence); Make relabels only if that line appears word for word in the transcript, mentions Titan (or the checked staff name), and belongs to the speaker the Roles line calls staff. Otherwise every line stays Speaker N. Also: the summary's first words are written by Make from GHL's direction and contact name ('Titan called <contact>' / '<contact> called Titan'); with roles unclear the model must not say who said what; a name Make rejected is replaced by 'Titan staff' in the comment; 'supplier' joins the label vocabulary; the other side's next step is '- Them:' (was '- Customer:'). Probed on three real calls (a supplier call, an inbound Front Desk call that answers 'Good morning, Titan Flooring', a call where only the customer says a staff name) before the push."
   },
   "make_scenarios": {
     "call_notes": {
