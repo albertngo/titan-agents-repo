@@ -184,9 +184,10 @@ class TestRelink(unittest.TestCase):
         self.assertEqual(p["actions"], [])
         self.assertEqual(p["held"][0]["reason"], "no_alternative_link")
 
-    def test_a_supplier_may_lower_the_swatch_bar(self):
-        self.assertEqual(REG["suppliers"]["BIYORK"]["image_rules"]["min_swatch_long_edge_px"], 1000)
-        self.assertEqual(REG["image_rules"]["min_swatch_long_edge_px"], 1600)
+    def test_a_lower_quality_photo_beats_none(self):
+        # Albert, 2026-10-03: "Having it is better than none." Only icons and thumbnails are cut.
+        self.assertEqual(REG["image_rules"]["min_swatch_long_edge_px"], 300)
+        self.assertEqual(REG["image_rules"]["min_any_long_edge_px"], 300)
 
 
 class TestFloorBoxSizes(unittest.TestCase):
@@ -330,9 +331,16 @@ class TestPlan(unittest.TestCase):
         self.assertEqual(p["actions"], [])
         self.assertEqual(p["summary"]["skipped"], {"all_targets_filled": 1})
 
-    def test_small_swatch_never_lands(self):
+    def test_a_smaller_swatch_lands_after_the_larger_one(self):
+        # 2026-10-03: a lower quality photo is better than none; the larger still goes first.
         p = self.build([NAKED_9], self.pages, self.j)
-        self.assertEqual([x["url"] for x in p["actions"][0]["fields"]["Swatch images"]], ["https://cdn/sw.jpg"])
+        self.assertEqual([x["url"] for x in p["actions"][0]["fields"]["Swatch images"]],
+                         ["https://cdn/sw.jpg", "https://cdn/small.jpg"])
+
+    def test_a_thumbnail_never_lands(self):
+        pages = [page("https://fb/t", "9'' Collection American White Oak-Naked Oak", [img("t1", "https://cdn/thumb.jpg", 200, 150)])]
+        p = self.build([NAKED_9], pages, {"contract_version": "image-judgements-1", "images": {"t1": {"kind": "swatch"}}})
+        self.assertEqual(p["actions"], [])
 
     def test_unjudged_images_are_held(self):
         p = self.build([NAKED_9], self.pages, {"contract_version": "image-judgements-1", "images": {}})
@@ -343,7 +351,9 @@ class TestPlan(unittest.TestCase):
             "s1": {"kind": "swatch", "watermarked": True}, "r1": {"kind": "room", "colour_matches_page": False},
             "s2": {"kind": "swatch"}}}
         p = self.build([NAKED_9], self.pages, j)
-        self.assertEqual(p["held"][0]["reason"], "low_res_swatch")
+        a = p["actions"][0]
+        self.assertEqual([x["url"] for x in a["fields"]["Swatch images"]], ["https://cdn/small.jpg"])
+        self.assertNotIn("Room scene images", a["fields"])
 
     def test_ambiguous_needs_a_verdict_and_null_is_respected(self):
         pages = self.pages + [page("https://fb/naked-9b", "9'' Collection American White Oak-Naked Oak", [img("s3", "https://cdn/b.jpg")])]

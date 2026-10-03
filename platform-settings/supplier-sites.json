@@ -62,8 +62,9 @@
   },
   "image_rules": {
     "_comment": "Applied by scripts/image_fill_plan.py to every judged image. Meaning: methods/image-fill.md.",
-    "min_swatch_long_edge_px": 1600,
-    "min_any_long_edge_px": 800,
+    "min_swatch_long_edge_px": 300,
+    "min_any_long_edge_px": 300,
+    "_size_note": "Albert, 2026-10-03: 'a lower quality image it still ok to grab. Having it is better than none.' Both bars dropped from 1600 (swatch) / 800 (any) to 300, a floor against icons and thumbnails only. Per field the largest photo still wins, so a better one is always preferred when a source has it.",
     "kinds": [
       "swatch",
       "room",
@@ -319,11 +320,7 @@
       "ignore_pattern_words": [
         "hickory"
       ],
-      "_ignore_pattern_words_note": "BiYork's own shop titles its hickory products `Hickory - Derby Sample*` while the catalogue names them `Nouveau 7 — Derby`: here hickory is the species (species_words), not a pattern to agree on.",
-      "image_rules": {
-        "min_swatch_long_edge_px": 1000
-      },
-      "_image_rules_note": "Albert, 2026-09-29: 'yes rerun' — BiYork's own swatch photos are 580-1300 px, clean and sharp; 1000 px for BiYork only. The shared 1600 stays."
+      "_ignore_pattern_words_note": "BiYork's own shop titles its hickory products `Hickory - Derby Sample*` while the catalogue names them `Nouveau 7 — Derby`: here hickory is the species (species_words), not a pattern to agree on."
     },
     "TRIFOREST": {
       "_added": "2026-10-03, Albert: 'Lets try Triforest now.' and the site 'https://www.toucanflooring.com/' (Triforest's catalogue records are all branded Toucan).",

@@ -1,0 +1,46 @@
+{
+ "contract_version": "image-plan-1",
+ "scope": "vidar",
+ "supplier": "VIDAR",
+ "op": "replace_images",
+ "run_at": "2026-10-03T11:39:05.345661+00:00",
+ "expires": "2026-10-03T23:59:59-04:00",
+ "summary": {
+  "records": 1,
+  "files": 1
+ },
+ "actions": [
+  {
+   "id": "img-ceba290cb2b7",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "replace_images",
+   "record_id": "recrmjDZsCtD7rTeR",
+   "sku": "ENG-VIDR-0166",
+   "product_name": "Vidar 5\" AWO — Camel (Character)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.thefloorbox.ca/images/products/06a39724-9981-11f0-bc10-f6968cef729a/085cef24-9981-11f0-bc10-f6968cef729a",
+      "filename": "vidar-camel-american-white-oak-engineered-hardwood-5in-character-swatch.jpg"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect": {
+    "Swatch images": [
+     {
+      "id": "attsPBV3GjvZiwEd0",
+      "filename": "vidar-camel-american-white-oak-engineered-hardwood-5in-character-swatch.jpg"
+     }
+    ]
+   },
+   "source_page": "https://thefloorbox.ca/products/engineered-hardwood-american-oak-5-click-camel-character-5-13/06a39724-9981-11f0-bc10-f6968cef729a",
+   "source": "floorbox",
+   "why": "The swatch is Speers' AmericanOakHazelnut.jpg (listing titled 'Camel - Hazelnut'); The Floor Box's Camel 5in click Character photo replaces it. Compared side by side 2026-10-03: different colours."
+  }
+ ],
+ "held": []
+}

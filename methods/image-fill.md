@@ -65,6 +65,12 @@ Replace or append to a filled image field; write anything but the four target fi
 write while `write_mode` is `plan_only`; get past a bot challenge; guess a URL.
 
 ## Log
+- 2026-10-03 — Albert: "a lower quality image it still ok to grab. Having it is better than
+  none." Swatch bar 1600 -> 300 px and any-image bar 800 -> 300 px (a floor against icons and
+  thumbnails); BiYork's own 1000 px override removed as redundant. The largest photo per
+  field still wins. Vidar Camel 5" (ENG-VIDR-0166): Speers' Hazelnut photo replaced with The
+  Floor Box's Camel swatch (Albert: "Yes"), new op `replace_images` (agent rule 8: a
+  person's approval, compare-and-swap on the live file).
 - 2026-10-02 (Toronto) — Triforest, sold as Toucan (Albert: "Lets try Triforest now." +
   toucanflooring.com). Toucan's own Shopify store matched 168 of 173 records; Speers carries
   no Toucan, and Word of Mouth timed out mid-catalogue twice, so it was left out. The Floor
