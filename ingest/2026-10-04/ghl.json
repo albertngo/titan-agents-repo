@@ -1,0 +1,42 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-10-04T12:10:00-04:00",
+  "status": "error",
+  "error": "GHL MCP server tools (contacts, conversations, opportunities, calendars, pipelines) were not available in this agent session, so none of the four categories (new leads, opportunities, appointments, conversations) or workflow drift could be pulled. No data was fabricated. Only the read-only call pull (scripts/ghl_calls_pull.py) ran.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest FAILED 2026-10-04: GHL MCP tools unavailable in the ingest session; no leads, pipeline, appointments, conversations or drift today. Check .mcp.json / GHL_PIT_TOKEN / GHL_LOCATION_ID and re-run."
+  ],
+  "extensions": {
+    "ghl": {
+      "template_version": "4",
+      "reporting": {
+        "calls": {
+          "listed": 9,
+          "from_note": 3,
+          "transcribed": 1,
+          "voicemails": 1,
+          "minutes": 0.0,
+          "est_cost_usd": 0.0001,
+          "engine": "elevenlabs",
+          "status": "ok",
+          "error": "Counts only; calls were not joined to conversations/contacts because the MCP pull failed. 4 skipped-short, 1 no-answer, 3 from-note (empty summaries), 1 voicemail transcribed (1.7 s, ringing only)."
+        }
+      },
+      "new_leads": [],
+      "opportunities": [],
+      "appointments_booked": [],
+      "conversations": [],
+      "workflow_drift": [],
+      "won_records": [],
+      "stragglers_ranked": [],
+      "calls": [],
+      "call_quality": {
+        "sensitivity": "private",
+        "records": []
+      }
+    }
+  }
+}

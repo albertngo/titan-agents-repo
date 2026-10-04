@@ -1,0 +1,531 @@
+{
+ "contract_version": "1",
+ "source": "notion",
+ "run_at": "2026-10-04T07:00:00-04:00",
+ "status": "ok",
+ "error": null,
+ "items": [
+  {
+   "id": "notion-new_won_project-3e9596a4505f810e98feffe995a08ade",
+   "type": "new_won_project",
+   "title": "Won project: Arika, Mississauga",
+   "summary": "Project type Both, approx $18,041.90, sales Pourya Lalee, 4230 Fieldgate Dr unit 4. Won 2026-09-28; no PM assigned yet.",
+   "timestamp": "2026-09-28T15:25:58-04:00",
+   "priority": "high",
+   "link": "https://app.notion.com/3e9596a4505f810e98feffe995a08ade",
+   "amount_cents": 1804190,
+   "raw_ref": "notion:titan-projects:opp=7LcC0KucRSoIbHPiuRqi",
+   "sensitivity": null,
+   "assigned_to": null
+  },
+  {
+   "id": "notion-new_won_project-3e9596a4505f8084a071cdd644b13627",
+   "type": "new_won_project",
+   "title": "Won project: Jeevan, Mississauga",
+   "summary": "Flooring project, approx $3,200, 3334 Dwiggin Ave. No Opportunity ID, sales person or PM set on the row.",
+   "timestamp": "2026-09-28T16:45:53-04:00",
+   "priority": "high",
+   "link": "https://app.notion.com/3e9596a4505f8084a071cdd644b13627",
+   "amount_cents": 320000,
+   "raw_ref": "notion:titan-projects:https://app.notion.com/3e9596a4505f8084a071cdd644b13627",
+   "sensitivity": null,
+   "assigned_to": null
+  },
+  {
+   "id": "notion-payment-3ee596a4505f81c4a1d0d4b0e6223988",
+   "type": "payment",
+   "title": "Payment: SIMPLICITY FINANCIAL INC. $3,044.80",
+   "summary": "Interac e-Transfer received 2026-10-02, ref CA45x6sh.",
+   "timestamp": "2026-10-02T00:00:00-04:00",
+   "priority": "normal",
+   "link": "https://app.notion.com/3ee596a4505f81c4a1d0d4b0e6223988",
+   "amount_cents": 304480,
+   "raw_ref": "notion:payments:https://app.notion.com/3ee596a4505f81c4a1d0d4b0e6223988",
+   "sensitivity": null,
+   "assigned_to": null
+  },
+  {
+   "id": "notion-rollup-tactical_task_stale-20261004",
+   "type": "rollup",
+   "title": "53 stale open Tactical Tasks past threshold",
+   "summary": "Not-started rows older than 14 days (On Hold older than 30) by row creation time; mostly GHL drift/message tasks, gift-box tasks and price-list follow-ups from 2026-09-09 to 2026-09-20. Full list in extensions.notion.reporting.stale_tactical.",
+   "timestamp": "2026-10-04T07:00:00-04:00",
+   "priority": "normal",
+   "link": null,
+   "amount_cents": null,
+   "raw_ref": "notion:tactical:rollup",
+   "sensitivity": null,
+   "assigned_to": null
+  }
+ ],
+ "metrics": {
+  "new_won_projects": 2,
+  "new_won_value_cents": 2124190,
+  "open_work_orders": 0,
+  "work_orders_in_error": 0,
+  "work_orders_completed": 0,
+  "payments_count": 1,
+  "payments_received_cents": 304480,
+  "stale_tactical_tasks": 53,
+  "new_meetings": 0
+ },
+ "needs_attention": [
+  "Cold start: no notion.json within 7 days (latest 2026-09-08); snapshot seeded, 7-day won projects reported as in-window. Meeting deep pull skipped.",
+  "Won project 'Jeevan' (3334 Dwiggin Ave) has no Opportunity ID, sales person or PM; 'Arika' has no PM.",
+  "53 Tactical Tasks are stale (oldest 2026-09-09); many are GHL drift/message tasks and held price-list questions.",
+  "Project Status meeting row for Oct 6 exists with no Meeting Summary yet (upcoming); latest processed meeting is Sep 29."
+ ],
+ "extensions": {
+  "notion": {
+   "template_version": "1",
+   "snapshot": {
+    "titan_projects": [
+     "opp=7LcC0KucRSoIbHPiuRqi",
+     "https://app.notion.com/3e9596a4505f8084a071cdd644b13627"
+    ],
+    "master_payments_log": [
+     "https://app.notion.com/3ee596a4505f81c4a1d0d4b0e6223988"
+    ],
+    "tactical_tasks_list": [
+     "https://app.notion.com/3e1596a4505f818daea5f8a991da9c46",
+     "https://app.notion.com/3e0596a4505f81f682cafb675c4f2d29",
+     "https://app.notion.com/3e0596a4505f8104b92accaedefbe91b",
+     "https://app.notion.com/3e0596a4505f81168a00fa1a0a58d093",
+     "https://app.notion.com/3e0596a4505f812d8366c043070231c4",
+     "https://app.notion.com/3e0596a4505f8135bca9c82ae87b9e39",
+     "https://app.notion.com/3e0596a4505f8136a68af7467e2e27b8",
+     "https://app.notion.com/3e0596a4505f817b9087c316ad56cb7b",
+     "https://app.notion.com/3e0596a4505f8194be9be4d0d6e0aacf",
+     "https://app.notion.com/3e0596a4505f8199b2e6ced0cc2b6617",
+     "https://app.notion.com/3e0596a4505f81a6846bcc0717719b4d",
+     "https://app.notion.com/3e0596a4505f81db86e4c46779280bba",
+     "https://app.notion.com/3e0596a4505f81e181cdd45abb8d64d6",
+     "https://app.notion.com/3df596a4505f81479395e3e47d99b590",
+     "https://app.notion.com/3de596a4505f8199aea6cd9e9a048a7f",
+     "https://app.notion.com/3de596a4505f814f9907d417b1f0187c",
+     "https://app.notion.com/3de596a4505f81519ce7c59abce338b4",
+     "https://app.notion.com/3de596a4505f8165b5f0d829799f0e72",
+     "https://app.notion.com/3de596a4505f817f873bc807fbeffe17",
+     "https://app.notion.com/3de596a4505f81bba5b4ccff9f049867",
+     "https://app.notion.com/3de596a4505f81c29f69c30f18cc8fba",
+     "https://app.notion.com/3de596a4505f81d485f3d6c3600b7159",
+     "https://app.notion.com/3de596a4505f81de8869e8a143087474",
+     "https://app.notion.com/3dd596a4505f81648f92c7c8af3b6a95",
+     "https://app.notion.com/3dd596a4505f8163bbcbc5132677fa48",
+     "https://app.notion.com/3dd596a4505f816c8457df4d26aa1581",
+     "https://app.notion.com/3dc596a4505f814f984ffe5399e9debe",
+     "https://app.notion.com/3db596a4505f818ba278e03be50fc00f",
+     "https://app.notion.com/3db596a4505f81aea5e5de27dff91300",
+     "https://app.notion.com/3d8596a4505f810b9ef0fc705c8a7e7d",
+     "https://app.notion.com/3d8596a4505f8164bd25f3073c2a7135",
+     "https://app.notion.com/3d8596a4505f81839131de1ed94e4f0f",
+     "https://app.notion.com/3d8596a4505f8124b5d1ea45688139d2",
+     "https://app.notion.com/3d8596a4505f812bb97ef3a0323a62d4",
+     "https://app.notion.com/3d8596a4505f8134895ee42d447f3524",
+     "https://app.notion.com/3d8596a4505f8134b664d825c908a8da",
+     "https://app.notion.com/3d8596a4505f81379922d6663323a064",
+     "https://app.notion.com/3d8596a4505f815596b6d7f710abe3c4",
+     "https://app.notion.com/3d8596a4505f81768871f45a561a479f",
+     "https://app.notion.com/3d8596a4505f8196828bda20964ddcc0",
+     "https://app.notion.com/3d8596a4505f81c58b0bc2b8f65c863c",
+     "https://app.notion.com/3d7596a4505f817a89bac073711d0744",
+     "https://app.notion.com/3d7596a4505f813f928cf145a5425f33",
+     "https://app.notion.com/3d7596a4505f8169a22de96e5a5b094f",
+     "https://app.notion.com/3d6596a4505f815caef0faea0fd3859e",
+     "https://app.notion.com/3d6596a4505f8154993cc6851519fe9b",
+     "https://app.notion.com/3d6596a4505f811b9c29c40dd9ed7209",
+     "https://app.notion.com/3d6596a4505f8178a8e5eb6fac91156d",
+     "https://app.notion.com/3d6596a4505f8100afb8f259c8735c76",
+     "https://app.notion.com/3d6596a4505f81f2a3d1e52763d4486f",
+     "https://app.notion.com/3d6596a4505f81f6a3cede46ad8327dc",
+     "https://app.notion.com/3d6596a4505f81619879d6e0ea4756c7",
+     "https://app.notion.com/3d6596a4505f8148b527dd8788b13916"
+    ],
+    "project_status_meetings": [
+     "https://app.notion.com/3ea596a4505f81a2ab52d634df5a48ec",
+     "https://app.notion.com/3ea596a4505f80d4aa5ac7acbc1b24a5",
+     "https://app.notion.com/3cf596a4505f81f1b872c8a5be87ac69"
+    ],
+    "qa_work_orders": []
+   },
+   "reporting": {
+    "cold_start": true,
+    "qa_work_orders_query_note": "Budget Expense column not in schema; omitted from select",
+    "stale_tactical_basis": "createdTime (no last-edited column queried)",
+    "stale_tactical": [
+     {
+      "url": "https://app.notion.com/3e1596a4505f818daea5f8a991da9c46",
+      "status": "Not started",
+      "created": "2026-09-20",
+      "name": "PL-370 FAW September Specials - decide 5 held SKUs",
+      "age_days": 14
+     },
+     {
+      "url": "https://app.notion.com/3e0596a4505f81f682cafb675c4f2d29",
+      "status": "Not started",
+      "created": "2026-09-19",
+      "name": "Create Gift Box For: []",
+      "age_days": 15
+     },
+     {
+      "url": "https://app.notion.com/3e0596a4505f8104b92accaedefbe91b",
+      "status": "Not started",
+      "created": "2026-09-19",
+      "name": "GHL drift: Harj Heer",
+      "age_days": 15
+     },
+     {
+      "url": "https://app.notion.com/3e0596a4505f81168a00fa1a0a58d093",
+      "status": "Not started",
+      "created": "2026-09-19",
+      "name": "GHL drift: Nishtha",
+      "age_days": 15
+     },
+     {
+      "url": "https://app.notion.com/3e0596a4505f812d8366c043070231c4",
+      "status": "Not started",
+      "created": "2026-09-19",
+      "name": "GHL drift: Ulupi Babu",
+      "age_days": 15
+     },
+     {
+      "url": "https://app.notion.com/3e0596a4505f8135bca9c82ae87b9e39",
+      "status": "Not started",
+      "created": "2026-09-19",
+      "name": "GHL drift: Jonathan Toronto",
+      "age_days": 15
+     },
+     {
+      "url": "https://app.notion.com/3e0596a4505f8136a68af7467e2e27b8",
+      "status": "Not started",
+      "created": "2026-09-19",
+      "name": "GHL drift: Jayanthan Toronto",
+      "age_days": 15
+     },
+     {
+      "url": "https://app.notion.com/3e0596a4505f817b9087c316ad56cb7b",
+      "status": "Not started",
+      "created": "2026-09-19",
+      "name": "GHL drift: Oz TORONTO",
+      "age_days": 15
+     },
+     {
+      "url": "https://app.notion.com/3e0596a4505f8194be9be4d0d6e0aacf",
+      "status": "Not started",
+      "created": "2026-09-19",
+      "name": "GHL message: Allison Hubson baseboard install date at risk",
+      "age_days": 15
+     },
+     {
+      "url": "https://app.notion.com/3e0596a4505f8199b2e6ced0cc2b6617",
+      "status": "Not started",
+      "created": "2026-09-19",
+      "name": "GHL drift: Elsa Espejo",
+      "age_days": 15
+     },
+     {
+      "url": "https://app.notion.com/3e0596a4505f81a6846bcc0717719b4d",
+      "status": "Not started",
+      "created": "2026-09-19",
+      "name": "GHL drift: Gopal TORONTO",
+      "age_days": 15
+     },
+     {
+      "url": "https://app.notion.com/3e0596a4505f81db86e4c46779280bba",
+      "status": "Not started",
+      "created": "2026-09-19",
+      "name": "GHL drift: Arvind",
+      "age_days": 15
+     },
+     {
+      "url": "https://app.notion.com/3e0596a4505f81e181cdd45abb8d64d6",
+      "status": "Not started",
+      "created": "2026-09-19",
+      "name": "GHL drift: Ushi Masrani",
+      "age_days": 15
+     },
+     {
+      "url": "https://app.notion.com/3df596a4505f81479395e3e47d99b590",
+      "status": "Not started",
+      "created": "2026-09-18",
+      "name": "Vizion PL-373 catalog-sync: two open findings",
+      "age_days": 16
+     },
+     {
+      "url": "https://app.notion.com/3de596a4505f8199aea6cd9e9a048a7f",
+      "status": "Not started",
+      "created": "2026-09-17",
+      "name": "Create Gift Box For: Edwin Wong",
+      "age_days": 17
+     },
+     {
+      "url": "https://app.notion.com/3de596a4505f814f9907d417b1f0187c",
+      "status": "Not started",
+      "created": "2026-09-17",
+      "name": "GHL message: Marco Di Franco warranty visit needs dispatch",
+      "age_days": 17
+     },
+     {
+      "url": "https://app.notion.com/3de596a4505f81519ce7c59abce338b4",
+      "status": "Not started",
+      "created": "2026-09-17",
+      "name": "GHL drift: (437) 245-6099",
+      "age_days": 17
+     },
+     {
+      "url": "https://app.notion.com/3de596a4505f8165b5f0d829799f0e72",
+      "status": "Not started",
+      "created": "2026-09-17",
+      "name": "GHL drift: Moumita Arora",
+      "age_days": 17
+     },
+     {
+      "url": "https://app.notion.com/3de596a4505f817f873bc807fbeffe17",
+      "status": "Not started",
+      "created": "2026-09-17",
+      "name": "GHL drift: Muhammad Rafiq",
+      "age_days": 17
+     },
+     {
+      "url": "https://app.notion.com/3de596a4505f81bba5b4ccff9f049867",
+      "status": "Not started",
+      "created": "2026-09-17",
+      "name": "GHL drift: (416) 568-0214",
+      "age_days": 17
+     },
+     {
+      "url": "https://app.notion.com/3de596a4505f81c29f69c30f18cc8fba",
+      "status": "Not started",
+      "created": "2026-09-17",
+      "name": "GHL message: Firoz Rajan insurance claim auto-abandoned",
+      "age_days": 17
+     },
+     {
+      "url": "https://app.notion.com/3de596a4505f81d485f3d6c3600b7159",
+      "status": "Not started",
+      "created": "2026-09-17",
+      "name": "GHL message: Moenad Nadeem showroom review overdue",
+      "age_days": 17
+     },
+     {
+      "url": "https://app.notion.com/3de596a4505f81de8869e8a143087474",
+      "status": "Not started",
+      "created": "2026-09-17",
+      "name": "GHL lead: Mayuri Bhatti website inquiry",
+      "age_days": 17
+     },
+     {
+      "url": "https://app.notion.com/3dd596a4505f81648f92c7c8af3b6a95",
+      "status": "Not started",
+      "created": "2026-09-16",
+      "name": "Create Gift Box For: []",
+      "age_days": 18
+     },
+     {
+      "url": "https://app.notion.com/3dd596a4505f8163bbcbc5132677fa48",
+      "status": "Not started",
+      "created": "2026-09-16",
+      "name": "Create Gift Box For: Sabrina Agard",
+      "age_days": 18
+     },
+     {
+      "url": "https://app.notion.com/3dd596a4505f816c8457df4d26aa1581",
+      "status": "Not started",
+      "created": "2026-09-16",
+      "name": "Create Gift Box For: Diego Contecha",
+      "age_days": 18
+     },
+     {
+      "url": "https://app.notion.com/3dc596a4505f814f984ffe5399e9debe",
+      "status": "Not started",
+      "created": "2026-09-15",
+      "name": "Weiss Sep Price List PL-376 extraction cannot parse layout",
+      "age_days": 19
+     },
+     {
+      "url": "https://app.notion.com/3db596a4505f818ba278e03be50fc00f",
+      "status": "Not started",
+      "created": "2026-09-14",
+      "name": "Confirm IMPRESSIVE Supplier/Brand name (PL-226)",
+      "age_days": 20
+     },
+     {
+      "url": "https://app.notion.com/3db596a4505f81aea5e5de27dff91300",
+      "status": "Not started",
+      "created": "2026-09-14",
+      "name": "Confirm JL TILE cost basis (PL-372)",
+      "age_days": 20
+     },
+     {
+      "url": "https://app.notion.com/3d8596a4505f810b9ef0fc705c8a7e7d",
+      "status": "Not started",
+      "created": "2026-09-11",
+      "name": "Price list extraction blocked: JL TILE PL-372",
+      "age_days": 23
+     },
+     {
+      "url": "https://app.notion.com/3d8596a4505f8164bd25f3073c2a7135",
+      "status": "Not started",
+      "created": "2026-09-11",
+      "name": "Add CCAM Tags | Gina Martino",
+      "age_days": 23
+     },
+     {
+      "url": "https://app.notion.com/3d8596a4505f81839131de1ed94e4f0f",
+      "status": "Not started",
+      "created": "2026-09-11",
+      "name": "Confirm final images received | Gina Martino",
+      "age_days": 23
+     },
+     {
+      "url": "https://app.notion.com/3d8596a4505f8124b5d1ea45688139d2",
+      "status": "Not started",
+      "created": "2026-09-11",
+      "name": "GHL message: Dante Spizziri visit",
+      "age_days": 23
+     },
+     {
+      "url": "https://app.notion.com/3d8596a4505f812bb97ef3a0323a62d4",
+      "status": "Not started",
+      "created": "2026-09-11",
+      "name": "GHL lead: Sharif Barakzai",
+      "age_days": 23
+     },
+     {
+      "url": "https://app.notion.com/3d8596a4505f8134895ee42d447f3524",
+      "status": "Not started",
+      "created": "2026-09-11",
+      "name": "GHL message: Brooks Persad revised quote",
+      "age_days": 23
+     },
+     {
+      "url": "https://app.notion.com/3d8596a4505f8134b664d825c908a8da",
+      "status": "Not started",
+      "created": "2026-09-11",
+      "name": "GHL drift: Chandara Thileepan",
+      "age_days": 23
+     },
+     {
+      "url": "https://app.notion.com/3d8596a4505f81379922d6663323a064",
+      "status": "Not started",
+      "created": "2026-09-11",
+      "name": "GHL drift: Avishekh Pal",
+      "age_days": 23
+     },
+     {
+      "url": "https://app.notion.com/3d8596a4505f815596b6d7f710abe3c4",
+      "status": "Not started",
+      "created": "2026-09-11",
+      "name": "GHL message: Ali Abdel Fattah",
+      "age_days": 23
+     },
+     {
+      "url": "https://app.notion.com/3d8596a4505f81768871f45a561a479f",
+      "status": "Not started",
+      "created": "2026-09-11",
+      "name": "GHL drift: Shahid Brampton",
+      "age_days": 23
+     },
+     {
+      "url": "https://app.notion.com/3d8596a4505f8196828bda20964ddcc0",
+      "status": "Not started",
+      "created": "2026-09-11",
+      "name": "GHL message: Mhay Cunanan warranty repair date",
+      "age_days": 23
+     },
+     {
+      "url": "https://app.notion.com/3d8596a4505f81c58b0bc2b8f65c863c",
+      "status": "Not started",
+      "created": "2026-09-11",
+      "name": "GHL lead: (905) 815-3889 Oakville",
+      "age_days": 23
+     },
+     {
+      "url": "https://app.notion.com/3d7596a4505f817a89bac073711d0744",
+      "status": "Not started",
+      "created": "2026-09-10",
+      "name": "Golden Choice PL-252 confirm cost column",
+      "age_days": 24
+     },
+     {
+      "url": "https://app.notion.com/3d7596a4505f813f928cf145a5425f33",
+      "status": "Not started",
+      "created": "2026-09-10",
+      "name": "Weiss: 13 Lightspeed colours with no Airtable counterpart",
+      "age_days": 24
+     },
+     {
+      "url": "https://app.notion.com/3d7596a4505f8169a22de96e5a5b094f",
+      "status": "Not started",
+      "created": "2026-09-10",
+      "name": "Vizion Stairboard Steps Set - which accessory",
+      "age_days": 24
+     },
+     {
+      "url": "https://app.notion.com/3d6596a4505f815caef0faea0fd3859e",
+      "status": "Not started",
+      "created": "2026-09-09",
+      "name": "Create Gift Box For: Gina Martino",
+      "age_days": 25
+     },
+     {
+      "url": "https://app.notion.com/3d6596a4505f8154993cc6851519fe9b",
+      "status": "Not started",
+      "created": "2026-09-09",
+      "name": "Create Gift Box For: Mien",
+      "age_days": 25
+     },
+     {
+      "url": "https://app.notion.com/3d6596a4505f811b9c29c40dd9ed7209",
+      "status": "Not started",
+      "created": "2026-09-09",
+      "name": "Gracious tiles: Box size missing on 244 rows",
+      "age_days": 25
+     },
+     {
+      "url": "https://app.notion.com/3d6596a4505f8178a8e5eb6fac91156d",
+      "status": "Not started",
+      "created": "2026-09-09",
+      "name": "Gracious price lists - confirm tile markup and brand",
+      "age_days": 25
+     },
+     {
+      "url": "https://app.notion.com/3d6596a4505f8100afb8f259c8735c76",
+      "status": "Not started",
+      "created": "2026-09-09",
+      "name": "NAF August promo expired - decide whether to apply",
+      "age_days": 25
+     },
+     {
+      "url": "https://app.notion.com/3d6596a4505f81f2a3d1e52763d4486f",
+      "status": "Not started",
+      "created": "2026-09-09",
+      "name": "Confirm Lee Flooring SKU convention",
+      "age_days": 25
+     },
+     {
+      "url": "https://app.notion.com/3d6596a4505f81f6a3cede46ad8327dc",
+      "status": "Not started",
+      "created": "2026-09-09",
+      "name": "Dragona: confirm category + markup for 63 rows",
+      "age_days": 25
+     },
+     {
+      "url": "https://app.notion.com/3d6596a4505f81619879d6e0ea4756c7",
+      "status": "Not started",
+      "created": "2026-09-09",
+      "name": "TOSCA import: reconcile Renaissance/Preference",
+      "age_days": 25
+     },
+     {
+      "url": "https://app.notion.com/3d6596a4505f8148b527dd8788b13916",
+      "status": "Not started",
+      "created": "2026-09-09",
+      "name": "Simba: review LS backfill conflicts",
+      "age_days": 25
+     }
+    ]
+   }
+  }
+ }
+}
