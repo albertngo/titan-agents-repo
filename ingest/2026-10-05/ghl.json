@@ -1,0 +1,42 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-10-05T07:00:00-04:00",
+  "status": "error",
+  "error": "GHL MCP server (ghl) tools were not available in this session; contacts, opportunities, appointments and conversations could not be pulled. No data fabricated. Call pull script ran OK (5 calls listed) but is enrichment only.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest failed today: ghl MCP tools unavailable. No leads, pipeline, appointment, conversation or drift data. Re-run once the MCP server is reachable."
+  ],
+  "extensions": {
+    "ghl": {
+      "template_version": "4",
+      "reporting": {
+        "calls": {
+          "listed": 5,
+          "from_note": 1,
+          "transcribed": 1,
+          "voicemails": 1,
+          "minutes": 0.0,
+          "est_cost_usd": 0,
+          "engine": "elevenlabs",
+          "status": "ok",
+          "error": null
+        }
+      },
+      "new_leads": [],
+      "opportunities": [],
+      "appointments_booked": [],
+      "conversations": [],
+      "workflow_drift": [],
+      "won_records": [],
+      "stragglers_ranked": [],
+      "calls": [],
+      "call_quality": {
+        "sensitivity": "private",
+        "records": []
+      }
+    }
+  }
+}
