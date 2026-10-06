@@ -496,13 +496,13 @@
     "date": "2026-10-05",
     "run_at": "2026-10-05T12:00:00-04:00",
     "sources": {
-      "ghl": "error",
+      "ghl": "ok",
       "outlook": "ok",
       "bookkeeper": "error",
       "notion": "ok",
       "meta-ads": "ok"
     },
     "brief": true,
-    "note": "scheduled run; GHL MCP and QBO connector unavailable; outlook 8-day catch-up; notion cold start; ledger gap since 2026-09-08 unverified"
+    "note": "scheduled run; GHL MCP tools not loaded, re-run via read-only REST (GhlClient) succeeded; QBO connector unavailable; outlook 8-day catch-up; notion cold start; ledger gap since 2026-09-08 unverified"
   }
 ]
