@@ -153,6 +153,12 @@ the fact. Consequences for this flow:
   product (PP-461, PP-439) or carry a stale catalogue cost (Vidar engineered sells at
   about $0.70/sqft over what Vidar bills). It is compared, never preferred, once a PO,
   confirmation or invoice exists.
+- **A blank `Cost Source` means a person typed the cost.** Every row before October
+  2026 has one; the sync treats it as hand-entered and only suggests.
+- **AP Disposal invoices** (info@ INVOICE): the job site is only in the line
+  description. AP re-sends under the same number when it corrects the site (2410:
+  4798 Huron Heights → 27 Longbourne) and has keyed a wrong house number (2390: 4500
+  for 4600 Kimbermount). The cost Albert enters is the total incl. HST.
 - **A flooring line's quantity and its cost are different questions.** `Cost Rate` is
   the actual $/sqft paid for what was kept; `Sqft Sold` is what the customer bought.
   When the two quantities differ by more than a box (`qty_gap`: leftover in stock,
@@ -186,6 +192,6 @@ the fact. Consequences for this flow:
 |---|---|---|
 | 0 | Staff rules above; Notion fields | October projects follow the PP and cost-staging rules |
 | 1 | Pulls + sync + run in `plan_only`; dry-run October | Run matches Albert's own list (PP-461 Roy 2,010; PP-450 Luxevista 1,642 + APS 279.34; PP-417 Roy 7,375) |
-| 2 | AP invoice extraction; `write` (dated) | First month-end with no hand-typed numbers |
+| 2 | AP Disposal extraction (built 2026-10-06, `plan_only`: 6 live invoices reproduce Albert's hand entries); `write` (dated) | First month-end with no hand-typed numbers |
 | 2b | Supplier documents → flooring line (`supplier_docs_pull.py`, `flooring_line` actions; built 2026-10-06 in `plan_only`, Vidar only) | An invoice locks a flooring cost end to end (PP-461: 6" T&G at $4.59, net 77 boxes, $7,535.12) |
 | 3 | Airtable quote → Notion push; LS pack-sale / PO writes (dated flips) | A Won quote fills quoted labor, quote rate, discount and the pack list |

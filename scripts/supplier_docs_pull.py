@@ -134,6 +134,88 @@ def parse_quickbooks(text, doc_type, subject=""):
     return d
 
 
+_ROW = re.compile(r"(-?\d+(?:\.\d+)?)\s+\$?(-?[\d,]*\.\d+)\s+\$?(-?[\d,]+\.\d{2})\s*(HST\s*ON|HST|Exempt)?\s*$")
+_UNIT = re.compile(r"(?:\bunit|\bsuite|\bapt\.?|#)\s*([A-Za-z0-9-]+)", re.I)
+
+
+def parse_street(text):
+    """'27 Longbourne Crecent', '1109-5 Michael Power Place', '1 Hurontario St #1705',
+    '4230 Fieldgate drive unit 4' -> {"number", "name_key", "unit"}; None if no street."""
+    if not text:
+        return None
+    t = " ".join(str(text).split())
+    unit = None
+    m = re.match(r"^\s*(\d+)\s*-\s*(\d+[A-Za-z]?)\s+(.*)$", t)      # unit-number form
+    if m:
+        unit, number, rest = m.group(1), m.group(2), m.group(3)
+    else:
+        m = re.search(r"(?<![\d.])(\d{1,6}[A-Za-z]?)\s+([A-Za-z][^,]*)", t)
+        if not m:
+            return None
+        number, rest = m.group(1), m.group(2)
+    u = _UNIT.search(rest)
+    if u:
+        unit = unit or u.group(1)
+        rest = rest[:u.start()]
+    words = re.findall(r"[A-Za-z]+", rest)
+    if not words or words[0].lower() in ("yard", "yards", "ton", "tons"):
+        return None
+    return {"number": number.lower(), "name_key": words[0].lower(), "unit": unit.lower() if unit else None}
+
+
+def parse_disposal(text):
+    """One AP Disposal (QuickBooks) invoice: number, date, totals, line descriptions and
+    the job-site street the description names ("14 yard - Service Charge - 27 Longbourne")."""
+    d = {"doc_type": "disposal_invoice", "po_number": None, "estimate_no": None, "revision": None,
+         "doc_no": _find(r"Invoice no\.:\s*(\d+)", text),
+         "date": _find(r"Invoice date:\s*([\d-]+)", text),
+         "subtotal": _money(_find(r"Subtotal\s+\$?([\d,]+\.\d\d)", text)),
+         "total": _money(_find(r"(?<![A-Za-z])Total\s+\$?(-?[\d,]+\.\d\d)", text))}
+    d["tax"] = round(d["total"] - d["subtotal"], 2) if d["total"] is not None and d["subtotal"] is not None else None
+    lines, cur, in_table, note, in_note = [], None, False, [], False
+    for ln in text.splitlines():
+        if re.match(r"^\s*#\s+", ln):
+            in_table = True
+            continue
+        if in_table and re.search(r"\bSubtotal\b", ln):
+            in_table, cur = False, None
+        if re.search(r"Note to customer", ln):
+            in_note = True
+            continue
+        if in_note:
+            chunk = re.split(r"\s{3,}", ln.strip())[0] if ln.strip() else ""
+            if chunk and not re.match(r"^\$?[\d,]+\.\d\d$|^Total$|^to k e n", chunk):
+                note.append(chunk)
+            continue
+        if not in_table or not ln.strip():
+            continue
+        m = _ROW.search(ln)
+        cols = [c for c in re.split(r"\s{2,}", ln.strip()) if c]
+        if m:
+            head = re.split(r"\s{2,}", ln[:m.start()].strip())
+            svc = [h for h in head[:-1] if not re.match(r"^(\d+\.|\d{4}-\d\d-\d\d)$", h)]
+            cur = {"service": svc[-1] if svc else None, "desc": head[-1],
+                   "qty": float(m.group(1)), "rate": _money(m.group(2)), "amount": _money(m.group(3))}
+            lines.append(cur)
+        elif cur is not None and len(cols) == 1:
+            cur["desc"] += " " + cols[0]
+    d["lines"] = lines
+    d["note"] = " ".join(note)[:200] or None
+    street_text, street = None, None
+    for src in [l["desc"] for l in lines] + [d["note"]]:
+        if not src:
+            continue
+        for part in re.split(r"\s+-\s+", src):
+            st = parse_street(part)
+            if st:
+                street_text, street = part.strip(), st
+                break
+        if street:
+            break
+    d["street_text"], d["street"] = street_text, street
+    return d
+
+
 # -- orders (pure) ------------------------------------------------------------
 
 def _sum(xs):
@@ -170,7 +252,7 @@ def build_orders(docs, lookback_days=90):
         o["po_number"] = o["po_number"] or d.get("po_number")
 
     unattributed = []
-    for d in [x for x in docs if x["doc_type"] == "credit_memo"]:
+    for d in [x for x in docs if x["doc_type"] == "credit_memo" and x.get("lines")]:
         cdate = _d(d.get("date"))
         codes = {l["code"] for l in d["lines"]}
         cands = []
@@ -348,8 +430,9 @@ def classify(msg, reg):
 def pull(graph, reg, since_iso):
     mb = reg["mailbox"]
     docs, errors, seen = [], [], set()
-    for doc_type, paths in reg["folders"].items():
-        for path in paths:
+    folders = list(dict.fromkeys(p for paths in reg["folders"].values() for p in paths))
+    for path in folders:
+        if True:
             try:
                 fid = graph.folder_id(mb, path)
                 msgs = graph.all(f"/users/{urllib.parse.quote(mb)}/mailFolders/{fid}/messages", {
@@ -376,11 +459,13 @@ def pull(graph, reg, since_iso):
                         errors.append({"folder": path, "subject": m.get("subject"),
                                        "error": f"{type(e).__name__}: {e}"[:300]})
                         continue
-                    d = parse_quickbooks(text, dtype, m.get("subject") or "")
+                    d = (parse_disposal(text) if dtype == "disposal_invoice"
+                         else parse_quickbooks(text, dtype, m.get("subject") or ""))
                     d.update({"supplier": supplier, "folder": path,
                               "received_at": m.get("receivedDateTime"),
                               "message_id_tail": m["id"][-16:]})
-                    key = (d["doc_type"], d["doc_no"], d.get("revision"), d.get("total"))
+                    key = (supplier, d["doc_type"], d["doc_no"], d.get("revision"), d.get("total"),
+                           json.dumps(d.get("street"), sort_keys=True))
                     if key in seen:
                         continue
                     seen.add(key)
@@ -391,20 +476,41 @@ def pull(graph, reg, since_iso):
     return docs, errors
 
 
+def disposal_invoices(docs):
+    """One entry per invoice number: the latest copy received wins. A re-sent invoice
+    keeps the earlier copies' streets so a changed job site is visible, never silent."""
+    by_no = {}
+    for d in sorted((x for x in docs if x["doc_type"] == "disposal_invoice"),
+                    key=lambda x: x.get("received_at") or ""):
+        by_no.setdefault((d.get("supplier"), d["doc_no"]), []).append(d)
+    out = []
+    for (_sup, _no), copies in sorted(by_no.items(), key=lambda kv: kv[0][1] or ""):
+        last = dict(copies[-1])
+        prev = [c for c in copies[:-1] if c.get("street") != last.get("street")]
+        last["copies"] = len(copies)
+        last["previous_streets"] = [c["street"] for c in prev if c.get("street")]
+        last["previous_street_texts"] = [c["street_text"] for c in prev if c.get("street_text")]
+        out.append(last)
+    return out
+
+
 def build(docs, errors, reg, window):
     orders, unattributed = build_orders(docs, reg["credit_attribution"]["lookback_days"])
+    disposal = disposal_invoices(docs)
     by_po = {}
     for k, o in orders.items():
         if o["po_number"]:
             by_po.setdefault(o["po_number"], []).append(k)
     counts = {"documents": len(docs), "orders": len(orders), "errors": len(errors),
               "unattributed_credits": len(unattributed)}
-    for t in ("confirmation", "invoice", "credit_memo"):
+    for t in ("confirmation", "invoice", "credit_memo", "disposal_invoice"):
         counts[t] = sum(1 for d in docs if d["doc_type"] == t)
+    counts["disposal_invoices_unique"] = len(disposal)
     return {"contract": CONTRACT, "source": "supplier-docs",
             "pulled_at": datetime.now(TZ).isoformat(), "window": window, "counts": counts,
             "orders": dict(sorted(orders.items())), "orders_by_po": by_po,
-            "unattributed_credits": unattributed, "documents": docs, "errors": errors}
+            "unattributed_credits": unattributed, "disposal_invoices": disposal,
+            "documents": docs, "errors": errors}
 
 
 def main(argv=None):

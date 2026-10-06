@@ -457,6 +457,11 @@ class TestCostSync(unittest.TestCase):
         self.assertEqual(nfm["mode"], "suggest")
         self.assertNotIn("Cost", nfm["fields"])
 
+    def test_typed_cost_without_a_source_is_hand_entered(self):
+        out = pcs.plan(sync_snapshot(cost=250, source=None), REG, POLICY, ls_sales=LS)
+        nfm = next(a for a in out["actions"] if a["kind"] == "nfm_cost")
+        self.assertEqual(nfm["mode"], "suggest")
+
     def test_agreeing_value_produces_no_action(self):
         out = pcs.plan(sync_snapshot(cost=582.67, source="Lightspeed"), REG, POLICY, ls_sales=LS)
         self.assertNotIn("nfm_cost", self.kinds(out))
@@ -697,3 +702,101 @@ class TestFlooringLine(unittest.TestCase):
         (a,) = [x for x in out["actions"] if x["kind"] == "flooring_line"]
         self.assertEqual((a["stage"], a["mode"], a["confidence"]), ("ls_sale", "suggest", "Low"))
         self.assertIn("no_order_found", a["flags"])
+
+
+# --- AP Disposal invoices -> Disposal cost row (Decision 13) ---
+
+def disposal_text(no, street_line, total, date="2026-09-19", note=None):
+    return f"""    Invoice no.: {no}
+    Invoice date: {date}
+#       Date           Product or service           Description                   Qty            Rate                 Amount         Tax
+1.                     20 yard                     20 yard - Service Charge - 9      1         $150.00                $150.00     HST ON
+                                                   {street_line}
+2.      2026-08-24     Disposal Fee                Disposal Fee / Ton - Mixed     0.81         $120.00                 $97.20     HST ON
+                                                   Garbage - Sept 18
+                                                                                    Subtotal                                     $247.20
+{"        Note to customer" if note else ""}
+{("        " + note) if note else ""}
+                                                                                  Total                                         ${total}
+"""
+
+
+AP_PAGE = "https://app.notion.com/32b596a4505f802b9b31f593bf2db68e"
+
+
+def disposal_case(rows_cost=None, street="9 Midnight lane Brampton", end="2026-09-15", extra_projects=(),
+                  invoices=None, assigned=AP_PAGE):
+    snap = {"projects": [{"url": P(100), "ID": 450, "Street Address": street, "Assign Disposal": [AP_PAGE],
+                          "Project End Date": end, "Submission Status": "Submitted"}] + list(extra_projects),
+            "costs": [{"url": P(200), "Category": "Disposal", "Cost": rows_cost, "Assigned To": [assigned],
+                       "Project": [P(100)]}],
+            "financials": [], "work_orders": [], "payments": [], "team": [], "flooring_lines": []}
+    if invoices is None:
+        d = sd.parse_disposal(disposal_text("2406", "Midnight Lane", "279.34"))
+        d.update(supplier="ap_disposal", received_at="2026-09-19T10:00:00Z")
+        invoices = [d]
+    docs = {"disposal_invoices": sd.disposal_invoices(invoices)}
+    out = pcs.plan(snap, REG, POLICY, supplier_docs=docs)
+    return [a for a in out["actions"] if a["kind"] == "disposal_cost"], out["notes"]
+
+
+class TestDisposal(unittest.TestCase):
+    def test_street_parsed_across_the_wrapped_description(self):
+        d = sd.parse_disposal(disposal_text("2406", "Midnight Lane", "279.34"))
+        self.assertEqual((d["doc_no"], d["total"], d["subtotal"]), ("2406", 279.34, 247.20))
+        self.assertEqual(d["street"], {"number": "9", "name_key": "midnight", "unit": None})
+        self.assertIsNone(sd.parse_street("20 yard"))
+
+    def test_project_street_shapes(self):
+        self.assertEqual(sd.parse_street("1109-5 Michael Power Place"), {"number": "5", "name_key": "michael", "unit": "1109"})
+        self.assertEqual(sd.parse_street("4230 Fieldgate drive unit 4")["unit"], "4")
+        self.assertEqual(sd.parse_street("1 Hurontario St #1705")["unit"], "1705")
+
+    def test_matched_invoice_fills_an_empty_disposal_row_with_the_total_incl_tax(self):
+        (a,), _ = disposal_case()
+        self.assertEqual(a["mode"], "write")
+        self.assertEqual(a["fields"], {"Cost": 279.34, "Invoice #": "2406", "Cost Source": "AP Invoice (auto)"})
+
+    def test_matching_hand_entered_cost_only_gains_the_invoice_number(self):
+        (a,), _ = disposal_case(rows_cost=279.34)
+        self.assertEqual(a["fields"], {"Invoice #": "2406"})
+
+    def test_different_hand_entered_cost_is_only_suggested(self):
+        (a,), _ = disposal_case(rows_cost=300)
+        self.assertEqual(a["mode"], "suggest")
+        self.assertNotIn("Cost", a["fields"])
+
+    def test_two_projects_at_one_street_are_never_picked(self):
+        twin = {"url": P(101), "ID": 451, "Street Address": "9 Midnight Lane", "Project End Date": "2026-09-20"}
+        acts, notes = disposal_case(extra_projects=[twin])
+        self.assertEqual(acts, [])
+        self.assertEqual(notes[0]["kind"], "disposal_unmatched")
+        self.assertEqual(sorted(notes[0]["candidates"]), ["PP-450", "PP-451"])
+
+    def test_date_window_separates_a_repeat_customer(self):
+        old = {"url": P(101), "ID": 300, "Street Address": "9 Midnight Lane", "Project End Date": "2025-11-01"}
+        (a,), _ = disposal_case(extra_projects=[old])
+        self.assertEqual(a["pp"], "PP-450")
+
+    def test_wrong_house_number_is_a_suggestion_when_one_ap_row_is_near(self):
+        acts, notes = disposal_case(street="11 Midnight Lane")
+        (a,) = acts
+        self.assertEqual(a["mode"], "suggest")
+        self.assertIn("street_number_differs", a["flags"])
+
+    def test_reissued_invoice_follows_the_latest_copy_and_says_so(self):
+        first = sd.parse_disposal(disposal_text("2410", "Huron heights", "279.34").replace(" - 9  ", " - 4798"))
+        first.update(supplier="ap_disposal", received_at="2026-09-24T10:00:00Z")
+        second = sd.parse_disposal(disposal_text("2410", "Midnight Lane", "279.34"))
+        second.update(supplier="ap_disposal", received_at="2026-09-25T10:00:00Z")
+        (inv,) = sd.disposal_invoices([first, second])
+        self.assertEqual((inv["copies"], inv["street"]["name_key"]), (2, "midnight"))
+        (a,), _ = disposal_case(invoices=[first, second])
+        self.assertEqual(a["mode"], "suggest")              # the site moved: a person confirms
+        self.assertIn("reissued_new_site", a["flags"])
+
+    def test_out_of_scope_match_is_a_note_with_a_cross_check(self):
+        acts, notes = disposal_case(rows_cost=288.15, end="2026-08-20")
+        self.assertEqual(acts, [])
+        self.assertEqual((notes[0]["kind"], notes[0]["check"]),
+                         ("disposal_out_of_scope", "Disposal row cost differs from this invoice"))

@@ -123,6 +123,10 @@
     "ap_sender_domain": "apdisposal.ca",
     "ap_invoice_filename_regex": "^Invoice_(\\d+)_from_AP_Disposal\\.pdf$",
     "ambiguous_match": "flag",
+    "cost_basis": "total_incl_tax",
+    "match_window_days_before_end": 45,
+    "match_window_days_after_end": 60,
+    "_match_note": "A disposal invoice matches a project when the street NUMBER is identical and the first word of the street name agrees (unit too, when both carry one), and the invoice date falls between Project End Date - 45 days and + 60 days (2388 came 43 days after its job ended). A project with no end date yet is always a candidate. Zero candidates or more than one -> flagged, never picked; a near miss (same street, different number) is named so a person can look. Cost = invoice total incl. HST, the figure Albert pays (PP-450).",
     "_note": "Q4 default + amendment §10: match by street and unit when present; more than one candidate project -> flag, never pick."
   },
   "bank_cross_check": {

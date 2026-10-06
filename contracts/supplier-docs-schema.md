@@ -67,6 +67,20 @@ A credit memo prints no PO or estimate. It is attached to the **one** order that
 invoiced the same supplier code within `credit_attribution.lookback_days` before the
 credit date. Zero or several candidates → `unattributed_credits`, never picked.
 
+## Disposal invoices (`disposal_invoices[]`)
+
+AP Disposal bills each bin as a QuickBooks invoice in info@ INVOICE. One entry per
+invoice number — **the latest copy received wins**:
+
+`supplier, doc_no, date, subtotal, tax, total` (Titan pays the total incl. HST),
+`lines[] {service, desc, qty, rate, amount}`, `street_text`, `street {number,
+name_key, unit}` (parsed from the line description, else the "Note to customer"),
+`copies`, `previous_streets[]`, `previous_street_texts[]` (an earlier copy named a
+different site — AP re-sends under the same number when it corrects the site, 2410).
+
+`street_text` is a customer's job-site address: it stays in this gitignored file and
+is never copied into a plan, a log or chat.
+
 ## Limits
 
 - Only documents filed in the registry's folders are seen.

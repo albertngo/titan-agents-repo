@@ -187,7 +187,14 @@
       "Lightspeed",
       "AP Invoice (auto)"
     ],
-    "_sync_owned_note": "The sync may overwrite `Cost` only when `Cost source` is one of these (or empty). A hand-entered source is never overwritten (plan Workstream C step 4)."
+    "_sync_owned_note": "The sync may overwrite `Cost` only when `Cost source` is one of these (or empty). A hand-entered source is never overwritten (plan Workstream C step 4).",
+    "disposal_vendors": {
+      "ap_disposal": {
+        "team_page": "https://app.notion.com/32b596a4505f802b9b31f593bf2db68e",
+        "team_name": "John - APS Disposal",
+        "_note": "The Titan Team row a Disposal cost is paid to and that `Assign Disposal` points at for AP Disposal jobs (verified 2026-10-06: PP-450's Disposal row, $279.34 = AP invoice 2406)."
+      }
+    }
   },
   "project_financials": {
     "data_source": "collection://8afe9453-6580-414f-8215-1934d12a3d22",

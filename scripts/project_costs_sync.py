@@ -32,6 +32,9 @@ Actions:
                       The LS sale is compared only: a different product or rate is
                       flagged as a PM entry mistake (Decisions 17-18)
   financials_relations Financials `Costs` / `Flooring Line Items` <- project's own
+  disposal_cost       Disposal row <- AP Disposal invoice total incl. HST, matched by
+                      street + date window; zero or several candidates -> a note,
+                      never a pick; a re-issued invoice that moved site -> suggest
   costs_complete      tick when submitted and no cost is missing
   payment_project     suggest a project for an unlinked payment (Decision 12)
   stamp_paid          Payout Batches marked Paid -> cost rows' paid date/reference
@@ -48,6 +51,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import payments_match  # noqa: E402
 import payout_run as pr  # noqa: E402
+from supplier_docs_pull import parse_street  # noqa: E402
 
 CONTRACT = "costs-plan-1"
 
@@ -65,8 +69,12 @@ def mk(kind, target, mode, fields, confidence, reason, pp=None, **extra):
 
 
 def sync_owns(cost_row, reg):
+    """The sync may set `Cost` on a row it filled itself, or on an empty row. A cost with
+    no `Cost Source` was typed by a person (every row before 2026-10 is like that)."""
     src = cost_row.get("cost_source")
-    return src in (None, "") or src in reg["project_costs"]["sync_owned_sources"]
+    if src in reg["project_costs"]["sync_owned_sources"]:
+        return True
+    return src in (None, "") and pr.money(cost_row.get("cost")) is None
 
 
 STAGE_RANK = {"invoice_final": 5, "invoice_partial": 4, "confirmation": 3, "purchase_order": 2,
@@ -270,6 +278,134 @@ def flooring_actions(project, pp, num, ls, proj_orders, product_po, supplier, ro
     return out
 
 
+def same_street(a, b):
+    if not a or not b or a["number"] != b["number"] or a["name_key"] != b["name_key"]:
+        return False
+    return not (a.get("unit") and b.get("unit") and a["unit"] != b["unit"])
+
+
+def street_candidates(street, inv_date, projects, policy):
+    """Projects at this street whose end date fits the invoice date (or have none yet)."""
+    dp = policy["disposal"]
+    hits, near = [], []
+    for pid, proj in projects.items():
+        ps = parse_street(proj.get("street_address"))
+        if not ps or not street:
+            continue
+        if ps["name_key"] == street["name_key"] and ps["number"] != street["number"]:
+            near.append(pid)
+            continue
+        if not same_street(street, ps):
+            continue
+        end = pr.parse_date(proj.get("project_end_date"))
+        if end and inv_date and not (-dp["match_window_days_after_end"] <=
+                                     (end - inv_date).days <= dp["match_window_days_before_end"]):
+            continue
+        hits.append(pid)
+    return hits, near
+
+
+def disposal_actions(supplier, projects, costs_by_project, reg, policy):
+    """AP Disposal invoices -> the matched project's Disposal cost row (Decision 13)."""
+    cats = reg["project_costs"]["categories"]
+    pnames = reg["project_costs"]["properties"]
+    names = {k: v["name"] for k, v in reg["project_costs"]["to_add"].items()}
+    vendors = reg["project_costs"].get("disposal_vendors", {})
+    actions, notes, by_project = [], [], {}
+
+    def label(pid):
+        return pr.pp_label(projects[pid]) or pid
+
+    for inv in (supplier or {}).get("disposal_invoices", []):
+        vendor = vendors.get(inv.get("supplier"), {})
+        inv_date = pr.parse_date(inv.get("date"))
+        flags = []
+        if inv.get("previous_streets"):
+            flags.append("reissued_new_site")
+        hits, near = street_candidates(inv.get("street"), inv_date, projects, policy)
+        prev_hits = []
+        for st in inv.get("previous_streets", []):
+            prev_hits += street_candidates(st, inv_date, projects, policy)[0]
+        base = {"invoice": inv["doc_no"], "date": inv.get("date"), "total": inv.get("total")}
+        if prev_hits:
+            base["previously_matched"] = [label(p) for p in prev_hits]
+        if not hits and near and vendor.get("team_page"):
+            # AP has keyed a wrong house number before (2390: 4500 for 4600 Kimbermount).
+            # One near miss whose Disposal row is already this vendor's -> a suggestion, never a write
+            team = pr.page_id(vendor["team_page"])
+            mine = [p for p in near if any(team in [pr.page_id(u) for u in pr.as_list(r.get("assigned_to"))]
+                                          for r in costs_by_project.get(p, [])
+                                          if r.get("category") == cats["disposal"])]
+            if len(mine) == 1 and pr.in_scope(projects[mine[0]], policy):
+                hits, flags = mine, flags + ["street_number_differs"]
+        if len(hits) != 1:
+            why = ("no street on the invoice" if not inv.get("street") else
+                   "no project at that street in the date window" if not hits else
+                   "more than one project at that street — not picked")
+            notes.append(dict(base, kind="disposal_unmatched", reason=why,
+                              candidates=[label(p) for p in hits], near_misses=[label(p) for p in near],
+                              flags=flags))
+            continue
+        pid = hits[0]
+        if not pr.in_scope(projects[pid], policy):
+            rows = [r for r in costs_by_project.get(pid, []) if r.get("category") == cats["disposal"]]
+            have = [pr.money(r.get("cost")) for r in rows]
+            note = dict(base, kind="disposal_out_of_scope", pp=label(pid), flags=flags, row_costs=have)
+            if inv.get("total") is not None and inv["total"] not in have:
+                note["check"] = "Disposal row cost differs from this invoice"
+            notes.append(note)
+            continue
+        by_project.setdefault(pid, {"invoices": [], "flags": set(flags), "vendor": vendor,
+                                    "prev": []})
+        by_project[pid]["invoices"].append(inv)
+        by_project[pid]["prev"] += [label(p) for p in prev_hits]
+
+    for pid, m in by_project.items():
+        project, pp = projects[pid], label(pid)
+        flags = set(m["flags"])
+        total = round(sum(i["total"] or 0 for i in m["invoices"]), 2)
+        nos = ", ".join(i["doc_no"] for i in m["invoices"])
+        team = m["vendor"].get("team_page")
+        assigned = [pr.page_id(u) for u in pr.as_list(project.get("assign_disposal"))]
+        if team and pr.page_id(team) not in assigned:
+            flags.add("project_assigned_other_disposal")
+        rows = [r for r in costs_by_project.get(pid, []) if r.get("category") == cats["disposal"]]
+        if not rows:
+            notes.append({"kind": "disposal_no_row", "pp": pp, "invoice": nos, "total": total})
+            continue
+        row = next((r for r in rows if team and pr.page_id(team) in
+                    [pr.page_id(u) for u in pr.as_list(r.get("assigned_to"))]), rows[0])
+        if team and pr.page_id(team) not in [pr.page_id(u) for u in pr.as_list(row.get("assigned_to"))]:
+            flags.add("row_assigned_to_other_payee")
+        if len(rows) > 1:
+            flags.add("several_disposal_rows")
+        reason = (f"AP Disposal invoice {nos}: ${total:.2f} incl. HST, street matches {pp}"
+                  + (f" (re-issued; earlier copy pointed at {', '.join(m['prev'])})" if m["prev"] else ""))
+        current = pr.money(row.get("cost"))
+        if current is not None and abs(current - total) < 0.005:
+            if not row.get("invoice_number"):
+                actions.append(mk("disposal_cost", row["url"], "write", {names["invoice_number"]: nos},
+                                  "High", reason + "; cost already matches — invoice number only", pp,
+                                  flags=sorted(flags)))
+            continue
+        fields = {pnames["cost"]: total, names["invoice_number"]: nos, names["cost_source"]: "AP Invoice (auto)"}
+        blocking = flags & {"reissued_new_site", "several_disposal_rows", "row_assigned_to_other_payee",
+                            "street_number_differs"}
+        if sync_owns(row, reg) and not blocking:
+            actions.append(mk("disposal_cost", row["url"], "write", fields, "High", reason, pp,
+                              flags=sorted(flags)))
+        else:
+            why = reason if sync_owns(row, reg) else f"{reason}; row holds a hand-entered cost ({current}) — confirm"
+            if blocking:
+                why += f"; check: {', '.join(sorted(blocking))}"
+            actions.append(mk("disposal_cost", row["url"], "suggest", {
+                names["suggested_cost"]: total, names["suggestion_source"]: "AP Invoice (auto)",
+                names["suggestion_confidence"]: "Medium" if blocking else "High",
+                names["suggestion_reason"]: why[:1900]}, "Medium" if blocking else "High", why, pp,
+                flags=sorted(flags)))
+    return actions, notes
+
+
 def plan(snapshot, reg, policy, ls_sales=None, ls_orders=None, supplier_docs=None):
     n = pr.normalize_snapshot(snapshot, reg)
     idx, wo_by_project, pay_by_project, fin_by_project = pr.build_index(n)
@@ -365,6 +501,11 @@ def plan(snapshot, reg, policy, ls_sales=None, ls_orders=None, supplier_docs=Non
                                   "High", "submitted and every labor / disposal / NFM cost is present", pp))
         elif len(fins) > 1:
             notes.append({"pp": pp, "note": f"{len(fins)} Financials rows point at this project — fix by hand"})
+
+    # disposal invoices -> Disposal cost rows
+    d_actions, d_notes = disposal_actions(supplier, idx["projects"], costs_by_project, reg, policy)
+    actions += d_actions
+    notes += d_notes
 
     # payments
     for s in payments_match.suggest(snapshot, reg, policy):

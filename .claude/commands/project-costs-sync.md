@@ -53,8 +53,8 @@ Note the summary lines — `@pack without PP` is a staff-habit count for the rep
 python3 scripts/supplier_docs_pull.py
 ```
 
-Reads the supplier's order confirmations, invoices and credit memos where staff file
-them in info@ (`platform-settings/supplier-docs.json`), app-only Graph GETs, nothing
+Reads the supplier's order confirmations, invoices and credit memos, and AP
+Disposal's bin invoices, where staff file them in info@ (`platform-settings/supplier-docs.json`), app-only Graph GETs, nothing
 moved or marked read. The invoice net of credits is the final flooring cost
 (Decision 18). Report `errors` and `unattributed_credits` counts.
 
@@ -75,6 +75,12 @@ python3 scripts/project_costs_sync.py --snapshot ingest/<date>/notion-finance.js
     --ls-sales ingest/<date>/ls-sales.json --ls-orders ingest/<date>/ls-orders.json \
     --supplier-docs ingest/<date>/supplier-docs.json
 ```
+
+For disposal matching the snapshot's projects must carry `Street Address` and
+`Assign Disposal`, and must include every project whose `Project End Date` is in the
+last 120 days or empty (out-of-scope ones too: they stop a September invoice being
+pinned on the wrong job), plus their Disposal cost rows. The street is read for
+matching and never written out.
 
 The snapshot must include the in-scope projects' **Flooring Line Items** (`Floor SKU`,
 `Sqft Sold`, `Cost Rate`, `Sold At Rate`, `Quote Rate`, the four cost-rate columns,
@@ -111,4 +117,5 @@ Append `{"date", "project_costs_sync": "ok" | "error", "counts"}` to
 `ingest/<date>/ls-*.json` as `project-costs-sync: <date>` and push. The snapshot,
 `supplier-docs.json` and `costs-plan.json` are gitignored (private financials) — never commit them. In chat, only: suggestions waiting, `@pack`
 sales without a PP number, flooring flags by kind (PM entry mistakes, POs not
-received in Lightspeed, confirmed but not invoiced, quantity gaps), notes.
+received in Lightspeed, confirmed but not invoiced, quantity gaps), disposal invoices
+unmatched or re-issued, notes.

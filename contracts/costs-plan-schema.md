@@ -38,7 +38,8 @@ column and any `payout_batches` rows), `ingest/<date>/ls-sales.json` and
 
 - **`write`** — sources agree and the field is empty or owned by the sync
   (`Cost source` ∈ `notion-finance.json → project_costs.sync_owned_sources`). Applied
-  without review.
+  without review. A `Cost` with a **blank** `Cost Source` is a typed figure, not the
+  sync's — every row entered before October 2026 looks like that.
 - **`suggest`** — sources disagree, the source is weak, the sale is still open, or
   the field holds a **hand-entered** value. Written only into the row's suggestion
   fields (`Suggested Cost`, `Suggestion source/confidence/reason`, or the Payments Log
@@ -56,10 +57,30 @@ re-runs, so the actions log can skip what was already applied.
 | `ls_sale_found` | Titan Projects | `LS Sale Found` |
 | `nfm_cost` | Project Costs (NFM row) | write: `Cost` = Lightspeed NFM POS total incl. tax (today's meaning, Decision 10), `LS Sale IDs`, `Cost source = Lightspeed`; suggest: suggestion fields |
 | `flooring_line` | Flooring Line Items (`op: update`) or the project (`op: create`) | `Cost Rate` = best ordered source (below), `Invoice Cost Rate`, `PO Cost Rate`, `LS Sale Cost Rate`, `Cost Locked`; on create also `Floor SKU` (the **ordered** SKU), `Sqft Sold`, `Project`, `Project Financials`; `Sold At Rate` ← the line's `Quote Rate` only. Extra keys: `op`, `stage`, `flags` |
+| `disposal_cost` | Project Costs (Disposal row) | write: `Cost` = AP invoice total incl. HST (summed when a project has several), `Invoice #`, `Cost Source = AP Invoice (auto)`; only `Invoice #` when the row's cost already equals the total; suggest: suggestion fields. Extra key `flags` |
 | `financials_relations` | Project Financials | `Costs` ← the project's `Project Costs` |
 | `costs_complete` | Project Financials | `Costs Complete` |
 | `payment_project` | Master Payments Log | `Suggested Project`, `Match Confidence`, `Match Reason` |
 | `stamp_paid` | Project Costs | `Paid Out Date (2/3)`, `Paid Reference (3/3)` from a Payout Batch Albert marked `Paid` |
+
+## `disposal_cost` (Decision 13)
+
+An invoice matches a project when the street **number** is identical, the first word
+of the street name agrees (and the unit, when both carry one), and the invoice date
+sits between `Project End Date` − 45 and + 60 days (no end date yet: always a
+candidate). Then:
+
+- **zero or several candidates** → no action; a `disposal_unmatched` note with the
+  candidate and near-miss project numbers. One near miss whose Disposal row is
+  already AP's → `suggest` with `street_number_differs` (AP keyed 4500 for 4600
+  Kimbermount on 2390).
+- **matched, project out of scope** → `disposal_out_of_scope` note carrying the row's
+  current cost and `check` when it differs.
+- **matched, in scope** → `write` into an empty or sync-owned row; `suggest` when the
+  row holds a typed cost, the invoice was `reissued_new_site`, the row is assigned to
+  another payee, or the project has several Disposal rows.
+
+Notes name invoice and project numbers only — never the street.
 
 ## `flooring_line` (Decisions 17–18, Albert 2026-10-06)
 

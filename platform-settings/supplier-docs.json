@@ -6,7 +6,8 @@
   "folders": {
     "confirmation": ["PURCHASE ORDERS/PO Confirmed"],
     "invoice": ["INVOICE", "INVOICE/Sent to QBO", "INVOICE/Failed QBO Extraction"],
-    "credit_memo": ["CREDIT"]
+    "credit_memo": ["CREDIT"],
+    "disposal_invoice": ["INVOICE", "INVOICE/Sent to QBO", "INVOICE/Failed QBO Extraction"]
   },
   "_folders_note": "Paths are display names from the mailbox root. Staff file each supplier email by hand; a document filed elsewhere is not seen. info@ Sent Items holds 'FW: Invoice' copies of pre-July invoices: deliberately not read.",
   "credit_attribution": {
@@ -14,6 +15,17 @@
     "_note": "A credit memo prints no PO or estimate number. It is attached to the one order that invoiced the same supplier code within lookback_days before the credit; two candidates -> flagged unattributed, never picked."
   },
   "suppliers": {
+    "ap_disposal": {
+      "name": "AP Disposal",
+      "kind": "disposal",
+      "format": "quickbooks_disposal",
+      "sender_addresses": ["quickbooks@notification.intuit.com"],
+      "sender_name_regex": "(?i)AP Disposal",
+      "subjects": {
+        "disposal_invoice": "(?i)^Invoice (\\d+) from AP Disposal"
+      },
+      "_facts": "One bin per invoice, filed in info@ INVOICE (verified 2026-10-06: 2388-2390, 2406, 2410, 2417). The job site is only in the line description ('14 yard - Service Charge - 27 Longbourne'), sometimes repeated under 'Note to customer'; no PP, no unit so far. Lines: a bin service charge plus 'Disposal Fee / Ton' x tonnage. AP re-sends an invoice under the SAME number when it corrects the job site (2410: first 4798 Huron Heights, then 27 Longbourne, same $360.70) - the latest copy wins and the change is flagged. The street can be wrong outright (2390 reads 4500 Kimbermount; Notion has 4600) - an inexact number never matches. Albert pays the total incl. HST (PP-450 Disposal Cost 279.34 = invoice 2406 total)."
+    },
     "vidar": {
       "name": "Vidar Design Flooring",
       "format": "quickbooks",
