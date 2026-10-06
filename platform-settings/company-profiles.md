@@ -84,3 +84,20 @@ in `process-price-list.md`, independent of anything in this file.
   stair pieces) — plus about 4 trims (CWS31-H-08, 11241, 11207, 11242) whose LS costs
   equal the Store Price column. A Vista *stair-parts* list would be a different
   question; this entry does not decide it.
+
+## GLOBALCFS (Notion Company value, exact casing)
+
+- **2026-10-06** — from Price Lists row `3f1596a4-505f-81d9-a842-dfe3fdefec80`
+  (`Pricing`): a 9-page trims/accessories price list from Global CFS (30 Macintosh
+  Blvd, Unit 7, Concord ON; sales@globalcfs.ca, marco@globalcfs.ca; (905) 660-0973 /
+  (647) 549-0973). 185 per-piece items, no flooring: aluminum straight edge trims
+  (6mm–22mm in 8ft and 10ft lengths, finishes include matte/shiny silver, black,
+  gold, titanium, rose gold, white), Rustico colour series (Musgo, Crema, Arena,
+  Perla, Tierra), plastic trims, stainless steel trims, square trims, T-trims (8ft
+  and 10ft), carpet reducers, full reducers, round trims, bendable trims, punchless
+  trims, expansion/movement joints, stair nosings (hammered and grain finishes), and
+  corner guards. Prices $1.50–$22.00/pc, volume pricing available on select products.
+  Tagged `Trims Price List` (gray, new). Not run through extraction — trims are
+  outside the Master Flooring Catalogue per the standing exclusion (cf. VISTA
+  PL-145/146). GLOBALCFS is not in `airtable-destinations.json` supplier_aliases —
+  not onboarded to Airtable/Lightspeed.
