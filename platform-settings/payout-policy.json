@@ -52,6 +52,10 @@
     "flag_delta_per_sqft_cents": 10,
     "compare_basis": "per_sqft",
     "catalogue_autofill": false,
+    "source_of_truth": ["supplier_invoice", "supplier_confirmation", "ls_purchase_order"],
+    "ls_sale_role": "compare_only",
+    "flag_sale_product_mismatch": true,
+    "_source_of_truth_note": "Albert 2026-10-06: the ordered material is the truth. Highest available of invoice > confirmation > LS PO sets the flooring cost; a sale line whose product or rate differs is flagged as a PM entry mistake (PP-461, PP-439). The sale is compared, never preferred.",
     "_note": "Amendment §2.3: PM (supplier PDF) -> front desk (stock order, wins interim) -> supplier invoice (final). Flag when PM vs front desk differs by more than $0.10/sqft, compared per sqft never on totals. No catalogue/Lightspeed auto-fill until the catalogue is reconciled (dated flip)."
   },
   "margin_floor": {

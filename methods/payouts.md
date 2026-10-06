@@ -31,6 +31,7 @@ Both commands start in `plan_only`; flipping either is a dated vault decision.
 | 14 | No Excel parsing. The Airtable quote model becomes the source of quoted labor, the pack list and the discount (Phase 3). | Albert |
 | 15 | Pay method per contractor. Paid is marked by Albert, never from a bank email. | Albert |
 | 16 | Scope: only projects with a Project End Date on or after 2026-09-01. Older or undated unpaid rows are left out and counted on the run, for Albert to settle by hand (`payout-policy.json → scope`). | Albert 2026-10-06 |
+| 17 | **What was ordered is the truth for flooring, not the Lightspeed sale.** The chain is LS purchase order → supplier sales-order confirmation → supplier invoice (and any credit memo). When the sale line's product or rate differs from what was ordered, the sale is flagged as a **PM entry mistake** for the PM to correct; the ordered product and the invoiced rate are what cost and margin use. Found on PP-461 (sold Click 5", ordered 6" T&G, as the PM's own notes said) and PP-439 (sold 9" White Oak at $6.99, ordered 7.5" White Ash at $3.49). | Albert 2026-10-06 |
 
 ## What people do
 
@@ -52,6 +53,9 @@ Both commands start in `plan_only`; flipping either is a dated vault decision.
    to the job.
 2. When PM and front desk disagree, front desk's rate is the working number until the
    supplier invoice arrives.
+3. When the supplier's sales-order confirmation arrives, check it against the PO
+   (product, boxes, rate). A price change between confirmation and invoice (Vidar's
+   Aug 1 increase on PP-417) is the supplier's to explain, not the PM's.
 
 **Albert**
 1. Weekly, five minutes: "Payments to confirm" and "Costs to confirm" — tick `Accept`.
@@ -142,6 +146,15 @@ the fact. Consequences for this flow:
   cost (stocked) or supply price (non-stock). A later PO receipt never fills it in, so
   a $0 stocked line stays $0 — it is flagged and the PO cost suggested instead.
   `PUT /sales/{id}` could in principle edit it; never used.
+- **The Lightspeed sale is the PM's entry, not the purchase.** It can name the wrong
+  product (PP-461, PP-439) or carry a stale catalogue cost (Vidar engineered sells at
+  about $0.70/sqft over what Vidar bills). It is compared, never preferred, once a PO,
+  confirmation or invoice exists.
+- **Vidar documents** (info@): confirmations in PURCHASE ORDERS / PO Confirmed
+  ("Estimate – Sales order N", prints `P.O. Number: 8xxx`); invoices in INVOICE (prints
+  the estimate number); credit memos in CREDIT (restocking fee shows as a reduced box
+  rate). Orders placed by email have no LS PO and no P.O. number on the document.
+  An estimate and an invoice can share a number by coincidence (103399).
 - **Receipt numbers repeat** (L-40372 is two sales). Join on sale `id`.
 - **Parked/pending sales change**; every run re-pulls the window.
 - **R-35375-style closes** (100% discount, $0 revenue, cost kept) distort margin;
