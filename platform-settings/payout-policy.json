@@ -6,7 +6,10 @@
     "payout_run": "plan_only",
     "lightspeed_create_pack_sale": "off",
     "lightspeed_create_purchase_order": "off",
-    "_values": ["plan_only", "write"],
+    "_values": [
+      "plan_only",
+      "write"
+    ],
     "_note": "plan_only: scripts compute and write plan files; the command writes NOTHING to Notion. Flipping either to write is a dated decision recorded in the vault (05_decisions/), same as style-tags. The two Lightspeed writes are Phase 3 and are 'off' until a separate dated flip (plan Q2, amendment §9)."
   },
   "scope": {
@@ -26,7 +29,12 @@
     "_note": "Decision 2: customer balance never holds contractor pay; open work orders do. A WO with Charge to = Installer deducts its Budget Expense from that installer's held labor (Q5 default Titan)."
   },
   "labor_check": {
-    "order": ["invoice_vs_quote", "standard_rate_pass", "rate_override_flag", "band_backstop"],
+    "order": [
+      "invoice_vs_quote",
+      "standard_rate_pass",
+      "rate_override_flag",
+      "band_backstop"
+    ],
     "invoice_vs_quote_tolerance_cents": 0,
     "band": {
       "metric": "labor_cost / value",
@@ -47,30 +55,59 @@
     "_note": "Amendment §2.3: PM (supplier PDF) -> front desk (stock order, wins interim) -> supplier invoice (final). Flag when PM vs front desk differs by more than $0.10/sqft, compared per sqft never on totals. No catalogue/Lightspeed auto-fill until the catalogue is reconciled (dated flip)."
   },
   "margin_floor": {
-    "min_margin_after_discount": 0.20,
+    "min_margin_after_discount": 0.2,
     "_note": "Amendment §6: flag any project below 20% margin computed on the post-discount total."
   },
   "lightspeed": {
     "pp_regex": "(?<![A-Za-z0-9])@?PP-?\\s?(\\d{3,})\\b",
     "_pp_regex_note": "3+ digits so PP-1000 is never read as PP-100 (amendment §1.1); leading boundary because lowercase 'pp' inside a word matched 5 old POs (verified 2026-10-06). Case-sensitive: real tags are always uppercase.",
-    "flooring_category_leaves": ["ENGINEERED HARDWOOD", "SOLID HARDWOOD", "SPC", "WPC", "GLUE DOWN", "VINYL", "LAMINATE", "TILE", "CARPET"],
+    "flooring_category_leaves": [
+      "ENGINEERED HARDWOOD",
+      "SOLID HARDWOOD",
+      "SPC",
+      "WPC",
+      "GLUE DOWN",
+      "VINYL",
+      "LAMINATE",
+      "TILE",
+      "CARPET"
+    ],
     "_flooring_category_note": "A sale line is FLOORING when its product's LS category leaf (lightspeed_pull.category_of) is one of these; any other known leaf (ACCESSORIES, ...) is NFM; no category -> 'unclassified' and flagged. Flooring quantity is already square feet on the LS line (verified: R-35833, qty 880 at $3.39 cost / $4.39 price per sqft).",
-    "parked_sale_final_when_submission_in": ["Ready To Submit", "Submitted"],
-    "_parked_sale_note": "Titan takes payment by e-transfer/cash outside Lightspeed, so project sales often stay parked forever (PP-461/450/417 were all parked after being paid in full, 2026-10-06 test). Once the project's Submission Status is one of these, a parked/pending sale is treated as final and its NFM total may be written without review.",
+    "parked_sale_final_when_submission_in": [
+      "Ready To Submit",
+      "Submitted"
+    ],
+    "_parked_sale_note": "Albert 2026-10-06: the project's Lightspeed sale exists to re-enter the materials as if sold to the client, so cost, profit and inventory are recorded in Lightspeed. It is completed after the fact, whenever Albert moves the money into Titan (the customer may have paid cash or to a personal account). So a parked sale is normal for a finished project, and its figures are final once Submission Status is one of these. A parked sale on a submitted project also means: money still to transfer into Titan, then close the sale.",
     "sales_window_days": 120,
     "orders_window_days": 180,
-    "nonstock_zero_cost_ok": ["DEPOSIT", "Discount", "DELIVERY", "vend-discount"],
+    "nonstock_zero_cost_ok": [
+      "DEPOSIT",
+      "Discount",
+      "DELIVERY",
+      "vend-discount"
+    ],
     "_zero_cost_note": "Sale-line cost is FROZEN at sale time from inventory average_cost (stocked) or supply_price (non-stock); a later PO receipt never backfills it (verified 2026-10-06). These non-stock products legitimately carry cost 0 and are not flagged. Matched against product sku/handle/name, case-insensitive."
   },
   "payments_match": {
-    "installment_splits": [[0.35, 0.35, 0.30]],
+    "installment_splits": [
+      [
+        0.35,
+        0.35,
+        0.3
+      ]
+    ],
     "amount_tolerance_cents": 100,
     "auto_link": false,
     "_note": "Decision 12: suggest only; Albert confirms. auto_link stays false."
   },
   "disposal": {
-    "month_end_payable_vendors": ["AP Disposal"],
-    "paid_at_booking_vendors": ["In The Bin", "Orion Waste"],
+    "month_end_payable_vendors": [
+      "AP Disposal"
+    ],
+    "paid_at_booking_vendors": [
+      "In The Bin",
+      "Orion Waste"
+    ],
     "ap_sender_domain": "apdisposal.ca",
     "ap_invoice_filename_regex": "^Invoice_(\\d+)_from_AP_Disposal\\.pdf$",
     "ambiguous_match": "flag",

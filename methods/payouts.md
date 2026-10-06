@@ -123,6 +123,19 @@ No existing formula changes (`Total Non-Flooring Materials`, `Commission Basis`,
 `Commission Amount` stay as they are — Decision 10). `Cost Rate Flag` and `Below Floor`
 were added by API and need nothing.
 
+## Why every project has a Lightspeed sale (Albert, 2026-10-06)
+
+The PP-tagged Lightspeed sale is a bookkeeping record, not the customer's checkout.
+Materials are re-entered as if sold to the client so Lightspeed carries the cost,
+profit and inventory movement. The sale stays parked until Albert moves the money into
+Titan (the customer may have paid cash or to a personal account) and is completed after
+the fact. Consequences for this flow:
+
+- A parked sale on a finished project is normal. Once the project is Ready To Submit or
+  Submitted, its totals are treated as final (`payout-policy.json → lightspeed`).
+- A parked sale on a submitted project is also a to-do: funds still to transfer into
+  Titan, then close the sale.
+
 ## Traps
 
 - **Lightspeed sale-line cost is frozen at sale time** from the product's average
