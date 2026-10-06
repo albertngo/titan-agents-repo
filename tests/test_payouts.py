@@ -336,3 +336,109 @@ class TestRegistries(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+# -- payments match + cost sync ---------------------------------------------------
+
+import payments_match as pm  # noqa: E402
+import project_costs_sync as pcs  # noqa: E402
+
+
+def match_snapshot(memo="", sender="", amount=100.0):
+    return {"projects": [{"url": P(100), "ID": 450, "Name": "Sabrina Rossi", "Description": "Sabrina | Brampton",
+                          "Street Address": "12 Maple Ave", "Contact": "+1 (905) 555-0101",
+                          "Value Approx": 7706.26},
+                         {"url": P(101), "ID": 417, "Name": "Gustavo G", "Street Address": "9 Oak St",
+                          "Value Approx": 22251.80}],
+            "payments": [{"url": P(600), "Amount": amount, "Sender's Name": sender, "Message": memo}],
+            "costs": [], "financials": [], "work_orders": [], "team": [], "flooring_lines": []}
+
+
+class TestPaymentsMatch(unittest.TestCase):
+    def test_address_in_memo_is_high_and_memo_never_echoed(self):
+        s = pm.suggest(match_snapshot(memo="deposit 12 maple ave unit 3"), REG, POLICY)
+        self.assertEqual((s[0]["pp"], s[0]["confidence"]), ("PP-450", "High"))
+        self.assertNotIn("maple", s[0]["reason"].lower())
+
+    def test_name_and_installment_amount_is_high(self):
+        s = pm.suggest(match_snapshot(sender="SABRINA ROSSI", amount=2697.19), REG, POLICY)
+        self.assertEqual(s[0]["confidence"], "High")
+
+    def test_name_alone_is_medium_nothing_is_none(self):
+        self.assertEqual(pm.suggest(match_snapshot(sender="Rossi family", amount=5), REG, POLICY)[0]["confidence"],
+                         "Medium")
+        self.assertEqual(pm.suggest(match_snapshot(sender="Someone Else", amount=5), REG, POLICY), [])
+
+    def test_already_linked_payment_is_skipped(self):
+        snap = match_snapshot(sender="SABRINA ROSSI")
+        snap["payments"][0]["Projects"] = [P(100)]
+        self.assertEqual(pm.suggest(snap, REG, POLICY), [])
+
+
+def sync_snapshot(cost=None, source=None, submitted="Submitted"):
+    return {"projects": [{"url": P(100), "ID": 463, "Value Approx": 9000, "Submission Status": submitted,
+                          "Project Costs": [P(200), P(201)]}],
+            "costs": [{"url": P(200), "Category": "Materials (Non-Flooring)", "Cost": cost,
+                       "Cost source": source, "Project": [P(100)]},
+                      {"url": P(201), "Category": "Labor", "Cost": 1500, "Project": [P(100)]}],
+            "financials": [{"url": P(300), "Project": [P(100)], "Costs": [P(200)]}],
+            "work_orders": [], "payments": [], "team": [], "flooring_lines": []}
+
+
+LS = {"projects": {"463": {"pp": "PP-463", "sale_ids": ["s1"], "flags": [],
+                           "totals_by_class": {"nfm": {"cost": 228.3, "revenue_pretax": 515.64, "tax": 67.03},
+                                               "flooring": {"cost": 2983.2, "revenue_pretax": 3863.2, "tax": 0},
+                                               "unclassified": {"cost": 0, "revenue_pretax": 0, "tax": 0}},
+                           "flooring_lines": [{"product_id": "floor", "sku": "VID-1", "product_name": "Oak",
+                                               "quantity": 880, "unit_cost": 3.39}]}}}
+
+
+class TestCostSync(unittest.TestCase):
+    def kinds(self, out, mode=None):
+        return {a["kind"] for a in out["actions"] if mode is None or a["mode"] == mode}
+
+    def test_empty_nfm_row_is_written_silently(self):
+        out = pcs.plan(sync_snapshot(), REG, POLICY, ls_sales=LS)
+        nfm = next(a for a in out["actions"] if a["kind"] == "nfm_cost")
+        self.assertEqual(nfm["mode"], "write")
+        self.assertEqual(nfm["fields"]["Cost"], 228.3)
+        self.assertEqual(nfm["fields"]["NFM POS Total (incl. tax)"], 582.67)
+
+    def test_hand_entered_cost_is_never_overwritten(self):
+        out = pcs.plan(sync_snapshot(cost=250, source="Manual"), REG, POLICY, ls_sales=LS)
+        nfm = next(a for a in out["actions"] if a["kind"] == "nfm_cost")
+        self.assertEqual(nfm["mode"], "suggest")
+        self.assertNotIn("Cost", nfm["fields"])
+
+    def test_agreeing_value_produces_no_action(self):
+        out = pcs.plan(sync_snapshot(cost=228.3, source="Lightspeed"), REG, POLICY, ls_sales=LS)
+        self.assertNotIn("nfm_cost", self.kinds(out))
+
+    def test_po_far_from_sale_cost_is_suggested_per_sqft(self):
+        orders = {"projects": {"463": {"purchase_orders": [{"reference": "PO-1", "lines": [
+            {"product_id": "floor", "unit_cost": 3.55}]}]}}, "product_po_cost": {}}
+        fl = next(a for a in pcs.plan(sync_snapshot(), REG, POLICY, ls_sales=LS, ls_orders=orders)["actions"]
+                  if a["kind"] == "flooring_cost_rate")
+        self.assertEqual(fl["confidence"], "Medium")
+        self.assertIn("apart", fl["reason"])
+        orders["projects"]["463"]["purchase_orders"][0]["lines"][0]["unit_cost"] = 3.45   # 6 cents: fine
+        fl = next(a for a in pcs.plan(sync_snapshot(), REG, POLICY, ls_sales=LS, ls_orders=orders)["actions"]
+                  if a["kind"] == "flooring_cost_rate")
+        self.assertEqual(fl["confidence"], "High")
+
+    def test_relations_copied_and_costs_complete_only_when_nothing_missing(self):
+        out = pcs.plan(sync_snapshot(cost=228.3, source="Lightspeed"), REG, POLICY, ls_sales=LS)
+        self.assertIn("financials_relations", self.kinds(out))
+        self.assertIn("costs_complete", self.kinds(out))
+        out = pcs.plan(sync_snapshot(cost=None), REG, POLICY, ls_sales=None)
+        self.assertNotIn("costs_complete", self.kinds(out))
+
+    def test_stamp_paid_only_from_batches_albert_marked_paid(self):
+        snap = sync_snapshot()
+        snap["payout_batches"] = [{"url": P(700), "Name": "Roy 2026-09", "Paid": "__NO__", "Reference": "x",
+                                   "Lines": [P(201)]},
+                                  {"url": P(701), "Name": "APS 2026-09", "Paid": "__YES__", "Reference": "C1A",
+                                   "Paid Date": "2026-10-02", "Lines": [P(201)]}]
+        stamps = [a for a in pcs.plan(snap, REG, POLICY)["actions"] if a["kind"] == "stamp_paid"]
+        self.assertEqual(len(stamps), 1)
+        self.assertEqual(stamps[0]["fields"]["Paid Reference (3/3)"], "C1A")
