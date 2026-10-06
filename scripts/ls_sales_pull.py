@@ -317,7 +317,7 @@ def main(argv=None):
     c = out["counts"]
     print(f"{c['sales_total']} sales, {c['pp_tagged']} PP-tagged across {c['projects']} projects, "
           f"{c['untagged_pack_sales']} @pack without PP, {c['ambiguous_pp_sales']} ambiguous "
-          f"-> {path.relative_to(REPO_ROOT)}", file=sys.stderr)
+          f"-> {path}", file=sys.stderr)
     return 0
 
 

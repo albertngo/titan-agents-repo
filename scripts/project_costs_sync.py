@@ -223,7 +223,7 @@ def main(argv=None):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n")
     print(f"{len(out['actions'])} actions {out['counts']} (write_mode {out['write_mode']}) "
-          f"-> {path.relative_to(pr.REPO_ROOT)}", file=sys.stderr)
+          f"-> {path}", file=sys.stderr)
     return 0
 
 

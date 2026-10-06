@@ -158,7 +158,7 @@ def main(argv=None):
     c = out["counts"]
     print(f"{c['supplier_pos_in_window']} supplier POs since {since}, {c['pp_tagged']} PP-tagged "
           f"across {c['projects']} projects, PO cost for {c['products_with_po_cost']} products "
-          f"-> {path.relative_to(REPO_ROOT)}", file=sys.stderr)
+          f"-> {path}", file=sys.stderr)
     return 0
 
 
