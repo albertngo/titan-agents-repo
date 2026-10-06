@@ -78,7 +78,8 @@ class TestNoWritePath(unittest.TestCase):
     """The Phase 1 guarantee is structural: neither file can write to Lightspeed."""
 
     def test_no_write_verbs(self):
-        for rel in ("scripts/lightspeed_client.py", "scripts/lightspeed_pull.py"):
+        for rel in ("scripts/lightspeed_client.py", "scripts/lightspeed_pull.py",
+                    "scripts/ls_sales_pull.py", "scripts/ls_orders_pull.py"):
             src = (REPO_ROOT / rel).read_text()
             for verb in ("POST", "PUT", "PATCH", "DELETE"):
                 self.assertNotIn(f'"{verb}"', src,

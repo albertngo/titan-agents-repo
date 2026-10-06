@@ -20,9 +20,9 @@
       "data_source": "collection://2eb596a4-505f-800a-af8f-000b24ce4c57",
       "sensitivity": "team",
       "window_days": 2,
-      "error_statuses": ["Error: Manual Send Needed", "Error: No Contractor Selected", "Pending Status"],
+      "error_statuses": ["Error: Manual Send Needed", "Error: No Contractor Selected"],
       "closed_statuses": ["Dropped", "Done"],
-      "select_columns": ["url", "Generated Reference", "Status", "QA Type", "Severity", "Budget Expense", "date:Date Created:start", "date:Contractor Notified Date:start", "date:Completed Date:start", "Description To Send", "Project"]
+      "select_columns": ["url", "Generated Reference", "Status", "QA Type", "Severity", "Budget Expense ($$ Payout)", "date:Date Created:start", "date:Contractor Notified Date:start", "date:Completed Date:start", "Description To Send (To Contractor)", "Project"]
     },
     "master_payments_log": {
       "_comment": "The only payments database — there is no separate 'Notion payments'. Amount is CAD float -> convert to integer cents.",

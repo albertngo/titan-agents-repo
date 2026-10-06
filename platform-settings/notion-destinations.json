@@ -103,7 +103,7 @@
     },
     "project_financials": {
       "data_source": "collection://8afe9453-6580-414f-8215-1934d12a3d22",
-      "_comment": "Row titles: PP-XXX_ClientName | City (Financials). Search client name + 'Financials', not PP-ID alone. Read-only for this skill."
+      "_comment": "Row titles are 'Description (Financials)' with NO PP id (verified 2026-10-05; the old 'PP-XXX_ClientName | City (Financials)' shape is gone). Match by the row's `Project` relation, never by title — two 'Diego (Financials)' rows link to older projects. Read-only for this skill. Full finance registry: platform-settings/notion-finance.json."
     }
   },
 

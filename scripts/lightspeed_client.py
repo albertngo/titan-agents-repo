@@ -31,7 +31,8 @@ requests matters more than average throughput. Both announce themselves with
 Retry-After and X-LS-API-RateLimit-Type when they block. Retry-After is honoured
 in both the integer-seconds and the RFC 1123 HTTP-date forms the API uses.
 
-Used by scripts/lightspeed_pull.py. Not a CLI.
+Used by scripts/lightspeed_pull.py, scripts/ls_sales_pull.py and
+scripts/ls_orders_pull.py. Not a CLI.
 """
 
 import json
@@ -246,7 +247,10 @@ class LightspeedClient:
             if after is not None:
                 params[self.cursor_param] = after
 
-            body = self.get(path, params)
+            base, _, query = path.partition("?")
+            if query:
+                params = {**dict(urllib.parse.parse_qsl(query)), **params}
+            body = self.get(base, params)
             records = body.get("data", body) if isinstance(body, dict) else body
             if not isinstance(records, list):
                 raise LightspeedError(
@@ -299,6 +303,67 @@ class LightspeedClient:
 
     def products_path(self):
         return self.cfg["api"]["endpoints"]["products"]
+
+    # -- sales and purchase orders (payout flow, 2026-10-06) -----------------
+    #
+    # Read paths for scripts/ls_sales_pull.py and scripts/ls_orders_pull.py.
+    # Shapes verified live on Titan's account 2026-10-06; see `sales` and
+    # `consignments` in platform-settings/lightspeed.json for the evidence.
+
+    def search_sales(self, date_from, date_to=None, page_size=None, max_pages=None):
+        """Yield every sale with sale_date in [date_from, date_to), newest first.
+
+        /search pages by OFFSET, not by the version cursor paginate() walks: the
+        response carries a page_info.end_cursor, but passing it back as `after`
+        returns page 1 again (verified). A page shorter than page_size ends it.
+        `date_from` / `date_to` are ISO-8601 UTC timestamps and filter on
+        sale_date, not updated_at.
+        """
+        sc = self.cfg["api"]["sales"]
+        page_size = page_size or sc["page_size"]
+        offset, pages = 0, 0
+        while True:
+            params = {"type": "sales", "date_from": date_from,
+                      "order_by": "date", "order_direction": "desc",
+                      "page_size": page_size, "offset": offset}
+            if date_to:
+                params["date_to"] = date_to
+            body = self.get(sc["search_path"], params)
+            records = body.get("data", body) if isinstance(body, dict) else body
+            if not isinstance(records, list):
+                raise LightspeedError(
+                    f"unexpected /search envelope: expected a list under 'data', got "
+                    f"{type(records).__name__}")
+            for r in records:
+                yield r
+            pages += 1
+            if len(records) < page_size:
+                return
+            if max_pages and pages >= max_pages:
+                return
+            offset += len(records)
+
+    def supplier_consignments(self, status=None, max_pages=None):
+        """Yield supplier purchase orders (consignments of type SUPPLIER).
+
+        The documented `type=` filter is silently ignored by the API (verified
+        2026-10-06), so the walk covers every consignment and filters on the
+        record's own `type` here. `status=` does work server-side. page_size is
+        capped at 500 by the API.
+        """
+        cc = self.cfg["api"]["consignments"]
+        path = cc["path"]
+        if status:
+            path = path + "?" + urllib.parse.urlencode({"status": status})
+        for r in self.paginate(path, page_size=cc["page_size"], max_pages=max_pages):
+            if r.get("type") == cc["supplier_type"]:
+                yield r
+
+    def consignment_products(self, consignment_id):
+        """Every line on one consignment: product_id, count, received, cost, status."""
+        cc = self.cfg["api"]["consignments"]
+        path = cc["products_path"].format(id=consignment_id)
+        return list(self.paginate(path, page_size=cc["page_size"]))
 
     def stats(self):
         return {"requests": self.request_count,

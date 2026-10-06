@@ -1,0 +1,25 @@
+{
+  "_comment": "Who earns commission on a project and at what rate. Read by scripts/payout_run.py. Shaped as a LIST of claimant rules so a second salesperson or a project coordinator is a data edit, never a code change (Albert amendment §8, 2026-10-05). How commission SPLITS between more than one claimant is deliberately undecided — do not add a split rule without a dated decision from Albert.",
+  "config_version": "1",
+  "pool": {
+    "rate": 0.10,
+    "_rate_note": "Commission Amount = Commission Basis x rate. Basis = Total Project Profit (For Store Calcs) + NFM Actual Margin (pre-tax), on the post-discount project total (Decision 10, amendment §6)."
+  },
+  "claimants": [
+    {
+      "person": "Pourya",
+      "titan_team_name_contains": "Pourya",
+      "notion_person_id": "1f4d872b-594c-8101-b28a-00020fc13998",
+      "eligible_when_role_any": ["sales_person", "project_manager"],
+      "share_of_pool": 1.0,
+      "_note": "Albert 2026-10-05: 'as long as Pourya is in sales or PM, he gets the commission. He's the only person at this time.' One line per project even when he holds both roles (amendment §10)."
+    }
+  ],
+  "split_rule": null,
+  "_split_rule_open": "OPEN (Albert, 2026-10-05). If more than one claimant is eligible on a project and split_rule is null, payout_run.py emits the pool as ONE held line flagged 'split undecided' instead of guessing.",
+  "gate": {
+    "requires": ["costs_complete", "no_open_work_orders"],
+    "override_field": "commission_release_override",
+    "_gate_note": "Decision 7 as revised by amendment §7: customer still owing is NOT a hold (collections is office admin's). Balance owing appears on the run as an AR flag only. The override is Albert's alone."
+  }
+}

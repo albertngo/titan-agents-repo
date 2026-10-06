@@ -1,0 +1,83 @@
+{
+  "_comment": "Rules and thresholds for /project-costs-sync and /payout-run. Tunable data, never in a script or a prompt. Every decision cited here is recorded in methods/payouts.md (Decisions table) and the vault decision note.",
+  "config_version": "1",
+  "write_mode": {
+    "project_costs_sync": "plan_only",
+    "payout_run": "plan_only",
+    "lightspeed_create_pack_sale": "off",
+    "lightspeed_create_purchase_order": "off",
+    "_values": ["plan_only", "write"],
+    "_note": "plan_only: scripts compute and write plan files; the command writes NOTHING to Notion. Flipping either to write is a dated decision recorded in the vault (05_decisions/), same as style-tags. The two Lightspeed writes are Phase 3 and are 'off' until a separate dated flip (plan Q2, amendment §9)."
+  },
+  "cadence": {
+    "payout_run": "monthly",
+    "run_on_day": 1,
+    "sync_must_finish_first": true,
+    "_note": "On the 1st, /payout-run waits for that day's 09:00 /project-costs-sync (checks ingest/<date>/run-ledger.json) or runs it first (amendment §10)."
+  },
+  "labor_release": {
+    "hold_while_work_order_open": true,
+    "customer_balance_holds_labor": false,
+    "work_order_charge_to_installer_deducts": true,
+    "_note": "Decision 2: customer balance never holds contractor pay; open work orders do. A WO with Charge to = Installer deducts its Budget Expense from that installer's held labor (Q5 default Titan)."
+  },
+  "labor_check": {
+    "order": ["invoice_vs_quote", "standard_rate_pass", "rate_override_flag", "band_backstop"],
+    "invoice_vs_quote_tolerance_cents": 0,
+    "band": {
+      "metric": "labor_cost / value",
+      "lookback_months": 12,
+      "group_by": "project_type",
+      "low_percentile": 5,
+      "high_percentile": 95,
+      "min_samples_per_group": 15,
+      "fallback": "overall",
+      "_note": "Backstop for way-off totals (amendment §5). Computed from paid labor rows. A project type with fewer than min_samples_per_group uses the overall band."
+    }
+  },
+  "flooring_cost": {
+    "interim_winner": "front_desk",
+    "flag_delta_per_sqft_cents": 10,
+    "compare_basis": "per_sqft",
+    "catalogue_autofill": false,
+    "_note": "Amendment §2.3: PM (supplier PDF) -> front desk (stock order, wins interim) -> supplier invoice (final). Flag when PM vs front desk differs by more than $0.10/sqft, compared per sqft never on totals. No catalogue/Lightspeed auto-fill until the catalogue is reconciled (dated flip)."
+  },
+  "margin_floor": {
+    "min_margin_after_discount": 0.20,
+    "_note": "Amendment §6: flag any project below 20% margin computed on the post-discount total."
+  },
+  "lightspeed": {
+    "pp_regex": "(?<![A-Za-z0-9])@?PP-?\\s?(\\d{3,})\\b",
+    "_pp_regex_note": "3+ digits so PP-1000 is never read as PP-100 (amendment §1.1); leading boundary because lowercase 'pp' inside a word matched 5 old POs (verified 2026-10-06). Case-sensitive: real tags are always uppercase.",
+    "flooring_category_leaves": ["ENGINEERED HARDWOOD", "SOLID HARDWOOD", "SPC", "WPC", "GLUE DOWN", "VINYL", "LAMINATE", "TILE", "CARPET"],
+    "_flooring_category_note": "A sale line is FLOORING when its product's LS category leaf (lightspeed_pull.category_of) is one of these; any other known leaf (ACCESSORIES, ...) is NFM; no category -> 'unclassified' and flagged. Flooring quantity is already square feet on the LS line (verified: R-35833, qty 880 at $3.39 cost / $4.39 price per sqft).",
+    "sales_window_days": 120,
+    "orders_window_days": 180,
+    "nonstock_zero_cost_ok": ["DEPOSIT", "Discount", "DELIVERY", "vend-discount"],
+    "_zero_cost_note": "Sale-line cost is FROZEN at sale time from inventory average_cost (stocked) or supply_price (non-stock); a later PO receipt never backfills it (verified 2026-10-06). These non-stock products legitimately carry cost 0 and are not flagged. Matched against product sku/handle/name, case-insensitive."
+  },
+  "payments_match": {
+    "installment_splits": [[0.35, 0.35, 0.30]],
+    "amount_tolerance_cents": 100,
+    "auto_link": false,
+    "_note": "Decision 12: suggest only; Albert confirms. auto_link stays false."
+  },
+  "disposal": {
+    "month_end_payable_vendors": ["AP Disposal"],
+    "paid_at_booking_vendors": ["In The Bin", "Orion Waste"],
+    "ap_sender_domain": "apdisposal.ca",
+    "ap_invoice_filename_regex": "^Invoice_(\\d+)_from_AP_Disposal\\.pdf$",
+    "ambiguous_match": "flag",
+    "_note": "Q4 default + amendment §10: match by street and unit when present; more than one candidate project -> flag, never pick."
+  },
+  "bank_cross_check": {
+    "direction": "outgoing",
+    "sender": "catch@payments.interac.ca",
+    "subject_patterns": [
+      "^Interac e-Transfer: Your \\$([\\d,]+\\.\\d{2}) transfer to (.+) has been successfully deposited\\.?$",
+      "^Interac e-Transfer: (.+) has accepted your transfer of \\$([\\d,]+\\.\\d{2})\\.?$"
+    ],
+    "mark_paid_from_bank": false,
+    "_note": "Decision 15: cross-check column only, never marks anything paid. BMO sends no 'you sent' email; these Interac notices are the only confirmation of a SENT transfer. Incoming 'You've received' notices are for payments_match only (amendment §10, clarified)."
+  }
+}

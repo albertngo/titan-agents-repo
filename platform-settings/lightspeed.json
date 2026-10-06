@@ -28,6 +28,25 @@
       "cursor_field": "version",
       "_verified": "Confirmed live 2026-09-10. Response is {\"data\": [...], \"version\": {\"min\": N, \"max\": N}}; `version.max` is the next `after`, and every record carries its own `version`. 15 pages of 1000 walked the catalogue with the cursor advancing monotonically and no repeats."
     },
+    "sales": {
+      "_comment": "Read by LightspeedClient.search_sales() for scripts/ls_sales_pull.py (payout flow). Verified live 2026-10-06 on 781 sales: offset pagination (page_info.end_cursor passed back as `after` returns page 1 again), page_size max 1000, date_from/date_to filter sale_date. Line fields cost == unit_cost and total_cost == cost_total == unit_cost x quantity on every line checked. A line's cost is FROZEN at sale time from the product's inventory average_cost (stock-tracked) or supply_price (not stock-tracked); a later PO receipt never backfills it. Receipt numbers (invoice_number) are NOT unique \u2014 key on sale id. The project number lives only in the sale-level `note`.",
+      "search_path": "/api/2.0/search",
+      "sale_path": "/api/2.0/sales/{id}",
+      "page_size": 1000
+    },
+    "consignments": {
+      "_comment": "Supplier purchase orders for scripts/ls_orders_pull.py. On X-Series a PO is a consignment with type SUPPLIER and its lines are consignment products (R-Series Order/OrderLine/OrderShipment do not exist here). Verified live 2026-10-06: 5,032 consignments (SUPPLIER 4,268, RETURN 626, STOCKTAKE 138); the documented type= filter is silently IGNORED, status= works; page_size capped at 500; version-cursor paging like products; no date filter. No note field \u2014 free text (and any PP number) lives in `name`, which also carries customer first names (personal data). reference is 'PO-<n>'; supplier_invoice is a bare number on 59 POs. Line fields: product_id, count (decimal for sqft products), received, cost (string, filled), status.",
+      "path": "/api/2.0/consignments",
+      "products_path": "/api/2.0/consignments/{id}/products",
+      "suppliers_path": "/api/2.0/suppliers",
+      "supplier_type": "SUPPLIER",
+      "page_size": 500,
+      "statuses": [
+        "OPEN",
+        "SENT",
+        "RECEIVED"
+      ]
+    },
     "_no_bulk_endpoint": "There is no bulk product create/update endpoint \u2014 bulk import is UI/CSV only. Every product is one HTTP call. This is why the sync runs as a script rather than a Make scenario metered per operation.",
     "_no_supplier_filter": "The products endpoint has no server-side supplier filter. The pull walks the whole catalogue once, caches it, and filters locally.",
     "_versions": {

@@ -1,0 +1,238 @@
+{
+  "_comment": "Registry for the payout / AR / commission flow (/project-costs-sync, /payout-run). Every Notion data source id and EXACT property name the finance scripts read or write lives here, never in a script or a prompt. Verified live (read-only) 2026-10-05 against the Notion API; formula CODE is hidden by the API, so formula text Albert must paste lives in methods/payouts.md, not here.",
+  "_maintenance": "Property names are EXACT MATCH, including trailing spaces (Project Costs `Project ID ` has one). A renamed property silently reads as empty — re-verify with notion-fetch on the data source before changing a name here. Fields marked `\"status\": \"to_add\"` do not exist yet; Albert adds them (Workstream B in methods/payouts.md) and flips the marker to `live`. Scripts treat a `to_add` field as absent and degrade, never error.",
+  "config_version": "1",
+  "sensitivity": "private",
+  "_sensitivity_note": "Project Financials and commission figures are admin-grade (vault CONVENTIONS: Project Financials facts are admin). Payout run output is never routed to a staff-visible destination.",
+
+  "titan_projects": {
+    "data_source": "collection://1b4596a4-505f-81ca-b1d5-000bb73ecbe1",
+    "properties": {
+      "title": "Description",
+      "pp_id": "ID",
+      "_pp_id_note": "auto-increment unique id, rendered PP-###",
+      "value": "Value Approx",
+      "_value_note": "Final contract total, tax-inclusive on Invoice deals, ALREADY post-discount: payments summed to it exactly on PP-461, PP-450, PP-417.",
+      "project_type": "Project Type",
+      "type_of_deal": "Type of Deal",
+      "sales_person": "Sales Person",
+      "project_manager": "Project Manager",
+      "_pm_note": "Use the person field. `PM Name` (select) is empty on 37 of the 40 most recent rows — never read it.",
+      "contractor": "Contractor",
+      "assign_disposal": "Assign Disposal",
+      "assign_delivery": "Assign Delivery",
+      "street_address": "Street Address",
+      "city": "City",
+      "project_end_date": "Project End Date",
+      "final_walkthrough": "Final Walkthrough",
+      "submission_status": "Submission Status",
+      "last_submission_date": "Last Submission Date",
+      "total_paid": "Total Paid",
+      "balance_owing": "Balance Owing",
+      "payments_status": "Payments Status",
+      "quote_link": "Quote Link",
+      "project_costs": "Project Costs",
+      "flooring_line_items": "Flooring Line Items",
+      "work_orders": "Deficiency Work Orders",
+      "work_order_statuses": "Work Order Statuses",
+      "payments": "Master Payments Log"
+    },
+    "to_add": {
+      "ls_sale_found": {"name": "LS Sale Found", "type": "checkbox", "status": "to_add"},
+      "submit_blockers": {"name": "Submit Blockers", "type": "formula", "status": "to_add"},
+      "quote_discount": {"name": "Quote Discount", "type": "number", "status": "to_add"},
+      "quote_airtable": {"name": "Quote (Airtable)", "type": "url", "status": "to_add", "phase": 3}
+    }
+  },
+
+  "project_costs": {
+    "data_source": "collection://304596a4-505f-8197-b065-000bddcd731a",
+    "properties": {
+      "title": "Name",
+      "category": "Category",
+      "cost": "Cost",
+      "assigned_to": "Assigned To",
+      "project": "Project",
+      "financials": "Financials",
+      "notes": "Notes",
+      "calculated": "Calculated (1/3)",
+      "_calculated_note": "Untrustworthy as 'cost entered': ticked on Non-Flooring Materials rows with no cost. Never read it as a completeness signal.",
+      "paid_out_date": "Paid Out Date (2/3)",
+      "paid_reference": "Paid Reference (3/3)",
+      "_paid_reference_note": "Historically free text ('emt', 'ok', 'LS', 'Taken off from owing'). The batch stamps a real reference from now on.",
+      "project_id_rollup": "Project ID ",
+      "balance_owing_rollup": "Balance Owing",
+      "work_orders_rollup": "Work Orders",
+      "wo_payment_hold": "WO Payment Hold",
+      "work_order_status": "Work Order Status",
+      "created": "Created"
+    },
+    "categories": {
+      "labor": "Labor",
+      "nfm": "Materials (Non-Flooring)",
+      "disposal": "Disposal",
+      "delivery": "Delivery",
+      "other": "Other"
+    },
+    "_revenue_rule": "Only NFM (and flooring line) rows carry revenue. Labor, disposal, delivery and other rows carry cost only — their revenue is inside the customer total (Albert amendment §2.1).",
+    "wo_payment_title_prefix": "Work Order Payment:",
+    "to_add": {
+      "quoted_cost": {"name": "Quoted Cost", "type": "number", "status": "to_add"},
+      "cost_source": {"name": "Cost source", "type": "select", "status": "to_add",
+        "options": ["Quote", "Our calc", "Sub invoice", "PM manual (supplier PDF)", "Front desk (stock order)", "Lightspeed", "AP invoice (auto)", "Manual"]},
+      "change_order_reason": {"name": "Change order reason", "type": "text", "status": "to_add"},
+      "invoice": {"name": "Invoice", "type": "files", "status": "to_add"},
+      "invoice_number": {"name": "Invoice #", "type": "text", "status": "to_add"},
+      "ls_sale_ids": {"name": "LS Sale IDs", "type": "text", "status": "to_add"},
+      "ls_po_ids": {"name": "LS PO IDs", "type": "text", "status": "to_add"},
+      "nfm_revenue": {"name": "NFM Revenue (pre-tax)", "type": "number", "status": "to_add"},
+      "rate_overridden": {"name": "Rate overridden", "type": "checkbox", "status": "to_add", "phase": 3},
+      "suggested_cost": {"name": "Suggested Cost", "type": "number", "status": "to_add"},
+      "suggestion_source": {"name": "Suggestion source", "type": "select", "status": "to_add"},
+      "suggestion_confidence": {"name": "Suggestion confidence", "type": "select", "status": "to_add", "options": ["High", "Medium", "Low"]},
+      "suggestion_reason": {"name": "Suggestion reason", "type": "text", "status": "to_add"},
+      "accept_suggestion": {"name": "Accept suggestion", "type": "checkbox", "status": "to_add"},
+      "payout_batch": {"name": "Payout Batch", "type": "relation", "target": "payout_batches", "status": "to_add"}
+    },
+    "sync_owned_sources": ["Lightspeed", "AP invoice (auto)"],
+    "_sync_owned_note": "The sync may overwrite `Cost` only when `Cost source` is one of these (or empty). A hand-entered source is never overwritten (plan Workstream C step 4)."
+  },
+
+  "project_financials": {
+    "data_source": "collection://8afe9453-6580-414f-8215-1934d12a3d22",
+    "_match_rule": "Find a project's Financials row by the `Project` relation, NEVER by title. Live titles are 'Description (Financials)' with no PP id, and two 'Diego (Financials)' rows link to older projects.",
+    "properties": {
+      "title": "Name",
+      "project": "Project",
+      "costs": "Costs",
+      "flooring_line_items": "Flooring Line Items",
+      "costs_complete": "Costs Complete",
+      "commission_to": "Commission To",
+      "commission_paid_out": "Commission Paid Out",
+      "commission_paid_date": "Commission Paid Date",
+      "commission_notes": "Commission Notes",
+      "commission_basis": "Commission Basis",
+      "commission_amount": "Commission Amount",
+      "revenue": "Revenue",
+      "total_labor_cost": "Total Labor Cost",
+      "total_nfm": "Total Non-Flooring Materials",
+      "total_other_costs": "Total Other Costs",
+      "profit_store": "Total Project Profit (For Store Calcs)",
+      "profit_with_nfm": "Total Project Profit (With NFM Profits)",
+      "overall_margin": "Overall Margin (With NFM Profits)",
+      "costs_from_projects": "Costs (From Projects)",
+      "flooring_from_projects": "Flooring Line Item (From Projects)"
+    },
+    "to_add": {
+      "nfm_revenue_sum": {"name": "NFM Revenue Sum", "type": "rollup", "status": "to_add"},
+      "nfm_cost_sum": {"name": "NFM Cost Sum", "type": "rollup", "status": "to_add"},
+      "nfm_actual_margin": {"name": "NFM Actual Margin (pre-tax)", "type": "formula", "status": "to_add"},
+      "open_work_orders": {"name": "Open Work Orders", "type": "rollup", "status": "to_add"},
+      "commission_paid_amount": {"name": "Commission Paid Amount", "type": "number", "status": "to_add"},
+      "commission_release_override": {"name": "Commission Release Override", "type": "checkbox", "status": "to_add"},
+      "override_reason": {"name": "Override Reason", "type": "text", "status": "to_add"},
+      "commission_releasable": {"name": "Commission Releasable", "type": "formula", "status": "to_add"},
+      "below_floor": {"name": "Below Floor", "type": "formula", "status": "to_add"}
+    }
+  },
+
+  "flooring_line_items": {
+    "data_source": "collection://a84d8ff8-32c5-4174-b00c-ace45222f7cc",
+    "properties": {
+      "title": "Floor SKU",
+      "material_company": "Material Company",
+      "material_type": "Material Type",
+      "sqft_sold": "Sqft Sold",
+      "cost_rate": "Cost Rate",
+      "sold_at_rate": "Sold At Rate",
+      "taxed_vs_cash": "Taxed vs. Cash",
+      "project": "Project",
+      "project_financials": "Project Financials"
+    },
+    "_tax_basis_open": "Property descriptions say rates are 'including tax'; the Data Entry Cheat Sheet says enter pre-tax because the formula adds x1.13. Settle at build by computing the formula against one existing row before the sync writes any rate.",
+    "to_add": {
+      "quote_rate": {"name": "Quote Rate", "type": "number", "status": "to_add"},
+      "pm_cost_rate": {"name": "PM Cost Rate", "type": "number", "status": "to_add"},
+      "po_cost_rate": {"name": "PO Cost Rate", "type": "number", "status": "to_add"},
+      "ls_sale_cost_rate": {"name": "LS Sale Cost Rate", "type": "number", "status": "to_add"},
+      "invoice_cost_rate": {"name": "Invoice Cost Rate", "type": "number", "status": "to_add"},
+      "cost_rate_flag": {"name": "Cost Rate Flag", "type": "formula", "status": "to_add"},
+      "cost_locked": {"name": "Cost Locked", "type": "checkbox", "status": "to_add"}
+    }
+  },
+
+  "master_payments_log": {
+    "data_source": "collection://26d596a4-505f-8073-a0ac-000b2a8d3a0e",
+    "properties": {
+      "title": "Details",
+      "amount": "Amount",
+      "received_date": "Received Date",
+      "form_of_payment": "Form of Payment",
+      "reference_number": "Reference Number",
+      "message": "Message",
+      "_message_note": "Holds the payer's memo, which often contains a customer street address and phone. Read for matching; never echo into logs, plans or reports.",
+      "senders_name": "Sender's Name",
+      "projects": "Projects"
+    },
+    "to_add": {
+      "suggested_project": {"name": "Suggested Project", "type": "relation", "target": "titan_projects", "status": "to_add"},
+      "match_confidence": {"name": "Match Confidence", "type": "select", "status": "to_add", "options": ["High", "Medium", "Low"]},
+      "match_reason": {"name": "Match Reason", "type": "text", "status": "to_add"},
+      "accept": {"name": "Accept", "type": "checkbox", "status": "to_add"}
+    }
+  },
+
+  "qa_work_orders": {
+    "data_source": "collection://2eb596a4-505f-800a-af8f-000b24ce4c57",
+    "properties": {
+      "title": "Generated Reference",
+      "status": "Status",
+      "qa_type": "QA Type",
+      "project": "Project",
+      "contractor_to_fix": "Contractor To Fix",
+      "budget_expense": "Budget Expense ($$ Payout)",
+      "completed_date": "Completed Date"
+    },
+    "closed_statuses": ["Done", "Dropped"],
+    "to_add": {
+      "charge_to": {"name": "Charge to", "type": "select", "status": "to_add", "options": ["Titan", "Installer"], "default": "Titan"}
+    }
+  },
+
+  "titan_team": {
+    "data_source": "collection://79af84d3-a5e8-436f-818a-f143b1e8f5ef",
+    "properties": {
+      "title": "Name",
+      "role": "Role"
+    },
+    "placeholder_names": ["None", "Customer", "Titan Flooring Inc.", "Contractor (General)"],
+    "_placeholder_note": "Rows that are not real payees. A cost assigned to one of these is flagged on the payout run, never paid.",
+    "to_add": {
+      "pay_method": {"name": "Pay method", "type": "select", "status": "to_add",
+        "options": ["e-Transfer", "Cash", "Cheque", "Direct deposit", "Netted"],
+        "_owner": "Albert sets this per contractor (2026-10-05). Netted is defined in methods/payouts.md before anyone uses it."}
+    }
+  },
+
+  "payout_batches": {
+    "data_source": null,
+    "status": "to_add",
+    "_comment": "New private database under Albert's Notion Directory. One row per payee per run. Created by Albert from the field list in methods/payouts.md; paste its data source id here once it exists.",
+    "properties": {
+      "title": "Name",
+      "run": "Run",
+      "payee": "Payee",
+      "pay_method": "Pay method",
+      "lines": "Lines",
+      "commission_lines": "Commission lines",
+      "claimant_role": "Claimant role",
+      "total": "Total",
+      "flags": "Flags",
+      "bank_cross_check": "Bank cross-check",
+      "approved": "Approved",
+      "paid": "Paid",
+      "paid_date": "Paid Date",
+      "reference": "Reference"
+    }
+  }
+}
