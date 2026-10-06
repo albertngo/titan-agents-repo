@@ -264,7 +264,7 @@
       "project_financials": "Project Financials"
     },
     "tax_basis": "pre_tax",
-  "_tax_basis_note": "Albert 2026-10-06: Cost Rate, Sold At Rate and every *Cost Rate column hold PRE-TAX $/sqft, as the Data Entry Cheat Sheet says (the formulas add x1.13) and as existing rows already do (PP-449 SPC-VIDR-0002_Yukon Cost Rate 1.59 = Vidar's pre-tax price). The Notion property descriptions on Cost Rate / Sold At Rate still say 'including tax' and are stale.",
+  "_tax_basis_note": "Albert 2026-10-06: Cost Rate, Sold At Rate and every *Cost Rate column hold PRE-TAX $/sqft, as the Data Entry Cheat Sheet says (the formulas add x1.13) and as existing rows already do (PP-449 SPC-VIDR-0002_Yukon Cost Rate 1.59 = Vidar's pre-tax price). The Notion descriptions on Cost Rate / Sold At Rate were changed to say pre-tax the same day.",
   "title_format": "{sku}_{colour}",
   "_title_note": "Staff name a line '<LS SKU>_<colour>' (SPC-VIDR-0002_Yukon, ENG-TOSC-0074_Long Beach). The sync creates lines the same way (colour = the bracketed name in the LS product name) and matches an existing line on the part before the first '_'.",
   "material_company_from_supplier": {"VIDAR": "VIDAR"},
