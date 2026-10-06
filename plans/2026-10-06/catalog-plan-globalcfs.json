@@ -1,0 +1,256 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "GLOBALCFS",
+ "run_at": "2026-10-06T10:23:19.916086-04:00",
+ "status": "partial",
+ "inputs": [
+  {
+   "file": "ingest/2026-10-06/globalcfs_airtable_upload_2026-10-06.csv",
+   "rows": 43
+  },
+  {
+   "file": "/home/user/titan-agents-repo/ingest/2026-10-06/lightspeed-products.json",
+   "products": 15092,
+   "run_at": "2026-10-06T10:21:32.049519-04:00"
+  },
+  {
+   "file": "ingest/2026-10-06/globalcfs_airtable_existing.json",
+   "records": 0
+  },
+  {
+   "file": "ingest/2026-10-06/globalcfs_airtable_options.json",
+   "select_fields": 25
+  }
+ ],
+ "cost_basis": null,
+ "as_of": "2026-10-06",
+ "effective_dates": [
+  "2026-10-06"
+ ],
+ "summary": {
+  "actions_total": 0,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 43,
+  "warnings": 0,
+  "rows_in": 43
+ },
+ "actions": [],
+ "blocked": [
+  {
+   "sku": "ACC-GCFS-0001",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0002",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0003",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0004",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0005",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0006",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0007",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0008",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0009",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0010",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0011",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0012",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0013",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0014",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0015",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0016",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0017",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0018",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0019",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0020",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0021",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0022",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0023",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0024",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0025",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0026",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0027",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0028",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0029",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0030",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0031",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0032",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0033",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0034",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0035",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0036",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0037",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0038",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0039",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0040",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0041",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0042",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  },
+  {
+   "sku": "ACC-GCFS-0043",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU."
+  }
+ ],
+ "warnings": []
+}
