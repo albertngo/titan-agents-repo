@@ -1,0 +1,432 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "GLOBALCFS",
+ "run_at": "2026-10-06T10:27:38.074947-04:00",
+ "status": "partial",
+ "inputs": [
+  {
+   "file": "ingest/2026-10-06/globalcfs_airtable_upload_2026-10-06.csv",
+   "rows": 39
+  },
+  {
+   "file": "ingest/2026-10-06/lightspeed-products.json",
+   "products": 3,
+   "run_at": "2026-10-06T10:11:38.147270-04:00"
+  },
+  {
+   "file": "/tmp/claude-0/-home-user/22ba3536-ac39-57bb-9f10-bf35497da4c5/scratchpad/pl396/airtable-existing-globalcfs.json",
+   "records": 0
+  },
+  {
+   "file": "/tmp/claude-0/-home-user/22ba3536-ac39-57bb-9f10-bf35497da4c5/scratchpad/pl396/airtable-options.json",
+   "select_fields": 3
+  }
+ ],
+ "cost_basis": null,
+ "as_of": "2026-10-06",
+ "effective_dates": [
+  "2026-10-06"
+ ],
+ "summary": {
+  "actions_total": 0,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 39,
+  "warnings": 39,
+  "rows_in": 39
+ },
+ "actions": [],
+ "blocked": [
+  {
+   "sku": "LVP-GCFS-0001",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "LVP-GCFS-0002",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "LVP-GCFS-0003",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "LVP-GCFS-0004",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "LVP-GCFS-0005",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "LVP-GCFS-0006",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "LVP-GCFS-0007",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "LVP-GCFS-0008",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "LVP-GCFS-0009",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "LVP-GCFS-0010",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "LVP-GCFS-0011",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "LVP-GCFS-0012",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "LVP-GCFS-0013",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "LVP-GCFS-0014",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "LVP-GCFS-0015",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "LVP-GCFS-0016",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "LVP-GCFS-0017",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "LVP-GCFS-0018",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "LVP-GCFS-0019",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "LVP-GCFS-0020",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "ACC-GCFS-0001",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "ACC-GCFS-0002",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "ACC-GCFS-0003",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "ACC-GCFS-0004",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "ACC-GCFS-0005",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "ACC-GCFS-0006",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "ACC-GCFS-0007",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "ACC-GCFS-0008",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "ACC-GCFS-0009",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "ACC-GCFS-0010",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "ACC-GCFS-0011",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "ACC-GCFS-0012",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "ACC-GCFS-0013",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "ACC-GCFS-0014",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "ACC-GCFS-0015",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "ACC-GCFS-0016",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "ACC-GCFS-0017",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "ACC-GCFS-0018",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  },
+  {
+   "sku": "ACC-GCFS-0019",
+   "reason": "supplier_option_missing",
+   "detail": "Supplier='GLOBALCFS' is not a live Airtable option. Add the option in Airtable, then re-run; nothing was written to either system for this SKU. (1 more: Active='TRUE')"
+  }
+ ],
+ "warnings": [
+  {
+   "sku": "LVP-GCFS-0001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Luxury Vinyl Plank' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GCFS-0002",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Luxury Vinyl Plank' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GCFS-0003",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Luxury Vinyl Plank' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GCFS-0004",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Luxury Vinyl Plank' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GCFS-0005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Luxury Vinyl Plank' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GCFS-0006",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Luxury Vinyl Plank' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GCFS-0007",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Luxury Vinyl Plank' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GCFS-0008",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Luxury Vinyl Plank' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GCFS-0009",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Luxury Vinyl Plank' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GCFS-0010",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Luxury Vinyl Plank' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GCFS-0011",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Luxury Vinyl Plank' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GCFS-0012",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Luxury Vinyl Plank' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GCFS-0013",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Luxury Vinyl Plank' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GCFS-0014",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Luxury Vinyl Plank' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GCFS-0015",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Luxury Vinyl Plank' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GCFS-0016",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Luxury Vinyl Plank' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GCFS-0017",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Luxury Vinyl Plank' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GCFS-0018",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Luxury Vinyl Plank' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GCFS-0019",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Luxury Vinyl Plank' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "LVP-GCFS-0020",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Luxury Vinyl Plank' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-GCFS-0001",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory / Moulding' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-GCFS-0002",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory / Moulding' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-GCFS-0003",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory / Moulding' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-GCFS-0004",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory / Moulding' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-GCFS-0005",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory / Moulding' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-GCFS-0006",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory / Moulding' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-GCFS-0007",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory / Moulding' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-GCFS-0008",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory / Moulding' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-GCFS-0009",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory / Moulding' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-GCFS-0010",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory / Moulding' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-GCFS-0011",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory / Moulding' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-GCFS-0012",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory / Moulding' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-GCFS-0013",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory / Moulding' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-GCFS-0014",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory / Moulding' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-GCFS-0015",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory / Moulding' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-GCFS-0016",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory / Moulding' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-GCFS-0017",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory / Moulding' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-GCFS-0018",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory / Moulding' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-GCFS-0019",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory / Moulding' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  }
+ ]
+}
