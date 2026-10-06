@@ -84,3 +84,21 @@ in `process-price-list.md`, independent of anything in this file.
   stair pieces) — plus about 4 trims (CWS31-H-08, 11241, 11207, 11242) whose LS costs
   equal the Store Price column. A Vista *stair-parts* list would be a different
   question; this entry does not decide it.
+
+## GLOBALCFS (Notion Company value, exact casing)
+
+- **2026-10-06** — from Price Lists row `3f1596a4-505f-8172-8937-e60971ab5737`
+  (PL-393): a 3-page Laticrete price list from Global CFS (globalcfs.ca). Tagged
+  `Regular List`. The document is a genuine structured price list with unit prices,
+  but for **tile installation sundries**, not flooring: thin-set mortars (254
+  Platinum, 253 Gold, 253R Gold Rapid, 252 Silver, Multimax Lite, Tri-Lite, 4-XLT,
+  LHT, LHT Plus, Sure Set LHT), non-modified mortars (317), premium mortar beds
+  (3701 Fortified), waterproofing (Hydro Ban, Hydro Barrier Plus), bonding primers
+  (Prime-N-Bond, Primer Plus), surface-prep products (NXT Level, NXT Level Flow, NXT
+  Level Plus, NXT Level Plus Lite, NXT Patch, Skim Lite), epoxy adhesives, grouts
+  (Permacolour 2500 Series, SpectraLOCK PRO, SpectraLOCK 1), caulk/sealant
+  (Latasil), and shower system adhesives (HYDRO BAN). 45 products total. Two-tier
+  pricing: Individual Bag Price and Skid Price (bulk). Brand is LATICRETE throughout.
+  GLOBALCFS not yet onboarded to Airtable — no `supplier_aliases` entry, no existing
+  records. No markup rules defined for tile installation sundries. All 45 rows held;
+  no /catalog-sync run.
