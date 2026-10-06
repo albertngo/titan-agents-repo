@@ -157,9 +157,9 @@ def P(n):
 def snapshot(**over):
     """Albert's PP-461 shape: Roy, labor 2010, disposal, Pourya sales+PM."""
     snap = {
-        "team": [{"url": P(1), "Name": "Roy", "Role": ["Subcontractor"], "Pay method": "Cash"},
-                 {"url": P(2), "Name": "John - APS Disposal", "Role": ["Bin Disposal"], "Pay method": "e-Transfer"},
-                 {"url": P(3), "Name": "Pourya Lalee", "Role": ["Sales", "Project Manager"], "Pay method": "Cash"},
+        "team": [{"url": P(1), "Name": "Roy", "Role": ["Subcontractor"], "Pay Method": "Cash"},
+                 {"url": P(2), "Name": "John - APS Disposal", "Role": ["Bin Disposal"], "Pay Method": "e-Transfer"},
+                 {"url": P(3), "Name": "Pourya Lalee", "Role": ["Sales", "Project Manager"], "Pay Method": "Cash"},
                  {"url": P(4), "Name": "None"}],
         "projects": [{"url": P(100), "ID": 461, "Value Approx": 28080, "Project Type": "Both",
                       "Sales Person": "Pourya Lalee", "Project Manager": "Pourya Lalee",
@@ -244,7 +244,7 @@ class TestPayoutRun(unittest.TestCase):
         wo = {"url": P(500), "Generated Reference": "WO-1", "Status": "Done", "Project": [P(100)],
               "Budget Expense ($$ Payout)": 300}
         self.assertEqual(payee(run(snapshot(work_orders=[wo])), "Roy")["total"], 2010)
-        r = run(snapshot(work_orders=[{**wo, "Charge to": "Installer"}]))
+        r = run(snapshot(work_orders=[{**wo, "Charge To": "Installer"}]))
         self.assertEqual(payee(r, "Roy")["total"], 1710)
 
     def test_missing_cost_and_placeholder_payee_are_blockers_not_payments(self):
@@ -300,12 +300,12 @@ class TestPayoutRun(unittest.TestCase):
 
     def test_labor_check_layers(self):
         snap = snapshot()
-        snap["costs"][0].update({"Quoted Cost": 1900, "Cost source": "Sub invoice"})
+        snap["costs"][0].update({"Quoted Cost": 1900, "Cost Source": "Sub Invoice"})
         flags = payee(run(snap), "Roy")["lines"][0]["flags"]
         self.assertTrue(any("sub invoice" in f for f in flags))
-        snap["costs"][0].update({"Cost source": "Our calc", "Change order reason": "extra stairs"})
+        snap["costs"][0].update({"Cost Source": "Our Cost", "Change Order Reason": "extra stairs"})
         self.assertEqual([f for f in payee(run(snap), "Roy")["lines"][0]["flags"] if "quoted" in f], [])
-        snap["costs"][0]["Change order reason"] = None
+        snap["costs"][0]["Change Order Reason"] = None
         self.assertTrue(any("no change-order reason" in f
                             for f in payee(run(snap), "Roy")["lines"][0]["flags"]))
 
@@ -426,7 +426,7 @@ def sync_snapshot(cost=None, source=None, submitted="Submitted"):
                           "Project End Date": "2026-09-20",
                           "Project Costs": [P(200), P(201)]}],
             "costs": [{"url": P(200), "Category": "Materials (Non-Flooring)", "Cost": cost,
-                       "Cost source": source, "Project": [P(100)]},
+                       "Cost Source": source, "Project": [P(100)]},
                       {"url": P(201), "Category": "Labor", "Cost": 1500, "Project": [P(100)]}],
             "financials": [{"url": P(300), "Project": [P(100)], "Costs": [P(200)]}],
             "work_orders": [], "payments": [], "team": [], "flooring_lines": []}

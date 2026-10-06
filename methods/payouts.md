@@ -40,9 +40,9 @@ Both commands start in `plan_only`; flipping either is a dated vault decision.
    days had no number — each one is invisible to the payout flow.)
 2. At quote time, enter the flooring cost from the supplier's price PDF
    (`Cost source = PM manual (supplier PDF)`).
-3. At submit: enter final labor with its `Cost source` (Our calc / Sub invoice),
+3. At submit: enter final labor with its `Cost Source` (Our Cost / Sub Invoice),
    attach the invoice when there is one, and write a `Change order reason` whenever
-   labor differs from `Quoted Cost`. `Submit Blockers` must be empty.
+   labor differs from `Quoted Cost` (`Change Order Reason`). `Submit Blockers` must be empty.
 4. Card-paid bins (In The Bin, Orion): enter the amount on the Disposal row at booking.
 
 **Front desk**
@@ -66,76 +66,64 @@ Rules: the batch shows the gross payout, the amount held, and the net; the `Refe
 names what was netted ("netted vs cash PP-417 $5,500"); a negative net is a receivable
 from the payee, never a negative transfer. Only Albert sets `Netted` on a Titan Team row.
 
-## Notion fields to add (Workstream B)
+## Notion fields (added 2026-10-06)
 
-Add exactly these names (they are in `notion-finance.json` as `to_add`; flip each to
-`live` there once it exists). Nothing existing is renamed or removed.
+All added, with Albert's own capitalisation where he made the field first; the exact
+names are in `notion-finance.json`. Each database has a **💸 Payout Setup** view showing
+the new fields together (Payments Log: **💸 Payments to confirm**), so they can be seen
+— or removed — in one place.
 
-- **Project Costs:** `Quoted Cost` (number) · `Cost source` (select: Quote, Our calc,
-  Sub invoice, PM manual (supplier PDF), Front desk (stock order), Lightspeed,
-  AP invoice (auto), Manual) · `Change order reason` (text) · `Invoice` (files) ·
-  `Invoice #` (text) · `LS Sale IDs` (text) · `LS PO IDs` (text) ·
-  `Suggested Cost` (number) · `Suggestion source` (select) · `Suggestion confidence`
-  (select: High, Medium, Low) · `Suggestion reason` (text) · `Accept suggestion`
-  (checkbox) · `Payout Batch` (relation → Payout Batches). Views: **Costs to confirm**
-  (`Suggested Cost` is not empty and `Accept suggestion` unticked).
+- **Titan Team:** `Pay Method` (multi-select: e-Transfer, Cash, Cheque, Direct Deposit,
+  Netted). Albert sets it per contractor.
+- **QA Work Orders:** `Charge To` (Titan / Installer; blank = Titan).
+- **Project Costs:** `Quoted Cost`, `Cost Source` (Sub Invoice, Our Cost, Quote, Manual,
+  Front Desk (Stock Order), Lightspeed, AP Invoice (auto), PM Manual (Supplier PDF)),
+  `Change Order Reason`, `Invoice` (files), `Invoice #`, `LS Sale IDs`, `LS PO IDs`,
+  `Suggested Cost`, `Suggestion source`, `Suggestion confidence`, `Suggestion reason`,
+  `Accept suggestion`, `Payout Batch` (reverse of Payout Batches → Lines).
+  `NFM Revenue (pre-tax)` and `NFM POS Total (incl. tax)` also exist but are unused
+  (Decision 10) — safe to delete.
+- **Titan Projects:** `LS Sale Found`, `Quote Discount`.
 - **Flooring Line Items:** `Quote Rate`, `PM Cost Rate`, `PO Cost Rate`,
-  `LS Sale Cost Rate`, `Invoice Cost Rate` (numbers, $/sqft) · `Cost Rate Flag`
-  (formula below) · `Cost Locked` (checkbox).
-- **QA Work Orders:** `Charge to` (select: Titan, Installer; default Titan).
-- **Titan Team:** `Pay method` (select: e-Transfer, Cash, Cheque, Direct deposit, Netted).
-- **Titan Projects:** `LS Sale Found` (checkbox) · `Quote Discount` (number) ·
-  `Submit Blockers` (formula below).
-- **Master Payments Log:** `Suggested Project` (relation → Titan Projects) ·
-  `Match Confidence` (select: High, Medium, Low) · `Match Reason` (text) · `Accept`
-  (checkbox). View: **Payments to confirm** (`Projects` empty and `Suggested Project`
-  not empty).
-- **Project Financials:** the formulas below plus `Commission Release Override` (checkbox), `Override Reason` (text).
-- **New database `Payout Batches`** (private, under Albert's Notion Directory):
-  `Name` (title) · `Run` (select, YYYY-MM) · `Payee` (relation → Titan Team) ·
-  `Pay method` (rollup) · `Lines` (relation → Project Costs) · `Commission lines`
-  (relation → Project Financials) · `Claimant role` (select) · `Total` (number) ·
-  `Flags` (text) · `Bank cross-check` (text) · `Approved` (checkbox) · `Paid`
-  (checkbox) · `Paid Date` (date) · `Reference` (text). Paste its data source id into
-  `notion-finance.json → payout_batches.data_source`.
+  `LS Sale Cost Rate`, `Invoice Cost Rate`, `Cost Rate Flag` (formula), `Cost Locked`.
+- **Master Payments Log:** `Suggested Project` (relation → Titan Projects),
+  `Match Confidence`, `Match Reasoning`, `Accept`.
+- **Project Financials:** `Commission Release Override`, `Override Reason`,
+  `Below Floor` (formula).
+- **💸 Payout Batches** (new, on Teamspace Home): Name, Run, Payee, Pay Method (rollup),
+  Lines, Commission lines, Claimant role, Total, Flags, Bank cross-check, Approved, Paid,
+  Paid Date, Reference.
 
-## Formulas (paste in this order)
+## Formulas to paste by hand (optional)
 
-No existing formula changes. `Total Non-Flooring Materials`, `Commission Basis` and
-`Commission Amount` stay as they are (Decision 10): NFM is the full POS total incl. tax
-and commission adds the fixed 25% estimate (`÷ 1.13 × 0.25`). These are new fields only.
+Notion's API refuses any formula that reads through a link to another database, so
+these three must be pasted in the Notion UI (property → Edit formula). They are
+convenience columns only: `payout_run.py` works out the work-order hold itself.
 
-**Project Financials**
-
+**Project Financials → `Open Work Orders`** (new formula property)
 ```
-Open Work Orders           formula:
-  prop("Project").map(current.prop("Deficiency Work Orders")).flat()
-    .filter(current.prop("Status") != "Done" and current.prop("Status") != "Dropped").length()
-Commission Releasable      formula:
-  prop("Costs Complete") and (prop("Open Work Orders") == 0 or prop("Commission Release Override"))
-Below Floor                formula:
-  prop("Overall Margin (With NFM Profits)") < 0.20
+prop("Project").map(current.prop("Deficiency Work Orders")).flat()
+  .filter(current.prop("Status") != "Done" and current.prop("Status") != "Dropped").length()
 ```
 
-**Flooring Line Items**
-
+**Project Financials → `Commission Releasable`** (new formula property, after the one above)
 ```
-Cost Rate Flag   formula:
-  if(empty(prop("PM Cost Rate")) or empty(prop("PO Cost Rate")), false,
-     abs(prop("PM Cost Rate") - prop("PO Cost Rate")) > 0.10)
+prop("Costs Complete") and (prop("Open Work Orders") == 0 or prop("Commission Release Override"))
 ```
 
-**Titan Projects**
+**Titan Projects → `Submit Blockers`** (new formula property; empty = ready)
+```
+[
+  if(prop("Final Walkthrough") != "Completed", "walkthrough", ""),
+  if(prop("Project Costs").filter(current.prop("Category") == "Labor" and empty(current.prop("Cost"))).length() > 0, "labor cost", ""),
+  if(prop("Project Costs").filter(current.prop("Category") == "Labor" and not empty(current.prop("Quoted Cost")) and current.prop("Cost") != current.prop("Quoted Cost") and empty(current.prop("Change Order Reason"))).length() > 0, "change-order reason", ""),
+  if(not prop("LS Sale Found") and prop("Project Type") != "Management", "no PP-tagged LS sale", "")
+].filter(current != "").join(", ")
+```
 
-```
-Submit Blockers  formula (text; empty = ready):
-  join([
-    if(prop("Final Walkthrough") != "Completed", "walkthrough", ""),
-    if(prop("Project Costs").filter(current.prop("Category") == "Labor" and empty(current.prop("Cost"))).length() > 0, "labor cost", ""),
-    if(prop("Project Costs").filter(current.prop("Category") == "Labor" and current.prop("Cost") != current.prop("Quoted Cost") and not empty(current.prop("Quoted Cost")) and empty(current.prop("Change order reason"))).length() > 0, "change-order reason", ""),
-    if(not prop("LS Sale Found") and prop("Project Type") != "Management", "no PP-tagged LS sale", "")
-  ].filter(current != ""), ", ")
-```
+No existing formula changes (`Total Non-Flooring Materials`, `Commission Basis`,
+`Commission Amount` stay as they are — Decision 10). `Cost Rate Flag` and `Below Floor`
+were added by API and need nothing.
 
 ## Traps
 

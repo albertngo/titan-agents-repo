@@ -4,7 +4,6 @@
   "config_version": "1",
   "sensitivity": "private",
   "_sensitivity_note": "Project Financials and commission figures are admin-grade (vault CONVENTIONS: Project Financials facts are admin). Payout run output is never routed to a staff-visible destination.",
-
   "titan_projects": {
     "data_source": "collection://1b4596a4-505f-81ca-b1d5-000bb73ecbe1",
     "properties": {
@@ -40,13 +39,29 @@
       "payments": "Master Payments Log"
     },
     "to_add": {
-      "ls_sale_found": {"name": "LS Sale Found", "type": "checkbox", "status": "to_add"},
-      "submit_blockers": {"name": "Submit Blockers", "type": "formula", "status": "to_add"},
-      "quote_discount": {"name": "Quote Discount", "type": "number", "status": "to_add"},
-      "quote_airtable": {"name": "Quote (Airtable)", "type": "url", "status": "to_add", "phase": 3}
+      "ls_sale_found": {
+        "name": "LS Sale Found",
+        "type": "checkbox",
+        "status": "live"
+      },
+      "submit_blockers": {
+        "name": "Submit Blockers",
+        "type": "formula",
+        "status": "paste_by_hand"
+      },
+      "quote_discount": {
+        "name": "Quote Discount",
+        "type": "number",
+        "status": "live"
+      },
+      "quote_airtable": {
+        "name": "Quote (Airtable)",
+        "type": "url",
+        "status": "to_add",
+        "phase": 3
+      }
     }
   },
-
   "project_costs": {
     "data_source": "collection://304596a4-505f-8197-b065-000bddcd731a",
     "properties": {
@@ -80,26 +95,101 @@
     "_nfm_rule": "NFM rows keep today's meaning (Albert 2026-10-06): `Cost` = the full Lightspeed POS total incl. tax for the project's PP-tagged sales; commission adds the fixed 25% estimate. The sync fills that number; no new NFM fields.",
     "wo_payment_title_prefix": "Work Order Payment:",
     "to_add": {
-      "quoted_cost": {"name": "Quoted Cost", "type": "number", "status": "to_add"},
-      "cost_source": {"name": "Cost source", "type": "select", "status": "to_add",
-        "options": ["Quote", "Our calc", "Sub invoice", "PM manual (supplier PDF)", "Front desk (stock order)", "Lightspeed", "AP invoice (auto)", "Manual"]},
-      "change_order_reason": {"name": "Change order reason", "type": "text", "status": "to_add"},
-      "invoice": {"name": "Invoice", "type": "files", "status": "to_add"},
-      "invoice_number": {"name": "Invoice #", "type": "text", "status": "to_add"},
-      "ls_sale_ids": {"name": "LS Sale IDs", "type": "text", "status": "to_add"},
-      "ls_po_ids": {"name": "LS PO IDs", "type": "text", "status": "to_add"},
-      "rate_overridden": {"name": "Rate overridden", "type": "checkbox", "status": "to_add", "phase": 3},
-      "suggested_cost": {"name": "Suggested Cost", "type": "number", "status": "to_add"},
-      "suggestion_source": {"name": "Suggestion source", "type": "select", "status": "to_add"},
-      "suggestion_confidence": {"name": "Suggestion confidence", "type": "select", "status": "to_add", "options": ["High", "Medium", "Low"]},
-      "suggestion_reason": {"name": "Suggestion reason", "type": "text", "status": "to_add"},
-      "accept_suggestion": {"name": "Accept suggestion", "type": "checkbox", "status": "to_add"},
-      "payout_batch": {"name": "Payout Batch", "type": "relation", "target": "payout_batches", "status": "to_add"}
+      "quoted_cost": {
+        "name": "Quoted Cost",
+        "type": "number",
+        "status": "live"
+      },
+      "cost_source": {
+        "name": "Cost Source",
+        "type": "select",
+        "status": "live",
+        "options": [
+          "Sub Invoice",
+          "Our Cost",
+          "Quote",
+          "Manual",
+          "Front Desk (Stock Order)",
+          "Lightspeed",
+          "AP Invoice (auto)",
+          "PM Manual (Supplier PDF)"
+        ]
+      },
+      "change_order_reason": {
+        "name": "Change Order Reason",
+        "type": "text",
+        "status": "live"
+      },
+      "invoice": {
+        "name": "Invoice",
+        "type": "files",
+        "status": "live"
+      },
+      "invoice_number": {
+        "name": "Invoice #",
+        "type": "select",
+        "status": "live"
+      },
+      "ls_sale_ids": {
+        "name": "LS Sale IDs",
+        "type": "text",
+        "status": "live"
+      },
+      "ls_po_ids": {
+        "name": "LS PO IDs",
+        "type": "text",
+        "status": "live"
+      },
+      "rate_overridden": {
+        "name": "Rate overridden",
+        "type": "checkbox",
+        "status": "to_add",
+        "phase": 3
+      },
+      "suggested_cost": {
+        "name": "Suggested Cost",
+        "type": "number",
+        "status": "live"
+      },
+      "suggestion_source": {
+        "name": "Suggestion source",
+        "type": "select",
+        "status": "live"
+      },
+      "suggestion_confidence": {
+        "name": "Suggestion confidence",
+        "type": "select",
+        "status": "live",
+        "options": [
+          "High",
+          "Medium",
+          "Low"
+        ]
+      },
+      "suggestion_reason": {
+        "name": "Suggestion reason",
+        "type": "text",
+        "status": "live"
+      },
+      "accept_suggestion": {
+        "name": "Accept suggestion",
+        "type": "checkbox",
+        "status": "live"
+      },
+      "payout_batch": {
+        "name": "Payout Batch",
+        "type": "relation",
+        "target": "payout_batches",
+        "status": "live"
+      }
     },
-    "sync_owned_sources": ["Lightspeed", "AP invoice (auto)"],
-    "_sync_owned_note": "The sync may overwrite `Cost` only when `Cost source` is one of these (or empty). A hand-entered source is never overwritten (plan Workstream C step 4)."
+    "sync_owned_sources": [
+      "Lightspeed",
+      "AP Invoice (auto)"
+    ],
+    "_sync_owned_note": "The sync may overwrite `Cost` only when `Cost source` is one of these (or empty). A hand-entered source is never overwritten (plan Workstream C step 4).",
+    "_unused_fields": "NFM Revenue (pre-tax) and NFM POS Total (incl. tax) exist in Notion (added 2026-10-06) but are unused since NFM stays as today (Decision 10). Safe for Albert to delete."
   },
-
   "project_financials": {
     "data_source": "collection://8afe9453-6580-414f-8215-1934d12a3d22",
     "_match_rule": "Find a project's Financials row by the `Project` relation, NEVER by title. Live titles are 'Description (Financials)' with no PP id, and two 'Diego (Financials)' rows link to older projects.",
@@ -126,14 +216,34 @@
       "flooring_from_projects": "Flooring Line Item (From Projects)"
     },
     "to_add": {
-      "open_work_orders": {"name": "Open Work Orders", "type": "rollup", "status": "to_add"},
-      "commission_release_override": {"name": "Commission Release Override", "type": "checkbox", "status": "to_add"},
-      "override_reason": {"name": "Override Reason", "type": "text", "status": "to_add"},
-      "commission_releasable": {"name": "Commission Releasable", "type": "formula", "status": "to_add"},
-      "below_floor": {"name": "Below Floor", "type": "formula", "status": "to_add"}
-    }
+      "open_work_orders": {
+        "name": "Open Work Orders",
+        "type": "formula",
+        "status": "paste_by_hand"
+      },
+      "commission_release_override": {
+        "name": "Commission Release Override",
+        "type": "checkbox",
+        "status": "live"
+      },
+      "override_reason": {
+        "name": "Override Reason",
+        "type": "text",
+        "status": "live"
+      },
+      "commission_releasable": {
+        "name": "Commission Releasable",
+        "type": "formula",
+        "status": "paste_by_hand"
+      },
+      "below_floor": {
+        "name": "Below Floor",
+        "type": "formula",
+        "status": "live"
+      }
+    },
+    "_paste_by_hand_note": "Notion's API rejects formulas that read through a relation (tested 2026-10-06), so Open Work Orders, Commission Releasable and Submit Blockers are pasted in the Notion UI from methods/payouts.md. payout_run.py computes the work-order hold itself and does not need them."
   },
-
   "flooring_line_items": {
     "data_source": "collection://a84d8ff8-32c5-4174-b00c-ace45222f7cc",
     "properties": {
@@ -149,16 +259,43 @@
     },
     "_tax_basis_open": "Property descriptions say rates are 'including tax'; the Data Entry Cheat Sheet says enter pre-tax because the formula adds x1.13. Settle at build by computing the formula against one existing row before the sync writes any rate.",
     "to_add": {
-      "quote_rate": {"name": "Quote Rate", "type": "number", "status": "to_add"},
-      "pm_cost_rate": {"name": "PM Cost Rate", "type": "number", "status": "to_add"},
-      "po_cost_rate": {"name": "PO Cost Rate", "type": "number", "status": "to_add"},
-      "ls_sale_cost_rate": {"name": "LS Sale Cost Rate", "type": "number", "status": "to_add"},
-      "invoice_cost_rate": {"name": "Invoice Cost Rate", "type": "number", "status": "to_add"},
-      "cost_rate_flag": {"name": "Cost Rate Flag", "type": "formula", "status": "to_add"},
-      "cost_locked": {"name": "Cost Locked", "type": "checkbox", "status": "to_add"}
+      "quote_rate": {
+        "name": "Quote Rate",
+        "type": "number",
+        "status": "live"
+      },
+      "pm_cost_rate": {
+        "name": "PM Cost Rate",
+        "type": "number",
+        "status": "live"
+      },
+      "po_cost_rate": {
+        "name": "PO Cost Rate",
+        "type": "number",
+        "status": "live"
+      },
+      "ls_sale_cost_rate": {
+        "name": "LS Sale Cost Rate",
+        "type": "number",
+        "status": "live"
+      },
+      "invoice_cost_rate": {
+        "name": "Invoice Cost Rate",
+        "type": "number",
+        "status": "live"
+      },
+      "cost_rate_flag": {
+        "name": "Cost Rate Flag",
+        "type": "formula",
+        "status": "live"
+      },
+      "cost_locked": {
+        "name": "Cost Locked",
+        "type": "checkbox",
+        "status": "live"
+      }
     }
   },
-
   "master_payments_log": {
     "data_source": "collection://26d596a4-505f-8073-a0ac-000b2a8d3a0e",
     "properties": {
@@ -173,13 +310,34 @@
       "projects": "Projects"
     },
     "to_add": {
-      "suggested_project": {"name": "Suggested Project", "type": "relation", "target": "titan_projects", "status": "to_add"},
-      "match_confidence": {"name": "Match Confidence", "type": "select", "status": "to_add", "options": ["High", "Medium", "Low"]},
-      "match_reason": {"name": "Match Reason", "type": "text", "status": "to_add"},
-      "accept": {"name": "Accept", "type": "checkbox", "status": "to_add"}
+      "suggested_project": {
+        "name": "Suggested Project",
+        "type": "relation",
+        "target": "titan_projects",
+        "status": "live"
+      },
+      "match_confidence": {
+        "name": "Match Confidence",
+        "type": "select",
+        "status": "live",
+        "options": [
+          "High",
+          "Medium",
+          "Low"
+        ]
+      },
+      "match_reason": {
+        "name": "Match Reasoning",
+        "type": "text",
+        "status": "live"
+      },
+      "accept": {
+        "name": "Accept",
+        "type": "checkbox",
+        "status": "live"
+      }
     }
   },
-
   "qa_work_orders": {
     "data_source": "collection://2eb596a4-505f-800a-af8f-000b24ce4c57",
     "properties": {
@@ -191,36 +349,61 @@
       "budget_expense": "Budget Expense ($$ Payout)",
       "completed_date": "Completed Date"
     },
-    "closed_statuses": ["Done", "Dropped"],
+    "closed_statuses": [
+      "Done",
+      "Dropped"
+    ],
     "to_add": {
-      "charge_to": {"name": "Charge to", "type": "select", "status": "to_add", "options": ["Titan", "Installer"], "default": "Titan"}
+      "charge_to": {
+        "name": "Charge To",
+        "type": "select",
+        "status": "live",
+        "options": [
+          "Titan",
+          "Installer"
+        ],
+        "default": "Titan"
+      }
     }
   },
-
   "titan_team": {
     "data_source": "collection://79af84d3-a5e8-436f-818a-f143b1e8f5ef",
     "properties": {
       "title": "Name",
       "role": "Role"
     },
-    "placeholder_names": ["None", "Customer", "Titan Flooring Inc.", "Contractor (General)"],
+    "placeholder_names": [
+      "None",
+      "Customer",
+      "Titan Flooring Inc.",
+      "Contractor (General)"
+    ],
     "_placeholder_note": "Rows that are not real payees. A cost assigned to one of these is flagged on the payout run, never paid.",
     "to_add": {
-      "pay_method": {"name": "Pay method", "type": "select", "status": "to_add",
-        "options": ["e-Transfer", "Cash", "Cheque", "Direct deposit", "Netted"],
-        "_owner": "Albert sets this per contractor (2026-10-05). Netted is defined in methods/payouts.md before anyone uses it."}
+      "pay_method": {
+        "name": "Pay Method",
+        "type": "multi_select",
+        "status": "live",
+        "options": [
+          "e-Transfer",
+          "Cash",
+          "Cheque",
+          "Direct Deposit",
+          "Netted"
+        ],
+        "_owner": "Albert sets this per contractor (2026-10-05). Netted is defined in methods/payouts.md before anyone uses it."
+      }
     }
   },
-
   "payout_batches": {
-    "data_source": null,
-    "status": "to_add",
-    "_comment": "New private database under Albert's Notion Directory. One row per payee per run. Created by Albert from the field list in methods/payouts.md; paste its data source id here once it exists.",
+    "data_source": "collection://467e6047-29bf-44d7-b0b8-d19e2e0e23b0",
+    "status": "live",
+    "_comment": "Created 2026-10-06 under Teamspace Home at Albert's request. One row per payee per run. Reverse relation on Project Costs is `Payout Batch`.",
     "properties": {
       "title": "Name",
       "run": "Run",
       "payee": "Payee",
-      "pay_method": "Pay method",
+      "pay_method": "Pay Method",
       "lines": "Lines",
       "commission_lines": "Commission lines",
       "claimant_role": "Claimant role",
@@ -231,6 +414,18 @@
       "paid": "Paid",
       "paid_date": "Paid Date",
       "reference": "Reference"
-    }
+    },
+    "database_url": "https://app.notion.com/p/77e751cf68544d1c97def602cf1e1788"
+  },
+  "setup_views": {
+    "_comment": "'💸 Payout Setup' views added 2026-10-06 on each database so the new fields can be seen together, and removed in one click.",
+    "titan_team": "view://3f1596a4-505f-81eb-98ef-000c502b44ef",
+    "qa_work_orders": "view://3f1596a4-505f-8173-82a8-000c3b330e11",
+    "project_costs": "view://3f1596a4-505f-81fe-821a-000cc5b4dce2",
+    "titan_projects": "view://3f1596a4-505f-8138-a934-000c2d177905",
+    "project_financials": "view://3f1596a4-505f-8118-b5c0-000cf64e3c21",
+    "flooring_line_items": "view://3f1596a4-505f-81c0-98c6-000ca199e674",
+    "master_payments_log": "view://3f1596a4-505f-8156-b888-000c8c1b82ae",
+    "payout_batches": "view://3f1596a4-505f-812b-a06e-000c55fe64d6"
   }
 }

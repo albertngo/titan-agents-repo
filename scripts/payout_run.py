@@ -240,14 +240,14 @@ def labor_checks(cost, project, bands, policy, band=True):
     amount = money(cost.get("cost"))
     quoted = money(cost.get("quoted_cost"))
     source = cost.get("cost_source")
-    if source == "Sub invoice" and quoted is not None:
+    if source == "Sub Invoice" and quoted is not None:
         tol = policy["labor_check"]["invoice_vs_quote_tolerance_cents"] / 100
         if amount is not None and abs(amount - quoted) > tol:
             flags.append(f"sub invoice {amount:.2f} ≠ quote {quoted:.2f}")
     elif truthy(cost.get("rate_overridden")):
         flags.append("labor rate manually overridden on the quote")
     if quoted is not None and amount is not None and abs(amount - quoted) > 0.005 \
-            and not (cost.get("change_order_reason") or "").strip() and source != "Sub invoice":
+            and not (cost.get("change_order_reason") or "").strip() and source != "Sub Invoice":
         flags.append(f"labor {amount:.2f} ≠ quoted {quoted:.2f} with no change-order reason")
     value = money(project.get("value")) if project else None
     if band and amount and value:
@@ -318,7 +318,7 @@ def build_run(snap, reg, policy, commissions, run_label, as_of, ls_sales=None, n
         t = idx["team"].get(team_pid) or {}
         return payees.setdefault(team_pid, {
             "payee": t.get("title") or "(unknown payee)", "payee_url": t.get("url"),
-            "pay_method": t.get("pay_method"), "lines": [], "flags": []})
+            "pay_method": ", ".join(as_list(t.get("pay_method"))) or None, "lines": [], "flags": []})
 
     # 1. cost rows: labor, disposal, delivery, other
     for c in n["costs"]:
@@ -364,7 +364,7 @@ def build_run(snap, reg, policy, commissions, run_label, as_of, ls_sales=None, n
                 continue
             is_wo_payment = (c.get("title") or "").startswith(reg["project_costs"]["wo_payment_title_prefix"])
             line["flags"] += labor_checks(c, project, bands, policy, band=not is_wo_payment)
-        if c.get("cost_source") == "AP invoice (auto)":
+        if c.get("cost_source") == "AP Invoice (auto)":
             line["flags"].append("disposal cost auto-extracted from an AP invoice — confirm")
         payee_entry(assigned[0])["lines"].append(line)
 
@@ -455,7 +455,7 @@ def build_run(snap, reg, policy, commissions, run_label, as_of, ls_sales=None, n
         p["total"] = round(sum(l["amount"] or 0 for l in p["lines"]), 2)
         p["flagged_lines"] = sum(1 for l in p["lines"] if l["flags"])
         if p["pay_method"] is None:
-            p["flags"].append("no Pay method on Titan Team")
+            p["flags"].append("no Pay Method on Titan Team")
         p["bank_cross_check"] = bank_match(p["payee"], p["total"], notices)
 
     # 5. Lightspeed signals for projects on this run
