@@ -126,6 +126,22 @@ def build(pos, lines_by_id, supplier_names, policy, window):
     }
 
 
+def add_product_names(out, client):
+    """SKU and name on PP-tagged PO lines, so a flooring line can be named by what was
+    ordered (Decision 17). One product GET per distinct product; untagged POs skipped."""
+    ids = {l["product_id"] for proj in out["projects"].values()
+           for po in proj["purchase_orders"] for l in po["lines"] if l["product_id"]}
+    names = {}
+    for pid in sorted(ids):
+        body = client.get(f"{client.products_path()}/{pid}")
+        rec = body.get("data", body) if isinstance(body, dict) else {}
+        names[pid] = (rec.get("sku"), rec.get("name"))
+    for proj in out["projects"].values():
+        for po in proj["purchase_orders"]:
+            for l in po["lines"]:
+                l["sku"], l["product_name"] = names.get(l["product_id"], (None, None))
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0],
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -151,6 +167,10 @@ def main(argv=None):
         return 2
 
     out = build(pos, lines_by_id, suppliers, policy, window)
+    try:
+        add_product_names(out, client)
+    except LightspeedError as e:
+        print(f"warning: product names not added: {e}", file=sys.stderr)
     out["api_stats"] = client.stats()
     path = args.out or REPO_ROOT / "ingest" / datetime.now(TZ).date().isoformat() / "ls-orders.json"
     path.parent.mkdir(parents=True, exist_ok=True)

@@ -42,7 +42,7 @@ type SUPPLIER**; its lines are **consignment products** (`platform-settings/ligh
 | `status` | OPEN / SENT / RECEIVED. |
 | `po_date`, `due_at`, `received_at` | `po_date` = `consignment_date`, else `created_at`. |
 | `pp`, `pp_candidates` | Parsed from the PO `name` with the shared regex (`payout-policy.json`). |
-| `lines[]` | `product_id, count (decimal sqft allowed), received, unit_cost, cost_total, status`. |
+| `lines[]` | `product_id, count (decimal sqft allowed), received, unit_cost, cost_total, status`; on PP-tagged POs also `sku, product_name` (one product GET each), so a flooring line is named by what was ordered. |
 
 ## Two ways a PO cost reaches a project
 

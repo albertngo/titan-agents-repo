@@ -21,6 +21,7 @@ sys.path.insert(0, str(REPO_ROOT / "scripts"))
 import ls_orders_pull as lop  # noqa: E402
 import ls_sales_pull as lsp  # noqa: E402
 import payout_run as pr  # noqa: E402
+import supplier_docs_pull as sd  # noqa: E402
 
 SETTINGS = REPO_ROOT / "platform-settings"
 POLICY = json.loads((SETTINGS / "payout-policy.json").read_text())
@@ -460,17 +461,6 @@ class TestCostSync(unittest.TestCase):
         out = pcs.plan(sync_snapshot(cost=582.67, source="Lightspeed"), REG, POLICY, ls_sales=LS)
         self.assertNotIn("nfm_cost", self.kinds(out))
 
-    def test_po_far_from_sale_cost_is_suggested_per_sqft(self):
-        orders = {"projects": {"463": {"purchase_orders": [{"reference": "PO-1", "lines": [
-            {"product_id": "floor", "unit_cost": 3.55}]}]}}, "product_po_cost": {}}
-        fl = next(a for a in pcs.plan(sync_snapshot(), REG, POLICY, ls_sales=LS, ls_orders=orders)["actions"]
-                  if a["kind"] == "flooring_cost_rate")
-        self.assertEqual(fl["confidence"], "Medium")
-        self.assertIn("apart", fl["reason"])
-        orders["projects"]["463"]["purchase_orders"][0]["lines"][0]["unit_cost"] = 3.45   # 6 cents: fine
-        kinds = [a["kind"] for a in pcs.plan(sync_snapshot(), REG, POLICY, ls_sales=LS, ls_orders=orders)["actions"]]
-        self.assertNotIn("flooring_cost_rate", kinds)     # agreement passes silently
-
     def test_relations_copied_and_costs_complete_only_when_nothing_missing(self):
         out = pcs.plan(sync_snapshot(cost=582.67, source="Lightspeed"), REG, POLICY, ls_sales=LS)
         self.assertIn("financials_relations", self.kinds(out))
@@ -501,3 +491,209 @@ class TestCostSync(unittest.TestCase):
         stamps = [a for a in pcs.plan(snap, REG, POLICY)["actions"] if a["kind"] == "stamp_paid"]
         self.assertEqual(len(stamps), 1)
         self.assertEqual(stamps[0]["fields"]["Paid Reference (3/3)"], "C1A")
+
+
+# --- supplier documents and the invoice-driven flooring line (Decisions 17-18) ---
+
+EST = """    Estimate details                                      P.O. Number: 8135
+    Estimate no.: 103273                                  Sales Rep: XL
+    Estimate date: 2026-08-07
+#       Product or service                     Description                             Qty               Rate                Amount              Tax
+1.      OKMO161C                               6" X 3/4" (161mmX18mm),                  80         $97.8588                  $7,828.70       HST ON
+                                               American White Oak, MOON
+                                               LIGHT-ABC, 21.32 SF/BOX, T&G,
+2.      TMMO                                   T-Molding, MOON LIGHT                     2              $15.00                $30.00      HST ON
+                                                                                             Subtotal                                      $7,858.70
+        Note to customer                                                                     HST (ON) @ 13% on
+        Price includes a $0.20 discount.                                                 Total                                           $8,880.33
+"""
+
+
+def inv(no, boxes, amount):
+    return f"""    Invoice details                       P.O. Number: 8135
+    Invoice no.: {no}                   Sales Rep: XL
+    Terms: C.O.D                          Estimate No.: 103273
+    Invoice date: 2026-09-10
+#       Product or service     Description                       Qty               Rate                Amount              Tax
+1.      OKMO161C               6" X 3/4" (161mmX18mm),            {boxes}         $97.8588                  ${amount}       HST ON
+                               American White Oak, MOON
+                               LIGHT-ABC, 21.32 SF/BOX, T&G,
+                                                                       Subtotal                                      ${amount}
+                                                                   Total                                           $0.00
+"""
+
+
+def credit(no, boxes, rate, amount, when="17/09/2026", fee=False):
+    return f"""CREDIT TO                                                          CREDIT # {no}
+Titan Flooring Inc                                                    DATE {when}
+ ACTIVITY        DESCRIPTION                               TAX      QTY     RATE    AMOUNT
+ OKMO161C        6" X 3/4" (161mmX18mm), American White    HST        {boxes}   {rate}       {amount}
+                 Oak, MOON LIGHT-ABC, 21.32                 ON
+                 SF/BOX, T&G, ENG, WB
+{"                 with 25 % restocking fee" if fee else ""}
+                                                  SUBTOTAL                              {amount}
+                                                  HST (ON) @ 13%                         0.00
+                                                  TOTAL                                 {amount}
+"""
+
+
+def vidar_docs(credits=()):
+    docs = [sd.parse_quickbooks(EST, "confirmation", "Estimate - Sales order 103273 from VIDAR DESIGN FLOORING"),
+            sd.parse_quickbooks(inv("104771", 48, "4,697.22"), "invoice"),
+            sd.parse_quickbooks(inv("104785", 32, "3,131.48"), "invoice")]
+    docs += [sd.parse_quickbooks(c, "credit_memo") for c in credits]
+    for d in docs:
+        d["supplier"] = "vidar"
+    return docs
+
+
+class TestSupplierDocs(unittest.TestCase):
+    def test_estimate_parsed_per_box_to_per_sqft(self):
+        d = sd.parse_quickbooks(EST, "confirmation", "Estimate - Sales order 103273 from VIDAR DESIGN FLOORING")
+        self.assertEqual((d["doc_no"], d["po_number"], d["date"], d["revision"]), ("103273", "8135", "2026-08-07", "original"))
+        floor, trim = d["lines"]
+        self.assertEqual((floor["code"], floor["qty"], floor["sqft"], floor["rate_per_sqft"]), ("OKMO161C", 80, 1705.6, 4.59))
+        self.assertIsNone(trim["sqft"])          # per piece, not a flooring line
+        self.assertEqual(d["total"], 8880.33)
+
+    def test_credit_memo_layout_and_restocking_fee(self):
+        d = sd.parse_quickbooks(credit("Cr1", 3, "97.8588", "293.58", fee=True), "credit_memo")
+        self.assertEqual((d["doc_no"], d["date"]), ("Cr1", "2026-09-17"))
+        self.assertEqual(d["lines"][0]["sqft"], 63.96)
+        self.assertTrue(d["lines"][0]["restocking_fee"])
+
+    def test_net_of_credit_is_the_actual_cost(self):
+        orders, un = sd.build_orders(vidar_docs([credit("Cr1", 3, "97.8588", "293.58")]))
+        p = orders["103273"]["products"]["OKMO161C"]
+        self.assertEqual((p["stage"], p["net_sqft"], p["net_amount"], p["actual_rate_sqft"]),
+                         ("invoice_final", 1641.64, 7535.12, 4.59))
+        self.assertEqual(un, [])
+
+    def test_restocking_fee_raises_the_rate_on_what_was_kept(self):
+        # 14 boxes back at 75% of the box rate: the fee is a job cost
+        orders, _ = sd.build_orders(vidar_docs([credit("Cr2", 14, "73.3941", "1,027.52", fee=True)]))
+        p = orders["103273"]["products"]["OKMO161C"]
+        self.assertGreater(p["actual_rate_sqft"], 4.59)
+        self.assertIn("restocking_fee", orders["103273"]["flags"])
+
+    def test_partial_invoice_and_confirmed_not_invoiced(self):
+        docs = vidar_docs()[:2]
+        p = sd.build_orders(docs)[0]["103273"]["products"]["OKMO161C"]
+        self.assertEqual(p["stage"], "invoice_partial")
+        o = sd.build_orders(docs[:1])[0]["103273"]
+        self.assertEqual(o["products"]["OKMO161C"]["stage"], "confirmation")
+        self.assertIn("confirmed_not_invoiced", o["flags"])
+
+    def test_credit_with_two_candidate_orders_is_not_picked(self):
+        docs = vidar_docs()
+        other = sd.parse_quickbooks(inv("200001", 5, "489.29").replace("103273", "200000")
+                                    .replace("8135", "9999"), "invoice")
+        other["supplier"] = "vidar"
+        docs += [other, sd.parse_quickbooks(credit("Cr3", 1, "97.8588", "97.86"), "credit_memo")]
+        orders, un = sd.build_orders(docs)
+        self.assertEqual(un[0]["doc_no"], "Cr3")
+        self.assertEqual(sorted(un[0]["candidates"]), ["103273", "200000"])
+        self.assertEqual(orders["103273"]["credits"], [])
+
+    def test_reconfirmed_po_supersedes_the_old_estimate(self):
+        old = sd.parse_quickbooks(EST.replace("103273", "100000").replace("2026-08-07", "2026-08-01"),
+                                  "confirmation", "Estimate - Sales order 100000 from VIDAR DESIGN FLOORING")
+        old["supplier"] = "vidar"
+        orders, _ = sd.build_orders([old] + vidar_docs())
+        self.assertEqual(orders["100000"]["status"], "superseded")
+        self.assertNotIn("confirmed_not_invoiced", orders["100000"]["flags"])
+
+    def test_read_only(self):
+        src = (REPO_ROOT / "scripts" / "supplier_docs_pull.py").read_text()
+        for verb in ('"POST"', '"PUT"', '"PATCH"', '"DELETE"', "/move", "/send", "/copy", "data="):
+            self.assertNotIn(verb, src)
+
+
+def floor_fixture(credits=(), row=None, sale_sku="ENG-VIDR-0178", sale_pid="click5"):
+    snap = sync_snapshot()
+    snap["projects"][0]["ID"] = 461
+    if row is not None:
+        snap["flooring_lines"] = [dict({"url": P(400), "Project": [P(100)]}, **row)]
+    ls = {"projects": {"461": {"pp": "PP-461", "sale_ids": ["s1"], "flags": [],
+                               "totals_by_class": LS["projects"]["463"]["totals_by_class"],
+                               "flooring_lines": [{"product_id": sale_pid, "sku": sale_sku,
+                                                   "product_name": "x", "quantity": 1586.0,
+                                                   "unit_cost": 4.19}]}}}
+    orders = {"projects": {"461": {"purchase_orders": [{"reference": "PO-8135", "status": "SENT", "lines": [
+        {"product_id": "tg6", "sku": "ENG-VIDR-0023", "product_name": "6in T&G", "count": 1705.6,
+         "received": 0, "unit_cost": 4.59}]}]}}, "product_po_cost": {}}
+    o, un = sd.build_orders(vidar_docs(credits))
+    docs = {"orders": o, "orders_by_po": {"8135": ["103273"]}, "unattributed_credits": un}
+    return snap, ls, orders, docs
+
+
+def floor_action(*a, **k):
+    snap, ls, orders, docs = floor_fixture(*a, **k)
+    out = pcs.plan(snap, REG, POLICY, ls_sales=ls, ls_orders=orders, supplier_docs=docs)
+    return [x for x in out["actions"] if x["kind"] == "flooring_line"]
+
+
+class TestFlooringLine(unittest.TestCase):
+    def test_invoice_net_of_credit_creates_the_ordered_product_locked(self):
+        (a,) = floor_action([credit("Cr1", 3, "97.8588", "293.58")])
+        self.assertEqual((a["op"], a["mode"], a["stage"]), ("create", "write", "invoice_final"))
+        f = a["fields"]
+        self.assertEqual(f["Floor SKU"], "ENG-VIDR-0023")       # what was ordered, not the sale
+        self.assertEqual((f["Cost Rate"], f["Invoice Cost Rate"], f["Cost Locked"]), (4.59, 4.59, True))
+        self.assertEqual(f["LS Sale Cost Rate"], 4.19)            # compared, never used
+        self.assertNotIn("Sold At Rate", f)                       # never from Lightspeed
+        for flag in ("pm_entry_product_mismatch", "sale_cost_gap", "qty_gap",
+                     "po_not_received_in_lightspeed", "quote_rate_missing"):
+            self.assertIn(flag, a["flags"])
+
+    def test_sold_at_rate_comes_from_the_pm_quote(self):
+        (a,) = floor_action(row={"Floor SKU": "ENG-VIDR-0023", "Quote Rate": 6.29, "Cost Rate": 4.59,
+                                 "Invoice Cost Rate": 4.59, "PO Cost Rate": 4.59, "LS Sale Cost Rate": 4.19,
+                                 "Cost Locked": "__YES__"})
+        self.assertEqual(a["fields"], {"Sold At Rate": 6.29})
+        self.assertNotIn("quote_rate_missing", a["flags"])
+
+    def test_matching_line_is_silent(self):
+        acts = floor_action(row={"Floor SKU": "ENG-VIDR-0023", "Quote Rate": 6.29, "Sold At Rate": 6.29,
+                                 "Cost Rate": 4.59, "Invoice Cost Rate": 4.59, "PO Cost Rate": 4.59,
+                                 "LS Sale Cost Rate": 4.19, "Cost Locked": "__YES__"})
+        self.assertEqual(acts, [])
+
+    def test_late_credit_with_fee_updates_a_locked_line(self):
+        (a,) = floor_action([credit("Cr2", 14, "73.3941", "1,027.52", fee=True)],
+                            row={"Floor SKU": "ENG-VIDR-0023", "Sold At Rate": 6.29, "Cost Rate": 4.59,
+                                 "Invoice Cost Rate": 4.59, "PO Cost Rate": 4.59, "LS Sale Cost Rate": 4.19,
+                                 "Cost Locked": "__YES__"})
+        self.assertEqual(a["mode"], "write")
+        self.assertGreater(a["fields"]["Cost Rate"], 4.59)
+        self.assertIn("changed_after_lock", a["flags"])
+        self.assertIn("restocking_fee", a["flags"])
+
+    def test_invoice_replaces_an_earlier_hand_entered_rate(self):
+        (a,) = floor_action(row={"Floor SKU": "ENG-VIDR-0023", "Sold At Rate": 6.29, "Cost Rate": 4.19})
+        self.assertEqual((a["mode"], a["fields"]["Cost Rate"]), ("write", 4.59))
+
+    def test_before_the_invoice_the_confirmation_fills_an_empty_line_only(self):
+        snap, ls, orders, docs = floor_fixture()
+        o, _ = sd.build_orders(vidar_docs()[:1])                 # confirmation only
+        docs["orders"] = o
+        (a,) = [x for x in pcs.plan(snap, REG, POLICY, ls_sales=ls, ls_orders=orders, supplier_docs=docs)["actions"]
+                if x["kind"] == "flooring_line"]
+        self.assertEqual((a["stage"], a["mode"], a["fields"]["Cost Rate"], a["fields"]["Cost Locked"]),
+                         ("confirmation", "write", 4.59, False))
+        snap["flooring_lines"] = [{"url": P(400), "Project": [P(100)], "Floor SKU": "ENG-VIDR-0023",
+                                   "Cost Rate": 4.39, "Sold At Rate": 6.29}]
+        (a,) = [x for x in pcs.plan(snap, REG, POLICY, ls_sales=ls, ls_orders=orders, supplier_docs=docs)["actions"]
+                if x["kind"] == "flooring_line"]
+        self.assertEqual(a["mode"], "suggest")                   # a person's figure, not yet the invoice
+
+    def test_line_named_after_the_wrong_sale_product_is_a_suggested_rename(self):
+        (a,) = floor_action(row={"Floor SKU": "ENG-VIDR-0178", "Sold At Rate": 6.29, "Cost Rate": 4.19})
+        self.assertEqual((a["op"], a["mode"], a["fields"]["Floor SKU"]), ("update", "suggest", "ENG-VIDR-0023"))
+
+    def test_no_order_falls_back_to_the_sale_as_a_low_suggestion(self):
+        snap, ls, orders, docs = floor_fixture()
+        out = pcs.plan(snap, REG, POLICY, ls_sales=ls, ls_orders={"projects": {}, "product_po_cost": {}})
+        (a,) = [x for x in out["actions"] if x["kind"] == "flooring_line"]
+        self.assertEqual((a["stage"], a["mode"], a["confidence"]), ("ls_sale", "suggest", "Low"))
+        self.assertIn("no_order_found", a["flags"])

@@ -12,6 +12,7 @@ Payments Log at 08:00. Not part of `/daily-ingest`.
 [0] preflight                                                       read only
 [1] scripts/ls_sales_pull.py  -> ingest/<date>/ls-sales.json         read only
 [2] scripts/ls_orders_pull.py -> ingest/<date>/ls-orders.json        read only
+[2b] scripts/supplier_docs_pull.py -> ingest/<date>/supplier-docs.json  read only
 [3] Notion snapshot via MCP   -> ingest/<date>/notion-finance.json   read only
 [4] scripts/project_costs_sync.py -> plans/<date>/costs-plan.json    read only
 [5] write_mode = write only: apply `write` actions, write suggestion fields   Notion write
@@ -19,7 +20,8 @@ Payments Log at 08:00. Not part of `/daily-ingest`.
 ```
 
 Authoritative: `contracts/costs-plan-schema.md`, `contracts/ls-sales-schema.md`,
-`contracts/ls-orders-schema.md`, `platform-settings/notion-finance.json`,
+`contracts/ls-orders-schema.md`, `contracts/supplier-docs-schema.md`,
+`platform-settings/supplier-docs.json`, `platform-settings/notion-finance.json`,
 `platform-settings/payout-policy.json`, `methods/payouts.md`.
 
 ## 0. Before you start — stop on the first failure
@@ -30,6 +32,9 @@ Authoritative: `contracts/costs-plan-schema.md`, `contracts/ls-sales-schema.md`,
    `LIGHTSPEED_PERSONAL_TOKEN` — see CLAUDE.md "Secrets"). Missing → report the name
    and stop.
 3. Notion is reachable through the Notion MCP.
+4. `GRAPH_TENANT_ID` / `GRAPH_CLIENT_ID` / `GRAPH_CLIENT_SECRET` are in `.env` and
+   `pdftotext` is installed. Missing → skip step 2b, say so in the report, and run
+   step 4 without `--supplier-docs` (flooring lines then stop at the PO stage).
 
 ## 1–2. Lightspeed — read only
 
@@ -41,6 +46,17 @@ python3 scripts/ls_orders_pull.py
 Both are GET-only (`tests/test_lightspeed.py` fails if a write verb appears). The
 sales pull walks the product catalogue once a day (cached under `analysis/cache/`).
 Note the summary lines — `@pack without PP` is a staff-habit count for the report.
+
+## 2b. Supplier documents — read only
+
+```bash
+python3 scripts/supplier_docs_pull.py
+```
+
+Reads the supplier's order confirmations, invoices and credit memos where staff file
+them in info@ (`platform-settings/supplier-docs.json`), app-only Graph GETs, nothing
+moved or marked read. The invoice net of credits is the final flooring cost
+(Decision 18). Report `errors` and `unattributed_credits` counts.
 
 ## 3. Notion snapshot — read only
 
@@ -56,8 +72,13 @@ exists). Save as `ingest/<date>/notion-finance.json`.
 
 ```bash
 python3 scripts/project_costs_sync.py --snapshot ingest/<date>/notion-finance.json \
-    --ls-sales ingest/<date>/ls-sales.json --ls-orders ingest/<date>/ls-orders.json
+    --ls-sales ingest/<date>/ls-sales.json --ls-orders ingest/<date>/ls-orders.json \
+    --supplier-docs ingest/<date>/supplier-docs.json
 ```
+
+The snapshot must include the in-scope projects' **Flooring Line Items** (`Floor SKU`,
+`Sqft Sold`, `Cost Rate`, `Sold At Rate`, `Quote Rate`, the four cost-rate columns,
+`Cost Locked`, `Project`).
 
 ## 5. Apply — only when `write_mode.project_costs_sync` is `write`
 
@@ -69,6 +90,12 @@ For each action, in file order, skipping any `id` already `executed` in today's
   `refused`** (someone typed a number since the snapshot).
 - `mode: suggest` → write only the suggestion fields in `fields`. Never `Cost`,
   never `Projects`.
+- `flooring_line` → `op: create` is `notion-create-pages` in Flooring Line Items with
+  `fields`; `op: update` is `notion-update-page` on the line. A `suggest` flooring
+  action writes nothing to the line: it is listed in the report for the PM (rename to
+  the ordered product, or a rate a person typed before the invoice arrived). The
+  rate's tax basis (`notion-finance.json → flooring_line_items._tax_basis_open`) must
+  be settled before the first write.
 - A `to_add` property that does not exist yet → skip that field, note it once in the
   report.
 
@@ -81,6 +108,7 @@ Stop the batch on a Notion error (house rule for writers), log, report.
 
 Append `{"date", "project_costs_sync": "ok" | "error", "counts"}` to
 `ingest/<date>/run-ledger.json` — `/payout-run` checks it on the 1st. Commit
-`ingest/<date>/ls-*.json` as `project-costs-sync: <date>` and push. The snapshot and
-`costs-plan.json` are gitignored (private financials) — never commit them. In chat, only: suggestions waiting, `@pack`
-sales without a PP number, notes.
+`ingest/<date>/ls-*.json` as `project-costs-sync: <date>` and push. The snapshot,
+`supplier-docs.json` and `costs-plan.json` are gitignored (private financials) — never commit them. In chat, only: suggestions waiting, `@pack`
+sales without a PP number, flooring flags by kind (PM entry mistakes, POs not
+received in Lightspeed, confirmed but not invoiced, quantity gaps), notes.

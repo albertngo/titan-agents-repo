@@ -32,6 +32,7 @@ Both commands start in `plan_only`; flipping either is a dated vault decision.
 | 15 | Pay method per contractor. Paid is marked by Albert, never from a bank email. | Albert |
 | 16 | Scope: only projects with a Project End Date on or after 2026-09-01. Older or undated unpaid rows are left out and counted on the run, for Albert to settle by hand (`payout-policy.json → scope`). | Albert 2026-10-06 |
 | 17 | **What was ordered is the truth for flooring, not the Lightspeed sale.** The chain is LS purchase order → supplier sales-order confirmation → supplier invoice (and any credit memo). When the sale line's product or rate differs from what was ordered, the sale is flagged as a **PM entry mistake** for the PM to correct; the ordered product and the invoiced rate are what cost and margin use. Found on PP-461 (sold Click 5", ordered 6" T&G, as the PM's own notes said) and PP-439 (sold 9" White Oak at $6.99, ordered 7.5" White Ash at $3.49). | Albert 2026-10-06 |
+| 18 | **A Flooring Line Item ends at the actual invoiced price.** `Sold At Rate` is the PM's quote rate (`Quote Rate` until the Airtable quote push exists), never the Lightspeed sale. `Cost Rate` is staged: supplier confirmation, else the LS purchase order, while waiting; the supplier invoice net of credit memos once it lands (restocking fees included, spread over the sqft kept), which ticks `Cost Locked`. A later credit or invoice updates the line again. The daily sync proposes each step; nobody re-types it. | Albert 2026-10-06 |
 
 ## What people do
 
@@ -40,7 +41,9 @@ Both commands start in `plan_only`; flipping either is a dated vault decision.
    sale for the project carries the same `PP-###`. (22 `@pack` sales in the last 120
    days had no number — each one is invisible to the payout flow.)
 2. At quote time, enter the flooring cost from the supplier's price PDF
-   (`Cost source = PM manual (supplier PDF)`).
+   (`PM Cost Rate`) and the rate you quoted the customer (`Quote Rate` → becomes
+   `Sold At Rate`). The sync fills the rest of the flooring line from the order,
+   confirmation and invoice.
 3. At submit: enter final labor with its `Cost Source` (Our Cost / Sub Invoice),
    attach the invoice when there is one, and write a `Change order reason` whenever
    labor differs from `Quoted Cost` (`Change Order Reason`). `Submit Blockers` must be empty.
@@ -150,6 +153,10 @@ the fact. Consequences for this flow:
   product (PP-461, PP-439) or carry a stale catalogue cost (Vidar engineered sells at
   about $0.70/sqft over what Vidar bills). It is compared, never preferred, once a PO,
   confirmation or invoice exists.
+- **A flooring line's quantity and its cost are different questions.** `Cost Rate` is
+  the actual $/sqft paid for what was kept; `Sqft Sold` is what the customer bought.
+  When the two quantities differ by more than a box (`qty_gap`: leftover in stock,
+  waste, or a short order) the line is flagged, not adjusted.
 - **Vidar documents** (info@): confirmations in PURCHASE ORDERS / PO Confirmed
   ("Estimate – Sales order N", prints `P.O. Number: 8xxx`); invoices in INVOICE (prints
   the estimate number); credit memos in CREDIT (restocking fee shows as a reduced box
@@ -180,5 +187,5 @@ the fact. Consequences for this flow:
 | 0 | Staff rules above; Notion fields | October projects follow the PP and cost-staging rules |
 | 1 | Pulls + sync + run in `plan_only`; dry-run October | Run matches Albert's own list (PP-461 Roy 2,010; PP-450 Luxevista 1,642 + APS 279.34; PP-417 Roy 7,375) |
 | 2 | AP invoice extraction; `write` (dated) | First month-end with no hand-typed numbers |
-| 2b | Supplier-invoice three-way cost check | An invoice locks a flooring cost end to end |
+| 2b | Supplier documents → flooring line (`supplier_docs_pull.py`, `flooring_line` actions; built 2026-10-06 in `plan_only`, Vidar only) | An invoice locks a flooring cost end to end (PP-461: 6" T&G at $4.59, net 77 boxes, $7,535.12) |
 | 3 | Airtable quote → Notion push; LS pack-sale / PO writes (dated flips) | A Won quote fills quoted labor, quote rate, discount and the pack list |

@@ -2,7 +2,8 @@
 """Plan the daily cost updates for the payout flow. READ ONLY.
 
 Deterministic half of /project-costs-sync (.claude/commands/project-costs-sync.md).
-Reads a Notion finance snapshot, today's ls-sales.json and ls-orders.json, and
+Reads a Notion finance snapshot, today's ls-sales.json, ls-orders.json and
+supplier-docs.json (scripts/supplier_docs_pull.py), and
 writes ONE plan of proposed Notion changes. The command applies the plan through
 the Notion MCP only when write_mode.project_costs_sync is `write`; in `plan_only`
 nothing reaches Notion.
@@ -23,8 +24,13 @@ Suggest-and-review (amendment §4): every action is either
 Actions:
   nfm_cost            NFM cost row <- Lightspeed NFM POS total incl. tax (today's meaning)
   ls_sale_found       Titan Projects `LS Sale Found` <- a PP-tagged sale exists
-  flooring_cost_rate  flooring line cost rates: PM vs PO (front desk) vs LS sale-line,
-                      >$0.10/sqft apart -> suggest; front desk wins interim (§2.3)
+  flooring_line       one Flooring Line Item per ordered product (create or update):
+                      Cost Rate = the best ordered source — supplier invoice net of
+                      credit memos (final, locks) > supplier confirmation > LS purchase
+                      order; re-proposed whenever an invoice or credit changes it.
+                      Sold At Rate = the PM's Quote Rate, never the Lightspeed sale.
+                      The LS sale is compared only: a different product or rate is
+                      flagged as a PM entry mistake (Decisions 17-18)
   financials_relations Financials `Costs` / `Flooring Line Items` <- project's own
   costs_complete      tick when submitted and no cost is missing
   payment_project     suggest a project for an unlinked payment (Decision 12)
@@ -34,6 +40,7 @@ Actions:
 import argparse
 import hashlib
 import json
+import re
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -50,9 +57,11 @@ def action_id(kind, target, payload):
     return f"{kind}:{h}"
 
 
-def mk(kind, target, mode, fields, confidence, reason, pp=None):
-    return {"id": action_id(kind, target, fields), "kind": kind, "target_url": target, "pp": pp,
-            "mode": mode, "fields": fields, "confidence": confidence, "reason": reason}
+def mk(kind, target, mode, fields, confidence, reason, pp=None, **extra):
+    a = {"id": action_id(kind, target, fields), "kind": kind, "target_url": target, "pp": pp,
+         "mode": mode, "fields": fields, "confidence": confidence, "reason": reason}
+    a.update(extra)
+    return a
 
 
 def sync_owns(cost_row, reg):
@@ -60,7 +69,208 @@ def sync_owns(cost_row, reg):
     return src in (None, "") or src in reg["project_costs"]["sync_owned_sources"]
 
 
-def plan(snapshot, reg, policy, ls_sales=None, ls_orders=None):
+STAGE_RANK = {"invoice_final": 5, "invoice_partial": 4, "confirmation": 3, "purchase_order": 2,
+              "purchase_order_untagged": 1, "ls_sale": 0}
+
+
+def po_digits(reference):
+    m = re.search(r"(\d+)", reference or "")
+    return m.group(1) if m else None
+
+
+def supplier_order_for(po_reference, supplier):
+    """The live supplier order (estimate) behind one LS PO, by the PO number it prints."""
+    keys = (supplier.get("orders_by_po") or {}).get(po_digits(po_reference) or "", [])
+    live = [supplier["orders"][k] for k in keys
+            if supplier["orders"][k]["status"] not in ("cancelled", "superseded")]
+    return live[-1] if live else None
+
+
+def match_supplier_product(po_line, sorder):
+    """The supplier code a PO line was ordered as: the sqft product whose quantity is
+    within one box of the PO line (a PO keys sqft; the supplier bills boxes)."""
+    best = None
+    for code, p in (sorder or {}).get("products", {}).items():
+        if not p.get("sf_per_box"):
+            continue
+        sq = p.get("confirmed_sqft") or p.get("invoiced_sqft") or 0
+        gap = abs(sq - (po_line.get("count") or 0))
+        if gap <= p["sf_per_box"] + 0.5 and (best is None or gap < best[0]):
+            best = (gap, code, p)
+    return (best[1], best[2]) if best else (None, None)
+
+
+def ordered_items(proj_orders, product_po, supplier, sale_lines):
+    """Every flooring product ordered for the project, with its staged cost."""
+    sale_pids = {l["product_id"] for l in sale_lines}
+    items = []
+    for po in (proj_orders or {}).get("purchase_orders", []):
+        sorder = supplier_order_for(po["reference"], supplier)
+        for line in po["lines"]:
+            code, sp = match_supplier_product(line, sorder)
+            if not sp and line["product_id"] not in sale_pids:
+                continue            # trims / sundries: not a flooring line
+            it = {"product_id": line["product_id"], "sku": line.get("sku"),
+                  "product_name": line.get("product_name"), "po_reference": po["reference"],
+                  "po_status": po["status"], "po_received": line.get("received"),
+                  "po_sqft": line["count"], "po_rate": line["unit_cost"], "supplier_code": code,
+                  "estimate_no": (sorder or {}).get("estimate_no"),
+                  "order_flags": list((sorder or {}).get("flags", [])),
+                  "confirmation_date": ((sorder or {}).get("confirmation") or {}).get("date"),
+                  "credits": [c["doc_no"] for c in (sorder or {}).get("credits", [])],
+                  "invoices": [i["doc_no"] for i in (sorder or {}).get("invoices", [])]}
+            if sp:
+                it.update({k: sp.get(k) for k in ("sf_per_box", "confirmed_rate_sqft", "confirmed_sqft",
+                                                  "invoiced_rate_sqft", "net_sqft", "net_amount",
+                                                  "actual_rate_sqft", "credited_sqft")})
+                it["stage"] = sp["stage"]
+                it["rate"] = sp["actual_rate_sqft"] if sp["stage"].startswith("invoice") \
+                    else sp["confirmed_rate_sqft"]
+            else:
+                it["stage"], it["rate"] = "purchase_order", line["unit_cost"]
+            items.append(it)
+    return items
+
+
+def pair_lines(sale_lines, items):
+    """(sale_line, ordered_item) pairs: same product first, then one-to-one leftovers
+    (the PM keyed a different product than was ordered)."""
+    pairs, sl, it = [], list(sale_lines), list(items)
+    for s in list(sl):
+        hit = next((i for i in it if i["product_id"] == s["product_id"]), None)
+        if hit:
+            pairs.append((s, hit)); sl.remove(s); it.remove(hit)
+    if len(sl) == 1 and len(it) == 1:
+        pairs.append((sl.pop(), it.pop()))
+    pairs += [(s, None) for s in sl] + [(None, i) for i in it]
+    return pairs
+
+
+def flooring_actions(project, pp, num, ls, proj_orders, product_po, supplier, rows, fins, reg, policy):
+    fc = policy["flooring_cost"]
+    delta = fc["flag_delta_per_sqft_cents"] / 100
+    ff = reg["flooring_line_items"]
+    P = ff["properties"]
+    T = {k: v["name"] for k, v in ff["to_add"].items()}
+    sale_lines = (ls or {}).get("flooring_lines", [])
+    items = ordered_items(proj_orders, product_po, supplier, sale_lines)
+    if not sale_lines and not items:
+        return []
+    out = []
+    today = datetime.now(pr.TZ).date()
+    for sale, item in pair_lines(sale_lines, items):
+        flags = []
+        if item is None:        # nothing ordered for this sale line under the PP
+            q = product_po.get(sale["product_id"])
+            if q:
+                item = {"sku": sale["sku"], "product_name": sale["product_name"], "stage":
+                        "purchase_order_untagged", "rate": q["unit_cost"], "po_reference": q["po_reference"],
+                        "po_rate": q["unit_cost"], "order_flags": [], "credits": [], "invoices": []}
+                flags.append("no_project_po")
+            else:
+                item = {"sku": sale["sku"], "product_name": sale["product_name"], "stage": "ls_sale",
+                        "rate": sale["unit_cost"], "order_flags": [], "credits": [], "invoices": []}
+                flags.append("no_order_found")
+        sku = item["sku"] or (sale or {}).get("sku")
+        stage, rate = item["stage"], item.get("rate")
+        if sale and item.get("product_id") and sale["product_id"] != item["product_id"]:
+            flags.append("pm_entry_product_mismatch")
+        if sale is None:
+            flags.append("ordered_not_on_sale")
+        if sale and rate is not None and abs(sale["unit_cost"] - rate) > delta:
+            flags.append("sale_cost_gap")
+        truth = item.get("actual_rate_sqft") if stage.startswith("invoice") else item.get("confirmed_rate_sqft")
+        if truth is not None and item.get("po_rate") is not None and abs(item["po_rate"] - truth) > delta:
+            flags.append("po_rate_gap")
+        flags += [f for f in item["order_flags"] if f.startswith(("rate_changed", "restocking",
+                                                                  "credit_attributed"))]
+        if stage.startswith("invoice") and item.get("po_status") not in (None, "RECEIVED"):
+            flags.append("po_not_received_in_lightspeed")
+        cd = pr.parse_date(item.get("confirmation_date"))
+        if stage == "confirmation" and cd and (today - cd).days > fc["confirmed_not_invoiced_days"]:
+            flags.append("confirmed_not_invoiced")
+        sold_sqft = (sale or {}).get("quantity")
+        if sold_sqft and item.get("net_sqft") and item.get("sf_per_box") and \
+                abs(item["net_sqft"] - sold_sqft) > item["sf_per_box"] * fc["qty_gap_tolerance_boxes"]:
+            flags.append("qty_gap")
+
+        row = next((r for r in rows if (r.get("title") or "").strip() == (sku or "")), None)
+        wrong_row = None
+        if row is None and sale and sale["sku"] != sku:
+            wrong_row = next((r for r in rows if (r.get("title") or "").strip() == sale["sku"]), None)
+        target = row or wrong_row
+
+        fields = {P["cost_rate"]: rate, T["ls_sale_cost_rate"]: (sale or {}).get("unit_cost"),
+                  T["po_cost_rate"]: item.get("po_rate"),
+                  T["invoice_cost_rate"]: item.get("actual_rate_sqft") if stage.startswith("invoice") else None,
+                  T["cost_locked"]: stage == "invoice_final"}
+        if target is None or wrong_row is not None:
+            fields[P["title"]] = sku
+        if target is None:
+            fields[P["sqft_sold"]] = sold_sqft
+            fields[P["project"]] = [project["url"]]
+            if len(fins) == 1:
+                fields[P["project_financials"]] = [fins[0]["url"]]
+        quote = pr.money((target or {}).get("quote_rate"))
+        sold_at = pr.money((target or {}).get("sold_at_rate"))
+        if quote is not None and sold_at != quote:
+            fields[P["sold_at_rate"]] = quote
+        if quote is None and sold_at is None:
+            flags.append("quote_rate_missing")
+        fields = {k: v for k, v in fields.items() if v is not None}
+
+        if target is not None:      # drop what already matches: agreement is silent
+            fmap = pr.field_map(ff)
+            def same(name, v):
+                cur = target.get(fmap.get(name, name))
+                if isinstance(v, bool):
+                    return pr.truthy(cur) == v
+                if isinstance(v, (int, float)):
+                    return pr.money(cur) is not None and abs(pr.money(cur) - v) < 0.00005
+                return cur == v
+            fields = {k: v for k, v in fields.items() if not same(k, v)}
+            if not fields:
+                continue
+            if pr.truthy(target.get("cost_locked")) and P["cost_rate"] in fields:
+                flags.append("changed_after_lock")
+
+        if wrong_row is not None:
+            mode = "suggest"            # renaming a PM's line is their call
+        elif stage.startswith("invoice"):
+            mode = "write"              # the invoice is the truth, and replaces earlier stages
+        elif stage in ("confirmation", "purchase_order") and \
+                (target is None or pr.money(target.get("cost_rate")) is None):
+            mode = "write"              # interim figure into an empty line
+        else:
+            mode = "suggest"
+        conf = {"invoice_final": "High", "invoice_partial": "High", "confirmation": "High",
+                "purchase_order": "Medium"}.get(stage, "Low")
+
+        bits = [f"{sku}: cost {rate:.4f}/sqft from {stage.replace('_', ' ')}"]
+        if stage.startswith("invoice"):
+            bits.append(f"invoices {', '.join(item['invoices'])}"
+                        + (f" less credits {', '.join(item['credits'])}" if item["credits"] else "")
+                        + f" = {item['net_sqft']} sqft for ${item['net_amount']:.2f} pre-tax")
+        if item.get("estimate_no"):
+            bits.append(f"supplier order {item['estimate_no']} ({item.get('supplier_code')}) on {item['po_reference']}")
+        elif item.get("po_reference"):
+            bits.append(f"PO {item['po_reference']}")
+        if "pm_entry_product_mismatch" in flags:
+            bits.append(f"Lightspeed sale has {sale['sku']} — PM entry mistake, ordered product used")
+        if "sale_cost_gap" in flags:
+            bits.append(f"sale-line cost {sale['unit_cost']:.2f}/sqft")
+        if "qty_gap" in flags:
+            bits.append(f"kept {item['net_sqft']} sqft vs {sold_sqft} sold")
+        if "po_not_received_in_lightspeed" in flags:
+            bits.append(f"{item['po_reference']} not received in Lightspeed")
+        reason = "; ".join(bits)
+        op = "create" if target is None else "update"
+        out.append(mk("flooring_line", target["url"] if target else project["url"], mode, fields,
+                      conf, reason, pp, op=op, stage=stage, flags=sorted(set(flags))))
+    return out
+
+
+def plan(snapshot, reg, policy, ls_sales=None, ls_orders=None, supplier_docs=None):
     n = pr.normalize_snapshot(snapshot, reg)
     idx, wo_by_project, pay_by_project, fin_by_project = pr.build_index(n)
     cats = reg["project_costs"]["categories"]
@@ -70,7 +280,12 @@ def plan(snapshot, reg, policy, ls_sales=None, ls_orders=None):
     sales = (ls_sales or {}).get("projects", {})
     orders = (ls_orders or {}).get("projects", {})
     product_po = (ls_orders or {}).get("product_po_cost", {})
-    delta = policy["flooring_cost"]["flag_delta_per_sqft_cents"] / 100
+    supplier = supplier_docs or {}
+
+    flines_by_project = {}
+    for fl in n["flooring_lines"]:
+        for p in pr.as_list(fl.get("project")):
+            flines_by_project.setdefault(pr.page_id(p), []).append(fl)
 
     costs_by_project = {}
     for c in n["costs"]:
@@ -121,34 +336,12 @@ def plan(snapshot, reg, policy, ls_sales=None, ls_orders=None):
                         names["suggestion_confidence"]: conf, names["suggestion_reason"]: why[:1900]},
                         conf, why, pp))
 
-        # flooring cost rates: PM vs PO (front desk) vs LS sale line
-        if ls:
-            po_lines = {}
-            for po in (orders.get(num) or {}).get("purchase_orders", []):
-                for l in po["lines"]:
-                    po_lines[l["product_id"]] = (l["unit_cost"], po["reference"], "project PO")
-            for fl in ls["flooring_lines"]:
-                pid_prod = fl["product_id"]
-                po = po_lines.get(pid_prod)
-                if not po and pid_prod in product_po:
-                    q = product_po[pid_prod]
-                    po = (q["unit_cost"], q["po_reference"], "latest PO for this product (not project-linked)")
-                sale_cost = fl["unit_cost"]
-                rec = {"sku": fl["sku"], "product": fl["product_name"], "sqft": fl["quantity"],
-                       "ls_sale_cost_rate": sale_cost, "po_cost_rate": po[0] if po else None,
-                       "po_reference": po[1] if po else None}
-                if po and abs(po[0] - sale_cost) > delta:
-                    conf, mode = "Medium", "suggest"
-                    reason = (f"{fl['sku']}: PO {po[0]:.2f}/sqft ({po[2]}, {po[1]}) vs LS sale-line "
-                              f"{sale_cost:.2f}/sqft — more than ${delta:.2f}/sqft apart; front desk "
-                              f"(PO) is the interim number, check the supplier invoice")
-                elif not po:
-                    conf, mode = "Low", "suggest"
-                    reason = (f"{fl['sku']}: no purchase order found — only the LS sale-line cost "
-                              f"{sale_cost:.2f}/sqft (an average-cost snapshot); front desk rate missing")
-                else:
-                    continue    # sources agree: pass silently (amendment §4)
-                actions.append(mk("flooring_cost_rate", project["url"], mode, rec, conf, reason, pp))
+        # flooring line items: cost = what was ordered, final = invoice net of credits;
+        # sold-at = the PM's quote, never the Lightspeed sale (Decisions 17-18)
+        fins_here = fin_by_project.get(pid, [])
+        for a in flooring_actions(project, pp, num, ls, orders.get(num), product_po, supplier,
+                                  flines_by_project.get(pid, []), fins_here, reg, policy):
+            actions.append(a)
 
         # Financials relations copy (financials-relation-sync logic)
         fins = fin_by_project.get(pid, [])
@@ -212,13 +405,15 @@ def main(argv=None):
     ap.add_argument("--snapshot", required=True, type=Path)
     ap.add_argument("--ls-sales", type=Path)
     ap.add_argument("--ls-orders", type=Path)
+    ap.add_argument("--supplier-docs", type=Path)
     ap.add_argument("--out", type=Path)
     args = ap.parse_args(argv)
     s = pr.SETTINGS
     out = plan(pr.load_json(args.snapshot), pr.load_json(s / "notion-finance.json"),
                pr.load_json(s / "payout-policy.json"),
                ls_sales=pr.load_json(args.ls_sales) if args.ls_sales else None,
-               ls_orders=pr.load_json(args.ls_orders) if args.ls_orders else None)
+               ls_orders=pr.load_json(args.ls_orders) if args.ls_orders else None,
+               supplier_docs=pr.load_json(args.supplier_docs) if args.supplier_docs else None)
     path = args.out or pr.REPO_ROOT / "plans" / datetime.now(pr.TZ).date().isoformat() / "costs-plan.json"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n")

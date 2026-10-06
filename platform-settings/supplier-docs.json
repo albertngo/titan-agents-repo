@@ -1,0 +1,30 @@
+{
+  "_doc": "Where supplier order documents land and how to recognise them, for scripts/supplier_docs_pull.py (read only, contracts/supplier-docs-schema.md). The invoice, net of credit memos, is the final flooring cost on a Flooring Line Item (Albert 2026-10-06). Verified live 2026-10-06 against info@titanfloors.ca with the app-only Graph credentials (GRAPH_* in .env).",
+  "mailbox": "info@titanfloors.ca",
+  "window_days": 120,
+  "_window_note": "120 days covers every project in payout scope (Project End Date >= 2026-09-01) plus its ordering lead time. Vidar documents from May 2026 and earlier use an older QuickBooks layout the parser does not read (11 seen 2026-10-06); they are reported under errors, never guessed.",
+  "folders": {
+    "confirmation": ["PURCHASE ORDERS/PO Confirmed"],
+    "invoice": ["INVOICE", "INVOICE/Sent to QBO", "INVOICE/Failed QBO Extraction"],
+    "credit_memo": ["CREDIT"]
+  },
+  "_folders_note": "Paths are display names from the mailbox root. Staff file each supplier email by hand; a document filed elsewhere is not seen. info@ Sent Items holds 'FW: Invoice' copies of pre-July invoices: deliberately not read.",
+  "credit_attribution": {
+    "lookback_days": 90,
+    "_note": "A credit memo prints no PO or estimate number. It is attached to the one order that invoiced the same supplier code within lookback_days before the credit; two candidates -> flagged unattributed, never picked."
+  },
+  "suppliers": {
+    "vidar": {
+      "name": "Vidar Design Flooring",
+      "format": "quickbooks",
+      "sender_addresses": ["quickbooks@notification.intuit.com"],
+      "sender_name_regex": "(?i)vidar",
+      "subjects": {
+        "confirmation": "(?i)^Estimate\\b.*?Sales order (\\d+) from VIDAR DESIGN FLOORING",
+        "invoice": "(?i)^Invoice (\\d+) from Vidar Design Flooring",
+        "credit_memo": "(?i)^Credit Memo (Cr\\d+) from Vidar Design Flooring"
+      },
+      "_facts": "Estimate prints 'P.O. Number: <n>' = the Lightspeed PO-<n>; invoice prints 'Estimate No.' and usually the P.O. Number. Rates are per box with 'NN.NN SF/BOX' in the description; rate per sqft = box rate / SF per box. 'Price includes a $0.20 discount' is already in the rate. No freight (pickup). Trims and nosings are per piece; UL78 underlayment is $0.00. Revisions arrive as 'Estimate - REVISED:' / 'CANCELLED' / 'Important Update' with the same sales order number. An estimate and an invoice can share a number by coincidence (103399)."
+    }
+  }
+}
