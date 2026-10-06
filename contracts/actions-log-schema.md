@@ -55,6 +55,13 @@ Each value belongs to exactly one agent's allowed-actions table.
 | `social_schedule_post`, `social_update_post`, `social_reschedule_post`, `social_flag_manual` | `social-actions-agent` |
 | `notion_write_troubled_table`, `notion_update_page` | `.claude/commands/catalog-sync.md` |
 | `notion_update_content_stats` | `.claude/commands/content-feedback.md` |
+| `payout_create_flooring_line`, `payout_update_flooring_line`, `payout_update_cost_row` | `.claude/commands/project-costs-sync.md` |
+
+`payout_create_flooring_line` / `payout_update_flooring_line` (2026-10-06) are
+`/project-costs-sync`'s flooring-line writes (`contracts/costs-plan-schema.md` →
+`flooring_line`); `payout_update_cost_row` is any other applied plan action, once its kind
+is switched to `write`. `approved_by` is `policy: project-costs-sync <kind> write` (the dated
+decision behind the kind's write mode); `raw_ref_action_id` is the plan action id.
 
 `notion_update_content_stats` (2026-09-28) is `/content-feedback`'s one write: Metricool
 post stats onto a Content Calendar Log row, for exactly one pull (`day7`, `day30` or

@@ -111,7 +111,8 @@ never written):
   report.
 
 Log every call per `contracts/actions-log-schema.md`: agent
-`.claude/commands/project-costs-sync.md`, type `notion_update_page`,
+`.claude/commands/project-costs-sync.md`, type `payout_create_flooring_line` /
+`payout_update_flooring_line` / `payout_update_cost_row`,
 `approved_by: "policy: project-costs-sync <mode>"`, `raw_ref_action_id` = action id.
 Stop the batch on a Notion error (house rule for writers), log, report.
 
