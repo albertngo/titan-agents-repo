@@ -9,6 +9,10 @@
     "_values": ["plan_only", "write"],
     "_note": "plan_only: scripts compute and write plan files; the command writes NOTHING to Notion. Flipping either to write is a dated decision recorded in the vault (05_decisions/), same as style-tags. The two Lightspeed writes are Phase 3 and are 'off' until a separate dated flip (plan Q2, amendment §9)."
   },
+  "scope": {
+    "min_project_end_date": "2026-09-01",
+    "_note": "Albert 2026-10-06: run only on projects from September 2026 onward. A project is in scope when its Project End Date is on or after this date. Older unpaid rows and projects with no end date are left out of the run and counted in summary.out_of_scope so nothing disappears silently; they stay Albert's to settle by hand. Applies to /payout-run and /project-costs-sync."
+  },
   "cadence": {
     "payout_run": "monthly",
     "run_on_day": 1,

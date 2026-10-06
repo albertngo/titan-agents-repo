@@ -280,6 +280,24 @@ class TestPayoutRun(unittest.TestCase):
         wo = next(l for l in lines if l["title"].startswith("Work Order Payment"))
         self.assertEqual(wo["flags"], [])
 
+    def test_projects_before_september_are_left_out_and_counted(self):
+        snap = snapshot()
+        snap["projects"][0]["Project End Date"] = "2026-08-31"
+        r = run(snap)
+        self.assertEqual(r["payees"], [])
+        self.assertEqual(r["summary"]["out_of_scope"], {"cost_rows": 3, "commission_rows": 1, "projects": 1})
+        self.assertIn("PP-461", r["out_of_scope_projects"])
+
+    def test_project_with_no_end_date_is_out_of_scope(self):
+        snap = snapshot()
+        del snap["projects"][0]["Project End Date"]
+        self.assertEqual(run(snap)["payees"], [])
+
+    def test_september_first_is_in_scope(self):
+        snap = snapshot()
+        snap["projects"][0]["Project End Date"] = "2026-09-01"
+        self.assertIsNotNone(payee(run(snap), "Roy"))
+
     def test_labor_check_layers(self):
         snap = snapshot()
         snap["costs"][0].update({"Quoted Cost": 1900, "Cost source": "Sub invoice"})
@@ -405,6 +423,7 @@ class TestPaymentsMatch(unittest.TestCase):
 
 def sync_snapshot(cost=None, source=None, submitted="Submitted"):
     return {"projects": [{"url": P(100), "ID": 463, "Value Approx": 9000, "Submission Status": submitted,
+                          "Project End Date": "2026-09-20",
                           "Project Costs": [P(200), P(201)]}],
             "costs": [{"url": P(200), "Category": "Materials (Non-Flooring)", "Cost": cost,
                        "Cost source": source, "Project": [P(100)]},
@@ -460,6 +479,12 @@ class TestCostSync(unittest.TestCase):
         self.assertIn("costs_complete", self.kinds(out))
         out = pcs.plan(sync_snapshot(cost=None), REG, POLICY, ls_sales=None)
         self.assertNotIn("costs_complete", self.kinds(out))
+
+    def test_out_of_scope_project_gets_no_sync_actions(self):
+        snap = sync_snapshot()
+        snap["projects"][0]["Project End Date"] = "2026-08-31"
+        out = pcs.plan(snap, REG, POLICY, ls_sales=LS)
+        self.assertEqual({a["kind"] for a in out["actions"]} - {"payment_project"}, set())
 
     def test_stamp_paid_only_from_batches_albert_marked_paid(self):
         snap = sync_snapshot()

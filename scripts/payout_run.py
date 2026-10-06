@@ -178,6 +178,15 @@ def pp_label(project):
     return s if s.upper().startswith("PP-") else f"PP-{s}"
 
 
+def in_scope(project, policy):
+    """Project End Date on or after scope.min_project_end_date (Albert 2026-10-06)."""
+    floor = (policy.get("scope") or {}).get("min_project_end_date")
+    if not floor:
+        return True
+    end = parse_date((project or {}).get("project_end_date"))
+    return bool(end and end >= date.fromisoformat(floor))
+
+
 def is_unpaid(cost):
     return not cost.get("paid_out_date") and not (cost.get("paid_reference") or "").strip()
 
@@ -303,6 +312,7 @@ def build_run(snap, reg, policy, commissions, run_label, as_of, ls_sales=None, n
 
     payees, held_labor, held_commission, blockers, ar_flags = {}, [], [], [], []
     unassigned_other = []
+    out_of_scope = {"cost_rows": 0, "commission_rows": 0, "projects": set()}
 
     def payee_entry(team_pid):
         t = idx["team"].get(team_pid) or {}
@@ -317,6 +327,10 @@ def build_run(snap, reg, policy, commissions, run_label, as_of, ls_sales=None, n
         ppid = page_id((as_list(c.get("project")) or [None])[0])
         project = idx["projects"].get(ppid) or {}
         pp = pp_label(project)
+        if not in_scope(project, policy):
+            out_of_scope["cost_rows"] += 1
+            out_of_scope["projects"].add(pp or "(no project)")
+            continue
         amount = money(c.get("cost"))
         category = c.get("category")
         assigned = [page_id(a) for a in as_list(c.get("assigned_to"))]
@@ -363,6 +377,8 @@ def build_run(snap, reg, policy, commissions, run_label, as_of, ls_sales=None, n
             amount = money(wo.get("budget_expense"))
             ppid = page_id((as_list(wo.get("project")) or [None])[0])
             project = idx["projects"].get(ppid) or {}
+            if not in_scope(project, policy):
+                continue
             installers = [page_id(x) for x in as_list(project.get("contractor"))]
             if not amount or not installers:
                 continue
@@ -386,6 +402,10 @@ def build_run(snap, reg, policy, commissions, run_label, as_of, ls_sales=None, n
         if not project:
             continue
         pp = pp_label(project)
+        if not in_scope(project, policy):
+            out_of_scope["commission_rows"] += 1
+            out_of_scope["projects"].add(pp or "(no project)")
+            continue
         claimants = eligible_claimants(project, commissions)
         if not claimants:
             continue
@@ -465,7 +485,12 @@ def build_run(snap, reg, policy, commissions, run_label, as_of, ls_sales=None, n
             "held_commission": len(held_commission),
             "blockers": len(blockers),
             "ar_flags": len(ar_flags),
+            "out_of_scope": {"cost_rows": out_of_scope["cost_rows"],
+                             "commission_rows": out_of_scope["commission_rows"],
+                             "projects": len(out_of_scope["projects"])},
         },
+        "scope": policy.get("scope", {}).get("min_project_end_date"),
+        "out_of_scope_projects": sorted(out_of_scope["projects"]),
         "payees": payee_list,
         "held": {"labor": sorted(held_labor, key=lambda h: -(h["days_held"] or 0)),
                  "commission": held_commission},
@@ -489,6 +514,11 @@ def render_md(run):
            f"As of {run['as_of']} · {s['payees']} payees · **{fmt(s['total'])}** · "
            f"{s['flagged_lines']} flagged lines · {s['held_labor']} labor held · "
            f"{s['held_commission']} commission held · {s['blockers']} blockers", "",
+           (f"Scope: projects ending on or after {run['scope']}. Left out: "
+            f"{s['out_of_scope']['cost_rows']} unpaid cost rows and "
+            f"{s['out_of_scope']['commission_rows']} commissions on "
+            f"{s['out_of_scope']['projects']} older or undated projects (settle by hand)."
+            if run.get("scope") else ""), "",
            "Review the flagged lines, tick **Approved** on each payee's batch, send the money, "
            "then tick **Paid** and type the reference. Nothing is marked paid until you do.", ""]
     for p in run["payees"]:

@@ -95,6 +95,10 @@ the run flags it rather than computing its own.
 | `wo_deduction` | QA Work Order, `Charge to = Installer`, status Done | Negative line on the project's installer (Q5). Default `Titan` = no line. |
 | `commission` | Project Financials | Costs Complete AND no open WO, or `Commission Release Override` (Decision 7). One line per claimant per project; Pourya with both roles = one line. Two eligible claimants with no `split_rule` → held, "split undecided". |
 
+**Scope:** only projects whose `Project End Date` is on or after
+`payout-policy.json → scope.min_project_end_date` (2026-09-01). Everything else is
+left out and counted in `summary.out_of_scope` / `out_of_scope_projects`.
+
 Non-Flooring Materials rows are Titan's own stock and never produce a payee line.
 
 ### Held, blockers, flags

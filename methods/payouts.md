@@ -30,6 +30,7 @@ Both commands start in `plan_only`; flipping either is a dated vault decision.
 | 13 | AP Disposal invoices are extracted from email; card-paid bins are recorded at booking. | Albert |
 | 14 | No Excel parsing. The Airtable quote model becomes the source of quoted labor, the pack list and the discount (Phase 3). | Albert |
 | 15 | Pay method per contractor. Paid is marked by Albert, never from a bank email. | Albert |
+| 16 | Scope: only projects with a Project End Date on or after 2026-09-01. Older or undated unpaid rows are left out and counted on the run, for Albert to settle by hand (`payout-policy.json → scope`). | Albert 2026-10-06 |
 
 ## What people do
 

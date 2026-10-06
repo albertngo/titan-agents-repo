@@ -78,6 +78,8 @@ def plan(snapshot, reg, policy, ls_sales=None, ls_orders=None):
             costs_by_project.setdefault(pr.page_id(p), []).append(c)
 
     for pid, project in idx["projects"].items():
+        if not pr.in_scope(project, policy):
+            continue
         pp = pr.pp_label(project)
         num = pp.replace("PP-", "") if pp else None
         ls = sales.get(num) if num else None
