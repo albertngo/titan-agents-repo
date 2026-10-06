@@ -491,5 +491,18 @@
     },
     "brief": true,
     "note": "scheduled run; local branch ledger last showed 2026-09-02, but all 5 ingesters cross-checked unmerged session branches and vault 01_daily notes and confirmed real runs happened through 2026-09-07 (branch-isolation artifact, not a real gap) -- no catch-up widening needed; bookkeeper still has no QBO/Intuit MCP connector (10th consecutive failed run since 2026-07-26)"
+  },
+  {
+    "date": "2026-10-06",
+    "run_at": "2026-10-06T08:20:00-04:00",
+    "sources": {
+      "ghl": "error",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled cloud run; ghl MCP tools unavailable, bookkeeper has no QBO connector; outlook/notion/meta-ads were catch-up windows (no recent prior files on this branch); local ledger last entry 2026-09-08 but vault 01_daily notes exist through 10-05 (branch-isolation artifact, unverified)"
   }
 ]
