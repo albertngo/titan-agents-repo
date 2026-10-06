@@ -47,7 +47,7 @@
       "submit_blockers": {
         "name": "Submit Blockers",
         "type": "formula",
-        "status": "paste_by_hand"
+        "status": "live"
       },
       "quote_discount": {
         "name": "Quote Discount",
@@ -218,7 +218,7 @@
       "open_work_orders": {
         "name": "Open Work Orders",
         "type": "formula",
-        "status": "paste_by_hand"
+        "status": "live"
       },
       "commission_release_override": {
         "name": "Commission Release Override",
@@ -233,7 +233,7 @@
       "commission_releasable": {
         "name": "Commission Releasable",
         "type": "formula",
-        "status": "paste_by_hand"
+        "status": "live"
       },
       "below_floor": {
         "name": "Below Floor",
@@ -241,7 +241,7 @@
         "status": "live"
       }
     },
-    "_paste_by_hand_note": "Notion's API rejects formulas that read through a relation (tested 2026-10-06), so Open Work Orders, Commission Releasable and Submit Blockers are pasted in the Notion UI from methods/payouts.md. payout_run.py computes the work-order hold itself and does not need them."
+    "_paste_by_hand_note": "Open Work Orders, Commission Releasable and Submit Blockers were pasted by Albert in the Notion UI on 2026-10-06 (the API rejects formulas that read through a relation). payout_run.py still computes the work-order hold itself."
   },
   "flooring_line_items": {
     "data_source": "collection://a84d8ff8-32c5-4174-b00c-ace45222f7cc",
