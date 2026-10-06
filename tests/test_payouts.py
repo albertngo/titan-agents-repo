@@ -227,6 +227,11 @@ class TestPayoutRun(unittest.TestCase):
         self.assertIsNone(payee(r, "Pourya"))
         self.assertTrue(any("Costs Complete" in b["issue"] for b in r["blockers"]))
 
+    def test_paid_out_without_a_date_is_still_paid(self):
+        snap = snapshot()
+        snap["financials"][0]["Commission Paid Out"] = "__YES__"   # March bulk-import shape
+        self.assertIsNone(payee(run(snap), "Pourya"))
+
     def test_paid_rows_and_paid_commission_are_skipped(self):
         snap = snapshot()
         snap["costs"][0]["Paid Out Date (2/3)"] = "2026-09-09"
@@ -251,6 +256,29 @@ class TestPayoutRun(unittest.TestCase):
         self.assertIn("cost missing", issues)
         self.assertIn("no real payee in Assigned To", issues)
         self.assertNotIn("NFM", json.dumps(r["blockers"]))   # NFM is not a payable
+
+    def test_other_rows_without_a_payee_are_info_not_blockers(self):
+        snap = snapshot()
+        snap["costs"].append({"url": P(203), "Category": "Other", "Cost": -4177.16, "Project": [P(100)]})
+        snap["costs"].append({"url": P(204), "Category": "Delivery", "Cost": 150, "Project": [P(100)]})
+        r = run(snap)
+        self.assertEqual([u["amount"] for u in r["unassigned_other"]], [-4177.16])
+        self.assertEqual([b["category"] for b in r["blockers"]], ["Delivery"])
+
+    def test_work_order_payment_rows_skip_the_band(self):
+        projects, costs = [], []
+        for i in range(30):
+            projects.append({"url": P(1000 + i), "ID": 300 + i, "Value Approx": 10000, "Project Type": "Both"})
+            costs.append({"url": P(2000 + i), "Category": "Labor", "Cost": 3000, "Assigned To": [P(1)],
+                          "Project": [P(1000 + i)], "Paid Out Date (2/3)": "2026-08-01"})
+        snap = snapshot()
+        snap["projects"] += projects
+        snap["costs"] += costs
+        snap["costs"].append({"url": P(205), "Name": "Work Order Payment: fix", "Category": "Labor",
+                              "Cost": 100, "Assigned To": [P(1)], "Project": [P(100)]})
+        lines = payee(run(snap), "Roy")["lines"]
+        wo = next(l for l in lines if l["title"].startswith("Work Order Payment"))
+        self.assertEqual(wo["flags"], [])
 
     def test_labor_check_layers(self):
         snap = snapshot()

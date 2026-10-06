@@ -24,3 +24,10 @@ ingest/*/style-images/
 # /image-fill downloads of supplier-website product images: regenerable from the
 # site, and photos would bloat the repo. supplier-pages-*.json is the committed record.
 ingest/*/supplier-images/
+
+# Payout flow (2026-10-06): the Notion finance snapshot and payout runs carry Project
+# Financials, commission figures and customer addresses — admin-grade, private by
+# Albert's 2026-08-02 rule. Reproducible from Notion; never committed.
+ingest/*/notion-finance.json
+plans/*/payout-run-*
+plans/*/costs-plan.json

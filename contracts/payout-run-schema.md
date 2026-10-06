@@ -9,6 +9,9 @@ plans/YYYY-MM-DD/payout-run-<YYYY-MM>.json   output — this contract
 plans/YYYY-MM-DD/payout-run-<YYYY-MM>.md     output — the Notion page text
 ```
 
+All three are **gitignored**: they carry Project Financials, commission figures and
+customer addresses (admin-grade). The Notion batch rows are the durable record.
+
 Built by `scripts/payout_run.py` from the snapshot (taken by `/payout-run` through the
 Notion MCP), today's `ls-sales.json` and, optionally, outgoing Interac notices. Rules
 and thresholds: `platform-settings/payout-policy.json`, `commissions.json`; ids and
@@ -108,6 +111,8 @@ Non-Flooring Materials rows are Titan's own stock and never produce a payee line
   band (overall band when the project type has fewer than `min_samples_per_group`);
   auto-extracted disposal; margin below the 20% floor; commission amount unreadable;
   back-charge confirmation; override used.
+- **`unassigned_other`** — `Other` rows and negative adjustments with no real payee:
+  internal costs, listed for information, never paid and never blocking.
 - **`ar_flags`** — balance owing on the post-discount total, for office admin. Holds
   nothing.
 - **`lightspeed_flags`** — for projects on the run: no PP-tagged sale, zero-cost line,

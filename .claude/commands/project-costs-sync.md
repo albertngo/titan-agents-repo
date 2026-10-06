@@ -81,6 +81,6 @@ Stop the batch on a Notion error (house rule for writers), log, report.
 
 Append `{"date", "project_costs_sync": "ok" | "error", "counts"}` to
 `ingest/<date>/run-ledger.json` — `/payout-run` checks it on the 1st. Commit
-`ingest/<date>/ls-*.json`, the snapshot and the plan as
-`project-costs-sync: <date>`, push. In chat, only: suggestions waiting, `@pack`
+`ingest/<date>/ls-*.json` as `project-costs-sync: <date>` and push. The snapshot and
+`costs-plan.json` are gitignored (private financials) — never commit them. In chat, only: suggestions waiting, `@pack`
 sales without a PP number, notes.

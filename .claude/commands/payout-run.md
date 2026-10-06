@@ -43,8 +43,9 @@ With `notion-query-data-sources` (SQL mode; one query at a time — parallel que
 1. `project_costs`: every row where `Paid Out Date (2/3)` is empty AND
    `Paid Reference (3/3)` is empty; plus Category = Labor rows paid in the last 12
    months (the band).
-2. `project_financials`: every row where `Commission Paid Out` is not checked OR
-   `Commission Paid Date` is empty, from the last 12 months.
+2. `project_financials`: every row where `Commission Paid Out` is not checked, from
+   the last 12 months. (Not "or Paid Date empty": 319 March-2026 bulk-import rows are
+   paid with no date.)
 3. `titan_projects`, `qa_work_orders`, `master_payments_log`, `titan_team`: the rows
    referenced by (1) and (2) — projects by url, work orders and payments by project.
 
@@ -53,8 +54,8 @@ Select every column named in `notion-finance.json` for that table (live and
 under the table keys in `contracts/payout-run-schema.md` with `"contract":
 "notion-finance-1"` and `taken_at`. Copy MCP output into the file; never retype rows.
 
-**Personal data:** the snapshot carries names and addresses. It lives under `ingest/`
-like every other ingest file, but nothing from the Payments Log `Message` column is
+**Personal data:** the snapshot carries names, addresses and commission figures. It is
+gitignored (`.gitignore`, Payout flow) and never committed. Nothing from the Payments Log `Message` column is
 selected.
 
 ## 2. Bank notices — optional, read only
@@ -89,6 +90,7 @@ touched.
 ## 5. Report
 
 PushNotification: `Payout run <run>: <payees> payees, $<total>, <flagged> to review,
-<held> held, <blockers> blockers`. Commit `plans/<date>/payout-run-*` and the
-snapshot as `payout-run: <run> <date>`, push. In chat: the per-payee totals, then only
+<held> held, <blockers> blockers`. The snapshot and the run files are **gitignored**
+(private financials and addresses) — commit nothing from this run; the Notion batch
+rows and summary page are the record. In chat: the per-payee totals, then only
 the flagged lines, held items and blockers — PARA where Albert must decide.

@@ -225,7 +225,7 @@ def band_for(project_type, bands, policy):
     return bands.get("_overall"), "_overall"
 
 
-def labor_checks(cost, project, bands, policy):
+def labor_checks(cost, project, bands, policy, band=True):
     """Layered labor check (amendment §5). Returns a list of flag strings."""
     flags = []
     amount = money(cost.get("cost"))
@@ -241,7 +241,7 @@ def labor_checks(cost, project, bands, policy):
             and not (cost.get("change_order_reason") or "").strip() and source != "Sub invoice":
         flags.append(f"labor {amount:.2f} ≠ quoted {quoted:.2f} with no change-order reason")
     value = money(project.get("value")) if project else None
-    if amount and value:
+    if band and amount and value:
         b, group = band_for(project.get("project_type"), bands, policy)
         if b and b["low"] is not None:
             share = amount / value
@@ -302,6 +302,7 @@ def build_run(snap, reg, policy, commissions, run_label, as_of, ls_sales=None, n
     bands = labor_band(n["costs"], idx, policy, as_of)
 
     payees, held_labor, held_commission, blockers, ar_flags = {}, [], [], [], []
+    unassigned_other = []
 
     def payee_entry(team_pid):
         t = idx["team"].get(team_pid) or {}
@@ -331,8 +332,13 @@ def build_run(snap, reg, policy, commissions, run_label, as_of, ls_sales=None, n
         if category == cats["nfm"]:
             continue                     # NFM is Titan's own stock, not a payee line
         if not team or (team.get("title") or "").lower() in placeholders:
-            blockers.append({"pp": pp, "cost_url": c.get("url"), "category": category,
-                             "issue": "no real payee in Assigned To"})
+            if category == cats["other"] or amount < 0:
+                # Internal costs and old adjustments (negative rows) are not payouts.
+                unassigned_other.append({"pp": pp, "cost_url": c.get("url"),
+                                         "category": category, "amount": amount})
+            else:
+                blockers.append({"pp": pp, "cost_url": c.get("url"), "category": category,
+                                 "issue": "no real payee in Assigned To"})
             continue
         if category == cats["labor"]:
             opens = open_work_orders(ppid, wo_by_project, closed)
@@ -342,7 +348,8 @@ def build_run(snap, reg, policy, commissions, run_label, as_of, ls_sales=None, n
                                    "open_work_orders": [w.get("title") for w in opens],
                                    "days_held": (as_of - since).days if since else None})
                 continue
-            line["flags"] += labor_checks(c, project, bands, policy)
+            is_wo_payment = (c.get("title") or "").startswith(reg["project_costs"]["wo_payment_title_prefix"])
+            line["flags"] += labor_checks(c, project, bands, policy, band=not is_wo_payment)
         if c.get("cost_source") == "AP invoice (auto)":
             line["flags"].append("disposal cost auto-extracted from an AP invoice — confirm")
         payee_entry(assigned[0])["lines"].append(line)
@@ -370,7 +377,9 @@ def build_run(snap, reg, policy, commissions, run_label, as_of, ls_sales=None, n
 
     # 3. commission
     for f in n["financials"]:
-        if truthy(f.get("commission_paid_out")) and f.get("commission_paid_date"):
+        if truthy(f.get("commission_paid_out")):
+            # Paid Out alone is the signal: 319 rows from the March 2026 bulk import
+            # carry Paid Out with no Paid Date and were paid (verified 2026-10-05).
             continue
         ppid = page_id((as_list(f.get("project")) or [None])[0])
         project = idx["projects"].get(ppid)
@@ -461,6 +470,7 @@ def build_run(snap, reg, policy, commissions, run_label, as_of, ls_sales=None, n
         "held": {"labor": sorted(held_labor, key=lambda h: -(h["days_held"] or 0)),
                  "commission": held_commission},
         "blockers": blockers,
+        "unassigned_other": unassigned_other,
         "ar_flags": ar_flags,
         "lightspeed_flags": ls_flags,
         "labor_bands": bands,
@@ -550,7 +560,7 @@ def main(argv=None):
     s = run["summary"]
     print(f"run {args.run}: {s['payees']} payees, {fmt(s['total'])}, {s['flagged_lines']} flagged, "
           f"{s['held_labor']}+{s['held_commission']} held, {s['blockers']} blockers "
-          f"-> {(out_dir / f'payout-run-{args.run}.json').relative_to(REPO_ROOT)}", file=sys.stderr)
+          f"-> {out_dir / f'payout-run-{args.run}.json'}", file=sys.stderr)
     return 0
 
 
