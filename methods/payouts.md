@@ -81,8 +81,6 @@ the new fields together (Payments Log: **💸 Payments to confirm**), so they ca
   `Change Order Reason`, `Invoice` (files), `Invoice #`, `LS Sale IDs`, `LS PO IDs`,
   `Suggested Cost`, `Suggestion source`, `Suggestion confidence`, `Suggestion reason`,
   `Accept suggestion`, `Payout Batch` (reverse of Payout Batches → Lines).
-  `NFM Revenue (pre-tax)` and `NFM POS Total (incl. tax)` also exist but are unused
-  (Decision 10) — safe to delete.
 - **Titan Projects:** `LS Sale Found`, `Quote Discount`.
 - **Flooring Line Items:** `Quote Rate`, `PM Cost Rate`, `PO Cost Rate`,
   `LS Sale Cost Rate`, `Invoice Cost Rate`, `Cost Rate Flag` (formula), `Cost Locked`.
@@ -90,7 +88,7 @@ the new fields together (Payments Log: **💸 Payments to confirm**), so they ca
   `Match Confidence`, `Match Reasoning`, `Accept`.
 - **Project Financials:** `Commission Release Override`, `Override Reason`,
   `Below Floor` (formula).
-- **💸 Payout Batches** (new, on Teamspace Home): Name, Run, Payee, Pay Method (rollup),
+- **💸 Payout Batches** (new, private to Albert): Name, Run, Payee, Pay Method (rollup),
   Lines, Commission lines, Claimant role, Total, Flags, Bank cross-check, Approved, Paid,
   Paid Date, Reference.
 

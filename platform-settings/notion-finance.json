@@ -127,7 +127,7 @@
       },
       "invoice_number": {
         "name": "Invoice #",
-        "type": "select",
+        "type": "text",
         "status": "live"
       },
       "ls_sale_ids": {
@@ -187,8 +187,7 @@
       "Lightspeed",
       "AP Invoice (auto)"
     ],
-    "_sync_owned_note": "The sync may overwrite `Cost` only when `Cost source` is one of these (or empty). A hand-entered source is never overwritten (plan Workstream C step 4).",
-    "_unused_fields": "NFM Revenue (pre-tax) and NFM POS Total (incl. tax) exist in Notion (added 2026-10-06) but are unused since NFM stays as today (Decision 10). Safe for Albert to delete."
+    "_sync_owned_note": "The sync may overwrite `Cost` only when `Cost source` is one of these (or empty). A hand-entered source is never overwritten (plan Workstream C step 4)."
   },
   "project_financials": {
     "data_source": "collection://8afe9453-6580-414f-8215-1934d12a3d22",
@@ -398,7 +397,7 @@
   "payout_batches": {
     "data_source": "collection://467e6047-29bf-44d7-b0b8-d19e2e0e23b0",
     "status": "live",
-    "_comment": "Created 2026-10-06 under Teamspace Home at Albert's request. One row per payee per run. Reverse relation on Project Costs is `Payout Batch`.",
+    "_comment": "Created 2026-10-06; moved by Albert to his private space the same day (admin-grade: payee totals and commission). One row per payee per run. Reverse relation on Project Costs is `Payout Batch`.",
     "properties": {
       "title": "Name",
       "run": "Run",
