@@ -21,7 +21,7 @@ Suggest-and-review (amendment §4): every action is either
                 hand-entered `Cost source` (plan Workstream C step 4).
 
 Actions:
-  nfm_cost            NFM cost row <- Lightspeed NFM cost-of-goods + pre-tax revenue
+  nfm_cost            NFM cost row <- Lightspeed NFM POS total incl. tax (today's meaning)
   ls_sale_found       Titan Projects `LS Sale Found` <- a PP-tagged sale exists
   flooring_cost_rate  flooring line cost rates: PM vs PO (front desk) vs LS sale-line,
                       >$0.10/sqft apart -> suggest; front desk wins interim (§2.3)
@@ -91,21 +91,21 @@ def plan(snapshot, reg, policy, ls_sales=None, ls_orders=None):
                               {reg["titan_projects"]["to_add"]["ls_sale_found"]["name"]: True},
                               "High", f"{len(ls['sale_ids'])} Lightspeed sale(s) carry {pp}", pp))
 
-        # NFM cost + revenue
+        # NFM cost: the full Lightspeed POS total incl. tax, exactly what is typed today
+        # (Decision 10, Albert 2026-10-06). Commission's fixed 25% estimate is unchanged.
         if ls:
             nfm = ls["totals_by_class"]["nfm"]
+            pos_total = round(nfm["revenue_pretax"] + nfm["tax"], 2)
             open_sale = "provisional_open_sale" in ls["flags"]
             conf = "Medium" if open_sale else "High"
-            reason = (f"Lightspeed NFM cost-of-goods {nfm['cost']:.2f}, pre-tax revenue "
-                      f"{nfm['revenue_pretax']:.2f} over {len(ls['sale_ids'])} sale(s)"
-                      + (" — sale still open, may change" if open_sale else ""))
+            reason = (f"Lightspeed NFM POS total {pos_total:.2f} incl. tax over "
+                      f"{len(ls['sale_ids'])} sale(s)" + (" — sale still open, may change" if open_sale else ""))
             for row in [r for r in rows if r.get("category") == cats["nfm"]]:
                 current = pr.money(row.get("cost"))
-                fields = {pnames["cost"]: nfm["cost"], names["nfm_revenue"]: nfm["revenue_pretax"],
-                          names["nfm_pos_total"]: round(nfm["revenue_pretax"] + nfm["tax"], 2),
-                          names["ls_sale_ids"]: ", ".join(ls["sale_ids"]), names["cost_source"]: "Lightspeed"}
-                if current is not None and abs(current - nfm["cost"]) < 0.005:
+                if current is not None and abs(current - pos_total) < 0.005:
                     continue
+                fields = {pnames["cost"]: pos_total, names["ls_sale_ids"]: ", ".join(ls["sale_ids"]),
+                          names["cost_source"]: "Lightspeed"}
                 if sync_owns(row, reg) and conf == "High" and not ls["flags"]:
                     actions.append(mk("nfm_cost", row["url"], "write", fields, conf, reason, pp))
                 else:
@@ -114,7 +114,7 @@ def plan(snapshot, reg, policy, ls_sales=None, ls_orders=None):
                     if ls["flags"]:
                         why += f"; Lightspeed flags: {', '.join(ls['flags'])}"
                     actions.append(mk("nfm_cost", row["url"], "suggest", {
-                        names["suggested_cost"]: nfm["cost"], names["suggestion_source"]: "Lightspeed",
+                        names["suggested_cost"]: pos_total, names["suggestion_source"]: "Lightspeed",
                         names["suggestion_confidence"]: conf, names["suggestion_reason"]: why[:1900]},
                         conf, why, pp))
 

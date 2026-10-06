@@ -25,9 +25,9 @@ column and any `payout_batches` rows), `ingest/<date>/ls-sales.json` and
     "target_url": "https://www.notion.so/…",
     "pp": "PP-463",
     "mode": "write",
-    "fields": {"Cost": 228.3, "NFM Revenue (pre-tax)": 515.64, "LS Sale IDs": "…", "Cost source": "Lightspeed"},
+    "fields": {"Cost": 582.67, "LS Sale IDs": "…", "Cost source": "Lightspeed"},
     "confidence": "High",
-    "reason": "Lightspeed NFM cost-of-goods 228.30, pre-tax revenue 515.64 over 1 sale(s)"
+    "reason": "Lightspeed NFM POS total 582.67 incl. tax over 1 sale(s)"
   }],
   "notes": [{"pp": "PP-…", "note": "2 Financials rows point at this project — fix by hand"}],
   "ls_untagged_pack_sales": 22
@@ -54,7 +54,7 @@ re-runs, so the actions log can skip what was already applied.
 | Kind | Target | Fields |
 |---|---|---|
 | `ls_sale_found` | Titan Projects | `LS Sale Found` |
-| `nfm_cost` | Project Costs (NFM row) | write: `Cost`, `NFM Revenue (pre-tax)`, `NFM POS Total (incl. tax)`, `LS Sale IDs`, `Cost source = Lightspeed`; suggest: suggestion fields |
+| `nfm_cost` | Project Costs (NFM row) | write: `Cost` = Lightspeed NFM POS total incl. tax (today's meaning, Decision 10), `LS Sale IDs`, `Cost source = Lightspeed`; suggest: suggestion fields |
 | `flooring_cost_rate` | Titan Projects (per flooring line) | `sku, product, sqft, ls_sale_cost_rate, po_cost_rate, po_reference` — always `suggest` until Flooring Line Items carry the rate columns |
 | `financials_relations` | Project Financials | `Costs` ← the project's `Project Costs` |
 | `costs_complete` | Project Financials | `Costs Complete` |

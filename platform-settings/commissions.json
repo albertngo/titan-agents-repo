@@ -3,7 +3,7 @@
   "config_version": "1",
   "pool": {
     "rate": 0.10,
-    "_rate_note": "Commission Amount = Commission Basis x rate. Basis = Total Project Profit (For Store Calcs) + NFM Actual Margin (pre-tax), on the post-discount project total (Decision 10, amendment §6)."
+    "_rate_note": "Commission Amount = Commission Basis x rate, both existing Notion formulas, unchanged. Basis = Total Project Profit + Total Non-Flooring Materials / 1.13 x 0.25 (the fixed 25% NFM margin estimate kept by Albert 2026-10-06)."
   },
   "claimants": [
     {

@@ -448,8 +448,7 @@ class TestCostSync(unittest.TestCase):
         out = pcs.plan(sync_snapshot(), REG, POLICY, ls_sales=LS)
         nfm = next(a for a in out["actions"] if a["kind"] == "nfm_cost")
         self.assertEqual(nfm["mode"], "write")
-        self.assertEqual(nfm["fields"]["Cost"], 228.3)
-        self.assertEqual(nfm["fields"]["NFM POS Total (incl. tax)"], 582.67)
+        self.assertEqual(nfm["fields"]["Cost"], 582.67)      # POS total incl. tax, as typed today
 
     def test_hand_entered_cost_is_never_overwritten(self):
         out = pcs.plan(sync_snapshot(cost=250, source="Manual"), REG, POLICY, ls_sales=LS)
@@ -458,7 +457,7 @@ class TestCostSync(unittest.TestCase):
         self.assertNotIn("Cost", nfm["fields"])
 
     def test_agreeing_value_produces_no_action(self):
-        out = pcs.plan(sync_snapshot(cost=228.3, source="Lightspeed"), REG, POLICY, ls_sales=LS)
+        out = pcs.plan(sync_snapshot(cost=582.67, source="Lightspeed"), REG, POLICY, ls_sales=LS)
         self.assertNotIn("nfm_cost", self.kinds(out))
 
     def test_po_far_from_sale_cost_is_suggested_per_sqft(self):
@@ -474,7 +473,7 @@ class TestCostSync(unittest.TestCase):
         self.assertEqual(fl["confidence"], "High")
 
     def test_relations_copied_and_costs_complete_only_when_nothing_missing(self):
-        out = pcs.plan(sync_snapshot(cost=228.3, source="Lightspeed"), REG, POLICY, ls_sales=LS)
+        out = pcs.plan(sync_snapshot(cost=582.67, source="Lightspeed"), REG, POLICY, ls_sales=LS)
         self.assertIn("financials_relations", self.kinds(out))
         self.assertIn("costs_complete", self.kinds(out))
         out = pcs.plan(sync_snapshot(cost=None), REG, POLICY, ls_sales=None)

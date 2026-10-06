@@ -24,8 +24,8 @@ Both commands start in `plan_only`; flipping either is a dated vault decision.
 | 7 | Commission releases on Costs Complete + no open work orders, or Albert's override. A customer still owing is office admin's to collect and does **not** hold commission. | amendment §7 |
 | 8 | Disposal invoices vary per job; no rate card. | Albert |
 | 9 | Every Lightspeed sale carrying the PP number counts; sales are keyed by id. | Albert |
-| 10 | Flooring revenue = the quoted rate. NFM cost from Lightspeed. Margin and commission on the post-discount total. **Open:** NFM revenue from quote rate or from the LS pre-tax sale price. | amendment §2.2, §6 |
-| 11 | New formulas apply to unpaid commission and going forward; paid commission is frozen. | Albert |
+| 10 | **NFM stays exactly as it works today** (Albert 2026-10-06, to minimise calculation errors): the NFM cost row holds the full Lightspeed POS total incl. tax, and commission keeps the fixed 25% margin estimate (`÷ 1.13 × 0.25`). The sync only fills that number from Lightspeed instead of it being typed. Flooring revenue = the quoted rate; margin and commission on the post-discount total. | Albert 2026-10-06, amendment §2.2, §6 |
+| 11 | No commission formula changes, so no restatement and no freeze is needed. | Albert 2026-10-06 |
 | 12 | Payments and costs are suggested, Albert confirms. Only real disagreements reach him. | Albert, amendment §4 |
 | 13 | AP Disposal invoices are extracted from email; card-paid bins are recorded at booking. | Albert |
 | 14 | No Excel parsing. The Airtable quote model becomes the source of quoted labor, the pack list and the discount (Phase 3). | Albert |
@@ -75,7 +75,6 @@ Add exactly these names (they are in `notion-finance.json` as `to_add`; flip eac
   Sub invoice, PM manual (supplier PDF), Front desk (stock order), Lightspeed,
   AP invoice (auto), Manual) · `Change order reason` (text) · `Invoice` (files) ·
   `Invoice #` (text) · `LS Sale IDs` (text) · `LS PO IDs` (text) ·
-  `NFM Revenue (pre-tax)` (number) · `NFM POS Total (incl. tax)` (number) ·
   `Suggested Cost` (number) · `Suggestion source` (select) · `Suggestion confidence`
   (select: High, Medium, Low) · `Suggestion reason` (text) · `Accept suggestion`
   (checkbox) · `Payout Batch` (relation → Payout Batches). Views: **Costs to confirm**
@@ -91,8 +90,7 @@ Add exactly these names (they are in `notion-finance.json` as `to_add`; flip eac
   `Match Confidence` (select: High, Medium, Low) · `Match Reason` (text) · `Accept`
   (checkbox). View: **Payments to confirm** (`Projects` empty and `Suggested Project`
   not empty).
-- **Project Financials:** the formulas below plus `Commission Paid Amount` (number),
-  `Commission Release Override` (checkbox), `Override Reason` (text).
+- **Project Financials:** the formulas below plus `Commission Release Override` (checkbox), `Override Reason` (text).
 - **New database `Payout Batches`** (private, under Albert's Notion Directory):
   `Name` (title) · `Run` (select, YYYY-MM) · `Payee` (relation → Titan Team) ·
   `Pay method` (rollup) · `Lines` (relation → Project Costs) · `Commission lines`
@@ -103,31 +101,13 @@ Add exactly these names (they are in `notion-finance.json` as `to_add`; flip eac
 
 ## Formulas (paste in this order)
 
-The API hides formula code, so the live `Commission Basis` text must be checked by eye
-before replacing it. Its description and the March build notes say
-`Total Project Profit + Total Non-Flooring Materials / 1.13 × 0.25`.
-
-**0. Freeze first (Q6).** Before touching any commission formula, `Commission Paid
-Amount` is filled on every row already paid with today's `Commission Amount` (one
-logged bulk write, Albert's go). After this, a formula change cannot move what was
-paid.
+No existing formula changes. `Total Non-Flooring Materials`, `Commission Basis` and
+`Commission Amount` stay as they are (Decision 10): NFM is the full POS total incl. tax
+and commission adds the fixed 25% estimate (`÷ 1.13 × 0.25`). These are new fields only.
 
 **Project Financials**
 
 ```
-NFM Revenue Sum            rollup: Costs → NFM Revenue (pre-tax) → Sum
-NFM Cost Sum               formula:
-  prop("Costs").filter(current.prop("Category") == "Materials (Non-Flooring)").map(current.prop("Cost")).sum()
-NFM Actual Margin (pre-tax) formula:
-  if(empty(prop("NFM Revenue Sum")) or prop("NFM Revenue Sum") == 0,
-     prop("Total Non-Flooring Materials") / 1.13 * 0.25,
-     prop("NFM Revenue Sum") - prop("NFM Cost Sum"))
-Total Non-Flooring Materials  (replace) formula — the full POS price incl. tax, as before:
-  prop("Costs").filter(current.prop("Category") == "Materials (Non-Flooring)")
-    .map(if(empty(current.prop("NFM POS Total (incl. tax)")), current.prop("Cost"),
-            current.prop("NFM POS Total (incl. tax)"))).sum()
-Commission Basis           (replace) formula:
-  prop("Total Project Profit (For Store Calcs)") + prop("NFM Actual Margin (pre-tax)")
 Open Work Orders           formula:
   prop("Project").map(current.prop("Deficiency Work Orders")).flat()
     .filter(current.prop("Status") != "Done" and current.prop("Status") != "Dropped").length()
@@ -136,14 +116,6 @@ Commission Releasable      formula:
 Below Floor                formula:
   prop("Overall Margin (With NFM Profits)") < 0.20
 ```
-
-Why the `Total Non-Flooring Materials` change matters: store profit subtracts it as a
-pass-through of the full POS price. Once the sync puts the real Lightspeed cost into
-`Cost`, summing `Cost` would turn the pass-through into a cost and the NFM margin
-would be counted twice. Old rows (no `NFM POS Total`) fall back to `Cost`, which on
-them still holds the POS price; `NFM Actual Margin` falls back to the 25% estimate.
-`NFM Cost Sum` is a formula, not a rollup, because a rollup cannot filter by category
-(amendment §1.2 asked for two rollups; this is the nearest Notion allows).
 
 **Flooring Line Items**
 
@@ -193,8 +165,8 @@ Submit Blockers  formula (text; empty = ready):
 
 | Phase | Scope | Exit |
 |---|---|---|
-| 0 | Staff rules above; Notion fields; commission freeze | October projects follow the PP and cost-staging rules |
+| 0 | Staff rules above; Notion fields | October projects follow the PP and cost-staging rules |
 | 1 | Pulls + sync + run in `plan_only`; dry-run October | Run matches Albert's own list (PP-461 Roy 2,010; PP-450 Luxevista 1,642 + APS 279.34; PP-417 Roy 7,375) |
-| 2 | AP invoice extraction; formula switch; `write` (dated) | First month-end with no hand-typed numbers |
+| 2 | AP invoice extraction; `write` (dated) | First month-end with no hand-typed numbers |
 | 2b | Supplier-invoice three-way cost check | An invoice locks a flooring cost end to end |
 | 3 | Airtable quote → Notion push; LS pack-sale / PO writes (dated flips) | A Won quote fills quoted labor, quote rate, discount and the pack list |

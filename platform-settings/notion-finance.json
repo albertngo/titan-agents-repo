@@ -77,6 +77,7 @@
       "other": "Other"
     },
     "_revenue_rule": "Only NFM (and flooring line) rows carry revenue. Labor, disposal, delivery and other rows carry cost only — their revenue is inside the customer total (Albert amendment §2.1).",
+    "_nfm_rule": "NFM rows keep today's meaning (Albert 2026-10-06): `Cost` = the full Lightspeed POS total incl. tax for the project's PP-tagged sales; commission adds the fixed 25% estimate. The sync fills that number; no new NFM fields.",
     "wo_payment_title_prefix": "Work Order Payment:",
     "to_add": {
       "quoted_cost": {"name": "Quoted Cost", "type": "number", "status": "to_add"},
@@ -87,9 +88,6 @@
       "invoice_number": {"name": "Invoice #", "type": "text", "status": "to_add"},
       "ls_sale_ids": {"name": "LS Sale IDs", "type": "text", "status": "to_add"},
       "ls_po_ids": {"name": "LS PO IDs", "type": "text", "status": "to_add"},
-      "nfm_revenue": {"name": "NFM Revenue (pre-tax)", "type": "number", "status": "to_add"},
-      "nfm_pos_total": {"name": "NFM POS Total (incl. tax)", "type": "number", "status": "to_add",
-        "_why": "Keeps Financials `Total Non-Flooring Materials` meaning the full POS price incl. tax once `Cost` holds the real Lightspeed cost-of-goods. Without it store profit changes meaning and the NFM margin is counted twice (methods/payouts.md, Formulas)."},
       "rate_overridden": {"name": "Rate overridden", "type": "checkbox", "status": "to_add", "phase": 3},
       "suggested_cost": {"name": "Suggested Cost", "type": "number", "status": "to_add"},
       "suggestion_source": {"name": "Suggestion source", "type": "select", "status": "to_add"},
@@ -128,11 +126,7 @@
       "flooring_from_projects": "Flooring Line Item (From Projects)"
     },
     "to_add": {
-      "nfm_revenue_sum": {"name": "NFM Revenue Sum", "type": "rollup", "status": "to_add"},
-      "nfm_cost_sum": {"name": "NFM Cost Sum", "type": "rollup", "status": "to_add"},
-      "nfm_actual_margin": {"name": "NFM Actual Margin (pre-tax)", "type": "formula", "status": "to_add"},
       "open_work_orders": {"name": "Open Work Orders", "type": "rollup", "status": "to_add"},
-      "commission_paid_amount": {"name": "Commission Paid Amount", "type": "number", "status": "to_add"},
       "commission_release_override": {"name": "Commission Release Override", "type": "checkbox", "status": "to_add"},
       "override_reason": {"name": "Override Reason", "type": "text", "status": "to_add"},
       "commission_releasable": {"name": "Commission Releasable", "type": "formula", "status": "to_add"},
