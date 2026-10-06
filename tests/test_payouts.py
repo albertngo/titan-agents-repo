@@ -623,9 +623,12 @@ def floor_fixture(credits=(), row=None, sale_sku="ENG-VIDR-0178", sale_pid="clic
                                "totals_by_class": LS["projects"]["463"]["totals_by_class"],
                                "flooring_lines": [{"product_id": sale_pid, "sku": sale_sku,
                                                    "product_name": "x", "quantity": 1586.0,
+                                                   "category": "ENGINEERED HARDWOOD",
                                                    "unit_cost": 4.19}]}}}
-    orders = {"projects": {"461": {"purchase_orders": [{"reference": "PO-8135", "status": "SENT", "lines": [
-        {"product_id": "tg6", "sku": "ENG-VIDR-0023", "product_name": "6in T&G", "count": 1705.6,
+    orders = {"projects": {"461": {"purchase_orders": [{"reference": "PO-8135", "status": "SENT", "supplier": "VIDAR",
+                                                        "lines": [
+        {"product_id": "tg6", "sku": "ENG-VIDR-0023",
+         "product_name": "VIDENG - 6 American White Oak (Moon Light) T&G", "count": 1705.6,
          "received": 0, "unit_cost": 4.59}]}]}}, "product_po_cost": {}}
     o, un = sd.build_orders(vidar_docs(credits))
     docs = {"orders": o, "orders_by_po": {"8135": ["103273"]}, "unattributed_credits": un}
@@ -643,13 +646,28 @@ class TestFlooringLine(unittest.TestCase):
         (a,) = floor_action([credit("Cr1", 3, "97.8588", "293.58")])
         self.assertEqual((a["op"], a["mode"], a["stage"]), ("create", "write", "invoice_final"))
         f = a["fields"]
-        self.assertEqual(f["Floor SKU"], "ENG-VIDR-0023")       # what was ordered, not the sale
+        self.assertEqual(f["Floor SKU"], "ENG-VIDR-0023_Moon Light")   # ordered product, staff naming
+        self.assertEqual((f["Material Company"], f["Material Type"]), (["VIDAR"], ["Engineered Hardwood"]))
+        self.assertTrue(a["apply"])                               # flooring lines write (2026-10-06)
         self.assertEqual((f["Cost Rate"], f["Invoice Cost Rate"], f["Cost Locked"]), (4.59, 4.59, True))
         self.assertEqual(f["LS Sale Cost Rate"], 4.19)            # compared, never used
         self.assertNotIn("Sold At Rate", f)                       # never from Lightspeed
         for flag in ("pm_entry_product_mismatch", "sale_cost_gap", "qty_gap",
                      "po_not_received_in_lightspeed", "quote_rate_missing"):
             self.assertIn(flag, a["flags"])
+
+    def test_existing_line_matched_on_the_sku_before_the_underscore(self):
+        acts = floor_action(row={"Floor SKU": "ENG-VIDR-0023_Moon Light", "Quote Rate": 6.29, "Sold At Rate": 6.29,
+                                 "Cost Rate": 4.59, "Invoice Cost Rate": 4.59, "PO Cost Rate": 4.59,
+                                 "LS Sale Cost Rate": 4.19, "Cost Locked": "__YES__"})
+        self.assertEqual(acts, [])
+
+    def test_only_flooring_lines_are_set_to_apply(self):
+        snap, ls, orders, docs = floor_fixture()
+        out = pcs.plan(snap, REG, POLICY, ls_sales=ls, ls_orders=orders, supplier_docs=docs)
+        applied = {a["kind"] for a in out["actions"] if a["apply"]}
+        self.assertEqual(applied, {"flooring_line"})
+        self.assertEqual(out["write_mode"], "plan_only")
 
     def test_sold_at_rate_comes_from_the_pm_quote(self):
         (a,) = floor_action(row={"Floor SKU": "ENG-VIDR-0023", "Quote Rate": 6.29, "Cost Rate": 4.59,
@@ -694,7 +712,7 @@ class TestFlooringLine(unittest.TestCase):
 
     def test_line_named_after_the_wrong_sale_product_is_a_suggested_rename(self):
         (a,) = floor_action(row={"Floor SKU": "ENG-VIDR-0178", "Sold At Rate": 6.29, "Cost Rate": 4.19})
-        self.assertEqual((a["op"], a["mode"], a["fields"]["Floor SKU"]), ("update", "suggest", "ENG-VIDR-0023"))
+        self.assertEqual((a["op"], a["mode"], a["fields"]["Floor SKU"]), ("update", "suggest", "ENG-VIDR-0023_Moon Light"))
 
     def test_no_order_falls_back_to_the_sale_as_a_low_suggestion(self):
         snap, ls, orders, docs = floor_fixture()

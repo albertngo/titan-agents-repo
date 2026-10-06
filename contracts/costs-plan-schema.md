@@ -18,6 +18,7 @@ column and any `payout_batches` rows), `ingest/<date>/ls-sales.json` and
   "contract": "costs-plan-1",
   "built_at": "…",
   "write_mode": "plan_only",
+  "write_mode_kinds": {"flooring_line": "write", "nfm_cost": "plan_only"},
   "counts": {"nfm_cost": {"write": 3, "suggest": 2}, "payment_project": {"write": 0, "suggest": 4}},
   "actions": [{
     "id": "nfm_cost:3f2a9c1b0e",
@@ -46,6 +47,10 @@ column and any `payout_batches` rows), `ingest/<date>/ls-sales.json` and
   `Suggested Project` / `Match …` fields), which feed the "Costs to confirm" and
   "Payments to confirm" views. **A suggestion never changes `Cost`, `Projects` or
   any field a person typed.** When every source agrees there is no action at all.
+
+`apply` (every action) is `true` only when the kind's write mode is `write`
+(`write_mode.project_costs_sync_kinds`, else `write_mode.project_costs_sync`); the
+command writes nothing else. Since 2026-10-06 only `flooring_line` applies.
 
 `id` is a hash of kind + target + fields: the same proposal keeps the same id across
 re-runs, so the actions log can skip what was already applied.
@@ -83,6 +88,11 @@ candidate). Then:
 Notes name invoice and project numbers only — never the street.
 
 ## `flooring_line` (Decisions 17–18, Albert 2026-10-06)
+
+Rates are **pre-tax** $/sqft (Albert 2026-10-06). A new line is named
+`<SKU>_<colour>` like the ones staff make, gets `Material Company` / `Material Type` /
+`Taxed vs. Cash` where the registry maps them, and an existing line is matched on the
+part of `Floor SKU` before the first `_`.
 
 One action per flooring product ordered for the project (PP-tagged LS purchase order →
 the supplier order that prints its PO number), paired with the Lightspeed sale line.

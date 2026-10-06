@@ -4,6 +4,10 @@
   "write_mode": {
     "project_costs_sync": "plan_only",
     "payout_run": "plan_only",
+    "project_costs_sync_kinds": {
+      "flooring_line": "write"
+    },
+    "_kinds_note": "Per action kind, overrides project_costs_sync for that kind only. flooring_line -> write: Albert 2026-10-06 ('Writing flooring line items is ok'), vault 05_decisions/2026-10-06-flooring-line-write-mode.md. Every other kind stays plan_only until its own dated decision.",
     "lightspeed_create_pack_sale": "off",
     "lightspeed_create_purchase_order": "off",
     "_values": [

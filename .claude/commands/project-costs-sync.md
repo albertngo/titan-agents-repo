@@ -15,7 +15,7 @@ Payments Log at 08:00. Not part of `/daily-ingest`.
 [2b] scripts/supplier_docs_pull.py -> ingest/<date>/supplier-docs.json  read only
 [3] Notion snapshot via MCP   -> ingest/<date>/notion-finance.json   read only
 [4] scripts/project_costs_sync.py -> plans/<date>/costs-plan.json    read only
-[5] write_mode = write only: apply `write` actions, write suggestion fields   Notion write
+[5] apply only actions with `apply: true` (per-kind write mode)          Notion write
 [6] run ledger line; commit; push
 ```
 
@@ -26,8 +26,10 @@ Authoritative: `contracts/costs-plan-schema.md`, `contracts/ls-sales-schema.md`,
 
 ## 0. Before you start — stop on the first failure
 
-1. `write_mode.project_costs_sync` in `payout-policy.json`. `plan_only` → steps 0–4
-   and 6 only. Do not raise it; flipping is a dated vault decision.
+1. `write_mode.project_costs_sync` in `payout-policy.json`, overridden per action kind
+   by `write_mode.project_costs_sync_kinds` (since 2026-10-06 `flooring_line: write`;
+   everything else `plan_only`). The plan marks each action `apply: true|false` from
+   these. Do not raise either; each flip is a dated vault decision.
 2. Lightspeed credentials are in `.env` (`LIGHTSPEED_DOMAIN_PREFIX`,
    `LIGHTSPEED_PERSONAL_TOKEN` — see CLAUDE.md "Secrets"). Missing → report the name
    and stop.
@@ -86,10 +88,11 @@ The snapshot must include the in-scope projects' **Flooring Line Items** (`Floor
 `Sqft Sold`, `Cost Rate`, `Sold At Rate`, `Quote Rate`, the four cost-rate columns,
 `Cost Locked`, `Project`).
 
-## 5. Apply — only when `write_mode.project_costs_sync` is `write`
+## 5. Apply — only actions with `apply: true`
 
-For each action, in file order, skipping any `id` already `executed` in today's
-`actions-log.json`:
+For each action with `apply: true`, in file order, skipping any `id` already
+`executed` in today's `actions-log.json` (actions with `apply: false` are reported,
+never written):
 
 - `mode: write` → `notion-update-page` on `target_url` with `fields`. Read the row
   first; if its `Cost source` is now a hand-entered value, **skip and log
@@ -100,8 +103,10 @@ For each action, in file order, skipping any `id` already `executed` in today's
   `fields`; `op: update` is `notion-update-page` on the line. A `suggest` flooring
   action writes nothing to the line: it is listed in the report for the PM (rename to
   the ordered product, or a rate a person typed before the invoice arrived). The
-  rate's tax basis (`notion-finance.json → flooring_line_items._tax_basis_open`) must
-  be settled before the first write.
+  rates are **pre-tax** (`notion-finance.json → flooring_line_items.tax_basis`,
+  Albert 2026-10-06). Before an `op: create`, query Flooring Line Items for the
+  project once more: if a line whose `Floor SKU` starts with the same SKU now exists,
+  log `refused` and skip (someone added it since the snapshot).
 - A `to_add` property that does not exist yet → skip that field, note it once in the
   report.
 

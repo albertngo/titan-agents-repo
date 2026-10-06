@@ -263,7 +263,23 @@
       "project": "Project",
       "project_financials": "Project Financials"
     },
-    "_tax_basis_open": "Property descriptions say rates are 'including tax'; the Data Entry Cheat Sheet says enter pre-tax because the formula adds x1.13. Settle at build by computing the formula against one existing row before the sync writes any rate.",
+    "tax_basis": "pre_tax",
+  "_tax_basis_note": "Albert 2026-10-06: Cost Rate, Sold At Rate and every *Cost Rate column hold PRE-TAX $/sqft, as the Data Entry Cheat Sheet says (the formulas add x1.13) and as existing rows already do (PP-449 SPC-VIDR-0002_Yukon Cost Rate 1.59 = Vidar's pre-tax price). The Notion property descriptions on Cost Rate / Sold At Rate still say 'including tax' and are stale.",
+  "title_format": "{sku}_{colour}",
+  "_title_note": "Staff name a line '<LS SKU>_<colour>' (SPC-VIDR-0002_Yukon, ENG-TOSC-0074_Long Beach). The sync creates lines the same way (colour = the bracketed name in the LS product name) and matches an existing line on the part before the first '_'.",
+  "material_company_from_supplier": {"VIDAR": "VIDAR"},
+  "_material_company_note": "LS supplier name -> Material Company option, exact options only; a supplier not listed leaves the field blank for the PM. Add an entry when another supplier's documents are read.",
+  "material_type_from_category": {
+    "ENGINEERED HARDWOOD": "Engineered Hardwood",
+    "SOLID HARDWOOD": "Solid Hardwood",
+    "SPC": "Vinyl",
+    "WPC": "Vinyl",
+    "GLUE DOWN": "Vinyl",
+    "VINYL": "Vinyl",
+    "LAMINATE": "Laminate",
+    "TILE": "Tile",
+    "CARPET": "Carpet"
+  },
     "to_add": {
       "quote_rate": {
         "name": "Quote Rate",

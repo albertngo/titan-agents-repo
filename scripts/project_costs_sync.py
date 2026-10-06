@@ -126,7 +126,9 @@ def ordered_items(proj_orders, product_po, supplier, sale_lines):
                   "order_flags": list((sorder or {}).get("flags", [])),
                   "confirmation_date": ((sorder or {}).get("confirmation") or {}).get("date"),
                   "credits": [c["doc_no"] for c in (sorder or {}).get("credits", [])],
-                  "invoices": [i["doc_no"] for i in (sorder or {}).get("invoices", [])]}
+                  "invoices": [i["doc_no"] for i in (sorder or {}).get("invoices", [])],
+                  "supplier": po.get("supplier"),
+                  "taxed": any((i.get("tax") or 0) > 0 for i in (sorder or {}).get("invoices", []))}
             if sp:
                 it.update({k: sp.get(k) for k in ("sf_per_box", "confirmed_rate_sqft", "confirmed_sqft",
                                                   "invoiced_rate_sqft", "net_sqft", "net_amount",
@@ -138,6 +140,18 @@ def ordered_items(proj_orders, product_po, supplier, sale_lines):
                 it["stage"], it["rate"] = "purchase_order", line["unit_cost"]
             items.append(it)
     return items
+
+
+def title_sku(title):
+    """'SPC-VIDR-0002_Yukon' -> 'spc-vidr-0002' (staff naming); a bare SKU is itself."""
+    return (title or "").strip().split("_")[0].strip().lower()
+
+
+def line_title(ff, sku, product_name):
+    m = re.search(r"\(([^)]+)\)", product_name or "")
+    if not sku:
+        return product_name
+    return ff.get("title_format", "{sku}").format(sku=sku, colour=m.group(1).strip()) if m else sku
 
 
 def pair_lines(sale_lines, items):
@@ -202,10 +216,10 @@ def flooring_actions(project, pp, num, ls, proj_orders, product_po, supplier, ro
                 abs(item["net_sqft"] - sold_sqft) > item["sf_per_box"] * fc["qty_gap_tolerance_boxes"]:
             flags.append("qty_gap")
 
-        row = next((r for r in rows if (r.get("title") or "").strip() == (sku or "")), None)
+        row = next((r for r in rows if title_sku(r.get("title")) == (sku or "").lower()), None)
         wrong_row = None
         if row is None and sale and sale["sku"] != sku:
-            wrong_row = next((r for r in rows if (r.get("title") or "").strip() == sale["sku"]), None)
+            wrong_row = next((r for r in rows if title_sku(r.get("title")) == sale["sku"].lower()), None)
         target = row or wrong_row
 
         fields = {P["cost_rate"]: rate, T["ls_sale_cost_rate"]: (sale or {}).get("unit_cost"),
@@ -213,9 +227,17 @@ def flooring_actions(project, pp, num, ls, proj_orders, product_po, supplier, ro
                   T["invoice_cost_rate"]: item.get("actual_rate_sqft") if stage.startswith("invoice") else None,
                   T["cost_locked"]: stage == "invoice_final"}
         if target is None or wrong_row is not None:
-            fields[P["title"]] = sku
+            fields[P["title"]] = line_title(ff, sku, item.get("product_name") or (sale or {}).get("product_name"))
         if target is None:
             fields[P["sqft_sold"]] = sold_sqft
+            company = ff.get("material_company_from_supplier", {}).get((item.get("supplier") or "").upper())
+            mtype = ff.get("material_type_from_category", {}).get(((sale or {}).get("category") or "").upper())
+            if company:
+                fields[P["material_company"]] = [company]
+            if mtype:
+                fields[P["material_type"]] = [mtype]
+            if stage.startswith("invoice") and item.get("taxed"):
+                fields[P["taxed_vs_cash"]] = "Taxed"
             fields[P["project"]] = [project["url"]]
             if len(fins) == 1:
                 fields[P["project_financials"]] = [fins[0]["url"]]
@@ -406,6 +428,12 @@ def disposal_actions(supplier, projects, costs_by_project, reg, policy):
     return actions, notes
 
 
+def kind_write_mode(policy, kind):
+    """write_mode.project_costs_sync, unless project_costs_sync_kinds names the kind."""
+    wm = policy["write_mode"]
+    return (wm.get("project_costs_sync_kinds") or {}).get(kind, wm["project_costs_sync"])
+
+
 def plan(snapshot, reg, policy, ls_sales=None, ls_orders=None, supplier_docs=None):
     n = pr.normalize_snapshot(snapshot, reg)
     idx, wo_by_project, pay_by_project, fin_by_project = pr.build_index(n)
@@ -529,10 +557,12 @@ def plan(snapshot, reg, policy, ls_sales=None, ls_orders=None, supplier_docs=Non
     counts = {}
     for a in actions:
         counts.setdefault(a["kind"], {"write": 0, "suggest": 0})[a["mode"]] += 1
+        a["apply"] = kind_write_mode(policy, a["kind"]) == "write"
     return {
         "contract": CONTRACT,
         "built_at": datetime.now(pr.TZ).isoformat(),
         "write_mode": policy["write_mode"]["project_costs_sync"],
+        "write_mode_kinds": {k: kind_write_mode(policy, k) for k in sorted(counts)},
         "counts": counts,
         "actions": actions,
         "notes": notes,
