@@ -1,0 +1,941 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "VIDAR",
+ "run_at": "2026-10-06T09:26:24.947683-04:00",
+ "status": "ok",
+ "inputs": [
+  {
+   "file": "ingest/2026-10-06/vidar_airtable_upload_2026-10-06.csv",
+   "rows": 77
+  },
+  {
+   "file": "ingest/2026-10-06/lightspeed-products.json",
+   "products": 15092,
+   "run_at": "2026-10-06T09:21:21.184218-04:00"
+  },
+  {
+   "file": "ingest/2026-10-06/vidar_airtable_existing.json",
+   "records": 232
+  },
+  {
+   "file": "ingest/2026-10-06/vidar_airtable_options.json",
+   "select_fields": 5
+  },
+  {
+   "file": "ingest/2026-10-06/vidar_ls_upload_2026-10-06.csv",
+   "rows": 0
+  }
+ ],
+ "cost_basis": {
+  "value": "dealer",
+  "confirmed_by": "Albert 2026-09-10"
+ },
+ "as_of": "2026-10-06",
+ "effective_dates": [
+  "2026-04-01",
+  "2026-06-01",
+  "2026-07-01",
+  "2026-08-01",
+  "2026-09-08"
+ ],
+ "summary": {
+  "airtable_upsert": 18,
+  "lightspeed_update": 19,
+  "actions_total": 37,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 0,
+  "warnings": 0,
+  "rows_in": 77
+ },
+ "actions": [
+  {
+   "id": "cat-c6b38bcd2bac",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-VIDR-0007",
+   "airtable_rec_id": "receRj7CbHSUFYVHb",
+   "ls_id": "81473dbc-0557-40b9-b951-b3562ef8810a",
+   "handle": "VIDACCHARDWOODVENT4X10",
+   "fields": {
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca/EVYoUF4gKyNElLLzlQjI5bUBbp6WNbIyuOLlI9ioB5LnwQ"
+   },
+   "before": {
+    "Promo end date": "2026-06-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 1
+  },
+  {
+   "id": "cat-7cc527f1fb32",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-VIDR-0019",
+   "airtable_rec_id": "rece0fyvSDRhLAO2a",
+   "ls_id": "096997bb-9724-4d74-a9dc-9844f85d5321",
+   "handle": "VIDACCMONOSIL600SAUSAGEBOX20PC",
+   "fields": {
+    "Promo cost ($/sf)": "170.0",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca/EVYoUF4gKyNElLLzlQjI5bUBbp6WNbIyuOLlI9ioB5LnwQ"
+   },
+   "before": {
+    "Promo cost ($/sf)": null,
+    "Promo end date": null,
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 2
+  },
+  {
+   "id": "cat-9e7591614a63",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0012",
+   "airtable_rec_id": "recsgLCDwBj070dXK",
+   "ls_id": "0df78eb6-1045-4998-8542-2731fbb3329f",
+   "handle": "VIDR6AWONAKEDOAK",
+   "fields": {
+    "Promo cost ($/sf)": "3.99",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca/EVYoUF4gKyNElLLzlQjI5bUBbp6WNbIyuOLlI9ioB5LnwQ"
+   },
+   "before": {
+    "Promo cost ($/sf)": "3.59",
+    "Promo end date": "2026-06-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 3
+  },
+  {
+   "id": "cat-bbb2dd734925",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0015",
+   "airtable_rec_id": "recxk71WWHBU4g57q",
+   "ls_id": "08f84b3b-0283-4296-9628-e4bd67ae2268",
+   "handle": "VIDR6AWOMACAROON",
+   "fields": {
+    "Promo cost ($/sf)": "3.99",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca/EVYoUF4gKyNElLLzlQjI5bUBbp6WNbIyuOLlI9ioB5LnwQ"
+   },
+   "before": {
+    "Promo cost ($/sf)": "3.59",
+    "Promo end date": "2026-06-30",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 4
+  },
+  {
+   "id": "cat-4aac7391b498",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0040",
+   "airtable_rec_id": "recvEg0mY5jtqcljq",
+   "ls_id": "fe1f81d9-f23b-4bae-993a-ef1ec213fa25",
+   "handle": "VIDR75AWOPEARL",
+   "fields": {
+    "Promo cost ($/sf)": "4.19",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca/EVYoUF4gKyNElLLzlQjI5bUBbp6WNbIyuOLlI9ioB5LnwQ"
+   },
+   "before": {
+    "Promo cost ($/sf)": "4.79",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 5
+  },
+  {
+   "id": "cat-3202a5b35fca",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0043",
+   "airtable_rec_id": "recG75fkkhBysp6AY",
+   "ls_id": "bfb1c9f8-6003-4a93-acf3-3cab4f5cec01",
+   "handle": "VIDR75AWOMACAROON",
+   "fields": {
+    "Promo cost ($/sf)": "4.19",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca/EVYoUF4gKyNElLLzlQjI5bUBbp6WNbIyuOLlI9ioB5LnwQ"
+   },
+   "before": {
+    "Promo cost ($/sf)": "4.79",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 6
+  },
+  {
+   "id": "cat-84e597e4d48b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0046",
+   "airtable_rec_id": "rec0OkikDts7a4fJR",
+   "ls_id": "2efa1ef6-5474-49aa-855f-8abf938d4979",
+   "handle": "VIDR75AWONAKEDOAK",
+   "fields": {
+    "Promo cost ($/sf)": "4.19",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca/EVYoUF4gKyNElLLzlQjI5bUBbp6WNbIyuOLlI9ioB5LnwQ"
+   },
+   "before": {
+    "Promo cost ($/sf)": "4.79",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 7
+  },
+  {
+   "id": "cat-198ba4a537d4",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0053",
+   "airtable_rec_id": "rec415K9p5FgjEHzs",
+   "ls_id": "2863d6e5-cfdc-4fbb-864a-fddc28541a98",
+   "handle": "VIDR75EWOBANFF",
+   "fields": {
+    "Promo cost ($/sf)": "4.49",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca/EVYoUF4gKyNElLLzlQjI5bUBbp6WNbIyuOLlI9ioB5LnwQ"
+   },
+   "before": {
+    "Promo cost ($/sf)": null,
+    "Promo end date": null,
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 8
+  },
+  {
+   "id": "cat-92b5048b8d2c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0060",
+   "airtable_rec_id": "recAO4yVNjmlciuQm",
+   "ls_id": "abed089e-710d-437a-8084-b2d7df389ac0",
+   "handle": "VIDR75EWOTOFFEECRUNCH",
+   "fields": {
+    "Promo cost ($/sf)": "4.49",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca/EVYoUF4gKyNElLLzlQjI5bUBbp6WNbIyuOLlI9ioB5LnwQ"
+   },
+   "before": {
+    "Promo cost ($/sf)": null,
+    "Promo end date": null,
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 9
+  },
+  {
+   "id": "cat-976ab9fa779c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0063",
+   "airtable_rec_id": "recEyJDf3i2r0sbVb",
+   "ls_id": "f98e292e-23bc-4fc1-9d73-4a84938df7ab",
+   "handle": "VIDR75EWOYUKON",
+   "fields": {
+    "Promo cost ($/sf)": "4.49",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca/EVYoUF4gKyNElLLzlQjI5bUBbp6WNbIyuOLlI9ioB5LnwQ"
+   },
+   "before": {
+    "Promo cost ($/sf)": null,
+    "Promo end date": null,
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 10
+  },
+  {
+   "id": "cat-b0c53f3e3115",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0067",
+   "airtable_rec_id": "rec52R3fCZDhuC6nE",
+   "ls_id": "8bc6924a-2323-4eb1-9730-d52ef86752a2",
+   "handle": "VIDR75EWACLEAR",
+   "fields": {
+    "Promo cost ($/sf)": "4.49",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca/EVYoUF4gKyNElLLzlQjI5bUBbp6WNbIyuOLlI9ioB5LnwQ"
+   },
+   "before": {
+    "Promo cost ($/sf)": "4.79",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 11
+  },
+  {
+   "id": "cat-d7459fd6a46d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0068",
+   "airtable_rec_id": "recOYFhjtQz7BmqCc",
+   "ls_id": "47e92dbb-7b8a-4308-9704-86378f842f17",
+   "handle": "VIDR75EWARAW",
+   "fields": {
+    "Promo cost ($/sf)": "4.49",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca/EVYoUF4gKyNElLLzlQjI5bUBbp6WNbIyuOLlI9ioB5LnwQ"
+   },
+   "before": {
+    "Promo cost ($/sf)": "4.79",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 12
+  },
+  {
+   "id": "cat-03b79fe7a72d",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0069",
+   "airtable_rec_id": "recDBYwzpnSvOsXxG",
+   "ls_id": "85f4fd1c-6461-4d47-9ce9-c64513033075",
+   "handle": "VIDR75EWASANDY",
+   "fields": {
+    "Promo cost ($/sf)": "4.49",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca/EVYoUF4gKyNElLLzlQjI5bUBbp6WNbIyuOLlI9ioB5LnwQ"
+   },
+   "before": {
+    "Promo cost ($/sf)": "4.79",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 13
+  },
+  {
+   "id": "cat-bd3c62fb137a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0072",
+   "airtable_rec_id": "rec9tibx6zDwv5d4b",
+   "ls_id": "7139783b-7e38-4381-a252-bfdee80bedc5",
+   "handle": "VIDR75EWAWHISTLER",
+   "fields": {
+    "Promo cost ($/sf)": "3.99",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca/EVYoUF4gKyNElLLzlQjI5bUBbp6WNbIyuOLlI9ioB5LnwQ"
+   },
+   "before": {
+    "Promo cost ($/sf)": "4.19",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 14
+  },
+  {
+   "id": "cat-c372e702e95a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0169",
+   "airtable_rec_id": "recfaE04abujK3ZjE",
+   "ls_id": "55f3aae5-d1ef-4b75-9700-44ec4b98c3ac",
+   "handle": "VIDR5AWONAKEDOAK",
+   "fields": {
+    "Promo cost ($/sf)": "3.89",
+    "Promo end date": "2026-10-31",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca/EVYoUF4gKyNElLLzlQjI5bUBbp6WNbIyuOLlI9ioB5LnwQ"
+   },
+   "before": {
+    "Promo cost ($/sf)": null,
+    "Promo end date": null,
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 15
+  },
+  {
+   "id": "cat-426e31fe874b",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0194",
+   "airtable_rec_id": "rec9r3L8ZeOe7G3tV",
+   "ls_id": "c41f4348-838e-408c-918f-4f82ae7a0bec",
+   "handle": "VIDR75AWOWHEATBERRYCHAR",
+   "fields": {
+    "Promo cost ($/sf)": "4.19",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca/EVYoUF4gKyNElLLzlQjI5bUBbp6WNbIyuOLlI9ioB5LnwQ"
+   },
+   "before": {
+    "Promo cost ($/sf)": "4.79",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 16
+  },
+  {
+   "id": "cat-7b21a7fbb179",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0203",
+   "airtable_rec_id": "recigrjGgfNY1f2WZ",
+   "ls_id": "3f5ad239-a790-4403-a58c-eebcdbff913f",
+   "handle": "VIDR75EWATOFFEECRUNCH",
+   "fields": {
+    "Promo cost ($/sf)": "4.49",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca/EVYoUF4gKyNElLLzlQjI5bUBbp6WNbIyuOLlI9ioB5LnwQ"
+   },
+   "before": {
+    "Promo cost ($/sf)": "4.79",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 17
+  },
+  {
+   "id": "cat-bcca496cd015",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ENG-VIDR-0204",
+   "airtable_rec_id": "recJ3cHYXx12dOcBo",
+   "ls_id": "3f15291c-3ef4-4cce-87fa-5b972c408243",
+   "handle": "VIDR75EWANATURAL",
+   "fields": {
+    "Promo cost ($/sf)": "4.49",
+    "Promo List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca/EVYoUF4gKyNElLLzlQjI5bUBbp6WNbIyuOLlI9ioB5LnwQ"
+   },
+   "before": {
+    "Promo cost ($/sf)": "4.79",
+    "Promo List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "seq": 18
+  },
+  {
+   "id": "cat-ff078c2102f1",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ACC-VIDR-0019",
+   "airtable_rec_id": "rece0fyvSDRhLAO2a",
+   "ls_id": "096997bb-9724-4d74-a9dc-9844f85d5321",
+   "handle": "VIDACCMONOSIL600SAUSAGEBOX20PC",
+   "fields": {
+    "supply_price": 170.0,
+    "price_excluding_tax": 250.0
+   },
+   "before": {
+    "name": "VIDACC - MONOSIL 600 Sausage \u2014 Box (20pc)",
+    "handle": "VIDACCMONOSIL600SAUSAGEBOX20PC",
+    "sku": "ACC-VIDR-0019",
+    "supply_price": 185.0,
+    "price_including_tax": 250.0,
+    "price_excluding_tax": 250.0,
+    "category": "ACCESSORIES",
+    "supplier_name": "VIDAR",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 19
+  },
+  {
+   "id": "cat-4708d1e8c77b",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-VIDR-0012",
+   "airtable_rec_id": "recsgLCDwBj070dXK",
+   "ls_id": "0df78eb6-1045-4998-8542-2731fbb3329f",
+   "handle": "VIDR6AWONAKEDOAK",
+   "fields": {
+    "supply_price": 3.99,
+    "price_excluding_tax": 5.29
+   },
+   "before": {
+    "name": "VIDENG - 6 American White Oak (Naked Oak) T&G | 6\" x 2mm x RL",
+    "handle": "VIDR6AWONAKEDOAK",
+    "sku": "ENG-VIDR-0012",
+    "supply_price": 4.29,
+    "price_including_tax": 5.29,
+    "price_excluding_tax": 5.29,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "VIDAR",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 20
+  },
+  {
+   "id": "cat-a067390de94b",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-VIDR-0015",
+   "airtable_rec_id": "recxk71WWHBU4g57q",
+   "ls_id": "08f84b3b-0283-4296-9628-e4bd67ae2268",
+   "handle": "VIDR6AWOMACAROON",
+   "fields": {
+    "supply_price": 3.99,
+    "price_excluding_tax": 5.29
+   },
+   "before": {
+    "name": "VIDENG - 6 American White Oak (Macaroon) T&G | 6\" x 2mm x RL",
+    "handle": "VIDR6AWOMACAROON",
+    "sku": "ENG-VIDR-0015",
+    "supply_price": 4.29,
+    "price_including_tax": 5.29,
+    "price_excluding_tax": 5.29,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "VIDAR",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 21
+  },
+  {
+   "id": "cat-6a4195b35024",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-VIDR-0040",
+   "airtable_rec_id": "recvEg0mY5jtqcljq",
+   "ls_id": "fe1f81d9-f23b-4bae-993a-ef1ec213fa25",
+   "handle": "VIDR75AWOPEARL",
+   "fields": {
+    "supply_price": 4.19,
+    "price_excluding_tax": 6.09
+   },
+   "before": {
+    "name": "VIDENG - 7 American White Oak (Pearl) T&G | 7.5\" x 3mm x RL",
+    "handle": "VIDR75AWOPEARL",
+    "sku": "ENG-VIDR-0040",
+    "supply_price": 4.79,
+    "price_including_tax": 6.09,
+    "price_excluding_tax": 6.09,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "VIDAR",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 22
+  },
+  {
+   "id": "cat-cdeaa5f63ed3",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-VIDR-0043",
+   "airtable_rec_id": "recG75fkkhBysp6AY",
+   "ls_id": "bfb1c9f8-6003-4a93-acf3-3cab4f5cec01",
+   "handle": "VIDR75AWOMACAROON",
+   "fields": {
+    "supply_price": 4.19,
+    "price_excluding_tax": 6.09
+   },
+   "before": {
+    "name": "VIDENG - 7 American White Oak (Macaroon) T&G | 7.5\" x 3mm x RL",
+    "handle": "VIDR75AWOMACAROON",
+    "sku": "ENG-VIDR-0043",
+    "supply_price": 4.79,
+    "price_including_tax": 6.09,
+    "price_excluding_tax": 6.09,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "VIDAR",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 23
+  },
+  {
+   "id": "cat-c1a1f2ee3f19",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-VIDR-0046",
+   "airtable_rec_id": "rec0OkikDts7a4fJR",
+   "ls_id": "2efa1ef6-5474-49aa-855f-8abf938d4979",
+   "handle": "VIDR75AWONAKEDOAK",
+   "fields": {
+    "supply_price": 4.19,
+    "price_excluding_tax": 6.09
+   },
+   "before": {
+    "name": "VIDENG - 7 American White Oak (Naked Oak) T&G | 7.5\" x 3mm x RL",
+    "handle": "VIDR75AWONAKEDOAK",
+    "sku": "ENG-VIDR-0046",
+    "supply_price": 4.79,
+    "price_including_tax": 6.09,
+    "price_excluding_tax": 6.09,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "VIDAR",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 24
+  },
+  {
+   "id": "cat-d499e7fdc861",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-VIDR-0053",
+   "airtable_rec_id": "rec415K9p5FgjEHzs",
+   "ls_id": "2863d6e5-cfdc-4fbb-864a-fddc28541a98",
+   "handle": "VIDR75EWOBANFF",
+   "fields": {
+    "supply_price": 4.49,
+    "price_excluding_tax": 5.99
+   },
+   "before": {
+    "name": "VIDENG - 7 European White Oak (Banff) T&G | 7.5\" x 3mm x RL",
+    "handle": "VIDR75EWOBANFF",
+    "sku": "ENG-VIDR-0053",
+    "supply_price": 4.99,
+    "price_including_tax": 5.99,
+    "price_excluding_tax": 5.99,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "VIDAR",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 25
+  },
+  {
+   "id": "cat-de6582c0bbc2",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-VIDR-0060",
+   "airtable_rec_id": "recAO4yVNjmlciuQm",
+   "ls_id": "abed089e-710d-437a-8084-b2d7df389ac0",
+   "handle": "VIDR75EWOTOFFEECRUNCH",
+   "fields": {
+    "supply_price": 4.49,
+    "price_excluding_tax": 5.99
+   },
+   "before": {
+    "name": "VIDENG - 7 European White Oak (Toffee Crunch) T&G | 7.5\" x 3mm x RL",
+    "handle": "VIDR75EWOTOFFEECRUNCH",
+    "sku": "ENG-VIDR-0060",
+    "supply_price": 4.99,
+    "price_including_tax": 5.99,
+    "price_excluding_tax": 5.99,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "VIDAR",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 26
+  },
+  {
+   "id": "cat-3fd8e7c12d01",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-VIDR-0063",
+   "airtable_rec_id": "recEyJDf3i2r0sbVb",
+   "ls_id": "f98e292e-23bc-4fc1-9d73-4a84938df7ab",
+   "handle": "VIDR75EWOYUKON",
+   "fields": {
+    "supply_price": 4.49,
+    "price_excluding_tax": 5.99
+   },
+   "before": {
+    "name": "VIDENG - 7 European White Oak (Yukon) T&G | 7.5\" x 18mm x RL - 3mm top - 24.56sf/b",
+    "handle": "videng---7-european-white-oak-yukon-tg--75-x-18mm-x-rl---3mm-top---2456sfb",
+    "sku": "ENG-VIDR-0063",
+    "supply_price": 4.99,
+    "price_including_tax": 5.99,
+    "price_excluding_tax": 5.99,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "VIDAR",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 27
+  },
+  {
+   "id": "cat-1e04420028d8",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-VIDR-0067",
+   "airtable_rec_id": "rec52R3fCZDhuC6nE",
+   "ls_id": "8bc6924a-2323-4eb1-9730-d52ef86752a2",
+   "handle": "VIDR75EWACLEAR",
+   "fields": {
+    "supply_price": 4.49,
+    "price_excluding_tax": 5.99
+   },
+   "before": {
+    "name": "VIDENG - 7 European White Ash (Clear) T&G | 7.5\" x 3mm x RL - Select & Better",
+    "handle": "VIDR75EWACLEAR",
+    "sku": "ENG-VIDR-0067",
+    "supply_price": 4.79,
+    "price_including_tax": 5.99,
+    "price_excluding_tax": 5.99,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "VIDAR",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 28
+  },
+  {
+   "id": "cat-6a01441449d6",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-VIDR-0068",
+   "airtable_rec_id": "recOYFhjtQz7BmqCc",
+   "ls_id": "47e92dbb-7b8a-4308-9704-86378f842f17",
+   "handle": "VIDR75EWARAW",
+   "fields": {
+    "supply_price": 4.49,
+    "price_excluding_tax": 5.99
+   },
+   "before": {
+    "name": "VIDENG - 7 European White Ash (Raw) T&G | 7.5\" x 3mm x RL - Select & Better",
+    "handle": "VIDR75EWARAW",
+    "sku": "ENG-VIDR-0068",
+    "supply_price": 4.79,
+    "price_including_tax": 5.99,
+    "price_excluding_tax": 5.99,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "VIDAR",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 29
+  },
+  {
+   "id": "cat-07ef41399733",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-VIDR-0069",
+   "airtable_rec_id": "recDBYwzpnSvOsXxG",
+   "ls_id": "85f4fd1c-6461-4d47-9ce9-c64513033075",
+   "handle": "VIDR75EWASANDY",
+   "fields": {
+    "supply_price": 4.49,
+    "price_excluding_tax": 5.99
+   },
+   "before": {
+    "name": "VIDENG - 7 European White Ash (Sandy) T&G | 7.5\" x 3mm x RL - Select & Better",
+    "handle": "VIDR75EWASANDY",
+    "sku": "ENG-VIDR-0069",
+    "supply_price": 4.79,
+    "price_including_tax": 5.99,
+    "price_excluding_tax": 5.99,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "VIDAR",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 30
+  },
+  {
+   "id": "cat-50540beef7a9",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-VIDR-0071",
+   "airtable_rec_id": "recD3dck0o8MiLPsE",
+   "ls_id": "284587cb-36f5-4673-bbb7-cc389a8abd86",
+   "handle": "VIDR75EWADAYBREAK",
+   "fields": {
+    "supply_price": 4.99,
+    "price_excluding_tax": 5.99
+   },
+   "before": {
+    "name": "VIDENG - 7 European White Ash (Day Break) T&G | 7.5\" x 3mm x RL - Select & Better",
+    "handle": "VIDR75EWADAYBREAK",
+    "sku": "ENG-VIDR-0071",
+    "supply_price": 4.79,
+    "price_including_tax": 5.99,
+    "price_excluding_tax": 5.99,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "VIDAR",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 31
+  },
+  {
+   "id": "cat-96b196f97e74",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-VIDR-0072",
+   "airtable_rec_id": "rec9tibx6zDwv5d4b",
+   "ls_id": "7139783b-7e38-4381-a252-bfdee80bedc5",
+   "handle": "VIDR75EWAWHISTLER",
+   "fields": {
+    "supply_price": 3.99,
+    "price_excluding_tax": 5.29
+   },
+   "before": {
+    "name": "VIDENG - 7 European White Ash (Whistler) T&G | 7.5\" x 18mm x RL - 3mm top - 24.43sf/b",
+    "handle": "videng---7-european-white-ash-whistler-tg--75-x-18mm-x-rl---3mm-top---2443sfb",
+    "sku": "ENG-VIDR-0072",
+    "supply_price": 4.19,
+    "price_including_tax": 5.29,
+    "price_excluding_tax": 5.29,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "VIDAR",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 32
+  },
+  {
+   "id": "cat-d9bb5a422551",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-VIDR-0169",
+   "airtable_rec_id": "recfaE04abujK3ZjE",
+   "ls_id": "55f3aae5-d1ef-4b75-9700-44ec4b98c3ac",
+   "handle": "VIDR5AWONAKEDOAK",
+   "fields": {
+    "supply_price": 3.89,
+    "price_excluding_tax": 5.19
+   },
+   "before": {
+    "name": "VIDENG - Click American White Oak (Naked Oak) | 5\" x RL",
+    "handle": "VIDR5AWONAKEDOAK",
+    "sku": "ENG-VIDR-0169",
+    "supply_price": 4.19,
+    "price_including_tax": 5.19,
+    "price_excluding_tax": 5.19,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "VIDAR",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 33
+  },
+  {
+   "id": "cat-5205a63bd06e",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-VIDR-0177",
+   "airtable_rec_id": "recTpnAI1PFS2RM3Y",
+   "ls_id": "d3ff8192-6c44-4f40-b616-fe91530bf518",
+   "handle": "VIDR5AWOMOONLIGHT",
+   "fields": {
+    "supply_price": 3.89,
+    "price_excluding_tax": 4.89
+   },
+   "before": {
+    "name": "VIDENG - Click American White Oak (Moon Light) | 5\" x RL",
+    "handle": "VIDR5AWOMOONLIGHT",
+    "sku": "ENG-VIDR-0177",
+    "supply_price": 3.69,
+    "price_including_tax": 4.89,
+    "price_excluding_tax": 4.89,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "VIDAR",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 34
+  },
+  {
+   "id": "cat-47d8d6b41eba",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-VIDR-0194",
+   "airtable_rec_id": "rec9r3L8ZeOe7G3tV",
+   "ls_id": "c41f4348-838e-408c-918f-4f82ae7a0bec",
+   "handle": "VIDR75AWOWHEATBERRYCHAR",
+   "fields": {
+    "supply_price": 4.19,
+    "price_excluding_tax": 5.79
+   },
+   "before": {
+    "name": "VIDENG - 7 American White Oak (Wheat Berry) T&G | 7.5\" x 18mm x RL - 3mm top - 25.32sf/b - Character",
+    "handle": "VIDR75AWOWHEATBERRYCHAR",
+    "sku": "ENG-VIDR-0194",
+    "supply_price": 4.79,
+    "price_including_tax": 5.79,
+    "price_excluding_tax": 5.79,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "VIDAR",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 35
+  },
+  {
+   "id": "cat-fe69b918ea51",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-VIDR-0203",
+   "airtable_rec_id": "recigrjGgfNY1f2WZ",
+   "ls_id": "3f5ad239-a790-4403-a58c-eebcdbff913f",
+   "handle": "VIDR75EWATOFFEECRUNCH",
+   "fields": {
+    "supply_price": 4.49,
+    "price_excluding_tax": 5.79
+   },
+   "before": {
+    "name": "VIDENG - 7 European White Ash (Toffee Crunch) T&G | 7.5\" x 18mm x RL - 3mm top - 24.43sf/b - Select & Better",
+    "handle": "VIDR75EWATOFFEECRUNCH",
+    "sku": "ENG-VIDR-0203",
+    "supply_price": 4.79,
+    "price_including_tax": 5.79,
+    "price_excluding_tax": 5.79,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "VIDAR",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 36
+  },
+  {
+   "id": "cat-763f53e61231",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "ENG-VIDR-0204",
+   "airtable_rec_id": "recJ3cHYXx12dOcBo",
+   "ls_id": "3f15291c-3ef4-4cce-87fa-5b972c408243",
+   "handle": "VIDR75EWANATURAL",
+   "fields": {
+    "supply_price": 4.49,
+    "price_excluding_tax": 5.79
+   },
+   "before": {
+    "name": "VIDENG - 7 European White Ash (Natural) T&G | 7.5\" x 18mm x RL - 3mm top - 24.43sf/b - Select & Better",
+    "handle": "VIDR75EWANATURAL",
+    "sku": "ENG-VIDR-0204",
+    "supply_price": 4.79,
+    "price_including_tax": 5.79,
+    "price_excluding_tax": 5.79,
+    "category": "ENGINEERED HARDWOOD",
+    "supplier_name": "VIDAR",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 37
+  }
+ ],
+ "blocked": [],
+ "warnings": []
+}
