@@ -96,7 +96,10 @@ def plan(snapshot, reg, policy, ls_sales=None, ls_orders=None):
         if ls:
             nfm = ls["totals_by_class"]["nfm"]
             pos_total = round(nfm["revenue_pretax"] + nfm["tax"], 2)
-            open_sale = "provisional_open_sale" in ls["flags"]
+            submitted = (project.get("submission_status") or "") in \
+                policy["lightspeed"].get("parked_sale_final_when_submission_in", [])
+            open_sale = "provisional_open_sale" in ls["flags"] and not submitted
+            other_flags = [f for f in ls["flags"] if f != "provisional_open_sale"]
             conf = "Medium" if open_sale else "High"
             reason = (f"Lightspeed NFM POS total {pos_total:.2f} incl. tax over "
                       f"{len(ls['sale_ids'])} sale(s)" + (" — sale still open, may change" if open_sale else ""))
@@ -106,13 +109,13 @@ def plan(snapshot, reg, policy, ls_sales=None, ls_orders=None):
                     continue
                 fields = {pnames["cost"]: pos_total, names["ls_sale_ids"]: ", ".join(ls["sale_ids"]),
                           names["cost_source"]: "Lightspeed"}
-                if sync_owns(row, reg) and conf == "High" and not ls["flags"]:
+                if sync_owns(row, reg) and conf == "High" and not other_flags:
                     actions.append(mk("nfm_cost", row["url"], "write", fields, conf, reason, pp))
                 else:
                     why = reason if sync_owns(row, reg) else \
                         f"{reason}; row holds a hand-entered cost ({current}) — confirm"
-                    if ls["flags"]:
-                        why += f"; Lightspeed flags: {', '.join(ls['flags'])}"
+                    if other_flags or open_sale:
+                        why += f"; Lightspeed flags: {', '.join(other_flags + (['sale still open'] if open_sale else []))}"
                     actions.append(mk("nfm_cost", row["url"], "suggest", {
                         names["suggested_cost"]: pos_total, names["suggestion_source"]: "Lightspeed",
                         names["suggestion_confidence"]: conf, names["suggestion_reason"]: why[:1900]},
@@ -144,8 +147,7 @@ def plan(snapshot, reg, policy, ls_sales=None, ls_orders=None):
                     reason = (f"{fl['sku']}: no purchase order found — only the LS sale-line cost "
                               f"{sale_cost:.2f}/sqft (an average-cost snapshot); front desk rate missing")
                 else:
-                    conf, mode = ("High" if po[2] == "project PO" else "Medium"), "suggest"
-                    reason = f"{fl['sku']}: PO and LS sale-line agree within ${delta:.2f}/sqft"
+                    continue    # sources agree: pass silently (amendment §4)
                 actions.append(mk("flooring_cost_rate", project["url"], mode, rec, conf, reason, pp))
 
         # Financials relations copy (financials-relation-sync logic)

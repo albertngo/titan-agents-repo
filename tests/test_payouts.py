@@ -468,9 +468,8 @@ class TestCostSync(unittest.TestCase):
         self.assertEqual(fl["confidence"], "Medium")
         self.assertIn("apart", fl["reason"])
         orders["projects"]["463"]["purchase_orders"][0]["lines"][0]["unit_cost"] = 3.45   # 6 cents: fine
-        fl = next(a for a in pcs.plan(sync_snapshot(), REG, POLICY, ls_sales=LS, ls_orders=orders)["actions"]
-                  if a["kind"] == "flooring_cost_rate")
-        self.assertEqual(fl["confidence"], "High")
+        kinds = [a["kind"] for a in pcs.plan(sync_snapshot(), REG, POLICY, ls_sales=LS, ls_orders=orders)["actions"]]
+        self.assertNotIn("flooring_cost_rate", kinds)     # agreement passes silently
 
     def test_relations_copied_and_costs_complete_only_when_nothing_missing(self):
         out = pcs.plan(sync_snapshot(cost=582.67, source="Lightspeed"), REG, POLICY, ls_sales=LS)
@@ -478,6 +477,14 @@ class TestCostSync(unittest.TestCase):
         self.assertIn("costs_complete", self.kinds(out))
         out = pcs.plan(sync_snapshot(cost=None), REG, POLICY, ls_sales=None)
         self.assertNotIn("costs_complete", self.kinds(out))
+
+    def test_parked_sale_on_a_submitted_project_is_final(self):
+        ls = json.loads(json.dumps(LS)); ls["projects"]["463"]["flags"] = ["provisional_open_sale"]
+        nfm = next(a for a in pcs.plan(sync_snapshot(), REG, POLICY, ls_sales=ls)["actions"] if a["kind"] == "nfm_cost")
+        self.assertEqual(nfm["mode"], "write")
+        nfm = next(a for a in pcs.plan(sync_snapshot(submitted="Not Submitted"), REG, POLICY, ls_sales=ls)["actions"]
+                   if a["kind"] == "nfm_cost")
+        self.assertEqual(nfm["mode"], "suggest")
 
     def test_out_of_scope_project_gets_no_sync_actions(self):
         snap = sync_snapshot()

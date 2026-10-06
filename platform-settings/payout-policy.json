@@ -55,6 +55,8 @@
     "_pp_regex_note": "3+ digits so PP-1000 is never read as PP-100 (amendment §1.1); leading boundary because lowercase 'pp' inside a word matched 5 old POs (verified 2026-10-06). Case-sensitive: real tags are always uppercase.",
     "flooring_category_leaves": ["ENGINEERED HARDWOOD", "SOLID HARDWOOD", "SPC", "WPC", "GLUE DOWN", "VINYL", "LAMINATE", "TILE", "CARPET"],
     "_flooring_category_note": "A sale line is FLOORING when its product's LS category leaf (lightspeed_pull.category_of) is one of these; any other known leaf (ACCESSORIES, ...) is NFM; no category -> 'unclassified' and flagged. Flooring quantity is already square feet on the LS line (verified: R-35833, qty 880 at $3.39 cost / $4.39 price per sqft).",
+    "parked_sale_final_when_submission_in": ["Ready To Submit", "Submitted"],
+    "_parked_sale_note": "Titan takes payment by e-transfer/cash outside Lightspeed, so project sales often stay parked forever (PP-461/450/417 were all parked after being paid in full, 2026-10-06 test). Once the project's Submission Status is one of these, a parked/pending sale is treated as final and its NFM total may be written without review.",
     "sales_window_days": 120,
     "orders_window_days": 180,
     "nonstock_zero_cost_ok": ["DEPOSIT", "Discount", "DELIVERY", "vend-discount"],
