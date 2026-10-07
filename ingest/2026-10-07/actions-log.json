@@ -24,6 +24,122 @@
       "error": null,
       "raw_ref": "notion page 3f2596a4-505f-816d-ae0b-cc822bbb7c97",
       "raw_ref_action_id": "flooring_line:3e5401ea08"
+    },
+    {
+      "logged_at": "2026-10-07T13:00:00-04:00",
+      "agent": ".claude/commands/project-costs-sync.md",
+      "type": "payout_create_flooring_line",
+      "target": "Flooring Line Items: PP-417 ENG-VIDR-0018_Toffee Crunch",
+      "content_summary": "Created PP-417 ENG-VIDR-0018_Toffee Crunch: 1002.04 sqft at 3.8573/sqft pre-tax. Vidar invoices 104255/104270 less Cr18517 (14 boxes back, 25% restocking fee): $3,865.20 for 1,002.04 sqft, locked.",
+      "approved_by": "policy: project-costs-sync flooring_line write (Albert 2026-10-06); truth order invoice > ordered > quote > LS sale (Albert 2026-10-07); run scoped to projects ending September 2026",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3f2596a4-505f-8165-b7a4-d4e01cff4f82",
+      "raw_ref_action_id": "flooring_line:ba68ad1737"
+    },
+    {
+      "logged_at": "2026-10-07T13:00:00-04:00",
+      "agent": ".claude/commands/project-costs-sync.md",
+      "type": "payout_create_flooring_line",
+      "target": "Flooring Line Items: PP-417 SPC-VIDR-0004_Toffee Crunch",
+      "content_summary": "Created PP-417 SPC-VIDR-0004_Toffee Crunch: 1041 sqft at 1.59/sqft pre-tax. Vidar invoices on SO 102623 (VS84, ordered under legacy LS product 11401): 1,041 sqft, locked.",
+      "approved_by": "policy: project-costs-sync flooring_line write (Albert 2026-10-06); truth order invoice > ordered > quote > LS sale (Albert 2026-10-07); run scoped to projects ending September 2026",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3f2596a4-505f-8198-8e11-efcea682cd0d",
+      "raw_ref_action_id": "flooring_line:1462099196"
+    },
+    {
+      "logged_at": "2026-10-07T13:00:00-04:00",
+      "agent": ".claude/commands/project-costs-sync.md",
+      "type": "payout_create_flooring_line",
+      "target": "Flooring Line Items: PP-439 ENG-VIDR-0190_Sunset",
+      "content_summary": "Created PP-439 ENG-VIDR-0190_Sunset: 1352.96 sqft at 3.49/sqft pre-tax. Vidar invoice 104863 on PO-8143: 1,352.96 sqft, locked; LS sale has the 9in White Oak at 6.99 (PM entry mistake).",
+      "approved_by": "policy: project-costs-sync flooring_line write (Albert 2026-10-06); truth order invoice > ordered > quote > LS sale (Albert 2026-10-07); run scoped to projects ending September 2026",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3f2596a4-505f-8126-b17c-c345524c615a",
+      "raw_ref_action_id": "flooring_line:6606b9c92f"
+    },
+    {
+      "logged_at": "2026-10-07T13:00:00-04:00",
+      "agent": ".claude/commands/project-costs-sync.md",
+      "type": "payout_create_flooring_line",
+      "target": "Flooring Line Items: PP-451 LAM-EVGR-72740_72740",
+      "content_summary": "Created PP-451 LAM-EVGR-72740_72740: 582.3 sqft at 1.79/sqft pre-tax. PO-8164 ordered amount (no LS sale); waits on the Evergreen invoice.",
+      "approved_by": "policy: project-costs-sync flooring_line write (Albert 2026-10-06); truth order invoice > ordered > quote > LS sale (Albert 2026-10-07); run scoped to projects ending September 2026",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3f2596a4-505f-812a-b976-e6bc957f1973",
+      "raw_ref_action_id": "flooring_line:738e46969f"
+    },
+    {
+      "logged_at": "2026-10-07T13:00:00-04:00",
+      "agent": ".claude/commands/project-costs-sync.md",
+      "type": "payout_update_flooring_line",
+      "target": "Flooring Line Items: PP-461 ENG-VIDR-0023_Moon Light",
+      "content_summary": "Sqft Sold 1,586 -> 1,641.64, the Vidar invoiced sqft net of credit Cr18547 (truth order: invoice first).",
+      "approved_by": "policy: project-costs-sync flooring_line write (Albert 2026-10-06); truth order invoice > ordered > quote > LS sale (Albert 2026-10-07); run scoped to projects ending September 2026",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3f1596a4-505f-8156-8438-d1cffa632b09",
+      "raw_ref_action_id": "flooring_line:a14a720a58"
+    },
+    {
+      "logged_at": "2026-10-07T13:00:00-04:00",
+      "agent": ".claude/commands/project-costs-sync.md",
+      "type": "payout_update_flooring_line",
+      "target": "Flooring Line Items: PP-470 11478_Comfort Walnut",
+      "content_summary": "Sqft Sold 500 -> 506.25, the PO-8190 ordered amount (truth order: ordered before LS sale).",
+      "approved_by": "policy: project-costs-sync flooring_line write (Albert 2026-10-06); truth order invoice > ordered > quote > LS sale (Albert 2026-10-07); run scoped to projects ending September 2026",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3f2596a4-505f-818b-aead-dfea8dd247bc",
+      "raw_ref_action_id": "flooring_line:dc0d9c63cd"
+    },
+    {
+      "logged_at": "2026-10-07T13:00:00-04:00",
+      "agent": ".claude/commands/project-costs-sync.md",
+      "type": "payout_update_cost_row",
+      "target": "Project Costs: PP-450 Disposal",
+      "content_summary": "Invoice # set to AP Disposal 2406; cost already equal to the invoice total, left as typed.",
+      "approved_by": "Albert, this session 2026-10-07 ('Add them'): the four AP Disposal invoice numbers only; disposal_cost otherwise stays plan_only",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3d8596a4-505f-81c3-8774-e691e080d1b1"
+    },
+    {
+      "logged_at": "2026-10-07T13:00:00-04:00",
+      "agent": ".claude/commands/project-costs-sync.md",
+      "type": "payout_update_cost_row",
+      "target": "Project Costs: PP-456 Disposal",
+      "content_summary": "Invoice # set to AP Disposal 2417; cost already equal to the invoice total, left as typed.",
+      "approved_by": "Albert, this session 2026-10-07 ('Add them'): the four AP Disposal invoice numbers only; disposal_cost otherwise stays plan_only",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3e1596a4-505f-8154-8559-cfc1749aeacc"
+    },
+    {
+      "logged_at": "2026-10-07T13:00:00-04:00",
+      "agent": ".claude/commands/project-costs-sync.md",
+      "type": "payout_update_cost_row",
+      "target": "Project Costs: PP-458 Disposal",
+      "content_summary": "Invoice # set to AP Disposal 2390; cost already equal to the invoice total, left as typed.",
+      "approved_by": "Albert, this session 2026-10-07 ('Add them'): the four AP Disposal invoice numbers only; disposal_cost otherwise stays plan_only",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3f0596a4-505f-805d-88fd-daf623f4cfdd"
+    },
+    {
+      "logged_at": "2026-10-07T13:00:00-04:00",
+      "agent": ".claude/commands/project-costs-sync.md",
+      "type": "payout_update_cost_row",
+      "target": "Project Costs: PP-470 Disposal",
+      "content_summary": "Invoice # set to AP Disposal 2410; cost already equal to the invoice total, left as typed.",
+      "approved_by": "Albert, this session 2026-10-07 ('Add them'): the four AP Disposal invoice numbers only; disposal_cost otherwise stays plan_only",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3f0596a4-505f-80a2-b0c9-d85b001af84a"
     }
   ]
 }

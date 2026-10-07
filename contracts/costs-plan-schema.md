@@ -101,10 +101,10 @@ the supplier order that prints its PO number), paired with the Lightspeed sale l
 
 | `stage` | `Cost Rate` | Mode |
 |---|---|---|
-| `invoice_final` | invoice $ − credit memo $ ÷ sqft kept (restocking fees land here) | `write`, `Cost Locked` ✓ — replaces any earlier figure |
-| `invoice_partial` | invoiced so far ÷ sqft invoiced | `write` |
-| `confirmation` | supplier confirmation $/sqft | `write` into an empty line, else `suggest` |
-| `purchase_order` | LS PO cost (front desk) | same, Medium |
+| `invoice_final` | invoice $ − credit memo $ ÷ sqft kept (restocking fees land here); `Sqft Sold` = sqft kept | `write`, `Cost Locked` ✓ — replaces any earlier figure |
+| `invoice_partial` | invoiced so far ÷ sqft invoiced; `Sqft Sold` = sqft invoiced | `write` |
+| `confirmation` | supplier confirmation $/sqft; `Sqft Sold` = confirmed sqft | `write`, over a typed figure too (ordered beats quote) |
+| `purchase_order` | LS PO cost; `Sqft Sold` = PO quantity | same, Medium |
 | `purchase_order_untagged` | latest PO for the product, not project-linked | `suggest`, Low |
 | `ls_sale` | the sale-line cost (nothing ordered under the PP) | `suggest`, Low |
 
@@ -112,7 +112,11 @@ A new invoice or credit memo changes the figures, so the action reappears with a
 `id`; on a locked line it carries `changed_after_lock`. A line whose fields already
 match produces no action. `Sold At Rate` is **never** taken from Lightspeed.
 
-**Flags:** `pm_entry_product_mismatch` (sale keyed a different product than ordered),
+Order of truth for both `Sqft Sold` and `Cost Rate` (Albert 2026-10-07): invoice → what Titan
+ordered → the PM's quote (a typed figure) → the LS sale. `order_covers_part_of_sale` (less
+ordered than sold, no credit memo to explain it) holds the line as a proposal.
+
+**Flags:** `pm_entry_product_mismatch`, `legacy_ls_product_on_po`, `order_covers_part_of_sale` (sale keyed a different product than ordered),
 `sale_cost_gap`, `po_rate_gap` (front desk's PO vs the supplier, > $0.10/sqft),
 `rate_changed_after_confirmation`, `restocking_fee`, `credit_attributed_by_product`,
 `po_not_received_in_lightspeed`, `confirmed_not_invoiced` (> 21 days), `qty_gap` (kept
