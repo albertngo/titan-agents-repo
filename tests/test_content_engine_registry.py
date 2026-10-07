@@ -235,10 +235,19 @@ class TestWiring(unittest.TestCase):
         self.assertTrue(METHOD.exists())
         self.assertTrue(FACTS.exists())
 
-    def test_stubs_stop(self):
-        for name in COMMANDS:
+    def test_unbuilt_commands_still_stop(self):
+        # Phase 1 built the six core commands; these three arrive in later phases.
+        for name in ("blog-import", "content-attribution", "topic-track"):
             text = (REPO_ROOT / ".claude" / "commands" / f"{name}.md").read_text()
             self.assertIn("Phase 0 stub", text, name)
+
+    def test_built_commands_read_write_mode_and_name_their_script(self):
+        for name, script in (("topic-harvest", "topic_harvest.py"), ("topic-rank", "topic_rank.py"), ("blog-brief", "blog_plan.py"),
+                             ("blog-draft", "blog_plan.py"), ("blog-publish", "blog_render.py"), ("blog-sweep", "blog_sweep.py")):
+            text = (REPO_ROOT / ".claude" / "commands" / f"{name}.md").read_text()
+            self.assertNotIn("Phase 0 stub", text, name)
+            self.assertIn("write_mode", text, name)
+            self.assertIn(script, text, name)
 
 
 if __name__ == "__main__":

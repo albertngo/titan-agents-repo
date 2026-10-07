@@ -1,0 +1,37 @@
+{
+  "_comment": "Source of truth for the facts titan-website copies by hand into lib/site.ts (its README says so). Update both when NAP or nav changes. The public site never reads this file or any platform live (methods/website-architecture.md).",
+  "config_version": "1",
+  "repo": "albertngo/titan-website",
+  "hosting": "Vercel",
+  "legacy_host": "titanfloors.ca (WordPress, until cut-over)",
+  "nap": {
+    "name": "Titan Flooring Inc.",
+    "address": "1060 Britannia Rd East #2, Mississauga, ON L4W 4T1",
+    "phone": "905-282-1881",
+    "email": "info@titanfloors.ca",
+    "hours": [
+      {"days": "Mon – Fri", "time": "7:30am – 6pm"},
+      {"days": "Saturday", "time": "8:30am – 5pm"},
+      {"days": "Sunday", "time": "Closed"}
+    ],
+    "since": 2012
+  },
+  "nav": [
+    {"label": "Solid Hardwood", "href": "/product-category/solid-hardwood/"},
+    {"label": "Engineered Hardwood", "href": "/product-category/engineered-hardwood/"},
+    {"label": "Laminate", "href": "/product-category/laminate/"},
+    {"label": "Vinyl", "href": "/product-category/vinyl/"},
+    {"label": "Flooring Installation", "href": "/flooring-install/"},
+    {"label": "Stair Refinishing", "href": "/stair-refinishing/"},
+    {"label": "Blog", "href": "/blog/"},
+    {"label": "About", "href": "/about-us/"},
+    {"label": "Contact", "href": "/contact/"}
+  ],
+  "blog": {
+    "content_dir": "content/blog",
+    "url_shape": "flat root slugs with trailing slash, e.g. /spc-vs-wpc/",
+    "index": "/blog/",
+    "contract": "contracts/blog-mdx-schema.md",
+    "engine_registry": "platform-settings/content-engine.json"
+  }
+}

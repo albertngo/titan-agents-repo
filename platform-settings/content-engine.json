@@ -243,6 +243,6 @@
     "attribution_report": "ingest/analysis/content-attribution-{date}.md"
   },
 
-  "held_reasons": ["cluster_unresolved", "possible_duplicate", "possible_overlap", "not_approved", "snippet_length", "faq_count", "h2_not_question", "body_too_short", "slug_invalid", "slug_collision", "slug_reserved", "pillar_missing", "stale_status", "body_is_a_persons", "campaign_unmapped", "no_volume_source", "budget_exceeded", "pii_suspected"],
+  "held_reasons": ["cluster_unresolved", "possible_duplicate", "possible_overlap", "run_cap", "not_approved", "snippet_length", "faq_count", "h2_not_question", "body_too_short", "slug_invalid", "slug_collision", "slug_reserved", "pillar_missing", "stale_status", "body_is_a_persons", "campaign_unmapped", "no_volume_source", "budget_exceeded", "pii_suspected"],
   "flagged_reasons": ["volume_unknown", "titan_facts_missing", "pillar_not_required_yet", "body_changed_after_publish"]
 }
