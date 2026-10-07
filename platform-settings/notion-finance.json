@@ -269,6 +269,8 @@
   "_title_note": "Staff name a line '<LS SKU>_<colour>' (SPC-VIDR-0002_Yukon, ENG-TOSC-0074_Long Beach). The sync creates lines the same way (colour = the bracketed name in the LS product name) and matches an existing line on the part before the first '_'.",
   "material_company_from_supplier": {"VIDAR": "VIDAR"},
   "_material_company_note": "LS supplier name -> Material Company option, exact options only; a supplier not listed leaves the field blank for the PM. Add an entry when another supplier's documents are read.",
+  "flooring_sku_prefixes": ["ENG-", "HWD-", "SPC-", "WPC-", "LVP-", "VP-", "LAM-", "VIN-"],
+  "_flooring_sku_prefixes_note": "A PP-tagged PO line with one of these catalogue SKU prefixes is a flooring product even when no supplier document or Lightspeed sale names it (PP-451: LAM-EVGR-72740 on a PO, no sale). Such a line is proposed, never written, until Sqft Sold is known.",
   "material_type_from_category": {
     "ENGINEERED HARDWOOD": "Engineered Hardwood",
     "SOLID HARDWOOD": "Solid Hardwood",

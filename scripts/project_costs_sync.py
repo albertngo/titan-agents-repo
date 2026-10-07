@@ -108,15 +108,17 @@ def match_supplier_product(po_line, sorder):
     return (best[1], best[2]) if best else (None, None)
 
 
-def ordered_items(proj_orders, product_po, supplier, sale_lines):
+def ordered_items(proj_orders, product_po, supplier, sale_lines, flooring_prefixes=()):
     """Every flooring product ordered for the project, with its staged cost."""
     sale_pids = {l["product_id"] for l in sale_lines}
+    prefixes = tuple(p.upper() for p in flooring_prefixes)
     items = []
     for po in (proj_orders or {}).get("purchase_orders", []):
         sorder = supplier_order_for(po["reference"], supplier)
         for line in po["lines"]:
             code, sp = match_supplier_product(line, sorder)
-            if not sp and line["product_id"] not in sale_pids:
+            if not sp and line["product_id"] not in sale_pids and \
+                    not (prefixes and str(line.get("sku") or "").upper().startswith(prefixes)):
                 continue            # trims / sundries: not a flooring line
             it = {"product_id": line["product_id"], "sku": line.get("sku"),
                   "product_name": line.get("product_name"), "po_reference": po["reference"],
@@ -175,7 +177,7 @@ def flooring_actions(project, pp, num, ls, proj_orders, product_po, supplier, ro
     P = ff["properties"]
     T = {k: v["name"] for k, v in ff["to_add"].items()}
     sale_lines = (ls or {}).get("flooring_lines", [])
-    items = ordered_items(proj_orders, product_po, supplier, sale_lines)
+    items = ordered_items(proj_orders, product_po, supplier, sale_lines, ff.get("flooring_sku_prefixes", ()))
     if not sale_lines and not items:
         return []
     out = []
@@ -195,7 +197,14 @@ def flooring_actions(project, pp, num, ls, proj_orders, product_po, supplier, ro
                 flags.append("no_order_found")
         sku = item["sku"] or (sale or {}).get("sku")
         stage, rate = item["stage"], item.get("rate")
-        if sale and item.get("product_id") and sale["product_id"] != item["product_id"]:
+        legacy_po_sku = bool(sale and item.get("sku") and str(item["sku"]).isdigit()
+                             and item.get("product_id") and sale["product_id"] != item["product_id"])
+        if legacy_po_sku:
+            # an old duplicate LS product (numeric SKU, e.g. 11401 for Vidar VS84) was put on the PO:
+            # the cost still comes from what was ordered, the line is named after the catalogue SKU sold
+            flags.append("legacy_ls_product_on_po")
+            sku = sale["sku"]
+        elif sale and item.get("product_id") and sale["product_id"] != item["product_id"]:
             flags.append("pm_entry_product_mismatch")
         if sale is None:
             flags.append("ordered_not_on_sale")
@@ -227,7 +236,8 @@ def flooring_actions(project, pp, num, ls, proj_orders, product_po, supplier, ro
                   T["invoice_cost_rate"]: item.get("actual_rate_sqft") if stage.startswith("invoice") else None,
                   T["cost_locked"]: stage == "invoice_final"}
         if target is None or wrong_row is not None:
-            fields[P["title"]] = line_title(ff, sku, item.get("product_name") or (sale or {}).get("product_name"))
+            fields[P["title"]] = line_title(ff, sku, (sale or {}).get("product_name") if legacy_po_sku
+                                            else item.get("product_name") or (sale or {}).get("product_name"))
         if target is None:
             fields[P["sqft_sold"]] = sold_sqft
             company = ff.get("material_company_from_supplier", {}).get((item.get("supplier") or "").upper())
@@ -266,6 +276,10 @@ def flooring_actions(project, pp, num, ls, proj_orders, product_po, supplier, ro
 
         if wrong_row is not None:
             mode = "suggest"            # renaming a PM's line is their call
+        elif sale is None and target is None:
+            mode = "suggest"            # ordered but not on a sale: Sqft Sold unknown
+        elif "qty_gap" in flags and fc.get("qty_gap_holds_write"):
+            mode = "suggest"            # kept != sold: which sqft the cost covers is Albert's call
         elif stage.startswith("invoice"):
             mode = "write"              # the invoice is the truth, and replaces earlier stages
         elif stage in ("confirmation", "purchase_order") and \
@@ -557,7 +571,8 @@ def plan(snapshot, reg, policy, ls_sales=None, ls_orders=None, supplier_docs=Non
     counts = {}
     for a in actions:
         counts.setdefault(a["kind"], {"write": 0, "suggest": 0})[a["mode"]] += 1
-        a["apply"] = kind_write_mode(policy, a["kind"]) == "write"
+        a["apply"] = kind_write_mode(policy, a["kind"]) == "write" and \
+            (a["mode"] == "write" or a["kind"] != "flooring_line")
     return {
         "contract": CONTRACT,
         "built_at": datetime.now(pr.TZ).isoformat(),

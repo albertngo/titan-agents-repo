@@ -66,6 +66,8 @@
     "sold_at_rate_from_lightspeed": false,
     "confirmed_not_invoiced_days": 21,
     "qty_gap_tolerance_boxes": 1,
+    "qty_gap_holds_write": true,
+    "_qty_gap_note": "2026-10-07: when the sqft kept (invoiced less credited) differs from Sqft Sold by more than a box, the flooring line is proposed, not written. Cost Rate x Sqft Sold would then misstate what Titan paid (PP-417: 1,002 sqft kept of 1,300 sold, about $1,150 too high). Open: whether Cost Rate should be net invoice $ / Sqft Sold in that case.",
     "_cost_stages_note": "Albert 2026-10-06: the Flooring Line Item's Cost Rate ends at the ACTUAL invoiced price, net of credit memos (restocking fees included, spread over the sqft kept). Until then it carries the best ordered figure: supplier confirmation, else the LS purchase order. Every new invoice or credit re-proposes it; invoice_final ticks Cost Locked and a later credit updates a locked line with a changed_after_lock flag. Sold At Rate is the PM's quote rate (Quote Rate today, the Airtable quote push in Phase 3), never the Lightspeed sale price.",
     "_source_of_truth_note": "Albert 2026-10-06: the ordered material is the truth. Highest available of invoice > confirmation > LS PO sets the flooring cost; a sale line whose product or rate differs is flagged as a PM entry mistake (PP-461, PP-439). The sale is compared, never preferred.",
     "_note": "Amendment §2.3: PM (supplier PDF) -> front desk (stock order, wins interim) -> supplier invoice (final). Flag when PM vs front desk differs by more than $0.10/sqft, compared per sqft never on totals. No catalogue/Lightspeed auto-fill until the catalogue is reconciled (dated flip)."

@@ -1,0 +1,2107 @@
+{
+ "contract": "ls-orders-1",
+ "source": "lightspeed-orders",
+ "pulled_at": "2026-10-07T09:16:12.489974-04:00",
+ "window": {
+  "since": "2026-04-10",
+  "days": 180
+ },
+ "counts": {
+  "supplier_pos_in_window": 209,
+  "pp_tagged": 11,
+  "lines": 373,
+  "projects": 10,
+  "ambiguous_pp_pos": 1,
+  "products_with_po_cost": 222
+ },
+ "projects": {
+  "411": {
+   "pp": "PP-411",
+   "purchase_orders": [
+    {
+     "consignment_id": "db111cc4-7703-11f1-a086-1ec67d01fcd2",
+     "reference": "PO-8086",
+     "supplier_invoice": null,
+     "supplier": "VIDAR",
+     "status": "RECEIVED",
+     "po_date": "2026-07-03T17:23:07+00:00",
+     "due_at": null,
+     "received_at": "2026-09-02T15:17:58+00:00",
+     "pp": "411",
+     "pp_candidates": [
+      "411"
+     ],
+     "lines": [
+      {
+       "product_id": "06564601-23d4-4f4a-819e-0f324430109a",
+       "count": 852.8,
+       "received": 852.8,
+       "unit_cost": 2.99,
+       "cost_total": 2549.87,
+       "status": "RECEIVE_SUCCESS",
+       "sku": "ENG-VIDR-0007",
+       "product_name": "VIDENG - 6 American White Oak (Coffee) T&G | 6\" x 2mm x RL - Character"
+      }
+     ]
+    }
+   ],
+   "po_ids": [
+    "db111cc4-7703-11f1-a086-1ec67d01fcd2"
+   ],
+   "cost_total": 2549.87,
+   "flags": []
+  },
+  "416": {
+   "pp": "PP-416",
+   "purchase_orders": [
+    {
+     "consignment_id": "0f45a4d2-926b-11f1-a692-3ee3cd28643b",
+     "reference": "PO-8132",
+     "supplier_invoice": null,
+     "supplier": "GRANDEUR",
+     "status": "SENT",
+     "po_date": "2026-08-07T14:19:54+00:00",
+     "due_at": null,
+     "received_at": null,
+     "pp": "416",
+     "pp_candidates": [
+      "416"
+     ],
+     "lines": [
+      {
+       "product_id": "e89a4c08-17b3-4557-a409-37e23d5457ac",
+       "count": 551.86,
+       "received": 0.0,
+       "unit_cost": 2.59,
+       "cost_total": 1429.32,
+       "status": "SENT_SUCCESS",
+       "sku": "SPC-GRAN-0042",
+       "product_name": "GRNDLVP-SPC - Designer (Rhodes HB) Click | 5\" x 7mm x RL - 6.73sf/b"
+      },
+      {
+       "product_id": "4296996d-9d0d-c305-3a77-395996bba55c",
+       "count": 2.0,
+       "received": 0.0,
+       "unit_cost": 28.0,
+       "cost_total": 56.0,
+       "status": "SENT_SUCCESS",
+       "sku": "VRED",
+       "product_name": "VRED - Vinyl Reducer"
+      },
+      {
+       "product_id": "72ab89e7-6742-a28d-4ad3-a75a35d45916",
+       "count": 1.0,
+       "received": 0.0,
+       "unit_cost": 28.0,
+       "cost_total": 28.0,
+       "status": "SENT_SUCCESS",
+       "sku": "VTM",
+       "product_name": "VTM - Vinyl Tmoulding"
+      }
+     ]
+    }
+   ],
+   "po_ids": [
+    "0f45a4d2-926b-11f1-a692-3ee3cd28643b"
+   ],
+   "cost_total": 1513.32,
+   "flags": [
+    "not_yet_received"
+   ]
+  },
+  "417": {
+   "pp": "PP-417",
+   "purchase_orders": [
+    {
+     "consignment_id": "31a97caa-885d-11f1-a0ad-967f0ec4e598",
+     "reference": "PO-8119",
+     "supplier_invoice": null,
+     "supplier": "VIDAR",
+     "status": "SENT",
+     "po_date": "2026-07-25T19:15:27+00:00",
+     "due_at": null,
+     "received_at": null,
+     "pp": "417",
+     "pp_candidates": [
+      "417"
+     ],
+     "lines": [
+      {
+       "product_id": "21f1945d-2cdd-4788-9d38-4fb9db63b8b3",
+       "count": 1300.52,
+       "received": 0.0,
+       "unit_cost": 3.59,
+       "cost_total": 4668.87,
+       "status": "SENT_SUCCESS",
+       "sku": "ENG-VIDR-0018",
+       "product_name": "VIDENG - 6 American White Oak (Toffee Crunch) T&G | 6\" x 2mm x RL"
+      },
+      {
+       "product_id": "2501aa06-a6c4-4ff0-93a8-e7d9f919da91",
+       "count": 1041.0,
+       "received": 0.0,
+       "unit_cost": 1.59,
+       "cost_total": 1655.19,
+       "status": "SENT_SUCCESS",
+       "sku": "11401",
+       "product_name": "VIDVIN - VS084 Toffee Crunch 7\" x 60\" x 8mm 20.82sf/b"
+      }
+     ]
+    }
+   ],
+   "po_ids": [
+    "31a97caa-885d-11f1-a0ad-967f0ec4e598"
+   ],
+   "cost_total": 6324.06,
+   "flags": [
+    "not_yet_received"
+   ]
+  },
+  "439": {
+   "pp": "PP-439",
+   "purchase_orders": [
+    {
+     "consignment_id": "c58601a2-9689-11f1-b72a-ea3ed10e7c76",
+     "reference": "PO-8143",
+     "supplier_invoice": null,
+     "supplier": "VIDAR",
+     "status": "SENT",
+     "po_date": "2026-08-12T20:09:49+00:00",
+     "due_at": null,
+     "received_at": null,
+     "pp": "439",
+     "pp_candidates": [
+      "439"
+     ],
+     "lines": [
+      {
+       "product_id": "88281192-1cc6-44a6-be62-f339d975bf70",
+       "count": 1343.65,
+       "received": 0.0,
+       "unit_cost": 3.49,
+       "cost_total": 4689.34,
+       "status": "SENT_SUCCESS",
+       "sku": "ENG-VIDR-0190",
+       "product_name": "VIDENG - 7 European White Ash (Sunset) T&G | 7.5\" x 18mm x RL - 3mm top - 24.43sf/b"
+      }
+     ]
+    }
+   ],
+   "po_ids": [
+    "c58601a2-9689-11f1-b72a-ea3ed10e7c76"
+   ],
+   "cost_total": 4689.34,
+   "flags": [
+    "not_yet_received"
+   ]
+  },
+  "451": {
+   "pp": "PP-451",
+   "purchase_orders": [
+    {
+     "consignment_id": "c28dc0eb-a187-11f1-80b2-f6ceb5673db2",
+     "reference": "PO-8164",
+     "supplier_invoice": null,
+     "supplier": "EVERGREEN",
+     "status": "SENT",
+     "po_date": "2026-08-26T19:53:08+00:00",
+     "due_at": null,
+     "received_at": null,
+     "pp": "451",
+     "pp_candidates": [
+      "451"
+     ],
+     "lines": [
+      {
+       "product_id": "02dcd191-ae89-11e8-ed44-aa00b962aa3a",
+       "count": 1.0,
+       "received": 0.0,
+       "unit_cost": 15.0,
+       "cost_total": 15.0,
+       "status": "SENT_SUCCESS",
+       "sku": "LRED",
+       "product_name": "LRED - Laminate Reducer 8'"
+      },
+      {
+       "product_id": "02dcd191-ae89-11e8-ed44-aa00b9560b27",
+       "count": 1.0,
+       "received": 0.0,
+       "unit_cost": 15.0,
+       "cost_total": 15.0,
+       "status": "SENT_SUCCESS",
+       "sku": "LTM",
+       "product_name": "LTM - Laminate T Moulding 8'"
+      },
+      {
+       "product_id": "07a61449-f219-472f-9b21-594c7274c3ae",
+       "count": 582.3,
+       "received": 0.0,
+       "unit_cost": 1.79,
+       "cost_total": 1042.32,
+       "status": "SENT_SUCCESS",
+       "sku": "LAM-EVGR-72740",
+       "product_name": "EVGRLAM - Water Resistant 14mm (72740) Click | 9.4\" x 14mm x 60\" - 19.41sf/b"
+      }
+     ]
+    }
+   ],
+   "po_ids": [
+    "c28dc0eb-a187-11f1-80b2-f6ceb5673db2"
+   ],
+   "cost_total": 1072.32,
+   "flags": [
+    "not_yet_received"
+   ]
+  },
+  "456": {
+   "pp": "PP-456",
+   "purchase_orders": [
+    {
+     "consignment_id": "bb182e90-a0a2-11f1-b1dc-2ebce54ec7a0",
+     "reference": "PO-8162",
+     "supplier_invoice": null,
+     "supplier": "OLYMPIA TILE",
+     "status": "SENT",
+     "po_date": "2026-08-25T16:33:41+00:00",
+     "due_at": null,
+     "received_at": null,
+     "pp": "456",
+     "pp_candidates": [
+      "456"
+     ],
+     "lines": [
+      {
+       "product_id": "486bd6ab-cfd2-495f-9112-9d101096f4b0",
+       "count": 384.0,
+       "received": 0.0,
+       "unit_cost": 2.84,
+       "cost_total": 1090.56,
+       "status": "SENT_SUCCESS",
+       "sku": "HV.ES.CRM.1224.MT",
+       "product_name": "OLYMTIL - Empire Stone (CREAM OTHER COLOURS AVAILABLE)"
+      }
+     ]
+    },
+    {
+     "consignment_id": "2fa188aa-a0bd-11f1-b38b-426c2b93521d",
+     "reference": "PO-8163",
+     "supplier_invoice": null,
+     "supplier": "FLOORDI",
+     "status": "SENT",
+     "po_date": "2026-08-25T19:43:03+00:00",
+     "due_at": null,
+     "received_at": null,
+     "pp": "456",
+     "pp_candidates": [
+      "456"
+     ],
+     "lines": [
+      {
+       "product_id": "4acf5206-1cb4-4985-be10-199ef0aa4f39",
+       "count": 1256.25,
+       "received": 0.0,
+       "unit_cost": 1.99,
+       "cost_total": 2499.94,
+       "status": "SENT_SUCCESS",
+       "sku": "11470",
+       "product_name": "FLRDLVP-SPC - AVE Essential 803 (Warmth Oak) | 8mm 9\" x 60\" 18.75sf/b"
+      },
+      {
+       "product_id": "72ab89e7-6742-a28d-4ad3-a75a35d45916",
+       "count": 2.0,
+       "received": 0.0,
+       "unit_cost": 15.0,
+       "cost_total": 30.0,
+       "status": "SENT_SUCCESS",
+       "sku": "VTM",
+       "product_name": "VTM - Vinyl Tmoulding"
+      },
+      {
+       "product_id": "4296996d-9d0d-c305-3a77-395996bba55c",
+       "count": 2.0,
+       "received": 0.0,
+       "unit_cost": 15.0,
+       "cost_total": 30.0,
+       "status": "SENT_SUCCESS",
+       "sku": "VRED",
+       "product_name": "VRED - Vinyl Reducer"
+      }
+     ]
+    }
+   ],
+   "po_ids": [
+    "bb182e90-a0a2-11f1-b1dc-2ebce54ec7a0",
+    "2fa188aa-a0bd-11f1-b38b-426c2b93521d"
+   ],
+   "cost_total": 3650.5,
+   "flags": [
+    "not_yet_received",
+    "multiple_pos"
+   ]
+  },
+  "461": {
+   "pp": "PP-461",
+   "purchase_orders": [
+    {
+     "consignment_id": "d46ddcca-928f-11f1-b496-eab478ff51cf",
+     "reference": "PO-8135",
+     "supplier_invoice": null,
+     "supplier": "VIDAR",
+     "status": "SENT",
+     "po_date": "2026-08-07T18:43:06+00:00",
+     "due_at": null,
+     "received_at": null,
+     "pp": "461",
+     "pp_candidates": [
+      "461"
+     ],
+     "lines": [
+      {
+       "product_id": "cf7d0939-167e-4961-8cd5-ff3c67416cea",
+       "count": 1705.6,
+       "received": 0.0,
+       "unit_cost": 4.59,
+       "cost_total": 7828.7,
+       "status": "SENT_SUCCESS",
+       "sku": "ENG-VIDR-0023",
+       "product_name": "VIDENG - 6 American White Oak (Moon Light) T&G | 6\" x 2mm x RL"
+      }
+     ]
+    }
+   ],
+   "po_ids": [
+    "d46ddcca-928f-11f1-b496-eab478ff51cf"
+   ],
+   "cost_total": 7828.7,
+   "flags": [
+    "not_yet_received"
+   ]
+  },
+  "463": {
+   "pp": "PP-463",
+   "purchase_orders": [
+    {
+     "consignment_id": "a5e06787-abb7-11f1-9bd6-52e9d0e74850",
+     "reference": "PO-8186",
+     "supplier_invoice": null,
+     "supplier": "PURELUX",
+     "status": "SENT",
+     "po_date": "2026-09-08T19:01:07+00:00",
+     "due_at": null,
+     "received_at": null,
+     "pp": "463",
+     "pp_candidates": [
+      "463"
+     ],
+     "lines": [
+      {
+       "product_id": "22c41e0e-0ebf-4b1d-9723-4e29f39b5569",
+       "count": 880.04,
+       "received": 0.0,
+       "unit_cost": 3.19,
+       "cost_total": 2807.33,
+       "status": "SENT_SUCCESS",
+       "sku": "LVP-PLUX-0044",
+       "product_name": "PLUXLVP-SPC - Journey (Bellagio) Click | 7.2\" x 9mm x RL - 17.96sf/b"
+      },
+      {
+       "product_id": "4296996d-9d0d-c305-3a77-395996bba55c",
+       "count": 1.0,
+       "received": 0.0,
+       "unit_cost": 18.0,
+       "cost_total": 18.0,
+       "status": "SENT_SUCCESS",
+       "sku": "VRED",
+       "product_name": "VRED - Vinyl Reducer"
+      },
+      {
+       "product_id": "72ab89e7-6742-a28d-4ad3-a75a35d45916",
+       "count": 1.0,
+       "received": 0.0,
+       "unit_cost": 18.0,
+       "cost_total": 18.0,
+       "status": "SENT_SUCCESS",
+       "sku": "VTM",
+       "product_name": "VTM - Vinyl Tmoulding"
+      }
+     ]
+    }
+   ],
+   "po_ids": [
+    "a5e06787-abb7-11f1-9bd6-52e9d0e74850"
+   ],
+   "cost_total": 2843.33,
+   "flags": [
+    "not_yet_received"
+   ]
+  },
+  "470": {
+   "pp": "PP-470",
+   "purchase_orders": [
+    {
+     "consignment_id": "b6be28de-ad5d-11f1-a9ea-b2ea0279397b",
+     "reference": "PO-8190",
+     "supplier_invoice": null,
+     "supplier": "FLOORDI",
+     "status": "SENT",
+     "po_date": "2026-09-10T21:22:23+00:00",
+     "due_at": null,
+     "received_at": null,
+     "pp": "470",
+     "pp_candidates": [
+      "470"
+     ],
+     "lines": [
+      {
+       "product_id": "4163dced-3eff-45b4-8fe7-7be7220510b7",
+       "count": 506.25,
+       "received": 0.0,
+       "unit_cost": 1.99,
+       "cost_total": 1007.44,
+       "status": "SENT_SUCCESS",
+       "sku": "11478",
+       "product_name": "FLRDLVP-SPC - AVE Essential 806 (Comfort Walnut) | 8mm 9\" x 60\" 18.75sf/b"
+      },
+      {
+       "product_id": "72ab89e7-6742-a28d-4ad3-a75a35d45916",
+       "count": 1.0,
+       "received": 0.0,
+       "unit_cost": 15.0,
+       "cost_total": 15.0,
+       "status": "SENT_SUCCESS",
+       "sku": "VTM",
+       "product_name": "VTM - Vinyl Tmoulding"
+      },
+      {
+       "product_id": "4296996d-9d0d-c305-3a77-395996bba55c",
+       "count": 1.0,
+       "received": 0.0,
+       "unit_cost": 15.0,
+       "cost_total": 15.0,
+       "status": "SENT_SUCCESS",
+       "sku": "VRED",
+       "product_name": "VRED - Vinyl Reducer"
+      }
+     ]
+    }
+   ],
+   "po_ids": [
+    "b6be28de-ad5d-11f1-a9ea-b2ea0279397b"
+   ],
+   "cost_total": 1037.44,
+   "flags": [
+    "not_yet_received"
+   ]
+  },
+  "471": {
+   "pp": "PP-471",
+   "purchase_orders": [
+    {
+     "consignment_id": "80722974-bb7b-11f1-a028-1e59ce1cfc2f",
+     "reference": "PO-8213",
+     "supplier_invoice": null,
+     "supplier": "TRIFOREST",
+     "status": "SENT",
+     "po_date": "2026-09-28T20:30:53+00:00",
+     "due_at": null,
+     "received_at": null,
+     "pp": "471",
+     "pp_candidates": [
+      "471"
+     ],
+     "lines": [
+      {
+       "product_id": "84f5e4e8-6302-4073-9ddf-4e90339bf7d0",
+       "count": 54.39,
+       "received": 0.0,
+       "unit_cost": 2.09,
+       "cost_total": 113.68,
+       "status": "SENT_SUCCESS",
+       "sku": "LVP-TRIF-TFSPC603-F",
+       "product_name": "TRIFLVP-SPC - SPC6 Series (London) Click | 9\" x 8mm x RL - 18.13sf/b"
+      }
+     ]
+    }
+   ],
+   "po_ids": [
+    "80722974-bb7b-11f1-a028-1e59ce1cfc2f"
+   ],
+   "cost_total": 113.68,
+   "flags": [
+    "not_yet_received"
+   ]
+  }
+ },
+ "ambiguous_pp_pos": [
+  {
+   "consignment_id": "3b3308c3-adf6-11f1-a253-82e9411e9c50",
+   "reference": "PO-8191",
+   "po_date": "2026-09-11T15:34:09+00:00",
+   "pp_candidates": [
+    "471",
+    "488"
+   ]
+  }
+ ],
+ "product_po_cost": {
+  "803e98b8-148a-4764-876c-668e1e4c4e72": {
+   "unit_cost": 1.99,
+   "po_reference": "PO-8101",
+   "po_date": "2026-07-09T14:24:50+00:00",
+   "status": "SENT",
+   "supplier": "PURELUX"
+  },
+  "68dea42e-ab5f-46bc-961b-ef49e9915eab": {
+   "unit_cost": 1.39014,
+   "po_reference": "PO-7967",
+   "po_date": "2026-04-21T15:13:17+00:00",
+   "status": "RECEIVED",
+   "supplier": null
+  },
+  "72ab89e7-6742-a28d-4ad3-a75a35d45916": {
+   "unit_cost": 15.0,
+   "po_reference": "PO-8218",
+   "po_date": "2026-10-05T12:47:33+00:00",
+   "status": "SENT",
+   "supplier": "VIDAR"
+  },
+  "2f159ae0-e5b8-4728-bdd4-6d3aa7d1200b": {
+   "unit_cost": 5.59,
+   "po_reference": "PO-7952",
+   "po_date": "2026-04-10T20:35:49+00:00",
+   "status": "RECEIVED",
+   "supplier": "VIDAR"
+  },
+  "50255821-3a12-48f6-b641-09332e26f935": {
+   "unit_cost": 1.99,
+   "po_reference": "PO-7960",
+   "po_date": "2026-04-15T20:27:59+00:00",
+   "status": "RECEIVED",
+   "supplier": "FLOORS AT WORK"
+  },
+  "4296996d-9d0d-c305-3a77-395996bba55c": {
+   "unit_cost": 15.0,
+   "po_reference": "PO-8218",
+   "po_date": "2026-10-05T12:47:33+00:00",
+   "status": "SENT",
+   "supplier": "VIDAR"
+  },
+  "0f33fa41-96dc-4ca2-9055-25f71e9e00c8": {
+   "unit_cost": 1.89017,
+   "po_reference": "PO-7990",
+   "po_date": "2026-04-30T16:21:50+00:00",
+   "status": "RECEIVED",
+   "supplier": "PURELUX"
+  },
+  "302b7293-f21d-4cdd-b119-28752b2b4223": {
+   "unit_cost": 1.89,
+   "po_reference": "PO-7956",
+   "po_date": "2026-04-15T16:07:05+00:00",
+   "status": "RECEIVED",
+   "supplier": "FLOORS AT WORK"
+  },
+  "64d6e884-c5db-45cd-b130-7c29600d6de1": {
+   "unit_cost": 110.0,
+   "po_reference": "PO-7957",
+   "po_date": "2026-04-15T16:10:08+00:00",
+   "status": "RECEIVED",
+   "supplier": "KISENSE"
+  },
+  "175c81dd-fa74-4b4c-a94c-15abead9df31": {
+   "unit_cost": 1.42,
+   "po_reference": "PO-7958",
+   "po_date": "2026-04-15T16:37:55+00:00",
+   "status": "RECEIVED",
+   "supplier": "SIDCO"
+  },
+  "58f12465-7ea5-447c-b347-3b2a994d8bad": {
+   "unit_cost": 30.0,
+   "po_reference": "PO-7959",
+   "po_date": "2026-04-15T17:14:57+00:00",
+   "status": "RECEIVED",
+   "supplier": "SIDCO"
+  },
+  "ff35e6f2-fcc5-4f05-8f5f-7deee4704375": {
+   "unit_cost": 30.0,
+   "po_reference": "PO-7978",
+   "po_date": "2026-04-22T17:37:02+00:00",
+   "status": "SENT",
+   "supplier": "FLOORS AT WORK"
+  },
+  "99806a6f-89e6-4366-9dbd-291ed9f0a15a": {
+   "unit_cost": 4.9,
+   "po_reference": "PO-8187",
+   "po_date": "2026-09-08T20:44:49+00:00",
+   "status": "SENT",
+   "supplier": "FLOORS AT WORK"
+  },
+  "af3334ae-472f-4119-afab-7875870fb3dd": {
+   "unit_cost": 4.4,
+   "po_reference": "PO-7969",
+   "po_date": "2026-04-22T03:16:48+00:00",
+   "status": "SENT",
+   "supplier": "FLOORS AT WORK"
+  },
+  "6d414035-624c-4f1d-a7f4-36b13b21077d": {
+   "unit_cost": 4.49,
+   "po_reference": "PO-7971",
+   "po_date": "2026-04-22T14:20:29+00:00",
+   "status": "RECEIVED",
+   "supplier": "GREENTOUCH"
+  },
+  "3e8a988a-249f-4ba1-a14b-2f933261d4d8": {
+   "unit_cost": 2.09,
+   "po_reference": "PO-7976",
+   "po_date": "2026-04-22T15:56:20+00:00",
+   "status": "RECEIVED",
+   "supplier": "FLOORS AT WORK"
+  },
+  "0a6f6e36-8b89-11eb-f3d6-7e8ada82e31f": {
+   "unit_cost": 4.55,
+   "po_reference": "PO-7993",
+   "po_date": "2026-04-30T18:36:41+00:00",
+   "status": "RECEIVED",
+   "supplier": "BIYORK"
+  },
+  "c0dcb5f9-52b7-4cb0-8bf2-e5fef2151f3d": {
+   "unit_cost": 1.79,
+   "po_reference": "PO-7980",
+   "po_date": "2026-04-23T12:50:31+00:00",
+   "status": "RECEIVED",
+   "supplier": "TRIFOREST"
+  },
+  "884e281f-43e6-408b-8465-533211863070": {
+   "unit_cost": 1.39,
+   "po_reference": "PO-7981",
+   "po_date": "2026-04-23T17:29:24+00:00",
+   "status": "SENT",
+   "supplier": "FLOORS AT WORK"
+  },
+  "8f5ef2b5-a2c0-402c-959e-ff8519073fcc": {
+   "unit_cost": 1.94992,
+   "po_reference": "PO-7987",
+   "po_date": "2026-04-28T12:46:16+00:00",
+   "status": "RECEIVED",
+   "supplier": "SUNSHINY"
+  },
+  "02dcd191-ae89-11e8-ed44-bb6eb5865900": {
+   "unit_cost": 5.5,
+   "po_reference": "PO-7988",
+   "po_date": "2026-04-28T19:08:14+00:00",
+   "status": "RECEIVED",
+   "supplier": "VISTA"
+  },
+  "a9ede6ea-0daf-4967-9d4b-d9a42f95e091": {
+   "unit_cost": 4.94,
+   "po_reference": "PO-7989",
+   "po_date": "2026-04-28T19:12:10+00:00",
+   "status": "RECEIVED",
+   "supplier": "VISTA"
+  },
+  "02dcd191-ae89-11e8-ed44-a6ec1033b80f": {
+   "unit_cost": 1.85,
+   "po_reference": "PO-8176",
+   "po_date": "2026-09-02T15:05:04+00:00",
+   "status": "RECEIVED",
+   "supplier": "VISTA"
+  },
+  "31dee95d-e5f3-4b82-800d-1b2676eb70f1": {
+   "unit_cost": 5.5,
+   "po_reference": "PO-8176",
+   "po_date": "2026-09-02T15:05:04+00:00",
+   "status": "RECEIVED",
+   "supplier": "VISTA"
+  },
+  "17f13329-a8e6-444b-93c8-54901d98e7f1": {
+   "unit_cost": 1.74,
+   "po_reference": "PO-7992",
+   "po_date": "2026-04-30T17:13:04+00:00",
+   "status": "RECEIVED",
+   "supplier": "GRANDEUR"
+  },
+  "f698c981-6cb3-475e-bee4-a94803df0d55": {
+   "unit_cost": 1.1903,
+   "po_reference": "PO-7994",
+   "po_date": "2026-05-04T14:49:19+00:00",
+   "status": "RECEIVED",
+   "supplier": "SUNSHINY"
+  },
+  "02dcd191-ae89-11e8-ed44-aa00b962aa3a": {
+   "unit_cost": 15.0,
+   "po_reference": "PO-8219",
+   "po_date": "2026-10-05T13:08:23+00:00",
+   "status": "SENT",
+   "supplier": "VIZION"
+  },
+  "5318abfa-b2ac-4229-8b31-625e44c3be5b": {
+   "unit_cost": 2.59,
+   "po_reference": "PO-7995",
+   "po_date": "2026-05-04T15:11:44+00:00",
+   "status": "RECEIVED",
+   "supplier": "VIDAR"
+  },
+  "0a6f6e36-8b89-11eb-f3d6-7e8ac4853fae": {
+   "unit_cost": 5.25,
+   "po_reference": "PO-7996",
+   "po_date": "2026-05-04T15:39:58+00:00",
+   "status": "RECEIVED",
+   "supplier": "BELLA FLOORING PLUS"
+  },
+  "3f77016b-fff0-4cf2-bb54-194eaa4a7d80": {
+   "unit_cost": 18.65,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "02dcd191-ae89-11e8-ed44-c688ca1b4bde": {
+   "unit_cost": 3.92,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "0c881f7d-782a-4766-a8bc-3d90e008053a": {
+   "unit_cost": 5.07,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "317d994a-1070-4d9b-94d6-2f8b7821b7c4": {
+   "unit_cost": 17.01,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "01a7834e-1fc3-d433-3f4c-3629c77a4c28": {
+   "unit_cost": 16.88,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "4d352373-2f07-4854-b2f3-65a88a338b20": {
+   "unit_cost": 2.7,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "c9d79b05-d02f-bf52-62f4-8298b6960e68": {
+   "unit_cost": 2.07,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "d59b255c-d8ab-8170-deb9-b258f41b5f11": {
+   "unit_cost": 4.36,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "a1aba207-b0cd-c953-5039-5fea04cde811": {
+   "unit_cost": 2.21,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "8a129a9f-8a2c-476b-9850-e43711514bd7": {
+   "unit_cost": 6.15,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "956d7757-8773-483f-b61a-11f2665897d7": {
+   "unit_cost": 5.28,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "02dcd191-ae89-11e8-ed44-c688ca267704": {
+   "unit_cost": 4.0,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "9608bf92-b170-4755-bca5-b394f8b22194": {
+   "unit_cost": 1.91,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "dd158570-9a88-493d-8cbd-814d0fad5ba1": {
+   "unit_cost": 22.65,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "0c88a5a4-0615-1ad0-fd09-d219bd8b04ea": {
+   "unit_cost": 16.2,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "02dcd191-ae89-11e8-ed44-d94dbc974642": {
+   "unit_cost": 2.37,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "deac221e-741e-4842-8764-3502761d225d": {
+   "unit_cost": 2.37,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "02dcd191-ae89-11e8-ed44-c71741e77a47": {
+   "unit_cost": 4.91,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "02dcd191-ae89-11e8-ed44-c71741f9392d": {
+   "unit_cost": 4.98,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "cbdd87ed-f1c1-4d9a-9637-031a0417333a": {
+   "unit_cost": 3.73,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "74cdf306-11f9-4b47-99ec-e07a38011df0": {
+   "unit_cost": 0.71,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "1abd5cfc-376f-4ce7-937f-fe8554a4ec2b": {
+   "unit_cost": 4.19,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "a34a7ffa-d8c4-49e7-a0e3-80523c49e877": {
+   "unit_cost": 19.64,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "f3d44b2f-bc5f-944a-4603-9f8d5872b345": {
+   "unit_cost": 23.46,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "2dc3d08b-6bbb-1c3f-2201-21167efe4eaa": {
+   "unit_cost": 198.49,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "fdd23f1b-9d85-4482-89e0-e1eddc169827": {
+   "unit_cost": 12.54,
+   "po_reference": "PO-7999",
+   "po_date": "2026-05-06T14:58:17+00:00",
+   "status": "SENT",
+   "supplier": "TOOLWAY"
+  },
+  "e83ffd2a-8eeb-855b-1b33-bd9f832af60c": {
+   "unit_cost": 4.0,
+   "po_reference": "PO-8003",
+   "po_date": "2026-05-06T21:44:40+00:00",
+   "status": "RECEIVED",
+   "supplier": "TOOLWAY"
+  },
+  "02dcd191-ae89-11e9-ed44-2a32230bee5a": {
+   "unit_cost": 22.0,
+   "po_reference": "PO-8003",
+   "po_date": "2026-05-06T21:44:40+00:00",
+   "status": "RECEIVED",
+   "supplier": "TOOLWAY"
+  },
+  "02dcd191-ae89-11e8-ed44-a999cdc90d13": {
+   "unit_cost": 13.43,
+   "po_reference": "PO-8052",
+   "po_date": "2026-06-08T14:39:46+00:00",
+   "status": "SENT",
+   "supplier": null
+  },
+  "6cf15afc-5218-4454-ac58-f59bdc118cd2": {
+   "unit_cost": 7.0,
+   "po_reference": "PO-8005",
+   "po_date": "2026-05-12T18:11:18+00:00",
+   "status": "RECEIVED",
+   "supplier": "TANFU"
+  },
+  "02dcd191-ae89-11e8-ed44-cd895bcdf24c": {
+   "unit_cost": 8.99,
+   "po_reference": "PO-8005",
+   "po_date": "2026-05-12T18:11:18+00:00",
+   "status": "RECEIVED",
+   "supplier": "TANFU"
+  },
+  "701a8fcf-d35d-4f87-ae54-3b1542cc109c": {
+   "unit_cost": 10.99,
+   "po_reference": "PO-8005",
+   "po_date": "2026-05-12T18:11:18+00:00",
+   "status": "RECEIVED",
+   "supplier": "TANFU"
+  },
+  "0a6f6e36-8b89-11eb-f3d6-575bc4e9fd7c": {
+   "unit_cost": 6.5,
+   "po_reference": "PO-8007",
+   "po_date": "2026-05-12T18:22:01+00:00",
+   "status": "RECEIVED",
+   "supplier": "SUNLIGHT STAIR (VISTA)"
+  },
+  "02dcd191-ae89-11e8-ed44-d91ea0125c06": {
+   "unit_cost": 8.11,
+   "po_reference": "PO-8009",
+   "po_date": "2026-05-12T18:23:28+00:00",
+   "status": "RECEIVED",
+   "supplier": "SUPPLY59"
+  },
+  "12ab4989-5cdc-ed4a-978a-b3a6299b4d9e": {
+   "unit_cost": 2.65,
+   "po_reference": "PO-8009",
+   "po_date": "2026-05-12T18:23:28+00:00",
+   "status": "RECEIVED",
+   "supplier": "SUPPLY59"
+  },
+  "9dbc896e-8a20-48f1-b39c-cc549ce7920c": {
+   "unit_cost": 15.0,
+   "po_reference": "PO-8010",
+   "po_date": "2026-05-12T18:27:16+00:00",
+   "status": "RECEIVED",
+   "supplier": "JL TILE"
+  },
+  "0a6f6e36-8b89-11eb-f3d6-918aaa0a0898": {
+   "unit_cost": 1.59,
+   "po_reference": "PO-8011",
+   "po_date": "2026-05-12T18:37:55+00:00",
+   "status": "RECEIVED",
+   "supplier": null
+  },
+  "02dcd191-ae89-11e8-ed44-a6ec10c8925f": {
+   "unit_cost": 3.35,
+   "po_reference": "PO-8176",
+   "po_date": "2026-09-02T15:05:04+00:00",
+   "status": "RECEIVED",
+   "supplier": "VISTA"
+  },
+  "02dcd191-ae89-11e8-ed44-a6ec10dab68c": {
+   "unit_cost": 3.9,
+   "po_reference": "PO-8012",
+   "po_date": "2026-05-12T19:37:00+00:00",
+   "status": "RECEIVED",
+   "supplier": "VISTA"
+  },
+  "02dcd191-ae89-11e8-ed44-a6ec1058a265": {
+   "unit_cost": 2.59,
+   "po_reference": "PO-8080",
+   "po_date": "2026-06-29T19:31:59+00:00",
+   "status": "RECEIVED",
+   "supplier": "VISTA"
+  },
+  "02dcd191-ae89-11e8-ed44-a6ec1045de86": {
+   "unit_cost": 2.25,
+   "po_reference": "PO-8080",
+   "po_date": "2026-06-29T19:31:59+00:00",
+   "status": "RECEIVED",
+   "supplier": "VISTA"
+  },
+  "02dcd191-ae89-11e8-ed44-a6ec10ec9cc9": {
+   "unit_cost": 0.88,
+   "po_reference": "PO-8012",
+   "po_date": "2026-05-12T19:37:00+00:00",
+   "status": "RECEIVED",
+   "supplier": "VISTA"
+  },
+  "02dcd191-ae89-11e8-ed44-a6ec10fef61b": {
+   "unit_cost": 0.68,
+   "po_reference": "PO-8176",
+   "po_date": "2026-09-02T15:05:04+00:00",
+   "status": "RECEIVED",
+   "supplier": "VISTA"
+  },
+  "c52932dc-16ce-4c03-a2df-6d1c7fb7c38c": {
+   "unit_cost": 4.29,
+   "po_reference": "PO-8012",
+   "po_date": "2026-05-12T19:37:00+00:00",
+   "status": "RECEIVED",
+   "supplier": "VISTA"
+  },
+  "cf3fa6e5-b016-415d-888f-aae27b5c9d9e": {
+   "unit_cost": 4.19,
+   "po_reference": "PO-8012",
+   "po_date": "2026-05-12T19:37:00+00:00",
+   "status": "RECEIVED",
+   "supplier": "VISTA"
+  },
+  "e339c979-27cd-ee0d-8c10-32d0e0c04f3c": {
+   "unit_cost": 15.99,
+   "po_reference": "PO-8012",
+   "po_date": "2026-05-12T19:37:00+00:00",
+   "status": "RECEIVED",
+   "supplier": "VISTA"
+  },
+  "b9545a49-1f78-4d05-22cf-6f6eac4b0112": {
+   "unit_cost": 7.45,
+   "po_reference": "PO-8012",
+   "po_date": "2026-05-12T19:37:00+00:00",
+   "status": "RECEIVED",
+   "supplier": "VISTA"
+  },
+  "2501aa06-a6c4-4ff0-93a8-e7d9f919da91": {
+   "unit_cost": 1.59,
+   "po_reference": "PO-8119",
+   "po_date": "2026-07-25T19:15:27+00:00",
+   "status": "SENT",
+   "supplier": "VIDAR"
+  },
+  "79abe24b-cd82-4155-af4f-dae24b4f6225": {
+   "unit_cost": 10.68,
+   "po_reference": "PO-8082",
+   "po_date": "2026-06-29T19:38:20+00:00",
+   "status": "RECEIVED",
+   "supplier": "SUNLIGHT STAIR (VISTA)"
+  },
+  "0a6f6e36-8b89-11eb-f3d6-575bc7a3e77f": {
+   "unit_cost": 65.0,
+   "po_reference": "PO-8014",
+   "po_date": "2026-05-13T17:35:09+00:00",
+   "status": "RECEIVED",
+   "supplier": "SUNLIGHT STAIR (VISTA)"
+  },
+  "02dcd191-ae89-11e8-ed44-a6ec1122ac20": {
+   "unit_cost": 1.89,
+   "po_reference": "PO-8176",
+   "po_date": "2026-09-02T15:05:04+00:00",
+   "status": "RECEIVED",
+   "supplier": "VISTA"
+  },
+  "f82d2c53-1727-40f7-86f5-938cbc38d8a7": {
+   "unit_cost": 2.59,
+   "po_reference": "PO-8015",
+   "po_date": "2026-05-13T18:49:24+00:00",
+   "status": "RECEIVED",
+   "supplier": "VISTA"
+  },
+  "d40a9c89-a5e6-46db-abdf-94aafab09fab": {
+   "unit_cost": 4.09,
+   "po_reference": "PO-8079",
+   "po_date": "2026-06-29T18:20:06+00:00",
+   "status": "RECEIVED",
+   "supplier": "VISTA"
+  },
+  "02dcd191-ae89-11e8-ed44-aa00b8eab73e": {
+   "unit_cost": 0.65,
+   "po_reference": "PO-8016",
+   "po_date": "2026-05-13T19:13:49+00:00",
+   "status": "RECEIVED",
+   "supplier": "VISTA"
+  },
+  "9d802be9-02c6-423f-b836-7b94387dbd11": {
+   "unit_cost": 3.09,
+   "po_reference": "PO-8018",
+   "po_date": "2026-05-15T12:56:27+00:00",
+   "status": "RECEIVED",
+   "supplier": "VIDAR"
+  },
+  "ace56549-171d-4212-9948-84dc83f0b6da": {
+   "unit_cost": 1.74984,
+   "po_reference": "PO-8020",
+   "po_date": "2026-05-19T13:44:45+00:00",
+   "status": "RECEIVED",
+   "supplier": "SUNSHINY"
+  },
+  "b2e7aa10-4ad4-402c-ba34-ca1bff42c797": {
+   "unit_cost": 1.99009,
+   "po_reference": "PO-8021",
+   "po_date": "2026-05-21T14:57:34+00:00",
+   "status": "RECEIVED",
+   "supplier": "PURELUX"
+  },
+  "d528c3eb-52b3-416f-85d4-c1d7589a5cd4": {
+   "unit_cost": 4.39,
+   "po_reference": "PO-8023",
+   "po_date": "2026-05-25T17:45:14+00:00",
+   "status": "RECEIVED",
+   "supplier": "VIDAR"
+  },
+  "66ad1205-fec8-452b-8239-7990a8e37a9f": {
+   "unit_cost": 5.79,
+   "po_reference": "PO-8024",
+   "po_date": "2026-05-25T18:25:48+00:00",
+   "status": "RECEIVED",
+   "supplier": "VIDAR"
+  },
+  "cf9b3979-38dc-462f-a540-b2c9bb83613d": {
+   "unit_cost": 1.99,
+   "po_reference": "PO-8026",
+   "po_date": "2026-05-26T20:56:38+00:00",
+   "status": "RECEIVED",
+   "supplier": "PURELUX"
+  },
+  "d3a51790-95da-4b09-9421-905b25bc3209": {
+   "unit_cost": 4.56,
+   "po_reference": "PO-8160",
+   "po_date": "2026-08-21T14:19:23+00:00",
+   "status": "SENT",
+   "supplier": "TRIFOREST"
+  },
+  "930070d8-a8de-4dcc-84f0-05ed8ba972a1": {
+   "unit_cost": 2.89,
+   "po_reference": "PO-8028",
+   "po_date": "2026-05-28T15:23:33+00:00",
+   "status": "RECEIVED",
+   "supplier": "VIDAR"
+  },
+  "197920de-c29b-42bb-bab0-5339cb7d3040": {
+   "unit_cost": 1.79,
+   "po_reference": "PO-8215",
+   "po_date": "2026-09-29T13:25:57+00:00",
+   "status": "SENT",
+   "supplier": "VIDAR"
+  },
+  "bfb40473-40ff-4e45-9616-eeca1bb4a389": {
+   "unit_cost": 4.1087,
+   "po_reference": "PO-8030",
+   "po_date": "2026-05-29T13:15:34+00:00",
+   "status": "RECEIVED",
+   "supplier": "MSI"
+  },
+  "44e7f8c0-72e7-42fc-b230-5af13e87cff8": {
+   "unit_cost": 3.0351,
+   "po_reference": "PO-8030",
+   "po_date": "2026-05-29T13:15:34+00:00",
+   "status": "RECEIVED",
+   "supplier": "MSI"
+  },
+  "0762d89e-81bf-4088-a089-8adae7b0bef2": {
+   "unit_cost": 2.29,
+   "po_reference": "PO-8053",
+   "po_date": "2026-06-08T19:52:53+00:00",
+   "status": "SENT",
+   "supplier": "GRANDEUR"
+  },
+  "88eda57f-ef47-43ba-bcf2-7e922fed458b": {
+   "unit_cost": 2.15,
+   "po_reference": "PO-8036",
+   "po_date": "2026-05-29T15:57:37+00:00",
+   "status": "RECEIVED",
+   "supplier": null
+  },
+  "5b1e354b-a2c6-4ea1-90dd-4850a3a384a0": {
+   "unit_cost": 115.0,
+   "po_reference": "PO-8037",
+   "po_date": "2026-05-29T17:29:22+00:00",
+   "status": "SENT",
+   "supplier": "FLOORS AT WORK"
+  },
+  "397b4327-87f6-4544-bd63-1f48ef54a705": {
+   "unit_cost": 115.0,
+   "po_reference": "PO-8037",
+   "po_date": "2026-05-29T17:29:22+00:00",
+   "status": "SENT",
+   "supplier": "FLOORS AT WORK"
+  },
+  "94b8492b-5c24-41ad-84d8-f687a1a6d215": {
+   "unit_cost": 1.89,
+   "po_reference": "PO-8038",
+   "po_date": "2026-05-29T17:34:03+00:00",
+   "status": "RECEIVED",
+   "supplier": "GRANDEUR"
+  },
+  "02dcd191-ae89-11e8-ed44-aa00b9560b27": {
+   "unit_cost": 15.0,
+   "po_reference": "PO-8164",
+   "po_date": "2026-08-26T19:53:08+00:00",
+   "status": "SENT",
+   "supplier": "EVERGREEN"
+  },
+  "99f8d861-3ab9-418f-a9cd-8680956276a1": {
+   "unit_cost": 1.99025,
+   "po_reference": "PO-8040",
+   "po_date": "2026-05-30T19:05:15+00:00",
+   "status": "RECEIVED",
+   "supplier": "PURELUX"
+  },
+  "e6f9e066-76f7-4c40-b3d0-eee358f14a31": {
+   "unit_cost": 4.1,
+   "po_reference": "PO-8042",
+   "po_date": "2026-06-01T12:22:27+00:00",
+   "status": "SENT",
+   "supplier": "BELLA FLOORING PLUS"
+  },
+  "0a6f6e36-8b89-11eb-f3d6-7e8b6c7dd82d": {
+   "unit_cost": 3.69,
+   "po_reference": "PO-8043",
+   "po_date": "2026-06-01T16:41:46+00:00",
+   "status": "RECEIVED",
+   "supplier": "GRANDEUR"
+  },
+  "abed089e-710d-437a-8084-b2d7df389ac0": {
+   "unit_cost": 4.79,
+   "po_reference": "PO-8044",
+   "po_date": "2026-06-02T14:11:35+00:00",
+   "status": "RECEIVED",
+   "supplier": "VIDAR"
+  },
+  "34429e85-ed38-4d10-b4ed-ecf9807c5d43": {
+   "unit_cost": 1.95,
+   "po_reference": "PO-8216",
+   "po_date": "2026-09-29T17:06:00+00:00",
+   "status": "SENT",
+   "supplier": "SUNSHINY"
+  },
+  "3d768651-4a7c-495b-8634-c7fbec852c2d": {
+   "unit_cost": 3.73,
+   "po_reference": "PO-8046",
+   "po_date": "2026-06-03T19:19:19+00:00",
+   "status": "RECEIVED",
+   "supplier": "OLYMPIA TILE"
+  },
+  "1a2d73d9-1a0c-4b91-a79b-a96f656c7e87": {
+   "unit_cost": 4.15,
+   "po_reference": "PO-8046",
+   "po_date": "2026-06-03T19:19:19+00:00",
+   "status": "RECEIVED",
+   "supplier": "OLYMPIA TILE"
+  },
+  "02dcd191-ae89-11e8-ed44-a7e81b7fe5f5": {
+   "unit_cost": 13.75,
+   "po_reference": "PO-8095",
+   "po_date": "2026-07-08T13:24:35+00:00",
+   "status": "RECEIVED",
+   "supplier": "OLYMPIA TILE"
+  },
+  "bd9615e4-296e-4190-962f-cc8b95e77c6c": {
+   "unit_cost": 4.39,
+   "po_reference": "PO-8047",
+   "po_date": "2026-06-03T19:32:47+00:00",
+   "status": "RECEIVED",
+   "supplier": "VIDAR"
+  },
+  "ad370c0c-6a5e-4963-a951-fd2919bb817b": {
+   "unit_cost": 113.72,
+   "po_reference": "PO-8202",
+   "po_date": "2026-09-16T18:53:51+00:00",
+   "status": "SENT",
+   "supplier": "PTX GROUP"
+  },
+  "96a75366-501b-4823-99b2-8c80b6fb154e": {
+   "unit_cost": 108.03,
+   "po_reference": "PO-8048",
+   "po_date": "2026-06-04T16:10:51+00:00",
+   "status": "SENT",
+   "supplier": "PTX GROUP"
+  },
+  "7b8c90fd-781b-4aa6-b773-79a31f8d7b35": {
+   "unit_cost": 25.2,
+   "po_reference": "PO-8203",
+   "po_date": "2026-09-17T12:57:02+00:00",
+   "status": "SENT",
+   "supplier": "PBS"
+  },
+  "024d760c-889d-4be0-9503-0fc8694c0c1b": {
+   "unit_cost": 13.41,
+   "po_reference": "PO-8225",
+   "po_date": "2026-10-05T21:12:44+00:00",
+   "status": "SENT",
+   "supplier": "PBS"
+  },
+  "02dcd191-ae89-11e8-ed44-a999ce01039c": {
+   "unit_cost": 6.55,
+   "po_reference": "PO-8052",
+   "po_date": "2026-06-08T14:39:46+00:00",
+   "status": "SENT",
+   "supplier": null
+  },
+  "0a6f6e36-8b89-11eb-f3d6-7e8abb82170c": {
+   "unit_cost": 4.89,
+   "po_reference": "PO-8055",
+   "po_date": "2026-06-09T13:49:24+00:00",
+   "status": "RECEIVED",
+   "supplier": "BELLA FLOORING PLUS"
+  },
+  "f1819d84-e1d0-459d-a46d-05b341071e4e": {
+   "unit_cost": 7.22,
+   "po_reference": "PO-8056",
+   "po_date": "2026-06-09T14:22:16+00:00",
+   "status": "SENT",
+   "supplier": "PROSOL"
+  },
+  "67b2f64b-4ae5-490f-a64a-bd8129b7581d": {
+   "unit_cost": 4.79,
+   "po_reference": "PO-8094",
+   "po_date": "2026-07-07T19:55:35+00:00",
+   "status": "SENT",
+   "supplier": "GRANDEUR"
+  },
+  "0a6f6e36-8b89-11eb-f3d6-7e8abb5689da": {
+   "unit_cost": 4.5,
+   "po_reference": "PO-8111",
+   "po_date": "2026-07-17T17:33:03+00:00",
+   "status": "RECEIVED",
+   "supplier": "BELLA FLOORING PLUS"
+  },
+  "bdc0ce5d-4416-c913-fc22-a57baa4159dd": {
+   "unit_cost": 27.49,
+   "po_reference": "PO-8060",
+   "po_date": "2026-06-11T16:15:19+00:00",
+   "status": "RECEIVED",
+   "supplier": "AA"
+  },
+  "161ea3c3-c0a8-45e0-8922-c99140b7933a": {
+   "unit_cost": 1.69005,
+   "po_reference": "PO-8062",
+   "po_date": "2026-06-16T13:09:04+00:00",
+   "status": "RECEIVED",
+   "supplier": "TRIFOREST"
+  },
+  "dae5390e-2101-4777-ad33-6b08d2aae6d1": {
+   "unit_cost": 4.12,
+   "po_reference": "PO-8064",
+   "po_date": "2026-06-17T17:16:48+00:00",
+   "status": "RECEIVED",
+   "supplier": "BIYORK"
+  },
+  "3394cbc9-d074-4400-a4f5-64bb82f0d404": {
+   "unit_cost": 2.39,
+   "po_reference": "PO-8155",
+   "po_date": "2026-08-19T21:36:08+00:00",
+   "status": "SENT",
+   "supplier": "FLOORDI"
+  },
+  "40f7daef-9cb8-411b-a8b1-90cfbbe55db9": {
+   "unit_cost": 5.09,
+   "po_reference": "PO-8095",
+   "po_date": "2026-07-08T13:24:35+00:00",
+   "status": "RECEIVED",
+   "supplier": "OLYMPIA TILE"
+  },
+  "c32c3cee-34b6-4e30-9506-aa7085eed4fc": {
+   "unit_cost": 4.49,
+   "po_reference": "PO-8066",
+   "po_date": "2026-06-20T19:42:19+00:00",
+   "status": "RECEIVED",
+   "supplier": "OLYMPIA TILE"
+  },
+  "4ff1084d-c91f-4eaf-a57e-60a1be1dec3e": {
+   "unit_cost": 12.53,
+   "po_reference": "PO-8066",
+   "po_date": "2026-06-20T19:42:19+00:00",
+   "status": "RECEIVED",
+   "supplier": "OLYMPIA TILE"
+  },
+  "7d18858b-001a-4618-8d93-16550ea5f4e8": {
+   "unit_cost": 5.69,
+   "po_reference": "PO-8070",
+   "po_date": "2026-06-25T18:58:15+00:00",
+   "status": "SENT",
+   "supplier": "BELLA FLOORING PLUS"
+  },
+  "81e185ca-7a16-4d8b-a3e1-c81efb9c8688": {
+   "unit_cost": 1.59,
+   "po_reference": "PO-8108",
+   "po_date": "2026-07-15T18:22:35+00:00",
+   "status": "RECEIVED",
+   "supplier": null
+  },
+  "f00032c6-783d-45be-ad61-b03e55c3d03c": {
+   "unit_cost": 1.49,
+   "po_reference": "PO-8074",
+   "po_date": "2026-06-29T12:27:17+00:00",
+   "status": "SENT",
+   "supplier": "VIDAR"
+  },
+  "fd82043c-30cf-4e31-b8e3-56fc08b29661": {
+   "unit_cost": 28.83,
+   "po_reference": "PO-8076",
+   "po_date": "2026-06-29T15:02:35+00:00",
+   "status": "RECEIVED",
+   "supplier": "PBS"
+  },
+  "ff3c0697-bd12-4b70-a744-7a9c9ed8667d": {
+   "unit_cost": 10.0,
+   "po_reference": "PO-8175",
+   "po_date": "2026-09-02T14:58:33+00:00",
+   "status": "RECEIVED",
+   "supplier": "GALAXY"
+  },
+  "6f0b7e94-7145-40df-b1f0-106611245f88": {
+   "unit_cost": 2.28,
+   "po_reference": "PO-8080",
+   "po_date": "2026-06-29T19:31:59+00:00",
+   "status": "RECEIVED",
+   "supplier": "VISTA"
+  },
+  "583838dc-421e-4dd5-9448-6dc5d073a1e1": {
+   "unit_cost": 2.55,
+   "po_reference": "PO-8083",
+   "po_date": "2026-06-30T20:20:58+00:00",
+   "status": "RECEIVED",
+   "supplier": "SUNSHINY"
+  },
+  "06564601-23d4-4f4a-819e-0f324430109a": {
+   "unit_cost": 2.99,
+   "po_reference": "PO-8086",
+   "po_date": "2026-07-03T17:23:07+00:00",
+   "status": "RECEIVED",
+   "supplier": "VIDAR"
+  },
+  "059dbd53-abe9-42c7-a8aa-8a66af4ab571": {
+   "unit_cost": 5.5,
+   "po_reference": "PO-8087",
+   "po_date": "2026-07-06T14:29:34+00:00",
+   "status": "SENT",
+   "supplier": "JL TILE"
+  },
+  "3c8ab5f8-faeb-4d71-9e50-8148e7f88998": {
+   "unit_cost": 1.39,
+   "po_reference": "PO-8131",
+   "po_date": "2026-08-07T13:07:38+00:00",
+   "status": "SENT",
+   "supplier": null
+  },
+  "81814c86-576c-413d-8803-2a7ccf9911d5": {
+   "unit_cost": 25.0,
+   "po_reference": "PO-8090",
+   "po_date": "2026-07-06T17:15:09+00:00",
+   "status": "RECEIVED",
+   "supplier": null
+  },
+  "f3455b51-a630-4dc4-8bed-95498718f217": {
+   "unit_cost": 5.5,
+   "po_reference": "PO-8092",
+   "po_date": "2026-07-07T14:58:19+00:00",
+   "status": "SENT",
+   "supplier": "JL TILE"
+  },
+  "02dcd191-ae89-11e8-ed44-a7e81b9aa7c6": {
+   "unit_cost": 15.6,
+   "po_reference": "PO-8095",
+   "po_date": "2026-07-08T13:24:35+00:00",
+   "status": "RECEIVED",
+   "supplier": "OLYMPIA TILE"
+  },
+  "02dcd191-ae89-11e8-ed44-a7e8292e9f7d": {
+   "unit_cost": 14.95,
+   "po_reference": "PO-8095",
+   "po_date": "2026-07-08T13:24:35+00:00",
+   "status": "RECEIVED",
+   "supplier": "OLYMPIA TILE"
+  },
+  "0a6f6e36-8b89-11eb-f3d6-7e8b6d4e7c57": {
+   "unit_cost": 3.59,
+   "po_reference": "PO-8097",
+   "po_date": "2026-07-08T14:55:48+00:00",
+   "status": "RECEIVED",
+   "supplier": "GRANDEUR"
+  },
+  "020fe1af-be47-4b82-9729-e460f7c9ca65": {
+   "unit_cost": 5.6,
+   "po_reference": "PO-8098",
+   "po_date": "2026-07-08T16:07:16+00:00",
+   "status": "RECEIVED",
+   "supplier": "TRIFOREST"
+  },
+  "0a6f6e36-8b89-11eb-f3d6-7e8bfb74368a": {
+   "unit_cost": 5.99,
+   "po_reference": "PO-8099",
+   "po_date": "2026-07-08T19:04:22+00:00",
+   "status": "SENT",
+   "supplier": "TOSCA"
+  },
+  "ccfaf7cc-4305-4780-a780-3b55015921b8": {
+   "unit_cost": 1.39,
+   "po_reference": "PO-8100",
+   "po_date": "2026-07-09T13:46:18+00:00",
+   "status": "RECEIVED",
+   "supplier": null
+  },
+  "d6f96d1b-f923-4dcf-b69c-3518f64b726a": {
+   "unit_cost": 5.89,
+   "po_reference": "PO-8102",
+   "po_date": "2026-07-09T16:41:29+00:00",
+   "status": "RECEIVED",
+   "supplier": "GRANDEUR"
+  },
+  "9534d7a0-b3e4-422c-b14a-57bab13c9689": {
+   "unit_cost": 3.79,
+   "po_reference": "PO-8115",
+   "po_date": "2026-07-20T14:34:03+00:00",
+   "status": "SENT",
+   "supplier": "FLOORS AT WORK"
+  },
+  "407335f8-c99c-4c97-9ee9-f3184e1cbc7f": {
+   "unit_cost": 1.5,
+   "po_reference": "PO-8109",
+   "po_date": "2026-07-15T18:36:04+00:00",
+   "status": "RECEIVED",
+   "supplier": "TRIFOREST"
+  },
+  "5b6f1f13-dd80-4de1-ba3d-fa87b07b7bd1": {
+   "unit_cost": 16.0,
+   "po_reference": "PO-8109",
+   "po_date": "2026-07-15T18:36:04+00:00",
+   "status": "RECEIVED",
+   "supplier": "TRIFOREST"
+  },
+  "28846b3e-5ee3-4495-964c-0ebf81d84ae9": {
+   "unit_cost": 16.0,
+   "po_reference": "PO-8109",
+   "po_date": "2026-07-15T18:36:04+00:00",
+   "status": "RECEIVED",
+   "supplier": "TRIFOREST"
+  },
+  "036904dc-9851-4e1c-9cc8-3a8c6368cbc4": {
+   "unit_cost": 4.69,
+   "po_reference": "PO-8161",
+   "po_date": "2026-08-24T13:37:57+00:00",
+   "status": "SENT",
+   "supplier": "GREENTOUCH"
+  },
+  "c0fd6298-027b-4c99-bdd8-9bb48c77b6f8": {
+   "unit_cost": 4.49,
+   "po_reference": "PO-8134",
+   "po_date": "2026-08-07T15:07:55+00:00",
+   "status": "SENT",
+   "supplier": "GREENTOUCH"
+  },
+  "a289c98c-cbe9-43b4-987c-77bc9abcd21b": {
+   "unit_cost": 3.59,
+   "po_reference": "PO-8154",
+   "po_date": "2026-08-19T18:50:16+00:00",
+   "status": "SENT",
+   "supplier": "WODEN"
+  },
+  "0a6f6e36-8b89-11eb-f3d6-7e8bd303b4bc": {
+   "unit_cost": 1.29,
+   "po_reference": "PO-8117",
+   "po_date": "2026-07-22T20:03:39+00:00",
+   "status": "SENT",
+   "supplier": "TRIFOREST"
+  },
+  "21f1945d-2cdd-4788-9d38-4fb9db63b8b3": {
+   "unit_cost": 3.59,
+   "po_reference": "PO-8218",
+   "po_date": "2026-10-05T12:47:33+00:00",
+   "status": "SENT",
+   "supplier": "VIDAR"
+  },
+  "84b45ce0-e7c2-458f-b10f-311ee03314d2": {
+   "unit_cost": 1.95,
+   "po_reference": "PO-8120",
+   "po_date": "2026-07-29T12:17:55+00:00",
+   "status": "RECEIVED",
+   "supplier": "SUNSHINY"
+  },
+  "0a6f6e36-8b89-11eb-f3d6-7e8a35a002ab": {
+   "unit_cost": 1.65,
+   "po_reference": "PO-8121",
+   "po_date": "2026-07-30T12:05:26+00:00",
+   "status": "RECEIVED",
+   "supplier": "SUNSHINY"
+  },
+  "957b9a9f-5384-4d45-b52f-e71a5a0a20fd": {
+   "unit_cost": 3.79,
+   "po_reference": "PO-8122",
+   "po_date": "2026-07-31T15:47:04+00:00",
+   "status": "SENT",
+   "supplier": "TRIFOREST"
+  },
+  "9b001b39-af9f-4952-8864-ecdde012f806": {
+   "unit_cost": 1.49,
+   "po_reference": "PO-8123",
+   "po_date": "2026-08-01T21:05:52+00:00",
+   "status": "RECEIVED",
+   "supplier": "VIDAR"
+  },
+  "02dcd191-ae89-11e8-ed44-aa00b96f90a7": {
+   "unit_cost": 22.0,
+   "po_reference": "PO-8123",
+   "po_date": "2026-08-01T21:05:52+00:00",
+   "status": "RECEIVED",
+   "supplier": "VIDAR"
+  },
+  "0a6f6e36-8b89-11eb-f3d6-7e8a4afa8966": {
+   "unit_cost": 1.09,
+   "po_reference": "PO-8136",
+   "po_date": "2026-08-07T18:57:27+00:00",
+   "status": "SENT",
+   "supplier": "TOSCA"
+  },
+  "aa04f5d2-7004-4cfe-908f-368caae07c9b": {
+   "unit_cost": 2.77,
+   "po_reference": "PO-8126",
+   "po_date": "2026-08-04T18:01:31+00:00",
+   "status": "RECEIVED",
+   "supplier": null
+  },
+  "fefaa978-42a4-4523-ad99-a18852b415b0": {
+   "unit_cost": 1.69,
+   "po_reference": "PO-8210",
+   "po_date": "2026-09-21T18:30:00+00:00",
+   "status": "SENT",
+   "supplier": "VIDAR"
+  },
+  "9015591d-8b27-4690-acd0-1682a3dff0b1": {
+   "unit_cost": 1.59,
+   "po_reference": "PO-8130",
+   "po_date": "2026-08-06T18:20:28+00:00",
+   "status": "RECEIVED",
+   "supplier": "VIDAR"
+  },
+  "e89a4c08-17b3-4557-a409-37e23d5457ac": {
+   "unit_cost": 2.59,
+   "po_reference": "PO-8132",
+   "po_date": "2026-08-07T14:19:54+00:00",
+   "status": "SENT",
+   "supplier": "GRANDEUR"
+  },
+  "cf7d0939-167e-4961-8cd5-ff3c67416cea": {
+   "unit_cost": 4.59,
+   "po_reference": "PO-8135",
+   "po_date": "2026-08-07T18:43:06+00:00",
+   "status": "SENT",
+   "supplier": "VIDAR"
+  },
+  "29df811e-1ab4-420f-8972-08aeccfd1a98": {
+   "unit_cost": 3.09,
+   "po_reference": "PO-8198",
+   "po_date": "2026-09-15T15:30:18+00:00",
+   "status": "SENT",
+   "supplier": "VIDAR"
+  },
+  "bab0dd45-686c-43c0-bc9e-4569951a7845": {
+   "unit_cost": 1.59,
+   "po_reference": "PO-8204",
+   "po_date": "2026-09-17T13:39:34+00:00",
+   "status": "SENT",
+   "supplier": "VIDAR"
+  },
+  "db945f46-7b21-4559-9cfe-9ea149d941f3": {
+   "unit_cost": 1.45,
+   "po_reference": "PO-8141",
+   "po_date": "2026-08-12T19:40:24+00:00",
+   "status": "RECEIVED",
+   "supplier": "HARDWOOD GIANT"
+  },
+  "88281192-1cc6-44a6-be62-f339d975bf70": {
+   "unit_cost": 3.49,
+   "po_reference": "PO-8143",
+   "po_date": "2026-08-12T20:09:49+00:00",
+   "status": "SENT",
+   "supplier": "VIDAR"
+  },
+  "3eb9a1b6-d072-4bc8-bf82-e0e2d2f0ecd9": {
+   "unit_cost": 3.39,
+   "po_reference": "PO-8144",
+   "po_date": "2026-08-13T20:24:11+00:00",
+   "status": "SENT",
+   "supplier": "TOSCA"
+  },
+  "97d56a05-fc2c-48fa-a16f-36323cfa9ddb": {
+   "unit_cost": 1.49,
+   "po_reference": "PO-8222",
+   "po_date": "2026-10-05T14:58:34+00:00",
+   "status": "SENT",
+   "supplier": "WODEN"
+  },
+  "0a6f6e36-8b89-11eb-f3d6-7e8aa3460a1b": {
+   "unit_cost": 4.82,
+   "po_reference": "PO-8147",
+   "po_date": "2026-08-15T21:00:30+00:00",
+   "status": "RECEIVED",
+   "supplier": "OLYMPIA TILE"
+  },
+  "4f12e7df-9579-4d76-9f9a-493cc4b568d3": {
+   "unit_cost": 1.59,
+   "po_reference": "PO-8148",
+   "po_date": "2026-08-18T19:23:43+00:00",
+   "status": "RECEIVED",
+   "supplier": "VIDAR"
+  },
+  "633d931e-67d1-438e-adae-b0227f161ddd": {
+   "unit_cost": 1.69,
+   "po_reference": "PO-8148",
+   "po_date": "2026-08-18T19:23:43+00:00",
+   "status": "RECEIVED",
+   "supplier": "VIDAR"
+  },
+  "946f5afb-4bb6-495b-bf01-2d8a36ad672a": {
+   "unit_cost": 5.39,
+   "po_reference": "PO-8150",
+   "po_date": "2026-08-18T21:47:19+00:00",
+   "status": "SENT",
+   "supplier": "GRANDEUR"
+  },
+  "b7ca136a-f6b9-467d-b990-1b20dc6d948b": {
+   "unit_cost": 3.59,
+   "po_reference": "PO-8153",
+   "po_date": "2026-08-18T22:23:04+00:00",
+   "status": "SENT",
+   "supplier": "GREENTOUCH"
+  },
+  "0dc201d1-2d2c-42dc-a72d-0d86253414ef": {
+   "unit_cost": 1.19,
+   "po_reference": "PO-8156",
+   "po_date": "2026-08-20T18:16:54+00:00",
+   "status": "SENT",
+   "supplier": "SUNSHINY"
+  },
+  "486bd6ab-cfd2-495f-9112-9d101096f4b0": {
+   "unit_cost": 2.84,
+   "po_reference": "PO-8162",
+   "po_date": "2026-08-25T16:33:41+00:00",
+   "status": "SENT",
+   "supplier": "OLYMPIA TILE"
+  },
+  "4acf5206-1cb4-4985-be10-199ef0aa4f39": {
+   "unit_cost": 1.99,
+   "po_reference": "PO-8163",
+   "po_date": "2026-08-25T19:43:03+00:00",
+   "status": "SENT",
+   "supplier": "FLOORDI"
+  },
+  "07a61449-f219-472f-9b21-594c7274c3ae": {
+   "unit_cost": 1.79,
+   "po_reference": "PO-8164",
+   "po_date": "2026-08-26T19:53:08+00:00",
+   "status": "SENT",
+   "supplier": "EVERGREEN"
+  },
+  "876a98e5-9e7a-459c-a96c-c91f05ac96be": {
+   "unit_cost": 11.9,
+   "po_reference": "PO-8165",
+   "po_date": "2026-08-26T22:05:57+00:00",
+   "status": "SENT",
+   "supplier": "TRIFOREST"
+  },
+  "0a6f6e36-8b89-11eb-f3d6-7e8c0772e188": {
+   "unit_cost": 5.72,
+   "po_reference": "PO-8166",
+   "po_date": "2026-08-31T20:33:09+00:00",
+   "status": "SENT",
+   "supplier": "OLYMPIA TILE"
+  },
+  "7c5064ac-0cc2-4e24-9f19-3fe49b8e5614": {
+   "unit_cost": 2.2,
+   "po_reference": "PO-8166",
+   "po_date": "2026-08-31T20:33:09+00:00",
+   "status": "SENT",
+   "supplier": "OLYMPIA TILE"
+  },
+  "20b106eb-04ab-4012-a942-790a2886112a": {
+   "unit_cost": 1.69,
+   "po_reference": "PO-8168",
+   "po_date": "2026-08-31T21:20:23+00:00",
+   "status": "SENT",
+   "supplier": "TOSCA"
+  },
+  "0a6f6e36-8b89-11eb-f3d6-575bc387e8f4": {
+   "unit_cost": 6.89,
+   "po_reference": "PO-8205",
+   "po_date": "2026-09-17T16:12:01+00:00",
+   "status": "RECEIVED",
+   "supplier": "ZION"
+  },
+  "0a6f6e36-8b89-11eb-f3d6-575bc5189e23": {
+   "unit_cost": 1.42,
+   "po_reference": "PO-8172",
+   "po_date": "2026-09-02T14:32:30+00:00",
+   "status": "RECEIVED",
+   "supplier": "ZION"
+  },
+  "d9292a7f-3d1b-4b1e-af32-cb56edda862d": {
+   "unit_cost": 14.39,
+   "po_reference": "PO-8170",
+   "po_date": "2026-09-02T14:12:58+00:00",
+   "status": "RECEIVED",
+   "supplier": "ZION"
+  },
+  "0a6f6e36-8b89-11eb-f3d6-575bcfb8ba8b": {
+   "unit_cost": 45.0,
+   "po_reference": "PO-8171",
+   "po_date": "2026-09-02T14:16:05+00:00",
+   "status": "RECEIVED",
+   "supplier": "GALAXY"
+  },
+  "82283d69-738a-4843-b4a7-391d98bd40ff": {
+   "unit_cost": 1.99,
+   "po_reference": "PO-8175",
+   "po_date": "2026-09-02T14:58:33+00:00",
+   "status": "RECEIVED",
+   "supplier": "GALAXY"
+  },
+  "8ebd7ec5-9a1d-f2e7-81fd-dff1daa4d755": {
+   "unit_cost": 108.99,
+   "po_reference": "PO-8172",
+   "po_date": "2026-09-02T14:32:30+00:00",
+   "status": "RECEIVED",
+   "supplier": "ZION"
+  },
+  "d8cbc03c-c956-bea4-50f5-462a4bf2a954": {
+   "unit_cost": 2.16583,
+   "po_reference": "PO-8173",
+   "po_date": "2026-09-02T14:36:53+00:00",
+   "status": "RECEIVED",
+   "supplier": "WINCA"
+  },
+  "d4b05d62-51f8-4329-8216-dd68c687abfb": {
+   "unit_cost": 45.0,
+   "po_reference": "PO-8175",
+   "po_date": "2026-09-02T14:58:33+00:00",
+   "status": "RECEIVED",
+   "supplier": "GALAXY"
+  },
+  "02dcd191-ae89-11e8-ed44-a6ec1134264d": {
+   "unit_cost": 1.38,
+   "po_reference": "PO-8176",
+   "po_date": "2026-09-02T15:05:04+00:00",
+   "status": "RECEIVED",
+   "supplier": "VISTA"
+  },
+  "fe4ce96f-406b-4bd4-9ff8-7d42a946cf4e": {
+   "unit_cost": 10.29,
+   "po_reference": "PO-8177",
+   "po_date": "2026-09-02T15:12:29+00:00",
+   "status": "RECEIVED",
+   "supplier": "ZION"
+  },
+  "0a6f6e36-8b89-11eb-f3d6-575bc3608936": {
+   "unit_cost": 3.89,
+   "po_reference": "PO-8178",
+   "po_date": "2026-09-02T15:14:07+00:00",
+   "status": "RECEIVED",
+   "supplier": "ZION"
+  },
+  "42fbb657-476e-429c-81d4-5e20e87badd8": {
+   "unit_cost": 1.99,
+   "po_reference": "PO-8180",
+   "po_date": "2026-09-02T20:53:58+00:00",
+   "status": "SENT",
+   "supplier": "FLOORDI"
+  },
+  "7c5868e0-f250-4ee3-9244-cfbbac50a2de": {
+   "unit_cost": 1.99,
+   "po_reference": "PO-8181",
+   "po_date": "2026-09-03T18:45:45+00:00",
+   "status": "SENT",
+   "supplier": "EVERGREEN"
+  },
+  "bde81140-b355-4bd7-98e8-865f5e727eb8": {
+   "unit_cost": 3.41,
+   "po_reference": "PO-8185",
+   "po_date": "2026-09-08T16:24:43+00:00",
+   "status": "SENT",
+   "supplier": null
+  },
+  "22c41e0e-0ebf-4b1d-9723-4e29f39b5569": {
+   "unit_cost": 3.19,
+   "po_reference": "PO-8223",
+   "po_date": "2026-10-05T15:49:34+00:00",
+   "status": "SENT",
+   "supplier": "PURELUX"
+  },
+  "f51bee12-5fdd-47bb-9e75-368556b0aa0d": {
+   "unit_cost": 1.49,
+   "po_reference": "PO-8199",
+   "po_date": "2026-09-15T17:27:23+00:00",
+   "status": "SENT",
+   "supplier": "VIZION"
+  },
+  "2175abf7-b6d2-4a9d-8a9d-10587da8755e": {
+   "unit_cost": 39.0,
+   "po_reference": "PO-8189",
+   "po_date": "2026-09-09T16:17:12+00:00",
+   "status": "SENT",
+   "supplier": null
+  },
+  "4163dced-3eff-45b4-8fe7-7be7220510b7": {
+   "unit_cost": 1.99,
+   "po_reference": "PO-8190",
+   "po_date": "2026-09-10T21:22:23+00:00",
+   "status": "SENT",
+   "supplier": "FLOORDI"
+  },
+  "84f5e4e8-6302-4073-9ddf-4e90339bf7d0": {
+   "unit_cost": 2.09,
+   "po_reference": "PO-8213",
+   "po_date": "2026-09-28T20:30:53+00:00",
+   "status": "SENT",
+   "supplier": "TRIFOREST"
+  },
+  "c8e31163-7847-4d48-8d15-06382514455b": {
+   "unit_cost": 3.69,
+   "po_reference": "PO-8217",
+   "po_date": "2026-09-30T16:14:01+00:00",
+   "status": "SENT",
+   "supplier": "VIDAR"
+  },
+  "669ac743-1534-445f-9607-6380c4989199": {
+   "unit_cost": 5.49,
+   "po_reference": "PO-8194",
+   "po_date": "2026-09-14T16:27:44+00:00",
+   "status": "SENT",
+   "supplier": "VIDAR"
+  },
+  "f9eb0ab2-3592-417b-a950-7f405ca11ac3": {
+   "unit_cost": 1.79,
+   "po_reference": "PO-8196",
+   "po_date": "2026-09-15T15:06:50+00:00",
+   "status": "SENT",
+   "supplier": "WODEN"
+  },
+  "bdd2488b-b011-423b-945d-93ab755b3b22": {
+   "unit_cost": 39.0,
+   "po_reference": "PO-8197",
+   "po_date": "2026-09-15T15:22:03+00:00",
+   "status": "SENT",
+   "supplier": "VIZION"
+  },
+  "f55ad67d-6b03-4473-a7fc-c0c5e06a7ed8": {
+   "unit_cost": 3.59,
+   "po_reference": "PO-8200",
+   "po_date": "2026-09-15T18:45:43+00:00",
+   "status": "SENT",
+   "supplier": "GRANDEUR"
+  },
+  "8bc17250-518b-4fc1-8d48-ef846fb5f550": {
+   "unit_cost": 28.83,
+   "po_reference": "PO-8203",
+   "po_date": "2026-09-17T12:57:02+00:00",
+   "status": "SENT",
+   "supplier": "PBS"
+  },
+  "70c93f81-fbb7-4843-8d5d-2ca122252157": {
+   "unit_cost": 28.83,
+   "po_reference": "PO-8203",
+   "po_date": "2026-09-17T12:57:02+00:00",
+   "status": "SENT",
+   "supplier": "PBS"
+  },
+  "0a6f6e36-8b89-11eb-f3d6-575bc3d27c81": {
+   "unit_cost": 4.89,
+   "po_reference": "PO-8205",
+   "po_date": "2026-09-17T16:12:01+00:00",
+   "status": "RECEIVED",
+   "supplier": "ZION"
+  },
+  "abe7c3ce-9bbc-4055-9c95-57523536e3ff": {
+   "unit_cost": 2.69,
+   "po_reference": "PO-8206",
+   "po_date": "2026-09-17T19:11:58+00:00",
+   "status": "SENT",
+   "supplier": "FLOORS AT WORK"
+  },
+  "97ba5157-79b1-42e3-aefc-9e652f0ff19b": {
+   "unit_cost": 1.79,
+   "po_reference": "PO-8220",
+   "po_date": "2026-10-05T14:26:08+00:00",
+   "status": "SENT",
+   "supplier": "WODEN"
+  },
+  "1d7eba18-7a6a-4639-a3db-456fa9f99262": {
+   "unit_cost": 1.65,
+   "po_reference": "PO-8208",
+   "po_date": "2026-09-18T15:31:12+00:00",
+   "status": "SENT",
+   "supplier": "VIZION"
+  },
+  "a30165fd-38ee-4150-a74c-c1c7380b8974": {
+   "unit_cost": 12.0,
+   "po_reference": "PO-8208",
+   "po_date": "2026-09-18T15:31:12+00:00",
+   "status": "SENT",
+   "supplier": "VIZION"
+  },
+  "2d17234b-e924-4cf2-8217-ec9be5a3ac06": {
+   "unit_cost": 12.0,
+   "po_reference": "PO-8208",
+   "po_date": "2026-09-18T15:31:12+00:00",
+   "status": "SENT",
+   "supplier": "VIZION"
+  },
+  "23178bac-98fd-4573-beb5-c92e9cb23cf0": {
+   "unit_cost": 1.99,
+   "po_reference": "PO-8211",
+   "po_date": "2026-09-28T14:01:05+00:00",
+   "status": "SENT",
+   "supplier": "FLOORDI"
+  },
+  "6cfa75c7-8472-4159-ab36-d8351df1a434": {
+   "unit_cost": 3.69,
+   "po_reference": "PO-8214",
+   "po_date": "2026-09-28T20:57:48+00:00",
+   "status": "SENT",
+   "supplier": "VIDAR"
+  },
+  "0f01867f-14cf-4595-b394-0b9aa7cb8bbd": {
+   "unit_cost": 1.79,
+   "po_reference": "PO-8219",
+   "po_date": "2026-10-05T13:08:23+00:00",
+   "status": "SENT",
+   "supplier": "VIZION"
+  },
+  "8683d479-7a72-4e44-81cb-3698f3663372": {
+   "unit_cost": 2.77,
+   "po_reference": "PO-8221",
+   "po_date": "2026-10-05T14:49:59+00:00",
+   "status": "SENT",
+   "supplier": "OLYMPIA TILE"
+  },
+  "4c20994f-b936-43ce-9fed-e691c07e7f89": {
+   "unit_cost": 3.09,
+   "po_reference": "PO-8224",
+   "po_date": "2026-10-05T16:14:17+00:00",
+   "status": "SENT",
+   "supplier": "PURELUX"
+  },
+  "df4887aa-9797-46de-81ac-1b7723eb1c5c": {
+   "unit_cost": 4.79,
+   "po_reference": "PO-8226",
+   "po_date": "2026-10-06T16:28:51+00:00",
+   "status": "SENT",
+   "supplier": "FLOORS AT WORK"
+  },
+  "0a6f6e36-8b89-11eb-f3d6-7e8b6109aac9": {
+   "unit_cost": 4.79,
+   "po_reference": "PO-8227",
+   "po_date": "2026-10-07T12:52:45+00:00",
+   "status": "SENT",
+   "supplier": "GRANDEUR"
+  }
+ },
+ "api_stats": {
+  "requests": 237,
+  "throttle_events": [],
+  "api_version": "2.0"
+ }
+}

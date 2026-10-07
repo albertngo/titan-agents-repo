@@ -1,0 +1,29 @@
+{
+  "contract_version": "1",
+  "entries": [
+    {
+      "logged_at": "2026-10-07T12:00:00-04:00",
+      "agent": ".claude/commands/project-costs-sync.md",
+      "type": "payout_create_flooring_line",
+      "target": "Flooring Line Items: PP-470 11478_Comfort Walnut",
+      "content_summary": "Created PP-470's flooring line at the front-desk PO cost (PO-8190, 1.99/sqft pre-tax, 500 sqft sold); not locked, waits on the supplier invoice.",
+      "approved_by": "policy: project-costs-sync flooring_line write (Albert 2026-10-06, vault 05_decisions/2026-10-06-flooring-line-write-mode.md); run scoped by Albert 2026-10-07 to projects ending in September 2026",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3f2596a4-505f-818b-aead-dfea8dd247bc",
+      "raw_ref_action_id": "flooring_line:83d02f4df6"
+    },
+    {
+      "logged_at": "2026-10-07T12:00:00-04:00",
+      "agent": ".claude/commands/project-costs-sync.md",
+      "type": "payout_create_flooring_line",
+      "target": "Flooring Line Items: PP-471 LVP-TRIF-TFSPC603-F_London",
+      "content_summary": "Created PP-471's flooring line at the front-desk PO cost (PO-8213, 2.09/sqft pre-tax, 680 sqft sold); not locked, waits on the supplier invoice.",
+      "approved_by": "policy: project-costs-sync flooring_line write (Albert 2026-10-06, vault 05_decisions/2026-10-06-flooring-line-write-mode.md); run scoped by Albert 2026-10-07 to projects ending in September 2026",
+      "result": "executed",
+      "error": null,
+      "raw_ref": "notion page 3f2596a4-505f-816d-ae0b-cc822bbb7c97",
+      "raw_ref_action_id": "flooring_line:3e5401ea08"
+    }
+  ]
+}
