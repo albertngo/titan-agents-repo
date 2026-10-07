@@ -1,0 +1,248 @@
+{
+  "_comment": "Registry for the AEO content engine: /topic-harvest, /topic-rank, /blog-brief, /blog-draft, /blog-publish, /blog-sweep, /blog-import, /content-attribution, /topic-track (.claude/commands/) and blog-actions-agent (.claude/agents/). Every Notion id, option string, weight, threshold, budget and website target lives HERE, never in a prompt. Scripts (Phase 1+): scripts/topic_harvest.py, topic_rank.py, blog_plan.py, blog_render.py, blog_sweep.py, blog_import.py, analysis/content_attribution.py. Method: methods/content-engine.md. Plan of record: methods/content-engine-plan.md (grilled with Albert 2026-10-07).",
+  "_maintenance": "Notion property names and option strings are EXACT MATCH; re-verify with notion-fetch on the data_source url when a write errors on an unknown property. Weights and priors are tunable data (methods/architecture.md: a stale value here is a bug); what they MEAN is in methods/content-engine.md. cluster_performance is written ONLY by a dated decision after /content-attribution proposes it, never by a run. tests/test_content_engine_registry.py pins clusters, write_mode, status vocabularies, the actions-log vocabulary and the departments wiring; update the test in the same commit as any change it pins.",
+  "config_version": "1",
+
+  "write_mode": {
+    "mode": "plan_only",
+    "_values": ["plan_only", "write"],
+    "_flip": "While plan_only, every command builds its plan and writes NO approval file, NO Notion row and NO pull request; scripts/blog_plan.py refuses --write-approval. Flipping to write is a dated decision recorded in the vault (05_decisions/), made after the Phase 1 dry run; tests/test_content_engine_registry.py pins the value, update it in the same commit.",
+    "_flipped": null
+  },
+
+  "clusters": {
+    "_comment": "Albert's 8 starting clusters (2026-10-06). slug == utm_campaign value == the key here; label == the Notion select option string on Topic Backlog.Cluster, Blog Posts.Topic Cluster and Titan Content Ideas.Topic Cluster (identical option lists, verified 2026-10-07). commercial_prior and local_prior are 0-1 judgement values read by topic_rank.py; performance arrives through cluster_performance below.",
+    "basement-flooring":    {"label": "Basement Flooring",            "commercial_prior": 0.80, "local_prior": 0.30, "materials": ["Vinyl", "Laminate", "Engineered"]},
+    "waterproof":           {"label": "Waterproof",                   "commercial_prior": 0.60, "local_prior": 0.20, "materials": ["Vinyl", "Laminate", "Tile"]},
+    "vinyl-laminate":       {"label": "Vinyl Plank & Laminate",       "commercial_prior": 0.70, "local_prior": 0.20, "materials": ["Vinyl", "Laminate"]},
+    "hardwood":             {"label": "Hardwood",                     "commercial_prior": 0.70, "local_prior": 0.20, "materials": ["Engineered", "Solid"]},
+    "installation-cost":    {"label": "Installation Cost & Pricing",  "commercial_prior": 0.90, "local_prior": 0.60, "materials": []},
+    "installation-process": {"label": "Installation Process",        "commercial_prior": 0.50, "local_prior": 0.50, "materials": []},
+    "comparison":           {"label": "Comparison",                   "commercial_prior": 0.60, "local_prior": 0.10, "materials": []},
+    "maintenance":          {"label": "Maintenance & Care",           "commercial_prior": 0.30, "local_prior": 0.10, "materials": []}
+  },
+
+  "cluster_rules": {
+    "_comment": "topic_harvest.py maps a query to ONE cluster: the first matching rule wins, top to bottom; no match -> held cluster_unresolved (a person assigns it). Whole-word, case-insensitive. Order matters: cost before material so 'vinyl plank cost' lands in installation-cost.",
+    "rules": [
+      {"any": ["basement", "below grade", "below-grade"], "cluster": "basement-flooring"},
+      {"any": ["cost", "price", "pricing", "per square foot", "per sq ft", "how much", "quote", "estimate"], "cluster": "installation-cost"},
+      {"any": ["waterproof", "water resistant", "water-resistant", "bathroom", "kitchen", "laundry", "mudroom", "spill", "moisture"], "cluster": "waterproof"},
+      {"any": [" vs ", " vs. ", "versus", "compared", "or laminate", "or vinyl", "or hardwood", "difference between", "better than"], "cluster": "comparison"},
+      {"any": ["install", "installation", "installing", "underlayment", "subfloor", "acclimat", "transition", "diy"], "cluster": "installation-process"},
+      {"any": ["clean", "cleaning", "maintain", "maintenance", "scratch", "repair", "refinish", "mop", "steam", "pet"], "cluster": "maintenance"},
+      {"any": ["hardwood", "engineered", "solid wood", "oak", "maple", "hickory", "walnut"], "cluster": "hardwood"},
+      {"any": ["vinyl", "lvp", "lvt", "spc", "wpc", "laminate", "plank"], "cluster": "vinyl-laminate"}
+    ]
+  },
+
+  "local_tokens": ["mississauga", "toronto", "gta", "ontario", "brampton", "oakville", "milton", "etobicoke", "burlington", "vaughan", "near me", "canada", "canadian"],
+
+  "intent_rules": {
+    "_comment": "Query-level intent score I in [0,1]; first match wins; default Informational. Option strings: Topic Backlog.Intent uses 'Commercial'; Blog Posts.Search Intent uses the live misspelling 'Commericial' (do not correct it here without renaming it in Notion first).",
+    "rules": [
+      {"any": ["cost", "price", "quote", "near me", "installer", "contractor", "buy", "sale"], "intent": "Transaction", "score": 1.0},
+      {"any": ["best", " vs ", "versus", "compare", "review", "worth it", "brands"], "intent": "Commercial", "score": 0.8},
+      {"any": ["how to", "what is", "can you", "can i", "should i", "is ", "does ", "why "], "intent": "Informational", "score": 0.5}
+    ],
+    "default": {"intent": "Informational", "score": 0.5},
+    "blog_posts_spelling": {"Commercial": "Commericial"}
+  },
+
+  "scoring": {
+    "_comment": "See methods/content-engine.md, Scoring. score = 100 * sum(w_k * term_k); effective = min(100, score * diversity). Weights MUST sum to 1.0 (tested). Accepted by Albert 2026-10-07 (Q13).",
+    "weights": {"volume": 0.30, "difficulty": 0.20, "local": 0.15, "cluster": 0.25, "intent": 0.10},
+    "volume_cap": 5000,
+    "volume_unknown": 0.25,
+    "difficulty_unknown": 0.5,
+    "local_explicit_bonus": 0.5,
+    "ramp": {"max": 0.6, "full_at_wins": 20},
+    "diversity": {"penalty_per_open": 0.10, "floor": 0.5, "coverage_bonus": 0.15, "recency_window_days": 90},
+    "duplicate_jaccard": 0.8,
+    "overlap_jaccard": 0.6,
+    "decimals": 1
+  },
+
+  "cluster_performance": {
+    "_comment": "Written ONLY by a dated decision after /content-attribution proposes values. null/empty = no data, the prior is used alone. wins_attributed drives the ramp. Basis (Albert, 2026-10-07, Q18): Value Approx share on Titan Projects over the trailing 12 months, plus GHL lead counts including never-closed.",
+    "as_of": null,
+    "window_months": 12,
+    "wins_attributed": 0,
+    "decision": null,
+    "values": {}
+  },
+
+  "campaign_aliases": {
+    "_comment": "Campaign strings seen in GHL / Make that map onto a cluster slug. The rule is campaign == slug; this table absorbs history and typos. Unknown values are reported as unmapped, never guessed.",
+    "basement_flooring": "basement-flooring",
+    "vinyl_laminate": "vinyl-laminate",
+    "installation_cost": "installation-cost",
+    "installation_process": "installation-process"
+  },
+
+  "sources": {
+    "topic_backlog": {
+      "_comment": "Created 2026-10-07 under page Blog Content (130596a4-505f-808a-8484-c3a33df890e7).",
+      "database_id": "1fb201bb-56d1-449f-9229-f9d0ec117bcf",
+      "data_source": "collection://91bd484f-88b9-47d2-ba13-abcc5efd34a1",
+      "id_property": "userDefined:ID",
+      "id_prefix": "TB",
+      "sensitivity": "team",
+      "properties": {
+        "title": "Topic / Question", "cluster": "Cluster", "material": "Material", "source": "Source of idea",
+        "volume": "Volume", "difficulty": "Difficulty", "cpc": "CPC", "intent": "Intent", "local": "Local",
+        "score": "Score", "status": "Status", "canonical_key": "Canonical key", "blog_post": "Blog Post",
+        "last_scored": "Last scored", "score_inputs": "Score inputs", "retired_reason": "Retired reason"
+      },
+      "status_values": ["Proposed", "Backlog", "Briefed", "Drafting", "Published", "Retired"],
+      "source_values": ["seed", "transcript", "openseo-related", "paa", "autocomplete", "gap", "gsc", "reddit", "manual"],
+      "intent_values": ["Informational", "Commercial", "Navigation", "Transaction"],
+      "retired_reasons": ["covered", "duplicate", "out_of_scope", "no_volume"],
+      "person_only_retired_reasons": ["out_of_scope", "no_volume"],
+      "seed_status": {"transcript": "Proposed", "_default": "Backlog", "_note": "Albert 2026-10-07 (Q9/Q22): mined questions land as Proposed and a person flips them to Backlog or retires them."},
+      "write_properties": ["Cluster", "Material", "Source of idea", "Volume", "Difficulty", "CPC", "Intent", "Local", "Score", "Status", "Canonical key", "Blog Post", "Last scored", "Score inputs", "Retired reason"],
+      "_never_write": "Topic / Question after creation (a person may rephrase it); Status Retired with reason out_of_scope or no_volume (a person's call); Status Proposed -> Backlog (a person's confirmation)."
+    },
+    "blog_posts": {
+      "database_id": "137596a4-505f-803b-a1ba-d430df016c79",
+      "data_source": "collection://9680aaf5-3233-4563-a866-592bf49541f1",
+      "parent_page": "130596a4-505f-808a-8484-c3a33df890e7",
+      "id_property": "userDefined:ID",
+      "id_prefix": "BP",
+      "sensitivity": "team",
+      "properties": {
+        "title": "Blog Title", "status": "Status", "direct_url": "Direct URL", "primary_keyword": "Primary Keyword",
+        "material": "Material", "subtopic": "SubTopic", "subtopic2": "SubTopic 2", "content_type": "Content Type",
+        "search_intent": "Search Intent", "publish_date": "Publish Date", "linked": "Linked",
+        "related_video": "Related Video", "tracking": "Blog Post Tracking", "neuron_url": "Neuron URL",
+        "assignee": "Assignee", "payout_date": "Payout Date",
+        "topic_cluster": "Topic Cluster", "pillar": "Pillar", "spokes": "Spokes", "content_idea": "Content Idea",
+        "topic": "Topic", "slug": "Slug", "snippet": "Snippet", "video_url": "Video URL", "pr_url": "PR URL"
+      },
+      "_added_2026_10_07": ["ID (BP)", "Topic Cluster", "Slug", "Snippet", "Video URL", "PR URL", "Topic", "Content Idea", "Pillar/Spokes"],
+      "status_values": ["Idea", "Briefed", "Drafting", "Review", "Approved", "Published"],
+      "_status_note": "Target vocabulary (Albert 2026-10-07, Q15). The live property still reads Idea / Drafting / Posted until the option rename (Posted -> Published) and the three new options (Briefed, Review, Approved) are made in the Notion UI; a status option cannot be renamed through the DDL this repo uses. Until then the engine treats 'Posted' as 'Published' on read and never writes either.",
+      "status_live_alias": {"Posted": "Published"},
+      "run_may_set_status": ["Briefed", "Drafting", "Review", "Published"],
+      "person_only_status": ["Approved"],
+      "content_type_values": ["Alternatives", "Beginners Post", "Best Post", "Comparison", "Listicle", "How To", "Pillar Page", "Product Review", "What Is", "Service Page", "Supporting Content"],
+      "material_values": ["Vinyl", "Laminate", "Engineered", "Solid", "Tile"],
+      "search_intent_values": ["Informational", "Commericial", "Navigation", "Transaction"],
+      "write_properties": ["Status", "Direct URL", "Primary Keyword", "Material", "Content Type", "Search Intent", "Publish Date", "Topic Cluster", "Pillar", "Content Idea", "Slug", "Snippet", "Video URL", "Topic", "PR URL"],
+      "_never_write": "Assignee, Payout Date, Neuron URL, Related Video (legacy relation to Blog Series collection://131596a4-505f-81d4-be5a-000b0686a105), Linked, SubTopic / SubTopic 2 on existing rows, Spokes (derived), Status Approved, and the page body once Status is Review or later.",
+      "body_policy": "append-only below a '## Draft <date>' heading while Status is Briefed or Drafting; from Review onward the body is a person's and the run never writes it."
+    },
+    "blog_post_tracking": {
+      "data_source": "collection://2c8596a4-505f-8079-83f2-000b8d30b8a8",
+      "properties": {"title": "Blog URL", "clicks": "Clicks", "impressions": "Impressions", "position": "Average Position", "month": "Month", "opportunity": "SEO Opportunity", "trend": "Performance Trend", "post": "Blog Posts"},
+      "idempotency_key": "post + Month",
+      "superseded_make_scenario": {"scenario_id": 4458997, "name": "GSC -> Notion (Blogs)", "state_2026_10_07": "OFF", "gsc_connection": "GSC - titanfloors.ca", "_note": "Stays off; /topic-track replaces it in Phase 2."}
+    },
+    "titan_content_ideas": {
+      "data_source": "collection://1ef596a4-505f-815d-a9c1-000b59bcedac",
+      "registry": "platform-settings/content-sources.json",
+      "write_properties": ["Topic Cluster"],
+      "_note": "Topic Cluster added 2026-10-07 (blank-only write by the engine). The reverse relation 'Blog Post' is created by Notion from Blog Posts.Content Idea. Ideas never originate from Series; Series is chosen when the video is scripted from the blog (Phase 4)."
+    },
+    "titan_projects": {
+      "data_source": "collection://1b4596a4-505f-81ca-b1d5-000bb73ecbe1",
+      "read_properties": ["Source", "Opportunity ID", "Value Approx", "Date Won", "Project Type", "Campaign"],
+      "campaign_property": "Campaign",
+      "_campaign_note": "Text property added 2026-10-07. Phase 3: Make 3710214 maps the GHL contact's utm_campaign custom field into it; blueprint snapshot platform-settings/blueprints/project-won-3710214.json pinned by tests/test_project_won_blueprint.py. Blank on every row until then.",
+      "make_scenario": {"scenario_id": 3710214, "name": "Stage: Project Won (w/ Celebrate)", "module_contact": 5, "module_opportunity": 6, "writes_source_from": "{{1.opportunity_source}}"}
+    }
+  },
+
+  "ghl": {
+    "_comment": "Verified 2026-10-07: the five UTM_* contact custom fields exist and are EMPTY on every won contact sampled; attributions[].utmCampaign is populated only on Meta-ad leads. Phase 3 is Albert's GHL work (form hidden fields / workflow) before any attribution exists.",
+    "utm_campaign_custom_field": {"id": "BOUMRUjWjZ69sYv9cOyv", "key": "contact.utm_campaign"},
+    "utm_source_custom_field": {"id": "k4fFeKkVGkSKNIDfVjRI", "key": "contact.utm_source"},
+    "utm_medium_custom_field": {"id": "i08d5Zu8o5dUhgHQLkU4", "key": "contact.utm_medium"},
+    "attribution_fallback": "opportunity.attributions[].utmCampaign (isFirst wins)",
+    "client": "scripts/ghl_client.py (GET-only)",
+    "utm_convention": {"utm_source": ["blog", "email", "social"], "utm_medium": ["organic", "paid", "nurture"], "utm_campaign": "cluster slug"}
+  },
+
+  "openseo": {
+    "_comment": "A deployment, not a repo. Albert 2026-10-07 (Q17): hosted openseo.so first; self-host path later = Cloudflare Workers + the existing Supabase Postgres. The DataForSEO key lives in that deployment, never here. The cloud session's egress proxy must allow the MCP host or harvests run from Albert's Mac.",
+    "deployment": "hosted",
+    "mcp_server_name": "openseo",
+    "mcp_url": "https://app.openseo.so/mcp",
+    "budget": {"usd_per_harvest": 1.00, "usd_per_month": 20.00, "max_keywords_per_harvest": 200, "max_paa_per_harvest": 100, "estimated_usd_per_harvest": 0.25},
+    "harvest_modes": ["seed", "transcript", "related", "paa", "autocomplete", "gap", "gsc"],
+    "gap_domains": {
+      "_comment": "Albert 2026-10-07 (Q21): 'the more the merrier', within the budget cap. Speers is a gap source only; it is never linked from a post (supplier-sites.json rule).",
+      "local": ["thefloorbox.ca", "wordofmouthfloors.com", "speersflooring.com"],
+      "national": ["flooringinc.com", "bobvila.com", "thespruce.com", "familyhandyman.com"]
+    }
+  },
+
+  "aeo_structure": {
+    "_comment": "From Albert's 'AEO Blog Post Structure' page (3f1596a4-505f-81f3-9899-cb75edd0d9ce, 2026-10-06). blog_plan.py --stage draft and blog_render.py validate these.",
+    "snippet_words": {"min": 40, "max": 60},
+    "faq_count": {"min": 3, "max": 5},
+    "h2_must_be_questions": true,
+    "min_body_words": 700,
+    "required_sections": ["direct answer", "question H2s", "local + trust layer", "FAQ"],
+    "pillar_rules": {"required": false, "_phase": "flip to true once the first pillar page is published", "siblings_min": 3, "siblings_max": 6, "max_depth": 2},
+    "local_phrase": "[material] + Mississauga/GTA",
+    "images": {"mode": "text_only", "_note": "Albert 2026-10-07 (Q23): Phase 1 posts ship without images."}
+  },
+
+  "website": {
+    "repo": "albertngo/titan-website",
+    "base_branch": "main",
+    "branch_template": "blog/{slug}",
+    "content_dir": "content/blog",
+    "url_template": "https://{host}/{slug}/",
+    "production_host": null,
+    "_production_host_note": "Vercel production domain until DNS cuts over (Albert 2026-10-07, Q14), then titanfloors.ca; the sweep rewrites Direct URL in one pass at cut-over.",
+    "legacy_host": "titanfloors.ca",
+    "legacy_wordpress_api": "https://titanfloors.ca/wp-json/wp/v2/posts",
+    "slug_regex": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+    "slug_max": 70,
+    "reserved_slugs": ["blog", "about-us", "contact", "flooring-install", "stair-refinishing", "product-category"],
+    "trailing_slash": true,
+    "mdx_contract": "contracts/blog-mdx-schema.md",
+    "video_embed": {"platforms": ["youtube"], "_note": "Albert 2026-10-07 (Q16): YouTube only, Shorts count."},
+    "pr_transport": {"cloud": "mcp__github__push_files + create_pull_request", "mac": "scripts/blog_publish_pr.py (git + REST, GH_TOKEN)"},
+    "never_merge": true
+  },
+
+  "policy": {
+    "approved_by": "policy: content-engine auto-approval (v1)",
+    "auto_approve_ops": ["create_topic", "update_topic_score", "retire_topic:covered", "retire_topic:duplicate", "create_blog_post", "update_blog_post", "append_blog_body", "open_post_pr", "update_post_pr", "create_tracking_row", "update_idea_cluster"],
+    "person_only_ops": ["retire_topic:out_of_scope", "retire_topic:no_volume", "status:Approved", "status:Proposed->Backlog", "pr_merge", "cluster_performance edit", "write_mode flip"],
+    "max_new_topics_per_run": 150,
+    "max_batch": 50,
+    "max_briefs_per_run": 2,
+    "_gate_note": "Albert 2026-10-07 (Q7/Q19): one content gate, Review -> Approved in Notion by a person; the PR merge is the mechanical second gate; the weekly routine drafts two posts into Review and never opens a PR."
+  },
+
+  "cadence": {
+    "posts_per_week": 2,
+    "harvest_and_rank": "weekly",
+    "sweep": "daily",
+    "attribution": "monthly",
+    "track": "weekly",
+    "_note": "Albert 2026-10-07 (Q11). Phase 5 wires the routine; nothing is scheduled before then."
+  },
+
+  "outputs": {
+    "dir": "ingest/{date}",
+    "raw": "topic-raw-{mode}.json",
+    "backlog_snapshot": "topic-backlog-snapshot.json",
+    "posts_snapshot": "blog-posts-snapshot.json",
+    "candidates": "topic-candidates-{date}.json",
+    "scores": "topic-scores-{date}.json",
+    "brief": "blog-brief-{id}.json",
+    "body": "blog-body-{id}.md",
+    "mdx": "blog-mdx/{slug}.mdx",
+    "plan": "plans/{date}/blog-plan-{scope}.json",
+    "approval": "plans/{date}/blog-approval-{scope}.json",
+    "attribution_report": "ingest/analysis/content-attribution-{date}.md"
+  },
+
+  "held_reasons": ["cluster_unresolved", "possible_duplicate", "possible_overlap", "not_approved", "snippet_length", "faq_count", "h2_not_question", "body_too_short", "slug_invalid", "slug_collision", "slug_reserved", "pillar_missing", "stale_status", "body_is_a_persons", "campaign_unmapped", "no_volume_source", "budget_exceeded", "pii_suspected"],
+  "flagged_reasons": ["volume_unknown", "titan_facts_missing", "pillar_not_required_yet", "body_changed_after_publish"]
+}
