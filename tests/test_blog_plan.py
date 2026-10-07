@@ -287,6 +287,29 @@ class TestPlannerCli(unittest.TestCase):
         self.assertEqual(plan["actions"][0]["fields"]["Score"], 43.5)
         self.assertEqual(plan["held"][0]["reason"], "stale_status")
 
+    def test_sweep_stage_carries_proposals_through_the_same_gate(self):
+        sweep = {"contract_version": "blog-sweep-1", "proposals": [
+            {"id": "blg-000000000001", "target_system": "notion", "type": "notion_update_blog_post", "op": "update_blog_post",
+             "target": {"url": "https://www.notion.so/p9", "bp_id": "BP-9"},
+             "fields": {"Status": "Published", "Direct URL": "https://x/approved-one/", "Publish Date": "2026-10-07"},
+             "expect": {"Status": "Approved"}}],
+            "needs_person": [{"bp_id": "BP-8", "detail": "no production_host"}],
+            "url_mismatch": [{"bp_id": "BP-7", "detail": "canonical differs"}],
+            "flagged": [{"bp_id": "BP-5", "reason": "body_changed_after_publish", "detail": "sha differs"}],
+            "not_yet": [{"bp_id": "BP-6", "detail": "pr open"}]}
+        sf = self.tmp / "blog-sweep.json"
+        sf.write_text(json.dumps(sweep))
+        plan, _ = self.run_plan("--stage", "sweep", "--sweep", str(sf))
+        self.assertEqual(plan["stage"], "sweep")
+        self.assertEqual(len(plan["actions"]), 1)
+        self.assertEqual(plan["actions"][0]["fields"]["Status"], "Published")
+        self.assertEqual(plan["actions"][0]["expect"], {"Status": "Approved"})
+        self.assertEqual({h["reason"] for h in plan["held"]}, {"stale_status", "slug_collision"})
+        self.assertEqual(plan["flagged"][0]["reason"], "body_changed_after_publish")
+        self.assertEqual(len(plan["warnings"]), 1)
+        _, res = self.run_plan("--stage", "sweep", "--sweep", str(sf), "--write-approval", expect=4)
+        self.assertIn("plan_only", res.stderr)
+
 
 if __name__ == "__main__":
     unittest.main()

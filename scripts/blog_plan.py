@@ -32,7 +32,7 @@ import blog_render  # noqa: E402
 
 PLAN_VERSION = "blog-plan-1"
 APPROVAL_VERSION = "blog-approval-1"
-STAGES = ("harvest", "rank", "brief", "draft", "publish")
+STAGES = ("harvest", "rank", "brief", "draft", "publish", "sweep")
 
 
 class Refused(Exception):
@@ -361,6 +361,25 @@ def plan_publish(reg, plan, mdx_file, posts_file, bp_id):
     return plan
 
 
+def plan_sweep(reg, plan, sweep_file):
+    """Turn scripts/blog_sweep.py proposals into plan actions (same gate as everything else)."""
+    sweep = read_json(sweep_file)
+    for p in sweep.get("proposals", []):
+        a = {k: p[k] for k in ("id", "target_system", "type", "op", "target", "fields", "expect") if k in p}
+        a["seq"] = 0
+        a["flags"] = []
+        plan["actions"].append(a)
+    for n in sweep.get("needs_person", []):
+        plan["held"].append({"title": n.get("bp_id"), "reason": "stale_status", "detail": n.get("detail", "")})
+    for m in sweep.get("url_mismatch", []):
+        plan["held"].append({"title": m.get("bp_id"), "reason": "slug_collision", "detail": m.get("detail", "")})
+    for f in sweep.get("flagged", []):
+        plan["flagged"].append({"action_id": None, "reason": f.get("reason"), "detail": f"{f.get('bp_id')}: {f.get('detail', '')}"})
+    for w in sweep.get("not_yet", []):
+        plan["warnings"].append(f"{w.get('bp_id')}: {w.get('detail', '')}")
+    return plan
+
+
 # --------------------------------------------------------------------------- approval
 
 def policy_approve(reg, plan, now):
@@ -405,6 +424,7 @@ def main(argv=None):
     ap.add_argument("--brief")
     ap.add_argument("--body")
     ap.add_argument("--mdx")
+    ap.add_argument("--sweep", help="scripts/blog_sweep.py output (stage sweep)")
     ap.add_argument("--bp", help="Blog Posts id, e.g. BP-7")
     ap.add_argument("--out")
     ap.add_argument("--write-approval", action="store_true")
@@ -420,7 +440,7 @@ def main(argv=None):
     date = args.date or today()
     need = {
         "harvest": ["candidates"], "rank": ["scores", "backlog"], "brief": ["brief", "backlog", "posts"],
-        "draft": ["body", "posts", "bp"], "publish": ["mdx", "posts", "bp"],
+        "draft": ["body", "posts", "bp"], "publish": ["mdx", "posts", "bp"], "sweep": ["sweep"],
     }[args.stage]
     missing = [n for n in need if not getattr(args, n)]
     if missing:
@@ -448,9 +468,11 @@ def main(argv=None):
             if args.brief:
                 inputs.append({"file": args.brief})
             plan = plan_draft(reg, envelope(reg, "draft", args.bp, inputs, now), args.body, args.brief, args.posts, args.bp)
-        else:
+        elif args.stage == "publish":
             plan = plan_publish(reg, envelope(reg, "publish", args.bp, [{"file": args.mdx, "sha1": sha1_file(args.mdx)}, {"file": args.posts}], now),
                                 args.mdx, args.posts, args.bp)
+        else:
+            plan = plan_sweep(reg, envelope(reg, "sweep", "all", [{"file": args.sweep}], now), args.sweep)
     except (OSError, ValueError, KeyError) as exc:
         print(f"input error: {exc}", file=sys.stderr)
         return 2
