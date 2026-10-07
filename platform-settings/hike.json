@@ -1,0 +1,53 @@
+{
+  "_comment": "HikePOS (hikeup.com) — the second POS. Albert, 2026-10-07: a Hike product export for Floors at Work products, to be updated from Airtable (existing rows) and extended with Airtable's new products. Read by scripts/hike_update.py; method methods/hike-pos.md. Hike has no product id: the SKU IS the identity, and Hike's own help says editing a product's SKU OR its Product Name in an import creates a NEW product. So an existing row keeps both, exactly as exported.",
+  "outlet": "Flooring Store",
+  "_outlet_note": "Per-outlet columns are '<outlet>_Cost price', '<outlet>_Retail price' and so on. One outlet in the 2026-10-07 export.",
+  "never_change_on_existing": ["Name", "SKU", "Barcode"],
+  "_never_change_note": "Hike help, 'How to Bulk Edit Product Information in Hike': 'Do not edit anything relating to your SKU or Product Name, as this will create a new product entry once you import it back into Hike.' Barcode equals SKU on every exported row, so it is left alone too.",
+  "never_touch_columns": [
+    "Flooring Store_Average Cost Price",
+    "Flooring Store_Stock",
+    "Flooring Store_Stock on hand",
+    "Flooring Store_Reorder level",
+    "Flooring Store_Reorder value",
+    "Slug",
+    "Image URL"
+  ],
+  "_never_touch_note": "Stock and average cost are Hike's own running numbers; the file carries them exactly as exported. Import soon after exporting, or re-export and re-run first: a sale made in between would be undone by re-importing the older stock figure.",
+  "suppliers": {
+    "FAW": {
+      "airtable_supplier_choice_id": "selUg52i66OnicnQJ",
+      "_airtable_supplier": "FLOORS AT WORK",
+      "hike_supplier_name": "FAW",
+      "markup": 1.40,
+      "_markup_note": "Albert, 2026-10-07: Hike keeps its own +$1.40 over cost (161 of 170 matched rows already sat at it), on the Airtable cost. NOT Airtable's Retail (cost + $1.00). Applies to per-sq-ft flooring only; an accessory keeps its own existing markup.",
+      "promo_floor_offset": 0.70,
+      "_promo_floor_note": "Hike descriptions end 'Promotion: $ / N=70c'. On every flooring row N = cost + 0.70 (199 of 199 checked), the lowest promo price at a 70c margin. Rewritten with the new cost only where the old N was old cost + 0.70; mouldings and stair sets carry a different N and are left alone.",
+      "name_prefix": "(C) ",
+      "category_token": {"ENG": "FAWENG", "HWD": "FAWHAR", "LAM": "FAWLAM", "LVP": "FAWVIN", "LVT": "FAWVIN", "ACC": "FAWVIN"},
+      "lightspeed_name_prefix": {"NAFENG": "FAWENG", "NAFHWD": "FAWHAR", "NAFLAM": "FAWLAM", "NAFLVP-SPC": "FAWVIN", "NAFLVP-WPC": "FAWVIN", "NAFLVT-SPC": "FAWVIN", "NAFACC": "FAWVIN"},
+      "product_type": {"ENG": "ENGINEERED", "HWD": "HARDWOOD", "LAM": "LAMINATE", "LVP": "VINYL", "LVT": "VINYL", "ACC": "VINYL"},
+      "product_tag": "Flooring;C",
+      "colour_aliases": {
+        "Bemuda": "ENG-FAWK-0042",
+        "Russel Hill": "LVP-FAWK-0034",
+        "Thomas": "LVP-FAWK-0061"
+      },
+      "_colour_aliases_note": "Hike spelling -> Airtable SKU, each checked by eye on 2026-10-07: Bemuda = Regal Bermuda 23.31; Russel Hill = Aquaplus Gold Russell Hill; 'Thomas' is the Aquawood 10mm 29.92sf/b colour Airtable spells Thames.",
+      "manual_matches": {
+        "100332": "ENG-FAWK-0022",
+        "100308": "ENG-FAWK-0029",
+        "100333": "LVP-FAWK-0061",
+        "100340": "LVP-FAWK-0062",
+        "100335": "LVP-FAWK-0076",
+        "100337": "LAM-FAWK-0034",
+        "100337 - copy": "LAM-FAWK-0027",
+        "FAW.V.7V.Tob.7": "LVP-FAWK-0004",
+        "FAW.V.ST.RETURN": "ACC-FAWK-0001"
+      },
+      "_manual_matches_note": "Hike rows whose names do not follow the '(Colour) Click |' pattern, read one by one on 2026-10-07: 100332 'FAWENG - GOLDEN - Click 29.28sf/b' = White Oak Click Golden; 100308 'OREGON OAK T&G 6.5in 19.74' = White Oak Oregon Oak; 100333 THAMES and 100340 VOLGA 10mm = Aquawood; 100335 'FAWLAM Aecon 3mm 34.58' is the Aqua Commercial vinyl Aecon despite the LAM label; 100337 / '100337 - copy' = Waterproof Laminate Pro Urban Walnut / Heritage Maple; FAW.V.7V.Tob.7 says 183mm = the 183mm Tobermory record (box 15); FAW.V.ST.RETURN = the Step + Riser + Side Return set at $49.",
+      "exclude_new": ["ACC-FAWK-0002", "ACC-FAWK-0003", "ACC-FAWK-0004", "ACC-FAWK-0005", "ACC-FAWK-0006", "ACC-FAWK-0007", "ACC-FAWK-0008", "ACC-FAWK-0009", "ACC-FAWK-0010"],
+      "_exclude_new_note": "Oak stair treads and risers: Titan does not carry them (Albert, 2026-09-20), so they are never added to Hike either. Inactive Airtable records are never added."
+    }
+  }
+}

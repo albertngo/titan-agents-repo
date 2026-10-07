@@ -199,6 +199,17 @@ page, else The Floor Box, else Word of Mouth — **never Speers** (a local compe
 retailer photos filled first could never be replaced); one behind a bot challenge (Vidar) is
 reported, never worked around, and the retailers run alone.
 
+### HikePOS (`/hike-update`, 2026-10-07)
+
+A second POS, fed by file, never by API. `/hike-update <SUPPLIER>` takes Albert's Hike product
+export and the supplier's Airtable records and writes the same `.xlsx` back, updated, for him to
+import: `scripts/hike_update.py` (read-only), registry `platform-settings/hike.json`, method and
+full column schema `methods/hike-pos.md`. **Hike has no product id: SKU is the identity, and
+changing an existing row's SKU or Name makes a new product**, so those (and Barcode, stock,
+average cost) never change on an existing row; only cost, retail, Active and the description move.
+New products take the Airtable SKU. Hike keeps its own markup (FAW: cost + $1.40, Albert
+2026-10-07), not Airtable's Retail. Hike-only rows are left as exported.
+
 ### Call transcripts and call notes (2026-10-01)
 
 `ghl-ingest-agent` now reads call content. Step 0 of its run is
