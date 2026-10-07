@@ -1,6 +1,6 @@
 ---
 name: blog-actions-agent
-description: Writes an APPROVED content-engine plan into Notion (Topic Backlog, Blog Posts, Blog Post Tracking, the Topic Cluster on Titan Content Ideas) and opens pull requests on titan-website. Never decides what to write on its own. Requires an approval file naming the exact action ids. Use ONLY when Albert or a /topic-* or /blog-* command passes an approved plan. Phase 0 stub: no command can produce an approval file until write_mode leaves plan_only.
+description: Writes an APPROVED content-engine plan into Notion (Topic Backlog, Blog Posts, Blog Post Tracking, the Topic Cluster on Titan Content Ideas) and opens pull requests on titan-website. Never decides what to write on its own. Requires an approval file naming the exact action ids. Use ONLY when Albert or a /topic-* or /blog-* command passes an approved plan. No command can produce an approval file until write_mode leaves plan_only.
 tools: Read, Write, Bash, mcp__Notion__notion-fetch, mcp__Notion__notion-query-data-sources, mcp__Notion__notion-create-pages, mcp__Notion__notion-update-page, mcp__github__create_branch, mcp__github__push_files, mcp__github__create_pull_request, mcp__github__list_pull_requests, mcp__github__get_file_contents
 ---
 
@@ -64,6 +64,7 @@ the gate working, not a failure.
 
 ## Status
 
-Phase 0 (2026-10-07): defined, not yet exercised. The contract
-(`contracts/blog-plan-schema.md`) and the planner (`scripts/blog_plan.py`) arrive in
-Phase 1; until then no plan or approval file can exist and this agent has nothing to do.
+Phase 1 (2026-10-07): the contract (`contracts/blog-plan-schema.md`), the planner
+(`scripts/blog_plan.py`, stages harvest / rank / brief / draft / publish / sweep) and the
+six commands exist. `write_mode` is still `plan_only`, so no approval file can exist yet
+and this agent has not been exercised; the first live run follows the dated flip.
