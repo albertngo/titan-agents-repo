@@ -232,6 +232,30 @@ an English translation note series beside the original transcript. Do not
 edit that module in Make without re-snapshotting and re-running the tests. Registry
 `platform-settings/ghl-calls.json`; method `methods/ghl-call-transcripts.md`.
 
+### AEO content engine (`/topic-*`, `/blog-*`, `/content-attribution`, 2026-10-07)
+
+Marketing's fourth flow, separate from `/daily-ingest` and from the video pipeline above:
+a scored **Topic Backlog** (Notion, beside Blog Posts) → one AEO-structured blog post per
+topic (brief → draft → **one human gate**, `Review → Approved` in Notion) → MDX pull
+request on `albertngo/titan-website` (flat slugs, Albert merges) → daily sweep → monthly
+attribution of won deals by `utm_campaign` = topic-cluster slug, which feeds the ranking.
+Two axes on every post: `Material` is the pillar / link-structure axis, `Topic Cluster`
+(8 clusters) is the scoring and campaign axis. Video is repurposed from the blog
+afterwards (`Content Idea` relation; Series chosen then), never the other way round.
+Writes go only through `blog-actions-agent` under an approval file; it can never write
+`Approved`, merge, or delete. `write_mode` is `plan_only` until a dated decision.
+Registry `platform-settings/content-engine.json`; facts a post may quote
+`platform-settings/titan-facts.md` (Albert-owned); method `methods/content-engine.md`;
+plan of record `methods/content-engine-plan.md` (grilled, 24 decisions). **Phase 0 only
+as of 2026-10-07**: schema and registry exist, every command is a stub that stops.
+
+## Planning (2026-10-07, Albert)
+
+**Run the `grilling` skill whenever planning** a new flow or a re-plan of an existing one,
+before writing the plan: every decision put to Albert with a recommendation, facts found
+by the session and never asked. The content engine plan is the reference (24 decisions,
+`methods/content-engine-plan.md`).
+
 ## Agent class rules
 
 | | `*-ingest` | `*-actions` |

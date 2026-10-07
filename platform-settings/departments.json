@@ -190,7 +190,18 @@
           "youtube"
         ],
         "commands": [
-          "content-schedule"
+          "content-schedule",
+          "content-sweep",
+          "content-feedback",
+          "topic-harvest",
+          "topic-rank",
+          "topic-track",
+          "blog-brief",
+          "blog-draft",
+          "blog-publish",
+          "blog-sweep",
+          "blog-import",
+          "content-attribution"
         ]
       },
       "specialists": {
@@ -199,7 +210,8 @@
           "meta-ads-ingest-agent"
         ],
         "actions": [
-          "social-actions-agent"
+          "social-actions-agent",
+          "blog-actions-agent"
         ]
       },
       "route_keywords": [
@@ -228,8 +240,17 @@
         "stories",
         "story",
         "tiktok",
-        "youtube"
+        "youtube",
+        "aeo",
+        "backlog",
+        "blog",
+        "cluster",
+        "keyword",
+        "pillar",
+        "seo",
+        "topic"
       ],
+      "_content_engine_note": "2026-10-07: the AEO content engine (methods/content-engine.md, platform-settings/content-engine.json) is this department's fourth flow. Nine commands (topic-*, blog-*, content-attribution) are Phase 0 stubs that stop; blog-actions-agent is its write agent, reachable only through an approval file. content-sweep and content-feedback were already this department's commands and are now listed.",
       "spec_reason": "Promoted 2026-09-12 when the content pipeline landed: content is now an ingest source with its own registry, a read-only specialist and an actions agent. The original blocker (meta-ads being the only source with no registry file) is unchanged and still applies to ad reporting specifically.",
       "promote_criteria": [
         "methods/marketing-framework.md exists and defines CPL, the baseline window, and what counts as a delivery problem",

@@ -55,6 +55,16 @@ Each value belongs to exactly one agent's allowed-actions table.
 | `social_schedule_post`, `social_update_post`, `social_reschedule_post`, `social_flag_manual` | `social-actions-agent` |
 | `notion_write_troubled_table`, `notion_update_page` | `.claude/commands/catalog-sync.md` |
 | `notion_update_content_stats` | `.claude/commands/content-feedback.md` |
+| `notion_create_topic`, `notion_update_topic_score`, `notion_retire_topic`, `notion_create_blog_post`, `notion_update_blog_post`, `notion_append_blog_body`, `notion_create_tracking_row`, `notion_update_content_idea_cluster`, `website_open_post_pr`, `website_update_post_pr` | `blog-actions-agent` |
+
+The `blog-actions-agent` types (2026-10-07) are the content engine's writes: Topic Backlog
+rows and scores, Blog Posts rows and bodies, Blog Post Tracking rows, the blank-only
+`Topic Cluster` on an idea, and pull requests on titan-website. Every one needs an id
+`approved` in `plans/<date>/blog-approval-<scope>.json` (`contracts/blog-plan-schema.md`,
+Phase 1); `approved_by` is a person or the registry's policy string. A `refused:
+not_approved` on `website_open_post_pr` is the gate working (the row was not `Approved` at
+write time), not a failure. `raw_ref_action_id` carries the plan's action id so a resumed
+run skips what already executed.
 
 `notion_update_content_stats` (2026-09-28) is `/content-feedback`'s one write: Metricool
 post stats onto a Content Calendar Log row, for exactly one pull (`day7`, `day30` or
