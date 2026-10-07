@@ -1,0 +1,909 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "FLOORDI",
+ "run_at": "2026-10-07T12:03:56.717080-04:00",
+ "status": "ok",
+ "inputs": [
+  {
+   "file": "ingest/2026-10-06/floordi_airtable_upload_2026-10-06.csv",
+   "rows": 18
+  },
+  {
+   "file": "ingest/2026-10-06/lightspeed-products.json",
+   "products": 15092,
+   "run_at": "2026-10-06T10:33:44.223881-04:00"
+  },
+  {
+   "file": "ingest/2026-10-06/floordi_airtable_existing.json",
+   "records": 18
+  },
+  {
+   "file": "ingest/2026-10-06/floordi_airtable_options.json",
+   "select_fields": 25
+  },
+  {
+   "file": "ingest/2026-10-06/floordi_ls_upload_2026-10-06.csv",
+   "rows": 18
+  }
+ ],
+ "cost_basis": {
+  "value": "dealer",
+  "confirmed_by": "Albert 2026-09-10"
+ },
+ "as_of": "2026-10-07",
+ "effective_dates": [
+  "2026-10-06"
+ ],
+ "summary": {
+  "airtable_upsert": 18,
+  "lightspeed_update": 12,
+  "actions_total": 30,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 0,
+  "warnings": 6,
+  "rows_in": 18
+ },
+ "actions": [
+  {
+   "id": "cat-f09f4b0c06de",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-FLRD-AFS-AVR65",
+   "airtable_rec_id": "recs5k54CGM4cHopx",
+   "ls_id": "1b5831c0-47bd-45e3-bf04-b6463bf303b0",
+   "handle": null,
+   "fields": {
+    "Category": "Accessory",
+    "Effective Date": "2026-10-06",
+    "Price List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQCDM5xQP9brRpnEaSsWDioLAQwJNPJXYKtXehALQequXRY"
+   },
+   "before": {
+    "Effective Date": "2026-07-18",
+    "Price List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 1
+  },
+  {
+   "id": "cat-0412a64f66ef",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-FLRD-AFS-AVR80",
+   "airtable_rec_id": "rec3jQMasIfk0vF0X",
+   "ls_id": "67f0a2a9-fd2b-4adf-8d75-85b8fe5cd338",
+   "handle": null,
+   "fields": {
+    "Category": "Accessory",
+    "Effective Date": "2026-10-06",
+    "Price List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQCDM5xQP9brRpnEaSsWDioLAQwJNPJXYKtXehALQequXRY"
+   },
+   "before": {
+    "Effective Date": "2026-07-18",
+    "Price List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 2
+  },
+  {
+   "id": "cat-8f7db2c079bd",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-FLRD-AR-AVR65",
+   "airtable_rec_id": "recE9weImuR5hDZeG",
+   "ls_id": "9798fd5b-48dc-4384-bd61-7bd7ad351b62",
+   "handle": null,
+   "fields": {
+    "Category": "Accessory",
+    "Effective Date": "2026-10-06",
+    "Price List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQCDM5xQP9brRpnEaSsWDioLAQwJNPJXYKtXehALQequXRY"
+   },
+   "before": {
+    "Effective Date": "2026-07-18",
+    "Price List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 3
+  },
+  {
+   "id": "cat-01ac8d1e95bd",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-FLRD-AR-AVR80",
+   "airtable_rec_id": "recSKG9ikGaY2F9na",
+   "ls_id": "6d76db51-805a-47ab-bef8-6f7bcf96807c",
+   "handle": null,
+   "fields": {
+    "Category": "Accessory",
+    "Effective Date": "2026-10-06",
+    "Price List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQCDM5xQP9brRpnEaSsWDioLAQwJNPJXYKtXehALQequXRY"
+   },
+   "before": {
+    "Effective Date": "2026-07-18",
+    "Price List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 4
+  },
+  {
+   "id": "cat-7722253d7d62",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-FLRD-AT-AVR65",
+   "airtable_rec_id": "recObl2l6JDPveMko",
+   "ls_id": "8232a406-400f-4188-b6c5-a56331a35d1b",
+   "handle": null,
+   "fields": {
+    "Category": "Accessory",
+    "Effective Date": "2026-10-06",
+    "Price List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQCDM5xQP9brRpnEaSsWDioLAQwJNPJXYKtXehALQequXRY"
+   },
+   "before": {
+    "Effective Date": "2026-07-18",
+    "Price List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 5
+  },
+  {
+   "id": "cat-f33e13cf98ef",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "ACC-FLRD-AT-AVR80",
+   "airtable_rec_id": "recQW1EsBjcApIF3h",
+   "ls_id": "98717294-f4cd-4495-805e-2a1529375c58",
+   "handle": null,
+   "fields": {
+    "Category": "Accessory",
+    "Effective Date": "2026-10-06",
+    "Price List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQCDM5xQP9brRpnEaSsWDioLAQwJNPJXYKtXehALQequXRY"
+   },
+   "before": {
+    "Effective Date": "2026-07-18",
+    "Price List URL": null
+   },
+   "reason": "field_update",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 6
+  },
+  {
+   "id": "cat-c95c099c18df",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FLRD-AVR651",
+   "airtable_rec_id": "recDsiPbG6mA3XMGl",
+   "ls_id": "47297c22-39a4-4ba4-809d-91e5623d8731",
+   "handle": null,
+   "fields": {
+    "Category": "LVP",
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79",
+    "Effective Date": "2026-10-06",
+    "Price last changed by": "Agent",
+    "Price List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQCDM5xQP9brRpnEaSsWDioLAQwJNPJXYKtXehALQequXRY"
+   },
+   "before": {
+    "Cost/unit": "2.1",
+    "Retail price/unit": "3.1",
+    "Effective Date": "2026-07-18",
+    "Price last changed by": "Manual",
+    "Price List URL": null
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 7
+  },
+  {
+   "id": "cat-f501587ab6a2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FLRD-AVR652",
+   "airtable_rec_id": "recOqUKUpcbeOPylS",
+   "ls_id": "4193f349-d1bc-4db2-8222-81c96f55fe99",
+   "handle": null,
+   "fields": {
+    "Category": "LVP",
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79",
+    "Effective Date": "2026-10-06",
+    "Price last changed by": "Agent",
+    "Price List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQCDM5xQP9brRpnEaSsWDioLAQwJNPJXYKtXehALQequXRY"
+   },
+   "before": {
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29",
+    "Effective Date": "2026-07-18",
+    "Price last changed by": "Manual",
+    "Price List URL": null
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 8
+  },
+  {
+   "id": "cat-e6e96c191a06",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FLRD-AVR653",
+   "airtable_rec_id": "rec5Ts15tSAfEwIyH",
+   "ls_id": "ded5f896-9076-4bf4-b82e-703e1984dc86",
+   "handle": null,
+   "fields": {
+    "Category": "LVP",
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79",
+    "Effective Date": "2026-10-06",
+    "Price last changed by": "Agent",
+    "Price List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQCDM5xQP9brRpnEaSsWDioLAQwJNPJXYKtXehALQequXRY"
+   },
+   "before": {
+    "Cost/unit": "2.1",
+    "Retail price/unit": "3.1",
+    "Effective Date": "2026-07-18",
+    "Price last changed by": "Manual",
+    "Price List URL": null
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 9
+  },
+  {
+   "id": "cat-23c8439206b2",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FLRD-AVR654",
+   "airtable_rec_id": "recSY3JC9rzQuPRWW",
+   "ls_id": "92ea590f-ecb4-4d16-9dc1-4fc2abba0393",
+   "handle": null,
+   "fields": {
+    "Category": "LVP",
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79",
+    "Effective Date": "2026-10-06",
+    "Price last changed by": "Agent",
+    "Price List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQCDM5xQP9brRpnEaSsWDioLAQwJNPJXYKtXehALQequXRY"
+   },
+   "before": {
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29",
+    "Effective Date": "2026-07-18",
+    "Price last changed by": "Manual",
+    "Price List URL": null
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 10
+  },
+  {
+   "id": "cat-f77653a534b5",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FLRD-AVR655",
+   "airtable_rec_id": "recU5XkhRDcb3XSld",
+   "ls_id": "ec8c2c64-b9f1-4655-bd3e-924fb577efa6",
+   "handle": null,
+   "fields": {
+    "Category": "LVP",
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79",
+    "Effective Date": "2026-10-06",
+    "Price last changed by": "Agent",
+    "Price List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQCDM5xQP9brRpnEaSsWDioLAQwJNPJXYKtXehALQequXRY"
+   },
+   "before": {
+    "Cost/unit": "2.29",
+    "Retail price/unit": "3.29",
+    "Effective Date": "2026-07-18",
+    "Price last changed by": "Manual",
+    "Price List URL": null
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 11
+  },
+  {
+   "id": "cat-0dcf20b93ddf",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FLRD-AVR656",
+   "airtable_rec_id": "rec0UApSdlgCyzaOB",
+   "ls_id": "0c5d9168-09ce-46f2-99fd-1555526a36f3",
+   "handle": null,
+   "fields": {
+    "Category": "LVP",
+    "Cost/unit": "1.79",
+    "Retail price/unit": "2.79",
+    "Effective Date": "2026-10-06",
+    "Price last changed by": "Agent",
+    "Price List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQCDM5xQP9brRpnEaSsWDioLAQwJNPJXYKtXehALQequXRY"
+   },
+   "before": {
+    "Cost/unit": "2.1",
+    "Retail price/unit": "3.1",
+    "Effective Date": "2026-07-18",
+    "Price last changed by": "Manual",
+    "Price List URL": null
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 12
+  },
+  {
+   "id": "cat-36089c12b5e0",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FLRD-AVR801",
+   "airtable_rec_id": "recJUF2OERF93OviM",
+   "ls_id": "3394cbc9-d074-4400-a4f5-64bb82f0d404",
+   "handle": null,
+   "fields": {
+    "Category": "LVP",
+    "Cost/unit": "2.8",
+    "Retail price/unit": "3.8",
+    "Effective Date": "2026-10-06",
+    "Price last changed by": "Agent",
+    "Price List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQCDM5xQP9brRpnEaSsWDioLAQwJNPJXYKtXehALQequXRY"
+   },
+   "before": {
+    "Cost/unit": "3.3",
+    "Retail price/unit": "4.3",
+    "Effective Date": "2026-07-18",
+    "Price last changed by": "Manual",
+    "Price List URL": null
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 13
+  },
+  {
+   "id": "cat-0dd4fd6d613c",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FLRD-AVR802",
+   "airtable_rec_id": "recSPbVBM4mREyF6d",
+   "ls_id": "f43679f6-33d7-4cc3-9f28-5090217f0a05",
+   "handle": null,
+   "fields": {
+    "Category": "LVP",
+    "Cost/unit": "2.8",
+    "Retail price/unit": "3.8",
+    "Effective Date": "2026-10-06",
+    "Price last changed by": "Agent",
+    "Price List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQCDM5xQP9brRpnEaSsWDioLAQwJNPJXYKtXehALQequXRY"
+   },
+   "before": {
+    "Cost/unit": "3.3",
+    "Retail price/unit": "4.3",
+    "Effective Date": "2026-07-18",
+    "Price last changed by": "Manual",
+    "Price List URL": null
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 14
+  },
+  {
+   "id": "cat-38cdc30cdaaf",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FLRD-AVR803",
+   "airtable_rec_id": "rechYHiBdtXO08kTW",
+   "ls_id": "3ddbefc7-9eff-4819-aaa6-115670dd6b50",
+   "handle": null,
+   "fields": {
+    "Category": "LVP",
+    "Cost/unit": "2.8",
+    "Retail price/unit": "3.8",
+    "Effective Date": "2026-10-06",
+    "Price last changed by": "Agent",
+    "Price List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQCDM5xQP9brRpnEaSsWDioLAQwJNPJXYKtXehALQequXRY"
+   },
+   "before": {
+    "Cost/unit": "3.3",
+    "Retail price/unit": "4.3",
+    "Effective Date": "2026-07-18",
+    "Price last changed by": "Manual",
+    "Price List URL": null
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 15
+  },
+  {
+   "id": "cat-52288148810a",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FLRD-AVR804",
+   "airtable_rec_id": "recc7SrRQp0wafskL",
+   "ls_id": "dce02127-8bc9-451b-92cd-4db7a97fe356",
+   "handle": null,
+   "fields": {
+    "Category": "LVP",
+    "Cost/unit": "2.8",
+    "Retail price/unit": "3.8",
+    "Effective Date": "2026-10-06",
+    "Price last changed by": "Agent",
+    "Price List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQCDM5xQP9brRpnEaSsWDioLAQwJNPJXYKtXehALQequXRY"
+   },
+   "before": {
+    "Cost/unit": "3.49",
+    "Retail price/unit": "4.49",
+    "Effective Date": "2026-07-18",
+    "Price last changed by": "Manual",
+    "Price List URL": null
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 16
+  },
+  {
+   "id": "cat-28dff65a8143",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FLRD-AVR805",
+   "airtable_rec_id": "recz6C9uHnXXLuIBG",
+   "ls_id": "9df1c7dd-1257-4272-806f-11ca0dc74613",
+   "handle": null,
+   "fields": {
+    "Category": "LVP",
+    "Cost/unit": "2.8",
+    "Retail price/unit": "3.8",
+    "Effective Date": "2026-10-06",
+    "Price last changed by": "Agent",
+    "Price List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQCDM5xQP9brRpnEaSsWDioLAQwJNPJXYKtXehALQequXRY"
+   },
+   "before": {
+    "Cost/unit": "3.49",
+    "Retail price/unit": "4.49",
+    "Effective Date": "2026-07-18",
+    "Price last changed by": "Manual",
+    "Price List URL": null
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 17
+  },
+  {
+   "id": "cat-90b0150e955e",
+   "target_system": "airtable",
+   "op": "upsert",
+   "sku": "LVP-FLRD-AVR806",
+   "airtable_rec_id": "recsbOFiMWaEXjY87",
+   "ls_id": "2cc47460-20b3-44a4-829d-3125cb046e00",
+   "handle": null,
+   "fields": {
+    "Category": "LVP",
+    "Cost/unit": "2.8",
+    "Retail price/unit": "3.8",
+    "Effective Date": "2026-10-06",
+    "Price last changed by": "Agent",
+    "Price List URL": "https://flooruca-my.sharepoint.com/:b:/g/personal/info_titanfloors_ca1/IQCDM5xQP9brRpnEaSsWDioLAQwJNPJXYKtXehALQequXRY"
+   },
+   "before": {
+    "Cost/unit": "3.49",
+    "Retail price/unit": "4.49",
+    "Effective Date": "2026-07-18",
+    "Price last changed by": "Manual",
+    "Price List URL": null
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "before_unreadable": [
+    "Category"
+   ],
+   "seq": 18
+  },
+  {
+   "id": "cat-5e659de0b37a",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FLRD-AVR651",
+   "airtable_rec_id": "recDsiPbG6mA3XMGl",
+   "ls_id": "47297c22-39a4-4ba4-809d-91e5623d8731",
+   "handle": null,
+   "fields": {
+    "supply_price": 1.69,
+    "price_excluding_tax": 2.79
+   },
+   "before": {
+    "name": "FLRDLVP-SPC - AVO-ROX EASE (Serene Oak) | 7.19\" x 6.5mm x RL - 19.12sf/b",
+    "handle": "FLRD65SERENEOAK",
+    "sku": "LVP-FLRD-AVR651",
+    "supply_price": 2.1,
+    "price_including_tax": 3.1,
+    "price_excluding_tax": 3.1,
+    "category": "SPC",
+    "supplier_name": "FLOORDI",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 19
+  },
+  {
+   "id": "cat-3f9c261bc82f",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FLRD-AVR652",
+   "airtable_rec_id": "recOqUKUpcbeOPylS",
+   "ls_id": "4193f349-d1bc-4db2-8222-81c96f55fe99",
+   "handle": null,
+   "fields": {
+    "supply_price": 1.39,
+    "price_excluding_tax": 2.79
+   },
+   "before": {
+    "name": "FLRDLVP-SPC - AVO-ROX EASE (Whisper Oak) | 7.19\" x 6.5mm x RL - 19.12sf/b",
+    "handle": "FLRD65WHISPEROAK",
+    "sku": "LVP-FLRD-AVR652",
+    "supply_price": 2.29,
+    "price_including_tax": 3.29,
+    "price_excluding_tax": 3.29,
+    "category": "SPC",
+    "supplier_name": "FLOORDI",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 20
+  },
+  {
+   "id": "cat-0253f44324c1",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FLRD-AVR653",
+   "airtable_rec_id": "rec5Ts15tSAfEwIyH",
+   "ls_id": "ded5f896-9076-4bf4-b82e-703e1984dc86",
+   "handle": null,
+   "fields": {
+    "supply_price": 1.59,
+    "price_excluding_tax": 2.79
+   },
+   "before": {
+    "name": "FLRDLVP-SPC - AVO-ROX EASE (Sunrise Oak) | 7.19\" x 6.5mm x RL - 19.12sf/b",
+    "handle": "FLRD65SUNRISEOAK",
+    "sku": "LVP-FLRD-AVR653",
+    "supply_price": 2.1,
+    "price_including_tax": 3.1,
+    "price_excluding_tax": 3.1,
+    "category": "SPC",
+    "supplier_name": "FLOORDI",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 21
+  },
+  {
+   "id": "cat-20912b0bf6e3",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FLRD-AVR654",
+   "airtable_rec_id": "recSY3JC9rzQuPRWW",
+   "ls_id": "92ea590f-ecb4-4d16-9dc1-4fc2abba0393",
+   "handle": null,
+   "fields": {
+    "supply_price": 1.69,
+    "price_excluding_tax": 2.79
+   },
+   "before": {
+    "name": "FLRDLVP-SPC - AVO-ROX EASE (Harmony Oak) | 7.19\" x 6.5mm x RL - 19.12sf/b",
+    "handle": "FLRD65HARMONYOAK",
+    "sku": "LVP-FLRD-AVR654",
+    "supply_price": 2.29,
+    "price_including_tax": 3.29,
+    "price_excluding_tax": 3.29,
+    "category": "SPC",
+    "supplier_name": "FLOORDI",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 22
+  },
+  {
+   "id": "cat-829b3478885a",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FLRD-AVR655",
+   "airtable_rec_id": "recU5XkhRDcb3XSld",
+   "ls_id": "ec8c2c64-b9f1-4655-bd3e-924fb577efa6",
+   "handle": null,
+   "fields": {
+    "supply_price": 1.39,
+    "price_excluding_tax": 2.79
+   },
+   "before": {
+    "name": "FLRDLVP-SPC - AVO-ROX EASE (Ashen Breeze) | 7.19\" x 6.5mm x RL - 19.12sf/b",
+    "handle": "FLRD65ASHENBREEZE",
+    "sku": "LVP-FLRD-AVR655",
+    "supply_price": 2.29,
+    "price_including_tax": 3.29,
+    "price_excluding_tax": 3.29,
+    "category": "SPC",
+    "supplier_name": "FLOORDI",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 23
+  },
+  {
+   "id": "cat-b387be5a268d",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FLRD-AVR656",
+   "airtable_rec_id": "rec0UApSdlgCyzaOB",
+   "ls_id": "0c5d9168-09ce-46f2-99fd-1555526a36f3",
+   "handle": null,
+   "fields": {
+    "supply_price": 1.59,
+    "price_excluding_tax": 2.79
+   },
+   "before": {
+    "name": "FLRDLVP-SPC - AVO-ROX EASE (Golden Ray) | 7.19\" x 6.5mm x RL - 19.12sf/b",
+    "handle": "FLRD65GOLDENRAY",
+    "sku": "LVP-FLRD-AVR656",
+    "supply_price": 2.1,
+    "price_including_tax": 3.1,
+    "price_excluding_tax": 3.1,
+    "category": "SPC",
+    "supplier_name": "FLOORDI",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 24
+  },
+  {
+   "id": "cat-18fb10e05cc1",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FLRD-AVR801",
+   "airtable_rec_id": "recJUF2OERF93OviM",
+   "ls_id": "3394cbc9-d074-4400-a4f5-64bb82f0d404",
+   "handle": null,
+   "fields": {
+    "supply_price": 2.8,
+    "price_excluding_tax": 3.8
+   },
+   "before": {
+    "name": "FLRDLVP-SPC - AVO-ROX GRAND (Amber Glow) | 9\" x 8mm x RL - 18.75sf/b",
+    "handle": "FLRD8AMBERGLOW",
+    "sku": "LVP-FLRD-AVR801",
+    "supply_price": 3.3,
+    "price_including_tax": 4.3,
+    "price_excluding_tax": 4.3,
+    "category": "SPC",
+    "supplier_name": "FLOORDI",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 25
+  },
+  {
+   "id": "cat-17f2a802718e",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FLRD-AVR802",
+   "airtable_rec_id": "recSPbVBM4mREyF6d",
+   "ls_id": "f43679f6-33d7-4cc3-9f28-5090217f0a05",
+   "handle": null,
+   "fields": {
+    "supply_price": 2.39,
+    "price_excluding_tax": 3.8
+   },
+   "before": {
+    "name": "FLRDLVP-SPC - AVO-ROX GRAND (Natural Hush) | 9\" x 8mm x RL - 18.75sf/b",
+    "handle": "FLRD8NATURALHUSH",
+    "sku": "LVP-FLRD-AVR802",
+    "supply_price": 3.3,
+    "price_including_tax": 4.3,
+    "price_excluding_tax": 4.3,
+    "category": "SPC",
+    "supplier_name": "FLOORDI",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 26
+  },
+  {
+   "id": "cat-3b6339884516",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FLRD-AVR803",
+   "airtable_rec_id": "rechYHiBdtXO08kTW",
+   "ls_id": "3ddbefc7-9eff-4819-aaa6-115670dd6b50",
+   "handle": null,
+   "fields": {
+    "supply_price": 2.8,
+    "price_excluding_tax": 3.8
+   },
+   "before": {
+    "name": "FLRDLVP-SPC - AVO-ROX GRAND (Serenity Oak) | 9\" x 8mm x RL - 18.75sf/b",
+    "handle": "FLRD8SERENITYOAK",
+    "sku": "LVP-FLRD-AVR803",
+    "supply_price": 3.3,
+    "price_including_tax": 4.3,
+    "price_excluding_tax": 4.3,
+    "category": "SPC",
+    "supplier_name": "FLOORDI",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 27
+  },
+  {
+   "id": "cat-985ceda2c2e0",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FLRD-AVR804",
+   "airtable_rec_id": "recc7SrRQp0wafskL",
+   "ls_id": "dce02127-8bc9-451b-92cd-4db7a97fe356",
+   "handle": null,
+   "fields": {
+    "supply_price": 2.8,
+    "price_excluding_tax": 3.8
+   },
+   "before": {
+    "name": "FLRDLVP-SPC - AVO-ROX GRAND (Gentle Woven) | 9\" x 8mm x RL - 18.75sf/b",
+    "handle": "FLRD8GENTLEWOVEN",
+    "sku": "LVP-FLRD-AVR804",
+    "supply_price": 3.49,
+    "price_including_tax": 4.49,
+    "price_excluding_tax": 4.49,
+    "category": "SPC",
+    "supplier_name": "FLOORDI",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 28
+  },
+  {
+   "id": "cat-b6972afbe8e4",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FLRD-AVR805",
+   "airtable_rec_id": "recz6C9uHnXXLuIBG",
+   "ls_id": "9df1c7dd-1257-4272-806f-11ca0dc74613",
+   "handle": null,
+   "fields": {
+    "supply_price": 2.8,
+    "price_excluding_tax": 3.8
+   },
+   "before": {
+    "name": "FLRDLVP-SPC - AVO-ROX GRAND (Warm Woven) | 9\" x 8mm x RL - 18.75sf/b",
+    "handle": "FLRD8WARMWOVEN",
+    "sku": "LVP-FLRD-AVR805",
+    "supply_price": 3.49,
+    "price_including_tax": 4.49,
+    "price_excluding_tax": 4.49,
+    "category": "SPC",
+    "supplier_name": "FLOORDI",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 29
+  },
+  {
+   "id": "cat-b5e82f107a9d",
+   "target_system": "lightspeed",
+   "op": "update",
+   "sku": "LVP-FLRD-AVR806",
+   "airtable_rec_id": "recsbOFiMWaEXjY87",
+   "ls_id": "2cc47460-20b3-44a4-829d-3125cb046e00",
+   "handle": null,
+   "fields": {
+    "supply_price": 2.39,
+    "price_excluding_tax": 3.8
+   },
+   "before": {
+    "name": "FLRDLVP-SPC - AVO-ROX GRAND (Nature Woven) | 9\" x 8mm x RL - 18.75sf/b",
+    "handle": "FLRD8NATUREWOVEN",
+    "sku": "LVP-FLRD-AVR806",
+    "supply_price": 3.49,
+    "price_including_tax": 4.49,
+    "price_excluding_tax": 4.49,
+    "category": "SPC",
+    "supplier_name": "FLOORDI",
+    "active": true
+   },
+   "reason": "price_change",
+   "uuid_source": "upload",
+   "seq": 30
+  }
+ ],
+ "blocked": [],
+ "warnings": [
+  {
+   "sku": "ACC-FLRD-AFS-AVR65",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-FLRD-AFS-AVR80",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-FLRD-AR-AVR65",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-FLRD-AR-AVR80",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-FLRD-AT-AVR65",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  },
+  {
+   "sku": "ACC-FLRD-AT-AVR80",
+   "reason": "category_unresolved",
+   "detail": "Airtable category 'Accessory' does not map to any Lightspeed leaf \u2014 not in the leaves list and not in airtable_to_ls_leaf. Not blocking: no write path sets a category yet."
+  }
+ ]
+}
