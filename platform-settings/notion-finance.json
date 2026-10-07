@@ -329,7 +329,18 @@
       "message": "Message",
       "_message_note": "Holds the payer's memo, which often contains a customer street address and phone. Read for matching; never echo into logs, plans or reports.",
       "senders_name": "Sender's Name",
+      "deposit_account": "Select",
+      "_deposit_account_note": "Which bank account the e-transfer landed in (Albert 2026-10-07). Codes in deposit_account_codes below. Which of these are Titan's business accounts is not recorded yet: the 'transfer into Titan' section on the payout run needs that before it can list money to move.",
       "projects": "Projects"
+    },
+    "deposit_account_codes": {
+      "TA": "Tangerine",
+      "B": "BMO",
+      "T": "TD",
+      "S": "Scotia",
+      "R": "RBC",
+      "SC": "Scotia Cuu's",
+      "C": "CIBC"
     },
     "to_add": {
       "suggested_project": {
