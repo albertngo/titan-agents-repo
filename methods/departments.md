@@ -143,7 +143,8 @@ not bookkeeping, and GHL `value_cents` is pipeline value, not money received —
 neither may be presented as if it answered the question.
 
 Unblock: three consecutive `bookkeeper: "ok"` entries in `run-ledger.json`. Then
-write the lead from those three real days.
+write the lead from those three real days. How to get there (2026-10-07):
+`methods/bookkeeper-plan.md`.
 
 ### Marketing needs Tier 1 before Tier 3
 
