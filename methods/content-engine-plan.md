@@ -1,5 +1,3 @@
-<!-- Plan document, grilled with Albert 2026-10-07. Not yet built: no command, contract, registry or script below exists until Phase 0 is approved. Source of truth for the design until methods/content-engine.md replaces it. -->
-
 # Titan AEO Content Engine — plan
 
 ## Context
@@ -220,6 +218,35 @@ PR transport: cloud session → `add_repo titan-website access:push`, then GitHu
 - DNS cut-over date for titanfloors.ca → Vercel (sets when rankings start).
 - Whether `Value Approx` on Titan Projects is reliably filled on store-pipeline wins (affects attribution share).
 - Whether to add `Proposed` seed review to a Notion view (yes by default: a "Seeds to confirm" view on Topic Backlog).
+
+## Phase 0 progress log (survives worker restarts)
+
+- 2026-10-07: plan approved by Albert ("Go", then ExitPlanMode approval). Plan doc committed to
+  titan-agents-repo as `methods/content-engine-plan.md` on `claude/titan-content-engine-plan-1qyhr6` (e7ae08f, pushed).
+- 2026-10-07: **Topic Backlog created in Notion** under Blog Content: database
+  `1fb201bb-56d1-449f-9229-f9d0ec117bcf`, data source `collection://91bd484f-88b9-47d2-ba13-abcc5efd34a1`,
+  properties exactly as designed (ID prefix TB, Cluster 8 options, Material 5, Source of idea 9, Intent 4
+  spelled `Commercial`, Status 6 incl. Proposed, Retired reason 4, Canonical key, Score, Score inputs,
+  Last scored, Local, Volume, Difficulty, CPC). The `Blog Post` relation was NOT created yet: the DDL
+  rejected a `collection://` target. Add it from the Blog Posts side as `ADD COLUMN "Topic"
+  RELATION('91bd484f-88b9-47d2-ba13-abcc5efd34a1', DUAL 'Blog Post')`.
+- 2026-10-07: **Phase 0 complete.** Blog Posts gained ID (BP), Topic Cluster, Slug, Snippet, Video URL,
+  PR URL, Topic (↔ Backlog `Blog Post`), Content Idea (↔ Content Ideas `Blog Post`), Pillar/Spokes;
+  Titan Content Ideas gained Topic Cluster; Titan Projects gained Campaign. Repo: registry, facts
+  skeleton, method, blog-actions-agent, nine stubs, departments wiring, actions-log row, CLAUDE.md
+  section + grilling rule, registry test. Commits 8e53600, b6ee41f on
+  `claude/titan-content-engine-plan-1qyhr6` (pushed). Vault a4182e3 on main-vault (pushed).
+  Full suite: only the pre-existing `test_ghl_calls` keyterms failure remains.
+- **Albert's Notion UI task:** Blog Posts `Status` rename `Posted → Published`, add `Briefed`,
+  `Review`, `Approved` (status options are not renameable through the DDL path used). Engine reads
+  `Posted` as `Published` until then (`status_live_alias`).
+- 2026-10-07: **Phase 1 built** (commits eb883fa, 75b7077, 814bad6 + dry run on
+  `claude/titan-content-engine-plan-1qyhr6`; titan-website branch of the same name). Six
+  commands real; `blog_plan.py` has a sweep stage; blog route zero-dependency (npm blocked);
+  dry run under plan_only end to end (`ingest/2026-10-07/`, `plans/2026-10-07/`). Albert's
+  tasks before the first live post: fill `titan-facts.md`, Blog Posts status rename, set
+  `NEXT_PUBLIC_SITE_URL` + `website.production_host`, flip `write_mode` (dated decision).
+- Next: Phase 1 live (after the flip) → 1b legacy import → 2 OpenSEO.
 
 ## Verification
 

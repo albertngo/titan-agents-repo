@@ -246,8 +246,11 @@ Writes go only through `blog-actions-agent` under an approval file; it can never
 `Approved`, merge, or delete. `write_mode` is `plan_only` until a dated decision.
 Registry `platform-settings/content-engine.json`; facts a post may quote
 `platform-settings/titan-facts.md` (Albert-owned); method `methods/content-engine.md`;
-plan of record `methods/content-engine-plan.md` (grilled, 24 decisions). **Phase 0 only
-as of 2026-10-07**: schema and registry exist, every command is a stub that stops.
+plan of record `methods/content-engine-plan.md` (grilled, 24 decisions). **Phase 1 built
+2026-10-07, still `plan_only`**: contracts, the five scripts (`topic_harvest`, `topic_rank`,
+`blog_plan`, `blog_render`, `blog_sweep`), the six core commands and the titan-website blog
+route exist; the dry run under `plans/2026-10-07/` wrote nothing to any platform. `blog-import`,
+`content-attribution` and `topic-track` are still stubs (Phases 1b–3).
 
 ## Planning (2026-10-07, Albert)
 

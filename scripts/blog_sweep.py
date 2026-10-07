@@ -18,6 +18,7 @@ checks file:
 Rules (methods/content-engine.md, Sweep):
   * Approved + PR merged + 200 + canonical == expected URL  -> propose Published
     (Direct URL, Publish Date = today, Status Published; expect Status Approved);
+  * Approved + no PR URL                                      -> not_yet (run /blog-publish);
   * Approved + PR open                                        -> not_yet (waiting on merge);
   * Approved + PR merged but not 200                          -> not_yet (deploy pending);
   * 200 but canonical differs                                 -> url_mismatch, no write;
@@ -82,6 +83,8 @@ def decide(reg, rows, checks, now):
                     })
             else:
                 out["not_yet"].append({"bp_id": bp, "slug": slug, "detail": f"unknown pr_state {c.get('pr_state')!r}"})
+        elif st == "Approved":
+            out["not_yet"].append({"bp_id": bp, "slug": slug, "detail": "Approved but no PR URL yet; run /blog-publish"})
         elif st in PUBLISHED and c:
             if r.get("published_sha1") and c.get("body_sha1") and c["body_sha1"] != r["published_sha1"]:
                 out["flagged"].append({"bp_id": bp, "slug": slug, "reason": "body_changed_after_publish",

@@ -1,0 +1,80 @@
+{
+  "contract_version": "blog-plan-1",
+  "stage": "draft",
+  "scope": "BP-108",
+  "run_at": "2026-10-07T07:15:28-04:00",
+  "write_mode": "plan_only",
+  "registry_config_version": "1",
+  "inputs": [
+    {
+      "file": "ingest/2026-10-07/blog-body-BP-108.md",
+      "sha1": "afb6db9c035aaad2edc29694acbcd662c55681ef"
+    },
+    {
+      "file": "ingest/2026-10-07/blog-posts-snapshot-simulated.json"
+    },
+    {
+      "file": "ingest/2026-10-07/blog-brief-TB-3.json"
+    }
+  ],
+  "summary": {
+    "actions": 2,
+    "held": 0,
+    "held_by_reason": {},
+    "flagged": 1
+  },
+  "actions": [
+    {
+      "id": "blg-a0b5557b94b7",
+      "seq": 1,
+      "target_system": "notion",
+      "type": "notion_append_blog_body",
+      "op": "append_blog_body",
+      "target": {
+        "page": "simulated://blog-posts/BP-108",
+        "bp_id": "BP-108"
+      },
+      "fields": {
+        "body_heading": "## Draft 2026-10-07"
+      },
+      "expect": {
+        "Status": "Briefed"
+      },
+      "flags": [],
+      "body_file": "ingest/2026-10-07/blog-body-BP-108.md",
+      "body_sha1": "afb6db9c035aaad2edc29694acbcd662c55681ef"
+    },
+    {
+      "id": "blg-7153907a9105",
+      "seq": 2,
+      "target_system": "notion",
+      "type": "notion_update_blog_post",
+      "op": "update_blog_post",
+      "target": {
+        "page": "simulated://blog-posts/BP-108",
+        "bp_id": "BP-108"
+      },
+      "fields": {
+        "Status": "Review",
+        "Snippet": "For most Ontario basements the best flooring is rigid-core luxury vinyl plank (SPC or WPC): it is waterproof-rated, sits happily on concrete, and shrugs off the humidity swings a below-grade room goes through every year. Laminate can work in a dry basement with the right underlay, while solid hardwood and most carpet should stay upstairs.",
+        "Slug": "best-flooring-for-basement-ontario",
+        "Primary Keyword": "best flooring for basement ontario"
+      },
+      "expect": {
+        "Status": "Briefed"
+      },
+      "flags": [
+        "pillar_not_required_yet"
+      ]
+    }
+  ],
+  "held": [],
+  "flagged": [
+    {
+      "action_id": "blg-7153907a9105",
+      "reason": "pillar_not_required_yet"
+    }
+  ],
+  "warnings": [],
+  "_path": "plans/2026-10-07/blog-plan-draft-BP-108.json"
+}

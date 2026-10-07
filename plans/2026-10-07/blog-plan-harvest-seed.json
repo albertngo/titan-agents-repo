@@ -1,0 +1,508 @@
+{
+  "contract_version": "blog-plan-1",
+  "stage": "harvest",
+  "scope": "seed",
+  "run_at": "2026-10-07T07:13:46-04:00",
+  "write_mode": "plan_only",
+  "registry_config_version": "1",
+  "inputs": [
+    {
+      "file": "ingest/2026-10-07/topic-candidates-seed.json"
+    }
+  ],
+  "summary": {
+    "actions": 15,
+    "held": 0,
+    "held_by_reason": {},
+    "flagged": 2
+  },
+  "actions": [
+    {
+      "id": "blg-9d282216f7a1",
+      "seq": 1,
+      "target_system": "notion",
+      "type": "notion_create_topic",
+      "op": "create_topic",
+      "target": {
+        "data_source": "collection://91bd484f-88b9-47d2-ba13-abcc5efd34a1",
+        "canonical_key": "how much does vinyl plank flooring cost to install in mississauga"
+      },
+      "fields": {
+        "Topic / Question": "How much does vinyl plank flooring cost to install in Mississauga?",
+        "Cluster": "Installation Cost & Pricing",
+        "Material": [
+          "Vinyl"
+        ],
+        "Source of idea": "seed",
+        "Volume": 320,
+        "Difficulty": 22,
+        "CPC": null,
+        "Intent": "Transaction",
+        "Local": true,
+        "Status": "Backlog",
+        "Canonical key": "how much does vinyl plank flooring cost to install in mississauga"
+      },
+      "expect": {
+        "canonical_key_absent": true
+      },
+      "flags": [],
+      "batch": 1
+    },
+    {
+      "id": "blg-86cfd45c231b",
+      "seq": 2,
+      "target_system": "notion",
+      "type": "notion_create_topic",
+      "op": "create_topic",
+      "target": {
+        "data_source": "collection://91bd484f-88b9-47d2-ba13-abcc5efd34a1",
+        "canonical_key": "is laminate flooring waterproof"
+      },
+      "fields": {
+        "Topic / Question": "Is laminate flooring waterproof?",
+        "Cluster": "Waterproof",
+        "Material": [
+          "Laminate"
+        ],
+        "Source of idea": "seed",
+        "Volume": 2400,
+        "Difficulty": 48,
+        "CPC": null,
+        "Intent": "Informational",
+        "Local": false,
+        "Status": "Backlog",
+        "Canonical key": "is laminate flooring waterproof"
+      },
+      "expect": {
+        "canonical_key_absent": true
+      },
+      "flags": [],
+      "batch": 1
+    },
+    {
+      "id": "blg-f8c01e8f6c30",
+      "seq": 3,
+      "target_system": "notion",
+      "type": "notion_create_topic",
+      "op": "create_topic",
+      "target": {
+        "data_source": "collection://91bd484f-88b9-47d2-ba13-abcc5efd34a1",
+        "canonical_key": "what is the best flooring for a basement in ontario"
+      },
+      "fields": {
+        "Topic / Question": "What is the best flooring for a basement in Ontario?",
+        "Cluster": "Basement Flooring",
+        "Material": [
+          "Vinyl",
+          "Laminate"
+        ],
+        "Source of idea": "seed",
+        "Volume": 590,
+        "Difficulty": 35,
+        "CPC": null,
+        "Intent": "Commercial",
+        "Local": true,
+        "Status": "Backlog",
+        "Canonical key": "what is the best flooring for a basement in ontario"
+      },
+      "expect": {
+        "canonical_key_absent": true
+      },
+      "flags": [],
+      "batch": 1
+    },
+    {
+      "id": "blg-45695392a47e",
+      "seq": 4,
+      "target_system": "notion",
+      "type": "notion_create_topic",
+      "op": "create_topic",
+      "target": {
+        "data_source": "collection://91bd484f-88b9-47d2-ba13-abcc5efd34a1",
+        "canonical_key": "can you put vinyl plank flooring over tile"
+      },
+      "fields": {
+        "Topic / Question": "Can you put vinyl plank flooring over tile?",
+        "Cluster": "Vinyl Plank & Laminate",
+        "Material": [
+          "Vinyl"
+        ],
+        "Source of idea": "seed",
+        "Volume": null,
+        "Difficulty": null,
+        "CPC": null,
+        "Intent": "Informational",
+        "Local": false,
+        "Status": "Backlog",
+        "Canonical key": "can you put vinyl plank flooring over tile"
+      },
+      "expect": {
+        "canonical_key_absent": true
+      },
+      "flags": [
+        "volume_unknown"
+      ],
+      "batch": 1
+    },
+    {
+      "id": "blg-6993fad41445",
+      "seq": 5,
+      "target_system": "notion",
+      "type": "notion_create_topic",
+      "op": "create_topic",
+      "target": {
+        "data_source": "collection://91bd484f-88b9-47d2-ba13-abcc5efd34a1",
+        "canonical_key": "engineered hardwood vs laminate which is better for a family home"
+      },
+      "fields": {
+        "Topic / Question": "Engineered hardwood vs laminate: which is better for a family home?",
+        "Cluster": "Comparison",
+        "Material": [
+          "Engineered",
+          "Laminate"
+        ],
+        "Source of idea": "seed",
+        "Volume": 880,
+        "Difficulty": 41,
+        "CPC": null,
+        "Intent": "Commercial",
+        "Local": false,
+        "Status": "Backlog",
+        "Canonical key": "engineered hardwood vs laminate which is better for a family home"
+      },
+      "expect": {
+        "canonical_key_absent": true
+      },
+      "flags": [],
+      "batch": 1
+    },
+    {
+      "id": "blg-9e764112b5a4",
+      "seq": 6,
+      "target_system": "notion",
+      "type": "notion_create_topic",
+      "op": "create_topic",
+      "target": {
+        "data_source": "collection://91bd484f-88b9-47d2-ba13-abcc5efd34a1",
+        "canonical_key": "how long does hardwood floor installation take"
+      },
+      "fields": {
+        "Topic / Question": "How long does hardwood floor installation take?",
+        "Cluster": "Installation Process",
+        "Material": [
+          "Solid",
+          "Engineered"
+        ],
+        "Source of idea": "seed",
+        "Volume": 210,
+        "Difficulty": 18,
+        "CPC": null,
+        "Intent": "Informational",
+        "Local": false,
+        "Status": "Backlog",
+        "Canonical key": "how long does hardwood floor installation take"
+      },
+      "expect": {
+        "canonical_key_absent": true
+      },
+      "flags": [],
+      "batch": 1
+    },
+    {
+      "id": "blg-75c0776647ff",
+      "seq": 7,
+      "target_system": "notion",
+      "type": "notion_create_topic",
+      "op": "create_topic",
+      "target": {
+        "data_source": "collection://91bd484f-88b9-47d2-ba13-abcc5efd34a1",
+        "canonical_key": "does luxury vinyl plank scratch easily with dogs"
+      },
+      "fields": {
+        "Topic / Question": "Does luxury vinyl plank scratch easily with dogs?",
+        "Cluster": "Maintenance & Care",
+        "Material": [
+          "Vinyl"
+        ],
+        "Source of idea": "seed",
+        "Volume": 480,
+        "Difficulty": 30,
+        "CPC": null,
+        "Intent": "Informational",
+        "Local": false,
+        "Status": "Backlog",
+        "Canonical key": "does luxury vinyl plank scratch easily with dogs"
+      },
+      "expect": {
+        "canonical_key_absent": true
+      },
+      "flags": [],
+      "batch": 1
+    },
+    {
+      "id": "blg-15f7c44fcf6a",
+      "seq": 8,
+      "target_system": "notion",
+      "type": "notion_create_topic",
+      "op": "create_topic",
+      "target": {
+        "data_source": "collection://91bd484f-88b9-47d2-ba13-abcc5efd34a1",
+        "canonical_key": "is engineered hardwood a good choice for a basement"
+      },
+      "fields": {
+        "Topic / Question": "Is engineered hardwood a good choice for a basement?",
+        "Cluster": "Basement Flooring",
+        "Material": [
+          "Engineered"
+        ],
+        "Source of idea": "seed",
+        "Volume": 170,
+        "Difficulty": 20,
+        "CPC": null,
+        "Intent": "Informational",
+        "Local": false,
+        "Status": "Backlog",
+        "Canonical key": "is engineered hardwood a good choice for a basement"
+      },
+      "expect": {
+        "canonical_key_absent": true
+      },
+      "flags": [],
+      "batch": 1
+    },
+    {
+      "id": "blg-4ada312d3dd6",
+      "seq": 9,
+      "target_system": "notion",
+      "type": "notion_create_topic",
+      "op": "create_topic",
+      "target": {
+        "data_source": "collection://91bd484f-88b9-47d2-ba13-abcc5efd34a1",
+        "canonical_key": "how much does it cost to install hardwood floors in toronto"
+      },
+      "fields": {
+        "Topic / Question": "How much does it cost to install hardwood floors in Toronto?",
+        "Cluster": "Installation Cost & Pricing",
+        "Material": [
+          "Solid",
+          "Engineered"
+        ],
+        "Source of idea": "seed",
+        "Volume": 390,
+        "Difficulty": 33,
+        "CPC": null,
+        "Intent": "Transaction",
+        "Local": true,
+        "Status": "Backlog",
+        "Canonical key": "how much does it cost to install hardwood floors in toronto"
+      },
+      "expect": {
+        "canonical_key_absent": true
+      },
+      "flags": [],
+      "batch": 1
+    },
+    {
+      "id": "blg-08108b34b617",
+      "seq": 10,
+      "target_system": "notion",
+      "type": "notion_create_topic",
+      "op": "create_topic",
+      "target": {
+        "data_source": "collection://91bd484f-88b9-47d2-ba13-abcc5efd34a1",
+        "canonical_key": "what flooring is best for a kitchen in the gta"
+      },
+      "fields": {
+        "Topic / Question": "What flooring is best for a kitchen in the GTA?",
+        "Cluster": "Waterproof",
+        "Material": [
+          "Vinyl",
+          "Tile"
+        ],
+        "Source of idea": "seed",
+        "Volume": null,
+        "Difficulty": null,
+        "CPC": null,
+        "Intent": "Commercial",
+        "Local": true,
+        "Status": "Backlog",
+        "Canonical key": "what flooring is best for a kitchen in the gta"
+      },
+      "expect": {
+        "canonical_key_absent": true
+      },
+      "flags": [
+        "volume_unknown"
+      ],
+      "batch": 1
+    },
+    {
+      "id": "blg-d3ae60ae38bf",
+      "seq": 11,
+      "target_system": "notion",
+      "type": "notion_create_topic",
+      "op": "create_topic",
+      "target": {
+        "data_source": "collection://91bd484f-88b9-47d2-ba13-abcc5efd34a1",
+        "canonical_key": "should i replace carpet with vinyl plank on stairs"
+      },
+      "fields": {
+        "Topic / Question": "Should I replace carpet with vinyl plank on stairs?",
+        "Cluster": "Vinyl Plank & Laminate",
+        "Material": [
+          "Vinyl"
+        ],
+        "Source of idea": "seed",
+        "Volume": 140,
+        "Difficulty": 15,
+        "CPC": null,
+        "Intent": "Informational",
+        "Local": false,
+        "Status": "Backlog",
+        "Canonical key": "should i replace carpet with vinyl plank on stairs"
+      },
+      "expect": {
+        "canonical_key_absent": true
+      },
+      "flags": [],
+      "batch": 1
+    },
+    {
+      "id": "blg-e636a05a414b",
+      "seq": 12,
+      "target_system": "notion",
+      "type": "notion_create_topic",
+      "op": "create_topic",
+      "target": {
+        "data_source": "collection://91bd484f-88b9-47d2-ba13-abcc5efd34a1",
+        "canonical_key": "how do i clean luxury vinyl plank without damaging it"
+      },
+      "fields": {
+        "Topic / Question": "How do I clean luxury vinyl plank without damaging it?",
+        "Cluster": "Maintenance & Care",
+        "Material": [
+          "Vinyl"
+        ],
+        "Source of idea": "seed",
+        "Volume": 1300,
+        "Difficulty": 44,
+        "CPC": null,
+        "Intent": "Informational",
+        "Local": false,
+        "Status": "Backlog",
+        "Canonical key": "how do i clean luxury vinyl plank without damaging it"
+      },
+      "expect": {
+        "canonical_key_absent": true
+      },
+      "flags": [],
+      "batch": 1
+    },
+    {
+      "id": "blg-c558ee8fd6af",
+      "seq": 13,
+      "target_system": "notion",
+      "type": "notion_create_topic",
+      "op": "create_topic",
+      "target": {
+        "data_source": "collection://91bd484f-88b9-47d2-ba13-abcc5efd34a1",
+        "canonical_key": "can laminate flooring be installed in a bathroom"
+      },
+      "fields": {
+        "Topic / Question": "Can laminate flooring be installed in a bathroom?",
+        "Cluster": "Waterproof",
+        "Material": [
+          "Laminate"
+        ],
+        "Source of idea": "seed",
+        "Volume": 720,
+        "Difficulty": 38,
+        "CPC": null,
+        "Intent": "Informational",
+        "Local": false,
+        "Status": "Backlog",
+        "Canonical key": "can laminate flooring be installed in a bathroom"
+      },
+      "expect": {
+        "canonical_key_absent": true
+      },
+      "flags": [],
+      "batch": 1
+    },
+    {
+      "id": "blg-ae546c283020",
+      "seq": 14,
+      "target_system": "notion",
+      "type": "notion_create_topic",
+      "op": "create_topic",
+      "target": {
+        "data_source": "collection://91bd484f-88b9-47d2-ba13-abcc5efd34a1",
+        "canonical_key": "what is the difference between spc and wpc vinyl flooring"
+      },
+      "fields": {
+        "Topic / Question": "What is the difference between SPC and WPC vinyl flooring?",
+        "Cluster": "Comparison",
+        "Material": [
+          "Vinyl"
+        ],
+        "Source of idea": "seed",
+        "Volume": 1000,
+        "Difficulty": 36,
+        "CPC": null,
+        "Intent": "Informational",
+        "Local": false,
+        "Status": "Backlog",
+        "Canonical key": "what is the difference between spc and wpc vinyl flooring"
+      },
+      "expect": {
+        "canonical_key_absent": true
+      },
+      "flags": [],
+      "batch": 1
+    },
+    {
+      "id": "blg-eb4e96d648d6",
+      "seq": 15,
+      "target_system": "notion",
+      "type": "notion_create_topic",
+      "op": "create_topic",
+      "target": {
+        "data_source": "collection://91bd484f-88b9-47d2-ba13-abcc5efd34a1",
+        "canonical_key": "do i need underlay for laminate flooring over concrete"
+      },
+      "fields": {
+        "Topic / Question": "Do I need underlay for laminate flooring over concrete?",
+        "Cluster": "Vinyl Plank & Laminate",
+        "Material": [
+          "Laminate"
+        ],
+        "Source of idea": "seed",
+        "Volume": 260,
+        "Difficulty": 21,
+        "CPC": null,
+        "Intent": "Informational",
+        "Local": false,
+        "Status": "Backlog",
+        "Canonical key": "do i need underlay for laminate flooring over concrete"
+      },
+      "expect": {
+        "canonical_key_absent": true
+      },
+      "flags": [],
+      "batch": 1
+    }
+  ],
+  "held": [],
+  "flagged": [
+    {
+      "action_id": "blg-45695392a47e",
+      "reason": "volume_unknown"
+    },
+    {
+      "action_id": "blg-08108b34b617",
+      "reason": "volume_unknown"
+    }
+  ],
+  "warnings": [],
+  "_path": "plans/2026-10-07/blog-plan-harvest-seed.json"
+}

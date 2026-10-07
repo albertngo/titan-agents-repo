@@ -1,0 +1,341 @@
+{
+  "contract_version": "blog-plan-1",
+  "stage": "rank",
+  "scope": "all",
+  "run_at": "2026-10-07T07:14:19-04:00",
+  "write_mode": "plan_only",
+  "registry_config_version": "1",
+  "inputs": [
+    {
+      "file": "ingest/2026-10-07/topic-scores-simulated.json"
+    },
+    {
+      "file": "ingest/2026-10-07/topic-backlog-snapshot-simulated.json"
+    }
+  ],
+  "summary": {
+    "actions": 15,
+    "held": 0,
+    "held_by_reason": {},
+    "flagged": 2
+  },
+  "actions": [
+    {
+      "id": "blg-3353edadad46",
+      "seq": 1,
+      "target_system": "notion",
+      "type": "notion_update_topic_score",
+      "op": "update_topic_score",
+      "target": {
+        "page": "simulated://topic-backlog/TB-1",
+        "tb_id": "TB-1"
+      },
+      "fields": {
+        "Score": 95.9,
+        "Score inputs": "{\"C\": 0.9, \"D\": 0.78, \"I\": 1.0, \"L\": 1.0, \"V\": 0.6776, \"cluster\": \"installation-cost\", \"diversity\": 1.15, \"effective\": 95.9, \"flags\": [], \"intent\": \"Transaction\", \"open\": 0, \"perf\": null, \"published\": 0, \"r\": 0.0, \"registry_config_version\": \"1\", \"score\": 83.43}",
+        "Last scored": "2026-10-07"
+      },
+      "expect": {
+        "Status": "Backlog"
+      },
+      "flags": []
+    },
+    {
+      "id": "blg-f96ea82d0430",
+      "seq": 2,
+      "target_system": "notion",
+      "type": "notion_update_topic_score",
+      "op": "update_topic_score",
+      "target": {
+        "page": "simulated://topic-backlog/TB-9",
+        "tb_id": "TB-9"
+      },
+      "fields": {
+        "Score": 94.2,
+        "Score inputs": "{\"C\": 0.9, \"D\": 0.67, \"I\": 1.0, \"L\": 1.0, \"V\": 0.7008, \"cluster\": \"installation-cost\", \"diversity\": 1.15, \"effective\": 94.2, \"flags\": [], \"intent\": \"Transaction\", \"open\": 0, \"perf\": null, \"published\": 0, \"r\": 0.0, \"registry_config_version\": \"1\", \"score\": 81.92}",
+        "Last scored": "2026-10-07"
+      },
+      "expect": {
+        "Status": "Backlog"
+      },
+      "flags": []
+    },
+    {
+      "id": "blg-b6027baf634b",
+      "seq": 3,
+      "target_system": "notion",
+      "type": "notion_update_topic_score",
+      "op": "update_topic_score",
+      "target": {
+        "page": "simulated://topic-backlog/TB-3",
+        "tb_id": "TB-3"
+      },
+      "fields": {
+        "Score": 86.8,
+        "Score inputs": "{\"C\": 0.8, \"D\": 0.65, \"I\": 0.8, \"L\": 0.8, \"V\": 0.7493, \"cluster\": \"basement-flooring\", \"diversity\": 1.15, \"effective\": 86.8, \"flags\": [], \"intent\": \"Commercial\", \"open\": 0, \"perf\": null, \"published\": 0, \"r\": 0.0, \"registry_config_version\": \"1\", \"score\": 75.48}",
+        "Last scored": "2026-10-07"
+      },
+      "expect": {
+        "Status": "Backlog"
+      },
+      "flags": []
+    },
+    {
+      "id": "blg-cddb89cf6f25",
+      "seq": 4,
+      "target_system": "notion",
+      "type": "notion_update_topic_score",
+      "op": "update_topic_score",
+      "target": {
+        "page": "simulated://topic-backlog/TB-8",
+        "tb_id": "TB-8"
+      },
+      "fields": {
+        "Score": 73.2,
+        "Score inputs": "{\"C\": 0.8, \"D\": 0.8, \"I\": 0.5, \"L\": 0.3, \"V\": 0.6037, \"cluster\": \"basement-flooring\", \"diversity\": 1.15, \"effective\": 73.2, \"flags\": [], \"intent\": \"Informational\", \"open\": 0, \"perf\": null, \"published\": 0, \"r\": 0.0, \"registry_config_version\": \"1\", \"score\": 63.61}",
+        "Last scored": "2026-10-07"
+      },
+      "expect": {
+        "Status": "Backlog"
+      },
+      "flags": []
+    },
+    {
+      "id": "blg-951c75e0a910",
+      "seq": 5,
+      "target_system": "notion",
+      "type": "notion_update_topic_score",
+      "op": "update_topic_score",
+      "target": {
+        "page": "simulated://topic-backlog/TB-15",
+        "tb_id": "TB-15"
+      },
+      "fields": {
+        "Score": 70.0,
+        "Score inputs": "{\"C\": 0.7, \"D\": 0.79, \"I\": 0.5, \"L\": 0.2, \"V\": 0.6533, \"cluster\": \"vinyl-laminate\", \"diversity\": 1.15, \"effective\": 70.0, \"flags\": [], \"intent\": \"Informational\", \"open\": 0, \"perf\": null, \"published\": 0, \"r\": 0.0, \"registry_config_version\": \"1\", \"score\": 60.9}",
+        "Last scored": "2026-10-07"
+      },
+      "expect": {
+        "Status": "Backlog"
+      },
+      "flags": []
+    },
+    {
+      "id": "blg-02ee9508d9c2",
+      "seq": 6,
+      "target_system": "notion",
+      "type": "notion_update_topic_score",
+      "op": "update_topic_score",
+      "target": {
+        "page": "simulated://topic-backlog/TB-2",
+        "tb_id": "TB-2"
+      },
+      "fields": {
+        "Score": 69.9,
+        "Score inputs": "{\"C\": 0.6, \"D\": 0.52, \"I\": 0.5, \"L\": 0.2, \"V\": 0.9139, \"cluster\": \"waterproof\", \"diversity\": 1.15, \"effective\": 69.9, \"flags\": [], \"intent\": \"Informational\", \"open\": 0, \"perf\": null, \"published\": 0, \"r\": 0.0, \"registry_config_version\": \"1\", \"score\": 60.82}",
+        "Last scored": "2026-10-07"
+      },
+      "expect": {
+        "Status": "Backlog"
+      },
+      "flags": []
+    },
+    {
+      "id": "blg-6b53a7b77146",
+      "seq": 7,
+      "target_system": "notion",
+      "type": "notion_update_topic_score",
+      "op": "update_topic_score",
+      "target": {
+        "page": "simulated://topic-backlog/TB-6",
+        "tb_id": "TB-6"
+      },
+      "fields": {
+        "Score": 69.3,
+        "Score inputs": "{\"C\": 0.5, \"D\": 0.82, \"I\": 0.5, \"L\": 0.5, \"V\": 0.6283, \"cluster\": \"installation-process\", \"diversity\": 1.15, \"effective\": 69.3, \"flags\": [], \"intent\": \"Informational\", \"open\": 0, \"perf\": null, \"published\": 0, \"r\": 0.0, \"registry_config_version\": \"1\", \"score\": 60.25}",
+        "Last scored": "2026-10-07"
+      },
+      "expect": {
+        "Status": "Backlog"
+      },
+      "flags": []
+    },
+    {
+      "id": "blg-8ae2d2910c2d",
+      "seq": 8,
+      "target_system": "notion",
+      "type": "notion_update_topic_score",
+      "op": "update_topic_score",
+      "target": {
+        "page": "simulated://topic-backlog/TB-5",
+        "tb_id": "TB-5"
+      },
+      "fields": {
+        "Score": 69.2,
+        "Score inputs": "{\"C\": 0.6, \"D\": 0.59, \"I\": 0.8, \"L\": 0.1, \"V\": 0.7961, \"cluster\": \"comparison\", \"diversity\": 1.15, \"effective\": 69.2, \"flags\": [], \"intent\": \"Commercial\", \"open\": 0, \"perf\": null, \"published\": 0, \"r\": 0.0, \"registry_config_version\": \"1\", \"score\": 60.18}",
+        "Last scored": "2026-10-07"
+      },
+      "expect": {
+        "Status": "Backlog"
+      },
+      "flags": []
+    },
+    {
+      "id": "blg-b045b432352b",
+      "seq": 9,
+      "target_system": "notion",
+      "type": "notion_update_topic_score",
+      "op": "update_topic_score",
+      "target": {
+        "page": "simulated://topic-backlog/TB-11",
+        "tb_id": "TB-11"
+      },
+      "fields": {
+        "Score": 68.9,
+        "Score inputs": "{\"C\": 0.7, \"D\": 0.85, \"I\": 0.5, \"L\": 0.2, \"V\": 0.581, \"cluster\": \"vinyl-laminate\", \"diversity\": 1.15, \"effective\": 68.9, \"flags\": [], \"intent\": \"Informational\", \"open\": 0, \"perf\": null, \"published\": 0, \"r\": 0.0, \"registry_config_version\": \"1\", \"score\": 59.93}",
+        "Last scored": "2026-10-07"
+      },
+      "expect": {
+        "Status": "Backlog"
+      },
+      "flags": []
+    },
+    {
+      "id": "blg-fd4130295308",
+      "seq": 10,
+      "target_system": "notion",
+      "type": "notion_update_topic_score",
+      "op": "update_topic_score",
+      "target": {
+        "page": "simulated://topic-backlog/TB-14",
+        "tb_id": "TB-14"
+      },
+      "fields": {
+        "Score": 67.4,
+        "Score inputs": "{\"C\": 0.6, \"D\": 0.64, \"I\": 0.5, \"L\": 0.1, \"V\": 0.8111, \"cluster\": \"comparison\", \"diversity\": 1.15, \"effective\": 67.4, \"flags\": [], \"intent\": \"Informational\", \"open\": 0, \"perf\": null, \"published\": 0, \"r\": 0.0, \"registry_config_version\": \"1\", \"score\": 58.63}",
+        "Last scored": "2026-10-07"
+      },
+      "expect": {
+        "Status": "Backlog"
+      },
+      "flags": []
+    },
+    {
+      "id": "blg-06e718e36cc0",
+      "seq": 11,
+      "target_system": "notion",
+      "type": "notion_update_topic_score",
+      "op": "update_topic_score",
+      "target": {
+        "page": "simulated://topic-backlog/TB-13",
+        "tb_id": "TB-13"
+      },
+      "fields": {
+        "Score": 67.4,
+        "Score inputs": "{\"C\": 0.6, \"D\": 0.62, \"I\": 0.5, \"L\": 0.2, \"V\": 0.7726, \"cluster\": \"waterproof\", \"diversity\": 1.15, \"effective\": 67.4, \"flags\": [], \"intent\": \"Informational\", \"open\": 0, \"perf\": null, \"published\": 0, \"r\": 0.0, \"registry_config_version\": \"1\", \"score\": 58.58}",
+        "Last scored": "2026-10-07"
+      },
+      "expect": {
+        "Status": "Backlog"
+      },
+      "flags": []
+    },
+    {
+      "id": "blg-4e7c10dc401a",
+      "seq": 12,
+      "target_system": "notion",
+      "type": "notion_update_topic_score",
+      "op": "update_topic_score",
+      "target": {
+        "page": "simulated://topic-backlog/TB-10",
+        "tb_id": "TB-10"
+      },
+      "fields": {
+        "Score": 58.6,
+        "Score inputs": "{\"C\": 0.6, \"D\": 0.5, \"I\": 0.8, \"L\": 0.7, \"V\": 0.25, \"cluster\": \"waterproof\", \"diversity\": 1.15, \"effective\": 58.6, \"flags\": [\"volume_unknown\"], \"intent\": \"Commercial\", \"open\": 0, \"perf\": null, \"published\": 0, \"r\": 0.0, \"registry_config_version\": \"1\", \"score\": 51.0}",
+        "Last scored": "2026-10-07"
+      },
+      "expect": {
+        "Status": "Backlog"
+      },
+      "flags": [
+        "volume_unknown"
+      ]
+    },
+    {
+      "id": "blg-63065f36dbea",
+      "seq": 13,
+      "target_system": "notion",
+      "type": "notion_update_topic_score",
+      "op": "update_topic_score",
+      "target": {
+        "page": "simulated://topic-backlog/TB-12",
+        "tb_id": "TB-12"
+      },
+      "fields": {
+        "Score": 58.0,
+        "Score inputs": "{\"C\": 0.3, \"D\": 0.56, \"I\": 0.5, \"L\": 0.1, \"V\": 0.8419, \"cluster\": \"maintenance\", \"diversity\": 1.15, \"effective\": 58.0, \"flags\": [], \"intent\": \"Informational\", \"open\": 0, \"perf\": null, \"published\": 0, \"r\": 0.0, \"registry_config_version\": \"1\", \"score\": 50.46}",
+        "Last scored": "2026-10-07"
+      },
+      "expect": {
+        "Status": "Backlog"
+      },
+      "flags": []
+    },
+    {
+      "id": "blg-c0f47b5884e3",
+      "seq": 14,
+      "target_system": "notion",
+      "type": "notion_update_topic_score",
+      "op": "update_topic_score",
+      "target": {
+        "page": "simulated://topic-backlog/TB-7",
+        "tb_id": "TB-7"
+      },
+      "fields": {
+        "Score": 57.2,
+        "Score inputs": "{\"C\": 0.3, \"D\": 0.7, \"I\": 0.5, \"L\": 0.1, \"V\": 0.7251, \"cluster\": \"maintenance\", \"diversity\": 1.15, \"effective\": 57.2, \"flags\": [], \"intent\": \"Informational\", \"open\": 0, \"perf\": null, \"published\": 0, \"r\": 0.0, \"registry_config_version\": \"1\", \"score\": 49.75}",
+        "Last scored": "2026-10-07"
+      },
+      "expect": {
+        "Status": "Backlog"
+      },
+      "flags": []
+    },
+    {
+      "id": "blg-5d8facf3a689",
+      "seq": 15,
+      "target_system": "notion",
+      "type": "notion_update_topic_score",
+      "op": "update_topic_score",
+      "target": {
+        "page": "simulated://topic-backlog/TB-4",
+        "tb_id": "TB-4"
+      },
+      "fields": {
+        "Score": 49.4,
+        "Score inputs": "{\"C\": 0.7, \"D\": 0.5, \"I\": 0.5, \"L\": 0.2, \"V\": 0.25, \"cluster\": \"vinyl-laminate\", \"diversity\": 1.15, \"effective\": 49.4, \"flags\": [\"volume_unknown\"], \"intent\": \"Informational\", \"open\": 0, \"perf\": null, \"published\": 0, \"r\": 0.0, \"registry_config_version\": \"1\", \"score\": 43.0}",
+        "Last scored": "2026-10-07"
+      },
+      "expect": {
+        "Status": "Backlog"
+      },
+      "flags": [
+        "volume_unknown"
+      ]
+    }
+  ],
+  "held": [],
+  "flagged": [
+    {
+      "action_id": "blg-4e7c10dc401a",
+      "reason": "volume_unknown"
+    },
+    {
+      "action_id": "blg-5d8facf3a689",
+      "reason": "volume_unknown"
+    }
+  ],
+  "warnings": [],
+  "_path": "plans/2026-10-07/blog-plan-rank-all-simulated.json"
+}

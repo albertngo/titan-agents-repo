@@ -129,6 +129,17 @@ relation, so adding a spoke never edits the pillar.
 
 ## Log
 
+- 2026-10-07 — Phase 1 built, `write_mode` still `plan_only`. Contracts `blog-plan-schema.md`
+  / `blog-mdx-schema.md`; scripts `topic_harvest.py`, `topic_rank.py`, `blog_plan.py` (six
+  stages), `blog_render.py`, `blog_sweep.py`, `blog_snapshot.py`; the six core commands;
+  titan-website blog route. Dry run on 15 hand-written seeds (`ingest/2026-10-07/`,
+  `plans/2026-10-07/`): harvest 15 candidates, rank (example A = 95.9), brief TB-3 →
+  draft BP-108 → MDX passes both validators → publish held `not_approved` at Briefed and
+  planned at a simulated Approved → sweep reports "no PR yet". The `-simulated` snapshots
+  are what Notion *would* hold after the plans execute; no platform was written. Next:
+  Albert fills `titan-facts.md` (every price is `TODO`, so the top-ranked pricing topics
+  cannot be drafted yet), renames the Blog Posts status options, and flips `write_mode` by
+  a dated decision.
 - 2026-10-07 — Phase 0. Topic Backlog created (db `1fb201bb-56d1-449f-9229-f9d0ec117bcf`,
   ds `collection://91bd484f-88b9-47d2-ba13-abcc5efd34a1`); Blog Posts gained ID (BP),
   Topic Cluster, Slug, Snippet, Video URL, PR URL, Topic, Content Idea, Pillar/Spokes;

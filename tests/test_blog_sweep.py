@@ -29,6 +29,7 @@ def rows():
         {"url": "https://www.notion.so/p4", "id": "BP-4", "slug": "d", "status": "Approved", "pr_url": "https://github.com/x/pull/4"},
         {"url": "https://www.notion.so/p5", "id": "BP-5", "slug": "e", "status": "Published", "published_sha1": "aaa", "video_url": None},
         {"url": "https://www.notion.so/p6", "id": "BP-6", "slug": "f", "status": "Approved", "pr_url": "https://github.com/x/pull/6"},
+        {"url": "https://www.notion.so/p7", "id": "BP-7", "slug": "g", "status": "Approved", "pr_url": None},
     ]
 
 
@@ -56,7 +57,11 @@ class TestSweep(unittest.TestCase):
         self.assertEqual(p[0]["expect"], {"Status": "Approved"})
 
     def test_open_pr_and_404_wait(self):
-        self.assertEqual({x["bp_id"] for x in self.out["not_yet"]}, {"BP-2", "BP-3", "BP-6"})
+        self.assertEqual({x["bp_id"] for x in self.out["not_yet"]}, {"BP-2", "BP-3", "BP-6", "BP-7"})
+
+    def test_approved_without_pr_is_reported_not_dropped(self):
+        row = next(x for x in self.out["not_yet"] if x["bp_id"] == "BP-7")
+        self.assertIn("/blog-publish", row["detail"])
 
     def test_canonical_mismatch_never_writes(self):
         self.assertEqual([x["bp_id"] for x in self.out["url_mismatch"]], ["BP-4"])
