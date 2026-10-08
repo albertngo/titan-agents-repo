@@ -242,13 +242,16 @@ is the only copy of the classifier, read by the session model in both:
 - **`/ghl-triage`**, an hourly routine (8am–9pm Toronto, Mon–Sat): `scripts/ghl_unread_pull.py`
   (read-only) builds each unread conversation's batch — what the customer wrote since our
   last **human** reply; automations never count as a reply — holds anything unreadable
-  (photos, calls, voicemail), the model judges `NEEDS_RESPONSE` / `CLOSER` / `SPAM` /
-  `UNSURE`, and `scripts/ghl_unread_plan.py` applies guards (a `?` or a long message vetoes
-  CLOSER; SPAM only from a stranger) and the cap (25, all-or-nothing).
-- **`ghl-ingest-agent`** (template v5): the brief's "waiting on us" list is now one list —
-  the window plus everything unread — with closers and spam dropped from day one, a 24 h
-  age flag, and threads whose customer has been quiet 14+ days as a count. notion-sync is
-  unchanged.
+  (photos, calls, voicemail), the model judges with rubric v3 (2026-10-08) — reply
+  (`NEEDS_RESPONSE` / `UNSURE`), act (`ACTION`, opt-outs as `compliance:`), know (`FYI`),
+  clear (`CLOSER` / `SPAM`) — and `scripts/ghl_unread_plan.py` applies guards (a `?` or a
+  long message vetoes CLOSER; SPAM only from a stranger; a `compliance:` reason is always
+  ACTION) and the cap (25, all-or-nothing). Only CLOSER and SPAM can ever be marked read.
+- **`ghl-ingest-agent`** (template v6): the window plus everything unread, split into a reply
+  list (24 h age flag), a "to action" list (missed calls and attachments land here too) and an
+  FYI list shown once — closers and spam dropped from day one, and threads whose customer has
+  been quiet 14+ days as a count. notion-sync is unchanged: reply and to-action items become
+  tasks, FYI does not.
 
 `write_mode` is **`plan_only`**: the sweep logs "would clear" and marks nothing read. Each
 of CLOSER and SPAM has its own switch and pilot bar (registry `policy`); flipping is a dated

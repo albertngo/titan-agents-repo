@@ -102,7 +102,7 @@
 
   "extensions": {
     "ghl": {
-      "template_version": "5",
+      "template_version": "6",
 
       "reporting": {
         "lead_count": "[FILL: number]",
@@ -131,7 +131,8 @@
           "unanswered_excluded": {
             "missed-call-no-voicemail": "[FILL: number]",
             "automated-system-log": "[FILL: number]",
-            "backlog-over-14d": "[FILL: number] (v5)"
+            "backlog-over-14d": "[FILL: number] (v5)",
+            "triage-action": "[FILL: number — owed an action, not a reply] (v6)"
           },
           "triage_cleared_or_closing": {
             "_comment": "v5. Closers and spam have owner them, so they are not in unanswered_raw; shown here so nothing vanishes unseen.",
@@ -251,7 +252,7 @@
           "contact": "[FILL: name]",
           "contact_id": "[FILL: id]",
           "channel": "[FILL: sms | email | call | whatsapp | webchat | facebook | instagram]",
-          "next_response_owner": "[FILL: us | them — v5: us when the triage row has a batch (customer messages since our last HUMAN reply), then the post-call-SMS and call-commitment overlays]",
+          "next_response_owner": "[FILL: us | them — v5: us when the triage row has a batch (customer messages since our last HUMAN reply), then the post-call-SMS and call-commitment overlays; v6: an fyi row is them]",
           "sitting_hours": "[FILL: number]",
           "unread": "[FILL: true/false — GHL unreadCount > 0] (v5)",
           "waiting_hours": "[FILL: number since the first customer message of the unanswered batch, or null] (v5)",
@@ -266,15 +267,16 @@
           "followup_intent": "[FILL: the intent driving the follow-up, or null]",
           "importance_rank": "[FILL: number, 1 = most important]",
           "flags": [
-            "[FILL: payment-pending | insurance-claim | appt-cancelled | spam-suspected | supplier-solicitation | missed-call-no-voicemail | voicemail-transcribed | call-commitment-open | unanswered-24h+ | triage-closer | triage-spam | triage-unsure | triage-held]"
+            "[FILL: payment-pending | insurance-claim | appt-cancelled | spam-suspected | supplier-solicitation | missed-call-no-voicemail | voicemail-transcribed | call-commitment-open | unanswered-24h+ | triage-closer | triage-spam | triage-unsure | triage-held | triage-action | action-24h+ | triage-compliance | triage-fyi]"
           ],
           "triage": {
             "_comment": "v5. From scripts/ghl_unread_plan.py's plan row. No message text, ever.",
-            "verdict": "[FILL: NEEDS_RESPONSE | CLOSER | SPAM | UNSURE | HELD]",
+            "verdict": "[FILL: NEEDS_RESPONSE | ACTION | FYI | CLOSER | SPAM | UNSURE | HELD]",
+            "disposition": "[FILL: waiting | action | fyi | clear | not_ours | backlog] (v6)",
             "reason": "[FILL: paraphrase, <= 80 chars, no names or numbers]",
             "verdict_source": "[FILL: model | cache | hold]",
             "hold_reason": "[FILL: no_customer_text | non_text_content | call_in_batch | unknown_message_type | batch_too_long | history_truncated | unjudged | invalid_verdict, or null]",
-            "guard": "[FILL: closer_veto:question | closer_veto:length | spam_not_stranger, or null]",
+            "guard": "[FILL: compliance | closer_veto:question | closer_veto:length | spam_not_stranger, or null]",
             "batch_key": "[FILL: b-<16 hex>, or null]"
           },
           "call_ids": [
@@ -349,6 +351,11 @@
           "unread_total": "[FILL: number]",
           "waiting": "[FILL: number]",
           "waiting_24h_plus": "[FILL: number]",
+          "action": "[FILL: number] (v6)",
+          "action_24h_plus": "[FILL: number] (v6)",
+          "compliance": "[FILL: number of open opt-outs] (v6)",
+          "fyi": "[FILL: number] (v6)",
+          "fyi_new_24h": "[FILL: number] (v6)",
           "backlog": "[FILL: number]",
           "not_ours": "[FILL: number]",
           "by_verdict": {"[FILL: verdict]": "[FILL: number]"},

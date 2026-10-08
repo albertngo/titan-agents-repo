@@ -121,5 +121,5 @@ entry with the same reason; append the reason to this run's `notified` before st
 ## Done means
 
 The run record is on the log branch. Report: unread total, held by reason, judged, would
-clear / cleared by verdict, waiting, and anything notified. Never call a run complete if
-step 6 did not push.
+clear / cleared by verdict, reply (24h+), to action (opt-outs), FYI, and anything notified.
+Never call a run complete if step 6 did not push.

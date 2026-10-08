@@ -77,7 +77,8 @@ nothing else. One entry per `batch_key` in the todo; `reason` ≤ 80 characters,
 ```
 
 A wrong `contract_version` or `rubric_version` stops the plan (exit 2). A missing entry is
-held `unjudged`; a verdict outside the four is held `invalid_verdict`.
+held `unjudged`; a verdict outside the six (`NEEDS_RESPONSE`, `ACTION`, `FYI`, `CLOSER`, `SPAM`,
+`UNSURE`; rubric v3) is held `invalid_verdict`.
 
 ## `plan.json` — `ghl-triage-plan-1`
 
@@ -85,10 +86,12 @@ held `unjudged`; a verdict outside the four is held `invalid_verdict`.
 {
   "contract_version": "ghl-triage-plan-1",
   "run_id": "…", "mode": "sweep", "run_at": "…", "expires": "…",
-  "write_mode": "plan_only", "rubric_version": "1",
+  "write_mode": "plan_only", "rubric_version": "3",
   "approve_verdicts": [], "status": "ready",
   "summary": {"conversations": 377, "by_verdict": {}, "held_by_reason": {}, "guarded": {},
-              "would_clear": 0, "actions": 0, "waiting": 0, "waiting_24h_plus": 0, "backlog": 0},
+              "by_source": {}, "would_clear": 0, "would_clear_by_verdict": {}, "actions": 0,
+              "cap": 25, "waiting": 0, "waiting_24h_plus": 0, "action": 0, "action_24h_plus": 0,
+              "compliance": 0, "fyi": 0, "fyi_new_24h": 0, "backlog": 0, "not_ours": 0},
   "rows": [{
     "conversation_id": "…", "contact_id": "…", "contact": "First L.", "channel": "sms",
     "unread": true, "batch_key": "b-…",
@@ -106,13 +109,17 @@ held `unjudged`; a verdict outside the four is held `invalid_verdict`.
 | Field | Values |
 |---|---|
 | `verdict_source` | `model`, `cache`, `hold` |
-| `verdict` | the four verdicts, or `HELD` |
-| `guard` | `closer_veto:question`, `closer_veto:length`, `spam_not_stranger`, or null |
-| `disposition` | `clear` (CLOSER/SPAM), `waiting`, `not_ours` (`no_customer_text`), `backlog` (brief only: the customer's **latest** message is older than `age.backlog_days`) |
+| `verdict` | the six verdicts, or `HELD` |
+| `guard` | `compliance` (a `compliance:` reason forced to `ACTION`), `closer_veto:question`, `closer_veto:length`, `spam_not_stranger`, or null |
+| `disposition` | `clear` (CLOSER/SPAM); `action` (ACTION, and the holds in the registry's `action_holds`, whose step becomes the row's `reason`); `fyi` (FYI); `waiting` (the reply list: NEEDS_RESPONSE, UNSURE and every other hold); `not_ours` (`no_customer_text`); `backlog` (brief only: a `waiting` or `action` row whose customer's **latest** message is older than `age.backlog_days`, never an opt-out) |
+| `age_flag` | `waiting` and `action` rows at `age.flag_hours` or more; always false for `fyi` |
+| summary `compliance` / `fyi_new_24h` | open opt-outs (`ACTION` with a `compliance:` reason); FYI rows whose customer's latest message is under `age.flag_hours` old |
 | `status` | `ready`, or `needs_person` when actions exceed `policy.max_mark_read_per_run` — then **nothing** is approved |
 
 `actions[]` holds only `clear` rows whose verdict is in `policy.approve_verdicts`, in sweep
-mode, on a conversation that is still unread. During the pilot `approve_verdicts` is empty,
+mode, on a conversation that is still unread. `ACTION`, `FYI`, `NEEDS_RESPONSE` and `UNSURE`
+never produce one: the plan script refuses (exit 2) a registry that lists any of them in
+`clearable_verdicts` or `policy.approve_verdicts`. During the pilot `approve_verdicts` is empty,
 so `actions` is empty and the `clear` rows are the "would clear" list.
 
 ## `approval.json` — `ghl-triage-approval-1`
@@ -123,7 +130,7 @@ under `write_mode: plan_only`, with the kill switch present, or while
 
 ```json
 {"contract_version": "ghl-triage-approval-1", "run_id": "…", "plan": "<path>",
- "approved_by": "policy: ghl-unread-triage auto-approval (rubric v2)",
+ "approved_by": "policy: ghl-unread-triage auto-approval (rubric v3)",
  "decisions": [{"id": "gmr-…", "status": "approved", "at": "…"}]}
 ```
 
@@ -139,7 +146,7 @@ merges it into `ghl-triage/<date>/runs.json` on branch `claude/ghl-triage-log`:
 ```json
 {"contract_version": "ghl-triage-day-1", "date": "2026-10-08",
  "runs": [{"run_id": "…", "run_at": "…", "mode": "sweep", "write_mode": "plan_only",
-           "rubric_version": "1", "status": "ready", "approved_by": null,
+           "rubric_version": "3", "status": "ready", "approved_by": null,
            "summary": {}, "rows": [{"conversation_id": "…", "contact_id": "…",
            "batch_key": "b-…", "model_verdict": "…", "verdict": "…", "verdict_source": "…",
            "guard": null, "hold_reason": null, "reason": "…", "disposition": "…",

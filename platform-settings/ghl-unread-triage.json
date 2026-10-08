@@ -5,7 +5,7 @@
 
   "rubric": {
     "file": "methods/ghl-unread-triage.md",
-    "version": "2",
+    "version": "3",
     "_bump": "Bump here and in the method file's 'Rubric version' in the same commit. A bump discards every cached verdict."
   },
 
@@ -15,12 +15,18 @@
     "_flip": "Staged rollout, same shape as style-tags.json and supplier-sites.json. While plan_only, the sweep classifies and logs 'would clear' and writes NO approval file and marks NOTHING read — scripts/ghl_unread_plan.py refuses --write-approval under it and scripts/ghl_mark_read.py refuses to run. Flipping to write is a dated decision recorded in the vault (05_decisions/), together with policy.exception_date, policy.approve_verdicts and the dated CLAUDE.md exception for ghl-actions-agent — never an edit made to get a run through. Update tests/test_ghl_unread_triage.py in the same commit."
   },
 
-  "verdicts": ["NEEDS_RESPONSE", "CLOSER", "SPAM", "UNSURE"],
+  "verdicts": ["NEEDS_RESPONSE", "ACTION", "FYI", "CLOSER", "SPAM", "UNSURE"],
   "clearable_verdicts": ["CLOSER", "SPAM"],
+  "_verdicts": "Rubric v3 (Albert, 2026-10-08): reply = NEEDS_RESPONSE / UNSURE, act = ACTION, know = FYI, clear = CLOSER / SPAM. Only clear verdicts may ever be clearable; scripts/ghl_unread_plan.py refuses a registry that lists NEEDS_RESPONSE, UNSURE, ACTION or FYI in clearable_verdicts or policy.approve_verdicts.",
+  "action_holds": {
+    "call_in_batch": "missed call or voicemail: call back",
+    "non_text_content": "attachment: check it, often a payment proof"
+  },
+  "_action_holds": "Holds the model never sees that go on the brief's 'to action' list (v3) instead of the reply list; the text becomes the row's reason. Every other hold except no_customer_text stays on the reply list.",
   "reason_max_chars": 80,
 
   "policy": {
-    "approved_by": "policy: ghl-unread-triage auto-approval (rubric v2)",
+    "approved_by": "policy: ghl-unread-triage auto-approval (rubric v3)",
     "approve_verdicts": [],
     "_approve_verdicts": "Each clearable verdict is its own switch (Albert, 2026-10-08). Empty while plan_only. A verdict joins only after its pilot bar below is met and a vault decision records it.",
     "max_mark_read_per_run": 25,
@@ -37,7 +43,8 @@
   "guards": {
     "closer_veto": {"question_mark": true, "max_message_chars": 200},
     "spam_stranger_only": true,
-    "_note": "Applied by scripts/ghl_unread_plan.py after the model, only ever toward a human (CLOSER/SPAM -> UNSURE). Loosen after the pilot shows what they catch."
+    "compliance_prefix": "compliance:",
+    "_note": "Applied by scripts/ghl_unread_plan.py after the model, only ever toward a human (CLOSER/SPAM -> UNSURE; a reason starting compliance_prefix with any verdict but ACTION -> ACTION, first). Loosen after the pilot shows what they catch."
   },
 
   "batch": {
@@ -98,8 +105,9 @@
 
   "cadence": {
     "cron": "CRON_TZ=America/Toronto 59 7-20 * * 1-6",
-    "try_first": "CRON_TZ=America/Toronto 29,59 7-20 * * 1-6",
-    "_decided": "Albert, 2026-10-07: hourly 8am-9pm Toronto, Mon-Sat; try every 30 minutes first if the account allows it. Minute 59 = the jitter rule ('GHL Unread Triage' is 15 letters -> 1 minute earlier).",
+    "trigger_id": "trig_01E8YGSwjQ3ftmx8k1jxRLeu",
+    "_trigger_id": "\"GHL Triage\", created by Albert in the claude.ai Routines UI 2026-10-08T18:33Z with titan-agents-repo attached. The earlier tool-made trig_01SWvFRsne3wGwKyqHh4kWjD had no repository attached, failed both fires and was deleted. Detail: methods/ghl-triage-routine-prompt.md.",
+    "_decided": "Albert, 2026-10-07: hourly 8am-9pm Toronto, Mon-Sat; try every 30 minutes first if the account allows it. It does not: '29,59 7-20 * * 1-6' was refused on 2026-10-08 (minimum interval 1 hour). Minute 59 = the jitter rule ('GHL Unread Triage' is 15 letters -> 1 minute earlier).",
     "environment": "env_01XHGNpnEFthGu3i3VzP8xKp",
     "_environment": "Albert, 2026-10-08: reuse the price-list environment. At the switch GHL_MARK_READ_TOKEN sits in that environment's .env too; tests/test_ghl_unread_triage.py makes sure only scripts/ghl_mark_read.py reads it."
   },

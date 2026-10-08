@@ -407,9 +407,11 @@ Method and decisions: `methods/ghl-call-transcripts.md`.
 
 ## Unread triage — via Bash (2026-10-08)
 
-The brief's "who is waiting on us" list is **one list** (Albert, 2026-10-07): conversations
-active in the window **and** every conversation GHL flags unread, judged with the same
-rubric the hourly `/ghl-triage` sweep uses — `methods/ghl-unread-triage.md`, the only copy.
+The brief's "who is waiting on us" view covers conversations active in the window **and**
+every conversation GHL flags unread (Albert, 2026-10-07), judged with the same rubric the
+hourly `/ghl-triage` sweep uses — `methods/ghl-unread-triage.md`, the only copy. Since rubric
+v3 (2026-10-08) it is three lists, not one: **reply** (waiting on a reply), **to action** (no
+reply needed, but someone must act) and **FYI** (know, nothing to do).
 Run it after the call step, before conversation analysis:
 
 ```
@@ -434,10 +436,12 @@ How the plan rows drive this file:
 
 | Row `disposition` | Here |
 |---|---|
-| `waiting` | `next_response_owner: us`. A `message` item at `priority: high`, title `Unanswered: <name> (<channel>)`, summary = the triage reason + "waiting N days" (prefix `(unsure)` for `UNSURE` and held rows, naming the hold). `waiting_hours ≥ 24` → flag `unanswered-24h+`. |
+| `waiting` (reply) | `next_response_owner: us`. A `message` item at `priority: high`, title `Unanswered: <name> (<channel>)`, summary = the triage reason + "waiting N days" (prefix `(unsure)` for `UNSURE` and held rows, naming the hold). `waiting_hours ≥ 24` → flag `unanswered-24h+`. |
+| `action` (to action: `ACTION`, and the `call_in_batch` / `non_text_content` holds) | `next_response_owner: us`, but it is not a reply: flag `triage-action`, excluded from `unanswered_conversations` (below). A `message` item at `priority: high`, title `To action: <name> (<channel>)`, summary = the row's reason (for a hold, the registry's step: call back, check the attachment) + "N days". `age_flag` → flag `action-24h+`. A reason starting `compliance:` is an opt-out: title `Opt-out: <name> — set DND`, flag `triage-compliance`. notion-sync turns these into tasks exactly as it does reply items. |
+| `fyi` (`FYI`) | `next_response_owner: them`. No Notion task, no age flag. Only when the customer's latest message is under 24 h old (`last_inbound_hours`): a `message` item at `priority: low`, title `FYI: <name> (<channel>)`, summary = the reason, flag `triage-fyi`. Older FYI rows are counted in `triage.counts.fyi` only — an FYI is listed once, the day it arrives. |
 | `clear` (CLOSER / SPAM) | No item and no Notion task, from the first pilot day (Albert, 2026-10-08). Flag `triage-closer` / `triage-spam`; listed in `triage.would_clear` (pilot) or `triage.cleared_24h` (after the switch). |
 | `not_ours` (`no_customer_text`) | Nothing inbound since our last human reply: `next_response_owner: them`, counted only. |
-| `backlog` | The customer's **latest** message is older than `age.backlog_days` (14): counted in `triage.counts.backlog`, one count line in `needs_attention`, no item. |
+| `backlog` | A reply or to-action row whose customer's **latest** message is older than `age.backlog_days` (14): counted in `triage.counts.backlog`, one count line in `needs_attention`, no item. Never an opt-out, never FYI. |
 
 - **Every row gets a `conversations[]` record** — threads unread for days included, not
   just the window. For a thread outside the window keep it light: `contact`, `channel`,
@@ -445,17 +449,21 @@ How the plan rows drive this file:
   messages; leave `agent_read` / `tag_mismatch` / `importance_rank` null. Full analysis
   stays for threads active in the window.
 - **Item order under the 50 cap:** in-window conversations first, by `importance_rank`
-  (unchanged); then out-of-window waiting threads — `NEEDS_RESPONSE`, then held, then
-  `UNSURE` — oldest first. Overflow rolls into the `rollup` item as always.
+  (unchanged); then out-of-window threads — opt-outs, then `NEEDS_RESPONSE`, then to action
+  (`ACTION`, then call and attachment holds), then the other held rows, then `UNSURE`, then
+  new FYI — oldest first within each. Overflow rolls into the `rollup` item as always.
 - **`needs_attention`**: one aggregate line for `unanswered-24h+` ("GHL waiting 24h+: N —
-  oldest A (5d, reason), B (4d), C (3d)"); one line for the backlog count when non-zero; in
+  oldest A (5d, reason), B (4d), C (3d)"); one for `action-24h+` in the same shape ("GHL to
+  action 24h+: N — oldest …"); one whenever an opt-out is open ("GHL opt-out: set DND for N
+  — A, B"), never folded into another line; one line for the backlog count when non-zero; in
   the pilot one line "Triage pilot: N would clear (C closers, S spam) — list at the end of
   the brief"; after the switch, a line only for anything refused as a race, failed,
   `needs_person`, or the kill switch in the last 24 h; and a line when the last sweep is more
   than 3 hours old during sweep hours (8am–9pm, Mon–Sat) — "GHL triage sweep last ran HH:MM".
 - **`extensions.ghl.triage`** (new in v5): `{status, error, run_id, write_mode,
   rubric_version, log_status, last_sweep_at, sweeps_24h, kill_switch, counts{unread_total,
-  waiting, waiting_24h_plus, backlog, not_ours, by_verdict, held_by_reason, guarded},
+  waiting, waiting_24h_plus, action, action_24h_plus, compliance, fyi, fyi_new_24h, backlog,
+  not_ours, by_verdict, held_by_reason, guarded},
   would_clear[] {conversation_id, contact, verdict, reason, link}, cleared_24h[],
   refused_24h[], failed_24h[], needs_person_24h}`. No message text, ever.
 - **Failure** works like the calls step: a triage failure never flips this file's `status`.
@@ -526,11 +534,12 @@ For every active conversation, fill every field in the `conversations` schema:
   conversation has a batch (customer messages since our last **human** reply —
   `owner_by_reply`, the shared rule in `methods/ghl-unread-triage.md`), else `them`.
   Then apply the two overlays below: the post-call auto-SMS and the call commitment.
-  A `clear` row (closer or spam) is `them`. (Until v5 this was "from the last
+  A `clear` row (closer or spam) and an `fyi` row are `them`; an `action` row stays `us`
+  but carries `triage-action`, which keeps it out of `unanswered_conversations`. (Until v5 this was "from the last
   message's direction", which let an automation or a closer decide it.)
 - `unread`, `waiting_hours` (since the first message of the batch) and `triage`
-  `{verdict, reason, verdict_source, hold_reason, guard, batch_key}` — from the triage
-  plan row (v5).
+  `{verdict, disposition, reason, verdict_source, hold_reason, guard, batch_key}` — from
+  the triage plan row (v5; `disposition` v6).
 - `sitting_hours` — hours since the last message.
 - `contact_notion` — 1–3 sentences: who this person is and what they actually
   want, formed from the entire history. This is the field Albert reads first.
@@ -549,10 +558,11 @@ For every active conversation, fill every field in the `conversations` schema:
   `insurance-claim`, `appt-cancelled`, `spam-suspected`, `supplier-solicitation`,
   `missed-call-no-voicemail`, `automated-system-log`, `voicemail-transcribed`,
   `call-commitment-open`, `unanswered-24h+`, `triage-closer`, `triage-spam`,
-  `triage-unsure`, `triage-held`, …). `spam-suspected`, `supplier-solicitation`,
-  `missed-call-no-voicemail`, `automated-system-log`, `triage-closer` and
-  `triage-spam` are load-bearing, not decorative: they drive the metric exclusions
-  below.
+  `triage-unsure`, `triage-held`, `triage-action`, `action-24h+`, `triage-compliance`,
+  `triage-fyi`, …). `spam-suspected`, `supplier-solicitation`,
+  `missed-call-no-voicemail`, `automated-system-log`, `triage-closer`,
+  `triage-spam` and `triage-action` are load-bearing, not decorative: they drive the
+  metric exclusions below.
 - `call_ids` — `ghl-call-<messageId>` for every call on this conversation in the
   window (empty array if none).
 
@@ -800,7 +810,7 @@ Net both out of the metric and publish the arithmetic:
 
 | Metric | Counts | Excludes |
 |---|---|---|
-| `unanswered_conversations` | Threads where `next_response_owner` is `us`, in the window or unread (v5) | Anything flagged `missed-call-no-voicemail` or `automated-system-log`; triage `backlog` rows (waiting > 14 days) |
+| `unanswered_conversations` | Threads where `next_response_owner` is `us`, in the window or unread (v5) | Anything flagged `missed-call-no-voicemail`, `automated-system-log` or `triage-action` (v6: owed an action, not a reply); triage `backlog` rows (waiting > 14 days) |
 | `new_leads` | Contacts created in the window | Anything flagged `supplier-solicitation`, or tagged `spam likely` |
 
 Nothing is dropped — every excluded record still appears in
@@ -811,14 +821,19 @@ changes. Put the reconciliation in `reporting.exclusions`:
 "exclusions": {
   "new_leads_raw": N, "new_leads_excluded": {"supplier-solicitation": N, "spam likely": N},
   "unanswered_raw": N, "unanswered_excluded": {"missed-call-no-voicemail": N, "automated-system-log": N,
-                                               "backlog-over-14d": N},
+                                               "backlog-over-14d": N, "triage-action": N},
   "triage_cleared_or_closing": {"triage-closer": N, "triage-spam": N}
 }
 ```
 
 A netted metric with no visible raw is indistinguishable from a quiet day, which is
 why both halves ship. Closers and spam are not in `unanswered_raw` at all — their
-owner is `them` — so `triage_cleared_or_closing` shows them separately.
+owner is `them` — so `triage_cleared_or_closing` shows them separately. Nor is FYI (owner
+`them`); its count is `triage.counts.fyi`. To-action threads are in the raw count and
+netted out as `triage-action`, which is the brief's to-action number.
+
+**v6 narrows it again (rubric v3, 2026-10-08):** threads that need an action but no reply,
+and FYI threads, leave the number, so it steps down on the first v6 day.
 
 **v5 changes what this number means (Albert accepted, 2026-10-08):** it now counts
 unread threads older than 24 h and leaves closers out, so the trend steps on the first
@@ -882,8 +897,15 @@ another section, ordered by importance with a `category` and a `ref`.
 
 # EXTENSIBILITY
 
-1. `template_version` (currently `"5"`) versions this structure independently of
+1. `template_version` (currently `"6"`) versions this structure independently of
    the shared contract's `contract_version`. Bump it when adding sections.
+   - **v6 (2026-10-08)** — GHL unread triage rubric v3. Triage dispositions `action` and
+     `fyi`; flags `triage-action` / `action-24h+` / `triage-compliance` / `triage-fyi`;
+     `triage.counts` gains `action`, `action_24h_plus`, `compliance`, `fyi`,
+     `fyi_new_24h`; `unanswered_excluded` gains `triage-action`. **One definition
+     changed:** `unanswered_conversations` no longer counts to-action threads (and FYI
+     ones were never `us`), so it steps down on the first v6 day. No new `metrics` key
+     (the 14-key ceiling holds).
    - **v5 (2026-10-08)** — GHL unread triage. Added `triage`, `conversations[].unread`
      / `waiting_hours` / `triage`, flags `unanswered-24h+` / `triage-closer` /
      `triage-spam` / `triage-unsure` / `triage-held`, and the exclusion keys
@@ -944,4 +966,5 @@ another section, ordered by importance with a `category` and a `ref`.
 The JSON file is written and validates against the envelope. Reply to the
 orchestrator with: status, item count, top `needs_attention` entry, the count
 of workflow-drift findings by type, `reporting.calls` (listed / transcribed /
-status), and `triage.counts` (unread / waiting / 24h+ / would clear or cleared).
+status), and `triage.counts` (unread / reply / 24h+ / to action / opt-outs / FYI /
+would clear or cleared).

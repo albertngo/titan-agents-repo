@@ -939,13 +939,13 @@ class TestBakeoff(unittest.TestCase):
 class TestProse(unittest.TestCase):
     def test_agent_file(self):
         src = (REPO_ROOT / ".claude/agents/ghl-ingest-agent.md").read_text()
-        for needle in ('currently `"5"`', "`calls`", "`call_quality`", "ghl-call-<messageId>",
+        for needle in ('currently `"6"`', "`calls`", "`call_quality`", "ghl-call-<messageId>",
                        "reporting.calls", "scripts/ghl_calls_pull.py"):
             self.assertIn(needle, src)
 
     def test_sample(self):
         ext = json.loads((REPO_ROOT / "ingest/SAMPLE/ghl.json").read_text())["extensions"]["ghl"]
-        self.assertEqual(ext["template_version"], "5")  # v5: GHL unread triage (2026-10-08)
+        self.assertEqual(ext["template_version"], "6")  # v6: GHL unread triage rubric v3 (2026-10-08)
         for k in ("calls", "call_quality"):
             self.assertIn(k, ext)
         self.assertIn("calls", ext["reporting"])
