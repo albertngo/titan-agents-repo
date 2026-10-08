@@ -98,7 +98,8 @@
 
   "cadence": {
     "cron": "CRON_TZ=America/Toronto 59 7-20 * * 1-6",
-    "trigger_id": "trig_01SWvFRsne3wGwKyqHh4kWjD",
+    "trigger_id": null,
+    "_trigger_id": "None live. trig_01SWvFRsne3wGwKyqHh4kWjD (made with the create_trigger tool, 2026-10-08) failed both fires because it had no repository attached, and was disabled at 17:43Z. The routine is created in the claude.ai Routines UI with titan-agents-repo attached; record its id here. Detail: methods/ghl-triage-routine-prompt.md.",
     "_decided": "Albert, 2026-10-07: hourly 8am-9pm Toronto, Mon-Sat; try every 30 minutes first if the account allows it. It does not: '29,59 7-20 * * 1-6' was refused on 2026-10-08 (minimum interval 1 hour). Minute 59 = the jitter rule ('GHL Unread Triage' is 15 letters -> 1 minute earlier).",
     "environment": "env_01XHGNpnEFthGu3i3VzP8xKp",
     "_environment": "Albert, 2026-10-08: reuse the price-list environment. At the switch GHL_MARK_READ_TOKEN sits in that environment's .env too; tests/test_ghl_unread_triage.py makes sure only scripts/ghl_mark_read.py reads it."
