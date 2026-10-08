@@ -145,8 +145,13 @@ class TestRegistry(unittest.TestCase):
         self.assertFalse(REG["log"]["excerpts"], "the repo is public: no customer text in the log")
 
     def test_vocabulary_and_cap(self):
-        self.assertEqual(REG["verdicts"], ["NEEDS_RESPONSE", "CLOSER", "SPAM", "UNSURE"])
+        self.assertEqual(REG["verdicts"], ["NEEDS_RESPONSE", "ACTION", "FYI", "CLOSER", "SPAM", "UNSURE"])
         self.assertEqual(REG["clearable_verdicts"], ["CLOSER", "SPAM"])
+        self.assertFalse(plan.NEVER_CLEAR & set(REG["clearable_verdicts"]))
+        self.assertEqual(plan.NEVER_CLEAR | set(REG["clearable_verdicts"]), set(REG["verdicts"]))
+        # Only holds the model never sees go to "to action" (rubric v3).
+        self.assertEqual(set(REG["action_holds"]), {"call_in_batch", "non_text_content"})
+        self.assertEqual(REG["guards"]["compliance_prefix"], "compliance:")
         self.assertEqual(REG["policy"]["max_mark_read_per_run"], 25)
         self.assertTrue(REG["policy"]["approved_by"].startswith("policy:"))
         self.assertEqual(REG["policy"]["pilot_exit"]["CLOSER"]["min_verdicts"], 50)
@@ -184,21 +189,34 @@ class TestRubric(unittest.TestCase):
         for needle in self.SPEC_EXAMPLES + (
                 "One open question outweighs any number of closers",
                 "Never guess `CLOSER` or `SPAM`", "Customer's words only",
-                "Suppliers and trade services are not spam", "`NEEDS_RESPONSE`", "`UNSURE`"):
+                "Suppliers and trade services are not spam", "An opt-out outranks everything",
+                "`NEEDS_RESPONSE`", "`ACTION`", "`FYI`", "`UNSURE`", "`compliance:`"):
             self.assertIn(needle, METHOD)
 
-    def test_albert_rulings_2026_10_08(self):
+    def test_albert_rulings(self):
+        # v2 rulings on the first dry run, v3 on the review of run 20261008T1252-e2a9.
         rows = {line.split("|")[1].strip(): line.split("|")[2].strip()
                 for line in METHOD.splitlines() if line.startswith("| ") and line.count("|") >= 4}
         def verdict_for(fragment):
             hits = [v for k, v in rows.items() if fragment in k]
             self.assertTrue(hits, fragment)
             return hits[0]
-        self.assertEqual(verdict_for("A plan to follow up later"), "`CLOSER`")
-        self.assertEqual(verdict_for("A request to cancel"), "`NEEDS_RESPONSE`")
+        self.assertEqual(verdict_for("A plan to follow up later"), "`FYI`")
+        self.assertEqual(verdict_for("A lost or declined job"), "`FYI`")
+        self.assertEqual(verdict_for("Praise, a review left, or a referral"), "`FYI`")
+        self.assertEqual(verdict_for("A request to cancel"), "`ACTION`")
+        self.assertEqual(verdict_for("A request to reschedule"), "`NEEDS_RESPONSE`")
+        self.assertEqual(verdict_for("An opt-out"), "`ACTION`")
+        self.assertEqual(verdict_for("An address"), "`ACTION`")
+        self.assertEqual(verdict_for("A payment notice"), "`ACTION`")
+        self.assertEqual(verdict_for("An arrival, pickup or visit notice"), "`ACTION`")
+        self.assertEqual(verdict_for("Site logistics for the crew"), "`ACTION`")
         self.assertEqual(verdict_for("A bare time or date"), "`NEEDS_RESPONSE`")
+        self.assertEqual(verdict_for('A bare "Ok"'), "`UNSURE`")
         self.assertEqual(verdict_for("A vague fragment"), "`UNSURE`")
-        self.assertEqual(verdict_for("A trade-service pitch"), "`UNSURE`")
+        self.assertEqual(verdict_for("A stray line"), "`FYI`")
+        self.assertEqual(verdict_for("A trade-service pitch"), "`FYI`")
+        self.assertEqual(verdict_for("A supplier, manufacturer or distributor pitch"), "`FYI`")
         self.assertEqual(verdict_for("A cold website, SEO or lead-generation pitch"), "`SPAM`")
 
     def test_one_copy_only(self):
@@ -410,12 +428,58 @@ class TestPlan(unittest.TestCase):
     def test_holds_and_bad_judgements(self):
         p = plan.build_plan(cands_doc([
             cand("c1", "k1", hold="call_in_batch"), cand("c2", None, hold="no_customer_text", waiting=None),
-            cand("c3", "k3"), cand("c4", "k4")]), judged(k4="MAYBE"), REG)
+            cand("c3", "k3"), cand("c4", "k4"), cand("c5", "k5", hold="non_text_content"),
+            cand("c6", "k6", hold="batch_too_long")]), judged(k4="MAYBE"), REG)
         got = {r["conversation_id"]: (r["verdict"], r["hold_reason"], r["disposition"]) for r in p["rows"]}
-        self.assertEqual(got["c1"], ("HELD", "call_in_batch", "waiting"))
+        self.assertEqual(got["c1"], ("HELD", "call_in_batch", "action"))
         self.assertEqual(got["c2"], ("HELD", "no_customer_text", "not_ours"))
         self.assertEqual(got["c3"], ("HELD", "unjudged", "waiting"))
         self.assertEqual(got["c4"], ("HELD", "invalid_verdict", "waiting"))
+        self.assertEqual(got["c5"], ("HELD", "non_text_content", "action"))
+        self.assertEqual(got["c6"], ("HELD", "batch_too_long", "waiting"))
+        reasons = {r["conversation_id"]: r["reason"] for r in p["rows"]}
+        self.assertEqual(reasons["c1"], REG["action_holds"]["call_in_batch"])
+        self.assertEqual(reasons["c5"], REG["action_holds"]["non_text_content"])
+        self.assertEqual(reasons["c6"], "")
+
+    def test_act_and_know(self):
+        p = plan.build_plan(cands_doc([cand("c1", "k1", waiting=30.0), cand("c2", "k2", waiting=30.0),
+                                       cand("c3", "k3", waiting=2.0)]),
+                            judged(k1="ACTION", k2="FYI", k3="FYI"), REG)
+        got = {r["conversation_id"]: (r["verdict"], r["disposition"], r["age_flag"]) for r in p["rows"]}
+        self.assertEqual(got["c1"], ("ACTION", "action", True))
+        self.assertEqual(got["c2"], ("FYI", "fyi", False), "FYI never carries an age flag")
+        s = p["summary"]
+        self.assertEqual((s["action"], s["action_24h_plus"], s["fyi"], s["fyi_new_24h"]), (1, 1, 2, 1))
+        self.assertEqual((s["waiting"], s["would_clear"]), (0, 0))
+
+    def test_act_and_know_are_never_marked_read(self):
+        convs = [cand("c1", "k1", stranger=True), cand("c2", "k2", stranger=True), cand("c3", "k3")]
+        p = plan.build_plan(cands_doc(convs), judged(k1="ACTION", k2="FYI", k3="CLOSER"),
+                            reg_with(approve_verdicts=["CLOSER", "SPAM"]))
+        self.assertEqual([a["conversation_id"] for a in p["actions"]], ["c3"])
+        for bad in ("ACTION", "FYI", "NEEDS_RESPONSE", "UNSURE"):
+            with self.assertRaises(plan.InputError, msg=bad):
+                plan.build_plan(cands_doc(convs), judged(k1="ACTION"), reg_with(approve_verdicts=[bad]))
+            r = copy.deepcopy(REG)
+            r["clearable_verdicts"] = ["CLOSER", "SPAM", bad]
+            with self.assertRaises(plan.InputError, msg=bad):
+                plan.build_plan(cands_doc(convs), judged(k1="ACTION"), r)
+
+    def test_an_opt_out_is_always_action(self):
+        j = judged(k1="CLOSER", k2="SPAM", k3="FYI", k4="ACTION")
+        for k in ("k1", "k2", "k3", "k4"):
+            j["verdicts"][k]["reason"] = "Compliance: opt-out, set DND"
+        p = plan.build_plan(cands_doc([cand("c1", "k1"), cand("c2", "k2", stranger=True),
+                                       cand("c3", "k3"), cand("c4", "k4")]), j,
+                            reg_with(approve_verdicts=["CLOSER", "SPAM"]))
+        got = {r["conversation_id"]: (r["verdict"], r["guard"], r["disposition"]) for r in p["rows"]}
+        self.assertEqual(got["c1"], ("ACTION", "compliance", "action"))
+        self.assertEqual(got["c2"], ("ACTION", "compliance", "action"))
+        self.assertEqual(got["c3"], ("ACTION", "compliance", "action"))
+        self.assertEqual(got["c4"], ("ACTION", None, "action"))
+        self.assertEqual(p["actions"], [])
+        self.assertEqual(p["summary"]["compliance"], 4)
 
     def test_cache_is_used_and_guards_reapplied(self):
         p = plan.build_plan(cands_doc([cand("c1", "k1", has_q=True,
@@ -426,15 +490,24 @@ class TestPlan(unittest.TestCase):
     def test_age_and_backlog(self):
         live = cand("c4", "k4", waiting=20 * 24)
         live["last_inbound_hours"] = 20.0  # wrote 20 days ago AND yesterday: live, not backlog
+        j = judged(k1="UNSURE", k2="NEEDS_RESPONSE", k3="NEEDS_RESPONSE", k4="NEEDS_RESPONSE",
+                   k5="ACTION", k6="ACTION", k7="FYI")
+        j["verdicts"]["k6"]["reason"] = "compliance: opt-out, set DND"
         p = plan.build_plan(cands_doc([cand("c1", "k1", waiting=23.9), cand("c2", "k2", waiting=24.0),
-                                       cand("c3", "k3", waiting=15 * 24), live], mode="brief"),
-                            judged(k1="UNSURE", k2="NEEDS_RESPONSE", k3="NEEDS_RESPONSE",
-                                   k4="NEEDS_RESPONSE"), REG)
+                                       cand("c3", "k3", waiting=15 * 24), live,
+                                       cand("c5", "k5", waiting=15 * 24), cand("c6", "k6", waiting=15 * 24),
+                                       cand("c7", "k7", waiting=15 * 24),
+                                       cand("c8", "k8", waiting=15 * 24, hold="call_in_batch")],
+                                      mode="brief"), j, REG)
         got = {r["conversation_id"]: (r["age_flag"], r["disposition"]) for r in p["rows"]}
         self.assertEqual(got["c1"], (False, "waiting"))
         self.assertEqual(got["c2"], (True, "waiting"))
         self.assertEqual(got["c3"][1], "backlog")
         self.assertEqual(got["c4"], (True, "waiting"))
+        self.assertEqual(got["c5"][1], "backlog", "a quiet to-action thread drops to the count")
+        self.assertEqual(got["c6"], (True, "action"), "an opt-out is never dropped")
+        self.assertEqual(got["c7"], (False, "fyi"), "FYI never becomes backlog")
+        self.assertEqual(got["c8"][1], "backlog")
 
     def test_actions_and_the_all_or_nothing_cap(self):
         r = reg_with(approve_verdicts=["CLOSER"])
@@ -717,7 +790,8 @@ class TestProse(unittest.TestCase):
             self.assertIn(needle, claude)
         agent = self.read(".claude/agents/ghl-ingest-agent.md")
         for needle in ("scripts/ghl_unread_pull.py --mode brief", "unanswered-24h+", "triage-closer",
-                       "`triage`", "never marks anything read"):
+                       "`triage`", "never marks anything read", "triage-action", "action-24h+",
+                       "triage-compliance", "triage-fyi", "`fyi_new_24h`"):
             self.assertIn(needle, agent)
         ext = json.loads(self.read("ingest/SAMPLE/ghl.json"))["extensions"]["ghl"]
         self.assertIn("triage", ext)

@@ -10,14 +10,18 @@ appends to the log branch). For each conversation, in order:
 
 1. a hold from the pull wins (the model never saw it);
 2. else a cached model verdict for the same batch and rubric version;
-3. else this run's judgement — missing -> held `unjudged`, unknown -> `invalid_verdict`;
-4. then the guards, only ever toward a human: CLOSER with a '?' or a message over
-   max_message_chars -> UNSURE; SPAM from anyone but a stranger -> UNSURE.
+3. else this run's judgement — missing -> held `unjudged`, outside the six -> `invalid_verdict`;
+4. then the guards, only ever toward a human: a `compliance:` reason -> ACTION (first);
+   CLOSER with a '?' or a message over max_message_chars -> UNSURE; SPAM from anyone but a
+   stranger -> UNSURE.
 
-CLOSER and SPAM rows are `clear`. They become actions only in sweep mode, on a conversation
-still unread, when the verdict is in policy.approve_verdicts (empty during the pilot). More
-actions than policy.max_mark_read_per_run makes the plan `needs_person` and approves
-NOTHING (Albert, 2026-10-08: all-or-nothing).
+Dispositions (rubric v3): CLOSER and SPAM are `clear`; ACTION and the registry's
+action_holds are `action`; FYI is `fyi`; no_customer_text is `not_ours`; everything else is
+`waiting` (the reply list). Only `clear` rows become actions: in sweep mode, on a
+conversation still unread, when the verdict is in policy.approve_verdicts (empty during the
+pilot). ACTION and FYI never do — a registry that lists them (or NEEDS_RESPONSE / UNSURE) as
+clearable or approvable is refused. More actions than policy.max_mark_read_per_run makes the
+plan `needs_person` and approves NOTHING (Albert, 2026-10-08: all-or-nothing).
 
 --write-approval writes <dir>/approval.json. Refused (exit 4) in brief mode, under
 write_mode plan_only, with the kill switch on, or while policy.exception_date is null for a
@@ -41,6 +45,8 @@ APPROVAL_VERSION = "ghl-triage-approval-1"
 JUDGEMENTS_VERSION = "ghl-triage-judgements-1"
 CANDIDATES_VERSION = "ghl-triage-candidates-1"
 PHONE_OR_EMAIL = (r"[\w.+-]+@[\w-]+\.[\w.]+", r"\+?\d[\d\s().-]{6,}\d")
+# Never marked read, whatever the registry says: reply, act and know (rubric v3).
+NEVER_CLEAR = frozenset({"NEEDS_RESPONSE", "UNSURE", "ACTION", "FYI"})
 
 
 class InputError(ValueError):
@@ -64,6 +70,11 @@ def action_id(conversation_id, key, last_message_id):
 
 
 def check_inputs(candidates, judgements, reg):
+    for key, values in (("clearable_verdicts", reg["clearable_verdicts"]),
+                        ("policy.approve_verdicts", reg["policy"]["approve_verdicts"])):
+        bad = sorted(NEVER_CLEAR & set(values))
+        if bad:
+            raise InputError(f"registry {key} lists {bad}: those verdicts are never marked read")
     if candidates.get("contract_version") != CANDIDATES_VERSION:
         raise InputError(f"candidates contract {candidates.get('contract_version')!r} "
                          f"!= {CANDIDATES_VERSION}")
@@ -108,7 +119,9 @@ def resolve(c, verdicts, reg):
         v = row["model_verdict"]
         g = reg["guards"]
         batch = c.get("batch") or {}
-        if v == "CLOSER":
+        if row["reason"].lower().startswith(g["compliance_prefix"]) and v != "ACTION":
+            v, row["guard"] = "ACTION", "compliance"
+        elif v == "CLOSER":
             if g["closer_veto"]["question_mark"] and batch.get("has_question"):
                 v, row["guard"] = "UNSURE", "closer_veto:question"
             elif batch.get("max_message_chars", 0) > g["closer_veto"]["max_message_chars"]:
@@ -121,12 +134,25 @@ def resolve(c, verdicts, reg):
         row["disposition"] = "not_ours"
     elif row["verdict"] in reg["clearable_verdicts"]:
         row["disposition"] = "clear"
+    elif row["verdict"] == "FYI":
+        row["disposition"] = "fyi"
     else:
-        row["disposition"] = "waiting"
+        if row["verdict"] == "ACTION":
+            row["disposition"] = "action"
+        elif row["hold_reason"] in reg["action_holds"]:
+            row["disposition"] = "action"
+            row["reason"] = reg["action_holds"][row["hold_reason"]]
+        else:
+            row["disposition"] = "waiting"
         wh = row["waiting_hours"]
         if wh is not None:
             row["age_flag"] = wh >= reg["age"]["flag_hours"]
     return row
+
+
+def is_compliance(row, reg):
+    return row["verdict"] == "ACTION" and \
+        row["reason"].lower().startswith(reg["guards"]["compliance_prefix"])
 
 
 def build_plan(candidates, judgements, reg):
@@ -141,8 +167,10 @@ def build_plan(candidates, judgements, reg):
         row = resolve(c, verdicts, reg)
         # Backlog = the customer has gone quiet for backlog_days, judged by their LATEST
         # message: someone who wrote 20 days ago and again yesterday is live, not backlog.
+        # An opt-out is never dropped; FYI never becomes backlog.
         quiet = row["last_inbound_hours"] if row["last_inbound_hours"] is not None else row["waiting_hours"]
-        if mode == "brief" and row["disposition"] == "waiting" and quiet is not None \
+        if mode == "brief" and row["disposition"] in ("waiting", "action") \
+                and not is_compliance(row, reg) and quiet is not None \
                 and quiet > reg["age"]["backlog_days"] * 24:
             row["disposition"] = "backlog"
         rows.append(row)
@@ -171,6 +199,11 @@ def build_plan(candidates, judgements, reg):
         return out
 
     waiting = [r for r in rows if r["disposition"] == "waiting"]
+    to_action = [r for r in rows if r["disposition"] == "action"]
+    fyi = [r for r in rows if r["disposition"] == "fyi"]
+
+    def latest_hours(r):
+        return r["last_inbound_hours"] if r["last_inbound_hours"] is not None else r["waiting_hours"]
     return {
         "contract_version": PLAN_VERSION, "run_id": candidates["run_id"], "mode": mode,
         "run_at": candidates["run_at"],
@@ -190,6 +223,12 @@ def build_plan(candidates, judgements, reg):
             "actions": len(actions), "cap": cap,
             "waiting": len(waiting),
             "waiting_24h_plus": sum(1 for r in waiting if r["age_flag"]),
+            "action": len(to_action),
+            "action_24h_plus": sum(1 for r in to_action if r["age_flag"]),
+            "compliance": sum(1 for r in rows if is_compliance(r, reg)),
+            "fyi": len(fyi),
+            "fyi_new_24h": sum(1 for r in fyi if latest_hours(r) is not None
+                               and latest_hours(r) < reg["age"]["flag_hours"]),
             "backlog": sum(1 for r in rows if r["disposition"] == "backlog"),
             "not_ours": sum(1 for r in rows if r["disposition"] == "not_ours"),
         },
@@ -264,8 +303,10 @@ def main(argv=None):
     print(f"  verdicts     {s['by_verdict']}   sources {s['by_source']}")
     print(f"  held         {s['held_by_reason']}   guarded {s['guarded']}")
     print(f"  would clear  {s['would_clear']} {s['would_clear_by_verdict']}   actions {s['actions']}/{s['cap']}")
-    print(f"  waiting      {s['waiting']}   24h+ {s['waiting_24h_plus']}   backlog {s['backlog']}   "
+    print(f"  reply        {s['waiting']}   24h+ {s['waiting_24h_plus']}   backlog {s['backlog']}   "
           f"not ours {s['not_ours']}")
+    print(f"  to action    {s['action']}   24h+ {s['action_24h_plus']}   opt-outs {s['compliance']}   "
+          f"FYI {s['fyi']} (new {s['fyi_new_24h']})")
 
     code, approval = 0, None
     if args.write_approval:
