@@ -123,7 +123,7 @@ under `write_mode: plan_only`, with the kill switch present, or while
 
 ```json
 {"contract_version": "ghl-triage-approval-1", "run_id": "…", "plan": "<path>",
- "approved_by": "policy: ghl-unread-triage auto-approval (rubric v1)",
+ "approved_by": "policy: ghl-unread-triage auto-approval (rubric v2)",
  "decisions": [{"id": "gmr-…", "status": "approved", "at": "…"}]}
 ```
 

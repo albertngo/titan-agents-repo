@@ -1,6 +1,6 @@
 # GHL unread triage — the one rubric
 
-**Rubric version: 1**
+**Rubric version: 2**
 
 This file is the classifier. Both callers read it and nothing else for their judgement:
 
@@ -35,7 +35,7 @@ Judge the batch **as a whole** and return exactly one verdict:
 |---|---|
 | `NEEDS_RESPONSE` | At least one message asks a question, raises an issue, requests something, or gives us something we must act on. |
 | `CLOSER` | **Every** message is a confirmation, acknowledgement, thanks or sign-off. |
-| `SPAM` | An unsolicited pitch or scam from a stranger: SEO/marketing/loan/crypto/"business funding" pitches, phishing, "cash offer" scams, wrong-number bulk texts. |
+| `SPAM` | An unsolicited pitch or scam from a stranger: website/SEO/marketing/lead-generation/loan/crypto/"business funding" pitches, phishing, "cash offer" scams, wrong-number bulk texts. |
 | `UNSURE` | Anything you cannot confidently place. |
 
 Rules, in order:
@@ -47,9 +47,11 @@ Rules, in order:
    doubt, `UNSURE`.
 3. **Customer's words only.** Judge what they wrote. Do not infer what we said to them,
    what stage they are at, or what they "probably meant".
-4. **Suppliers are not spam.** Anything from a flooring supplier, distributor,
-   manufacturer's rep, installer or trade contact — even a cold pitch — is `UNSURE`. Titan
-   may buy from them. `SPAM` is strangers selling something unrelated, or scams.
+4. **Suppliers and trade services are not spam.** Anything from a flooring supplier,
+   distributor, manufacturer's rep, installer, or a trade service a job site might use
+   (bin rentals, hauling, estimating/takeoffs) — even a cold pitch — is `UNSURE`. Titan may
+   buy from them. `SPAM` is strangers selling marketing, websites, leads or money, or scams
+   (Albert, 2026-10-08).
 5. **Reason** is a short paraphrase, 80 characters at most, with no names, phone numbers,
    emails, addresses or amounts: "confirming measure appointment", not "Sarah confirming
    Thursday at 14 Elm St".
@@ -82,10 +84,16 @@ Output, per batch key:
 | A reaction ("Liked …", "Loved …") | judge the reaction itself, normally `CLOSER` | The quoted text after it is ours, not theirs. |
 | A complaint, however polite ("floor's great but one board is lifting, thanks") | `NEEDS_RESPONSE` | |
 | A conditional closer ("Sounds good, if the price holds") | `NEEDS_RESPONSE` | |
+| A plan to follow up later, with no question ("still deciding, I'll let you know"; "busy today, will call you later") | `CLOSER` | Nothing to answer now; the follow-up belongs to the pipeline, not the inbox (Albert, 2026-10-08). |
+| A request to cancel or reschedule an appointment | `NEEDS_RESPONSE` | Someone has to action it (Albert, 2026-10-08). |
+| A bare time or date ("9 am", "Tuesday works") | `NEEDS_RESPONSE` | Usually answering our scheduling question; it needs a confirmation. |
+| A vague fragment we cannot place ("next month", "in stock") | `UNSURE` | |
+| A trade-service pitch (bin rentals, hauling, estimating) | `UNSURE` | Rule 4. |
+| A cold website, SEO or lead-generation pitch ("I built you a new website", "10 leads a week, pay per appointment") | `SPAM` | Still only from a stranger — the guard below. |
 
-Real Titan phrasing replaces or extends these once Albert approves the examples drafted
-from live batches (spec: "replace with real Titan phrasing once live"). Examples are
-reworded; no customer's words are copied here.
+These rows are Albert's rulings on patterns seen in the first live dry run (2026-10-08);
+he chose rulings over a list of reworded real messages. Add a row when the pilot shows a
+pattern the table gets wrong. No customer's words are copied here.
 
 ---
 
@@ -181,3 +189,7 @@ after that the per-run cap (25, all-or-nothing) applies.
 - **v1 (2026-10-08).** First version: Albert's spec, grilled 2026-10-07/08 — human-reply
   boundary, holds for unreadable inbound, CLOSER veto, SPAM added with the stranger-only
   guard, edge cases above.
+- **v2 (2026-10-08).** Albert's rulings on the first live dry run (377 unread, 177 judged):
+  a plan to follow up is `CLOSER`; a cancel request and a bare time are `NEEDS_RESPONSE`; a
+  vague fragment is `UNSURE`; trade-service pitches are `UNSURE`, website / lead-generation
+  pitches `SPAM`. v1 verdicts in the cache are discarded by the bump.

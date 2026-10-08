@@ -184,8 +184,22 @@ class TestRubric(unittest.TestCase):
         for needle in self.SPEC_EXAMPLES + (
                 "One open question outweighs any number of closers",
                 "Never guess `CLOSER` or `SPAM`", "Customer's words only",
-                "Suppliers are not spam", "`NEEDS_RESPONSE`", "`UNSURE`"):
+                "Suppliers and trade services are not spam", "`NEEDS_RESPONSE`", "`UNSURE`"):
             self.assertIn(needle, METHOD)
+
+    def test_albert_rulings_2026_10_08(self):
+        rows = {line.split("|")[1].strip(): line.split("|")[2].strip()
+                for line in METHOD.splitlines() if line.startswith("| ") and line.count("|") >= 4}
+        def verdict_for(fragment):
+            hits = [v for k, v in rows.items() if fragment in k]
+            self.assertTrue(hits, fragment)
+            return hits[0]
+        self.assertEqual(verdict_for("A plan to follow up later"), "`CLOSER`")
+        self.assertEqual(verdict_for("A request to cancel"), "`NEEDS_RESPONSE`")
+        self.assertEqual(verdict_for("A bare time or date"), "`NEEDS_RESPONSE`")
+        self.assertEqual(verdict_for("A vague fragment"), "`UNSURE`")
+        self.assertEqual(verdict_for("A trade-service pitch"), "`UNSURE`")
+        self.assertEqual(verdict_for("A cold website, SEO or lead-generation pitch"), "`SPAM`")
 
     def test_one_copy_only(self):
         # The two callers point at the method file; neither carries a copy (Albert's spec).
