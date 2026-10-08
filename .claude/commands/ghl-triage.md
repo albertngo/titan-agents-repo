@@ -52,6 +52,12 @@ python3 scripts/ghl_unread_pull.py --mode sweep
 
 It prints a summary and, on its last line, the run directory
 (`analysis/cache/ghl-triage/<date>/<run_id>/`). Use that directory for every step below.
+
+It is slow on purpose (serial, rate-limited): several hundred unread conversations take
+6–8 minutes. Give it a Bash timeout of at least 15 minutes and never wrap it in a shorter
+`timeout`. The GHL client already retries throttling and dropped connections; if the pull
+still exits non-zero, stop, run step 6 only if a run directory exists, and notify (step 7).
+Do not loop the whole pull.
 If it reports the kill switch, carry on through step 3 and 6, skip 4–5, and say so.
 
 ## 2. Judge
@@ -116,6 +122,7 @@ entry with the same reason; append the reason to this run's `notified` before st
 - a writer failure, a race, or the kill switch going on;
 - the log push failed;
 - credentials missing or the host blocked;
+- the pull failed after its own retries;
 - `GHL_MARK_READ_TOKEN` missing under `write`.
 
 ## Done means

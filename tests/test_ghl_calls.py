@@ -89,6 +89,36 @@ class TestNoWritePath(unittest.TestCase):
         cl = gc.GhlClient(token="t", location_id="L")
         self.assertEqual(cl._request("https://x/y", "application/json", None).get_method(), "GET")
 
+    def test_client_retries_a_dropped_connection(self):
+        # 2026-10-08 15:59: one RemoteDisconnected mid-pull killed the whole triage sweep.
+        import http.client
+
+        class Resp(io.BytesIO):
+            headers = {}
+            def __enter__(self):
+                return self
+            def __exit__(self, *a):
+                return False
+
+        for exc in (http.client.RemoteDisconnected("closed"), ConnectionResetError("reset"),
+                    TimeoutError("read timed out"), http.client.IncompleteRead(b"")):
+            calls = []
+            def opener(req, timeout=None, exc=exc):
+                calls.append(1)
+                if len(calls) == 1:
+                    raise exc
+                return Resp(b'{"ok": true}')
+            cl = gc.GhlClient(token="t", location_id="L", min_interval=0, opener=opener)
+            with mock.patch.object(gc.time, "sleep"):
+                self.assertEqual(cl.get_json("/x"), {"ok": True}, type(exc).__name__)
+            self.assertEqual(len(calls), 2)
+
+        def always(req, timeout=None):
+            raise http.client.RemoteDisconnected("closed")
+        cl = gc.GhlClient(token="t", location_id="L", min_interval=0, max_retries=3, opener=always)
+        with mock.patch.object(gc.time, "sleep"), self.assertRaises(gc.GhlError):
+            cl.get_json("/x")
+
     def test_pull_reaches_ghl_only_through_the_client(self):
         src = (REPO_ROOT / "scripts/ghl_calls_pull.py").read_text()
         self.assertNotIn("leadconnectorhq.com", src)
