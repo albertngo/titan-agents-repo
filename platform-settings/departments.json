@@ -24,7 +24,8 @@
         "commands": [
           "manager-dashboard",
           "won-analysis",
-          "notion-sync"
+          "notion-sync",
+          "ghl-triage"
         ]
       },
       "specialists": {
@@ -53,7 +54,9 @@
         "text the customer",
         "sales board",
         "call queue",
-        "appointment"
+        "appointment",
+        "unread",
+        "closer"
       ],
       "_note": "plan_file is plans/{date}/plan.json, NOT dept-plan-sales.json. /manager-dashboard reads that exact path and contracts/plan-schema.md states it literally. Sales is grandfathered on the plan-1 envelope; its actions[] entries are already the shape contracts/dept-plan-schema.md cites, so nothing diverges where it matters."
     },

@@ -8,7 +8,9 @@ of ghl-actions-agent (separate token, approval file) and of the Make scenario
 "GHL Call -> Note" (see methods/ghl-call-transcripts.md) — never of this module.
 
 The only file in scripts/ that addresses services.leadconnectorhq.com. Used by
-scripts/ghl_calls_pull.py. Not a CLI.
+scripts/ghl_calls_pull.py and scripts/ghl_unread_pull.py. Not a CLI. The one GHL
+writer in Python, scripts/ghl_mark_read.py, imports only BASE from here (so the host
+is spelled in one file) and builds its single PUT itself, with its own token.
 
 Environment (see .env.example):
     GHL_PIT_TOKEN     read-only private integration token. Needs
@@ -186,11 +188,17 @@ class GhlClient:
 
     # -- domain helpers (all GET) -------------------------------------------
 
-    def search_conversations(self, since_utc, limit=100, max_pages=20):
-        """Conversations whose last message is at or after since_utc, newest first."""
+    def search_conversations(self, since_utc, limit=100, max_pages=20, status=None,
+                             contact_id=None):
+        """Conversations whose last message is at or after since_utc, newest first.
+
+        since_utc=None means no time stop (page until max_pages). status="unread" asks GHL
+        for unread conversations only (verified honoured 2026-10-08); contact_id narrows
+        to one contact's conversations."""
         out, params, pages = [], {"locationId": self.location_id,
                                   "sortBy": "last_message_date", "sort": "desc",
-                                  "limit": limit}, 0
+                                  "limit": limit, "status": status,
+                                  "contactId": contact_id}, 0
         seen = set()
         while pages < max_pages:
             page = self.get_json("/conversations/search", params)
@@ -202,7 +210,7 @@ class GhlClient:
                     continue
                 seen.add(c.get("id"))
                 ts = parse_ts(c.get("lastMessageDate") or c.get("dateUpdated"))
-                if ts is not None and ts < since_utc:
+                if since_utc is not None and ts is not None and ts < since_utc:
                     stop = True
                     break
                 out.append(c)
@@ -215,6 +223,11 @@ class GhlClient:
                 break  # cursor not advancing
             params["startAfterDate"] = nxt
         return out
+
+    def get_conversation(self, conversation_id):
+        """One conversation: unreadCount, lastMessageDirection, firstUnreadInboundMessageId…"""
+        page = self.get_json(f"/conversations/{conversation_id}")
+        return page.get("conversation", page) if isinstance(page, dict) else {}
 
     def list_messages(self, conversation_id, message_type="TYPE_CALL", limit=100, max_pages=10):
         out, params = [], {"limit": limit, "type": message_type}

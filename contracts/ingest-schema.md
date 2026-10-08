@@ -91,7 +91,7 @@ doesn't fit the shared item format:
 | Source-owned | The owning agent defines the shape and documents it in its agent file. No cross-source schema. |
 | Independently versioned | `template_version` inside the namespace versions that structure; it does NOT affect `contract_version`. |
 | Additive only | New use case = new named array/object. Never repurpose an existing field. |
-| Not a bypass | Everything in the brief must still be derivable from `items` / `metrics` / `needs_attention`. `extensions` is depth, never the only copy. |
+| Not a bypass | Everything in the brief must still be derivable from `items` / `metrics` / `needs_attention`. `extensions` is depth, never the only copy. One dated exception (2026-10-08, Albert): the brief's closing **GHL triage review** list is rendered from `extensions.ghl.triage` — an audit list whose count is already a `needs_attention` line, not a finding of its own. |
 | Exempt from the 50-item cap | The cap applies to `items`. Extensions still obey "no raw dumps". |
 
 **Consumers** (orchestrator, vault-writer-agent) read `items`, `metrics`, and

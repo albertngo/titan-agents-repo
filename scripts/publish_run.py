@@ -31,6 +31,8 @@ import urllib.error
 import urllib.request
 
 BASE = "main-agents"
+# Never PR'd or merged: GHL unread triage's audit log (platform-settings/ghl-unread-triage.json log.branch).
+NEVER_PUBLISH = ("claude/ghl-triage-log",)
 API = "https://api.github.com"
 
 
@@ -82,6 +84,10 @@ def main():
     if branch in (BASE, "main", "HEAD"):
         print(f"PUBLISH FAILED: on {branch!r}. A run works on its own session branch; "
               "refusing to push to a shared branch.", file=sys.stderr)
+        return 2
+    if branch in NEVER_PUBLISH:
+        print(f"PUBLISH FAILED: {branch!r} is a log branch that is never merged or PR'd; "
+              "only scripts/ghl_triage_log.py writes it.", file=sys.stderr)
         return 2
     if git("status", "--porcelain").stdout.strip():
         print("PUBLISH FAILED: uncommitted changes. Commit the run's files first, so the "

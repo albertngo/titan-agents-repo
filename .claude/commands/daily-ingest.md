@@ -25,7 +25,8 @@ Run the daily ingest funnel for Titan Flooring.
    deduped, ordered by priority. Max 7 bullets. This section comes first, always.
    **Numbers** — one line per source from `metrics` (e.g. GHL: 3 new leads, 2 unanswered).
    **By source** — 2–4 sentence digest per source from its items. High-priority items named explicitly with links.
-   **Sources missing today** — any expected source whose file is absent or status != ok, with the error. If none, write "All sources reported." If step 1 found missed run days, add one line: `No run at all on: <dates>` — a skipped day is a finding, never silent.
+   **Sources missing today** — any expected source whose file is absent or status != ok, with the error. If none, write "All sources reported." If step 1 found missed run days, add one line: `No run at all on: <dates>` — a skipped day is a finding, never silent. Also list GHL unread triage here when `extensions.ghl.triage.status` is not `ok`, or its sweep has not run for more than 3 hours during sweep hours (the ghl `needs_attention` line says so).
+   **GHL triage review** (2026-10-08, only when `extensions.ghl.triage` exists) — after everything else, so it never slows the first 60 seconds. One bullet per entry of `triage.would_clear` (pilot) or `triage.cleared_24h` (after the switch): `<contact> — <VERDICT>: <reason>` with its link, no cap. This is the audit list Albert reviews to decide the switch (methods/ghl-unread-triage.md); its count is already in `needs_attention`, so it adds detail, not a finding.
 
 5. **Run ledger.** Append one entry to `/ingest/run-ledger.json` (append-only, one
    entry per run; a same-day re-run appends another entry, latest wins):

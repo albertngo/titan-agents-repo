@@ -405,6 +405,65 @@ Join keys: `conversation_id` → `extensions.ghl.conversations[]` and the
 **Never paste `text` or `utterances` into ghl.json** — summaries only (Hard limits).
 Method and decisions: `methods/ghl-call-transcripts.md`.
 
+## Unread triage — via Bash (2026-10-08)
+
+The brief's "who is waiting on us" list is **one list** (Albert, 2026-10-07): conversations
+active in the window **and** every conversation GHL flags unread, judged with the same
+rubric the hourly `/ghl-triage` sweep uses — `methods/ghl-unread-triage.md`, the only copy.
+Run it after the call step, before conversation analysis:
+
+```
+python3 scripts/ghl_unread_pull.py --mode brief
+```
+
+It prints the run directory on its last line (`analysis/cache/ghl-triage/<date>/<run_id>/`).
+
+1. **Judge first, before reading any thread.** Read the rubric and `<dir>/todo.json` only,
+   and write `<dir>/judgements.json` exactly as `.claude/commands/ghl-triage.md` step 2
+   says. Most batches arrive already judged from the sweep's cache and are not in the todo.
+2. `python3 scripts/ghl_unread_plan.py --dir <dir>` — never `--write-approval`; brief mode
+   cannot approve anything.
+3. Read `<dir>/plan.json` (one row per conversation) and the `log` block of
+   `<dir>/candidates.json` (what the sweep did in the last 24 h).
+
+**This step never marks anything read and never writes the log branch** — the sweep is the
+only writer (Albert, 2026-10-08). A closer it finds first is reported as "clears at the next
+sweep".
+
+How the plan rows drive this file:
+
+| Row `disposition` | Here |
+|---|---|
+| `waiting` | `next_response_owner: us`. A `message` item at `priority: high`, title `Unanswered: <name> (<channel>)`, summary = the triage reason + "waiting N days" (prefix `(unsure)` for `UNSURE` and held rows, naming the hold). `waiting_hours ≥ 24` → flag `unanswered-24h+`. |
+| `clear` (CLOSER / SPAM) | No item and no Notion task, from the first pilot day (Albert, 2026-10-08). Flag `triage-closer` / `triage-spam`; listed in `triage.would_clear` (pilot) or `triage.cleared_24h` (after the switch). |
+| `not_ours` (`no_customer_text`) | Nothing inbound since our last human reply: `next_response_owner: them`, counted only. |
+| `backlog` | The customer's **latest** message is older than `age.backlog_days` (14): counted in `triage.counts.backlog`, one count line in `needs_attention`, no item. |
+
+- **Every row gets a `conversations[]` record** — threads unread for days included, not
+  just the window. For a thread outside the window keep it light: `contact`, `channel`,
+  `unread`, `waiting_hours`, `triage`, and a one-sentence `contact_notion` from its latest
+  messages; leave `agent_read` / `tag_mismatch` / `importance_rank` null. Full analysis
+  stays for threads active in the window.
+- **Item order under the 50 cap:** in-window conversations first, by `importance_rank`
+  (unchanged); then out-of-window waiting threads — `NEEDS_RESPONSE`, then held, then
+  `UNSURE` — oldest first. Overflow rolls into the `rollup` item as always.
+- **`needs_attention`**: one aggregate line for `unanswered-24h+` ("GHL waiting 24h+: N —
+  oldest A (5d, reason), B (4d), C (3d)"); one line for the backlog count when non-zero; in
+  the pilot one line "Triage pilot: N would clear (C closers, S spam) — list at the end of
+  the brief"; after the switch, a line only for anything refused as a race, failed,
+  `needs_person`, or the kill switch in the last 24 h; and a line when the last sweep is more
+  than 3 hours old during sweep hours (8am–9pm, Mon–Sat) — "GHL triage sweep last ran HH:MM".
+- **`extensions.ghl.triage`** (new in v5): `{status, error, run_id, write_mode,
+  rubric_version, log_status, last_sweep_at, sweeps_24h, kill_switch, counts{unread_total,
+  waiting, waiting_24h_plus, backlog, not_ours, by_verdict, held_by_reason, guarded},
+  would_clear[] {conversation_id, contact, verdict, reason, link}, cleared_24h[],
+  refused_24h[], failed_24h[], needs_person_24h}`. No message text, ever.
+- **Failure** works like the calls step: a triage failure never flips this file's `status`.
+  Set `triage.status: "error"` with the reason, add one `needs_attention` line, and fall back
+  to the v4 behaviour (window only, ownership from the last message's direction, no closer
+  exclusion). A log branch that cannot be read is `partial`: no cache and no sweep health,
+  judge everything yourself, no `needs_attention` line.
+
 ---
 
 # WHAT TO CAPTURE
@@ -418,7 +477,8 @@ the daily brief and vault-writer-agent keep working unchanged.
    pipelines → `items` type `pipeline`.
 3. **Appointments booked** — from `calendars_get-calendar-events` in the window,
    cross-referenced with `appt-*` tags for visit type → `items` type `appointment`.
-4. **Conversations** — active in the window → `items` type `message`.
+4. **Conversations** — active in the window **or currently unread** (the unread
+   triage step above) → `items` type `message`.
 5. **Calls (enrichment, 2026-10-01)** — call messages in the window, with transcripts
    from the step above → **no new `type`**. A call enriches its conversation's
    `message` item and `conversations[]` record, and gets its own record in
@@ -462,7 +522,15 @@ private Notion queue and marks its vault line `#admin`.
 
 For every active conversation, fill every field in the `conversations` schema:
 
-- `next_response_owner` — `us` or `them`, from the last message's direction.
+- `next_response_owner` — `us` or `them`. Start from the triage row: `us` when the
+  conversation has a batch (customer messages since our last **human** reply —
+  `owner_by_reply`, the shared rule in `methods/ghl-unread-triage.md`), else `them`.
+  Then apply the two overlays below: the post-call auto-SMS and the call commitment.
+  A `clear` row (closer or spam) is `them`. (Until v5 this was "from the last
+  message's direction", which let an automation or a closer decide it.)
+- `unread`, `waiting_hours` (since the first message of the batch) and `triage`
+  `{verdict, reason, verdict_source, hold_reason, guard, batch_key}` — from the triage
+  plan row (v5).
 - `sitting_hours` — hours since the last message.
 - `contact_notion` — 1–3 sentences: who this person is and what they actually
   want, formed from the entire history. This is the field Albert reads first.
@@ -480,9 +548,11 @@ For every active conversation, fill every field in the `conversations` schema:
 - `flags` — short strings for anything notable (`payment-pending`,
   `insurance-claim`, `appt-cancelled`, `spam-suspected`, `supplier-solicitation`,
   `missed-call-no-voicemail`, `automated-system-log`, `voicemail-transcribed`,
-  `call-commitment-open`, …). `spam-suspected`, `supplier-solicitation`,
-  `missed-call-no-voicemail` and `automated-system-log` are load-bearing, not
-  decorative: they drive the metric exclusions below.
+  `call-commitment-open`, `unanswered-24h+`, `triage-closer`, `triage-spam`,
+  `triage-unsure`, `triage-held`, …). `spam-suspected`, `supplier-solicitation`,
+  `missed-call-no-voicemail`, `automated-system-log`, `triage-closer` and
+  `triage-spam` are load-bearing, not decorative: they drive the metric exclusions
+  below.
 - `call_ids` — `ghl-call-<messageId>` for every call on this conversation in the
   window (empty array if none).
 
@@ -730,7 +800,7 @@ Net both out of the metric and publish the arithmetic:
 
 | Metric | Counts | Excludes |
 |---|---|---|
-| `unanswered_conversations` | Threads where `next_response_owner` is `us` | Anything flagged `missed-call-no-voicemail` or `automated-system-log` |
+| `unanswered_conversations` | Threads where `next_response_owner` is `us`, in the window or unread (v5) | Anything flagged `missed-call-no-voicemail` or `automated-system-log`; triage `backlog` rows (waiting > 14 days) |
 | `new_leads` | Contacts created in the window | Anything flagged `supplier-solicitation`, or tagged `spam likely` |
 
 Nothing is dropped — every excluded record still appears in
@@ -740,12 +810,19 @@ changes. Put the reconciliation in `reporting.exclusions`:
 ```
 "exclusions": {
   "new_leads_raw": N, "new_leads_excluded": {"supplier-solicitation": N, "spam likely": N},
-  "unanswered_raw": N, "unanswered_excluded": {"missed-call-no-voicemail": N, "automated-system-log": N}
+  "unanswered_raw": N, "unanswered_excluded": {"missed-call-no-voicemail": N, "automated-system-log": N,
+                                               "backlog-over-14d": N},
+  "triage_cleared_or_closing": {"triage-closer": N, "triage-spam": N}
 }
 ```
 
 A netted metric with no visible raw is indistinguishable from a quiet day, which is
-why both halves ship. `automated-system-log` is a `flags` value — add it to the set
+why both halves ship. Closers and spam are not in `unanswered_raw` at all — their
+owner is `them` — so `triage_cleared_or_closing` shows them separately.
+
+**v5 changes what this number means (Albert accepted, 2026-10-08):** it now counts
+unread threads older than 24 h and leaves closers out, so the trend steps on the first
+v5 day. That is the definition change, not a change in the business. `automated-system-log` is a `flags` value — add it to the set
 listed under Conversation analysis.
 
 ## Reporting metrics
@@ -796,7 +873,7 @@ Standard contract v1 envelope plus one new top-level key, `extensions`. See
 
 `extensions.ghl` sections: `template_version`, `reporting`, `new_leads`,
 `opportunities`, `appointments_booked`, `conversations`, `workflow_drift`,
-`won_records`, `stragglers_ranked`, `calls`, `call_quality`.
+`won_records`, `stragglers_ranked`, `calls`, `call_quality`, `triage`.
 
 `stragglers_ranked` is the ranked catch-all: anything outstanding that doesn't fit
 another section, ordered by importance with a `category` and a `ref`.
@@ -805,8 +882,16 @@ another section, ordered by importance with a `category` and a `ref`.
 
 # EXTENSIBILITY
 
-1. `template_version` (currently `"4"`) versions this structure independently of
+1. `template_version` (currently `"5"`) versions this structure independently of
    the shared contract's `contract_version`. Bump it when adding sections.
+   - **v5 (2026-10-08)** — GHL unread triage. Added `triage`, `conversations[].unread`
+     / `waiting_hours` / `triage`, flags `unanswered-24h+` / `triage-closer` /
+     `triage-spam` / `triage-unsure` / `triage-held`, and the exclusion keys
+     `backlog-over-14d` / `triage_cleared_or_closing`. **Two definitions changed, by
+     Albert's decision, not additively:** `conversations[]` now covers unread threads
+     outside the window, and `next_response_owner` follows the shared human-reply rule
+     instead of the last message's direction — so `unanswered_conversations` steps on
+     the first v5 day.
    - **v4 (2026-10-01)** — added `calls[]`, `call_quality` (private),
      `conversations[].call_ids`, flags `voicemail-transcribed` /
      `call-commitment-open`, and `reporting.calls`. Additive only; a v3 consumer still
@@ -843,6 +928,8 @@ another section, ordered by importance with a `category` and a `ref`.
   `rollup` item. `extensions.ghl` sections are NOT subject to the 50 cap.
 - **No raw dumps.** `summary` is 1–3 sentences; `contact_notion` is 1–3 sentences.
   Never paste message bodies. Full content stays in GHL.
+- **Triage batch text never enters this file** — only verdicts and paraphrased
+  reasons; the text stays in the gitignored `analysis/cache/ghl-triage/`.
 - **Transcript text never enters this file.** Call summaries are ≤ 3 sentences with
   at most one short quoted phrase; the transcript stays in the GHL contact note and
   the gitignored `analysis/cache/ghl-calls/`.
@@ -856,5 +943,5 @@ another section, ordered by importance with a `category` and a `ref`.
 
 The JSON file is written and validates against the envelope. Reply to the
 orchestrator with: status, item count, top `needs_attention` entry, the count
-of workflow-drift findings by type, and `reporting.calls` (listed / transcribed /
-status).
+of workflow-drift findings by type, `reporting.calls` (listed / transcribed /
+status), and `triage.counts` (unread / waiting / 24h+ / would clear or cleared).

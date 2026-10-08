@@ -48,13 +48,24 @@ Each value belongs to exactly one agent's allowed-actions table.
 
 | type | Agent |
 |---|---|
-| `send_sms`, `send_email`, `move_stage`, `add_tag`, `remove_tag`, `create_task` | `ghl-actions-agent` |
+| `send_sms`, `send_email`, `move_stage`, `add_tag`, `remove_tag`, `create_task`, `mark_conversation_read` | `ghl-actions-agent` |
 | `notion_create_task`, `notion_update_task`, `notion_create_page` | `.claude/commands/notion-sync.md`, `project-status-meeting-processor` |
 | `lightspeed_create_product`, `lightspeed_update_product`, `lightspeed_delete_product` | `lightspeed-actions-agent` |
 | `airtable_upsert_product`, `airtable_backfill_ls_id`, `airtable_create_price_history`, `airtable_update_style_tags`, `airtable_attach_images` | `airtable-actions-agent` |
 | `social_schedule_post`, `social_update_post`, `social_reschedule_post`, `social_flag_manual` | `social-actions-agent` |
 | `notion_write_troubled_table`, `notion_update_page` | `.claude/commands/catalog-sync.md` |
 | `notion_update_content_stats` | `.claude/commands/content-feedback.md` |
+
+`mark_conversation_read` (2026-10-08) is GHL unread triage's one write: a conversation's
+unread count set to 0, by `scripts/ghl_mark_read.py` run by `ghl-actions-agent` on a
+`/ghl-triage` approval file (`contracts/ghl-triage-schema.md`). Its entries do **not** go to
+`ingest/<date>/actions-log.json`: the sweep runs hourly as a routine, so they go to
+`ghl-triage/<date>/actions-log.json` on branch `claude/ghl-triage-log` — same entry shape,
+same append-only rule. `approved_by` is the registry's policy string only after the dated
+CLAUDE.md exception exists; until then a person. `refused` with `stale_already_read` or
+`stale_new_message` is the compare-and-swap working; `failed` with `raced_new_message` turns
+the kill switch on. `content_summary` is the verdict and a paraphrased reason — never the
+customer's words, never a name.
 
 `notion_update_content_stats` (2026-09-28) is `/content-feedback`'s one write: Metricool
 post stats onto a Content Calendar Log row, for exactly one pull (`day7`, `day30` or
