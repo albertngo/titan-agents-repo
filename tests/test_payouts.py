@@ -658,7 +658,7 @@ class TestFlooringLine(unittest.TestCase):
             self.assertIn(flag, a["flags"])
 
     def test_existing_line_matched_on_the_sku_before_the_underscore(self):
-        acts = floor_action(row={"Floor SKU": "ENG-VIDR-0023_Moon Light", "Quote Rate": 6.29, "Sold At Rate": 6.29, "Sqft Sold": 1705.6,
+        acts = floor_action(row={"Floor SKU": "ENG-VIDR-0023_Moon Light", "Quote Rate": 6.29, "Sold At Rate": 6.29, "Sqft Sold": 1705.6, "Qty Check": "OK",
                                  "Cost Rate": 4.59, "Invoice Cost Rate": 4.59, "PO Cost Rate": 4.59,
                                  "LS Sale Cost Rate": 4.19, "Cost Locked": "__YES__"})
         self.assertEqual(acts, [])
@@ -673,7 +673,7 @@ class TestFlooringLine(unittest.TestCase):
     def test_invoice_sqft_and_cost_win_over_the_sale(self):
         # PP-417 shape: boxes returned with a fee. Sqft and cost both come from the invoice net.
         (a,) = floor_action([credit("Cr2", 14, "73.3941", "1,027.52", fee=True)])
-        self.assertIn("qty_gap", a["flags"])
+        self.assertEqual(a["qty_check"], "OK")                    # the 14 returned boxes explain the gap
         self.assertEqual((a["mode"], a["fields"]["Sqft Sold"]), ("write", 1407.12))
         self.assertAlmostEqual(a["fields"]["Cost Rate"] * a["fields"]["Sqft Sold"], 7828.70 - 1027.52, places=0)
 
@@ -699,25 +699,52 @@ class TestFlooringLine(unittest.TestCase):
         self.assertEqual((a["mode"], a["fields"]["Sqft Sold"]), ("write", 582.3))   # ordered sqft
         self.assertIn("ordered_not_on_sale", a["flags"])
 
-    def test_top_up_order_smaller_than_the_sale_is_held(self):
-        snap, ls, orders, docs = floor_fixture(sold=680.0)
-        line = orders["projects"]["461"]["purchase_orders"][0]["lines"][0]
-        line.update(count=54.39)
-        docs = {"orders": {}, "orders_by_po": {}}                 # no supplier documents: PO stage
-        (a,) = [x for x in pcs.plan(snap, REG, POLICY, ls_sales=ls, ls_orders=orders, supplier_docs=docs)["actions"]
+    def _po_only(self, count, sold, row=None):
+        snap, ls, orders, docs = floor_fixture(sold=sold, row=row)
+        orders["projects"]["461"]["purchase_orders"][0]["lines"][0].update(count=count)
+        (a,) = [x for x in pcs.plan(snap, REG, POLICY, ls_sales=ls, ls_orders=orders,
+                                    supplier_docs={"orders": {}, "orders_by_po": {}})["actions"]
                 if x["kind"] == "flooring_line"]
-        self.assertIn("order_covers_part_of_sale", a["flags"])
-        self.assertEqual((a["mode"], a["apply"]), ("suggest", False))
+        return a
+
+    def test_within_two_boxes_is_ok(self):
+        self.assertEqual(self._po_only(1705.6, 1680.0)["qty_check"], "OK")     # 25.6 sqft, under 2 boxes
+
+    def test_top_up_order_flags_part_from_stock_and_keeps_the_line(self):
+        row = {"Floor SKU": "ENG-VIDR-0023", "Sqft Sold": 680, "Cost Rate": 2.09, "Sold At Rate": 3}
+        a = self._po_only(54.39, 680.0, row=row)
+        self.assertEqual(a["qty_check"], "Verify - part from stock")
+        self.assertEqual(set(a["fields"]), {"Qty Check", "Qty Note"})       # figures untouched
+        self.assertTrue(a["fields"]["Qty Note"].startswith("Auto:"))
+
+    def test_more_ordered_than_sold_flags_leftover(self):
+        self.assertEqual(self._po_only(1705.6, 1500.0)["qty_check"], "Verify - leftover")
+
+    def test_verified_from_stock_blends_the_stock_cost(self):
+        row = {"Floor SKU": "ENG-VIDR-0023", "Sqft Sold": 680, "Cost Rate": 2.09, "Sold At Rate": 3,
+               "Qty Check": "Verified - from stock", "Qty Note": "rest from shelf"}
+        a = self._po_only(54.39, 680.0, row=row)
+        # 54.39 sqft at the PO 4.59 + 625.61 sqft at the LS average cost 4.19, over 680 sold
+        self.assertEqual(a["fields"]["Cost Rate"], round((54.39 * 4.59 + 625.61 * 4.19) / 680, 4))
+        self.assertNotIn("Qty Check", a["fields"])                           # a person's answer is kept
+        self.assertNotIn("Sqft Sold", a["fields"])                           # 680 already right
+
+    def test_verified_leftover_to_stock_charges_only_what_was_sold(self):
+        row = {"Floor SKU": "ENG-VIDR-0023", "Sqft Sold": 1705.6, "Cost Rate": 4.59, "Sold At Rate": 6,
+               "Qty Check": "Verified - leftover to stock"}
+        a = self._po_only(1705.6, 1500.0, row=row)
+        self.assertEqual(a["fields"]["Sqft Sold"], 1500.0)
 
     def test_sold_at_rate_comes_from_the_pm_quote(self):
         (a,) = floor_action(row={"Floor SKU": "ENG-VIDR-0023", "Quote Rate": 6.29, "Cost Rate": 4.59, "Sqft Sold": 1705.6,
+                                 "Qty Check": "OK",
                                  "Invoice Cost Rate": 4.59, "PO Cost Rate": 4.59, "LS Sale Cost Rate": 4.19,
                                  "Cost Locked": "__YES__"})
         self.assertEqual(a["fields"], {"Sold At Rate": 6.29})
         self.assertNotIn("quote_rate_missing", a["flags"])
 
     def test_matching_line_is_silent(self):
-        acts = floor_action(row={"Floor SKU": "ENG-VIDR-0023", "Quote Rate": 6.29, "Sold At Rate": 6.29, "Sqft Sold": 1705.6,
+        acts = floor_action(row={"Floor SKU": "ENG-VIDR-0023", "Quote Rate": 6.29, "Sold At Rate": 6.29, "Sqft Sold": 1705.6, "Qty Check": "OK",
                                  "Cost Rate": 4.59, "Invoice Cost Rate": 4.59, "PO Cost Rate": 4.59,
                                  "LS Sale Cost Rate": 4.19, "Cost Locked": "__YES__"})
         self.assertEqual(acts, [])
@@ -758,8 +785,9 @@ class TestFlooringLine(unittest.TestCase):
         snap, ls, orders, docs = floor_fixture()
         out = pcs.plan(snap, REG, POLICY, ls_sales=ls, ls_orders={"projects": {}, "product_po_cost": {}})
         (a,) = [x for x in out["actions"] if x["kind"] == "flooring_line"]
-        self.assertEqual((a["stage"], a["mode"], a["confidence"]), ("ls_sale", "suggest", "Low"))
+        self.assertEqual((a["stage"], a["mode"], a["confidence"]), ("ls_sale", "write", "Low"))
         self.assertIn("no_order_found", a["flags"])
+        self.assertEqual(a["fields"]["Qty Check"], "Verify - no order")   # lands in front desk's view
 
 
 # --- AP Disposal invoices -> Disposal cost row (Decision 13) ---

@@ -263,7 +263,19 @@
       "project": "Project",
       "project_financials": "Project Financials"
     },
-    "tax_basis": "pre_tax",
+    "qty_check_options": {
+    "ok": "OK",
+    "part_from_stock": "Verify - part from stock",
+    "leftover": "Verify - leftover",
+    "no_order": "Verify - no order",
+    "no_sale": "Verify - no sale",
+    "verified_from_stock": "Verified - from stock",
+    "verified_leftover_to_stock": "Verified - leftover to stock",
+    "verified_used_on_job": "Verified - used on job",
+    "verified_ok": "Verified - OK"
+  },
+  "_qty_check_note": "Albert 2026-10-08: front desk owns the 'Quantities to verify' view (Albert helps). The sync sets OK / Verify - ...; only a person sets Verified - ..., and the sync never changes a Verified value. The Verified answer decides the job's sqft and cost: from stock -> Sqft Sold = sold, cost blends the invoiced part with the LS average cost for the stock part; leftover to stock -> Sqft Sold = sold at the invoice rate; used on job / OK -> invoice figures stand.",
+  "tax_basis": "pre_tax",
   "_tax_basis_note": "Albert 2026-10-06: Cost Rate, Sold At Rate and every *Cost Rate column hold PRE-TAX $/sqft, as the Data Entry Cheat Sheet says (the formulas add x1.13) and as existing rows already do (PP-449 SPC-VIDR-0002_Yukon Cost Rate 1.59 = Vidar's pre-tax price). The Notion descriptions on Cost Rate / Sold At Rate were changed to say pre-tax the same day.",
   "title_format": "{sku}_{colour}",
   "_title_note": "Staff name a line '<LS SKU>_<colour>' (SPC-VIDR-0002_Yukon, ENG-TOSC-0074_Long Beach). The sync creates lines the same way (colour = the bracketed name in the LS product name) and matches an existing line on the part before the first '_'.",
@@ -283,6 +295,9 @@
     "CARPET": "Carpet"
   },
     "to_add": {
+   "quoted_sqft": {"name": "Quoted Sqft", "type": "number", "status": "live", "_note": "The PM's sqft as quoted (an approximation until the Airtable quote uses real box sizes). Never written by the sync."},
+   "qty_check": {"name": "Qty Check", "type": "select", "status": "live"},
+   "qty_note": {"name": "Qty Note", "type": "rich_text", "status": "live", "_note": "Front desk's finding. The sync writes an 'Auto:' hint only into an empty note."},
       "quote_rate": {
         "name": "Quote Rate",
         "type": "number",

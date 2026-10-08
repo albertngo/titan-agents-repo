@@ -170,6 +170,67 @@ def pair_lines(sale_lines, items):
     return pairs
 
 
+def QC(ff, key):
+    return ff["qty_check_options"][key]
+
+
+def box_sqft(item, sale, fc):
+    """sqft per box: supplier document, else 'NN.NNsf/b' in the LS name, else the default."""
+    if item.get("sf_per_box"):
+        return item["sf_per_box"]
+    for name in ((sale or {}).get("product_name"), item.get("product_name")):
+        m = re.search(r"([\d.]+)\s*sf\s*/\s*b", name or "", re.I)
+        if m:
+            return float(m.group(1))
+    return fc["qty_check_default_box_sqft"]
+
+
+def quantity_check(item, sale, target, stage, truth_sqft, rate, ff, fc):
+    """(Qty Check value, auto note, (sqft, rate) once a person has verified, else None).
+
+    Sold/quoted vs invoiced/ordered: within qty_check_band_boxes -> OK; a credit memo that
+    accounts for the gap -> OK; less ordered -> Verify - part from stock; more -> Verify -
+    leftover. A Verified answer already on the line is kept and decides sqft and cost."""
+    current = ((target or {}).get("qty_check") or "").strip()
+    quoted = pr.money((target or {}).get("quoted_sqft"))
+    sold = quoted if quoted is not None else (sale or {}).get("quantity")
+    band = box_sqft(item, sale, fc) * fc["qty_check_band_boxes"]
+    sale_cost = (sale or {}).get("unit_cost")
+
+    if current.startswith("Verified"):
+        if current == QC(ff, "verified_from_stock") and sold and truth_sqft is not None and rate is not None:
+            stock_sqft = max(sold - truth_sqft, 0)
+            stock_rate = sale_cost if sale_cost else rate
+            bought = item.get("net_amount") if stage.startswith("invoice") else truth_sqft * rate
+            return current, None, (sold, round((bought + stock_sqft * stock_rate) / sold, 4))
+        if current == QC(ff, "verified_leftover_to_stock") and sold:
+            return current, None, (sold, rate)
+        return current, None, None
+
+    if stage in ("purchase_order_untagged", "ls_sale"):
+        why = (f"no PO tagged with this project; latest {item.get('po_reference')} for the product is the cost"
+               if stage == "purchase_order_untagged" else "no order found; the cost is the LS sale's")
+        return QC(ff, "no_order"), f"Auto: {why}. Where did this material come from?", None
+    if sold is None:
+        return QC(ff, "no_sale"), (f"Auto: {round(truth_sqft or 0, 2)} sqft ordered, nothing on the LS sale "
+                                   f"or Quoted Sqft. How much was installed?"), None
+    if truth_sqft is None:
+        return QC(ff, "ok"), None, None
+    gap = truth_sqft - sold
+    if abs(gap) <= band:
+        return QC(ff, "ok"), None, None
+    if gap < 0:
+        credited = item.get("credited_sqft") or 0
+        if credited and abs(truth_sqft + credited - sold) <= band:
+            return QC(ff, "ok"), None, None          # the return explains it (PP-417 Toffee)
+        stock_hint = (f"LS sale cost {sale_cost:.2f}/sqft: the product had stock value when sold"
+                      if sale_cost else "LS sale cost 0: no stock value when sold, so another order?")
+        return QC(ff, "part_from_stock"), (f"Auto: {round(truth_sqft, 2)} sqft ordered/invoiced vs {sold} sold "
+                                            f"({round(-gap, 2)} short). {stock_hint}"), None
+    return QC(ff, "leftover"), (f"Auto: {round(truth_sqft, 2)} sqft ordered/invoiced vs {sold} sold "
+                                f"({round(gap, 2)} over). Back to stock, or used on the job?"), None
+
+
 def flooring_actions(project, pp, num, ls, proj_orders, product_po, supplier, rows, fins, reg, policy):
     fc = policy["flooring_cost"]
     delta = fc["flag_delta_per_sqft_cents"] / 100
@@ -228,19 +289,23 @@ def flooring_actions(project, pp, num, ls, proj_orders, product_po, supplier, ro
                       item.get("confirmed_sqft") if stage == "confirmation" else
                       item.get("po_sqft") if stage == "purchase_order" else None)
         sold_sqft = truth_sqft if truth_sqft is not None else sale_sqft
-        if sale_sqft and truth_sqft and abs(truth_sqft - sale_sqft) > \
-                (item.get("sf_per_box") or 20) * fc["qty_gap_tolerance_boxes"]:
-            flags.append("qty_gap")             # the LS sale's quantity differs from the order/invoice
-            if truth_sqft < sale_sqft and not item.get("credits"):
-                # less was ordered than sold and no return explains it: a top-up order, the rest
-                # came from stock or another PO (PP-471: 3 boxes on PO-8213 against 680 sqft sold)
-                flags.append("order_covers_part_of_sale")
 
         row = next((r for r in rows if title_sku(r.get("title")) == (sku or "").lower()), None)
         wrong_row = None
         if row is None and sale and sale["sku"] != sku:
             wrong_row = next((r for r in rows if title_sku(r.get("title")) == sale["sku"].lower()), None)
         target = row or wrong_row
+
+        # Quantity check (Albert 2026-10-08): what was sold/quoted vs what was invoiced/ordered
+        qc, note, qty_rate = quantity_check(item, sale, target, stage, truth_sqft, rate, ff, fc)
+        verified = qc.startswith("Verified")
+        if qc == QC(ff, "part_from_stock") or qc == QC(ff, "leftover"):
+            flags.append("qty_gap")
+        if verified and qty_rate is not None:
+            # a person said where the difference went: that answer sets the job's sqft and cost
+            sold_sqft, rate = qty_rate
+        hold_figures = (target is not None and not verified and
+                        (not strong or qc == QC(ff, "part_from_stock")))
 
         fields = {P["cost_rate"]: rate, T["ls_sale_cost_rate"]: (sale or {}).get("unit_cost"),
                   T["po_cost_rate"]: item.get("po_rate"),
@@ -249,7 +314,7 @@ def flooring_actions(project, pp, num, ls, proj_orders, product_po, supplier, ro
         if target is None or wrong_row is not None:
             fields[P["title"]] = line_title(ff, sku, (sale or {}).get("product_name") if legacy_po_sku
                                             else item.get("product_name") or (sale or {}).get("product_name"))
-        if target is None or strong:
+        if target is None or strong or verified:
             fields[P["sqft_sold"]] = round(sold_sqft, 2) if sold_sqft is not None else None
         if target is None:
             company = ff.get("material_company_from_supplier", {}).get((item.get("supplier") or "").upper())
@@ -263,6 +328,14 @@ def flooring_actions(project, pp, num, ls, proj_orders, product_po, supplier, ro
             fields[P["project"]] = [project["url"]]
             if len(fins) == 1:
                 fields[P["project_financials"]] = [fins[0]["url"]]
+        if hold_figures:
+            # an untagged PO / the LS sale never overwrites a figure on the line, and a
+            # part-from-stock line keeps its figures until front desk answers
+            fields = {}
+        if not verified:
+            fields[T["qty_check"]] = qc
+        if note and not ((target or {}).get("qty_note") or "").strip():
+            fields[T["qty_note"]] = note
         quote = pr.money((target or {}).get("quote_rate"))
         sold_at = pr.money((target or {}).get("sold_at_rate"))
         if quote is not None and sold_at != quote:
@@ -286,14 +359,7 @@ def flooring_actions(project, pp, num, ls, proj_orders, product_po, supplier, ro
             if pr.truthy(target.get("cost_locked")) and P["cost_rate"] in fields:
                 flags.append("changed_after_lock")
 
-        if wrong_row is not None:
-            mode = "suggest"            # renaming a PM's line is their call
-        elif "order_covers_part_of_sale" in flags:
-            mode = "suggest"            # the order is not the whole job: a person says where the rest came from
-        elif strong:
-            mode = "write"              # invoice / ordered outrank the quote and the LS sale
-        else:
-            mode = "suggest"            # untagged PO or LS sale only: never over a person's figure
+        mode = "suggest" if wrong_row is not None else "write"   # renaming a PM's line is their call
         conf = {"invoice_final": "High", "invoice_partial": "High", "confirmation": "High",
                 "purchase_order": "Medium"}.get(stage, "Low")
 
@@ -311,14 +377,14 @@ def flooring_actions(project, pp, num, ls, proj_orders, product_po, supplier, ro
         if "sale_cost_gap" in flags:
             bits.append(f"sale-line cost {sale['unit_cost']:.2f}/sqft")
         if truth_sqft is not None:
-            bits.append(f"sqft {round(truth_sqft, 2)} from {'invoice' if stage.startswith('invoice') else 'the order'}"
-                        + (f" (LS sale says {sale_sqft})" if "qty_gap" in flags else ""))
+            bits.append(f"sqft {round(truth_sqft, 2)} from {'invoice' if stage.startswith('invoice') else 'the order'}")
+        bits.append(f"Qty Check: {qc}")
         if "po_not_received_in_lightspeed" in flags:
             bits.append(f"{item['po_reference']} not received in Lightspeed")
         reason = "; ".join(bits)
         op = "create" if target is None else "update"
         out.append(mk("flooring_line", target["url"] if target else project["url"], mode, fields,
-                      conf, reason, pp, op=op, stage=stage, flags=sorted(set(flags))))
+                      conf, reason, pp, op=op, stage=stage, flags=sorted(set(flags)), qty_check=qc))
     return out
 
 
