@@ -55,7 +55,7 @@ silently before. Re-read live (`list_triggers`, `get_session`) before relying on
 
 | Item | Value |
 |---|---|
-| Trigger | **None live (2026-10-08).** Create it in the claude.ai Routines UI with this repository attached, named "GHL Unread Triage", the stored text above as its prompt, auto-PR off. A session tool made `trig_01SWvFRsne3wGwKyqHh4kWjD` first (15:29Z); both its fires failed (see Repository) and it was **disabled at 17:43Z**, not deleted. Once the UI routine is running, record its id here and in the registry (`cadence.trigger_id`). Do not disable a live trigger or change its schedule on a session's own initiative |
+| Trigger | **None live (2026-10-08).** Create it in the claude.ai Routines UI with this repository attached, named "GHL Unread Triage", the stored text above as its prompt, auto-PR off. A session tool made `trig_01SWvFRsne3wGwKyqHh4kWjD` first (15:29Z); both its fires failed (see Repository); it was disabled at 17:43Z and **deleted** later that day on Albert's word. Once the UI routine is running, record its id here and in the registry (`cadence.trigger_id`). Do not disable a live trigger or change its schedule on a session's own initiative |
 | Schedule | `CRON_TZ=America/Toronto 59 7-20 * * 1-6` — 14 fires, 7:59am–8:59pm, Mon–Sat (Albert, 2026-10-07: hourly 8am–9pm). Every 30 minutes (`29,59 …`) was tried first and **refused by the server: minimum interval 1 hour**. Minute 59: the jitter rule ("GHL Unread Triage", 15 letters → 1 minute earlier) |
 | Repository | **Must be attached to the routine** — titan-agents-repo, branch `main-agents`. A trigger made with the `create_trigger` tool stores no repository sources, and a fired session cannot fix that itself: `add_repo` is not available there, and a repo it clones at run time is "Code from External" to the auto-mode classifier, which blocked `.claude/hooks/session-start.sh` (fires of 2026-10-08 15:59Z and 16:59Z; both failed closed, nothing pulled or written). The git proxy also refuses a push to a repo outside the session's sources, so a log push needs the attachment too (run `20261008T1252-e2a9` never reached the log branch). The price-list routine works because it was made in the UI with its repos attached |
 | Connectors | None stored, none needed: GHL is reached by script with `.env` credentials, git through the proxy |
@@ -81,7 +81,7 @@ silently before. Re-read live (`list_triggers`, `get_session`) before relying on
   and a runtime clone is blocked as "Code from External". It was disabled at 17:43Z. Step 0
   is gone; the stored text is the UI prompt ("Check first" + "Report", with rubric v3's
   reply / to action / FYI counts). The routine must be created in the UI with the repo
-  attached.
+  attached. The tool-made trigger was then deleted (Albert).
 - **2026-10-08 (later).** Routine created, `trig_01SWvFRsne3wGwKyqHh4kWjD`. The 30-minute
   cadence was refused (minimum hourly), so it runs hourly. The trigger has no repository
   attached, so the stored text gained Step 0 (attach + clone, fail closed) — the live
