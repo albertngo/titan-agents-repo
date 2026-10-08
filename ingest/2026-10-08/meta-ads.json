@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-10-08T08:00:00-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-act_927167028457360",
+      "type": "spend_summary",
+      "title": "Meta spend Oct 1-7: $342.45, 18 leads, CPL $19.03",
+      "summary": "Seven-day window spent $342.45 CAD across 9,403 impressions and 215 clicks for 18 leads. Flooring Problems Campaign was the only campaign with delivery.",
+      "timestamp": "2026-10-08T08:00:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 34245,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 34245,
+    "impressions": 9403,
+    "clicks": 215,
+    "leads": 18,
+    "cpl_cents": 1903,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Last prior meta-ads.json was 2026-09-08 (30 days ago); window widened to the 7-day cap (2026-10-01 to 2026-10-07). Gap before 2026-10-01 is not covered, and spend/leads metrics are for 7 days, not one.",
+    "No separate CPL baseline exists (the 7-day window was the only pull), so no anomaly comparison was run."
+  ]
+}

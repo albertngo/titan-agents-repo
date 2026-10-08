@@ -1,0 +1,36 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-10-08T08:10:00-04:00",
+  "status": "error",
+  "error": "GHL MCP tools (contacts, opportunities, pipelines, calendars, conversations) were not available in this ingest session, so none of the four categories (new leads, opportunities, appointments, conversations) or workflow drift could be pulled. Nothing was guessed.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest FAILED today: MCP tools unavailable; no leads, pipeline, appointment, conversation or drift data. Check GHL in the app directly and re-run /daily-ingest ghl.",
+    "Call pull succeeded (22 calls listed, 1 transcribed) but call content is not joined to conversations without the MCP data."
+  ],
+  "extensions": {
+    "ghl": {
+      "template_version": "4",
+      "reporting": {
+        "calls": {
+          "listed": 22,
+          "from_note": 20,
+          "transcribed": 1,
+          "voicemails": null,
+          "minutes": 0.0,
+          "est_cost_usd": 0.0001,
+          "engine": "elevenlabs",
+          "status": "ok",
+          "error": null
+        }
+      },
+      "calls": [],
+      "call_quality": {
+        "sensitivity": "private",
+        "records": []
+      }
+    }
+  }
+}
