@@ -36,6 +36,7 @@ Both commands start in `plan_only`; flipping either is a dated vault decision.
 | 19 | Flooring Line Item rates are **pre-tax** $/sqft (the formulas add HST). The sync **writes** flooring lines (create and update); every other sync action stays a proposal until its own dated decision. Disposal rows on PP-421 / PP-399 (pre-September, costs look swapped) are left as they are. | Albert 2026-10-06 |
 | 20 | **Order of truth for a flooring line's sqft and cost: supplier invoice (net of credit memos) → what Titan ordered (supplier confirmation / project PO) → the PM's quote → the Lightspeed sale.** A higher source overwrites a lower one. An order smaller than the sale with no return to explain it (a top-up, PP-471: 3 boxes vs 680 sqft) is held for a person. | Albert 2026-10-07 |
 | 21 | **BMO is Titan's business account.** Tangerine, TD, Scotia, RBC, Scotia Cuu's and CIBC are personal: a customer payment that landed there is money to move into Titan before the project's Lightspeed sale can be closed (procedure to come). | Albert 2026-10-07 |
+| 22 | **Quantity check, owned by front desk (Albert helps).** Sold (`Quoted Sqft`, else the LS sale) vs invoiced/ordered: within **2 boxes** is OK, and a return that accounts for the gap is OK. Otherwise the line is marked `Verify - part from stock` / `leftover` / `no order` / `no sale` and appears in Flooring Line Items → **Quantities to verify**. Front desk answers with `Verified - from stock` (job cost blends in the LS average cost for the stock part), `Verified - leftover to stock` (job charged only what was sold), `Verified - used on job` or `Verified - OK`. The sync never changes a Verified answer. | Albert 2026-10-08 |
 
 ## What people do
 
@@ -53,6 +54,9 @@ Both commands start in `plan_only`; flipping either is a dated vault decision.
 4. Card-paid bins (In The Bin, Orion): enter the amount on the Disposal row at booking.
 
 **Front desk**
+0. Work the Flooring Line Items view **Quantities to verify**: read the Auto note, check stock or
+   the supplier, set `Qty Check` to the matching `Verified - ...` answer and write what you found
+   in `Qty Note`.
 1. Raise the stock purchase order in Lightspeed with the rate you looked up
    independently, and put `PP-### <name>` in the PO **name** (a PO has no note
    field). Today 4 of 209 POs carry a number; without it the PO cost cannot be tied

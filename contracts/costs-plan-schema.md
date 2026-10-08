@@ -116,6 +116,14 @@ Order of truth for both `Sqft Sold` and `Cost Rate` (Albert 2026-10-07): invoice
 ordered → the PM's quote (a typed figure) → the LS sale. `order_covers_part_of_sale` (less
 ordered than sold, no credit memo to explain it) holds the line as a proposal.
 
+**Quantity check** (Albert 2026-10-08): every `flooring_line` action carries `qty_check` and
+writes `Qty Check` (never over a `Verified - ...` value) plus an `Auto:` `Qty Note` into an empty
+note. Band = 2 boxes (box size from the supplier document, else `NN.NNsf/b` in the LS name, else
+20 sqft). A line from an untagged PO or the LS sale is created with `Verify - no order`; on an
+existing line it writes only the check. A part-from-stock line keeps its figures until answered.
+`Verified - from stock` → Sqft Sold = sold, Cost Rate = (bought $ + stock sqft × LS sale cost) /
+sold; `Verified - leftover to stock` → Sqft Sold = sold at the bought rate.
+
 **Flags:** `pm_entry_product_mismatch`, `legacy_ls_product_on_po`, `order_covers_part_of_sale` (sale keyed a different product than ordered),
 `sale_cost_gap`, `po_rate_gap` (front desk's PO vs the supplier, > $0.10/sqft),
 `rate_changed_after_confirmation`, `restocking_fee`, `credit_attributed_by_product`,

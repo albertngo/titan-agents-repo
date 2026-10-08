@@ -351,7 +351,10 @@ def flooring_actions(project, pp, num, ls, proj_orders, product_po, supplier, ro
                 if isinstance(v, bool):
                     return pr.truthy(cur) == v
                 if isinstance(v, (int, float)):
-                    return pr.money(cur) is not None and abs(pr.money(cur) - v) < 0.00005
+                    try:                    # full precision: rates carry 4 decimals ($3.8573)
+                        return cur not in (None, "") and abs(float(cur) - v) < 0.00005
+                    except (TypeError, ValueError):
+                        return False
                 return cur == v
             fields = {k: v for k, v in fields.items() if not same(k, v)}
             if not fields:

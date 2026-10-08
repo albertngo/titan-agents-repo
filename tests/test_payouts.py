@@ -743,6 +743,13 @@ class TestFlooringLine(unittest.TestCase):
         self.assertEqual(a["fields"], {"Sold At Rate": 6.29})
         self.assertNotIn("quote_rate_missing", a["flags"])
 
+    def test_four_decimal_rate_on_the_line_counts_as_matching(self):
+        acts = floor_action([credit("Cr2", 14, "73.3941", "1,027.52", fee=True)], row={
+            "Floor SKU": "ENG-VIDR-0023", "Sqft Sold": 1407.12, "Cost Rate": round(6801.18 / 1407.12, 4),
+            "Invoice Cost Rate": round(6801.18 / 1407.12, 4), "PO Cost Rate": 4.59, "LS Sale Cost Rate": 4.19,
+            "Cost Locked": "__YES__", "Qty Check": "OK", "Sold At Rate": 6})
+        self.assertEqual(acts, [])
+
     def test_matching_line_is_silent(self):
         acts = floor_action(row={"Floor SKU": "ENG-VIDR-0023", "Quote Rate": 6.29, "Sold At Rate": 6.29, "Sqft Sold": 1705.6, "Qty Check": "OK",
                                  "Cost Rate": 4.59, "Invoice Cost Rate": 4.59, "PO Cost Rate": 4.59,
