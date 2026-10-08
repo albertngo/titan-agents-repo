@@ -55,10 +55,10 @@ silently before. Re-read live (`list_triggers`, `get_session`) before relying on
 
 | Item | Value |
 |---|---|
-| Trigger | **None live (2026-10-08).** Create it in the claude.ai Routines UI with this repository attached, named "GHL Unread Triage", the stored text above as its prompt, auto-PR off. A session tool made `trig_01SWvFRsne3wGwKyqHh4kWjD` first (15:29Z); both its fires failed (see Repository); it was disabled at 17:43Z and **deleted** later that day on Albert's word. Once the UI routine is running, record its id here and in the registry (`cadence.trigger_id`). Do not disable a live trigger or change its schedule on a session's own initiative |
+| Trigger | CCR routine "GHL Triage", **`trig_01E8YGSwjQ3ftmx8k1jxRLeu`**, created by Albert in the claude.ai Routines UI 2026-10-08T18:33Z with this repository attached and the stored text above as its prompt. Enabled. Do not disable it or change its schedule on a session's own initiative. (A session tool made `trig_01SWvFRsne3wGwKyqHh4kWjD` first; both its fires failed — see Repository — and it was deleted on Albert's word.) |
 | Schedule | `CRON_TZ=America/Toronto 59 7-20 * * 1-6` — 14 fires, 7:59am–8:59pm, Mon–Sat (Albert, 2026-10-07: hourly 8am–9pm). Every 30 minutes (`29,59 …`) was tried first and **refused by the server: minimum interval 1 hour**. Minute 59: the jitter rule ("GHL Unread Triage", 15 letters → 1 minute earlier) |
 | Repository | **Must be attached to the routine** — titan-agents-repo, branch `main-agents`. A trigger made with the `create_trigger` tool stores no repository sources, and a fired session cannot fix that itself: `add_repo` is not available there, and a repo it clones at run time is "Code from External" to the auto-mode classifier, which blocked `.claude/hooks/session-start.sh` (fires of 2026-10-08 15:59Z and 16:59Z; both failed closed, nothing pulled or written). The git proxy also refuses a push to a repo outside the session's sources, so a log push needs the attachment too (run `20261008T1252-e2a9` never reached the log branch). The price-list routine works because it was made in the UI with its repos attached |
-| Connectors | None stored, none needed: GHL is reached by script with `.env` credentials, git through the proxy |
+| Connectors | None needed: GHL is reached by script with `.env` credentials, git through the proxy. The UI attached the account's default connectors (Airtable, Gmail, Notion, Make, …) on creation; they are unused, and removing them is the tidier setting |
 | Firing | A fresh session per fire (`create_new_session_on_fire`), completion notifications off — 14 fires a day; the command pushes only when a person is needed |
 | Environment | `env_01XHGNpnEFthGu3i3VzP8xKp`, the price-list environment (Albert, 2026-10-08). Needs `GHL_PIT_TOKEN`, `GHL_LOCATION_ID`, egress to `services.leadconnectorhq.com`, and git push to this repo. At the switch, `GHL_MARK_READ_TOKEN` is added there; only `scripts/ghl_mark_read.py` may read it (test-enforced) |
 | Git | Each fire gets its own `claude/*` branch and leaves it untouched. Its only output is a commit on `claude/ghl-triage-log`, made by plumbing, never merged |
@@ -71,12 +71,14 @@ silently before. Re-read live (`list_triggers`, `get_session`) before relying on
 | Build + tests | done 2026-10-08 (PR #90, merged 15:06Z) |
 | Read probe | done 2026-10-08: `status=unread` honoured, 377 unread, reads have no side effect; field notes in the registry (`pull._observed_2026_10_08`, `batch._observed_2026_10_08`) |
 | Log branch `init` | done 2026-10-08 (supervised, from the build session); first record = the live dry run |
-| Routine created (plan_only) | **not yet.** The tool-made trigger failed at its repo step and is disabled (2026-10-08); waiting on the UI routine with the repo attached |
+| Routine created (plan_only) | done 2026-10-08T18:33Z, `trig_01E8YGSwjQ3ftmx8k1jxRLeu` (UI, repo attached); first fire 18:59Z |
 | Pilot | CLOSER: ≥ 7 days and ≥ 50 verdicts, 0 wrong. SPAM: ≥ 7 days and ≥ 20, 0 wrong |
 | Write token + write probe + vault decision + flip PR | per verdict, after its bar |
 
 ## Changelog
 
+- **2026-10-08 (18:33Z).** Albert created "GHL Triage", `trig_01E8YGSwjQ3ftmx8k1jxRLeu`, in the
+  Routines UI with the repo attached and the stored text above.
 - **2026-10-08 (evening).** The tool-made trigger failed both fires: no repository attached,
   and a runtime clone is blocked as "Code from External". It was disabled at 17:43Z. Step 0
   is gone; the stored text is the UI prompt ("Check first" + "Report", with rubric v3's
