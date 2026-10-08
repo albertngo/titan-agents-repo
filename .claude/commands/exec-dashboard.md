@@ -57,7 +57,10 @@ sections deleted by hand.
    exists in a recent brief. Once bookkeeper reports, this tile goes live.
 3. **Pipeline health (GHL)** — open leads with hot/warm/cold split,
    stale-tagged and untagged counts, new leads net of exclusions (show raw −
-   excluded), unanswered conversations (raw − excluded), appointments +
+   excluded), unanswered conversations (raw − excluded; from `template_version` "5"
+   on 2026-10-08 this also counts unread threads older than 24 h and leaves closers
+   out, so mark the trend's step on the first v5 day rather than reading it as a
+   change in the business), appointments +
    pipeline moves, Meeting-stage count + avg age. One "At risk" line naming the
    worst 2–3 items by % of threshold consumed (negative `effective_window_days`
    always ranks first — it means the window expired before the visit).

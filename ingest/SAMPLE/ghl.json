@@ -1,5 +1,5 @@
 {
-  "_comment": "REFERENCE ONLY — not a real run. Demonstrates the full ghl-ingest-agent v3 output structure. Every value is a [FILL: ...] placeholder. Real runs write /ingest/YYYY-MM-DD/ghl.json and ARE committed during the build phase. Arrays show one representative element each; real output has many. Tag and stage strings below are the VERIFIED live GHL names, byte-exact including trailing spaces (see .claude/agents/ghl-ingest-agent.md).",
+  "_comment": "REFERENCE ONLY — not a real run. Demonstrates the full ghl-ingest-agent v5 output structure. Every value is a [FILL: ...] placeholder. Real runs write /ingest/YYYY-MM-DD/ghl.json and ARE committed during the build phase. Arrays show one representative element each; real output has many. Tag and stage strings below are the VERIFIED live GHL names, byte-exact including trailing spaces (see .claude/agents/ghl-ingest-agent.md).",
 
   "contract_version": "1",
   "source": "ghl",
@@ -102,7 +102,7 @@
 
   "extensions": {
     "ghl": {
-      "template_version": "4",
+      "template_version": "5",
 
       "reporting": {
         "lead_count": "[FILL: number]",
@@ -127,10 +127,16 @@
             "supplier-solicitation": "[FILL: number]",
             "spam likely": "[FILL: number]"
           },
-          "unanswered_raw": "[FILL: number — every thread where next_response_owner is us]",
+          "unanswered_raw": "[FILL: number — every thread where next_response_owner is us, in the window or unread (v5)]",
           "unanswered_excluded": {
             "missed-call-no-voicemail": "[FILL: number]",
-            "automated-system-log": "[FILL: number]"
+            "automated-system-log": "[FILL: number]",
+            "backlog-over-14d": "[FILL: number] (v5)"
+          },
+          "triage_cleared_or_closing": {
+            "_comment": "v5. Closers and spam have owner them, so they are not in unanswered_raw; shown here so nothing vanishes unseen.",
+            "triage-closer": "[FILL: number]",
+            "triage-spam": "[FILL: number]"
           }
         },
 
@@ -245,8 +251,10 @@
           "contact": "[FILL: name]",
           "contact_id": "[FILL: id]",
           "channel": "[FILL: sms | email | call | whatsapp | webchat | facebook | instagram]",
-          "next_response_owner": "[FILL: us | them]",
+          "next_response_owner": "[FILL: us | them — v5: us when the triage row has a batch (customer messages since our last HUMAN reply), then the post-call-SMS and call-commitment overlays]",
           "sitting_hours": "[FILL: number]",
+          "unread": "[FILL: true/false — GHL unreadCount > 0] (v5)",
+          "waiting_hours": "[FILL: number since the first customer message of the unanswered batch, or null] (v5)",
           "contact_notion": "[FILL: 1-3 sentence read of who this contact is and what they actually want, formed from the ENTIRE conversation history]",
           "act_immediately": "[FILL: true/false]",
           "act_immediately_reason": "[FILL: e.g. payment pending / install date at risk / insurance deadline, or null]",
@@ -258,8 +266,17 @@
           "followup_intent": "[FILL: the intent driving the follow-up, or null]",
           "importance_rank": "[FILL: number, 1 = most important]",
           "flags": [
-            "[FILL: payment-pending | insurance-claim | appt-cancelled | spam-suspected | supplier-solicitation | missed-call-no-voicemail | voicemail-transcribed | call-commitment-open]"
+            "[FILL: payment-pending | insurance-claim | appt-cancelled | spam-suspected | supplier-solicitation | missed-call-no-voicemail | voicemail-transcribed | call-commitment-open | unanswered-24h+ | triage-closer | triage-spam | triage-unsure | triage-held]"
           ],
+          "triage": {
+            "_comment": "v5. From scripts/ghl_unread_plan.py's plan row. No message text, ever.",
+            "verdict": "[FILL: NEEDS_RESPONSE | CLOSER | SPAM | UNSURE | HELD]",
+            "reason": "[FILL: paraphrase, <= 80 chars, no names or numbers]",
+            "verdict_source": "[FILL: model | cache | hold]",
+            "hold_reason": "[FILL: no_customer_text | non_text_content | call_in_batch | unknown_message_type | batch_too_long | history_truncated | unjudged | invalid_verdict, or null]",
+            "guard": "[FILL: closer_veto:question | closer_veto:length | spam_not_stranger, or null]",
+            "batch_key": "[FILL: b-<16 hex>, or null]"
+          },
           "call_ids": [
             "[FILL: ghl-call-<messageId> for each call on this conversation in the window; empty array if none]"
           ]
@@ -315,6 +332,36 @@
             "note": "[FILL: one neutral sentence]"
           }
         ]
+      },
+
+      "triage": {
+        "_comment": "v5. GHL unread triage (methods/ghl-unread-triage.md): the brief-mode plan plus what the hourly sweep did in the last 24 h (branch claude/ghl-triage-log). A triage failure sets status error and one needs_attention line; the file's own status stays ok. No message text, ever.",
+        "status": "[FILL: ok | partial | error]",
+        "error": "[FILL: string or null]",
+        "run_id": "[FILL: YYYYMMDDTHHMM-xxxx]",
+        "write_mode": "[FILL: plan_only | write]",
+        "rubric_version": "[FILL: e.g. 1]",
+        "log_status": "[FILL: ok | missing | error: ...]",
+        "last_sweep_at": "[FILL: ISO timestamp or null]",
+        "sweeps_24h": "[FILL: number]",
+        "kill_switch": "[FILL: reason string or null]",
+        "counts": {
+          "unread_total": "[FILL: number]",
+          "waiting": "[FILL: number]",
+          "waiting_24h_plus": "[FILL: number]",
+          "backlog": "[FILL: number]",
+          "not_ours": "[FILL: number]",
+          "by_verdict": {"[FILL: verdict]": "[FILL: number]"},
+          "held_by_reason": {"[FILL: hold]": "[FILL: number]"},
+          "guarded": {"[FILL: guard]": "[FILL: number]"}
+        },
+        "would_clear": [
+          {"conversation_id": "[FILL: id]", "contact": "[FILL: First L.]", "verdict": "[FILL: CLOSER | SPAM]", "reason": "[FILL: paraphrase]", "link": "[FILL: GHL contact link]"}
+        ],
+        "cleared_24h": [{"conversation_id": "[FILL: id]", "reason": "[FILL: verdict: reason]"}],
+        "refused_24h": [{"conversation_id": "[FILL: id]", "error": "[FILL: stale_already_read | stale_new_message]"}],
+        "failed_24h": [{"conversation_id": "[FILL: id]", "error": "[FILL: error code]"}],
+        "needs_person_24h": "[FILL: number of sweeps over the cap]"
       },
 
       "workflow_drift": [

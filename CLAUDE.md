@@ -32,7 +32,7 @@ No ingester reads another ingester's raw platform data.
 | `meta-ads-ingest-agent` | Meta Ads (spend, leads, CPL, delivery health) | `meta-ads.json` |
 | `content-ingest-agent` | Notion content calendar + Google Drive media | `content.json` |
 
-| `ghl-actions-agent` | GoHighLevel (write: replies, stages, tags) | appends to `actions-log.json` |
+| `ghl-actions-agent` | GoHighLevel (write: replies, stages, tags; mark-read only via `/ghl-triage` + `scripts/ghl_mark_read.py`, unarmed) | appends to `actions-log.json` |
 | `lightspeed-actions-agent` | Lightspeed Retail X-Series (write: product create/update ONLY) | appends to `actions-log.json` |
 | `airtable-actions-agent` | Airtable catalogue (write: upsert, LS-ID backfill, price history) | appends to `actions-log.json` |
 | `social-actions-agent` | Metricool (write: schedule posts, and move a still-scheduled one to a new date — never edits or deletes a LIVE post, never replies) | appends to `actions-log.json` |
@@ -232,6 +232,34 @@ an English translation note series beside the original transcript. Do not
 edit that module in Make without re-snapshotting and re-running the tests. Registry
 `platform-settings/ghl-calls.json`; method `methods/ghl-call-transcripts.md`.
 
+### GHL unread triage (`/ghl-triage`, 2026-10-08)
+
+GHL keeps a conversation unread until somebody replies, so the unread count fills with
+closers ("sounds good, see you Tuesday"). Albert's spec, grilled 2026-10-07/08: make unread
+mean *needs a human response*. **One rubric, two callers** — `methods/ghl-unread-triage.md`
+is the only copy of the classifier, read by the session model in both:
+
+- **`/ghl-triage`**, an hourly routine (8am–9pm Toronto, Mon–Sat): `scripts/ghl_unread_pull.py`
+  (read-only) builds each unread conversation's batch — what the customer wrote since our
+  last **human** reply; automations never count as a reply — holds anything unreadable
+  (photos, calls, voicemail), the model judges `NEEDS_RESPONSE` / `CLOSER` / `SPAM` /
+  `UNSURE`, and `scripts/ghl_unread_plan.py` applies guards (a `?` or a long message vetoes
+  CLOSER; SPAM only from a stranger) and the cap (25, all-or-nothing).
+- **`ghl-ingest-agent`** (template v5): the brief's "waiting on us" list is now one list —
+  the window plus everything unread — with closers and spam dropped from day one, a 24 h
+  age flag, and threads older than 14 days as a count. notion-sync is unchanged.
+
+`write_mode` is **`plan_only`**: the sweep logs "would clear" and marks nothing read. Each
+of CLOSER and SPAM has its own switch and pilot bar (registry `policy`); flipping is a dated
+vault decision. Every run is logged to branch **`claude/ghl-triage-log`** — never merged,
+never PR'd, written only by `scripts/ghl_triage_log.py` — which is also the verdict cache.
+**`scripts/ghl_mark_read.py` is the only file in this repo that can write to GHL**, and it
+can do one thing: `PUT /conversations/<id>` `{locationId, unreadCount: 0}`, with its own
+`conversations.write` token, compare-and-swap before and read-back after. The repo is
+public, so the log carries no customer text until `log.excerpts` is turned on. Registry
+`platform-settings/ghl-unread-triage.json`; contract `contracts/ghl-triage-schema.md`;
+routine `methods/ghl-triage-routine-prompt.md`.
+
 ## Agent class rules
 
 | | `*-ingest` | `*-actions` |
@@ -252,6 +280,12 @@ an actions agent executes only an id that appears `approved` in an approval file
 never originates a write on its own — did not move; only who satisfies it. Every
 other `*-actions` agent (`ghl-actions-agent` included) is unchanged: explicit
 instruction and a person's approval, still, always.
+
+**Designed, not in force (2026-10-08):** a second narrow exception for `ghl-actions-agent`,
+type `mark_conversation_read` only, via `/ghl-triage` only. It takes effect only when a dated
+paragraph replaces this one and `policy.exception_date` is set in
+`platform-settings/ghl-unread-triage.json`; until then `scripts/ghl_unread_plan.py` writes
+no policy approval and `scripts/ghl_mark_read.py` refuses one.
 
 The flow is always: **ingest → decide (Albert, a department lead, policy for the
 narrow catalogue slice above, or the orchestrator) → act**. No agent does all three
@@ -580,6 +614,10 @@ it as legacy, not the PR target.
 Work on a session-named branch off `main-agents` (e.g. `session/2026-07-27-notion-sync`),
 open the PR against `main-agents`, merge there. Decided 2026-07-27 after a PR
 was accidentally opened against `main` instead.
+
+One standing exception (2026-10-08): **`claude/ghl-triage-log`** is GHL unread triage's log
+branch. It is never merged and never PR'd (`scripts/publish_run.py` refuses it); only
+`scripts/ghl_triage_log.py` pushes to it, by plumbing, never by checkout or force.
 
 ## Secrets
 

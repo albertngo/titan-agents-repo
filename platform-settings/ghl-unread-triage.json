@@ -1,0 +1,124 @@
+{
+  "_comment": "Registry for GHL unread triage (/ghl-triage and ghl-ingest-agent's triage step). Read by scripts/ghl_unread_pull.py, scripts/ghl_unread_plan.py, scripts/ghl_mark_read.py and scripts/ghl_triage_log.py. The rubric the model applies is methods/ghl-unread-triage.md — never copy it here. Decisions: Albert's spec (GHL_Unread_Triage_Spec.docx) grilled 2026-10-07/08; vault 05_decisions/2026-10-08-ghl-unread-triage.md.",
+  "_maintenance": "Thresholds, type lists and caps are tunable data; what they MEAN is in the method file. tests/test_ghl_unread_triage.py pins write_mode, the cap, the verdict vocabulary, the rubric version (equal to the method file's) and that approve_verdicts is empty while plan_only.",
+  "config_version": "1",
+
+  "rubric": {
+    "file": "methods/ghl-unread-triage.md",
+    "version": "1",
+    "_bump": "Bump here and in the method file's 'Rubric version' in the same commit. A bump discards every cached verdict."
+  },
+
+  "write_mode": {
+    "mode": "plan_only",
+    "_values": ["plan_only", "write"],
+    "_flip": "Staged rollout, same shape as style-tags.json and supplier-sites.json. While plan_only, the sweep classifies and logs 'would clear' and writes NO approval file and marks NOTHING read — scripts/ghl_unread_plan.py refuses --write-approval under it and scripts/ghl_mark_read.py refuses to run. Flipping to write is a dated decision recorded in the vault (05_decisions/), together with policy.exception_date, policy.approve_verdicts and the dated CLAUDE.md exception for ghl-actions-agent — never an edit made to get a run through. Update tests/test_ghl_unread_triage.py in the same commit."
+  },
+
+  "verdicts": ["NEEDS_RESPONSE", "CLOSER", "SPAM", "UNSURE"],
+  "clearable_verdicts": ["CLOSER", "SPAM"],
+  "reason_max_chars": 80,
+
+  "policy": {
+    "approved_by": "policy: ghl-unread-triage auto-approval (rubric v1)",
+    "approve_verdicts": [],
+    "_approve_verdicts": "Each clearable verdict is its own switch (Albert, 2026-10-08). Empty while plan_only. A verdict joins only after its pilot bar below is met and a vault decision records it.",
+    "max_mark_read_per_run": 25,
+    "_cap": "All-or-nothing (Albert, 2026-10-08): more than this many clearable conversations in one run approves NOTHING and pushes a notification. CLOSER and SPAM count together. The pilot's backlog is cleared once, supervised, at the switch.",
+    "exception_date": null,
+    "_exception_date": "The date of the dated CLAUDE.md exception that lets ghl-actions-agent execute a policy-approved mark_conversation_read. While null, scripts/ghl_unread_plan.py writes no policy approval and scripts/ghl_mark_read.py refuses a policy-signed one.",
+    "pilot_exit": {
+      "CLOSER": {"min_days": 7, "min_verdicts": 50, "max_wrong": 0},
+      "SPAM": {"min_days": 7, "min_verdicts": 20, "max_wrong": 0},
+      "_note": "A wrong verdict means the rubric is fixed (version bumped) and that verdict's clock restarts. Wrong NEEDS_RESPONSE / UNSURE never block a switch."
+    }
+  },
+
+  "guards": {
+    "closer_veto": {"question_mark": true, "max_message_chars": 200},
+    "spam_stranger_only": true,
+    "_note": "Applied by scripts/ghl_unread_plan.py after the model, only ever toward a human (CLOSER/SPAM -> UNSURE). Loosen after the pilot shows what they catch."
+  },
+
+  "batch": {
+    "human_sources": ["app"],
+    "text_types": ["TYPE_SMS", "TYPE_WHATSAPP", "TYPE_EMAIL", "TYPE_FACEBOOK", "TYPE_INSTAGRAM",
+                   "TYPE_GMB", "TYPE_LIVE_CHAT", "TYPE_WEBCHAT", "TYPE_SMS_REACTION",
+                   "TYPE_CUSTOM_SMS", "TYPE_CUSTOM_PROVIDER_SMS", "TYPE_CUSTOM_EMAIL",
+                   "TYPE_CUSTOM_PROVIDER_EMAIL"],
+    "call_types": ["TYPE_CALL", "TYPE_IVR_CALL", "TYPE_CAMPAIGN_CALL", "TYPE_CAMPAIGN_MANUAL_CALL",
+                   "TYPE_CUSTOM_CALL", "TYPE_CAMPAIGN_VOICEMAIL"],
+    "boundary_call_types": ["TYPE_CALL"],
+    "ignore_types": ["TYPE_INTERNAL_COMMENT"],
+    "ignore_type_prefixes": ["TYPE_ACTIVITY"],
+    "automation_types": ["TYPE_CAMPAIGN_SMS", "TYPE_CAMPAIGN_EMAIL", "TYPE_CAMPAIGN_FACEBOOK",
+                         "TYPE_CAMPAIGN_GMB", "TYPE_CAMPAIGN_MANUAL_SMS", "TYPE_SMS_REVIEW_REQUEST",
+                         "TYPE_SMS_NO_SHOW_REQUEST"],
+    "_types": "ignore_types / ignore_type_prefixes are invisible in either direction (internal comments, activity log lines). automation_types are invisible when outbound; inbound they hold the batch. An inbound message of a type in no list holds the batch (unknown_message_type) — fail closed.",
+    "non_text_bodies": ["Message type is currently not supported."],
+    "_non_text_bodies": "Bodies GHL writes in place of media it cannot render (seen on WhatsApp 2026-10-08). Matched exactly after trimming; such a message holds the batch as non_text_content.",
+    "failed_statuses": ["failed", "undelivered"],
+    "connected_call_status": "completed",
+    "min_call_seconds": 8,
+    "max_messages": 12,
+    "max_chars": 2000,
+    "page_size": 100,
+    "max_pages_back": 5,
+    "_verified": "2026-10-08",
+    "_observed_2026_10_08": "Read-only probe, 40 unread conversations / 1,087 messages. Outbound human = source 'app' + userId (TYPE_SMS 283, TYPE_EMAIL 7, TYPE_CALL 49). Automation = source 'workflow' (TYPE_SMS 98 — 75 of them WITH a userId, TYPE_EMAIL 41, campaign calls) or 'bulk_actions'. Inbound carries no source. TYPE_IVR_CALL arrives inbound, source workflow, status completed with a duration and a recording — not proof a person answered, so it never ends a batch. Inbound TYPE_EMAIL bodies are HTML with the quoted thread, sometimes empty (meta.email.subject only). TYPE_SMS_REACTION bodies quote our message. Call status/duration live in meta.call."
+  },
+
+  "age": {
+    "flag_hours": 24,
+    "flag": "unanswered-24h+",
+    "backlog_days": 14,
+    "_note": "Albert, 2026-10-08: flag at 24 calendar hours (high priority + one aggregate needs_attention line + 'waiting N days' in Notion Notes). Waiting longer than backlog_days = one count line in the brief, no task; the sweep still judges them."
+  },
+
+  "pull": {
+    "status_param": "unread",
+    "max_conversations": 600,
+    "probe_verified": "2026-10-08",
+    "_observed_2026_10_08": "GET /conversations/search?status=unread honoured: 100/100 rows unreadCount > 0, total 377 (unfiltered total 7,894). Rows carry unreadCount, lastMessageDirection, lastOutboundMessageAction (manual|automated), opportunities[{id, pipelineId, pipelineStageId, monetaryValue, status}], contactName, contactId. GET /conversations/{id} carries unreadCount, firstUnreadInboundMessageId, firstUnreadInboundTimestamp, lastMessageDirection. Re-reading 40 conversations after listing their messages: unreadCount changed on 0 — reads have no side effect. Unread age by last message: median 5.3 d, p90 14.3 d, max 19.2 d."
+  },
+
+  "log": {
+    "branch": "claude/ghl-triage-log",
+    "root": "ghl-triage",
+    "runs_file": "ghl-triage/{date}/runs.json",
+    "actions_log": "ghl-triage/{date}/actions-log.json",
+    "kill_switch": "ghl-triage/KILL_SWITCH",
+    "cache_lookback_days": 14,
+    "push_retries": 4,
+    "excerpts": false,
+    "excerpt_chars": 100,
+    "_excerpts": "titan-agents-repo is PUBLIC (checked 2026-10-07). Until Albert makes it private (his call, 'later, not a blocker'), the log carries ids, verdicts and paraphrased reasons only — no customer text. A one-line PR sets excerpts true once it is private; then each row carries up to excerpt_chars of what the customer wrote.",
+    "_never_merge": "Never merged and never PR'd: scripts/publish_run.py refuses it. Only scripts/ghl_triage_log.py writes it, with git plumbing, never a checkout or a force push."
+  },
+
+  "cadence": {
+    "cron": "CRON_TZ=America/Toronto 59 7-20 * * 1-6",
+    "try_first": "CRON_TZ=America/Toronto 29,59 7-20 * * 1-6",
+    "_decided": "Albert, 2026-10-07: hourly 8am-9pm Toronto, Mon-Sat; try every 30 minutes first if the account allows it. Minute 59 = the jitter rule ('GHL Unread Triage' is 15 letters -> 1 minute earlier).",
+    "environment": "env_01XHGNpnEFthGu3i3VzP8xKp",
+    "_environment": "Albert, 2026-10-08: reuse the price-list environment. At the switch GHL_MARK_READ_TOKEN sits in that environment's .env too; tests/test_ghl_unread_triage.py makes sure only scripts/ghl_mark_read.py reads it."
+  },
+
+  "writer": {
+    "script": "scripts/ghl_mark_read.py",
+    "token_env": "GHL_MARK_READ_TOKEN",
+    "scope": "conversations.write",
+    "method": "PUT",
+    "path": "/conversations/{conversationId}",
+    "body_keys": ["locationId", "unreadCount"],
+    "api_version": "2021-04-15",
+    "max_plan_age_minutes": 30,
+    "_verified": null,
+    "_verify": "Set only after the supervised write probe at the switch: one PUT on a conversation Albert names, a read-back of unreadCount 0, then a new inbound text that must make it unread again. If GHL rejects the body, stop; never try other endpoints unattended."
+  },
+
+  "outputs": {
+    "cache_dir": "analysis/cache/ghl-triage",
+    "_never": "Nothing under ingest/<date>/ — /daily-ingest and /notion-sync read that folder wholesale. Message text lives only in the gitignored cache (todo.json)."
+  }
+}
