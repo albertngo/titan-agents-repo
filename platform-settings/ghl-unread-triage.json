@@ -98,8 +98,8 @@
 
   "cadence": {
     "cron": "CRON_TZ=America/Toronto 59 7-20 * * 1-6",
-    "try_first": "CRON_TZ=America/Toronto 29,59 7-20 * * 1-6",
-    "_decided": "Albert, 2026-10-07: hourly 8am-9pm Toronto, Mon-Sat; try every 30 minutes first if the account allows it. Minute 59 = the jitter rule ('GHL Unread Triage' is 15 letters -> 1 minute earlier).",
+    "trigger_id": "trig_01SWvFRsne3wGwKyqHh4kWjD",
+    "_decided": "Albert, 2026-10-07: hourly 8am-9pm Toronto, Mon-Sat; try every 30 minutes first if the account allows it. It does not: '29,59 7-20 * * 1-6' was refused on 2026-10-08 (minimum interval 1 hour). Minute 59 = the jitter rule ('GHL Unread Triage' is 15 letters -> 1 minute earlier).",
     "environment": "env_01XHGNpnEFthGu3i3VzP8xKp",
     "_environment": "Albert, 2026-10-08: reuse the price-list environment. At the switch GHL_MARK_READ_TOKEN sits in that environment's .env too; tests/test_ghl_unread_triage.py makes sure only scripts/ghl_mark_read.py reads it."
   },
