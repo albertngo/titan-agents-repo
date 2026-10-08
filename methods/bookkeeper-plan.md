@@ -1,229 +1,238 @@
-# Bookkeeper plan — unblocking Finance
+# Bookkeeper plan — QBO live access and the Finance department
 
-Written 2026-10-07, one week after the FY2026 year-end (Sep 30). A plan, not a build:
-nothing below has been executed, and every step that touches an agent definition,
-a contract, Make or QBO waits for Albert's yes (CLAUDE.md, "Ask Albert / propose-and-stop").
-If this drifts from `CLAUDE.md`, `CLAUDE.md` wins.
+First written 2026-10-07. Decisions settled 2026-10-08 by Albert, in a grilling session
+on his "Titan Bookkeeper — QBO Live Access Plan" (PDF, 2026-10-07).
 
----
-
-## Where things stand
-
-### The ingest has never produced a number
-
-`bookkeeper-ingest-agent` is told to "use the Intuit QuickBooks MCP connector". No such
-server is in `.mcp.json`, so every run writes `status: "error"`: 38 `error` and 1 `missing`
-in `ingest/run-ledger.json`, and the vault's daily notes record the same failure through
-2026-10-07. Finance is `blocked` in `departments.json` for exactly this reason.
-
-Two smaller defects ride along:
-
-- The error file still writes `payments_received_cents: 0` etc. Every vault note then has
-  to say "zeros are placeholders". An error file should carry `metrics: {}`.
-- `departments.json` → `blocked_reason` names the missing MCP server as the blocker. The
-  real blockers are the two below.
-
-### A working QBO path already exists, in Make
-
-| Make object | What it is | State |
-|---|---|---|
-| Connection **4820024** "QBO Connection" | OAuth to *Titan Flooring Inc. (CA)*, scope `com.intuit.quickbooks.accounting` (**read and write**) | **Expires 2026-11-01** per Make |
-| Scenario 4822446 "Sync Chart of Accounts" | `select * from account` → datastore 88653 | on-demand, read-only |
-| Scenario 4822687 "Pull P&L Report" | `GET /reports/ProfitAndLoss` (dates hard-coded 2026-01-01 → 07-13) → chunked into datastore 88661 | on-demand, read-only |
-| Scenario 4824058 "Create New CoA Accounts (one-time)" | Despite the name, now a single `GetAccount 173` → datastore | on-demand, read-only |
-| Scenario 4824368 "Register Closure Watchdog" | Counts QBO invoices → WhatsApp + Notion to-do | on-demand, **still on its test query** (`CreateTime > '2027-01-01'`, which is always 0, so it would always alarm) |
-| Scenario 4841468 "Outlook INVOICE → QBO Receipts" | Forwards mail with attachments to `titanflooring@qbodocs.com`, moves it | on-demand |
-
-The datastore chunking in 4822687 was a workaround for reading results back out. A
-webhook that answers with the response body removes the need for it.
-
-The expiry date fits Intuit's 100-day rolling refresh window measured from the last use,
-around 2026-07-24. Using the connection should roll it forward. If it lapses, only Albert
-can re-authorize it, in Make.
-
-### The environment can't reach either host today
-
-From this cloud environment, `hook.us1.make.com`, `us1.make.com`,
-`quickbooks.api.intuit.com` and `oauth.platform.intuit.com` all fail with a CONNECT 403
-from the network policy. `graph.microsoft.com` and `services.leadconnectorhq.com` pass.
-Whatever path is chosen, its host has to be added under the environment's **Network
-access → Allowed domains** (https://code.claude.com/docs/en/cloud-environments#network-access).
-
-### The books themselves (QBO-LS Fix Log / Task Queue in Notion)
-
-- FY2026 = Oct 2025 – Sep 2026, now closed. HST is filed annually.
-- Hien Nguyen, CPA (Dang & Associates) took on review and reconciliation for Jan–Sep at
-  $400/mo, working against the rulebook. Her corrections are meant to train the "Titan
-  Bookkeeper skill", which lives outside this repo.
-- Decision D2 (07-15): Dext no longer publishes bills, so **QBO has no A/P by design**.
-- The 2026 P&L is "unusable for margin analysis" until the inventory count and COGS true-up.
-- **The QBO-LS Task Queue has 33 open rows**, all added 07-15 → 07-20. Several carried
-  "before Sep 30" deadlines:
-  - Amica ring-in ($60,398.50)
-  - cleanup sequencing against year-end
-  - the year-boundary closure journal for #394/#441
-
-  One has a hard deadline still ahead: the HoldCo HST registration and the Mar–Jul rent
-  invoices ($57,000) must exist **before the annual HST return, around Dec 2026**. The
-  queue may simply be stale after the July–Aug catch-up. Only Albert can tell.
-
-### What the QBO API can and cannot see
-
-This sets what the ingest can promise:
-
-- **It cannot see bank-feed "For Review" lines.** The 355 BMO card lines, the EMT
-  backlog and anything else waiting in Banking are invisible to the Accounting API.
-  `uncategorized_txns` therefore cannot mean "the review queue". It can only mean
-  *posted* lines sitting in the holding accounts: Uncategorized Expense/Income/Asset,
-  Ask My Accountant, Suspense.
-- It can see posted entities through `query` and through `cdc`, which returns everything
-  changed since a timestamp, up to 30 days back. That makes `cdc` the natural "last 24h"
-  call.
-- It can see reports: `ProfitAndLoss`, `BalanceSheet`, `AgedReceivables`, `TrialBalance`,
-  `TransactionList`, `GeneralLedger`.
-- It can see account balances (`Account.CurrentBalance`). The Undeposited Funds tank was
-  $436,418 on 07-13.
-- Sales arrive from Lightspeed register closures. The watchdog counts `Invoice`; the
-  first live pull should confirm whether closures land as `Invoice` or `SalesReceipt`
-  before any rule depends on it.
+This is still a plan: nothing below has been built. Every Make, QBO, agent or contract
+change waits for its own "go" (CLAUDE.md, "Ask Albert / propose-and-stop"). If this
+drifts from `CLAUDE.md`, `CLAUDE.md` wins.
 
 ---
 
-## Recommended pull path: a read-only Make webhook bridge
+## Decisions (Albert, 2026-10-08)
+
+| Area | Decision |
+|---|---|
+| **Home** | `titan-agents-repo`, as the Finance department. The `titan-bookkeeper` repo is archived and its bank-rules doc moves here. |
+| **Rules master** | One rules file, `platform-settings/bookkeeper-rules.yaml` (the "rules ledger"). The QBO-LS Fix Log in Notion becomes history. When Albert or Hien corrects a proposal, it becomes a *suggested* rules change that Albert approves. |
+| **Access** | Make, in two scenarios with two secrets. The **read door** allows read calls only and is what scheduled runs use. The **write door** is loaded only by the write agent after approval. The write secret lives only in a **separate cloud environment**; the environment used by the daily routines never holds it. |
+| **Who builds Make** | Claude, through the Make connector, on Albert's yes. Both scenarios stay switched off until he has looked at them in Make. |
+| **Fallbacks** | Intuit's own MCP server (`intuit/quickbooks-online-mcp-server`) is documented as the fallback but not built. DataGrout is dropped. |
+| **Write scope** | Create, update and delete, plus tax-code changes, all behind approval. |
+| **Always a person's yes** (never earns autonomy) | Deletes; tax-code changes; anything dated in FY2026 (before 2026-10-01); any single write over **$1,000**. |
+| **Periods** | FY2027 is open, behind the gate. FY2026 only in batches Albert has forwarded to Hien and she has OK'd, with the date of her reply recorded. After her year-end sign-off, the QBO closing date moves to 2026-09-30. Nothing before Oct 2025, ever. |
+| **Reconciled transactions** | Never touched. They are flagged for Albert or Hien. |
+| **Approvals** | A private Notion database with one row per proposal; Albert ticks Approve. The run turns ticked rows into the approval file the write agent obeys. A tick is a structured approval, unlike the catalogue's prose `Action` cells. |
+| **Autonomy** | The run counts proposals per rule that were approved unchanged and says when one reaches 20 in a row. The flip is Albert's dated vault decision. Autonomous rules then run on a schedule **in the write environment** and push a digest. |
+| **Git** | Commit the audit trail: proposals, approvals and write logs. Raw QBO pulls go in a git-ignored cache. |
+| **Daily brief** | The bookkeeper's daily read joins `/daily-ingest` through the read door. It is admin-only (`private`). Three clean days un-block Finance. |
+| **Receipts (job 1)** | Read-only. The agent reads the receipt emails at info@titanfloors.ca alongside what QBO has posted, and reports which receipts are still unreviewed in QBO and what each should be. It writes nothing. |
+| **First reconciliation** | Decided after a month of receipt read-back. |
+| **Third-party skills** | Adapt Receiptor's `receipt-processing`, `bank-reconciliation` and `expense-categorization`: strip the WebFetch pre-grant and the upsell, and add a Canada/Ontario tax pack. Use openaccountant's `month-end-close` and `square-import` (the pattern for Lightspeed closures) as ideas only. Copied code must have a license that allows copying, is read before it lands, reaches the network only through the QBO gateway, and has its source commit recorded. |
+| **Make cleanup** | Delete the July TEMP scenarios now. Fix and schedule the closure watchdog in Make. Delete the three older Bookkeeper scenarios (Pull P&L, Sync CoA, "Create New CoA") once the read door has worked for a week. |
+
+These follow from the decisions and were confirmed with them:
+
+1. Every write first saves the record's previous state to the log, so it can be
+   reversed. This is required because deletes are allowed.
+2. No write agent exists until the read door has had three clean daily runs.
+3. Albert allows `hook.us1.make.com` in both cloud environments and creates the write
+   environment.
+4. The read door lands before the QBO connection expires on 2026-11-01.
+
+---
+
+## Facts the decisions rest on
+
+### Access
+
+- **Make already reaches the Canadian file.**
+  - Connection 4820024, "Titan Flooring Inc. (CA)", scope `com.intuit.quickbooks.accounting`.
+  - In July it synced 93 accounts in CAD (datastore 88653) and pulled a P&L through
+    "Make an API call".
+  - Make shows the connection **expiring 2026-11-01**. That fits Intuit's rolling 100-day
+    window; use extends it, and the token itself has a 5-year hard cap.
+- **This environment can't reach Make or Intuit.**
+  - `hook.us1.make.com`, `us1.make.com` and the Intuit hosts are refused by the cloud
+    network policy (CONNECT 403). Graph and GHL pass.
+  - Fix: environment → Network access → Allowed domains
+    (https://code.claude.com/docs/en/cloud-environments#network-access).
+- **Cloud Routines don't expire.** "New Price Lists", "Daily Brief" and
+  "Project Status" have fired for weeks. The 7-day expiry in the PDF applies only to
+  session-scoped `/loop` / CronCreate tasks.
+- **Make webhook responses must return in time.** Make's own docs disagree: 40 s in one
+  place, 180 s in another. Large pulls must therefore be paged.
+
+### What the QBO API can and cannot do
+
+| Can't | Detail |
+|---|---|
+| Read bank/card lines still **in For Review** | Only posted Purchase, Deposit, Transfer, JournalEntry and CreditCardPayment, plus the TransactionList report. |
+| Read **receipts nobody has reviewed** | After review there is no "came from receipt capture" flag. Images sit on `Attachable`, downloaded through `TempDownloadUri` or `/download/{id}`. Whether a captured image survives review needs a live test. |
+| **Void** Purchase, Bill or JournalEntry | Delete only, with Id + SyncToken. Void exists for Invoice, Payment, SalesReceipt and BillPayment. |
+| Write **before the closing date** | Rejected with 6200/6210. The API cannot override it. |
+| Post a line without a real **TaxCode Id** | `TAX`/`NON` are rejected outside the US. There's no automated sales tax for Canada, and HST on journal-entry lines is poorly supported. |
+
+### Mail and the old repo
+
+- **Receipt emails arrive at info@titanfloors.ca.** That is the folder Make's forwarder
+  4841468 reads. The Graph app behind `outlook_pull.py` already covers info@, so job 1
+  needs no new mail permission.
+- **`titan-bookkeeper` holds only a README and `docs/consolidated-bank-rules.md`**
+  (v3, 55 rules). There's no `rules/ledger.yaml` or `SKILL.md` yet. The rule logic
+  itself lives in the Notion Fix Log and in `Titan_Bookkeeping_Rulebook.docx`.
+
+### Third-party skills (surveyed 2026-10-08, read only, nothing executed)
+
+- **Receiptor-AI/bookkeeping-skills** (MIT): the useful one. Evidence rules, matching
+  tiers, approval limits, and small stdlib scripts with no network calls. Its tax content
+  is US-only (Schedule C, 1099); the one Canada line cites T2125, a sole-proprietor form
+  and wrong for a corporation.
+- **openaccountant/skills** (MIT): prose only. Thin, and US categories throughout.
+- **invoice-organizer**: a file renamer with no LICENSE file.
+- **alirezarezvani/claude-skills**: finance analytics, the wrong domain.
+- **Composio `quickbooks-automation`**: excluded. It sends the QBO login through a
+  third-party broker.
+
+### The books (QBO-LS Fix Log / Task Queue)
+
+- **Year and accountant.** FY2026 (Oct 2025 – Sep 2026) is closed, and HST is filed
+  annually. Hien Nguyen CPA's Jan–Sep review engagement has ended; FY2026 year-end scope
+  is not yet agreed.
+- **QBO has no A/P, by design** (Decision D2, Dext publishing off).
+- **The 2026 P&L can't be used for margins** until the inventory count and COGS true-up
+  are done.
+- **33 Task Queue rows are open**, all added 07-15 → 07-20.
+- **Hard deadline:** the HoldCo HST registration and the Mar–Jul rent invoices
+  ($57,000) must exist before the HST return, around Dec 2026.
+
+---
+
+## Architecture
 
 ```
-scripts/bookkeeper_pull.py ──POST {path, params} + secret──► Make webhook (new scenario)
-   (via scripts/qbo_client.py)                                 │ filter: secret matches AND
-                                                               │         path in allowlist
-                                                               ▼
-                                              QuickBooks "Make an API call", method = GET (literal)
-                                                               │
-                                                               ▼
-                                                 Webhook response ◄── QBO JSON body
+                         ┌── read door (Make) ── read calls only ──┐
+ scheduled routines ─────┤   secret: QBO_READ_*  (all environments)│
+ (daily-ingest, jobs)    │                                         ▼
+                         │                                   QuickBooks Online CA
+ write environment ──────┤                                         ▲
+ (supervised sessions +  └── write door (Make) ── writes ──────────┘
+  autonomous-rule routine)   secret: QBO_WRITE_*  (write env ONLY)
+          ▲
+          │ approval file  ◄── Notion "QBO Proposals" (Albert ticks)
+          │                    FY2026 rows also need Hien's dated OK
+   qbo-actions-agent  ──► actions-log.json (with before-image of every record)
 ```
 
-**Why Make.** The OAuth problem is already solved there. A direct Intuit app would rotate
-its refresh token on every refresh, and an ephemeral container has nowhere to keep the
-new one. Albert would also need an Intuit developer app with production keys.
+- **Make stays thin.** Splitting by method is plumbing; every rule, job and threshold
+  lives in this repo.
+- **Read-only is structural on the read door.** The scenario has a literal GET, a path
+  allowlist (`/query`, `/cdc`, `/reports/*`, `/companyinfo/*`, `/preferences`) and a
+  secret check. A blueprint snapshot under `platform-settings/blueprints/` is pinned by
+  `tests/test_bookkeeper.py`, the same pattern `tests/test_ghl_calls.py` uses for
+  scenario 4951497.
+- **The write door is pinned the same way**, and only `scripts/qbo_write.py` reads its
+  secret.
 
-**Why not the claude.ai Intuit QuickBooks connector.** It failed to connect in this session.
-It is also session-attached, so it dies on scheduled runs; that is why Outlook moved to
-`scripts/outlook_pull.py` (architecture.md). And it carries write tools, which an
-`*-ingest` agent must not hold.
+### Daily read (`bookkeeper-ingest-agent` v2)
 
-**Why a webhook, not the Make API "run scenario".** The webhook URL plus its secret can
-reach one scenario and nothing else. A Make API token sitting in `.env` could reach every
-scenario in the team.
+The v2 agent drops the "Intuit MCP connector" instruction and runs
+`scripts/bookkeeper_pull.py` through `scripts/qbo_client.py` (read door only).
 
-**Read-only is structural, not trusted.** The QBO connection has full accounting scope,
-the same situation as Lightspeed's unscopable personal token. So the guarantee lives in
-the shape of the code, and tests check that shape:
+| type | Fires on |
+|---|---|
+| `closure_gap` | No Lightspeed sale posted to QBO in ≥ 3 days, or a sale posted after Oct 1 carrying a prior-year `TxnDate` (the #394/#441 problem). |
+| `payment` | A/R payments received in the window. |
+| `invoice` | Commercial A/R crossing overdue (`AgedReceivables`). |
+| `expense` | A new Purchase over $500. |
+| `flag` | Postings to a holding account (Uncategorized, Ask My Accountant, Suspense), to the dead "Product Sales" account, or payroll posted to 7788. |
 
-1. **Bridge scenario.** Only three modules: webhook, `quickbooks:MakeApiCall` with
-   `method` set to the literal `GET`, and the webhook response. Its filter allows only
-   these paths: `/query`, `/cdc`, `/reports/*`, `/companyinfo/*`, `/preferences`.
-2. **Blueprint snapshot.** Lands at `platform-settings/blueprints/qbo-read-bridge-<id>.json`.
-   `tests/test_bookkeeper.py` pins the literal GET, the allowlist, the secret check, and
-   "no other QuickBooks module". This is the same pattern `tests/test_ghl_calls.py` uses
-   for scenario 4951497.
-3. **Client.** `scripts/qbo_client.py` has no write verb and refuses any path outside the
-   same allowlist. `bookkeeper_pull.py` reaches QBO only through it.
-4. **Credentials.** `.env.example` gains `QBO_BRIDGE_URL` and `QBO_BRIDGE_SECRET`. Together
-   they read the entire ledger, so they are handled like the Lightspeed token: `.env` only.
+**Metrics:**
 
----
+| Metric | Meaning |
+|---|---|
+| `payments_received_cents` | A/R payments received in the window |
+| `overdue_invoices` | Commercial invoices past due |
+| `uncategorized_txns` | **Posted** holding-account lines, never the For Review queue |
+| `days_since_last_closure` | Days since a Lightspeed closure last posted to QBO |
+| `uf_balance_cents` | Undeposited Funds balance |
 
-## The plan
-
-### Phase 0 — Albert, before any build (≈ this week)
-
-| # | What | Why now |
-|---|---|---|
-| 0.1 | Approve or redirect the pull path above | Everything below depends on it |
-| 0.2 | Add `hook.us1.make.com` to the environment's Allowed domains | Denied today |
-| 0.3 | Note the **2026-11-01** QBO connection expiry | Phase 1 landing before then keeps it alive; after, it needs re-authorizing |
-| 0.4 | Triage the QBO-LS Task Queue: close what the July–Aug catch-up finished, re-date what is left | 33 rows, untouched since 07-20 |
-| 0.5 | Decide the accountant's FY2026 year-end scope; the Jan–Sep engagement has run out | Year-end journals (#394/#441, 7788/TD merge, payroll repoint) sit with her |
-| 0.6 | Put the HoldCo HST registration + backdated invoices on a dated track | Hard deadline: before the HST return, ~Dec 2026 |
-
-### Phase 1 — make the source work (one PR, target before 2026-11-01)
-
-1. **Bridge scenario.** Built in Make, either by Albert from a committed blueprint or by a
-   session through the Make MCP on his explicit yes. It reuses connection 4820024.
-2. **Code.** `scripts/qbo_client.py` + `scripts/bookkeeper_pull.py` + `tests/test_bookkeeper.py`.
-3. **Registry.** New `platform-settings/bookkeeper.json`. Account ids live here, never in a
-   prompt:
-   - Undeposited Funds; Uncategorized Expense/Income/Asset; Ask My Accountant; Suspense
-   - the dead "Product Sales" account; 7788; BMO chequing; Due to/from Titan Holdings
-
-   Thresholds: expense > $500, closure gap ≥ 3 days. Fiscal year starts in October.
-   The first pull fills the ids from `select * from Account`, the same query 4822446 runs.
-4. **Agent v2.** `bookkeeper-ingest-agent` drops the MCP instruction and runs the pull
-   script as step 0, like `ghl-ingest-agent`. Its `type` vocabulary becomes:
-
-   | type | Fires on | Grounded in |
-   |---|---|---|
-   | `closure_gap` | No Lightspeed sale posted to QBO in ≥ 3 days; or a sale posted after Oct 1 with a prior-fiscal-year `TxnDate` | CPA Q2.1 "close daily"; the #394/#441 year-boundary finding |
-   | `payment` | A/R payments received in the window | `payments_received_cents` |
-   | `invoice` | Commercial A/R crossing overdue (`AgedReceivables`) | `overdue_invoices` |
-   | `expense` | New Purchase > $500 | v1 scope |
-   | `flag` | Postings to a holding account, to dead "Product Sales", or payroll to 7788 after the repoint | Fix Log traps |
-
-   - Metrics: `payments_received_cents`, `overdue_invoices`, `uncategorized_txns` (posted
-     holding-account lines, as defined above), `days_since_last_closure` and
-     `uf_balance_cents`.
-   - Error files carry `metrics: {}`.
-   - No margin or P&L metric until Albert says the inventory true-up is done.
-   - Sensitivity default stays `private`.
-5. **Docs, same PR.**
-   - CLAUDE.md agent table row
-   - `departments.json` `blocked_reason`
-   - `methods/architecture.md` "Still open"
-   - `.env.example`
-
-   The vault decision note is proposed, not written (off-whitelist).
-
-### Phase 2 — prove it, then un-block Finance
-
-The unblock rule in `departments.json` is unchanged: **three consecutive
-`bookkeeper: "ok"` entries** in `run-ledger.json`. After that, write
-`finance-lead-agent` (Read/Write only, `contracts/dept-plan-schema.md`) with a rule table
-taken from those three real days, not from this document. Candidate rules, to be
-confirmed or dropped against the real days:
-
-- closure gap → "close the register"
-- holding-account balance rising day over day
-- commercial A/R past 30 days
-- dated tax deadlines (HoldCo invoices, HST return)
-
-### Phase 3 — the closure watchdog
-
-Recommend finishing it **in Make**, which is the Task Queue item owned by "Claude Code"
-since 07-15:
-
-- Replace the test query with a rolling 3-day window.
-- Confirm the WhatsApp number.
-- Schedule it daily.
-
-It should stay outside the agent system for the same reason as the GHL comment alarm: it
-has to fire even when no Claude session runs. The ingest's `closure_gap` adds the same
-fact to the brief, which gives two signals for one condition, on purpose. This changes a
-live Make scenario, so it needs Albert's yes.
-
-### Not planned
-
-- **No agent writes to QBO.** There is no `qbo-actions-agent`. Categorization, journals and
-  reconciliation stay with Albert and the accountant.
-- No bank-feed (For Review) automation; the API can't see it.
-- The Titan Bookkeeper skill's training pass on the accountant's corrections is a separate
-  track and does not live in this repo.
+- An error file carries `metrics: {}`, never zeros.
+- No margin metric until the inventory true-up is done.
+- Sensitivity stays `private`.
 
 ---
 
-## Open questions for Albert
+## Build order
 
-1. Make webhook bridge as the pull path: yes or no?
-2. Should a session build the bridge scenario through the Make MCP, or will you build it
-   from a committed blueprint?
-3. Should the watchdog be fixed and scheduled in Make, or retired in favour of the ingest flag alone?
-4. Is the accountant engaged for the FY2026 year-end, and from what date?
+### Phase 0 — Albert
+
+- Allow `hook.us1.make.com` in this environment.
+- Create the write environment and allow the same host there.
+- Triage the QBO-LS Task Queue.
+- Agree Hien's FY2026 year-end scope.
+- Put the HoldCo invoices on a dated track.
+
+### Phase 1 — read door and daily read (before 2026-11-01)
+
+1. **Make, on Albert's go.**
+   - Build the read-door scenario, switched off until he has reviewed it.
+   - Delete the TEMP scenarios.
+   - Fix the watchdog query (rolling 3-day) and schedule it daily.
+2. **Code.**
+   - `scripts/qbo_client.py`, `scripts/bookkeeper_pull.py`, `tests/test_bookkeeper.py`.
+   - Registry `platform-settings/bookkeeper.json`: account ids, thresholds, fiscal
+     start = October.
+   - `.env.example` gains `QBO_READ_URL` / `QBO_READ_SECRET`.
+3. **Rules file.** Write `platform-settings/bookkeeper-rules.yaml` from three sources:
+   the Fix Log, the rulebook .docx, and the bank-rules doc (moved here from
+   `titan-bookkeeper`).
+4. **Agent and docs.**
+   - `bookkeeper-ingest-agent` v2.
+   - Update the CLAUDE.md agent table, `departments.json` `blocked_reason`, and
+     `methods/architecture.md` "Still open".
+
+### Phase 2 — prove the read path
+
+- **Three consecutive `bookkeeper: "ok"` days** in `run-ledger.json` → Finance
+  un-blocked (`departments.json` rule, unchanged).
+- **The month of receipt read-back starts**, read-only. It joins the receipt emails at
+  info@ to what QBO has posted and reports what is unreviewed.
+- **One week after the read door goes live**, delete the three old Bookkeeper scenarios.
+
+### Phase 3 — write door, behind the gate
+
+- **The write-door scenario.** Built on Albert's go, switched off until reviewed, and
+  pinned by tests.
+- **`qbo-actions-agent`.** It takes the action types and executes only ids that appear
+  `approved` in the approval file. Before every update or delete it writes the record's
+  previous state to the log.
+- **Contract `contracts/bookkeeper-plan-schema.md`.** It covers the proposal, the
+  approval file, the Hien batch fields, and the carve-outs as data.
+- **A Notion "QBO Proposals" database** (private), and the step that turns ticked rows
+  into the approval file.
+- **The FY2026 batch file** for Hien. Approval of an FY2026 row requires her dated OK.
+- **A CLAUDE.md "Agent class rules" exception** for `qbo-actions-agent`, dated, in the
+  same shape as the catalogue's.
+
+### Phase 4 — after the month
+
+- Albert picks the first reconciliation: Lightspeed closures, or bank/card posted lines.
+- Adapt the Receiptor skills, with the Canada/Ontario tax pack, under the vetting rules.
+
+### Phase 5 — autonomy, rule by rule
+
+- The 20-in-a-row counter, then Albert's dated vault decision per rule.
+- A scheduled routine in the write environment runs only rules with a decision, and
+  pushes a digest.
+- The four carve-outs never qualify.
+
+---
+
+## Not planned
+
+- No DataGrout, and no Composio or any other third-party broker holding QBO credentials.
+- No automation of the For Review queue; the API cannot see it.
+- No autonomy for deletes, tax codes, FY2026 or writes over $1,000, whatever the track
+  record.
+- No write to a reconciled transaction.
