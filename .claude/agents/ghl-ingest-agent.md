@@ -437,7 +437,7 @@ How the plan rows drive this file:
 | `waiting` | `next_response_owner: us`. A `message` item at `priority: high`, title `Unanswered: <name> (<channel>)`, summary = the triage reason + "waiting N days" (prefix `(unsure)` for `UNSURE` and held rows, naming the hold). `waiting_hours ≥ 24` → flag `unanswered-24h+`. |
 | `clear` (CLOSER / SPAM) | No item and no Notion task, from the first pilot day (Albert, 2026-10-08). Flag `triage-closer` / `triage-spam`; listed in `triage.would_clear` (pilot) or `triage.cleared_24h` (after the switch). |
 | `not_ours` (`no_customer_text`) | Nothing inbound since our last human reply: `next_response_owner: them`, counted only. |
-| `backlog` | Waiting longer than `age.backlog_days` (14): counted in `triage.counts.backlog`, one count line in `needs_attention`, no item. |
+| `backlog` | The customer's **latest** message is older than `age.backlog_days` (14): counted in `triage.counts.backlog`, one count line in `needs_attention`, no item. |
 
 - **Every row gets a `conversations[]` record** — threads unread for days included, not
   just the window. For a thread outside the window keep it light: `contact`, `channel`,

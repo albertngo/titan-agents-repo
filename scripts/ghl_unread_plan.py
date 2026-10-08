@@ -85,7 +85,7 @@ def resolve(c, verdicts, reg):
     vocab = set(reg["verdicts"])
     limit = reg["reason_max_chars"]
     row = {k: c.get(k) for k in ("conversation_id", "contact_id", "contact", "channel", "unread",
-                                 "batch_key", "waiting_hours", "excerpt")}
+                                 "batch_key", "waiting_hours", "last_inbound_hours", "excerpt")}
     row.update(model_verdict=None, verdict=None, verdict_source=None, guard=None,
                hold_reason=c.get("hold_reason"), reason="", disposition=None,
                age_flag=False, action_id=None)
@@ -139,8 +139,11 @@ def build_plan(candidates, judgements, reg):
     by_id = {c["conversation_id"]: c for c in candidates["conversations"]}
     for c in candidates["conversations"]:
         row = resolve(c, verdicts, reg)
-        if mode == "brief" and row["disposition"] == "waiting" and row["waiting_hours"] is not None \
-                and row["waiting_hours"] > reg["age"]["backlog_days"] * 24:
+        # Backlog = the customer has gone quiet for backlog_days, judged by their LATEST
+        # message: someone who wrote 20 days ago and again yesterday is live, not backlog.
+        quiet = row["last_inbound_hours"] if row["last_inbound_hours"] is not None else row["waiting_hours"]
+        if mode == "brief" and row["disposition"] == "waiting" and quiet is not None \
+                and quiet > reg["age"]["backlog_days"] * 24:
             row["disposition"] = "backlog"
         rows.append(row)
 

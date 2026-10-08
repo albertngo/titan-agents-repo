@@ -410,13 +410,17 @@ class TestPlan(unittest.TestCase):
         self.assertEqual((r["verdict_source"], r["model_verdict"], r["verdict"]), ("cache", "CLOSER", "UNSURE"))
 
     def test_age_and_backlog(self):
+        live = cand("c4", "k4", waiting=20 * 24)
+        live["last_inbound_hours"] = 20.0  # wrote 20 days ago AND yesterday: live, not backlog
         p = plan.build_plan(cands_doc([cand("c1", "k1", waiting=23.9), cand("c2", "k2", waiting=24.0),
-                                       cand("c3", "k3", waiting=15 * 24)], mode="brief"),
-                            judged(k1="UNSURE", k2="NEEDS_RESPONSE", k3="NEEDS_RESPONSE"), REG)
+                                       cand("c3", "k3", waiting=15 * 24), live], mode="brief"),
+                            judged(k1="UNSURE", k2="NEEDS_RESPONSE", k3="NEEDS_RESPONSE",
+                                   k4="NEEDS_RESPONSE"), REG)
         got = {r["conversation_id"]: (r["age_flag"], r["disposition"]) for r in p["rows"]}
         self.assertEqual(got["c1"], (False, "waiting"))
         self.assertEqual(got["c2"], (True, "waiting"))
         self.assertEqual(got["c3"][1], "backlog")
+        self.assertEqual(got["c4"], (True, "waiting"))
 
     def test_actions_and_the_all_or_nothing_cap(self):
         r = reg_with(approve_verdicts=["CLOSER"])

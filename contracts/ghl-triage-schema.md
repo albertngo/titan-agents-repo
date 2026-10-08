@@ -43,7 +43,7 @@ committed or pushed carries customer text** unless `log.excerpts` is true.
     "batch": {"message_ids": ["…"], "n": 2, "first_at": "…", "last_at": "…",
               "chars": 64, "max_message_chars": 41, "has_question": false},
     "batch_key": "b-…", "hold_reason": null,
-    "stranger": false, "owner_by_reply": "us", "waiting_hours": 30.5,
+    "stranger": false, "owner_by_reply": "us", "waiting_hours": 30.5, "last_inbound_hours": 2.1,
     "cached": {"verdict": "CLOSER", "reason": "confirming measure appointment", "run_id": "…"},
     "excerpt": null
   }]
@@ -108,7 +108,7 @@ held `unjudged`; a verdict outside the four is held `invalid_verdict`.
 | `verdict_source` | `model`, `cache`, `hold` |
 | `verdict` | the four verdicts, or `HELD` |
 | `guard` | `closer_veto:question`, `closer_veto:length`, `spam_not_stranger`, or null |
-| `disposition` | `clear` (CLOSER/SPAM), `waiting`, `not_ours` (`no_customer_text`), `backlog` (brief only: waiting longer than `age.backlog_days`) |
+| `disposition` | `clear` (CLOSER/SPAM), `waiting`, `not_ours` (`no_customer_text`), `backlog` (brief only: the customer's **latest** message is older than `age.backlog_days`) |
 | `status` | `ready`, or `needs_person` when actions exceed `policy.max_mark_read_per_run` — then **nothing** is approved |
 
 `actions[]` holds only `clear` rows whose verdict is in `policy.approve_verdicts`, in sweep

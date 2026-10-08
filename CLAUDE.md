@@ -247,7 +247,8 @@ is the only copy of the classifier, read by the session model in both:
   CLOSER; SPAM only from a stranger) and the cap (25, all-or-nothing).
 - **`ghl-ingest-agent`** (template v5): the brief's "waiting on us" list is now one list —
   the window plus everything unread — with closers and spam dropped from day one, a 24 h
-  age flag, and threads older than 14 days as a count. notion-sync is unchanged.
+  age flag, and threads whose customer has been quiet 14+ days as a count. notion-sync is
+  unchanged.
 
 `write_mode` is **`plan_only`**: the sweep logs "would clear" and marks nothing read. Each
 of CLOSER and SPAM has its own switch and pilot bar (registry `policy`); flipping is a dated

@@ -154,8 +154,10 @@ Thresholds live in the registry, `guards`.
 | `CLOSER`, `SPAM` | marked read once its switch is on (`policy.approve_verdicts`); before that, logged as "would clear" | off the waiting list; listed under "would clear" / "cleared" |
 | `no_customer_text` | left unread | off the waiting list; counted |
 
-The waiting list also drops threads waiting more than `age.backlog_days` (14): they show as
-one count line and create no task. The sweep still judges them.
+The waiting list also drops threads whose customer has been quiet for more than
+`age.backlog_days` (14) — judged by their **latest** message, so someone who wrote 20 days
+ago and again yesterday stays on the list. Dropped threads show as one count line and create
+no task. The sweep still judges them.
 
 ## Rollout and switches
 
