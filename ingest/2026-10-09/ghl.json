@@ -1,0 +1,34 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-10-09T12:10:00-04:00",
+  "status": "error",
+  "error": "GHL MCP server tools (contacts, opportunities, calendars, conversations) were not available in this session; none of the four capture categories could be pulled. Only the read-only call script ran (scripts/ghl_calls_pull.py, status partial: 7 of 44 calls failed). Unread triage not run.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest FAILED today: GHL MCP unavailable, no leads, opportunities, appointments, conversations, drift or triage data. Check GHL_PIT_TOKEN / .mcp.json connection and re-run."
+  ],
+  "extensions": {
+    "ghl": {
+      "template_version": "6",
+      "reporting": {
+        "calls": {
+          "listed": 44,
+          "from_note": 25,
+          "transcribed": 5,
+          "voicemails": null,
+          "minutes": 0.4,
+          "est_cost_usd": 0,
+          "engine": null,
+          "status": "partial",
+          "error": "7 of 44 calls failed (see run file analysis/cache/ghl-calls/runs/2026-10-09.json); per-call records not written because conversation join was unavailable"
+        }
+      },
+      "triage": {
+        "status": "error",
+        "error": "not run: MCP unavailable and judging step skipped"
+      }
+    }
+  }
+}

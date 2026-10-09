@@ -1,0 +1,12 @@
+{
+  "contract_version": "1",
+  "source": "bookkeeper",
+  "run_at": "2026-10-09T08:00:00-04:00",
+  "status": "error",
+  "error": "Intuit QuickBooks MCP connector unavailable in this session; no QBO data was read.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "Bookkeeper ingest failed: QuickBooks connector unavailable. Overdue invoices, payments received and uncategorized transactions were NOT checked today."
+  ]
+}
