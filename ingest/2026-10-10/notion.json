@@ -1,0 +1,89 @@
+{
+  "contract_version": "1",
+  "source": "notion",
+  "run_at": "2026-10-10T09:00:00-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "notion-new_won_project-3f0596a4505f81cb9e02c0189923db8e",
+      "type": "new_won_project",
+      "title": "Won project: Diego Contecha, Oakville",
+      "summary": "Won 2026-10-05 via Front Desk Inc., approx $28,080. No project type or PM assigned yet. Reported as in-window activity on a cold start (no prior snapshot).",
+      "timestamp": "2026-10-05T15:04:37-04:00",
+      "priority": "high",
+      "link": "https://app.notion.com/3f0596a4505f81cb9e02c0189923db8e",
+      "amount_cents": 2808000,
+      "raw_ref": "notion:titan-projects:opp=7LrToJPA2nhKZj5wWcyw",
+      "sensitivity": null,
+      "assigned_to": null
+    },
+    {
+      "id": "notion-payment-3f4596a4505f8177868ef7fd98da9d4a",
+      "type": "payment",
+      "title": "Payment $709.96 from anna (e-Transfer)",
+      "summary": "Interac e-Transfer received 2026-10-08, auto-deposited.",
+      "timestamp": "2026-10-08T00:00:00-04:00",
+      "priority": "normal",
+      "link": "https://app.notion.com/3f4596a4505f8177868ef7fd98da9d4a",
+      "amount_cents": 70996,
+      "raw_ref": "notion:payments:https://app.notion.com/3f4596a4505f8177868ef7fd98da9d4a",
+      "sensitivity": null,
+      "assigned_to": null
+    },
+    {
+      "id": "notion-rollup-tactical-stale-20261010",
+      "type": "rollup",
+      "title": "67 stale Tactical Tasks (all Not started, 14d+ old)",
+      "summary": "67 open Not started rows are past the 14-day threshold, many high-priority GHL drift/message tasks from 09-11 to 09-26 plus price-list holds (PL-370, PL-372, PL-376, PL-377, PL-378, PL-380, IMPRESSIVE, Golden Choice) and Gift Box tasks. Staleness measured from row creation (no last-edited column queried).",
+      "timestamp": "2026-10-10T09:00:00-04:00",
+      "priority": "normal",
+      "link": null,
+      "amount_cents": null,
+      "raw_ref": "notion:tactical:rollup:2026-10-10",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "new_won_projects": 1,
+    "new_won_value_cents": 2808000,
+    "open_work_orders": 0,
+    "work_orders_in_error": 0,
+    "work_orders_completed": 0,
+    "payments_count": 1,
+    "payments_received_cents": 70996,
+    "stale_tactical_tasks": 67,
+    "new_meetings": 0
+  },
+  "needs_attention": [
+    "Won project Diego Contecha (Oakville, ~$28,080, 2026-10-05) has no Project Type or PM assigned.",
+    "Project Status Meeting Oct 6/26 has no Meeting Summary yet; consider running the meeting-processor skill.",
+    "67 Tactical Tasks are stale (14d+ Not started), including many high-priority price-list holds and GHL tasks.",
+    "Cold start: no prior notion.json found in the last 7 days; snapshot seeded, no backlog emitted."
+  ],
+  "extensions": {
+    "notion": {
+      "template_version": "1",
+      "snapshot": {
+        "titan_projects": ["notion:titan-projects:opp=7LrToJPA2nhKZj5wWcyw"],
+        "qa_work_orders": [],
+        "master_payments_log": ["notion:payments:https://app.notion.com/3f4596a4505f8177868ef7fd98da9d4a"],
+        "tactical_tasks_list": [],
+        "project_status_meetings": [
+          "notion:meeting:https://app.notion.com/3ea596a4505f81a2ab52d634df5a48ec",
+          "notion:meeting:https://app.notion.com/3ea596a4505f80d4aa5ac7acbc1b24a5",
+          "notion:meeting:https://app.notion.com/3cf596a4505f818aa60dfc8645e82d6e"
+        ]
+      },
+      "reporting": {
+        "cold_start": true,
+        "tactical_open_rows_seen": 100,
+        "tactical_stale_basis": "createdTime >= 14 days, all rows status Not started",
+        "tactical_sync_exclusion": "no actions-log.json for today; nothing excluded",
+        "qa_work_orders_in_window_or_error": 0,
+        "latest_meeting": "Project Status - Oct 6/26 (no deep pull: not new vs snapshot on cold start)"
+      }
+    }
+  }
+}
