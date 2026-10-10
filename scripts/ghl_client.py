@@ -22,7 +22,9 @@ Rate limiting: the PIT burst limit is 100 requests / 10 s, so requests are seria
 with a 0.17 s floor between them (same constant as analysis/ghl_*.py). 401 is
 retried along with 429/5xx because GHL intermittently rejects a valid PIT
 mid-burst (observed 2026-07-29); a genuinely dead token still fails after the
-retries run out.
+retries run out. A dropped connection (RemoteDisconnected, a reset, a read timeout) is
+retried the same way: urllib raises those as-is rather than as URLError, and one of them
+in a ~400-request triage pull killed the 2026-10-08 15:59 sweep.
 
 Known shape uncertainties, handled defensively rather than assumed:
 - /conversations/search returns lastMessageDate as epoch milliseconds in some
@@ -33,6 +35,7 @@ Known shape uncertainties, handled defensively rather than assumed:
   messageType client-side regardless.
 """
 
+import http.client
 import json
 import os
 import sys
@@ -174,6 +177,11 @@ class GhlClient:
                 if classify_url_error(e) == "host_blocked":
                     raise GhlBlocked(f"egress proxy refused services.leadconnectorhq.com: {e}")
                 last = GhlError(f"{type(e).__name__} on GET {path}: {e}")
+                time.sleep(min(2 ** attempt, 16))
+            except (http.client.HTTPException, ConnectionError, TimeoutError) as e:
+                # Dropped or half-read responses arrive unwrapped (not URLError).
+                last = GhlError(f"{type(e).__name__} on GET {path}: {e}")
+                self._log(f"{type(e).__name__} on {path}; retry {attempt + 1}")
                 time.sleep(min(2 ** attempt, 16))
         raise last or GhlError(f"giving up on GET {path}")
 
