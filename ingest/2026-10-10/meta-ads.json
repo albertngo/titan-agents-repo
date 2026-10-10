@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-10-10T07:00:00-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-act_927167028457360",
+      "type": "spend_summary",
+      "title": "Meta spend 2026-10-09: $41.81, 1 lead, CPL $41.81",
+      "summary": "Yesterday's spend was $41.81 CAD with 1 lead (CPL $41.81). Top campaign: Flooring Problems Campaign, the only one that spent.",
+      "timestamp": "2026-10-10T07:00:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 4181,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 4181,
+    "impressions": 1089,
+    "clicks": 18,
+    "leads": 1,
+    "cpl_cents": 4181,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "No prior meta-ads.json found in the last 7 days, so window gap is unknown; pulled yesterday only.",
+    "Flooring Problems Campaign CPL $41.81 is about 2.4x its 7-day baseline ($17.57), but window spend is under the $50 minimum so not flagged as an anomaly."
+  ]
+}
