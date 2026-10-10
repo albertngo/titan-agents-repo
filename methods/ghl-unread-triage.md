@@ -1,6 +1,6 @@
 # GHL unread triage — the one rubric
 
-**Rubric version: 3**
+**Rubric version: 4**
 
 This file is the classifier. Both callers read it and nothing else for their judgement:
 
@@ -34,21 +34,24 @@ Judge the batch **as a whole** and return exactly one verdict:
 | Verdict | Bucket | When |
 |---|---|---|
 | `NEEDS_RESPONSE` | reply | At least one message asks a question, raises an issue or a complaint, or asks for something we must answer in words. |
-| `ACTION` | act | No reply is needed, but someone at Titan must do something: an info drop (an address, a unit or buzzer code, an email or phone number, a location), an arrival, pickup or visit notice, a payment notice, site logistics for the crew, a cancel request, or an opt-out. |
-| `FYI` | know | Nothing to answer or do, but a person should know: a lost or declined job, "still deciding, I'll let you know", praise, a review or a referral, a third party, a job seeker, or a supplier or trade pitch. |
+| `ACTION` | act | No reply is needed, but someone at Titan must change or prepare something: confirm a booking the customer gave details for, cancel an appointment, prepare an order for pickup, check a payment, pass a job instruction to the crew, or act on a written-out opt-out. |
+| `FYI` | know | Nothing to answer or do, but a person should know: an address, location or contact detail on its own, an arrival or "on my way" note, a site detail that needs nothing done, a lost or declined job, "still deciding, I'll let you know", praise, a review or a referral, a third party, a job seeker, or a supplier or trade pitch. |
 | `CLOSER` | clear | **Every** message is a pure acknowledgement: thanks, 👍, "sounds good", a reaction to one of our messages. |
 | `SPAM` | clear | An unsolicited pitch or scam from a stranger: website/SEO/marketing/lead-generation/loan/crypto/"business funding" pitches, phishing, "cash offer" scams, wrong-number bulk texts. |
 | `UNSURE` | reply | Anything you cannot confidently place. |
 
-`NEEDS_RESPONSE`, `ACTION`, `FYI` and `UNSURE` are never marked read. Only `CLOSER` and
-`SPAM` can be, and only once each one's switch is on (below).
+`NEEDS_RESPONSE`, `ACTION` and `FYI` are never marked read. `CLOSER` and `SPAM` are, once
+the customer's latest message is `policy.min_unread_hours` (4) old. `UNSURE` is marked read
+only after a quiet week (below, "Age-outs").
 
 Rules, in order:
 
-1. **An opt-out outranks everything.** "STOP", "unsubscribe", "remove my number" anywhere in
-   the batch makes it `ACTION` with a reason that starts `compliance:` ("compliance:
-   opt-out, set DND"). Someone sets DND before anyone replies. Never `CLOSER`, `SPAM` or
-   `FYI`.
+1. **An opt-out outranks everything.** A written-out opt-out ("remove my number", "stop
+   texting me, I never asked for this") anywhere in the batch makes it `ACTION` with a reason
+   that starts `compliance:` ("compliance: opt-out, set DND"). Someone sets DND before anyone
+   replies. The bare keyword alone ("STOP", "UNSUBSCRIBE") is different: GHL sets DND on it
+   automatically, so it is a `CLOSER` with the reason "opt-out keyword, DND automatic" (Albert,
+   2026-10-10).
 2. **One open question outweighs any number of closers.** If any message needs a reply, the
    whole batch is `NEEDS_RESPONSE`, whatever else is in it. Otherwise the batch takes the
    highest of act (`ACTION`), know (`FYI`), clear (`CLOSER`).
@@ -87,7 +90,7 @@ Output, per batch key:
 
 | Batch | Verdict | Why |
 |---|---|---|
-| A bare "Ok" / "Yes" / "Sure" | `UNSURE` | It may be accepting an offer that needs us to act. It stays on the reply list (v3 review). |
+| A bare "Ok" / "Yes" / "Sure" | `UNSURE` | It may be accepting an offer that needs us to act. It stays unread; a week with nothing new marks it read (age-out). |
 | A bare time or date ("9 am", "Tuesday works") | `NEEDS_RESPONSE` | Usually answering our scheduling question; it needs a confirmation. Not an `ACTION` "confirm" (v3 review). |
 | 👍 (or another emoji) alone | `CLOSER` | A pure acknowledgement. |
 | A reaction ("Liked …", "Loved …") | judge the reaction itself, normally `CLOSER` | The quoted text after it is ours, not theirs. |
@@ -95,11 +98,15 @@ Output, per batch key:
 | Praise, a review left, or a referral | `FYI` | Good to know, nothing to answer. If it also asks something, rule 2. |
 | A plan to follow up later, with no question ("still deciding, I'll let you know"; "busy today, will call you later") | `FYI` | Nothing to answer now, but a person should see it; the follow-up belongs to the pipeline. Was `CLOSER` in v2. |
 | A lost or declined job ("went with someone else", "postponed", "over budget", "not interested") | `FYI` | A person records it in the pipeline. Was `UNSURE` in v2. |
-| An opt-out ("STOP", "remove my number") | `ACTION` | Reason starts `compliance:`; someone sets DND. Rule 1. Was `UNSURE` in v2. |
-| An address, a unit or buzzer code, an email or phone number, a location | `ACTION` | Update the contact or book the visit. Was `NEEDS_RESPONSE` in v2. |
-| A payment notice ("sent the deposit", "e-transfer sent") | `ACTION` | Check it landed and record it. Was `NEEDS_RESPONSE` in v2. |
-| An arrival, pickup or visit notice ("on my way", "coming by the shop to pay", "will collect it tomorrow") | `ACTION` | Someone has to be ready. |
-| Site logistics for the crew (waste pickup, access, a material or a detail on site) | `ACTION` | Pass it to the crew or the PM. |
+| A written-out opt-out ("remove my number", "stop messaging me") | `ACTION` | Reason starts `compliance:`; someone sets DND. Rule 1. |
+| The bare opt-out keyword alone ("STOP") | `CLOSER` | GHL sets DND automatically (Albert, 2026-10-10). Rule 1. |
+| An address, a unit or buzzer code, an email or phone number, a location, on its own | `FYI` | Good to have; nothing has to happen now (v4 review). Copying it onto the contact or opportunity is a later, separate write. |
+| An arrival or visit notice ("on my way", "we're here", "coming by the shop to pay") | `FYI` | v4 review. With a question in it, rule 2. |
+| A site detail that needs nothing done (an optional item is not wanted after all, a visit is no longer needed) | `FYI` | v4 review. |
+| A booking confirmed with details (a time plus an address, or who to contact on site) | `ACTION` | Book or confirm the visit. A bare time alone stays `NEEDS_RESPONSE`. |
+| An order to be collected (the customer says when they will collect it) | `ACTION` | Have it ready. |
+| A payment notice or a question about an amount ("sent the deposit", a quoted figure that does not match) | `ACTION` | Check it and record it. |
+| A job instruction the crew must act on (waste pickup, access, materials to bring) | `ACTION` | Pass it to the crew or the PM. |
 | A request to cancel an appointment or a job | `ACTION` | Someone has to action it. Was `NEEDS_RESPONSE` in v2. |
 | A request to reschedule | `NEEDS_RESPONSE` | A new time has to be agreed in words. |
 | A complaint, however polite ("floor's great but one board is lifting, thanks") | `NEEDS_RESPONSE` | |
@@ -112,7 +119,8 @@ Output, per batch key:
 | A cold website, SEO or lead-generation pitch ("I built you a new website", "10 leads a week, pay per appointment") | `SPAM` | Still only from a stranger — the guard below. |
 
 These rows are Albert's rulings: v2 on the first live dry run (2026-10-08), v3 on his
-review of run `20261008T1252-e2a9`, where he accepted every proposed bucket. He chose
+review of run `20261008T1252-e2a9`, where he accepted every proposed bucket, and v4 on his
+review of run `20261008T1458-c60f` (2026-10-10). He chose
 rulings over a list of reworded real messages. Add a row when the pilot shows a pattern the
 table gets wrong. No customer's words are copied here.
 
@@ -149,7 +157,8 @@ its `unreadCount`.
 
 ### Holds — batches the model never sees
 
-A held batch is never marked read. Every hold behaves like `UNSURE` (the reply list), except
+A held batch is never judged. It is marked read only by the 14-day age-out below. Every hold
+behaves like `UNSURE` (the reply list), except
 `no_customer_text`, and `call_in_batch` / `non_text_content`, which go on the "to action" list
 with the step the registry's `action_holds` names: call back, check the attachment.
 
@@ -177,15 +186,29 @@ Thresholds live in the registry, `guards`.
 
 ---
 
+## Age-outs (rubric v4, Albert 2026-10-10)
+
+Two deterministic rules in `scripts/ghl_unread_plan.py`, each its own switch in
+`policy.approve_stale`. "Quiet" means the customer's latest message is that old and nobody at
+Titan has replied since.
+
+| Kind | Rule | Why |
+|---|---|---|
+| `stale_unsure` | A model `UNSURE` quiet for `policy.stale.UNSURE.days` (7) is marked read | Untouched for a week, it is taken as seen: it was FYI. Context is the brief's job. A guarded `UNSURE` (a vetoed closer, or spam from a non-stranger) never ages out. |
+| `stale_hold` | A hold in `policy.stale.HELD.holds` (calls, attachments, too long, nothing inbound) quiet for `policy.stale.HELD.days` (14) is marked read | "Clear if longer than 14 days." For `no_customer_text` the clock is the conversation's last message, which is ours. |
+
+`NEEDS_RESPONSE`, `ACTION` and `FYI` never age out.
+
 ## What happens to each verdict
 
 | Final verdict | Sweep | Brief |
 |---|---|---|
-| `NEEDS_RESPONSE`, `UNSURE`, any hold not named below | left unread | **reply**: the "waiting on a reply" list → Notion task, 24 h flag |
-| `ACTION`; holds `call_in_batch`, `non_text_content` | left unread | **act**: the "to action" list → Notion task, 24 h flag; an opt-out also gets its own attention line |
+| `NEEDS_RESPONSE` | left unread | **reply**: the "waiting on a reply" list → Notion task, 24 h flag |
+| `UNSURE`, holds not named below | left unread; `UNSURE` marked read after 7 quiet days | **reply**, as above |
+| `ACTION`; holds `call_in_batch`, `non_text_content` | left unread; the holds marked read after 14 quiet days | **act**: the "to action" list → Notion task, 24 h flag; an opt-out also gets its own attention line |
 | `FYI` | left unread | **know**: the "FYI" list on the day it arrives (the customer's latest message is under 24 h old), a count after that; no task, no age flag |
-| `CLOSER`, `SPAM` | marked read once its switch is on (`policy.approve_verdicts`); before that, logged as "would clear" | **clear**: off every list; listed under "would clear" / "cleared" |
-| `no_customer_text` | left unread | off every list; counted |
+| `CLOSER`, `SPAM` | marked read once the customer's latest message is 4 h old (switch: `policy.approve_verdicts`) | **clear**: off every list; listed under "cleared" |
+| `no_customer_text` | marked read after 14 quiet days | off every list; counted |
 
 The reply and to-action lists also drop threads whose customer has been quiet for more than
 `age.backlog_days` (14) — judged by their **latest** message, so someone who wrote 20 days
@@ -195,7 +218,11 @@ them all.
 
 ## Rollout and switches
 
-`write_mode` starts `plan_only`. Each clearable verdict has its own switch — its presence
+**Write mode since 2026-10-10** (Albert; vault `05_decisions/2026-10-10-ghl-triage-write-mode.md`):
+`CLOSER`, `SPAM` and both age-outs are on. He switched on before the 7-day pilot bar below,
+on his review of run `20261008T1458-c60f` (34 of 34 closers and 2 of 2 spam right).
+
+`write_mode` started `plan_only`. Each clearable verdict has its own switch — its presence
 in `policy.approve_verdicts` — and its own pilot bar (Albert, 2026-10-08):
 
 - `CLOSER`: at least 7 days and 50 verdicts with zero wrong closers.
@@ -232,3 +259,11 @@ after that the per-run cap (25, all-or-nothing) applies.
   v3, 17 of the run's 49 `CLOSER` verdicts were wrong, all moved to `FYI` by the new rules,
   so `CLOSER`'s pilot clock restarts; `SPAM` was 3 of 3 right. v2 verdicts in the cache are
   discarded by the bump.
+- **v4 (2026-10-10).** Albert's review of run `20261008T1458-c60f` and the switch to write
+  mode. `ACTION` narrows to something someone must change or prepare. An address, location
+  or arrival note on its own, and a site detail needing nothing, are now `FYI`. The bare
+  opt-out keyword is a `CLOSER`, because GHL sets DND itself; a written-out opt-out stays
+  `ACTION` `compliance:`. New: the 4-hour wait before a closer is marked read, and two
+  age-outs (a model `UNSURE` after 7 quiet days, holds after 14). Closers were 34 of 34 right
+  and spam 2 of 2. One guard-held spam (not a stranger) was spam too; the guard stays. v3
+  verdicts in the cache are discarded by the bump.
