@@ -9,7 +9,7 @@ approval.json (contracts/ghl-triage-schema.md). It can do exactly one thing:
     PUT <ghl_client.BASE>/conversations/<20-char id>
     {"locationId": <GHL_LOCATION_ID>, "unreadCount": 0}
 
-with its own token, GHL_MARK_READ_TOKEN (scope conversations.write only — "two tokens, two
+with its own token, GHL_WRITE_API (scope conversations.write only — "two tokens, two
 blast radii", methods/architecture.md). Every read goes through ghl_client (GET-only, the
 read PIT). The host comes from ghl_client.BASE, so it is spelled in one file.
 
@@ -51,7 +51,7 @@ import ghl_unread_pull  # noqa: E402
 
 REGISTRY = REPO_ROOT / "platform-settings" / "ghl-unread-triage.json"
 TZ = ZoneInfo("America/Toronto")
-TOKEN_ENV = "GHL_MARK_READ_TOKEN"
+TOKEN_ENV = "GHL_WRITE_API"
 ACTION_TYPE = "mark_conversation_read"
 AGENT = "ghl-actions-agent"
 ID_FORMAT = re.compile(r"^[A-Za-z0-9]{20}$")

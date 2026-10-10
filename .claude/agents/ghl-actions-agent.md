@@ -47,13 +47,13 @@ verbatim. You do not choose which conversations: the script executes only ids th
 `approved` in `<dir>/approval.json`, written by `scripts/ghl_unread_plan.py` (method:
 `methods/ghl-unread-triage.md`; contract: `contracts/ghl-triage-schema.md`).
 
-- **Approval.** Until a dated CLAUDE.md exception exists (`policy.exception_date` in
-  `platform-settings/ghl-unread-triage.json`), only a person's approval counts and the
-  script refuses a policy-signed file. After it, the policy string in the registry may
-  approve this one type, through `/ghl-triage` only — never any other action type.
+- **Approval.** Since the dated CLAUDE.md exception of 2026-10-10 (`policy.exception_date`
+  in `platform-settings/ghl-unread-triage.json`), the policy string in the registry may
+  approve this one type, through `/ghl-triage` only — never any other action type. A person
+  may still approve a plan over the cap, supervised.
 - **One write.** `PUT /conversations/<id>` with `{"locationId", "unreadCount": 0}`, using
-  `GHL_MARK_READ_TOKEN` (scope `conversations.write` only). Not yet issued: until it is, the
-  script refuses (exit 4) and this type is unarmed like the rest of this file.
+  `GHL_WRITE_API` (scope `conversations.write` only; issued 2026-10-10). Without it the
+  script refuses (exit 4).
 - **Compare-and-swap.** Already read → `refused` `stale_already_read`; a newer message than
   the plan saw → `refused` `stale_new_message`. Those are successes. A message arriving
   during the write → `failed` `raced_new_message`, exit 6, and the command turns the kill

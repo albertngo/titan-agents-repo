@@ -32,7 +32,7 @@ No ingester reads another ingester's raw platform data.
 | `meta-ads-ingest-agent` | Meta Ads (spend, leads, CPL, delivery health) | `meta-ads.json` |
 | `content-ingest-agent` | Notion content calendar + Google Drive media | `content.json` |
 
-| `ghl-actions-agent` | GoHighLevel (write: replies, stages, tags; mark-read only via `/ghl-triage` + `scripts/ghl_mark_read.py`, unarmed) | appends to `actions-log.json` |
+| `ghl-actions-agent` | GoHighLevel (write: replies, stages, tags; mark-read only via `/ghl-triage` + `scripts/ghl_mark_read.py`, live since 2026-10-10) | appends to `actions-log.json` |
 | `lightspeed-actions-agent` | Lightspeed Retail X-Series (write: product create/update ONLY) | appends to `actions-log.json` |
 | `airtable-actions-agent` | Airtable catalogue (write: upsert, LS-ID backfill, price history) | appends to `actions-log.json` |
 | `social-actions-agent` | Metricool (write: schedule posts, and move a still-scheduled one to a new date — never edits or deletes a LIVE post, never replies) | appends to `actions-log.json` |
@@ -242,21 +242,25 @@ is the only copy of the classifier, read by the session model in both:
 - **`/ghl-triage`**, an hourly routine (8am–9pm Toronto, Mon–Sat): `scripts/ghl_unread_pull.py`
   (read-only) builds each unread conversation's batch — what the customer wrote since our
   last **human** reply; automations never count as a reply — holds anything unreadable
-  (photos, calls, voicemail), the model judges with rubric v3 (2026-10-08) — reply
-  (`NEEDS_RESPONSE` / `UNSURE`), act (`ACTION`, opt-outs as `compliance:`), know (`FYI`),
-  clear (`CLOSER` / `SPAM`) — and `scripts/ghl_unread_plan.py` applies guards (a `?` or a
-  long message vetoes CLOSER; SPAM only from a stranger; a `compliance:` reason is always
-  ACTION) and the cap (25, all-or-nothing). Only CLOSER and SPAM can ever be marked read.
+  (photos, calls, voicemail), the model judges with rubric v4 (2026-10-10) — reply
+  (`NEEDS_RESPONSE` / `UNSURE`), act (`ACTION`, written opt-outs as `compliance:`), know
+  (`FYI`), clear (`CLOSER` / `SPAM`) — and `scripts/ghl_unread_plan.py` applies guards (a `?`
+  or a long message vetoes CLOSER; SPAM only from a stranger; a `compliance:` reason is
+  always ACTION) and the cap (25, all-or-nothing). What can be marked read: CLOSER and SPAM
+  once the customer's latest message is 4 h old; a model UNSURE after 7 quiet days; a hold
+  (call, attachment, too long, nothing inbound) after 14. NEEDS_RESPONSE, ACTION and FYI never.
 - **`ghl-ingest-agent`** (template v6): the window plus everything unread, split into a reply
   list (24 h age flag), a "to action" list (missed calls and attachments land here too) and an
   FYI list shown once — closers and spam dropped from day one, and threads whose customer has
   been quiet 14+ days as a count. notion-sync is unchanged: reply and to-action items become
   tasks, FYI does not.
 
-`write_mode` is **`plan_only`**: the sweep logs "would clear" and marks nothing read. Each
-of CLOSER and SPAM has its own switch and pilot bar (registry `policy`); flipping is a dated
-vault decision. Every run is logged to branch **`claude/ghl-triage-log`** — never merged,
-never PR'd, written only by `scripts/ghl_triage_log.py` — which is also the verdict cache.
+`write_mode` is **`write` since 2026-10-10** (Albert, vault
+`05_decisions/2026-10-10-ghl-triage-write-mode.md`), switched on before the 7-day pilot bar
+on his review of 34/34 right closers. Each clearable kind is its own switch in the registry
+`policy` (`approve_verdicts`, `approve_stale`); changing one is a dated vault decision. The
+write token is `GHL_WRITE_API` (conversations.write only). Every run is logged to branch
+**`claude/ghl-triage-log`** — never merged, never PR'd, written only by `scripts/ghl_triage_log.py` — which is also the verdict cache.
 **`scripts/ghl_mark_read.py` is the only file in this repo that can write to GHL**, and it
 can do one thing: `PUT /conversations/<id>` `{locationId, unreadCount: 0}`, with its own
 `conversations.write` token, compare-and-swap before and read-back after. The repo is
@@ -282,14 +286,16 @@ since 2026-09-12 that policy clears everything but three carve-outs, so in pract
 most catalogue writes now happen with no person in the loop at all. The gate itself —
 an actions agent executes only an id that appears `approved` in an approval file,
 never originates a write on its own — did not move; only who satisfies it. Every
-other `*-actions` agent (`ghl-actions-agent` included) is unchanged: explicit
-instruction and a person's approval, still, always.
+other `*-actions` agent is unchanged: explicit instruction and a person's approval, still,
+always — `ghl-actions-agent` too, except its one mark-read slice below.
 
-**Designed, not in force (2026-10-08):** a second narrow exception for `ghl-actions-agent`,
-type `mark_conversation_read` only, via `/ghl-triage` only. It takes effect only when a dated
-paragraph replaces this one and `policy.exception_date` is set in
-`platform-settings/ghl-unread-triage.json`; until then `scripts/ghl_unread_plan.py` writes
-no policy approval and `scripts/ghl_mark_read.py` refuses one.
+**Second narrow exception (2026-10-10, Albert):** `ghl-actions-agent` may execute a
+**policy**-approved `mark_conversation_read` — that type only, via `/ghl-triage` only, through
+`scripts/ghl_mark_read.py` only — on an approval file `scripts/ghl_unread_plan.py` wrote that
+run (`policy.exception_date` 2026-10-10). The kinds policy may approve are the registry's
+`approve_verdicts` and `approve_stale`, at most 25 per run, all-or-nothing; more waits for a
+person. Every other `ghl-actions-agent` action (replies, stages, tags) still needs a person's
+approval, always. Vault `05_decisions/2026-10-10-ghl-triage-write-mode.md`.
 
 The flow is always: **ingest → decide (Albert, a department lead, policy for the
 narrow catalogue slice above, or the orchestrator) → act**. No agent does all three
