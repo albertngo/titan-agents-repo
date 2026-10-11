@@ -136,13 +136,24 @@ def candidate_for(messages, row=None, cache=None, page_size=None):
 # -- registry and rubric -------------------------------------------------------------
 
 class TestRegistry(unittest.TestCase):
-    def test_pilot_state_is_pinned(self):
-        # Flipping any of these is a dated vault decision; update this test in that commit.
-        self.assertEqual(REG["write_mode"]["mode"], "plan_only")
-        self.assertEqual(REG["policy"]["approve_verdicts"], [])
-        self.assertIsNone(REG["policy"]["exception_date"])
-        self.assertIsNone(REG["writer"]["_verified"])
+    def test_live_state_is_pinned(self):
+        # Write mode since 2026-10-10 (Albert; vault 05_decisions/2026-10-10-ghl-triage-write-mode.md).
+        # Changing any of these is a dated vault decision; update this test in that commit.
+        pol = REG["policy"]
+        self.assertEqual(REG["write_mode"]["mode"], "write")
+        self.assertEqual(pol["approve_verdicts"], ["CLOSER", "SPAM"])
+        self.assertEqual(pol["approve_stale"], ["UNSURE", "HELD"])
+        self.assertEqual(pol["exception_date"], "2026-10-10")
+        self.assertEqual(pol["min_unread_hours"], 4)
+        self.assertEqual(pol["stale"]["UNSURE"]["days"], 7)
+        self.assertEqual(pol["stale"]["HELD"]["days"], 14)
+        self.assertEqual(set(pol["stale"]["HELD"]["holds"]),
+                         {"call_in_batch", "non_text_content", "batch_too_long", "no_customer_text"})
+        self.assertEqual(REG["writer"]["token_env"], "GHL_WRITE_API")
         self.assertFalse(REG["log"]["excerpts"], "the repo is public: no customer text in the log")
+        claude = (REPO_ROOT / "CLAUDE.md").read_text()
+        self.assertIn("2026-10-10", claude)
+        self.assertNotIn("Designed, not in force", claude)
 
     def test_vocabulary_and_cap(self):
         self.assertEqual(REG["verdicts"], ["NEEDS_RESPONSE", "ACTION", "FYI", "CLOSER", "SPAM", "UNSURE"])
@@ -206,11 +217,15 @@ class TestRubric(unittest.TestCase):
         self.assertEqual(verdict_for("Praise, a review left, or a referral"), "`FYI`")
         self.assertEqual(verdict_for("A request to cancel"), "`ACTION`")
         self.assertEqual(verdict_for("A request to reschedule"), "`NEEDS_RESPONSE`")
-        self.assertEqual(verdict_for("An opt-out"), "`ACTION`")
-        self.assertEqual(verdict_for("An address"), "`ACTION`")
+        self.assertEqual(verdict_for("A written-out opt-out"), "`ACTION`")
+        self.assertEqual(verdict_for("The bare opt-out keyword"), "`CLOSER`")
+        self.assertEqual(verdict_for("An address"), "`FYI`")
+        self.assertEqual(verdict_for("An arrival or visit notice"), "`FYI`")
+        self.assertEqual(verdict_for("A site detail that needs nothing done"), "`FYI`")
+        self.assertEqual(verdict_for("A booking confirmed with details"), "`ACTION`")
+        self.assertEqual(verdict_for("An order to be collected"), "`ACTION`")
         self.assertEqual(verdict_for("A payment notice"), "`ACTION`")
-        self.assertEqual(verdict_for("An arrival, pickup or visit notice"), "`ACTION`")
-        self.assertEqual(verdict_for("Site logistics for the crew"), "`ACTION`")
+        self.assertEqual(verdict_for("A job instruction the crew must act on"), "`ACTION`")
         self.assertEqual(verdict_for("A bare time or date"), "`NEEDS_RESPONSE`")
         self.assertEqual(verdict_for('A bare "Ok"'), "`UNSURE`")
         self.assertEqual(verdict_for("A vague fragment"), "`UNSURE`")
@@ -399,6 +414,14 @@ def reg_with(**policy):
     return r
 
 
+def reg_pilot():
+    """The pre-2026-10-10 pilot: plan_only, nothing approvable."""
+    r = copy.deepcopy(REG)
+    r["write_mode"]["mode"] = "plan_only"
+    r["policy"].update(approve_verdicts=[], approve_stale=[], exception_date=None)
+    return r
+
+
 def reg_write(**policy):
     r = reg_with(**policy)
     r["write_mode"]["mode"] = "write"
@@ -408,7 +431,7 @@ def reg_write(**policy):
 class TestPlan(unittest.TestCase):
     def test_pilot_plans_nothing_to_write(self):
         p = plan.build_plan(cands_doc([cand("c1", "k1"), cand("c2", "k2", stranger=True)]),
-                            judged(k1="CLOSER", k2="SPAM"), REG)
+                            judged(k1="CLOSER", k2="SPAM"), reg_pilot())
         self.assertEqual(p["actions"], [])
         self.assertEqual(p["summary"]["would_clear"], 2)
         self.assertEqual([r["disposition"] for r in p["rows"]], ["clear", "clear"])
@@ -507,7 +530,51 @@ class TestPlan(unittest.TestCase):
         self.assertEqual(got["c5"][1], "backlog", "a quiet to-action thread drops to the count")
         self.assertEqual(got["c6"], (True, "action"), "an opt-out is never dropped")
         self.assertEqual(got["c7"], (False, "fyi"), "FYI never becomes backlog")
-        self.assertEqual(got["c8"][1], "backlog")
+        self.assertEqual(got["c8"][1], "clear", "a hold quiet 14 days ages out (v4)")
+
+    def test_closers_wait_before_clearing(self):
+        young = cand("c1", "k1", waiting=3.9)
+        old = cand("c2", "k2", waiting=10.0)
+        old["last_inbound_hours"] = 4.0
+        p = plan.build_plan(cands_doc([young, old]), judged(k1="CLOSER", k2="CLOSER"), REG)
+        self.assertEqual([a["conversation_id"] for a in p["actions"]], ["c2"])
+        self.assertEqual(p["summary"]["clear_not_yet_due"], 1)
+        self.assertEqual([r["disposition"] for r in p["rows"]], ["clear", "clear"])
+
+    def test_age_outs(self):
+        def quiet(c, h):
+            c["last_inbound_hours"] = h
+            return c
+        convs = [quiet(cand("u1", "k1", waiting=200), 7 * 24),          # UNSURE, a week quiet
+                 quiet(cand("u2", "k2", waiting=200), 7 * 24 - 1),      # not yet
+                 quiet(cand("u3", "k3", waiting=200, has_q=True), 30 * 24),  # guarded UNSURE
+                 quiet(cand("n1", "k4", waiting=999), 60 * 24),         # NEEDS_RESPONSE never
+                 quiet(cand("a1", "k5", waiting=999), 60 * 24),         # ACTION never
+                 quiet(cand("f1", "k6", waiting=999), 60 * 24),         # FYI never
+                 quiet(cand("h1", None, hold="call_in_batch", waiting=999), 14 * 24),
+                 quiet(cand("h2", None, hold="non_text_content", waiting=999), 13 * 24),
+                 cand("h3", None, hold="no_customer_text", waiting=None),
+                 quiet(cand("h4", None, hold="unknown_message_type", waiting=999), 60 * 24)]
+        convs[8]["last_message_hours"] = 15 * 24
+        j = judged(k1="UNSURE", k2="UNSURE", k3="CLOSER", k4="NEEDS_RESPONSE", k5="ACTION", k6="FYI")
+        p = plan.build_plan(cands_doc(convs), j, REG)
+        got = {r["conversation_id"]: (r["disposition"], r["clear_kind"]) for r in p["rows"]}
+        self.assertEqual(got["u1"], ("clear", "stale_unsure"))
+        self.assertEqual(got["u2"][0], "waiting")
+        self.assertEqual(got["u3"][0], "waiting", "a vetoed closer never ages out")
+        for cid in ("n1", "a1", "f1", "h2", "h4"):
+            self.assertNotEqual(got[cid][0], "clear", cid)
+        self.assertEqual(got["h1"], ("clear", "stale_hold"))
+        self.assertEqual(got["h3"], ("clear", "stale_hold"))
+        acted = {a["conversation_id"]: a["kind"] for a in p["actions"]}
+        self.assertEqual(acted, {"u1": "stale_unsure", "h1": "stale_hold", "h3": "stale_hold"})
+        self.assertTrue(all(a["reason"].startswith("untouched ") for a in p["actions"]))
+        off = plan.build_plan(cands_doc(convs), j, reg_with(approve_stale=["HELD"]))
+        self.assertEqual({a["conversation_id"] for a in off["actions"]}, {"h1", "h3"})
+        with self.assertRaises(plan.InputError):
+            plan.build_plan(cands_doc(convs), j, reg_with(approve_stale=["FYI"]))
+        rec = plan.run_record(p)
+        self.assertIn("clear_kind", rec["rows"][0])
 
     def test_actions_and_the_all_or_nothing_cap(self):
         r = reg_with(approve_verdicts=["CLOSER"])
@@ -537,10 +604,10 @@ class TestPlan(unittest.TestCase):
     def test_approval_refusals(self):
         convs = [cand("c1", "k1")]
         j = judged(k1="CLOSER")
-        p = plan.build_plan(cands_doc(convs), j, REG)
+        p = plan.build_plan(cands_doc(convs), j, reg_pilot())
         with self.assertRaises(PermissionError):  # plan_only: the pilot
-            plan.approval_for(p, "plan.json", REG)
-        w = reg_write(approve_verdicts=["CLOSER"])
+            plan.approval_for(p, "plan.json", reg_pilot())
+        w = reg_write(approve_verdicts=["CLOSER"], exception_date=None)
         p = plan.build_plan(cands_doc(convs), j, w)
         with self.assertRaises(PermissionError):  # no dated CLAUDE.md exception yet
             plan.approval_for(p, "plan.json", w)
@@ -651,9 +718,10 @@ class TestWriter(unittest.TestCase):
         now = datetime.now(timezone.utc)
         w = reg_write(exception_date="2026-11-01")
         self.assertEqual(mark.preflight(p, approval(p), w, now, None, "tok", "x/plan.json"), [])
-        self.assertTrue(mark.preflight(p, approval(p), REG, now, None, "tok", "x/plan.json"))  # plan_only
+        self.assertTrue(mark.preflight(p, approval(p), reg_pilot(), now, None, "tok", "x/plan.json"))  # plan_only
         self.assertTrue(mark.preflight(p, None, w, now, None, "tok", "x/plan.json"))
-        self.assertTrue(mark.preflight(p, approval(p), reg_write(), now, None, "tok", "x/plan.json"))
+        self.assertTrue(mark.preflight(p, approval(p), reg_write(exception_date=None), now, None, "tok",
+                                       "x/plan.json"))
         self.assertTrue(mark.preflight(p, approval(p), w, now, "kill", "tok", "x/plan.json"))
         self.assertTrue(mark.preflight(p, approval(p), w, now, None, None, "x/plan.json"))
         self.assertTrue(mark.preflight(p, approval(p), w, now + timedelta(hours=1), None, "tok", "x/plan.json"))
@@ -733,7 +801,7 @@ class TestOnlyOneWriter(unittest.TestCase):
                 if p.name in ("ghl_mark_read.py", "test_ghl_unread_triage.py"):
                     continue
                 src = p.read_text()
-                self.assertNotIn("GHL_MARK_READ_TOKEN", src, p)
+                self.assertNotIn("GHL_WRITE_API", src, p)
                 self.assertNotIn('["token_env"]', src, p)
 
     def test_read_path_has_no_write_verbs(self):
@@ -778,7 +846,7 @@ class TestProse(unittest.TestCase):
         sales = json.loads(self.read("platform-settings/departments.json"))["departments"]["sales"]
         self.assertIn("ghl-triage", sales["owns"]["commands"])
         env = self.read(".env.example")
-        self.assertIn("GHL_MARK_READ_TOKEN=", env)
+        self.assertIn("GHL_WRITE_API=", env)
         self.assertIn("conversations.write", env)
         pub = _load("publish_run", "scripts/publish_run.py")
         self.assertIn(REG["log"]["branch"], pub.NEVER_PUBLISH)
@@ -786,7 +854,7 @@ class TestProse(unittest.TestCase):
     def test_claude_md_and_ingest_agent(self):
         claude = self.read("CLAUDE.md")
         for needle in ("/ghl-triage", "methods/ghl-unread-triage.md", "claude/ghl-triage-log",
-                       "Designed, not in force"):
+                       "Second narrow exception (2026-10-10, Albert)"):
             self.assertIn(needle, claude)
         agent = self.read(".claude/agents/ghl-ingest-agent.md")
         for needle in ("scripts/ghl_unread_pull.py --mode brief", "unanswered-24h+", "triage-closer",

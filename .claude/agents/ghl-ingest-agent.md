@@ -439,7 +439,7 @@ How the plan rows drive this file:
 | `waiting` (reply) | `next_response_owner: us`. A `message` item at `priority: high`, title `Unanswered: <name> (<channel>)`, summary = the triage reason + "waiting N days" (prefix `(unsure)` for `UNSURE` and held rows, naming the hold). `waiting_hours ≥ 24` → flag `unanswered-24h+`. |
 | `action` (to action: `ACTION`, and the `call_in_batch` / `non_text_content` holds) | `next_response_owner: us`, but it is not a reply: flag `triage-action`, excluded from `unanswered_conversations` (below). A `message` item at `priority: high`, title `To action: <name> (<channel>)`, summary = the row's reason (for a hold, the registry's step: call back, check the attachment) + "N days". `age_flag` → flag `action-24h+`. A reason starting `compliance:` is an opt-out: title `Opt-out: <name> — set DND`, flag `triage-compliance`. notion-sync turns these into tasks exactly as it does reply items. |
 | `fyi` (`FYI`) | `next_response_owner: them`. No Notion task, no age flag. Only when the customer's latest message is under 24 h old (`last_inbound_hours`): a `message` item at `priority: low`, title `FYI: <name> (<channel>)`, summary = the reason, flag `triage-fyi`. Older FYI rows are counted in `triage.counts.fyi` only — an FYI is listed once, the day it arrives. |
-| `clear` (CLOSER / SPAM) | No item and no Notion task, from the first pilot day (Albert, 2026-10-08). Flag `triage-closer` / `triage-spam`; listed in `triage.would_clear` (pilot) or `triage.cleared_24h` (after the switch). |
+| `clear` (CLOSER / SPAM, or an age-out) | No item and no Notion task, from the first pilot day (Albert, 2026-10-08). Flag `triage-closer` / `triage-spam`, or `triage-stale` for an age-out (`clear_kind` `stale_unsure` / `stale_hold`, rubric v4: an UNSURE quiet 7 days, a hold quiet 14); listed in `triage.would_clear` (pilot) or `triage.cleared_24h` (write mode, since 2026-10-10). |
 | `not_ours` (`no_customer_text`) | Nothing inbound since our last human reply: `next_response_owner: them`, counted only. |
 | `backlog` | A reply or to-action row whose customer's **latest** message is older than `age.backlog_days` (14): counted in `triage.counts.backlog`, one count line in `needs_attention`, no item. Never an opt-out, never FYI. |
 
@@ -559,7 +559,7 @@ For every active conversation, fill every field in the `conversations` schema:
   `missed-call-no-voicemail`, `automated-system-log`, `voicemail-transcribed`,
   `call-commitment-open`, `unanswered-24h+`, `triage-closer`, `triage-spam`,
   `triage-unsure`, `triage-held`, `triage-action`, `action-24h+`, `triage-compliance`,
-  `triage-fyi`, …). `spam-suspected`, `supplier-solicitation`,
+  `triage-fyi`, `triage-stale`, …). `spam-suspected`, `supplier-solicitation`,
   `missed-call-no-voicemail`, `automated-system-log`, `triage-closer`,
   `triage-spam` and `triage-action` are load-bearing, not decorative: they drive the
   metric exclusions below.

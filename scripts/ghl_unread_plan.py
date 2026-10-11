@@ -17,10 +17,14 @@ appends to the log branch). For each conversation, in order:
 
 Dispositions (rubric v3): CLOSER and SPAM are `clear`; ACTION and the registry's
 action_holds are `action`; FYI is `fyi`; no_customer_text is `not_ours`; everything else is
-`waiting` (the reply list). Only `clear` rows become actions: in sweep mode, on a
-conversation still unread, when the verdict is in policy.approve_verdicts (empty during the
-pilot). ACTION and FYI never do — a registry that lists them (or NEEDS_RESPONSE / UNSURE) as
-clearable or approvable is refused. More actions than policy.max_mark_read_per_run makes the
+`waiting` (the reply list). Two age-out rules then turn a row `clear` (rubric v4, Albert
+2026-10-10): a model UNSURE whose customer has been silent policy.stale.UNSURE.days (7), and
+a hold in policy.stale.HELD.holds silent policy.stale.HELD.days (14). Only `clear` rows
+become actions: in sweep mode, on a conversation still unread, when the verdict is in
+policy.approve_verdicts and the customer's latest message is at least
+policy.min_unread_hours old, or when the age-out kind is in policy.approve_stale. ACTION, FYI
+and NEEDS_RESPONSE never do — a registry that lists them (or UNSURE) as clearable or
+approvable as a verdict is refused. More actions than policy.max_mark_read_per_run makes the
 plan `needs_person` and approves NOTHING (Albert, 2026-10-08: all-or-nothing).
 
 --write-approval writes <dir>/approval.json. Refused (exit 4) in brief mode, under
@@ -47,6 +51,8 @@ CANDIDATES_VERSION = "ghl-triage-candidates-1"
 PHONE_OR_EMAIL = (r"[\w.+-]+@[\w-]+\.[\w.]+", r"\+?\d[\d\s().-]{6,}\d")
 # Never marked read, whatever the registry says: reply, act and know (rubric v3).
 NEVER_CLEAR = frozenset({"NEEDS_RESPONSE", "UNSURE", "ACTION", "FYI"})
+# Age-out kinds (policy.approve_stale): UNSURE after a quiet week, holds after two.
+STALE_KINDS = {"UNSURE": "stale_unsure", "HELD": "stale_hold"}
 
 
 class InputError(ValueError):
@@ -75,6 +81,9 @@ def check_inputs(candidates, judgements, reg):
         bad = sorted(NEVER_CLEAR & set(values))
         if bad:
             raise InputError(f"registry {key} lists {bad}: those verdicts are never marked read")
+    bad = sorted(set(reg["policy"].get("approve_stale", [])) - set(STALE_KINDS))
+    if bad:
+        raise InputError(f"registry policy.approve_stale lists {bad}: only {sorted(STALE_KINDS)} age out")
     if candidates.get("contract_version") != CANDIDATES_VERSION:
         raise InputError(f"candidates contract {candidates.get('contract_version')!r} "
                          f"!= {CANDIDATES_VERSION}")
@@ -96,10 +105,11 @@ def resolve(c, verdicts, reg):
     vocab = set(reg["verdicts"])
     limit = reg["reason_max_chars"]
     row = {k: c.get(k) for k in ("conversation_id", "contact_id", "contact", "channel", "unread",
-                                 "batch_key", "waiting_hours", "last_inbound_hours", "excerpt")}
+                                 "batch_key", "waiting_hours", "last_inbound_hours",
+                                 "last_message_hours", "excerpt")}
     row.update(model_verdict=None, verdict=None, verdict_source=None, guard=None,
                hold_reason=c.get("hold_reason"), reason="", disposition=None,
-               age_flag=False, action_id=None)
+               age_flag=False, action_id=None, clear_kind=None)
     if row["hold_reason"]:
         row.update(verdict="HELD", verdict_source="hold")
     elif c.get("cached"):
@@ -147,7 +157,40 @@ def resolve(c, verdicts, reg):
         wh = row["waiting_hours"]
         if wh is not None:
             row["age_flag"] = wh >= reg["age"]["flag_hours"]
+    if row["disposition"] == "clear":
+        row["clear_kind"] = "verdict"
+    else:
+        age_out(row, reg)
     return row
+
+
+def quiet_hours(row):
+    """How long the customer has been silent: their latest message, else (no batch) the
+    conversation's last message, which is ours and so later than theirs."""
+    for k in ("last_inbound_hours", "waiting_hours", "last_message_hours"):
+        if row.get(k) is not None:
+            return row[k]
+    return None
+
+
+def age_out(row, reg):
+    """Rubric v4 (Albert, 2026-10-10): a model UNSURE untouched for a week is taken as seen;
+    a hold untouched for two weeks is cleared. Never NEEDS_RESPONSE, ACTION or FYI."""
+    stale = reg["policy"].get("stale") or {}
+    quiet = quiet_hours(row)
+    if quiet is None:
+        return
+    u, h = stale.get("UNSURE"), stale.get("HELD")
+    if u and row["verdict"] == "UNSURE" and row["verdict_source"] in ("model", "cache") \
+            and not row["guard"] and quiet >= u["days"] * 24:
+        kind, days = "stale_unsure", u["days"]
+    elif h and row["verdict"] == "HELD" and row["hold_reason"] in h["holds"] and quiet >= h["days"] * 24:
+        kind, days = "stale_hold", h["days"]
+    else:
+        return
+    what = row["reason"] or row["hold_reason"] or ""
+    row.update(disposition="clear", clear_kind=kind, age_flag=False,
+               reason=sanitize_reason(f"untouched {days}d+: {what}", reg["reason_max_chars"]))
 
 
 def is_compliance(row, reg):
@@ -168,21 +211,29 @@ def build_plan(candidates, judgements, reg):
         # Backlog = the customer has gone quiet for backlog_days, judged by their LATEST
         # message: someone who wrote 20 days ago and again yesterday is live, not backlog.
         # An opt-out is never dropped; FYI never becomes backlog.
-        quiet = row["last_inbound_hours"] if row["last_inbound_hours"] is not None else row["waiting_hours"]
+        quiet = quiet_hours(row)
         if mode == "brief" and row["disposition"] in ("waiting", "action") \
                 and not is_compliance(row, reg) and quiet is not None \
                 and quiet > reg["age"]["backlog_days"] * 24:
             row["disposition"] = "backlog"
         rows.append(row)
 
+    approve_stale = {STALE_KINDS[k] for k in reg["policy"].get("approve_stale", [])}
+    min_hours = reg["policy"].get("min_unread_hours", 0)
+
+    def due(r):
+        if r["clear_kind"] == "verdict":
+            q = quiet_hours(r)
+            return r["verdict"] in approve and q is not None and q >= min_hours
+        return r["clear_kind"] in approve_stale
+
     if mode == "sweep":
-        clear = [r for r in rows if r["disposition"] == "clear" and r["unread"]
-                 and r["verdict"] in approve]
+        clear = [r for r in rows if r["disposition"] == "clear" and r["unread"] and due(r)]
         clear.sort(key=lambda r: -(r["waiting_hours"] or 0))
         for i, r in enumerate(clear, 1):
             c = by_id[r["conversation_id"]]
             r["action_id"] = action_id(r["conversation_id"], r["batch_key"], c["last_message_id"])
-            actions.append({"id": r["action_id"], "seq": i, "op": "mark_read",
+            actions.append({"id": r["action_id"], "seq": i, "op": "mark_read", "kind": r["clear_kind"],
                             "conversation_id": r["conversation_id"], "contact_id": r["contact_id"],
                             "contact": r["contact"], "verdict": r["verdict"], "reason": r["reason"],
                             "batch_key": r["batch_key"],
@@ -219,7 +270,12 @@ def build_plan(candidates, judgements, reg):
             "by_source": count("verdict_source"),
             "would_clear": sum(1 for r in rows if r["disposition"] == "clear"),
             "would_clear_by_verdict": {v: sum(1 for r in rows if r["disposition"] == "clear"
-                                              and r["verdict"] == v) for v in reg["clearable_verdicts"]},
+                                              and r["clear_kind"] == "verdict" and r["verdict"] == v)
+                                       for v in reg["clearable_verdicts"]},
+            "would_clear_by_kind": {k: sum(1 for r in rows if r["clear_kind"] == k)
+                                    for k in ("verdict", "stale_unsure", "stale_hold")},
+            "clear_not_yet_due": sum(1 for r in rows if r["clear_kind"] == "verdict" and r["unread"]
+                                     and r["verdict"] in approve and not due(r)),
             "actions": len(actions), "cap": cap,
             "waiting": len(waiting),
             "waiting_24h_plus": sum(1 for r in waiting if r["age_flag"]),
@@ -238,7 +294,7 @@ def build_plan(candidates, judgements, reg):
 
 
 RUN_ROW_KEYS = ("conversation_id", "contact_id", "batch_key", "model_verdict", "verdict",
-                "verdict_source", "guard", "hold_reason", "reason", "disposition",
+                "verdict_source", "guard", "hold_reason", "reason", "disposition", "clear_kind",
                 "waiting_hours", "action_id", "excerpt")
 
 
@@ -302,7 +358,8 @@ def main(argv=None):
     print(f"  mode         {plan['mode']}   write_mode {plan['write_mode']}   status {plan['status']}")
     print(f"  verdicts     {s['by_verdict']}   sources {s['by_source']}")
     print(f"  held         {s['held_by_reason']}   guarded {s['guarded']}")
-    print(f"  would clear  {s['would_clear']} {s['would_clear_by_verdict']}   actions {s['actions']}/{s['cap']}")
+    print(f"  would clear  {s['would_clear']} {s['would_clear_by_verdict']} {s['would_clear_by_kind']}   "
+          f"not yet due {s['clear_not_yet_due']}   actions {s['actions']}/{s['cap']}")
     print(f"  reply        {s['waiting']}   24h+ {s['waiting_24h_plus']}   backlog {s['backlog']}   "
           f"not ours {s['not_ours']}")
     print(f"  to action    {s['action']}   24h+ {s['action_24h_plus']}   opt-outs {s['compliance']}   "

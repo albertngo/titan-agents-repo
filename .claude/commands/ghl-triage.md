@@ -33,7 +33,7 @@ Stop on the first failure and report it:
    this command runs steps 1–3 and 6 only: it marks **nothing** read and writes no approval
    file. Never edit either value to get a run through; flipping is a dated vault decision.
 2. **Credentials come from `.env`**: `GHL_PIT_TOKEN`, `GHL_LOCATION_ID`. Under `write`,
-   `GHL_MARK_READ_TOKEN` too — if it is missing, run as `plan_only` this time and say so in
+   `GHL_WRITE_API` too — if it is missing, run as `plan_only` this time and say so in
    the notification (once a day; see step 7).
 3. **The log branch is readable**: `python3 scripts/ghl_triage_log.py fetch` prints `ok`.
    `missing` (exit 3) means stop — a person runs `init` once, supervised; never run it from
@@ -123,7 +123,7 @@ entry with the same reason; append the reason to this run's `notified` before st
 - the log push failed;
 - credentials missing or the host blocked;
 - the pull failed after its own retries;
-- `GHL_MARK_READ_TOKEN` missing under `write`.
+- `GHL_WRITE_API` missing under `write`.
 
 ## Done means
 

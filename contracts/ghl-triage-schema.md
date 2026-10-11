@@ -86,7 +86,7 @@ held `unjudged`; a verdict outside the six (`NEEDS_RESPONSE`, `ACTION`, `FYI`, `
 {
   "contract_version": "ghl-triage-plan-1",
   "run_id": "…", "mode": "sweep", "run_at": "…", "expires": "…",
-  "write_mode": "plan_only", "rubric_version": "3",
+  "write_mode": "write", "rubric_version": "4",
   "approve_verdicts": [], "status": "ready",
   "summary": {"conversations": 377, "by_verdict": {}, "held_by_reason": {}, "guarded": {},
               "by_source": {}, "would_clear": 0, "would_clear_by_verdict": {}, "actions": 0,
@@ -111,16 +111,22 @@ held `unjudged`; a verdict outside the six (`NEEDS_RESPONSE`, `ACTION`, `FYI`, `
 | `verdict_source` | `model`, `cache`, `hold` |
 | `verdict` | the six verdicts, or `HELD` |
 | `guard` | `compliance` (a `compliance:` reason forced to `ACTION`), `closer_veto:question`, `closer_veto:length`, `spam_not_stranger`, or null |
-| `disposition` | `clear` (CLOSER/SPAM); `action` (ACTION, and the holds in the registry's `action_holds`, whose step becomes the row's `reason`); `fyi` (FYI); `waiting` (the reply list: NEEDS_RESPONSE, UNSURE and every other hold); `not_ours` (`no_customer_text`); `backlog` (brief only: a `waiting` or `action` row whose customer's **latest** message is older than `age.backlog_days`, never an opt-out) |
+| `disposition` | `clear` (CLOSER/SPAM, or an age-out — see `clear_kind`); `action` (ACTION, and the holds in the registry's `action_holds`, whose step becomes the row's `reason`); `fyi` (FYI); `waiting` (the reply list: NEEDS_RESPONSE, UNSURE and every other hold); `not_ours` (`no_customer_text`); `backlog` (brief only: a `waiting` or `action` row whose customer's **latest** message is older than `age.backlog_days`, never an opt-out) |
+| `clear_kind` | `verdict` (CLOSER/SPAM), `stale_unsure` (a model UNSURE quiet `policy.stale.UNSURE.days`), `stale_hold` (a hold in `policy.stale.HELD.holds` quiet `policy.stale.HELD.days`); null when not `clear`. "Quiet" is `last_inbound_hours`, else `waiting_hours`, else the candidate's `last_message_hours` (rubric v4) |
+| summary `would_clear_by_kind` / `clear_not_yet_due` | clear rows per kind; verdict clears still inside `policy.min_unread_hours` |
 | `age_flag` | `waiting` and `action` rows at `age.flag_hours` or more; always false for `fyi` |
 | summary `compliance` / `fyi_new_24h` | open opt-outs (`ACTION` with a `compliance:` reason); FYI rows whose customer's latest message is under `age.flag_hours` old |
 | `status` | `ready`, or `needs_person` when actions exceed `policy.max_mark_read_per_run` — then **nothing** is approved |
 
-`actions[]` holds only `clear` rows whose verdict is in `policy.approve_verdicts`, in sweep
-mode, on a conversation that is still unread. `ACTION`, `FYI`, `NEEDS_RESPONSE` and `UNSURE`
-never produce one: the plan script refuses (exit 2) a registry that lists any of them in
-`clearable_verdicts` or `policy.approve_verdicts`. During the pilot `approve_verdicts` is empty,
-so `actions` is empty and the `clear` rows are the "would clear" list.
+`actions[]` holds only `clear` rows, in sweep mode, on a conversation that is still unread:
+a `verdict` clear whose verdict is in `policy.approve_verdicts` and whose customer's latest
+message is at least `policy.min_unread_hours` old, or an age-out whose kind is in
+`policy.approve_stale` (`UNSURE` → `stale_unsure`, `HELD` → `stale_hold`). Each action
+carries its `kind`. `ACTION`, `FYI` and `NEEDS_RESPONSE` never produce one: the plan script
+refuses (exit 2) a registry that lists them (or `UNSURE`) in `clearable_verdicts` or
+`policy.approve_verdicts`, or anything but `UNSURE`/`HELD` in `policy.approve_stale`. With
+`approve_verdicts` and `approve_stale` empty (the pilot), `actions` is empty and the `clear`
+rows are the "would clear" list.
 
 ## `approval.json` — `ghl-triage-approval-1`
 

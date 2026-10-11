@@ -303,6 +303,7 @@ def candidate(client, row, reg, now, cache, in_window):
         "owner_by_reply": "us" if ids else "them",
         "waiting_hours": hours_since(first_at, now) if ids else None,
         "last_inbound_hours": hours_since(w["inbound"][-1].get("dateAdded"), now) if ids else None,
+        "last_message_hours": hours_since(row.get("lastMessageDate"), now),
         "cached": cached,
         "excerpt": excerpt,
         "_texts": texts,

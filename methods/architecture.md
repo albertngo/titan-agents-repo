@@ -188,7 +188,7 @@ not from the agent's name. Renaming an agent never changes its output.
   A third GHL token exists only inside Make (2026-10-02): the call-notes scenario's
   comment-only integration (`conversations/message.write`, one module, behind the
   comment gate in `methods/ghl-call-transcripts.md`). It is never used by an agent.
-  A fourth, `GHL_MARK_READ_TOKEN` (2026-10-08, not yet issued): `conversations.write` only,
+  A fourth, `GHL_WRITE_API` (2026-10-08, not yet issued): `conversations.write` only,
   read by `scripts/ghl_mark_read.py` alone (test-enforced), which can send exactly one
   request — `PUT /conversations/<id>` `{locationId, unreadCount: 0}`. GHL unread triage;
   `methods/ghl-unread-triage.md`.
