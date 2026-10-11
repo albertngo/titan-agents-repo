@@ -519,6 +519,12 @@ repo, so the vault is NOT present at session start — load it before any vault 
 2. Clone once, inline, generous timeout: `git clone --depth 1 <clone_url> /workspace/titan-vault`.
 3. `register_repo_root` so the vault's `CONVENTIONS.md` loads into context.
 
+**Read the vault before designing a build (2026-10-11, Albert).** Before proposing or
+designing a new build, or a significant change to one, load the vault (steps above) and read
+`goals/`, recent `05_decisions/` and `09_analyses/`, and the notes on the entities the build
+touches. Ground the suggestion in what they say, name the notes that shaped it, and point out
+where a build would contradict a recorded decision. Read-only: this never writes the vault.
+
 ## Vault writes
 
 `vault-writer-agent` runs automatically at the end of `/daily-ingest` (**un-parked
