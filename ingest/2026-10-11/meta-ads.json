@@ -1,0 +1,34 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-10-11T08:00:00-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-act_927167028457360",
+      "type": "spend_summary",
+      "title": "Meta spend 2026-10-10: $43.65, 2 leads, CPL $21.83",
+      "summary": "Yesterday Meta spent $43.65 CAD for 2 leads (CPL $21.83) on 1,099 impressions and 27 clicks. Top and only spending campaign: Flooring Problems Campaign, against a $50/day budget; CPL is in line with the 7-day baseline of $19.43.",
+      "timestamp": "2026-10-10T23:59:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 4365,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 4365,
+    "impressions": 1099,
+    "clicks": 27,
+    "leads": 2,
+    "cpl_cents": 2183,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "No prior meta-ads.json found in the last 7 days; pulled yesterday only (7-day baseline: $349.71, 18 leads, CPL $19.43)."
+  ]
+}
