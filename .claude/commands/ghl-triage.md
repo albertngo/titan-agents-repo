@@ -31,8 +31,7 @@ Stop on the first failure and report it:
 
 1. **Read `write_mode` and `policy.approve_verdicts`** in the registry. Under `plan_only`
    this command runs steps 1–3 and 6 only: it marks **nothing** read and writes no approval
-   file. Never edit either value to get a run through; changing one is a dated decision
-   recorded in the repo.
+   file. Never edit either value to get a run through; flipping is a dated vault decision.
 2. **Credentials come from `.env`**: `GHL_PIT_TOKEN`, `GHL_LOCATION_ID`. Under `write`,
    `GHL_WRITE_API` too — if it is missing, run as `plan_only` this time and say so in
    the notification (once a day; see step 7).
