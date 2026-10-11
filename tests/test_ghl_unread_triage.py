@@ -137,8 +137,8 @@ def candidate_for(messages, row=None, cache=None, page_size=None):
 
 class TestRegistry(unittest.TestCase):
     def test_live_state_is_pinned(self):
-        # Write mode since 2026-10-10 (Albert; vault 05_decisions/2026-10-10-ghl-triage-write-mode.md).
-        # Changing any of these is a dated vault decision; update this test in that commit.
+        # Write mode since 2026-10-10 (Albert). Changing any of these is a dated decision
+        # recorded in the repo (registry, method changelog, CLAUDE.md); update this test then.
         pol = REG["policy"]
         self.assertEqual(REG["write_mode"]["mode"], "write")
         self.assertEqual(pol["approve_verdicts"], ["CLOSER", "SPAM"])

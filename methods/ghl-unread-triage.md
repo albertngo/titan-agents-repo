@@ -218,7 +218,7 @@ them all.
 
 ## Rollout and switches
 
-**Write mode since 2026-10-10** (Albert; vault `05_decisions/2026-10-10-ghl-triage-write-mode.md`):
+**Write mode since 2026-10-10** (Albert):
 `CLOSER`, `SPAM` and both age-outs are on. He switched on before the 7-day pilot bar below,
 on his review of run `20261008T1458-c60f` (34 of 34 closers and 2 of 2 spam right).
 
@@ -234,7 +234,8 @@ a glance. Those four never get a switch: they are not in `clearable_verdicts`, a
 `scripts/ghl_unread_plan.py` refuses a registry that lists any of them there or in
 `approve_verdicts`.
 
-Turning a switch on is a dated vault decision (`05_decisions/`) plus one PR that sets
+Turning a switch on is a dated decision recorded in the repo (this file's changelog, the
+registry, CLAUDE.md) in one PR that sets
 `write_mode: write`, the verdict in `approve_verdicts`, `policy.exception_date`, and the
 dated CLAUDE.md exception for `ghl-actions-agent` — never an edit made to get a run through.
 The pilot's backlog of clearable conversations is cleared once, supervised, at the switch;

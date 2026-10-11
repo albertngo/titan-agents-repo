@@ -179,7 +179,7 @@ Three rules that are not negotiable, all from Albert on 2026-09-26: a record who
 `Style tags status` is `Staff confirmed` is never touched; colour tags come from
 `Swatch images` only — never a room scene — and no swatch means hold; the run never
 writes `Staff confirmed`. `write_mode` starts at `plan_only` and flipping it is a
-dated vault decision, same as the social pipeline was.
+a dated decision recorded in the repo (registry, the method's changelog, CLAUDE.md), same as the social pipeline was.
 
 ### Product images (`/image-fill`, 2026-09-29)
 
@@ -255,10 +255,9 @@ is the only copy of the classifier, read by the session model in both:
   been quiet 14+ days as a count. notion-sync is unchanged: reply and to-action items become
   tasks, FYI does not.
 
-`write_mode` is **`write` since 2026-10-10** (Albert, vault
-`05_decisions/2026-10-10-ghl-triage-write-mode.md`), switched on before the 7-day pilot bar
-on his review of 34/34 right closers. Each clearable kind is its own switch in the registry
-`policy` (`approve_verdicts`, `approve_stale`); changing one is a dated vault decision. The
+`write_mode` is **`write` since 2026-10-10** (Albert), switched on before the 7-day pilot
+bar on his review of 34/34 right closers. Each clearable kind is its own switch in the
+registry `policy` (`approve_verdicts`, `approve_stale`); changing one is a dated decision recorded in the repo (registry, the method's changelog, CLAUDE.md). The
 write token is `GHL_WRITE_API` (conversations.write only). Every run is logged to branch
 **`claude/ghl-triage-log`** — never merged, never PR'd, written only by `scripts/ghl_triage_log.py` — which is also the verdict cache.
 **`scripts/ghl_mark_read.py` is the only file in this repo that can write to GHL**, and it
@@ -295,7 +294,8 @@ always — `ghl-actions-agent` too, except its one mark-read slice below.
 run (`policy.exception_date` 2026-10-10). The kinds policy may approve are the registry's
 `approve_verdicts` and `approve_stale`, at most 25 per run, all-or-nothing; more waits for a
 person. Every other `ghl-actions-agent` action (replies, stages, tags) still needs a person's
-approval, always. Vault `05_decisions/2026-10-10-ghl-triage-write-mode.md`.
+approval, always. Recorded in the registry (`write_mode._switched`) and
+`methods/ghl-unread-triage.md` (rubric v4).
 
 The flow is always: **ingest → decide (Albert, a department lead, policy for the
 narrow catalogue slice above, or the orchestrator) → act**. No agent does all three
@@ -521,12 +521,21 @@ repo, so the vault is NOT present at session start — load it before any vault 
 
 ## Vault writes
 
+**The vault is for the business only (2026-10-11, Albert; applies to every build and
+decision from now on).** It holds what happens in the business: customers, projects,
+suppliers, staff, pipeline, money, business decisions and analyses of the business. How the
+system is built (agents, commands, scripts, contracts, registries, rubrics, routines,
+write-mode switches, API and platform quirks) is recorded **only in the repo**: CLAUDE.md,
+the registry's dated `_`-notes, the method file's changelog, and the PR. Never draft or write
+a vault note about a build, and never make a build decision wait on one.
+
 `vault-writer-agent` runs automatically at the end of `/daily-ingest` (**un-parked
 2026-07-27**, on Albert's explicit instruction, ahead of its own originally-stated
 "three clean sessions" bar — see the note in its definition). It may ONLY write in
 the 5 whitelisted patterns there: daily note, entity-note Log appends, new entity
-notes (ID-matched), decision notes on explicit record, platform notes on explicit
-instruction. Anything else, it proposes and stops — same as a manual write always did.
+notes (ID-matched), business decision notes on explicit record, and business facts about
+a platform (account, plan, cost, owner) on explicit instruction. Anything else, it proposes
+and stops — same as a manual write always did.
 
 The vault's `CONVENTIONS.md` still governs every write, automatic or manual:
 
@@ -561,12 +570,13 @@ The vault's `CONVENTIONS.md` still governs every write, automatic or manual:
 **Ask Albert / propose-and-stop** for anything off-whitelist. Don't batch to the end
 of a session, and never write outside the whitelist unprompted:
 
-- An agent is added, or its definition/contract changes.
-- A platform quirk, trap, or ID surfaces that `platforms/<Platform>.md` doesn't already have.
-- An analysis produces findings worth keeping (e.g. the GHL win-timeline) →
-  `09_analyses/YYYY-MM-DD-slug.md` per the vault's `templates/analysis.md`.
-- A decision gets made → `decisions/YYYY-MM-DD-slug.md`.
-- A contract in `contracts/` changes.
+- An analysis of the business produces findings worth keeping (e.g. the GHL win-timeline)
+  → `09_analyses/YYYY-MM-DD-slug.md` per the vault's `templates/analysis.md`.
+- A business decision gets made (pricing, suppliers, staffing, process, customers) →
+  `05_decisions/YYYY-MM-DD-slug.md`.
+
+Not vault material, ever (2026-10-11): an agent, command or contract added or changed, an
+API quirk, trap or ID, a rubric version, a write-mode switch. Those go in the repo.
 
 Checkpoint flow for off-whitelist writes: draft the change → show it in chat → Albert
 approves → write → commit → push.

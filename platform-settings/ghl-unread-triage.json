@@ -11,7 +11,7 @@
 
   "write_mode": {
     "mode": "write",
-    "_switched": "2026-10-10 (Albert, after reviewing run 20261008T1458-c60f: 34/34 closers and 2/2 spam right; vault 05_decisions/2026-10-10-ghl-triage-write-mode.md). He chose to switch on before the 7-day pilot bar.",
+    "_switched": "2026-10-10 (Albert, after reviewing run 20261008T1458-c60f: 34/34 closers and 2/2 spam right). He chose to switch on before the 7-day pilot bar.",
     "_values": ["plan_only", "write"],
     "_flip": "Staged rollout, same shape as style-tags.json and supplier-sites.json. While plan_only, the sweep classifies and logs 'would clear' and writes NO approval file and marks NOTHING read — scripts/ghl_unread_plan.py refuses --write-approval under it and scripts/ghl_mark_read.py refuses to run. Flipping to write is a dated decision recorded in the vault (05_decisions/), together with policy.exception_date, policy.approve_verdicts and the dated CLAUDE.md exception for ghl-actions-agent — never an edit made to get a run through. Update tests/test_ghl_unread_triage.py in the same commit."
   },

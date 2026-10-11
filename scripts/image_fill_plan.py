@@ -668,7 +668,7 @@ def main(argv=None):
 
     if args.write_approval and cfg["write_mode"]["mode"] != "write":
         print("error: write_mode is plan_only in platform-settings/supplier-sites.json; no approval file "
-              "is written. Flipping it is a dated vault decision.", file=sys.stderr)
+              "is written. Flipping it is a dated decision recorded in the repo.", file=sys.stderr)
         return 4
     plan = build(records, pages_file, judgements, product_pages, cfg, args.supplier, args.scope)
     plans = REPO_ROOT / "plans" / date

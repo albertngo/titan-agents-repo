@@ -73,7 +73,7 @@ silently before. Re-read live (`list_triggers`, `get_session`) before relying on
 | Log branch `init` | done 2026-10-08 (supervised, from the build session); first record = the live dry run |
 | Routine created (plan_only) | done 2026-10-08T18:33Z, `trig_01E8YGSwjQ3ftmx8k1jxRLeu` (UI, repo attached); first fire 18:59Z |
 | Pilot | 2026-10-08 → 10, rubric v3. Albert's review of run `20261008T1458-c60f`: closers 34/34, spam 2/2 right |
-| Write mode | switched on 2026-10-10 (Albert, before the 7-day bar): token `GHL_WRITE_API`, supervised write probe, vault `05_decisions/2026-10-10-ghl-triage-write-mode.md`, rubric v4, then one supervised backlog clear |
+| Write mode | switched on 2026-10-10 (Albert, before the 7-day bar): token `GHL_WRITE_API`, supervised write probe, rubric v4, then one supervised backlog clear |
 
 ## Changelog
 

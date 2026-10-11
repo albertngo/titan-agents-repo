@@ -57,12 +57,13 @@ Then update the vault per `CONVENTIONS.md` in the vault repo (read it first, eve
    contact or a conversation ID depending on the finding type. Take contact IDs from a
    record's explicit `contact_id` field, not from `ref`.
 4. **Decisions** — CREATE `05_decisions/<YYYY-MM-DD>-<slug>.md` ONLY when the brief or
-   Albert explicitly records a decision. Never infer decisions from activity.
+   Albert explicitly records a **business** decision. Never infer decisions from activity,
+   and never write one about how the system is built (agents, rubrics, switches) — those
+   live in the repo only (Albert, 2026-10-11; CLAUDE.md "Vault writes").
 5. **Platform notes** — `06_platforms/<Platform>.md` is written ONLY on an explicit
-   instruction (from the brief or from Albert), never automatically inferred from
-   routine ingest activity. A quirk/trap surfacing in ingest data is not itself
-   the instruction — it is a candidate to propose-and-stop on, per
-   `CLAUDE.md`'s "Ask Albert to push to the vault" triggers.
+   instruction (from the brief or from Albert), and only with business facts about the
+   platform (account, plan, cost, who owns it). API quirks, traps and ids are repo
+   material, never vault (Albert, 2026-10-11).
 
 ## Visibility (vault tagging)
 
