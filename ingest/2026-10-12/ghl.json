@@ -1,0 +1,46 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-10-12T08:10:00-04:00",
+  "status": "error",
+  "error": "GHL MCP server tools (contacts, opportunities, calendars, conversations, pipelines) were not available in this agent session; none of the four categories or unread triage could be pulled. Call-pull script ran OK (0 calls in window).",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest unavailable today: MCP tools not reachable from the ingest agent. Re-run /ghl ingest in a session with the ghl MCP server connected."
+  ],
+  "extensions": {
+    "ghl": {
+      "template_version": "6",
+      "reporting": {
+        "calls": {
+          "listed": 0,
+          "from_note": 0,
+          "transcribed": 0,
+          "voicemails": 0,
+          "minutes": 0.0,
+          "est_cost_usd": 0,
+          "engine": "elevenlabs",
+          "status": "ok",
+          "error": null
+        }
+      },
+      "new_leads": [],
+      "opportunities": [],
+      "appointments_booked": [],
+      "conversations": [],
+      "workflow_drift": [],
+      "won_records": [],
+      "stragglers_ranked": [],
+      "calls": [],
+      "call_quality": {
+        "sensitivity": "private",
+        "records": []
+      },
+      "triage": {
+        "status": "error",
+        "error": "not run: MCP unavailable"
+      }
+    }
+  }
+}
