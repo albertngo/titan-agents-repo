@@ -1,0 +1,30 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-10-13T08:10:00-04:00",
+  "status": "error",
+  "error": "GHL MCP server (ghl) not available in this session: no contacts/opportunities/conversations/calendars tools were exposed, so none of the four categories (new leads, opportunities, appointments, conversations) or workflow drift could be pulled. No data was guessed. The call pull script (scripts/ghl_calls_pull.py) did run (11 calls listed, 8 transcribed) but call enrichment was not joined to conversations because the conversation records are missing.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest failed today: GHL MCP tools unavailable. No leads, pipeline, appointments, conversations or drift for 2026-10-13. Check the ghl MCP connection (.mcp.json, GHL_PIT_TOKEN, GHL_LOCATION_ID) and re-run."
+  ],
+  "extensions": {
+    "ghl": {
+      "template_version": "6",
+      "reporting": {
+        "calls": {"listed": 11, "from_note": 0, "transcribed": 8, "voicemails": null, "minutes": 0.0, "est_cost_usd": 0.005, "engine": "elevenlabs", "status": "ok", "error": null, "note": "Pulled to analysis/cache/ghl-calls/runs/2026-10-13.json but not summarised into calls[] this run."}
+      },
+      "new_leads": [],
+      "opportunities": [],
+      "appointments_booked": [],
+      "conversations": [],
+      "workflow_drift": [],
+      "won_records": [],
+      "stragglers_ranked": [],
+      "calls": [],
+      "call_quality": {"sensitivity": "private", "records": []},
+      "triage": {"status": "error", "error": "Not run: GHL MCP unavailable, ingest aborted before the triage step."}
+    }
+  }
+}

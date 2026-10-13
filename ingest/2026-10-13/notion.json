@@ -1,0 +1,139 @@
+{
+  "contract_version": "1",
+  "source": "notion",
+  "run_at": "2026-10-13T08:00:00-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "notion-new_won_project-3f5596a4505f81609d1ad6ee544cbb8c",
+      "type": "new_won_project",
+      "title": "Won: Nash, Saugeen Shores",
+      "summary": "924 Piccadilly Drive, Saugeen Shores; approx $15,200.00, project type Both, sales Pourya Lalee, no PM assigned.",
+      "timestamp": "2026-10-10T16:43:21-04:00",
+      "priority": "high",
+      "link": "https://app.notion.com/3f5596a4505f81609d1ad6ee544cbb8c",
+      "amount_cents": 1520000,
+      "raw_ref": "notion:titan-projects:opp=1g2ZDEc9ipcjY8NrGucH",
+      "sensitivity": null,
+      "assigned_to": null
+    },
+    {
+      "id": "notion-new_won_project-3f5596a4505f81b9af53e5c0daa6c40d",
+      "type": "new_won_project",
+      "title": "Won: Dante Spizziri, Bolton",
+      "summary": "29 Autumn Oak Court, Bolton; approx $20,559.45, project type Both, sales Pourya Lalee, no PM assigned.",
+      "timestamp": "2026-10-10T16:39:33-04:00",
+      "priority": "high",
+      "link": "https://app.notion.com/3f5596a4505f81b9af53e5c0daa6c40d",
+      "amount_cents": 2055945,
+      "raw_ref": "notion:titan-projects:opp=gRTVRElIkma5Blc42A0O",
+      "sensitivity": null,
+      "assigned_to": null
+    },
+    {
+      "id": "notion-new_won_project-3f5596a4505f81b18d4ac480bcd16830",
+      "type": "new_won_project",
+      "title": "Won: Mike Terminesi, Mississauga",
+      "summary": "5230 Glen Erin Drive #22, Mississauga; approx $9,379.00, project type unset, sales Pourya Lalee, no PM assigned. A second row (no Opportunity ID, url 3f5596a4505f8043b845df4b0056465e) duplicates this project; likely a double entry.",
+      "timestamp": "2026-10-10T16:04:18-04:00",
+      "priority": "high",
+      "link": "https://app.notion.com/3f5596a4505f81b18d4ac480bcd16830",
+      "amount_cents": 937900,
+      "raw_ref": "notion:titan-projects:opp=UGmYOzkqzujHDTwzKfPI",
+      "sensitivity": null,
+      "assigned_to": null
+    },
+    {
+      "id": "notion-work_order_deficiency-3f5596a4505f80579130db187639a125",
+      "type": "work_order_deficiency",
+      "title": "WO-Munsif -101126 (Deficiency, Minor)",
+      "summary": "Deficiency work order created 2026-10-11, status 'Sending....', not an error status. Not completed.",
+      "timestamp": "2026-10-11T00:00:00-04:00",
+      "priority": "normal",
+      "link": "https://app.notion.com/3f5596a4505f80579130db187639a125",
+      "amount_cents": null,
+      "raw_ref": "notion:qa-wo:https://app.notion.com/3f5596a4505f80579130db187639a125",
+      "sensitivity": null,
+      "assigned_to": null
+    },
+    {
+      "id": "notion-meeting_logged-3ea596a4505f81a2ab52d634df5a48ec",
+      "type": "meeting_logged",
+      "title": "Project Status - Oct 6/26",
+      "summary": "Latest status meeting (2026-10-06). Not yet processed: no Meeting Summary and no Tactical/CII relations. Deep pull skipped (cold start).",
+      "timestamp": "2026-10-06T00:00:00-04:00",
+      "priority": "normal",
+      "link": "https://app.notion.com/3ea596a4505f81a2ab52d634df5a48ec",
+      "amount_cents": null,
+      "raw_ref": "notion:meeting:https://app.notion.com/3ea596a4505f81a2ab52d634df5a48ec",
+      "sensitivity": null,
+      "assigned_to": null
+    },
+    {
+      "id": "notion-rollup-tactical-stale-2026-10-13",
+      "type": "rollup",
+      "title": "Stale tactical tasks: 100+ open past threshold",
+      "summary": "At least 100 'Not started' Tactical Tasks rows are past the 14-day threshold (SQL cap hit; oldest are from 2026-09-02). Mix of GHL sync tasks, price-list decisions and 'Create Gift Box' rows; none In progress or On Hold. Age measured from createdTime.",
+      "timestamp": "2026-10-13T08:00:00-04:00",
+      "priority": "normal",
+      "link": null,
+      "amount_cents": null,
+      "raw_ref": "notion:tactical:rollup:2026-10-13",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "new_won_projects": 3,
+    "new_won_value_cents": 4513845,
+    "open_work_orders": 1,
+    "work_orders_in_error": 0,
+    "work_orders_completed": 0,
+    "payments_count": 0,
+    "payments_received_cents": 0,
+    "stale_tactical_tasks": 100,
+    "new_meetings": 1
+  },
+  "needs_attention": [
+    "3 new won projects (Nash $15.2k, Dante Spizziri $20.6k, Mike Terminesi $9.4k); Terminesi has a duplicate row with no Opportunity ID to clean up.",
+    "Oct 6 Project Status meeting has no Meeting Summary: run the meeting-processor skill.",
+    "100+ Tactical Tasks are stale (oldest from 2026-09-02); the list needs a triage pass.",
+    "Cold start: no notion.json within the last 7 days (latest is 2026-09-08), so the snapshot was reseeded. In-window projects were reported; no older backlog.",
+    "notion-ingest-sources.json is stale: QA Work Orders properties are now 'Budget Expense ($$ Payout)' and 'Description To Send (To Contractor)'."
+  ],
+  "extensions": {
+    "notion": {
+      "template_version": "1",
+      "snapshot": {
+        "titan_projects": [
+          "opp=1g2ZDEc9ipcjY8NrGucH",
+          "opp=gRTVRElIkma5Blc42A0O",
+          "opp=UGmYOzkqzujHDTwzKfPI",
+          "https://app.notion.com/3f5596a4505f8043b845df4b0056465e"
+        ],
+        "qa_work_orders": [
+          "https://app.notion.com/3f5596a4505f80579130db187639a125"
+        ],
+        "master_payments_log": [],
+        "tactical_tasks_list": [],
+        "project_status_meetings": [
+          "https://app.notion.com/3ea596a4505f81a2ab52d634df5a48ec",
+          "https://app.notion.com/3ea596a4505f80d4aa5ac7acbc1b24a5",
+          "https://app.notion.com/3cf596a4505f81f1b872c8a5be87ac69"
+        ]
+      },
+      "reporting": {
+        "cold_start": true,
+        "tactical_stale_by_status": {
+          "Not started": "100+ (query capped at 100)"
+        },
+        "tactical_sync_exclusions": "none (no actions-log.json today)",
+        "work_order_status": {
+          "Sending....": 1
+        },
+        "meeting_deep_pull": "skipped: cold start, newest meeting unprocessed"
+      }
+    }
+  }
+}
