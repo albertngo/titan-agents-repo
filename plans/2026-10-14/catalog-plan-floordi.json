@@ -1,0 +1,49 @@
+{
+ "contract_version": "catalog-plan-1",
+ "supplier": "FLOORDI",
+ "run_at": "2026-10-14T13:37:20.019949-04:00",
+ "status": "partial",
+ "inputs": [
+  {
+   "file": "ingest/2026-10-14/floordi_airtable_upload_2026-10-14.csv",
+   "rows": 9
+  },
+  {
+   "file": "ingest/2026-10-14/lightspeed-products.json",
+   "products": 15093,
+   "run_at": "2026-10-14T13:29:35.873352-04:00"
+  },
+  {
+   "file": "ingest/2026-10-14/floordi_airtable_existing.json",
+   "records": 8
+  },
+  {
+   "file": "/root/.claude/projects/-home-user/8900b57e-081c-52d9-a433-d24e2b86f708/tool-results/mcp-Airtable-get_table_schema-1791999045727.txt",
+   "select_fields": 25
+  }
+ ],
+ "cost_basis": {
+  "value": "dealer",
+  "confirmed_by": "Albert 2026-09-10"
+ },
+ "as_of": "2026-10-14",
+ "effective_dates": [
+  "2026-10-06"
+ ],
+ "summary": {
+  "actions_total": 0,
+  "uuid_recovered_by_sku": 0,
+  "blocked": 1,
+  "warnings": 0,
+  "rows_in": 9
+ },
+ "actions": [],
+ "blocked": [
+  {
+   "sku": "LVT-FLRD-AVF503",
+   "reason": "ls_payload_unavailable",
+   "detail": "this SKU is new to Lightspeed, and a create needs the skill-built row from <supplier>_ls_upload_<date>.csv \u2014 the product name and category cannot be derived from the Airtable columns alone. Pass --ls-upload."
+  }
+ ],
+ "warnings": []
+}
