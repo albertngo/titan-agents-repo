@@ -1,0 +1,301 @@
+## Daily Brief — 2026-10-14
+
+**Needs attention today**
+- John D. (sms): inspector failed our railing (spindles >4"), $1,800 still owing; wrote again this morning — answer today. (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/aVdl7fPabfaoOXJIRxXt)
+- Bid request due **2026-10-15**: Stair & Floor Pricing – Kleinburg (Coeur Construction/Buildertrend, info@); Pourya was forwarded it 10-13, no submission seen.
+- Dawn Gledhill WON ($11,448.88): first e-transfer bounced 10-13 (mistyped address); Notion shows $4,007.11 received — confirm deposit, schedule install.
+- Stale workflow abandoned engaged leads 10-13 (MD Sharma $28.4K hot, Jaspreet, Hammad Hussain, Edith Wu); observed abandon ages (~7/8/55 days) don't match ghl-workflow.json (28/14/80). 39 open opps past stale threshold with no `stale_lead` tag.
+- Price owed today: Craig/Dean (Kitchen Crafters) — Joey promised 10-14. Also due: Monica's 10 vinyl boxes ($610 cash) pickup; Jaspreet's on-site measure; Agabus Paul redo date (~$6K unpaid); Brian Han visit 10-15 9:45.
+- Unanswered: Victoria Robinson (foodert.com) inquiry since 10-12; PBS Supplies overdue invoices awaiting Albert's billing preference + card. WO-Munsif -101126 deficiency stuck "Manual Send Needed" since 10-11.
+- Make scenario "Lightspeed – Notion @order" stopped since 10-07. GHL triage clearing is blocked: 237 qualify vs. 25/run all-or-nothing cap (10 sweeps, 0 cleared).
+
+**Numbers**
+- GHL: 122 leads, 9 new, 21 unanswered, 1 appointment booked, 12 pipeline moves, 1 won ($11,448.88), 56 drift findings; unread 386 (14 reply, 27 to action, 69 FYI).
+- Outlook: 82 scanned (7-day catch-up), 3 customer, 3 supplier, 8 admin, 2 unanswered customer, 0 bounces.
+- Bookkeeper: no data (QuickBooks connector unavailable).
+- Notion: 0 new won (cold start), 1 WO in error, 3 payments $10,007.11, 100+ stale tactical tasks, 0 new meetings.
+- Meta Ads: $49.07 spend, 2 leads, CPL $24.54 (7-day baseline $19.53, 1.26x), 1 active campaign, no alerts.
+
+**By source**
+- **GHL:** Heavy day on payments and follow-through: John D. failed-inspection/$1,800 balance (high), Dawn Gledhill's bounced deposit, Agabus Paul redo date. 35 calls processed (23 from notes, 7 transcribed, 7 voicemails). Drift: 3 meeting_no_followup (Chris Portelli, Kamal Manchanda, Jaber Zreik), 2 followup_not_fired (Keith Hinkson, Nora Hamid), 1 categorization_miss (Craig, Kitchen Crafters), 50 stale_approaching. Store's own number (905-282-1881) is saved on a customer contact, so whisper/missed calls log to the wrong record. GHL ingest used `scripts/ghl_client.py` (GET-only), not the MCP tools.
+- **Outlook:** Catch-up run; window is the last 7 days only — 2026-09-09 to 10-06 not covered. High: Buildertrend bid request (https://outlook.office365.com/owa/?ItemID=AAMkADg3ODE1NTk4LTZiNWQtNGQ5NC1iOWJhLWZhZTI0NjQ4ODRjOQBGAAAAAACfW0oVpd2VRJyg7ITCqcIQBwBFlqPg%2FSDYTaqiknz3W61PAAAAAAEMAABFlqPg%2FSDYTaqiknz3W61PAAQIBl15AAA%3D&exvsurl=1&viewmodel=ReadMessageItem), Victoria Robinson inquiry, attachment-only email from luxevistaconstruction@gmail.com, PBS Supplies overdue invoices. Also a SIDCO statement and a Vizion Floor Brampton warehouse relocation notice.
+- **Bookkeeper:** Nothing checked — overdue invoices, payments, expenses >$500 and uncategorized transactions all unverified.
+- **Notion:** WO-Munsif -101126 (high, https://app.notion.com/3f5596a4505f80579130db187639a125). 3 payments received 10-13 (Basil Felix D'Souza $3,000, Michael Terminesi $3,000, Dawn Gledhill $4,007.11), none ≥$5K. Price-list decisions pending: FAW Aug 2026 eng promo, Woden Aug 17 list (4 decisions). 5 projects won in last 7d weren't emitted (cold start), incl. a blank unnamed row created 10-13 — check it. Latest meeting (Oct 6/26) has no summary.
+- **Meta Ads:** Single campaign (Flooring Problems) spent $49.07 for 2 leads; within CPL threshold. Only 10-13 pulled (no prior file in 7 days).
+
+**Sources missing today**
+- bookkeeper — status error: QuickBooks (Intuit) MCP connector unavailable.
+- No run at all on: this branch's run-ledger last entry is 2026-09-08, so 2026-09-09 → 2026-10-13 have no entry here (earlier ledger notes show this can be branch isolation; Outlook/Notion cold-started, so real ingest data for the gap is absent). Meta Ads pulled 10-13 only.
+- GHL unread triage: status ok (last sweep 08:00 ET, 10 sweeps in 24h); clearing blocked by the 25 cap.
+
+**GHL to action**
+- Franca Pucci — compliance: opt-out, set DND (62 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/mTcVJfYpLWmsq0grrSe9
+- Dunrtic Construction Constrution — missed call or voicemail: call back (202 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/lppMaIiWDZiCvA0vrc78
+- Toll Free Call — missed call or voicemail: call back (181 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/z1ZhxACtUicKWh4WVj7j
+- (226) 212-8804 — missed call or voicemail: call back (54 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/DKqLe5a5cSThCk2A9JrX
+- Muhammad Abdullah — attachment: check it, often a payment proof (25 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/OHrKOgRRCB8Cp6cgQQ1w
+- Abdi Hasan — attachment: check it, often a payment proof (13 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/29fOeJdEPs4uUaOHgW5G
+- (416) 913-9329 — missed call or voicemail: call back (13 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/mmRPwNGuuVmknEmBG4zY
+- Miko Mesfin — missed call or voicemail: call back (12 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/0CjC5xDzkQk8KxMz4pBu
+- (905) 598-0984 — missed call or voicemail: call back (12 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/7ct2cW7xud4Wr8vnsnwB
+- Diego Contecha — attachment: check it, often a payment proof (11 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/GfGkILCpi8ficaPeMdWT
+- (416) 825-4453 — attachment: check it, often a payment proof (11 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/5A9GQ9K6KEHZauxTmEhl
+- Dawn Mercury — missed call or voicemail: call back (10 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/iz8Nmj5tvAjv0RerBYR5
+- (416) 786-6271 — missed call or voicemail: call back (10 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/IZEJ6rzrmYaU2SwNYpyw
+- Mc — attachment: check it, often a payment proof (9 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/TSELqbhjqfyN3FHAb1AA
+- Helen Le — attachment: check it, often a payment proof (9 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/nvsWAAMLBmPA8UqOfb3o
+- (437) 566-9089 — missed call or voicemail: call back (9 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/TPdy0aivAfObA88RP4EM
+- Sri — attachment: check it, often a payment proof (8 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/ziKoL9lf4enbIF1ks4dd
+- Moenad Nadeem — attachment: check it, often a payment proof (6 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/wlF3z7ciLz3fzdKZYY0C
+- (705) 996-6201 — missed call or voicemail: call back (6 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/t4G1s9p3w642JZcFiXlS
+- Jay (ventura) — missed call or voicemail: call back (6 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/Gqgcfut7UGtJTBYgrcud
+- Rachita Saini — missed call or voicemail: call back (5 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/TU5iOgjQWqhb4m22ZbSD
+- (416) 949-7752 — missed call or voicemail: call back (4 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/8dMstgUxfrp9wdMIthUW
+- Karim — missed call or voicemail: call back (4 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/H3PP6Vts82RxLtcvSaxH
+- (437) 889-6685 — missed call or voicemail: call back (2 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/2Yq0QDRkPl7JpGqguqwZ
+- Ariel — order pickup Saturday, deposit coming; prepare order (1 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/Gadpg0AwBftbrUzjtG9t
+- Titan Flooring — missed call or voicemail: call back (1 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/7xlLQErA8IUuSMXKBqKe
+- Brian Han — attachment: check it, often a payment proof (0 days) https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/s3o3vK9gy4l8bwFukFZ7
+
+**GHL FYI**
+- Jaspreet — address sent on its own (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/It7Co66517uW0dlYGmE0)
+- (69 FYI threads total; only 1 arrived in the last 24h. Dave Lambert — customer away until mid-month — shown for completeness.)
+
+**GHL triage review**
+- (416) 3. — CLOSER: thanks acknowledgement (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/jHFkmg7n7xDRS5rQk3p4)
+- DMYTRO G. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/08LNDgZV2Dd7oweQOta9)
+- Mike T. — CLOSER: acknowledgement (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/I9OBIojQXdSdZT0mps3A)
+- Iyomal W. — CLOSER: thanks (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/3KHNIEj3JYCgMinNGtmP)
+- Mohammad S. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/k8WgJ1Fxz65gRwSHwAje)
+- Mohammed D. — CLOSER: thanks (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/tn8ypoWnuMUllJvSmC0D)
+- Chrissy M. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/j1WiWTkxilSLc32Fiq5x)
+- ALE — CLOSER: thanks (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/1CbYl4RMNpiG5fpdhuRZ)
+- Kara F. — CLOSER: thanks (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/fPad8ixnyHISFM3utId3)
+- Anna M. — CLOSER: thanks (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/LCZYdh9CeGUB3N36TKmu)
+- Melissa F. — CLOSER: thanks (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/d3pgZnZv16i6wsnzUzvy)
+- Sabrina A. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/a6wxJpGrYGT24MCUl53L)
+- MANOJ J. — CLOSER: thanks (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/YhbP0A30CLv24d4W1QYC)
+- Hossein Z. — CLOSER: reaction to our message (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/vRMXN6yWnm5nHcIhhRoZ)
+- Ulupi B. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/Da9KE2l5o3cLNB8XcNd2)
+- Ali F. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/EdFI9oWj2Dhm5ajGfU7L)
+- Na'al K. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/YTzcpwoQtKuuyr8LaQRP)
+- Silviya J. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/GByNBlYcqJFQuA20EMdc)
+- (647) 6. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/mfbzNzAPFR8hvD2qjfpI)
+- Krishna P. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/h7rGW4c0PgICmvpTjbJi)
+- Jasoda S. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/1JsFE2dPdyaI1dpHD6Wy)
+- (416) 3. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/3LC9D4w3TkR7DEcGbolF)
+- (647) 9. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/B0inJsBAo3JBl3ZKEMxK)
+- (416) 5. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/h78WQH2CJNIlg3MINUi5)
+- Ashley — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/dpW9q5uEvrGwEbDHmTIA)
+- Tariqul T. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/zVMYmz8ESM6reCV539WQ)
+- 155 5. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/0KAKnIVYBREpnKcGJDGK)
+- Horshay H. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/LPWtXqe2FuA4tPdrdJW5)
+- Jas S. — CLOSER: thanks (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/AiM2U8WClhghbYsoLvKe)
+- WODEN (. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/MigzK2OcW7AuhVN5bBoU)
+- Muhammad R. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/IwxPuw1IDDifSpReVNA9)
+- (416) 2. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/hh6mn5LHT5GpxdWhMLEs)
+- Hank (. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/9G8C2lFfc3KntgVKzJ0g)
+- Marcia — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/6Kcrv3dSBnlOjeWZRU4o)
+- Heeradevi P. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/eqqYB1v7UjSmYNNoi3Iw)
+- (905) 6. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/dMT14SyLJ6A8JEQjfJeC)
+- Rajesh M. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/AeYfiOVIGVPjIGY5U4bJ)
+- Thomas D. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/E3fPzZqkPOSX1Ay4ZDBz)
+- Nora H. — CLOSER: thanks (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/vRXx3mdteQBrYWwMJBPd)
+- (647) 7. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/1CdBVBLyHtjmnyfMrEim)
+- (780) 9. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/4m7y3VDF5msCEbA4vJE9)
+- STEVEN D. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/sqYKzVpp8y8307UfZFy9)
+- BINHVAN L. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/lDKfvsVEnwOnJTfQeDJM)
+- (548) 3. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/bhbbqGygjf89906Xqtfi)
+- (647) 8. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/Y3xsXmG9cSSADX53UprL)
+- Bill (. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/rjyfhzv7INZod1HpHzAG)
+- (365) 6. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/eFlJyZ4qLu57wCEV0AEK)
+- Ricardo — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/VjzQEX0C9CwShcqzEt94)
+- Vista M. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/ltrSzQjZUJLrHk0TtCNo)
+- (905) 5. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/ncN17Ge1n8iOkIXcBTjV)
+- Om A. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/reamMxuKvKaDTupK60My)
+- Moheb M. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/JG6FmNyBGRpDfphKZBjI)
+- DAVID N. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/5k4wYTDXrLxFOUlrx7wz)
+- (228) 3. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/xNjDNC73jPtRXrtGRR2s)
+- (647) 8. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/dsOtwlIdPeWdQFM00OtV)
+- Sean K. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/83w3e13ALD6VCXSzlTd1)
+- (416) 2. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/NHH2OUhIMVMIiMARAUud)
+- Arif P. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/Ae0k4tqpwGll1aBaK7cq)
+- TRAN V. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/9NAG1h8fGgrpd7DTSqwi)
+- (818) 2. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/QFHIwqjIrX1LbMsDI7Fh)
+- HIEN — CLOSER: thanks (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/hecl9ITIZC5arSk0D8pU)
+- ROYALBANKCOLLEC — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/KDDjEnalnqM1js9hR6Pf)
+- (888) 4. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/eHbOTTIR4401BMS4TBKG)
+- (307) 5. — SPAM: lead-gen pitch (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/8akq3ZsRELcU2kdTbucG)
+- Wilfredo C. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/ewDMC7tNrZDJF6ZaJrcm)
+- Susham ). — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/woKyRJckX1OAbRfF3KrI)
+- (239) 3. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/O31vVCWyRPBsO9fP926H)
+- Stephen B. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/T3m1pm1kSqRmFQJuvAKU)
+- Karen W. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/NCobTN4s3FqMdKRtcm4b)
+- (647) 9. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/HgufI3LDCnDVHY1RH01Q)
+- Catherine B. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/BbFIn4JPMOgkTrrRh1cq)
+- Mei L. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/6YiqDdy0TBi3TEjpPa0V)
+- helen N. — CLOSER: reaction to our message (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/iHmEDfxrJmAxFYUu9IOW)
+- Rasnatsum H. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/NQvk7VOk90lFarY9Mt4T)
+- Damian — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/7jZBuyEYnwITemHcBJoT)
+- (647) 3. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/jeHxhvE9fIAC8imec1pb)
+- Abdul D. — CLOSER: thanks (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/Q2ZltAOUIyilqRAr0Zff)
+- Tony T. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/tH1jCzv3qdTLYYgd4eJW)
+- Hung N. — CLOSER: thanks (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/pqCg75zM50EjFhZAvv49)
+- (647) 2. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/PmPqXWcge1Ec1UoJHJxw)
+- Maysoon I. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/dGmNMwDndx70Lb1OJtT3)
+- (325) 5. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/6b1VdNn71KHzKzoPRBIU)
+- (647) 7. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/xHEBSQ0EsW0eYSZGlagG)
+- Orlando S. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/KZUIKMSTL7UHh46L8gVN)
+- Wanda — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/3oEjB0TCsR9VNdV7iesz)
+- Dominic — CLOSER: acknowledgement (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/Goh5xViVjAnWdb5fMzgk)
+- (779) 2. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/x86NEBcW2suITTmmKvWF)
+- Brian — CLOSER: thanks (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/YcjCJom2eVpEmH7LUuOg)
+- Madison F. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/RmsEdPfqjEktYMv5vOgH)
+- Sam/George — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/edRzIiTKsGlFTjAR5xxZ)
+- (647) 4. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/3EkhFQB0GMEcO02Foxqt)
+- Anujan K. — HELD: stale hold: untouched 14d+: batch_too_long (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/sMUDqteOvsXi0MX4CTlm)
+- Franz S. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/5aJa5MMHzN7n49SvwCDK)
+- Arkadi C. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/UwyLY5mfWjSxvy5fFhnp)
+- (647) 6. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/Ang3uyMiAMZ9GH9PRkx6)
+- Frank S. — CLOSER: thanks (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/LY6WnpUrT2DFiAQik8BS)
+- (416) 5. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/6TAyXnAKdvVezy3KiKdB)
+- HEIAR — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/HF6tAY3xUglnAz6zFlub)
+- Dav G. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/qJi36NgBxmU2inAOdoZ4)
+- kulwant s. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/MFokd6WDWkmNBr4nOvbq)
+- (647) 8. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/iSmNQgTBJoH76FNOdUpk)
+- (905) 4. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/DBxA2xYlJwwlkfSht7Bx)
+- Darshi S. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/7sMqCPzckmvNpvbw8l37)
+- (206) 7. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/SQR7ikaCby8I5lLevpmD)
+- Hussam H. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/AoPGXxtiO6sOnZfvSj1t)
+- (905) 5. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/IdMBN1qWBHNHHCvUymaj)
+- PETER 1. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/Yuz9EvGBeeJIOUzZhLFz)
+- Ahmed K. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/Iup4NNjRPhoSwy7VonEV)
+- Dar J. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/qpgK4AgxurlkJU4aXt2t)
+- Pourya L. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/46cU1yZCOA3Z7NRx0O6J)
+- (647) 2. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/oS93rYaY49qvOpFJlX7c)
+- Vergilio O. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/HhAxryqTcOJhu7utuh3I)
+- Fady g. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/igkWYFNblykXZcY1YRCm)
+- Glendy C. — CLOSER: thanks (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/8zVdDVSzByxfQfeliQwo)
+- (437) 4. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/NTTyQkBlkrjd2VnDZVA0)
+- Marion O. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/SAyNN7LUFM1FE5NQ0ay3)
+- (647) 3. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/uz11QsAKaD0rLgc30NQZ)
+- Joe N. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/NghzKsmP3yDxftzxo6xH)
+- Austin (. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/3imGOESG91hLCyfRC4YS)
+- (437) 6. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/XFbaVd9qNgPTkXDjtvvf)
+- (647) 4. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/oTy3qfCvIxs9HUNOFkyd)
+- BADAR A. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/yUCNZJr0YFbfGmuhSehr)
+- (437) 4. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/7DRYlyhmU1YjLiupuPmu)
+- Maureen — CLOSER: thumbs up (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/QPUDXIaaM8fGkmyqLgu0)
+- Viet — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/avdoDuyvwnhbwN8tDSBp)
+- Mien — CLOSER: acknowledgement (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/6RopRcddjGgwSlhH6MuO)
+- Gopal — CLOSER: thumbs up (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/LUCfQ3vlBMr8qExnfzCS)
+- Alan L. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/JpGh3DHURhXXQtD18Kyq)
+- (647) 2. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/K4PFonvfmiLa7Tp4juS3)
+- (913) 3. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/N44uzO6VokhUBr7kVCZx)
+- (647) 7. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/wfKRcS9AkYd2uK6C2b0d)
+- Nazim b. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/RbyzKXbL4tjBJGHl0lNN)
+- Eden P. — CLOSER: opt-out keyword, DND automatic (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/wWtQpYuZxxyJ5fxo3mtQ)
+- Lynda J. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/ZcjTsxZiYUi52Rl8xrIi)
+- (647) 7. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/QWAZJ1IV8iLkuaJm8O23)
+- (647) 3. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/JoX9pSppCHJbVaOYPz5z)
+- (289) 4. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/YfjbcBzCF0SUpdg0ncId)
+- Azzam R. — CLOSER: reaction to our message (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/jy8j5HMrabimNLOeonoy)
+- (647) 2. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/K7asLFlmEQy55kfegNS4)
+- (416) 8. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/HXjqcEIu81fImiQIViO7)
+- (416) 5. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/qJA3elEDG6Qa7Erzb3YJ)
+- (437) 7. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/jwGqsY2ZEBUpHvUX8zPP)
+- LUIS — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/VbGR217SeOai4FbMW9fd)
+- (905) 2. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/4LO7ay42iQSszTxPG56y)
+- (365) 7. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/HjnXrotkInzyDyIJTb4I)
+- (224) 5. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/ggzRRZbotm9CDV5r6Dtk)
+- (437) 9. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/kKiXoxGimAkH1nVD8wTV)
+- Shahjehan — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/bEl7K9ySo3SlBDT2Mqnz)
+- ANDY1 — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/WKluluBtpHTG31DexCdA)
+- (705) 7. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/cxh3UKTXCrW0n9oGmzGs)
+- (647) 9. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/P9gik2O37rUcD85SgRMF)
+- TONY — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/h0pSA2u2cEnQ0KGvCmH9)
+- (905) 9. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/gVzqJQKZeIvBQAplYB1Y)
+- (416) 5. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/QhZet0mCq0gzqlER8QIc)
+- Bijay — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/tuip5KKL9xBLjkyNDNyu)
+- UREAM R. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/U5E0LMrEwPJOp0jRDzK6)
+- Jack J. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/E2ztCAO1xzLuzTdsHkGN)
+- Anugrah — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/fuoDGGcyYzf2pyQELVZg)
+- (647) 3. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/l21GbodTc5YorFbvh8xq)
+- KAMAL F. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/xd1f5Xg4m3amrPgGP3jF)
+- Abdul K. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/7Zj7jqdA0Fo25m83BvVa)
+- Ghandi — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/OFEqzHQBWeKs93Rh8XcI)
+- (647) 9. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/WnH956GC7mTUIar47qzM)
+- Gurpreet S. — CLOSER: agreement (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/1DkIAllmaIOVg0c1UIsf)
+- (416) 2. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/JG1dlZzN2jv3x1WRdKEu)
+- SON — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/x8n222h9eQcENEr8AiHo)
+- Nicole — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/7NpyAjL9bZKZAPN7MS3O)
+- (416) 3. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/UZKNP9wk3jGeRaMtzn6a)
+- (416) 6. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/gKZxEHtsNjSbjkcOt1j9)
+- (647) 9. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/FGChkNgzyoFhypOuHWAR)
+- Kevin D. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/euGr5tSeFohIZZZkW2rO)
+- (236) 8. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/hFJeo0BR5ZbgovOGn9ld)
+- JOHNNY D. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/IvQtFQptZq26a6lTl3UY)
+- Fadi — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/iwHZD5r3TmWNJeEuIBzl)
+- Suhas G. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/kVF8nAiyNT2YPJFTSM8s)
+- Review P. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/YGv4jK6vbzRURQ2RiAXV)
+- (905) 8. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/12JNBdqXnlyRjNoCCLG7)
+- (416) 9. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/onYSLHQGoqFphuHjPxw5)
+- TOLL C. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/nUuw8GacpsrUCa3HTasC)
+- (647) 2. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/Dx28CPd4fHtI4PQt07pK)
+- KESRI C. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/5ubG5ngvgb6eJ040pM5R)
+- (416) 6. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/nSzACE4rerEoQa2YS8Ua)
+- (905) 5. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/wqudkLziMATGfAmmCDdD)
+- A. V. — CLOSER: acknowledgement (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/84H1YfY1xmnS1x9OKK5x)
+- RICHARD M. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/pHOC3BQvwkAuSJVmua4h)
+- Vesna S. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/S8K2fH6XRt1wNOxMqEuI)
+- Balbir S. — CLOSER: thanks (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/Fzk4PkHG3c346zKWg96y)
+- (647) 7. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/Ng5B7qxVMV0Wh6rGPEdt)
+- Ilda F. — HELD: stale hold: untouched 14d+: batch_too_long (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/tDycjJCUpFevsO8ZsOXK)
+- Grace W. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/ZcZQav06e32yicyK4buU)
+- JORGE L. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/j9rDk5pDVYwfz5aTdHA6)
+- (647) 4. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/VpZVpIPhCluwvDNAmWL4)
+- Melissa s. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/aKmuUGFaoNRqCfBUbs9J)
+- Mike — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/Gl6XHNB2tLf3r7ciw9na)
+- Owner a. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/Bj4QRfmCWmmiBIPttS6D)
+- Mathurey M. — CLOSER: agreement (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/XLXqRhkKV9LZDHQvRCNo)
+- JOZEF — CLOSER: thanks (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/jpBECNOs1fw8oK1fTxcP)
+- Moses R. — CLOSER: acknowledgement (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/3Rzf23nLcmcYoO3rTZX5)
+- John P. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/lWsxiGNPuBkKMb3fwHVO)
+- (438) 9. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/5knytTluI3yc8bbvp62X)
+- Lauren M. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/8U6OMJUbMmzLi2Na0eTG)
+- Ali M. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/CO82JbijPtZJ1OlU0CbI)
+- MINH B. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/pbn4FRDxRCuIml5PWjMa)
+- (860) 7. — SPAM: cold website pitch (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/E23K9iYTCuRPLAOIobX9)
+- (416) 6. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/8QKM5KKQ25bm4WwzXNSv)
+- Gary — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/dMcjuuIxn9Hd6m3ZMcsX)
+- Nghia — HELD: stale hold: untouched 14d+: batch_too_long (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/p3vAPBySW5pYaNlq9X01)
+- Havin N. — CLOSER: reaction to our message (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/ZB0EgZ2lMWm5UiaBFmYY)
+- Himanshu A. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/3IIJbK1oYfPSogC9zLOG)
+- Mike — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/NCY8hGiptgTRW7ia2SjC)
+- (416) 9. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/FbJPc7ID0fewX3GI0x9g)
+- (647) 8. — CLOSER: thanks (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/hh7a9vgMFRV7XjL1sCvu)
+- Michael F. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/Hn7UUY9urrzZlscNrAZP)
+- (613) 9. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/SgUmdJIFDmr5t2flygk8)
+- ANNIE — CLOSER: thanks (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/h6coIVgvNE4xF3hhYvAe)
+- (416) 9. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/eYEmCTkGif5oZijLFATw)
+- Ali T. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/5UHatNtVBNJTJydUANpc)
+- vibhu K. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/xKQH6S5NIFSEKmmmH7RX)
+- (416) 3. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/idqdadFDz5PGR6LHDP6I)
+- Malyn W. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/w38ieUcjFFXL0PHDf1G6)
+- Braydon B. — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/XJiNFFz7cn6svtcUOgB2)
+- Sonny F. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/7dp5kaXhrzaFEfVrTmCA)
+- (647) 5. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/baUGZNtti0Q75Y9qmZHa)
+- (424) 3. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/J2vihVElTYYiaeD9ERMF)
+- Maha — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/peXKywb8lb4R2DwEAXEp)
+- Rob M. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/JW6Vl05gaWmQOP5kQcOy)
+- (647) 9. — HELD: stale hold: untouched 14d+: attachment: check it, often a payment proof (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/hMwGNqu3hLMjKzxcskfz)
+- (416) 7. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/mFvCs2BCxnKQNXAa0Dcl)
+- (905) 7. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/lxhZNewYVFH5Q6mFE8hd)
+- Vivek N. — HELD: stale hold: untouched 14d+: no_customer_text (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/XmyKj3xhVLX3QhC6eM24)
+- Ayad — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/m9fms24cNJ7EHa2C5q4J)
+- (647) 6. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/2J5Euehc816avqn941li)
+- (no name) — UNSURE: stale unsure: untouched 7d+ (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/conversations/conversations/95ksKMoRruZZlDgIaksU)
+- (416) 8. — CLOSER: thanks (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/4pKlO3TKV1hORFH43RGe)
+- (548) 7. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/dUDjDKDvXntIPwXhOeih)
+- Hicham M. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/13KoCDaZJLy4IrBfgLB9)
+- Akeela A. — HELD: stale hold: untouched 14d+: missed call or voicemail: call back (https://app.gohighlevel.com/v2/location/4BwjVRlyDCR4ZRdcSrFR/contacts/detail/pxIwKKUXNWXhCz0SQtB4)

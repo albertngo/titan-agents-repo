@@ -491,5 +491,18 @@
     },
     "brief": true,
     "note": "scheduled run; local branch ledger last showed 2026-09-02, but all 5 ingesters cross-checked unmerged session branches and vault 01_daily notes and confirmed real runs happened through 2026-09-07 (branch-isolation artifact, not a real gap) -- no catch-up widening needed; bookkeeper still has no QBO/Intuit MCP connector (10th consecutive failed run since 2026-07-26)"
+  },
+  {
+    "date": "2026-10-14",
+    "run_at": "2026-10-14T12:40:00-04:00",
+    "sources": {
+      "ghl": "ok",
+      "outlook": "ok",
+      "bookkeeper": "error",
+      "notion": "ok",
+      "meta-ads": "ok"
+    },
+    "brief": true,
+    "note": "scheduled cloud run; this branch's ledger last showed 2026-09-08 so 09-09..10-13 have no entry here; Outlook widened to 7-day cap, Notion and Meta Ads cold-started; bookkeeper has no QBO connector; GHL read via scripts/ghl_client.py (no GHL MCP tools in session)"
   }
 ]
