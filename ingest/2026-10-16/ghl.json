@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-10-16T08:10:00-04:00",
+  "status": "error",
+  "error": "GHL MCP server tools (contacts, opportunities, calendars, conversations, pipelines) were not available in this session; none of the four categories (new leads, opportunities, appointments, conversations) or workflow drift could be read. No data was guessed.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL source failed today: MCP tools unavailable in this session. Leads, pipeline, appointments, conversations, drift and unread triage are missing from the brief; metrics are absent, not zero."
+  ],
+  "extensions": {
+    "ghl": {
+      "template_version": "6",
+      "reporting": {
+        "calls": {
+          "listed": 20,
+          "from_note": 14,
+          "transcribed": 0,
+          "voicemails": null,
+          "minutes": 0.0,
+          "est_cost_usd": 0,
+          "engine": "elevenlabs",
+          "status": "ok",
+          "error": null,
+          "note": "Call pull succeeded but call records were not written to calls[] because conversation/contact joins were unavailable."
+        }
+      },
+      "triage": {
+        "status": "error",
+        "error": "Triage not run: GHL MCP unavailable and window analysis not possible."
+      }
+    }
+  }
+}
