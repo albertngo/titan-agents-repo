@@ -53,6 +53,25 @@ in `process-price-list.md`, independent of anything in this file.
   database — nothing in this document links FAW to that entity, so no assumption was
   made either way.
 
+- **2026-10-16** — from Price Lists row `3fb596a4-505f-8185-abfc-d9fa81a14349`
+  (`New Price Lists effective October 16, 2026`): a 3-page Doors & Baseboards price
+  list from FAW (Brand NAF), effective 2026-10-16. Not flooring — no upload CSVs
+  produced. Tagged `Trims Price List`. Products: interior doors (1-panel hollow
+  smooth, 2-panel hollow smooth, 6-panel hollow textured, solid shaker 1 & 2 panel,
+  in sizes 18"–36", pallet $39–$70/pc, cut $39–$75/pc; clearance stock on 1-panel
+  and 2-panel), pine jam 6-pc set ($24.99), prehung door assembly ($129/door, 5 bus
+  days lead time). MDF primed baseboards (colonial, bevel step, modern edge bevel,
+  flat stock — 5-1/4"×1/2"×10' at $0.55/LnFt pallet / $0.75 min-4-pc; 7-1/4"×5/8"×10'
+  at $0.89/$1.09). MDF casing (colonial, modern edge bevel, flat stock, bevel step —
+  2-3/4" to 3-1/2" widths, $0.35–$0.55/LnFt pallet). MDF shoebase (colonial, bevel
+  step, modern edge bevel, flat stock — $0.16/$0.20). NEW pine baseboards, casing and
+  shoebase at $0.65–$0.89 (baseboards/casing) and $0.17/$0.22 (shoebase). All prices
+  per linear foot, orders in multiples of 4, final sale / no exchange / no returns.
+  Order desk `ORDERDESK@FLOORSATWORK.COM`. This is the second non-flooring product
+  line observed from FAW — the first was vanities/linen cabinets (2026-09-21, PL
+  tagged `Vanity Price List`). FAW/NAF evidently supplies doors, trim/moulding,
+  vanities and flooring.
+
 ## VBK (Notion Company value, exact casing)
 
 - **2026-09-15** — from Price Lists row `3dc596a4-505f-8100-898c-cbbf83399ea4`
