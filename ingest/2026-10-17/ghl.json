@@ -1,0 +1,22 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-10-17T08:00:00-04:00",
+  "status": "error",
+  "error": "GHL MCP server (ghl) was not available in this agent session: no contacts, conversations, opportunities, calendars or locations tools were exposed, so none of the four categories (new leads, opportunities, appointments, conversations) could be pulled. scripts/ghl_calls_pull.py ran but listed no calls in the window. No data was guessed.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest failed today: GHL MCP tools unavailable in the ingest session. No leads, pipeline, appointment, conversation, drift or triage data for 2026-10-17. Check .mcp.json / GHL_PIT_TOKEN and re-run."
+  ],
+  "extensions": {
+    "ghl": {
+      "template_version": "6",
+      "reporting": {"calls": {"status": "ok", "listed": 0, "from_note": 0, "transcribed": 0, "voicemails": 0, "minutes": 0.0, "est_cost_usd": 0, "engine": null, "error": null}},
+      "new_leads": [], "opportunities": [], "appointments_booked": [], "conversations": [],
+      "workflow_drift": [], "won_records": [], "stragglers_ranked": [], "calls": [],
+      "call_quality": {"sensitivity": "private", "records": []},
+      "triage": {"status": "error", "error": "GHL MCP unavailable; unread triage not run"}
+    }
+  }
+}
