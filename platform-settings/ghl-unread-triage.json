@@ -39,6 +39,8 @@
     },
     "_stale": "Age-based clears, separate from verdict clears. NEEDS_RESPONSE, ACTION and FYI never age out. Each kind is its own switch (approve_stale).",
     "max_mark_read_per_run": 25,
+    "cleanup": {"until": "2026-10-19", "max_mark_read_per_run": 400},
+    "_cleanup": "Albert, 2026-10-17: a one-off backlog cleanup. Every run 2026-10-12..16 tripped the 25 cap (~237 clearable: closers past 4 h, UNSURE quiet 7 d, holds quiet 14 d), so nothing cleared. Through 'until' (Toronto date, inclusive: Sat 17 and Mon 19) a run may clear up to this many; the day after, the normal cap applies again by itself. Same kinds, same guards, same compare-and-swap. Remove this block in a follow-up once it has expired.",
     "_cap": "All-or-nothing (Albert, 2026-10-08): more than this many clearable conversations in one run approves NOTHING and pushes a notification. CLOSER and SPAM count together. The pilot's backlog is cleared once, supervised, at the switch.",
     "exception_date": "2026-10-10",
     "_exception_date": "The date of the dated CLAUDE.md exception that lets ghl-actions-agent execute a policy-approved mark_conversation_read. While null, scripts/ghl_unread_plan.py writes no policy approval and scripts/ghl_mark_read.py refuses a policy-signed one.",

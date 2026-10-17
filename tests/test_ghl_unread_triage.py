@@ -390,7 +390,7 @@ class TestPullRun(unittest.TestCase):
 
 def cands_doc(conversations, mode="sweep", kill=None):
     return {"contract_version": "ghl-triage-candidates-1", "run_id": "20261008T1000-abcd",
-            "mode": mode, "run_at": "2026-10-08T10:00:00-04:00", "rubric_version": REG["rubric"]["version"],
+            "mode": mode, "run_at": "2026-11-02T10:00:00-05:00", "rubric_version": REG["rubric"]["version"],
             "write_mode": REG["write_mode"]["mode"], "log": {"kill_switch": kill},
             "conversations": conversations}
 
@@ -576,6 +576,30 @@ class TestPlan(unittest.TestCase):
         rec = plan.run_record(p)
         self.assertIn("clear_kind", rec["rows"][0])
 
+    def test_cleanup_window_lifts_the_cap_then_ends(self):
+        # Albert, 2026-10-17: a one-off backlog clear through policy.cleanup.until, then 25 again.
+        until = REG["policy"]["cleanup"]["until"]
+        self.assertEqual(until, "2026-10-19")
+        at = lambda s: datetime.fromisoformat(s)  # noqa: E731
+        self.assertEqual(plan.effective_cap(REG, at("2026-10-17T08:00:00-04:00")), 400)
+        self.assertEqual(plan.effective_cap(REG, at("2026-10-19T20:59:00-04:00")), 400)
+        self.assertEqual(plan.effective_cap(REG, at("2026-10-20T07:59:00-04:00")), 25)
+        self.assertEqual(plan.effective_cap(REG, at("2026-10-20T01:30:00+00:00")), 400, "Toronto date")
+        convs = [cand(f"c{i}", f"k{i}") for i in range(30)]
+        verdicts = {f"k{i}": "CLOSER" for i in range(30)}
+        doc = cands_doc(convs)
+        doc["run_at"] = "2026-10-17T08:00:00-04:00"
+        p = plan.build_plan(doc, judged(**verdicts), REG)
+        self.assertEqual((p["status"], len(p["actions"]), p["summary"]["cap"]), ("ready", 30, 400))
+        doc["run_at"] = "2026-10-20T08:00:00-04:00"
+        p = plan.build_plan(doc, judged(**verdicts), REG)
+        self.assertEqual(p["status"], "needs_person")
+        big = write_plan(30)
+        now = datetime.now(timezone.utc)
+        self.assertTrue(mark.preflight(big, approval(big), REG, now, None, "tok", "x/plan.json"))
+        big["run_at"] = "2026-10-17T08:00:00-04:00"
+        self.assertEqual(mark.preflight(big, approval(big), REG, now, None, "tok", "x/plan.json"), [])
+
     def test_actions_and_the_all_or_nothing_cap(self):
         r = reg_with(approve_verdicts=["CLOSER"])
         convs = [cand(f"c{i}", f"k{i}") for i in range(25)] + [cand("x", "kx", unread=False)]
@@ -657,7 +681,8 @@ def write_plan(n=1):
     acts = [{"id": f"gmr-{i:012d}", "seq": i + 1, "op": "mark_read", "conversation_id": CID,
              "contact_id": "k1", "verdict": "CLOSER", "reason": "thanks", "batch_key": "b-x",
              "expect": {"last_message_id": "last"}} for i in range(n)]
-    return {"run_id": "R1", "mode": "sweep", "expires": (datetime.now(timezone.utc) + timedelta(minutes=30)).isoformat(),
+    return {"run_id": "R1", "mode": "sweep", "run_at": "2026-11-02T10:00:00-05:00",
+            "expires": (datetime.now(timezone.utc) + timedelta(minutes=30)).isoformat(),
             "actions": acts}
 
 
