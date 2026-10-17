@@ -75,6 +75,17 @@ def action_id(conversation_id, key, last_message_id):
     return "gmr-" + hashlib.sha1(raw.encode()).hexdigest()[:12]
 
 
+def effective_cap(reg, run_at):
+    """The per-run cap. policy.cleanup lifts it through its 'until' date (Toronto, inclusive)
+    for a one-off backlog clear (Albert, 2026-10-17); after that the normal cap is back."""
+    pol = reg["policy"]
+    cleanup = pol.get("cleanup") or {}
+    day = run_at.astimezone(TZ).date().isoformat()
+    if cleanup.get("until") and day <= cleanup["until"]:
+        return cleanup["max_mark_read_per_run"]
+    return pol["max_mark_read_per_run"]
+
+
 def check_inputs(candidates, judgements, reg):
     for key, values in (("clearable_verdicts", reg["clearable_verdicts"]),
                         ("policy.approve_verdicts", reg["policy"]["approve_verdicts"])):
@@ -239,7 +250,7 @@ def build_plan(candidates, judgements, reg):
                             "batch_key": r["batch_key"],
                             "expect": {"last_message_id": c["last_message_id"]}})
 
-    cap = reg["policy"]["max_mark_read_per_run"]
+    cap = effective_cap(reg, run_at)
     status = "needs_person" if len(actions) > cap else "ready"
 
     def count(key):

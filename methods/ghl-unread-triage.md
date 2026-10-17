@@ -240,6 +240,12 @@ dated CLAUDE.md exception for `ghl-actions-agent` — never an edit made to get 
 The pilot's backlog of clearable conversations is cleared once, supervised, at the switch;
 after that the per-run cap (25, all-or-nothing) applies.
 
+**The backlog was never cleared at the switch.** Every run 2026-10-12..16 found about 237
+clearable conversations and tripped the cap, so nothing cleared. Albert's fix (2026-10-17):
+`policy.cleanup` lifts the cap to 400 through its `until` date (2026-10-19, a Toronto date,
+inclusive), with the same kinds, guards and compare-and-swap. The day after, the 25 cap is
+back by itself. Remove the block once it has expired.
+
 ## Change log
 
 - **v1 (2026-10-08).** First version: Albert's spec, grilled 2026-10-07/08 — human-reply
