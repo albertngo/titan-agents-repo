@@ -173,23 +173,20 @@ treat a cloud/session env var as satisfying that check in place of .env.
 
 ---
 
-Step 3 — Publish, before reporting
+Step 3 — Commit and push, before reporting
 
 Commit everything this run produced (ingest/<date>/, plans/<date>/, the actions-log,
-any repo file it changed), then run:
+any repo file it changed), then push the session branch (`git push -u origin <branch>`).
+This step runs whether steps 1-2 succeeded or stopped: a stopped run's files are
+exactly what the next person needs to see.
 
-    python3 scripts/publish_run.py --title "price list: PL-<id> <COMPANY> — <outcome>"
+Do NOT open a PR — routine fires do not create PRs (Albert, 2026-10-18: "it'll
+pollute the PR list"). Albert opens a PR by hand when a run's output warrants one.
 
-It pushes this session's branch and opens, or reuses, a PR into main-agents, and
-prints the PR URL on its last line. Put that URL in the report and in any
-PushNotification. This step runs whether steps 1-2 succeeded or stopped: a stopped
-run's files are exactly what the next person needs to see.
-
-If it exits non-zero, the run is PARTIAL. Say so, name the branch, and send a
-PushNotification. Never report a run complete when its output is not in a PR —
-output left on a session branch is invisible to every later run, and that is how
-fifteen branches stranded their fixes and write logs before 2026-09-23. Never merge
-the PR and never push to main-agents yourself: Albert merges.
+If the push fails after retries, the run is PARTIAL. Say so, name the branch, and
+send a PushNotification. Never report a run complete when its output is not pushed —
+output left on a session branch without a push is invisible to every later run, and
+that is how fifteen branches stranded their fixes and write logs before 2026-09-23.
 
 ---
 
@@ -272,9 +269,9 @@ all of it has drifted silently before. Re-read it live (`list_triggers`,
 | Schedule | `0 23 * * *` UTC — 7 pm Toronto in EDT, 6 pm after the switch to EST. The no-payload fire is `/price-list-sweep`. Because it runs in the evening, a promo ending on day D is still on through D and comes off at the evening run of D+1; a list effective D applies at the evening run of D. First fire 2026-09-26T23:04Z: succeeded, nothing due, no commit |
 | Retired | "Price List Sweep" `trig_015j7cxEz95rn5abXAnPfrWY` — disabled 2026-09-26, superseded by this routine's scheduled fire; deleting it is Albert's call |
 | Environment | `env_01XHGNpnEFthGu3i3VzP8xKp` |
-| Connectors | Airtable, Gmail, Make, Microsoft-365, Notion, visualize. The run uses Airtable and Notion. No GitHub MCP and no `gh`, so publishing goes through `scripts/publish_run.py` with `GH_TOKEN` |
+| Connectors | Airtable, Gmail, Make, Microsoft-365, Notion, visualize. The run uses Airtable and Notion. No GitHub MCP and no `gh`; the run commits and pushes via git directly, no PR (2026-10-18) |
 | Model | The trigger's stored model and the model sessions actually ran on differ. Check `get_session` rather than trusting the trigger record |
-| Git | Each fire opens its own `claude/*` branch, with `auto-create-pr` off. Step 3 above is the only thing that gets its output to `main-agents` |
+| Git | Each fire opens its own `claude/*` branch, with `auto-create-pr` off. Step 3 pushes the branch; no PR is opened (2026-10-18) |
 | Upstream | Make 4381438 polls one Outlook folder hourly, Mon–Sat, and keeps creating rows while the trigger is off. Albert, 2026-09-23: fine. Rows wait at `Not started` |
 
 ## Still open
