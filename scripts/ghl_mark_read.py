@@ -46,6 +46,7 @@ from zoneinfo import ZoneInfo
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
 import ghl_client  # noqa: E402
+import ghl_unread_plan  # noqa: E402
 import ghl_triage_log  # noqa: E402
 import ghl_unread_pull  # noqa: E402
 
@@ -141,7 +142,8 @@ def preflight(plan, approval, reg, now, kill, token, plan_path):
     known = {a["id"] for a in plan.get("actions", [])}
     if set(approved) - known:
         problems.append("the approval names ids the plan does not have")
-    if by == reg["policy"]["approved_by"] and len(approved) > reg["policy"]["max_mark_read_per_run"]:
+    if by == reg["policy"]["approved_by"] and \
+            len(approved) > ghl_unread_plan.effective_cap(reg, datetime.fromisoformat(plan["run_at"])):
         problems.append("more approved ids than the cap")
     if kill:
         problems.append(f"the kill switch is on: {kill}")
