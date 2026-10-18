@@ -7,10 +7,16 @@ description: Reconcile Content Calendar Log rows against Metricool's scheduled s
 Answers one question for every `Scheduled` row: **is that post still coming, did it go
 out, or did something happen to it?**
 
-Nothing else in this pipeline can answer it. `getScheduledPosts` returns only posts
-that have **not** published, so a post disappears from the one endpoint we query at the
-exact moment it succeeds. Without this sweep a row sits at `Scheduled` forever, and the
-Notion calendar quietly stops describing reality about a week after go-live.
+Nothing else in this pipeline can answer it. Without this sweep a row sits at
+`Scheduled` forever, and the Notion calendar quietly stops describing reality about a
+week after go-live, which is exactly what happened to the first five live posts
+(Sep 29 – Oct 13), because nothing ran the sweep.
+
+**Corrected 2026-10-18 from a live read:** `getScheduledPosts` does **not** drop a post
+when it publishes. It keeps returning it, with each provider's `status` set to
+`PUBLISHED` and its `publicUrl`. That is the normal path now (`published_in_planner`).
+A post that *leaves* the list was deleted or moved, and the absence rules below still
+apply to it. The earlier belief would have marked all five posts `Failed`.
 
 Run it daily. It is cheap: one Notion query, one Metricool read, no writes unless
 something actually changed.
@@ -84,7 +90,8 @@ The verdicts, and what each one means:
 **A `published` verdict from step 3 is a candidate, not a conclusion.** It rests on an
 absence, and absence is ambiguous. Analytics is an independent second source that
 turns it into an observation — and it is also where `Live URL` and `Posted Caption`
-come from, because a published post is gone from `getScheduledPosts` entirely.
+come from. `published_in_planner` rows go through 3a too: their `publicUrl` must match
+the analytics `url`, and analytics supplies `Posted At` and `Posted Caption`.
 
 For each surface with candidates:
 
@@ -136,9 +143,9 @@ Only `Post Status`, only on the Calendar Log, only for verdicts carrying
 `set_post_status`. Log each one to `ingest/<date>/actions-log.json` as
 `notion_update_task` with the verdict in the entry.
 
-`Live URL`, `Posted Caption` and `Posted At` come from step 3a, never from
-`getScheduledPosts` — a published post is gone from it, and carries no permalink while
-scheduled. Where a surface exposes no such field, leave it blank rather than
+`Posted Caption` and `Posted At` come from step 3a. `Live URL` comes from 3a too; on a
+`published_in_planner` row it must equal the `live_url` the sweep read from Metricool,
+and a mismatch is reported, not written. Where a surface exposes no such field, leave it blank rather than
 substituting something adjacent.
 
 ### 5 — Report

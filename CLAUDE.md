@@ -437,12 +437,14 @@ same reason project and STORE pipelines are never summed.
 department failing must never touch `DAILY-BRIEF.md`.
 
 **The content pipeline needs a daily `/content-sweep`** (`.claude/commands/content-sweep.md`).
-`getScheduledPosts` returns only posts that have NOT published, so a post leaves the
-one endpoint this repo queries at the moment it succeeds — nothing else can ever set
-`Post Status = Posted`, and without the sweep every row sits at `Scheduled`
-permanently. It infers publication from a uuid's absence, which is ambiguous, so it
-demands absence **and** a passed due time **and** a wide enough query window **and**
-`write_mode.mode` not being `draft` before writing `Posted`. In draft mode it marks
+Nothing else can set `Post Status = Posted`, so without the sweep every row sits at
+`Scheduled` permanently. **Corrected 2026-10-18:** `getScheduledPosts` keeps returning a
+post after it publishes, with each provider `status: PUBLISHED` and its `publicUrl`, and
+that is the sweep's primary signal (`published_in_planner`). The original belief, that a
+published post disappears, would have marked the first five live posts `Failed`. For a
+post that does leave the list, absence is ambiguous, so the sweep still demands absence
+**and** a passed due time **and** a wide enough query window **and** `write_mode.mode`
+not being `draft` before writing `Posted`. In draft mode it marks
 nothing posted at all — a draft does not publish, so a vanished one was deleted by a
 person. **Not wired into `/daily-ingest`**: that would add a platform write to the
 orchestrator, which is Albert's call, so it runs by hand for now.
@@ -450,8 +452,7 @@ orchestrator, which is Albert's call, so it runs by hand for now.
 **Publication is then CONFIRMED against analytics, not inferred** (2026-09-14).
 `scripts/social_publish_reconcile.py` matches each candidate to a real published post
 via `getAnalyticsDataByMetrics`, which is also the only source for `Live URL`,
-`Posted Caption` and `Posted At` — a published post is gone from `getScheduledPosts`
-entirely. Per-surface metric ids are data in `social-destinations.json` → `analytics`,
+`Posted Caption` and `Posted At`. Per-surface metric ids are data in `social-destinations.json` → `analytics`,
 captured live. Three things that are limits rather than gaps: YouTube exposes a title
 and no description, so `Posted Caption` stays blank there; Google Business Profile
 exposes no permalink, so `Live URL` stays blank there; and the join is by surface and
