@@ -1,0 +1,49 @@
+{
+ "contract_version": "1",
+ "source": "ghl",
+ "run_at": "2026-10-18T08:07:09-04:00",
+ "status": "error",
+ "error": "GHL MCP server tools were not available to this run, so new leads, opportunities, appointments and conversations could not be pulled. Call step ran (11 calls listed) but contact names, summaries and drift checks need MCP data.",
+ "items": [],
+ "metrics": {},
+ "needs_attention": [
+  "GHL ingest FAILED today: GHL MCP tools unavailable; no leads, pipeline, appointments, conversations or drift findings. Re-run once the ghl MCP server is connected.",
+  "Call transcripts: 11 calls listed for 2026-10-17 (9 from Make notes, 2 no-answer); not summarised because the contact/conversation context could not be loaded.",
+  "Unread triage unavailable today: scripts/ghl_unread_pull.py --mode brief did not finish within the timeout."
+ ],
+ "extensions": {
+  "ghl": {
+   "template_version": "6",
+   "reporting": {
+    "calls": {
+     "listed": 11,
+     "from_note": 9,
+     "transcribed": 0,
+     "voicemails": 1,
+     "minutes": 0.0,
+     "est_cost_usd": 0,
+     "engine": "elevenlabs scribe_v2",
+     "status": "ok",
+     "error": null
+    }
+   },
+   "new_leads": [],
+   "opportunities": [],
+   "appointments_booked": [],
+   "conversations": [],
+   "workflow_drift": [],
+   "won_records": [],
+   "stragglers_ranked": [],
+   "calls": [],
+   "call_quality": {
+    "sensitivity": "private",
+    "records": []
+   },
+   "triage": {
+    "status": "error",
+    "error": "unread pull did not complete within timeout",
+    "counts": null
+   }
+  }
+ }
+}
