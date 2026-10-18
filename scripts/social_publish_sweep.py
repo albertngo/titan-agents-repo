@@ -10,9 +10,15 @@ social_post_rebuild.py. The caller fetches; this decides.
 
 Exit 0 always (a sweep has no refusal — it reports). Exit 1 = bad input.
 
-WHY A SWEEP IS NEEDED AT ALL. `getScheduledPosts` returns only posts that have NOT
-published. So the moment a post goes live it disappears from the only endpoint this
-repo queries, and nothing notices. Without this, a row sits at `Scheduled` forever and
+WHY A SWEEP IS NEEDED AT ALL. Nothing else moves a row off `Scheduled`.
+
+CORRECTED 2026-10-18 FROM A LIVE READ: `getScheduledPosts` does NOT drop a post when it
+publishes. It keeps returning it, with each provider's `status` set to PUBLISHED and a
+`publicUrl`. That is now the primary signal (`published_in_planner`); a provider status
+containing ERROR/FAIL is `publish_error`. The absence logic below still covers a post
+that leaves the list, which is now the unusual case: deleted, or moved out of the window.
+The original belief cost nothing only because the sweep had never run; run against the
+first five live posts it would have marked all five Failed. Without this, a row sits at `Scheduled` forever and
 the Notion calendar stops describing reality about a week after go-live.
 
 THE WHOLE DIFFICULTY: ABSENCE IS AMBIGUOUS. A uuid missing from the scheduled set can
@@ -35,10 +41,9 @@ vanished uuid CANNOT be a publish. It is a human deleting something. The sweep
 therefore refuses to mark anything `Posted` while draft mode is on, and reports the
 disappearance for a person instead.
 
-    NOT YET OBSERVED: no post has ever published through this pipeline, so the
-    `published` and `overdue` verdicts below are reasoned from the endpoint contract
-    and from what draft mode means, not from a run we have watched. The first live
-    publish is the test. Watch it rather than trusting this docstring.
+    OBSERVED 2026-10-18: five Instagram reels published through this pipeline and
+    stayed in getScheduledPosts as PUBLISHED. The absence-based `published` verdict
+    has still never been observed in the wild.
 """
 
 import argparse
@@ -66,6 +71,8 @@ FMT = "%Y-%m-%dT%H:%M:%S"
 # Verdicts that call for a Notion write, and the Post Status each one sets.
 WRITES = {
     "published": "Posted",
+    "published_in_planner": "Posted",
+    "publish_error": "Failed",
     "vanished_before_due": "Manual Required",
     "vanished_in_draft_mode": "Manual Required",
     "stuck_past_due": "Failed",
@@ -171,6 +178,12 @@ def scheduled_index(posts):
     return {str(p.get("uuid")): p for p in posts if p.get("uuid")}
 
 
+def provider_statuses(post):
+    """[(STATUS, publicUrl)] for each network on a scheduled post, upper-cased."""
+    return [(str(p.get("status") or "").upper(), p.get("publicUrl"))
+            for p in (post.get("providers") or [])]
+
+
 def classify(row, index, now, grace, stuck, draft_mode, window,
              imminent=DEFAULT_IMMINENT_HOURS):
     """One row -> (verdict, detail, extra).
@@ -199,6 +212,23 @@ def _classify(row, index, now, grace, stuck, draft_mode, window, imminent):
     post = index.get(uuid)
 
     if post is not None:
+        # OBSERVED 2026-10-18, contradicting the original contract: getScheduledPosts
+        # KEEPS returning a post after it publishes, with each provider marked
+        # status PUBLISHED and its publicUrl. Without this check every published
+        # post reads as stuck past due and gets marked Failed.
+        statuses = provider_statuses(post)
+        if statuses and all(st == "PUBLISHED" for st, _ in statuses):
+            urls = [u for _, u in statuses if u]
+            return "published_in_planner", (
+                "Metricool reports every network on this post as PUBLISHED"
+                + (f" ({urls[0]})" if urls else "") + "."
+            ), ({"live_url": urls[0]} if len(urls) == 1 else {})
+        failed = [st for st, _ in statuses if "ERROR" in st or "FAIL" in st]
+        if failed:
+            return "publish_error", (
+                f"Metricool reports {', '.join(failed)} on this post. It did not publish; "
+                "check the planner for the network's error."
+            ), {}
         live_due = parse_dt((post.get("publicationDate") or {}).get("dateTime"))
         # A date-only row names a DAY, so only the day can disagree. Comparing its
         # implicit midnight against a real scheduled time reports drift on every

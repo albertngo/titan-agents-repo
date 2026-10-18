@@ -262,6 +262,53 @@ class SweepCase(unittest.TestCase):
         self.assertEqual(report["counts"], {})
 
 
+class ProviderStatusCase(unittest.TestCase):
+    """Observed live 2026-10-18: published posts STAY in getScheduledPosts, marked
+    PUBLISHED. The provider block below is verbatim from TC-166's post."""
+
+    LIVE_PROVIDER = {"network": "instagram", "id": "https://www.instagram.com/reel/Dd30nBTHb5K/",
+                     "status": "PUBLISHED", "publicUrl": "https://www.instagram.com/reel/Dd30nBTHb5K/",
+                     "detailedStatus": "Published"}
+
+    def posts(self, *providers):
+        p = scheduled()
+        p["data"][0]["providers"] = list(providers)
+        return p
+
+    def classify_one(self, posts, now=NOW):
+        return classify(row(), scheduled_index(posts), now, 30, 6, False, None)
+
+    def test_published_post_still_listed_is_posted_not_failed(self):
+        """The bug: 19 days past due and PUBLISHED read as stuck_past_due -> Failed."""
+        v, detail, extra = self.classify_one(self.posts(self.LIVE_PROVIDER),
+                                             now=datetime(2027, 1, 12, 10, 0))
+        self.assertEqual(v, "published_in_planner")
+        self.assertEqual(WRITES[v], "Posted")
+        self.assertEqual(extra["live_url"], "https://www.instagram.com/reel/Dd30nBTHb5K/")
+
+    def test_pending_provider_keeps_the_old_logic(self):
+        v, _, _ = self.classify_one(self.posts({"network": "instagram", "status": "PENDING"}),
+                                    now=datetime(2026, 12, 24, 8, 0))
+        self.assertEqual(v, "still_scheduled")
+        v, _, _ = self.classify_one(self.posts({"network": "instagram", "status": "PENDING"}),
+                                    now=datetime(2027, 1, 12, 10, 0))
+        self.assertEqual(v, "stuck_past_due")
+
+    def test_partly_published_is_not_posted(self):
+        v, _, _ = self.classify_one(self.posts(self.LIVE_PROVIDER,
+                                               {"network": "facebook", "status": "PENDING"}))
+        self.assertNotEqual(v, "published_in_planner")
+
+    def test_provider_error_is_failed(self):
+        v, detail, _ = self.classify_one(self.posts({"network": "instagram", "status": "ERROR"}))
+        self.assertEqual(v, "publish_error")
+        self.assertEqual(WRITES[v], "Failed")
+
+    def test_no_providers_block_keeps_the_old_logic(self):
+        self.assertEqual(verdict(posts=scheduled(), now=datetime(2026, 12, 24, 8, 0)),
+                         "still_scheduled")
+
+
 class CliCase(unittest.TestCase):
     def run_cli(self, rows, posts, *args):
         tmp = Path(__file__).resolve().parent / "__sweep_tmp__"
