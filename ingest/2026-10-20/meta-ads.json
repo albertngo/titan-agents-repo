@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-10-20T07:30:00-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-act_927167028457360",
+      "type": "spend_summary",
+      "title": "Meta spend 2026-10-13 to 10-19: $347.55, 16 leads, CPL $21.72",
+      "summary": "Flooring Problems Campaign was the only campaign with spend: $347.55, 9,330 impressions, 257 clicks, 16 leads. Account ACTIVE, no disapproved ads.",
+      "timestamp": "2026-10-20T07:30:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 34755,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 34755,
+    "impressions": 9330,
+    "clicks": 257,
+    "leads": 16,
+    "cpl_cents": 2172,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "No prior meta-ads.json in the last 7 days (latest was 2026-09-08), so this run covers 2026-10-13 to 2026-10-19 as one 7-day window, not a single day. Spend and leads are weekly totals.",
+    "No daily baseline comparison was possible on a 7-day aggregate; no anomalies detected (CPL $21.72, account CAD)."
+  ]
+}

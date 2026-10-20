@@ -1,0 +1,26 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-10-20T12:10:00-04:00",
+  "status": "error",
+  "error": "GHL MCP tools (contacts, opportunities, calendars, conversations) were not available in this agent run; no new-lead, opportunity, appointment, conversation or drift data could be pulled. Call-pull script ran (15 from-note, 2 skipped-short, 2 no-recording) but is enrichment only and was not joined to any records.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest FAILED today: GHL MCP server tools unavailable to the agent; no leads, pipeline, appointments, conversations or drift findings for 2026-10-20. Check .mcp.json / GHL_PIT_TOKEN / GHL_LOCATION_ID and re-run."
+  ],
+  "extensions": {
+    "ghl": {
+      "template_version": "6",
+      "reporting": {
+        "calls": {
+          "status": "partial",
+          "error": "Call pull ran but was not analysed because core GHL categories failed",
+          "listed": 19,
+          "from_note": 15,
+          "transcribed": 0
+        }
+      }
+    }
+  }
+}
