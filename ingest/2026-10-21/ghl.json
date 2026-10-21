@@ -1,0 +1,15 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-10-21T12:10:00-04:00",
+  "status": "error",
+  "error": "GHL MCP server tools (contacts, opportunities, conversations, calendars, pipelines) were not available to the ingest agent in this session, so none of the four categories could be pulled. No data was fabricated.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": ["GHL ingest failed 2026-10-21: GHL MCP tools unavailable in the agent session. Check .mcp.json / GHL_PIT_TOKEN connection and re-run."],
+  "extensions": {
+    "ghl": {
+      "template_version": "6"
+    }
+  }
+}
