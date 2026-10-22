@@ -502,7 +502,10 @@
           "www.grandeurflooring.ca"
         ],
         "listing": {
-          "method": "auto"
+          "method": "crawl",
+          "gallery": true,
+          "gallery_label_only": true,
+          "gallery_alt_only": true
         }
       },
       "retailers": {
@@ -517,7 +520,8 @@
         "grandeurflooring.ca",
         "www.grandeurflooring.ca"
       ],
-      "brand": "Grandeur"
+      "brand": "Grandeur",
+      "_gallery_note": "2026-10-22: a hand-built HTML site (no sitemap, dead links) whose product pages load their own photo by script; each page does show related products as thumbnails whose alt text is the colour (`Morocco Sand (6\")`). Those are listed one image per page, titled by the alt text alone (every page's title is `Grandeur Hardwood Flooring`)."
     },
     "GRACIOUS": {
       "_added": "2026-10-22, Albert: 'Run the skill on all and continue filling in until complete' with this site.",

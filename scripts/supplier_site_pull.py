@@ -333,7 +333,7 @@ def image_label(img):
     return re.sub(r"[-_]+", " ", stem).strip()
 
 
-def gallery_pages(pages):
+def gallery_pages(pages, label_only=False, alt_only=False):
     """One page per image for brochure sites that show a whole collection on one page
     (Canadian Standard's `Origins`, Evergreen's `OAK`, 2026-10-22): titled `<page> - <image
     label>` so the colour is in the title, linked `<page>#<n>` (the planner drops the
@@ -341,12 +341,19 @@ def gallery_pages(pages):
     out = []
     for p in pages:
         for n, img in enumerate(p.get("images") or []):
+            # `gallery_alt_only` (Grandeur, 2026-10-22): only images a person named in the alt
+            # text are products; unnamed ones are badges, banners and site chrome.
+            if alt_only and not (img.get("alt") or "").strip():
+                continue
             label = image_label(img)
             # The site's own logo (`CanadianStandard_Final-01_white.png`, alt `Logo`) is not `White`.
             if not label or re.search(r"\blogo\b", img.get("alt") or "", re.I):
                 continue
             out.append({**{k: v for k, v in p.items() if k != "images"},
-                        "url": f"{p['url']}#img{n}", "title": f"{p.get('title', '')} - {label}",
+                        # `gallery_label_only`: a site-wide title (`Grandeur Hardwood Flooring`
+                        # on every page) would put `hardwood` into every vinyl image's title.
+                        "url": f"{p['url']}#img{n}",
+                        "title": label if label_only else f"{p.get('title', '')} - {label}",
                         "h1": "", "og_title": "", "product_name": "", "codes": [],
                         "images": [img]})
     return out
@@ -692,7 +699,12 @@ def list_pages(fetch, cfg, supplier_cfg, max_pages):
             if skip_urls:
                 pages = [pg for pg in pages if not any(s in pg["url"] for s in skip_urls)]
             if listing.get("gallery"):
-                pages = gallery_pages(pages)
+                pages = gallery_pages(pages, listing.get("gallery_label_only", False),
+                                      listing.get("gallery_alt_only", False))
+                # The same thumbnail shown on many pages is one page (first seen).
+                seen_imgs = set()
+                pages = [pg for pg in pages if not (pg["images"][0]["url"] in seen_imgs
+                                                    or seen_imgs.add(pg["images"][0]["url"]))]
             return m, pages, tried
         tried[m] = "empty"
     return None, [], tried
