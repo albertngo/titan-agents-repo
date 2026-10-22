@@ -425,6 +425,450 @@
       "code_only": true,
       "_code_only_note": "Olympia colour names (`White`, `Grey`, `Beige`) repeat across ~200 collections and every size; a title match would be a guess. Word of Mouth's variant SKU equals Olympia's code (`IM.MT.WHT.4848.MT`) on every product, so a record matches on its Supplier SKU or not at all (1,697 of 3,028 on 2026-10-22).",
       "_retailers_note": "2026-10-22: Speers carries no Olympia; The Floor Box's sitemap carries no brand and Olympia's generic colours would defeat brand_batches."
+    },
+    "WODEN": {
+      "_added": "2026-10-22, Albert: 'Run the skill on all and continue filling in until complete' with this site.",
+      "official": {
+        "site": "https://www.wodenflooring.com",
+        "hosts": [
+          "www.wodenflooring.com",
+          "wodenflooring.com"
+        ],
+        "listing": {
+          "method": "auto"
+        }
+      },
+      "retailers": {},
+      "hosts": [
+        "www.wodenflooring.com",
+        "wodenflooring.com"
+      ],
+      "brand": "Woden",
+      "slug_codes": true,
+      "ignore_pattern_words": [
+        "spc",
+        "laminate",
+        "click"
+      ],
+      "_wix_note": "2026-10-22: a Wix site whose product pages carry no title in the sitemap; the URL slug is the title (`/product-page/1105-silver-mist`). Vinyl and laminate are numbered (`603`), so `slug_codes` matches the number; slugs never say SPC/laminate/click, so those words do not veto."
+    },
+    "CIF DISTRIBUTORS": {
+      "_added": "2026-10-22, Albert: 'Run the skill on all and continue filling in until complete' with this site.",
+      "official": {
+        "site": "https://cifdistributors.ca",
+        "hosts": [
+          "cifdistributors.ca",
+          "www.cifdistributors.ca"
+        ],
+        "listing": {
+          "method": "auto"
+        }
+      },
+      "retailers": {},
+      "hosts": [
+        "cifdistributors.ca",
+        "www.cifdistributors.ca"
+      ],
+      "brand": "CIF",
+      "require_collection": true,
+      "_require_collection_note": "2026-10-22: CIF reuses Blanco/Beige/Gris/Pearl across ~100 collections; without the collection in the page title, Chelsea Blanco matched Buckingham Bend Blanco Decor."
+    },
+    "CANADIAN STANDARD": {
+      "_added": "2026-10-22, Albert: 'Run the skill on all and continue filling in until complete' with this site.",
+      "official": {
+        "site": "https://canadianstandardflooring.com",
+        "hosts": [
+          "canadianstandardflooring.com",
+          "www.canadianstandardflooring.com"
+        ],
+        "listing": {
+          "method": "sitemap",
+          "gallery": true
+        }
+      },
+      "retailers": {},
+      "hosts": [
+        "canadianstandardflooring.com",
+        "www.canadianstandardflooring.com"
+      ],
+      "_gallery_note": "2026-10-22: a brochure site; each collection page shows every colour as one image named for it (file name or alt text), so `gallery` lists each image as its own page."
+    },
+    "GRANDEUR": {
+      "_added": "2026-10-22, Albert: 'Run the skill on all and continue filling in until complete' with this site.",
+      "official": {
+        "site": "https://grandeurflooring.ca",
+        "hosts": [
+          "grandeurflooring.ca",
+          "www.grandeurflooring.ca"
+        ],
+        "listing": {
+          "method": "auto"
+        }
+      },
+      "retailers": {
+        "wordofmouth": {
+          "vendor": "GRANDEUR"
+        },
+        "speers": {
+          "vendor": "Grandeur Flooring"
+        }
+      },
+      "hosts": [
+        "grandeurflooring.ca",
+        "www.grandeurflooring.ca"
+      ],
+      "brand": "Grandeur"
+    },
+    "GRACIOUS": {
+      "_added": "2026-10-22, Albert: 'Run the skill on all and continue filling in until complete' with this site.",
+      "official": {
+        "site": "https://www.graciousflooring.com",
+        "hosts": [
+          "www.graciousflooring.com",
+          "graciousflooring.com"
+        ],
+        "listing": {
+          "method": "auto"
+        }
+      },
+      "retailers": {},
+      "hosts": [
+        "www.graciousflooring.com",
+        "graciousflooring.com"
+      ],
+      "brand": "Gracious"
+    },
+    "IMPRESSIVE": {
+      "_added": "2026-10-22, Albert: 'Run the skill on all and continue filling in until complete' with this site.",
+      "official": {
+        "site": "https://impressivefloors.ca",
+        "hosts": [
+          "impressivefloors.ca",
+          "www.impressivefloors.ca"
+        ],
+        "listing": {
+          "method": "auto"
+        }
+      },
+      "retailers": {},
+      "hosts": [
+        "impressivefloors.ca",
+        "www.impressivefloors.ca"
+      ],
+      "brand": "Impressive"
+    },
+    "TOSCA": {
+      "_added": "2026-10-22, Albert: 'Run the skill on all and continue filling in until complete' with this site.",
+      "official": {
+        "site": "https://toscaflooring.com",
+        "hosts": [
+          "toscaflooring.com",
+          "www.toscaflooring.com"
+        ],
+        "listing": {
+          "method": "browser",
+          "list_url": "https://toscaflooring.com/products",
+          "link_pattern": "^https://toscaflooring\\.com/products/[^/?#]+$"
+        }
+      },
+      "retailers": {},
+      "hosts": [
+        "toscaflooring.com",
+        "www.toscaflooring.com"
+      ],
+      "brand": "Tosca",
+      "_browser_note": "2026-10-22: a client-rendered React app; a plain fetch sees an empty shell and the sitemap lists no products. `browser` loads /products and each product page in headless Chromium (scripts/browser_list.js) and reads what a visitor sees: title `<Colour> | Tosca Floors Flooring Collection`, four photos up to 4719 px.",
+      "page_collection_must_agree": true
+    },
+    "BELLA FLOORING PLUS": {
+      "_added": "2026-10-22, Albert: 'Run the skill on all and continue filling in until complete' with this site.",
+      "official": {
+        "site": "https://bellaflooringplus.com",
+        "hosts": [
+          "bellaflooringplus.com",
+          "www.bellaflooringplus.com"
+        ],
+        "listing": {
+          "method": "auto"
+        }
+      },
+      "retailers": {
+        "wordofmouth": {
+          "vendor": "WICKHAM"
+        }
+      },
+      "hosts": [
+        "bellaflooringplus.com",
+        "www.bellaflooringplus.com"
+      ],
+      "_brand_note": "Bella distributes Wickham and Northernest; records carry those names. Word of Mouth lists Wickham under vendor WICKHAM."
+    },
+    "DRAGONA": {
+      "_added": "2026-10-22, Albert: 'Run the skill on all and continue filling in until complete' with this site.",
+      "official": {
+        "site": "https://dragonaflooring.com",
+        "hosts": [
+          "dragonaflooring.com",
+          "www.dragonaflooring.com"
+        ],
+        "listing": {
+          "method": "auto"
+        }
+      },
+      "retailers": {},
+      "hosts": [
+        "dragonaflooring.com",
+        "www.dragonaflooring.com"
+      ],
+      "brand": "Dragona"
+    },
+    "EVERGREEN": {
+      "_added": "2026-10-22, Albert: 'Run the skill on all and continue filling in until complete' with this site.",
+      "official": {
+        "site": "https://evergreenbuildingflooring.com",
+        "hosts": [
+          "evergreenbuildingflooring.com",
+          "www.evergreenbuildingflooring.com"
+        ],
+        "listing": {
+          "method": "sitemap",
+          "gallery": true
+        }
+      },
+      "retailers": {},
+      "hosts": [
+        "evergreenbuildingflooring.com",
+        "www.evergreenbuildingflooring.com"
+      ],
+      "brand": "Evergreen",
+      "_gallery_note": "2026-10-22: a brochure site; each collection page shows every colour as one image named for it (file name or alt text), so `gallery` lists each image as its own page."
+    },
+    "SIMBA": {
+      "_added": "2026-10-22, Albert: 'Run the skill on all and continue filling in until complete' with this site.",
+      "official": {
+        "site": "https://simbaflooringcorp.com",
+        "hosts": [
+          "simbaflooringcorp.com",
+          "www.simbaflooringcorp.com"
+        ],
+        "listing": {
+          "method": "auto"
+        }
+      },
+      "retailers": {
+        "wordofmouth": {
+          "vendor": "SIMBA"
+        }
+      },
+      "hosts": [
+        "simbaflooringcorp.com",
+        "www.simbaflooringcorp.com"
+      ],
+      "brand": "Simba"
+    },
+    "PURELUX": {
+      "_added": "2026-10-22, Albert: 'Run the skill on all and continue filling in until complete' with this site.",
+      "official": {
+        "site": "https://pureluxfloors.com",
+        "hosts": [
+          "pureluxfloors.com",
+          "www.pureluxfloors.com"
+        ],
+        "listing": {
+          "method": "auto"
+        }
+      },
+      "retailers": {},
+      "hosts": [
+        "pureluxfloors.com",
+        "www.pureluxfloors.com"
+      ],
+      "brand": "Purelux",
+      "ignore_pattern_words": [
+        "spc",
+        "laminate",
+        "click"
+      ],
+      "_pattern_note": "2026-10-22: one page per colour titled with the colour alone (`ANNE – Purelux Flooring`), never `SPC`/`laminate`; those words would veto every vinyl and laminate record."
+    },
+    "LEE FLOORING": {
+      "_added": "2026-10-22: site found from the supplier's price-list sender domain (Notion Price Lists), for Albert's 'Any others you can search for their websites in the GTA for me'.",
+      "official": {
+        "site": "https://leeflooring.ca",
+        "hosts": [
+          "leeflooring.ca",
+          "www.leeflooring.ca"
+        ],
+        "listing": {
+          "method": "auto"
+        }
+      },
+      "retailers": {},
+      "hosts": [
+        "leeflooring.ca",
+        "www.leeflooring.ca"
+      ],
+      "brand": "Lee"
+    },
+    "VIZION": {
+      "_added": "2026-10-22: site found from the supplier's price-list sender domain (Notion Price Lists), for Albert's 'Any others you can search for their websites in the GTA for me'.",
+      "official": {
+        "site": "https://vizionfloor.com",
+        "hosts": [
+          "vizionfloor.com",
+          "www.vizionfloor.com"
+        ],
+        "listing": {
+          "method": "auto"
+        }
+      },
+      "retailers": {},
+      "hosts": [
+        "vizionfloor.com",
+        "www.vizionfloor.com"
+      ],
+      "brand": "Vizion"
+    },
+    "HOMESPRO": {
+      "_added": "2026-10-22: site found from the supplier's price-list sender domain (Notion Price Lists), for Albert's 'Any others you can search for their websites in the GTA for me'.",
+      "official": {
+        "site": "https://www.homespros.ca",
+        "hosts": [
+          "www.homespros.ca",
+          "homespros.ca"
+        ],
+        "listing": {
+          "method": "auto"
+        }
+      },
+      "retailers": {
+        "wordofmouth": {
+          "vendor": "HOME'S PRO"
+        }
+      },
+      "hosts": [
+        "www.homespros.ca",
+        "homespros.ca"
+      ],
+      "brand": "Home's Pro"
+    },
+    "FLOOR & DECOR": {
+      "_added": "2026-10-22: site found from the supplier's price-list sender domain (Notion Price Lists), for Albert's 'Any others you can search for their websites in the GTA for me'.",
+      "official": {
+        "site": "https://flooranddecor.ca",
+        "hosts": [
+          "flooranddecor.ca",
+          "www.flooranddecor.ca"
+        ],
+        "listing": {
+          "method": "auto"
+        }
+      },
+      "retailers": {},
+      "hosts": [
+        "flooranddecor.ca",
+        "www.flooranddecor.ca"
+      ],
+      "brand": "Floor & Decor"
+    },
+    "FLOORDI": {
+      "_added": "2026-10-22: site found from the supplier's price-list sender domain (Notion Price Lists), for Albert's 'Any others you can search for their websites in the GTA for me'.",
+      "official": {
+        "site": "https://www.floordi.ca",
+        "hosts": [
+          "www.floordi.ca",
+          "floordi.ca"
+        ],
+        "listing": {
+          "method": "auto",
+          "skip_url_contains": [
+            "/fr/"
+          ]
+        }
+      },
+      "retailers": {},
+      "hosts": [
+        "www.floordi.ca",
+        "floordi.ca"
+      ],
+      "brand": "Floordi",
+      "_note": "2026-10-22: every colour is listed three times (plank, glue-down tile, and a French copy under /fr/); the English plank page's slug carries Floordi's code (`…-avr655`), which matches the record's Supplier SKU."
+    },
+    "UMBRELLAR": {
+      "_added": "2026-10-22: site found from the supplier's price-list sender domain (Notion Price Lists), for Albert's 'Any others you can search for their websites in the GTA for me'.",
+      "official": {
+        "site": "https://www.umbrellarcanada.com",
+        "hosts": [
+          "www.umbrellarcanada.com",
+          "umbrellarcanada.com"
+        ],
+        "listing": {
+          "method": "auto"
+        }
+      },
+      "retailers": {},
+      "hosts": [
+        "www.umbrellarcanada.com",
+        "umbrellarcanada.com"
+      ],
+      "brand": "Umbrellar"
+    },
+    "WEISS": {
+      "_added": "2026-10-22: site found from the supplier's price-list sender domain (Notion Price Lists), for Albert's 'Any others you can search for their websites in the GTA for me'.",
+      "official": {
+        "site": "https://www.weissflooring.ca",
+        "hosts": [
+          "www.weissflooring.ca",
+          "weissflooring.ca"
+        ],
+        "listing": {
+          "method": "auto"
+        }
+      },
+      "retailers": {},
+      "hosts": [
+        "www.weissflooring.ca",
+        "weissflooring.ca"
+      ],
+      "brand": "Weiss"
+    },
+    "GREENTOUCH": {
+      "_added": "2026-10-22: site found from the supplier's price-list sender domain (Notion Price Lists), for Albert's 'Any others you can search for their websites in the GTA for me'.",
+      "official": {
+        "site": "https://www.greentouchfloors.com",
+        "hosts": [
+          "www.greentouchfloors.com",
+          "greentouchfloors.com"
+        ],
+        "listing": {
+          "method": "auto"
+        }
+      },
+      "retailers": {},
+      "hosts": [
+        "www.greentouchfloors.com",
+        "greentouchfloors.com"
+      ],
+      "brand": "GreenTouch"
+    },
+    "JL TILE": {
+      "_added": "2026-10-22: site found from the supplier's price-list sender domain (Notion Price Lists), for Albert's 'Any others you can search for their websites in the GTA for me'.",
+      "official": {
+        "site": "https://jltile.ca",
+        "hosts": [
+          "jltile.ca",
+          "www.jltile.ca"
+        ],
+        "listing": {
+          "method": "auto"
+        }
+      },
+      "retailers": {},
+      "hosts": [
+        "jltile.ca",
+        "www.jltile.ca"
+      ],
+      "brand": "JL Tile"
     }
   },
   "source_policy": {

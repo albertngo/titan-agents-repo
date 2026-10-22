@@ -1,0 +1,1668 @@
+{
+ "contract_version": "image-plan-1",
+ "scope": "greentouch",
+ "supplier": "GREENTOUCH",
+ "run_at": "2026-10-22T15:32:34.871581-04:00",
+ "expires": "2026-10-22T23:59:59-0400",
+ "write_mode": "write",
+ "registry": "platform-settings/supplier-sites.json",
+ "inputs": {
+  "pages": "ingest/2026-10-22/supplier-pages-greentouch.json",
+  "judgements": "ingest/2026-10-22/image-judgements-greentouch.json",
+  "product_pages": null
+ },
+ "summary": {
+  "records": 83,
+  "actions": 29,
+  "held": 54,
+  "skipped": {},
+  "held_by_reason": {
+   "no_match": 52,
+   "model_rejected": 2
+  },
+  "fields": {
+   "Swatch images": 29,
+   "Supplier product page": 29
+  },
+  "tiers": {
+   "model_confirmed": 1,
+   "exact": 28
+  },
+  "manufacturer_pages": 29
+ },
+ "actions": [
+  {
+   "id": "img-9fcc4525c2bc",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recEssjFbuFuewijD",
+   "sku": "ENG-GRNT-0029",
+   "product_name": "GreenTouch Premium AO 7\" — Natural (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_9cd4fc0ae437412381afb5c89e2430c6~mv2.jpg/v1/fit/w_1466,h_1466,q_90/file.jpg",
+      "filename": "greentouch-natural-engineered-hardwood-7in-select-and-better-ar1301-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/north-american-oak-natural"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/north-american-oak-natural",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "model_confirmed",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_9cd4fc0ae437412381afb5c89e2430c6~mv2.jpg/v1/fit/w_1466,h_1466,q_90/file.jpg",
+     "sha1": "8896244e6573ea9d287d796f6e9e5d4fc29defc4",
+     "page": "https://www.greentouchfloors.com/product-page/north-american-oak-natural",
+     "width": 1466,
+     "height": 1466
+    }
+   ],
+   "flags": [
+    "model_matched"
+   ]
+  },
+  {
+   "id": "img-e3dc3ed62072",
+   "seq": 2,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reckkcgynfsPpXz6N",
+   "sku": "ENG-GRNT-0030",
+   "product_name": "GreenTouch Premium AO 7\" — Wenge (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_bdbfbf8d319e422483dce3ced2c4ec66~mv2.jpg/v1/fit/w_1385,h_1385,q_90/file.jpg",
+      "filename": "greentouch-wenge-engineered-hardwood-7in-select-and-better-ar1302-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/north-american-oak-wenge"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/north-american-oak-wenge",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_bdbfbf8d319e422483dce3ced2c4ec66~mv2.jpg/v1/fit/w_1385,h_1385,q_90/file.jpg",
+     "sha1": "9dbe60c70304bbd75d806fa09a4a1e1a4dc44f52",
+     "page": "https://www.greentouchfloors.com/product-page/north-american-oak-wenge",
+     "width": 1385,
+     "height": 1385
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a2a40e10c8d9",
+   "seq": 3,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recNzlNI6Btffmm8B",
+   "sku": "ENG-GRNT-0031",
+   "product_name": "GreenTouch Premium AO 7\" — Venice (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_026731c7340b403a90cb429eb6f45afb~mv2.jpg/v1/fit/w_1408,h_1408,q_90/file.jpg",
+      "filename": "greentouch-venice-engineered-hardwood-7in-select-and-better-ar1304-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/north-american-oak-venice"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/north-american-oak-venice",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_026731c7340b403a90cb429eb6f45afb~mv2.jpg/v1/fit/w_1408,h_1408,q_90/file.jpg",
+     "sha1": "39be3e02578d02c76873d028cbce2f4c1688daff",
+     "page": "https://www.greentouchfloors.com/product-page/north-american-oak-venice",
+     "width": 1408,
+     "height": 1408
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-bb88fed8ba19",
+   "seq": 4,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recvEGsxkPiWeg0pB",
+   "sku": "ENG-GRNT-0032",
+   "product_name": "GreenTouch Premium AO 7\" — Chateau (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_c48d4954a10043468c2abb623a565c10~mv2.png/v1/fit/w_1409,h_1409,q_90/file.png",
+      "filename": "greentouch-chateau-engineered-hardwood-7in-select-and-better-ar1305-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/north-american-oak-chateau"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/north-american-oak-chateau",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_c48d4954a10043468c2abb623a565c10~mv2.png/v1/fit/w_1409,h_1409,q_90/file.png",
+     "sha1": "b1fe83342a6d102c8d49ca743134fe72a3d451a8",
+     "page": "https://www.greentouchfloors.com/product-page/north-american-oak-chateau",
+     "width": 1409,
+     "height": 1409
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a7d843a5abca",
+   "seq": 5,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recWTYBlDqsHLC9xS",
+   "sku": "ENG-GRNT-0033",
+   "product_name": "GreenTouch Premium AO 7\" — Milan (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_f7932553c2744db19b2503c8e292215b~mv2.png/v1/fit/w_1427,h_1427,q_90/file.png",
+      "filename": "greentouch-milan-engineered-hardwood-7in-select-and-better-ar1306-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/north-american-oak-milan"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/north-american-oak-milan",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_f7932553c2744db19b2503c8e292215b~mv2.png/v1/fit/w_1427,h_1427,q_90/file.png",
+     "sha1": "218da64e973911c88575e6acff2b3273ae8bfc65",
+     "page": "https://www.greentouchfloors.com/product-page/north-american-oak-milan",
+     "width": 1427,
+     "height": 1427
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-70f75ebf3a3f",
+   "seq": 6,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recg0qVXRELFkJsQG",
+   "sku": "ENG-GRNT-0035",
+   "product_name": "GreenTouch Premium AO 7\" — Palma (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_cd9a1b39f55c4eb5855116abb663491d~mv2.jpg/v1/fit/w_1088,h_1088,q_90/file.jpg",
+      "filename": "greentouch-palma-engineered-hardwood-7in-select-and-better-ar1310-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/north-american-oak-palma"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/north-american-oak-palma",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_cd9a1b39f55c4eb5855116abb663491d~mv2.jpg/v1/fit/w_1088,h_1088,q_90/file.jpg",
+     "sha1": "90b5035c5de3522442fab781c0e20a8888cc51f2",
+     "page": "https://www.greentouchfloors.com/product-page/north-american-oak-palma",
+     "width": 1088,
+     "height": 1088
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-133dcc3815c3",
+   "seq": 7,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recqbvAxRPrGHHlW8",
+   "sku": "ENG-GRNT-0036",
+   "product_name": "GreenTouch Premium AO 7\" — Bari (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_da10346bd6ac4679b7f35e15a5d0eebe~mv2.jpg/v1/fit/w_1007,h_1007,q_90/file.jpg",
+      "filename": "greentouch-bari-engineered-hardwood-7in-select-and-better-ar1312-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/north-american-oak-bari"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/north-american-oak-bari",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_da10346bd6ac4679b7f35e15a5d0eebe~mv2.jpg/v1/fit/w_1007,h_1007,q_90/file.jpg",
+     "sha1": "f6550e96ec36326d75c3fa720e911241a38bafd0",
+     "page": "https://www.greentouchfloors.com/product-page/north-american-oak-bari",
+     "width": 1007,
+     "height": 1007
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ced0db6c40d8",
+   "seq": 8,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recXYrbnKw1rvhqlo",
+   "sku": "ENG-GRNT-0037",
+   "product_name": "GreenTouch Premium AO 7\" — Torino (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_aabda71a63a44318b1fad2be4fd8a7bb~mv2.jpg/v1/fit/w_1007,h_1007,q_90/file.jpg",
+      "filename": "greentouch-torino-engineered-hardwood-7in-select-and-better-ar1313-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/north-american-oak-torino"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/north-american-oak-torino",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_aabda71a63a44318b1fad2be4fd8a7bb~mv2.jpg/v1/fit/w_1007,h_1007,q_90/file.jpg",
+     "sha1": "9f64c807204575af3211da0d5e8aceac3d89fca9",
+     "page": "https://www.greentouchfloors.com/product-page/north-american-oak-torino",
+     "width": 1007,
+     "height": 1007
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-772e5034a2f7",
+   "seq": 9,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec26SmNM7SLKeiRy",
+   "sku": "ENG-GRNT-0038",
+   "product_name": "GreenTouch Premium AO 7\" — Asti (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_511495d4da774342ad8160161dc5e4e5~mv2.jpg/v1/fit/w_1147,h_1147,q_90/file.jpg",
+      "filename": "greentouch-asti-engineered-hardwood-7in-select-and-better-ar1314-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/north-american-oak-asti"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/north-american-oak-asti",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_511495d4da774342ad8160161dc5e4e5~mv2.jpg/v1/fit/w_1147,h_1147,q_90/file.jpg",
+     "sha1": "3eed5167d8fae96452c619af1bff6851a66d3afb",
+     "page": "https://www.greentouchfloors.com/product-page/north-american-oak-asti",
+     "width": 1147,
+     "height": 1147
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-eaf93d68273a",
+   "seq": 10,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec3LjLJTrA3d9x8n",
+   "sku": "ENG-GRNT-0041",
+   "product_name": "GreenTouch Rustic Maple 7.25\" — Mirage Gray (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_d0add3a43da74a90acc0c4420b68437f~mv2.png/v1/fit/w_1558,h_1558,q_90/file.png",
+      "filename": "greentouch-mirage-gray-engineered-hardwood-7-25in-select-and-better-mp1313-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/maple-mirage-gray"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/maple-mirage-gray",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_d0add3a43da74a90acc0c4420b68437f~mv2.png/v1/fit/w_1558,h_1558,q_90/file.png",
+     "sha1": "c7987c476718ec86b9298c08e0021f0478d8710b",
+     "page": "https://www.greentouchfloors.com/product-page/maple-mirage-gray",
+     "width": 1558,
+     "height": 1558
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-855cf46ae0c4",
+   "seq": 11,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recz63ZTiIvzeSWRo",
+   "sku": "ENG-GRNT-0042",
+   "product_name": "GreenTouch Rustic Maple 7.25\" — Glacier Gray (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_afeda265f80045bc8e53666ffc5597cd~mv2.png/v1/fit/w_1460,h_1460,q_90/file.png",
+      "filename": "greentouch-glacier-gray-engineered-hardwood-7-25in-select-and-better-mp1314-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/maple-glacier-gray"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/maple-glacier-gray",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_afeda265f80045bc8e53666ffc5597cd~mv2.png/v1/fit/w_1460,h_1460,q_90/file.png",
+     "sha1": "1b89e142df01a9efe8f02ea4a458b90a5b2e6a33",
+     "page": "https://www.greentouchfloors.com/product-page/maple-glacier-gray",
+     "width": 1460,
+     "height": 1460
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-9c1e0c91814e",
+   "seq": 12,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recWfu0V8ma1cB9N3",
+   "sku": "ENG-GRNT-0043",
+   "product_name": "GreenTouch Rustic Maple 7.25\" — Castle (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_4830507b55024b6e8c844e6233088827~mv2.jpg/v1/fit/w_1483,h_1483,q_90/file.jpg",
+      "filename": "greentouch-castle-engineered-hardwood-7-25in-select-and-better-mp1315-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/maple-castle"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/maple-castle",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_4830507b55024b6e8c844e6233088827~mv2.jpg/v1/fit/w_1483,h_1483,q_90/file.jpg",
+     "sha1": "fac004cb95644eec8ba44b2f903155167c48e022",
+     "page": "https://www.greentouchfloors.com/product-page/maple-castle",
+     "width": 1483,
+     "height": 1483
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-712f49900b6f",
+   "seq": 13,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec4YhzgzB8VdwWml",
+   "sku": "ENG-GRNT-0044",
+   "product_name": "GreenTouch Rustic Maple 7.25\" — Saturn (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_eba91d3a96e54387bd19f532ae1ae8bb~mv2.png/v1/fit/w_1766,h_1766,q_90/file.png",
+      "filename": "greentouch-saturn-engineered-hardwood-7-25in-select-and-better-mp1316-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/maple-saturn"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/maple-saturn",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_eba91d3a96e54387bd19f532ae1ae8bb~mv2.png/v1/fit/w_1766,h_1766,q_90/file.png",
+     "sha1": "fd4975ff092b47235f50f9af83f86939b720ccea",
+     "page": "https://www.greentouchfloors.com/product-page/maple-saturn",
+     "width": 1766,
+     "height": 1766
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-d3fa7c279288",
+   "seq": 14,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recES9VuS5BaSmBRM",
+   "sku": "ENG-GRNT-0046",
+   "product_name": "GreenTouch Rustic Hickory 7.25\" — Bayside (Sel)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_5a064139bba94fa1b87ca1e0210fb7b0~mv2.jpg/v1/fit/w_1472,h_1472,q_90/file.jpg",
+      "filename": "greentouch-bayside-engineered-hardwood-7-25in-select-hk1331-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/hickory-bayside"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/hickory-bayside",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_5a064139bba94fa1b87ca1e0210fb7b0~mv2.jpg/v1/fit/w_1472,h_1472,q_90/file.jpg",
+     "sha1": "e03c7f7da55db7d0fdc98f6cff759c0baa97b821",
+     "page": "https://www.greentouchfloors.com/product-page/hickory-bayside",
+     "width": 1472,
+     "height": 1472
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ae11930218ea",
+   "seq": 15,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recZHdxKnYJ3NzfDT",
+   "sku": "ENG-GRNT-0048",
+   "product_name": "GreenTouch Rustic Hickory 7.25\" — Bayshore (Sel)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_8fe95cc4faeb499f934ae335e7170633~mv2.jpg/v1/fit/w_1532,h_1532,q_90/file.jpg",
+      "filename": "greentouch-bayshore-engineered-hardwood-7-25in-select-hk1333-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/hickory-bayshore"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/hickory-bayshore",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_8fe95cc4faeb499f934ae335e7170633~mv2.jpg/v1/fit/w_1532,h_1532,q_90/file.jpg",
+     "sha1": "fd2025b3cd94ffe897db72db6776884101ba450a",
+     "page": "https://www.greentouchfloors.com/product-page/hickory-bayshore",
+     "width": 1532,
+     "height": 1532
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ac729427b446",
+   "seq": 16,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reczT887aRA0TOqIE",
+   "sku": "ENG-GRNT-0049",
+   "product_name": "GreenTouch Rustic Hickory 7.25\" — Cashmere (Sel)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_d5e04cc7ab6246f48791f6271df6e8b7~mv2.png/v1/fit/w_1469,h_1469,q_90/file.png",
+      "filename": "greentouch-cashmere-engineered-hardwood-7-25in-select-hk1335-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/hickory-cashmere"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/hickory-cashmere",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_d5e04cc7ab6246f48791f6271df6e8b7~mv2.png/v1/fit/w_1469,h_1469,q_90/file.png",
+     "sha1": "e38bb619b6fa9f541d17a40246adf171ec01fcac",
+     "page": "https://www.greentouchfloors.com/product-page/hickory-cashmere",
+     "width": 1469,
+     "height": 1469
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-3ec3a9b4dab5",
+   "seq": 17,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recfjyMMbYte3voYO",
+   "sku": "ENG-GRNT-0050",
+   "product_name": "GreenTouch Antique RO 5\" — Black Stone (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_066909cf2ffc46ee9ddb318c113ac3f5~mv2.jpg/v1/fit/w_1906,h_1906,q_90/file.jpg",
+      "filename": "greentouch-black-stone-engineered-hardwood-5in-select-and-better-ro2105-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/red-oak-black-stone"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/red-oak-black-stone",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_066909cf2ffc46ee9ddb318c113ac3f5~mv2.jpg/v1/fit/w_1906,h_1906,q_90/file.jpg",
+     "sha1": "3dca5a948398496def9f59b2ab871fdf790a869e",
+     "page": "https://www.greentouchfloors.com/product-page/red-oak-black-stone",
+     "width": 1906,
+     "height": 1906
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-daf1456d6d9b",
+   "seq": 18,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recJX3blmUuhcAfH7",
+   "sku": "ENG-GRNT-0052",
+   "product_name": "GreenTouch Antique RO 5\" — Golden (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_417e9266a4634d268ef70890b9293028~mv2.jpg/v1/fit/w_1362,h_1362,q_90/file.jpg",
+      "filename": "greentouch-golden-engineered-hardwood-5in-select-and-better-ro2101-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/red-oak-golden"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/red-oak-golden",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_417e9266a4634d268ef70890b9293028~mv2.jpg/v1/fit/w_1362,h_1362,q_90/file.jpg",
+     "sha1": "c0a7c3a1ccab91406c1f7efea45c9e1ad3e731a3",
+     "page": "https://www.greentouchfloors.com/product-page/red-oak-golden",
+     "width": 1362,
+     "height": 1362
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-9a17196521b3",
+   "seq": 19,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recvCO7iJfoIABS6h",
+   "sku": "ENG-GRNT-0053",
+   "product_name": "GreenTouch Antique RO 5\" — Gunstock (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_0c547e2ca48a45a7bde8e4d687484486~mv2.png/v1/fit/w_1512,h_1512,q_90/file.png",
+      "filename": "greentouch-gunstock-engineered-hardwood-5in-select-and-better-ro2102-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/red-oak-gunstock"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/red-oak-gunstock",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_0c547e2ca48a45a7bde8e4d687484486~mv2.png/v1/fit/w_1512,h_1512,q_90/file.png",
+     "sha1": "f65ba4098b84797e3d4c97d2b18bf1e322ea87f2",
+     "page": "https://www.greentouchfloors.com/product-page/red-oak-gunstock",
+     "width": 1512,
+     "height": 1512
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-e3e8e47b39d3",
+   "seq": 20,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec3wuLguEVCR56zW",
+   "sku": "ENG-GRNT-0059",
+   "product_name": "GreenTouch Antique Maple 5\" — Earth (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_b62e9b9e313a4515a2029ed7edbd41b4~mv2.png/v1/fit/w_1448,h_1448,q_90/file.png",
+      "filename": "greentouch-earth-engineered-hardwood-5in-select-and-better-mp2103-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/maple-earth"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/maple-earth",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_b62e9b9e313a4515a2029ed7edbd41b4~mv2.png/v1/fit/w_1448,h_1448,q_90/file.png",
+     "sha1": "d07fec30369ea98e42d3bdf4c13616ded20f1584",
+     "page": "https://www.greentouchfloors.com/product-page/maple-earth",
+     "width": 1448,
+     "height": 1448
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-0462bc5d3925",
+   "seq": 21,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rechD9qvoA1HPzWZ0",
+   "sku": "ENG-GRNT-0060",
+   "product_name": "GreenTouch Antique Maple 5\" — Cappuccino (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_4ec41b79415f46ae936ce69438af6e2d~mv2.jpg/v1/fit/w_1650,h_1650,q_90/file.jpg",
+      "filename": "greentouch-cappuccino-engineered-hardwood-5in-select-and-better-mp2105-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/maple-cappuccino"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/maple-cappuccino",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_4ec41b79415f46ae936ce69438af6e2d~mv2.jpg/v1/fit/w_1650,h_1650,q_90/file.jpg",
+     "sha1": "08477957d5f5ecb8172648c54b0dc1fccb6d5825",
+     "page": "https://www.greentouchfloors.com/product-page/maple-cappuccino",
+     "width": 1650,
+     "height": 1650
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-81f520a1222c",
+   "seq": 22,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec6MC7DtKugUwCdU",
+   "sku": "ENG-GRNT-0061",
+   "product_name": "GreenTouch Antique Maple 5\" — Pigeon (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_81859aaa173742c1ba534ed7ddfbe3ce~mv2.jpg/v1/fit/w_1472,h_1472,q_90/file.jpg",
+      "filename": "greentouch-pigeon-engineered-hardwood-5in-select-and-better-mp2106-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/maple-pigeon"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/maple-pigeon",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_81859aaa173742c1ba534ed7ddfbe3ce~mv2.jpg/v1/fit/w_1472,h_1472,q_90/file.jpg",
+     "sha1": "85bfdbca166e9360ff930e8a3e53dc3f91da0f7c",
+     "page": "https://www.greentouchfloors.com/product-page/maple-pigeon",
+     "width": 1472,
+     "height": 1472
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-4c093a5d4bff",
+   "seq": 23,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recHkIiw6V8tSc2ie",
+   "sku": "ENG-GRNT-0062",
+   "product_name": "GreenTouch Antique Maple 5\" — Limestone (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_2df0004bd7734ef6a59550077ae50366~mv2.jpg/v1/fit/w_1632,h_1632,q_90/file.jpg",
+      "filename": "greentouch-limestone-engineered-hardwood-5in-select-and-better-mp2107-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/maple-limestone"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/maple-limestone",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_2df0004bd7734ef6a59550077ae50366~mv2.jpg/v1/fit/w_1632,h_1632,q_90/file.jpg",
+     "sha1": "d945b3d09a80788f2faed16af0b2e0554d380562",
+     "page": "https://www.greentouchfloors.com/product-page/maple-limestone",
+     "width": 1632,
+     "height": 1632
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2f56582204ee",
+   "seq": 24,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recdSFLmtGLql42Wn",
+   "sku": "ENG-GRNT-0066",
+   "product_name": "GreenTouch Antique Hickory 5\" — Mojave (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_bfdc7e3231c64c3cbe9a6a72367cbf89~mv2.png/v1/fit/w_1346,h_1346,q_90/file.png",
+      "filename": "greentouch-mojave-engineered-hardwood-5in-select-and-better-hk2101-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/hickory-mojave"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/hickory-mojave",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_bfdc7e3231c64c3cbe9a6a72367cbf89~mv2.png/v1/fit/w_1346,h_1346,q_90/file.png",
+     "sha1": "156d5db4dfcdb694b10c37e2b890b6a8a4fa674c",
+     "page": "https://www.greentouchfloors.com/product-page/hickory-mojave",
+     "width": 1346,
+     "height": 1346
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b449b919f53d",
+   "seq": 25,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recHCCIiRERnu3NfX",
+   "sku": "ENG-GRNT-0067",
+   "product_name": "GreenTouch Antique Hickory 5\" — Klamath (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_fa6be53141f2479db4baecf6ad5601a1~mv2.jpg/v1/fit/w_1518,h_1518,q_90/file.jpg",
+      "filename": "greentouch-klamath-engineered-hardwood-5in-select-and-better-hk2102-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/hickory-klamath"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/hickory-klamath",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_fa6be53141f2479db4baecf6ad5601a1~mv2.jpg/v1/fit/w_1518,h_1518,q_90/file.jpg",
+     "sha1": "234d7ab2680f2b06d2833bfa7fd53fab655b0728",
+     "page": "https://www.greentouchfloors.com/product-page/hickory-klamath",
+     "width": 1518,
+     "height": 1518
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8da14c251819",
+   "seq": 26,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recSN1mhniDYbzyhz",
+   "sku": "ENG-GRNT-0069",
+   "product_name": "GreenTouch Antique Hickory 5\" — Lyon (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_8b7919d5185d4af4a25a050de0b3d18a~mv2.jpg/v1/fit/w_1366,h_1366,q_90/file.jpg",
+      "filename": "greentouch-lyon-engineered-hardwood-5in-select-and-better-hk2104-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/hickory-lyon"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/hickory-lyon",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_8b7919d5185d4af4a25a050de0b3d18a~mv2.jpg/v1/fit/w_1366,h_1366,q_90/file.jpg",
+     "sha1": "9c09d00fad90cf68af0765a1f0495f5923309d22",
+     "page": "https://www.greentouchfloors.com/product-page/hickory-lyon",
+     "width": 1366,
+     "height": 1366
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-36717a668e87",
+   "seq": 27,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reccPqxDIjWe7FVpC",
+   "sku": "ENG-GRNT-0070",
+   "product_name": "GreenTouch Antique Hickory 5\" — Wellow Puff (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_163bb564db094493a790e9d288dd11e7~mv2.jpg/v1/fit/w_1365,h_1365,q_90/file.jpg",
+      "filename": "greentouch-wellow-puff-engineered-hardwood-5in-select-and-better-hk2109-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/hickory-wellow-puff"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/hickory-wellow-puff",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_163bb564db094493a790e9d288dd11e7~mv2.jpg/v1/fit/w_1365,h_1365,q_90/file.jpg",
+     "sha1": "530468a34b2535e372c68d736ce46d2859af8262",
+     "page": "https://www.greentouchfloors.com/product-page/hickory-wellow-puff",
+     "width": 1365,
+     "height": 1365
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-221283114fac",
+   "seq": 28,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recDvwC4YkYP5uFxA",
+   "sku": "ENG-GRNT-0071",
+   "product_name": "GreenTouch Antique Hickory 5\" — Sedona Sage (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_c18596ca437d4a6ab44c93140a065ff2~mv2.jpg/v1/fit/w_1379,h_1379,q_90/file.jpg",
+      "filename": "greentouch-sedona-sage-engineered-hardwood-5in-select-and-better-hk2110-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/hickory-sedona-sage"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/hickory-sedona-sage",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_c18596ca437d4a6ab44c93140a065ff2~mv2.jpg/v1/fit/w_1379,h_1379,q_90/file.jpg",
+     "sha1": "ee87032363f0469c6983411aaff34c0fe76285b0",
+     "page": "https://www.greentouchfloors.com/product-page/hickory-sedona-sage",
+     "width": 1379,
+     "height": 1379
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2b7f249370c4",
+   "seq": 29,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec3qCBgOmDFbzqEN",
+   "sku": "ENG-GRNT-0072",
+   "product_name": "GreenTouch Antique Hickory 5\" — Bayleaf (S&B)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://static.wixstatic.com/media/54762c_85e6f6b3f6e44bd294b0060a2a0af2fe~mv2.jpg/v1/fit/w_1510,h_1510,q_90/file.jpg",
+      "filename": "greentouch-bayleaf-engineered-hardwood-5in-select-and-better-hk2111-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.greentouchfloors.com/product-page/hickory-bayleaf"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.greentouchfloors.com/product-page/hickory-bayleaf",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://static.wixstatic.com/media/54762c_85e6f6b3f6e44bd294b0060a2a0af2fe~mv2.jpg/v1/fit/w_1510,h_1510,q_90/file.jpg",
+     "sha1": "2460ac57aae4eef1ee6931dbe53b9cf91f6286f9",
+     "page": "https://www.greentouchfloors.com/product-page/hickory-bayleaf",
+     "width": 1510,
+     "height": 1510
+    }
+   ],
+   "flags": []
+  }
+ ],
+ "held": [
+  {
+   "sku": "ACC-GRNT-0083",
+   "record_id": "recbq5iD6PO9xnLsT",
+   "product_name": "GreenTouch T-Moulding & Reducer",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0001",
+   "record_id": "recO1G6r8wV6zbkRo",
+   "product_name": "GreenTouch Elegance WO 6\" — Lucca (Char)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Lucca'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0002",
+   "record_id": "recqkbxtCJbzK4rCl",
+   "product_name": "GreenTouch Elegance WO 6\" — Lucca (Sel)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Lucca'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0003",
+   "record_id": "recCd4Liziiy1kM8C",
+   "product_name": "GreenTouch Elegance WO 6\" — Lecce (Char)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Lecce'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0004",
+   "record_id": "recjFBz2ahpI0J9AU",
+   "product_name": "GreenTouch Elegance WO 6\" — Trani (Char)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Trani'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0005",
+   "record_id": "recgTEgguxQph4EsU",
+   "product_name": "GreenTouch Elegance WO 6\" — Monza (Char)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Monza'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0006",
+   "record_id": "recV3HCw1ZyefaLqv",
+   "product_name": "GreenTouch Elegance WO 6\" — Capri (Char)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Capri'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0007",
+   "record_id": "reczHKjhDqFbwlOlJ",
+   "product_name": "GreenTouch Elegance WO 6\" — Prato (Sel)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Prato'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0008",
+   "record_id": "rec8IV8FJzvW3SVeq",
+   "product_name": "GreenTouch Elegance WO 6\" — Siena (Sel)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Siena'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0009",
+   "record_id": "recrqVm6UxOxTLlls",
+   "product_name": "GreenTouch Elegance WO 6\" — Pompeii (Sel)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Pompeii'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0010",
+   "record_id": "recBpJFwImaKdfMS4",
+   "product_name": "GreenTouch Elegance WO 6\" — Lecce (Sel)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Lecce'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0011",
+   "record_id": "recz8Pe20z8tF0BxK",
+   "product_name": "GreenTouch Elegance WO 6\" — Verona (Sel)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Verona'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0012",
+   "record_id": "recBQjIIk1vmHAAzC",
+   "product_name": "GreenTouch Elegance WO 7.5\" — Lucca (Sel)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Lucca'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0013",
+   "record_id": "recoAjS4jAHFhoFVy",
+   "product_name": "GreenTouch Elegance WO 7.5\" — Lecce (Sel)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Lecce'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0014",
+   "record_id": "rec8lSs1M0Fkveqdj",
+   "product_name": "GreenTouch Elegance WO 7.5\" — Verona (Sel)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Verona'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0015",
+   "record_id": "recWIavwfmFEUcKRQ",
+   "product_name": "GreenTouch Elegance WO 7.5\" — Revello (Sel)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Revello'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0016",
+   "record_id": "rec0IDyG07GenkkQs",
+   "product_name": "GreenTouch Elegance WO 7.5\" — Tuscany (Sel)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Tuscany'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0017",
+   "record_id": "rec2FvPxYojH6BcCb",
+   "product_name": "GreenTouch Elegance WO 7.5\" — Pompeii (Sel)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Pompeii'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0018",
+   "record_id": "recbbjiFYgD41b5nX",
+   "product_name": "GreenTouch Purity WO 7.5\" — Alpine Horizon (Sel)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Alpine Horizon'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0019",
+   "record_id": "recv22J8y52aZcxRW",
+   "product_name": "GreenTouch Purity WO 7.5\" — Bavarian Ridge (Sel)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Bavarian Ridge'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0020",
+   "record_id": "reczkb3uBrDHKs0Ib",
+   "product_name": "GreenTouch Purity WO 7.5\" — Geneva Reflection (Sel)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Geneva Reflection'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0021",
+   "record_id": "recGizIIekycSIjtG",
+   "product_name": "GreenTouch Purity WO 7.5\" — Como Shore (Sel)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Como Shore'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0022",
+   "record_id": "recdKUDohnyGRJhDr",
+   "product_name": "GreenTouch Purity WO 7.5\" — Tatra Peak (Sel)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Tatra Peak'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0023",
+   "record_id": "reclRvQof4SOIejdO",
+   "product_name": "GreenTouch Purity WO 7.5\" — Balaton Charm (Sel)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Balaton Charm'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0024",
+   "record_id": "recANVJj2L6y0ASLF",
+   "product_name": "GreenTouch Purity WO 6\" — Alpine Horizon (Char)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Alpine Horizon'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0025",
+   "record_id": "recq9sw8nKS1KOjU6",
+   "product_name": "GreenTouch Purity WO 6\" — Geneva Reflection (Char)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Geneva Reflection'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0026",
+   "record_id": "recqXB7h3t9OzmIYT",
+   "product_name": "GreenTouch Purity WO 6\" — Como Shore (Char)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Como Shore'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0027",
+   "record_id": "recTtu5T7NdJqksHs",
+   "product_name": "GreenTouch Purity WO 6\" — Tatra Peak (Char)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Tatra Peak'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0028",
+   "record_id": "recdEaXLOPKkf3e23",
+   "product_name": "GreenTouch Purity WO 6\" — Balaton Charm (Char)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Balaton Charm'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0034",
+   "record_id": "reckYpvCkEqlIdNCh",
+   "product_name": "GreenTouch Premium AO 7\" — Valencia (S&B)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Valencia'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0039",
+   "record_id": "recrPQnEmPEDJVKid",
+   "product_name": "GreenTouch Premium AO 7\" — Metal Gray (S&B)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Metal Gray'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0040",
+   "record_id": "recTxJRF37d60AoFn",
+   "product_name": "GreenTouch Rustic Maple 7.25\" — Natural (S&B)",
+   "candidate_pages": [
+    "https://www.greentouchfloors.com/product-page/maple-natural",
+    "https://www.greentouchfloors.com/product-page/maple-natural-1",
+    "https://www.greentouchfloors.com/product-page/north-american-oak-natural"
+   ],
+   "reason": "model_rejected",
+   "detail": "colour 'Natural'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0045",
+   "record_id": "recwz42MEglKSDwYt",
+   "product_name": "GreenTouch Rustic Maple 7.25\" — Cloud Gray (S&B)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Cloud Gray'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0047",
+   "record_id": "rec6gNwpnpT0zseR9",
+   "product_name": "GreenTouch Rustic Hickory 7.25\" — Moon Gray (Sel)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Moon Gray'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0051",
+   "record_id": "rec8LMpxSTN2ZWrle",
+   "product_name": "GreenTouch Antique RO 5\" — Silver Gray (S&B)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Silver Gray'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0054",
+   "record_id": "recaOs0XMctOyy3yG",
+   "product_name": "GreenTouch Antique RO 5\" — Veyen (S&B)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Veyen'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0055",
+   "record_id": "recIIo7nDIHM00SOR",
+   "product_name": "GreenTouch Antique RO 5\" — Solin (S&B)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Solin'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0056",
+   "record_id": "recVZ1ePyJphYJ1Oz",
+   "product_name": "GreenTouch Antique RO 5\" — Haloak (S&B)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Haloak'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0057",
+   "record_id": "reclV8IDAmSeUlNGr",
+   "product_name": "GreenTouch Antique RO 5\" — Mistra (S&B)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Mistra'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0058",
+   "record_id": "recSM5FXmMALxswRn",
+   "product_name": "GreenTouch Antique Maple 5\" — Natural (S&B)",
+   "candidate_pages": [
+    "https://www.greentouchfloors.com/product-page/maple-natural",
+    "https://www.greentouchfloors.com/product-page/maple-natural-1",
+    "https://www.greentouchfloors.com/product-page/north-american-oak-natural"
+   ],
+   "reason": "model_rejected",
+   "detail": "colour 'Natural'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0063",
+   "record_id": "recGPGXNE4NkZlklU",
+   "product_name": "GreenTouch Antique Maple 5\" — Charcoal (S&B)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Charcoal'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0064",
+   "record_id": "rec0Nt8hejNFDLiBW",
+   "product_name": "GreenTouch Antique Maple 5\" — Lumis (S&B)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Lumis'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0065",
+   "record_id": "recoPsiUjLjvTUylZ",
+   "product_name": "GreenTouch Antique Maple 5\" — Teyla (S&B)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Teyla'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GRNT-0068",
+   "record_id": "recXJdTRdNVz4kJbo",
+   "product_name": "GreenTouch Antique Hickory 5\" — Omak (S&B)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Omak'; vetoes {}"
+  },
+  {
+   "sku": "LVP-GRNT-0073",
+   "record_id": "rec3Aggo7GLt4GE23",
+   "product_name": "GreenTouch Rigid Core Vinyl 9\" — SP2801",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'SP2801'; vetoes {}"
+  },
+  {
+   "sku": "LVP-GRNT-0074",
+   "record_id": "reca3EsWRPwk4JVl8",
+   "product_name": "GreenTouch Rigid Core Vinyl 9\" — SP2802",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'SP2802'; vetoes {}"
+  },
+  {
+   "sku": "LVP-GRNT-0075",
+   "record_id": "recPtK8lZ1yTtDDwf",
+   "product_name": "GreenTouch Rigid Core Vinyl 9\" — SP2803",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'SP2803'; vetoes {}"
+  },
+  {
+   "sku": "LVP-GRNT-0076",
+   "record_id": "recWN1574kTcOp6uO",
+   "product_name": "GreenTouch Rigid Core Vinyl 9\" — SP2804",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'SP2804'; vetoes {}"
+  },
+  {
+   "sku": "LVP-GRNT-0077",
+   "record_id": "rec2PBJB074OMQ4mV",
+   "product_name": "GreenTouch Rigid Core Vinyl 9\" — SP2805",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'SP2805'; vetoes {}"
+  },
+  {
+   "sku": "LVP-GRNT-0078",
+   "record_id": "recraMiMlz4axrQiS",
+   "product_name": "GreenTouch Rigid Core Vinyl 9\" — SP2806",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'SP2806'; vetoes {}"
+  },
+  {
+   "sku": "LVP-GRNT-0079",
+   "record_id": "recGYiJNhVnGrrndD",
+   "product_name": "GreenTouch Rigid Core Vinyl 9\" — SP2807",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'SP2807'; vetoes {}"
+  },
+  {
+   "sku": "LVP-GRNT-0080",
+   "record_id": "recOQ3fC3M1NCwNgT",
+   "product_name": "GreenTouch Rigid Core Vinyl 9\" — SP2808",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'SP2808'; vetoes {}"
+  },
+  {
+   "sku": "LVP-GRNT-0081",
+   "record_id": "recUiKYLnMO7l703H",
+   "product_name": "GreenTouch Rigid Core Vinyl 9\" — SP2809",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'SP2809'; vetoes {}"
+  },
+  {
+   "sku": "LVP-GRNT-0082",
+   "record_id": "recAO32KsuDE2lIcK",
+   "product_name": "GreenTouch Rigid Core Vinyl 9\" — SP2810",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'SP2810'; vetoes {}"
+  }
+ ]
+}

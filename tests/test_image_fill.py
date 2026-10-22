@@ -550,6 +550,84 @@ class TestTwoSources(unittest.TestCase):
         m = im.match_records([r], [by_title, by_code], sup, REG["matching"])[r["id"]]
         self.assertEqual((m["tier"], m["candidates"][0]["url"]), ("exact", "https://w/p2"))
 
+    def test_tile_sizes_must_agree(self):
+        # Gracious, 2026-10-22: one design on a 24x24 page and a 24x48 page.
+        r = {"id": "recGRACIOUS00001", "SKU": "TIL-GRAC-0001", "Product name": "Gracious — EUT-35 — 24 x 24", "Category": "Tile / Stone"}
+        p24 = page("https://g/p24", "White Matte Tile 24×24 — EUT-35")
+        p48 = page("https://g/p48", "White Matte Tile 24×48 — EUT-35")
+        m = im.match_records([r], [p24, p48], {}, REG["matching"])[r["id"]]
+        self.assertEqual((m["tier"], m["candidates"][0]["url"]), ("exact", "https://g/p24"))
+        self.assertEqual(im.match_records([r], [p48], {}, REG["matching"])[r["id"]]["tier"], "none")
+        self.assertEqual(im.sizes_in('Royale 23.62 x 23.62'), {(23.62, 23.62)})
+        self.assertTrue(im.sizes_agree({(24, 24)}, {(23.62, 23.62)}))
+
+    def test_require_collection_keeps_generic_colours_in_their_collection(self):
+        # CIF, 2026-10-22: `Midtown — Bianco` had found `Aldo Bianco 24"x24"`.
+        sup = {"require_collection": True}
+        r = {"id": "recCIF0000000001", "SKU": "TIL-CIF-0001", "Product name": "CIF Midtown — Bianco — 24 x 24 (Glossy)",
+             "Collection": "Midtown", "Category": "Tile / Stone"}
+        aldo, mid = page("https://c/aldo", 'Aldo Bianco 24"x24"'), page("https://c/mid", 'Midtown Bianco 24"x24"')
+        self.assertEqual(im.match_records([r], [aldo], sup, REG["matching"])[r["id"]]["tier"], "none")
+        self.assertEqual(im.match_records([r], [aldo, mid], sup, REG["matching"])[r["id"]]["candidates"][0]["url"], "https://c/mid")
+        coded = {**r, "Product name": "CIF Crackle Glass Mosaic — FAOC-5 (Black) — 1 x 1", "Collection": "Crackle Glass Mosaic"}
+        self.assertEqual(im.match_records([coded], [page("https://c/f", "Black Crackle Glass 1x1 - FAOC-5")], sup,
+                                          REG["matching"])[r["id"]]["tier"], "exact")  # a code colour is enough
+
+    def test_slug_codes_match_a_numbered_record(self):
+        # Woden, 2026-10-22: a Wix site whose slugs are the product numbers.
+        r = {"id": "recWODEN00000001", "SKU": "LVP-WODN-0001", "Product name": 'Woden SPC 6mm 7" — 603', "Category": "LVP"}
+        pages = [page("https://w/product-page/603", ""), page("https://w/product-page/6030-other", "")]
+        m = im.match_records([r], pages, {"slug_codes": True}, REG["matching"])[r["id"]]
+        self.assertEqual((m["tier"], m["candidates"][0]["url"]), ("exact", "https://w/product-page/603"))
+        self.assertEqual(im.code_hint('Woden SPC 11mm 9" — 1105 Silver Mist'), "1105")
+        self.assertEqual(im.code_hint('Woden Vermont 6.5" — Charcoal'), "")
+
+    def test_gallery_gives_each_image_its_own_page(self):
+        # Canadian Standard / Evergreen, 2026-10-22: a collection page of named colour photos.
+        p = {"url": "https://cs/origins/", "title": "Canadian Standard | Origins", "h1": "", "codes": [], "images": [
+            {"url": "https://cs/up/Origins-American-Hickory-Greysmith.jpg", "alt": ""},
+            {"url": "https://cs/up/Oak-Clay-e1706290826221-qiw0iztihwgft905a9fabjxpxftdrh1rmjulkiekvc.jpg", "alt": ""},
+            {"url": "https://cs/up/CanadianStandard_Final-01_white.png", "alt": "Logo"}]}
+        out = pull.gallery_pages([p])
+        self.assertEqual([x["title"] for x in out], ["Canadian Standard | Origins - Origins American Hickory Greysmith",
+                                                     "Canadian Standard | Origins - Oak Clay"])  # the logo is skipped
+        self.assertEqual([x["url"] for x in out], ["https://cs/origins/#img0", "https://cs/origins/#img1"])
+        self.assertEqual([len(x["images"]) for x in out], [1, 1])
+
+    def test_the_suppliers_code_in_the_url_slug_is_a_code_match(self):
+        # Floordi, 2026-10-22: `/ashen-breeze-spc-flooring-avr655/` for SKU AVR655.
+        r = {"id": "recFLOORDI000001", "SKU": "LVP-FLRD-0001", "Product name": 'Floordi 6.5mm AVO-ROX EASE 7.19" — Ashen Breeze',
+             "Supplier SKU": "AVR655", "Category": "LVP"}
+        en = page("https://f/ashen-breeze-spc-flooring-avr655/", "Ashen Breeze 6,5mm - Luxury Vinyl Plank")
+        tile = page("https://f/ashen-breeze-3mm-glue-down/", "Ashen Breeze 3mm - Glue Down LVT")
+        m = im.match_records([r], [tile, en], {}, REG["matching"])[r["id"]]
+        self.assertEqual((m["tier"], m["candidates"][0]["url"]), ("exact", "https://f/ashen-breeze-spc-flooring-avr655/"))
+
+    def test_codes_that_disagree_veto_and_a_grade_suffix_still_agrees(self):
+        # Impressive, 2026-10-22: Classic Oak Natural 91513-M had taken Paramount NATURAL (91009).
+        r = {"id": "recIMPRESSIVE001", "SKU": "91513-M", "Product name": "Impressive Classic Oak — Natural (3-1/4, Select & Better)",
+             "Supplier SKU": "91513-M", "Category": "Solid hardwood"}
+        other = {**page("https://i/natural/", "NATURAL"), "codes": ["91009"]}
+        self.assertEqual(im.match_records([r], [other], {}, REG["matching"])[r["id"]]["tier"], "none")
+        ridge = {**r, "Supplier SKU": "91507-M", "Product name": "Impressive Classic Oak — Ridge (3-1/4, Select & Better)"}
+        pages = [{**page("https://i/ridge/", "RIDGE"), "codes": ["91507"]}, {**page("https://i/ridge-2/", "RIDGE"), "codes": ["4608"]}]
+        m = im.match_records([ridge], pages, {}, REG["matching"])[r["id"]]
+        self.assertEqual((m["tier"], m["candidates"][0]["url"]), ("exact", "https://i/ridge/"))
+
+    def test_elementor_background_slideshow_images_are_page_images(self):
+        # Purelux, 2026-10-22: a colour's photos live only in Elementor's data-settings.
+        html = ('<html><head><title>CARDIFF</title></head><body><div data-settings="{&quot;background_slideshow_gallery'
+                '&quot;:[{&quot;id&quot;:1,&quot;url&quot;:&quot;https:\\/\\/p.com\\/up\\/Cardiff-2.jpg&quot;}]}"></div>'
+                '<img src="/up/logo.png"></body></html>')
+        urls = [i["url"] for i in pull.page_from_html("https://p.com/cardiff/", html)["images"]]
+        self.assertIn("https://p.com/up/Cardiff-2.jpg", urls)
+
+    def test_browser_listing_is_asked_for_never_automatic(self):
+        tosca = REG["suppliers"]["TOSCA"]["official"]["listing"]
+        self.assertEqual(tosca["method"], "browser")
+        self.assertTrue(tosca["list_url"].startswith("https://toscaflooring.com/"))
+        self.assertTrue((REPO_ROOT / "scripts" / "browser_list.js").exists())
+
     def test_a_disabled_official_site_is_not_read(self):
         self.assertEqual([s["name"] for s in pull.supplier_sources(REG["suppliers"]["OLYMPIA TILE"], REG)],
                          ["wordofmouth"])

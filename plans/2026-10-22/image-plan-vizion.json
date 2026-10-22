@@ -1,0 +1,2289 @@
+{
+ "contract_version": "image-plan-1",
+ "scope": "vizion",
+ "supplier": "VIZION",
+ "run_at": "2026-10-22T15:32:39.929452-04:00",
+ "expires": "2026-10-22T23:59:59-0400",
+ "write_mode": "write",
+ "registry": "platform-settings/supplier-sites.json",
+ "inputs": {
+  "pages": "ingest/2026-10-22/supplier-pages-vizion.json",
+  "judgements": "ingest/2026-10-22/image-judgements-vizion.json",
+  "product_pages": null
+ },
+ "summary": {
+  "records": 69,
+  "actions": 35,
+  "held": 32,
+  "skipped": {
+   "accessory": 2
+  },
+  "held_by_reason": {
+   "no_match": 32
+  },
+  "fields": {
+   "Swatch images": 35,
+   "Room scene images": 35,
+   "Supplier product page": 35
+  },
+  "tiers": {
+   "exact": 35
+  },
+  "manufacturer_pages": 35
+ },
+ "actions": [
+  {
+   "id": "img-328e88c6c0cd",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recRhuC0dHOndvGxd",
+   "sku": "LVP-VIZN-V7001",
+   "product_name": "Vizion 7mm Marvelous 7.2\" — Acadia",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7001Awhole.jpg?v=1790635335",
+      "filename": "vizion-acadia-lvp-7-2in-v7001-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7001AAcadia.jpg?v=1790635337",
+      "filename": "vizion-acadia-lvp-7-2in-v7001-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v7001-acadia"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v7001-acadia",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7001Awhole.jpg?v=1790635335",
+     "sha1": "ef25cd41cbc2b973bbfaa48e4cf2049f48175a3a",
+     "page": "https://vizionfloor.com/products/v7001-acadia",
+     "width": 2790,
+     "height": 5367
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7001AAcadia.jpg?v=1790635337",
+     "sha1": "3c633efce481cce4edf33708a7d79dab366cbb0f",
+     "page": "https://vizionfloor.com/products/v7001-acadia",
+     "width": 2500,
+     "height": 2500
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-483a34195373",
+   "seq": 2,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recSMR62eLoSmzd3e",
+   "sku": "LVP-VIZN-V7002",
+   "product_name": "Vizion 7mm Marvelous 7.2\" — Arches",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7002_47a6b959-e2fb-47c9-b5ff-23d89487751f.jpg?v=1790635493",
+      "filename": "vizion-arches-lvp-7-2in-v7002-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7002Arches.jpg?v=1790635494",
+      "filename": "vizion-arches-lvp-7-2in-v7002-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v7002-arches"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v7002-arches",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7002_47a6b959-e2fb-47c9-b5ff-23d89487751f.jpg?v=1790635493",
+     "sha1": "4b0373f218dd8ec99a57fbd5920cad571ae5c889",
+     "page": "https://vizionfloor.com/products/v7002-arches",
+     "width": 2790,
+     "height": 5339
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7002Arches.jpg?v=1790635494",
+     "sha1": "410d6c6279944aabec6edc490446e0ff036655d2",
+     "page": "https://vizionfloor.com/products/v7002-arches",
+     "width": 1280,
+     "height": 1280
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b297ec81979e",
+   "seq": 3,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reccUuZVidt1eYwaA",
+   "sku": "LVP-VIZN-V7003",
+   "product_name": "Vizion 7mm Marvelous 7.2\" — Denali",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7003.jpg?v=1790635665",
+      "filename": "vizion-denali-lvp-7-2in-v7003-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7003Denali.jpg?v=1790635705",
+      "filename": "vizion-denali-lvp-7-2in-v7003-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v7003-denali"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v7003-denali",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7003.jpg?v=1790635665",
+     "sha1": "ff1ae3fce64558051eb6c8537772b71a2d90d3fb",
+     "page": "https://vizionfloor.com/products/v7003-denali",
+     "width": 3360,
+     "height": 4285
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7003Denali.jpg?v=1790635705",
+     "sha1": "8a27e32d06ee932f647b1911797ea67e9c7e6359",
+     "page": "https://vizionfloor.com/products/v7003-denali",
+     "width": 4000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-01423b1f9cd0",
+   "seq": 4,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recAboAlgiA6K0v93",
+   "sku": "LVP-VIZN-V7004",
+   "product_name": "Vizion 7mm Marvelous 7.2\" — Everglades",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7004.jpg?v=1790635865",
+      "filename": "vizion-everglades-lvp-7-2in-v7004-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7004Everglades.jpg?v=1790635867",
+      "filename": "vizion-everglades-lvp-7-2in-v7004-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v7004-everglades"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v7004-everglades",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7004.jpg?v=1790635865",
+     "sha1": "0c28ba2ea99a7016aa8b9006136f2612aca03d48",
+     "page": "https://vizionfloor.com/products/v7004-everglades",
+     "width": 3000,
+     "height": 3867
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7004Everglades.jpg?v=1790635867",
+     "sha1": "e3641452b76e17ce92863c55aedf5a4e83af3662",
+     "page": "https://vizionfloor.com/products/v7004-everglades",
+     "width": 3840,
+     "height": 3840
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8ff6110a0028",
+   "seq": 5,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recJAl8UhijxcEOil",
+   "sku": "LVP-VIZN-V7005",
+   "product_name": "Vizion 7mm Marvelous 7.2\" — Yosemite",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7005_be936d30-859e-49b1-b9b9-1baa689c5046.jpg?v=1790636126",
+      "filename": "vizion-yosemite-lvp-7-2in-v7005-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7005Yosemite.jpg?v=1790636127",
+      "filename": "vizion-yosemite-lvp-7-2in-v7005-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v7005-yosemite"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v7005-yosemite",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7005_be936d30-859e-49b1-b9b9-1baa689c5046.jpg?v=1790636126",
+     "sha1": "529c95052df5fd6fedfed566d77ec17a64736de2",
+     "page": "https://vizionfloor.com/products/v7005-yosemite",
+     "width": 2790,
+     "height": 5320
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7005Yosemite.jpg?v=1790636127",
+     "sha1": "eb95f588aabe654a071b489f755caf605e071e23",
+     "page": "https://vizionfloor.com/products/v7005-yosemite",
+     "width": 2500,
+     "height": 2500
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-174b6ea36906",
+   "seq": 6,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reclltEoNHvtKduE8",
+   "sku": "LVP-VIZN-V7006",
+   "product_name": "Vizion 7mm Marvelous 7.2\" — Joshua",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7006.jpg?v=1790636178",
+      "filename": "vizion-joshua-lvp-7-2in-v7006-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7006Joshua.jpg?v=1790636180",
+      "filename": "vizion-joshua-lvp-7-2in-v7006-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v7006-joshua"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v7006-joshua",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7006.jpg?v=1790636178",
+     "sha1": "746c701b43472e736907c39d4b0b52a87244703a",
+     "page": "https://vizionfloor.com/products/v7006-joshua",
+     "width": 1280,
+     "height": 2446
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7006Joshua.jpg?v=1790636180",
+     "sha1": "aa358d85e03790784055ff1b63b54071f32b28ac",
+     "page": "https://vizionfloor.com/products/v7006-joshua",
+     "width": 2500,
+     "height": 2500
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-980efb750f06",
+   "seq": 7,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recOJJKu6q25wfQ7j",
+   "sku": "LVP-VIZN-V7007",
+   "product_name": "Vizion 7mm Marvelous 7.2\" — Saguaro",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7007.jpg?v=1790636314",
+      "filename": "vizion-saguaro-lvp-7-2in-v7007-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7007Sauaro.jpg?v=1790636316",
+      "filename": "vizion-saguaro-lvp-7-2in-v7007-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v7007-saguaro"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v7007-saguaro",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7007.jpg?v=1790636314",
+     "sha1": "23cc1ce5bf21937ea984c484170574e7b0d92267",
+     "page": "https://vizionfloor.com/products/v7007-saguaro",
+     "width": 2789,
+     "height": 4467
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7007Sauaro.jpg?v=1790636316",
+     "sha1": "969748fa19c12c1f2584f7f491a6f52bad5af81b",
+     "page": "https://vizionfloor.com/products/v7007-saguaro",
+     "width": 2500,
+     "height": 2500
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-9b946a69b589",
+   "seq": 8,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "receaUPPtwIQYC6ZM",
+   "sku": "LVP-VIZN-V7008",
+   "product_name": "Vizion 7mm Marvelous 7.2\" — Zion",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-V7008-single.jpg?v=1791932546",
+      "filename": "vizion-zion-lvp-7-2in-v7008-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7008Zion.jpg?v=1790636485",
+      "filename": "vizion-zion-lvp-7-2in-v7008-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v7008-zion"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v7008-zion",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-V7008-single.jpg?v=1791932546",
+     "sha1": "c5fa00c9b29adce67f6cce09e1afd34a2dcc1886",
+     "page": "https://vizionfloor.com/products/v7008-zion",
+     "width": 1280,
+     "height": 1740
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V7008Zion.jpg?v=1790636485",
+     "sha1": "8a49b930d3e1db80e213daf575f4a83a730d2621",
+     "page": "https://vizionfloor.com/products/v7008-zion",
+     "width": 1627,
+     "height": 1214
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8c841bbf2aff",
+   "seq": 9,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recXi3ttmBh0cpNvS",
+   "sku": "LVP-VIZN-V7009",
+   "product_name": "Vizion 7mm Marvelous 7.2\" — Grand Teton",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/7009_1.jpg?v=1790715649",
+      "filename": "vizion-grand-teton-lvp-7-2in-v7009-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/7009.jpg?v=1790715651",
+      "filename": "vizion-grand-teton-lvp-7-2in-v7009-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v7009-grand-teton"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v7009-grand-teton",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/7009_1.jpg?v=1790715649",
+     "sha1": "efdf1d010c15bba8e391c3b79af94ce9363552f9",
+     "page": "https://vizionfloor.com/products/v7009-grand-teton",
+     "width": 3885,
+     "height": 6221
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/7009.jpg?v=1790715651",
+     "sha1": "ba058bb4c8a566b0f74d5301b707a37b19537a9a",
+     "page": "https://vizionfloor.com/products/v7009-grand-teton",
+     "width": 2790,
+     "height": 3100
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-7e032364ad38",
+   "seq": 10,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recF4B09V5bh8cGW1",
+   "sku": "LVP-VIZN-V7010",
+   "product_name": "Vizion 7mm Marvelous 7.2\" — Yellowstone",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/7010.jpg?v=1790715782",
+      "filename": "vizion-yellowstone-lvp-7-2in-v7010-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/7010_9a0dbae0-f7dd-47cb-ab6b-c8fa9d1f6b95.jpg?v=1790715827",
+      "filename": "vizion-yellowstone-lvp-7-2in-v7010-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v7010-yellowstone"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v7010-yellowstone",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/7010.jpg?v=1790715782",
+     "sha1": "c4183f6c63535b9bffe96624ef4e441d5ac58c46",
+     "page": "https://vizionfloor.com/products/v7010-yellowstone",
+     "width": 3086,
+     "height": 6016
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/7010_9a0dbae0-f7dd-47cb-ab6b-c8fa9d1f6b95.jpg?v=1790715827",
+     "sha1": "12b9d239e6e5c80b90e8a59632aee34df5f3d3f2",
+     "page": "https://vizionfloor.com/products/v7010-yellowstone",
+     "width": 5000,
+     "height": 3750
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-56984c0b9463",
+   "seq": 11,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recOQg0dGTtFOcSHv",
+   "sku": "LVP-VIZN-V7011",
+   "product_name": "Vizion 7mm Marvelous 7.2\" — Bryce",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-v7011-single.jpg?v=1791482985",
+      "filename": "vizion-bryce-lvp-7-2in-v7011-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-v7011-lifestyle.jpg?v=1791482994",
+      "filename": "vizion-bryce-lvp-7-2in-v7011-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v7011-bryce"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v7011-bryce",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-v7011-single.jpg?v=1791482985",
+     "sha1": "a0273305c5ae4d102bce423167f6756a48d00ea3",
+     "page": "https://vizionfloor.com/products/v7011-bryce",
+     "width": 2786,
+     "height": 4507
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-v7011-lifestyle.jpg?v=1791482994",
+     "sha1": "4081dc409cbefe072bee7aba6cda4de30036a9b1",
+     "page": "https://vizionfloor.com/products/v7011-bryce",
+     "width": 2500,
+     "height": 2500
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-7c4f38cf6782",
+   "seq": 12,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recqBN6PmcUHsBijd",
+   "sku": "LVP-VIZN-V7012",
+   "product_name": "Vizion 7mm Marvelous 7.2\" — Canyon",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-v7012-single.jpg?v=1791483267",
+      "filename": "vizion-canyon-lvp-7-2in-v7012-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-v7012-lifestyle.jpg?v=1791483268",
+      "filename": "vizion-canyon-lvp-7-2in-v7012-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v7012-canyon"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v7012-canyon",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-v7012-single.jpg?v=1791483267",
+     "sha1": "20852f1c25aaa042b7ff02f3ffa1b1916d6c73a6",
+     "page": "https://vizionfloor.com/products/v7012-canyon",
+     "width": 3874,
+     "height": 5823
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-v7012-lifestyle.jpg?v=1791483268",
+     "sha1": "98e5d081fc7ec417e7a93c3b406ab821aefd50f2",
+     "page": "https://vizionfloor.com/products/v7012-canyon",
+     "width": 4000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-4ded410b2a30",
+   "seq": 13,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recMQWGLoV7g46fHx",
+   "sku": "LVP-VIZN-V8001",
+   "product_name": "Vizion 8mm Marvelous 7.2\" — Banff",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8001_61b6d84e-4ee7-4e5d-af7d-581d57eff87b.jpg?v=1790637196",
+      "filename": "vizion-banff-lvp-7-2in-v8001-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8001Banff.jpg?v=1790637197",
+      "filename": "vizion-banff-lvp-7-2in-v8001-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v8001-banff"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v8001-banff",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8001_61b6d84e-4ee7-4e5d-af7d-581d57eff87b.jpg?v=1790637196",
+     "sha1": "a0273305c5ae4d102bce423167f6756a48d00ea3",
+     "page": "https://vizionfloor.com/products/v8001-banff",
+     "width": 2786,
+     "height": 4507
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8001Banff.jpg?v=1790637197",
+     "sha1": "4081dc409cbefe072bee7aba6cda4de30036a9b1",
+     "page": "https://vizionfloor.com/products/v8001-banff",
+     "width": 2500,
+     "height": 2500
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-7c668c2f3b02",
+   "seq": 14,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recrtEWmNU92r4XDz",
+   "sku": "LVP-VIZN-V8002",
+   "product_name": "Vizion 8mm Marvelous 7.2\" — Grassland",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8002.jpg?v=1790637338",
+      "filename": "vizion-grassland-lvp-7-2in-v8002-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8002Grassland.jpg?v=1790637340",
+      "filename": "vizion-grassland-lvp-7-2in-v8002-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v8002-grassland"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v8002-grassland",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8002.jpg?v=1790637338",
+     "sha1": "f85ca6545514270341c9f302bb626cff4ddfbea7",
+     "page": "https://vizionfloor.com/products/v8002-grassland",
+     "width": 1280,
+     "height": 1651
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8002Grassland.jpg?v=1790637340",
+     "sha1": "01e835185e70f16aa366e47babcbf842f7366069",
+     "page": "https://vizionfloor.com/products/v8002-grassland",
+     "width": 5333,
+     "height": 3659
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-51531dde38fa",
+   "seq": 15,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recAVZYPmZ0Naj2m0",
+   "sku": "LVP-VIZN-V8003",
+   "product_name": "Vizion 8mm Marvelous 7.2\" — Yoho",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8003_aa627be2-19ba-40cb-b229-bc52c2c59f61.jpg?v=1790704343",
+      "filename": "vizion-yoho-lvp-7-2in-v8003-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8003YOHO.jpg?v=1790637530",
+      "filename": "vizion-yoho-lvp-7-2in-v8003-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v8003-yoho"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v8003-yoho",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8003_aa627be2-19ba-40cb-b229-bc52c2c59f61.jpg?v=1790704343",
+     "sha1": "d81ea694ed714c0dceb9738c3918466556a1d418",
+     "page": "https://vizionfloor.com/products/v8003-yoho",
+     "width": 2994,
+     "height": 4970
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8003YOHO.jpg?v=1790637530",
+     "sha1": "ed19aa09f45aa1b2b5085ec2f48664719c127f0f",
+     "page": "https://vizionfloor.com/products/v8003-yoho",
+     "width": 3840,
+     "height": 2160
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-437b5e3f3e49",
+   "seq": 16,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec4Rqytx4c9vZAoN",
+   "sku": "LVP-VIZN-V8004",
+   "product_name": "Vizion 8mm Marvelous 7.2\" — Wapusk",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8004.jpg?v=1790637578",
+      "filename": "vizion-wapusk-lvp-7-2in-v8004-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8004Wapusk.jpg?v=1790637584",
+      "filename": "vizion-wapusk-lvp-7-2in-v8004-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v8004-wapusk"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v8004-wapusk",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8004.jpg?v=1790637578",
+     "sha1": "ab44f33d39743554604c30fa6760b9cbf71e66f6",
+     "page": "https://vizionfloor.com/products/v8004-wapusk",
+     "width": 1280,
+     "height": 2041
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8004Wapusk.jpg?v=1790637584",
+     "sha1": "d4215a76662cd997fa5b6aff584b774dcfcf83b7",
+     "page": "https://vizionfloor.com/products/v8004-wapusk",
+     "width": 2500,
+     "height": 2500
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-81b9d2885e85",
+   "seq": 17,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recCxUYCT3zQKaV1V",
+   "sku": "LVP-VIZN-V8005",
+   "product_name": "Vizion 8mm Marvelous 7.2\" — Thousand Island",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8005.jpg?v=1790637707",
+      "filename": "vizion-thousand-island-lvp-7-2in-v8005-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8005ThousandIsland.jpg?v=1790637709",
+      "filename": "vizion-thousand-island-lvp-7-2in-v8005-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v8005-thousand-island"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v8005-thousand-island",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8005.jpg?v=1790637707",
+     "sha1": "5845b58a0cf2e382c11e8af4ca0bc6b398634f7d",
+     "page": "https://vizionfloor.com/products/v8005-thousand-island",
+     "width": 1280,
+     "height": 1656
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8005ThousandIsland.jpg?v=1790637709",
+     "sha1": "bab6fc39941cfb42bb104cc77102555b4bf3ebb4",
+     "page": "https://vizionfloor.com/products/v8005-thousand-island",
+     "width": 1707,
+     "height": 1280
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-0be2727000a8",
+   "seq": 18,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec2wIjZFyfAlFH2R",
+   "sku": "LVP-VIZN-V8006",
+   "product_name": "Vizion 8mm Marvelous 7.2\" — Forillon",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8006.jpg?v=1790637848",
+      "filename": "vizion-forillon-lvp-7-2in-v8006-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8006Forillon.jpg?v=1790637850",
+      "filename": "vizion-forillon-lvp-7-2in-v8006-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v8006-forillon"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v8006-forillon",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8006.jpg?v=1790637848",
+     "sha1": "27531f2123a3b577b0e98a8b1de851498dc45d27",
+     "page": "https://vizionfloor.com/products/v8006-forillon",
+     "width": 3360,
+     "height": 4309
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8006Forillon.jpg?v=1790637850",
+     "sha1": "a6d7257d9b5809f92bd1f691ac89f23abd479909",
+     "page": "https://vizionfloor.com/products/v8006-forillon",
+     "width": 4000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-203a95cc915a",
+   "seq": 19,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reclSNVOpz3RKY1ND",
+   "sku": "LVP-VIZN-V8007",
+   "product_name": "Vizion 8mm Marvelous 7.2\" — Terra Nova",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8007.jpg?v=1790638008",
+      "filename": "vizion-terra-nova-lvp-7-2in-v8007-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8007TerraNova.jpg?v=1790638011",
+      "filename": "vizion-terra-nova-lvp-7-2in-v8007-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v8007-terra-nova"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v8007-terra-nova",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8007.jpg?v=1790638008",
+     "sha1": "22c4d5ce653860771520a195d49717f4a4aebc79",
+     "page": "https://vizionfloor.com/products/v8007-terra-nova",
+     "width": 3000,
+     "height": 3860
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8007TerraNova.jpg?v=1790638011",
+     "sha1": "025e58cd2a83a48695d070f0dba8ed88a643c48e",
+     "page": "https://vizionfloor.com/products/v8007-terra-nova",
+     "width": 3840,
+     "height": 3840
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-93ce1de2544f",
+   "seq": 20,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reczDqUJT78E1ZKIg",
+   "sku": "LVP-VIZN-V8008",
+   "product_name": "Vizion 8mm Marvelous 7.2\" — Fundy",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8008.jpg?v=1790638123",
+      "filename": "vizion-fundy-lvp-7-2in-v8008-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8008Fundy.jpg?v=1790638124",
+      "filename": "vizion-fundy-lvp-7-2in-v8008-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v8008-fundy"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v8008-fundy",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8008.jpg?v=1790638123",
+     "sha1": "d329d20f04bc639f600a175d8681f7fe5119cd24",
+     "page": "https://vizionfloor.com/products/v8008-fundy",
+     "width": 3360,
+     "height": 4317
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V8008Fundy.jpg?v=1790638124",
+     "sha1": "247c378fab2b78c855dc54cf81e4993bef44074b",
+     "page": "https://vizionfloor.com/products/v8008-fundy",
+     "width": 4000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-18b667c0627f",
+   "seq": 21,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recQJcj4Vf9e4PiXq",
+   "sku": "LVP-VIZN-V8009",
+   "product_name": "Vizion 8mm Marvelous 7.2\" — Aulavik",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/8c0a4f686b5139a68765511b3ea6f82d.jpg?v=1790717432",
+      "filename": "vizion-aulavik-lvp-7-2in-v8009-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/59be341d45e112e68567ab3e29d5d230.jpg?v=1790717435",
+      "filename": "vizion-aulavik-lvp-7-2in-v8009-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v8009-aulavik"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v8009-aulavik",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/8c0a4f686b5139a68765511b3ea6f82d.jpg?v=1790717432",
+     "sha1": "980d241b1812d2b95ce2b6def3702cabe186bf44",
+     "page": "https://vizionfloor.com/products/v8009-aulavik",
+     "width": 1280,
+     "height": 1651
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/59be341d45e112e68567ab3e29d5d230.jpg?v=1790717435",
+     "sha1": "70bb0002d84ba139b49310103266fa4f25b29c2c",
+     "page": "https://vizionfloor.com/products/v8009-aulavik",
+     "width": 1707,
+     "height": 1280
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f01654aa0ff7",
+   "seq": 22,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recJzAO8FpETTz5Fo",
+   "sku": "LVP-VIZN-V8010",
+   "product_name": "Vizion 8mm Marvelous 7.2\" — Glacier",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/8010.jpg?v=1790717498",
+      "filename": "vizion-glacier-lvp-7-2in-v8010-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/8010_d9b307b2-51c3-4723-ae2d-cb08d0fb432d.jpg?v=1790717530",
+      "filename": "vizion-glacier-lvp-7-2in-v8010-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v8010-glacier"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v8010-glacier",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/8010.jpg?v=1790717498",
+     "sha1": "011f29698792480f9debb4792df465d4c5ed2e0c",
+     "page": "https://vizionfloor.com/products/v8010-glacier",
+     "width": 3088,
+     "height": 6016
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/8010_d9b307b2-51c3-4723-ae2d-cb08d0fb432d.jpg?v=1790717530",
+     "sha1": "725eb8fc94f36020b045846fc051d9febe2bf873",
+     "page": "https://vizionfloor.com/products/v8010-glacier",
+     "width": 5000,
+     "height": 3750
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-401b376f1c03",
+   "seq": 23,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reclHwlN4Mk1v9QEO",
+   "sku": "LVP-VIZN-V8011",
+   "product_name": "Vizion 8mm Marvelous 7.2\" — Jasper",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/8011.jpg?v=1790717628",
+      "filename": "vizion-jasper-lvp-7-2in-v8011-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/8011_5da42f09-c4b6-4473-bf55-f5fc7cc9bc9f.jpg?v=1790717650",
+      "filename": "vizion-jasper-lvp-7-2in-v8011-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v8011-jasper"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v8011-jasper",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/8011.jpg?v=1790717628",
+     "sha1": "dcef5fb9310c83eace88fd9df3bfcce1a16935ec",
+     "page": "https://vizionfloor.com/products/v8011-jasper",
+     "width": 3000,
+     "height": 5762
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/8011_5da42f09-c4b6-4473-bf55-f5fc7cc9bc9f.jpg?v=1790717650",
+     "sha1": "7250911dd8d733052262bff94188a4813bbc5a1e",
+     "page": "https://vizionfloor.com/products/v8011-jasper",
+     "width": 5000,
+     "height": 3750
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a2d755650d03",
+   "seq": 24,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec5cRfX9OFkHqkZK",
+   "sku": "LVP-VIZN-V8012",
+   "product_name": "Vizion 8mm Marvelous 7.2\" — Riding",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/8012.jpg?v=1790717728",
+      "filename": "vizion-riding-lvp-7-2in-v8012-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/8012_95fd7081-7d57-45c2-a941-b05c93fd3980.jpg?v=1790717757",
+      "filename": "vizion-riding-lvp-7-2in-v8012-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v8012-riding"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v8012-riding",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/8012.jpg?v=1790717728",
+     "sha1": "1709f9ad5cda1ebced9f35be6ee551e80b9937d2",
+     "page": "https://vizionfloor.com/products/v8012-riding",
+     "width": 3092,
+     "height": 5039
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/8012_95fd7081-7d57-45c2-a941-b05c93fd3980.jpg?v=1790717757",
+     "sha1": "ec45082b490217e2a742dbcd8a2ea4737e2a37d0",
+     "page": "https://vizionfloor.com/products/v8012-riding",
+     "width": 5000,
+     "height": 3750
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-6337cdd99821",
+   "seq": 25,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recYZHjzrGT7d3Hly",
+   "sku": "LVP-VIZN-V9001",
+   "product_name": "Vizion 9mm Prestige 7.2\" — Sorrento",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V9001.jpg?v=1790639474",
+      "filename": "vizion-sorrento-lvp-7-2in-v9001-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V9001_7a5745ff-3ad5-45ba-acc0-6430e46960c5.jpg?v=1790639475",
+      "filename": "vizion-sorrento-lvp-7-2in-v9001-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v9001-sorrento"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v9001-sorrento",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V9001.jpg?v=1790639474",
+     "sha1": "d440169e00786c332523e4a7a075b8b094565ad0",
+     "page": "https://vizionfloor.com/products/v9001-sorrento",
+     "width": 2780,
+     "height": 4528
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V9001_7a5745ff-3ad5-45ba-acc0-6430e46960c5.jpg?v=1790639475",
+     "sha1": "732788f6dc358f819896f7426ded9556b8bef2b5",
+     "page": "https://vizionfloor.com/products/v9001-sorrento",
+     "width": 2500,
+     "height": 2500
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-66609c84f921",
+   "seq": 26,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "receNmcS9tG0LeLgt",
+   "sku": "LVP-VIZN-V9002",
+   "product_name": "Vizion 9mm Prestige 7.2\" — Capri",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V9002.jpg?v=1790639790",
+      "filename": "vizion-capri-lvp-7-2in-v9002-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V9002_986fd983-75ce-45a8-82ee-8822070141b1.jpg?v=1790639791",
+      "filename": "vizion-capri-lvp-7-2in-v9002-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v9002-capri"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v9002-capri",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V9002.jpg?v=1790639790",
+     "sha1": "2276f000696bba0b7d3620133743a749ed7ec254",
+     "page": "https://vizionfloor.com/products/v9002-capri",
+     "width": 2786,
+     "height": 4529
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V9002_986fd983-75ce-45a8-82ee-8822070141b1.jpg?v=1790639791",
+     "sha1": "4081dc409cbefe072bee7aba6cda4de30036a9b1",
+     "page": "https://vizionfloor.com/products/v9002-capri",
+     "width": 2500,
+     "height": 2500
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-c0a7d38c00b3",
+   "seq": 27,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recYKaT7S7mSbuv86",
+   "sku": "LVP-VIZN-V9003",
+   "product_name": "Vizion 9mm Prestige 7.2\" — Madeira",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V9003.jpg?v=1790639933",
+      "filename": "vizion-madeira-lvp-7-2in-v9003-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V9003_7c585a56-587c-4568-92f3-d6bb762b33dc.jpg?v=1790639934",
+      "filename": "vizion-madeira-lvp-7-2in-v9003-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v9003-madeira"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v9003-madeira",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V9003.jpg?v=1790639933",
+     "sha1": "850b709dcd85761ce2bb29ce16d8829eb919146c",
+     "page": "https://vizionfloor.com/products/v9003-madeira",
+     "width": 2788,
+     "height": 4521
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V9003_7c585a56-587c-4568-92f3-d6bb762b33dc.jpg?v=1790639934",
+     "sha1": "55a9f7282412ed5c2e44e98a724e1283dd235316",
+     "page": "https://vizionfloor.com/products/v9003-madeira",
+     "width": 2500,
+     "height": 2500
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ba4066d3e7b1",
+   "seq": 28,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recTy8TWc6NirWM4t",
+   "sku": "LVP-VIZN-V9004",
+   "product_name": "Vizion 9mm Prestige 7.2\" — Cannes",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V9004.jpg?v=1790640130",
+      "filename": "vizion-cannes-lvp-7-2in-v9004-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V9004_e05280aa-3c8b-4f23-beea-4576fd68fca5.jpg?v=1790640133",
+      "filename": "vizion-cannes-lvp-7-2in-v9004-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v9004-cannes"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v9004-cannes",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V9004.jpg?v=1790640130",
+     "sha1": "8616fe61db7bed99190c1ad63f1c87d397d15579",
+     "page": "https://vizionfloor.com/products/v9004-cannes",
+     "width": 3000,
+     "height": 4810
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V9004_e05280aa-3c8b-4f23-beea-4576fd68fca5.jpg?v=1790640133",
+     "sha1": "c6fd9d6e330b2c52851d62e14d0b76561eb3a79d",
+     "page": "https://vizionfloor.com/products/v9004-cannes",
+     "width": 4901,
+     "height": 3500
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ae836535fb25",
+   "seq": 29,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reciDav3FL5Lfebyv",
+   "sku": "LVP-VIZN-V9005",
+   "product_name": "Vizion 9mm Prestige 7.2\" — Amalfi",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V9005.jpg?v=1790640251",
+      "filename": "vizion-amalfi-lvp-7-2in-v9005-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V9005_95c03399-c3fb-48e9-b9f9-df880925c4c3.jpg?v=1790640251",
+      "filename": "vizion-amalfi-lvp-7-2in-v9005-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/v9005-amalfi"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/v9005-amalfi",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V9005.jpg?v=1790640251",
+     "sha1": "ccf0d23ec40329f9c85764918428b3d976fd6589",
+     "page": "https://vizionfloor.com/products/v9005-amalfi",
+     "width": 2787,
+     "height": 4520
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/V9005_95c03399-c3fb-48e9-b9f9-df880925c4c3.jpg?v=1790640251",
+     "sha1": "ce2f7c8aa14878b96cc0dc38091cb24f0a09fbac",
+     "page": "https://vizionfloor.com/products/v9005-amalfi",
+     "width": 2500,
+     "height": 2500
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-dfa786964638",
+   "seq": 30,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec0WnmprFNgUmVTI",
+   "sku": "LVP-VIZN-VL501",
+   "product_name": "Vizion 5mm Marvelous Loose Lay 9.14\" — Revelstoke",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-VL501-single.jpg?v=1791399100",
+      "filename": "vizion-revelstoke-lvp-9-14in-vl501-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/VL501Revelstoke.jpg?v=1790638696",
+      "filename": "vizion-revelstoke-lvp-9-14in-vl501-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/vl501-revelstoke"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/vl501-revelstoke",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-VL501-single.jpg?v=1791399100",
+     "sha1": "ab44f33d39743554604c30fa6760b9cbf71e66f6",
+     "page": "https://vizionfloor.com/products/vl501-revelstoke",
+     "width": 1280,
+     "height": 2041
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/VL501Revelstoke.jpg?v=1790638696",
+     "sha1": "d4215a76662cd997fa5b6aff584b774dcfcf83b7",
+     "page": "https://vizionfloor.com/products/vl501-revelstoke",
+     "width": 2500,
+     "height": 2500
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-3da4500ddd82",
+   "seq": 31,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recp4SSYnRfodDeWx",
+   "sku": "LVP-VIZN-VL502",
+   "product_name": "Vizion 5mm Marvelous Loose Lay 9.14\" — Point Grey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-VL502-single.jpg?v=1791399204",
+      "filename": "vizion-point-grey-lvp-9-14in-vl502-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/VL502PointGrey.jpg?v=1790638907",
+      "filename": "vizion-point-grey-lvp-9-14in-vl502-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/vl502-point-grey"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/vl502-point-grey",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-VL502-single.jpg?v=1791399204",
+     "sha1": "23cc1ce5bf21937ea984c484170574e7b0d92267",
+     "page": "https://vizionfloor.com/products/vl502-point-grey",
+     "width": 2789,
+     "height": 4467
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/VL502PointGrey.jpg?v=1790638907",
+     "sha1": "a4d8bc2bf7f5da577435c9ea5c81944bdae01093",
+     "page": "https://vizionfloor.com/products/vl502-point-grey",
+     "width": 2500,
+     "height": 2500
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ba04a196e207",
+   "seq": 32,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recLp0yVRYve9kLu5",
+   "sku": "LVP-VIZN-VL503",
+   "product_name": "Vizion 5mm Marvelous Loose Lay 9.14\" — Robson",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-VL503-single.jpg?v=1791399343",
+      "filename": "vizion-robson-lvp-9-14in-vl503-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/VL503Robson.jpg?v=1790638973",
+      "filename": "vizion-robson-lvp-9-14in-vl503-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/vl503-robson"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/vl503-robson",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-VL503-single.jpg?v=1791399343",
+     "sha1": "27531f2123a3b577b0e98a8b1de851498dc45d27",
+     "page": "https://vizionfloor.com/products/vl503-robson",
+     "width": 3360,
+     "height": 4309
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/VL503Robson.jpg?v=1790638973",
+     "sha1": "a6d7257d9b5809f92bd1f691ac89f23abd479909",
+     "page": "https://vizionfloor.com/products/vl503-robson",
+     "width": 4000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-7c92f16c28c4",
+   "seq": 33,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recT2bfEQ33GPxcQI",
+   "sku": "LVP-VIZN-VL504",
+   "product_name": "Vizion 5mm Marvelous Loose Lay 9.14\" — Dunbar",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-VL504-single.jpg?v=1791399454",
+      "filename": "vizion-dunbar-lvp-9-14in-vl504-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/VL504Dunbar.jpg?v=1790639068",
+      "filename": "vizion-dunbar-lvp-9-14in-vl504-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/vl504-dunbar"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/vl504-dunbar",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-VL504-single.jpg?v=1791399454",
+     "sha1": "a0273305c5ae4d102bce423167f6756a48d00ea3",
+     "page": "https://vizionfloor.com/products/vl504-dunbar",
+     "width": 2786,
+     "height": 4507
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/VL504Dunbar.jpg?v=1790639068",
+     "sha1": "4081dc409cbefe072bee7aba6cda4de30036a9b1",
+     "page": "https://vizionfloor.com/products/vl504-dunbar",
+     "width": 2500,
+     "height": 2500
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-0575ed00071b",
+   "seq": 34,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recwzLVtNdlkJbQKy",
+   "sku": "LVP-VIZN-VL505",
+   "product_name": "Vizion 5mm Marvelous Loose Lay 9.14\" — Kitsilano",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-VL505-single.jpg?v=1791399595",
+      "filename": "vizion-kitsilano-lvp-9-14in-vl505-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-VL505-lifestyle.jpg?v=1791399598",
+      "filename": "vizion-kitsilano-lvp-9-14in-vl505-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/vl505-kitsilano"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/vl505-kitsilano",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-VL505-single.jpg?v=1791399595",
+     "sha1": "f85ca6545514270341c9f302bb626cff4ddfbea7",
+     "page": "https://vizionfloor.com/products/vl505-kitsilano",
+     "width": 1280,
+     "height": 1651
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-VL505-lifestyle.jpg?v=1791399598",
+     "sha1": "01e835185e70f16aa366e47babcbf842f7366069",
+     "page": "https://vizionfloor.com/products/vl505-kitsilano",
+     "width": 5333,
+     "height": 3659
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f2537871a152",
+   "seq": 35,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reczeEQwDUtREkOtK",
+   "sku": "LVP-VIZN-VL506",
+   "product_name": "Vizion 5mm Marvelous Loose Lay 9.14\" — Arbutus",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-VL506-single.jpg?v=1791399701",
+      "filename": "vizion-arbutus-lvp-9-14in-vl506-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-VL506-lifestyle.jpg?v=1791399707",
+      "filename": "vizion-arbutus-lvp-9-14in-vl506-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://vizionfloor.com/products/vl506-arbutus"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://vizionfloor.com/products/vl506-arbutus",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-VL506-single.jpg?v=1791399701",
+     "sha1": "5845b58a0cf2e382c11e8af4ca0bc6b398634f7d",
+     "page": "https://vizionfloor.com/products/vl506-arbutus",
+     "width": 1280,
+     "height": 1656
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/1005/0758/2759/files/vizion-VL506-lifestyle.jpg?v=1791399707",
+     "sha1": "bab6fc39941cfb42bb104cc77102555b4bf3ebb4",
+     "page": "https://vizionfloor.com/products/vl506-arbutus",
+     "width": 1707,
+     "height": 1280
+    }
+   ],
+   "flags": []
+  }
+ ],
+ "held": [
+  {
+   "sku": "ACC-VIZN-0001",
+   "record_id": "reci4DbY0w62D08G1",
+   "product_name": "Vizion - Transition | Stair Nosing | SPC | 35 x 110 x 2400 mm",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIZN-0002",
+   "record_id": "rec42HbMvKzqyU5EY",
+   "product_name": "Vizion - Transition | Stair Nosing | SPC | 120 x 40 x 1545 mm",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIZN-0003",
+   "record_id": "recUml0CFtglRId7Z",
+   "product_name": "Vizion - Transition | Reducer | SPC | 8 x 45 x 2400 mm",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIZN-0004",
+   "record_id": "rechRV5EVj7RCCm5w",
+   "product_name": "Vizion - Transition | T-Moulding | SPC | 8 x 45 x 2400 mm",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIZN-0005",
+   "record_id": "rec2Up0q8NC4OGnzT",
+   "product_name": "Vizion - Stair | Stair Board | SPC | 1200 x 300 x 30 mm",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIZN-0006",
+   "record_id": "rechGbmtgf0BZxlX8",
+   "product_name": "Vizion - Transition | Stair Nosing | Laminate 14.3mm | 15 x 45 x 2400 mm",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIZN-0007",
+   "record_id": "rec71951SuqZlDl7p",
+   "product_name": "Vizion - Transition | Reducer | Laminate 14.3mm | 15 x 45 x 2400 mm",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIZN-0008",
+   "record_id": "recx8xq1DDa6FbJaR",
+   "product_name": "Vizion - Transition | T-Moulding | Laminate 14.3mm | 12 x 45 x 2400 mm",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIZN-0009",
+   "record_id": "recKKuLtrmR4lVjAQ",
+   "product_name": "Vizion - Transition | Reducer | Laminate 12.3mm | 15 x 45 x 2400 mm",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIZN-0010",
+   "record_id": "recvxal6FYtpZ0gJ7",
+   "product_name": "Vizion - Transition | T-Moulding | Laminate 12.3mm | 12 x 45 x 2400 mm",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIZN-0011",
+   "record_id": "rec2NtpF72oQqb896",
+   "product_name": "Vizion - Stair | Stair Board | Laminate | 1200 x 300 x 27 mm",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-VIZN-0012",
+   "record_id": "recqi4QX6u1zagWOv",
+   "product_name": "Vizion - Transition | Reducer | SPC | 10 x 45 x 2400 mm",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIZN-LV221",
+   "record_id": "recW5iw7TXcRanTXA",
+   "product_name": "Vizion 12.3mm Epic 120HR 7.7\" — Nile",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Nile'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIZN-LV222",
+   "record_id": "recbwjdIoCp9wmtJs",
+   "product_name": "Vizion 12.3mm Epic 120HR 7.7\" — Yangtze",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Yangtze'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIZN-LV223",
+   "record_id": "recD86YBaKBIsMyin",
+   "product_name": "Vizion 12.3mm Epic 120HR 7.7\" — Volga",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Volga'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIZN-LV224",
+   "record_id": "recssGC4GgmZVqD4O",
+   "product_name": "Vizion 12.3mm Epic 120HR 7.7\" — Rhein",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Rhein'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIZN-LV225",
+   "record_id": "rec3BRa7Lj4czETWA",
+   "product_name": "Vizion 12.3mm Epic 120HR 7.7\" — Amazon",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Amazon'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIZN-LV226",
+   "record_id": "recaiV9HxKl45I2S7",
+   "product_name": "Vizion 12.3mm Epic 120HR 7.7\" — Mekong",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Mekong'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIZN-LV227",
+   "record_id": "recH3Hq7nxZeF9WHr",
+   "product_name": "Vizion 12.3mm Epic 120HR 7.7\" — Congo",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Congo'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIZN-LV228",
+   "record_id": "recBDF92yAzEn6kCc",
+   "product_name": "Vizion 12.3mm Epic 120HR 7.7\" — Seine",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Seine'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIZN-LV229",
+   "record_id": "recXDpVeXVMTpHTEI",
+   "product_name": "Vizion 12.3mm Epic 120HR 7.7\" — Murray",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Murray'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIZN-LV230",
+   "record_id": "recBsAMBiLeWNxEvE",
+   "product_name": "Vizion 12.3mm Epic 120HR 7.7\" — Fraser",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Fraser'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIZN-LV321",
+   "record_id": "recaRuEpy89Ckn2tx",
+   "product_name": "Vizion 14.3mm Epic 120HR 7.7\" — Whistler",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Whistler'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIZN-LV322",
+   "record_id": "recAx9rnPhlyTP3UX",
+   "product_name": "Vizion 14.3mm Epic 120HR 7.7\" — Aspen",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Aspen'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIZN-LV323",
+   "record_id": "recrOGVH0MxTqYuFw",
+   "product_name": "Vizion 14.3mm Epic 120HR 7.7\" — Tremblant",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Tremblant'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIZN-LV324",
+   "record_id": "recooj4qUlLCip5Rw",
+   "product_name": "Vizion 14.3mm Epic 120HR 7.7\" — Niseko",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Niseko'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIZN-LV325",
+   "record_id": "recSfVuwRcUF3V5q4",
+   "product_name": "Vizion 14.3mm Epic 120HR 7.7\" — Cypress",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Cypress'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIZN-LV326",
+   "record_id": "reccIDD9K1iAsxm3B",
+   "product_name": "Vizion 14.3mm Epic 120HR 7.7\" — Alta",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Alta'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIZN-LV327",
+   "record_id": "recPit0XPkwlpaUGx",
+   "product_name": "Vizion 14.3mm Epic 120HR 7.7\" — Tahoe",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Tahoe'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIZN-LV328",
+   "record_id": "rech9i96pGPYfe8Ui",
+   "product_name": "Vizion 14.3mm Epic 120HR 7.7\" — Zermatt",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Zermatt'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIZN-LV329",
+   "record_id": "recveVXbMuLpvWEdS",
+   "product_name": "Vizion 14.3mm Epic 120HR 7.7\" — St. Moritz",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'St. Moritz'; vetoes {}"
+  },
+  {
+   "sku": "LAM-VIZN-LV330",
+   "record_id": "recUfPtmbXzJzKcsj",
+   "product_name": "Vizion 14.3mm Epic 120HR 7.7\" — Revelstoke",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Revelstoke'; vetoes {'pattern': 1}"
+  }
+ ]
+}

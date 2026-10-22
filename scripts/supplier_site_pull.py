@@ -37,6 +37,7 @@ Usage:
 import argparse
 import gzip
 import hashlib
+import html as htmllib
 import json
 import re
 import sys
@@ -234,6 +235,16 @@ def page_from_html(url, html):
         if not u:
             continue
         images.append({**img, "url": urllib.parse.urljoin(url, u)})
+    # Elementor keeps a section's photos in its `data-settings` JSON (background slideshow /
+    # background image), not in <img> (Purelux, 2026-10-22: `/cardiff/` shows Cardiff-2.jpg and
+    # Cardiff-4.jpg only that way). Page-specific, unlike the CSS url() lists of related colours.
+    raw = html.decode("utf-8", "replace") if isinstance(html, bytes) else html
+    for block in re.findall(r'"background(?:_slideshow_gallery|_image)"\s*:\s*(\[.*?\]|\{.*?\})',
+                            htmllib.unescape(raw)):
+        for u in re.findall(r'"url"\s*:\s*"([^"]+)"', block):
+            u = u.replace("\\/", "/")
+            if u and all(i["url"] != urllib.parse.urljoin(url, u) for i in images):
+                images.append({"url": urllib.parse.urljoin(url, u)})
     codes = set(CODE_TOKEN.findall(f"{p.title} {p.h1}"))
     if prod.get("sku"):
         codes.add(str(prod["sku"]))
@@ -304,6 +315,67 @@ def shopify_variant_pages(base, p):
                         "height_hint": i.get("height")} for i in imgs],
         })
     return out
+
+
+GENERIC_ALT = re.compile(r"^(logo|image|img|photo|picture|banner|icon|\d+)?$", re.I)
+
+
+def image_label(img):
+    """What an image on a gallery page is called: its alt text, else its file name cleaned of
+    WordPress noise (`Oak-Clay-e1706290826221-qiw0iztihw…jpg` -> `Oak Clay`)."""
+    alt = (img.get("alt") or "").strip()
+    if alt and not GENERIC_ALT.match(alt):
+        return alt
+    stem = urllib.parse.unquote(urllib.parse.urlsplit(img["url"]).path.rsplit("/", 1)[-1])
+    stem = re.sub(r"\.[A-Za-z0-9]{2,5}$", "", stem)
+    stem = re.sub(r"-(scaled|e\d{6,}|\d{2,4}x\d{2,4}|[a-z0-9]{20,})(?=-|$)", "", stem)
+    stem = re.sub(r"-(scaled|e\d{6,}|\d{2,4}x\d{2,4}|[a-z0-9]{20,})(?=-|$)", "", stem)
+    return re.sub(r"[-_]+", " ", stem).strip()
+
+
+def gallery_pages(pages):
+    """One page per image for brochure sites that show a whole collection on one page
+    (Canadian Standard's `Origins`, Evergreen's `OAK`, 2026-10-22): titled `<page> - <image
+    label>` so the colour is in the title, linked `<page>#<n>` (the planner drops the
+    fragment for the product link), carrying only that one image."""
+    out = []
+    for p in pages:
+        for n, img in enumerate(p.get("images") or []):
+            label = image_label(img)
+            # The site's own logo (`CanadianStandard_Final-01_white.png`, alt `Logo`) is not `White`.
+            if not label or re.search(r"\blogo\b", img.get("alt") or "", re.I):
+                continue
+            out.append({**{k: v for k, v in p.items() if k != "images"},
+                        "url": f"{p['url']}#img{n}", "title": f"{p.get('title', '')} - {label}",
+                        "h1": "", "og_title": "", "product_name": "", "codes": [],
+                        "images": [img]})
+    return out
+
+
+def list_browser(listing):
+    """A client-rendered site (Tosca, 2026-10-22): scripts/browser_list.js loads the listing
+    page and each product link in headless Chromium and returns what a visitor sees. Never
+    `auto`: a supplier entry asks for it with `listing.method: "browser"`, `list_url` and
+    `link_pattern`. Needs node + Playwright from the environment."""
+    import os
+    import subprocess
+    env = dict(os.environ)
+    if "NODE_PATH" not in env:
+        try:
+            env["NODE_PATH"] = subprocess.run(["npm", "root", "-g"], capture_output=True, text=True,
+                                              timeout=60).stdout.strip()
+        except (OSError, subprocess.SubprocessError):
+            pass
+    proc = subprocess.run(["node", str(REPO_ROOT / "scripts" / "browser_list.js"), listing["list_url"],
+                           listing["link_pattern"], str(listing.get("max_pages", 600))],
+                          capture_output=True, text=True, timeout=3600, env=env)
+    if proc.returncode != 0:
+        raise RuntimeError(f"browser_list.js failed: {proc.stderr.strip()[:300]}")
+    data = json.loads(proc.stdout)
+    for s in data.get("skipped") or []:
+        if s.get("reason") == "challenged":
+            raise Blocked("challenged", s["url"])
+    return data["pages"]
 
 
 def list_shopify(fetch, root, vendor=None, max_pages=40, split_variants=False):
@@ -586,6 +658,8 @@ def list_pages(fetch, cfg, supplier_cfg, max_pages):
             if m == "shopify":
                 pages = list_shopify(fetch, root, listing.get("vendor"), listing.get("max_pages", 40),
                                      listing.get("split_variants", False))
+            elif m == "browser":
+                pages = list_browser(listing)
             elif m == "woocommerce":
                 pages = list_woocommerce(fetch, root)
             elif m == "sitemap":
@@ -606,6 +680,12 @@ def list_pages(fetch, cfg, supplier_cfg, max_pages):
             continue
         if pages:
             tried[m] = "ok"
+            # `skip_url_contains`: a duplicate language tree (Floordi's `/fr/`, 2026-10-22).
+            skip_urls = listing.get("skip_url_contains") or []
+            if skip_urls:
+                pages = [pg for pg in pages if not any(s in pg["url"] for s in skip_urls)]
+            if listing.get("gallery"):
+                pages = gallery_pages(pages)
             return m, pages, tried
         tried[m] = "empty"
     return None, [], tried

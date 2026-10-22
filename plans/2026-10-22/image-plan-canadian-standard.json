@@ -1,0 +1,5397 @@
+{
+ "contract_version": "image-plan-1",
+ "scope": "canadian-standard",
+ "supplier": "CANADIAN STANDARD",
+ "run_at": "2026-10-22T15:32:38.033266-04:00",
+ "expires": "2026-10-22T23:59:59-0400",
+ "write_mode": "write",
+ "registry": "platform-settings/supplier-sites.json",
+ "inputs": {
+  "pages": "ingest/2026-10-22/supplier-pages-canadian-standard.json",
+  "judgements": "ingest/2026-10-22/image-judgements-canadian-standard.json",
+  "product_pages": null
+ },
+ "summary": {
+  "records": 336,
+  "actions": 80,
+  "held": 256,
+  "skipped": {},
+  "held_by_reason": {
+   "no_match": 252,
+   "no_usable_image": 3,
+   "model_rejected": 1
+  },
+  "fields": {
+   "Swatch images": 73,
+   "Supplier product page": 80,
+   "Room scene images": 7
+  },
+  "tiers": {
+   "exact": 77,
+   "model_confirmed": 3
+  },
+  "manufacturer_pages": 80
+ },
+ "actions": [
+  {
+   "id": "img-0b7403ddfbf0",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recyW01ryfFEtbYOk",
+   "sku": "ENG-CANS-0006",
+   "product_name": "Canadian Standard LUCID 6\" Engineered Planks American Oak 6.5\" — Calm",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2025/06/Lucid-Plank-Calm.jpg",
+      "filename": "canadian-standard-calm-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/lucid/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/lucid/#img18",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2025/06/Lucid-Plank-Calm.jpg",
+     "sha1": "45ce86bb9b03609f679fe28df51ac9d5295d10ba",
+     "page": "https://canadianstandardflooring.com/lucid/#img18",
+     "width": 1708,
+     "height": 1708
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-abd4bd7c5632",
+   "seq": 2,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recPFAKgQYAfcOw01",
+   "sku": "ENG-CANS-0007",
+   "product_name": "Canadian Standard LUCID 6\" Engineered Planks American Oak 6.5\" — Enhance",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2025/06/Lucid-Plank-Enhance.jpg",
+      "filename": "canadian-standard-enhance-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/lucid/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/lucid/#img19",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2025/06/Lucid-Plank-Enhance.jpg",
+     "sha1": "e065d2d719112e4469bcae82c5b3fa5efef91d34",
+     "page": "https://canadianstandardflooring.com/lucid/#img19",
+     "width": 1801,
+     "height": 1801
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5f2049ae7fcc",
+   "seq": 3,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recRj9gCLb2VKPgkF",
+   "sku": "ENG-CANS-0008",
+   "product_name": "Canadian Standard LUCID 6\" Engineered Planks American Oak 6.5\" — Senses",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2025/06/Lucid-Plank-Senses.jpg",
+      "filename": "canadian-standard-senses-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/lucid/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/lucid/#img20",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2025/06/Lucid-Plank-Senses.jpg",
+     "sha1": "8ba9aa0eb462d8171b5440a358020e6c7095ca67",
+     "page": "https://canadianstandardflooring.com/lucid/#img20",
+     "width": 1765,
+     "height": 1765
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b418a1d5afc4",
+   "seq": 4,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recZeiYf7As3TduWx",
+   "sku": "ENG-CANS-0009",
+   "product_name": "Canadian Standard LUCID 6\" Engineered Herringbone American Oak 5\" — Soothe",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2025/06/Lucid-Herringbone-Soothe.jpg",
+      "filename": "canadian-standard-soothe-engineered-hardwood-herringbone-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/lucid/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/lucid/#img11",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2025/06/Lucid-Herringbone-Soothe.jpg",
+     "sha1": "75738fd710fba6e1232a76c8fa9ba45fd517acff",
+     "page": "https://canadianstandardflooring.com/lucid/#img11",
+     "width": 1724,
+     "height": 1724
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a3a5a9fe6436",
+   "seq": 5,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recl84TuArTeWvacJ",
+   "sku": "ENG-CANS-0010",
+   "product_name": "Canadian Standard LUCID 6\" Engineered Herringbone American Oak 5\" — Tranquil",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2025/06/Lucid-Herringbone-Tranquil.jpg",
+      "filename": "canadian-standard-tranquil-engineered-hardwood-herringbone-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/lucid/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/lucid/#img12",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2025/06/Lucid-Herringbone-Tranquil.jpg",
+     "sha1": "a11459737828edb043e3c999120ef2d30fa612d8",
+     "page": "https://canadianstandardflooring.com/lucid/#img12",
+     "width": 1728,
+     "height": 1728
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f3ea19ef7b07",
+   "seq": 6,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recTYarn1ujYQQ6Qi",
+   "sku": "ENG-CANS-0011",
+   "product_name": "Canadian Standard LUCID 7\" Engineered Planks American Oak 7.5\" — Bare",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Lucid-Plank-Bare.jpg",
+      "filename": "canadian-standard-bare-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/lucid/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/lucid/#img13",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Lucid-Plank-Bare.jpg",
+     "sha1": "f39ef49537d923ccc54eb3d02829c6942e66c989",
+     "page": "https://canadianstandardflooring.com/lucid/#img13",
+     "width": 1872,
+     "height": 1872
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-3129b7936c87",
+   "seq": 7,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recskOewaP1q9YW0o",
+   "sku": "ENG-CANS-0012",
+   "product_name": "Canadian Standard LUCID 7\" Engineered Planks American Oak 7.5\" — Essence",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Lucid-Plank-Essence.jpg",
+      "filename": "canadian-standard-essence-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/lucid/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/lucid/#img14",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Lucid-Plank-Essence.jpg",
+     "sha1": "da6931fab7f3ad2873d7edc57e6e050eb64c7a82",
+     "page": "https://canadianstandardflooring.com/lucid/#img14",
+     "width": 1901,
+     "height": 1901
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-53a1c7f7645b",
+   "seq": 8,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recckK473VULFYTZ6",
+   "sku": "ENG-CANS-0013",
+   "product_name": "Canadian Standard LUCID 7\" Engineered Planks American Oak 7.5\" — Nature",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Lucid-Planks-Nature.jpg",
+      "filename": "canadian-standard-nature-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/lucid/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/lucid/#img16",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Lucid-Planks-Nature.jpg",
+     "sha1": "178237294024673e83090687fcc4ccf0f11ba61f",
+     "page": "https://canadianstandardflooring.com/lucid/#img16",
+     "width": 1898,
+     "height": 1898
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-3307ddcf8d9a",
+   "seq": 9,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recxksOtEHMZJonN2",
+   "sku": "ENG-CANS-0014",
+   "product_name": "Canadian Standard LUCID 7\" Engineered Herringbone American Oak 6\" — Pristine",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Lucid-Herringbone-Pristine.jpg",
+      "filename": "canadian-standard-pristine-engineered-hardwood-herringbone-6in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/lucid/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/lucid/#img6",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Lucid-Herringbone-Pristine.jpg",
+     "sha1": "bf38e4528c22c5347d990db91fa3005dd4338c36",
+     "page": "https://canadianstandardflooring.com/lucid/#img6",
+     "width": 1891,
+     "height": 1891
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-be86dcc1c615",
+   "seq": 10,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recv25oqY8ZSxuy1H",
+   "sku": "ENG-CANS-0015",
+   "product_name": "Canadian Standard LUCID 7\" Engineered Herringbone American Oak 6\" — Pure",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Lucid-Herringbone-Pure.jpg",
+      "filename": "canadian-standard-pure-engineered-hardwood-herringbone-6in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/lucid/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/lucid/#img7",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Lucid-Herringbone-Pure.jpg",
+     "sha1": "12c2cbfb03269ebff6319018c51b2ad2c883f588",
+     "page": "https://canadianstandardflooring.com/lucid/#img7",
+     "width": 1895,
+     "height": 1895
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-d66fc1a41ffe",
+   "seq": 11,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recZVKJuRUaDHuJDO",
+   "sku": "ENG-CANS-0022",
+   "product_name": "Canadian Standard Novella Oak 6.5\" — Alcott",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Novella-Alcott.jpg",
+      "filename": "canadian-standard-alcott-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/novella/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/novella/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Novella-Alcott.jpg",
+     "sha1": "b45d8a33cc49c6973b1924f63600ae94e4c7e2eb",
+     "page": "https://canadianstandardflooring.com/novella/#img3",
+     "width": 1868,
+     "height": 1868
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-3697fe83634c",
+   "seq": 12,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recq9BF589jYdFgmb",
+   "sku": "ENG-CANS-0023",
+   "product_name": "Canadian Standard Novella Oak 6.5\" — Atwood",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Novella-Atwood.jpg",
+      "filename": "canadian-standard-atwood-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/novella/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/novella/#img4",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Novella-Atwood.jpg",
+     "sha1": "57c320987776497df89b93d4262b10ebe6492610",
+     "page": "https://canadianstandardflooring.com/novella/#img4",
+     "width": 1839,
+     "height": 1839
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-62ef42ab1da6",
+   "seq": 13,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recCcsonYoo4sln5N",
+   "sku": "ENG-CANS-0024",
+   "product_name": "Canadian Standard Novella Oak 6.5\" — Austen",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Novella-Austen.jpg",
+      "filename": "canadian-standard-austen-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/novella/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/novella/#img5",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Novella-Austen.jpg",
+     "sha1": "17e9288552edcd93b118ea52f2884f1e7f53b4a1",
+     "page": "https://canadianstandardflooring.com/novella/#img5",
+     "width": 1869,
+     "height": 1869
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-1fbff80d6b48",
+   "seq": 14,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recONtqKM5PFZIF6O",
+   "sku": "ENG-CANS-0025",
+   "product_name": "Canadian Standard Novella Oak 6.5\" — Rowling",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Novella-Rowling.jpg",
+      "filename": "canadian-standard-rowling-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/novella/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/novella/#img10",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Novella-Rowling.jpg",
+     "sha1": "4e6c8bc5fc0ee84888fc6213ea77f7bd44580b52",
+     "page": "https://canadianstandardflooring.com/novella/#img10",
+     "width": 1858,
+     "height": 1858
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5df8df9b2760",
+   "seq": 15,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec0jWC2hcvZt0wpO",
+   "sku": "ENG-CANS-0026",
+   "product_name": "Canadian Standard Novella Oak 6.5\" — Woolf",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Novella-Woolf.jpg",
+      "filename": "canadian-standard-woolf-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/novella/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/novella/#img12",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Novella-Woolf.jpg",
+     "sha1": "da7890f65505407c7f108aa1eec79b234cc3dcfa",
+     "page": "https://canadianstandardflooring.com/novella/#img12",
+     "width": 1863,
+     "height": 1863
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b6b24ab91576",
+   "seq": 16,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recpmMb40ztDCHCW2",
+   "sku": "ENG-CANS-0032",
+   "product_name": "Canadian Standard Origins XL Oak 7.5\" — Carissa",
+   "fields": {
+    "Room scene images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/07/Origins_Carissa_feel.jpg",
+      "filename": "canadian-standard-carissa-engineered-hardwood-7-5in-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img29",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "room",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/07/Origins_Carissa_feel.jpg",
+     "sha1": "6832184bccab59f39b18166ad69e27e4f12cf967",
+     "page": "https://canadianstandardflooring.com/origins/#img29",
+     "width": 1024,
+     "height": 768
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-f0895a9163c1",
+   "seq": 17,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recMKxkBLix7opxa4",
+   "sku": "ENG-CANS-0033",
+   "product_name": "Canadian Standard Origins XL Oak 7.5\" — Geraldine",
+   "fields": {
+    "Room scene images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/07/Origins_Geraldine_feel.jpg",
+      "filename": "canadian-standard-geraldine-engineered-hardwood-7-5in-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img33",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "room",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/07/Origins_Geraldine_feel.jpg",
+     "sha1": "0c1e96a79c2c31c6aa661d758fac88a35df694cf",
+     "page": "https://canadianstandardflooring.com/origins/#img33",
+     "width": 1024,
+     "height": 721
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-8bd2e1502043",
+   "seq": 18,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recSc7GSesyApkBtl",
+   "sku": "ENG-CANS-0035",
+   "product_name": "Canadian Standard Origins XL Oak 7.5\" — Hudson",
+   "fields": {
+    "Room scene images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/07/Origins_hudson_feel.jpg",
+      "filename": "canadian-standard-hudson-engineered-hardwood-7-5in-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img35",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "room",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/07/Origins_hudson_feel.jpg",
+     "sha1": "283838bd479dc45f9555560139af12a33c3f4f65",
+     "page": "https://canadianstandardflooring.com/origins/#img35",
+     "width": 1024,
+     "height": 569
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-f9c8320a6cc6",
+   "seq": 19,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recDOfGDBza1wojIN",
+   "sku": "ENG-CANS-0036",
+   "product_name": "Canadian Standard Origins XL Oak 7.5\" — Maxine",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-XL-Oak-Maxine.jpg",
+      "filename": "canadian-standard-maxine-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img27",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "model_confirmed",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-XL-Oak-Maxine.jpg",
+     "sha1": "c0bffcd1245dfb1ac788462c305bacdc92b1f5f9",
+     "page": "https://canadianstandardflooring.com/origins/#img27",
+     "width": 1857,
+     "height": 1857
+    }
+   ],
+   "flags": [
+    "model_matched"
+   ]
+  },
+  {
+   "id": "img-892d73cd6f25",
+   "seq": 20,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec1wsfhd0mzIP6oP",
+   "sku": "ENG-CANS-0037",
+   "product_name": "Canadian Standard Origins XL Oak 7.5\" — Webster",
+   "fields": {
+    "Room scene images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/07/Origins_webster_feel.jpg",
+      "filename": "canadian-standard-webster-engineered-hardwood-7-5in-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img39",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "room",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/07/Origins_webster_feel.jpg",
+     "sha1": "d8c59bdec68de846be446ced6bdf005e73a9c1f1",
+     "page": "https://canadianstandardflooring.com/origins/#img39",
+     "width": 1024,
+     "height": 838
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-28dcb7d11190",
+   "seq": 21,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recV1DoV7kzZc3QWN",
+   "sku": "ENG-CANS-0044",
+   "product_name": "Canadian Standard Origins XL Oak 7.5\" — Evelyn",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-XL-Oak-Evelyn.jpg",
+      "filename": "canadian-standard-evelyn-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img25",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-XL-Oak-Evelyn.jpg",
+     "sha1": "dc687e2eea674e1fe86af6573e8d2c5592e66388",
+     "page": "https://canadianstandardflooring.com/origins/#img25",
+     "width": 1866,
+     "height": 1866
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b4e8cf3599f6",
+   "seq": 22,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recupoL1q0H4DAVax",
+   "sku": "ENG-CANS-0045",
+   "product_name": "Canadian Standard Origins XL Oak 7.5\" — Constance",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-XL-Oak-Constance.jpg",
+      "filename": "canadian-standard-constance-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img23",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-XL-Oak-Constance.jpg",
+     "sha1": "132c218bc8294e1aa343e48e04774660243cc88e",
+     "page": "https://canadianstandardflooring.com/origins/#img23",
+     "width": 1867,
+     "height": 1867
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-70f94c17ed02",
+   "seq": 23,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recxQHW00uBWI0Bbn",
+   "sku": "ENG-CANS-0046",
+   "product_name": "Canadian Standard Origins XL Oak 7.5\" — Charlotte (Smoked)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-XL-Oak-Charlotte.jpg",
+      "filename": "canadian-standard-charlotte-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img22",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-XL-Oak-Charlotte.jpg",
+     "sha1": "fd4430ac4128e248010028d82b6689992cab70dd",
+     "page": "https://canadianstandardflooring.com/origins/#img22",
+     "width": 1872,
+     "height": 1872
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-69a33d11ef54",
+   "seq": 24,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec2k8Ab699Yn4MVo",
+   "sku": "ENG-CANS-0047",
+   "product_name": "Canadian Standard Origins XL Oak 7.5\" — Emily (Smoked)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-XL-Oak-Emily.jpg",
+      "filename": "canadian-standard-emily-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img24",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-XL-Oak-Emily.jpg",
+     "sha1": "4a28783e7b01e65dacdb2490a840233def2af741",
+     "page": "https://canadianstandardflooring.com/origins/#img24",
+     "width": 1857,
+     "height": 1857
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-4bab129e130b",
+   "seq": 25,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recQegZ9je8XoIMID",
+   "sku": "ENG-CANS-0048",
+   "product_name": "Canadian Standard Origins XL Oak 7.5\" — Leah (Smoked)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-XL-Oak-Leah.jpg",
+      "filename": "canadian-standard-leah-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img26",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-XL-Oak-Leah.jpg",
+     "sha1": "47c5832e36db21394d8ab059b13bee2cafdfa466",
+     "page": "https://canadianstandardflooring.com/origins/#img26",
+     "width": 1870,
+     "height": 1870
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8c635a0feff5",
+   "seq": 26,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recxH3beIvoInYRmo",
+   "sku": "ENG-CANS-0050",
+   "product_name": "Canadian Standard Origins European Oak 6.5\" — Planetary Silver",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-European-Oak-6.5inch-Planetary-Silver.jpg",
+      "filename": "canadian-standard-planetary-silver-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img12",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-European-Oak-6.5inch-Planetary-Silver.jpg",
+     "sha1": "5b2dfa1a91d87aee9d354557fdf88eb6b266fe89",
+     "page": "https://canadianstandardflooring.com/origins/#img12",
+     "width": 1793,
+     "height": 1793
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5245f9ab2196",
+   "seq": 27,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reco9YrwgKcx0Nwk7",
+   "sku": "ENG-CANS-0051",
+   "product_name": "Canadian Standard Origins European Oak 6.5\" — Polo Pony",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-European-Oak-6.5inch-Polo-Pony.jpg",
+      "filename": "canadian-standard-polo-pony-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img13",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-European-Oak-6.5inch-Polo-Pony.jpg",
+     "sha1": "19541fc3dc7cf6ec4738e7c97c8f5f84fd072d4a",
+     "page": "https://canadianstandardflooring.com/origins/#img13",
+     "width": 1756,
+     "height": 1756
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-fac3a693d82f",
+   "seq": 28,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recBXxLM5dYrnL2wx",
+   "sku": "ENG-CANS-0052",
+   "product_name": "Canadian Standard Origins European Oak 6.5\" — Shoreline Grey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-European-Oak-6.5inch-Shoreline-Grey.jpg",
+      "filename": "canadian-standard-shoreline-grey-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img14",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-European-Oak-6.5inch-Shoreline-Grey.jpg",
+     "sha1": "84898abda113ce38f721150b1249f5da0bbdbb58",
+     "page": "https://canadianstandardflooring.com/origins/#img14",
+     "width": 1753,
+     "height": 1753
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-543efcabcc64",
+   "seq": 29,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recsVj5ocJ6AS45al",
+   "sku": "ENG-CANS-0053",
+   "product_name": "Canadian Standard Origins European Oak 6.5\" — Subtle White",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-European-Oak-6.5inch-Subtle-White.jpg",
+      "filename": "canadian-standard-subtle-white-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img15",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-European-Oak-6.5inch-Subtle-White.jpg",
+     "sha1": "f52919d242783edf3080c816f89392eff6bab59f",
+     "page": "https://canadianstandardflooring.com/origins/#img15",
+     "width": 1884,
+     "height": 1884
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-03417058d257",
+   "seq": 30,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recTakqSNsftSqat2",
+   "sku": "ENG-CANS-0054",
+   "product_name": "Canadian Standard Origins American Hickory 6.5\" — Forest Trail",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-American-Hickory-Forest-Trail.jpg",
+      "filename": "canadian-standard-forest-trail-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-American-Hickory-Forest-Trail.jpg",
+     "sha1": "838091eb2a6b2f1306f5c9fbee50ff6c484534ab",
+     "page": "https://canadianstandardflooring.com/origins/#img3",
+     "width": 1893,
+     "height": 1893
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-1927de04e0bd",
+   "seq": 31,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec0mk3cSnfi1B16G",
+   "sku": "ENG-CANS-0055",
+   "product_name": "Canadian Standard Origins American Hickory 6.5\" — Greysmith",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-American-Hickory-Greysmith.jpg",
+      "filename": "canadian-standard-greysmith-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img4",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-American-Hickory-Greysmith.jpg",
+     "sha1": "ef5a83e75b800924d19c6c558860c85e90eda2d9",
+     "page": "https://canadianstandardflooring.com/origins/#img4",
+     "width": 1858,
+     "height": 1858
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ec2c8064e294",
+   "seq": 32,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recGYJ19VhRo2HQBs",
+   "sku": "ENG-CANS-0056",
+   "product_name": "Canadian Standard Origins American Hickory 6.5\" — Nottingham",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-American-Hickory-Nottingham.jpg",
+      "filename": "canadian-standard-nottingham-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img5",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-American-Hickory-Nottingham.jpg",
+     "sha1": "0493ed0a4d1682f5ce75f3771f5f0feaa16f0c3c",
+     "page": "https://canadianstandardflooring.com/origins/#img5",
+     "width": 1820,
+     "height": 1820
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-9950b6e2235b",
+   "seq": 33,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recs8wBW6eFgsD20n",
+   "sku": "ENG-CANS-0057",
+   "product_name": "Canadian Standard Origins American Hickory 6.5\" — Warm Heritage",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-American-Hickory-Warm-Heritage.jpg",
+      "filename": "canadian-standard-warm-heritage-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img6",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-American-Hickory-Warm-Heritage.jpg",
+     "sha1": "8abeaaaa79a36754383e55a830f05ab054904577",
+     "page": "https://canadianstandardflooring.com/origins/#img6",
+     "width": 1884,
+     "height": 1884
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a05abc6e769c",
+   "seq": 34,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reczExL6MCpoAoHh5",
+   "sku": "ENG-CANS-0059",
+   "product_name": "Canadian Standard Origins European Oak 7.5\" — Grayson",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-European-Oak-7.5inch-Grayson.jpg",
+      "filename": "canadian-standard-grayson-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img16",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-European-Oak-7.5inch-Grayson.jpg",
+     "sha1": "aa235cb3f1414b1a5d0f618e5ba0525411ee4056",
+     "page": "https://canadianstandardflooring.com/origins/#img16",
+     "width": 1864,
+     "height": 1864
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-80d33af3998f",
+   "seq": 35,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recDhJpUHSfltxJ7v",
+   "sku": "ENG-CANS-0060",
+   "product_name": "Canadian Standard Origins European Oak 7.5\" — Hampshire",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-European-Oak-7.5inch-Hampshire.jpg",
+      "filename": "canadian-standard-hampshire-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img17",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-European-Oak-7.5inch-Hampshire.jpg",
+     "sha1": "673922c93db909d19d2bbd345a55b04c35d83186",
+     "page": "https://canadianstandardflooring.com/origins/#img17",
+     "width": 1825,
+     "height": 1825
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-baf5e77a6ac6",
+   "seq": 36,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recyGorwkEVV3DZq6",
+   "sku": "ENG-CANS-0061",
+   "product_name": "Canadian Standard Origins European Oak 7.5\" — Kate",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-European-Oak-7.5inch-Kate.jpg",
+      "filename": "canadian-standard-kate-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img18",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-European-Oak-7.5inch-Kate.jpg",
+     "sha1": "ae061142286af96b3433067ed7d318de824563e7",
+     "page": "https://canadianstandardflooring.com/origins/#img18",
+     "width": 1924,
+     "height": 1924
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2ea3c1d98bdd",
+   "seq": 37,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recrUmvJ6lEfV9DLc",
+   "sku": "ENG-CANS-0062",
+   "product_name": "Canadian Standard Origins European Oak 7.5\" — Kinsey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-European-Oak-7.5inch-Kinsey.jpg",
+      "filename": "canadian-standard-kinsey-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img19",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-European-Oak-7.5inch-Kinsey.jpg",
+     "sha1": "33de7b6934f4bf324d86c997f51362bd0844e3c4",
+     "page": "https://canadianstandardflooring.com/origins/#img19",
+     "width": 1822,
+     "height": 1822
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ba61c6fc7be7",
+   "seq": 38,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recAarLLSoJqFzLC3",
+   "sku": "ENG-CANS-0063",
+   "product_name": "Canadian Standard Origins European Oak 7.5\" — Sedrick",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-European-Oak-7.5inch-Sedrick.jpg",
+      "filename": "canadian-standard-sedrick-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img20",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-European-Oak-7.5inch-Sedrick.jpg",
+     "sha1": "916cacc77d20d44363410557442387f19d40722d",
+     "page": "https://canadianstandardflooring.com/origins/#img20",
+     "width": 1833,
+     "height": 1833
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-c6008f9be823",
+   "seq": 39,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reczeb8KitD1Pk0FU",
+   "sku": "ENG-CANS-0064",
+   "product_name": "Canadian Standard Origins European Oak 7.5\" — Tiffany",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-European-Oak-7.5inch-Tiffany.jpg",
+      "filename": "canadian-standard-tiffany-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img21",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-European-Oak-7.5inch-Tiffany.jpg",
+     "sha1": "90f449134331414aa38780ac8f15125217b056cf",
+     "page": "https://canadianstandardflooring.com/origins/#img21",
+     "width": 1836,
+     "height": 1836
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-1b809164c1d1",
+   "seq": 40,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recYkBvNq0OttaeGn",
+   "sku": "ENG-CANS-0065",
+   "product_name": "Canadian Standard Origins American Walnut 7.5\" — Astoria",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-America-Walnut-Astoria.jpg",
+      "filename": "canadian-standard-astoria-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img7",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-America-Walnut-Astoria.jpg",
+     "sha1": "513fa2bc6cb3b3ffd0959efe8c86e0eef5b50ac0",
+     "page": "https://canadianstandardflooring.com/origins/#img7",
+     "width": 1711,
+     "height": 1711
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-e17f18a74c6e",
+   "seq": 41,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recp0njNFMSPhbJ4V",
+   "sku": "ENG-CANS-0066",
+   "product_name": "Canadian Standard Origins American Walnut 7.5\" — Duchy Estate (FLAT FINISH)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-America-Walnut-Duchy-Estate.jpg",
+      "filename": "canadian-standard-duchy-estate-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img8",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-America-Walnut-Duchy-Estate.jpg",
+     "sha1": "3fc3915fc28a18d82734b779da36b086ae7ef93f",
+     "page": "https://canadianstandardflooring.com/origins/#img8",
+     "width": 1834,
+     "height": 1834
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-6614e59d7f1e",
+   "seq": 42,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec87sCapDjbiAZl3",
+   "sku": "ENG-CANS-0067",
+   "product_name": "Canadian Standard Origins American Walnut 7.5\" — Royal Mile",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-America-Walnut-Royal-Mile.jpg",
+      "filename": "canadian-standard-royal-mile-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img9",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-America-Walnut-Royal-Mile.jpg",
+     "sha1": "5fe119eaac00ff8f7d327b62e8015c7eb2ef08b9",
+     "page": "https://canadianstandardflooring.com/origins/#img9",
+     "width": 1854,
+     "height": 1854
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f4e0adba28d2",
+   "seq": 43,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reccmg9EpGa5alH3i",
+   "sku": "ENG-CANS-0068",
+   "product_name": "Canadian Standard Origins American Walnut 7.5\" — Surrey Hills",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-America-Walnut-Surrey-Hills.jpg",
+      "filename": "canadian-standard-surrey-hills-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img10",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-America-Walnut-Surrey-Hills.jpg",
+     "sha1": "ac0582a8c099f749c2e93b591959ea1849bff1ae",
+     "page": "https://canadianstandardflooring.com/origins/#img10",
+     "width": 1875,
+     "height": 1875
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-7211cd333c4d",
+   "seq": 44,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recI2VUobP7YEWCAx",
+   "sku": "ENG-CANS-0069",
+   "product_name": "Canadian Standard Origins American Walnut 7.5\" — Yorkshire",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-America-Walnut-Yorkshire.jpg",
+      "filename": "canadian-standard-yorkshire-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/origins/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/origins/#img11",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Origins-America-Walnut-Yorkshire.jpg",
+     "sha1": "9f1e5769a85dabda203b8762dc0a2aee3f07bb36",
+     "page": "https://canadianstandardflooring.com/origins/#img11",
+     "width": 1889,
+     "height": 1889
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-db2da2b062cd",
+   "seq": 45,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recARGXShareHWVXb",
+   "sku": "ENG-CANS-0085",
+   "product_name": "Brand Surfaces Engineered Click Oak 6.5\" — Moss Landing",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2023/02/BS-Click-Moss-Landing-1.jpg",
+      "filename": "canadian-standard-moss-landing-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/brand-surfaces/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/brand-surfaces/#img20",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2023/02/BS-Click-Moss-Landing-1.jpg",
+     "sha1": "6e7a4e0ffdd2a24cf943d14030fe56e1a7f28ffb",
+     "page": "https://canadianstandardflooring.com/brand-surfaces/#img20",
+     "width": 1000,
+     "height": 1000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-3353d870e99c",
+   "seq": 46,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recKPp58vc76Wgqm4",
+   "sku": "ENG-CANS-0086",
+   "product_name": "Brand Surfaces Engineered Click Oak 6.5\" — Monterey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2023/02/BS-Click-Monterey-1.jpg",
+      "filename": "canadian-standard-monterey-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/brand-surfaces/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/brand-surfaces/#img18",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2023/02/BS-Click-Monterey-1.jpg",
+     "sha1": "8fb8f788409c68fa7ebca74fdcf8df9fc80f9f8b",
+     "page": "https://canadianstandardflooring.com/brand-surfaces/#img18",
+     "width": 1000,
+     "height": 1000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5afa44873d56",
+   "seq": 47,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recypmedJyQI12Ly6",
+   "sku": "ENG-CANS-0087",
+   "product_name": "Brand Surfaces Engineered Click Oak 6.5\" — Santa Maria",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2023/02/BS-Click-Santa-Maria-1.jpg",
+      "filename": "canadian-standard-santa-maria-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/brand-surfaces/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/brand-surfaces/#img23",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2023/02/BS-Click-Santa-Maria-1.jpg",
+     "sha1": "e4e2d0860986fd644894666810928fcba924daa5",
+     "page": "https://canadianstandardflooring.com/brand-surfaces/#img23",
+     "width": 1000,
+     "height": 1000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-d593e9effb26",
+   "seq": 48,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recUJRCHE6FTr8rGU",
+   "sku": "ENG-CANS-0088",
+   "product_name": "Brand Surfaces Engineered Click Oak 6.5\" — Napa Valley",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2023/02/BS-Click-Napa-Valley-1.jpg",
+      "filename": "canadian-standard-napa-valley-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/brand-surfaces/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/brand-surfaces/#img21",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2023/02/BS-Click-Napa-Valley-1.jpg",
+     "sha1": "9b8bc45d10699b66c0f36c532135be1cfa7d0af1",
+     "page": "https://canadianstandardflooring.com/brand-surfaces/#img21",
+     "width": 1000,
+     "height": 1000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2346badc56ad",
+   "seq": 49,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recXDu7HLAu91fSHn",
+   "sku": "ENG-CANS-0089",
+   "product_name": "Brand Surfaces Engineered Click Oak 6\" — Midtown Brown",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2023/02/BS-Click-Midtown-Brown-1.jpg",
+      "filename": "canadian-standard-midtown-brown-engineered-hardwood-6in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/brand-surfaces/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/brand-surfaces/#img17",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2023/02/BS-Click-Midtown-Brown-1.jpg",
+     "sha1": "a74691e6a7f4cb6edb69ef6f317689df86bf6257",
+     "page": "https://canadianstandardflooring.com/brand-surfaces/#img17",
+     "width": 1000,
+     "height": 1000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a6f0b91d010e",
+   "seq": 50,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recgwBNeRRvFupdDw",
+   "sku": "ENG-CANS-0090",
+   "product_name": "Brand Surfaces Engineered Click Oak 6\" — Whisper White",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2023/02/BS-Click-Whisper-White-1.jpg",
+      "filename": "canadian-standard-whisper-white-engineered-hardwood-6in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/brand-surfaces/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/brand-surfaces/#img28",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2023/02/BS-Click-Whisper-White-1.jpg",
+     "sha1": "e0ff8e7148b851571216ece9d7becaeef64a82b1",
+     "page": "https://canadianstandardflooring.com/brand-surfaces/#img28",
+     "width": 1000,
+     "height": 1000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-6c00aed118e4",
+   "seq": 51,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec7fTsg83Sa4SC0x",
+   "sku": "ENG-CANS-0091",
+   "product_name": "Brand Surfaces Engineered Click Oak 6\" — Offshore Grey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2023/02/BS-Click-Offshore-Grey-1.jpg",
+      "filename": "canadian-standard-offshore-grey-engineered-hardwood-6in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/brand-surfaces/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/brand-surfaces/#img22",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2023/02/BS-Click-Offshore-Grey-1.jpg",
+     "sha1": "1501a893cd6bd975dfaa703a02b8ca184dd4274a",
+     "page": "https://canadianstandardflooring.com/brand-surfaces/#img22",
+     "width": 1000,
+     "height": 1000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-705f222a5820",
+   "seq": 52,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recNsuGRNH12Z1rJx",
+   "sku": "ENG-CANS-0093",
+   "product_name": "Brand Surfaces Engineered Click Oak 6\" — Eclectic Grey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2023/02/BS-Click-Eclectic-Grey-1.jpg",
+      "filename": "canadian-standard-eclectic-grey-engineered-hardwood-6in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/brand-surfaces/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/brand-surfaces/#img14",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2023/02/BS-Click-Eclectic-Grey-1.jpg",
+     "sha1": "cc4a37eabf36573d85c14fccee5cdad2ae93c9f2",
+     "page": "https://canadianstandardflooring.com/brand-surfaces/#img14",
+     "width": 1000,
+     "height": 1000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-673549364329",
+   "seq": 53,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recpGhhwNd9D3aHvM",
+   "sku": "ENG-CANS-0094",
+   "product_name": "Brand Surfaces Engineered Click Oak 6\" — Margaret",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2023/02/BS-Click-Margaret-1.jpg",
+      "filename": "canadian-standard-margaret-engineered-hardwood-6in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/brand-surfaces/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/brand-surfaces/#img16",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2023/02/BS-Click-Margaret-1.jpg",
+     "sha1": "2339bbe30451f495c0e99fb1663fecfb95d0d9e6",
+     "page": "https://canadianstandardflooring.com/brand-surfaces/#img16",
+     "width": 1000,
+     "height": 1000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-87c2ba340263",
+   "seq": 54,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recdkQGQm5yeyUwei",
+   "sku": "ENG-CANS-0095",
+   "product_name": "Brand Surfaces Engineered Click Oak 6\" — Wesley",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2023/02/BS-Click-Wesley-1.jpg",
+      "filename": "canadian-standard-wesley-engineered-hardwood-6in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/brand-surfaces/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/brand-surfaces/#img27",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2023/02/BS-Click-Wesley-1.jpg",
+     "sha1": "ffbb247791561d0d1af7f6fa14fc635c53bdd750",
+     "page": "https://canadianstandardflooring.com/brand-surfaces/#img27",
+     "width": 1000,
+     "height": 1000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2c6ad27c1f33",
+   "seq": 55,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recp7du4O9HYSXpB3",
+   "sku": "ENG-CANS-0112",
+   "product_name": "Brand Surfaces Engineered T&G Maple 7.5\" — Blacksmith",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/10/Blacksmith.jpg",
+      "filename": "canadian-standard-blacksmith-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/brand-surfaces/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/brand-surfaces/#img11",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/10/Blacksmith.jpg",
+     "sha1": "90f06bb8d6c2fa26f22dd723cc5405cdeced49cd",
+     "page": "https://canadianstandardflooring.com/brand-surfaces/#img11",
+     "width": 595,
+     "height": 848
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-82b4fbbbacdb",
+   "seq": 56,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recmjmXVzj9NzyX1i",
+   "sku": "ENG-CANS-0113",
+   "product_name": "Brand Surfaces Engineered T&G Maple 7.5\" — Chimney Smoke",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/10/Chimney-Smoke.jpg",
+      "filename": "canadian-standard-chimney-smoke-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/brand-surfaces/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/brand-surfaces/#img8",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/10/Chimney-Smoke.jpg",
+     "sha1": "3d4361f38ec58ccd68c263cba46c0a70ffbc9cc2",
+     "page": "https://canadianstandardflooring.com/brand-surfaces/#img8",
+     "width": 595,
+     "height": 848
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-9a0399340825",
+   "seq": 57,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recWoJmXeaWiiKXhj",
+   "sku": "ENG-CANS-0115",
+   "product_name": "Brand Surfaces Engineered T&G Maple 7.5\" — Millstead",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/10/Millstead.jpg",
+      "filename": "canadian-standard-millstead-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/brand-surfaces/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/brand-surfaces/#img12",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/10/Millstead.jpg",
+     "sha1": "e27edc9d068dc5f1e765aaea0c507af18100b91d",
+     "page": "https://canadianstandardflooring.com/brand-surfaces/#img12",
+     "width": 595,
+     "height": 848
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b674360b1b10",
+   "seq": 58,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recmtVItjAQqbfQ66",
+   "sku": "ENG-CANS-0117",
+   "product_name": "Brand Surfaces Engineered T&G Maple 7.5\" — Warm Onyx",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/10/Warm-Onyx.jpg",
+      "filename": "canadian-standard-warm-onyx-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/brand-surfaces/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/brand-surfaces/#img10",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/10/Warm-Onyx.jpg",
+     "sha1": "f66ec04dfb25f1d495cace5ea34f080437bfc97c",
+     "page": "https://canadianstandardflooring.com/brand-surfaces/#img10",
+     "width": 595,
+     "height": 848
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-4abdfe0aa1d9",
+   "seq": 59,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recPUCIq0xEwRcWGb",
+   "sku": "ENG-CANS-0119",
+   "product_name": "Brand Surfaces Engineered T&G Maple 7.5\" — Wool Coat",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/10/Wool-Coat.jpg",
+      "filename": "canadian-standard-wool-coat-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/brand-surfaces/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/brand-surfaces/#img7",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/10/Wool-Coat.jpg",
+     "sha1": "3da8b9a55b7d3f73e762c28c6cf249a5d0679174",
+     "page": "https://canadianstandardflooring.com/brand-surfaces/#img7",
+     "width": 595,
+     "height": 848
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-0bfa6c546e41",
+   "seq": 60,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recGsq9YQw3OKJxkv",
+   "sku": "ENG-CANS-0130",
+   "product_name": "BOEN Live Pure Oak 5.44\" — Mild Grey",
+   "fields": {
+    "Room scene images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/07/Oak-Mild-Grey_Boen-Int-1.jpg",
+      "filename": "canadian-standard-mild-grey-engineered-hardwood-5-44in-pd77v3fd-10124388-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/boen/"
+   },
+   "field_ids": {
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/boen/#img21",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "model_confirmed",
+   "images": [
+    {
+     "target": "room",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/07/Oak-Mild-Grey_Boen-Int-1.jpg",
+     "sha1": "3a05cd72cab3c122efd0cefc7ecb1d3515ddc8d1",
+     "page": "https://canadianstandardflooring.com/boen/#img21",
+     "width": 850,
+     "height": 567
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "model_matched"
+   ]
+  },
+  {
+   "id": "img-0fc4db38f435",
+   "seq": 61,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recSf9xF6U2YafeQi",
+   "sku": "ENG-CANS-0133",
+   "product_name": "BOEN Live Pure Oak 5.44\" — Warm Cotton",
+   "fields": {
+    "Room scene images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/07/Oak-Warm-Cotton_Boen-Int-1.jpg",
+      "filename": "canadian-standard-warm-cotton-engineered-hardwood-5-44in-pe77v3fd-10124384-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/boen/"
+   },
+   "field_ids": {
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/boen/#img15",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "model_confirmed",
+   "images": [
+    {
+     "target": "room",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/07/Oak-Warm-Cotton_Boen-Int-1.jpg",
+     "sha1": "d31c3ee87b29f86bc10be1ea6bf6337ef79b6c64",
+     "page": "https://canadianstandardflooring.com/boen/#img15",
+     "width": 850,
+     "height": 567
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "model_matched"
+   ]
+  },
+  {
+   "id": "img-094e9ff5dd7e",
+   "seq": 62,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reckEVUH5KZR3ejMK",
+   "sku": "LVP-CANS-0001",
+   "product_name": "Canadian Standard Evion 9 Waterproof Collection 9\" — Arno",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2026/03/ARNO.jpg",
+      "filename": "canadian-standard-arno-lvp-9in-ev411009-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/evion-9/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/evion-9/#img5",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2026/03/ARNO.jpg",
+     "sha1": "5a29ee58fc872fe208b29869dd80c5ec07763bc0",
+     "page": "https://canadianstandardflooring.com/evion-9/#img5",
+     "width": 1500,
+     "height": 2042
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-9e716d8d3869",
+   "seq": 63,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recRgePCtBF3Q3NYv",
+   "sku": "LVP-CANS-0009",
+   "product_name": "Canadian Standard VANNTETT PLUS 9\" — Dawson",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/11/Dawson.jpg",
+      "filename": "canadian-standard-dawson-lvp-9in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/vanntett-plus/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/vanntett-plus/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/11/Dawson.jpg",
+     "sha1": "7d9689b0361125f7fe67da59dd1a17d48c63895d",
+     "page": "https://canadianstandardflooring.com/vanntett-plus/#img3",
+     "width": 1440,
+     "height": 1890
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-fc9b000bea23",
+   "seq": 64,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recrzK8YaXzdeeZ78",
+   "sku": "LVP-CANS-0010",
+   "product_name": "Canadian Standard VANNTETT PLUS 9\" — Eddi",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/11/Eddi.jpg",
+      "filename": "canadian-standard-eddi-lvp-9in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/vanntett-plus/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/vanntett-plus/#img4",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/11/Eddi.jpg",
+     "sha1": "2b89cebd6e968c723b80505c09aa8b443486afa3",
+     "page": "https://canadianstandardflooring.com/vanntett-plus/#img4",
+     "width": 340,
+     "height": 446
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-409ee0b10390",
+   "seq": 65,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recGb6sy5uADzW9uW",
+   "sku": "LVP-CANS-0011",
+   "product_name": "Canadian Standard VANNTETT PLUS 9\" — Ellis",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/11/Ellis.jpg",
+      "filename": "canadian-standard-ellis-lvp-9in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/vanntett-plus/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/vanntett-plus/#img5",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/11/Ellis.jpg",
+     "sha1": "05f55aa7ff8e175041beb896831274ef7a896983",
+     "page": "https://canadianstandardflooring.com/vanntett-plus/#img5",
+     "width": 340,
+     "height": 446
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-85feaf71f51c",
+   "seq": 66,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recPn8rpxh3wN18B8",
+   "sku": "LVP-CANS-0012",
+   "product_name": "Canadian Standard VANNTETT PLUS 9\" — Ernest",
+   "fields": {
+    "Room scene images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Ernest_Scene-scaled.jpg",
+      "filename": "canadian-standard-ernest-lvp-9in-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/vanntett-plus/"
+   },
+   "field_ids": {
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/vanntett-plus/#img16",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "room",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/10/Ernest_Scene-scaled.jpg",
+     "sha1": "6bf46d8b5549f1ef162116947fa3c3b8dca056a1",
+     "page": "https://canadianstandardflooring.com/vanntett-plus/#img16",
+     "width": 2560,
+     "height": 1920
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-c4b5cc98f225",
+   "seq": 67,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recqDchjrTrucYJK9",
+   "sku": "LVP-CANS-0013",
+   "product_name": "Canadian Standard VANNTETT PLUS 9\" — Lesley",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/11/Lesley.jpg",
+      "filename": "canadian-standard-lesley-lvp-9in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/vanntett-plus/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/vanntett-plus/#img7",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/11/Lesley.jpg",
+     "sha1": "da8f1e01107e983cbad0da72e86c0775bdbd7801",
+     "page": "https://canadianstandardflooring.com/vanntett-plus/#img7",
+     "width": 340,
+     "height": 446
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-aac8ae5a98cc",
+   "seq": 68,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reck8spwCgPXYSYVU",
+   "sku": "LVP-CANS-0014",
+   "product_name": "Canadian Standard VANNTETT PLUS 9\" — Nadine",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/11/Nadine.jpg",
+      "filename": "canadian-standard-nadine-lvp-9in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/vanntett-plus/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/vanntett-plus/#img8",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/11/Nadine.jpg",
+     "sha1": "89a2f90e4431b251303d9dfccb9d2d1ca318282d",
+     "page": "https://canadianstandardflooring.com/vanntett-plus/#img8",
+     "width": 1200,
+     "height": 1575
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-e4417e0bcbac",
+   "seq": 69,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recHb411PIWyQQU1X",
+   "sku": "LVP-CANS-0015",
+   "product_name": "Canadian Standard VANNTETT PLUS 9\" — Percy",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/11/Percy.jpg",
+      "filename": "canadian-standard-percy-lvp-9in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/vanntett-plus/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/vanntett-plus/#img9",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/11/Percy.jpg",
+     "sha1": "c9e2232705c49aeaf930920668a7df00621fee6e",
+     "page": "https://canadianstandardflooring.com/vanntett-plus/#img9",
+     "width": 1200,
+     "height": 1575
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-64b89d19c0cb",
+   "seq": 70,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recfvNZTxUoFXDzDx",
+   "sku": "LVP-CANS-0016",
+   "product_name": "Canadian Standard VANNTETT PLUS 9\" — Phoebe",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/11/Phoebe.jpg",
+      "filename": "canadian-standard-phoebe-lvp-9in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/vanntett-plus/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/vanntett-plus/#img10",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/11/Phoebe.jpg",
+     "sha1": "eae5ac8a76cb047fd5b668af74958eebd09ae5a6",
+     "page": "https://canadianstandardflooring.com/vanntett-plus/#img10",
+     "width": 1200,
+     "height": 1575
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-176e043b5c13",
+   "seq": 71,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recZ3AsvkVLanKzMl",
+   "sku": "LVP-CANS-0017",
+   "product_name": "Canadian Standard VANNTETT PLUS 9\" — Rosie",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/11/Rosie.jpg",
+      "filename": "canadian-standard-rosie-lvp-9in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/vanntett-plus/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/vanntett-plus/#img11",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/11/Rosie.jpg",
+     "sha1": "83aef1d68178f2db162624d4a468dfb7080e40c5",
+     "page": "https://canadianstandardflooring.com/vanntett-plus/#img11",
+     "width": 1200,
+     "height": 1575
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-dd3a4b24b229",
+   "seq": 72,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reciaqgjIDsHvpZXW",
+   "sku": "LVP-CANS-0018",
+   "product_name": "Canadian Standard VANNTETT PLUS 9\" — Ross",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/11/Ross.jpg",
+      "filename": "canadian-standard-ross-lvp-9in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/vanntett-plus/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/vanntett-plus/#img12",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2024/11/Ross.jpg",
+     "sha1": "3ff17e9de5e7def1b492726a7aa1d3430f2af24d",
+     "page": "https://canadianstandardflooring.com/vanntett-plus/#img12",
+     "width": 1440,
+     "height": 1890
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ef663b2cef92",
+   "seq": 73,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recjtCxDpcbATbLom",
+   "sku": "LVP-CANS-0019",
+   "product_name": "Canadian Standard VANNTETTPRO 7\" — Copenhagen",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/08/Vannetett_Copenhagen.jpg",
+      "filename": "canadian-standard-copenhagen-lvp-7in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/vanntett-pro/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/vanntett-pro/#img8",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/08/Vannetett_Copenhagen.jpg",
+     "sha1": "5cb2e64647e66b8cbade88a0aac8e280c1a95cf8",
+     "page": "https://canadianstandardflooring.com/vanntett-pro/#img8",
+     "width": 724,
+     "height": 1024
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-d0e4c97c62a4",
+   "seq": 74,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recYtmYYipO96B7Ru",
+   "sku": "LVP-CANS-0020",
+   "product_name": "Canadian Standard VANNTETTPRO 7\" — Cozy Space",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/08/Vannetett_CozySpace.jpg",
+      "filename": "canadian-standard-cozy-space-lvp-7in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/vanntett-pro/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/vanntett-pro/#img5",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/08/Vannetett_CozySpace.jpg",
+     "sha1": "213a18492628737d0a26899ef3ee9365bb69fe90",
+     "page": "https://canadianstandardflooring.com/vanntett-pro/#img5",
+     "width": 724,
+     "height": 1024
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2cd8bb676f40",
+   "seq": 75,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recj8s7i5jKbrQYok",
+   "sku": "LVP-CANS-0021",
+   "product_name": "Canadian Standard VANNTETTPRO 7\" — Grey Shimmer",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/08/Vannetett_GreyShimmer.jpg",
+      "filename": "canadian-standard-grey-shimmer-lvp-7in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/vanntett-pro/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/vanntett-pro/#img7",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/08/Vannetett_GreyShimmer.jpg",
+     "sha1": "e1237d20338f11425c06552496811f7be68587d4",
+     "page": "https://canadianstandardflooring.com/vanntett-pro/#img7",
+     "width": 724,
+     "height": 1024
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-72e361fc62be",
+   "seq": 76,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recjafPJEQTvX9wE1",
+   "sku": "LVP-CANS-0022",
+   "product_name": "Canadian Standard VANNTETTPRO 7\" — Irish Loft",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/08/Vannetett_IrishLoft.jpg",
+      "filename": "canadian-standard-irish-loft-lvp-7in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/vanntett-pro/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/vanntett-pro/#img9",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/08/Vannetett_IrishLoft.jpg",
+     "sha1": "1960b672294a1a5d9894ba4212427c5cd9cc7be4",
+     "page": "https://canadianstandardflooring.com/vanntett-pro/#img9",
+     "width": 724,
+     "height": 1024
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-73e8f4d36f14",
+   "seq": 77,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recesepjsdk04Rhz7",
+   "sku": "LVP-CANS-0023",
+   "product_name": "Canadian Standard VANNTETTPRO 7\" — Morning Coffee",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/08/Vannetett_MorningCoffee.jpg",
+      "filename": "canadian-standard-morning-coffee-lvp-7in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/vanntett-pro/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/vanntett-pro/#img10",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/08/Vannetett_MorningCoffee.jpg",
+     "sha1": "88b837ccb702a4ed3b40da78868fe1e130d3e9f6",
+     "page": "https://canadianstandardflooring.com/vanntett-pro/#img10",
+     "width": 724,
+     "height": 1024
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-e7ef6571e3e4",
+   "seq": 78,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec4ZLe9aooumzfN6",
+   "sku": "LVP-CANS-0024",
+   "product_name": "Canadian Standard VANNTETTPRO 7\" — Nordic Loft",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/08/Vannetett_nordicloft.jpg",
+      "filename": "canadian-standard-nordic-loft-lvp-7in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/vanntett-pro/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/vanntett-pro/#img4",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/08/Vannetett_nordicloft.jpg",
+     "sha1": "edd16fcbad480c4a0c5eaed209570f7579cc5437",
+     "page": "https://canadianstandardflooring.com/vanntett-pro/#img4",
+     "width": 724,
+     "height": 1024
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2b4910cf4059",
+   "seq": 79,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rechT9VZ7z3632AlJ",
+   "sku": "LVP-CANS-0025",
+   "product_name": "Canadian Standard VANNTETTPRO 7\" — Silver Leaf",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/08/Vannetett_Silverleaf.jpg",
+      "filename": "canadian-standard-silver-leaf-lvp-7in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/vanntett-pro/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/vanntett-pro/#img6",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/08/Vannetett_Silverleaf.jpg",
+     "sha1": "9e3c57ac713eb0590cd77373a20611cc0b0230ef",
+     "page": "https://canadianstandardflooring.com/vanntett-pro/#img6",
+     "width": 724,
+     "height": 1024
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-0bd1507bcc50",
+   "seq": 80,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recUvRCBZ37nnbf4G",
+   "sku": "LVP-CANS-0026",
+   "product_name": "Canadian Standard VANNTETTPRO 7\" — Swedish Brown",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/08/Vannetett_Swedish-Brown.jpg",
+      "filename": "canadian-standard-swedish-brown-lvp-7in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://canadianstandardflooring.com/vanntett-pro/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://canadianstandardflooring.com/vanntett-pro/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://canadianstandardflooring.com/wp-content/uploads/2020/08/Vannetett_Swedish-Brown.jpg",
+     "sha1": "368521b89eafe2bdcab400117c98b9e9b6c0c77b",
+     "page": "https://canadianstandardflooring.com/vanntett-pro/#img3",
+     "width": 724,
+     "height": 1024
+    }
+   ],
+   "flags": []
+  }
+ ],
+ "held": [
+  {
+   "sku": "ACC-CANS-0001",
+   "record_id": "recwrzs2Qe38Cgq7e",
+   "product_name": "Canadian Standard - Transition | T-Moulding | SPC | 2400mm x 45mm x 10mm (Evion 9)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-CANS-0002",
+   "record_id": "recA1I794n6Ecc6TT",
+   "product_name": "Canadian Standard - Transition | Reducer | SPC | 2400mm x 45mm x 12mm (Evion 9)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-CANS-0003",
+   "record_id": "recGu7qkhyhK5Slp6",
+   "product_name": "Canadian Standard - Transition | Stair Nosing | SPC | 2400mm x 115mm x 24mm (Evion 9)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-CANS-0004",
+   "record_id": "reckcyPSuW3O2gDUC",
+   "product_name": "Canadian Standard - Transition | T-Moulding | Laminate | 2400mm x 45mm x 10mm (Elemental12)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-CANS-0005",
+   "record_id": "recrsYrR1MZ3LWWIk",
+   "product_name": "Canadian Standard - Transition | Reducer | Laminate | 2400mm x 45mm x 12mm (Elemental12)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-CANS-0006",
+   "record_id": "recDNGit3KSyyCJrB",
+   "product_name": "Canadian Standard - Transition | Stair Nosing | Laminate | 2400mm x 115mm x 24mm (Elemental12)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-CANS-0007",
+   "record_id": "recGtvFHpQe3woyg0",
+   "product_name": "Canadian Standard - Transition | T-Moulding | SPC | 2400mm x 45mm x 7mm (VANNTETT PLUS / VANNTETTPRO)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-CANS-0008",
+   "record_id": "recOL8fL1snSZMqOK",
+   "product_name": "Canadian Standard - Transition | Reducer | SPC | 2400mm x 45mm x 7mm (VANNTETT PLUS / VANNTETTPRO)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-CANS-0009",
+   "record_id": "recFESqVDj1D5N0KN",
+   "product_name": "Canadian Standard - Transition | Stair Nosing | SPC | 2400mm x 53mm x 18mm (VANNTETT PLUS / VANNTETTPRO)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-CANS-0013",
+   "record_id": "reci4vyrvY8Q98SxG",
+   "product_name": "Inhaus - Transition | T-Moulding | Laminate | 8 ft.",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-CANS-0014",
+   "record_id": "reclMV1fmp5lEAFNY",
+   "product_name": "Inhaus - Transition | Reducer | Laminate | 8 ft.",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-CANS-0015",
+   "record_id": "rec9Yt3O3z9T6FRL4",
+   "product_name": "Inhaus - Transition | Stair Nosing | Laminate | 8 ft.",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-CANS-0016",
+   "record_id": "recqQ6pkdKye7HWu7",
+   "product_name": "SONO - Transition | T-Moulding | LVP | 94\"",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-CANS-0017",
+   "record_id": "recPoameLCXPQODna",
+   "product_name": "SONO - Transition | Reducer | LVP | 94\"",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-CANS-0018",
+   "record_id": "recSeQK2l3ygbkk8n",
+   "product_name": "SONO - Transition | Stair Nosing | LVP | 94\"",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-CANS-0019",
+   "record_id": "recmaIJ2EzsY1riQs",
+   "product_name": "Canadian Standard - Sundry | Underpad | 3mm EVA foam, condo-approved, IIC 73 / STC 72, 200 sqft/roll",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-CANS-0020",
+   "record_id": "rec7rWzXBzv2yw3yM",
+   "product_name": "Canadian Standard - Sundry | Underpad | 2mm white residential underlay, 200 sqft/roll",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-CANS-0021",
+   "record_id": "rec5TL9RlYmWcEujs",
+   "product_name": "Canadian Standard - Transition | T-Moulding | Engineered | Cut Order (per linear ft)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-CANS-0022",
+   "record_id": "rec6kYWKsN4rwCGtN",
+   "product_name": "Canadian Standard - Transition | Reducer | Engineered | Cut Order (per linear ft)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-CANS-0023",
+   "record_id": "recRirn6b4ivktkSJ",
+   "product_name": "Canadian Standard - Transition | Stair Nosing | Engineered | Cut Order (per linear ft)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0001",
+   "record_id": "recIqTaxvXPX4RmNa",
+   "product_name": "Canadian Standard Origins Oak 6.5\" — Arlington",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Arlington'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0002",
+   "record_id": "recULbELlE2kpIpIZ",
+   "product_name": "Canadian Standard Origins Oak 6.5\" — Mckinney",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Mckinney'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0003",
+   "record_id": "recCmaPLd5b0xb250",
+   "product_name": "Canadian Standard Origins Oak 6.5\" — Nashville",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Nashville'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0004",
+   "record_id": "recj3kemHNK5xqQZP",
+   "product_name": "Canadian Standard Origins Oak 6.5\" — Quincy",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Quincy'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0005",
+   "record_id": "reczdp3Gjcl261jSP",
+   "product_name": "Canadian Standard Origins Oak 6.5\" — Wrenwood",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Wrenwood'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0016",
+   "record_id": "rec7cdDBOVUqOMxyB",
+   "product_name": "Canadian Standard Novella American Hickory 7.5\" — Lewis",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Lewis'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0017",
+   "record_id": "recxTFb87Pt4vnkjO",
+   "product_name": "Canadian Standard Novella American Hickory 7.5\" — Twain",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Twain'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0018",
+   "record_id": "rec6HqCDGpJ8EntPy",
+   "product_name": "Canadian Standard Novella American Hickory 7.5\" — Tolkein",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Tolkein'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0019",
+   "record_id": "rec6AU51Xr0MNJWEr",
+   "product_name": "Canadian Standard Novella American Hickory 7.5\" — Dahl",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Dahl'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0020",
+   "record_id": "rec4T7IhNwxomLJFr",
+   "product_name": "Canadian Standard Novella American Hickory 7.5\" — Pilkey",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Pilkey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0021",
+   "record_id": "recBBRMKfgFiTvog7",
+   "product_name": "Canadian Standard Novella American Hickory 7.5\" — Seuss",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Seuss'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0027",
+   "record_id": "recW8YeH2mCDCCGgM",
+   "product_name": "Canadian Standard Novella American Hickory 6.5\" — Dickens",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Dickens'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0028",
+   "record_id": "rec6jLB7Z0i9aCC79",
+   "product_name": "Canadian Standard Novella American Hickory 6.5\" — Fitzgerald",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Fitzgerald'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0029",
+   "record_id": "recj18QMIZvLSmdQR",
+   "product_name": "Canadian Standard Novella American Hickory 6.5\" — Hemingway",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Hemingway'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0030",
+   "record_id": "recsvNeFaIcj9ag3D",
+   "product_name": "Canadian Standard Novella American Hickory 6.5\" — Orwell",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Orwell'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0031",
+   "record_id": "recOAX9By3YRFP6sZ",
+   "product_name": "Canadian Standard Novella American Hickory 6.5\" — Steinbeck",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Steinbeck'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0034",
+   "record_id": "recHSWRj0iEFk7Wh7",
+   "product_name": "Canadian Standard Origins XL Oak 7.5\" — Charleston",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Charleston'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0038",
+   "record_id": "recOFARRhmSuAjJUt",
+   "product_name": "Canadian Standard Origins XL Hickory 7.5\" — Barrymore",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Barrymore'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0039",
+   "record_id": "recypesVM5P06Fvoh",
+   "product_name": "Canadian Standard Origins XL Hickory 7.5\" — Chesterfield",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Chesterfield'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0040",
+   "record_id": "recV15ZMWTS06BxJD",
+   "product_name": "Canadian Standard Origins XL Hickory 7.5\" — Claremore",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Claremore'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0041",
+   "record_id": "recLXESUPphwdzHqy",
+   "product_name": "Canadian Standard Origins XL Hickory 7.5\" — Hayward",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Hayward'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0042",
+   "record_id": "recwZybXQ7YxRiL3e",
+   "product_name": "Canadian Standard Origins XL Hickory 7.5\" — Thatcher",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Thatcher'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0043",
+   "record_id": "recHSYYlZ5uog5T3i",
+   "product_name": "Canadian Standard Origins XL Hickory 7.5\" — Townsend",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Townsend'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0049",
+   "record_id": "recbkyKM5iKbskYPw",
+   "product_name": "Canadian Standard Origins European Oak 6.5\" — Irish Tea",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Irish Tea'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0058",
+   "record_id": "rec7Ly57KBMxXkzEr",
+   "product_name": "Canadian Standard Origins American Hickory 6.5\" — Winchester",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Winchester'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0070",
+   "record_id": "recGNSKUnmMNpVVtu",
+   "product_name": "Brand Surfaces Engineered Click Maple 6.5\" — Berkeley",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Berkeley'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0071",
+   "record_id": "recINZPm3xnfKhUoA",
+   "product_name": "Brand Surfaces Engineered Click Maple 6.5\" — Santee",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Santee'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0072",
+   "record_id": "reco2ZrTpP890a0sb",
+   "product_name": "Brand Surfaces Engineered Click Maple 6.5\" — Sequoia",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sequoia'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0073",
+   "record_id": "receqsB6wRRUi30l8",
+   "product_name": "Brand Surfaces Engineered Click Maple 6.5\" — La Jolla",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'La Jolla'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0074",
+   "record_id": "recJJ8Y5wgFgVSyGx",
+   "product_name": "Brand Surfaces Engineered Click Hickory 6.5\" — Boston Legacy",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Boston Legacy'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0075",
+   "record_id": "recPcVxfiEZ6Wa80b",
+   "product_name": "Brand Surfaces Engineered Click Hickory 6.5\" — Parisian House",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Parisian House'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0076",
+   "record_id": "recMAGpw0YoCguBgj",
+   "product_name": "Brand Surfaces Engineered Click Hickory 6.5\" — Oregon Coast",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Oregon Coast'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0077",
+   "record_id": "recWxflWu06Uq1bVI",
+   "product_name": "Brand Surfaces Engineered Click Hickory 6.5\" — Sapphire Grey",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sapphire Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0078",
+   "record_id": "recnglPir7oEKax3G",
+   "product_name": "Brand Surfaces Engineered Click Hickory 6.5\" — Wooden Wagon",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Wooden Wagon'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0079",
+   "record_id": "reccb267rQBOBbkXs",
+   "product_name": "Brand Surfaces Engineered Click Hickory 6.5\" — Morro Bay",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Morro Bay'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0080",
+   "record_id": "recu9AbRutP38IPrJ",
+   "product_name": "Brand Surfaces Engineered Click Hickory 6.5\" — Ventura",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Ventura'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0081",
+   "record_id": "recXNNfjDggRvVEAf",
+   "product_name": "Brand Surfaces Engineered Click Hickory 6.5\" — Great Sur",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Great Sur'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0082",
+   "record_id": "recMlBzQrbM5LrgMl",
+   "product_name": "Brand Surfaces Engineered Click Hickory 6.5\" — Summerland",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Summerland'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0083",
+   "record_id": "recrKLuZQvQBV2wTu",
+   "product_name": "Brand Surfaces Engineered Click Hickory 6.5\" — Baywood",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Baywood'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0084",
+   "record_id": "reck8Bu3bl3F2EzMI",
+   "product_name": "Brand Surfaces Engineered Click Hickory 6.5\" — Sausalito",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sausalito'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0092",
+   "record_id": "rec2tktV90RglX6Gl",
+   "product_name": "Brand Surfaces Engineered Click Oak 6\" — Park Avenue",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Park Avenue'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0096",
+   "record_id": "recL7L7hww5RAORbw",
+   "product_name": "Brand Surfaces Engineered T&G Hickory 6.5\" — Crafted Timber",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Crafted Timber'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0097",
+   "record_id": "reck6fKa6blZiufqZ",
+   "product_name": "Brand Surfaces Engineered T&G Hickory 6.5\" — Smoked Tree Trunk",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Smoked Tree Trunk'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0098",
+   "record_id": "recq3pylv514ewHsf",
+   "product_name": "Brand Surfaces Engineered T&G Hickory 6.5\" — Smoky Shadow",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Smoky Shadow'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0099",
+   "record_id": "recSwIluv1Rhb6Qzs",
+   "product_name": "Brand Surfaces Engineered T&G Hickory 6.5\" — Transitional Grey",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Transitional Grey'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0100",
+   "record_id": "recQs30wIIZKGm74K",
+   "product_name": "Brand Surfaces Engineered T&G Hickory 6.5\" — *Crafted Timber",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour '*Crafted Timber'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0101",
+   "record_id": "recNZbxmCqMq1lv0X",
+   "product_name": "Brand Surfaces Engineered T&G Hickory 6.5\" — *Smoked Tree Trunk",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour '*Smoked Tree Trunk'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0102",
+   "record_id": "rec3EJe3rPaIcQq5M",
+   "product_name": "Brand Surfaces Engineered T&G Oak 6.5\" — Cobblestone",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Cobblestone'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0103",
+   "record_id": "recdjtFuIj73uI9lB",
+   "product_name": "Brand Surfaces Engineered T&G Oak 6.5\" — Pure Smoked",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Pure Smoked'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0104",
+   "record_id": "recUOXMFR9xlE9BSl",
+   "product_name": "Brand Surfaces Engineered T&G Oak 6.5\" — Vintage Boulder",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Vintage Boulder'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0105",
+   "record_id": "recsKmbXh2cgaiMMO",
+   "product_name": "Brand Surfaces Engineered T&G Oak 6.5\" — Smoked Accent",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Smoked Accent'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0106",
+   "record_id": "recS7xUIzx9TBvZFx",
+   "product_name": "Brand Surfaces Engineered T&G Oak 6.5\" — Dusty Lead",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Dusty Lead'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0107",
+   "record_id": "rec8mAVzBbRydUHEY",
+   "product_name": "Brand Surfaces Engineered T&G Oak 6.5\" — Elusive Forest",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Elusive Forest'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0108",
+   "record_id": "recTLPcvnvyZ6HGFX",
+   "product_name": "Brand Surfaces Engineered T&G Oak 6.5\" — Grind Concrete",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Grind Concrete'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0109",
+   "record_id": "rec41LWPKUN8K89n6",
+   "product_name": "Brand Surfaces Engineered T&G Oak 6.5\" — Satin Snow",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Satin Snow'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0110",
+   "record_id": "recNHR8PMdZ3SiSVo",
+   "product_name": "Brand Surfaces Engineered T&G Oak 6.5\" — Smoked Expose",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Smoked Expose'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0111",
+   "record_id": "recGy8driLzXMfjrM",
+   "product_name": "Brand Surfaces Engineered T&G Oak 6.5\" — Smoked Tobacco",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Smoked Tobacco'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0114",
+   "record_id": "recpPY7idxkwh10TS",
+   "product_name": "Brand Surfaces Engineered T&G Maple 7.5\" — Cotton Ball",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Cotton Ball'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0116",
+   "record_id": "rec5mpnEJX5vvwYzZ",
+   "product_name": "Brand Surfaces Engineered T&G Maple 7.5\" — Pottery Barn",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Pottery Barn'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0118",
+   "record_id": "recHB54q0KEr6R93Z",
+   "product_name": "Brand Surfaces Engineered T&G Maple 7.5\" — Wimbledon",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Wimbledon'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0120",
+   "record_id": "recp2RjC2RIuSD47R",
+   "product_name": "BOEN Plank 5\" Click Oak 5.44\" — Arizona",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Arizona'; vetoes {'pattern': 3}"
+  },
+  {
+   "sku": "ENG-CANS-0121",
+   "record_id": "recoyjHOAqAeNLovi",
+   "product_name": "BOEN Plank 5\" Click Oak 5.44\" — California",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'California'; vetoes {'pattern': 3}"
+  },
+  {
+   "sku": "ENG-CANS-0122",
+   "record_id": "recffByGaqzqURSua",
+   "product_name": "BOEN Plank 5\" Click Oak 5.44\" — Cocoa",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Cocoa'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0123",
+   "record_id": "recjR5SqYoetmAPbr",
+   "product_name": "BOEN Plank 5\" Click Oak 5.44\" — Oregon",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Oregon'; vetoes {'pattern': 7}"
+  },
+  {
+   "sku": "ENG-CANS-0124",
+   "record_id": "rechezOWAwDs66SIs",
+   "product_name": "BOEN Plank 5\" Click Oak 5.44\" — Vivo White",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Vivo White'; vetoes {'pattern': 5}"
+  },
+  {
+   "sku": "ENG-CANS-0125",
+   "record_id": "rec7vxmeTB57Z25HC",
+   "product_name": "BOEN Plank 7\" Click Oak 7.125\" — California",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'California'; vetoes {'pattern': 3}"
+  },
+  {
+   "sku": "ENG-CANS-0126",
+   "record_id": "recyS0KCrheUbl1RR",
+   "product_name": "BOEN Plank 7\" Click Oak 7.125\" — Oregon",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Oregon'; vetoes {'pattern': 7}"
+  },
+  {
+   "sku": "ENG-CANS-0127",
+   "record_id": "recioYZgrwRzKIOLS",
+   "product_name": "BOEN Live Pure Oak 5.44\" — Alamo",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Alamo'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0128",
+   "record_id": "recXYijBljUnBETdy",
+   "product_name": "BOEN Live Pure Oak 5.44\" — Country",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Country'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0129",
+   "record_id": "rec3QjQPW62632UUt",
+   "product_name": "BOEN Live Pure Oak 5.44\" — Horizon",
+   "candidate_pages": [
+    "https://canadianstandardflooring.com/boen/#img7"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://canadianstandardflooring.com/boen/#img7']; {'excluded': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0131",
+   "record_id": "recUGClNyetCBNtEa",
+   "product_name": "BOEN Live Pure Oak 5.44\" — Natural",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Natural'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0132",
+   "record_id": "recon2bjeN3UHF2Zq",
+   "product_name": "BOEN Live Pure Oak 5.44\" — Pale White",
+   "candidate_pages": [
+    "https://canadianstandardflooring.com/boen/#img5"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://canadianstandardflooring.com/boen/#img5']; {'excluded': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0134",
+   "record_id": "rec5aYC0MuVCHX4YG",
+   "product_name": "BOEN Live Pure Oak 5.44\" — White",
+   "candidate_pages": [
+    "https://canadianstandardflooring.com/boen/#img13",
+    "https://canadianstandardflooring.com/boen/#img16",
+    "https://canadianstandardflooring.com/boen/#img5"
+   ],
+   "reason": "model_rejected",
+   "detail": "colour 'White'; vetoes {'width': 1, 'pattern': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0135",
+   "record_id": "recUoPuDVyydJWBEA",
+   "product_name": "BOEN Live Pure - Lacquer Oak 7.125\" — Grey Harmony",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Grey Harmony'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0136",
+   "record_id": "reczQdZBZhwOLbpGg",
+   "product_name": "BOEN Live Pure - Lacquer Oak 7.125\" — Vivo-Natural",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Vivo-Natural'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0137",
+   "record_id": "recZhIRvnL13mKYqU",
+   "product_name": "BOEN Live Pure - Lacquer Oak 7.125\" — Vivo-Natural (V5)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Vivo-Natural'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0138",
+   "record_id": "rec2sy9lgBNvvdquU",
+   "product_name": "BOEN Live Pure - Lacquer Oak 7.125\" — Vivo White",
+   "candidate_pages": [
+    "https://canadianstandardflooring.com/boen/#img13",
+    "https://canadianstandardflooring.com/boen/#img16",
+    "https://canadianstandardflooring.com/elemental-12/#img15"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://canadianstandardflooring.com/boen/#img13']; {'excluded': 1}"
+  },
+  {
+   "sku": "ENG-CANS-0139",
+   "record_id": "recbKBYU2kOqBlV2j",
+   "product_name": "Antikkwood Engineered Handscraped Click Oak 5\" — Grey Harbour",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Grey Harbour'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0140",
+   "record_id": "recPHIhLvBO6RuxGH",
+   "product_name": "Antikkwood Engineered T&G Hickory 6\" — Night Owl",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Night Owl'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0141",
+   "record_id": "recbj5ZflUXZaZYNE",
+   "product_name": "Antikkwood Engineered T&G Oak 6\" — Barnboard",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Barnboard'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0142",
+   "record_id": "recNaDGoB3yNrBp2O",
+   "product_name": "Antikkwood Engineered T&G Acacia 7.5\" — Smoky Brown",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Smoky Brown'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0143",
+   "record_id": "recK7iraKGIJpuaoy",
+   "product_name": "Antikkwood Engineered T&G American Walnut 7.5\" — Natural",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Natural'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0144",
+   "record_id": "recZF4S1S03I4KBue",
+   "product_name": "Antikkwood Engineered T&G Oak 6\" — Belgian Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Belgian Oak'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0145",
+   "record_id": "recdPUx6AbEBp6e7O",
+   "product_name": "Antikkwood Engineered T&G Oak 6\" — Driftwood",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Driftwood'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0146",
+   "record_id": "recKZEYAg1Z1a0yc3",
+   "product_name": "Antikkwood Engineered T&G Oak 6\" — Equestrian Grey",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Equestrian Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0147",
+   "record_id": "recbSHrsx4ZnNbaH5",
+   "product_name": "Antikkwood Engineered T&G Oak 6\" — Stormy Sky",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Stormy Sky'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0148",
+   "record_id": "rec0z7kOhc0OWbucc",
+   "product_name": "Nestwood Engineered T&G Oak 5\" — Eagle Nest",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Eagle Nest'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0149",
+   "record_id": "recNi2BmdsKYP9Mpn",
+   "product_name": "Nestwood Engineered T&G Oak 5\" — Inox Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Inox Oak'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0150",
+   "record_id": "recWqXqRIO4yZx25b",
+   "product_name": "Nestwood Engineered T&G Oak 6\" — Midnight Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Midnight Oak'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0151",
+   "record_id": "recZSVaqPuay16Y42",
+   "product_name": "Nestwood Engineered T&G Oak 6\" — Grey Cloud",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Grey Cloud'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0152",
+   "record_id": "recwLb2rQEOVSDKpa",
+   "product_name": "Nestwood Engineered T&G Maple 5\" — Cosmopolitan Grey",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Cosmopolitan Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0153",
+   "record_id": "reccMGRqCyFLveAkf",
+   "product_name": "Nestwood Engineered T&G Maple 5\" — Mystic Barrel",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Mystic Barrel'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0154",
+   "record_id": "recA2kZnkGZ6tuQxz",
+   "product_name": "Nestwood Engineered T&G Maple 6\" — Amsterdam Maple",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Amsterdam Maple'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0155",
+   "record_id": "rec9eoJeexrPClrOG",
+   "product_name": "Nestwood Engineered T&G Maple 6\" — Georgetown Grey",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Georgetown Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0156",
+   "record_id": "recQiD6rQKYHyvYjs",
+   "product_name": "Unikkwood Engineered European Wide Plank T&G Oak 7\" — Burnt Rafter",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Burnt Rafter'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0157",
+   "record_id": "recPal77LYnX6zKWL",
+   "product_name": "Unikkwood Engineered European Wide Plank T&G Oak 7\" — Saratoga Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Saratoga Oak'; vetoes {}"
+  },
+  {
+   "sku": "ENG-CANS-0158",
+   "record_id": "reche2uk8wpLlydN2",
+   "product_name": "Unikkwood Engineered European Wide Plank T&G Oak 7\" — Symphony Grey",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Symphony Grey'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0001",
+   "record_id": "recmq2HaH2dLDJCBb",
+   "product_name": "Brand Coverings Solid T&G Maple 4.75\" — Chelsea Grey",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Chelsea Grey'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0002",
+   "record_id": "recTaoaMkXJZiJnTa",
+   "product_name": "Brand Coverings Solid T&G Maple 4.75\" — Kingsport",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Kingsport'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0003",
+   "record_id": "recLzu2CHHp4qjyEP",
+   "product_name": "Brand Coverings Solid T&G Maple 4.75\" — Pale Oats",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Pale Oats'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0004",
+   "record_id": "reclnoEjIwHs8yiyS",
+   "product_name": "Brand Coverings Solid T&G Maple 4.75\" — Roasted Marshmallow",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Roasted Marshmallow'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0005",
+   "record_id": "recUJfCAaEp82dx5q",
+   "product_name": "Brand Coverings Solid T&G Maple 4.75\" — Saybrook",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Saybrook'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0006",
+   "record_id": "recNvVtXn3vwXMVzb",
+   "product_name": "Brand Coverings Solid T&G Teak 4.75\" — Loretta",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Loretta'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0007",
+   "record_id": "recEFPjBu9gRDBn7C",
+   "product_name": "Brand Coverings Solid T&G Teak 4.75\" — Owen",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Owen'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0008",
+   "record_id": "recjcA0ON7x20jRYE",
+   "product_name": "Brand Coverings Solid T&G Teak 4.75\" — Maylis",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Maylis'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0009",
+   "record_id": "reca1aQPymhvL6CMm",
+   "product_name": "Brand Coverings Solid T&G Teak 4.75\" — Haley",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Haley'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0010",
+   "record_id": "rec0rfVkV1R7m9Owe",
+   "product_name": "Brand Coverings Solid T&G Teak 4.75\" — Rowan",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Rowan'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0011",
+   "record_id": "recCXmPj2eebdzfRL",
+   "product_name": "Brand Coverings Solid T&G Acacia 4.75\" — Metropolis",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Metropolis'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0012",
+   "record_id": "rec95rnRGZXC7dIcT",
+   "product_name": "Brand Coverings Solid T&G Acacia 4.75\" — Silver Fox",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Silver Fox'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0013",
+   "record_id": "reczU5WXWFZWM9JbJ",
+   "product_name": "Brand Coverings Solid T&G Acacia 4.75\" — Smoke Infusion",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Smoke Infusion'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0014",
+   "record_id": "recLkmw5WIMWgtN8l",
+   "product_name": "Brand Coverings Solid T&G Acacia 4.75\" — Carriage House",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Carriage House'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0015",
+   "record_id": "recuIX11Hrc32QcyL",
+   "product_name": "Brand Coverings Solid T&G Hickory 5\" — Coffee Gelato",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Coffee Gelato'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0016",
+   "record_id": "recHUwC3sEjBNj4vt",
+   "product_name": "Brand Coverings Solid T&G Hickory 5\" — Gingerbread",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Gingerbread'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0017",
+   "record_id": "recawqKTX2KLA9vAL",
+   "product_name": "Brand Coverings Solid T&G Hickory 5\" — Madison Avenue",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Madison Avenue'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0018",
+   "record_id": "recYE2IE2emoiO4yF",
+   "product_name": "Brand Coverings Solid T&G Oak 5\" — Alexanian",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Alexanian'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0019",
+   "record_id": "recv2EObJijjG7y8n",
+   "product_name": "Brand Coverings Solid T&G Oak 5\" — Granite Dust",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Granite Dust'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0020",
+   "record_id": "recEcMQEXLJse1qs9",
+   "product_name": "Brand Coverings Solid T&G Oak 5\" — Princeton",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Princeton'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0021",
+   "record_id": "recAKIbQuq1kgmtNY",
+   "product_name": "Brand Coverings Solid T&G Oak 5\" — Smoked Expose",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Smoked Expose'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0022",
+   "record_id": "recF9Ovr1hggjWVRX",
+   "product_name": "Brand Coverings Solid T&G Oak 5\" — Smoked Tobacco",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Smoked Tobacco'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0023",
+   "record_id": "recBkBxZ6gDSOc735",
+   "product_name": "Handcraft Solid T&G Acacia 5\" — Venice Sicily",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Venice Sicily'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0024",
+   "record_id": "recTx83yu5PahCyLm",
+   "product_name": "Handcraft Solid T&G Maple 5\" — Desert Husk",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Desert Husk'; vetoes {}"
+  },
+  {
+   "sku": "HWD-CANS-0025",
+   "record_id": "recA9scjz2z2z1gOh",
+   "product_name": "Handcraft Solid T&G Maple 5\" — Toasted Sesame",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Toasted Sesame'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0001",
+   "record_id": "recgFjcpvyBbIDkUi",
+   "product_name": "Canadian Standard Elemental12 Planks Waterproof Collection 9.29\" — Akita",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Akita'; vetoes {'pattern': 3}"
+  },
+  {
+   "sku": "LAM-CANS-0002",
+   "record_id": "recYjlA5mpFB57pAp",
+   "product_name": "Canadian Standard Elemental12 Planks Waterproof Collection 9.29\" — Nagasaki",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Nagasaki'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "LAM-CANS-0003",
+   "record_id": "recE5mT2sFmMBRO6C",
+   "product_name": "Canadian Standard Elemental12 Planks Waterproof Collection 9.29\" — Nara",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Nara'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "LAM-CANS-0004",
+   "record_id": "recrFAPla66yz9vf5",
+   "product_name": "Canadian Standard Elemental12 Planks Waterproof Collection 9.29\" — Nikko",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Nikko'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "LAM-CANS-0005",
+   "record_id": "recTaRBvWU500P5hr",
+   "product_name": "Canadian Standard Elemental12 Planks Waterproof Collection 9.29\" — Noto",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Noto'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "LAM-CANS-0006",
+   "record_id": "recp8OASpr4zJyey8",
+   "product_name": "Canadian Standard Elemental12 Planks Waterproof Collection 9.29\" — Shikoku",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Shikoku'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "LAM-CANS-0007",
+   "record_id": "recobstQ6uWvGN7t1",
+   "product_name": "Canadian Standard Elemental12 Planks Waterproof Collection 9.29\" — Uji",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Uji'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "LAM-CANS-0008",
+   "record_id": "recjo3vBjqV959mRV",
+   "product_name": "Canadian Standard Elemental12 Herringbone Waterproof Collection 6.5\" — Akita - H",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Akita - H'; vetoes {'pattern': 2}"
+  },
+  {
+   "sku": "LAM-CANS-0009",
+   "record_id": "recVomO1cy1HJPLFv",
+   "product_name": "Canadian Standard 8MM Laminate Waterproof Fibre Planks 7.72\" — Crown Point",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Crown Point'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0010",
+   "record_id": "recni3OTglESSiGb4",
+   "product_name": "Canadian Standard 8MM Laminate Waterproof Fibre Planks 7.72\" — Five Peaks",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Five Peaks'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0011",
+   "record_id": "recjcHkDV3NE3EglR",
+   "product_name": "Canadian Standard 8MM Laminate Waterproof Fibre Planks 7.72\" — Lake View",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Lake View'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0012",
+   "record_id": "recrOeflh18MHyXEs",
+   "product_name": "Canadian Standard 8MM Laminate Waterproof Fibre Planks 7.72\" — Laurel Ridge",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Laurel Ridge'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0013",
+   "record_id": "recF2l0fi6HWu5sA7",
+   "product_name": "Canadian Standard 8MM Laminate Waterproof Fibre Planks 7.72\" — Oak Bridge",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Oak Bridge'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0014",
+   "record_id": "recdxxYJTI3cx3ANS",
+   "product_name": "Canadian Standard 8MM Laminate Waterproof Fibre Planks 7.72\" — Town Mill",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Town Mill'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0015",
+   "record_id": "rec3cdUJshwVYPbSK",
+   "product_name": "Canadian Standard 8MM Laminate Waterproof Fibre Planks 7.72\" — Willow Creek",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Willow Creek'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0016",
+   "record_id": "recYGSpciJBVrM3WW",
+   "product_name": "Canadian Standard 8MM Laminate Waterproof Fibre Planks 7.72\" — Wood Land",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Wood Land'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0017",
+   "record_id": "receGZhIh7NjSH4HZ",
+   "product_name": "EGGER PRO 7.6\" — Lasken Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Lasken Oak'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0018",
+   "record_id": "recmT1VOX0ZCj2tcR",
+   "product_name": "EGGER PRO 7.6\" — Light Nakina Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Light Nakina Oak'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0019",
+   "record_id": "recWWMeuuGK4XVT0m",
+   "product_name": "EGGER PRO 7.6\" — Murom Oak Gray",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Murom Oak Gray'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0020",
+   "record_id": "recIpDKN9Zd0wQZbY",
+   "product_name": "EGGER PRO 7.6\" — Olchon Oak Honey",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Olchon Oak Honey'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0021",
+   "record_id": "rectGgKk4GQvJg1MB",
+   "product_name": "EGGER PRO 7.6\" — Olchon Oak White",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Olchon Oak White'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0022",
+   "record_id": "rec73HycuQRZ3uaoe",
+   "product_name": "EGGER PRO 7.6\" — Sand Biege (Olchon Oak)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sand Biege'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0023",
+   "record_id": "recUPyWQnhAw5zeKt",
+   "product_name": "EGGER PRO 7.6\" — Valley Oak Mocca",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Valley Oak Mocca'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0024",
+   "record_id": "rec0BUx5fxxtvxeUU",
+   "product_name": "EGGER PRO 7.6\" — Gray Sorgono Pine",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Gray Sorgono Pine'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0025",
+   "record_id": "recq3lIWQ5izfm3iy",
+   "product_name": "EGGER PRO 7.6\" — Gray Leoma Wlanut",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Gray Leoma Wlanut'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0026",
+   "record_id": "recRgGNHMscevzsWP",
+   "product_name": "EGGER PRO 7.6\" — Mansonia Walnut",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Mansonia Walnut'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0027",
+   "record_id": "recff68Xr5dRkBV1X",
+   "product_name": "EGGER AQUA+ Wood Grain 7.6\" — Bardolino Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Bardolino Oak'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0028",
+   "record_id": "recrc3VGZ2XY68RAR",
+   "product_name": "EGGER AQUA+ Wood Grain 7.6\" — Dark Abergele",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Dark Abergele'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0029",
+   "record_id": "recb5ZpfoP83PlrNW",
+   "product_name": "EGGER AQUA+ Wood Grain 7.6\" — Natural Bardolino Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Natural Bardolino Oak'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0030",
+   "record_id": "recoPOA8NAQu21fl6",
+   "product_name": "EGGER AQUA+ Wood Grain 7.6\" — Natural Valley Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Natural Valley Oak'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0031",
+   "record_id": "rec34WEl07wYLyNgd",
+   "product_name": "EGGER AQUA+ Wood Grain 7.6\" — Valley Oak Smoke",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Valley Oak Smoke'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0032",
+   "record_id": "recVOmmqXDQXQsm60",
+   "product_name": "EGGER AQUA+ Wood Grain 7.6\" — White Valley Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'White Valley Oak'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0033",
+   "record_id": "receYZ3YIXCjXcbl6",
+   "product_name": "EGGER AQUA+ Concrete Tile 12.88\" — Light Gray Chicago",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Light Gray Chicago'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0034",
+   "record_id": "recnoyizCOENpvkaQ",
+   "product_name": "EGGER AQUA+ Concrete Tile 12.88\" — Slate Black Classic",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Slate Black Classic'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0035",
+   "record_id": "recGSONgGKdPbVcJo",
+   "product_name": "EGGER AQUA+ Concrete Tile 12.88\" — White Chromix",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'White Chromix'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0036",
+   "record_id": "recbKdUuvYZKZzwHN",
+   "product_name": "Inhaus Dynamic Highlands 7.64\" — Hemlock (Dark Beige)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Hemlock'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0037",
+   "record_id": "recPDVZkdhYptisSQ",
+   "product_name": "Inhaus Dynamic Highlands 7.64\" — Quarry Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Quarry Oak'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0038",
+   "record_id": "rec2F05SYdbodZgCB",
+   "product_name": "Inhaus Dynamic Highlands 7.64\" — Lismore (Beige Grey)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Lismore'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0039",
+   "record_id": "recsA2bR9epezvTK3",
+   "product_name": "Inhaus Dynamic Highlands 7.64\" — Rustic Pecan (Pecan Brown)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Rustic Pecan'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0040",
+   "record_id": "recgvVDKuoKi0Xtjj",
+   "product_name": "Inhaus Dynamic Highlands 7.64\" — Shasta Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Shasta Oak'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0041",
+   "record_id": "recVwSKYjaS18PGok",
+   "product_name": "Inhaus Natural Vintage 6.3\" — Canyon Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Canyon Oak'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0042",
+   "record_id": "recVUp9dygC6SgyvT",
+   "product_name": "Inhaus Natural Vintage 6.3\" — Hartford",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Hartford'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0043",
+   "record_id": "recA3z2kOcOPhYp2N",
+   "product_name": "Inhaus Natural Vintage 6.3\" — Tofino",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Tofino'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0044",
+   "record_id": "recLjo6McY35ulaqx",
+   "product_name": "Inhaus Precious Highlands 6.3\" — Mountain",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Mountain'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0045",
+   "record_id": "recJs3gDDL9JVJYqf",
+   "product_name": "Inhaus Precious Highlands 6.3\" — Vancouver Walnut",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Vancouver Walnut'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0046",
+   "record_id": "recgDZSLaePB9z2ie",
+   "product_name": "Inhaus Inspiration Lamdura 8mm Wood Collection 7.56\" — Edgewood",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Edgewood'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0047",
+   "record_id": "recc2ScoDr2O2LnmI",
+   "product_name": "Inhaus Inspiration Lamdura 8mm Wood Collection 7.56\" — Grizzly (Handscraped EIR)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Grizzly'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0048",
+   "record_id": "rect25vRfikKOrceW",
+   "product_name": "Inhaus Inspiration Lamdura 8mm Wood Collection 7.56\" — Folkstone (Handscraped EIR)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Folkstone'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0049",
+   "record_id": "recP25bNzHzM402BK",
+   "product_name": "Inhaus Inspiration Lamdura 8mm Wood Collection 7.56\" — Oak Light Grey",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Oak Light Grey'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0050",
+   "record_id": "recFWBRnJhHfArVGT",
+   "product_name": "Inhaus Inspiration Lamdura 8mm Wood Collection 7.56\" — Sedgwick",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sedgwick'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0051",
+   "record_id": "recMX6HwpH6KsiTKe",
+   "product_name": "Inhaus Inspiration Lamdura 8mm Wood Collection 7.56\" — Selkirk",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Selkirk'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0052",
+   "record_id": "recMMm1C2NKnNwlLg",
+   "product_name": "Inhaus Inspiration Lamdura 8mm Wood Collection 7.56\" — Tisdale (Handscraped EIR)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Tisdale'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0053",
+   "record_id": "recgkHVbfTliBMoHF",
+   "product_name": "Inhaus Inspiration Lamdura 8mm Wood Collection 7.56\" — Woodside",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Woodside'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0054",
+   "record_id": "recwro2elxstNU88M",
+   "product_name": "Inhaus Inspiration Lamdura 10mm Wood Collection 7.56\" — Edgewood",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Edgewood'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0055",
+   "record_id": "recx5oh2PNJuxf4Ya",
+   "product_name": "Inhaus Inspiration Lamdura 10mm Wood Collection 7.56\" — Folkstone (Handscraped EIR)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Folkstone'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0056",
+   "record_id": "rechoNHHZQRGgJNDK",
+   "product_name": "Inhaus Inspiration Lamdura 10mm Wood Collection 7.56\" — Grizzly (Handscraped EIR)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Grizzly'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0057",
+   "record_id": "rec7GLoGRKK0x8DH5",
+   "product_name": "Inhaus Inspiration Lamdura 10mm Wood Collection 7.56\" — Oak Light Grey",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Oak Light Grey'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0058",
+   "record_id": "rec8aIwNg2Xe1ylfI",
+   "product_name": "Inhaus Inspiration Lamdura 10mm Wood Collection 7.56\" — Sedgwick",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sedgwick'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0059",
+   "record_id": "rect8MufA6J3oy8r5",
+   "product_name": "Inhaus Inspiration Lamdura 10mm Wood Collection 7.56\" — Selkirk",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Selkirk'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0060",
+   "record_id": "rec6qS9h0IJ6DkTjk",
+   "product_name": "Inhaus Inspiration Lamdura 10mm Wood Collection 7.56\" — Tisdale (Handscraped EIR)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Tisdale'; vetoes {}"
+  },
+  {
+   "sku": "LAM-CANS-0061",
+   "record_id": "rec6BEoXfzsovIYGb",
+   "product_name": "Inhaus Inspiration Lamdura 10mm Wood Collection 7.56\" — Woodside",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Woodside'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0002",
+   "record_id": "recBQjhx3AB5IZKOn",
+   "product_name": "Canadian Standard Evion 9 Waterproof Collection 9\" — Eska",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Eska'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0003",
+   "record_id": "rec64jntnuOm7BT5n",
+   "product_name": "Canadian Standard Evion 9 Waterproof Collection 9\" — Lumi",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Lumi'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0004",
+   "record_id": "recG17L7w4djz3QBD",
+   "product_name": "Canadian Standard Evion 9 Waterproof Collection 9\" — Mizu",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Mizu'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0005",
+   "record_id": "recoh5HwsEsp7N7gF",
+   "product_name": "Canadian Standard Evion 9 Waterproof Collection 9\" — Noa",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Noa'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0006",
+   "record_id": "recaMXxvvLhXTTEpb",
+   "product_name": "Canadian Standard Evion 9 Waterproof Collection 9\" — Ruvo",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Ruvo'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0007",
+   "record_id": "rec73aflHKgspsWsS",
+   "product_name": "Canadian Standard Evion 9 Waterproof Collection 9\" — Sora",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sora'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0008",
+   "record_id": "recjo5uagmMFHL23p",
+   "product_name": "Canadian Standard Evion 9 Waterproof Collection 9\" — Yara",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Yara'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0027",
+   "record_id": "recKHQ399sEQVGGFp",
+   "product_name": "Inhaus Elandura Plank Wood Grain Collection 6.81\" — Caraway",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Caraway'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0028",
+   "record_id": "recRRip8aGtrbVkMj",
+   "product_name": "Inhaus Elandura Plank Wood Grain Collection 6.81\" — Clove",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Clove'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0029",
+   "record_id": "rec93MEuXLyHRCpkd",
+   "product_name": "Inhaus Elandura Plank Wood Grain Collection 6.81\" — Gilmour",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Gilmour'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0030",
+   "record_id": "rec44UosWx5tH8vOd",
+   "product_name": "Inhaus Elandura Plank Wood Grain Collection 6.81\" — Seaside",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Seaside'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0031",
+   "record_id": "recIh0Twdi7tOfChS",
+   "product_name": "Inhaus Elandura Plank Wood Grain Collection 6.81\" — Silver Sand",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Silver Sand'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0032",
+   "record_id": "receXRf8PeMJfUmc7",
+   "product_name": "Inhaus Elandura Plank Wood Grain Collection 6.81\" — Sutter",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sutter'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0033",
+   "record_id": "reccbaaqwYgCgh0SN",
+   "product_name": "Inhaus Elandura Plank Wood Grain Collection 6.81\" — Terra",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Terra'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0034",
+   "record_id": "recRe4IAzSLy2gSfx",
+   "product_name": "Inhaus Elandura Plank Wood Grain Collection 6.81\" — Tuscan",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Tuscan'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0035",
+   "record_id": "recBXXWdOTKdMtV6F",
+   "product_name": "Inhaus Elandura Plank Wood Grain Collection 6.81\" — Umber",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Umber'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0036",
+   "record_id": "recLIsboeSRa5ccjG",
+   "product_name": "Inhaus Elandura Plank Wood Grain Collection 6.81\" — Urban",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Urban'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0037",
+   "record_id": "rec5UusCTIcu00n0E",
+   "product_name": "Inhaus Elandura Plank Wood Grain Collection 6.81\" — Woodwind",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Woodwind'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0038",
+   "record_id": "recrQJJsRPrV4bzbc",
+   "product_name": "SONO Eclipse Wood Collection 7.99\" — Baywest Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Baywest Oak'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0039",
+   "record_id": "recuiIWBR4wmLP6H4",
+   "product_name": "SONO Eclipse Wood Collection 7.99\" — Bower Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Bower Oak'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0040",
+   "record_id": "recqPlWkvQ5rT9fTn",
+   "product_name": "SONO Eclipse Wood Collection 7.99\" — Canim Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Canim Oak'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0041",
+   "record_id": "rec9D27odo0EpQfNG",
+   "product_name": "SONO Eclipse Wood Collection 7.99\" — Coffee Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Coffee Oak'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0042",
+   "record_id": "rec4kujyXkk1PvzT1",
+   "product_name": "SONO Eclipse Wood Collection 7.99\" — Forest Grove Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Forest Grove Oak'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0043",
+   "record_id": "recaXAl0OC5Uqai8w",
+   "product_name": "SONO Eclipse Wood Collection 7.99\" — Heartlan Walnut",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Heartlan Walnut'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0044",
+   "record_id": "rec3LX2msgwhoXtT5",
+   "product_name": "SONO Eclipse Wood Collection 7.99\" — Jasper Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Jasper Oak'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0045",
+   "record_id": "recQ8d6FWcwunPyoi",
+   "product_name": "SONO Eclipse Wood Collection 7.99\" — Liberty Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Liberty Oak'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0046",
+   "record_id": "receHO5UiHWdbIh7z",
+   "product_name": "SONO Eclipse Wood Collection 7.99\" — Riverview Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Riverview Oak'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0047",
+   "record_id": "recvxqaDVEYpsDyaO",
+   "product_name": "SONO Eclipse Wood Collection 7.99\" — Riviera",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Riviera'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0048",
+   "record_id": "recYhLhgKywVXhpBc",
+   "product_name": "SONO Eclipse Wood Collection 7.99\" — Saloon (Oak)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Saloon'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0049",
+   "record_id": "rec9zqRUycJxhJsTm",
+   "product_name": "SONO Eclipse Wood Collection 7.99\" — Sandhill Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sandhill Oak'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0050",
+   "record_id": "recNSXaRwEWETUiGQ",
+   "product_name": "SONO Eclipse Wood Collection 7.99\" — Santa Fe",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Santa Fe'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0051",
+   "record_id": "reczCs3B3YWXT4vKh",
+   "product_name": "SONO Eclipse Wood Collection 7.99\" — Seawahed Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Seawahed Oak'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0052",
+   "record_id": "recBjvhcaVBnDpqst",
+   "product_name": "SONO Eclipse Wood Collection 7.99\" — Sheridan Bay Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sheridan Bay Oak'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0053",
+   "record_id": "reckv92scgNOMYEIV",
+   "product_name": "SONO Eclipse Wood Collection 7.99\" — Streamwashed Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Streamwashed Oak'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0054",
+   "record_id": "recJdLtg5NPqixspD",
+   "product_name": "SONO Eclipse Wood Collection 7.99\" — Sunwashed Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sunwashed Oak'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0055",
+   "record_id": "rec9sfZfHrvAOcGIi",
+   "product_name": "SONO Eclipse Wood Collection 7.99\" — Tobacco Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Tobacco Oak'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0056",
+   "record_id": "recZIHQMziirZNagQ",
+   "product_name": "SONO Eclipse Wood Collection 7.99\" — Trimble White Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Trimble White Oak'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0057",
+   "record_id": "recHVcqpt00JPmClt",
+   "product_name": "SONO Eclipse Wood Collection 7.99\" — Winter Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Winter Oak'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0058",
+   "record_id": "recjnh6zDAFqoxALg",
+   "product_name": "SONO Forest — Opal Wood",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Opal Wood'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0059",
+   "record_id": "rectJ0sAve26lEjik",
+   "product_name": "SONO Forest — Saddlehorn",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Saddlehorn'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0060",
+   "record_id": "rec0HXmFVaa4z0V1J",
+   "product_name": "SONO Forest — Heartland Walnut",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Heartland Walnut'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0061",
+   "record_id": "recq2bAZhlt13kq6j",
+   "product_name": "Canadian Standard LVT Double Click System 6\" — Country Birch",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Country Birch'; vetoes {}"
+  },
+  {
+   "sku": "LVP-CANS-0062",
+   "record_id": "reckt99hcIPOLo1bz",
+   "product_name": "Canadian Standard LVT Double Click System 6\" — Chestnut Pine",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Chestnut Pine'; vetoes {}"
+  },
+  {
+   "sku": "LVT-CANS-0001",
+   "record_id": "rec3RO6ivY7PWyX6K",
+   "product_name": "Inhaus Elandura Tile 12.2\" — Hazelnut",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Hazelnut'; vetoes {}"
+  },
+  {
+   "sku": "LVT-CANS-0002",
+   "record_id": "recV39EHI21Qervzx",
+   "product_name": "Inhaus Elandura Tile 12.2\" — Minipearl",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Minipearl'; vetoes {}"
+  },
+  {
+   "sku": "LVT-CANS-0003",
+   "record_id": "recbSbbP3tNQaNLbp",
+   "product_name": "Inhaus Elandura Tile 12.2\" — Mist",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Mist'; vetoes {}"
+  },
+  {
+   "sku": "LVT-CANS-0004",
+   "record_id": "recfOzTSo9XB9Lda7",
+   "product_name": "SONO Eclipse Stone Collection — Centennial Sandstone",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Centennial Sandstone'; vetoes {}"
+  },
+  {
+   "sku": "LVT-CANS-0005",
+   "record_id": "recYLTdqj1obZjz8F",
+   "product_name": "SONO Eclipse Stone Collection — Pearl Travertine",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Pearl Travertine'; vetoes {}"
+  },
+  {
+   "sku": "LVT-CANS-0006",
+   "record_id": "rec6NHiWPter2y5dg",
+   "product_name": "SONO Eclipse Stone Collection — Pepper Travertine",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Pepper Travertine'; vetoes {}"
+  },
+  {
+   "sku": "LVT-CANS-0007",
+   "record_id": "recjoKTYmd2rLjKY7",
+   "product_name": "SONO Eclipse Stone Collection — Reposado Carrara",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Reposado Carrara'; vetoes {}"
+  },
+  {
+   "sku": "LVT-CANS-0008",
+   "record_id": "recB4amMvfYHnxQ2H",
+   "product_name": "SONO Eclipse Stone Collection — Sesame Sandstone",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sesame Sandstone'; vetoes {}"
+  },
+  {
+   "sku": "LVT-CANS-0009",
+   "record_id": "rechUYT8pN4hoUiwg",
+   "product_name": "SONO Eclipse Stone Collection — Shadow Castle",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Shadow Castle'; vetoes {}"
+  },
+  {
+   "sku": "LVT-CANS-0010",
+   "record_id": "reciaxNHQWsNEe1Md",
+   "product_name": "SONO Landscape 12.2\" — Light Castle",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Light Castle'; vetoes {}"
+  }
+ ]
+}
