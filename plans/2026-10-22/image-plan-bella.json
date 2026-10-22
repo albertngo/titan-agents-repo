@@ -1,0 +1,2010 @@
+{
+ "contract_version": "image-plan-1",
+ "scope": "bella",
+ "supplier": "BELLA FLOORING PLUS",
+ "run_at": "2026-10-22T15:51:59.700694-04:00",
+ "expires": "2026-10-22T23:59:59-0400",
+ "write_mode": "write",
+ "registry": "platform-settings/supplier-sites.json",
+ "inputs": {
+  "pages": "ingest/2026-10-22/supplier-pages-bella.json",
+  "judgements": "ingest/2026-10-22/image-judgements-bella.json",
+  "product_pages": null
+ },
+ "summary": {
+  "records": 191,
+  "actions": 12,
+  "held": 179,
+  "skipped": {},
+  "held_by_reason": {
+   "no_match": 170,
+   "model_rejected": 7,
+   "no_usable_image": 2
+  },
+  "fields": {
+   "Swatch images": 12,
+   "Supplier product page": 12
+  },
+  "tiers": {
+   "exact": 12
+  },
+  "manufacturer_pages": 0
+ },
+ "actions": [
+  {
+   "id": "img-a316eaa307b8",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recsyJey4qGVCLOaO",
+   "sku": "HWD-WICK-0021",
+   "product_name": "Wickham Red Oak 3.25\" — Natural (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/RedOakNatural_d37f7ad0-2477-46d2-9253-91290310288f.jpg?v=1712685600",
+      "filename": "bella-flooring-plus-natural-red-oak-solid-hardwood-3-25in-select-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-natural-select-better-grade-3-1-4"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-natural-select-better-grade-3-1-4",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/RedOakNatural_d37f7ad0-2477-46d2-9253-91290310288f.jpg?v=1712685600",
+     "sha1": "0017d8b873723ec62a82d0b4966bb5b339951300",
+     "page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-natural-select-better-grade-3-1-4",
+     "width": 985,
+     "height": 940
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-fef30d05ea89",
+   "seq": 2,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec9PRZivpi8M3XfM",
+   "sku": "HWD-WICK-0023",
+   "product_name": "Wickham Red Oak 4.25\" — Natural (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/RedOakNatural_6e789325-d691-42b9-849e-47eef776646a.jpg?v=1711553950",
+      "filename": "bella-flooring-plus-natural-red-oak-solid-hardwood-4-25in-select-and-better-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-natural-canadian-plus-grade-4-1-4"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-natural-canadian-plus-grade-4-1-4",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/RedOakNatural_6e789325-d691-42b9-849e-47eef776646a.jpg?v=1711553950",
+     "sha1": "e861ff26fcf7572ddb2c6bcb1259987a8b429e87",
+     "page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-natural-canadian-plus-grade-4-1-4",
+     "width": 985,
+     "height": 940
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-765b9a35df20",
+   "seq": 3,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recqLRggKBw3MHaOi",
+   "sku": "HWD-WICK-0026",
+   "product_name": "Wickham Maple 3.25\" — Graphite (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/GraphiteSolidMaple_478ad5d9-91ed-4cb1-965b-49db85ab21a3.jpg?v=1663895901",
+      "filename": "bella-flooring-plus-graphite-maple-solid-hardwood-3-25in-select-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-3-1-4-maple-graphite"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-3-1-4-maple-graphite",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/GraphiteSolidMaple_478ad5d9-91ed-4cb1-965b-49db85ab21a3.jpg?v=1663895901",
+     "sha1": "5a120b25588c00590bdfe080e825cd6d67500aa0",
+     "page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-3-1-4-maple-graphite",
+     "width": 940,
+     "height": 985
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-3b67e56e8e55",
+   "seq": 4,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec170SkKRzeFoEMj",
+   "sku": "HWD-WICK-0028",
+   "product_name": "Wickham Maple 3.25\" — Walnut (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Walnut-SolidMaple_5ae8e4f4-5c1d-4eb9-9d21-f32f50d986b8.jpg?v=1663897695",
+      "filename": "bella-flooring-plus-walnut-maple-solid-hardwood-3-25in-select-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-3-1-4-maple-walnut"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-3-1-4-maple-walnut",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Walnut-SolidMaple_5ae8e4f4-5c1d-4eb9-9d21-f32f50d986b8.jpg?v=1663897695",
+     "sha1": "e1f72d3b311549f930e520fd31a1623842325dcf",
+     "page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-3-1-4-maple-walnut",
+     "width": 940,
+     "height": 985
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-d0dceca746ca",
+   "seq": 5,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recWWQPWG7kL8Zbg1",
+   "sku": "HWD-WICK-0030",
+   "product_name": "Wickham Maple 3.25\" — Moka (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Moka-SolidMaple_3ac029fb-22d2-4b60-aceb-3257bb513799.jpg?v=1663896065",
+      "filename": "bella-flooring-plus-moka-maple-solid-hardwood-3-25in-select-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-3-1-4-maple-moka"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-3-1-4-maple-moka",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Moka-SolidMaple_3ac029fb-22d2-4b60-aceb-3257bb513799.jpg?v=1663896065",
+     "sha1": "ac132ecb19bc1556b98896729180269a2a6f6dc8",
+     "page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-3-1-4-maple-moka",
+     "width": 940,
+     "height": 985
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-cc2d9bd999f4",
+   "seq": 6,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recGYnpCjI1DpLDNz",
+   "sku": "HWD-WICK-0032",
+   "product_name": "Wickham Maple 3.25\" — Cherry (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Cherry-SolidMaple_019216e9-6dc8-4c7b-90aa-be4e084735c2.jpg?v=1663894367",
+      "filename": "bella-flooring-plus-cherry-maple-solid-hardwood-3-25in-select-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-3-1-4-maple-cherry"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-3-1-4-maple-cherry",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Cherry-SolidMaple_019216e9-6dc8-4c7b-90aa-be4e084735c2.jpg?v=1663894367",
+     "sha1": "dd149ead2b63e6ad630a171c07687c926c3aabbf",
+     "page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-3-1-4-maple-cherry",
+     "width": 940,
+     "height": 985
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-acc7cb1aae10",
+   "seq": 7,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recOD9NeixCujmngz",
+   "sku": "HWD-WICK-0034",
+   "product_name": "Wickham Maple 3.25\" — Cinnamon (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Cinnamon-SolidMaple_a50e9276-226d-4560-956c-ffdeb0f5dad5.jpg?v=1663894553",
+      "filename": "bella-flooring-plus-cinnamon-maple-solid-hardwood-3-25in-select-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-3-1-4-maple-cinnamon"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-3-1-4-maple-cinnamon",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Cinnamon-SolidMaple_a50e9276-226d-4560-956c-ffdeb0f5dad5.jpg?v=1663894553",
+     "sha1": "6efb233a89e3a1bf4305c03ef4d1cb2f9abde3c5",
+     "page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-3-1-4-maple-cinnamon",
+     "width": 940,
+     "height": 985
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-f8e4aeefd64b",
+   "seq": 8,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recSLeOTIZRuK3CX1",
+   "sku": "HWD-WICK-0036",
+   "product_name": "Wickham Maple 3.25\" — Vine (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Vine-SolidMaple_fafc801a-c6f6-41cb-9476-04276f8c10a5.jpg?v=1663897603",
+      "filename": "bella-flooring-plus-vine-maple-solid-hardwood-3-25in-select-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-3-1-4-maple-vine"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-3-1-4-maple-vine",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Vine-SolidMaple_fafc801a-c6f6-41cb-9476-04276f8c10a5.jpg?v=1663897603",
+     "sha1": "475f1468fd801f7ee7120f8fbc997f976502bf26",
+     "page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-3-1-4-maple-vine",
+     "width": 940,
+     "height": 985
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-4471da1fdccf",
+   "seq": 9,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recVKWtCbt0ziBo3X",
+   "sku": "HWD-WICK-0042",
+   "product_name": "Wickham Maple 4.25\" — Western (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Western-SolidMaple_6dda82b5-b9ea-4462-9809-92a0e60d4390.jpg?v=1663897755",
+      "filename": "bella-flooring-plus-western-maple-solid-hardwood-4-25in-select-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-4-1-4-maple-western"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-4-1-4-maple-western",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Western-SolidMaple_6dda82b5-b9ea-4462-9809-92a0e60d4390.jpg?v=1663897755",
+     "sha1": "1d8cf50ab3ececb0cdd66a9ca965b79770039aa4",
+     "page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-4-1-4-maple-western",
+     "width": 940,
+     "height": 985
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-636fce0929b7",
+   "seq": 10,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recTdv0iKXWiWZuw6",
+   "sku": "HWD-WICK-0043",
+   "product_name": "Wickham Maple 3.25\" — Natural (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Natural-SolidMaple_9ff1261f-627c-4472-b137-4bb7644ce163.jpg?v=1688592255",
+      "filename": "bella-flooring-plus-natural-maple-solid-hardwood-3-25in-select-and-better-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-select-better-grade-3-1-4-maple-natural"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-select-better-grade-3-1-4-maple-natural",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Natural-SolidMaple_9ff1261f-627c-4472-b137-4bb7644ce163.jpg?v=1688592255",
+     "sha1": "b63af7e739dd36131853b61004a949fc5192495a",
+     "page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-select-better-grade-3-1-4-maple-natural",
+     "width": 940,
+     "height": 985
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-3fb0d2a88738",
+   "seq": 11,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rectZWW6GvpGInxpm",
+   "sku": "HWD-WICK-0044",
+   "product_name": "Wickham Maple 5\" — Savana (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Maple-Savana.jpg?v=1668899290",
+      "filename": "bella-flooring-plus-savana-maple-solid-hardwood-5in-select-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-engineered-elite-5-select-grade-maple-savana"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-engineered-elite-5-select-grade-maple-savana",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Maple-Savana.jpg?v=1668899290",
+     "sha1": "a311439591266c30387c6a559f136fe77412f7be",
+     "page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-engineered-elite-5-select-grade-maple-savana",
+     "width": 916,
+     "height": 916
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-4134c3a23363",
+   "seq": 12,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recXv95ABqV7dK5oc",
+   "sku": "HWD-WICK-0045",
+   "product_name": "Wickham Maple 5\" — Urban Grey (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Maple-UrbanGrey.jpg?v=1668900174",
+      "filename": "bella-flooring-plus-urban-grey-maple-solid-hardwood-5in-select-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-engineered-elite-5-select-grade-maple-urban-grey"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-engineered-elite-5-select-grade-maple-urban-grey",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Maple-UrbanGrey.jpg?v=1668900174",
+     "sha1": "0e3c4b4b051c930e88adcdd9177c74109fe7dc3c",
+     "page": "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-engineered-elite-5-select-grade-maple-urban-grey",
+     "width": 918,
+     "height": 918
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  }
+ ],
+ "held": [
+  {
+   "sku": "ACC-NRTH-0001",
+   "record_id": "recihPCzDZgSso4Sm",
+   "product_name": "Northernest Laminate T-Moulding 8ft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-NRTH-0002",
+   "record_id": "recMUKYDlFw7LxbWX",
+   "product_name": "Northernest Vinyl T-Moulding 8ft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-NRTH-0003",
+   "record_id": "rec0CqN1A5jT2pv3R",
+   "product_name": "Northernest Unfinished Red Oak T-Moulding — per lft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'per lft'; vetoes {}"
+  },
+  {
+   "sku": "ACC-NRTH-0004",
+   "record_id": "rec4NVpBn2p760g8s",
+   "product_name": "Northernest Unfinished Maple T-Moulding — per lft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'per lft'; vetoes {}"
+  },
+  {
+   "sku": "ACC-NRTH-0005",
+   "record_id": "rec5ei1neTGICdB5q",
+   "product_name": "Northernest Laminate Reducer 8ft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-NRTH-0006",
+   "record_id": "rec7c8LCfCPw3J1AV",
+   "product_name": "Northernest Vinyl Reducer 8ft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-NRTH-0007",
+   "record_id": "recx8rvgjN2OHz3mX",
+   "product_name": "Northernest Unfinished Red Oak Reducer — per lft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'per lft'; vetoes {}"
+  },
+  {
+   "sku": "ACC-NRTH-0008",
+   "record_id": "recspEmwrHr0ZSOgm",
+   "product_name": "Northernest Unfinished Maple Reducer — per lft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'per lft'; vetoes {}"
+  },
+  {
+   "sku": "ACC-NRTH-0009",
+   "record_id": "rec3IelyQeytoYMFa",
+   "product_name": "Northernest Unfinished Red Oak Nosing Square/Round 4.5\" — per lft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'per lft'; vetoes {}"
+  },
+  {
+   "sku": "ACC-NRTH-0010",
+   "record_id": "rec9Qrne1MxawiPWO",
+   "product_name": "Northernest Unfinished Maple Nosing Square/Round 4.5\" — per lft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'per lft'; vetoes {}"
+  },
+  {
+   "sku": "ACC-NRTH-0011",
+   "record_id": "rec28zMzmkMgkUhw1",
+   "product_name": "Northernest Vinyl Nosing Round Edge 8ft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-NRTH-0012",
+   "record_id": "recrs3N9rElD6KwnU",
+   "product_name": "Northernest Laminate Nosing Round Edge 8ft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-NRTH-0013",
+   "record_id": "rec6oeneBqNJlfW8T",
+   "product_name": "Northernest Vinyl Stair Tread with Riser — Havana",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Havana'; vetoes {}"
+  },
+  {
+   "sku": "ACC-NRTH-0014",
+   "record_id": "recOWLUsqE0j9GOMM",
+   "product_name": "Northernest Vinyl Stair Tread with Riser — Phantom",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Phantom'; vetoes {}"
+  },
+  {
+   "sku": "ACC-NRTH-0015",
+   "record_id": "recIpDdWpBCE6RGaf",
+   "product_name": "Northernest Vinyl Stair Tread with Riser — Beach House",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Beach House'; vetoes {}"
+  },
+  {
+   "sku": "ACC-NRTH-0016",
+   "record_id": "recb0HB0I5x5WsdXh",
+   "product_name": "Northernest Vinyl Stair Tread with Riser — Brooklyn",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Brooklyn'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0001",
+   "record_id": "rec1KxjAFSTsaMUQU",
+   "product_name": "Northernest American Walnut 7.5\" — Natural",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Natural'; vetoes {'width': 26, 'species': 1}"
+  },
+  {
+   "sku": "ENG-NRTH-0002",
+   "record_id": "recXLS6ihXlthzpko",
+   "product_name": "Northernest Red Oak 7.5\" — Natural",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Natural'; vetoes {'width': 26, 'species': 1}"
+  },
+  {
+   "sku": "ENG-NRTH-0003",
+   "record_id": "recX0sFhfnKELCYkm",
+   "product_name": "Northernest White Oak 7.5\" Coastal — Element",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Element'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0004",
+   "record_id": "recTzmUJckNiRGRZK",
+   "product_name": "Northernest White Oak 7.5\" Coastal — Celeste",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Celeste'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0005",
+   "record_id": "recJmcmVVVyhVCjoe",
+   "product_name": "Northernest White Oak 7.5\" Coastal — Pure Walnut",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Pure Walnut'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0006",
+   "record_id": "recAg0GtR06Wyf6pj",
+   "product_name": "Northernest White Oak 7.5\" Coastal — Warm Beechwood",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Warm Beechwood'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0007",
+   "record_id": "rec3Qjd0cJCaxVHm6",
+   "product_name": "Northernest White Oak 7.5\" Coastal — Provence",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Provence'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0008",
+   "record_id": "rec8i4MtzXE2Gcfrc",
+   "product_name": "Northernest White Oak 7.5\" Coastal — Nappa",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Nappa'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0009",
+   "record_id": "recxbygOtZ3ZRnjDz",
+   "product_name": "Northernest White Oak 7.5\" Coastal — Belize",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Belize'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0010",
+   "record_id": "recqsoIVr3h1msTRl",
+   "product_name": "Northernest White Oak 7.5\" Coastal — Monaco",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Monaco'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0011",
+   "record_id": "recgyGuKiPalkdZzt",
+   "product_name": "Northernest European Oak 7.5\" WTN — SBB-2 Snowdrift",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'SBB-2 Snowdrift'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0012",
+   "record_id": "recfuX39DmBWbfvLN",
+   "product_name": "Northernest European Oak 7.5\" WTN — Black Walnut",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Black Walnut'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0013",
+   "record_id": "rec3N9xbMSPLsWVPn",
+   "product_name": "Northernest European Oak 7.5\" WTN — Canyon Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Canyon Oak'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0014",
+   "record_id": "recxZjb99ATpEJ8L2",
+   "product_name": "Northernest European Oak 7.5\" WTN — Chelsea Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Chelsea Oak'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0015",
+   "record_id": "recvVFq6mua8nJIbh",
+   "product_name": "Northernest European Oak 7.5\" WTN — Mist",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Mist'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0016",
+   "record_id": "recDryDT41px65H0O",
+   "product_name": "Northernest European Oak 7.5\" WTN — American Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'American Oak'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0017",
+   "record_id": "recUusHXCLwJdX6Ka",
+   "product_name": "Northernest European Oak 7.5\" WTN — Barista",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Barista'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0018",
+   "record_id": "recAfmmOpyrLrIIkg",
+   "product_name": "Northernest European Oak 7.5\" WTN — Birol",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Birol'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0019",
+   "record_id": "recskE5Mu2BdxAKBB",
+   "product_name": "Northernest European Oak 7.5\" WTN — Sand Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sand Oak'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0020",
+   "record_id": "recopmh1KSSzjGCA7",
+   "product_name": "Northernest European Oak 7.5\" WTN — Woodland",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Woodland'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0021",
+   "record_id": "recGi2bZOzMYixbSY",
+   "product_name": "Northernest European Oak 7.5\" WTN — Cinder",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Cinder'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0022",
+   "record_id": "recO7KcrOU4rOLeg9",
+   "product_name": "Northernest European Oak 7.5\" WTN — Prestige Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Prestige Oak'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0023",
+   "record_id": "reciy6thmOg821Ufw",
+   "product_name": "Northernest European Oak 7.5\" WTN — Frozen Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Frozen Oak'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0024",
+   "record_id": "receWroPiqMCEFfF7",
+   "product_name": "Northernest European Oak 7.5\" Nation — Wolfsburg",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Wolfsburg'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0025",
+   "record_id": "recBLkth5Rwv7SWT1",
+   "product_name": "Northernest European Oak 7.5\" Nation — Reverie",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Reverie'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0026",
+   "record_id": "recqMgRdtnWJ0prY9",
+   "product_name": "Northernest European Oak 7.5\" Nation — Karsia",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Karsia'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0027",
+   "record_id": "recmue27fSSecG2mg",
+   "product_name": "Northernest European Oak 7.5\" Nation — Ardor",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Ardor'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0028",
+   "record_id": "recfXGX3b6y8m04wq",
+   "product_name": "Northernest European Oak 7.5\" Nation — Moxie",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Moxie'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0029",
+   "record_id": "recSc39jTu6UKVLd5",
+   "product_name": "Northernest European Oak 7.5\" Nation — Pala",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Pala'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0030",
+   "record_id": "recaJjXzqM051FFhm",
+   "product_name": "Northernest White Oak 5\" Herringbone — Canyon Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Canyon Oak'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0031",
+   "record_id": "recVfMABYKotAgxTA",
+   "product_name": "Northernest White Oak 5\" Herringbone — Wolfsburg",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Wolfsburg'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0032",
+   "record_id": "recE0l5C9oN2xrJ7N",
+   "product_name": "Northernest White Oak 5\" Herringbone — Reverie",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Reverie'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0033",
+   "record_id": "recW60p97WjLDdopt",
+   "product_name": "Northernest White Oak 5\" Herringbone — Karsia",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Karsia'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0034",
+   "record_id": "recBN6ijua5LQcHSq",
+   "product_name": "Northernest European Oak 7.5\" Vintage — SBB-1 Gothenburg",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'SBB-1 Gothenburg'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0035",
+   "record_id": "recCGarn8zcLQJ6qO",
+   "product_name": "Northernest European Oak 7.5\" Vintage — SBB-3 White Pine",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'SBB-3 White Pine'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0036",
+   "record_id": "receZrpgsDqkya47A",
+   "product_name": "Northernest European Oak 7.5\" Vintage — SBB-4 Athena",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'SBB-4 Athena'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0037",
+   "record_id": "recPo6X0tcEwFHxgm",
+   "product_name": "Northernest European Oak 7.5\" Vintage — SBB-7 Malmo",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'SBB-7 Malmo'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0038",
+   "record_id": "rec2MSto1JWRxdhJU",
+   "product_name": "Northernest European Oak 7.5\" Vintage — SBB-8 Yukon White",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'SBB-8 Yukon White'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0039",
+   "record_id": "recasu7XBj2Oq2ILQ",
+   "product_name": "Northernest European Oak 7.5\" Vintage — Latte",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Latte'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0040",
+   "record_id": "recEEWymCidLDvaA5",
+   "product_name": "Northernest European Oak 7.5\" Vintage — Zeus",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Zeus'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0041",
+   "record_id": "recHvexAB8uuoo16Y",
+   "product_name": "Northernest European Oak 7.5\" Vintage — Sand Dune",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sand Dune'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0042",
+   "record_id": "rec4T1Pv0QWhFaxJV",
+   "product_name": "Northernest European Oak 7.5\" Vintage — Buckigham",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Buckigham'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0043",
+   "record_id": "recuf5I749S83OCsa",
+   "product_name": "Northernest European Oak 7.5\" Vintage — Albatross",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Albatross'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0044",
+   "record_id": "recX4i25ZX244jDJ0",
+   "product_name": "Northernest European Oak 7.5\" Vintage — Pegasus",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Pegasus'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0045",
+   "record_id": "rec86VHEEXKiLBNyP",
+   "product_name": "Northernest European Oak 7.5\" Vintage — Barcelona",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Barcelona'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0046",
+   "record_id": "recRLDEozwOXgUmQM",
+   "product_name": "Northernest European Oak 7.5\" Vintage — Pollo",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Pollo'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0047",
+   "record_id": "recpxoTInkyNFuaMf",
+   "product_name": "Northernest European Oak 7.5\" Vintage — Versailles",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Versailles'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0048",
+   "record_id": "rec4nY9gnM8gYlkey",
+   "product_name": "Northernest European Oak 7.5\" Vintage — Mitis",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Mitis'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0049",
+   "record_id": "reciJYK6zhORSqHXD",
+   "product_name": "Northernest European Oak 7.5\" Vintage — Venice",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Venice'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0050",
+   "record_id": "rec17VVzjqOYTYz2w",
+   "product_name": "Northernest European Oak 7.5\" Vintage — Titan",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Titan'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0051",
+   "record_id": "recXVx8RwvlhoD35U",
+   "product_name": "Northernest European Oak 7.5\" Vintage — Nautilus",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Nautilus'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0052",
+   "record_id": "recFzXsXyHn4ojy91",
+   "product_name": "Northernest European Oak 7.5\" Vintage — Petrus",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Petrus'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0053",
+   "record_id": "recruhUcmpCmzfE0c",
+   "product_name": "Northernest European Oak 7.5\" Vintage — Canvas",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Canvas'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0054",
+   "record_id": "recyWCjR9BCJoy29N",
+   "product_name": "Northernest European Oak 7.5\" Vintage — Atlantis",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Atlantis'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0055",
+   "record_id": "recOYfdyEinJfNtyi",
+   "product_name": "Northernest European Oak 7.5\" Vintage — Hermes",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Hermes'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0056",
+   "record_id": "rec9tmkTgaT1EcYH1",
+   "product_name": "Northernest Hickory 6.5\" — African Hickory",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'African Hickory'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0057",
+   "record_id": "rec4XM547AgL142Ch",
+   "product_name": "Northernest Hickory 6.5\" — Kodiak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Kodiak'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0058",
+   "record_id": "rechxDhCoimEUOocl",
+   "product_name": "Northernest Hickory 6.5\" — Elegant",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Elegant'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0059",
+   "record_id": "reclYqKwAxbrXubaU",
+   "product_name": "Northernest Hickory 6.5\" — Bristol",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Bristol'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0060",
+   "record_id": "recCZwQzD0ErGUWQM",
+   "product_name": "Northernest Hickory 6.5\" — Manhattan",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Manhattan'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0061",
+   "record_id": "recJRGNyXes67kJ5Z",
+   "product_name": "Northernest White Oak 6.5\" Winery — Smoky Mountain",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Smoky Mountain'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0062",
+   "record_id": "recVN2GlXbosHcIa0",
+   "product_name": "Northernest White Oak 6.5\" Winery — Black Cedar",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Black Cedar'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0063",
+   "record_id": "recADaoUEWVE9KwkB",
+   "product_name": "Northernest White Oak 6.5\" Winery — Falcon Grey",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Falcon Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0064",
+   "record_id": "recwerU0MWg9c0RSy",
+   "product_name": "Northernest White Oak 6.5\" Winery — Old Country",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Old Country'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0065",
+   "record_id": "recAFrHgbASQ8osi9",
+   "product_name": "Northernest White Oak 6.5\" Winery — Ash Grey",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Ash Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0066",
+   "record_id": "recVa5TZSaD45Rd20",
+   "product_name": "Northernest White Oak 6.5\" Winery — Oak Chestnut",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Oak Chestnut'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0067",
+   "record_id": "recovIx6mgG4uXOjz",
+   "product_name": "Northernest White Oak 6\" Performance — Kentucky",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Kentucky'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0068",
+   "record_id": "recK5laYTH70SPV23",
+   "product_name": "Northernest White Oak 6\" Performance — Smoke",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Smoke'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0069",
+   "record_id": "recQTAR0LoaAk4Q4H",
+   "product_name": "Northernest White Oak 6\" Performance — Light Grey",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Light Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0070",
+   "record_id": "recT23MtLabYUlmWM",
+   "product_name": "Northernest White Oak 6\" Performance — Truffle",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Truffle'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0071",
+   "record_id": "reciGpmIobTzOIj75",
+   "product_name": "Northernest White Oak 6\" Performance — Hazelnut",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Hazelnut'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0072",
+   "record_id": "rec0gP9Q9uBIoqJOQ",
+   "product_name": "Northernest White Oak 6\" Performance — Mid Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Mid Oak'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0073",
+   "record_id": "recfLcs2bvLyhcNUN",
+   "product_name": "Northernest White Oak 6\" Performance — Grey Stone",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Grey Stone'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0074",
+   "record_id": "reccpp63BdEenAmzi",
+   "product_name": "Northernest Oak 6.5\" Click — Borado",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Borado'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0075",
+   "record_id": "rec0sLIFpIAz0KgUE",
+   "product_name": "Northernest Oak 6.5\" Click — Damask",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Damask'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0076",
+   "record_id": "recgFIANHb9efakbf",
+   "product_name": "Northernest Oak 6.5\" Click — Grey Timber",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Grey Timber'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0077",
+   "record_id": "recisXpM5RM6sPKli",
+   "product_name": "Northernest Oak 6.5\" Click — Pacific Coast",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Pacific Coast'; vetoes {}"
+  },
+  {
+   "sku": "ENG-NRTH-0078",
+   "record_id": "rec51Hn06ajFvqokP",
+   "product_name": "Northernest Oak 6.5\" Click — Smokehouse",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Smokehouse'; vetoes {}"
+  },
+  {
+   "sku": "HWD-NRTH-0001",
+   "record_id": "recKIiupoZtIOLAQi",
+   "product_name": "Northernest Red Oak 5\" — Gunsmith",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Gunsmith'; vetoes {}"
+  },
+  {
+   "sku": "HWD-NRTH-0002",
+   "record_id": "recbxue55IWtzL90B",
+   "product_name": "Northernest Red Oak 5\" — Umber",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Umber'; vetoes {}"
+  },
+  {
+   "sku": "HWD-NRTH-0003",
+   "record_id": "recGtoO7T4YSU6PrR",
+   "product_name": "Northernest Red Oak 5\" — Slate",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Slate'; vetoes {}"
+  },
+  {
+   "sku": "HWD-NRTH-0004",
+   "record_id": "recZ9JzqdhZpRxr21",
+   "product_name": "Northernest Red Oak 5\" — Driftwood",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Driftwood'; vetoes {}"
+  },
+  {
+   "sku": "HWD-NRTH-0005",
+   "record_id": "rec9VVNOjChcb9dx9",
+   "product_name": "Northernest White Oak 5\" — Antique Ebony",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Antique Ebony'; vetoes {}"
+  },
+  {
+   "sku": "HWD-NRTH-0006",
+   "record_id": "recPHy8sArbnd1vrv",
+   "product_name": "Northernest White Oak 5\" — Black Powder",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Black Powder'; vetoes {}"
+  },
+  {
+   "sku": "HWD-NRTH-0007",
+   "record_id": "recMOcHJ65oCQ4IQI",
+   "product_name": "Northernest Maple 4.75\" — Subruce",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Subruce'; vetoes {}"
+  },
+  {
+   "sku": "HWD-NRTH-0008",
+   "record_id": "rectdWbePpQpWREpQ",
+   "product_name": "Northernest Maple 4.75\" — Fraser",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Fraser'; vetoes {}"
+  },
+  {
+   "sku": "HWD-NRTH-0009",
+   "record_id": "reclreNpGCroo5Rzq",
+   "product_name": "Northernest Maple 4.75\" — Hemlock",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Hemlock'; vetoes {}"
+  },
+  {
+   "sku": "HWD-NRTH-0010",
+   "record_id": "rec282CEIVHrsWAmB",
+   "product_name": "Northernest Maple 4.75\" — Mackenzie",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Mackenzie'; vetoes {}"
+  },
+  {
+   "sku": "HWD-NRTH-0011",
+   "record_id": "recmi85FsjVdEKDu7",
+   "product_name": "Northernest Maple 4.75\" — Dark Mocha",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Dark Mocha'; vetoes {}"
+  },
+  {
+   "sku": "HWD-NRTH-0012",
+   "record_id": "recb7zepy45Y7fG8n",
+   "product_name": "Northernest Maple 4.75\" — Imperial",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Imperial'; vetoes {}"
+  },
+  {
+   "sku": "HWD-WICK-0001",
+   "record_id": "recAc5hLMnoWRKxx1",
+   "product_name": "Wickham Red Oak 3.25\" — Graphite (Select)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-graphite-canadian-plus-grade-3-1-4",
+    "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-graphite-cottage-grade-3-1-4"
+   ],
+   "reason": "model_rejected",
+   "detail": "colour 'Graphite'; vetoes {'width': 9, 'species': 5}"
+  },
+  {
+   "sku": "HWD-WICK-0002",
+   "record_id": "recxvgKEOnYPVtWsF",
+   "product_name": "Wickham Red Oak 4.25\" — Graphite (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Graphite'; vetoes {'width': 15, 'species': 1}"
+  },
+  {
+   "sku": "HWD-WICK-0003",
+   "record_id": "recKzJ2XxCCivUBsC",
+   "product_name": "Wickham Red Oak 3.25\" — Walnut (Select)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-walnut-canadian-plus-grade-3-1-4",
+    "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-walnut-cottage-grade-3-1-4"
+   ],
+   "reason": "model_rejected",
+   "detail": "colour 'Walnut'; vetoes {'width': 8, 'species': 5}"
+  },
+  {
+   "sku": "HWD-WICK-0004",
+   "record_id": "recAlGBCMxC8fJToq",
+   "product_name": "Wickham Red Oak 4.25\" — Walnut (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Walnut'; vetoes {'width': 15}"
+  },
+  {
+   "sku": "HWD-WICK-0005",
+   "record_id": "recwl1ObTuBbmslxW",
+   "product_name": "Wickham Red Oak 3.25\" — Moka (Select)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-3-1-4-red-oak-moka"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.wordofmouthfloors.com/products/wickham-domestic-collection-canadian-plus-grade-3-1-4-red-oak-moka']; {'excluded': 3}"
+  },
+  {
+   "sku": "HWD-WICK-0006",
+   "record_id": "rec9mQIGAZU7UWemf",
+   "product_name": "Wickham Red Oak 4.25\" — Moka (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Moka'; vetoes {'width': 14}"
+  },
+  {
+   "sku": "HWD-WICK-0007",
+   "record_id": "rec27hvPMrHwG2fdw",
+   "product_name": "Wickham Red Oak 3.25\" — Cherry (Select)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-cherry-canadian-plus-grade-3-1-4",
+    "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-cherry-cottage-grade-3-1-4"
+   ],
+   "reason": "model_rejected",
+   "detail": "colour 'Cherry'; vetoes {'width': 8, 'species': 5}"
+  },
+  {
+   "sku": "HWD-WICK-0008",
+   "record_id": "rec6kzlrDvDfLRE4l",
+   "product_name": "Wickham Red Oak 4.25\" — Cherry (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Cherry'; vetoes {'width': 15}"
+  },
+  {
+   "sku": "HWD-WICK-0009",
+   "record_id": "rec5WWVMVRYNk4p9c",
+   "product_name": "Wickham Red Oak 3.25\" — Sierra (Select)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-sierra-canadian-plus-grade-3-1-4",
+    "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-sierra-cottage-grade-3-1-4"
+   ],
+   "reason": "model_rejected",
+   "detail": "colour 'Sierra'; vetoes {'width': 7, 'species': 6}"
+  },
+  {
+   "sku": "HWD-WICK-0010",
+   "record_id": "recxmW9HCPpmUBgiZ",
+   "product_name": "Wickham Red Oak 4.25\" — Sierra (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sierra'; vetoes {'width': 15}"
+  },
+  {
+   "sku": "HWD-WICK-0011",
+   "record_id": "recKetM2C1KJd2uea",
+   "product_name": "Wickham Red Oak 3.25\" — Vine (Select)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-vine-canadian-plus-grade-3-1-4",
+    "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-vine-cottage-grade-3-1-4"
+   ],
+   "reason": "model_rejected",
+   "detail": "colour 'Vine'; vetoes {'width': 7, 'species': 5}"
+  },
+  {
+   "sku": "HWD-WICK-0012",
+   "record_id": "recEujW4O7ndbJajZ",
+   "product_name": "Wickham Red Oak 4.25\" — Vine (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Vine'; vetoes {'width': 14}"
+  },
+  {
+   "sku": "HWD-WICK-0013",
+   "record_id": "rec59c08tZMaEpD4Y",
+   "product_name": "Wickham Red Oak 3.25\" — Gunstock (Select)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-copper-gunstock-canadian-plus-grade-3-1-4",
+    "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-copper-gunstock-cottage-grade-3-1-4"
+   ],
+   "reason": "model_rejected",
+   "detail": "colour 'Gunstock'; vetoes {'species': 3, 'width': 3}"
+  },
+  {
+   "sku": "HWD-WICK-0014",
+   "record_id": "rec8dSk4QoFEXxyt4",
+   "product_name": "Wickham Red Oak 4.25\" — Gunstock (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Gunstock'; vetoes {'width': 7, 'species': 1}"
+  },
+  {
+   "sku": "HWD-WICK-0015",
+   "record_id": "rec7YxVuN97ZdAuFi",
+   "product_name": "Wickham Red Oak 4.25\" — Nevada (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Nevada'; vetoes {'width': 15}"
+  },
+  {
+   "sku": "HWD-WICK-0016",
+   "record_id": "rec5vDfKpejcm93vz",
+   "product_name": "Wickham Red Oak 4.25\" — Haze (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Haze'; vetoes {'width': 15}"
+  },
+  {
+   "sku": "HWD-WICK-0017",
+   "record_id": "recLtZeVphIg1zli4",
+   "product_name": "Wickham Red Oak 4.25\" — Cream (Select)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-cream-canadian-plus-grade-4-1-4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-cream-canadian-plus-grade-4-1-4']; {'excluded': 3}"
+  },
+  {
+   "sku": "HWD-WICK-0018",
+   "record_id": "recxF5JaJpzJJ9if7",
+   "product_name": "Wickham Red Oak 4.25\" — Pearl (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Pearl'; vetoes {'width': 15}"
+  },
+  {
+   "sku": "HWD-WICK-0019",
+   "record_id": "recCoqM7BNFtR0RLH",
+   "product_name": "Wickham Red Oak 4.25\" — Westren (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Westren'; vetoes {}"
+  },
+  {
+   "sku": "HWD-WICK-0020",
+   "record_id": "recZZhXYsfuIxGYpW",
+   "product_name": "Wickham Red Oak 4.25\" — Butterscotch (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Butterscotch'; vetoes {}"
+  },
+  {
+   "sku": "HWD-WICK-0022",
+   "record_id": "recaMVoc9jTvFefF5",
+   "product_name": "Wickham Red Oak 3.25\" — Natural (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Natural'; vetoes {'grade': 1, 'species': 9, 'width': 17}"
+  },
+  {
+   "sku": "HWD-WICK-0024",
+   "record_id": "recvEYMbpUx3hYaUd",
+   "product_name": "Wickham Red Oak 3.25\" — Golden (Select & Better)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-golden-canadian-plus-grade-3-1-4",
+    "https://www.wordofmouthfloors.com/products/wickham-domestic-collection-red-oak-golden-cottage-grade-3-1-4"
+   ],
+   "reason": "model_rejected",
+   "detail": "colour 'Golden'; vetoes {'width': 5, 'species': 2}"
+  },
+  {
+   "sku": "HWD-WICK-0025",
+   "record_id": "recmOUynbx40MVKIj",
+   "product_name": "Wickham Red Oak 4.25\" — Golden (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Golden'; vetoes {'width': 9}"
+  },
+  {
+   "sku": "HWD-WICK-0027",
+   "record_id": "recslAOMjzxAn64n2",
+   "product_name": "Wickham Maple 4.25\" — Graphite (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Graphite'; vetoes {'width': 15, 'grade': 1}"
+  },
+  {
+   "sku": "HWD-WICK-0029",
+   "record_id": "reckO2JrARpdfZU0Z",
+   "product_name": "Wickham Maple 4.25\" — Walnut (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Walnut'; vetoes {'width': 15}"
+  },
+  {
+   "sku": "HWD-WICK-0031",
+   "record_id": "rec6ZbvubVuk0BdCZ",
+   "product_name": "Wickham Maple 4.25\" — Moka (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Moka'; vetoes {'width': 14}"
+  },
+  {
+   "sku": "HWD-WICK-0033",
+   "record_id": "recnxwxvpslQrdADj",
+   "product_name": "Wickham Maple 4.25\" — Cherry (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Cherry'; vetoes {'width': 15}"
+  },
+  {
+   "sku": "HWD-WICK-0035",
+   "record_id": "recFp26XGjyExFLOO",
+   "product_name": "Wickham Maple 4.25\" — Cinnamon (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Cinnamon'; vetoes {'width': 15}"
+  },
+  {
+   "sku": "HWD-WICK-0037",
+   "record_id": "recVYFTsDd0zJKi8g",
+   "product_name": "Wickham Maple 4.25\" — Vine (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Vine'; vetoes {'width': 14}"
+  },
+  {
+   "sku": "HWD-WICK-0038",
+   "record_id": "recWmOW2DnITjiEJd",
+   "product_name": "Wickham Maple 4.25\" — Gunstock (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Gunstock'; vetoes {'width': 7, 'species': 1}"
+  },
+  {
+   "sku": "HWD-WICK-0039",
+   "record_id": "recgb6Q4PEoEgLDzN",
+   "product_name": "Wickham Maple 4.25\" — Charcoal (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Charcoal'; vetoes {'width': 15}"
+  },
+  {
+   "sku": "HWD-WICK-0040",
+   "record_id": "recxm4N6vSddYQTAC",
+   "product_name": "Wickham Maple 4.25\" — Haze (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Haze'; vetoes {'width': 15}"
+  },
+  {
+   "sku": "HWD-WICK-0041",
+   "record_id": "recH7rDjpDOX1REm9",
+   "product_name": "Wickham Maple 4.25\" — Edison (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Edison'; vetoes {'width': 15}"
+  },
+  {
+   "sku": "LAM-NRTH-0001",
+   "record_id": "recDV8020p5DyiBVK",
+   "product_name": "Northernest Laminate 6.5\" Dominion — American Walnut",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'American Walnut'; vetoes {}"
+  },
+  {
+   "sku": "LAM-NRTH-0002",
+   "record_id": "receE3iowuCQuht1V",
+   "product_name": "Northernest Laminate 6.5\" Dominion — Antique Dark",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Antique Dark'; vetoes {}"
+  },
+  {
+   "sku": "LAM-NRTH-0003",
+   "record_id": "recN1VppblVXlIb23",
+   "product_name": "Northernest Laminate 6.5\" Dominion — Natural Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Natural Oak'; vetoes {}"
+  },
+  {
+   "sku": "LAM-NRTH-0004",
+   "record_id": "recXibnO7Oay2EG5M",
+   "product_name": "Northernest Laminate 6.5\" Dominion — City Mood",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'City Mood'; vetoes {}"
+  },
+  {
+   "sku": "LAM-NRTH-0005",
+   "record_id": "recwk1YeaaqQtyXSd",
+   "product_name": "Northernest Laminate 6.5\" Dominion — Wenge",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Wenge'; vetoes {}"
+  },
+  {
+   "sku": "LAM-NRTH-0006",
+   "record_id": "recOFcPD2RvyoS7vg",
+   "product_name": "Northernest Laminate 6.5\" Dominion — Eastern Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Eastern Oak'; vetoes {}"
+  },
+  {
+   "sku": "LAM-NRTH-0007",
+   "record_id": "rechPUp7mtksLY7TA",
+   "product_name": "Northernest Laminate 6.5\" Dominion — Robusto",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Robusto'; vetoes {}"
+  },
+  {
+   "sku": "LAM-NRTH-0008",
+   "record_id": "recrmwJOoWMGNBDjQ",
+   "product_name": "Northernest Laminate 7.5\" Mountain — Columbia Coffee",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Columbia Coffee'; vetoes {}"
+  },
+  {
+   "sku": "LAM-NRTH-0009",
+   "record_id": "recDL5W7SV9xrYcuL",
+   "product_name": "Northernest Laminate 7.5\" Mountain — Everest Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Everest Oak'; vetoes {}"
+  },
+  {
+   "sku": "LAM-NRTH-0010",
+   "record_id": "reczl0Im5RhMJQ8TZ",
+   "product_name": "Northernest Laminate 7.5\" Mountain — Harbour Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Harbour Oak'; vetoes {}"
+  },
+  {
+   "sku": "LAM-NRTH-0011",
+   "record_id": "recgija9J7D8bk3TQ",
+   "product_name": "Northernest Laminate 7.5\" Mountain — Light Pecan",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Light Pecan'; vetoes {}"
+  },
+  {
+   "sku": "LAM-NRTH-0012",
+   "record_id": "recfP7zGtNOeVHTSx",
+   "product_name": "Northernest Laminate 7.5\" Mountain — Prestige Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Prestige Oak'; vetoes {}"
+  },
+  {
+   "sku": "LAM-NRTH-0013",
+   "record_id": "rec6n2QiIHHKqyveM",
+   "product_name": "Northernest Laminate 7.5\" Mountain — Silver Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Silver Oak'; vetoes {}"
+  },
+  {
+   "sku": "LAM-NRTH-0014",
+   "record_id": "recRgLqYKjE4ZObnA",
+   "product_name": "Northernest Laminate 7.5\" Mountain — Storm Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Storm Oak'; vetoes {}"
+  },
+  {
+   "sku": "LAM-NRTH-0015",
+   "record_id": "recgClIWEwLY42Vs5",
+   "product_name": "Northernest Laminate 7.5\" Mountain — Urban Oak",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Urban Oak'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0001",
+   "record_id": "recMRS3IaGDNJ8cTs",
+   "product_name": "Northernest SPC 7.25\" 300 Series — Saffiano",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Saffiano'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0002",
+   "record_id": "recLGBe7HYd2Ga05r",
+   "product_name": "Northernest SPC 7.25\" 300 Series — Athabasca",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Athabasca'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0003",
+   "record_id": "receMND9Fx6SoQ47Y",
+   "product_name": "Northernest SPC 7.25\" 300 Series — Banff",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Banff'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0004",
+   "record_id": "recUhHeRbrTSbvOY7",
+   "product_name": "Northernest SPC 7.25\" 300 Series — Hoover",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Hoover'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0005",
+   "record_id": "rec0WSLoHnv7hdVhb",
+   "product_name": "Northernest SPC 7.25\" 300 Series — Azure Sky",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Azure Sky'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0006",
+   "record_id": "recuS17r8YdO4hLnC",
+   "product_name": "Northernest SPC 7.25\" 300 Series — Dusty Diamond",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Dusty Diamond'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0007",
+   "record_id": "recY3OJ9jKis7A4Tm",
+   "product_name": "Northernest SPC 7.25\" 300 Series — Maple Fog",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Maple Fog'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0008",
+   "record_id": "recbMbu6ALBx7MRlD",
+   "product_name": "Northernest SPC 7.25\" 300 Series — Marbella",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Marbella'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0009",
+   "record_id": "recFmLAPiGrmLGG1U",
+   "product_name": "Northernest SPC 7.25\" 300 Series — Bianco",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Bianco'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0010",
+   "record_id": "recIysWJtakDi7NBt",
+   "product_name": "Northernest SPC 7.25\" 300 Series — Beach House",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Beach House'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0011",
+   "record_id": "recr6lQn7uKQVNG1M",
+   "product_name": "Northernest SPC 7.25\" 300 Series — Urban Safari",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Urban Safari'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0012",
+   "record_id": "rec6vYuN5pRjkKk0X",
+   "product_name": "Northernest LVP 6\" Designer Series — Brooklyn",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Brooklyn'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0013",
+   "record_id": "recCOlawcIF5YXKiP",
+   "product_name": "Northernest LVP 6\" Designer Series — Cedar",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Cedar'; vetoes {'width': 12}"
+  },
+  {
+   "sku": "LVP-NRTH-0014",
+   "record_id": "recOuEh0tCMAQCE4y",
+   "product_name": "Northernest LVP 6\" Designer Series — Glacier",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Glacier'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0015",
+   "record_id": "recGU2teQSRVjlfoH",
+   "product_name": "Northernest LVP 6\" Designer Series — Havana",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Havana'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0016",
+   "record_id": "recP5wdc8PjY0DCXj",
+   "product_name": "Northernest LVP 6\" Designer Series — Phantom",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Phantom'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0017",
+   "record_id": "recirJPTCSI92u1jZ",
+   "product_name": "Northernest LVP 6\" Designer Series — Terrain",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Terrain'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0018",
+   "record_id": "recbT3SCo8Si31lAG",
+   "product_name": "Northernest SPC 7.09\" Antique Series — Foggy",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Foggy'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0019",
+   "record_id": "rec7sRAYD1FUSWvLW",
+   "product_name": "Northernest SPC 7.09\" Antique Series — Bluff",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Bluff'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0020",
+   "record_id": "rec0G7IdqRQmAtcLP",
+   "product_name": "Northernest SPC 7.09\" Antique Series — Allure",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Allure'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0021",
+   "record_id": "recx4qn43dGlmOYUp",
+   "product_name": "Northernest SPC 7.09\" Antique Series — Whispering",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Whispering'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0022",
+   "record_id": "recsvR7mhvuIZubqF",
+   "product_name": "Northernest SPC 7.09\" Antique Series — Horizon",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Horizon'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0023",
+   "record_id": "recJCIbp1erq93DT0",
+   "product_name": "Northernest SPC 7.09\" Antique Series — Montana",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Montana'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0024",
+   "record_id": "rec1W523vNY0DlQwL",
+   "product_name": "Northernest SPC 7.09\" Antique Series — Laurel",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Laurel'; vetoes {}"
+  },
+  {
+   "sku": "LVP-NRTH-0025",
+   "record_id": "recMcrF0cpkFhHPRk",
+   "product_name": "Northernest SPC 7.09\" Antique Series — Reflections",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Reflections'; vetoes {}"
+  }
+ ]
+}
