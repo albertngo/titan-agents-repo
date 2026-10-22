@@ -65,6 +65,21 @@ Replace or append to a filled image field; write anything but the four target fi
 write while `write_mode` is `plan_only`; get past a bot challenge; guess a URL.
 
 ## Log
+- 2026-10-22 — Albert gave 14 supplier sites at once ("Run the skill on all and continue
+  filling in until complete … you can park certain ones if needed"). **Floors At Work**
+  (`floorsatwork.com`, records named `NAF … — <colour>`): its Shopify store sells each
+  collection as ONE product with a variant per colour, so the new `listing.split_variants`
+  lists every colour as its own page (`<collection> - <colour>`, `?variant=` link, only the
+  photos Shopify ties to that variant). 127 photos judged; 121 written (113 swatch, 8 room,
+  121 product pages); one withheld by hand (an engineered Exotic Walnut record matched the
+  solid walnut page, which names no width); 131 colours not on the site, 4 ambiguous
+  clearance/regular pairs answered `null` (different photos under one colour name).
+  Catalogue/site disagreements held by the vetoes (site 7.5" vs record 6.5" Regal, European
+  vs American Designer, site grade AB vs Select & Better) are left for a person.
+  **Olympia Tile**: `olympiatile.com` answers the pull's declared user-agent with HTTP 400 and
+  its robots.txt bars AI agents, so the official source is disabled (`official.enabled:
+  false`, honoured by the pull now) and Word of Mouth runs alone; new `code_only` makes the
+  match Olympia's code or nothing, since `White`/`Grey` repeat across ~200 collections.
 - 2026-10-03 — Albert: "a lower quality image it still ok to grab. Having it is better than
   none." Swatch bar 1600 -> 300 px and any-image bar 800 -> 300 px (a floor against icons and
   thumbnails); BiYork's own 1000 px override removed as redundant. The largest photo per

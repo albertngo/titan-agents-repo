@@ -277,9 +277,39 @@ def keep_image(url, rules):
 
 # --------------------------------------------------------------------------- listing methods
 
-def list_shopify(fetch, root, vendor=None, max_pages=40):
+def shopify_variant_pages(base, p):
+    """One page per colour variant of a Shopify product that sells every colour of a
+    collection under one listing (Floors At Work, 2026-10-22: `9mm Aqua Platinum` with
+    variants Gemini, Leo, ...). The title is `<product> - <variant>` so the colour is in the
+    title, the link deep-links the variant, and only images Shopify ties to that variant
+    are kept: a collection-wide photo may show any colour, so it is never anyone's."""
+    out = []
+    for v in p.get("variants") or []:
+        label = " / ".join(x for x in (v.get("option1"), v.get("option2"), v.get("option3"))
+                           if x and x.lower() != "default title")
+        imgs = [i for i in p.get("images") or [] if v.get("id") in (i.get("variant_ids") or [])]
+        fi = v.get("featured_image") or {}
+        if fi.get("src") and all(i["src"] != fi["src"] for i in imgs):
+            imgs.append(fi)
+        if not label or not imgs:
+            continue
+        out.append({
+            "url": f"{base}/products/{p['handle']}?variant={v['id']}",
+            "title": f"{p.get('title', '')} - {label}", "h1": "", "og_title": "",
+            "product_name": f"{p.get('title', '')} - {label}", "is_product": True,
+            "tags": [t for t in (p.get("tags") or []) if isinstance(t, str)],
+            "product_type": p.get("product_type") or "",
+            "codes": [v["sku"]] if v.get("sku") else [],
+            "images": [{"url": i["src"], "alt": i.get("alt") or "", "width_hint": i.get("width"),
+                        "height_hint": i.get("height")} for i in imgs],
+        })
+    return out
+
+
+def list_shopify(fetch, root, vendor=None, max_pages=40, split_variants=False):
     """Every product in a Shopify store's public products.json; `vendor` keeps one brand
-    (Shopify's own brand field, e.g. `Vidar Design Flooring` at Speers)."""
+    (Shopify's own brand field, e.g. `Vidar Design Flooring` at Speers). `split_variants`
+    lists each colour variant as its own page (see shopify_variant_pages)."""
     base = f"{urllib.parse.urlsplit(root).scheme}://{urllib.parse.urlsplit(root).netloc}"
     pages, n = [], 1
     while n <= max_pages:
@@ -289,6 +319,9 @@ def list_shopify(fetch, root, vendor=None, max_pages=40):
             break
         for p in items:
             if vendor and (p.get("vendor") or "").strip().lower() != vendor.strip().lower():
+                continue
+            if split_variants and len(p.get("variants") or []) > 1:
+                pages += shopify_variant_pages(base, p)
                 continue
             pages.append({
                 "url": f"{base}/products/{p['handle']}", "title": p.get("title", ""), "h1": "",
@@ -523,7 +556,9 @@ def supplier_sources(sup, cfg=None):
     for name in order:
         if name == "official":
             off = sup.get("official")
-            if off:
+            # `enabled: false` = the site refuses automated readers for good (Olympia Tile's
+            # 400 to a declared bot, 2026-10-22); the retailers run alone, as for a challenge.
+            if off and off.get("enabled", True):
                 out.append({"name": "official", "site": off["site"], "listing": off.get("listing") or {},
                             "follow_words": off.get("follow_words", [])})
         elif name in (sup.get("retailers") or {}):
@@ -549,7 +584,8 @@ def list_pages(fetch, cfg, supplier_cfg, max_pages):
     for m in order:
         try:
             if m == "shopify":
-                pages = list_shopify(fetch, root, listing.get("vendor"), listing.get("max_pages", 40))
+                pages = list_shopify(fetch, root, listing.get("vendor"), listing.get("max_pages", 40),
+                                     listing.get("split_variants", False))
             elif m == "woocommerce":
                 pages = list_woocommerce(fetch, root)
             elif m == "sitemap":

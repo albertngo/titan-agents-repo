@@ -143,6 +143,10 @@ def score(feat, page, supplier_cfg, matching):
     codes = {c.upper() for c in page.get("codes") or []}
     if feat["supplier_sku"] and feat["supplier_sku"].upper() in codes:
         return 100, None
+    # A supplier whose colour names repeat across dozens of collections and sizes (Olympia
+    # Tile: `White`, `Grey`, 2026-10-22) matches on its own code or not at all.
+    if supplier_cfg.get("code_only"):
+        return 0, None
     title = page_title_text(page)
     if not feat["colour"] or not has_phrase(title, feat["colour"]):
         return 0, None

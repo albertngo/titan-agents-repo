@@ -519,6 +519,41 @@ class TestTwoSources(unittest.TestCase):
         self.assertEqual([p["url"] for p in pull.list_shopify(f, "https://sp", "Vidar Design Flooring")],
                          ["https://sp/products/a"])
 
+    def test_split_variants_gives_each_colour_its_own_page_and_photo(self):
+        # Floors At Work, 2026-10-22: one listing per collection, a variant per colour.
+        prod = {"handle": "9mm-aqua-platinum", "title": "9mm Aqua Platinum", "vendor": "Floors",
+                "variants": [{"id": 1, "option1": "Gemini", "sku": None}, {"id": 2, "option1": "Leo", "sku": "L2"},
+                             {"id": 3, "option1": "Libra"}],
+                "images": [{"src": "https://cdn/gemini.jpg", "variant_ids": [1], "width": 750, "height": 563},
+                           {"src": "https://cdn/leo.jpg", "variant_ids": [2]},
+                           {"src": "https://cdn/room-all-colours.jpg", "variant_ids": []}]}
+        body = json.dumps({"products": [prod]}).encode()
+        f = pull.Fetcher({"fetch": {"delay_seconds": 0}},
+                         opener=lambda req, timeout=0: FakeResp(body if req.full_url.endswith("page=1") else b'{"products": []}'))
+        pages = pull.list_shopify(f, "https://faw", split_variants=True)
+        self.assertEqual([(p["title"], p["url"]) for p in pages],
+                         [("9mm Aqua Platinum - Gemini", "https://faw/products/9mm-aqua-platinum?variant=1"),
+                          ("9mm Aqua Platinum - Leo", "https://faw/products/9mm-aqua-platinum?variant=2")])
+        # Only the variant's own photo; the collection-wide one is nobody's. Libra has none: no page.
+        self.assertEqual([i["url"] for i in pages[0]["images"]], ["https://cdn/gemini.jpg"])
+        self.assertEqual(pages[1]["codes"], ["L2"])
+        self.assertEqual(len(pull.list_shopify(f, "https://faw")), 1)  # off by default
+
+    def test_code_only_supplier_never_matches_on_a_colour_title(self):
+        # Olympia Tile, 2026-10-22: `White` is in ~200 collections; code or nothing.
+        sup = {**REG["suppliers"]["OLYMPIA TILE"]}
+        r = {"id": "recOLYMPIA000001", "SKU": "TIL-OLYM-0001", "Product name": "Olympia Motif — White — 48 x 48 (Matte)",
+             "Supplier SKU": "IM.MT.WHT.4848.MT", "Category": "Tile / Stone"}
+        by_title = page("https://w/p1", "OLYMPIA TILE + STONE - Other Series - Porcelain Tile - White - 48\" x 48\"")
+        by_code = {**page("https://w/p2", "OLYMPIA TILE + STONE - Motif Series - Porcelain Tile - White"), "codes": ["IM.MT.WHT.4848.MT"]}
+        self.assertEqual(im.match_records([r], [by_title], sup, REG["matching"])[r["id"]]["tier"], "none")
+        m = im.match_records([r], [by_title, by_code], sup, REG["matching"])[r["id"]]
+        self.assertEqual((m["tier"], m["candidates"][0]["url"]), ("exact", "https://w/p2"))
+
+    def test_a_disabled_official_site_is_not_read(self):
+        self.assertEqual([s["name"] for s in pull.supplier_sources(REG["suppliers"]["OLYMPIA TILE"], REG)],
+                         ["wordofmouth"])
+
 
 class TestSeoNames(unittest.TestCase):
     """Albert, 2026-09-29: file names for search and AI answers, built from the record."""

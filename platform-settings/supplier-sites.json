@@ -359,6 +359,72 @@
         "toucanflooring.com"
       ],
       "_retailers_note": "2026-10-03: Speers carries no Triforest/Toucan vendor; Word of Mouth answered 503 that day, so it is not listed yet."
+    },
+    "FLOORS AT WORK": {
+      "_added": "2026-10-22, Albert: 'Can you do Floors At Work next: https://floorsatwork.com/' (records are named `NAF ... — <colour>`).",
+      "brand": "NAF",
+      "official": {
+        "site": "https://floorsatwork.com",
+        "hosts": [
+          "floorsatwork.com",
+          "www.floorsatwork.com"
+        ],
+        "listing": {
+          "method": "shopify",
+          "split_variants": true
+        }
+      },
+      "retailers": {},
+      "hosts": [
+        "floorsatwork.com",
+        "www.floorsatwork.com"
+      ],
+      "species_words": {
+        "Hickory": [
+          "hickory"
+        ],
+        "Maple": [
+          "maple"
+        ],
+        "Walnut": [
+          "walnut"
+        ],
+        "European White Oak": [
+          "european"
+        ],
+        "American White Oak": [
+          "american white oak"
+        ]
+      },
+      "_retailers_note": "2026-10-22: Speers and Word of Mouth list no Floors At Work / NAF vendor. The store sells each collection as one product with a variant per colour, so `split_variants` lists each colour as its own page."
+    },
+    "OLYMPIA TILE": {
+      "_added": "2026-10-22, Albert: 'Then Olympia https://www.olympiatile.com/'.",
+      "brand": "Olympia",
+      "official": {
+        "site": "https://www.olympiatile.com",
+        "hosts": [
+          "www.olympiatile.com",
+          "olympiatile.com"
+        ],
+        "listing": {
+          "method": "auto"
+        },
+        "enabled": false,
+        "_disabled": "2026-10-22: the site answers the pull's declared user-agent with HTTP 400 (Cloudflare) while an anonymous request gets 200, and its robots.txt disallows ClaudeBot, anthropic-ai and other AI agents by name. A refusal of automated readers, treated like Vidar's challenge: not worked around, the retailers run alone. Supplier product page falls back to Word of Mouth."
+      },
+      "retailers": {
+        "wordofmouth": {
+          "vendor": "OLYMPIA TILE + STONE"
+        }
+      },
+      "hosts": [
+        "www.olympiatile.com",
+        "olympiatile.com"
+      ],
+      "code_only": true,
+      "_code_only_note": "Olympia colour names (`White`, `Grey`, `Beige`) repeat across ~200 collections and every size; a title match would be a guess. Word of Mouth's variant SKU equals Olympia's code (`IM.MT.WHT.4848.MT`) on every product, so a record matches on its Supplier SKU or not at all (1,697 of 3,028 on 2026-10-22).",
+      "_retailers_note": "2026-10-22: Speers carries no Olympia; The Floor Box's sitemap carries no brand and Olympia's generic colours would defeat brand_batches."
     }
   },
   "source_policy": {
