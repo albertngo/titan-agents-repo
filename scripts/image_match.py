@@ -16,6 +16,7 @@ Used by scripts/supplier_site_pull.py (which pages' images to download),
 scripts/image_fill_plan.py (the plan) and the product-page index match.
 """
 
+import html
 import re
 
 SPACE = re.compile(r"\s+")
@@ -156,7 +157,8 @@ def product_line(text, supplier_cfg):
 
 
 def page_title_text(page):
-    parts = [page.get(k) or "" for k in ("title", "h1", "og_title", "product_name")]
+    # Entities decoded first: JL Tile titles a page `Midnight Charcoal-PJQ6706 [24&#215;24]` (2026-10-22).
+    parts = [html.unescape(page.get(k) or "") for k in ("title", "h1", "og_title", "product_name")]
     text = " | ".join(p for p in parts if p)
     if not text:
         slug = (page.get("url") or "").rstrip("/").rsplit("/", 1)[-1]
