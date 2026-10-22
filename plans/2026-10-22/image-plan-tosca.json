@@ -1,0 +1,5379 @@
+{
+ "contract_version": "image-plan-1",
+ "scope": "tosca",
+ "supplier": "TOSCA",
+ "run_at": "2026-10-22T15:46:51.892687-04:00",
+ "expires": "2026-10-22T23:59:59-0400",
+ "write_mode": "write",
+ "registry": "platform-settings/supplier-sites.json",
+ "inputs": {
+  "pages": "ingest/2026-10-22/supplier-pages-tosca.json",
+  "judgements": "ingest/2026-10-22/image-judgements-tosca.json",
+  "product_pages": null
+ },
+ "summary": {
+  "records": 225,
+  "actions": 46,
+  "held": 179,
+  "skipped": {},
+  "held_by_reason": {
+   "no_match": 179
+  },
+  "fields": {
+   "Swatch images": 46,
+   "Room scene images": 46,
+   "Detail images": 46,
+   "Supplier product page": 46
+  },
+  "tiers": {
+   "exact": 46
+  },
+  "manufacturer_pages": 46
+ },
+ "actions": [
+  {
+   "id": "img-259b272fd263",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recPJGizgf7kYfikZ",
+   "sku": "ENG-TOSC-0001",
+   "product_name": "Tosca Deluxe Collection 6\" — Oak Charm (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/oak%20charm1-Cga-qqXb.webp",
+      "filename": "tosca-oak-charm-engineered-hardwood-6in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/oak%20charm4-7xRTDdRr.webp",
+      "filename": "tosca-oak-charm-engineered-hardwood-6in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/oak%20charm2-BGYgYF3l.webp",
+      "filename": "tosca-oak-charm-engineered-hardwood-6in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/oak%20charm3-CxG2_5mX.webp",
+      "filename": "tosca-oak-charm-engineered-hardwood-6in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-40"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-40",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/oak%20charm1-Cga-qqXb.webp",
+     "sha1": "bf382732d2ed80929acf079ea5cf71687c9454cc",
+     "page": "https://toscaflooring.com/products/new-40",
+     "width": 5025,
+     "height": 3352
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/oak%20charm4-7xRTDdRr.webp",
+     "sha1": "3e30e7f3eb74e261b933590ad4623fd8d9c51351",
+     "page": "https://toscaflooring.com/products/new-40",
+     "width": 2048,
+     "height": 1364
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/oak%20charm2-BGYgYF3l.webp",
+     "sha1": "09225e5c14e8615f58ccae82efe31654d9a0b97e",
+     "page": "https://toscaflooring.com/products/new-40",
+     "width": 4563,
+     "height": 6841
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/oak%20charm3-CxG2_5mX.webp",
+     "sha1": "9c2912ab52bdc59e5252ff574e2d95fcadf9932c",
+     "page": "https://toscaflooring.com/products/new-40",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5d298aa610c8",
+   "seq": 2,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec2T9bIwIQutcgGs",
+   "sku": "ENG-TOSC-0002",
+   "product_name": "Tosca Deluxe Collection 6\" — Snow Storm (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/snow%20storm1-dtu1g8PN.webp",
+      "filename": "tosca-snow-storm-engineered-hardwood-6in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/snow%20storm4-Hz0KP73X.webp",
+      "filename": "tosca-snow-storm-engineered-hardwood-6in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/snow%20storm2-CVDVYTd2.webp",
+      "filename": "tosca-snow-storm-engineered-hardwood-6in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/snow%20storm3-AzOJ8ymX.webp",
+      "filename": "tosca-snow-storm-engineered-hardwood-6in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-18"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-18",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/snow%20storm1-dtu1g8PN.webp",
+     "sha1": "e3338058b8d0491d6da59b392311f284510b7852",
+     "page": "https://toscaflooring.com/products/new-18",
+     "width": 4669,
+     "height": 3114
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/snow%20storm4-Hz0KP73X.webp",
+     "sha1": "58ecf1f51b74b6856214d3578ec889f0799f9333",
+     "page": "https://toscaflooring.com/products/new-18",
+     "width": 1430,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/snow%20storm2-CVDVYTd2.webp",
+     "sha1": "aeacab5db5fbffceb1c58f6ca2193ee7e429982f",
+     "page": "https://toscaflooring.com/products/new-18",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/snow%20storm3-AzOJ8ymX.webp",
+     "sha1": "3429d72a6e01ee31f02e6557f12e6735041bac0f",
+     "page": "https://toscaflooring.com/products/new-18",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-d5e9e27dc832",
+   "seq": 3,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recSfufxwHCc8gKv1",
+   "sku": "ENG-TOSC-0003",
+   "product_name": "Tosca Deluxe Collection 6\" — Lite Latte (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/lite%20catte1-DQ1Z6NU0.webp",
+      "filename": "tosca-lite-latte-engineered-hardwood-6in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/lite%20catte4-NoLVmX_m.webp",
+      "filename": "tosca-lite-latte-engineered-hardwood-6in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/lite%20catte2-9nXOs-0j.webp",
+      "filename": "tosca-lite-latte-engineered-hardwood-6in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/lite%20catte3--whdAOre.webp",
+      "filename": "tosca-lite-latte-engineered-hardwood-6in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-35"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-35",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/lite%20catte1-DQ1Z6NU0.webp",
+     "sha1": "cdc76974f2e1897e5ebb2130518aca7359ca172c",
+     "page": "https://toscaflooring.com/products/new-35",
+     "width": 5073,
+     "height": 3384
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/lite%20catte4-NoLVmX_m.webp",
+     "sha1": "ad7e4d910eca95c47326e8cad6fd0331109503bf",
+     "page": "https://toscaflooring.com/products/new-35",
+     "width": 2048,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/lite%20catte2-9nXOs-0j.webp",
+     "sha1": "9be1f77c7c759bf781304a2f6c20027cf57a0524",
+     "page": "https://toscaflooring.com/products/new-35",
+     "width": 4359,
+     "height": 6536
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/lite%20catte3--whdAOre.webp",
+     "sha1": "3559ee596b43e0a39d1a811b8384c2809acb937c",
+     "page": "https://toscaflooring.com/products/new-35",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2b782459ac5f",
+   "seq": 4,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recyBhuRFfD8UInZ9",
+   "sku": "ENG-TOSC-0004",
+   "product_name": "Tosca Deluxe Collection 6\" — Yale (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/yale1-Dv2hwPfu.webp",
+      "filename": "tosca-yale-engineered-hardwood-6in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/yale4-C9s6IbkK.webp",
+      "filename": "tosca-yale-engineered-hardwood-6in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/yale2-CIAzlsDb.webp",
+      "filename": "tosca-yale-engineered-hardwood-6in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/yale3-CC1Tjj2I.webp",
+      "filename": "tosca-yale-engineered-hardwood-6in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-19"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-19",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/yale1-Dv2hwPfu.webp",
+     "sha1": "78edac0c9a4db015e757ba9e09a96e9507e6cbc0",
+     "page": "https://toscaflooring.com/products/new-19",
+     "width": 5161,
+     "height": 3442
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/yale4-C9s6IbkK.webp",
+     "sha1": "026b1f2fce035599605680f2a2f3ef441ddbbabb",
+     "page": "https://toscaflooring.com/products/new-19",
+     "width": 2048,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/yale2-CIAzlsDb.webp",
+     "sha1": "a8221e7f62df9d4a7339c87edd7b339580fb7426",
+     "page": "https://toscaflooring.com/products/new-19",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/yale3-CC1Tjj2I.webp",
+     "sha1": "1f33e94711ea056f0c72c059318538e264b21e8a",
+     "page": "https://toscaflooring.com/products/new-19",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f47eab8f0533",
+   "seq": 5,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recRfGUiZkzglbX6d",
+   "sku": "ENG-TOSC-0005",
+   "product_name": "Tosca Deluxe Collection 6\" — Buckingham Palace (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/buckinghum%20palace1-BQAVVzXL.webp",
+      "filename": "tosca-buckingham-palace-engineered-hardwood-6in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/buckinghum%20palace4-7Mcv9qkB.webp",
+      "filename": "tosca-buckingham-palace-engineered-hardwood-6in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/buckinghum%20palace2-DiJXYtdd.webp",
+      "filename": "tosca-buckingham-palace-engineered-hardwood-6in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/buckinghum%20palace3-CDYxxugC.webp",
+      "filename": "tosca-buckingham-palace-engineered-hardwood-6in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-32"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-32",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/buckinghum%20palace1-BQAVVzXL.webp",
+     "sha1": "63e3ba0efc51e9158412b11b333908b34eff41c5",
+     "page": "https://toscaflooring.com/products/new-32",
+     "width": 6295,
+     "height": 4199
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/buckinghum%20palace4-7Mcv9qkB.webp",
+     "sha1": "1f6233ce9a9e1f71816175cb52d764c342858ac5",
+     "page": "https://toscaflooring.com/products/new-32",
+     "width": 2048,
+     "height": 1130
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/buckinghum%20palace2-DiJXYtdd.webp",
+     "sha1": "c5efab3e7a368de04c1d9f6a7d00fdece6182c5e",
+     "page": "https://toscaflooring.com/products/new-32",
+     "width": 4552,
+     "height": 6825
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/buckinghum%20palace3-CDYxxugC.webp",
+     "sha1": "8f35b6a582ef004f45fb3aee8918b74ebe2044c1",
+     "page": "https://toscaflooring.com/products/new-32",
+     "width": 1800,
+     "height": 2699
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-99a54f55456a",
+   "seq": 6,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recoVNzVUaK1NdOG4",
+   "sku": "ENG-TOSC-0006",
+   "product_name": "Tosca Deluxe Collection 6\" — Invisible Oak (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/invisible%20oak1-ChMCYgJf.webp",
+      "filename": "tosca-invisible-oak-engineered-hardwood-6in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/invisible%20oak4-BZZ-510Y.webp",
+      "filename": "tosca-invisible-oak-engineered-hardwood-6in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/invisible%20oak2-JUg_TGUD.webp",
+      "filename": "tosca-invisible-oak-engineered-hardwood-6in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/invisible%20oak3-DSh7q3S9.webp",
+      "filename": "tosca-invisible-oak-engineered-hardwood-6in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-30"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-30",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/invisible%20oak1-ChMCYgJf.webp",
+     "sha1": "ffe6be3ef905ebf71a324b747f32b84ca968bc83",
+     "page": "https://toscaflooring.com/products/new-30",
+     "width": 5619,
+     "height": 3748
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/invisible%20oak4-BZZ-510Y.webp",
+     "sha1": "4ed9513d4d825a89b6dd3cc77b2dd7a5052a2b3c",
+     "page": "https://toscaflooring.com/products/new-30",
+     "width": 2048,
+     "height": 1280
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/invisible%20oak2-JUg_TGUD.webp",
+     "sha1": "0405b121d1a4db8fe90b2c06518a2f37830a1f94",
+     "page": "https://toscaflooring.com/products/new-30",
+     "width": 3866,
+     "height": 5796
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/invisible%20oak3-DSh7q3S9.webp",
+     "sha1": "f23015bf69776407ed2f6c40cddb9286f1177419",
+     "page": "https://toscaflooring.com/products/new-30",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8be192eae51a",
+   "seq": 7,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec3Jch1OiKqb8xOv",
+   "sku": "ENG-TOSC-0007",
+   "product_name": "Tosca Deluxe Collection 6\" — Smoked Oak (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/smoked%20oak1-C4RkDDWO.webp",
+      "filename": "tosca-smoked-oak-engineered-hardwood-6in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/smoked%20oak4-T3MXBzCn.webp",
+      "filename": "tosca-smoked-oak-engineered-hardwood-6in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/smoked%20oak2-D40H8ake.webp",
+      "filename": "tosca-smoked-oak-engineered-hardwood-6in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/smoked%20oak3-C3UcaEss.webp",
+      "filename": "tosca-smoked-oak-engineered-hardwood-6in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-36"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-36",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/smoked%20oak1-C4RkDDWO.webp",
+     "sha1": "56824cf05fb3b381197efd3c6e3b988c893da885",
+     "page": "https://toscaflooring.com/products/new-36",
+     "width": 1600,
+     "height": 1067
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/smoked%20oak4-T3MXBzCn.webp",
+     "sha1": "6e3d46cf5a423752a30cd42d6f5431ef328d2db8",
+     "page": "https://toscaflooring.com/products/new-36",
+     "width": 1364,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/smoked%20oak2-D40H8ake.webp",
+     "sha1": "b218d8339830e601083af22a695fa09f4698be33",
+     "page": "https://toscaflooring.com/products/new-36",
+     "width": 4113,
+     "height": 6166
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/smoked%20oak3-C3UcaEss.webp",
+     "sha1": "e50e088552c2e93fab58acf453e94976c29bf738",
+     "page": "https://toscaflooring.com/products/new-36",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a707cf931b92",
+   "seq": 8,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recbe4NVIT5Eguh56",
+   "sku": "ENG-TOSC-0008",
+   "product_name": "Tosca Deluxe Collection 6\" — Wheat (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/wheat1-4W-H_9Bs.webp",
+      "filename": "tosca-wheat-engineered-hardwood-6in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/wheat4-BfHw_Z_f.webp",
+      "filename": "tosca-wheat-engineered-hardwood-6in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/wheat2-BC5IVa8v.webp",
+      "filename": "tosca-wheat-engineered-hardwood-6in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/wheat3-BsYbEBrh.webp",
+      "filename": "tosca-wheat-engineered-hardwood-6in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-34"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-34",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/wheat1-4W-H_9Bs.webp",
+     "sha1": "1ccb9f6bbf6a954e1187c3648f06375ce3de1236",
+     "page": "https://toscaflooring.com/products/new-34",
+     "width": 6086,
+     "height": 4059
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/wheat4-BfHw_Z_f.webp",
+     "sha1": "9d998a899bbfb9b80bac4a8e27668e93c3f32e1b",
+     "page": "https://toscaflooring.com/products/new-34",
+     "width": 1430,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/wheat2-BC5IVa8v.webp",
+     "sha1": "c13bb5abaf68824dc138c6ee17db92a7fddd8b21",
+     "page": "https://toscaflooring.com/products/new-34",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/wheat3-BsYbEBrh.webp",
+     "sha1": "9606ec66c8ffee7f8beaa7f6f1293ede6dadb634",
+     "page": "https://toscaflooring.com/products/new-34",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-e19bd14a7501",
+   "seq": 9,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recnMI1jadMQDhUVn",
+   "sku": "ENG-TOSC-0009",
+   "product_name": "Tosca Deluxe Collection 6\" — Whipping Cream (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/whipping%20cream1-BpTe_tH9.webp",
+      "filename": "tosca-whipping-cream-engineered-hardwood-6in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/whipping%20cream4-7hTT5gcP.webp",
+      "filename": "tosca-whipping-cream-engineered-hardwood-6in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/whipping%20cream2-qMatkY3e.webp",
+      "filename": "tosca-whipping-cream-engineered-hardwood-6in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/whipping%20cream3-CGNZslWF.webp",
+      "filename": "tosca-whipping-cream-engineered-hardwood-6in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-24"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-24",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/whipping%20cream1-BpTe_tH9.webp",
+     "sha1": "0eeda7628380b9e4ca5f8b0508d71f47a7b48356",
+     "page": "https://toscaflooring.com/products/new-24",
+     "width": 5073,
+     "height": 3384
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/whipping%20cream4-7hTT5gcP.webp",
+     "sha1": "86a6161a1c355ae98b736a78a676392bce60b4b6",
+     "page": "https://toscaflooring.com/products/new-24",
+     "width": 1430,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/whipping%20cream2-qMatkY3e.webp",
+     "sha1": "10d64fdf063f07b7c5f02a81b6b8502ddbe0d762",
+     "page": "https://toscaflooring.com/products/new-24",
+     "width": 4970,
+     "height": 7452
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/whipping%20cream3-CGNZslWF.webp",
+     "sha1": "cf6bfd37d005f5498281f9358479de82dfb0ad11",
+     "page": "https://toscaflooring.com/products/new-24",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-c88f79a27437",
+   "seq": 10,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reccLv3ruMxmBC9BM",
+   "sku": "ENG-TOSC-0010",
+   "product_name": "Tosca Deluxe Collection 6\" — Latte (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/latte1-pMUs5MRe.webp",
+      "filename": "tosca-latte-engineered-hardwood-6in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/latte4-DYqDBMR1.webp",
+      "filename": "tosca-latte-engineered-hardwood-6in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/latte2-CrIraqMM.webp",
+      "filename": "tosca-latte-engineered-hardwood-6in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/latte3-DJl3inDd.webp",
+      "filename": "tosca-latte-engineered-hardwood-6in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-17"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-17",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/latte1-pMUs5MRe.webp",
+     "sha1": "94008a9f4657edb42777c8dbef0259f7c52f7a5b",
+     "page": "https://toscaflooring.com/products/new-17",
+     "width": 5161,
+     "height": 3442
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/latte4-DYqDBMR1.webp",
+     "sha1": "d2ac9fa5b56b1ed9c638a8bd4e29ae8aa7a77ce8",
+     "page": "https://toscaflooring.com/products/new-17",
+     "width": 1642,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/latte2-CrIraqMM.webp",
+     "sha1": "f98c51cbed8be85de6699fbe963de1fbc286cf67",
+     "page": "https://toscaflooring.com/products/new-17",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/latte3-DJl3inDd.webp",
+     "sha1": "9d47d8ebf5878ce9ca8964b2e2e40580b6d40587",
+     "page": "https://toscaflooring.com/products/new-17",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-45b2b46a30fc",
+   "seq": 11,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recGx54AZ2LmpkWLv",
+   "sku": "ENG-TOSC-0011",
+   "product_name": "Tosca Deluxe Collection 6\" — Ivory (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/iuory1-DRgyyGrE.webp",
+      "filename": "tosca-ivory-engineered-hardwood-6in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/iuory4-C_cmflGn.webp",
+      "filename": "tosca-ivory-engineered-hardwood-6in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/iuory3-Cf2-bR6s.webp",
+      "filename": "tosca-ivory-engineered-hardwood-6in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/iuory2-sFTidUIr.webp",
+      "filename": "tosca-ivory-engineered-hardwood-6in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-28"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-28",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/iuory1-DRgyyGrE.webp",
+     "sha1": "415192c97837290cadad23e1727100a00fc7741b",
+     "page": "https://toscaflooring.com/products/new-28",
+     "width": 5073,
+     "height": 3384
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/iuory4-C_cmflGn.webp",
+     "sha1": "050b62e877e64ea1172934601269baa9067394e4",
+     "page": "https://toscaflooring.com/products/new-28",
+     "width": 1450,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/iuory3-Cf2-bR6s.webp",
+     "sha1": "04af6dea318fbbe9507024fd052cdd210a29f631",
+     "page": "https://toscaflooring.com/products/new-28",
+     "width": 4446,
+     "height": 6665
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/iuory2-sFTidUIr.webp",
+     "sha1": "6c28a6df6347a299ed5f1586fde91c22e4be3be0",
+     "page": "https://toscaflooring.com/products/new-28",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-4ff8c3d1b817",
+   "seq": 12,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recpMJOgjXfAFJEAF",
+   "sku": "ENG-TOSC-0013",
+   "product_name": "Tosca Deluxe Collection Bespoke Series 6\" — Sydney (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/sydney1-BSyNwHKb.webp",
+      "filename": "tosca-sydney-engineered-hardwood-6in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/sydney4-B2B7Ie6n.webp",
+      "filename": "tosca-sydney-engineered-hardwood-6in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/sydney2-fr4WOKfI.webp",
+      "filename": "tosca-sydney-engineered-hardwood-6in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/sydney3-Ry2pZmQX.webp",
+      "filename": "tosca-sydney-engineered-hardwood-6in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-25"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-25",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/sydney1-BSyNwHKb.webp",
+     "sha1": "842fd58414ec8638044198f9cd6211ed0e75b19a",
+     "page": "https://toscaflooring.com/products/new-25",
+     "width": 4574,
+     "height": 3051
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/sydney4-B2B7Ie6n.webp",
+     "sha1": "53b2819b674a5c575b2151a6681d49b7d45720eb",
+     "page": "https://toscaflooring.com/products/new-25",
+     "width": 2048,
+     "height": 1152
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/sydney2-fr4WOKfI.webp",
+     "sha1": "d61993cc81788e8fc5986efb259b6289ad9e60f3",
+     "page": "https://toscaflooring.com/products/new-25",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/sydney3-Ry2pZmQX.webp",
+     "sha1": "c91e4d238c27d92b02be3af07f6b5cffb46afa03",
+     "page": "https://toscaflooring.com/products/new-25",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ad74f97c5eeb",
+   "seq": 13,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec7enwZwonvmmGB9",
+   "sku": "ENG-TOSC-0014",
+   "product_name": "Tosca Deluxe Collection Bespoke Series 6\" — London (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/london1-BEVivpWF.webp",
+      "filename": "tosca-london-engineered-hardwood-6in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/london4-nxVz-qIH.webp",
+      "filename": "tosca-london-engineered-hardwood-6in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/london2-Bzda_kHD.webp",
+      "filename": "tosca-london-engineered-hardwood-6in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/london3-M0Z1dhlc.webp",
+      "filename": "tosca-london-engineered-hardwood-6in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-26"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-26",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/london1-BEVivpWF.webp",
+     "sha1": "ce1748f424c8c9163dd898fca4f9da20b224e210",
+     "page": "https://toscaflooring.com/products/new-26",
+     "width": 6086,
+     "height": 4059
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/london4-nxVz-qIH.webp",
+     "sha1": "9e01c1727b0edba7436d97cb472aac767ce56e6b",
+     "page": "https://toscaflooring.com/products/new-26",
+     "width": 1536,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/london2-Bzda_kHD.webp",
+     "sha1": "c22d530a32c5cfdfa375f0aced8d8846205f5419",
+     "page": "https://toscaflooring.com/products/new-26",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/london3-M0Z1dhlc.webp",
+     "sha1": "5cd5a6eaac56615afe4cb036fbe71a98411d9d0f",
+     "page": "https://toscaflooring.com/products/new-26",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ae22f434d537",
+   "seq": 14,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recsupI7OLvtqSwG0",
+   "sku": "ENG-TOSC-0015",
+   "product_name": "Tosca Deluxe Collection Bespoke Series 6\" — New York (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/new%20york1-CngBwspU.webp",
+      "filename": "tosca-new-york-engineered-hardwood-6in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/new%20york4-BWhfckbg.webp",
+      "filename": "tosca-new-york-engineered-hardwood-6in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/new%20york2-D8tF5kuq.webp",
+      "filename": "tosca-new-york-engineered-hardwood-6in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/new%20york3-OQGcY-qO.webp",
+      "filename": "tosca-new-york-engineered-hardwood-6in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-37"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-37",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/new%20york1-CngBwspU.webp",
+     "sha1": "71f7c5484e8a36e6a1cb5d7249caebace747128a",
+     "page": "https://toscaflooring.com/products/new-37",
+     "width": 1600,
+     "height": 1067
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/new%20york4-BWhfckbg.webp",
+     "sha1": "0078781ec71fcef0138bfd622d85523bdf443276",
+     "page": "https://toscaflooring.com/products/new-37",
+     "width": 1834,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/new%20york2-D8tF5kuq.webp",
+     "sha1": "39a8ab05ba40f05e2c252cc96f754ff43a9ec5d1",
+     "page": "https://toscaflooring.com/products/new-37",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/new%20york3-OQGcY-qO.webp",
+     "sha1": "e76dcc6d15250d2b0feadf7a81e4827deba0e6b2",
+     "page": "https://toscaflooring.com/products/new-37",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8895cabb057f",
+   "seq": 15,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recWsmMxEryLiS1dY",
+   "sku": "ENG-TOSC-0017",
+   "product_name": "Tosca Deluxe Collection Bespoke Series 6\" — Tokyo (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/tokyo5-C0wZ2tso.webp",
+      "filename": "tosca-tokyo-engineered-hardwood-6in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/tokyo8-D6W42m-l.webp",
+      "filename": "tosca-tokyo-engineered-hardwood-6in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/tokyo6-DNK_jhe5.webp",
+      "filename": "tosca-tokyo-engineered-hardwood-6in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/tokyo7-898Xoybu.webp",
+      "filename": "tosca-tokyo-engineered-hardwood-6in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-27"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-27",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/tokyo5-C0wZ2tso.webp",
+     "sha1": "f59a0a03e0774329709928742baf68ab11789051",
+     "page": "https://toscaflooring.com/products/new-27",
+     "width": 1600,
+     "height": 1067
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/tokyo8-D6W42m-l.webp",
+     "sha1": "8e8ec5fe085c6c14b039c369477bd9272e8e8481",
+     "page": "https://toscaflooring.com/products/new-27",
+     "width": 2048,
+     "height": 1364
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/tokyo6-DNK_jhe5.webp",
+     "sha1": "327dd13b6e33f07cff46667a503c948a9ce4b481",
+     "page": "https://toscaflooring.com/products/new-27",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/tokyo7-898Xoybu.webp",
+     "sha1": "51f7d39c3e7d82ae28bd86c34faa8f6230e2b26a",
+     "page": "https://toscaflooring.com/products/new-27",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-21523f1fe626",
+   "seq": 16,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recyrV9IMuNc21IkV",
+   "sku": "ENG-TOSC-0019",
+   "product_name": "Tosca Deluxe Collection Bespoke Series 6\" — San Francisco (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/san%20francisco1-D67_KfHh.webp",
+      "filename": "tosca-san-francisco-engineered-hardwood-6in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/san%20francisco4-CGh9TBhf.webp",
+      "filename": "tosca-san-francisco-engineered-hardwood-6in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/san%20francisco2-By8j-EA0.webp",
+      "filename": "tosca-san-francisco-engineered-hardwood-6in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/san%20francisco3-JXOV62HC.webp",
+      "filename": "tosca-san-francisco-engineered-hardwood-6in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-38"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-38",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/san%20francisco1-D67_KfHh.webp",
+     "sha1": "22a111ea6b9edcf25e7cac8c3b1099f51a61214c",
+     "page": "https://toscaflooring.com/products/new-38",
+     "width": 1600,
+     "height": 1067
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/san%20francisco4-CGh9TBhf.webp",
+     "sha1": "719be5ce481433fcf97a3fd170d6b3322569fc5d",
+     "page": "https://toscaflooring.com/products/new-38",
+     "width": 2048,
+     "height": 1472
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/san%20francisco2-By8j-EA0.webp",
+     "sha1": "473de7b55d6b0c3e12a06cd337e30d255281a5e2",
+     "page": "https://toscaflooring.com/products/new-38",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/san%20francisco3-JXOV62HC.webp",
+     "sha1": "6a07f4d4c7f0e6ecbada46f20e1c46c1e1cbae10",
+     "page": "https://toscaflooring.com/products/new-38",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8563fa86881a",
+   "seq": 17,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec3yS1ykfNJN3B20",
+   "sku": "ENG-TOSC-0023",
+   "product_name": "Tosca Deluxe Collection Bespoke Series 6\" — Cognac (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/cognac1-CEW5itsD.webp",
+      "filename": "tosca-cognac-engineered-hardwood-6in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/cognac4-qUQKBlbU.webp",
+      "filename": "tosca-cognac-engineered-hardwood-6in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/cognac2-wAkZncmk.webp",
+      "filename": "tosca-cognac-engineered-hardwood-6in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/cognac3-EroRq5Se.webp",
+      "filename": "tosca-cognac-engineered-hardwood-6in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-39"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-39",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/cognac1-CEW5itsD.webp",
+     "sha1": "6685ac9af4a53825c949f7bdff6817b10473db9e",
+     "page": "https://toscaflooring.com/products/new-39",
+     "width": 1600,
+     "height": 1067
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/cognac4-qUQKBlbU.webp",
+     "sha1": "2f55a19a528d88e1755bb4cb78f34696f2d447f7",
+     "page": "https://toscaflooring.com/products/new-39",
+     "width": 2048,
+     "height": 1300
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/cognac2-wAkZncmk.webp",
+     "sha1": "f526d11f5186c38a0c913baff4a6a552f8cbcb2e",
+     "page": "https://toscaflooring.com/products/new-39",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/cognac3-EroRq5Se.webp",
+     "sha1": "73585b909e2518eb7f78e9b7d064bee1563139c7",
+     "page": "https://toscaflooring.com/products/new-39",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-fb4ed6a922ef",
+   "seq": 18,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recfdUl85Xj6mC4Ou",
+   "sku": "ENG-TOSC-0030",
+   "product_name": "Tosca Deluxe Collection 7 1/2\" Series 7.5\" — Butter (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/butter1-D7HCThOF.webp",
+      "filename": "tosca-butter-engineered-hardwood-7-5in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/butter4-B8BxWLub.webp",
+      "filename": "tosca-butter-engineered-hardwood-7-5in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/butter2-CbtSN7rS.webp",
+      "filename": "tosca-butter-engineered-hardwood-7-5in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/butter3-Dvx1vqhH.webp",
+      "filename": "tosca-butter-engineered-hardwood-7-5in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-16"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-16",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/butter1-D7HCThOF.webp",
+     "sha1": "cbc2965c0bee610ef25abf9c4acc8b48a24e19fd",
+     "page": "https://toscaflooring.com/products/new-16",
+     "width": 4363,
+     "height": 2910
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/butter4-B8BxWLub.webp",
+     "sha1": "666d5a3b785edcb0712e0473ef3f1ccf69eba0bc",
+     "page": "https://toscaflooring.com/products/new-16",
+     "width": 2048,
+     "height": 1750
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/butter2-CbtSN7rS.webp",
+     "sha1": "b13037cf76942dd893c78f1a114230f9f4b9f091",
+     "page": "https://toscaflooring.com/products/new-16",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/butter3-Dvx1vqhH.webp",
+     "sha1": "2ece9bc0a5e51c118f5d99959643d802d22d4ef4",
+     "page": "https://toscaflooring.com/products/new-16",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-410422a97c80",
+   "seq": 19,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recWpXzXldL98W3Xp",
+   "sku": "ENG-TOSC-0031",
+   "product_name": "Tosca Deluxe Collection 7 1/2\" Series 7.5\" — Jasmine (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/jasmiwc1-CHvzkj8W.webp",
+      "filename": "tosca-jasmine-engineered-hardwood-7-5in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/jasmiwc4-cfXYoaYb.webp",
+      "filename": "tosca-jasmine-engineered-hardwood-7-5in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/jasmiwc2-CWK0OM_I.webp",
+      "filename": "tosca-jasmine-engineered-hardwood-7-5in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/jasmiwc3-DGwWGXPI.webp",
+      "filename": "tosca-jasmine-engineered-hardwood-7-5in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-20"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-20",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/jasmiwc1-CHvzkj8W.webp",
+     "sha1": "de751e42b6fbc04061941c4777b50af2a579de2f",
+     "page": "https://toscaflooring.com/products/new-20",
+     "width": 4574,
+     "height": 3051
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/jasmiwc4-cfXYoaYb.webp",
+     "sha1": "4889de0634f7b85881f386902a0eaa3002b7883b",
+     "page": "https://toscaflooring.com/products/new-20",
+     "width": 2048,
+     "height": 1238
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/jasmiwc2-CWK0OM_I.webp",
+     "sha1": "80acf1d4487c4e277a4498e6fdcb79d231d8739a",
+     "page": "https://toscaflooring.com/products/new-20",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/jasmiwc3-DGwWGXPI.webp",
+     "sha1": "4236314341ce05bc0c650298f8982b8b45725d2e",
+     "page": "https://toscaflooring.com/products/new-20",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-56e2e9284af1",
+   "seq": 20,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec8TBt6vllmzJI4U",
+   "sku": "ENG-TOSC-0032",
+   "product_name": "Tosca Deluxe Collection 7 1/2\" Series 7.5\" — Yale (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/yale1-Dv2hwPfu.webp",
+      "filename": "tosca-yale-engineered-hardwood-7-5in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/yale4-C9s6IbkK.webp",
+      "filename": "tosca-yale-engineered-hardwood-7-5in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/yale2-CIAzlsDb.webp",
+      "filename": "tosca-yale-engineered-hardwood-7-5in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/yale3-CC1Tjj2I.webp",
+      "filename": "tosca-yale-engineered-hardwood-7-5in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-19"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-19",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/yale1-Dv2hwPfu.webp",
+     "sha1": "78edac0c9a4db015e757ba9e09a96e9507e6cbc0",
+     "page": "https://toscaflooring.com/products/new-19",
+     "width": 5161,
+     "height": 3442
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/yale4-C9s6IbkK.webp",
+     "sha1": "026b1f2fce035599605680f2a2f3ef441ddbbabb",
+     "page": "https://toscaflooring.com/products/new-19",
+     "width": 2048,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/yale2-CIAzlsDb.webp",
+     "sha1": "a8221e7f62df9d4a7339c87edd7b339580fb7426",
+     "page": "https://toscaflooring.com/products/new-19",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/yale3-CC1Tjj2I.webp",
+     "sha1": "1f33e94711ea056f0c72c059318538e264b21e8a",
+     "page": "https://toscaflooring.com/products/new-19",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5e6db9d459d0",
+   "seq": 21,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reczNTvwMVb3AkaAb",
+   "sku": "ENG-TOSC-0033",
+   "product_name": "Tosca Deluxe Collection 7 1/2\" Series 7.5\" — Oak Charm (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/oak%20charm1-Cga-qqXb.webp",
+      "filename": "tosca-oak-charm-engineered-hardwood-7-5in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/oak%20charm4-7xRTDdRr.webp",
+      "filename": "tosca-oak-charm-engineered-hardwood-7-5in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/oak%20charm2-BGYgYF3l.webp",
+      "filename": "tosca-oak-charm-engineered-hardwood-7-5in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/oak%20charm3-CxG2_5mX.webp",
+      "filename": "tosca-oak-charm-engineered-hardwood-7-5in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-40"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-40",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/oak%20charm1-Cga-qqXb.webp",
+     "sha1": "bf382732d2ed80929acf079ea5cf71687c9454cc",
+     "page": "https://toscaflooring.com/products/new-40",
+     "width": 5025,
+     "height": 3352
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/oak%20charm4-7xRTDdRr.webp",
+     "sha1": "3e30e7f3eb74e261b933590ad4623fd8d9c51351",
+     "page": "https://toscaflooring.com/products/new-40",
+     "width": 2048,
+     "height": 1364
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/oak%20charm2-BGYgYF3l.webp",
+     "sha1": "09225e5c14e8615f58ccae82efe31654d9a0b97e",
+     "page": "https://toscaflooring.com/products/new-40",
+     "width": 4563,
+     "height": 6841
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/oak%20charm3-CxG2_5mX.webp",
+     "sha1": "9c2912ab52bdc59e5252ff574e2d95fcadf9932c",
+     "page": "https://toscaflooring.com/products/new-40",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-417d9319e5f3",
+   "seq": 22,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recAYsyCfrNj325AX",
+   "sku": "ENG-TOSC-0034",
+   "product_name": "Tosca Deluxe Collection 7 1/2\" Series 7.5\" — Lite Latte (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/lite%20catte1-DQ1Z6NU0.webp",
+      "filename": "tosca-lite-latte-engineered-hardwood-7-5in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/lite%20catte4-NoLVmX_m.webp",
+      "filename": "tosca-lite-latte-engineered-hardwood-7-5in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/lite%20catte2-9nXOs-0j.webp",
+      "filename": "tosca-lite-latte-engineered-hardwood-7-5in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/lite%20catte3--whdAOre.webp",
+      "filename": "tosca-lite-latte-engineered-hardwood-7-5in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-35"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-35",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/lite%20catte1-DQ1Z6NU0.webp",
+     "sha1": "cdc76974f2e1897e5ebb2130518aca7359ca172c",
+     "page": "https://toscaflooring.com/products/new-35",
+     "width": 5073,
+     "height": 3384
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/lite%20catte4-NoLVmX_m.webp",
+     "sha1": "ad7e4d910eca95c47326e8cad6fd0331109503bf",
+     "page": "https://toscaflooring.com/products/new-35",
+     "width": 2048,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/lite%20catte2-9nXOs-0j.webp",
+     "sha1": "9be1f77c7c759bf781304a2f6c20027cf57a0524",
+     "page": "https://toscaflooring.com/products/new-35",
+     "width": 4359,
+     "height": 6536
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/lite%20catte3--whdAOre.webp",
+     "sha1": "3559ee596b43e0a39d1a811b8384c2809acb937c",
+     "page": "https://toscaflooring.com/products/new-35",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-bcdb6203b678",
+   "seq": 23,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec3Kbs0oOP0qFLBP",
+   "sku": "ENG-TOSC-0035",
+   "product_name": "Tosca Deluxe Collection 7 1/2\" Series 7.5\" — Snow Storm (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/snow%20storm1-dtu1g8PN.webp",
+      "filename": "tosca-snow-storm-engineered-hardwood-7-5in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/snow%20storm4-Hz0KP73X.webp",
+      "filename": "tosca-snow-storm-engineered-hardwood-7-5in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/snow%20storm2-CVDVYTd2.webp",
+      "filename": "tosca-snow-storm-engineered-hardwood-7-5in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/snow%20storm3-AzOJ8ymX.webp",
+      "filename": "tosca-snow-storm-engineered-hardwood-7-5in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-18"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-18",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/snow%20storm1-dtu1g8PN.webp",
+     "sha1": "e3338058b8d0491d6da59b392311f284510b7852",
+     "page": "https://toscaflooring.com/products/new-18",
+     "width": 4669,
+     "height": 3114
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/snow%20storm4-Hz0KP73X.webp",
+     "sha1": "58ecf1f51b74b6856214d3578ec889f0799f9333",
+     "page": "https://toscaflooring.com/products/new-18",
+     "width": 1430,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/snow%20storm2-CVDVYTd2.webp",
+     "sha1": "aeacab5db5fbffceb1c58f6ca2193ee7e429982f",
+     "page": "https://toscaflooring.com/products/new-18",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/snow%20storm3-AzOJ8ymX.webp",
+     "sha1": "3429d72a6e01ee31f02e6557f12e6735041bac0f",
+     "page": "https://toscaflooring.com/products/new-18",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-e8df3c243298",
+   "seq": 24,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec4GxpZ1EJQLP5HN",
+   "sku": "ENG-TOSC-0047",
+   "product_name": "Tosca Superior Collection 7.5\" — Afterlight (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/after%20light1-DCfI7dM2.webp",
+      "filename": "tosca-afterlight-engineered-hardwood-7-5in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/after%20light4-BDdU9z2u.webp",
+      "filename": "tosca-afterlight-engineered-hardwood-7-5in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/after%20light2-C--jJoY0.webp",
+      "filename": "tosca-afterlight-engineered-hardwood-7-5in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/after%20light3-DVDVGQdP.webp",
+      "filename": "tosca-afterlight-engineered-hardwood-7-5in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-15"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-15",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/after%20light1-DCfI7dM2.webp",
+     "sha1": "b0bde985f8c6277a7590fc1dd3d7cf52b65e6aeb",
+     "page": "https://toscaflooring.com/products/new-15",
+     "width": 4719,
+     "height": 3148
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/after%20light4-BDdU9z2u.webp",
+     "sha1": "9ccee53038109c5530ec0b240c83a3cc212d2ff4",
+     "page": "https://toscaflooring.com/products/new-15",
+     "width": 1364,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/after%20light2-C--jJoY0.webp",
+     "sha1": "9f49803b716779a2c94bb06fd756e4b0c83a959b",
+     "page": "https://toscaflooring.com/products/new-15",
+     "width": 1800,
+     "height": 2699
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/after%20light3-DVDVGQdP.webp",
+     "sha1": "e4c76d152f9c828b6b32a1908219a6db7a1ce08a",
+     "page": "https://toscaflooring.com/products/new-15",
+     "width": 1800,
+     "height": 2699
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ec8521e2d67f",
+   "seq": 25,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recGsxuwvLZHYBWe8",
+   "sku": "ENG-TOSC-0048",
+   "product_name": "Tosca Superior Collection 7.5\" — Beach Sand (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/beach%20sand1-BOe_0jLQ.webp",
+      "filename": "tosca-beach-sand-engineered-hardwood-7-5in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/beach%20sand4-ghK7-RC-.webp",
+      "filename": "tosca-beach-sand-engineered-hardwood-7-5in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/beach%20sand2-CsjjIlXc.webp",
+      "filename": "tosca-beach-sand-engineered-hardwood-7-5in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/beach%20sand3-DZHgKLQF.webp",
+      "filename": "tosca-beach-sand-engineered-hardwood-7-5in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-21"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-21",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/beach%20sand1-BOe_0jLQ.webp",
+     "sha1": "67e95209d1b1fff96a93714a2ae9eb5d06bdd0d7",
+     "page": "https://toscaflooring.com/products/new-21",
+     "width": 4510,
+     "height": 3008
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/beach%20sand4-ghK7-RC-.webp",
+     "sha1": "77f2666722caca85643c5670358d0c95ac29f945",
+     "page": "https://toscaflooring.com/products/new-21",
+     "width": 2048,
+     "height": 1152
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/beach%20sand2-CsjjIlXc.webp",
+     "sha1": "bcbd49972e8b2a3acfa2e45fd33eb524ebaa60c8",
+     "page": "https://toscaflooring.com/products/new-21",
+     "width": 1800,
+     "height": 2699
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/beach%20sand3-DZHgKLQF.webp",
+     "sha1": "8a19bb0c8eb6ae0473b7a462c143e685f515812e",
+     "page": "https://toscaflooring.com/products/new-21",
+     "width": 1800,
+     "height": 2699
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ae257bedaa8d",
+   "seq": 26,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec7cppV8o1Lp43vY",
+   "sku": "ENG-TOSC-0049",
+   "product_name": "Tosca Superior Collection 7.5\" — Cappadocia (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/cappadocia1-BIV9QiOj.webp",
+      "filename": "tosca-cappadocia-engineered-hardwood-7-5in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/cappadocia4-8wj3B-m0.webp",
+      "filename": "tosca-cappadocia-engineered-hardwood-7-5in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/cappadocia2-wuH8Eakd.webp",
+      "filename": "tosca-cappadocia-engineered-hardwood-7-5in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/cappadocia3-BkQGpfqD.webp",
+      "filename": "tosca-cappadocia-engineered-hardwood-7-5in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-22"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-22",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/cappadocia1-BIV9QiOj.webp",
+     "sha1": "19911e14c56d43aa7a153030caf84c120d44a822",
+     "page": "https://toscaflooring.com/products/new-22",
+     "width": 4869,
+     "height": 3248
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/cappadocia4-8wj3B-m0.webp",
+     "sha1": "7130d29cd2bafaa8eddd75a83ca5e9e12a7beddc",
+     "page": "https://toscaflooring.com/products/new-22",
+     "width": 2048,
+     "height": 1152
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/cappadocia2-wuH8Eakd.webp",
+     "sha1": "353105e5cc4e946c2c4d6604f1cbfdcdaa10888d",
+     "page": "https://toscaflooring.com/products/new-22",
+     "width": 4274,
+     "height": 6408
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/cappadocia3-BkQGpfqD.webp",
+     "sha1": "9b7ce596094e496174649f0f741f7751dff314f9",
+     "page": "https://toscaflooring.com/products/new-22",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-c6e84351400a",
+   "seq": 27,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec1g7ycetQPdj8Cm",
+   "sku": "ENG-TOSC-0050",
+   "product_name": "Tosca Aura Collection 7.5\" — Gold Coast (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/gold%20chest1-CNdmrX53.webp",
+      "filename": "tosca-gold-coast-engineered-hardwood-7-5in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/gold%20chest4-CJL7NQ0t.webp",
+      "filename": "tosca-gold-coast-engineered-hardwood-7-5in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/gold%20chest2-DE3vRoQx.webp",
+      "filename": "tosca-gold-coast-engineered-hardwood-7-5in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/gold%20chest3-CtQnjUTp.webp",
+      "filename": "tosca-gold-coast-engineered-hardwood-7-5in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-11"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-11",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/gold%20chest1-CNdmrX53.webp",
+     "sha1": "3632cb369d4c99244151093adbb91fa808569bfe",
+     "page": "https://toscaflooring.com/products/new-11",
+     "width": 1600,
+     "height": 1113
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/gold%20chest4-CJL7NQ0t.webp",
+     "sha1": "d16c0c704fccaed01c2c4ff84ebbc15f7d6a3f59",
+     "page": "https://toscaflooring.com/products/new-11",
+     "width": 2048,
+     "height": 1364
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/gold%20chest2-DE3vRoQx.webp",
+     "sha1": "63d1b3e0309a179c12b784e4985a9a08bfbb41bb",
+     "page": "https://toscaflooring.com/products/new-11",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/gold%20chest3-CtQnjUTp.webp",
+     "sha1": "a8c52ae8ca548e362d2a171191d2614abed8a43d",
+     "page": "https://toscaflooring.com/products/new-11",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ab87fa4c0cfc",
+   "seq": 28,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reckFugYRSGIYIc5j",
+   "sku": "ENG-TOSC-0051",
+   "product_name": "Tosca Aura Collection 7.5\" — Buttercup Shine (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/butier%20cup%20shine1-QSRXfrs2.webp",
+      "filename": "tosca-buttercup-shine-engineered-hardwood-7-5in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/butier%20cup%20shine4-DBtjU4Y9.webp",
+      "filename": "tosca-buttercup-shine-engineered-hardwood-7-5in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/butier%20cup%20shine2-DwkdPTWH.webp",
+      "filename": "tosca-buttercup-shine-engineered-hardwood-7-5in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/butier%20cup%20shine3-BHZd2pjA.webp",
+      "filename": "tosca-buttercup-shine-engineered-hardwood-7-5in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-41"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-41",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/butier%20cup%20shine1-QSRXfrs2.webp",
+     "sha1": "e180f28f3e8526fabadde10b2b72f63b9f22401c",
+     "page": "https://toscaflooring.com/products/new-41",
+     "width": 5587,
+     "height": 3726
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/butier%20cup%20shine4-DBtjU4Y9.webp",
+     "sha1": "2cc8fd063d823923f6104a21878c4f4f9b4ad43b",
+     "page": "https://toscaflooring.com/products/new-41",
+     "width": 1430,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/butier%20cup%20shine2-DwkdPTWH.webp",
+     "sha1": "f5170a6b6204f998337ec1681e1c852dde3f29e4",
+     "page": "https://toscaflooring.com/products/new-41",
+     "width": 4241,
+     "height": 6359
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/butier%20cup%20shine3-BHZd2pjA.webp",
+     "sha1": "31bddc1daea3b84024841d345fe76a7c5575a576",
+     "page": "https://toscaflooring.com/products/new-41",
+     "width": 1800,
+     "height": 2699
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-46e48adf0db9",
+   "seq": 29,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recZrllStVeyk3dvV",
+   "sku": "ENG-TOSC-0052",
+   "product_name": "Tosca Aura Collection 7.5\" — Frosted Ivory (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/froest%20ivory1-Bw3GzHQ7.webp",
+      "filename": "tosca-frosted-ivory-engineered-hardwood-7-5in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/froest%20ivory4-B2EB05Fu.webp",
+      "filename": "tosca-frosted-ivory-engineered-hardwood-7-5in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/froest%20ivory2-qqyMn9bE.webp",
+      "filename": "tosca-frosted-ivory-engineered-hardwood-7-5in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/froest%20ivory3-CP_b9Qte.webp",
+      "filename": "tosca-frosted-ivory-engineered-hardwood-7-5in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-43"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-43",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/froest%20ivory1-Bw3GzHQ7.webp",
+     "sha1": "4b59fe9d8b0abb241184adc930416beebdfe01c0",
+     "page": "https://toscaflooring.com/products/new-43",
+     "width": 5234,
+     "height": 3491
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/froest%20ivory4-B2EB05Fu.webp",
+     "sha1": "7c2ae3fd1584d264769a619cb6689197c21c95f8",
+     "page": "https://toscaflooring.com/products/new-43",
+     "width": 1642,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/froest%20ivory2-qqyMn9bE.webp",
+     "sha1": "64cac3d0c6d46a4afd31a34397577bd19963a848",
+     "page": "https://toscaflooring.com/products/new-43",
+     "width": 4113,
+     "height": 6166
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/froest%20ivory3-CP_b9Qte.webp",
+     "sha1": "e1a77ca1aa52145d93ef3055fc2aa26e5fa50ef8",
+     "page": "https://toscaflooring.com/products/new-43",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a66db8e256e7",
+   "seq": 30,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recq0vh7VEUgqKmWE",
+   "sku": "ENG-TOSC-0053",
+   "product_name": "Tosca Aura Collection 7.5\" — Misty Slate (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/misty%20slate1-CI2sWxQs.webp",
+      "filename": "tosca-misty-slate-engineered-hardwood-7-5in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/misty%20slate4-BDEqZWsU.webp",
+      "filename": "tosca-misty-slate-engineered-hardwood-7-5in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/misty%20slate2-CYnsTjH_.webp",
+      "filename": "tosca-misty-slate-engineered-hardwood-7-5in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/misty%20slate3-CDUq5hCY.webp",
+      "filename": "tosca-misty-slate-engineered-hardwood-7-5in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-42"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-42",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/misty%20slate1-CI2sWxQs.webp",
+     "sha1": "65140184058e3f6716d251355e2d7ca762af63d2",
+     "page": "https://toscaflooring.com/products/new-42",
+     "width": 5073,
+     "height": 3384
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/misty%20slate4-BDEqZWsU.webp",
+     "sha1": "89e87a616122a3346df23495acb3677ddcd2f72f",
+     "page": "https://toscaflooring.com/products/new-42",
+     "width": 1642,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/misty%20slate2-CYnsTjH_.webp",
+     "sha1": "d80ef9f95c0f47cc0c64d0b71bf0c67dd9909307",
+     "page": "https://toscaflooring.com/products/new-42",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/misty%20slate3-CDUq5hCY.webp",
+     "sha1": "169df12b9724d103519103a064ea72dd50dbc5ec",
+     "page": "https://toscaflooring.com/products/new-42",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-49710b5eb011",
+   "seq": 31,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recUqBqzgkS4o3udn",
+   "sku": "ENG-TOSC-0054",
+   "product_name": "Tosca Aura Collection 7.5\" — Pearlescent Dawn (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/pearles%20cent%20dawn1-DTbTTUD1.webp",
+      "filename": "tosca-pearlescent-dawn-engineered-hardwood-7-5in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/pearles%20cent%20dawn4-Ca2rRiJz.webp",
+      "filename": "tosca-pearlescent-dawn-engineered-hardwood-7-5in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/pearles%20cent%20dawn2-Qx8o2Opf.webp",
+      "filename": "tosca-pearlescent-dawn-engineered-hardwood-7-5in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/pearles%20cent%20dawn3-Dqhl7zKK.webp",
+      "filename": "tosca-pearlescent-dawn-engineered-hardwood-7-5in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-44"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-44",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/pearles%20cent%20dawn1-DTbTTUD1.webp",
+     "sha1": "593bbf9b62d3339179a01acec480df3bad3e9062",
+     "page": "https://toscaflooring.com/products/new-44",
+     "width": 5073,
+     "height": 3384
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/pearles%20cent%20dawn4-Ca2rRiJz.webp",
+     "sha1": "164ba1b528275e427ff589ddc2e6ab8377e8f250",
+     "page": "https://toscaflooring.com/products/new-44",
+     "width": 1812,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/pearles%20cent%20dawn2-Qx8o2Opf.webp",
+     "sha1": "0ec418d2060ecba3fd639e2dd7ebb3c312797a52",
+     "page": "https://toscaflooring.com/products/new-44",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/pearles%20cent%20dawn3-Dqhl7zKK.webp",
+     "sha1": "0d52093c8ae8ce668a214da261d9962fcec0c566",
+     "page": "https://toscaflooring.com/products/new-44",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-e6835278282d",
+   "seq": 32,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recfpDlzfjunUu2Rr",
+   "sku": "ENG-TOSC-0058",
+   "product_name": "Tosca Prime Oak Collection 6\" — Butterscotch (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/butter%20scotch1-CWV-o-7X.webp",
+      "filename": "tosca-butterscotch-engineered-hardwood-6in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/butter%20scotch4-fAoZ3IO2.webp",
+      "filename": "tosca-butterscotch-engineered-hardwood-6in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/butter%20scotch2-BazgkrfD.webp",
+      "filename": "tosca-butterscotch-engineered-hardwood-6in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/butter%20scotch3-DgydWO0Q.webp",
+      "filename": "tosca-butterscotch-engineered-hardwood-6in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-13"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-13",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/butter%20scotch1-CWV-o-7X.webp",
+     "sha1": "8868c89c8b4e9bfbc983e3a95372b47d932cdc69",
+     "page": "https://toscaflooring.com/products/new-13",
+     "width": 4076,
+     "height": 2719
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/butter%20scotch4-fAoZ3IO2.webp",
+     "sha1": "221ac6474b90676adcd509664f97e72ddba9a723",
+     "page": "https://toscaflooring.com/products/new-13",
+     "width": 1200,
+     "height": 1600
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/butter%20scotch2-BazgkrfD.webp",
+     "sha1": "725c4365740ef1ae12602d7c95bd8c63cf4a7658",
+     "page": "https://toscaflooring.com/products/new-13",
+     "width": 1800,
+     "height": 2699
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/butter%20scotch3-DgydWO0Q.webp",
+     "sha1": "563ec0140d793babc6e71f5820368deca00dab8e",
+     "page": "https://toscaflooring.com/products/new-13",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-852c58502be0",
+   "seq": 33,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec4JKxVsKWFXgqwW",
+   "sku": "ENG-TOSC-0060",
+   "product_name": "Tosca Prime Oak Collection 6\" — Crown Saddle (AB)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/crown%20saddle%20hs1-BunRcvPh.webp",
+      "filename": "tosca-crown-saddle-engineered-hardwood-6in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/crown%20saddle%20hs4-CQiQeHGH.webp",
+      "filename": "tosca-crown-saddle-engineered-hardwood-6in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/crown%20saddle%20hs2-BobzbkgR.webp",
+      "filename": "tosca-crown-saddle-engineered-hardwood-6in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/crown%20saddle%20hs3-DatEc108.webp",
+      "filename": "tosca-crown-saddle-engineered-hardwood-6in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-12"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-12",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/crown%20saddle%20hs1-BunRcvPh.webp",
+     "sha1": "f92708ad022d6f3d90aa4be37af621c1f9086ccd",
+     "page": "https://toscaflooring.com/products/new-12",
+     "width": 1600,
+     "height": 1067
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/crown%20saddle%20hs4-CQiQeHGH.webp",
+     "sha1": "6d76fe9bd38f87704150923764c9c9ec103eeb76",
+     "page": "https://toscaflooring.com/products/new-12",
+     "width": 1364,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/crown%20saddle%20hs2-BobzbkgR.webp",
+     "sha1": "62ee90cbd45fc5d7ba156698ae120bd3a138324f",
+     "page": "https://toscaflooring.com/products/new-12",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/crown%20saddle%20hs3-DatEc108.webp",
+     "sha1": "2ba236da6a6a82e879a0a3643dadd3aa13aac562",
+     "page": "https://toscaflooring.com/products/new-12",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-849829fff9b5",
+   "seq": 34,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reciQSB6pdl9AZfQw",
+   "sku": "ENG-TOSC-0061",
+   "product_name": "Tosca Renaissance Collection 6\" — Dawn (ABCD)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/dhain1-Dw1rZNlX.webp",
+      "filename": "tosca-dawn-engineered-hardwood-6in-character-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/dhain4-D2e9Nd5m.webp",
+      "filename": "tosca-dawn-engineered-hardwood-6in-character-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/dhain2-tnsSK9XH.webp",
+      "filename": "tosca-dawn-engineered-hardwood-6in-character-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/dhain3-CToU7hPa.webp",
+      "filename": "tosca-dawn-engineered-hardwood-6in-character-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-23"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-23",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/dhain1-Dw1rZNlX.webp",
+     "sha1": "81077b0cd98dd4038451a2c199900e0ae843dcdc",
+     "page": "https://toscaflooring.com/products/new-23",
+     "width": 4783,
+     "height": 3190
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/dhain4-D2e9Nd5m.webp",
+     "sha1": "cf13f569eab6fd09712097192ae69eaf303bc576",
+     "page": "https://toscaflooring.com/products/new-23",
+     "width": 1536,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/dhain2-tnsSK9XH.webp",
+     "sha1": "d9b75d6f0e3140cb5574a3841623b42330779c0a",
+     "page": "https://toscaflooring.com/products/new-23",
+     "width": 4992,
+     "height": 7485
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/dhain3-CToU7hPa.webp",
+     "sha1": "7f63f9e248a0315aa2b95f73770e5a0d855b25fe",
+     "page": "https://toscaflooring.com/products/new-23",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-97d22629f317",
+   "seq": 35,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recEEznUyvc5clEmI",
+   "sku": "ENG-TOSC-0062",
+   "product_name": "Tosca Renaissance Collection 6\" — Florence (ABCD)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/florence1-S8dPmIGa.webp",
+      "filename": "tosca-florence-engineered-hardwood-6in-character-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/florence4-C9Z2bWmB.webp",
+      "filename": "tosca-florence-engineered-hardwood-6in-character-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/florence2-CE2_GMKh.webp",
+      "filename": "tosca-florence-engineered-hardwood-6in-character-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/florence3-Bd94qvWq.webp",
+      "filename": "tosca-florence-engineered-hardwood-6in-character-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-29"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-29",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/florence1-S8dPmIGa.webp",
+     "sha1": "7a2145ac2cea89eac08e17ba796f177d0592db3b",
+     "page": "https://toscaflooring.com/products/new-29",
+     "width": 5089,
+     "height": 3394
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/florence4-C9Z2bWmB.webp",
+     "sha1": "40b9e59a1d565c4f1b65f93de1630d5d91e6eef4",
+     "page": "https://toscaflooring.com/products/new-29",
+     "width": 2048,
+     "height": 1834
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/florence2-CE2_GMKh.webp",
+     "sha1": "7884a4851b4ce894be097f1739b6ba0fc938032f",
+     "page": "https://toscaflooring.com/products/new-29",
+     "width": 4199,
+     "height": 6295
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/florence3-Bd94qvWq.webp",
+     "sha1": "f11cab56f788fae3804894ac10a65ede76131ef8",
+     "page": "https://toscaflooring.com/products/new-29",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-3069fd6dcba8",
+   "seq": 36,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reckYxfbVP2W9k6lm",
+   "sku": "ENG-TOSC-0063",
+   "product_name": "Tosca Renaissance Collection 6\" — Moonstone (ABCD)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/moon%20stone1-Bxvqrsir.webp",
+      "filename": "tosca-moonstone-engineered-hardwood-6in-character-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/moon%20stone4-N48q5BOv.webp",
+      "filename": "tosca-moonstone-engineered-hardwood-6in-character-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/moon%20stone2-DopD5dhQ.webp",
+      "filename": "tosca-moonstone-engineered-hardwood-6in-character-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/moon%20stone3-D7HL2gSV.webp",
+      "filename": "tosca-moonstone-engineered-hardwood-6in-character-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-31"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-31",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/moon%20stone1-Bxvqrsir.webp",
+     "sha1": "2d19847dc07445dea794f62b7663f8025a7d8516",
+     "page": "https://toscaflooring.com/products/new-31",
+     "width": 5491,
+     "height": 3662
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/moon%20stone4-N48q5BOv.webp",
+     "sha1": "d3460ce81984d8c5154b32dcaa62c3c9f964e7a0",
+     "page": "https://toscaflooring.com/products/new-31",
+     "width": 1430,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/moon%20stone2-DopD5dhQ.webp",
+     "sha1": "616c1f80959ca9083940056acab23ee5656797a5",
+     "page": "https://toscaflooring.com/products/new-31",
+     "width": 4413,
+     "height": 6616
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/moon%20stone3-D7HL2gSV.webp",
+     "sha1": "27f2031bc5339bd657e1d276f2e64a42f46de26f",
+     "page": "https://toscaflooring.com/products/new-31",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ff7c590e8236",
+   "seq": 37,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recfCh1fM4WSbVd5Q",
+   "sku": "ENG-TOSC-0064",
+   "product_name": "Tosca Renaissance Collection 6\" — Roma (ABCD)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/roma1-N7_0tCkc.webp",
+      "filename": "tosca-roma-engineered-hardwood-6in-character-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/roma4-B6GsVKpN.webp",
+      "filename": "tosca-roma-engineered-hardwood-6in-character-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/roma2-C5H4IdHp.webp",
+      "filename": "tosca-roma-engineered-hardwood-6in-character-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/roma3-BjkDhsDF.webp",
+      "filename": "tosca-roma-engineered-hardwood-6in-character-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-33"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-33",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/roma1-N7_0tCkc.webp",
+     "sha1": "38cdbaae244d864c7b4d52bb439470cba64334db",
+     "page": "https://toscaflooring.com/products/new-33",
+     "width": 1600,
+     "height": 1067
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/roma4-B6GsVKpN.webp",
+     "sha1": "2c0a7a535a4f36ef310410efd9479312414fb993",
+     "page": "https://toscaflooring.com/products/new-33",
+     "width": 1834,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/roma2-C5H4IdHp.webp",
+     "sha1": "0a2817b3c39ded507d72b265fab93353ae6406fc",
+     "page": "https://toscaflooring.com/products/new-33",
+     "width": 4145,
+     "height": 6214
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/roma3-BjkDhsDF.webp",
+     "sha1": "5f287887ba4d184adae780ebe56abd92972b13fb",
+     "page": "https://toscaflooring.com/products/new-33",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-3140ee2e07e7",
+   "seq": 38,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recuNO0AuwDjF7LFi",
+   "sku": "ENG-TOSC-0065",
+   "product_name": "Tosca Renaissance Collection 6.5\" — Dawn (ABCD)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/dhain1-Dw1rZNlX.webp",
+      "filename": "tosca-dawn-engineered-hardwood-6-5in-character-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/dhain4-D2e9Nd5m.webp",
+      "filename": "tosca-dawn-engineered-hardwood-6-5in-character-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/dhain2-tnsSK9XH.webp",
+      "filename": "tosca-dawn-engineered-hardwood-6-5in-character-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/dhain3-CToU7hPa.webp",
+      "filename": "tosca-dawn-engineered-hardwood-6-5in-character-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-23"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-23",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/dhain1-Dw1rZNlX.webp",
+     "sha1": "81077b0cd98dd4038451a2c199900e0ae843dcdc",
+     "page": "https://toscaflooring.com/products/new-23",
+     "width": 4783,
+     "height": 3190
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/dhain4-D2e9Nd5m.webp",
+     "sha1": "cf13f569eab6fd09712097192ae69eaf303bc576",
+     "page": "https://toscaflooring.com/products/new-23",
+     "width": 1536,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/dhain2-tnsSK9XH.webp",
+     "sha1": "d9b75d6f0e3140cb5574a3841623b42330779c0a",
+     "page": "https://toscaflooring.com/products/new-23",
+     "width": 4992,
+     "height": 7485
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/dhain3-CToU7hPa.webp",
+     "sha1": "7f63f9e248a0315aa2b95f73770e5a0d855b25fe",
+     "page": "https://toscaflooring.com/products/new-23",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-0d0157b37185",
+   "seq": 39,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "receFlGYmdUsjesCJ",
+   "sku": "ENG-TOSC-0067",
+   "product_name": "Tosca Renaissance Collection 6.5\" — Roma (ABCD)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/roma1-N7_0tCkc.webp",
+      "filename": "tosca-roma-engineered-hardwood-6-5in-character-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/roma4-B6GsVKpN.webp",
+      "filename": "tosca-roma-engineered-hardwood-6-5in-character-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/roma2-C5H4IdHp.webp",
+      "filename": "tosca-roma-engineered-hardwood-6-5in-character-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/roma3-BjkDhsDF.webp",
+      "filename": "tosca-roma-engineered-hardwood-6-5in-character-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-33"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-33",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/roma1-N7_0tCkc.webp",
+     "sha1": "38cdbaae244d864c7b4d52bb439470cba64334db",
+     "page": "https://toscaflooring.com/products/new-33",
+     "width": 1600,
+     "height": 1067
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/roma4-B6GsVKpN.webp",
+     "sha1": "2c0a7a535a4f36ef310410efd9479312414fb993",
+     "page": "https://toscaflooring.com/products/new-33",
+     "width": 1834,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/roma2-C5H4IdHp.webp",
+     "sha1": "0a2817b3c39ded507d72b265fab93353ae6406fc",
+     "page": "https://toscaflooring.com/products/new-33",
+     "width": 4145,
+     "height": 6214
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/roma3-BjkDhsDF.webp",
+     "sha1": "5f287887ba4d184adae780ebe56abd92972b13fb",
+     "page": "https://toscaflooring.com/products/new-33",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-77b135b3cdc2",
+   "seq": 40,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recqi8ZSTRLOjhfnb",
+   "sku": "ENG-TOSC-0069",
+   "product_name": "Tosca Renaissance Collection 7.5\" — Dawn (ABCD)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/dhain1-Dw1rZNlX.webp",
+      "filename": "tosca-dawn-engineered-hardwood-7-5in-character-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/dhain4-D2e9Nd5m.webp",
+      "filename": "tosca-dawn-engineered-hardwood-7-5in-character-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/dhain2-tnsSK9XH.webp",
+      "filename": "tosca-dawn-engineered-hardwood-7-5in-character-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/dhain3-CToU7hPa.webp",
+      "filename": "tosca-dawn-engineered-hardwood-7-5in-character-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-23"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-23",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/dhain1-Dw1rZNlX.webp",
+     "sha1": "81077b0cd98dd4038451a2c199900e0ae843dcdc",
+     "page": "https://toscaflooring.com/products/new-23",
+     "width": 4783,
+     "height": 3190
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/dhain4-D2e9Nd5m.webp",
+     "sha1": "cf13f569eab6fd09712097192ae69eaf303bc576",
+     "page": "https://toscaflooring.com/products/new-23",
+     "width": 1536,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/dhain2-tnsSK9XH.webp",
+     "sha1": "d9b75d6f0e3140cb5574a3841623b42330779c0a",
+     "page": "https://toscaflooring.com/products/new-23",
+     "width": 4992,
+     "height": 7485
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/dhain3-CToU7hPa.webp",
+     "sha1": "7f63f9e248a0315aa2b95f73770e5a0d855b25fe",
+     "page": "https://toscaflooring.com/products/new-23",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-41d6e3554f30",
+   "seq": 41,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recjbLCaOCbPlVrYK",
+   "sku": "ENG-TOSC-0071",
+   "product_name": "Tosca Renaissance Collection 7.5\" — Roma (ABCD)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/roma1-N7_0tCkc.webp",
+      "filename": "tosca-roma-engineered-hardwood-7-5in-character-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/roma4-B6GsVKpN.webp",
+      "filename": "tosca-roma-engineered-hardwood-7-5in-character-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/roma2-C5H4IdHp.webp",
+      "filename": "tosca-roma-engineered-hardwood-7-5in-character-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/roma3-BjkDhsDF.webp",
+      "filename": "tosca-roma-engineered-hardwood-7-5in-character-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-33"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-33",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/roma1-N7_0tCkc.webp",
+     "sha1": "38cdbaae244d864c7b4d52bb439470cba64334db",
+     "page": "https://toscaflooring.com/products/new-33",
+     "width": 1600,
+     "height": 1067
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/roma4-B6GsVKpN.webp",
+     "sha1": "2c0a7a535a4f36ef310410efd9479312414fb993",
+     "page": "https://toscaflooring.com/products/new-33",
+     "width": 1834,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/roma2-C5H4IdHp.webp",
+     "sha1": "0a2817b3c39ded507d72b265fab93353ae6406fc",
+     "page": "https://toscaflooring.com/products/new-33",
+     "width": 4145,
+     "height": 6214
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/roma3-BjkDhsDF.webp",
+     "sha1": "5f287887ba4d184adae780ebe56abd92972b13fb",
+     "page": "https://toscaflooring.com/products/new-33",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ac6382fc8d63",
+   "seq": 42,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recCwiPhw9Uj5zSPx",
+   "sku": "HWD-TOSC-0001",
+   "product_name": "Tosca Red Oak 4.25\" — Antwerp (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/aninerp1-R8Co1V-t.webp",
+      "filename": "tosca-antwerp-solid-hardwood-4-25in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/aninerp4-Duhj4p21.webp",
+      "filename": "tosca-antwerp-solid-hardwood-4-25in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/aninerp3-BMF3o9s7.webp",
+      "filename": "tosca-antwerp-solid-hardwood-4-25in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/aninerp2-DiHuXYrx.webp",
+      "filename": "tosca-antwerp-solid-hardwood-4-25in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-45"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-45",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/aninerp1-R8Co1V-t.webp",
+     "sha1": "1db6dd8ee9bdae955f7dd1b8d75b16345b014ed1",
+     "page": "https://toscaflooring.com/products/new-45",
+     "width": 5314,
+     "height": 3544
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/aninerp4-Duhj4p21.webp",
+     "sha1": "a680ccdd749362bc922e82797fa3ee6dfd4ed993",
+     "page": "https://toscaflooring.com/products/new-45",
+     "width": 1494,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/aninerp3-BMF3o9s7.webp",
+     "sha1": "4f463062b34eeff01ff890026d17816ab852e356",
+     "page": "https://toscaflooring.com/products/new-45",
+     "width": 1800,
+     "height": 2699
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/aninerp2-DiHuXYrx.webp",
+     "sha1": "c475a0c5888de14105bb0ac9c9fc383eb97eb4c9",
+     "page": "https://toscaflooring.com/products/new-45",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-dfb83b5720a2",
+   "seq": 43,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec29StkXoykskhsp",
+   "sku": "HWD-TOSC-0004",
+   "product_name": "Tosca Red Oak 4.25\" — Butterscotch (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/butter%20scotch1-CWV-o-7X.webp",
+      "filename": "tosca-butterscotch-solid-hardwood-4-25in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/butter%20scotch4-fAoZ3IO2.webp",
+      "filename": "tosca-butterscotch-solid-hardwood-4-25in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/butter%20scotch2-BazgkrfD.webp",
+      "filename": "tosca-butterscotch-solid-hardwood-4-25in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/butter%20scotch3-DgydWO0Q.webp",
+      "filename": "tosca-butterscotch-solid-hardwood-4-25in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-13"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-13",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/butter%20scotch1-CWV-o-7X.webp",
+     "sha1": "8868c89c8b4e9bfbc983e3a95372b47d932cdc69",
+     "page": "https://toscaflooring.com/products/new-13",
+     "width": 4076,
+     "height": 2719
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/butter%20scotch4-fAoZ3IO2.webp",
+     "sha1": "221ac6474b90676adcd509664f97e72ddba9a723",
+     "page": "https://toscaflooring.com/products/new-13",
+     "width": 1200,
+     "height": 1600
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/butter%20scotch2-BazgkrfD.webp",
+     "sha1": "725c4365740ef1ae12602d7c95bd8c63cf4a7658",
+     "page": "https://toscaflooring.com/products/new-13",
+     "width": 1800,
+     "height": 2699
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/butter%20scotch3-DgydWO0Q.webp",
+     "sha1": "563ec0140d793babc6e71f5820368deca00dab8e",
+     "page": "https://toscaflooring.com/products/new-13",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5df0405a6c85",
+   "seq": 44,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recsSwiu5S6EkhLGV",
+   "sku": "HWD-TOSC-0006",
+   "product_name": "Tosca Red Oak 4.25\" — Crown Saddle (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/crown%20saddle%20hs1-BunRcvPh.webp",
+      "filename": "tosca-crown-saddle-solid-hardwood-4-25in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/crown%20saddle%20hs4-CQiQeHGH.webp",
+      "filename": "tosca-crown-saddle-solid-hardwood-4-25in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/crown%20saddle%20hs2-BobzbkgR.webp",
+      "filename": "tosca-crown-saddle-solid-hardwood-4-25in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/crown%20saddle%20hs3-DatEc108.webp",
+      "filename": "tosca-crown-saddle-solid-hardwood-4-25in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-12"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-12",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/crown%20saddle%20hs1-BunRcvPh.webp",
+     "sha1": "f92708ad022d6f3d90aa4be37af621c1f9086ccd",
+     "page": "https://toscaflooring.com/products/new-12",
+     "width": 1600,
+     "height": 1067
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/crown%20saddle%20hs4-CQiQeHGH.webp",
+     "sha1": "6d76fe9bd38f87704150923764c9c9ec103eeb76",
+     "page": "https://toscaflooring.com/products/new-12",
+     "width": 1364,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/crown%20saddle%20hs2-BobzbkgR.webp",
+     "sha1": "62ee90cbd45fc5d7ba156698ae120bd3a138324f",
+     "page": "https://toscaflooring.com/products/new-12",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/crown%20saddle%20hs3-DatEc108.webp",
+     "sha1": "2ba236da6a6a82e879a0a3643dadd3aa13aac562",
+     "page": "https://toscaflooring.com/products/new-12",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-997b4fcd067c",
+   "seq": 45,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec9V59w0vzhvBkks",
+   "sku": "HWD-TOSC-0009",
+   "product_name": "Tosca Red Oak 4.25\" — Cherry Walnut (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/cherry%20walnut1-Dtzk0VbA.webp",
+      "filename": "tosca-cherry-walnut-solid-hardwood-4-25in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/cherry%20walnut4-CPdMq9Jz.webp",
+      "filename": "tosca-cherry-walnut-solid-hardwood-4-25in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/cherry%20walnut2-DNSILtbl.webp",
+      "filename": "tosca-cherry-walnut-solid-hardwood-4-25in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/cherry%20walnut3-iUomKarT.webp",
+      "filename": "tosca-cherry-walnut-solid-hardwood-4-25in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-14"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-14",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/cherry%20walnut1-Dtzk0VbA.webp",
+     "sha1": "12f1dff35a06768d6e76cfd9e5a8ef51d11a5da0",
+     "page": "https://toscaflooring.com/products/new-14",
+     "width": 1600,
+     "height": 1067
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/cherry%20walnut4-CPdMq9Jz.webp",
+     "sha1": "7a4606367bb85975aa846cb41f16e1c968c54d4f",
+     "page": "https://toscaflooring.com/products/new-14",
+     "width": 1536,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/cherry%20walnut2-DNSILtbl.webp",
+     "sha1": "634c8a60f4d19a1b591714e15011d1bf68475ab1",
+     "page": "https://toscaflooring.com/products/new-14",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/cherry%20walnut3-iUomKarT.webp",
+     "sha1": "4e4f9a0ef725397d497ba4c81fd87d65fe221eda",
+     "page": "https://toscaflooring.com/products/new-14",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-461dd060b181",
+   "seq": 46,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recIT3ERZsZ7Noxmx",
+   "sku": "HWD-TOSC-0016",
+   "product_name": "Tosca Red Oak 4.25\" — Walnut (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://toscaflooring.com/assets/cherry%20walnut1-Dtzk0VbA.webp",
+      "filename": "tosca-walnut-solid-hardwood-4-25in-select-and-better-swatch.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://toscaflooring.com/assets/cherry%20walnut4-CPdMq9Jz.webp",
+      "filename": "tosca-walnut-solid-hardwood-4-25in-select-and-better-room-scene.webp"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://toscaflooring.com/assets/cherry%20walnut2-DNSILtbl.webp",
+      "filename": "tosca-walnut-solid-hardwood-4-25in-select-and-better-detail.webp"
+     },
+     {
+      "url": "https://toscaflooring.com/assets/cherry%20walnut3-iUomKarT.webp",
+      "filename": "tosca-walnut-solid-hardwood-4-25in-select-and-better-detail-2.webp"
+     }
+    ],
+    "Supplier product page": "https://toscaflooring.com/products/new-14"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://toscaflooring.com/products/new-14",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://toscaflooring.com/assets/cherry%20walnut1-Dtzk0VbA.webp",
+     "sha1": "12f1dff35a06768d6e76cfd9e5a8ef51d11a5da0",
+     "page": "https://toscaflooring.com/products/new-14",
+     "width": 1600,
+     "height": 1067
+    },
+    {
+     "target": "room",
+     "url": "https://toscaflooring.com/assets/cherry%20walnut4-CPdMq9Jz.webp",
+     "sha1": "7a4606367bb85975aa846cb41f16e1c968c54d4f",
+     "page": "https://toscaflooring.com/products/new-14",
+     "width": 1536,
+     "height": 2048
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/cherry%20walnut2-DNSILtbl.webp",
+     "sha1": "634c8a60f4d19a1b591714e15011d1bf68475ab1",
+     "page": "https://toscaflooring.com/products/new-14",
+     "width": 1600,
+     "height": 2399
+    },
+    {
+     "target": "detail",
+     "url": "https://toscaflooring.com/assets/cherry%20walnut3-iUomKarT.webp",
+     "sha1": "4e4f9a0ef725397d497ba4c81fd87d65fe221eda",
+     "page": "https://toscaflooring.com/products/new-14",
+     "width": 1600,
+     "height": 2399
+    }
+   ],
+   "flags": []
+  }
+ ],
+ "held": [
+  {
+   "sku": "ACC-TOSC-0001",
+   "record_id": "recl7KODZaOZR1iWC",
+   "product_name": "Tosca - Transition | T-Moulding | SPC | 8ft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-TOSC-0002",
+   "record_id": "recbIZ41wwYBD0bj6",
+   "product_name": "Tosca - Transition | Reducer | SPC | 8ft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-TOSC-0003",
+   "record_id": "recxAVp0ideX7700P",
+   "product_name": "Tosca - Transition | Nosing | SPC | 4\" x 8ft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-TOSC-0004",
+   "record_id": "recEFBIUq1bpwJY9m",
+   "product_name": "Tosca - Transition | T-Moulding | Laminate | 8ft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-TOSC-0005",
+   "record_id": "recSWNMeIIYTMcnrH",
+   "product_name": "Tosca - Transition | Reducer | Laminate | 8ft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0012",
+   "record_id": "rec6llb8UK29Zio1q",
+   "product_name": "Tosca Deluxe Collection Bespoke Series 6\" — Los Angeles (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Los Angeles'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0016",
+   "record_id": "recA4H78C8kW1gIz0",
+   "product_name": "Tosca Deluxe Collection Bespoke Series 6\" — Singapore (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Singapore'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0018",
+   "record_id": "rec1dtORDMlI9FE3G",
+   "product_name": "Tosca Deluxe Collection Bespoke Series 6\" — Paris (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Paris'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0020",
+   "record_id": "rec31rEbss8U0hcM0",
+   "product_name": "Tosca Deluxe Collection Bespoke Series 6\" — Las Vagas (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Las Vagas'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0021",
+   "record_id": "recOtwW352t2RiN8m",
+   "product_name": "Tosca Deluxe Collection Bespoke Series 6\" — Auckland (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Auckland'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0022",
+   "record_id": "recaODJ6Dp26Simzl",
+   "product_name": "Tosca Deluxe Collection Bespoke Series 6\" — Brisbane (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Brisbane'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0024",
+   "record_id": "rec2Dq4VzGJCU83XB",
+   "product_name": "Tosca Deluxe Collection Bespoke Series 6\" — Dubai (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Dubai'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0025",
+   "record_id": "recKAMTI4Mzu6WCOF",
+   "product_name": "Tosca Deluxe Collection Bespoke Series 6\" — Dublin (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Dublin'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0026",
+   "record_id": "recnBuseF3ei6tCMG",
+   "product_name": "Tosca Deluxe Collection Bespoke Series 6\" — Geneva (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Geneva'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0027",
+   "record_id": "recj0k0ymIKixpgr6",
+   "product_name": "Tosca Deluxe Collection Bespoke Series 6\" — Melbourne (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Melbourne'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0028",
+   "record_id": "recVjKfoD29MgfM5M",
+   "product_name": "Tosca Deluxe Collection Bespoke Series 6\" — Madrid (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Madrid'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0029",
+   "record_id": "recty46sUAYyQHX8A",
+   "product_name": "Tosca Deluxe Collection Bespoke Series 6\" — Prague (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Prague'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0036",
+   "record_id": "recGqOeWjspJovSKh",
+   "product_name": "Tosca Deluxe Collection Herringbone Series 6\" — Ivory (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Ivory'; vetoes {'collection': 1, 'pattern': 1}"
+  },
+  {
+   "sku": "ENG-TOSC-0037",
+   "record_id": "recpxuPBOnAOgEJH9",
+   "product_name": "Tosca Deluxe Collection Herringbone Series 6\" — Lite Latte (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Lite Latte'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-TOSC-0038",
+   "record_id": "recLuLv9EGtOecFVN",
+   "product_name": "Tosca Deluxe Collection Herringbone Series 6\" — Oak Charm (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Oak Charm'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-TOSC-0039",
+   "record_id": "receq21roZ1VQdMqD",
+   "product_name": "Tosca Prestige Collection 6.5\" — Caesars Palace (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Caesars Palace'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0040",
+   "record_id": "rectMxP5lF8qN8XnP",
+   "product_name": "Tosca Prestige Collection 6.5\" — Chantilly Lace (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Chantilly Lace'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0041",
+   "record_id": "recKmRF36LiZwSd22",
+   "product_name": "Tosca Prestige Collection 6.5\" — Cream Grey (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Cream Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0042",
+   "record_id": "recQOpMD2eGTwpnJM",
+   "product_name": "Tosca Prestige Collection 6.5\" — London Fog (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'London Fog'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0043",
+   "record_id": "rec1J6IJ7AVkZGUsO",
+   "product_name": "Tosca Prestige Collection 6.5\" — Magnolia (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Magnolia'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0044",
+   "record_id": "recQsh6GYUM8yGj6h",
+   "product_name": "Tosca Prestige Collection 6.5\" — Oyster Grey (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Oyster Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0045",
+   "record_id": "recoRHQznf4RZTxvF",
+   "product_name": "Tosca Glory Collection 7.5\" — Lily (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Lily'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0046",
+   "record_id": "rec2siQ4iCizRtuHw",
+   "product_name": "Tosca Glory Collection 7.5\" — Windsor Castle (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Windsor Castle'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0055",
+   "record_id": "rec0kuOLgeM8mhE2o",
+   "product_name": "Tosca Elegant Herringbone Collection 6\" — Magnolia (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Magnolia'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0056",
+   "record_id": "recUz6yNR8CQsn1wj",
+   "product_name": "Tosca Elegant Herringbone Collection 6\" — London Fog (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'London Fog'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0057",
+   "record_id": "recwXXk53eDSPwS2Y",
+   "product_name": "Tosca Elegant Herringbone Collection 6\" — Windsor Castle (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Windsor Castle'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0059",
+   "record_id": "recJXxGd8M6s6w0zH",
+   "product_name": "Tosca Prime Oak Collection 6\" — Golden (AB)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Golden'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0066",
+   "record_id": "recEpbwZ2Z6XaJ7ZI",
+   "product_name": "Tosca Renaissance Collection 6.5\" — Genoa (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Genoa'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0068",
+   "record_id": "rec8LgpQrEy9np9Jx",
+   "product_name": "Tosca Renaissance Collection 7\" — Marsala (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Marsala'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0070",
+   "record_id": "recdfzH4KWtQtfYzx",
+   "product_name": "Tosca Renaissance Collection 7.5\" — Genoa (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Genoa'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0072",
+   "record_id": "recoMp16qPO0LqCFo",
+   "product_name": "Tosca Legend Collection 6.5\" — Aurora (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Aurora'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0073",
+   "record_id": "recSq99a6yGGfAsvj",
+   "product_name": "Tosca Legend Collection 6.5\" — Driftwood (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Driftwood'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0074",
+   "record_id": "rec1n03rgS9R3Yyzs",
+   "product_name": "Tosca Legend Collection 6.5\" — Long Beach (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Long Beach'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0075",
+   "record_id": "rec4XHYWPQEQpc1Oh",
+   "product_name": "Tosca Legend Collection 6.5\" — Raw Oak (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Raw Oak'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0076",
+   "record_id": "recBYXlFm6MgQvxSD",
+   "product_name": "Tosca Legend Collection 6.5\" — Shale Grey (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Shale Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0077",
+   "record_id": "recxP4ROPAce2o8dw",
+   "product_name": "Tosca Legend Collection 6.5\" — White Sands (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'White Sands'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0078",
+   "record_id": "recIuLqSLu62xPePp",
+   "product_name": "Tosca Composer Collection 6.5\" — Beethoven (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Beethoven'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0079",
+   "record_id": "recJ07rK7LeYVnBQQ",
+   "product_name": "Tosca Composer Collection 6.5\" — Mozart (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Mozart'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0080",
+   "record_id": "recJfSxdH4DIUsDop",
+   "product_name": "Tosca Composer Collection 6.5\" — Schumann (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Schumann'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0081",
+   "record_id": "recfBlImYRHdtlAhK",
+   "product_name": "Tosca Composer Collection 6.5\" — Strauss (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Strauss'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0082",
+   "record_id": "recvIuMD3ADqYTksP",
+   "product_name": "Tosca Master Collection 7.5\" — Invisible Oak (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Invisible Oak'; vetoes {'collection': 1}"
+  },
+  {
+   "sku": "ENG-TOSC-0083",
+   "record_id": "recmj23HL0SOS35uj",
+   "product_name": "Tosca Master Collection 7.5\" — Nordic Spring (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Nordic Spring'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0084",
+   "record_id": "rec6VZ95X7vIEs5d0",
+   "product_name": "Tosca Master Collection 7.5\" — Whitehaven (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Whitehaven'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0085",
+   "record_id": "recvQhw1MxJUkb4hA",
+   "product_name": "Tosca Diamond Collection 7.5\" — Cullinan (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Cullinan'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0086",
+   "record_id": "recvfx4aJU8Tey3q0",
+   "product_name": "Tosca Diamond Collection 7.5\" — Eureka (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Eureka'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0087",
+   "record_id": "recB8NB5U8dIQaPJp",
+   "product_name": "Tosca Diamond Collection 7.5\" — Kohinur (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Kohinur'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0088",
+   "record_id": "recNHoYeWV6mDRA2p",
+   "product_name": "Tosca Diamond Collection 7.5\" — Spice (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Spice'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0089",
+   "record_id": "recWeYY8mO0MmRzRY",
+   "product_name": "Tosca Diamond Collection 7.5\" — Belfort Oak (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Belfort Oak'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0090",
+   "record_id": "reciKWhvstvTlBQUx",
+   "product_name": "Tosca Diamond Collection 7.5\" — Chanson (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Chanson'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0091",
+   "record_id": "recJYuMy5po7sFMBv",
+   "product_name": "Tosca Royal Oak Collection 6\" — Alps Warm Grey (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Alps Warm Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0092",
+   "record_id": "rectGFv0MYw9jzCqq",
+   "product_name": "Tosca Royal Oak Collection 6\" — Chestnut (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Chestnut'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0093",
+   "record_id": "recQLITyLScUEumKc",
+   "product_name": "Tosca Royal Oak Collection 6\" — Highland Grey (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Highland Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0094",
+   "record_id": "recnhEWFaZIzDK3JC",
+   "product_name": "Tosca Royal Oak Collection 6\" — Afterglow (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Afterglow'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0095",
+   "record_id": "recDTO2znWPZLJyWC",
+   "product_name": "Tosca Royal Oak Collection 6\" — Dove Grey (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Dove Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0096",
+   "record_id": "recaxWax49WdVa4yl",
+   "product_name": "Tosca Royal Oak Collection 6\" — Light Smoked Grey (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Light Smoked Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0097",
+   "record_id": "recOZg1VRgBT4tWhR",
+   "product_name": "Tosca Royal Oak Collection 6\" — Marble Grey (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Marble Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0098",
+   "record_id": "reco3mFelMKC69upR",
+   "product_name": "Tosca Royal Oak Collection 6\" — Pinot Noir (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Pinot Noir'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0099",
+   "record_id": "recfo3xr5Rx92Bn19",
+   "product_name": "Tosca Monarch Collection 7.5\" — Alps Warm Grey (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Alps Warm Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0100",
+   "record_id": "recdV5dQ0dgA5ElvQ",
+   "product_name": "Tosca Monarch Collection 7.5\" — Arctic Grey (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Arctic Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0101",
+   "record_id": "recUYsom4ne19rjkC",
+   "product_name": "Tosca Monarch Collection 7.5\" — Greyish White (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Greyish White'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0102",
+   "record_id": "recsAsAQWR3zD2puW",
+   "product_name": "Tosca Monarch Collection 7.5\" — Highland Grey (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Highland Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0103",
+   "record_id": "recvMOHVdbjoOUjyE",
+   "product_name": "Tosca Monarch Collection 7.5\" — Marble Grey (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Marble Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0104",
+   "record_id": "recBsArc0YxzqZOJe",
+   "product_name": "Tosca Monarch Collection 7.5\" — Storm Grey (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Storm Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0105",
+   "record_id": "recf61KqzIl2SFbsQ",
+   "product_name": "Tosca Monarch Collection 7.5\" — Volcano Ash (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Volcano Ash'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0106",
+   "record_id": "rec6D1ilK3ibhQsKa",
+   "product_name": "Tosca Monarch Collection 7.5\" — Cement Grey (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Cement Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0107",
+   "record_id": "recOskjHtiA3wh3Nt",
+   "product_name": "Tosca Monarch Collection 7.5\" — Grey Goose (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Grey Goose'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0108",
+   "record_id": "recgr71TAGTZfwQDR",
+   "product_name": "Tosca Monarch Collection 7.5\" — Prague Square (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Prague Square'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0109",
+   "record_id": "rec2LLLy2t8286k7k",
+   "product_name": "Tosca Noble Collection 6.5\" — Cloudy Grey (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Cloudy Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0110",
+   "record_id": "recaeX7HKWFaIQoYx",
+   "product_name": "Tosca Noble Collection 6.5\" — Earth Grey (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Earth Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0111",
+   "record_id": "recbtlA892mivC77Z",
+   "product_name": "Tosca Noble Collection 6.5\" — Lunar Grey (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Lunar Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0112",
+   "record_id": "recvjqCpxnNvYH7lH",
+   "product_name": "Tosca Noble Collection 6.5\" — Moonlight Shadow (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Moonlight Shadow'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0113",
+   "record_id": "recVicG1zqBUXiZGA",
+   "product_name": "Tosca Noble Collection 6.5\" — Raw Steel Grey (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Raw Steel Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0114",
+   "record_id": "recxNkbWLeUKEIxkY",
+   "product_name": "Tosca Noble Collection 6.5\" — Rocky Mountain (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Rocky Mountain'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0115",
+   "record_id": "recfzw8hW91JnToaX",
+   "product_name": "Tosca Noble Collection 6.5\" — Alps Warm Grey (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Alps Warm Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0116",
+   "record_id": "rectJxEQnlODBuoVz",
+   "product_name": "Tosca Noble Collection 6.5\" — Marble Grey (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Marble Grey'; vetoes {}"
+  },
+  {
+   "sku": "ENG-TOSC-0117",
+   "record_id": "recgQvqvBsMAla3Zc",
+   "product_name": "Tosca Noble Collection 6.5\" — Storm Grey (ABCD)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Storm Grey'; vetoes {}"
+  },
+  {
+   "sku": "HWD-TOSC-0002",
+   "record_id": "recbl39eExAb8OJcv",
+   "product_name": "Tosca Red Oak 4.25\" — Natural (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Natural'; vetoes {}"
+  },
+  {
+   "sku": "HWD-TOSC-0003",
+   "record_id": "recGDS67Uy0IGBU8Y",
+   "product_name": "Tosca Red Oak 4.25\" — Golden (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Golden'; vetoes {}"
+  },
+  {
+   "sku": "HWD-TOSC-0005",
+   "record_id": "recjnS83F6ndE2d7S",
+   "product_name": "Tosca Red Oak 4.25\" — Sienna (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Sienna'; vetoes {}"
+  },
+  {
+   "sku": "HWD-TOSC-0007",
+   "record_id": "rec0bttMFFbDBSOFv",
+   "product_name": "Tosca Red Oak 4.25\" — Gunstock (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Gunstock'; vetoes {}"
+  },
+  {
+   "sku": "HWD-TOSC-0008",
+   "record_id": "recFD8miSjHvy2p7w",
+   "product_name": "Tosca Red Oak 4.25\" — Bari (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Bari'; vetoes {}"
+  },
+  {
+   "sku": "HWD-TOSC-0010",
+   "record_id": "recjYYDPsyYqqslYx",
+   "product_name": "Tosca Red Oak 4.25\" — Praline (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Praline'; vetoes {}"
+  },
+  {
+   "sku": "HWD-TOSC-0011",
+   "record_id": "recX4IxffAc9AUdWw",
+   "product_name": "Tosca Red Oak 4.25\" — Avelino (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Avelino'; vetoes {}"
+  },
+  {
+   "sku": "HWD-TOSC-0012",
+   "record_id": "rechBcpA8wnFUCCWI",
+   "product_name": "Tosca Red Oak 4.25\" — Coffee (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Coffee'; vetoes {}"
+  },
+  {
+   "sku": "HWD-TOSC-0013",
+   "record_id": "recPuj57tVAQvEkoq",
+   "product_name": "Tosca Red Oak 4.25\" — English Olive (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'English Olive'; vetoes {}"
+  },
+  {
+   "sku": "HWD-TOSC-0014",
+   "record_id": "rec3ed7pL4rM85Td7",
+   "product_name": "Tosca Red Oak 4.25\" — Rossano (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Rossano'; vetoes {}"
+  },
+  {
+   "sku": "HWD-TOSC-0015",
+   "record_id": "rectL7xUCCQQrF74M",
+   "product_name": "Tosca Red Oak 4.25\" — Ebony (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Ebony'; vetoes {}"
+  },
+  {
+   "sku": "LAM-TOSC-0001",
+   "record_id": "recht7FcbZCUM1jyY",
+   "product_name": "Tosca 12.3mm Laminate 8\" — 9901",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-TOSC-0002",
+   "record_id": "recZaH2mP8LivSxg4",
+   "product_name": "Tosca 12.3mm Laminate 8\" — 9902",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-TOSC-0003",
+   "record_id": "rectqwYXyFSwoewPn",
+   "product_name": "Tosca 12.3mm Laminate 8\" — 9903",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-TOSC-0004",
+   "record_id": "recbuaj8iD0SgZv02",
+   "product_name": "Tosca 12.3mm Laminate 8\" — 9904",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-TOSC-0005",
+   "record_id": "recbP1JioN9DXwR9E",
+   "product_name": "Tosca 12.3mm Laminate 8\" — 9905",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-TOSC-0006",
+   "record_id": "recwXXOwp0ekYHyKF",
+   "product_name": "Tosca 12.3mm Laminate 8\" — 9906",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-TOSC-0007",
+   "record_id": "recIT1fwicizs2yqc",
+   "product_name": "Tosca 12.3mm Laminate 8\" — 9907",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-TOSC-0008",
+   "record_id": "rechdXsDUz9KQ98S3",
+   "product_name": "Tosca 12.3mm Laminate 8\" — 9908",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-TOSC-0009",
+   "record_id": "recOiAohI3iPSLy45",
+   "product_name": "Tosca 12.3mm Laminate 8\" — 9909",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-TOSC-0010",
+   "record_id": "recWQ9qTWILUr5EVM",
+   "product_name": "Tosca 12.3mm Laminate 8\" — 9910",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-TOSC-0011",
+   "record_id": "rec1WWwvD4V3yEYy0",
+   "product_name": "Tosca 12.3mm Laminate 8\" — 9912",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-TOSC-0012",
+   "record_id": "recjkVojQoJlyfeDL",
+   "product_name": "Tosca 12.3mm Laminate 8\" — 9913",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-TOSC-0013",
+   "record_id": "recXWyinYplWeuloj",
+   "product_name": "Tosca 12.3mm Laminate 7.68\" — 17002",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-TOSC-0014",
+   "record_id": "recDQBMv8uGm5oBVR",
+   "product_name": "Tosca 12.3mm Laminate 7.68\" — 17009",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-TOSC-0015",
+   "record_id": "recnf1MPp8HUHFayJ",
+   "product_name": "Tosca 12.3mm Laminate 7.68\" — 17010",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0001",
+   "record_id": "reczCTYnfzHWJUVXQ",
+   "product_name": "Tosca 5.5mm SPC 6\" — 3301",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0002",
+   "record_id": "recLczfcv7P4gUhzA",
+   "product_name": "Tosca 5.5mm SPC 6\" — 3302",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0003",
+   "record_id": "recCQh2A9Ng9GUor4",
+   "product_name": "Tosca 5.5mm SPC 6\" — 3303",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0004",
+   "record_id": "recsp2Fvref4zJ3XE",
+   "product_name": "Tosca 5.5mm SPC 6\" — 3304",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0005",
+   "record_id": "reckIa8dmBkW00blu",
+   "product_name": "Tosca 5.5mm SPC 6\" — 3305",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0006",
+   "record_id": "recdpuAtkqkw2nZUd",
+   "product_name": "Tosca 5.5mm SPC 6\" — 3306",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0007",
+   "record_id": "recpj9Y13ab5YnuFF",
+   "product_name": "Tosca 5.5mm SPC 6\" — 3307",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0008",
+   "record_id": "recH8FqdXb7IzLDtx",
+   "product_name": "Tosca 5.5mm SPC 6\" — 3308",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0009",
+   "record_id": "recUXp4cuQQP1QVNc",
+   "product_name": "Tosca 5.5mm SPC 6\" — 3309",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0010",
+   "record_id": "recOqzLWBvqNmgILW",
+   "product_name": "Tosca 5.5mm SPC 6\" — 3310",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0011",
+   "record_id": "rec1IR8P6Lu0kYVMy",
+   "product_name": "Tosca 7mm SPC 7.25\" — 18001",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0012",
+   "record_id": "recyCqmIriYZvFKYO",
+   "product_name": "Tosca 7mm SPC 7.25\" — 18002",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0013",
+   "record_id": "recAUe85YPzHGpFO9",
+   "product_name": "Tosca 7mm SPC 7.25\" — 18003",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0014",
+   "record_id": "recoQ7Gk5mBVPWNb2",
+   "product_name": "Tosca 7mm SPC 7.25\" — 18004",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0015",
+   "record_id": "recAusML0gNEDKpzN",
+   "product_name": "Tosca 7mm SPC 7.25\" — 18005",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0016",
+   "record_id": "rec3obrNduAV0PSN0",
+   "product_name": "Tosca 7mm SPC 7.25\" — 18006",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0017",
+   "record_id": "recYrR8rAyFdtDllL",
+   "product_name": "Tosca 7mm SPC 7.25\" — 18007",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0018",
+   "record_id": "recpfph6UB1F6yqSU",
+   "product_name": "Tosca 7mm SPC 7.25\" — 18008",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0019",
+   "record_id": "recbaA2ucK8ry8SE5",
+   "product_name": "Tosca 7mm SPC 7.25\" — 18009",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0020",
+   "record_id": "recpr6x7ZGZ1KIX2C",
+   "product_name": "Tosca 7mm SPC 7.25\" — 18010",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0021",
+   "record_id": "recsUTlJWSW4X722k",
+   "product_name": "Tosca 8mm SPC 7.25\" — 18001",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0022",
+   "record_id": "recrGl1UK1XRLOBbA",
+   "product_name": "Tosca 8mm SPC 7.25\" — 18002",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0023",
+   "record_id": "rect0XcpVVhlLLsWl",
+   "product_name": "Tosca 8mm SPC 7.25\" — 18003",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0024",
+   "record_id": "recMqWeBQCrYdixde",
+   "product_name": "Tosca 8mm SPC 7.25\" — 18004",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0025",
+   "record_id": "recDwdDbGP2qaChF1",
+   "product_name": "Tosca 8mm SPC 7.25\" — 18006",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0026",
+   "record_id": "recBCjrzX7ASW6BLL",
+   "product_name": "Tosca 8mm SPC 7.25\" — 18007",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0027",
+   "record_id": "rec5Ee9TV48obZQaH",
+   "product_name": "Tosca 8mm SPC 7.25\" — 18009",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0028",
+   "record_id": "rece937DkA79NCONv",
+   "product_name": "Tosca 8mm SPC 7.25\" — 18010",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0029",
+   "record_id": "recdvabGQuimxyKut",
+   "product_name": "Tosca 7mm SPC 9\" — 2601",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0030",
+   "record_id": "rec4N4NDlc2CqWqDd",
+   "product_name": "Tosca 7mm SPC 9\" — 2602",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0031",
+   "record_id": "recbiyi3o97UOBZ53",
+   "product_name": "Tosca 7mm SPC 9\" — 2603",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0032",
+   "record_id": "recZZgVosmkDaidQP",
+   "product_name": "Tosca 7mm SPC 9\" — 2604",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0033",
+   "record_id": "recTMApk7yJsig0H9",
+   "product_name": "Tosca 7mm SPC 9\" — 2605",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0034",
+   "record_id": "recQgEhp09bCJgAhI",
+   "product_name": "Tosca 7mm SPC 9\" — 2606",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0035",
+   "record_id": "rec65lCwryNngsPC7",
+   "product_name": "Tosca 7mm SPC 9\" — 2607",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0036",
+   "record_id": "rec0QsusbrnjBpfpP",
+   "product_name": "Tosca 7mm SPC 9\" — 2608",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0037",
+   "record_id": "rec8QwrsmnowPy7FZ",
+   "product_name": "Tosca 7mm SPC 9\" — 2609",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0038",
+   "record_id": "rec0VAgyPiON7JOUo",
+   "product_name": "Tosca 7mm SPC 9\" — 2610",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0039",
+   "record_id": "recTIPQQW8IjhKLOM",
+   "product_name": "Tosca 7.5mm SPC 7.25\" — 5601",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0040",
+   "record_id": "recC9FirVWR8tsplg",
+   "product_name": "Tosca 7.5mm SPC 7.25\" — 5602",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0041",
+   "record_id": "recBeXHM7KVu4O6QH",
+   "product_name": "Tosca 7.5mm SPC 7.25\" — 5603",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0042",
+   "record_id": "recKP1urC6tLmFhh6",
+   "product_name": "Tosca 7.5mm SPC 7.25\" — 5604",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0043",
+   "record_id": "rec2QxQ3OiKzS7Hpp",
+   "product_name": "Tosca 7.5mm SPC 7.25\" — 5605",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0044",
+   "record_id": "rechKZEIHLEHIfxfB",
+   "product_name": "Tosca 7.5mm SPC 7.25\" — 5606",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0045",
+   "record_id": "rec9WBPbOR4EpCJbW",
+   "product_name": "Tosca 7.5mm SPC 7.25\" — 5607",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0046",
+   "record_id": "recr42iNxwpOJ74PW",
+   "product_name": "Tosca 7.5mm SPC 7.25\" — 5608",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0047",
+   "record_id": "recw63TXjzPxKJEra",
+   "product_name": "Tosca 7.5mm SPC 7.25\" — 5609",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0048",
+   "record_id": "recxAQEIN5DDJBtvG",
+   "product_name": "Tosca 7.5mm SPC 7.25\" — 5610",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0049",
+   "record_id": "recNPwzObXetC9dG7",
+   "product_name": "Tosca 7.5mm SPC 9\" — 5701",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0050",
+   "record_id": "recGom8zw1Ot0P0zW",
+   "product_name": "Tosca 7.5mm SPC 9\" — 5702",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0051",
+   "record_id": "recuk4ZhqQxuX7HnP",
+   "product_name": "Tosca 7.5mm SPC 9\" — 5703",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0052",
+   "record_id": "recUJQWuheIj9qSDT",
+   "product_name": "Tosca 7.5mm SPC 9\" — 5704",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0053",
+   "record_id": "recg0BD9qXj5PeCQA",
+   "product_name": "Tosca 7.5mm SPC 9\" — 5705",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0054",
+   "record_id": "recuEdAeYz7W6KVYj",
+   "product_name": "Tosca 8mm SPC 7\" — 5809",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0055",
+   "record_id": "recIdhrk9G58fexOg",
+   "product_name": "Tosca 8mm SPC 7\" — 5810",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0056",
+   "record_id": "recSxZwFhDIxUnAlQ",
+   "product_name": "Tosca 9mm SPC 9\" — 96W01",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0057",
+   "record_id": "recpDF4r9RupVdRWF",
+   "product_name": "Tosca 9mm SPC 9\" — 96W02",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0058",
+   "record_id": "recpPm1yNrzS7jT0I",
+   "product_name": "Tosca 9mm SPC 9\" — 96W03",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0059",
+   "record_id": "recwlH5NbTIObcdcR",
+   "product_name": "Tosca 9mm SPC 9\" — 96W04",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0060",
+   "record_id": "recLMSxamey2YveT2",
+   "product_name": "Tosca 9mm SPC 9\" — 96W05",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0061",
+   "record_id": "recnnaKjF9DQX0FOQ",
+   "product_name": "Tosca 9mm SPC 9\" — 96W06",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0062",
+   "record_id": "recyw2cyOR7OavRDu",
+   "product_name": "Tosca 9mm SPC 9\" — 96W07",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0063",
+   "record_id": "receTm8YAfuF86JJl",
+   "product_name": "Tosca 9mm SPC 9\" — 96W08",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0064",
+   "record_id": "recDWBL6wBolWkOpv",
+   "product_name": "Tosca 9mm SPC 9\" — 96W09",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0065",
+   "record_id": "recakIKvgWMp595Uw",
+   "product_name": "Tosca 9mm SPC 9\" — 96W10",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0066",
+   "record_id": "recqyZGiUY6LWDZ86",
+   "product_name": "Tosca 9mm SPC 9\" — 9801",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0067",
+   "record_id": "reckCLT3NsvdroKpl",
+   "product_name": "Tosca 9mm SPC 9\" — 9802",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0068",
+   "record_id": "recwl8YpjOUWm9paa",
+   "product_name": "Tosca 9mm SPC 9\" — 9803",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0069",
+   "record_id": "recH9yfYyO2xNfOnK",
+   "product_name": "Tosca 9mm SPC 9\" — 9804",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0070",
+   "record_id": "recHHJY05b7c8dtmg",
+   "product_name": "Tosca 9mm SPC 9\" — 9805",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0071",
+   "record_id": "recmz8JgHxz3lJuTg",
+   "product_name": "Tosca 9mm SPC 9\" — 9807",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-TOSC-0072",
+   "record_id": "receys7SgOvgpl4Hv",
+   "product_name": "Tosca 9mm SPC 9\" — 9808",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  }
+ ]
+}

@@ -604,7 +604,14 @@ def crawl(fetch, root, follow_words, max_pages, start_urls=None):
         if url in seen or urllib.parse.urlsplit(url).netloc != host:
             continue
         seen.add(url)
-        page = page_from_html(url, fetch.get(url))
+        try:
+            page = page_from_html(url, fetch.get(url))
+        except Blocked:
+            raise
+        except urllib.error.HTTPError:
+            continue  # one dead link (Grandeur's site has several, 2026-10-22) is not the site
+        except (ValueError, OSError, UnicodeError):
+            continue
         links = page.pop("_links")
         if page["images"]:
             pages.append(page)
