@@ -1,0 +1,526 @@
+{
+ "contract_version": "image-plan-1",
+ "scope": "floordi",
+ "supplier": "FLOORDI",
+ "run_at": "2026-10-22T15:32:40.374016-04:00",
+ "expires": "2026-10-22T23:59:59-0400",
+ "write_mode": "write",
+ "registry": "platform-settings/supplier-sites.json",
+ "inputs": {
+  "pages": "ingest/2026-10-22/supplier-pages-floordi.json",
+  "judgements": "ingest/2026-10-22/image-judgements-floordi.json",
+  "product_pages": null
+ },
+ "summary": {
+  "records": 18,
+  "actions": 12,
+  "held": 0,
+  "skipped": {
+   "accessory": 6
+  },
+  "held_by_reason": {},
+  "fields": {
+   "Swatch images": 12,
+   "Supplier product page": 12
+  },
+  "tiers": {
+   "exact": 12
+  },
+  "manufacturer_pages": 12
+ },
+ "actions": [
+  {
+   "id": "img-8a8ddc54cf25",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recDsiPbG6mA3XMGl",
+   "sku": "LVP-FLRD-AVR651",
+   "product_name": "Floordi 6.5mm AVO-ROX EASE 7.19\" — Serene Oak",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.floordi.ca/uploads/2025/09/serene-oak-thumbnail.jpg",
+      "filename": "floordi-serene-oak-lvp-7-19in-avr651-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.floordi.ca/serene-oak-spc-flooring-avr651/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.floordi.ca/serene-oak-spc-flooring-avr651/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.floordi.ca/uploads/2025/09/serene-oak-thumbnail.jpg",
+     "sha1": "006ed3df2202d821ba97d6f29f6b1ab45c8dd6b5",
+     "page": "https://www.floordi.ca/serene-oak-spc-flooring-avr651/",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-e5823f7e94ac",
+   "seq": 2,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recOqUKUpcbeOPylS",
+   "sku": "LVP-FLRD-AVR652",
+   "product_name": "Floordi 6.5mm AVO-ROX EASE 7.19\" — Whisper Oak",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.floordi.ca/uploads/2025/09/whisper-oak-thumbnail.jpg",
+      "filename": "floordi-whisper-oak-lvp-7-19in-avr652-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.floordi.ca/whisper-oak-spc-flooring-avr652/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.floordi.ca/whisper-oak-spc-flooring-avr652/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.floordi.ca/uploads/2025/09/whisper-oak-thumbnail.jpg",
+     "sha1": "9455485ebca14a24454c89770cfb9eccb81260a3",
+     "page": "https://www.floordi.ca/whisper-oak-spc-flooring-avr652/",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-db9b4532eece",
+   "seq": 3,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec5Ts15tSAfEwIyH",
+   "sku": "LVP-FLRD-AVR653",
+   "product_name": "Floordi 6.5mm AVO-ROX EASE 7.19\" — Sunrise Oak",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.floordi.ca/uploads/2025/09/sunrise-oak-thumbnail.jpg",
+      "filename": "floordi-sunrise-oak-lvp-7-19in-avr653-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.floordi.ca/sunrise-oak-spc-flooring-avr653/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.floordi.ca/sunrise-oak-spc-flooring-avr653/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.floordi.ca/uploads/2025/09/sunrise-oak-thumbnail.jpg",
+     "sha1": "d8f25c4d85ef750c1f50e266de5b051e1e56b487",
+     "page": "https://www.floordi.ca/sunrise-oak-spc-flooring-avr653/",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-81c822fa4f6e",
+   "seq": 4,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recSY3JC9rzQuPRWW",
+   "sku": "LVP-FLRD-AVR654",
+   "product_name": "Floordi 6.5mm AVO-ROX EASE 7.19\" — Harmony Oak",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.floordi.ca/uploads/2025/04/harmony-oak-avr-654-avatar.jpg",
+      "filename": "floordi-harmony-oak-lvp-7-19in-avr654-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.floordi.ca/harmony-oak-spc-flooring-avr654/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.floordi.ca/harmony-oak-spc-flooring-avr654/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.floordi.ca/uploads/2025/04/harmony-oak-avr-654-avatar.jpg",
+     "sha1": "921476aa2bcf9a9903bf27d969200bedcab750b2",
+     "page": "https://www.floordi.ca/harmony-oak-spc-flooring-avr654/",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2bbc1f55c431",
+   "seq": 5,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recU5XkhRDcb3XSld",
+   "sku": "LVP-FLRD-AVR655",
+   "product_name": "Floordi 6.5mm AVO-ROX EASE 7.19\" — Ashen Breeze",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.floordi.ca/uploads/2025/04/ashen-breeze-avr-655-avatar.jpg",
+      "filename": "floordi-ashen-breeze-lvp-7-19in-avr655-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.floordi.ca/ashen-breeze-spc-flooring-avr655/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.floordi.ca/ashen-breeze-spc-flooring-avr655/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.floordi.ca/uploads/2025/04/ashen-breeze-avr-655-avatar.jpg",
+     "sha1": "d97eb10524421ea2462190d9fa520d4c61f58fd8",
+     "page": "https://www.floordi.ca/ashen-breeze-spc-flooring-avr655/",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-6f2cfecbe3ce",
+   "seq": 6,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec0UApSdlgCyzaOB",
+   "sku": "LVP-FLRD-AVR656",
+   "product_name": "Floordi 6.5mm AVO-ROX EASE 7.19\" — Golden Ray",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.floordi.ca/uploads/2025/04/goldenray-avr-656-avatar.jpg",
+      "filename": "floordi-golden-ray-lvp-7-19in-avr656-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.floordi.ca/goldenray-spc-flooring-avr656/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.floordi.ca/goldenray-spc-flooring-avr656/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.floordi.ca/uploads/2025/04/goldenray-avr-656-avatar.jpg",
+     "sha1": "c16f34d949d1ebc7eef72d3895073af727c28f0a",
+     "page": "https://www.floordi.ca/goldenray-spc-flooring-avr656/",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-aa8fc981e052",
+   "seq": 7,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recJUF2OERF93OviM",
+   "sku": "LVP-FLRD-AVR801",
+   "product_name": "Floordi 8mm AVO-ROX GRAND 9\" — Amber Glow",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.floordi.ca/uploads/2025/09/amber-glow-thumbnail.jpg",
+      "filename": "floordi-amber-glow-lvp-9in-avr801-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.floordi.ca/amber-glow-spc-flooring-avr801/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.floordi.ca/amber-glow-spc-flooring-avr801/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.floordi.ca/uploads/2025/09/amber-glow-thumbnail.jpg",
+     "sha1": "a35a69ee502b28a73165a23d6de352be153ea16c",
+     "page": "https://www.floordi.ca/amber-glow-spc-flooring-avr801/",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-0b361da921b4",
+   "seq": 8,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recSPbVBM4mREyF6d",
+   "sku": "LVP-FLRD-AVR802",
+   "product_name": "Floordi 8mm AVO-ROX GRAND 9\" — Natural Hush",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.floordi.ca/uploads/2025/04/natural-hush-thumbnail.jpg",
+      "filename": "floordi-natural-hush-lvp-9in-avr802-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.floordi.ca/natural-hush-spc-flooring-avr802/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.floordi.ca/natural-hush-spc-flooring-avr802/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.floordi.ca/uploads/2025/04/natural-hush-thumbnail.jpg",
+     "sha1": "efce0ba7484cbf3c0007b33cf3a7adafe8e0d8f5",
+     "page": "https://www.floordi.ca/natural-hush-spc-flooring-avr802/",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-320fce2ce0b2",
+   "seq": 9,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rechYHiBdtXO08kTW",
+   "sku": "LVP-FLRD-AVR803",
+   "product_name": "Floordi 8mm AVO-ROX GRAND 9\" — Serenity Oak",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.floordi.ca/uploads/2025/09/serenity-oak-thumbnail.jpg",
+      "filename": "floordi-serenity-oak-lvp-9in-avr803-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.floordi.ca/serenity-oak-spc-flooring-avr803/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.floordi.ca/serenity-oak-spc-flooring-avr803/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.floordi.ca/uploads/2025/09/serenity-oak-thumbnail.jpg",
+     "sha1": "3d2776df4be21eba58fdcc67c030968760ebd7cd",
+     "page": "https://www.floordi.ca/serenity-oak-spc-flooring-avr803/",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-e38aa6d64f89",
+   "seq": 10,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recc7SrRQp0wafskL",
+   "sku": "LVP-FLRD-AVR804",
+   "product_name": "Floordi 8mm AVO-ROX GRAND 9\" — Gentle Woven",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.floordi.ca/uploads/2025/04/gentle-woven-avr-804-avatar.jpg",
+      "filename": "floordi-gentle-woven-lvp-9in-avr804-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.floordi.ca/gentle-woven-spc-flooring-avr804/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.floordi.ca/gentle-woven-spc-flooring-avr804/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.floordi.ca/uploads/2025/04/gentle-woven-avr-804-avatar.jpg",
+     "sha1": "0fa4b2fc5e46524138b6b031f1556951868460e9",
+     "page": "https://www.floordi.ca/gentle-woven-spc-flooring-avr804/",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-d57ee1dbc56d",
+   "seq": 11,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recz6C9uHnXXLuIBG",
+   "sku": "LVP-FLRD-AVR805",
+   "product_name": "Floordi 8mm AVO-ROX GRAND 9\" — Warm Woven",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.floordi.ca/uploads/2025/04/warm-woven-avr-805-avtar.jpg",
+      "filename": "floordi-warm-woven-lvp-9in-avr805-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.floordi.ca/warm-woven-spc-flooring-avr805/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.floordi.ca/warm-woven-spc-flooring-avr805/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.floordi.ca/uploads/2025/04/warm-woven-avr-805-avtar.jpg",
+     "sha1": "74efe4fbd9291e987e07279c6b59aa66526e9eaa",
+     "page": "https://www.floordi.ca/warm-woven-spc-flooring-avr805/",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-48b5b7239dd9",
+   "seq": 12,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recsbOFiMWaEXjY87",
+   "sku": "LVP-FLRD-AVR806",
+   "product_name": "Floordi 8mm AVO-ROX GRAND 9\" — Nature Woven",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.floordi.ca/uploads/2025/04/nature-woven-avr-806-avatar1.jpg",
+      "filename": "floordi-nature-woven-lvp-9in-avr806-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.floordi.ca/nature-woven-spc-flooring-avr806/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.floordi.ca/nature-woven-spc-flooring-avr806/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.floordi.ca/uploads/2025/04/nature-woven-avr-806-avatar1.jpg",
+     "sha1": "01925da8716e41cda0dee738ceaba0a16dcd0819",
+     "page": "https://www.floordi.ca/nature-woven-spc-flooring-avr806/",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "flags": []
+  }
+ ],
+ "held": []
+}

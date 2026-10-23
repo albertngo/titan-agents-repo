@@ -1,0 +1,1210 @@
+{
+ "contract_version": "image-plan-1",
+ "scope": "evergreen",
+ "supplier": "EVERGREEN",
+ "run_at": "2026-10-22T15:32:38.552280-04:00",
+ "expires": "2026-10-22T23:59:59-0400",
+ "write_mode": "write",
+ "registry": "platform-settings/supplier-sites.json",
+ "inputs": {
+  "pages": "ingest/2026-10-22/supplier-pages-evergreen.json",
+  "judgements": "ingest/2026-10-22/image-judgements-evergreen.json",
+  "product_pages": null
+ },
+ "summary": {
+  "records": 136,
+  "actions": 0,
+  "held": 136,
+  "skipped": {},
+  "held_by_reason": {
+   "no_match": 101,
+   "no_usable_image": 32,
+   "model_rejected": 3
+  },
+  "fields": {},
+  "tiers": {},
+  "manufacturer_pages": 0
+ },
+ "actions": [],
+ "held": [
+  {
+   "sku": "ACC-EVGR-0001",
+   "record_id": "recSf1oeQMaDweoGt",
+   "product_name": "Evergreen - Stair | Stair Board | SPC | 40\" x 12.6\" Square Return",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-EVGR-0002",
+   "record_id": "rec7UioBcIlKnZHGs",
+   "product_name": "Evergreen - Stair | Stair Riser | SPC | 40\" x 7.87\"",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-EVGR-0003",
+   "record_id": "recci8RuzTSNFNbLN",
+   "product_name": "Evergreen - Transition | T-Moulding | SPC | 7.87 ft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-EVGR-0004",
+   "record_id": "recsW7cT0GFA3wMVR",
+   "product_name": "Evergreen - Transition | Reducer | SPC | 7.87 ft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-EVGR-0005",
+   "record_id": "recqWOw2hKRsUHdxl",
+   "product_name": "Evergreen - Transition | Stair Nosing | SPC | 7.87 ft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ENG-EVGR-0001",
+   "record_id": "recm1Hva9iZUzHzCo",
+   "product_name": "Evergreen Engineered Oak — Huskie Gray* (6-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/oak/#img3"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/oak/#img3']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0002",
+   "record_id": "recWPCcSa8i6Bwsup",
+   "product_name": "Evergreen Engineered Oak — Clay (6-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/oak/#img4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/oak/#img4']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0003",
+   "record_id": "recaHVixl8vsZo94O",
+   "product_name": "Evergreen Engineered Oak — Silver Powder (6-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/oak/#img5",
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img19"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/oak/#img5']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0004",
+   "record_id": "recMeuRAxOiqiULRU",
+   "product_name": "Evergreen Engineered Oak — Tan (6-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/oak/#img6"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/oak/#img6']; {'excluded': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0005",
+   "record_id": "rec7YMuqcgvAzh6ic",
+   "product_name": "Evergreen Engineered Oak — Sicily (6-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img18",
+    "https://evergreenbuildingflooring.com/index.php/oak/#img2"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/white-oak/#img18']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0006",
+   "record_id": "recnlnxRXFfjnx7VJ",
+   "product_name": "Evergreen Engineered Oak — Mocha (6-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/oak/#img9"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/oak/#img9']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0007",
+   "record_id": "recLdadFvUhCakPYU",
+   "product_name": "Evergreen Engineered Oak — French Beige (6-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/oak/#img7"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/oak/#img7']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0008",
+   "record_id": "recD9xAF87u0Jo6Rx",
+   "product_name": "Evergreen Engineered Oak — Natural (6-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img13",
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img14",
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img17"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/white-oak/#img14']; {'excluded': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0009",
+   "record_id": "recVy5vdKvyOoH0Fy",
+   "product_name": "Evergreen Engineered Birch — Natural (6-1/2\" x 3/5\", 1.2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img13",
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img14",
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img17"
+   ],
+   "reason": "model_rejected",
+   "detail": "colour 'Natural'; vetoes {'pattern': 1, 'size': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0010",
+   "record_id": "recAe6hkFIXSpdzEO",
+   "product_name": "Evergreen Engineered Hickory — American (6-1/2\" x 3/5\", 1.2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/hickory/#img1"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/hickory/#img1']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0011",
+   "record_id": "recL63R5H5MAYky3h",
+   "product_name": "Evergreen Engineered Hickory — Natural (6-1/2\" x 3/5\", 1.2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/hickory/#img2"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/hickory/#img2']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0012",
+   "record_id": "recQXs0EfQCOMiKnj",
+   "product_name": "Evergreen Engineered Sapele — Mahogany (6-1/2\" x 3/5\", 2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/birch/#img2"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/birch/#img2']; {'excluded': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0013",
+   "record_id": "reccUhDGzdhUVQgXO",
+   "product_name": "Evergreen Engineered Oak — Vienna* (6-1/2\" x 3/5\", 1.2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/oak/#img1"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/oak/#img1']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0014",
+   "record_id": "recT7VYiItd0nUSHd",
+   "product_name": "Evergreen Engineered Oak — Honey (7-1/2\" x 5/8\", 3mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img8",
+    "https://evergreenbuildingflooring.com/index.php/oak/#img10"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/white-oak/#img8']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0015",
+   "record_id": "rec2u6SaZj2J5ZXkf",
+   "product_name": "Evergreen Engineered Oak — Liverpool (7-1/2\" x 5/8\", 3mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img11",
+    "https://evergreenbuildingflooring.com/index.php/oak/#img11"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/white-oak/#img11']; {'excluded': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0016",
+   "record_id": "rectnavep79hGcZFG",
+   "product_name": "Evergreen Engineered Oak — Plymouth (7-1/2\" x 5/8\", 3mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/oak/#img12",
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img16"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/oak/#img12']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0017",
+   "record_id": "rectxJSnRnRM72654",
+   "product_name": "Evergreen Engineered Maple — Natural (7-1/2\" x 3/5\", 1.2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img13",
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img14",
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img17"
+   ],
+   "reason": "model_rejected",
+   "detail": "colour 'Natural'; vetoes {'pattern': 1, 'size': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0018",
+   "record_id": "recohFBMoHh6GTHqd",
+   "product_name": "Evergreen Engineered Black Walnut — Natural (7-1/2\" x 3/5\", 2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img13",
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img14",
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img17"
+   ],
+   "reason": "model_rejected",
+   "detail": "colour 'Natural'; vetoes {'pattern': 1, 'size': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0019",
+   "record_id": "rec6r1jijzflsic1y",
+   "product_name": "Evergreen Engineered Hickory — Battleship (7-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/hickory/#img3"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/hickory/#img3']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0020",
+   "record_id": "recbRNMHpkbD3ref1",
+   "product_name": "Evergreen Engineered Hickory — Bristol (7-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/hickory/#img4"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/hickory/#img4']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0021",
+   "record_id": "recOFQQcrBWMeRCH3",
+   "product_name": "Evergreen Engineered Hickory — Summer (7-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/hickory/#img5"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/hickory/#img5']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0022",
+   "record_id": "recqCVL88aGjDlEmM",
+   "product_name": "Evergreen Engineered Hickory — Venezuela (7-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/hickory/#img6"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/hickory/#img6']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0023",
+   "record_id": "recjzW8DMOuOdT11i",
+   "product_name": "Evergreen Engineered Hickory — Natural (7-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/hickory/#img2"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/hickory/#img2']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0024",
+   "record_id": "recAhDT1YgHRfUQUy",
+   "product_name": "Evergreen Engineered Oak — Brest (7-1/2\" x 3/4\", 3mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/oak/#img13"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/oak/#img13']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0025",
+   "record_id": "recAaLDAgoSHc0ksV",
+   "product_name": "Evergreen Engineered Oak — Greyish (7-1/2\" x 3/4\", 3mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/oak/#img14"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/oak/#img14']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0026",
+   "record_id": "rec6Gua57OkI6sKwH",
+   "product_name": "Evergreen Engineered Oak — Strasbourg (7-1/2\" x 3/4\", 3mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/oak/#img15"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/oak/#img15']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0027",
+   "record_id": "recgw5WlATU7ZYURZ",
+   "product_name": "Evergreen Engineered Oak — Natural + (AB) (7-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img13",
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img14",
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img17"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/white-oak/#img14']; {'excluded': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0028",
+   "record_id": "recCEsrUocBDsSp7P",
+   "product_name": "Evergreen Engineered Oak — White Coffee (7-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/oak/#img17"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/oak/#img17']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0029",
+   "record_id": "rec1HXmyQPENEeBni",
+   "product_name": "Evergreen Engineered Oak — Natural + (AB) (7-1/2\" x 3/4\", 2mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img13",
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img14",
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img17"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/white-oak/#img14']; {'excluded': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0030",
+   "record_id": "recKC6lmh8HovTpy6",
+   "product_name": "Evergreen Engineered Oak — Norman Castle (7-1/2\" x 3/4\", 3mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/oak/#img21"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/oak/#img21']; {'excluded': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0031",
+   "record_id": "recqUwczZxElJY0kE",
+   "product_name": "Evergreen Engineered Oak — Marseille (7-1/2\" x 3/4\", 3mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/oak/#img18"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/oak/#img18']; {'too_small': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0032",
+   "record_id": "recZggwDsbEPr5WL3",
+   "product_name": "Evergreen Engineered Oak — Valence (7-1/2\" x 3/4\", 3mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/oak/#img19"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/oak/#img19']; {'excluded': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0033",
+   "record_id": "rec1XFS6buP0LGUho",
+   "product_name": "Evergreen Engineered Oak — Natural (7-1/2\" x 3/5\", 3mm top)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img13",
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img14",
+    "https://evergreenbuildingflooring.com/index.php/white-oak/#img17"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/white-oak/#img14']; {'excluded': 1}"
+  },
+  {
+   "sku": "ENG-EVGR-0034",
+   "record_id": "recx095X8qu52Hote",
+   "product_name": "Evergreen Engineered Oak — Narural (9-1/2\" x 3/4\", 4mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Narural'; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-2020",
+   "record_id": "recrjhfpw4NrlGgvK",
+   "product_name": "Evergreen Waterproof Laminate — 2020* (7.7\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-2024",
+   "record_id": "recdGLD2NHnUmoqLS",
+   "product_name": "Evergreen Waterproof Laminate — 2024 (7.7\" x 12mm)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/2024/11/21/join-us-at-the-building-show-december-4-6-2024/#img0",
+    "https://evergreenbuildingflooring.com/index.php/2024/11/21/join-us-at-the-building-show-december-4-6-2024/#img1",
+    "https://evergreenbuildingflooring.com/index.php/2024/11/21/join-us-at-the-building-show-december-4-6-2024/#img2"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/2024/11/21/join-us-at-the-building-show-december-4-6-2024/#img0']; {}"
+  },
+  {
+   "sku": "LAM-EVGR-20360",
+   "record_id": "recM6VuutBYvAYWK3",
+   "product_name": "Evergreen Waterproof Laminate — 20360 (7.7\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-2052",
+   "record_id": "rec3DIbzRCQ5hOGAI",
+   "product_name": "Evergreen Waterproof Laminate — 2052 (7.7\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-2055",
+   "record_id": "recF6Q5D4dfPZQw1h",
+   "product_name": "Evergreen Waterproof Laminate — 2055 (7.7\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-20860",
+   "record_id": "recQC3CCTxnLJOcwC",
+   "product_name": "Evergreen Waterproof Laminate — 20860 (7.7\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-5086",
+   "record_id": "recYDyxHB0OqGhH6x",
+   "product_name": "Evergreen Waterproof Laminate — 5086 (7.7\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-6088",
+   "record_id": "recANPJQ0jXDqCG8a",
+   "product_name": "Evergreen Waterproof Laminate — 6088 (7.7\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-720165",
+   "record_id": "recww4TfVlWAfoB3a",
+   "product_name": "Evergreen Waterproof Laminate Large Board — 720165 (9.4\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72019",
+   "record_id": "recLdn00dGOdVuUNL",
+   "product_name": "Evergreen Water Resistant Laminate — 72019 (9.4\" x 14mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-720462",
+   "record_id": "recxXouSuehzUDQ6n",
+   "product_name": "Evergreen Waterproof Laminate Large Board — 720462 (9.4\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72102",
+   "record_id": "recBGXk3X8AfUtDU9",
+   "product_name": "Evergreen Waterproof Laminate — 72102* (9.4\" x 10mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72103",
+   "record_id": "recPg0wQBhQU16PZC",
+   "product_name": "Evergreen Waterproof Laminate — 72103* (9.4\" x 10mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72113",
+   "record_id": "recRLg3aMHTA25SlA",
+   "product_name": "Evergreen Water Resistant Laminate — 72113 (9.4\" x 14mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72113-10MM",
+   "record_id": "recGTjbfnoGAdKNHs",
+   "product_name": "Evergreen Waterproof Laminate — 72113* (9.4\" x 10mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-721287",
+   "record_id": "recdTpxXXKXP7RERy",
+   "product_name": "Evergreen Waterproof Laminate — 721287 (9.4\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72134",
+   "record_id": "recAyzlqQCQ3Cl3Ia",
+   "product_name": "Evergreen Water Resistant Laminate — 72134 (9.4\" x 14mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72146",
+   "record_id": "recNoAbciStihmmIJ",
+   "product_name": "Evergreen Waterproof Laminate — 72146 (9.4\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72147",
+   "record_id": "rechJxY73EHp0Pzqx",
+   "product_name": "Evergreen Waterproof Laminate — 72147 (9.4\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72148",
+   "record_id": "recBriQH4FM60zjkZ",
+   "product_name": "Evergreen Waterproof Laminate — 72148 (9.4\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72161",
+   "record_id": "recbFaILG1dhoFb9o",
+   "product_name": "Evergreen Waterproof Laminate — 72161 (7.7\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72164",
+   "record_id": "recZfdzT1lZ9t8CdN",
+   "product_name": "Evergreen Waterproof Laminate — 72164 (7.7\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72166",
+   "record_id": "rec9SPFHp9R7bBezl",
+   "product_name": "Evergreen Water Resistant Laminate — 72166 (9.4\" x 14mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72208",
+   "record_id": "recaT9lY9Pvr8Hp3O",
+   "product_name": "Evergreen Waterproof Laminate — 72208* (9.4\" x 10mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72228",
+   "record_id": "rec1tLfZX9slXABYb",
+   "product_name": "Evergreen Waterproof Laminate — 72228* (9.4\" x 10mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72245",
+   "record_id": "recKb5Zsmv6TUuDya",
+   "product_name": "Evergreen Waterproof Laminate — 72245* (9.4\" x 10mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72493",
+   "record_id": "recGiiZpKVDoHpNOC",
+   "product_name": "Evergreen Water Resistant Laminate — 72493 (9.4\" x 14mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72495",
+   "record_id": "recAjyOg0yOyb06wM",
+   "product_name": "Evergreen Water Resistant Laminate — 72495 (9.4\" x 14mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72523",
+   "record_id": "recfeDWo5FGHiDn9t",
+   "product_name": "Evergreen Water Resistant Laminate — 72523 (9.4\" x 14mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72523-10MM",
+   "record_id": "rec3kZ56YhQabnVed",
+   "product_name": "Evergreen Waterproof Laminate — 72523* (9.4\" x 10mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72527",
+   "record_id": "recDllkoKQCHI9kNJ",
+   "product_name": "Evergreen Waterproof Laminate — 72527* (9.4\" x 10mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72740",
+   "record_id": "rectY6Rn50XOC0h9a",
+   "product_name": "Evergreen Water Resistant Laminate — 72740 (9.4\" x 14mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72741",
+   "record_id": "recgfWoIYbADE4ne8",
+   "product_name": "Evergreen Water Resistant Laminate — 72741 (9.4\" x 14mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72777",
+   "record_id": "recvdGisyKjhcmd9q",
+   "product_name": "Evergreen Waterproof Laminate — 72777 (7.7\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-72814",
+   "record_id": "receK83PPwkZLQVZb",
+   "product_name": "Evergreen Water Resistant Laminate — 72814 (9.4\" x 14mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-728211",
+   "record_id": "recWYWx1BZ4i7FVja",
+   "product_name": "Evergreen Waterproof Laminate — 728211 (9.4\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-SH003",
+   "record_id": "recKvWphtcaAgvR2j",
+   "product_name": "Evergreen Waterproof Laminate — SH003 (7.7\" x 12mm)",
+   "candidate_pages": [
+    "https://evergreenbuildingflooring.com/index.php/waterproof-laminate-12mm/#img16"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://evergreenbuildingflooring.com/index.php/waterproof-laminate-12mm/#img16']; {'excluded': 1}"
+  },
+  {
+   "sku": "LVP-EVGR-1022-3",
+   "record_id": "recziKYm9E7nivb61",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 1022-3 (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-1029-2",
+   "record_id": "recfBWGIKYi3ifBOj",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 1029-2* (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-1069",
+   "record_id": "recYQQ6ShPktxiH1T",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 1069 (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-20105",
+   "record_id": "recMgNkw68CMonHZL",
+   "product_name": "Evergreen LVT Plank — 20105 (9\" x 3mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-220-10",
+   "record_id": "recjPNCOP6lrziGi4",
+   "product_name": "Evergreen SPC Double Click 6.5mm — 220-10 (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-315D",
+   "record_id": "rectZ3x5Ki3yOckAx",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 315D (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-32301",
+   "record_id": "rechMOm2K6dKrvoAk",
+   "product_name": "Evergreen LVT Plank — 32301 (9\" x 3mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-359-2",
+   "record_id": "reco35m2IABJpGlqk",
+   "product_name": "Evergreen SPC Double Click 6.5mm — 359-2 (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-3641-4",
+   "record_id": "recorFYrUXOVTgMeB",
+   "product_name": "Evergreen SPC Double Click 6.5mm — 3641-4 (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-369",
+   "record_id": "reclYGoejcp2zqNoz",
+   "product_name": "Evergreen SPC Double Click 6.5mm — 369 (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-3711-5",
+   "record_id": "reckRxbJQxkO1o8cH",
+   "product_name": "Evergreen SPC Double Click 6.5mm — 3711-5 (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-3836-6",
+   "record_id": "recbH531n8lYqZEXz",
+   "product_name": "Evergreen SPC Drop Lock Large Board — 3836-6 (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-3903-1",
+   "record_id": "recAcMNbRJoVW9cJt",
+   "product_name": "Evergreen SPC Drop Lock Large Board — 3903-1 (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-55007",
+   "record_id": "reczo6bb5JhcJ2N91",
+   "product_name": "Evergreen LVT Plank — 55007 (9\" x 3mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-58002-3",
+   "record_id": "recIWszuzphCaXe5T",
+   "product_name": "Evergreen SPC Drop Lock EIR — 58002-3 (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-58023-10",
+   "record_id": "recr8ffMlGUkmIfyP",
+   "product_name": "Evergreen SPC Drop Lock EIR — 58023-10 (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-58065-3",
+   "record_id": "recsWK345ieNuDtW9",
+   "product_name": "Evergreen SPC Drop Lock EIR — 58065-3 (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-581066-1",
+   "record_id": "recKGA01nS7mF9wOm",
+   "product_name": "Evergreen SPC Drop Lock EIR — 581066-1 (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-58305-21",
+   "record_id": "recjHT4ZwhXihjhau",
+   "product_name": "Evergreen SPC U-Groove Drop Lock 8mm — 58305-21 (9\" x 8mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-58730-10",
+   "record_id": "recmKkx6CaEScfNJz",
+   "product_name": "Evergreen SPC U-Groove Drop Lock 8mm — 58730-10 (9\" x 8mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-58730-2",
+   "record_id": "recOCPCpLrgBBD3sa",
+   "product_name": "Evergreen SPC U-Groove Drop Lock 8mm — 58730-2 (9\" x 8mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-58943-1",
+   "record_id": "recvNTwBZ7wpDbIqD",
+   "product_name": "Evergreen SPC Drop Lock EIR — 58943-1 (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-58943-15",
+   "record_id": "rec9IP0Ek5tB7AAI7",
+   "product_name": "Evergreen SPC Drop Lock EIR — 58943-15 (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-58943-16",
+   "record_id": "recXv36dJ5bwzkl2o",
+   "product_name": "Evergreen SPC Drop Lock EIR — 58943-16* (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-58943-3",
+   "record_id": "receBoL45juHD2Q8l",
+   "product_name": "Evergreen SPC Drop Lock EIR — 58943-3 (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-58943-6",
+   "record_id": "recHtTlaD5HOLAcBz",
+   "product_name": "Evergreen SPC Drop Lock EIR — 58943-6 (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-58943-7",
+   "record_id": "recHwDKLbSFfsFt6A",
+   "product_name": "Evergreen SPC Drop Lock EIR — 58943-7 (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-589531-1",
+   "record_id": "rec4vU1Zx5LnEgTHy",
+   "product_name": "Evergreen SPC U-Groove Drop Lock 8mm — 589531-1 (9\" x 8mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-589531-2",
+   "record_id": "recFRF7PZqBgVIPd5",
+   "product_name": "Evergreen SPC Drop Lock EIR — 589531-2 (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-589531-5",
+   "record_id": "recPg4mmqwTyminO8",
+   "product_name": "Evergreen SPC Drop Lock EIR — 589531-5 (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-6607-9",
+   "record_id": "recfKWvDy0p79yo5a",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 6607-9 (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-6661-10",
+   "record_id": "rec1JT3fZjU4vf5nT",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 6661-10 (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-6681",
+   "record_id": "recFdFZkreRuStuGe",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 6681 (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-68-12A",
+   "record_id": "recFfKb5aY8V192h3",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 68-12A (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-68022",
+   "record_id": "recTqFaxreGlxCFCF",
+   "product_name": "Evergreen SPC Drop Lock EIR — 68022 (9\" x 8mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-681002",
+   "record_id": "recV2LbxvdlqtTXIJ",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 681002 (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-681019-4",
+   "record_id": "recgRVlPCDctAJZhh",
+   "product_name": "Evergreen SPC Drop Lock EIR — 681019-4* (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-681019-5",
+   "record_id": "recfw9bVC2tlrj7aZ",
+   "product_name": "Evergreen SPC Drop Lock EIR — 681019-5* (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-681019-8",
+   "record_id": "recmCOkQ2PLsy1NSs",
+   "product_name": "Evergreen SPC Drop Lock EIR — 681019-8 (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-68347-7",
+   "record_id": "reciRHcLLrKXsV3a8",
+   "product_name": "Evergreen SPC Drop Lock EIR — 68347-7 (9\" x 8mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-68363",
+   "record_id": "recNxv6qaHzkB7Oh7",
+   "product_name": "Evergreen SPC Drop Lock EIR — 68363 (9\" x 8mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-68493",
+   "record_id": "rec51hdNHxrUjLX5U",
+   "product_name": "Evergreen SPC Drop Lock EIR — 68493 (9\" x 8mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-685507",
+   "record_id": "receGzbbBw6hyKnla",
+   "product_name": "Evergreen SPC Drop Lock EIR — 685507 (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-68628",
+   "record_id": "reczEO9jJ1BQ6TEC0",
+   "product_name": "Evergreen SPC Drop Lock EIR — 68628 (9\" x 8mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-68629",
+   "record_id": "reciqCaWR9ecCb62x",
+   "product_name": "Evergreen SPC Drop Lock EIR — 68629 (9\" x 8mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-817",
+   "record_id": "recKHAk5ee3Znw6Ax",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 817 (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-82804",
+   "record_id": "recnWEnmJcRTFuhh6",
+   "product_name": "Evergreen LVT Plank — 82804 (9\" x 3mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-83221",
+   "record_id": "recykEHfSVBftf47D",
+   "product_name": "Evergreen LVT Plank — 83221 (9\" x 3mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-83476",
+   "record_id": "recL3MiwWS3f2lcDF",
+   "product_name": "Evergreen LVT Plank — 83476 (9\" x 3mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-83741",
+   "record_id": "rec7SN8s0eYcg8PmY",
+   "product_name": "Evergreen LVT Plank — 83741 (9\" x 3mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-84214",
+   "record_id": "rec0YKbrLmEUVsOFx",
+   "product_name": "Evergreen LVT Plank — 84214 (9\" x 3mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-90616-4",
+   "record_id": "reccsBWK3EEbZo0Yp",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 90616-4 (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-981231-6",
+   "record_id": "recwxopBzU5PdenLz",
+   "product_name": "Evergreen SPC Herringbone Drop Lock EIR — 981231-6 (5.91\" x 7mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-981231-9",
+   "record_id": "recZQi2jx4MPHq5Jx",
+   "product_name": "Evergreen SPC Herringbone Drop Lock EIR — 981231-9 (5.91\" x 7mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-9860054",
+   "record_id": "reclLVevMpltEcW0e",
+   "product_name": "Evergreen SPC Drop Lock EIR — 9860054 (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-EVGR-SP005",
+   "record_id": "recfLAxSWeK5wV0w4",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — SP005 (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'SP005'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "LVT-EVGR-410-5",
+   "record_id": "rec4QE71oPlECfT16",
+   "product_name": "Evergreen SPC Drop Lock Tile Look — 410-5 (12\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVT-EVGR-6007-4",
+   "record_id": "recDA6rhyBMtWPwi8",
+   "product_name": "Evergreen SPC Drop Lock Tile Look — 6007-4 (12\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVT-EVGR-6539-1",
+   "record_id": "recgVtOkya0R7jgdV",
+   "product_name": "Evergreen SPC Drop Lock Tile Look — 6539-1 (12\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVT-EVGR-7085-1",
+   "record_id": "rec4eIRhDsSV14woY",
+   "product_name": "Evergreen SPC Drop Lock Tile Look — 7085-1 (12\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  }
+ ]
+}

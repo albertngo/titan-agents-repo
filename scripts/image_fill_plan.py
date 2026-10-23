@@ -346,7 +346,8 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
                     pp_source = "manufacturer" if name == "official" else name
                     break
         if "product_page" in blank and product_page:
-            fields[targets["product_page"]["name"]] = product_page
+            # A gallery page's per-image `#imgN` is ours, not the site's: link the page itself.
+            fields[targets["product_page"]["name"]] = product_page.split("#", 1)[0]
         flags = []
         if "swatch" in blank and targets["swatch"]["name"] not in fields:
             flags.append("no_swatch")

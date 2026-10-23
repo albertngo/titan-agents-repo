@@ -16,6 +16,7 @@ Used by scripts/supplier_site_pull.py (which pages' images to download),
 scripts/image_fill_plan.py (the plan) and the product-page index match.
 """
 
+import html
 import re
 
 SPACE = re.compile(r"\s+")
@@ -54,6 +55,25 @@ def to_width(token):
         return float(token)
     except ValueError:
         return None
+
+
+TILE_SIZE = re.compile(r"(?<![\d.])(\d{1,3}(?:\.\d{1,2})?)\s*(?:''|\"|″|”|in)?\s*[x×X]\s*(\d{1,3}(?:\.\d{1,2})?)(?![\d.])")
+
+
+def sizes_in(text):
+    """Tile face sizes as sorted (short, long) pairs: `24×48`, `24 x 48`, `18" x 36"` ->
+    (24, 48). Order-free, since sites write 48x24 and 24x48 alike."""
+    out = set()
+    for a, b in TILE_SIZE.findall(text or ""):
+        a, b = float(a), float(b)
+        if a >= 1 and b >= 1:
+            out.add(tuple(sorted((a, b))))
+    return out
+
+
+def sizes_agree(page_sizes, rec_sizes, tol=0.5):
+    """Nominal against actual within half an inch: a 23.62 x 23.62 tile is sold as 24 x 24."""
+    return any(abs(p[0] - r[0]) <= tol and abs(p[1] - r[1]) <= tol for p in page_sizes for r in rec_sizes)
 
 
 def widths_in(text):
@@ -108,7 +128,20 @@ def record_features(rec, supplier_cfg, matching):
         "line": line,
         "line_no": line_no,
         "category": rec.get("Category") or "",
+        "sizes": sizes_in(name),
+        "collection": (rec.get("Collection") or "").strip(),
+        "code_hint": code_hint(name),
     }
+
+
+def code_hint(product_name):
+    """The supplier's number when a record is named by one: `… — 603` -> `603`,
+    `… — 1006 Sunlit Wave` -> `1006`, `… — H01 Prestige Natural` -> `H01`; else ''."""
+    name = product_name or ""
+    if " — " not in name:
+        return ""
+    first = (name.split(" — ")[1].split() or [""])[0]
+    return first if re.fullmatch(r"[A-Za-z]{0,3}\d{2,6}[A-Za-z]?", first) else ""
 
 
 def product_line(text, supplier_cfg):
@@ -124,7 +157,8 @@ def product_line(text, supplier_cfg):
 
 
 def page_title_text(page):
-    parts = [page.get(k) or "" for k in ("title", "h1", "og_title", "product_name")]
+    # Entities decoded first: JL Tile titles a page `Midnight Charcoal-PJQ6706 [24&#215;24]` (2026-10-22).
+    parts = [html.unescape(page.get(k) or "") for k in ("title", "h1", "og_title", "product_name")]
     text = " | ".join(p for p in parts if p)
     if not text:
         slug = (page.get("url") or "").rstrip("/").rsplit("/", 1)[-1]
@@ -143,9 +177,49 @@ def score(feat, page, supplier_cfg, matching):
     codes = {c.upper() for c in page.get("codes") or []}
     if feat["supplier_sku"] and feat["supplier_sku"].upper() in codes:
         return 100, None
+    # A grade/finish suffix on the record's code (`91507-M`) still names the page's `91507`.
+    # When both carry codes and they disagree, the page is another product, whatever its title
+    # says (Impressive, 2026-10-22: Classic Oak `Natural` 91513 took Paramount `NATURAL` 91009).
+    sku_base = re.sub(r"-[A-Z0-9]{1,4}$", "", feat["supplier_sku"].upper())
+    real_codes = {c for c in codes if re.search(r"\d", c)}
+    if feat["supplier_sku"] and real_codes:
+        if sku_base in real_codes:
+            return 100, None
+        return 0, "code"
+    # The supplier's own code in the page's URL slug (Floordi, 2026-10-22:
+    # `/ashen-breeze-spc-flooring-avr655/` for SKU AVR655) is the same evidence as a listed code.
+    sku = feat["supplier_sku"].lower()
+    if len(sku) >= 4 and re.search(r"\d", sku) and re.fullmatch(r"[a-z0-9]+", sku):
+        slug = (page.get("url") or "").split("#")[0].split("?")[0].rstrip("/").rsplit("/", 1)[-1].lower()
+        if sku in re.split(r"[-_.]", slug):
+            return 100, None
+    # `slug_codes` (Woden, 2026-10-22): a record named by a number (`Woden SPC 6mm 7" — 603`)
+    # is the page whose URL slug starts with that number (`/product-page/603`,
+    # `/product-page/1105-silver-mist`). Numbers are the supplier's own product codes.
+    if supplier_cfg.get("slug_codes") and feat.get("code_hint"):
+        slug = (page.get("url") or "").split("#")[0].split("?")[0].rstrip("/").rsplit("/", 1)[-1].lower()
+        if re.split(r"[-_]", slug)[0] == feat["code_hint"].lower():
+            return 60, None
+    # A supplier whose colour names repeat across dozens of collections and sizes (Olympia
+    # Tile: `White`, `Grey`, 2026-10-22) matches on its own code or not at all.
+    if supplier_cfg.get("code_only"):
+        return 0, None
     title = page_title_text(page)
     if not feat["colour"] or not has_phrase(title, feat["colour"]):
         return 0, None
+    # Tile houses reuse `Blanco`, `Beige`, `Pearl` across dozens of collections (CIF, 2026-10-22:
+    # `Midtown — Bianco` found `Aldo Bianco`). `require_collection`: the page title must name the
+    # record's Collection, unless the colour is itself a product code (`ATA4419`).
+    if supplier_cfg.get("require_collection") and not re.search(r"\d", feat["colour"]):
+        if not feat.get("collection") or not has_phrase(title, feat["collection"]):
+            return 0, "collection"
+    # `page_collection_must_agree` (Tosca, 2026-10-22): a page that states its collection in
+    # its body (`page["collection"]`, from the browser lister) must be the record's collection;
+    # Butterscotch is both a Prime Oak (engineered) and a Red Oak Solid colour.
+    if supplier_cfg.get("page_collection_must_agree") and page.get("collection"):
+        pc = norm(page["collection"]).replace(" collection", "").strip()
+        if not feat.get("collection") or not has_phrase(feat["collection"], pc):
+            return 0, "collection"
     s = 10 + (5 if colour_segment_exact(title, feat["colour"]) else 0)
     page_widths = widths_in(title)
     if page_widths:
@@ -156,6 +230,13 @@ def score(feat, page, supplier_cfg, matching):
         # A twentieth of an inch either way: the catalogue rounds 7 3/4" to 7.7 and 7 3/8" to 7.4.
         if allowed and not any(abs(a - b) <= 0.06 for a in page_widths for b in allowed):
             return 0, "width"
+        s += 3
+    # Tile sizes (Gracious, 2026-10-22: one design sold 24x24 and 24x48 on two pages): when
+    # both the page and the record name a face size, they must agree, as widths must.
+    page_sizes = sizes_in(title)
+    if page_sizes and feat.get("sizes"):
+        if not sizes_agree(page_sizes, feat["sizes"]):
+            return 0, "size"
         s += 3
     # Shopify tags / product type say what a bare title does not. They feed species and line
     # detection, and only the laying / material words of `tag_pattern_words` (a store's
