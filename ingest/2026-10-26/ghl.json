@@ -1,0 +1,48 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-10-26T08:30:00-04:00",
+  "status": "error",
+  "error": "GHL MCP tools (contacts, opportunities, calendars, conversations) were not available to this agent session, so none of the four categories could be pulled. scripts/ghl_unread_pull.py timed out twice (>110s).",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest FAILED today: no MCP access to leads/opportunities/appointments/conversations, so no new-lead, pipeline, drift or unanswered data. Check GHL_PIT_TOKEN / ghl MCP server wiring and re-run.",
+    "Triage unavailable today: scripts/ghl_unread_pull.py timed out; no unread/waiting counts."
+  ],
+  "extensions": {
+    "ghl": {
+      "template_version": "6",
+      "reporting": {
+        "calls": {
+          "listed": 0,
+          "from_note": 0,
+          "transcribed": 0,
+          "voicemails": 0,
+          "minutes": 0.0,
+          "est_cost_usd": 0,
+          "engine": "elevenlabs",
+          "status": "ok",
+          "error": null
+        }
+      },
+      "new_leads": [],
+      "opportunities": [],
+      "appointments_booked": [],
+      "conversations": [],
+      "workflow_drift": [],
+      "won_records": [],
+      "stragglers_ranked": [],
+      "calls": [],
+      "call_quality": {
+        "sensitivity": "private",
+        "records": []
+      },
+      "triage": {
+        "status": "error",
+        "error": "ghl_unread_pull.py timed out (>110s) twice",
+        "counts": {}
+      }
+    }
+  }
+}
