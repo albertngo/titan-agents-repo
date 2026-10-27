@@ -540,7 +540,9 @@ instruction. Anything else, it proposes and stops — same as a manual write alw
 The vault's `CONVENTIONS.md` still governs every write, automatic or manual:
 
 - Append, don't rewrite. Prose above a note's `## Log` is Albert's.
-- Never delete or rename a note. Never edit `04_goals/`. Never touch `.obsidian/`.
+- Never delete or rename a note. Never touch `.obsidian/`. `vault-writer` never edits
+  `04_goals/`; a work session writes it only on Albert's explicit instruction (CONVENTIONS
+  v2.2, 2026-10-27).
 - **Visibility tagging** (CONVENTIONS v2.0, 2026-08-02): every note carries
   `visibility: staff | admin`; on staff-floor entity notes, admin-grade Log
   bullets carry a trailing `#admin`. Ingest `sensitivity` maps `team → staff`,
@@ -578,7 +580,8 @@ of a session, and never write outside the whitelist unprompted:
 - A platform quirk, trap, or ID surfaces that `06_platforms/<Platform>.md` doesn't already have.
 - An analysis produces findings worth keeping (e.g. the GHL win-timeline) →
   `09_analyses/YYYY-MM-DD-slug.md` per the vault's `08_templates/analysis.md`.
-- A decision gets made → `05_decisions/YYYY-MM-DD-slug.md`.
+- A decision gets made → `05_decisions/YYYY-MM-DD-slug.md`. Decisions and analyses carry
+  `serves:` with the goal IDs from the current `04_goals/` note (e.g. `[T2, S1]`), or `none`.
 - A contract in `contracts/` changes.
 - A repo file cites a vault note (a registry `_switched` field, a method changelog, this
   file) → write that note in the same session. `05_decisions/2026-10-10-ghl-triage-write-mode.md`
