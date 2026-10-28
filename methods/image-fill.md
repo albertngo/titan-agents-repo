@@ -65,6 +65,19 @@ Replace or append to a filled image field; write anything but the four target fi
 write while `write_mode` is `plan_only`; get past a bot challenge; guess a URL.
 
 ## Log
+- 2026-10-28 — The 10-22 run resumed after a week's usage-limit pause, re-planned against fresh
+  snapshots (yesterday's plans had expired). The writer refused Grandeur's first plan before
+  writing anything: 144 of 147 `Supplier product page` links pointed to another colour's page
+  (Bora Bora → `sardinia.html`), because every Grandeur colour page also shows other colours'
+  thumbnails and a gallery image linked whichever page it sat on. A label-only gallery image now
+  carries `link_url`, the crawled page whose address is its label, or none, in which case the
+  next source links (Word of Mouth). Re-planned: 160 links, each naming its record's colour, and
+  28 records left unlinked. Atlantic GF8936 was withheld (its photo is the Continental
+  Wisconsin image). Twice now a file came back stored as a ~210-byte `text/html` page instead of
+  the image (Home's Pro Malta, `663.png`; Purelux Cardiff, `Cardiff-4.jpg`, the second time
+  for that URL), and both were cleared with a compare-and-swap. Cardiff is not re-planned from
+  that URL, because Airtable's fetcher never gets the image from it. Olympia's 1,481 run in
+  batches of 300 (the policy cap), each planned on a fresh snapshot as scope `olympia-N`.
 - 2026-10-22 — Albert gave 14 supplier sites at once ("Run the skill on all and continue
   filling in until complete … you can park certain ones if needed"). **Floors At Work**
   (`floorsatwork.com`, records named `NAF … — <colour>`): its Shopify store sells each
@@ -91,8 +104,10 @@ write while `write_mode` is `plan_only`; get past a bot challenge; guess a URL.
   product link drops the `#imgN`); **`listing.skip_url_contains`** (Floordi's `/fr/` copy);
   a supplier's code in the URL slug counts as a listed code for every supplier; and Elementor
   background slideshows are read as page images (Purelux keeps each colour's photos only
-  there). Suppliers whose sites have no per-product photos are parked, not forced: Tosca
-  (client-rendered app), Dragona and Floor & Decor (marketing pages only), Weiss (Wix
+  there). Tosca's site is a client-rendered React app, so `listing.method: "browser"` reads it
+  through `scripts/browser_list.js` (headless Chromium, what a visitor sees, never past a
+  challenge); `page_collection_must_agree` keeps its colour names, which repeat across
+  collections, apart. Suppliers whose sites have no per-product photos are parked, not forced: Dragona and Floor & Decor (marketing pages only), Weiss (Wix
   brochure), Umbrellar (nothing listable), Evergreen (260 px thumbnails, some carrying
   Simba's watermark); Northway's robots.txt bars AI agents, so it is not read.
 - 2026-10-03 — Albert: "a lower quality image it still ok to grab. Having it is better than
