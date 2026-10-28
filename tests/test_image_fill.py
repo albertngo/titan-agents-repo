@@ -336,6 +336,17 @@ class TestPlan(unittest.TestCase):
         self.assertEqual(p["actions"], [])
         self.assertEqual(p["summary"]["skipped"], {"all_targets_filled": 1})
 
+    def test_filled_earlier_with_nothing_new_is_skipped_not_held(self):
+        # Olympia 2026-10-28: a record batch 1 gave a swatch, whose page has no room or detail
+        # photo, is fine; it must not land in the troubled CSV as no_usable_image.
+        swatch_only = [page("https://fb/naked-9", "9'' Collection American White Oak-Naked Oak",
+                            [img("s1", "https://cdn/sw.jpg")])]
+        filled = {**NAKED_9, "Swatch images": [{"id": "att1"}], "Supplier product page": "https://fb/naked-9"}
+        p = self.build([filled], swatch_only, self.j)
+        self.assertEqual((p["actions"], p["held"], p["summary"]["skipped"]), ([], [], {"nothing_new": 1}))
+        self.assertEqual(self.build([NAKED_9], [page("https://fb/naked-9", "9'' Collection American White Oak-Naked Oak")],
+                                    self.j)["held"][0]["reason"], "no_usable_image")  # a blank record still reports
+
     def test_a_smaller_swatch_lands_after_the_larger_one(self):
         # 2026-10-03: a lower quality photo is better than none; the larger still goes first.
         p = self.build([NAKED_9], self.pages, self.j)
@@ -706,7 +717,7 @@ class TestRegistryAndProse(unittest.TestCase):
     def test_held_reasons_cover_what_the_planner_emits(self):
         text = (REPO_ROOT / "scripts" / "image_fill_plan.py").read_text()
         for reason in ("no_match", "ambiguous_match", "model_rejected", "no_usable_image",
-                       "low_res_swatch", "not_judged", "host_blocked", "all_targets_filled"):
+                       "low_res_swatch", "not_judged", "host_blocked", "all_targets_filled", "nothing_new"):
             self.assertIn(f'"{reason}"', text)
             self.assertIn(reason, REG["held_reasons"])
 

@@ -323,6 +323,11 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
                     for i, img in enumerate(chosen)]
                 images += [{"target": target, "url": img["url"], "sha1": img["sha1"], "page": img["_page"],
                             "width": img.get("width"), "height": img.get("height")} for img in chosen]
+        if not fields and any(t not in blank for t in ("swatch", "room", "detail")):
+            # Filled by an earlier run, and the sources have nothing for its other fields: not
+            # trouble (Olympia 2026-10-28, batch 3 would have reported 300 fine records as held).
+            skipped["nothing_new"] += 1
+            continue
         if not fields:
             reason = ("host_blocked" if problems.get("host_blocked") else
                       "not_judged" if problems.get("not_judged") else
