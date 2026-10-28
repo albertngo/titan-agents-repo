@@ -76,8 +76,17 @@ write while `write_mode` is `plan_only`; get past a bot challenge; guess a URL.
   Wisconsin image). Twice now a file came back stored as a ~210-byte `text/html` page instead of
   the image (Home's Pro Malta, `663.png`; Purelux Cardiff, `Cardiff-4.jpg`, the second time
   for that URL), and both were cleared with a compare-and-swap. Cardiff is not re-planned from
-  that URL, because Airtable's fetcher never gets the image from it. Olympia's 1,481 run in
-  batches of 300 (the policy cap), each planned on a fresh snapshot as scope `olympia-N`.
+  that URL, because Airtable's fetcher never gets the image from it. Olympia ran in five
+  batches of at most 300 (the policy cap), each planned on a fresh snapshot as scope
+  `olympia-N`: 1,479 of 3,028 records written (Word of Mouth swatch + link, every match on
+  Olympia's own code), 1,331 not on Word of Mouth, 166 with no usable photo. Two were held for
+  carrying another colour's photo: Cristallo Taupe gloss (its page shows `warmgrey-2x12.jpg`) and
+  Sempre White (`qt-sr-arw-0816-mt.jpg`, Serenity Arctic White's file). One swatch was dropped
+  silently by Airtable's fetch (field left empty) and landed on the next batch. New skip reason
+  `nothing_new`: a record an earlier run filled, with nothing usable for its blank rest, is not
+  reported as trouble (batch 3 would have listed 650 fine records as `no_usable_image`). Simba 49,
+  Grandeur 188 and Home's Pro 12 were also written that day. Afterwards no image field in the
+  base held a non-image file (Airtable `fileType: text` filter on all three fields).
 - 2026-10-22 — Albert gave 14 supplier sites at once ("Run the skill on all and continue
   filling in until complete … you can park certain ones if needed"). **Floors At Work**
   (`floorsatwork.com`, records named `NAF … — <colour>`): its Shopify store sells each
