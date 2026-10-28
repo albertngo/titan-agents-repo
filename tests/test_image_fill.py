@@ -371,6 +371,20 @@ class TestPlan(unittest.TestCase):
         self.assertEqual([x["url"] for x in a["fields"]["Swatch images"]], ["https://cdn/small.jpg"])
         self.assertNotIn("Room scene images", a["fields"])
 
+    def test_a_sister_companys_named_watermark_is_kept_and_no_other(self):
+        # Evergreen, 2026-10-28 (Albert): Simba's overlay is fine on Evergreen; an unnamed or
+        # other company's watermark still drops the photo.
+        reg = copy.deepcopy(REG)
+        reg["suppliers"]["VIDAR"]["image_rules"] = {"watermark_ok": ["Simba"]}
+        j = {"contract_version": "image-judgements-1", "images": {
+            "s1": {"kind": "swatch", "watermarked": True, "watermark_by": "Simba"},
+            "r1": {"kind": "room", "watermarked": True, "watermark_by": "Speers"},
+            "s2": {"kind": "swatch", "watermarked": True}}}
+        a = plan.build([NAKED_9], {"pages": self.pages}, j, None, reg, "VIDAR", "vidar")["actions"][0]
+        self.assertEqual([x["url"] for x in a["fields"]["Swatch images"]], ["https://cdn/sw.jpg"])
+        self.assertNotIn("Room scene images", a["fields"])
+        self.assertEqual(self.build([NAKED_9], self.pages, j)["actions"], [])  # no watermark_ok: all dropped
+
     def test_ambiguous_needs_a_verdict_and_null_is_respected(self):
         pages = self.pages + [page("https://fb/naked-9b", "9'' Collection American White Oak-Naked Oak", [img("s3", "https://cdn/b.jpg")])]
         self.assertEqual(self.build([NAKED_9], pages, self.j)["held"][0]["reason"], "ambiguous_match")

@@ -131,7 +131,10 @@ def usable_images(page, judgements, rules, laying=None):
         if not j:
             problems["not_judged"] += 1
             continue
-        if any(j.get(flag) for flag in ("watermarked",)) or j.get("colour_matches_page") is False:
+        # `watermark_ok` (Evergreen, 2026-10-28): a sister company's own overlay is not a reason to
+        # drop a photo, but only when the judge named whose it is; any other watermark still is.
+        own_mark = j.get("watermark_by") in (rules.get("watermark_ok") or [])
+        if (j.get("watermarked") and not own_mark) or j.get("colour_matches_page") is False:
             problems["excluded"] += 1
             continue
         if laying and j.get("laying") and j["laying"] != laying:

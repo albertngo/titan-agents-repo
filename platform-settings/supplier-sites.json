@@ -655,24 +655,36 @@
     },
     "EVERGREEN": {
       "_added": "2026-10-22, Albert: 'Run the skill on all and continue filling in until complete' with this site.",
+      "_sister_note": "2026-10-28, Albert: 'Evergreen and Simba are connected in some way. We can continue through to get the Evergreen. If the pictures are too small and bad quality, try not to use them.' evergreenbuildingflooring.com shows only ~260 px thumbnails (below image_rules' 300 px floor), while simbaflooringcorp.com lists 73 of Evergreen's 95 supplier codes as the same products (72166 -> /product/72166/). So Simba's site is Evergreen's source, and Simba's watermark on a photo is not a reason to drop it here.",
       "official": {
-        "site": "https://evergreenbuildingflooring.com",
+        "site": "https://simbaflooringcorp.com",
         "hosts": [
-          "evergreenbuildingflooring.com",
-          "www.evergreenbuildingflooring.com"
+          "simbaflooringcorp.com",
+          "www.simbaflooringcorp.com"
         ],
         "listing": {
-          "method": "sitemap",
-          "gallery": true
+          "method": "auto"
         }
       },
-      "retailers": {},
+      "own_site_unused": {
+        "site": "https://evergreenbuildingflooring.com",
+        "why": "brochure pages of ~260 px thumbnails (2026-10-22 pull: 258 of 292 images had no usable size, the rest 200-299 px)"
+      },
+      "retailers": {
+        "wordofmouth": {
+          "vendor": "SIMBA"
+        }
+      },
       "hosts": [
-        "evergreenbuildingflooring.com",
-        "www.evergreenbuildingflooring.com"
+        "simbaflooringcorp.com",
+        "www.simbaflooringcorp.com"
       ],
       "brand": "Evergreen",
-      "_gallery_note": "2026-10-22: a brochure site; each collection page shows every colour as one image named for it (file name or alt text), so `gallery` lists each image as its own page."
+      "image_rules": {
+        "watermark_ok": [
+          "Simba"
+        ]
+      }
     },
     "SIMBA": {
       "_added": "2026-10-22, Albert: 'Run the skill on all and continue filling in until complete' with this site.",
