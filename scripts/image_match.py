@@ -228,6 +228,17 @@ def score(feat, page, supplier_cfg, matching):
             return 0, "collection"
     s = 10 + (5 if colour_segment_exact(title, feat["colour"]) else 0)
     page_widths = widths_in(title)
+    series_widths = supplier_cfg.get("series_widths") or {}
+    if not page_widths and series_widths:
+        # Oakel City (2026-10-28): `Daybreak` names no width, but its Shopify tag `7"` is the
+        # 7 Series, which Oakel's own titles give as 7-1/2". Read the tag through the series.
+        # Word of Mouth titles the same products `7 Series - Urban Grey`, tagged `7" - 7.9"`.
+        found = [m.group(1) for m in re.finditer(r"(?<![\d.])(\d{1,2}) Series\b", title)]
+        for tag in page.get("tags") or []:
+            m = re.match(r"\s*(\d{1,2})\s*(?:\"|″|”|'')", tag)
+            if m:
+                found.append(m.group(1))
+        page_widths |= {float(series_widths[n]) for n in found if n in series_widths}
     if page_widths:
         # A record's own width must be on the page. The collection number (`7 Collection`)
         # stands in only for a record with no width: the catalogue holds 7" and 7.5" records

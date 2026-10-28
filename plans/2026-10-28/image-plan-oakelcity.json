@@ -2,7 +2,7 @@
  "contract_version": "image-plan-1",
  "scope": "oakelcity",
  "supplier": "OAKEL CITY",
- "run_at": "2026-10-28T12:18:27.184520-04:00",
+ "run_at": "2026-10-28T12:23:52.555214-04:00",
  "expires": "2026-10-28T23:59:59-0400",
  "write_mode": "write",
  "registry": "platform-settings/supplier-sites.json",
@@ -13,27 +13,27 @@
  },
  "summary": {
   "records": 139,
-  "actions": 70,
-  "held": 50,
+  "actions": 64,
+  "held": 56,
   "skipped": {
    "accessory": 19
   },
   "held_by_reason": {
-   "no_match": 47,
+   "no_match": 53,
    "no_usable_image": 2,
    "model_rejected": 1
   },
   "fields": {
-   "Swatch images": 62,
-   "Room scene images": 42,
-   "Supplier product page": 70,
-   "Detail images": 25
+   "Swatch images": 57,
+   "Room scene images": 39,
+   "Supplier product page": 64,
+   "Detail images": 24
   },
   "tiers": {
-   "exact": 65,
+   "exact": 59,
    "model_confirmed": 5
   },
-  "manufacturer_pages": 64
+  "manufacturer_pages": 58
  },
  "actions": [
   {
@@ -944,7 +944,7 @@
    "flags": []
   },
   {
-   "id": "img-f608bc5ebac8",
+   "id": "img-914965f975f1",
    "seq": 17,
    "target_system": "airtable",
    "op": "attach_images",
@@ -956,10 +956,6 @@
      {
       "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-Oak-Oakel-City.png?v=1725483980",
       "filename": "oakel-erin-oak-european-oak-engineered-hardwood-swatch.png"
-     },
-     {
-      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/ErinOak.webp?v=1738792165",
-      "filename": "oakel-erin-oak-european-oak-engineered-hardwood-swatch-2.webp"
      }
     ],
     "Room scene images": [
@@ -1002,14 +998,6 @@
      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-Oak-Oakel-City.png?v=1725483980",
      "sha1": "13e1be30e92397f56f3c0121ad8907d8c9676262",
      "page": "https://oakelcity.com/products/erin-oak-6",
-     "width": 500,
-     "height": 500
-    },
-    {
-     "target": "swatch",
-     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/ErinOak.webp?v=1738792165",
-     "sha1": "fe1b331e9ac2cfde22da36e109a8fdda9762c1a2",
-     "page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-erin-oak-abc-grade",
      "width": 500,
      "height": 500
     },
@@ -1744,185 +1732,8 @@
    "flags": []
   },
   {
-   "id": "img-7d5c4ad5e023",
-   "seq": 31,
-   "target_system": "airtable",
-   "op": "attach_images",
-   "record_id": "recQju65rS9Ngb6ZT",
-   "sku": "ENG-OAKL-0071",
-   "product_name": "Oakel European Oak Multi-Ply 6 Series — Daybreak (Select & Better)",
-   "fields": {
-    "Swatch images": [
-     {
-      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Daybreak.jpg?v=1727999328",
-      "filename": "oakel-daybreak-european-oak-engineered-hardwood-swatch.jpg"
-     }
-    ],
-    "Supplier product page": "https://oakelcity.com/products/day-break-1"
-   },
-   "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
-   },
-   "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
-   ],
-   "source_page": "https://oakelcity.com/products/day-break-1",
-   "source": "official",
-   "product_page_source": "manufacturer",
-   "match_tier": "exact",
-   "images": [
-    {
-     "target": "swatch",
-     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Daybreak.jpg?v=1727999328",
-     "sha1": "d98a2b4358aad0b82b4ccc27aecaa5518ff1a3f9",
-     "page": "https://oakelcity.com/products/day-break-1",
-     "width": 3000,
-     "height": 3000
-    }
-   ],
-   "flags": []
-  },
-  {
-   "id": "img-09fdb4dee06a",
-   "seq": 32,
-   "target_system": "airtable",
-   "op": "attach_images",
-   "record_id": "recN8j9R9uBTTKh12",
-   "sku": "ENG-OAKL-0072",
-   "product_name": "Oakel European Oak Multi-Ply 6 Series — Daybreak (Select)",
-   "fields": {
-    "Swatch images": [
-     {
-      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Daybreak.jpg?v=1727999328",
-      "filename": "oakel-daybreak-european-oak-engineered-hardwood-swatch.jpg"
-     }
-    ],
-    "Supplier product page": "https://oakelcity.com/products/day-break-1"
-   },
-   "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
-   },
-   "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
-   ],
-   "source_page": "https://oakelcity.com/products/day-break-1",
-   "source": "official",
-   "product_page_source": "manufacturer",
-   "match_tier": "exact",
-   "images": [
-    {
-     "target": "swatch",
-     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Daybreak.jpg?v=1727999328",
-     "sha1": "d98a2b4358aad0b82b4ccc27aecaa5518ff1a3f9",
-     "page": "https://oakelcity.com/products/day-break-1",
-     "width": 3000,
-     "height": 3000
-    }
-   ],
-   "flags": []
-  },
-  {
-   "id": "img-87228ebca933",
-   "seq": 33,
-   "target_system": "airtable",
-   "op": "attach_images",
-   "record_id": "recWMJ2k9Pr5OUQpB",
-   "sku": "ENG-OAKL-0074",
-   "product_name": "Oakel European Oak Multi-Ply 6 Series — Smoke Grey (Select)",
-   "fields": {
-    "Room scene images": [
-     {
-      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00004-3_0988ebf6-7cb3-4abb-9847-922239ff98b8.jpg?v=1761865480",
-      "filename": "oakel-smoke-grey-european-oak-engineered-hardwood-room-scene.jpg"
-     },
-     {
-      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-4_86259852-7184-4ade-8e8a-d55192b2e9da.jpg?v=1761865480",
-      "filename": "oakel-smoke-grey-european-oak-engineered-hardwood-room-scene-2.jpg"
-     },
-     {
-      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00002-4_93f5ae37-ce6d-4d06-9f45-c17463fd8630.jpg?v=1761865480",
-      "filename": "oakel-smoke-grey-european-oak-engineered-hardwood-room-scene-3.jpg"
-     },
-     {
-      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-4_b85f93a1-9bd1-44c9-97ae-f08addcd074f.jpg?v=1761865480",
-      "filename": "oakel-smoke-grey-european-oak-engineered-hardwood-room-scene-4.jpg"
-     }
-    ],
-    "Detail images": [
-     {
-      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-smoke-grey.png?v=1761865480",
-      "filename": "oakel-smoke-grey-european-oak-engineered-hardwood-detail.png"
-     }
-    ],
-    "Supplier product page": "https://oakelcity.com/products/smoke-grey-1"
-   },
-   "field_ids": {
-    "Room scene images": "fldcB1MQVqcPf6lKY",
-    "Detail images": "fldRH7GrND9w10KWH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
-   },
-   "expect_blank": [
-    "Room scene images",
-    "Detail images",
-    "Supplier product page"
-   ],
-   "source_page": "https://oakelcity.com/products/smoke-grey-1",
-   "source": "official",
-   "product_page_source": "manufacturer",
-   "match_tier": "exact",
-   "images": [
-    {
-     "target": "room",
-     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00004-3_0988ebf6-7cb3-4abb-9847-922239ff98b8.jpg?v=1761865480",
-     "sha1": "8cf74d68b8c1890c5b2d67e9cee80200bc0fa889",
-     "page": "https://oakelcity.com/products/smoke-grey-1",
-     "width": 801,
-     "height": 572
-    },
-    {
-     "target": "room",
-     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-4_86259852-7184-4ade-8e8a-d55192b2e9da.jpg?v=1761865480",
-     "sha1": "569f1ae66b6a8f88c1748f7f70ff393f3eab43ad",
-     "page": "https://oakelcity.com/products/smoke-grey-1",
-     "width": 801,
-     "height": 572
-    },
-    {
-     "target": "room",
-     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00002-4_93f5ae37-ce6d-4d06-9f45-c17463fd8630.jpg?v=1761865480",
-     "sha1": "6803714d5eccee8c1e35f8b73f9ff657a8c7af64",
-     "page": "https://oakelcity.com/products/smoke-grey-1",
-     "width": 801,
-     "height": 572
-    },
-    {
-     "target": "room",
-     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-4_b85f93a1-9bd1-44c9-97ae-f08addcd074f.jpg?v=1761865480",
-     "sha1": "caf448dfd81e5f01d6f224376c90082088fb3000",
-     "page": "https://oakelcity.com/products/smoke-grey-1",
-     "width": 801,
-     "height": 572
-    },
-    {
-     "target": "detail",
-     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-smoke-grey.png?v=1761865480",
-     "sha1": "3f5b82f13af5709785ec1715e55a140fba3d7fb7",
-     "page": "https://oakelcity.com/products/smoke-grey-1",
-     "width": 1536,
-     "height": 1025
-    }
-   ],
-   "flags": [
-    "no_swatch"
-   ]
-  },
-  {
    "id": "img-4cfa74d71259",
-   "seq": 34,
+   "seq": 31,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recqVfjEMsn4LeFUb",
@@ -1962,235 +1773,8 @@
    "flags": []
   },
   {
-   "id": "img-7a73c096dc61",
-   "seq": 35,
-   "target_system": "airtable",
-   "op": "attach_images",
-   "record_id": "rec0LkcfFX9k9YBqf",
-   "sku": "ENG-OAKL-0076",
-   "product_name": "Oakel European Oak Multi-Ply 6 Series — Tylor SKY (Select)",
-   "fields": {
-    "Swatch images": [
-     {
-      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Tylor_Sky_Oakel_City.png?v=1725561904",
-      "filename": "oakel-tylor-sky-european-oak-engineered-hardwood-swatch.png"
-     }
-    ],
-    "Room scene images": [
-     {
-      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-7.jpg?v=1725561890",
-      "filename": "oakel-tylor-sky-european-oak-engineered-hardwood-room-scene.jpg"
-     },
-     {
-      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00004-6.jpg?v=1725561890",
-      "filename": "oakel-tylor-sky-european-oak-engineered-hardwood-room-scene-2.jpg"
-     },
-     {
-      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00005-1.jpg?v=1725561890",
-      "filename": "oakel-tylor-sky-european-oak-engineered-hardwood-room-scene-3.jpg"
-     },
-     {
-      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-7.jpg?v=1725561890",
-      "filename": "oakel-tylor-sky-european-oak-engineered-hardwood-room-scene-4.jpg"
-     }
-    ],
-    "Supplier product page": "https://oakelcity.com/products/tylor-sky"
-   },
-   "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Room scene images": "fldcB1MQVqcPf6lKY",
-    "Supplier product page": "flduFw93z4YwnOA3I"
-   },
-   "expect_blank": [
-    "Swatch images",
-    "Room scene images",
-    "Supplier product page"
-   ],
-   "source_page": "https://oakelcity.com/products/tylor-sky",
-   "source": "official",
-   "product_page_source": "manufacturer",
-   "match_tier": "exact",
-   "images": [
-    {
-     "target": "swatch",
-     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Tylor_Sky_Oakel_City.png?v=1725561904",
-     "sha1": "8839932845046d5a664e63295ba79b0e0c56b453",
-     "page": "https://oakelcity.com/products/tylor-sky",
-     "width": 500,
-     "height": 500
-    },
-    {
-     "target": "room",
-     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-7.jpg?v=1725561890",
-     "sha1": "b6108bbce4d4a894c89c7253501eaf566be2deda",
-     "page": "https://oakelcity.com/products/tylor-sky",
-     "width": 801,
-     "height": 572
-    },
-    {
-     "target": "room",
-     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00004-6.jpg?v=1725561890",
-     "sha1": "d0eca2ee3ef3561cc9807d788cf5506f675abe15",
-     "page": "https://oakelcity.com/products/tylor-sky",
-     "width": 801,
-     "height": 572
-    },
-    {
-     "target": "room",
-     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00005-1.jpg?v=1725561890",
-     "sha1": "dc8fa100b5ad3104e8b10db07d1f0fd997921cb6",
-     "page": "https://oakelcity.com/products/tylor-sky",
-     "width": 801,
-     "height": 572
-    },
-    {
-     "target": "room",
-     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-7.jpg?v=1725561890",
-     "sha1": "443cc3b6510399c33f90a9ade33b6730f41d834a",
-     "page": "https://oakelcity.com/products/tylor-sky",
-     "width": 801,
-     "height": 572
-    }
-   ],
-   "flags": []
-  },
-  {
-   "id": "img-94e4f667521d",
-   "seq": 36,
-   "target_system": "airtable",
-   "op": "attach_images",
-   "record_id": "recwwmEwBd3VLPAep",
-   "sku": "ENG-OAKL-0077",
-   "product_name": "Oakel European Oak Multi-Ply 6 Series — Winter Fly (Select)",
-   "fields": {
-    "Swatch images": [
-     {
-      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Winter_Fly_Oakel_City.png?v=1725497031",
-      "filename": "oakel-winter-fly-european-oak-engineered-hardwood-swatch.png"
-     }
-    ],
-    "Room scene images": [
-     {
-      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00000-10.jpg?v=1725496987",
-      "filename": "oakel-winter-fly-european-oak-engineered-hardwood-room-scene.jpg"
-     },
-     {
-      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-11.jpg?v=1725496987",
-      "filename": "oakel-winter-fly-european-oak-engineered-hardwood-room-scene-2.jpg"
-     },
-     {
-      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00002-11.jpg?v=1725496987",
-      "filename": "oakel-winter-fly-european-oak-engineered-hardwood-room-scene-3.jpg"
-     },
-     {
-      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-11.jpg?v=1725496987",
-      "filename": "oakel-winter-fly-european-oak-engineered-hardwood-room-scene-4.jpg"
-     }
-    ],
-    "Supplier product page": "https://oakelcity.com/products/winter-fly-1"
-   },
-   "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Room scene images": "fldcB1MQVqcPf6lKY",
-    "Supplier product page": "flduFw93z4YwnOA3I"
-   },
-   "expect_blank": [
-    "Swatch images",
-    "Room scene images",
-    "Supplier product page"
-   ],
-   "source_page": "https://oakelcity.com/products/winter-fly-1",
-   "source": "official",
-   "product_page_source": "manufacturer",
-   "match_tier": "exact",
-   "images": [
-    {
-     "target": "swatch",
-     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Winter_Fly_Oakel_City.png?v=1725497031",
-     "sha1": "941806dfed512a1006217349d8918368f997994b",
-     "page": "https://oakelcity.com/products/winter-fly-1",
-     "width": 500,
-     "height": 500
-    },
-    {
-     "target": "room",
-     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00000-10.jpg?v=1725496987",
-     "sha1": "fd711283aeefb3d8c3b9b49becc9098d505d6990",
-     "page": "https://oakelcity.com/products/winter-fly-1",
-     "width": 801,
-     "height": 572
-    },
-    {
-     "target": "room",
-     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-11.jpg?v=1725496987",
-     "sha1": "7939b8dca3394714fb779d6dcd755697d2dc2991",
-     "page": "https://oakelcity.com/products/winter-fly-1",
-     "width": 801,
-     "height": 572
-    },
-    {
-     "target": "room",
-     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00002-11.jpg?v=1725496987",
-     "sha1": "8442ac2546d301f925f8360257ae6fbbf60aed04",
-     "page": "https://oakelcity.com/products/winter-fly-1",
-     "width": 801,
-     "height": 572
-    },
-    {
-     "target": "room",
-     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-11.jpg?v=1725496987",
-     "sha1": "39e175e263ad7ead8b81386ae63e797434bd45d6",
-     "page": "https://oakelcity.com/products/winter-fly-1",
-     "width": 801,
-     "height": 572
-    }
-   ],
-   "flags": []
-  },
-  {
-   "id": "img-cc64434a56fd",
-   "seq": 37,
-   "target_system": "airtable",
-   "op": "attach_images",
-   "record_id": "recJryK4NilbmEhE7",
-   "sku": "ENG-OAKL-0078",
-   "product_name": "Oakel European Oak Multi-Ply 6 Series — Urban Grey (Select)",
-   "fields": {
-    "Swatch images": [
-     {
-      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Urban-Grey.jpg?v=1727999215",
-      "filename": "oakel-urban-grey-european-oak-engineered-hardwood-swatch.jpg"
-     }
-    ],
-    "Supplier product page": "https://oakelcity.com/products/urban-grey"
-   },
-   "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
-   },
-   "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
-   ],
-   "source_page": "https://oakelcity.com/products/urban-grey",
-   "source": "official",
-   "product_page_source": "manufacturer",
-   "match_tier": "exact",
-   "images": [
-    {
-     "target": "swatch",
-     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Urban-Grey.jpg?v=1727999215",
-     "sha1": "c69483a9ebc30a1abce2a3d9825dc09cd8371148",
-     "page": "https://oakelcity.com/products/urban-grey",
-     "width": 3000,
-     "height": 3000
-    }
-   ],
-   "flags": []
-  },
-  {
    "id": "img-876735d9cd18",
-   "seq": 38,
+   "seq": 32,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recmC3h21yXYriU4K",
@@ -2231,7 +1815,7 @@
   },
   {
    "id": "img-b14e926bebfb",
-   "seq": 39,
+   "seq": 33,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "reclUwoO31qpmC4bi",
@@ -2272,7 +1856,7 @@
   },
   {
    "id": "img-afb97408bb5d",
-   "seq": 40,
+   "seq": 34,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "rec39NZT2leSBtZCh",
@@ -2329,7 +1913,7 @@
   },
   {
    "id": "img-a147e6e76a70",
-   "seq": 41,
+   "seq": 35,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "reczhGLAKgjDoOJyx",
@@ -2386,7 +1970,7 @@
   },
   {
    "id": "img-a65b25e0539e",
-   "seq": 42,
+   "seq": 36,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recMfQrKr4oeutz5l",
@@ -2443,7 +2027,7 @@
   },
   {
    "id": "img-1a4075160a9b",
-   "seq": 43,
+   "seq": 37,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recc7GrWuXS8Xg1Oc",
@@ -2524,7 +2108,7 @@
   },
   {
    "id": "img-528482f65199",
-   "seq": 44,
+   "seq": 38,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recc3O9QuVKvzcQ8s",
@@ -2593,7 +2177,7 @@
   },
   {
    "id": "img-547f4bc55d07",
-   "seq": 45,
+   "seq": 39,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recY5EkcU2E9hLXzC",
@@ -2662,7 +2246,7 @@
   },
   {
    "id": "img-c8026eb4b1d2",
-   "seq": 46,
+   "seq": 40,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recJjkQ43yW1BsT9p",
@@ -2719,7 +2303,7 @@
   },
   {
    "id": "img-a4c7f3c6248f",
-   "seq": 47,
+   "seq": 41,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recd57Z0yRbHfttYU",
@@ -2800,7 +2384,7 @@
   },
   {
    "id": "img-e1f2f178276e",
-   "seq": 48,
+   "seq": 42,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recJOy7eAjlZdSUqU",
@@ -2873,7 +2457,7 @@
   },
   {
    "id": "img-e9804f0ccdbb",
-   "seq": 49,
+   "seq": 43,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recdQZOAzdspPBGVw",
@@ -2946,7 +2530,7 @@
   },
   {
    "id": "img-40b03100498d",
-   "seq": 50,
+   "seq": 44,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recX5wnX8YtxGBIpM",
@@ -3019,7 +2603,7 @@
   },
   {
    "id": "img-264cca2947a4",
-   "seq": 51,
+   "seq": 45,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "reczJVd24LReantlK",
@@ -3092,7 +2676,7 @@
   },
   {
    "id": "img-99783f9bd0f0",
-   "seq": 52,
+   "seq": 46,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recphhl96XjPR3ToD",
@@ -3165,7 +2749,7 @@
   },
   {
    "id": "img-2f0d613ef935",
-   "seq": 53,
+   "seq": 47,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recBqoToDO6e7oBGh",
@@ -3238,7 +2822,7 @@
   },
   {
    "id": "img-9db541b36b91",
-   "seq": 54,
+   "seq": 48,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recfjp1bQvcCDL52o",
@@ -3311,7 +2895,7 @@
   },
   {
    "id": "img-8f4e10725854",
-   "seq": 55,
+   "seq": 49,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recP9yHJ8GyqcudnC",
@@ -3384,7 +2968,7 @@
   },
   {
    "id": "img-2b1fc641f382",
-   "seq": 56,
+   "seq": 50,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "reckFcXhkSxaOFrTw",
@@ -3457,7 +3041,7 @@
   },
   {
    "id": "img-2d407f5ecaab",
-   "seq": 57,
+   "seq": 51,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recND27stU2f8tCGh",
@@ -3530,7 +3114,7 @@
   },
   {
    "id": "img-057c9d74841f",
-   "seq": 58,
+   "seq": 52,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "rechOdgRD6N1nsOr9",
@@ -3603,7 +3187,7 @@
   },
   {
    "id": "img-f93160f5aecc",
-   "seq": 59,
+   "seq": 53,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recmK4YGceYgq1WFx",
@@ -3676,7 +3260,7 @@
   },
   {
    "id": "img-df29bad89b81",
-   "seq": 60,
+   "seq": 54,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "reckadhqXeS1TSiMb",
@@ -3749,7 +3333,7 @@
   },
   {
    "id": "img-15a74b31e50f",
-   "seq": 61,
+   "seq": 55,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recuTLUNTHo8y8oqm",
@@ -3822,7 +3406,7 @@
   },
   {
    "id": "img-1a26daa689a7",
-   "seq": 62,
+   "seq": 56,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recCD3qUlkib6oO5t",
@@ -3895,7 +3479,7 @@
   },
   {
    "id": "img-d488664d41ed",
-   "seq": 63,
+   "seq": 57,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recwfJCd9CClJHFuc",
@@ -3964,7 +3548,7 @@
   },
   {
    "id": "img-978611bac2aa",
-   "seq": 64,
+   "seq": 58,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recIRcG3C22GRqMaw",
@@ -4021,7 +3605,7 @@
   },
   {
    "id": "img-04b9baae30ed",
-   "seq": 65,
+   "seq": 59,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recAPjRH6ugJLm0O2",
@@ -4078,7 +3662,7 @@
   },
   {
    "id": "img-c6ae38d52cb0",
-   "seq": 66,
+   "seq": 60,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recoUMTlG5kIjzI3Q",
@@ -4147,7 +3731,7 @@
   },
   {
    "id": "img-87c467284148",
-   "seq": 67,
+   "seq": 61,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "rec42xm6vBQVZVBbW",
@@ -4204,7 +3788,7 @@
   },
   {
    "id": "img-201feeb506a3",
-   "seq": 68,
+   "seq": 62,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "recrEuV6zGIHFeStR",
@@ -4277,7 +3861,7 @@
   },
   {
    "id": "img-b9fe89c5ec7c",
-   "seq": 69,
+   "seq": 63,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "reccbHp9BhP6CLfTw",
@@ -4334,7 +3918,7 @@
   },
   {
    "id": "img-1c684b40574e",
-   "seq": 70,
+   "seq": 64,
    "target_system": "airtable",
    "op": "attach_images",
    "record_id": "rec9aF2sW8MQi1JYW",
@@ -4557,7 +4141,7 @@
    "product_name": "Oakel American Oak Multi-Ply 6 Series Click — Imola (Select)",
    "candidate_pages": [],
    "reason": "no_match",
-   "detail": "colour 'Imola'; vetoes {'pattern': 1}"
+   "detail": "colour 'Imola'; vetoes {'width': 1}"
   },
   {
    "sku": "ENG-OAKL-0039",
@@ -4565,7 +4149,7 @@
    "product_name": "Oakel American Oak Multi-Ply 6 Series Click — Indy (Select)",
    "candidate_pages": [],
    "reason": "no_match",
-   "detail": "colour 'Indy'; vetoes {'pattern': 1}"
+   "detail": "colour 'Indy'; vetoes {'width': 1}"
   },
   {
    "sku": "ENG-OAKL-0040",
@@ -4573,7 +4157,7 @@
    "product_name": "Oakel American Oak Multi-Ply 6 Series Click — Le Man (Select)",
    "candidate_pages": [],
    "reason": "no_match",
-   "detail": "colour 'Le Man'; vetoes {'pattern': 1}"
+   "detail": "colour 'Le Man'; vetoes {'width': 1}"
   },
   {
    "sku": "ENG-OAKL-0041",
@@ -4581,7 +4165,7 @@
    "product_name": "Oakel American Oak Multi-Ply 6 Series Click — Monaco (Select)",
    "candidate_pages": [],
    "reason": "no_match",
-   "detail": "colour 'Monaco'; vetoes {'pattern': 1}"
+   "detail": "colour 'Monaco'; vetoes {'width': 1}"
   },
   {
    "sku": "ENG-OAKL-0042",
@@ -4597,7 +4181,7 @@
    "product_name": "Oakel American Oak Multi-Ply 6 Series Click — Spa (Select)",
    "candidate_pages": [],
    "reason": "no_match",
-   "detail": "colour 'Spa'; vetoes {'pattern': 1}"
+   "detail": "colour 'Spa'; vetoes {'width': 1}"
   },
   {
    "sku": "ENG-OAKL-0044",
@@ -4733,6 +4317,22 @@
    "detail": "colour 'Roma'; vetoes {}"
   },
   {
+   "sku": "ENG-OAKL-0071",
+   "record_id": "recQju65rS9Ngb6ZT",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Daybreak (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Daybreak'; vetoes {'width': 1}"
+  },
+  {
+   "sku": "ENG-OAKL-0072",
+   "record_id": "recN8j9R9uBTTKh12",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Daybreak (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Daybreak'; vetoes {'width': 1}"
+  },
+  {
    "sku": "ENG-OAKL-0073",
    "record_id": "recq278e6Xg3cjbDT",
    "product_name": "Oakel European Oak Multi-Ply 6 Series — Silver Stone (Select)",
@@ -4741,12 +4341,44 @@
    "detail": "colour 'Silver Stone'; vetoes {}"
   },
   {
+   "sku": "ENG-OAKL-0074",
+   "record_id": "recWMJ2k9Pr5OUQpB",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Smoke Grey (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Smoke Grey'; vetoes {'width': 1}"
+  },
+  {
+   "sku": "ENG-OAKL-0076",
+   "record_id": "rec0LkcfFX9k9YBqf",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Tylor SKY (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Tylor SKY'; vetoes {'width': 2}"
+  },
+  {
+   "sku": "ENG-OAKL-0077",
+   "record_id": "recwwmEwBd3VLPAep",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Winter Fly (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Winter Fly'; vetoes {'width': 1}"
+  },
+  {
+   "sku": "ENG-OAKL-0078",
+   "record_id": "recJryK4NilbmEhE7",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Urban Grey (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Urban Grey'; vetoes {'width': 3, 'pattern': 1}"
+  },
+  {
    "sku": "ENG-OAKL-0079",
    "record_id": "recdOrE8v61tyF7Xj",
    "product_name": "Oakel American Oak Multi-Ply 6 Series Click — Cargo (Select)",
    "candidate_pages": [],
    "reason": "no_match",
-   "detail": "colour 'Cargo'; vetoes {'pattern': 1}"
+   "detail": "colour 'Cargo'; vetoes {'width': 1}"
   },
   {
    "sku": "ENG-OAKL-0081",

@@ -630,6 +630,12 @@ class TestTwoSources(unittest.TestCase):
         m = im.match_records([r], pages, sup, REG["matching"])[r["id"]]
         self.assertEqual((m["tier"], m["candidates"][0]["url"]), ("exact", "https://o/essence-7"))
         self.assertEqual(im.match_records([r], pages[:1], sup, REG["matching"])[r["id"]]["tier"], "none")
+        # A title with no width: the store's `7"` tag is the 7 Series, so a 6 Series record vetoes.
+        six = {**r, "id": "recOAKELCITY0002", "Product name": "Oakel European Oak Multi-Ply 6 Series — Daybreak (Select)"}
+        tagged = {**page("https://o/day-break-1", "Daybreak"), "tags": ['7"']}
+        self.assertEqual(im.match_records([six], [tagged], sup, REG["matching"])[six["id"]]["tier"], "none")
+        seven = {**six, "id": "recOAKELCITY0003", "Product name": "Oakel European Oak 3-Ply 7 Series — Daybreak (Select)"}
+        self.assertEqual(im.match_records([seven], [tagged], sup, REG["matching"])[seven["id"]]["tier"], "exact")
 
     def test_gallery_label_codes_carry_the_photos_own_code(self):
         # Golden Choice, 2026-10-28: `Laminate 1010's` shows GC1010, GC1011 ... as photos.
