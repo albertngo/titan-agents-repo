@@ -341,8 +341,11 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
         else:
             by_name = {name: url for name, url, _ in chosen_pages}
             for name in link_sources(cfg):
-                if name in by_name:
-                    product_page = by_name[name]
+                # A gallery image shown on another product's page carries its own page as
+                # `link_url`, or None when the crawl found none: then the next source links.
+                link = pages.get(by_name.get(name), {}).get("link_url", by_name.get(name))
+                if link:
+                    product_page = link
                     pp_source = "manufacturer" if name == "official" else name
                     break
         if "product_page" in blank and product_page:

@@ -2,12 +2,12 @@
  "contract_version": "image-plan-1",
  "scope": "grandeur",
  "supplier": "GRANDEUR",
- "run_at": "2026-10-28T09:36:01.269899-04:00",
+ "run_at": "2026-10-28T09:50:42.861853-04:00",
  "expires": "2026-10-28T23:59:59-0400",
  "write_mode": "write",
  "registry": "platform-settings/supplier-sites.json",
  "inputs": {
-  "pages": "ingest/2026-10-22/supplier-pages-grandeur.json",
+  "pages": "ingest/2026-10-28/supplier-pages-grandeur.json",
   "judgements": "ingest/2026-10-22/image-judgements-grandeur.json",
   "product_pages": null
  },
@@ -25,17 +25,17 @@
    "Swatch images": 189,
    "Room scene images": 17,
    "Detail images": 129,
-   "Supplier product page": 186
+   "Supplier product page": 161
   },
   "tiers": {
    "exact": 173,
    "model_confirmed": 16
   },
-  "manufacturer_pages": 148
+  "manufacturer_pages": 65
  },
  "actions": [
   {
-   "id": "img-811bedde4fda",
+   "id": "img-01c6f5b3fb5e",
    "seq": 1,
    "target_system": "airtable",
    "op": "attach_images",
@@ -65,7 +65,7 @@
       "filename": "grandeur-bora-bora-engineered-hardwood-6-5in-select-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/sardinia.html"
+    "Supplier product page": "https://grandeurflooring.ca/bora-bora.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -120,7 +120,7 @@
    "flags": []
   },
   {
-   "id": "img-0b5f96453c5d",
+   "id": "img-f8a8a3158a53",
    "seq": 2,
    "target_system": "airtable",
    "op": "attach_images",
@@ -148,7 +148,7 @@
       "filename": "grandeur-santorini-engineered-hardwood-6-5in-select-detail-2.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/natural-135.html"
+    "Supplier product page": "https://grandeurflooring.ca/santorini.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -201,7 +201,7 @@
    "flags": []
   },
   {
-   "id": "img-33b5f466c9bd",
+   "id": "img-2b1b1d900abf",
    "seq": 3,
    "target_system": "airtable",
    "op": "attach_images",
@@ -229,7 +229,7 @@
       "filename": "grandeur-st-lucia-engineered-hardwood-6-5in-select-detail-2.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/owl.html"
+    "Supplier product page": "https://grandeurflooring.ca/st-lucia.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -282,7 +282,7 @@
    "flags": []
   },
   {
-   "id": "img-d8334a07ce35",
+   "id": "img-aa7e4cc4c6b8",
    "seq": 4,
    "target_system": "airtable",
    "op": "attach_images",
@@ -328,7 +328,7 @@
       "filename": "grandeur-barbados-engineered-hardwood-6-5in-select-detail-2.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/moraine.html"
+    "Supplier product page": "https://grandeurflooring.ca/barbados.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -415,7 +415,7 @@
    "flags": []
   },
   {
-   "id": "img-5c840a65b4c2",
+   "id": "img-cf4fc782760a",
    "seq": 5,
    "target_system": "airtable",
    "op": "attach_images",
@@ -439,7 +439,7 @@
       "filename": "grandeur-sardinia-engineered-hardwood-6-5in-select-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/bora-bora.html"
+    "Supplier product page": "https://grandeurflooring.ca/sardinia.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -484,7 +484,7 @@
    "flags": []
   },
   {
-   "id": "img-b97dbdb6efca",
+   "id": "img-d478b2c12b91",
    "seq": 6,
    "target_system": "airtable",
    "op": "attach_images",
@@ -508,7 +508,7 @@
       "filename": "grandeur-tahiti-engineered-hardwood-6-5in-select-detail.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/aries.html"
+    "Supplier product page": "https://grandeurflooring.ca/tahiti.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -553,7 +553,7 @@
    "flags": []
   },
   {
-   "id": "img-2c63d3337c06",
+   "id": "img-05a144be21de",
    "seq": 7,
    "target_system": "airtable",
    "op": "attach_images",
@@ -577,7 +577,7 @@
       "filename": "grandeur-white-island-engineered-hardwood-6-5in-select-detail.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/cliff.html"
+    "Supplier product page": "https://grandeurflooring.ca/white-island.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -622,7 +622,7 @@
    "flags": []
   },
   {
-   "id": "img-85324a343654",
+   "id": "img-64bac45bbf68",
    "seq": 8,
    "target_system": "airtable",
    "op": "attach_images",
@@ -640,7 +640,7 @@
       "filename": "grandeur-laguna-beach-engineered-hardwood-6in-character-swatch-2.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/barbados.html"
+    "Supplier product page": "https://grandeurflooring.ca/laguna-beach.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -675,7 +675,7 @@
    "flags": []
   },
   {
-   "id": "img-f85a9374bac9",
+   "id": "img-0568c5a0d8fd",
    "seq": 9,
    "target_system": "airtable",
    "op": "attach_images",
@@ -705,7 +705,7 @@
       "filename": "grandeur-natural-engineered-hardwood-6-5in-character-detail.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/taurus.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-artisan-collection-natural"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -721,7 +721,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-artisan-collection-natural",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -757,7 +757,9 @@
      "height": 796
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
    "id": "img-fc0446cb7738",
@@ -819,7 +821,7 @@
    ]
   },
   {
-   "id": "img-946dd56e2110",
+   "id": "img-8407f5772cb6",
    "seq": 11,
    "target_system": "airtable",
    "op": "attach_images",
@@ -843,7 +845,7 @@
       "filename": "grandeur-harvest-engineered-hardwood-6-5in-character-detail.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/cocoa-beach.html"
+    "Supplier product page": "https://grandeurflooring.ca/harvest.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -888,7 +890,7 @@
    "flags": []
   },
   {
-   "id": "img-225e446a27dd",
+   "id": "img-2e7ba214eca4",
    "seq": 12,
    "target_system": "airtable",
    "op": "attach_images",
@@ -912,7 +914,7 @@
       "filename": "grandeur-mane-engineered-hardwood-6-5in-character-detail.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/st-lucia.html"
+    "Supplier product page": "https://grandeurflooring.ca/mane.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -957,7 +959,7 @@
    "flags": []
   },
   {
-   "id": "img-ad5f42f3edf9",
+   "id": "img-feee335d9d97",
    "seq": 13,
    "target_system": "airtable",
    "op": "attach_images",
@@ -985,7 +987,7 @@
       "filename": "grandeur-northwest-engineered-hardwood-6-5in-character-detail-2.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/destin.html"
+    "Supplier product page": "https://grandeurflooring.ca/northwest.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -1038,7 +1040,7 @@
    "flags": []
   },
   {
-   "id": "img-9c469ba1737f",
+   "id": "img-857643f32b39",
    "seq": 14,
    "target_system": "airtable",
    "op": "attach_images",
@@ -1062,7 +1064,7 @@
       "filename": "grandeur-owl-engineered-hardwood-6-5in-character-detail.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/st-lucia.html"
+    "Supplier product page": "https://grandeurflooring.ca/owl.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -1242,7 +1244,7 @@
    ]
   },
   {
-   "id": "img-a865de54619b",
+   "id": "img-41557be11597",
    "seq": 17,
    "target_system": "airtable",
    "op": "attach_images",
@@ -1270,7 +1272,7 @@
       "filename": "grandeur-clear-water-engineered-hardwood-6in-character-detail-2.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/white-island.html"
+    "Supplier product page": "https://grandeurflooring.ca/clear-water.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -1323,7 +1325,7 @@
    "flags": []
   },
   {
-   "id": "img-f60168a6a6fa",
+   "id": "img-cf3c17db4b48",
    "seq": 18,
    "target_system": "airtable",
    "op": "attach_images",
@@ -1351,7 +1353,7 @@
       "filename": "grandeur-destin-engineered-hardwood-6in-character-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/santorini.html"
+    "Supplier product page": "https://grandeurflooring.ca/destin.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -1487,7 +1489,7 @@
    ]
   },
   {
-   "id": "img-89cea098ba14",
+   "id": "img-06b7a61b31a7",
    "seq": 20,
    "target_system": "airtable",
    "op": "attach_images",
@@ -1515,7 +1517,7 @@
       "filename": "grandeur-miami-engineered-hardwood-6in-character-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/laguna-beach.html"
+    "Supplier product page": "https://grandeurflooring.ca/miami.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -1568,7 +1570,7 @@
    "flags": []
   },
   {
-   "id": "img-c473585fecd4",
+   "id": "img-f657a60503dd",
    "seq": 21,
    "target_system": "airtable",
    "op": "attach_images",
@@ -1592,7 +1594,7 @@
       "filename": "grandeur-panama-city-engineered-hardwood-6in-character-detail-2.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/sardinia.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-sunshine-collection-panama-city"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -1606,7 +1608,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-sunshine-collection-panama-city",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -1634,7 +1636,9 @@
      "height": 535
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
    "id": "img-29cbdaf9f3c0",
@@ -1798,7 +1802,7 @@
    ]
   },
   {
-   "id": "img-e4859fcd0494",
+   "id": "img-1989bdd06340",
    "seq": 25,
    "target_system": "airtable",
    "op": "attach_images",
@@ -1832,7 +1836,7 @@
       "filename": "grandeur-moraine-engineered-hardwood-7-5in-character-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/santa-cruz.html"
+    "Supplier product page": "https://grandeurflooring.ca/moraine.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -1954,7 +1958,7 @@
    ]
   },
   {
-   "id": "img-97ad6a65ef82",
+   "id": "img-12f7486bd9aa",
    "seq": 27,
    "target_system": "airtable",
    "op": "attach_images",
@@ -1982,7 +1986,7 @@
       "filename": "grandeur-blue-mountain-engineered-hardwood-7-5in-character-detail-2.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/bora-bora.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-metropolitan-collection-blue-mountain"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -1996,7 +2000,7 @@
    ],
    "source_page": "https://grandeurflooring.ca/bora-bora.html#img9",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -2032,7 +2036,9 @@
      "height": 536
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
    "id": "img-1533cf72c8a1",
@@ -2106,7 +2112,7 @@
    ]
   },
   {
-   "id": "img-ba149deb711a",
+   "id": "img-0013784bcc80",
    "seq": 29,
    "target_system": "airtable",
    "op": "attach_images",
@@ -2140,7 +2146,7 @@
       "filename": "grandeur-alpine-engineered-hardwood-7-5in-character-detail.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/mane.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-elevation-collection-alpine"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -2156,7 +2162,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-elevation-collection-alpine",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -2200,10 +2206,12 @@
      "height": 691
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-06bbfff53c61",
+   "id": "img-cc9cfde67e23",
    "seq": 30,
    "target_system": "airtable",
    "op": "attach_images",
@@ -2237,7 +2245,7 @@
       "filename": "grandeur-icefall-engineered-hardwood-7-5in-character-detail-2.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/stratus.html"
+    "Supplier product page": "https://grandeurflooring.ca/icefall.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -2300,7 +2308,7 @@
    "flags": []
   },
   {
-   "id": "img-f3c6db222fce",
+   "id": "img-2d59ab14b2f4",
    "seq": 31,
    "target_system": "airtable",
    "op": "attach_images",
@@ -2324,7 +2332,7 @@
       "filename": "grandeur-summit-engineered-hardwood-7-5in-character-detail.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/owl.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-elevation-collection-summit"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -2338,7 +2346,7 @@
    ],
    "source_page": "https://grandeurflooring.ca/owl.html#img9",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -2366,10 +2374,12 @@
      "height": 534
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-4316d4c5d1cc",
+   "id": "img-3f4f9011b8b8",
    "seq": 32,
    "target_system": "airtable",
    "op": "attach_images",
@@ -2387,7 +2397,7 @@
       "filename": "grandeur-nimbus-engineered-hardwood-7-5in-character-swatch-2.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/sardinia.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-elevation-collection-nimbus"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -2399,7 +2409,7 @@
    ],
    "source_page": "https://grandeurflooring.ca/sardinia.html#img10",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -2419,10 +2429,12 @@
      "height": 516
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-484072b8785d",
+   "id": "img-62b603a67cd0",
    "seq": 33,
    "target_system": "airtable",
    "op": "attach_images",
@@ -2446,7 +2458,7 @@
       "filename": "grandeur-aries-engineered-hardwood-7-5in-character-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/pacific-rim.html"
+    "Supplier product page": "https://grandeurflooring.ca/aries.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -2491,7 +2503,7 @@
    "flags": []
   },
   {
-   "id": "img-0201fbdf310b",
+   "id": "img-fd1b015718ac",
    "seq": 34,
    "target_system": "airtable",
    "op": "attach_images",
@@ -2515,7 +2527,7 @@
       "filename": "grandeur-leo-engineered-hardwood-7-5in-character-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/northwest.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-divine-collection-leo"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -2529,7 +2541,7 @@
    ],
    "source_page": "https://www.speersflooring.com/products/grandeur-divine-hard-maple-leo-7-1-2-x-3-4-18mm",
    "source": "speers",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -2557,10 +2569,12 @@
      "height": 2194
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-c897ec05bc4b",
+   "id": "img-29c2952bbfaa",
    "seq": 35,
    "target_system": "airtable",
    "op": "attach_images",
@@ -2584,7 +2598,7 @@
       "filename": "grandeur-libra-engineered-hardwood-7-5in-character-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/cocoa-beach.html"
+    "Supplier product page": "https://grandeurflooring.ca/libra.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -2629,7 +2643,7 @@
    "flags": []
   },
   {
-   "id": "img-6c473ddb5ebb",
+   "id": "img-52eed89956a3",
    "seq": 36,
    "target_system": "airtable",
    "op": "attach_images",
@@ -2653,7 +2667,7 @@
       "filename": "grandeur-taurus-engineered-hardwood-7-5in-character-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/santorini.html"
+    "Supplier product page": "https://grandeurflooring.ca/taurus.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -2698,7 +2712,7 @@
    "flags": []
   },
   {
-   "id": "img-9ce4f5be2c74",
+   "id": "img-1ac2cf414687",
    "seq": 37,
    "target_system": "airtable",
    "op": "attach_images",
@@ -2722,7 +2736,7 @@
       "filename": "grandeur-scorpio-engineered-hardwood-7-5in-character-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/mane.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-divine-collection-scorpio"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -2736,7 +2750,7 @@
    ],
    "source_page": "https://www.speersflooring.com/products/grandeur-divine-hard-maple-scorpio-7-1-2-x-3-4-18mm",
    "source": "speers",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -2764,10 +2778,12 @@
      "height": 2194
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-7700b4b330e3",
+   "id": "img-7ee30e116ab7",
    "seq": 38,
    "target_system": "airtable",
    "op": "attach_images",
@@ -2795,7 +2811,7 @@
       "filename": "grandeur-thunder-cloud-engineered-hardwood-7-5in-character-detail-2.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/st-lucia.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-divine-collection-thunder-cloud"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -2809,7 +2825,7 @@
    ],
    "source_page": "https://www.speersflooring.com/products/grandeur-divine-hard-maple-thunder-cloud-7-1-2-x-3-4-18mm",
    "source": "speers",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -2845,10 +2861,12 @@
      "height": 533
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-69366c07fd71",
+   "id": "img-4ad1601692c9",
    "seq": 39,
    "target_system": "airtable",
    "op": "attach_images",
@@ -2872,7 +2890,7 @@
       "filename": "grandeur-cliff-engineered-hardwood-7-5in-character-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/white-island.html"
+    "Supplier product page": "https://grandeurflooring.ca/cliff.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -2917,7 +2935,7 @@
    "flags": []
   },
   {
-   "id": "img-c8c93458804f",
+   "id": "img-110b39d53e34",
    "seq": 40,
    "target_system": "airtable",
    "op": "attach_images",
@@ -2947,7 +2965,7 @@
       "filename": "grandeur-petrichor-engineered-hardwood-7-5in-character-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/laguna-beach.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-enterprise-collection-petrichor"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -2963,7 +2981,7 @@
    ],
    "source_page": "https://www.speersflooring.com/products/grandeur-enterprise-euro-oak-petrichor-7-1-2-x-3-4-18mm",
    "source": "speers",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -2999,10 +3017,12 @@
      "height": 1711
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-e237ef7b6e71",
+   "id": "img-ecbdd1206a4a",
    "seq": 41,
    "target_system": "airtable",
    "op": "attach_images",
@@ -3036,7 +3056,7 @@
       "filename": "grandeur-stratus-engineered-hardwood-7-5in-character-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/white-island.html"
+    "Supplier product page": "https://grandeurflooring.ca/stratus.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -3099,7 +3119,7 @@
    "flags": []
   },
   {
-   "id": "img-f8cb60e2acf0",
+   "id": "img-b6a74c4eee2f",
    "seq": 42,
    "target_system": "airtable",
    "op": "attach_images",
@@ -3129,7 +3149,7 @@
       "filename": "grandeur-lagom-engineered-hardwood-7-5in-character-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/gallery.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-enterprise-collection-lagom"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -3145,7 +3165,7 @@
    ],
    "source_page": "https://www.speersflooring.com/products/grandeur-enterprise-euro-oak-lagom-7-1-2-x-3-4-18mm",
    "source": "speers",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "model_confirmed",
    "images": [
     {
@@ -3182,11 +3202,12 @@
     }
    ],
    "flags": [
-    "model_matched"
+    "model_matched",
+    "product_page_not_manufacturer"
    ]
   },
   {
-   "id": "img-9b04f764f816",
+   "id": "img-adb346aa8bea",
    "seq": 43,
    "target_system": "airtable",
    "op": "attach_images",
@@ -3216,7 +3237,7 @@
       "filename": "grandeur-nordic-sand-engineered-hardwood-7-5in-character-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/nordic-sand-hb.html"
+    "Supplier product page": "https://grandeurflooring.ca/nordic-sand.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -3271,7 +3292,7 @@
    "flags": []
   },
   {
-   "id": "img-e281f00c6b9c",
+   "id": "img-c6149bdda08c",
    "seq": 44,
    "target_system": "airtable",
    "op": "attach_images",
@@ -3290,22 +3311,19 @@
       "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/Pando2copy.jpg?v=1710446458",
       "filename": "grandeur-pando-engineered-hardwood-7-5in-character-detail.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/pando-hb.html"
+    ]
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
-    "Detail images": "fldRH7GrND9w10KWH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Detail images": "fldRH7GrND9w10KWH"
    },
    "expect_blank": [
     "Swatch images",
-    "Detail images",
-    "Supplier product page"
+    "Detail images"
    ],
    "source_page": "https://www.speersflooring.com/products/grandeur-enterprise-euro-oak-pando-7-1-2-x-3-4-18mm",
    "source": "speers",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -3325,10 +3343,12 @@
      "height": 2184
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-95aa1919be03",
+   "id": "img-a0982ce41319",
    "seq": 45,
    "target_system": "airtable",
    "op": "attach_images",
@@ -3356,7 +3376,7 @@
       "filename": "grandeur-kings-landing-engineered-hardwood-7-5in-character-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/harvest.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-crownland-collection-kings-landing"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -3370,7 +3390,7 @@
    ],
    "source_page": "https://www.speersflooring.com/products/grandeur-crown-land-euro-oak-kings-landing-7-1-2-x-3-4-18mm",
    "source": "speers",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -3406,10 +3426,12 @@
      "height": 538
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-49a06977366f",
+   "id": "img-df44021b210e",
    "seq": 46,
    "target_system": "airtable",
    "op": "attach_images",
@@ -3439,7 +3461,7 @@
       "filename": "grandeur-sunspear-engineered-hardwood-7-5in-character-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/santorini.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-crownland-collection-sunspear"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -3455,7 +3477,7 @@
    ],
    "source_page": "https://www.speersflooring.com/products/grandeur-crown-land-euro-oak-sunspear-7-1-2-x-3-4-18mm",
    "source": "speers",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -3491,10 +3513,12 @@
      "height": 2312
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-02ab28916e41",
+   "id": "img-5af3ed2fcc7b",
    "seq": 47,
    "target_system": "airtable",
    "op": "attach_images",
@@ -3526,7 +3550,7 @@
       "filename": "grandeur-banff-engineered-hardwood-9-5in-character-detail-3.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/tahiti.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-elite-collection-banff"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -3540,7 +3564,7 @@
    ],
    "source_page": "https://www.speersflooring.com/products/grandeur-elite-euro-oak-banff-9-1-2-x-3-4-18mm",
    "source": "speers",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -3584,10 +3608,12 @@
      "height": 3840
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-bcb9c0c8bbf1",
+   "id": "img-259e7c1790c1",
    "seq": 48,
    "target_system": "airtable",
    "op": "attach_images",
@@ -3629,7 +3655,7 @@
       "filename": "grandeur-cape-breton-engineered-hardwood-9-5in-character-detail-4.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/embracing-2024-s-timeless-trend.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-elite-collection-cape-breton"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -3645,7 +3671,7 @@
    ],
    "source_page": "https://www.speersflooring.com/products/grandeur-elite-euro-oak-cape-breton-9-1-2-x-3-4-18mm",
    "source": "speers",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -3705,10 +3731,12 @@
      "height": 687
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-d2d6f3ad06cc",
+   "id": "img-bfa603153bc6",
    "seq": 49,
    "target_system": "airtable",
    "op": "attach_images",
@@ -3738,7 +3766,7 @@
       "filename": "grandeur-mont-tremblant-engineered-hardwood-9-5in-character-detail-2.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/embracing-2024-s-timeless-trend.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-elite-collection-mont-tremblant"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -3754,7 +3782,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-elite-collection-mont-tremblant",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -3790,7 +3818,9 @@
      "height": 531
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
    "id": "img-2178013a0800",
@@ -3900,7 +3930,7 @@
    ]
   },
   {
-   "id": "img-44b7d07d70f0",
+   "id": "img-3836b97cc933",
    "seq": 51,
    "target_system": "airtable",
    "op": "attach_images",
@@ -3932,7 +3962,7 @@
       "filename": "grandeur-yoho-engineered-hardwood-9-5in-character-detail-3.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/white-island.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-elite-collection-yoho"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -3946,7 +3976,7 @@
    ],
    "source_page": "https://www.speersflooring.com/products/grandeur-elite-euro-oak-yoho-9-1-2-x-3-4-18mm",
    "source": "speers",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -3990,10 +4020,12 @@
      "height": 534
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-d8ecd4ea11bb",
+   "id": "img-303431616be7",
    "seq": 52,
    "target_system": "airtable",
    "op": "attach_images",
@@ -4016,22 +4048,19 @@
       "url": "https://cdn.shopify.com/s/files/1/0274/8776/4551/files/provence3.jpg?v=1710512763",
       "filename": "grandeur-provence-engineered-hardwood-7-5in-abcd-detail-2.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/moraine.html"
+    ]
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
-    "Detail images": "fldRH7GrND9w10KWH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Detail images": "fldRH7GrND9w10KWH"
    },
    "expect_blank": [
     "Swatch images",
-    "Detail images",
-    "Supplier product page"
+    "Detail images"
    ],
    "source_page": "https://www.speersflooring.com/products/grandeur-noble-euro-oak-provence-7-1-2-x-3-4-18mm",
    "source": "speers",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -4059,10 +4088,12 @@
      "height": 3840
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-d965909d23ad",
+   "id": "img-3ba8e8bfe527",
    "seq": 53,
    "target_system": "airtable",
    "op": "attach_images",
@@ -4090,7 +4121,7 @@
       "filename": "grandeur-milan-engineered-hardwood-7-5in-select-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/aries.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-regal-collection-milan"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -4104,7 +4135,7 @@
    ],
    "source_page": "https://www.speersflooring.com/products/grandeur-regal-euro-oak-milan-7-1-2-x-3-4-18mm",
    "source": "speers",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -4140,10 +4171,12 @@
      "height": 3840
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-5137028f0b70",
+   "id": "img-e199c5db0dcd",
    "seq": 54,
    "target_system": "airtable",
    "op": "attach_images",
@@ -4156,20 +4189,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/silva.jpg",
       "filename": "grandeur-silva-engineered-hardwood-7-5in-select-swatch.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/st-lucia.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/st-lucia.html#img12",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -4181,10 +4211,12 @@
      "height": 359
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-475bd9bd623e",
+   "id": "img-93c8118569f3",
    "seq": 55,
    "target_system": "airtable",
    "op": "attach_images",
@@ -4216,7 +4248,7 @@
       "filename": "grandeur-azure-coast-engineered-hardwood-7-5in-select-detail-3.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/clear-water.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-regal-collection-azure-coast"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -4230,7 +4262,7 @@
    ],
    "source_page": "https://www.speersflooring.com/products/grandeur-regal-euro-oak-azure-coast-7-1-2-x-3-4-18mm",
    "source": "speers",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "model_confirmed",
    "images": [
     {
@@ -4275,11 +4307,12 @@
     }
    ],
    "flags": [
-    "model_matched"
+    "model_matched",
+    "product_page_not_manufacturer"
    ]
   },
   {
-   "id": "img-9e7a8913da7a",
+   "id": "img-45f26abd72b7",
    "seq": 56,
    "target_system": "airtable",
    "op": "attach_images",
@@ -4311,7 +4344,7 @@
       "filename": "grandeur-morocco-sand-engineered-hardwood-7-5in-select-detail-3.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/anacapri.html"
+    "Supplier product page": "https://grandeurflooring.ca/morocco-sand.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -4372,7 +4405,7 @@
    "flags": []
   },
   {
-   "id": "img-fdba3822a162",
+   "id": "img-c69d2dfcded3",
    "seq": 57,
    "target_system": "airtable",
    "op": "attach_images",
@@ -4404,7 +4437,7 @@
       "filename": "grandeur-morocco-sand-engineered-hardwood-6in-character-detail-3.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/anacapri.html"
+    "Supplier product page": "https://grandeurflooring.ca/morocco-sand.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -4465,7 +4498,7 @@
    "flags": []
   },
   {
-   "id": "img-6146d1f286ea",
+   "id": "img-6c21c1236d0a",
    "seq": 58,
    "target_system": "airtable",
    "op": "attach_images",
@@ -4495,7 +4528,7 @@
       "filename": "grandeur-barossa-engineered-hardwood-6in-select-and-better-detail-2.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/gallery.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-regal-collection-barossa"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -4511,7 +4544,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-regal-collection-barossa",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -4547,10 +4580,12 @@
      "height": 536
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-437f020ea923",
+   "id": "img-2494789421fa",
    "seq": 59,
    "target_system": "airtable",
    "op": "attach_images",
@@ -4584,7 +4619,7 @@
       "filename": "grandeur-burgundy-engineered-hardwood-6in-select-and-better-detail-2.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/icefall.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-regal-collection-burgundy"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -4600,7 +4635,7 @@
    ],
    "source_page": "https://grandeurflooring.ca/icefall.html#img10",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -4644,10 +4679,12 @@
      "height": 536
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-73bbaee4edab",
+   "id": "img-e431b162855d",
    "seq": 60,
    "target_system": "airtable",
    "op": "attach_images",
@@ -4671,7 +4708,7 @@
       "filename": "grandeur-napa-valley-engineered-hardwood-6in-select-and-better-detail-2.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/clear-water.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-regal-collection-napa-valley"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -4685,7 +4722,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-regal-collection-napa-valley",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -4713,10 +4750,12 @@
      "height": 535
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-ca6b2e70f4c6",
+   "id": "img-54b3885c6564",
    "seq": 61,
    "target_system": "airtable",
    "op": "attach_images",
@@ -4730,7 +4769,7 @@
       "filename": "grandeur-sonoma-engineered-hardwood-6in-select-and-better-swatch.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/sonoma-7-5.html"
+    "Supplier product page": "https://grandeurflooring.ca/sonoma-6.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -4757,7 +4796,7 @@
    "flags": []
   },
   {
-   "id": "img-1c52eb515636",
+   "id": "img-84e42c9894a6",
    "seq": 62,
    "target_system": "airtable",
    "op": "attach_images",
@@ -4791,7 +4830,7 @@
       "filename": "grandeur-barossa-engineered-hardwood-7-5in-select-and-better-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/gallery.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-regal-collection-barossa"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -4807,7 +4846,7 @@
    ],
    "source_page": "https://www.speersflooring.com/products/grandeur-regal-euro-oak-barossa-7-1-2-x-3-4-18mm",
    "source": "speers",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -4851,10 +4890,12 @@
      "height": 3473
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-3b35d5e62087",
+   "id": "img-f0cf527079ae",
    "seq": 63,
    "target_system": "airtable",
    "op": "attach_images",
@@ -4888,7 +4929,7 @@
       "filename": "grandeur-burgundy-engineered-hardwood-7-5in-select-and-better-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/icefall.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-regal-collection-burgundy"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -4904,7 +4945,7 @@
    ],
    "source_page": "https://www.speersflooring.com/products/grandeur-regal-euro-oak-burgundy-7-1-2-x-3-4-18mm",
    "source": "speers",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -4948,10 +4989,12 @@
      "height": 3840
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-7b0fcf81428a",
+   "id": "img-744f4901da22",
    "seq": 64,
    "target_system": "airtable",
    "op": "attach_images",
@@ -4979,7 +5022,7 @@
       "filename": "grandeur-napa-valley-engineered-hardwood-7-5in-select-and-better-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/barbados.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-engineered-hardwood-regal-collection-napa-valley"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -4993,7 +5036,7 @@
    ],
    "source_page": "https://www.speersflooring.com/products/grandeur-regal-euro-oak-napa-valley-7-1-2-x-3-4-18mm",
    "source": "speers",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -5029,10 +5072,12 @@
      "height": 3840
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-19c70b114e45",
+   "id": "img-dcc350fa4fdc",
    "seq": 65,
    "target_system": "airtable",
    "op": "attach_images",
@@ -5046,7 +5091,7 @@
       "filename": "grandeur-sonoma-engineered-hardwood-7-5in-select-and-better-swatch.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/tahiti.html"
+    "Supplier product page": "https://grandeurflooring.ca/sonoma-7-5.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -5073,7 +5118,7 @@
    "flags": []
   },
   {
-   "id": "img-e3410a8b106e",
+   "id": "img-9163b06eecd8",
    "seq": 66,
    "target_system": "airtable",
    "op": "attach_images",
@@ -5086,20 +5131,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/barossa-hb-642151.jpg",
       "filename": "grandeur-barossa-hb-engineered-hardwood-herringbone-6in-select-and-better-swatch.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/key-west.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/key-west.html#img9",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -5111,10 +5153,12 @@
      "height": 359
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-2152024b8a11",
+   "id": "img-30edb7589ee7",
    "seq": 67,
    "target_system": "airtable",
    "op": "attach_images",
@@ -5127,20 +5171,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/napa-valley-hb-753015.jpg",
       "filename": "grandeur-napa-valley-hb-engineered-hardwood-herringbone-6in-select-and-better-swatch.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/barbados.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/barbados.html#img9",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -5152,7 +5193,9 @@
      "height": 359
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
    "id": "img-7073c2838b1c",
@@ -5291,7 +5334,7 @@
    ]
   },
   {
-   "id": "img-63137f53b619",
+   "id": "img-ec7a8f2ce506",
    "seq": 70,
    "target_system": "airtable",
    "op": "attach_images",
@@ -5304,20 +5347,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/elm-544790.jpg",
       "filename": "grandeur-elm-engineered-hardwood-5in-character-swatch.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/sonoma-6.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/sonoma-6.html#img9",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -5329,10 +5369,12 @@
      "height": 359
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-a36cce516d66",
+   "id": "img-d5df3cf097bf",
    "seq": 71,
    "target_system": "airtable",
    "op": "attach_images",
@@ -5345,20 +5387,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/hemlock-324708.jpg",
       "filename": "grandeur-hemlock-engineered-hardwood-5in-character-swatch.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/st-lucia.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/st-lucia.html#img13",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -5370,10 +5409,12 @@
      "height": 359
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-4ad392183bba",
+   "id": "img-236aaa29ac59",
    "seq": 72,
    "target_system": "airtable",
    "op": "attach_images",
@@ -5386,20 +5427,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/sycamore.jpg",
       "filename": "grandeur-sycamore-engineered-hardwood-5in-character-swatch.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/libra.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/libra.html#img11",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -5411,10 +5449,12 @@
      "height": 359
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-0ccd53db886e",
+   "id": "img-533a5d39c0dd",
    "seq": 73,
    "target_system": "airtable",
    "op": "attach_images",
@@ -5427,20 +5467,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/bronze-dust.png",
       "filename": "grandeur-bronze-dust-engineered-hardwood-7-5in-swatch.png"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/veneto-6.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/veneto-6.html#img9",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -5452,10 +5489,12 @@
      "height": 402
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-cca0ef121322",
+   "id": "img-371dd0bb60bb",
    "seq": 74,
    "target_system": "airtable",
    "op": "attach_images",
@@ -5468,20 +5507,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/carrara-564189.png",
       "filename": "grandeur-carrara-engineered-hardwood-7-5in-swatch.png"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/white-island.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/white-island.html#img11",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -5493,10 +5529,12 @@
      "height": 400
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-a4516690ab7d",
+   "id": "img-eea0385a7c86",
    "seq": 75,
    "target_system": "airtable",
    "op": "attach_images",
@@ -5509,20 +5547,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/clayborn.png",
       "filename": "grandeur-clayborn-engineered-hardwood-7-5in-swatch.png"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/tahiti.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/tahiti.html#img10",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -5534,7 +5569,9 @@
      "height": 402
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
    "id": "img-f78f52b037cc",
@@ -5596,7 +5633,7 @@
    ]
   },
   {
-   "id": "img-c9d51de26dc7",
+   "id": "img-ebb707294281",
    "seq": 77,
    "target_system": "airtable",
    "op": "attach_images",
@@ -5609,20 +5646,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/glasgow-rocks-171153.jpg",
       "filename": "grandeur-glasgow-rocks-engineered-hardwood-6in-select-swatch.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/veneto-6.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/veneto-6.html#img11",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -5634,10 +5668,12 @@
      "height": 359
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-0eeca8ef4abc",
+   "id": "img-422013912370",
    "seq": 78,
    "target_system": "airtable",
    "op": "attach_images",
@@ -5650,20 +5686,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/oxford-stone-462127.jpg",
       "filename": "grandeur-oxford-stone-engineered-hardwood-6in-select-swatch.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/veneto-6.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/veneto-6.html#img10",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -5675,10 +5708,12 @@
      "height": 359
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-ccf1cbd11815",
+   "id": "img-9385246b2ab7",
    "seq": 79,
    "target_system": "airtable",
    "op": "attach_images",
@@ -5691,20 +5726,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/glasgow-rocks-7-5.jpg",
       "filename": "grandeur-glasgow-rocks-engineered-hardwood-7-5in-select-swatch.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/oxford-stone-7-5.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/oxford-stone-7-5.html#img11",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -5716,10 +5748,12 @@
      "height": 359
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-95bc48aa47bf",
+   "id": "img-6f27a004dc70",
    "seq": 80,
    "target_system": "airtable",
    "op": "attach_images",
@@ -5733,7 +5767,7 @@
       "filename": "grandeur-oxford-stone-engineered-hardwood-7-5in-select-swatch.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/veneto-7-5.html"
+    "Supplier product page": "https://grandeurflooring.ca/oxford-stone-7-5.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -5760,7 +5794,7 @@
    "flags": []
   },
   {
-   "id": "img-f134967b17fb",
+   "id": "img-6713e16043d8",
    "seq": 81,
    "target_system": "airtable",
    "op": "attach_images",
@@ -5788,7 +5822,7 @@
       "filename": "grandeur-amaretto-solid-hardwood-4-25in-select-detail-2.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/moka.html"
+    "Supplier product page": "https://grandeurflooring.ca/amaretto.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -5841,7 +5875,7 @@
    "flags": []
   },
   {
-   "id": "img-7a08a8ad048c",
+   "id": "img-6e22b3a8d382",
    "seq": 82,
    "target_system": "airtable",
    "op": "attach_images",
@@ -5865,7 +5899,7 @@
       "filename": "grandeur-gunstock-solid-hardwood-4-25in-select-detail.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/amaretto.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-solid-hardwood-contemporary-collection-gunstock"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -5879,7 +5913,7 @@
    ],
    "source_page": "https://grandeurflooring.ca/amaretto.html#img7",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -5907,10 +5941,12 @@
      "height": 532
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-06fb0acb26ad",
+   "id": "img-6d48ca7602e4",
    "seq": 83,
    "target_system": "airtable",
    "op": "attach_images",
@@ -5934,7 +5970,7 @@
       "filename": "grandeur-latte-solid-hardwood-4-25in-select-detail.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/amaretto.html"
+    "Supplier product page": "https://grandeurflooring.ca/latte.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -5979,7 +6015,7 @@
    "flags": []
   },
   {
-   "id": "img-a0d937ded525",
+   "id": "img-70dd50c31bae",
    "seq": 84,
    "target_system": "airtable",
    "op": "attach_images",
@@ -6003,7 +6039,7 @@
       "filename": "grandeur-moka-solid-hardwood-4-25in-select-detail.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/amaretto.html"
+    "Supplier product page": "https://grandeurflooring.ca/moka.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -6048,7 +6084,7 @@
    "flags": []
   },
   {
-   "id": "img-033ca208a8bc",
+   "id": "img-63fa2cf2a8fa",
    "seq": 85,
    "target_system": "airtable",
    "op": "attach_images",
@@ -6076,7 +6112,7 @@
       "filename": "grandeur-tree-bark-solid-hardwood-4-25in-select-detail-2.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/petra.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-solid-hardwood-contemporary-collection-tree-bark"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -6090,7 +6126,7 @@
    ],
    "source_page": "https://grandeurflooring.ca/petra.html#img11",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -6126,10 +6162,12 @@
      "height": 532
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-076a43c798e3",
+   "id": "img-5b6435bacb07",
    "seq": 86,
    "target_system": "airtable",
    "op": "attach_images",
@@ -6157,7 +6195,7 @@
       "filename": "grandeur-walnut-solid-hardwood-4-25in-select-detail-2.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/latte.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-solid-hardwood-contemporary-collection-walnut"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -6171,7 +6209,7 @@
    ],
    "source_page": "https://grandeurflooring.ca/latte.html#img5",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -6207,7 +6245,9 @@
      "height": 536
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
    "id": "img-b001f68d531e",
@@ -7035,7 +7075,7 @@
    ]
   },
   {
-   "id": "img-fa4d2f12fb83",
+   "id": "img-9989c216646f",
    "seq": 106,
    "target_system": "airtable",
    "op": "attach_images",
@@ -7063,7 +7103,7 @@
       "filename": "grandeur-georgian-bay-lvp-7in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/sea-glass.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-essential-collection-georgian-bay"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -7077,7 +7117,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-essential-collection-georgian-bay",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -7113,10 +7153,12 @@
      "height": 3727
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-1d5fab1a2928",
+   "id": "img-8b7f732c9998",
    "seq": 107,
    "target_system": "airtable",
    "op": "attach_images",
@@ -7144,7 +7186,7 @@
       "filename": "grandeur-kawartha-lvp-7in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/golden-bay.html"
+    "Supplier product page": "https://grandeurflooring.ca/kawartha.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -7197,7 +7239,7 @@
    "flags": []
   },
   {
-   "id": "img-8b3c32e3d203",
+   "id": "img-59c39ba11cf2",
    "seq": 108,
    "target_system": "airtable",
    "op": "attach_images",
@@ -7225,7 +7267,7 @@
       "filename": "grandeur-lake-simcoe-lvp-7in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/kentucky-7mm.html"
+    "Supplier product page": "https://grandeurflooring.ca/lake-simcoe.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -7280,7 +7322,7 @@
    ]
   },
   {
-   "id": "img-ab63144f7a8a",
+   "id": "img-84bc56174655",
    "seq": 109,
    "target_system": "airtable",
    "op": "attach_images",
@@ -7308,7 +7350,7 @@
       "filename": "grandeur-muskoka-lvp-7in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/cove-island.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-essential-collection-muskoka"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -7322,7 +7364,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-essential-collection-muskoka",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -7358,10 +7400,12 @@
      "height": 3840
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-498d9bb72f68",
+   "id": "img-5d760aae6188",
    "seq": 110,
    "target_system": "airtable",
    "op": "attach_images",
@@ -7389,7 +7433,7 @@
       "filename": "grandeur-sandbanks-lvp-7in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/appalachian-mountains.html"
+    "Supplier product page": "https://grandeurflooring.ca/sandbanks.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -7513,7 +7557,7 @@
    ]
   },
   {
-   "id": "img-a79c3a430787",
+   "id": "img-a8f79ade7c3d",
    "seq": 112,
    "target_system": "airtable",
    "op": "attach_images",
@@ -7537,7 +7581,7 @@
       "filename": "grandeur-hearthstone-lvt-24in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/flagstone.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-essential-collection-hearthstone"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -7551,7 +7595,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-essential-collection-hearthstone",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "model_confirmed",
    "images": [
     {
@@ -7580,11 +7624,12 @@
     }
    ],
    "flags": [
-    "model_matched"
+    "model_matched",
+    "product_page_not_manufacturer"
    ]
   },
   {
-   "id": "img-dd9db32d2da4",
+   "id": "img-5f78afc8f195",
    "seq": 113,
    "target_system": "airtable",
    "op": "attach_images",
@@ -7612,7 +7657,7 @@
       "filename": "grandeur-touchstone-lvt-24in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/flagstone.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-essential-collection-touchstone"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -7626,7 +7671,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-essential-collection-touchstone",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -7662,10 +7707,12 @@
      "height": 3840
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-246bb04b7914",
+   "id": "img-cf7a014b840b",
    "seq": 114,
    "target_system": "airtable",
    "op": "attach_images",
@@ -7678,20 +7725,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/feathergrass-327844.jpg",
       "filename": "grandeur-feathergrass-lvp-7in-swatch.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/canvas-light.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/canvas-light.html#img6",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -7703,10 +7747,12 @@
      "height": 359
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-9ea84d14b85b",
+   "id": "img-8b58e6fab59b",
    "seq": 115,
    "target_system": "airtable",
    "op": "attach_images",
@@ -7719,20 +7765,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/rainmoor-380503.jpg",
       "filename": "grandeur-rainmoor-lvp-7in-swatch.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/canvas-light.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/canvas-light.html#img5",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -7744,10 +7787,12 @@
      "height": 359
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-a42a06432e1d",
+   "id": "img-a24c1823eff4",
    "seq": 116,
    "target_system": "airtable",
    "op": "attach_images",
@@ -7760,20 +7805,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/stone-veil-091959.jpg",
       "filename": "grandeur-stone-veil-lvp-7in-swatch.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/chroma-drift.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/chroma-drift.html#img6",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -7785,10 +7827,12 @@
      "height": 359
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-9be6c342e90c",
+   "id": "img-3a3c4ead6430",
    "seq": 117,
    "target_system": "airtable",
    "op": "attach_images",
@@ -7812,7 +7856,7 @@
       "filename": "grandeur-acacia-lvp-7in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/smoked-oak-dw1909.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-timeless-collection-acacia"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -7826,7 +7870,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-timeless-collection-acacia",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -7854,10 +7898,12 @@
      "height": 1754
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-18da2a8d5327",
+   "id": "img-0451dd5f1f51",
    "seq": 118,
    "target_system": "airtable",
    "op": "attach_images",
@@ -7885,7 +7931,7 @@
       "filename": "grandeur-appalachian-mountains-lvp-7in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/august-dusk.html"
+    "Supplier product page": "https://grandeurflooring.ca/appalachian-mountains.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -7938,7 +7984,7 @@
    "flags": []
   },
   {
-   "id": "img-7ce684c07705",
+   "id": "img-4dcab1f0a338",
    "seq": 119,
    "target_system": "airtable",
    "op": "attach_images",
@@ -7962,7 +8008,7 @@
       "filename": "grandeur-barnboard-lvp-7in-detail.webp"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/ebony-eclipse.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-timeless-collection-barnboard"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -7976,7 +8022,7 @@
    ],
    "source_page": "https://grandeurflooring.ca/ebony-eclipse.html#img10",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -8004,10 +8050,12 @@
      "height": 534
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-f621ca6073cc",
+   "id": "img-bb063d72a392",
    "seq": 120,
    "target_system": "airtable",
    "op": "attach_images",
@@ -8021,7 +8069,7 @@
       "filename": "grandeur-cloudy-sky-lvp-7in-swatch.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/point-reyes.html"
+    "Supplier product page": "https://grandeurflooring.ca/cloudy-sky-dw3290.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -8048,7 +8096,7 @@
    "flags": []
   },
   {
-   "id": "img-7a39dc481c37",
+   "id": "img-1f8c83fcec2e",
    "seq": 121,
    "target_system": "airtable",
    "op": "attach_images",
@@ -8072,7 +8120,7 @@
       "filename": "grandeur-exotic-walnut-lvp-7in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/connecticut-7mm.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-timeless-collection-exotic-walnut"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -8086,7 +8134,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-timeless-collection-exotic-walnut",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -8114,10 +8162,12 @@
      "height": 2312
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-4087c6874482",
+   "id": "img-98fefc418b26",
    "seq": 122,
    "target_system": "airtable",
    "op": "attach_images",
@@ -8131,7 +8181,7 @@
       "filename": "grandeur-haze-lvp-7in-swatch.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/cloudy-sky-dw3290.html"
+    "Supplier product page": "https://grandeurflooring.ca/haze.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -8158,7 +8208,7 @@
    "flags": []
   },
   {
-   "id": "img-36e06c0fc3a8",
+   "id": "img-f5b29713ef9c",
    "seq": 123,
    "target_system": "airtable",
    "op": "attach_images",
@@ -8182,7 +8232,7 @@
       "filename": "grandeur-hazelnut-lvp-7in-detail.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/battery-point.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-timeless-collection-hazelnut"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -8196,7 +8246,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-timeless-collection-hazelnut",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -8224,10 +8274,12 @@
      "height": 1134
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-a034d9723d52",
+   "id": "img-47cdb3cb5ecf",
    "seq": 124,
    "target_system": "airtable",
    "op": "attach_images",
@@ -8255,7 +8307,7 @@
       "filename": "grandeur-northern-oak-lvp-7in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/august-dusk.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-timeless-collection-northern-oak"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -8269,7 +8321,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-timeless-collection-northern-oak",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -8305,10 +8357,12 @@
      "height": 3586
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-369fea8994e7",
+   "id": "img-286dac263be9",
    "seq": 125,
    "target_system": "airtable",
    "op": "attach_images",
@@ -8322,7 +8376,7 @@
       "filename": "grandeur-smoked-oak-lvp-7in-swatch.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/buttercup.html"
+    "Supplier product page": "https://grandeurflooring.ca/smoked-oak-dw1909.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -8349,7 +8403,7 @@
    "flags": []
   },
   {
-   "id": "img-6e58846b9bd0",
+   "id": "img-6337ec88125e",
    "seq": 126,
    "target_system": "airtable",
    "op": "attach_images",
@@ -8373,7 +8427,7 @@
       "filename": "grandeur-weathered-oak-lvp-7in-detail.png"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/haze.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-timeless-collection-weathered-oak"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -8387,7 +8441,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-timeless-collection-weathered-oak",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -8415,7 +8469,9 @@
      "height": 804
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
    "id": "img-0e098c9f01c5",
@@ -8489,7 +8545,7 @@
    ]
   },
   {
-   "id": "img-ea700fc5d505",
+   "id": "img-85acc4c8bab7",
    "seq": 128,
    "target_system": "airtable",
    "op": "attach_images",
@@ -8517,7 +8573,7 @@
       "filename": "grandeur-humber-bay-lvp-7in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/hiking-trail.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-ultimate-collection-humber-bay"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -8531,7 +8587,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-ultimate-collection-humber-bay",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -8567,10 +8623,12 @@
      "height": 3840
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-35297f25ce81",
+   "id": "img-a922c14201bc",
    "seq": 129,
    "target_system": "airtable",
    "op": "attach_images",
@@ -8598,7 +8656,7 @@
       "filename": "grandeur-high-park-lvp-7in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/battery-point.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-ultimate-collection-high-park"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -8612,7 +8670,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-ultimate-collection-high-park",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -8648,10 +8706,12 @@
      "height": 3512
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-89ac6f38f99e",
+   "id": "img-6c37380cf48d",
    "seq": 130,
    "target_system": "airtable",
    "op": "attach_images",
@@ -8679,7 +8739,7 @@
       "filename": "grandeur-lakeshore-blvd-lvp-7in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/88006-2.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-ultimate-collection-lakeshore-blvd"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -8693,7 +8753,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-ultimate-collection-lakeshore-blvd",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -8729,10 +8789,12 @@
      "height": 3507
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-0baff1f3820e",
+   "id": "img-7684956155a6",
    "seq": 131,
    "target_system": "airtable",
    "op": "attach_images",
@@ -8756,7 +8818,7 @@
       "filename": "grandeur-lakeview-lvp-7in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/petra.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-ultimate-collection-lakeview"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -8770,7 +8832,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-ultimate-collection-lakeview",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -8798,10 +8860,12 @@
      "height": 3840
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-337d738b1cd6",
+   "id": "img-2d91c30d6556",
    "seq": 132,
    "target_system": "airtable",
    "op": "attach_images",
@@ -8829,7 +8893,7 @@
       "filename": "grandeur-pier-17-lvp-7in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/coliseum.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-ultimate-collection-pier-17"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -8843,7 +8907,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-ultimate-collection-pier-17",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -8879,10 +8943,12 @@
      "height": 3840
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-a2af99e3e5c5",
+   "id": "img-88bf61a3034e",
    "seq": 133,
    "target_system": "airtable",
    "op": "attach_images",
@@ -8910,7 +8976,7 @@
       "filename": "grandeur-sunny-side-lvp-7in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/golden-bay.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-ultimate-collection-sunny-side"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -8924,7 +8990,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-ultimate-collection-sunny-side",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -8960,10 +9026,12 @@
      "height": 3401
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-89e4140aee1a",
+   "id": "img-e399e3aef91f",
    "seq": 134,
    "target_system": "airtable",
    "op": "attach_images",
@@ -8987,7 +9055,7 @@
       "filename": "grandeur-summer-wharf-lvp-7in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/alexandria-232.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-ultimate-collection-summer-wharf"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -9001,7 +9069,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-ultimate-collection-summer-wharf",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -9029,10 +9097,12 @@
      "height": 3840
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-cbf7079efdb4",
+   "id": "img-4bb7fc6f76b5",
    "seq": 135,
    "target_system": "airtable",
    "op": "attach_images",
@@ -9045,20 +9115,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/arch-bridge-708616.jpg",
       "filename": "grandeur-arch-bridge-lvt-12in-swatch.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/flagstone.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/flagstone.html#img6",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -9070,10 +9137,12 @@
      "height": 426
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-c283ed44fe1a",
+   "id": "img-97e641521a64",
    "seq": 136,
    "target_system": "airtable",
    "op": "attach_images",
@@ -9101,7 +9170,7 @@
       "filename": "grandeur-skyline-lvt-12in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/point-reyes.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-ultimate-collection-skyline"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -9115,7 +9184,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-ultimate-collection-skyline",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -9151,10 +9220,12 @@
      "height": 3643
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-4792a1738cd4",
+   "id": "img-a704b1d5568f",
    "seq": 137,
    "target_system": "airtable",
    "op": "attach_images",
@@ -9167,20 +9238,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/cavendish-650934.jpg",
       "filename": "grandeur-cavendish-lvp-7in-swatch.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/lunenburg.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/lunenburg.html#img11",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -9192,10 +9260,12 @@
      "height": 467
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-2391fdf8f2e2",
+   "id": "img-23b5cc7472ac",
    "seq": 138,
    "target_system": "airtable",
    "op": "attach_images",
@@ -9209,7 +9279,7 @@
       "filename": "grandeur-lunenburg-lvp-7in-swatch.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/cove-island.html"
+    "Supplier product page": "https://grandeurflooring.ca/lunenburg.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -9236,7 +9306,7 @@
    "flags": []
   },
   {
-   "id": "img-7cf3d8915c38",
+   "id": "img-46862c950672",
    "seq": 139,
    "target_system": "airtable",
    "op": "attach_images",
@@ -9250,7 +9320,7 @@
       "filename": "grandeur-sea-glass-lvp-7in-swatch.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/cove-island.html"
+    "Supplier product page": "https://grandeurflooring.ca/sea-glass.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -9277,7 +9347,7 @@
    "flags": []
   },
   {
-   "id": "img-81a8bd85b144",
+   "id": "img-c7f92e654a50",
    "seq": 140,
    "target_system": "airtable",
    "op": "attach_images",
@@ -9291,7 +9361,7 @@
       "filename": "grandeur-gf8936-lvp-7in-swatch.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/gf8936.html"
+    "Supplier product page": "https://grandeurflooring.ca/wisconsin-7mm.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -9673,7 +9743,7 @@
    ]
   },
   {
-   "id": "img-b5aa904fb68f",
+   "id": "img-1b8b67e44517",
    "seq": 146,
    "target_system": "airtable",
    "op": "attach_images",
@@ -9701,7 +9771,7 @@
       "filename": "grandeur-kentucky-lvp-7in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/new-york-7mm.html"
+    "Supplier product page": "https://grandeurflooring.ca/kentucky-7mm.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -9754,7 +9824,7 @@
    "flags": []
   },
   {
-   "id": "img-063306382f96",
+   "id": "img-8c492f992f9b",
    "seq": 147,
    "target_system": "airtable",
    "op": "attach_images",
@@ -9782,7 +9852,7 @@
       "filename": "grandeur-michigan-lvp-7in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/golden-bay.html"
+    "Supplier product page": "https://grandeurflooring.ca/michigan-7mm.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -9835,7 +9905,7 @@
    "flags": []
   },
   {
-   "id": "img-b5a401c87e54",
+   "id": "img-9e2a2e43a594",
    "seq": 148,
    "target_system": "airtable",
    "op": "attach_images",
@@ -9863,7 +9933,7 @@
       "filename": "grandeur-new-jersey-lvp-7in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/cdw340-2.html"
+    "Supplier product page": "https://grandeurflooring.ca/new-jersey-7mm.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -9916,7 +9986,7 @@
    "flags": []
   },
   {
-   "id": "img-ba329dc3d0d5",
+   "id": "img-5f10843cdc5b",
    "seq": 149,
    "target_system": "airtable",
    "op": "attach_images",
@@ -9944,7 +10014,7 @@
       "filename": "grandeur-new-york-lvp-7in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/michigan-7mm.html"
+    "Supplier product page": "https://grandeurflooring.ca/new-york-7mm.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -9997,7 +10067,7 @@
    "flags": []
   },
   {
-   "id": "img-267c375ff743",
+   "id": "img-22991a08388a",
    "seq": 150,
    "target_system": "airtable",
    "op": "attach_images",
@@ -10025,7 +10095,7 @@
       "filename": "grandeur-wisconsin-lvp-7in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/gf8936.html"
+    "Supplier product page": "https://grandeurflooring.ca/wisconsin-7mm.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -10078,7 +10148,7 @@
    "flags": []
   },
   {
-   "id": "img-c7e44d1c6adb",
+   "id": "img-5e013386ef64",
    "seq": 151,
    "target_system": "airtable",
    "op": "attach_images",
@@ -10106,7 +10176,7 @@
       "filename": "grandeur-canterbury-lvp-7in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/kentucky-7mm.html"
+    "Supplier product page": "https://grandeurflooring.ca/canterbury.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -10159,7 +10229,7 @@
    "flags": []
   },
   {
-   "id": "img-471647b14cc4",
+   "id": "img-4a9769d2f9cb",
    "seq": 152,
    "target_system": "airtable",
    "op": "attach_images",
@@ -10183,7 +10253,7 @@
       "filename": "grandeur-golden-bay-lvp-7in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/michigan-7mm.html"
+    "Supplier product page": "https://grandeurflooring.ca/golden-bay.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -10228,7 +10298,7 @@
    "flags": []
   },
   {
-   "id": "img-778cce8ca12e",
+   "id": "img-bf437f6623c1",
    "seq": 153,
    "target_system": "airtable",
    "op": "attach_images",
@@ -10252,7 +10322,7 @@
       "filename": "grandeur-queenstown-lvp-7in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/peggy-s-cove.html"
+    "Supplier product page": "https://grandeurflooring.ca/queenstown.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -10368,7 +10438,7 @@
    ]
   },
   {
-   "id": "img-18f1c4ee63c0",
+   "id": "img-a77c2c159d67",
    "seq": 155,
    "target_system": "airtable",
    "op": "attach_images",
@@ -10392,7 +10462,7 @@
       "filename": "grandeur-battery-point-lvp-7in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/new-york-7mm.html"
+    "Supplier product page": "https://grandeurflooring.ca/battery-point.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -10437,7 +10507,7 @@
    "flags": []
   },
   {
-   "id": "img-a3ba072aae88",
+   "id": "img-d601a9a9de77",
    "seq": 156,
    "target_system": "airtable",
    "op": "attach_images",
@@ -10461,7 +10531,7 @@
       "filename": "grandeur-north-head-lvp-7in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/88006-2.html"
+    "Supplier product page": "https://grandeurflooring.ca/north-head.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -10567,7 +10637,7 @@
    ]
   },
   {
-   "id": "img-7565958281f0",
+   "id": "img-738a13ab13d2",
    "seq": 158,
    "target_system": "airtable",
    "op": "attach_images",
@@ -10591,7 +10661,7 @@
       "filename": "grandeur-peggy-s-cove-lvp-7in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/queenstown.html"
+    "Supplier product page": "https://grandeurflooring.ca/peggy-s-cove.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -10636,7 +10706,7 @@
    "flags": []
   },
   {
-   "id": "img-d8c26ae78e09",
+   "id": "img-90b5045302aa",
    "seq": 159,
    "target_system": "airtable",
    "op": "attach_images",
@@ -10660,7 +10730,7 @@
       "filename": "grandeur-point-reyes-lvp-7in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/oak-island.html"
+    "Supplier product page": "https://grandeurflooring.ca/point-reyes.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -10705,7 +10775,7 @@
    "flags": []
   },
   {
-   "id": "img-784c7dcb04da",
+   "id": "img-648228117747",
    "seq": 160,
    "target_system": "airtable",
    "op": "attach_images",
@@ -10729,7 +10799,7 @@
       "filename": "grandeur-sambro-lvp-7in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/alexandria-232.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-anchor-7-collection-sambro"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -10743,7 +10813,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-anchor-7-collection-sambro",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -10771,10 +10841,12 @@
      "height": 1756
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-8cc798dc4e93",
+   "id": "img-e68c6d8ecc67",
    "seq": 161,
    "target_system": "airtable",
    "op": "attach_images",
@@ -10798,7 +10870,7 @@
       "filename": "grandeur-windpoint-lvp-7in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/kentucky-7mm.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-anchor-7-collection-windpoint"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -10812,7 +10884,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-anchor-7-collection-windpoint",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "model_confirmed",
    "images": [
     {
@@ -10841,11 +10913,12 @@
     }
    ],
    "flags": [
-    "model_matched"
+    "model_matched",
+    "product_page_not_manufacturer"
    ]
   },
   {
-   "id": "img-66822d5b5cad",
+   "id": "img-52e01d623227",
    "seq": 162,
    "target_system": "airtable",
    "op": "attach_images",
@@ -10869,7 +10942,7 @@
       "filename": "grandeur-alexandria-lvp-7in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/canterbury.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-wonder-7-collection-alexandria"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -10883,7 +10956,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-wonder-7-collection-alexandria",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "model_confirmed",
    "images": [
     {
@@ -10912,11 +10985,12 @@
     }
    ],
    "flags": [
-    "model_matched"
+    "model_matched",
+    "product_page_not_manufacturer"
    ]
   },
   {
-   "id": "img-81c5ad84fa7e",
+   "id": "img-765d2c347d82",
    "seq": 163,
    "target_system": "airtable",
    "op": "attach_images",
@@ -10940,7 +11014,7 @@
       "filename": "grandeur-babylon-lvp-7in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/queenstown.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-wonder-7-collection-babylon"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -10954,7 +11028,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-wonder-7-collection-babylon",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -10982,10 +11056,12 @@
      "height": 1756
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-36893bf12086",
+   "id": "img-ee07dff11e10",
    "seq": 164,
    "target_system": "airtable",
    "op": "attach_images",
@@ -11009,7 +11085,7 @@
       "filename": "grandeur-coliseum-lvp-7in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/giza.html"
+    "Supplier product page": "https://grandeurflooring.ca/coliseum.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -11054,7 +11130,7 @@
    "flags": []
   },
   {
-   "id": "img-1142b3e2eaf7",
+   "id": "img-d0a9cb0f5520",
    "seq": 165,
    "target_system": "airtable",
    "op": "attach_images",
@@ -11078,7 +11154,7 @@
       "filename": "grandeur-giza-lvp-7in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/peggy-s-cove.html"
+    "Supplier product page": "https://grandeurflooring.ca/giza.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -11123,7 +11199,7 @@
    "flags": []
   },
   {
-   "id": "img-d8fd4f0abd3b",
+   "id": "img-501f63f13ae4",
    "seq": 166,
    "target_system": "airtable",
    "op": "attach_images",
@@ -11147,7 +11223,7 @@
       "filename": "grandeur-olympia-lvp-7in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/wisconsin-7mm.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-wonder-7-collection-olympia"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -11161,7 +11237,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-wonder-7-collection-olympia",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -11189,10 +11265,12 @@
      "height": 1756
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-d5b041f7cd5e",
+   "id": "img-8e554ae6e981",
    "seq": 167,
    "target_system": "airtable",
    "op": "attach_images",
@@ -11216,7 +11294,7 @@
       "filename": "grandeur-petra-lvp-7in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/88006-2.html"
+    "Supplier product page": "https://grandeurflooring.ca/petra.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -11261,7 +11339,7 @@
    "flags": []
   },
   {
-   "id": "img-dd2e173540b1",
+   "id": "img-2c2fe1e7027e",
    "seq": 168,
    "target_system": "airtable",
    "op": "attach_images",
@@ -11285,7 +11363,7 @@
       "filename": "grandeur-rhodes-lvp-7in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/iowa-7mm.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-wonder-7-collection-rhodes"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -11299,7 +11377,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-wonder-7-collection-rhodes",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "model_confirmed",
    "images": [
     {
@@ -11328,11 +11406,12 @@
     }
    ],
    "flags": [
-    "model_matched"
+    "model_matched",
+    "product_page_not_manufacturer"
    ]
   },
   {
-   "id": "img-791118a0a84a",
+   "id": "img-c1e4f0b1851f",
    "seq": 169,
    "target_system": "airtable",
    "op": "attach_images",
@@ -11346,7 +11425,7 @@
       "filename": "grandeur-flowerpot-island-lvp-7in-swatch.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/light-house.html"
+    "Supplier product page": "https://grandeurflooring.ca/flowerpot-island.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -11373,7 +11452,7 @@
    "flags": []
   },
   {
-   "id": "img-3a1f0653a96d",
+   "id": "img-1590248a2a3a",
    "seq": 170,
    "target_system": "airtable",
    "op": "attach_images",
@@ -11387,7 +11466,7 @@
       "filename": "grandeur-lion-s-head-lvp-7in-swatch.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/tobermory.html"
+    "Supplier product page": "https://grandeurflooring.ca/lion-s-head.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -11414,7 +11493,7 @@
    "flags": []
   },
   {
-   "id": "img-4a4c3ccc59e3",
+   "id": "img-13ef88b1b562",
    "seq": 171,
    "target_system": "airtable",
    "op": "attach_images",
@@ -11428,7 +11507,7 @@
       "filename": "grandeur-manitoulin-lvp-7in-swatch.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/tobermory.html"
+    "Supplier product page": "https://grandeurflooring.ca/manitoulin.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -11455,7 +11534,7 @@
    "flags": []
   },
   {
-   "id": "img-60f81d2e3e89",
+   "id": "img-cf51a7576e03",
    "seq": 172,
    "target_system": "airtable",
    "op": "attach_images",
@@ -11469,7 +11548,7 @@
       "filename": "grandeur-mermaid-s-cove-lvp-7in-swatch.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/flowerpot-island.html"
+    "Supplier product page": "https://grandeurflooring.ca/mermaid-s-cove.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -11496,7 +11575,7 @@
    "flags": []
   },
   {
-   "id": "img-37734a0aff09",
+   "id": "img-a43cfdc702a9",
    "seq": 173,
    "target_system": "airtable",
    "op": "attach_images",
@@ -11509,20 +11588,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/peninsula-153663.jpg",
       "filename": "grandeur-peninsula-lvp-7in-swatch.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/hopewell.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/hopewell.html#img9",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -11534,10 +11610,12 @@
      "height": 400
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-b410557ec7ff",
+   "id": "img-1a42e967abe0",
    "seq": 174,
    "target_system": "airtable",
    "op": "attach_images",
@@ -11551,7 +11629,7 @@
       "filename": "grandeur-tobermory-lvp-7in-swatch.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/manitoulin.html"
+    "Supplier product page": "https://grandeurflooring.ca/tobermory.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -11578,7 +11656,7 @@
    "flags": []
   },
   {
-   "id": "img-15fce01d6014",
+   "id": "img-9784891fb824",
    "seq": 175,
    "target_system": "airtable",
    "op": "attach_images",
@@ -11606,7 +11684,7 @@
       "filename": "grandeur-august-dusk-lvp-9in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/pennsylvania-6mm.html"
+    "Supplier product page": "https://grandeurflooring.ca/august-dusk.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -11659,7 +11737,7 @@
    "flags": []
   },
   {
-   "id": "img-2044d93f309e",
+   "id": "img-a5bbb97aec37",
    "seq": 176,
    "target_system": "airtable",
    "op": "attach_images",
@@ -11687,7 +11765,7 @@
       "filename": "grandeur-campfire-lvp-9in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/sambro-246.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-bliss-collection-campfire"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -11701,7 +11779,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-bliss-collection-campfire",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -11737,10 +11815,12 @@
      "height": 3840
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-fa8529d6b31f",
+   "id": "img-0a2534738da3",
    "seq": 177,
    "target_system": "airtable",
    "op": "attach_images",
@@ -11768,7 +11848,7 @@
       "filename": "grandeur-gazebo-lvp-9in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/ebony-eclipse.html"
+    "Supplier product page": "https://grandeurflooring.ca/gazebo.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -11821,7 +11901,7 @@
    "flags": []
   },
   {
-   "id": "img-70eb614d4e25",
+   "id": "img-d77c625f8840",
    "seq": 178,
    "target_system": "airtable",
    "op": "attach_images",
@@ -11849,7 +11929,7 @@
       "filename": "grandeur-hiking-trail-lvp-9in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/point-reyes.html"
+    "Supplier product page": "https://grandeurflooring.ca/hiking-trail.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -11902,7 +11982,7 @@
    "flags": []
   },
   {
-   "id": "img-a033680ee17f",
+   "id": "img-edf3b0cb058a",
    "seq": 179,
    "target_system": "airtable",
    "op": "attach_images",
@@ -11930,7 +12010,7 @@
       "filename": "grandeur-morning-dew-lvp-9in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/new-jersey-7mm.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-bliss-collection-morning-dew"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -11944,7 +12024,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-bliss-collection-morning-dew",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -11980,10 +12060,12 @@
      "height": 3840
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-a729b95d0275",
+   "id": "img-8ea039186479",
    "seq": 180,
    "target_system": "airtable",
    "op": "attach_images",
@@ -12011,7 +12093,7 @@
       "filename": "grandeur-starlight-lvp-9in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/iowa-7mm.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-bliss-collection-starlight"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -12025,7 +12107,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-bliss-collection-starlight",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -12061,10 +12143,12 @@
      "height": 3840
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-dc19013c0f7a",
+   "id": "img-f918335d9f63",
    "seq": 181,
    "target_system": "airtable",
    "op": "attach_images",
@@ -12092,7 +12176,7 @@
       "filename": "grandeur-sea-breeze-lvp-9in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/north-head.html"
+    "Supplier product page": "https://grandeurflooring.ca/sea-breeze.html"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -12145,7 +12229,7 @@
    "flags": []
   },
   {
-   "id": "img-9bc9c94ccba0",
+   "id": "img-63bd939f41f8",
    "seq": 182,
    "target_system": "airtable",
    "op": "attach_images",
@@ -12173,7 +12257,7 @@
       "filename": "grandeur-summer-shade-lvp-9in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/sambro-246.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-bliss-collection-summer-shade"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -12187,7 +12271,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-bliss-collection-summer-shade",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -12223,10 +12307,12 @@
      "height": 3840
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-2d34f59df6da",
+   "id": "img-1006583fc2af",
    "seq": 183,
    "target_system": "airtable",
    "op": "attach_images",
@@ -12254,7 +12340,7 @@
       "filename": "grandeur-treehouse-lvp-9in-detail-2.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/giza.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-bliss-collection-treehouse"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -12268,7 +12354,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-bliss-collection-treehouse",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -12304,10 +12390,12 @@
      "height": 3840
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-b63ab26bb0fd",
+   "id": "img-1e32df4e248d",
    "seq": 184,
    "target_system": "airtable",
    "op": "attach_images",
@@ -12331,7 +12419,7 @@
       "filename": "grandeur-woodland-lvp-9in-detail.jpg"
      }
     ],
-    "Supplier product page": "https://grandeurflooring.ca/gazebo.html"
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-bliss-collection-woodland"
    },
    "field_ids": {
     "Swatch images": "fldbRlqkxa7hp7quH",
@@ -12345,7 +12433,7 @@
    ],
    "source_page": "https://www.wordofmouthfloors.com/products/grandeur-flooring-bliss-collection-woodland",
    "source": "wordofmouth",
-   "product_page_source": "manufacturer",
+   "product_page_source": "wordofmouth",
    "match_tier": "exact",
    "images": [
     {
@@ -12373,10 +12461,12 @@
      "height": 3807
     }
    ],
-   "flags": []
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
   },
   {
-   "id": "img-91447e3198b3",
+   "id": "img-9005e580cfea",
    "seq": 185,
    "target_system": "airtable",
    "op": "attach_images",
@@ -12389,20 +12479,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/autumn-blaze.jpg",
       "filename": "grandeur-autumn-blaze-lvp-9in-swatch.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/buttercup.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/buttercup.html#img8",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -12414,10 +12501,12 @@
      "height": 231
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-7699e9e46247",
+   "id": "img-35c1be890212",
    "seq": 186,
    "target_system": "airtable",
    "op": "attach_images",
@@ -12430,20 +12519,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/arctic-whisper.jpg",
       "filename": "grandeur-arctic-whisper-lvp-9in-swatch.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/kalas-albar.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/kalas-albar.html#img8",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -12455,10 +12541,12 @@
      "height": 231
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-85abeec4b656",
+   "id": "img-d8172179361d",
    "seq": 187,
    "target_system": "airtable",
    "op": "attach_images",
@@ -12471,20 +12559,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/citrus-leaf.jpg",
       "filename": "grandeur-citrus-leaf-lvp-9in-swatch.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/lion-s-head.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/lion-s-head.html#img11",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -12496,10 +12581,12 @@
      "height": 231
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-93258bd6357f",
+   "id": "img-90f54da0da8f",
    "seq": 188,
    "target_system": "airtable",
    "op": "attach_images",
@@ -12512,20 +12599,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/lemon-zest.jpg",
       "filename": "grandeur-lemon-zest-lvp-9in-swatch.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/flowerpot-island.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/flowerpot-island.html#img9",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -12537,10 +12621,12 @@
      "height": 231
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   },
   {
-   "id": "img-715fddae2a99",
+   "id": "img-9344fbfe2240",
    "seq": 189,
    "target_system": "airtable",
    "op": "attach_images",
@@ -12553,20 +12639,17 @@
       "url": "https://grandeurflooring.ca/images/products/thumb/sunbeam.jpg",
       "filename": "grandeur-sunbeam-lvp-9in-swatch.jpg"
      }
-    ],
-    "Supplier product page": "https://grandeurflooring.ca/lion-s-head.html"
+    ]
    },
    "field_ids": {
-    "Swatch images": "fldbRlqkxa7hp7quH",
-    "Supplier product page": "flduFw93z4YwnOA3I"
+    "Swatch images": "fldbRlqkxa7hp7quH"
    },
    "expect_blank": [
-    "Swatch images",
-    "Supplier product page"
+    "Swatch images"
    ],
    "source_page": "https://grandeurflooring.ca/lion-s-head.html#img9",
    "source": "official",
-   "product_page_source": "manufacturer",
+   "product_page_source": null,
    "match_tier": "exact",
    "images": [
     {
@@ -12578,7 +12661,9 @@
      "height": 231
     }
    ],
-   "flags": []
+   "flags": [
+    "no_product_page"
+   ]
   }
  ],
  "held": [

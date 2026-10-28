@@ -339,6 +339,14 @@ def gallery_pages(pages, label_only=False, alt_only=False):
     label>` so the colour is in the title, linked `<page>#<n>` (the planner drops the
     fragment for the product link), carrying only that one image."""
     out = []
+    own_page = {}
+    if label_only:
+        # Grandeur (2026-10-28): every colour page also shows other colours' thumbnails, so the
+        # page an image sits on is not that colour's page (Bora Bora's thumbnail on
+        # `sardinia.html`). The link is the crawled page whose address IS the label, else none.
+        for p in pages:
+            stem = urllib.parse.urlsplit(p["url"]).path.rstrip("/").rsplit("/", 1)[-1].rsplit(".", 1)[0]
+            own_page.setdefault(re.sub(r"[^a-z0-9]", "", stem.lower()), p["url"])
     for p in pages:
         for n, img in enumerate(p.get("images") or []):
             # `gallery_alt_only` (Grandeur, 2026-10-22): only images a person named in the alt
@@ -355,6 +363,8 @@ def gallery_pages(pages, label_only=False, alt_only=False):
                         "url": f"{p['url']}#img{n}",
                         "title": label if label_only else f"{p.get('title', '')} - {label}",
                         "h1": "", "og_title": "", "product_name": "", "codes": [],
+                        **({"link_url": own_page.get(re.sub(r"[^a-z0-9]", "", label.lower()))}
+                           if label_only else {}),
                         "images": [img]})
     return out
 

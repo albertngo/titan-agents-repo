@@ -594,6 +594,21 @@ class TestTwoSources(unittest.TestCase):
         self.assertEqual([x["url"] for x in out], ["https://cs/origins/#img0", "https://cs/origins/#img1"])
         self.assertEqual([len(x["images"]) for x in out], [1, 1])
 
+    def test_a_label_only_gallery_links_the_labels_own_page_or_none(self):
+        # Grandeur, 2026-10-28: each colour page also shows other colours' thumbnails, and 144
+        # of 147 links in the first plan went to a different colour's page.
+        sard = {"url": "https://g/sardinia.html", "title": "Grandeur Hardwood Flooring", "h1": "", "codes": [], "images": [
+            {"url": "https://g/thumb/bora-bora.jpg", "alt": "Bora Bora"},
+            {"url": "https://g/thumb/st-lucia.jpg", "alt": "St. Lucia"},
+            {"url": "https://g/thumb/wisconsin.jpg", "alt": "Wisconsin(7mm)"}]}
+        bora = {"url": "https://g/bora-bora.html", "title": "Grandeur Hardwood Flooring", "h1": "", "codes": [], "images": []}
+        lucia = {"url": "https://g/st-lucia.html", "title": "Grandeur Hardwood Flooring", "h1": "", "codes": [], "images": []}
+        out = pull.gallery_pages([sard, bora, lucia], label_only=True, alt_only=True)
+        self.assertEqual([(x["title"], x["link_url"]) for x in out],
+                         [("Bora Bora", "https://g/bora-bora.html"), ("St. Lucia", "https://g/st-lucia.html"),
+                          ("Wisconsin(7mm)", None)])  # no crawled page is Wisconsin's: no link
+        self.assertNotIn("link_url", pull.gallery_pages([sard])[0])  # a brochure page links itself
+
     def test_the_suppliers_code_in_the_url_slug_is_a_code_match(self):
         # Floordi, 2026-10-22: `/ashen-breeze-spc-flooring-avr655/` for SKU AVR655.
         r = {"id": "recFLOORDI000001", "SKU": "LVP-FLRD-0001", "Product name": 'Floordi 6.5mm AVO-ROX EASE 7.19" — Ashen Breeze',
