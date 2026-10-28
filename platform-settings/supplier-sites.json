@@ -780,7 +780,13 @@
         "www.homespros.ca",
         "homespros.ca"
       ],
-      "brand": "Home's Pro"
+      "brand": "Home's Pro",
+      "ignore_pattern_words": [
+        "spc",
+        "laminate",
+        "click"
+      ],
+      "_pattern_note": "2026-10-22: colour pages are titled `<code> – <COLOUR>` and never say SPC; the word would veto every vinyl record."
     },
     "FLOOR & DECOR": {
       "_added": "2026-10-22: site found from the supplier's price-list sender domain (Notion Price Lists), for Albert's 'Any others you can search for their websites in the GTA for me'.",
