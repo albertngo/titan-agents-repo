@@ -1,0 +1,4763 @@
+{
+ "contract_version": "image-plan-1",
+ "scope": "goldenchoice",
+ "supplier": "GOLDEN CHOICE",
+ "run_at": "2026-10-28T12:11:35.479834-04:00",
+ "expires": "2026-10-28T23:59:59-0400",
+ "write_mode": "write",
+ "registry": "platform-settings/supplier-sites.json",
+ "inputs": {
+  "pages": "ingest/2026-10-28/supplier-pages-goldenchoice.json",
+  "judgements": "ingest/2026-10-28/image-judgements-goldenchoice.json",
+  "product_pages": null
+ },
+ "summary": {
+  "records": 184,
+  "actions": 107,
+  "held": 42,
+  "skipped": {
+   "accessory": 35
+  },
+  "held_by_reason": {
+   "no_match": 41,
+   "no_usable_image": 1
+  },
+  "fields": {
+   "Swatch images": 107,
+   "Supplier product page": 107
+  },
+  "tiers": {
+   "exact": 107
+  },
+  "manufacturer_pages": 107
+ },
+ "actions": [
+  {
+   "id": "img-45b692bd33dc",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recrW1svB88NTgtLm",
+   "sku": "ENG-GLDC-0002",
+   "product_name": "Golden Choice Engineered White Oak 6.5 — Stable Edge",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/stable-edge-scaled.jpg",
+      "filename": "golden-choice-stable-edge-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5-2/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/stable-edge-scaled.jpg",
+     "sha1": "b2bccf582fd3f0cd60fa5f025f4eef87eac22efb",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5-2/#img1",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-82aa1e27cbbd",
+   "seq": 2,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recjBCKdzTp09ciWs",
+   "sku": "ENG-GLDC-0003",
+   "product_name": "Golden Choice Engineered White Oak 6.5 — Dove Tail",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/Dove-Tail-scaled.jpg",
+      "filename": "golden-choice-dove-tail-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5-2/#img2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/Dove-Tail-scaled.jpg",
+     "sha1": "4f06533694b8c10927ee8bbd9a7ed3d661a3ef93",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5-2/#img2",
+     "width": 2560,
+     "height": 2560
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-9378792fa28e",
+   "seq": 3,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recDr2jhpg8c7PeQq",
+   "sku": "ENG-GLDC-0004",
+   "product_name": "Golden Choice Engineered White Oak 6.5 — Ginger Bread",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/Ginger-Bread-scaled.jpg",
+      "filename": "golden-choice-ginger-bread-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5-2/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/Ginger-Bread-scaled.jpg",
+     "sha1": "7774bcf955f8d1edf4242294e293e22b5f0d02e6",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5-2/#img3",
+     "width": 2560,
+     "height": 2560
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-fb4328fff554",
+   "seq": 4,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recOAG8pP6A9iJqch",
+   "sku": "ENG-GLDC-0005",
+   "product_name": "Golden Choice Engineered White Oak 6.5 — Spirit Gray",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/Spirit-Gray-scaled.jpg",
+      "filename": "golden-choice-spirit-gray-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5-2/#img4",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/Spirit-Gray-scaled.jpg",
+     "sha1": "ef1d125c5a2d6ccded5293c54a99a53fa6bef7dc",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5-2/#img4",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5aa1d7a75b38",
+   "seq": 5,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec52SQ3saD7E2On5",
+   "sku": "ENG-GLDC-0006",
+   "product_name": "Golden Choice Engineered White Oak 6.5 — Natural",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/Natural-scaled.jpg",
+      "filename": "golden-choice-natural-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5-2/#img5",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/Natural-scaled.jpg",
+     "sha1": "4fef942c0ec9d8dffcb34c8a3dccc7c712b0ea04",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5-2/#img5",
+     "width": 2560,
+     "height": 2560
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5c5fe41e09d5",
+   "seq": 6,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recIvS3vdfF60GKHA",
+   "sku": "ENG-GLDC-0007",
+   "product_name": "Golden Choice Engineered White Oak 7.5 — Skyline",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Skyline-scaled.jpg",
+      "filename": "golden-choice-skyline-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Skyline-scaled.jpg",
+     "sha1": "1535a9da425c9a5cf0e60db546364d52ca14b227",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/#img1",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-e45924617d74",
+   "seq": 7,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recivPd6CTXVOfTVm",
+   "sku": "ENG-GLDC-0008",
+   "product_name": "Golden Choice Engineered White Oak 7.5 — Grandview",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Grandview-scaled.jpg",
+      "filename": "golden-choice-grandview-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/#img2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Grandview-scaled.jpg",
+     "sha1": "c89df550b72a7f3cd5004391a29365999a73c67b",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/#img2",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-25e3f28720f5",
+   "seq": 8,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recC9SnuBTDJTrCpT",
+   "sku": "ENG-GLDC-0009",
+   "product_name": "Golden Choice Engineered White Oak 7.5 — Cliffside",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/cliffside-scaled.jpg",
+      "filename": "golden-choice-cliffside-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/cliffside-scaled.jpg",
+     "sha1": "632be80d7b55aee0da75756c93da7c240abb5c47",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/#img3",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-3e7ed2ce5ce8",
+   "seq": 9,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recJxRipSlAuRgdem",
+   "sku": "ENG-GLDC-0010",
+   "product_name": "Golden Choice Engineered White Oak 7.5 — Montana",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Montana-scaled.jpg",
+      "filename": "golden-choice-montana-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/#img4",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Montana-scaled.jpg",
+     "sha1": "604afed1ef3758dd1913a8df7883a3fbac175cee",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/#img4",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-417e7aa7a228",
+   "seq": 10,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recLzZmgeshXTKVsH",
+   "sku": "ENG-GLDC-0011",
+   "product_name": "Golden Choice Engineered White Oak 7.5 — Falcon",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/Falcon-scaled.jpg",
+      "filename": "golden-choice-falcon-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/#img7",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/Falcon-scaled.jpg",
+     "sha1": "1dc037611f0adfb9bd519f1efb9eaae34cba0820",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/#img7",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-645a4af9addd",
+   "seq": 11,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recGZD5EkUdASJxTd",
+   "sku": "ENG-GLDC-0012",
+   "product_name": "Golden Choice Engineered White Oak 7.5 — Rye",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Rye-scaled.jpg",
+      "filename": "golden-choice-rye-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/#img5",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Rye-scaled.jpg",
+     "sha1": "476ae8fe7896e73bcc1baf5dd3c28f3786a6066f",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/#img5",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-0c13f0335b3a",
+   "seq": 12,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recVZeawUG6JEgZzx",
+   "sku": "ENG-GLDC-0013",
+   "product_name": "Golden Choice Engineered White Oak 7.5 — Bronze",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Bronze-scaled.jpg",
+      "filename": "golden-choice-bronze-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Bronze-scaled.jpg",
+     "sha1": "2329e2e70a529e0a00c30eba8baf31fbe86ba5d2",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/#img0",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-e646a6d879ef",
+   "seq": 13,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reczc2dBfqf08Gb2B",
+   "sku": "ENG-GLDC-0014",
+   "product_name": "Golden Choice Engineered White Oak 7.5 — Manuka",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Manuka-scaled.jpg",
+      "filename": "golden-choice-manuka-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/#img6",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Manuka-scaled.jpg",
+     "sha1": "97ede1b7ac6d137444900e63d292c0e8b4242111",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-7-5/#img6",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-0dcf093e3feb",
+   "seq": 14,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recOnrg0N1qhoR4l9",
+   "sku": "ENG-GLDC-0015",
+   "product_name": "Golden Choice Engineered White Oak — Wild Wood",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/Wild-Wood-scaled.jpg",
+      "filename": "golden-choice-wild-wood-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/Wild-Wood-scaled.jpg",
+     "sha1": "d4fa5ccec7c2ee058e9c52a64c8d193c655c818a",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5/#img0",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b1abec5ce421",
+   "seq": 15,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recBHlCGzp3JPU0iG",
+   "sku": "ENG-GLDC-0016",
+   "product_name": "Golden Choice Engineered White Oak — Tundra",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Tundra-scaled.jpg",
+      "filename": "golden-choice-tundra-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Tundra-scaled.jpg",
+     "sha1": "b5427bec5bf7a0320e28c14ea8eb1201571b5c6a",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5/#img1",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-7afa8b2abb3c",
+   "seq": 16,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recV5u37pRsnrY0ih",
+   "sku": "ENG-GLDC-0018",
+   "product_name": "Golden Choice Engineered White Oak — Sahara White",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/Sahara-white-scaled.jpg",
+      "filename": "golden-choice-sahara-white-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5/#img2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/Sahara-white-scaled.jpg",
+     "sha1": "eb0ca74c07d6a670698e5e30e580a71f96ea688f",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5/#img2",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-3e54bc93fb8c",
+   "seq": 17,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec0jUoYqXXdY1Y2q",
+   "sku": "ENG-GLDC-0019",
+   "product_name": "Golden Choice Engineered Hickory — Chocolate",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Chocolate-scaled.jpg",
+      "filename": "golden-choice-chocolate-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-hickory-hs-distressed/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-hickory-hs-distressed/#img2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Chocolate-scaled.jpg",
+     "sha1": "1f1a6497165521b2a31b8f861a1398de8706629d",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-hickory-hs-distressed/#img2",
+     "width": 2560,
+     "height": 2239
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b255ef866b4f",
+   "seq": 18,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec54T4AFlxGmb3St",
+   "sku": "ENG-GLDC-0020",
+   "product_name": "Golden Choice Engineered Hickory — Latte",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Latte-scaled.jpg",
+      "filename": "golden-choice-latte-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-hickory-hs-distressed/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-hickory-hs-distressed/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Latte-scaled.jpg",
+     "sha1": "083e4207516c6b23f718afbc01b9e877ee81c6d5",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-hickory-hs-distressed/#img3",
+     "width": 2560,
+     "height": 2132
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-22c3eb706f52",
+   "seq": 19,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recmxMlgKz6PppExw",
+   "sku": "ENG-GLDC-0022",
+   "product_name": "Golden Choice Engineered White Oak — Tundra",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Tundra-scaled.jpg",
+      "filename": "golden-choice-tundra-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Tundra-scaled.jpg",
+     "sha1": "b5427bec5bf7a0320e28c14ea8eb1201571b5c6a",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5/#img1",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-6c2f8152c38e",
+   "seq": 20,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recTLyJwL307ArhA9",
+   "sku": "ENG-GLDC-0023",
+   "product_name": "Golden Choice Engineered White Oak — Wild Wood",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/Wild-Wood-scaled.jpg",
+      "filename": "golden-choice-wild-wood-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/Wild-Wood-scaled.jpg",
+     "sha1": "d4fa5ccec7c2ee058e9c52a64c8d193c655c818a",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-white-oak-6-5/#img0",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f9397f4528b6",
+   "seq": 21,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rechxiZUgs0RS9UUW",
+   "sku": "ENG-GLDC-0024",
+   "product_name": "Golden Choice Engineered Hickory — Antique",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/Antique-scaled.jpg",
+      "filename": "golden-choice-antique-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-hickory-wire-brushed/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-hickory-wire-brushed/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/Antique-scaled.jpg",
+     "sha1": "fba258785d86d64f961feedb56bdc8b0ec739833",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-hickory-wire-brushed/#img0",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-fa7af44ec74c",
+   "seq": 22,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recfAhCfnEY4Kem1K",
+   "sku": "ENG-GLDC-0025",
+   "product_name": "Golden Choice Engineered Hickory — Burley",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Burley-scaled.jpg",
+      "filename": "golden-choice-burley-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-hickory-wire-brushed/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-hickory-wire-brushed/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Burley-scaled.jpg",
+     "sha1": "ef4d50653b79fa87888f597be43e30f8d43c703a",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-hickory-wire-brushed/#img1",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ccd9a716d8a8",
+   "seq": 23,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recWOO2oEIhAyFZwX",
+   "sku": "ENG-GLDC-0027",
+   "product_name": "Golden Choice Engineered Hickory (NEW) — Medici",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Medici-scaled.jpg",
+      "filename": "golden-choice-medici-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/engineered-hickory-hs-distressed/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/engineered-hickory-hs-distressed/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/07/Medici-scaled.jpg",
+     "sha1": "5eecfd5bbf8c3b70d133bd4e179262bc5cf2d442",
+     "page": "https://goldenchoiceflooring.ca/product/engineered-hickory-hs-distressed/#img0",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-6c648fe0e7ec",
+   "seq": 24,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec1qYs8hr4qtM1ju",
+   "sku": "LAM-GLDC-1010",
+   "product_name": "Golden Choice Laminate 1010's — Universal Oak",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC1010-scaled.jpg",
+      "filename": "golden-choice-universal-oak-laminate-1010-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/laminate-1010s/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/laminate-1010s/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC1010-scaled.jpg",
+     "sha1": "57ea05a0aa52c75356706825201866ec686e30f0",
+     "page": "https://goldenchoiceflooring.ca/product/laminate-1010s/#img0",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-3a53ce23b140",
+   "seq": 25,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reckXWjrCo0p4s4dt",
+   "sku": "LAM-GLDC-1011",
+   "product_name": "Golden Choice Laminate 1010's — Solar Oak",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC1011-scaled.jpg",
+      "filename": "golden-choice-solar-oak-laminate-1011-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/laminate-1010s/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/laminate-1010s/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC1011-scaled.jpg",
+     "sha1": "392b043313f1b8927178d2ce6706870951094362",
+     "page": "https://goldenchoiceflooring.ca/product/laminate-1010s/#img1",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2e73a6ca0e69",
+   "seq": 26,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recz1vnTZwmxMw3k8",
+   "sku": "LAM-GLDC-1015",
+   "product_name": "Golden Choice Laminate 1010's — Terra Oak",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC1015-scaled.jpg",
+      "filename": "golden-choice-terra-oak-laminate-1015-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/laminate-1010s/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/laminate-1010s/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC1015-scaled.jpg",
+     "sha1": "815731647b2429157b3c490fae13cef52cfcda6b",
+     "page": "https://goldenchoiceflooring.ca/product/laminate-1010s/#img3",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5906cfdbc456",
+   "seq": 27,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recONCZjZRg3sOyQ5",
+   "sku": "LAM-GLDC-1020",
+   "product_name": "Golden Choice Laminate 1020's — Kona Oak",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC1020-scaled.jpg",
+      "filename": "golden-choice-kona-oak-laminate-1020-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/laminate-1020s/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/laminate-1020s/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC1020-scaled.jpg",
+     "sha1": "e2a7abd54bbd913db2378ca3ded58dcf175b55d8",
+     "page": "https://goldenchoiceflooring.ca/product/laminate-1020s/#img0",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b2429690b75b",
+   "seq": 28,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recJValv1FSyca5SN",
+   "sku": "LAM-GLDC-1022",
+   "product_name": "Golden Choice Laminate 1020's — Rustic Oak",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC1022-scaled.jpg",
+      "filename": "golden-choice-rustic-oak-laminate-1022-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/laminate-1020s/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/laminate-1020s/#img2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC1022-scaled.jpg",
+     "sha1": "2aee21bec670d9bba57aa190f41f4290c632062c",
+     "page": "https://goldenchoiceflooring.ca/product/laminate-1020s/#img2",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f086dec1e2c9",
+   "seq": 29,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "receN2wabw5KsnElu",
+   "sku": "LAM-GLDC-1023",
+   "product_name": "Golden Choice Laminate 1020's — Stone Trend",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC1023-scaled.jpg",
+      "filename": "golden-choice-stone-trend-laminate-1023-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/laminate-1020s/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/laminate-1020s/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC1023-scaled.jpg",
+     "sha1": "d8e38118ad2f65cc6e0b7e77c796299cacc8c7cb",
+     "page": "https://goldenchoiceflooring.ca/product/laminate-1020s/#img3",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-920ba60bf345",
+   "seq": 30,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recFukNHg4RzW9dN4",
+   "sku": "LAM-GLDC-1030",
+   "product_name": "Golden Choice Laminate 1030's — Ivory Trader",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC1030-scaled.jpg",
+      "filename": "golden-choice-ivory-trader-laminate-1030-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/laminate-1030s/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/laminate-1030s/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC1030-scaled.jpg",
+     "sha1": "83c9628623c39608cc2306f6483db08c7a0b4ed7",
+     "page": "https://goldenchoiceflooring.ca/product/laminate-1030s/#img0",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-fe908e3f153b",
+   "seq": 31,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recQE2CBMyDvVbaGr",
+   "sku": "LAM-GLDC-1031",
+   "product_name": "Golden Choice Laminate 1030's — Universal Oak",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC1031-scaled.jpg",
+      "filename": "golden-choice-universal-oak-laminate-1031-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/laminate-1030s/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/laminate-1030s/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC1031-scaled.jpg",
+     "sha1": "cee1ec68d189971b51276edd64ec224aa177a096",
+     "page": "https://goldenchoiceflooring.ca/product/laminate-1030s/#img1",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-10b6cd23baf8",
+   "seq": 32,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec6preJ9r1o91NuI",
+   "sku": "LAM-GLDC-1032",
+   "product_name": "Golden Choice Laminate 1030's — Puro Grey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC1032-scaled.jpg",
+      "filename": "golden-choice-puro-grey-laminate-1032-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/laminate-1030s/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/laminate-1030s/#img2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC1032-scaled.jpg",
+     "sha1": "fd0dc50e9ae496becb193be5050864434f7f0480",
+     "page": "https://goldenchoiceflooring.ca/product/laminate-1030s/#img2",
+     "width": 2560,
+     "height": 2132
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ffdf5fd6e145",
+   "seq": 33,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recjcTIF9MMhJle21",
+   "sku": "LAM-GLDC-1042",
+   "product_name": "Golden Choice Laminate 1040's — Thermo Ash",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC1042-scaled.jpg",
+      "filename": "golden-choice-thermo-ash-laminate-1042-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/laminate-1040s/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/laminate-1040s/#img2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC1042-scaled.jpg",
+     "sha1": "fa0172a6944d8a0ff81ebbbe6165eb4621d30178",
+     "page": "https://goldenchoiceflooring.ca/product/laminate-1040s/#img2",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a7395b5411fd",
+   "seq": 34,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recgl5vktvZurOykY",
+   "sku": "LAM-GLDC-1060",
+   "product_name": "Golden Choice Water Resistant Laminate 1060's — Item 1060",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/gc-1060.jpeg",
+      "filename": "golden-choice-item-1060-laminate-swatch.jpeg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/12-3mm-water-resistant-laminate/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/12-3mm-water-resistant-laminate/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/gc-1060.jpeg",
+     "sha1": "e40b63d35cc4f36cb51252694909edc48dbc0b4b",
+     "page": "https://goldenchoiceflooring.ca/product/12-3mm-water-resistant-laminate/#img0",
+     "width": 2025,
+     "height": 1655
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-c56417a65b5f",
+   "seq": 35,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recftqqqcf7Ql5unP",
+   "sku": "LAM-GLDC-1061",
+   "product_name": "Golden Choice Water Resistant Laminate 1060's — Item 1061",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/gc-1061.jpeg",
+      "filename": "golden-choice-item-1061-laminate-swatch.jpeg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/12-3mm-water-resistant-laminate/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/12-3mm-water-resistant-laminate/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/gc-1061.jpeg",
+     "sha1": "aa08a25a1b11fc666ff9179304e3ccd8d4c0ffab",
+     "page": "https://goldenchoiceflooring.ca/product/12-3mm-water-resistant-laminate/#img1",
+     "width": 2175,
+     "height": 1664
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-fc0bd8ab4241",
+   "seq": 36,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recvoxnzVoP0us1h3",
+   "sku": "LAM-GLDC-1062",
+   "product_name": "Golden Choice Water Resistant Laminate 1060's — Item 1062",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/gc-1062.jpeg",
+      "filename": "golden-choice-item-1062-laminate-swatch.jpeg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/12-3mm-water-resistant-laminate/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/12-3mm-water-resistant-laminate/#img2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/gc-1062.jpeg",
+     "sha1": "1d51dd2e183a39553f29b2a648dadfd8b85d1f19",
+     "page": "https://goldenchoiceflooring.ca/product/12-3mm-water-resistant-laminate/#img2",
+     "width": 1955,
+     "height": 1637
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2a83b31c79c4",
+   "seq": 37,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recwkf7P743vNBRQH",
+   "sku": "LAM-GLDC-1063",
+   "product_name": "Golden Choice Water Resistant Laminate 1060's — Item 1063",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/gc-1063.jpeg",
+      "filename": "golden-choice-item-1063-laminate-swatch.jpeg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/12-3mm-water-resistant-laminate/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/12-3mm-water-resistant-laminate/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/gc-1063.jpeg",
+     "sha1": "26f7416e13bbaedc4f9522099835ebbb984761d8",
+     "page": "https://goldenchoiceflooring.ca/product/12-3mm-water-resistant-laminate/#img3",
+     "width": 2011,
+     "height": 1653
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f0c8838db145",
+   "seq": 38,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec01wKI5kS1sBg4T",
+   "sku": "LAM-GLDC-1065",
+   "product_name": "Golden Choice Water Resistant Laminate 1060's — Item 1065",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/gc-1065.jpeg",
+      "filename": "golden-choice-item-1065-laminate-swatch.jpeg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/12-3mm-water-resistant-laminate/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/12-3mm-water-resistant-laminate/#img4",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/gc-1065.jpeg",
+     "sha1": "d7d4cd1d02c93d7e62dc788a28402ef7e8d4ee47",
+     "page": "https://goldenchoiceflooring.ca/product/12-3mm-water-resistant-laminate/#img4",
+     "width": 2099,
+     "height": 1703
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a91e5b3d3b8a",
+   "seq": 39,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recA3iMhBKxSMxM3h",
+   "sku": "LAM-GLDC-1066",
+   "product_name": "Golden Choice Water Resistant Laminate 1060's — Item 1066",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/GC1066.jpeg",
+      "filename": "golden-choice-item-1066-laminate-swatch.jpeg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/12-3mm-water-resistant-laminate/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/12-3mm-water-resistant-laminate/#img5",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/GC1066.jpeg",
+     "sha1": "5465248794f102c1724c4bcf1faaab425c5058e1",
+     "page": "https://goldenchoiceflooring.ca/product/12-3mm-water-resistant-laminate/#img5",
+     "width": 2104,
+     "height": 1714
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-9bca4746a05d",
+   "seq": 40,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recp0cwBN11NgPals",
+   "sku": "LVP-GLDC-2010",
+   "product_name": "Golden Choice WPC 7mm — Teak Manila",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2010-scaled.jpg",
+      "filename": "golden-choice-teak-manila-lvp-2010-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/vinyl-wpc-7mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/vinyl-wpc-7mm/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2010-scaled.jpg",
+     "sha1": "f7a5f0fd3df0799d4b81085f826fb0b6996cb8b5",
+     "page": "https://goldenchoiceflooring.ca/product/vinyl-wpc-7mm/#img0",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-1e0d305734db",
+   "seq": 41,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recgpTsrMW74w3vbM",
+   "sku": "LVP-GLDC-2011",
+   "product_name": "Golden Choice WPC 7mm — Torino Oak",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2011-scaled.jpg",
+      "filename": "golden-choice-torino-oak-lvp-2011-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/vinyl-wpc-7mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/vinyl-wpc-7mm/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2011-scaled.jpg",
+     "sha1": "5b350ede63666d16fcf5103b9dc06bab48842349",
+     "page": "https://goldenchoiceflooring.ca/product/vinyl-wpc-7mm/#img1",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-c234d45b82a8",
+   "seq": 42,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recqZrwd03irbQNxf",
+   "sku": "LVP-GLDC-2012",
+   "product_name": "Golden Choice WPC 7mm — Rusty Sand",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2012-scaled.jpg",
+      "filename": "golden-choice-rusty-sand-lvp-2012-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/vinyl-wpc-7mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/vinyl-wpc-7mm/#img2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2012-scaled.jpg",
+     "sha1": "b508096f0f74d4ffb46c2ebf4e1dd2059de8d758",
+     "page": "https://goldenchoiceflooring.ca/product/vinyl-wpc-7mm/#img2",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8740d49e7fac",
+   "seq": 43,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recJo5WRLnFFVJSGr",
+   "sku": "LVP-GLDC-2015",
+   "product_name": "Golden Choice WPC 7mm — Bianco Zen",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/2015-scaled.jpg",
+      "filename": "golden-choice-bianco-zen-lvp-2015-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/vinyl-wpc-7mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/vinyl-wpc-7mm/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/2015-scaled.jpg",
+     "sha1": "95a918c004027e06395810f078f61eb02c701e48",
+     "page": "https://goldenchoiceflooring.ca/product/vinyl-wpc-7mm/#img3",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2e94441743dc",
+   "seq": 44,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recJqXJRKQKxOUaVN",
+   "sku": "LVP-GLDC-2016",
+   "product_name": "Golden Choice WPC 7mm — Tonic",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2016-scaled.jpg",
+      "filename": "golden-choice-tonic-lvp-2016-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/vinyl-wpc-7mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/vinyl-wpc-7mm/#img4",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2016-scaled.jpg",
+     "sha1": "31822b00e23fadae8c9a7b4067c269714e09e745",
+     "page": "https://goldenchoiceflooring.ca/product/vinyl-wpc-7mm/#img4",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-669fb4e92e7f",
+   "seq": 45,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec6lWWe7Jv6aoEdz",
+   "sku": "LVP-GLDC-2020",
+   "product_name": "Golden Choice SPC 4mm — Parma Oak",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2020-scaled.jpg",
+      "filename": "golden-choice-parma-oak-lvp-2020-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/vinyl-spc-4mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/vinyl-spc-4mm/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2020-scaled.jpg",
+     "sha1": "8660882ad9acd560192696917dbbb5a003cff259",
+     "page": "https://goldenchoiceflooring.ca/product/vinyl-spc-4mm/#img0",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-1b02f8f61b85",
+   "seq": 46,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recwo2bGxl3bSpFIT",
+   "sku": "LVP-GLDC-2021-4MM",
+   "product_name": "Golden Choice SPC 4mm — Black Zen",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/gc2021-scaled.jpg",
+      "filename": "golden-choice-black-zen-lvp-2021-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/vinyl-spc-4mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/vinyl-spc-4mm/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/gc2021-scaled.jpg",
+     "sha1": "338549b4c76f783b44a6284e3832259a95c0fdca",
+     "page": "https://goldenchoiceflooring.ca/product/vinyl-spc-4mm/#img1",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-69a6994997b4",
+   "seq": 47,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec9fXIKF4deXMl57",
+   "sku": "LVP-GLDC-2021-55MM",
+   "product_name": "Golden Choice SPC 4MM+1.5MM=5.5MM Underlay attached — Black Zen",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/gc2021-scaled.jpg",
+      "filename": "golden-choice-black-zen-lvp-2021-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/vinyl-spc-4mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/vinyl-spc-4mm/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/gc2021-scaled.jpg",
+     "sha1": "338549b4c76f783b44a6284e3832259a95c0fdca",
+     "page": "https://goldenchoiceflooring.ca/product/vinyl-spc-4mm/#img1",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-4c47a9e506e7",
+   "seq": 48,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec0GrjmbW62LKSqj",
+   "sku": "LVP-GLDC-2022",
+   "product_name": "Golden Choice SPC 4MM+1.5MM=5.5MM Underlay attached — Paprino Oak",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2022.jpeg",
+      "filename": "golden-choice-paprino-oak-lvp-2022-swatch.jpeg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-4mm-1-5mm-5-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-4mm-1-5mm-5-5mm/#img2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2022.jpeg",
+     "sha1": "33bfde3fb13ca5cb97464e06d866063ceccd0ecc",
+     "page": "https://goldenchoiceflooring.ca/product/spc-4mm-1-5mm-5-5mm/#img2",
+     "width": 2000,
+     "height": 1667
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-7ee94d40d475",
+   "seq": 49,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recSZwMJVTmZIwxLA",
+   "sku": "LVP-GLDC-2023",
+   "product_name": "Golden Choice SPC 4MM+1.5MM=5.5MM Underlay attached — Majestic Brown",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2023-scaled.jpg",
+      "filename": "golden-choice-majestic-brown-lvp-2023-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-4mm-1-5mm-5-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-4mm-1-5mm-5-5mm/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2023-scaled.jpg",
+     "sha1": "421fa90778663bdab747c11dd41296a1eaaf493c",
+     "page": "https://goldenchoiceflooring.ca/product/spc-4mm-1-5mm-5-5mm/#img3",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-23c7c4e6d8ea",
+   "seq": 50,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rechcG9lijKx04MaD",
+   "sku": "LVP-GLDC-2026",
+   "product_name": "Golden Choice SPC 4MM+1.5MM=5.5MM Underlay attached — Allure Grey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2026-scaled.jpg",
+      "filename": "golden-choice-allure-grey-lvp-2026-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-4mm-1-5mm-5-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-4mm-1-5mm-5-5mm/#img5",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2026-scaled.jpg",
+     "sha1": "ed9cab0ff2b4d462bef9bf16d0184835baa7b3ab",
+     "page": "https://goldenchoiceflooring.ca/product/spc-4mm-1-5mm-5-5mm/#img5",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-4d78196ad232",
+   "seq": 51,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recnITTHSbc9vEsGP",
+   "sku": "LVP-GLDC-2030-5MM",
+   "product_name": "Golden Choice SPC 5mm — Vega Nero",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/2030-min-scaled.jpg",
+      "filename": "golden-choice-vega-nero-lvp-2030-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5mm-1-5mm-6-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5mm-1-5mm-6-5mm/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/2030-min-scaled.jpg",
+     "sha1": "682ba063a79e66688421b642f2eac60074aa803e",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5mm-1-5mm-6-5mm/#img0",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b974ed5c877f",
+   "seq": 52,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recpI2cjSy6vW5bnk",
+   "sku": "LVP-GLDC-2030-65MM",
+   "product_name": "Golden Choice SPC 5MM+1.5MM=6.5MM Underlay attached — Vega Nero",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/2030-min-scaled.jpg",
+      "filename": "golden-choice-vega-nero-lvp-2030-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5mm-1-5mm-6-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5mm-1-5mm-6-5mm/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/2030-min-scaled.jpg",
+     "sha1": "682ba063a79e66688421b642f2eac60074aa803e",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5mm-1-5mm-6-5mm/#img0",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2b0f472278f2",
+   "seq": 53,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recfkocoUMUqVzd8o",
+   "sku": "LVP-GLDC-2031",
+   "product_name": "Golden Choice SPC 5MM+1.5MM=6.5MM Underlay attached — Crema Zen",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/2031-min-scaled.jpg",
+      "filename": "golden-choice-crema-zen-lvp-2031-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5mm-1-5mm-6-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5mm-1-5mm-6-5mm/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/2031-min-scaled.jpg",
+     "sha1": "8d531023988cbd7317241004d399511454a2daad",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5mm-1-5mm-6-5mm/#img1",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-948bf4459770",
+   "seq": 54,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recy72TK7r1vt4jHG",
+   "sku": "LVP-GLDC-2032",
+   "product_name": "Golden Choice SPC 5MM+1.5MM=6.5MM Underlay attached — Lisbon Oak",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/2032-min-scaled.jpg",
+      "filename": "golden-choice-lisbon-oak-lvp-2032-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5mm-1-5mm-6-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5mm-1-5mm-6-5mm/#img2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/2032-min-scaled.jpg",
+     "sha1": "d9fa2189c6c170d2688574a34e2b4a60fd2b8082",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5mm-1-5mm-6-5mm/#img2",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-c19456c217e9",
+   "seq": 55,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reclYmIn6BrcPoc7K",
+   "sku": "LVP-GLDC-2033",
+   "product_name": "Golden Choice SPC 5MM+1.5MM=6.5MM Underlay attached — Mono Serra",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/2033-scaled.jpg",
+      "filename": "golden-choice-mono-serra-lvp-2033-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5mm-1-5mm-6-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5mm-1-5mm-6-5mm/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/2033-scaled.jpg",
+     "sha1": "deb49dd76ee7c4cdcc109d1b28566385f550c0f4",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5mm-1-5mm-6-5mm/#img3",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8757c1fd7aee",
+   "seq": 56,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recDixEKuXdayjQqg",
+   "sku": "LVP-GLDC-2036",
+   "product_name": "Golden Choice SPC 5MM+1.5MM=6.5MM Underlay attached — Grey Oak",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/2036-min-scaled.jpg",
+      "filename": "golden-choice-grey-oak-lvp-2036-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5mm-1-5mm-6-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5mm-1-5mm-6-5mm/#img5",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/2036-min-scaled.jpg",
+     "sha1": "37d933891622ac7e8f01e38435d38ad8b9c5e9f1",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5mm-1-5mm-6-5mm/#img5",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-7f1c1735c46f",
+   "seq": 57,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recGZ80K1fXTAT886",
+   "sku": "LVP-GLDC-2040-5MM",
+   "product_name": "Golden Choice SPC 5mm Tiles — Onyx Grey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2040-scaled.jpg",
+      "filename": "golden-choice-onyx-grey-lvt-2040-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5mm-tiles-underlay-attached/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5mm-tiles-underlay-attached/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2040-scaled.jpg",
+     "sha1": "0d8e80d39b668a21db6eeaa90f82ef3e5261e5f6",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5mm-tiles-underlay-attached/#img0",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f45fb1ee430d",
+   "seq": 58,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recQEEtwz0nMHLVw4",
+   "sku": "LVP-GLDC-2040-65MM",
+   "product_name": "Golden Choice SPC 5mm+1.5=6.5mm Tiles — Onyx Grey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2040-scaled.jpg",
+      "filename": "golden-choice-onyx-grey-lvt-2040-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5mm-tiles-underlay-attached/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5mm-tiles-underlay-attached/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2040-scaled.jpg",
+     "sha1": "0d8e80d39b668a21db6eeaa90f82ef3e5261e5f6",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5mm-tiles-underlay-attached/#img0",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8530e15bf93f",
+   "seq": 59,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recV6J164V5QHGE9b",
+   "sku": "LVP-GLDC-2041",
+   "product_name": "Golden Choice SPC 5mm+1.5=6.5mm Tiles — Carrara",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2041-scaled.jpg",
+      "filename": "golden-choice-carrara-lvt-2041-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5mm-tiles-underlay-attached/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5mm-tiles-underlay-attached/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2041-scaled.jpg",
+     "sha1": "e70cfe8239d3ea1b30ca05a0a9817ef442539e8a",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5mm-tiles-underlay-attached/#img1",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2ae5706e38b3",
+   "seq": 60,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recps0Np6NENWfvsd",
+   "sku": "LVP-GLDC-2042",
+   "product_name": "Golden Choice SPC 5mm+1.5=6.5mm Tiles — Turin",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2042-scaled.jpg",
+      "filename": "golden-choice-turin-lvt-2042-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5mm-tiles-underlay-attached/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5mm-tiles-underlay-attached/#img2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2042-scaled.jpg",
+     "sha1": "fe3d0901aa29b21ce116b3d9ac73f9029fd33a4a",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5mm-tiles-underlay-attached/#img2",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-0ad0eb0ee84d",
+   "seq": 61,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recFSy3CZSnAHNdGx",
+   "sku": "LVP-GLDC-2043",
+   "product_name": "Golden Choice SPC 5mm+1.5=6.5mm Tiles — Portlan",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2043-scaled.jpg",
+      "filename": "golden-choice-portlan-lvt-2043-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5mm-tiles-underlay-attached/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5mm-tiles-underlay-attached/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2043-scaled.jpg",
+     "sha1": "c8e3bb7a0445c552c2f40c10c770336e5087c645",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5mm-tiles-underlay-attached/#img3",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-6e6c76beb559",
+   "seq": 62,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec43Nju2eO45XjB5",
+   "sku": "LVP-GLDC-2045",
+   "product_name": "Golden Choice SPC 5mm Tiles — Marble Grey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/2045-min-scaled.jpg",
+      "filename": "golden-choice-marble-grey-lvt-2045-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/vinyl-spc-5mm-tiles/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/vinyl-spc-5mm-tiles/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/2045-min-scaled.jpg",
+     "sha1": "383981a2c1b2f861dd9ce3c8538b47b3e373a0c5",
+     "page": "https://goldenchoiceflooring.ca/product/vinyl-spc-5mm-tiles/#img0",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-11d61ef21db0",
+   "seq": 63,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recgJz1z4aXVc9f5j",
+   "sku": "LVP-GLDC-2046",
+   "product_name": "Golden Choice SPC 5mm Tiles — Slate Grey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/2046-min-scaled.jpg",
+      "filename": "golden-choice-slate-grey-lvt-2046-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/vinyl-spc-5mm-tiles/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/vinyl-spc-5mm-tiles/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/2046-min-scaled.jpg",
+     "sha1": "79892583803bbbcc77d59e842697627d13a5f360",
+     "page": "https://goldenchoiceflooring.ca/product/vinyl-spc-5mm-tiles/#img1",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ef540db84fc4",
+   "seq": 64,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recpF5up81j58YiWA",
+   "sku": "LVP-GLDC-2047",
+   "product_name": "Golden Choice SPC 5mm Tiles — Nature Slate",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/2047-min-scaled.jpg",
+      "filename": "golden-choice-nature-slate-lvt-2047-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/vinyl-spc-5mm-tiles/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/vinyl-spc-5mm-tiles/#img2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/2047-min-scaled.jpg",
+     "sha1": "0e8733faa8d58c0506b6b8653c8b6e28eaac7054",
+     "page": "https://goldenchoiceflooring.ca/product/vinyl-spc-5mm-tiles/#img2",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2672b7cbee3a",
+   "seq": 65,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec9lcNbaZ4yoFcb1",
+   "sku": "LVP-GLDC-2050",
+   "product_name": "Golden Choice PVC 2mm — Item 2050",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2050-scaled.jpg",
+      "filename": "golden-choice-item-2050-lvp-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/pvc-2mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/pvc-2mm/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2050-scaled.jpg",
+     "sha1": "bac17d9bbd9a4244ef064712456b708acf989000",
+     "page": "https://goldenchoiceflooring.ca/product/pvc-2mm/#img0",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-1260fdf4666f",
+   "seq": 66,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recpcuvQRSSgm1r0d",
+   "sku": "LVP-GLDC-2051",
+   "product_name": "Golden Choice PVC 2mm — Item 2051",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2051-scaled.jpg",
+      "filename": "golden-choice-item-2051-lvp-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/pvc-2mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/pvc-2mm/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2051-scaled.jpg",
+     "sha1": "ccb45745e334caaf43948b09a20ceec6656ffc39",
+     "page": "https://goldenchoiceflooring.ca/product/pvc-2mm/#img1",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-331a6d7f9ed8",
+   "seq": 67,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reciCq4KbngaiVgpq",
+   "sku": "LVP-GLDC-2052",
+   "product_name": "Golden Choice PVC 2mm — Item 2052",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2052-scaled.jpg",
+      "filename": "golden-choice-item-2052-lvp-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/pvc-2mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/pvc-2mm/#img2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2052-scaled.jpg",
+     "sha1": "6982229b8c387ecacd2d6c6b51f314de2c7d8f88",
+     "page": "https://goldenchoiceflooring.ca/product/pvc-2mm/#img2",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8ad2c9030fad",
+   "seq": 68,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec8HWvQLg0a7Zc6D",
+   "sku": "LVP-GLDC-2053",
+   "product_name": "Golden Choice PVC 2mm — Item 2053",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2053-scaled.jpg",
+      "filename": "golden-choice-item-2053-lvp-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/pvc-2mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/pvc-2mm/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC2053-scaled.jpg",
+     "sha1": "e1f1839f288e91f9326e56a84ac9f1ce611879fd",
+     "page": "https://goldenchoiceflooring.ca/product/pvc-2mm/#img3",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5871c704e0e9",
+   "seq": 69,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recf5fLyL0RzBukVO",
+   "sku": "LVP-GLDC-2060",
+   "product_name": "Golden Choice SPC 4.5+1.5MM Underlay attached — legacy pine dark",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2060-scaled.jpg",
+      "filename": "golden-choice-legacy-pine-dark-lvp-2060-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2060-scaled.jpg",
+     "sha1": "a6ff0b27f2ab9eea070f48b0115e4ccaa12de4c8",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img0",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-083ad5a542eb",
+   "seq": 70,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reclVJUT86cmGJZKT",
+   "sku": "LVP-GLDC-2061-5MM",
+   "product_name": "Golden Choice SPC 3.5+1.5MM Underlay attached — Charm Oak Snow",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2061-scaled.jpg",
+      "filename": "golden-choice-charm-oak-snow-lvp-2061-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2061-scaled.jpg",
+     "sha1": "dc16b1d0ead200dd1958ed7262965d0ee1bcbc57",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img1",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-472fc0fcedc5",
+   "seq": 71,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec4Z6blCdGVE8yEW",
+   "sku": "LVP-GLDC-2061-6MM",
+   "product_name": "Golden Choice SPC 4.5+1.5MM Underlay attached — Charm Oak Snow",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2061-scaled.jpg",
+      "filename": "golden-choice-charm-oak-snow-lvp-2061-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2061-scaled.jpg",
+     "sha1": "dc16b1d0ead200dd1958ed7262965d0ee1bcbc57",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img1",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-499b455bc2fd",
+   "seq": 72,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recQ4T0nJgZ0lbRSi",
+   "sku": "LVP-GLDC-2062-5MM",
+   "product_name": "Golden Choice SPC 3.5+1.5MM Underlay attached — Mediterian Oak",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2062-scaled.jpg",
+      "filename": "golden-choice-mediterian-oak-lvp-2062-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2062-scaled.jpg",
+     "sha1": "79c340fff74efd56a9cd0ede278625a9107865ff",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img2",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-7d7c5df15d59",
+   "seq": 73,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recrpeFQ8u7YL7sQE",
+   "sku": "LVP-GLDC-2062-6MM",
+   "product_name": "Golden Choice SPC 4.5+1.5MM Underlay attached — Mediterian Oak",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2062-scaled.jpg",
+      "filename": "golden-choice-mediterian-oak-lvp-2062-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2062-scaled.jpg",
+     "sha1": "79c340fff74efd56a9cd0ede278625a9107865ff",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img2",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-585961240475",
+   "seq": 74,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recQl1KeJHWv7wjdc",
+   "sku": "LVP-GLDC-2063-5MM",
+   "product_name": "Golden Choice SPC 3.5+1.5MM Underlay attached — Cerused Oak Brown",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2063-scaled.jpg",
+      "filename": "golden-choice-cerused-oak-brown-lvp-2063-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2063-scaled.jpg",
+     "sha1": "cb1fb9fc6979eea84a4738902e2e01060e637567",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img3",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a65704936e13",
+   "seq": 75,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recFz8ovzWtMyzZff",
+   "sku": "LVP-GLDC-2063-6MM",
+   "product_name": "Golden Choice SPC 4.5+1.5MM Underlay attached — Cerused Oak Brown",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2063-scaled.jpg",
+      "filename": "golden-choice-cerused-oak-brown-lvp-2063-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2063-scaled.jpg",
+     "sha1": "cb1fb9fc6979eea84a4738902e2e01060e637567",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img3",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2de5dbc55229",
+   "seq": 76,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recpKHjujPNwyI0OS",
+   "sku": "LVP-GLDC-2066-5MM",
+   "product_name": "Golden Choice SPC 3.5+1.5MM Underlay attached — Brio Oak",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2066-scaled.jpg",
+      "filename": "golden-choice-brio-oak-lvp-2066-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img4",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2066-scaled.jpg",
+     "sha1": "6126f4c836929204ee18bc2a6e57fd1f24cbd490",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img4",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a21fe209518e",
+   "seq": 77,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec7jq8qjXRgf4gF6",
+   "sku": "LVP-GLDC-2066-6MM",
+   "product_name": "Golden Choice SPC 4.5+1.5MM Underlay attached — Brio Oak",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2066-scaled.jpg",
+      "filename": "golden-choice-brio-oak-lvp-2066-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img4",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2066-scaled.jpg",
+     "sha1": "6126f4c836929204ee18bc2a6e57fd1f24cbd490",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img4",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-508f4280ff85",
+   "seq": 78,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recbtxs8rC67ATRai",
+   "sku": "LVP-GLDC-2067-5MM",
+   "product_name": "Golden Choice SPC 3.5+1.5MM Underlay attached — Vertmont Grey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2067-scaled.jpg",
+      "filename": "golden-choice-vertmont-grey-lvp-2067-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img5",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2067-scaled.jpg",
+     "sha1": "b1c1abd62732a4f89e35e217fffd7bd061b9d10d",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img5",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a7b3b9cecac9",
+   "seq": 79,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec0KK3EEEKXXWICh",
+   "sku": "LVP-GLDC-2067-6MM",
+   "product_name": "Golden Choice SPC 4.5+1.5MM Underlay attached — Vertmont Grey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2067-scaled.jpg",
+      "filename": "golden-choice-vertmont-grey-lvp-2067-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img5",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2067-scaled.jpg",
+     "sha1": "b1c1abd62732a4f89e35e217fffd7bd061b9d10d",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img5",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-98c2df074d23",
+   "seq": 80,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reciCyrNG0tiPycCR",
+   "sku": "LVP-GLDC-2068-5MM",
+   "product_name": "Golden Choice SPC 3.5+1.5MM Underlay attached — Venezia Grey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2068-scaled.jpg",
+      "filename": "golden-choice-venezia-grey-lvp-2068-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img6",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2068-scaled.jpg",
+     "sha1": "e6aa9c099661957ad35ccfab13297fa6e5ce9e5c",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img6",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-216cce52b529",
+   "seq": 81,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recfLV2L0tf50AD3V",
+   "sku": "LVP-GLDC-2068-6MM",
+   "product_name": "Golden Choice SPC 4.5+1.5MM Underlay attached — Venezia Grey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2068-scaled.jpg",
+      "filename": "golden-choice-venezia-grey-lvp-2068-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img6",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-2068-scaled.jpg",
+     "sha1": "e6aa9c099661957ad35ccfab13297fa6e5ce9e5c",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img6",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-d2511940122b",
+   "seq": 82,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recVfZnIXU0Chlp97",
+   "sku": "LVP-GLDC-2069",
+   "product_name": "Golden Choice SPC 4.5+1.5MM Underlay attached — Item 2069",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/GC-2069.jpeg",
+      "filename": "golden-choice-item-2069-lvp-swatch.jpeg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img7",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/GC-2069.jpeg",
+     "sha1": "2625d973d0985fb1d62d107aff09e683e43bda0c",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5-1-5mm/#img7",
+     "width": 2265,
+     "height": 1816
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-76d131a2ac29",
+   "seq": 83,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recEATWtqldASjITc",
+   "sku": "LVP-GLDC-7010",
+   "product_name": "Golden Choice SPC 4.5+1.5MM Underlay attached — Beige Ballad",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/7010-min-scaled.jpg",
+      "filename": "golden-choice-beige-ballad-lvp-7010-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/7010-min-scaled.jpg",
+     "sha1": "3eefddf9152919863c6ff3fd87158c6eea129d2d",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/#img0",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-d69d5ea37f2b",
+   "seq": 84,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recdOowtbeBtrfk6b",
+   "sku": "LVP-GLDC-7011-5MM",
+   "product_name": "Golden Choice SPC 3.5+1.5MM Underlay attached — Amber Glow",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/Amber-Glow-scaled.jpg",
+      "filename": "golden-choice-amber-glow-lvp-7011-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/Amber-Glow-scaled.jpg",
+     "sha1": "c3ce89e86bbfa475e21eb06e6896c35544405b41",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/#img1",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-7f2168a80a74",
+   "seq": 85,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recHwfQOz4JTt31Tt",
+   "sku": "LVP-GLDC-7011-6MM",
+   "product_name": "Golden Choice SPC 4.5+1.5MM Underlay attached — Amber Glow",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/Amber-Glow-scaled.jpg",
+      "filename": "golden-choice-amber-glow-lvp-7011-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/Amber-Glow-scaled.jpg",
+     "sha1": "c3ce89e86bbfa475e21eb06e6896c35544405b41",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/#img1",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-6b5d20b76e76",
+   "seq": 86,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recF2D44cSPFggiaZ",
+   "sku": "LVP-GLDC-7012-5MM",
+   "product_name": "Golden Choice SPC 3.5+1.5MM Underlay attached — Friddle Brown",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/Friddle-Brown-scaled.jpg",
+      "filename": "golden-choice-friddle-brown-lvp-7012-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/#img2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/Friddle-Brown-scaled.jpg",
+     "sha1": "79a0efb74537b006bd8d6ac4c9f39e6c25517a83",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/#img2",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ab440a8c5477",
+   "seq": 87,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recl25Zk4LToIhYPI",
+   "sku": "LVP-GLDC-7012-6MM",
+   "product_name": "Golden Choice SPC 4.5+1.5MM Underlay attached — Friddle Brown",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/Friddle-Brown-scaled.jpg",
+      "filename": "golden-choice-friddle-brown-lvp-7012-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/#img2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/Friddle-Brown-scaled.jpg",
+     "sha1": "79a0efb74537b006bd8d6ac4c9f39e6c25517a83",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/#img2",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-74016b0ba78c",
+   "seq": 88,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recyz3cq94qnsSBgx",
+   "sku": "LVP-GLDC-7016-5MM",
+   "product_name": "Golden Choice SPC 3.5+1.5MM Underlay attached — Rustic Harmony",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-7016-scaled.jpg",
+      "filename": "golden-choice-rustic-harmony-lvp-7016-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-7016-scaled.jpg",
+     "sha1": "e4cabadb37dcb40dfc462768d66ff3de09f38209",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/#img3",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5bcbd2c65bcb",
+   "seq": 89,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recXoCbvC5pabWkqB",
+   "sku": "LVP-GLDC-7016-6MM",
+   "product_name": "Golden Choice SPC 4.5+1.5MM Underlay attached — Rustic Harmony",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-7016-scaled.jpg",
+      "filename": "golden-choice-rustic-harmony-lvp-7016-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-7016-scaled.jpg",
+     "sha1": "e4cabadb37dcb40dfc462768d66ff3de09f38209",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/#img3",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-4a3dc8d26159",
+   "seq": 90,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recCTLqn91qhm3d4V",
+   "sku": "LVP-GLDC-7017-5MM",
+   "product_name": "Golden Choice SPC 3.5+1.5MM Underlay attached — Weathered Grey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-7017-scaled.jpg",
+      "filename": "golden-choice-weathered-grey-lvp-7017-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/#img4",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-7017-scaled.jpg",
+     "sha1": "cfe9a92db714652e298203ff70b64b417263f1e2",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/#img4",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2c14d99a9274",
+   "seq": 91,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec9OoVJL9qsxYXx9",
+   "sku": "LVP-GLDC-7017-6MM",
+   "product_name": "Golden Choice SPC 4.5+1.5MM Underlay attached — Weathered Grey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-7017-scaled.jpg",
+      "filename": "golden-choice-weathered-grey-lvp-7017-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/#img4",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-7017-scaled.jpg",
+     "sha1": "cfe9a92db714652e298203ff70b64b417263f1e2",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/#img4",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-583e89bb4b44",
+   "seq": 92,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recl2owYVPBYqQgry",
+   "sku": "LVP-GLDC-7018",
+   "product_name": "Golden Choice SPC 4.5+1.5MM Underlay attached — Carbonized Grey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-7018-scaled.jpg",
+      "filename": "golden-choice-carbonized-grey-lvp-7018-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/#img5",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/08/GC-7018-scaled.jpg",
+     "sha1": "b4c0148251128d9cef9f9a7c49c7a82f0607fb6f",
+     "page": "https://goldenchoiceflooring.ca/product/spc-3-5mm-1-5mm5mm/#img5",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-19b57418d14a",
+   "seq": 93,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recBowfmdlw1zhB8u",
+   "sku": "LVP-GLDC-7020",
+   "product_name": "Golden Choice SPC 5.5MM+1.5MM=7MM Underlay attached — Item 7020",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/7020-scaled.jpg",
+      "filename": "golden-choice-item-7020-lvp-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/7020-scaled.jpg",
+     "sha1": "7f85695ab9c7fcc2d0ee10956023254485b34170",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img0",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-677175fc561b",
+   "seq": 94,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recjCCQwupwnHIwxP",
+   "sku": "LVP-GLDC-7021",
+   "product_name": "Golden Choice SPC 5.5MM+1.5MM=7MM Underlay attached — Item 7021",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/7021-scaled.jpg",
+      "filename": "golden-choice-item-7021-lvp-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/7021-scaled.jpg",
+     "sha1": "36828ea30985dba1e6c2d6edee1d691e133ca69b",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img1",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-bf954437d0a2",
+   "seq": 95,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recJnb8y6iNKEF8KH",
+   "sku": "LVP-GLDC-7022",
+   "product_name": "Golden Choice SPC 5.5MM+1.5MM=7MM Underlay attached — Item 7022",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/7022-scaled.jpg",
+      "filename": "golden-choice-item-7022-lvp-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/7022-scaled.jpg",
+     "sha1": "f90b0c733bb7701aa064a9c8a2c1e3d66b110b45",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img2",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8b0b2ddd6d95",
+   "seq": 96,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec2jqGOiyUfj5afE",
+   "sku": "LVP-GLDC-7023",
+   "product_name": "Golden Choice SPC 5.5MM+1.5MM=7MM Underlay attached — Item 7023",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/7023-scaled.jpg",
+      "filename": "golden-choice-item-7023-lvp-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/7023-scaled.jpg",
+     "sha1": "9220c8fbfb6644a1be2e39dbd670f9c5d1420461",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img3",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-4aabe78ecb26",
+   "seq": 97,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recLLxX4Zf79ux945",
+   "sku": "LVP-GLDC-7025",
+   "product_name": "Golden Choice SPC 5.5MM+1.5MM=7MM Underlay attached — Item 7025",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/7025-scaled.jpg",
+      "filename": "golden-choice-item-7025-lvp-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img4",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/7025-scaled.jpg",
+     "sha1": "e68f6b710c39781684f34e761a8d71b5029b9255",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img4",
+     "width": 2560,
+     "height": 2134
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-969cdd95e7be",
+   "seq": 98,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recPcX7NyHGAoiU3H",
+   "sku": "LVP-GLDC-7026",
+   "product_name": "Golden Choice SPC 5.5MM+1.5MM=7MM Underlay attached — Item 7026",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/7026-scaled.jpg",
+      "filename": "golden-choice-item-7026-lvp-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img5",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/7026-scaled.jpg",
+     "sha1": "a044d048b53db0fdeb19a142dfa373cd315f9ab9",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img5",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-62aeb6d8e4b3",
+   "seq": 99,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recsKBqWNZkCNse9G",
+   "sku": "LVP-GLDC-7027",
+   "product_name": "Golden Choice SPC 5.5MM+1.5MM=7MM Underlay attached — Item 7027",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/7027-scaled.jpg",
+      "filename": "golden-choice-item-7027-lvp-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img6",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/7027-scaled.jpg",
+     "sha1": "e5c3bf3053f91553076bd2f443c0da579c107ed1",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img6",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-e110f5af391c",
+   "seq": 100,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recURVNo7sFkc1PIC",
+   "sku": "LVP-GLDC-7028",
+   "product_name": "Golden Choice SPC 5.5MM+1.5MM=7MM Underlay attached — Item 7028",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/7028-scaled.jpg",
+      "filename": "golden-choice-item-7028-lvp-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img7",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/09/7028-scaled.jpg",
+     "sha1": "d6a30df87b7eecd3e73b51cc5c4ef89ae0d1e5ae",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img7",
+     "width": 2560,
+     "height": 2133
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5544b0a10e5e",
+   "seq": 101,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recQqF2Yvx9v3hdZd",
+   "sku": "LVP-GLDC-7035",
+   "product_name": "Golden Choice Luxury SPC 5.5+1.5=7mm EIR — Item 7035",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/GC-7035.jpeg",
+      "filename": "golden-choice-item-7035-lvp-swatch.jpeg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/eir-spc-7mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/eir-spc-7mm/#img0",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/GC-7035.jpeg",
+     "sha1": "343094ad48f32e2e18e5aa1c3282897b5950d084",
+     "page": "https://goldenchoiceflooring.ca/product/eir-spc-7mm/#img0",
+     "width": 1531,
+     "height": 2000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ca4bf9145c94",
+   "seq": 102,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recu2TWDBhWuqRZd0",
+   "sku": "LVP-GLDC-7036",
+   "product_name": "Golden Choice Luxury SPC 5.5+1.5=7mm EIR — Item 7036",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/GC7036-.jpg",
+      "filename": "golden-choice-item-7036-lvp-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/eir-spc-7mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/eir-spc-7mm/#img1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/GC7036-.jpg",
+     "sha1": "d6d151b59964ff8c21baeb5a401ecd4051bd16da",
+     "page": "https://goldenchoiceflooring.ca/product/eir-spc-7mm/#img1",
+     "width": 1003,
+     "height": 994
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-c289578a7b0c",
+   "seq": 103,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec5lP6mEbRVljkpb",
+   "sku": "LVP-GLDC-7037",
+   "product_name": "Golden Choice Luxury SPC 5.5+1.5=7mm EIR — Item 7037",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/GC-7037.jpeg",
+      "filename": "golden-choice-item-7037-lvp-swatch.jpeg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/eir-spc-7mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/eir-spc-7mm/#img2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/GC-7037.jpeg",
+     "sha1": "dd5fab6761735b1aebb5743784f943850b86169b",
+     "page": "https://goldenchoiceflooring.ca/product/eir-spc-7mm/#img2",
+     "width": 1624,
+     "height": 1829
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-cdbca4da7eaa",
+   "seq": 104,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recM9FgDztTJ8EZ4F",
+   "sku": "LVP-GLDC-7038",
+   "product_name": "Golden Choice Luxury SPC 5.5+1.5=7mm EIR — Item 7038",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/GC-7038.jpeg",
+      "filename": "golden-choice-item-7038-lvp-swatch.jpeg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/eir-spc-7mm/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/eir-spc-7mm/#img3",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/GC-7038.jpeg",
+     "sha1": "9a459ba4a30b470c16bda1cbe076caac517bae8b",
+     "page": "https://goldenchoiceflooring.ca/product/eir-spc-7mm/#img3",
+     "width": 1608,
+     "height": 1923
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-6c543241f5e1",
+   "seq": 105,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recKM5bkdBot0XSYN",
+   "sku": "LVP-GLDC-7220",
+   "product_name": "Golden Choice SPC 5.5MM+1.5MM=7MM Underlay attached — New",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/gc-7220.jpeg",
+      "filename": "golden-choice-new-lvp-7220-swatch.jpeg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img8",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/gc-7220.jpeg",
+     "sha1": "e83cf54d48a09c876408d48726040360e5db1cf5",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img8",
+     "width": 2159,
+     "height": 1814
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8add68403cbb",
+   "seq": 106,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recnvtYw07hnjkdIS",
+   "sku": "LVP-GLDC-7221",
+   "product_name": "Golden Choice SPC 5.5MM+1.5MM=7MM Underlay attached — New",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/gc-7221.jpeg",
+      "filename": "golden-choice-new-lvp-7221-swatch.jpeg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img9",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/gc-7221.jpeg",
+     "sha1": "9c1e417c68988fa8a03bdfda21492395b84912ca",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img9",
+     "width": 2078,
+     "height": 1722
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-9b619102d80c",
+   "seq": 107,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec1fFu34jr93HGwZ",
+   "sku": "LVP-GLDC-7222",
+   "product_name": "Golden Choice SPC 5.5MM+1.5MM=7MM Underlay attached — New",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/gc-7222.jpeg",
+      "filename": "golden-choice-new-lvp-7222-swatch.jpeg"
+     }
+    ],
+    "Supplier product page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img10",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://goldenchoiceflooring.ca/wp-content/uploads/2022/12/gc-7222.jpeg",
+     "sha1": "2ce888aa7952c4dd78bb17c60fc373f794c75c61",
+     "page": "https://goldenchoiceflooring.ca/product/spc-5-5mm-1-5mm-7mm-2/#img10",
+     "width": 1950,
+     "height": 1621
+    }
+   ],
+   "flags": []
+  }
+ ],
+ "held": [
+  {
+   "sku": "ENG-GLDC-0001",
+   "record_id": "recT9rA1768sOZ3gt",
+   "product_name": "Golden Choice Engineered White Oak 6.5 — Gray Owl",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Gray Owl'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GLDC-0017",
+   "record_id": "recrb1U6Ev2175DCr",
+   "product_name": "Golden Choice Engineered White Oak — Gaelic",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Gaelic'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GLDC-0021",
+   "record_id": "recfY8mLPN6mmFC6i",
+   "product_name": "Golden Choice Engineered White Oak — Eclipse",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Eclipse'; vetoes {}"
+  },
+  {
+   "sku": "ENG-GLDC-0026",
+   "record_id": "recvNJ455Ij2mDbN0",
+   "product_name": "Golden Choice Engineered White Oak — Dolomite",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Dolomite'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-GLDC-0028",
+   "record_id": "recSpvBzdx3dIiASX",
+   "product_name": "Golden Choice Engineered Hickory (NEW) — Granite",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Granite'; vetoes {}"
+  },
+  {
+   "sku": "LAM-GLDC-1040",
+   "record_id": "reccXnQ5s0M3vNNZi",
+   "product_name": "Golden Choice Laminate 1040's — Herringbone",
+   "candidate_pages": [
+    "https://goldenchoiceflooring.ca/product/laminate-1040s/#img0"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://goldenchoiceflooring.ca/product/laminate-1040s/#img0']; {'pattern_mismatch': 1}"
+  },
+  {
+   "sku": "LAM-GLDC-1070",
+   "record_id": "recDDRV5gXXhNAkfL",
+   "product_name": "Golden Choice Laminate 1070's — Item 1070",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 1070'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LAM-GLDC-1071",
+   "record_id": "receUuvuU9cwR5k36",
+   "product_name": "Golden Choice Laminate 1070's — Item 1071",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 1071'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LAM-GLDC-1072",
+   "record_id": "recHxRBJvahglK8W9",
+   "product_name": "Golden Choice Laminate 1070's — Item 1072",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 1072'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LAM-GLDC-1073",
+   "record_id": "rechp08n8pFqOOqEJ",
+   "product_name": "Golden Choice Laminate 1070's — Item 1073",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 1073'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LAM-GLDC-1075",
+   "record_id": "recnrjQou5p5Q8j0x",
+   "product_name": "Golden Choice Laminate 1070's — Item 1075",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 1075'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LAM-GLDC-1076",
+   "record_id": "recJpHaF7imR5M3Wa",
+   "product_name": "Golden Choice Laminate 1070's — Item 1076",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 1076'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LAM-GLDC-1077",
+   "record_id": "recTjp4jra4AATjAu",
+   "product_name": "Golden Choice Laminate 1070's — Item 1077",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 1077'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LAM-GLDC-1080",
+   "record_id": "recCF5KslMH6Iln1k",
+   "product_name": "Golden Choice Water Resistant Laminate 1080's — Item 1080",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 1080'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LAM-GLDC-1081",
+   "record_id": "recKkQU2nkR7Bfsep",
+   "product_name": "Golden Choice Water Resistant Laminate 1080's — Item 1081",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 1081'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LAM-GLDC-1082",
+   "record_id": "reckvdBsqFlfMWsov",
+   "product_name": "Golden Choice Water Resistant Laminate 1080's — Item 1082",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 1082'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LAM-GLDC-1083",
+   "record_id": "recfCrCrPfj6e56mb",
+   "product_name": "Golden Choice Water Resistant Laminate 1080's — Item 1083",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 1083'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LAM-GLDC-1085",
+   "record_id": "recTs2bpNhekxMfBn",
+   "product_name": "Golden Choice Water Resistant Laminate 1080's — Item 1085",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 1085'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LAM-GLDC-1086",
+   "record_id": "recs3zC4cUbeJVFsC",
+   "product_name": "Golden Choice Water Resistant Laminate 1080's — Item 1086",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 1086'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-2048",
+   "record_id": "reciEtA2PAydPeaiI",
+   "product_name": "Golden Choice SPC 5mm Tiles — Midland Stone",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Midland Stone'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-2072",
+   "record_id": "recmRdmMYn2vGwS35",
+   "product_name": "Golden Choice PVC 5MM — Storm Gray",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Storm Gray'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-2073",
+   "record_id": "rec4vMvNt6V2ypxFL",
+   "product_name": "Golden Choice PVC 5MM — Rustic Brown",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Rustic Brown'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-2075",
+   "record_id": "recg424CfTCeUUhnr",
+   "product_name": "Golden Choice PVC 5MM — Classic Brown",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Classic Brown'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-6050",
+   "record_id": "rec28F6zLf3k7swBF",
+   "product_name": "Golden Choice Luxury SPC 7+2=9mm EIR — Item 6050",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 6050'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-6051",
+   "record_id": "recgbhJdW9X8TY30Z",
+   "product_name": "Golden Choice Luxury SPC 7+2=9mm EIR — Item 6051",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 6051'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-6052",
+   "record_id": "recSd3uNk45tAKsus",
+   "product_name": "Golden Choice Luxury SPC 7+2=9mm EIR — Item 6052",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 6052'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-6053",
+   "record_id": "recXsUtPEvGzjNjwl",
+   "product_name": "Golden Choice Luxury SPC 7+2=9mm EIR — Item 6053",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 6053'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-6055",
+   "record_id": "receI2C58BU7j1fmw",
+   "product_name": "Golden Choice Luxury SPC 7+2=9mm EIR — Item 6055",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 6055'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-7030",
+   "record_id": "rect78nZhVDHAtC6U",
+   "product_name": "Golden Choice Luxury SPC 5.5+1.5=7mm EIR — Item 7030",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 7030'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-7031",
+   "record_id": "recV4kcmgnTGvt8Oj",
+   "product_name": "Golden Choice Luxury SPC 5.5+1.5=7mm EIR — Item 7031",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 7031'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-7032",
+   "record_id": "rec9UJNkgJ0Am9ByJ",
+   "product_name": "Golden Choice Luxury SPC 5.5+1.5=7mm EIR — Item 7032",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 7032'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-7033",
+   "record_id": "recbciwS1lKhqLGCq",
+   "product_name": "Golden Choice Luxury SPC 5.5+1.5=7mm EIR — Item 7033",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 7033'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-7050",
+   "record_id": "rec7kqy1ZaWthinkV",
+   "product_name": "Golden Choice Luxury SPC 7+2=9mm EIR — Item 7050",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 7050'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-7051",
+   "record_id": "recXEvJU6S6cyotgS",
+   "product_name": "Golden Choice Luxury SPC 7+2=9mm EIR — Item 7051",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 7051'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-7052",
+   "record_id": "recdWZ1exyfI87zNk",
+   "product_name": "Golden Choice Luxury SPC 7+2=9mm EIR — Item 7052",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 7052'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-7053",
+   "record_id": "recK3J8kHYcSyBpcE",
+   "product_name": "Golden Choice Luxury SPC 7+2=9mm EIR — Item 7053",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 7053'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-7056",
+   "record_id": "rechQ32R0QBlhHOgq",
+   "product_name": "Golden Choice Luxury SPC 7+2=9mm EIR — Item 7056",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 7056'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-7057",
+   "record_id": "recJy5t9zQc8PBvwE",
+   "product_name": "Golden Choice Luxury SPC 7+2=9mm EIR — Item 7057",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 7057'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-7058",
+   "record_id": "rect0mHc3B83BXOXI",
+   "product_name": "Golden Choice Luxury SPC 7+2=9mm EIR — Item 7058",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Item 7058'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-7226",
+   "record_id": "recdCx08OUA4MIxRB",
+   "product_name": "Golden Choice SPC 5.5MM+1.5MM=7MM Underlay attached — New",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'New'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-7227",
+   "record_id": "recGnrc5VUVr5Uf0A",
+   "product_name": "Golden Choice SPC 5.5MM+1.5MM=7MM Underlay attached — New",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'New'; vetoes {'code': 84}"
+  },
+  {
+   "sku": "LVP-GLDC-7228",
+   "record_id": "recIi9tnM3V4VCmmD",
+   "product_name": "Golden Choice SPC 5.5MM+1.5MM=7MM Underlay attached — New",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'New'; vetoes {'code': 84}"
+  }
+ ]
+}
