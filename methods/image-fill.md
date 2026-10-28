@@ -87,6 +87,24 @@ write while `write_mode` is `plan_only`; get past a bot challenge; guess a URL.
   reported as trouble (batch 3 would have listed 650 fine records as `no_usable_image`). Simba 49,
   Grandeur 188 and Home's Pro 12 were also written that day. Afterwards no image field in the
   base held a non-image file (Airtable `fileType: text` filter on all three fields).
+  Later the same day Albert un-parked three. **Evergreen** ("Evergreen and Simba are connected
+  in some way … If the pictures are too small and bad quality, try not to use them"): its own
+  site has only ~260 px thumbnails, so it reads Simba's site (73 of its 95 codes are the same
+  products) and Word of Mouth's Simba listings. New judgement field `watermark_by` and supplier
+  `image_rules.watermark_ok`: Simba's spec-strip overlay is kept on Evergreen, any other mark
+  still drops a photo. 88 written; 728211 withheld (Simba's page for it is titled 72019) and one
+  held by the writer (a 6-1/2" record on a `7" - 7.9"` tagged page). **Golden Choice** and
+  **Oakel City** ("All inactive should be filled for anyway"): Golden Choice shows one page per
+  collection with each colour's photo named for its code, so `listing.gallery_label_codes`
+  reads `GC1010-scaled.jpg` as code 1010 (8 exact matches as pages, 108 as photos); 107
+  written, 14 of them sample boards carrying Golden Choice's own label (`watermark_ok`, the
+  session's call, put to Albert). Oakel's records carry no width, only `<n> Series`: the writer
+  held two plans that put 6″ pages on 7/9 Series records and 7″-tagged pages on 6 Series ones.
+  `series_widths` (6 / 7-1/2 / 9-1/4, from Oakel's own titles) gives the record its width and,
+  for a page whose title names none, reads it from the page's `N"` tag or `N Series` title;
+  `7-1/2″` now parses as 7.5; `species_words` keeps European and American oak apart. 61 written;
+  3 held by the writer because Oakel's site puts the same four room scenes on Smoke Grey and
+  both Snowflake pages.
 - 2026-10-22 — Albert gave 14 supplier sites at once ("Run the skill on all and continue
   filling in until complete … you can park certain ones if needed"). **Floors At Work**
   (`floorsatwork.com`, records named `NAF … — <colour>`): its Shopify store sells each
