@@ -619,6 +619,18 @@ class TestTwoSources(unittest.TestCase):
         self.assertEqual([x["url"] for x in out], ["https://cs/origins/#img0", "https://cs/origins/#img1"])
         self.assertEqual([len(x["images"]) for x in out], [1, 1])
 
+    def test_oakel_series_carry_a_width_and_a_hyphenated_width_reads(self):
+        # Oakel City, 2026-10-28: records name `7 Series` and no width; pages say `7-1/2″`.
+        self.assertEqual((im.widths_in("Essence 7-1/2″"), im.widths_in("Naked Oak 9-1/4″")), ({7.5}, {9.25}))
+        self.assertEqual(im.widths_in('3/4" (18mm)'), set())  # still a thickness
+        sup = {"series_widths": {"6": 6, "7": 7.5, "9": 9.25}}
+        r = {"id": "recOAKELCITY0001", "SKU": "ENG-OAK-1", "Product name": "Oakel European Oak 3-Ply 7 Series — Essence (Select)",
+             "Category": "Engineered hardwood"}
+        pages = [page("https://o/essence-6", "Essence 6″"), page("https://o/essence-7", "Essence 7-1/2″")]
+        m = im.match_records([r], pages, sup, REG["matching"])[r["id"]]
+        self.assertEqual((m["tier"], m["candidates"][0]["url"]), ("exact", "https://o/essence-7"))
+        self.assertEqual(im.match_records([r], pages[:1], sup, REG["matching"])[r["id"]]["tier"], "none")
+
     def test_gallery_label_codes_carry_the_photos_own_code(self):
         # Golden Choice, 2026-10-28: `Laminate 1010's` shows GC1010, GC1011 ... as photos.
         p = {"url": "https://gc/product/laminate-1010s/", "title": "Laminate 1010's", "h1": "", "codes": [], "images": [

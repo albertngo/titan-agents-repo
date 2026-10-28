@@ -1,0 +1,4818 @@
+{
+ "contract_version": "image-plan-1",
+ "scope": "oakelcity",
+ "supplier": "OAKEL CITY",
+ "run_at": "2026-10-28T12:18:27.184520-04:00",
+ "expires": "2026-10-28T23:59:59-0400",
+ "write_mode": "write",
+ "registry": "platform-settings/supplier-sites.json",
+ "inputs": {
+  "pages": "ingest/2026-10-28/supplier-pages-oakelcity.json",
+  "judgements": "ingest/2026-10-28/image-judgements-oakelcity.json",
+  "product_pages": null
+ },
+ "summary": {
+  "records": 139,
+  "actions": 70,
+  "held": 50,
+  "skipped": {
+   "accessory": 19
+  },
+  "held_by_reason": {
+   "no_match": 47,
+   "no_usable_image": 2,
+   "model_rejected": 1
+  },
+  "fields": {
+   "Swatch images": 62,
+   "Room scene images": 42,
+   "Supplier product page": 70,
+   "Detail images": 25
+  },
+  "tiers": {
+   "exact": 65,
+   "model_confirmed": 5
+  },
+  "manufacturer_pages": 64
+ },
+ "actions": [
+  {
+   "id": "img-5f43cb916935",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recoOq7x4J8j81YH0",
+   "sku": "ENG-OAKL-0002",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Erin Oak (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-Oak-Oakel-City.png?v=1725483980",
+      "filename": "oakel-erin-oak-european-oak-engineered-hardwood-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/ErinOak.webp?v=1738792165",
+      "filename": "oakel-erin-oak-european-oak-engineered-hardwood-swatch-2.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak1.png?v=1725484047",
+      "filename": "oakel-erin-oak-european-oak-engineered-hardwood-room-scene.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak2.png?v=1725484047",
+      "filename": "oakel-erin-oak-european-oak-engineered-hardwood-room-scene-2.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak3.png?v=1725484047",
+      "filename": "oakel-erin-oak-european-oak-engineered-hardwood-room-scene-3.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak4.png?v=1725484047",
+      "filename": "oakel-erin-oak-european-oak-engineered-hardwood-room-scene-4.png"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/erin-oak-7-1-2"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/erin-oak-7-1-2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-Oak-Oakel-City.png?v=1725483980",
+     "sha1": "13e1be30e92397f56f3c0121ad8907d8c9676262",
+     "page": "https://oakelcity.com/products/erin-oak-7-1-2",
+     "width": 500,
+     "height": 500
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/ErinOak.webp?v=1738792165",
+     "sha1": "fe1b331e9ac2cfde22da36e109a8fdda9762c1a2",
+     "page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-erin-oak-abc-grade",
+     "width": 500,
+     "height": 500
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak1.png?v=1725484047",
+     "sha1": "fb4303bf2e6ac852683d65b3ca444614730ed925",
+     "page": "https://oakelcity.com/products/erin-oak-7-1-2",
+     "width": 1000,
+     "height": 714
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak2.png?v=1725484047",
+     "sha1": "9b67f3efd0f2753046466655ad6bf108c2c4352c",
+     "page": "https://oakelcity.com/products/erin-oak-7-1-2",
+     "width": 1000,
+     "height": 714
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak3.png?v=1725484047",
+     "sha1": "86b1a1c2dda63af5415d4db9ea580fa63da02f93",
+     "page": "https://oakelcity.com/products/erin-oak-7-1-2",
+     "width": 1000,
+     "height": 714
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak4.png?v=1725484047",
+     "sha1": "69fd609aa484b193971aba8805414de26b6f212b",
+     "page": "https://oakelcity.com/products/erin-oak-7-1-2",
+     "width": 1000,
+     "height": 714
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-527a805974ed",
+   "seq": 2,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recTFNyLfijVypoFq",
+   "sku": "ENG-OAKL-0003",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Erin Oak (Character)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-Oak-Oakel-City.png?v=1725483980",
+      "filename": "oakel-erin-oak-european-oak-engineered-hardwood-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/ErinOak.webp?v=1738792165",
+      "filename": "oakel-erin-oak-european-oak-engineered-hardwood-swatch-2.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak1.png?v=1725484047",
+      "filename": "oakel-erin-oak-european-oak-engineered-hardwood-room-scene.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak2.png?v=1725484047",
+      "filename": "oakel-erin-oak-european-oak-engineered-hardwood-room-scene-2.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak3.png?v=1725484047",
+      "filename": "oakel-erin-oak-european-oak-engineered-hardwood-room-scene-3.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak4.png?v=1725484047",
+      "filename": "oakel-erin-oak-european-oak-engineered-hardwood-room-scene-4.png"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/erin-oak-7-1-2"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/erin-oak-7-1-2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-Oak-Oakel-City.png?v=1725483980",
+     "sha1": "13e1be30e92397f56f3c0121ad8907d8c9676262",
+     "page": "https://oakelcity.com/products/erin-oak-7-1-2",
+     "width": 500,
+     "height": 500
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/ErinOak.webp?v=1738792165",
+     "sha1": "fe1b331e9ac2cfde22da36e109a8fdda9762c1a2",
+     "page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-erin-oak-abc-grade",
+     "width": 500,
+     "height": 500
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak1.png?v=1725484047",
+     "sha1": "fb4303bf2e6ac852683d65b3ca444614730ed925",
+     "page": "https://oakelcity.com/products/erin-oak-7-1-2",
+     "width": 1000,
+     "height": 714
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak2.png?v=1725484047",
+     "sha1": "9b67f3efd0f2753046466655ad6bf108c2c4352c",
+     "page": "https://oakelcity.com/products/erin-oak-7-1-2",
+     "width": 1000,
+     "height": 714
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak3.png?v=1725484047",
+     "sha1": "86b1a1c2dda63af5415d4db9ea580fa63da02f93",
+     "page": "https://oakelcity.com/products/erin-oak-7-1-2",
+     "width": 1000,
+     "height": 714
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak4.png?v=1725484047",
+     "sha1": "69fd609aa484b193971aba8805414de26b6f212b",
+     "page": "https://oakelcity.com/products/erin-oak-7-1-2",
+     "width": 1000,
+     "height": 714
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-233a860d3801",
+   "seq": 3,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reccD7G1XbmCzXoBH",
+   "sku": "ENG-OAKL-0004",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Essence (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Essence.jpg?v=1727999291",
+      "filename": "oakel-essence-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/essence-1"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/essence-1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Essence.jpg?v=1727999291",
+     "sha1": "21c23abd4a5f368b9e34405cf53f3d5bb53c844c",
+     "page": "https://oakelcity.com/products/essence-1",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-d585b058d28f",
+   "seq": 4,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec0UrTGFrF1qJGxf",
+   "sku": "ENG-OAKL-0005",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Fiorano (Select & Better)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-fiorano-ab.jpg?v=1793131661",
+      "filename": "oakel-fiorano-european-oak-engineered-hardwood-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-fiorano-ab-grade"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-fiorano-ab-grade",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "model_confirmed",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-fiorano-ab.jpg?v=1793131661",
+     "sha1": "356c2fc8a3094bb85b89dce085a480f58d94d5dc",
+     "page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-fiorano-ab-grade",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "model_matched",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-0e76580caabc",
+   "seq": 5,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec9heeaQsmRV9Jjq",
+   "sku": "ENG-OAKL-0006",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Fiorano (Select)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-fiorano-abc.jpg?v=1793131665",
+      "filename": "oakel-fiorano-european-oak-engineered-hardwood-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-fiorano-abc-grade"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-fiorano-abc-grade",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "model_confirmed",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-fiorano-abc.jpg?v=1793131665",
+     "sha1": "c730ce2b43cef6f7052415bc048253ecf4abe2ec",
+     "page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-fiorano-abc-grade",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "model_matched",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-09bc190eacee",
+   "seq": 6,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recATpSkOPbyj2auL",
+   "sku": "ENG-OAKL-0009",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Harrison (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Harrison.jpg?v=1727999470",
+      "filename": "oakel-harrison-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/harrison-7-1-2"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/harrison-7-1-2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Harrison.jpg?v=1727999470",
+     "sha1": "9ae8010e4351d41a05e576aadb1fff45f26b6799",
+     "page": "https://oakelcity.com/products/harrison-7-1-2",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-81a75ef2450a",
+   "seq": 7,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reclp2bcCkvg7JRuW",
+   "sku": "ENG-OAKL-0013",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Mocha (Select)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-mocha-abc.jpg?v=1793131670",
+      "filename": "oakel-mocha-european-oak-engineered-hardwood-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-mocha-abc-grade"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-mocha-abc-grade",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-mocha-abc.jpg?v=1793131670",
+     "sha1": "8e0dd04679c2c6e00f54d64d4f3ba40c875a8352",
+     "page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-mocha-abc-grade",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-b8e57257d987",
+   "seq": 8,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recS3qAQC5aD9vKxO",
+   "sku": "ENG-OAKL-0020",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Paradise (Select & Better)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-paradise-ab.jpg?v=1793131675",
+      "filename": "oakel-paradise-european-oak-engineered-hardwood-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-paradise-ab-grade"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-paradise-ab-grade",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "model_confirmed",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-paradise-ab.jpg?v=1793131675",
+     "sha1": "23d460ca72a4f9ae96b2a9d716e3c4e960bcf1f6",
+     "page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-paradise-ab-grade",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "model_matched",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-ce71978bfd70",
+   "seq": 9,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recEikYKpCu30hUY0",
+   "sku": "ENG-OAKL-0021",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Paradise (Select)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-paradise-abc.jpg?v=1793131679",
+      "filename": "oakel-paradise-european-oak-engineered-hardwood-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-paradise-abc-grade"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-paradise-abc-grade",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "model_confirmed",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-paradise-abc.jpg?v=1793131679",
+     "sha1": "a6fbd32d69c58f4229cdf4a95ae7b06118bfb856",
+     "page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-paradise-abc-grade",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "model_matched",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-6fb75f5e056d",
+   "seq": 10,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recniX4lEV1WpSIXT",
+   "sku": "ENG-OAKL-0022",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Portobello (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Portobello.jpg?v=1727999952",
+      "filename": "oakel-portobello-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/portbello"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/portbello",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Portobello.jpg?v=1727999952",
+     "sha1": "5be654afd5d42f820a49aae5e7a1059054673805",
+     "page": "https://oakelcity.com/products/portbello",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8ff1e0543f4b",
+   "seq": 11,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recDEa0df8QlFNCPp",
+   "sku": "ENG-OAKL-0023",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Snowflake (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Snowflake_7_Oakel_City.png?v=1725496695",
+      "filename": "oakel-snowflake-european-oak-engineered-hardwood-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00004-3_0158335b-6cd2-449f-ace9-d6eece3685f4.jpg?v=1725496680",
+      "filename": "oakel-snowflake-european-oak-engineered-hardwood-room-scene.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-4_d1b0baae-9d5e-4b92-9fe4-5820d35d3f63.jpg?v=1725496680",
+      "filename": "oakel-snowflake-european-oak-engineered-hardwood-room-scene-2.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00002-4_6c602b42-13cc-4c4d-89d0-472e8e238596.jpg?v=1725496680",
+      "filename": "oakel-snowflake-european-oak-engineered-hardwood-room-scene-3.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-4_24a59978-a767-4fea-99ed-7b0ba506ec82.jpg?v=1725496680",
+      "filename": "oakel-snowflake-european-oak-engineered-hardwood-room-scene-4.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/snowflake-1"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/snowflake-1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Snowflake_7_Oakel_City.png?v=1725496695",
+     "sha1": "45f4d025addbbf09d8e52a88b00980f4421a193a",
+     "page": "https://oakelcity.com/products/snowflake-1",
+     "width": 500,
+     "height": 500
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00004-3_0158335b-6cd2-449f-ace9-d6eece3685f4.jpg?v=1725496680",
+     "sha1": "8cf74d68b8c1890c5b2d67e9cee80200bc0fa889",
+     "page": "https://oakelcity.com/products/snowflake-1",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-4_d1b0baae-9d5e-4b92-9fe4-5820d35d3f63.jpg?v=1725496680",
+     "sha1": "569f1ae66b6a8f88c1748f7f70ff393f3eab43ad",
+     "page": "https://oakelcity.com/products/snowflake-1",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00002-4_6c602b42-13cc-4c4d-89d0-472e8e238596.jpg?v=1725496680",
+     "sha1": "6803714d5eccee8c1e35f8b73f9ff657a8c7af64",
+     "page": "https://oakelcity.com/products/snowflake-1",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-4_24a59978-a767-4fea-99ed-7b0ba506ec82.jpg?v=1725496680",
+     "sha1": "caf448dfd81e5f01d6f224376c90082088fb3000",
+     "page": "https://oakelcity.com/products/snowflake-1",
+     "width": 801,
+     "height": 572
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-3fc4f14a81d6",
+   "seq": 12,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recvKZp7ztQBOmjFw",
+   "sku": "ENG-OAKL-0027",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Driftwood (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Driftwood.jpg?v=1727999175",
+      "filename": "oakel-driftwood-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/driftwood"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/driftwood",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Driftwood.jpg?v=1727999175",
+     "sha1": "0fd59512a705a623e00da736531cd878de801aba",
+     "page": "https://oakelcity.com/products/driftwood",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-607291012953",
+   "seq": 13,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recBaClMNDVbrQqO7",
+   "sku": "ENG-OAKL-0028",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Driftwood (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Driftwood.jpg?v=1727999175",
+      "filename": "oakel-driftwood-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/driftwood"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/driftwood",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Driftwood.jpg?v=1727999175",
+     "sha1": "0fd59512a705a623e00da736531cd878de801aba",
+     "page": "https://oakelcity.com/products/driftwood",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-28ebf83421f1",
+   "seq": 14,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reckbvxsd9b85KbxQ",
+   "sku": "ENG-OAKL-0032",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Naked Oak (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Naked-Oak.jpg?v=1727999777",
+      "filename": "oakel-naked-oak-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/naked-oak-6"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/naked-oak-6",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Naked-Oak.jpg?v=1727999777",
+     "sha1": "02af0c2fc6528b10d7a018269b083e574571c650",
+     "page": "https://oakelcity.com/products/naked-oak-6",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a2ab089bed86",
+   "seq": 15,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recCfcTBXhbnBDHVu",
+   "sku": "ENG-OAKL-0033",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Naked Oak (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Naked-Oak.jpg?v=1727999777",
+      "filename": "oakel-naked-oak-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/naked-oak-6"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/naked-oak-6",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Naked-Oak.jpg?v=1727999777",
+     "sha1": "02af0c2fc6528b10d7a018269b083e574571c650",
+     "page": "https://oakelcity.com/products/naked-oak-6",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ebc73a773064",
+   "seq": 16,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recTqYrvmCl9m22NW",
+   "sku": "ENG-OAKL-0034",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Snowflake (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Snowflake_Oakel_City.png?v=1725494962",
+      "filename": "oakel-snowflake-european-oak-engineered-hardwood-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00004-3.jpg?v=1725494944",
+      "filename": "oakel-snowflake-european-oak-engineered-hardwood-room-scene.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-4.jpg?v=1725494944",
+      "filename": "oakel-snowflake-european-oak-engineered-hardwood-room-scene-2.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00002-4.jpg?v=1725494944",
+      "filename": "oakel-snowflake-european-oak-engineered-hardwood-room-scene-3.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-4.jpg?v=1725494944",
+      "filename": "oakel-snowflake-european-oak-engineered-hardwood-room-scene-4.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/snowflake"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/snowflake",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Snowflake_Oakel_City.png?v=1725494962",
+     "sha1": "45f4d025addbbf09d8e52a88b00980f4421a193a",
+     "page": "https://oakelcity.com/products/snowflake",
+     "width": 500,
+     "height": 500
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00004-3.jpg?v=1725494944",
+     "sha1": "8cf74d68b8c1890c5b2d67e9cee80200bc0fa889",
+     "page": "https://oakelcity.com/products/snowflake",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-4.jpg?v=1725494944",
+     "sha1": "569f1ae66b6a8f88c1748f7f70ff393f3eab43ad",
+     "page": "https://oakelcity.com/products/snowflake",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00002-4.jpg?v=1725494944",
+     "sha1": "6803714d5eccee8c1e35f8b73f9ff657a8c7af64",
+     "page": "https://oakelcity.com/products/snowflake",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-4.jpg?v=1725494944",
+     "sha1": "caf448dfd81e5f01d6f224376c90082088fb3000",
+     "page": "https://oakelcity.com/products/snowflake",
+     "width": 801,
+     "height": 572
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f608bc5ebac8",
+   "seq": 17,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recLpc24ID8ds5b2u",
+   "sku": "ENG-OAKL-0035",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series (2mm) — Erin Oak (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-Oak-Oakel-City.png?v=1725483980",
+      "filename": "oakel-erin-oak-european-oak-engineered-hardwood-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/ErinOak.webp?v=1738792165",
+      "filename": "oakel-erin-oak-european-oak-engineered-hardwood-swatch-2.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak1.png?v=1725484047",
+      "filename": "oakel-erin-oak-european-oak-engineered-hardwood-room-scene.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak2.png?v=1725484047",
+      "filename": "oakel-erin-oak-european-oak-engineered-hardwood-room-scene-2.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak3.png?v=1725484047",
+      "filename": "oakel-erin-oak-european-oak-engineered-hardwood-room-scene-3.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak4.png?v=1725484047",
+      "filename": "oakel-erin-oak-european-oak-engineered-hardwood-room-scene-4.png"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/erin-oak-6"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/erin-oak-6",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-Oak-Oakel-City.png?v=1725483980",
+     "sha1": "13e1be30e92397f56f3c0121ad8907d8c9676262",
+     "page": "https://oakelcity.com/products/erin-oak-6",
+     "width": 500,
+     "height": 500
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/ErinOak.webp?v=1738792165",
+     "sha1": "fe1b331e9ac2cfde22da36e109a8fdda9762c1a2",
+     "page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-erin-oak-abc-grade",
+     "width": 500,
+     "height": 500
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak1.png?v=1725484047",
+     "sha1": "fb4303bf2e6ac852683d65b3ca444614730ed925",
+     "page": "https://oakelcity.com/products/erin-oak-6",
+     "width": 1000,
+     "height": 714
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak2.png?v=1725484047",
+     "sha1": "9b67f3efd0f2753046466655ad6bf108c2c4352c",
+     "page": "https://oakelcity.com/products/erin-oak-6",
+     "width": 1000,
+     "height": 714
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak3.png?v=1725484047",
+     "sha1": "86b1a1c2dda63af5415d4db9ea580fa63da02f93",
+     "page": "https://oakelcity.com/products/erin-oak-6",
+     "width": 1000,
+     "height": 714
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Erin-0ak4.png?v=1725484047",
+     "sha1": "69fd609aa484b193971aba8805414de26b6f212b",
+     "page": "https://oakelcity.com/products/erin-oak-6",
+     "width": 1000,
+     "height": 714
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-68999cda6cf3",
+   "seq": 18,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recun9nRLzS1u5Zoq",
+   "sku": "ENG-OAKL-0036",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series (2mm) — Essence (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Essence.jpg?v=1727999291",
+      "filename": "oakel-essence-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/essence"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/essence",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Essence.jpg?v=1727999291",
+     "sha1": "21c23abd4a5f368b9e34405cf53f3d5bb53c844c",
+     "page": "https://oakelcity.com/products/essence",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-030e87e1d435",
+   "seq": 19,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recZOJ0FkLATFWtFj",
+   "sku": "ENG-OAKL-0037",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series (2mm) — Harrison (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Harrison.jpg?v=1727999470",
+      "filename": "oakel-harrison-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/harrison-6"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/harrison-6",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Harrison.jpg?v=1727999470",
+     "sha1": "9ae8010e4351d41a05e576aadb1fff45f26b6799",
+     "page": "https://oakelcity.com/products/harrison-6",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-07d06f0d2c27",
+   "seq": 20,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recsWip7RElXgyG4A",
+   "sku": "ENG-OAKL-0047",
+   "product_name": "Oakel European Oak 3-Ply 9 Series — Essence (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Essence.jpg?v=1727999291",
+      "filename": "oakel-essence-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/essence-2"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/essence-2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Essence.jpg?v=1727999291",
+     "sha1": "21c23abd4a5f368b9e34405cf53f3d5bb53c844c",
+     "page": "https://oakelcity.com/products/essence-2",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-c772336f3a34",
+   "seq": 21,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec47OxIHc3SsajK4",
+   "sku": "ENG-OAKL-0055",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Amber (Character)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-amber-abcd.jpg?v=1793131652",
+      "filename": "oakel-amber-european-oak-engineered-hardwood-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-amber-abcd-grade"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-amber-abcd-grade",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "model_confirmed",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-amber-abcd.jpg?v=1793131652",
+     "sha1": "a682d7a92fae0e2d73d5fee51fdef8043b3bdd66",
+     "page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-amber-abcd-grade",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "model_matched",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-1d6602c31d8a",
+   "seq": 22,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reckuUeEenJii6mla",
+   "sku": "ENG-OAKL-0056",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Driftwood (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Driftwood.jpg?v=1727999175",
+      "filename": "oakel-driftwood-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/driftwood-1"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/driftwood-1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Driftwood.jpg?v=1727999175",
+     "sha1": "0fd59512a705a623e00da736531cd878de801aba",
+     "page": "https://oakelcity.com/products/driftwood-1",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-82b8532c9c8b",
+   "seq": 23,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec5vWCcLM4puRY8l",
+   "sku": "ENG-OAKL-0057",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Driftwood (Character)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Driftwood.jpg?v=1727999175",
+      "filename": "oakel-driftwood-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/driftwood-1"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/driftwood-1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Driftwood.jpg?v=1727999175",
+     "sha1": "0fd59512a705a623e00da736531cd878de801aba",
+     "page": "https://oakelcity.com/products/driftwood-1",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-46d7c00dbe6b",
+   "seq": 24,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "receTaKJXJg2KM70v",
+   "sku": "ENG-OAKL-0058",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Invisible (Character)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Invisible.jpg?v=1727999590",
+      "filename": "oakel-invisible-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/invisible"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/invisible",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Invisible.jpg?v=1727999590",
+     "sha1": "34578d1731f8811118f79aa99ab4a323cf6820b1",
+     "page": "https://oakelcity.com/products/invisible",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-38e899b79371",
+   "seq": 25,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recgL4U3vdJRW2DMx",
+   "sku": "ENG-OAKL-0063",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Naked Oak (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Naked-Oak.jpg?v=1727999777",
+      "filename": "oakel-naked-oak-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/naked-oak-7-1-2"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/naked-oak-7-1-2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Naked-Oak.jpg?v=1727999777",
+     "sha1": "02af0c2fc6528b10d7a018269b083e574571c650",
+     "page": "https://oakelcity.com/products/naked-oak-7-1-2",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-acef385a277c",
+   "seq": 26,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recj5jFDevGvGAPKV",
+   "sku": "ENG-OAKL-0064",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Naked Oak (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Naked-Oak.jpg?v=1727999777",
+      "filename": "oakel-naked-oak-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/naked-oak-7-1-2"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/naked-oak-7-1-2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Naked-Oak.jpg?v=1727999777",
+     "sha1": "02af0c2fc6528b10d7a018269b083e574571c650",
+     "page": "https://oakelcity.com/products/naked-oak-7-1-2",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-574e35fff927",
+   "seq": 27,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recEwKgENFRb2cqKD",
+   "sku": "ENG-OAKL-0065",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Naked Oak (Character)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Naked-Oak.jpg?v=1727999777",
+      "filename": "oakel-naked-oak-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/naked-oak-7-1-2"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/naked-oak-7-1-2",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Naked-Oak.jpg?v=1727999777",
+     "sha1": "02af0c2fc6528b10d7a018269b083e574571c650",
+     "page": "https://oakelcity.com/products/naked-oak-7-1-2",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8ce99822e110",
+   "seq": 28,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recEa7bWCBodz9Vp4",
+   "sku": "ENG-OAKL-0068",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Smoke Grey (Select)",
+   "fields": {
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00004-3_0988ebf6-7cb3-4abb-9847-922239ff98b8.jpg?v=1761865480",
+      "filename": "oakel-smoke-grey-european-oak-engineered-hardwood-room-scene.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-4_86259852-7184-4ade-8e8a-d55192b2e9da.jpg?v=1761865480",
+      "filename": "oakel-smoke-grey-european-oak-engineered-hardwood-room-scene-2.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00002-4_93f5ae37-ce6d-4d06-9f45-c17463fd8630.jpg?v=1761865480",
+      "filename": "oakel-smoke-grey-european-oak-engineered-hardwood-room-scene-3.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-4_b85f93a1-9bd1-44c9-97ae-f08addcd074f.jpg?v=1761865480",
+      "filename": "oakel-smoke-grey-european-oak-engineered-hardwood-room-scene-4.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-smoke-grey.png?v=1761865480",
+      "filename": "oakel-smoke-grey-european-oak-engineered-hardwood-detail.png"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/smoke-grey-1"
+   },
+   "field_ids": {
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/smoke-grey-1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00004-3_0988ebf6-7cb3-4abb-9847-922239ff98b8.jpg?v=1761865480",
+     "sha1": "8cf74d68b8c1890c5b2d67e9cee80200bc0fa889",
+     "page": "https://oakelcity.com/products/smoke-grey-1",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-4_86259852-7184-4ade-8e8a-d55192b2e9da.jpg?v=1761865480",
+     "sha1": "569f1ae66b6a8f88c1748f7f70ff393f3eab43ad",
+     "page": "https://oakelcity.com/products/smoke-grey-1",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00002-4_93f5ae37-ce6d-4d06-9f45-c17463fd8630.jpg?v=1761865480",
+     "sha1": "6803714d5eccee8c1e35f8b73f9ff657a8c7af64",
+     "page": "https://oakelcity.com/products/smoke-grey-1",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-4_b85f93a1-9bd1-44c9-97ae-f08addcd074f.jpg?v=1761865480",
+     "sha1": "caf448dfd81e5f01d6f224376c90082088fb3000",
+     "page": "https://oakelcity.com/products/smoke-grey-1",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-smoke-grey.png?v=1761865480",
+     "sha1": "3f5b82f13af5709785ec1715e55a140fba3d7fb7",
+     "page": "https://oakelcity.com/products/smoke-grey-1",
+     "width": 1536,
+     "height": 1025
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-9c284115a659",
+   "seq": 29,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recv4AERwaVm030cF",
+   "sku": "ENG-OAKL-0069",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Winter Fly (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Winter_Fly_Oakel_City.png?v=1725497031",
+      "filename": "oakel-winter-fly-european-oak-engineered-hardwood-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00000-10.jpg?v=1725496987",
+      "filename": "oakel-winter-fly-european-oak-engineered-hardwood-room-scene.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-11.jpg?v=1725496987",
+      "filename": "oakel-winter-fly-european-oak-engineered-hardwood-room-scene-2.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00002-11.jpg?v=1725496987",
+      "filename": "oakel-winter-fly-european-oak-engineered-hardwood-room-scene-3.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-11.jpg?v=1725496987",
+      "filename": "oakel-winter-fly-european-oak-engineered-hardwood-room-scene-4.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/winter-fly-1"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/winter-fly-1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Winter_Fly_Oakel_City.png?v=1725497031",
+     "sha1": "941806dfed512a1006217349d8918368f997994b",
+     "page": "https://oakelcity.com/products/winter-fly-1",
+     "width": 500,
+     "height": 500
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00000-10.jpg?v=1725496987",
+     "sha1": "fd711283aeefb3d8c3b9b49becc9098d505d6990",
+     "page": "https://oakelcity.com/products/winter-fly-1",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-11.jpg?v=1725496987",
+     "sha1": "7939b8dca3394714fb779d6dcd755697d2dc2991",
+     "page": "https://oakelcity.com/products/winter-fly-1",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00002-11.jpg?v=1725496987",
+     "sha1": "8442ac2546d301f925f8360257ae6fbbf60aed04",
+     "page": "https://oakelcity.com/products/winter-fly-1",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-11.jpg?v=1725496987",
+     "sha1": "39e175e263ad7ead8b81386ae63e797434bd45d6",
+     "page": "https://oakelcity.com/products/winter-fly-1",
+     "width": 801,
+     "height": 572
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-4fa622990ba3",
+   "seq": 30,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec5swaLfWoXpKNXz",
+   "sku": "ENG-OAKL-0070",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Winter Fly (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Winter_Fly_Oakel_City.png?v=1725497031",
+      "filename": "oakel-winter-fly-european-oak-engineered-hardwood-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00000-10.jpg?v=1725496987",
+      "filename": "oakel-winter-fly-european-oak-engineered-hardwood-room-scene.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-11.jpg?v=1725496987",
+      "filename": "oakel-winter-fly-european-oak-engineered-hardwood-room-scene-2.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00002-11.jpg?v=1725496987",
+      "filename": "oakel-winter-fly-european-oak-engineered-hardwood-room-scene-3.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-11.jpg?v=1725496987",
+      "filename": "oakel-winter-fly-european-oak-engineered-hardwood-room-scene-4.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/winter-fly-1"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/winter-fly-1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Winter_Fly_Oakel_City.png?v=1725497031",
+     "sha1": "941806dfed512a1006217349d8918368f997994b",
+     "page": "https://oakelcity.com/products/winter-fly-1",
+     "width": 500,
+     "height": 500
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00000-10.jpg?v=1725496987",
+     "sha1": "fd711283aeefb3d8c3b9b49becc9098d505d6990",
+     "page": "https://oakelcity.com/products/winter-fly-1",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-11.jpg?v=1725496987",
+     "sha1": "7939b8dca3394714fb779d6dcd755697d2dc2991",
+     "page": "https://oakelcity.com/products/winter-fly-1",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00002-11.jpg?v=1725496987",
+     "sha1": "8442ac2546d301f925f8360257ae6fbbf60aed04",
+     "page": "https://oakelcity.com/products/winter-fly-1",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-11.jpg?v=1725496987",
+     "sha1": "39e175e263ad7ead8b81386ae63e797434bd45d6",
+     "page": "https://oakelcity.com/products/winter-fly-1",
+     "width": 801,
+     "height": 572
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-7d5c4ad5e023",
+   "seq": 31,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recQju65rS9Ngb6ZT",
+   "sku": "ENG-OAKL-0071",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Daybreak (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Daybreak.jpg?v=1727999328",
+      "filename": "oakel-daybreak-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/day-break-1"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/day-break-1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Daybreak.jpg?v=1727999328",
+     "sha1": "d98a2b4358aad0b82b4ccc27aecaa5518ff1a3f9",
+     "page": "https://oakelcity.com/products/day-break-1",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-09fdb4dee06a",
+   "seq": 32,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recN8j9R9uBTTKh12",
+   "sku": "ENG-OAKL-0072",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Daybreak (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Daybreak.jpg?v=1727999328",
+      "filename": "oakel-daybreak-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/day-break-1"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/day-break-1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Daybreak.jpg?v=1727999328",
+     "sha1": "d98a2b4358aad0b82b4ccc27aecaa5518ff1a3f9",
+     "page": "https://oakelcity.com/products/day-break-1",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-87228ebca933",
+   "seq": 33,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recWMJ2k9Pr5OUQpB",
+   "sku": "ENG-OAKL-0074",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Smoke Grey (Select)",
+   "fields": {
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00004-3_0988ebf6-7cb3-4abb-9847-922239ff98b8.jpg?v=1761865480",
+      "filename": "oakel-smoke-grey-european-oak-engineered-hardwood-room-scene.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-4_86259852-7184-4ade-8e8a-d55192b2e9da.jpg?v=1761865480",
+      "filename": "oakel-smoke-grey-european-oak-engineered-hardwood-room-scene-2.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00002-4_93f5ae37-ce6d-4d06-9f45-c17463fd8630.jpg?v=1761865480",
+      "filename": "oakel-smoke-grey-european-oak-engineered-hardwood-room-scene-3.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-4_b85f93a1-9bd1-44c9-97ae-f08addcd074f.jpg?v=1761865480",
+      "filename": "oakel-smoke-grey-european-oak-engineered-hardwood-room-scene-4.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-smoke-grey.png?v=1761865480",
+      "filename": "oakel-smoke-grey-european-oak-engineered-hardwood-detail.png"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/smoke-grey-1"
+   },
+   "field_ids": {
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/smoke-grey-1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00004-3_0988ebf6-7cb3-4abb-9847-922239ff98b8.jpg?v=1761865480",
+     "sha1": "8cf74d68b8c1890c5b2d67e9cee80200bc0fa889",
+     "page": "https://oakelcity.com/products/smoke-grey-1",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-4_86259852-7184-4ade-8e8a-d55192b2e9da.jpg?v=1761865480",
+     "sha1": "569f1ae66b6a8f88c1748f7f70ff393f3eab43ad",
+     "page": "https://oakelcity.com/products/smoke-grey-1",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00002-4_93f5ae37-ce6d-4d06-9f45-c17463fd8630.jpg?v=1761865480",
+     "sha1": "6803714d5eccee8c1e35f8b73f9ff657a8c7af64",
+     "page": "https://oakelcity.com/products/smoke-grey-1",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-4_b85f93a1-9bd1-44c9-97ae-f08addcd074f.jpg?v=1761865480",
+     "sha1": "caf448dfd81e5f01d6f224376c90082088fb3000",
+     "page": "https://oakelcity.com/products/smoke-grey-1",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-smoke-grey.png?v=1761865480",
+     "sha1": "3f5b82f13af5709785ec1715e55a140fba3d7fb7",
+     "page": "https://oakelcity.com/products/smoke-grey-1",
+     "width": 1536,
+     "height": 1025
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-4cfa74d71259",
+   "seq": 34,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recqVfjEMsn4LeFUb",
+   "sku": "ENG-OAKL-0075",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Snow Grey (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Snow_Grey_Oakel_City.jpg?v=1725495083",
+      "filename": "oakel-snow-grey-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/snow-grey-1"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/snow-grey-1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Snow_Grey_Oakel_City.jpg?v=1725495083",
+     "sha1": "e6ece48d1edc164a27639766c0975f7db2b940d2",
+     "page": "https://oakelcity.com/products/snow-grey-1",
+     "width": 768,
+     "height": 512
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-7a73c096dc61",
+   "seq": 35,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec0LkcfFX9k9YBqf",
+   "sku": "ENG-OAKL-0076",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Tylor SKY (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Tylor_Sky_Oakel_City.png?v=1725561904",
+      "filename": "oakel-tylor-sky-european-oak-engineered-hardwood-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-7.jpg?v=1725561890",
+      "filename": "oakel-tylor-sky-european-oak-engineered-hardwood-room-scene.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00004-6.jpg?v=1725561890",
+      "filename": "oakel-tylor-sky-european-oak-engineered-hardwood-room-scene-2.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00005-1.jpg?v=1725561890",
+      "filename": "oakel-tylor-sky-european-oak-engineered-hardwood-room-scene-3.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-7.jpg?v=1725561890",
+      "filename": "oakel-tylor-sky-european-oak-engineered-hardwood-room-scene-4.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/tylor-sky"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/tylor-sky",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Tylor_Sky_Oakel_City.png?v=1725561904",
+     "sha1": "8839932845046d5a664e63295ba79b0e0c56b453",
+     "page": "https://oakelcity.com/products/tylor-sky",
+     "width": 500,
+     "height": 500
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-7.jpg?v=1725561890",
+     "sha1": "b6108bbce4d4a894c89c7253501eaf566be2deda",
+     "page": "https://oakelcity.com/products/tylor-sky",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00004-6.jpg?v=1725561890",
+     "sha1": "d0eca2ee3ef3561cc9807d788cf5506f675abe15",
+     "page": "https://oakelcity.com/products/tylor-sky",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00005-1.jpg?v=1725561890",
+     "sha1": "dc8fa100b5ad3104e8b10db07d1f0fd997921cb6",
+     "page": "https://oakelcity.com/products/tylor-sky",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-7.jpg?v=1725561890",
+     "sha1": "443cc3b6510399c33f90a9ade33b6730f41d834a",
+     "page": "https://oakelcity.com/products/tylor-sky",
+     "width": 801,
+     "height": 572
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-94e4f667521d",
+   "seq": 36,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recwwmEwBd3VLPAep",
+   "sku": "ENG-OAKL-0077",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Winter Fly (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Winter_Fly_Oakel_City.png?v=1725497031",
+      "filename": "oakel-winter-fly-european-oak-engineered-hardwood-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00000-10.jpg?v=1725496987",
+      "filename": "oakel-winter-fly-european-oak-engineered-hardwood-room-scene.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-11.jpg?v=1725496987",
+      "filename": "oakel-winter-fly-european-oak-engineered-hardwood-room-scene-2.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00002-11.jpg?v=1725496987",
+      "filename": "oakel-winter-fly-european-oak-engineered-hardwood-room-scene-3.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-11.jpg?v=1725496987",
+      "filename": "oakel-winter-fly-european-oak-engineered-hardwood-room-scene-4.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/winter-fly-1"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/winter-fly-1",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Winter_Fly_Oakel_City.png?v=1725497031",
+     "sha1": "941806dfed512a1006217349d8918368f997994b",
+     "page": "https://oakelcity.com/products/winter-fly-1",
+     "width": 500,
+     "height": 500
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00000-10.jpg?v=1725496987",
+     "sha1": "fd711283aeefb3d8c3b9b49becc9098d505d6990",
+     "page": "https://oakelcity.com/products/winter-fly-1",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00001-11.jpg?v=1725496987",
+     "sha1": "7939b8dca3394714fb779d6dcd755697d2dc2991",
+     "page": "https://oakelcity.com/products/winter-fly-1",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00002-11.jpg?v=1725496987",
+     "sha1": "8442ac2546d301f925f8360257ae6fbbf60aed04",
+     "page": "https://oakelcity.com/products/winter-fly-1",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/HighresScreenshot00003-11.jpg?v=1725496987",
+     "sha1": "39e175e263ad7ead8b81386ae63e797434bd45d6",
+     "page": "https://oakelcity.com/products/winter-fly-1",
+     "width": 801,
+     "height": 572
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-cc64434a56fd",
+   "seq": 37,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recJryK4NilbmEhE7",
+   "sku": "ENG-OAKL-0078",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Urban Grey (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Urban-Grey.jpg?v=1727999215",
+      "filename": "oakel-urban-grey-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/urban-grey"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/urban-grey",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OakelCity-Urban-Grey.jpg?v=1727999215",
+     "sha1": "c69483a9ebc30a1abce2a3d9825dc09cd8371148",
+     "page": "https://oakelcity.com/products/urban-grey",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-876735d9cd18",
+   "seq": 38,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recmC3h21yXYriU4K",
+   "sku": "ENG-OAKL-0080",
+   "product_name": "Oakel European Oak 3-Ply 9 Series — Harrison (Select & Better)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Harrison.jpg?v=1727999470",
+      "filename": "oakel-harrison-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/harrison-9-1-4"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/harrison-9-1-4",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Harrison.jpg?v=1727999470",
+     "sha1": "9ae8010e4351d41a05e576aadb1fff45f26b6799",
+     "page": "https://oakelcity.com/products/harrison-9-1-4",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b14e926bebfb",
+   "seq": 39,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reclUwoO31qpmC4bi",
+   "sku": "ENG-OAKL-0082",
+   "product_name": "Oakel European Oak 3-Ply 9 Series — Naked Oak (Select)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Naked-Oak.jpg?v=1727999777",
+      "filename": "oakel-naked-oak-european-oak-engineered-hardwood-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/naked-oak-9-1-4"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/naked-oak-9-1-4",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Oakel-City-Naked-Oak.jpg?v=1727999777",
+     "sha1": "02af0c2fc6528b10d7a018269b083e574571c650",
+     "page": "https://oakelcity.com/products/naked-oak-9-1-4",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-afb97408bb5d",
+   "seq": 40,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec39NZT2leSBtZCh",
+   "sku": "LAM-OAKL-AE1201",
+   "product_name": "Oakel DESTINY Aqua Expert — Monet",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1201_Monet_Oakel_City.jpg?v=1725575861",
+      "filename": "oakel-monet-laminate-ae1201-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1201_20230719154620.jpg?v=1725575839",
+      "filename": "oakel-monet-laminate-ae1201-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ae1201-monet"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ae1201-monet",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1201_Monet_Oakel_City.jpg?v=1725575861",
+     "sha1": "0c3b7959f55e345bfd55ab46d61f80d577bfd4a1",
+     "page": "https://oakelcity.com/products/ae1201-monet",
+     "width": 500,
+     "height": 500
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1201_20230719154620.jpg?v=1725575839",
+     "sha1": "b7b297d9dd8b3ad5517241130ae32b8230effc95",
+     "page": "https://oakelcity.com/products/ae1201-monet",
+     "width": 801,
+     "height": 572
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a147e6e76a70",
+   "seq": 41,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reczhGLAKgjDoOJyx",
+   "sku": "LAM-OAKL-AE1202",
+   "product_name": "Oakel DESTINY Aqua Expert — Norway",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1202_202209271627.jpg?v=1725574754",
+      "filename": "oakel-norway-laminate-ae1202-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1202_202307071430.jpg?v=1725574754",
+      "filename": "oakel-norway-laminate-ae1202-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ae1202-norway"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ae1202-norway",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1202_202209271627.jpg?v=1725574754",
+     "sha1": "829f2ac8902a840bb85615c0889e1d876666a83e",
+     "page": "https://oakelcity.com/products/ae1202-norway",
+     "width": 500,
+     "height": 500
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1202_202307071430.jpg?v=1725574754",
+     "sha1": "f38ce551af6a894593ca9f91b115302865b2bc82",
+     "page": "https://oakelcity.com/products/ae1202-norway",
+     "width": 801,
+     "height": 572
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a65b25e0539e",
+   "seq": 42,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recMfQrKr4oeutz5l",
+   "sku": "LAM-OAKL-AE1203",
+   "product_name": "Oakel DESTINY Aqua Expert — Fernando",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1203_Fernando_Oakel_City.jpg?v=1725574594",
+      "filename": "oakel-fernando-laminate-ae1203-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1203_20230719135115.jpg?v=1725574576",
+      "filename": "oakel-fernando-laminate-ae1203-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ae1203-fernando"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ae1203-fernando",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1203_Fernando_Oakel_City.jpg?v=1725574594",
+     "sha1": "b22abe6463ba02ad6781a2dbbf84ac179f3a676d",
+     "page": "https://oakelcity.com/products/ae1203-fernando",
+     "width": 500,
+     "height": 500
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1203_20230719135115.jpg?v=1725574576",
+     "sha1": "36bc2ff7d3899e27920d90eb4b6eeda772d966e2",
+     "page": "https://oakelcity.com/products/ae1203-fernando",
+     "width": 801,
+     "height": 572
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-1a4075160a9b",
+   "seq": 43,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recc7GrWuXS8Xg1Oc",
+   "sku": "LAM-OAKL-AE1205",
+   "product_name": "Oakel DESTINY Aqua Expert — Lidia",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1205_Lidia_Oakel_City.jpg?v=1725574350",
+      "filename": "oakel-lidia-laminate-ae1205-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1205_20221205152315.jpg?v=1725574334",
+      "filename": "oakel-lidia-laminate-ae1205-room-scene.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1205_20221205151905.jpg?v=1725574334",
+      "filename": "oakel-lidia-laminate-ae1205-room-scene-2.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1205_20221205102845.jpg?v=1725574334",
+      "filename": "oakel-lidia-laminate-ae1205-room-scene-3.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ae1205-lidia"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ae1205-lidia",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1205_Lidia_Oakel_City.jpg?v=1725574350",
+     "sha1": "6d6a90ca551dfa5b96e839bac4aed6d272792ea6",
+     "page": "https://oakelcity.com/products/ae1205-lidia",
+     "width": 500,
+     "height": 500
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1205_20221205152315.jpg?v=1725574334",
+     "sha1": "c58e3116202badcc24f2cd26a7ed8f6e21444a5a",
+     "page": "https://oakelcity.com/products/ae1205-lidia",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1205_20221205151905.jpg?v=1725574334",
+     "sha1": "d69fd1e5c172cb5a1e90f9d1ed499ba54cd4f092",
+     "page": "https://oakelcity.com/products/ae1205-lidia",
+     "width": 801,
+     "height": 572
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1205_20221205102845.jpg?v=1725574334",
+     "sha1": "f4aacdb1767a6b00894af3d429335862ad8bcd29",
+     "page": "https://oakelcity.com/products/ae1205-lidia",
+     "width": 801,
+     "height": 572
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-528482f65199",
+   "seq": 44,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recc3O9QuVKvzcQ8s",
+   "sku": "LAM-OAKL-AE1206",
+   "product_name": "Oakel DESTINY Aqua Expert — Riva",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1206_20230719092516.jpg?v=1725573845",
+      "filename": "oakel-riva-laminate-ae1206-swatch.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1206_Riva_Oakel_City.jpg?v=1725573895",
+      "filename": "oakel-riva-laminate-ae1206-swatch-2.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1206_20230719154607.jpg?v=1725573846",
+      "filename": "oakel-riva-laminate-ae1206-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ae1206-riva"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ae1206-riva",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1206_20230719092516.jpg?v=1725573845",
+     "sha1": "df841a3a1fb01218453d39c35e428be8667090de",
+     "page": "https://oakelcity.com/products/ae1206-riva",
+     "width": 572,
+     "height": 409
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1206_Riva_Oakel_City.jpg?v=1725573895",
+     "sha1": "1dc1a1d7a686c95a6e550db94df90bfd9fefb4cb",
+     "page": "https://oakelcity.com/products/ae1206-riva",
+     "width": 500,
+     "height": 500
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1206_20230719154607.jpg?v=1725573846",
+     "sha1": "318eefbbd67ebd0f49c6ba7f9aeac7eed656cefc",
+     "page": "https://oakelcity.com/products/ae1206-riva",
+     "width": 801,
+     "height": 572
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-547f4bc55d07",
+   "seq": 45,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recY5EkcU2E9hLXzC",
+   "sku": "LAM-OAKL-AE1207",
+   "product_name": "Oakel DESTINY Aqua Expert — Dublin",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1207_20230719092534.jpg?v=1725573655",
+      "filename": "oakel-dublin-laminate-ae1207-swatch.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1207_DuBblin_Oakel_City.jpg?v=1725573701",
+      "filename": "oakel-dublin-laminate-ae1207-swatch-2.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1207_20230719154956.jpg?v=1725573655",
+      "filename": "oakel-dublin-laminate-ae1207-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ae1207-dubblin"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ae1207-dubblin",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1207_20230719092534.jpg?v=1725573655",
+     "sha1": "a6e1555cebecc8b6230b14edcceba234b8eaa8bf",
+     "page": "https://oakelcity.com/products/ae1207-dubblin",
+     "width": 572,
+     "height": 409
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1207_DuBblin_Oakel_City.jpg?v=1725573701",
+     "sha1": "d8b89a529bd098b89e51644a54180b17e210fa01",
+     "page": "https://oakelcity.com/products/ae1207-dubblin",
+     "width": 500,
+     "height": 495
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1207_20230719154956.jpg?v=1725573655",
+     "sha1": "474021d5270bdb9f71bff20cad0a619d94b68a01",
+     "page": "https://oakelcity.com/products/ae1207-dubblin",
+     "width": 801,
+     "height": 572
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-c8026eb4b1d2",
+   "seq": 46,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recJjkQ43yW1BsT9p",
+   "sku": "LAM-OAKL-AE1208",
+   "product_name": "Oakel DESTINY Aqua Expert — Dawn Grey",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1208_Dawn_Grey_Oakel_City.png?v=1725573520",
+      "filename": "oakel-dawn-grey-laminate-ae1208-swatch.png"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OAKELCITY_AE1208_2-1.png?v=1725573500",
+      "filename": "oakel-dawn-grey-laminate-ae1208-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ae1208-dawn-grey"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ae1208-dawn-grey",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1208_Dawn_Grey_Oakel_City.png?v=1725573520",
+     "sha1": "261c77ccb2f333bc6a56defa256c83d73cc7a182",
+     "page": "https://oakelcity.com/products/ae1208-dawn-grey",
+     "width": 500,
+     "height": 500
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/OAKELCITY_AE1208_2-1.png?v=1725573500",
+     "sha1": "0c4a89202e321293f4baa4fe421fb109d09fd4f3",
+     "page": "https://oakelcity.com/products/ae1208-dawn-grey",
+     "width": 1144,
+     "height": 818
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-a4c7f3c6248f",
+   "seq": 47,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recd57Z0yRbHfttYU",
+   "sku": "LAM-OAKL-AE1209",
+   "product_name": "Oakel DESTINY Aqua Expert — Laguna",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1209_Laguna_Oakel_City.png?v=1725573371",
+      "filename": "oakel-laguna-laminate-ae1209-swatch.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Laguna.webp?v=1739391029",
+      "filename": "oakel-laguna-laminate-ae1209-swatch-2.webp"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Rectangle_9_2.png?v=1718993162",
+      "filename": "oakel-laguna-laminate-ae1209-room-scene.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Rectangle_9_1.png?v=1718993162",
+      "filename": "oakel-laguna-laminate-ae1209-room-scene-2.png"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ae1209-laguna"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ae1209-laguna",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/AE1209_Laguna_Oakel_City.png?v=1725573371",
+     "sha1": "44d5564befb0106066e8da4a16b8e6a26c023477",
+     "page": "https://oakelcity.com/products/ae1209-laguna",
+     "width": 2400,
+     "height": 2001
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Laguna.webp?v=1739391029",
+     "sha1": "d149eb210d9b3cea395f2de5b2a5914019f43618",
+     "page": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-expert-collection-laguna",
+     "width": 1623,
+     "height": 1622
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Rectangle_9_2.png?v=1718993162",
+     "sha1": "b0d7fb72ba99a7e63b5712868d26f06f4ac17e09",
+     "page": "https://oakelcity.com/products/ae1209-laguna",
+     "width": 1180,
+     "height": 1381
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/Rectangle_9_1.png?v=1718993162",
+     "sha1": "829799cd41b7c8bb302f41f045410b455274fd12",
+     "page": "https://oakelcity.com/products/ae1209-laguna",
+     "width": 1180,
+     "height": 1381
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-e1f2f178276e",
+   "seq": 48,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recJOy7eAjlZdSUqU",
+   "sku": "LAM-OAKL-MS7501",
+   "product_name": "Oakel Master Step — Jasper",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-jasper-MS7501-Layout_5ca5ee05-c770-431c-b4c2-2b96c289d4ad.jpg?v=1751667952",
+      "filename": "oakel-jasper-laminate-ms7501-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-jasper-MS7501-scenegraph_96cf7a9a-085a-4166-ae0e-757f26c0c911.jpg?v=1751669296",
+      "filename": "oakel-jasper-laminate-ms7501-room-scene.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-jasper-MS7501-Overall_2.jpg?v=1751669296",
+      "filename": "oakel-jasper-laminate-ms7501-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ms7501-jasper"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ms7501-jasper",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-jasper-MS7501-Layout_5ca5ee05-c770-431c-b4c2-2b96c289d4ad.jpg?v=1751667952",
+     "sha1": "6ef6651216ee50d4962cff30d98ef06bdb8fb4d0",
+     "page": "https://oakelcity.com/products/ms7501-jasper",
+     "width": 1215,
+     "height": 1215
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-jasper-MS7501-scenegraph_96cf7a9a-085a-4166-ae0e-757f26c0c911.jpg?v=1751669296",
+     "sha1": "809ff50732b2476639773b241383f133651aaac3",
+     "page": "https://oakelcity.com/products/ms7501-jasper",
+     "width": 1172,
+     "height": 837
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-jasper-MS7501-Overall_2.jpg?v=1751669296",
+     "sha1": "891a9ac54036bf92472c7d4c12f1a2dc78e983c8",
+     "page": "https://oakelcity.com/products/ms7501-jasper",
+     "width": 1172,
+     "height": 837
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-e9804f0ccdbb",
+   "seq": 49,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recdQZOAzdspPBGVw",
+   "sku": "LAM-OAKL-MS7502",
+   "product_name": "Oakel Master Step — Bella",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7502-Layout.jpg?v=1751670306",
+      "filename": "oakel-bella-laminate-ms7502-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7502-Scenegraph.jpg?v=1751670308",
+      "filename": "oakel-bella-laminate-ms7502-room-scene.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7502-overall.jpg?v=1751670308",
+      "filename": "oakel-bella-laminate-ms7502-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ms7502-bella"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ms7502-bella",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7502-Layout.jpg?v=1751670306",
+     "sha1": "57497dcb89c4cf7a0cfb87604cd9eb82d7661ad1",
+     "page": "https://oakelcity.com/products/ms7502-bella",
+     "width": 1673,
+     "height": 1673
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7502-Scenegraph.jpg?v=1751670308",
+     "sha1": "02a54610b1272ac40ee0d15c33f31f003ac91599",
+     "page": "https://oakelcity.com/products/ms7502-bella",
+     "width": 1172,
+     "height": 837
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7502-overall.jpg?v=1751670308",
+     "sha1": "2b8b0f842376f4373cd541aab6da62fc66ac9348",
+     "page": "https://oakelcity.com/products/ms7502-bella",
+     "width": 1172,
+     "height": 837
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-40b03100498d",
+   "seq": 50,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recX5wnX8YtxGBIpM",
+   "sku": "LAM-OAKL-MS7505",
+   "product_name": "Oakel Master Step — Atlanta",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7505-layout.jpg?v=1751671098",
+      "filename": "oakel-atlanta-laminate-ms7505-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7505.jpg?v=1751671102",
+      "filename": "oakel-atlanta-laminate-ms7505-room-scene.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7505-overall.jpg?v=1751671102",
+      "filename": "oakel-atlanta-laminate-ms7505-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ms7505-atlanta"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ms7505-atlanta",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7505-layout.jpg?v=1751671098",
+     "sha1": "957c3a70f2be6dc44d4f3aec0d8e00e923c72cb8",
+     "page": "https://oakelcity.com/products/ms7505-atlanta",
+     "width": 1673,
+     "height": 1673
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7505.jpg?v=1751671102",
+     "sha1": "fc7e55fa37567640ef971d93cd4c60f4f3ff8b79",
+     "page": "https://oakelcity.com/products/ms7505-atlanta",
+     "width": 1172,
+     "height": 837
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7505-overall.jpg?v=1751671102",
+     "sha1": "e5a6072b7bad28346677f968c68a2308fe5127ca",
+     "page": "https://oakelcity.com/products/ms7505-atlanta",
+     "width": 1172,
+     "height": 837
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-264cca2947a4",
+   "seq": 51,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reczJVd24LReantlK",
+   "sku": "LAM-OAKL-MS7506",
+   "product_name": "Oakel Master Step — Monica",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakel-monica-MS7506-Layout.jpg?v=1751669431",
+      "filename": "oakel-monica-laminate-ms7506-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakel-monica-MS7506-scenegraph_c767e345-a970-4119-a7bb-e9a7a39a9d16.jpg?v=1751669431",
+      "filename": "oakel-monica-laminate-ms7506-room-scene.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7506-overall.jpg?v=1751669431",
+      "filename": "oakel-monica-laminate-ms7506-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ms7506-monica"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ms7506-monica",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakel-monica-MS7506-Layout.jpg?v=1751669431",
+     "sha1": "ceb27384709cb65f2044507eaee017311e5c120a",
+     "page": "https://oakelcity.com/products/ms7506-monica",
+     "width": 1673,
+     "height": 1673
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakel-monica-MS7506-scenegraph_c767e345-a970-4119-a7bb-e9a7a39a9d16.jpg?v=1751669431",
+     "sha1": "f8101a94513712bcdf872ff7331bb3a3c9d3f8b1",
+     "page": "https://oakelcity.com/products/ms7506-monica",
+     "width": 1172,
+     "height": 837
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7506-overall.jpg?v=1751669431",
+     "sha1": "efb4621317ead0b08af47e4773f08e245f6f69d6",
+     "page": "https://oakelcity.com/products/ms7506-monica",
+     "width": 1172,
+     "height": 837
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-99783f9bd0f0",
+   "seq": 52,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recphhl96XjPR3ToD",
+   "sku": "LAM-OAKL-MS7507",
+   "product_name": "Oakel Master Step — Curtis",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7507-layout.jpg?v=1751669916",
+      "filename": "oakel-curtis-laminate-ms7507-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7507.jpg?v=1751669920",
+      "filename": "oakel-curtis-laminate-ms7507-room-scene.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7507-overall.jpg?v=1751669920",
+      "filename": "oakel-curtis-laminate-ms7507-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ms7507-curtis"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ms7507-curtis",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7507-layout.jpg?v=1751669916",
+     "sha1": "875eb9683646011ff79c293c4a059d1ff80b231d",
+     "page": "https://oakelcity.com/products/ms7507-curtis",
+     "width": 1673,
+     "height": 1673
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7507.jpg?v=1751669920",
+     "sha1": "96417c4ad3291b0efda9050e4c6e189af74d2883",
+     "page": "https://oakelcity.com/products/ms7507-curtis",
+     "width": 1172,
+     "height": 837
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7507-overall.jpg?v=1751669920",
+     "sha1": "fd568aef54cbc0a5d66d1d7d51eecd6476d4b000",
+     "page": "https://oakelcity.com/products/ms7507-curtis",
+     "width": 1172,
+     "height": 837
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2f0d613ef935",
+   "seq": 53,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recBqoToDO6e7oBGh",
+   "sku": "LAM-OAKL-MS7508",
+   "product_name": "Oakel Master Step — Kingston",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7508-layout.jpg?v=1751671427",
+      "filename": "oakel-kingston-laminate-ms7508-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7508.jpg?v=1751671427",
+      "filename": "oakel-kingston-laminate-ms7508-room-scene.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7508-overall.jpg?v=1751671420",
+      "filename": "oakel-kingston-laminate-ms7508-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ms7508-kingston"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ms7508-kingston",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7508-layout.jpg?v=1751671427",
+     "sha1": "29d12970f366d76d149ba6362557c2bb4a1b01d3",
+     "page": "https://oakelcity.com/products/ms7508-kingston",
+     "width": 1673,
+     "height": 1673
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7508.jpg?v=1751671427",
+     "sha1": "f826847cd86a3d36ae0b7685ff584496832ee310",
+     "page": "https://oakelcity.com/products/ms7508-kingston",
+     "width": 1172,
+     "height": 837
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7508-overall.jpg?v=1751671420",
+     "sha1": "17bdfcda26fc16e3e74f05ec495b5866bc8fd607",
+     "page": "https://oakelcity.com/products/ms7508-kingston",
+     "width": 1172,
+     "height": 837
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-9db541b36b91",
+   "seq": 54,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recfjp1bQvcCDL52o",
+   "sku": "LAM-OAKL-MS7509",
+   "product_name": "Oakel Master Step — Elizabeth",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7509-Layout.jpg?v=1751671674",
+      "filename": "oakel-elizabeth-laminate-ms7509-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7509.jpg?v=1751671677",
+      "filename": "oakel-elizabeth-laminate-ms7509-room-scene.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7509-overall.jpg?v=1751671677",
+      "filename": "oakel-elizabeth-laminate-ms7509-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ms7509-elizabeth"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ms7509-elizabeth",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7509-Layout.jpg?v=1751671674",
+     "sha1": "e597964ad3adede99f4e16adaa06b70b7a3da243",
+     "page": "https://oakelcity.com/products/ms7509-elizabeth",
+     "width": 1673,
+     "height": 1673
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7509.jpg?v=1751671677",
+     "sha1": "982fb2c5f341bb2755e2948b4fc2f6ea1f449eb7",
+     "page": "https://oakelcity.com/products/ms7509-elizabeth",
+     "width": 1172,
+     "height": 837
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7509-overall.jpg?v=1751671677",
+     "sha1": "e8ccf6ce44f7acf82f39ac64412a28daed037c7f",
+     "page": "https://oakelcity.com/products/ms7509-elizabeth",
+     "width": 1172,
+     "height": 837
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8f4e10725854",
+   "seq": 55,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recP9yHJ8GyqcudnC",
+   "sku": "LAM-OAKL-MS7510",
+   "product_name": "Oakel Master Step — Horizon",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7510-layout.jpg?v=1751672074",
+      "filename": "oakel-horizon-laminate-ms7510-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7510-Scenegraph.jpg?v=1751672074",
+      "filename": "oakel-horizon-laminate-ms7510-room-scene.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7510-Overall.jpg?v=1751672055",
+      "filename": "oakel-horizon-laminate-ms7510-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ms7510-horizon"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ms7510-horizon",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7510-layout.jpg?v=1751672074",
+     "sha1": "122d2f6641289b9c9cc2f68e39aef8cf792e533f",
+     "page": "https://oakelcity.com/products/ms7510-horizon",
+     "width": 1673,
+     "height": 1673
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7510-Scenegraph.jpg?v=1751672074",
+     "sha1": "fff0a075a5d498d15e3aa95f60e5883509202052",
+     "page": "https://oakelcity.com/products/ms7510-horizon",
+     "width": 1172,
+     "height": 837
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7510-Overall.jpg?v=1751672055",
+     "sha1": "cd8a8cdae0d22a42a5737533a955e4beb1510953",
+     "page": "https://oakelcity.com/products/ms7510-horizon",
+     "width": 1172,
+     "height": 837
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2b1fc641f382",
+   "seq": 56,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reckFcXhkSxaOFrTw",
+   "sku": "LAM-OAKL-MS7511",
+   "product_name": "Oakel Master Step — Pavard",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7511-Layout.jpg?v=1751672412",
+      "filename": "oakel-pavard-laminate-ms7511-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7511.jpg?v=1751672414",
+      "filename": "oakel-pavard-laminate-ms7511-room-scene.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7511-overall.jpg?v=1751672414",
+      "filename": "oakel-pavard-laminate-ms7511-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ms7511-pavard"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ms7511-pavard",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7511-Layout.jpg?v=1751672412",
+     "sha1": "610d0a8e7e8e7c0bcdabb750a9c23dc90549901b",
+     "page": "https://oakelcity.com/products/ms7511-pavard",
+     "width": 1673,
+     "height": 1673
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7511.jpg?v=1751672414",
+     "sha1": "34ac83d712436594ab6a479fb1c1683c57707fbc",
+     "page": "https://oakelcity.com/products/ms7511-pavard",
+     "width": 1172,
+     "height": 837
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7511-overall.jpg?v=1751672414",
+     "sha1": "5a4c4b8d1315bd381a6e7921a0ad065b264c6916",
+     "page": "https://oakelcity.com/products/ms7511-pavard",
+     "width": 1172,
+     "height": 837
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2d407f5ecaab",
+   "seq": 57,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recND27stU2f8tCGh",
+   "sku": "LAM-OAKL-MS7512",
+   "product_name": "Oakel Master Step — Romeo",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7512-Layout.jpg?v=1751672656",
+      "filename": "oakel-romeo-laminate-ms7512-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7512-scenegraph.jpg?v=1751672715",
+      "filename": "oakel-romeo-laminate-ms7512-room-scene.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7512-Overall.jpg?v=1751672715",
+      "filename": "oakel-romeo-laminate-ms7512-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ms7512-romeo"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ms7512-romeo",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7512-Layout.jpg?v=1751672656",
+     "sha1": "53d8663f090a942996187848063350f4297afe74",
+     "page": "https://oakelcity.com/products/ms7512-romeo",
+     "width": 1673,
+     "height": 1673
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7512-scenegraph.jpg?v=1751672715",
+     "sha1": "53bfce8eac873dd640664c072f49d1879346a1cb",
+     "page": "https://oakelcity.com/products/ms7512-romeo",
+     "width": 1172,
+     "height": 837
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7512-Overall.jpg?v=1751672715",
+     "sha1": "c01cd5cdf96ba7c12921ba0210ecff9b8001f4e0",
+     "page": "https://oakelcity.com/products/ms7512-romeo",
+     "width": 1172,
+     "height": 837
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-057c9d74841f",
+   "seq": 58,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rechOdgRD6N1nsOr9",
+   "sku": "LAM-OAKL-MS7517",
+   "product_name": "Oakel Master Step — Teddy",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7517-layout.jpg?v=1751672935",
+      "filename": "oakel-teddy-laminate-ms7517-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7517.jpg?v=1751672941",
+      "filename": "oakel-teddy-laminate-ms7517-room-scene.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7517-Overall.jpg?v=1751672941",
+      "filename": "oakel-teddy-laminate-ms7517-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ms7517-teddy"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ms7517-teddy",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7517-layout.jpg?v=1751672935",
+     "sha1": "ce6bbc6b0d136d80921162a097c9393e3a80b681",
+     "page": "https://oakelcity.com/products/ms7517-teddy",
+     "width": 1673,
+     "height": 1673
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7517.jpg?v=1751672941",
+     "sha1": "de2aec4af9191baa6fccbd6ba297d2241e349c6e",
+     "page": "https://oakelcity.com/products/ms7517-teddy",
+     "width": 1172,
+     "height": 837
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS7517-Overall.jpg?v=1751672941",
+     "sha1": "f380709127835041fb446bab57e6e6ad63fcbef8",
+     "page": "https://oakelcity.com/products/ms7517-teddy",
+     "width": 1172,
+     "height": 837
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f93160f5aecc",
+   "seq": 59,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recmK4YGceYgq1WFx",
+   "sku": "LVP-OAKL-LS5001",
+   "product_name": "Oakel Luxury Vinyl LS50 Series — Ariel",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5001-ariel-main.jpg?v=1743468742",
+      "filename": "oakel-ariel-lvp-ls5001-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5001-ariel-room.jpg?v=1743468742",
+      "filename": "oakel-ariel-lvp-ls5001-room-scene.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5001-ariel-horizontal.jpg?v=1743468742",
+      "filename": "oakel-ariel-lvp-ls5001-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ls5001-ariel"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ls5001-ariel",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5001-ariel-main.jpg?v=1743468742",
+     "sha1": "dc8d76dbe5cc6409c83d688dde12977948b159b0",
+     "page": "https://oakelcity.com/products/ls5001-ariel",
+     "width": 1500,
+     "height": 1500
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5001-ariel-room.jpg?v=1743468742",
+     "sha1": "19f87c08103f377d2c2565812c273b1d15ed0d5c",
+     "page": "https://oakelcity.com/products/ls5001-ariel",
+     "width": 1070,
+     "height": 764
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5001-ariel-horizontal.jpg?v=1743468742",
+     "sha1": "934b90e04f642374e7aa4a0e84c38f012c1bf453",
+     "page": "https://oakelcity.com/products/ls5001-ariel",
+     "width": 1070,
+     "height": 764
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-df29bad89b81",
+   "seq": 60,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reckadhqXeS1TSiMb",
+   "sku": "LVP-OAKL-LS5002",
+   "product_name": "Oakel Luxury Vinyl LS50 Series — Portia",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5002-portia-main.jpg?v=1743468157",
+      "filename": "oakel-portia-lvp-ls5002-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5002-portia-room.jpg?v=1743468157",
+      "filename": "oakel-portia-lvp-ls5002-room-scene.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5002-portia-horizontal.jpg?v=1743468168",
+      "filename": "oakel-portia-lvp-ls5002-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ls5002-portia"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ls5002-portia",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5002-portia-main.jpg?v=1743468157",
+     "sha1": "25dc1ab868f1867b5c8482f8bb65f9c0acf031e0",
+     "page": "https://oakelcity.com/products/ls5002-portia",
+     "width": 1500,
+     "height": 1500
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5002-portia-room.jpg?v=1743468157",
+     "sha1": "c73fbda540fb3b8ff0f2a2dc128f43ce63df4de9",
+     "page": "https://oakelcity.com/products/ls5002-portia",
+     "width": 1070,
+     "height": 764
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5002-portia-horizontal.jpg?v=1743468168",
+     "sha1": "ee48ac128179d005df32f45589ec7def71c08d24",
+     "page": "https://oakelcity.com/products/ls5002-portia",
+     "width": 1070,
+     "height": 764
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-15a74b31e50f",
+   "seq": 61,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recuTLUNTHo8y8oqm",
+   "sku": "LVP-OAKL-LS5006",
+   "product_name": "Oakel Luxury Vinyl LS50 Series — Polaris",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5006-polaris-main.jpg?v=1743467791",
+      "filename": "oakel-polaris-lvp-ls5006-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5006-polaris-room.jpg?v=1743467791",
+      "filename": "oakel-polaris-lvp-ls5006-room-scene.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5006-polaris-horizontal.jpg?v=1743467789",
+      "filename": "oakel-polaris-lvp-ls5006-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ls5006-polaris"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ls5006-polaris",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5006-polaris-main.jpg?v=1743467791",
+     "sha1": "d82065fe5301014d62cdcd1a9f094834d8f69501",
+     "page": "https://oakelcity.com/products/ls5006-polaris",
+     "width": 1500,
+     "height": 1500
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5006-polaris-room.jpg?v=1743467791",
+     "sha1": "74954fb9defee4622a87f8dd0308f90003ea51bd",
+     "page": "https://oakelcity.com/products/ls5006-polaris",
+     "width": 1070,
+     "height": 764
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5006-polaris-horizontal.jpg?v=1743467789",
+     "sha1": "112285ebe8c192ee74ec25f6f76211027c0c8354",
+     "page": "https://oakelcity.com/products/ls5006-polaris",
+     "width": 1070,
+     "height": 764
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-1a26daa689a7",
+   "seq": 62,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recCD3qUlkib6oO5t",
+   "sku": "LVP-OAKL-LS5008",
+   "product_name": "Oakel Luxury Vinyl LS50 Series — Callisto",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5008-castillo-main.jpg?v=1743468981",
+      "filename": "oakel-callisto-lvp-ls5008-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5008-castillo-room.jpg?v=1743468981",
+      "filename": "oakel-callisto-lvp-ls5008-room-scene.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5008-castillo-horizontal.jpg?v=1743468981",
+      "filename": "oakel-callisto-lvp-ls5008-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ls5008-callisto"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ls5008-callisto",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5008-castillo-main.jpg?v=1743468981",
+     "sha1": "07de515b1e74a7ff4b379846019f7537a728f206",
+     "page": "https://oakelcity.com/products/ls5008-callisto",
+     "width": 1500,
+     "height": 1500
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5008-castillo-room.jpg?v=1743468981",
+     "sha1": "4f675ec2ed764c7aa9abcc36832f8562b8cf0f37",
+     "page": "https://oakelcity.com/products/ls5008-callisto",
+     "width": 1070,
+     "height": 764
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/oakelcity-ls5008-castillo-horizontal.jpg?v=1743468981",
+     "sha1": "4ae880b600dcb36fa6124762bfb45de2b19ed580",
+     "page": "https://oakelcity.com/products/ls5008-callisto",
+     "width": 1070,
+     "height": 764
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-d488664d41ed",
+   "seq": 63,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recwfJCd9CClJHFuc",
+   "sku": "LVP-OAKL-MS8601",
+   "product_name": "Oakel Master Step Luxury Vinyl 86 — Orion",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8601.jpg?v=1787962855",
+      "filename": "oakel-orion-lvp-ms8601-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8601_1b18366f-487f-46d3-a53f-e55428255c04.jpg?v=1787963817",
+      "filename": "oakel-orion-lvp-ms8601-room-scene.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8601RoomScene.jpg?v=1781032757",
+      "filename": "oakel-orion-lvp-ms8601-room-scene-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ms8601-orion"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ms8601-orion",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8601.jpg?v=1787962855",
+     "sha1": "92a86094372c660ad70c0104d09fb5fead83d44d",
+     "page": "https://oakelcity.com/products/ms8601-orion",
+     "width": 1280,
+     "height": 1280
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8601_1b18366f-487f-46d3-a53f-e55428255c04.jpg?v=1787963817",
+     "sha1": "0166582035255bd3f653624ab31af1d0b9e2e60e",
+     "page": "https://oakelcity.com/products/ms8601-orion",
+     "width": 4000,
+     "height": 2899
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8601RoomScene.jpg?v=1781032757",
+     "sha1": "5e41ef4c3ff01631e27ae7eb471be994abff2c88",
+     "page": "https://oakelcity.com/products/ms8601-orion",
+     "width": 2880,
+     "height": 2160
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-978611bac2aa",
+   "seq": 64,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recIRcG3C22GRqMaw",
+   "sku": "LVP-OAKL-MS8602",
+   "product_name": "Oakel Master Step Luxury Vinyl 86 — Perseus",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8602.jpg?v=1787962886",
+      "filename": "oakel-perseus-lvp-ms8602-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8602RoomScene1.png?v=1781037241",
+      "filename": "oakel-perseus-lvp-ms8602-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ms8602-perseus"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ms8602-perseus",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8602.jpg?v=1787962886",
+     "sha1": "8d3c3097d08904cf51f3fb216bf5ca438806cfec",
+     "page": "https://oakelcity.com/products/ms8602-perseus",
+     "width": 1280,
+     "height": 1280
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8602RoomScene1.png?v=1781037241",
+     "sha1": "015681b99fe56d976a379ccb7802d2a4afc71ebc",
+     "page": "https://oakelcity.com/products/ms8602-perseus",
+     "width": 3277,
+     "height": 2370
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-04b9baae30ed",
+   "seq": 65,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recAPjRH6ugJLm0O2",
+   "sku": "LVP-OAKL-MS8603",
+   "product_name": "Oakel Master Step Luxury Vinyl 86 — Lynx",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8603.jpg?v=1787962931",
+      "filename": "oakel-lynx-lvp-ms8603-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8603RoomScene1.png?v=1781037583",
+      "filename": "oakel-lynx-lvp-ms8603-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ms8603-lynx"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ms8603-lynx",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8603.jpg?v=1787962931",
+     "sha1": "f44b64014a1142773d9c8e17c48adab7c7a185a0",
+     "page": "https://oakelcity.com/products/ms8603-lynx",
+     "width": 1280,
+     "height": 1280
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8603RoomScene1.png?v=1781037583",
+     "sha1": "1c663d9661c7ce957ee0d0c86b4f2854cb8b49a8",
+     "page": "https://oakelcity.com/products/ms8603-lynx",
+     "width": 3276,
+     "height": 2370
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-c6ae38d52cb0",
+   "seq": 66,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recoUMTlG5kIjzI3Q",
+   "sku": "LVP-OAKL-MS8605",
+   "product_name": "Oakel Master Step Luxury Vinyl 86 — Pavo",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/os-MS8605.jpg?v=1787962963",
+      "filename": "oakel-pavo-lvp-ms8605-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8605RoomScene1.png?v=1781037912",
+      "filename": "oakel-pavo-lvp-ms8605-room-scene.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8605.jpg?v=1787963988",
+      "filename": "oakel-pavo-lvp-ms8605-room-scene-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ms8605-pavo"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ms8605-pavo",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/os-MS8605.jpg?v=1787962963",
+     "sha1": "df8e33644d2763d4b3640593c89b8a28ff1265b7",
+     "page": "https://oakelcity.com/products/ms8605-pavo",
+     "width": 1280,
+     "height": 1280
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8605RoomScene1.png?v=1781037912",
+     "sha1": "a4b4ea9345968372cd4cfd8d8c4029586e30a2fb",
+     "page": "https://oakelcity.com/products/ms8605-pavo",
+     "width": 3277,
+     "height": 2458
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8605.jpg?v=1787963988",
+     "sha1": "dc18ad4044049f16f47af9f14180ee10d2243a8b",
+     "page": "https://oakelcity.com/products/ms8605-pavo",
+     "width": 2048,
+     "height": 1536
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-87c467284148",
+   "seq": 67,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec42xm6vBQVZVBbW",
+   "sku": "LVP-OAKL-MS8607",
+   "product_name": "Oakel Master Step Luxury Vinyl 86 — Norma",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/os-MS8607.jpg?v=1787962984",
+      "filename": "oakel-norma-lvp-ms8607-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8607RoomScene1.png?v=1781038152",
+      "filename": "oakel-norma-lvp-ms8607-room-scene.png"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ms8607-norma"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ms8607-norma",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/os-MS8607.jpg?v=1787962984",
+     "sha1": "1b09aa0629918ff2ff66be39a3839e20038bf1ce",
+     "page": "https://oakelcity.com/products/ms8607-norma",
+     "width": 1280,
+     "height": 1280
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8607RoomScene1.png?v=1781038152",
+     "sha1": "76d3c3eb5e3a949811feb625f000df193075ce61",
+     "page": "https://oakelcity.com/products/ms8607-norma",
+     "width": 3277,
+     "height": 2374
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-201feeb506a3",
+   "seq": 68,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recrEuV6zGIHFeStR",
+   "sku": "LVP-OAKL-MS8608",
+   "product_name": "Oakel Master Step Luxury Vinyl 86 — Crux",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8608CruxP.jpg?v=1787962290",
+      "filename": "oakel-crux-lvp-ms8608-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8608Crux_bb42bca7-71cf-4f85-a237-722ebe6752bc.jpg?v=1781038433",
+      "filename": "oakel-crux-lvp-ms8608-room-scene.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8608CruxZ.jpg?v=1787962290",
+      "filename": "oakel-crux-lvp-ms8608-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ms8608-crux"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ms8608-crux",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8608CruxP.jpg?v=1787962290",
+     "sha1": "0f0da8d6d0fdd99fe3cf70f62496d708366dc690",
+     "page": "https://oakelcity.com/products/ms8608-crux",
+     "width": 1280,
+     "height": 1280
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8608Crux_bb42bca7-71cf-4f85-a237-722ebe6752bc.jpg?v=1781038433",
+     "sha1": "8cb457fa1895ddac6351f629e039abf794a7ce07",
+     "page": "https://oakelcity.com/products/ms8608-crux",
+     "width": 3199,
+     "height": 2000
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8608CruxZ.jpg?v=1787962290",
+     "sha1": "d3883679ffcc380edd2212599ae5d125ca6d1ba5",
+     "page": "https://oakelcity.com/products/ms8608-crux",
+     "width": 1280,
+     "height": 1280
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b9fe89c5ec7c",
+   "seq": 69,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reccbHp9BhP6CLfTw",
+   "sku": "LVP-OAKL-MS8609",
+   "product_name": "Oakel Master Step Luxury Vinyl 86 — Vela",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8609VelaP.jpg?v=1787962510",
+      "filename": "oakel-vela-lvp-ms8609-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8609Vela_cff63905-24bf-45ca-84d3-23c576818879.jpg?v=1781038644",
+      "filename": "oakel-vela-lvp-ms8609-room-scene.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ms8609-vela"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ms8609-vela",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8609VelaP.jpg?v=1787962510",
+     "sha1": "f23c689e1e7960f0c32625582cc94e8cc2e48fcd",
+     "page": "https://oakelcity.com/products/ms8609-vela",
+     "width": 1280,
+     "height": 1280
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8609Vela_cff63905-24bf-45ca-84d3-23c576818879.jpg?v=1781038644",
+     "sha1": "6912b13f0598924c31ad8e9f1e4a5d95c609afd8",
+     "page": "https://oakelcity.com/products/ms8609-vela",
+     "width": 3000,
+     "height": 2000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-1c684b40574e",
+   "seq": 70,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec9aF2sW8MQi1JYW",
+   "sku": "LVP-OAKL-MS8610",
+   "product_name": "Oakel Master Step Luxury Vinyl 86 — Grus",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8610GrusP.jpg?v=1787962755",
+      "filename": "oakel-grus-lvp-ms8610-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8610Grus_207eaacc-df3c-4532-abb0-f49f11a547be.jpg?v=1781038852",
+      "filename": "oakel-grus-lvp-ms8610-room-scene.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8610GrusZ.jpg?v=1787962755",
+      "filename": "oakel-grus-lvp-ms8610-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://oakelcity.com/products/ms8610-grus"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://oakelcity.com/products/ms8610-grus",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8610GrusP.jpg?v=1787962755",
+     "sha1": "5051cb206f7381fd7696024bcb73bb79851dbdad",
+     "page": "https://oakelcity.com/products/ms8610-grus",
+     "width": 1280,
+     "height": 1280
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8610Grus_207eaacc-df3c-4532-abb0-f49f11a547be.jpg?v=1781038852",
+     "sha1": "055cdff845eb9668db9816a590dc599e785be25e",
+     "page": "https://oakelcity.com/products/ms8610-grus",
+     "width": 3000,
+     "height": 2000
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0581/9718/0525/files/MS8610GrusZ.jpg?v=1787962755",
+     "sha1": "09024829d35973470368df44e0a4040cbbe8dc3a",
+     "page": "https://oakelcity.com/products/ms8610-grus",
+     "width": 1280,
+     "height": 1280
+    }
+   ],
+   "flags": []
+  }
+ ],
+ "held": [
+  {
+   "sku": "ENG-OAKL-0001",
+   "record_id": "recq9uaTiY8YQGupk",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Camel (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Camel'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0007",
+   "record_id": "recJgzKkX3KfQdEEC",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Fortino (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Fortino'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0008",
+   "record_id": "recDKUNFz0aR68gbP",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Fortino (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Fortino'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0010",
+   "record_id": "recRlkfSycVRZoefW",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Imola (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Imola'; vetoes {'species': 1}"
+  },
+  {
+   "sku": "ENG-OAKL-0011",
+   "record_id": "recVrHYVLaLSlDQAG",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Indy (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Indy'; vetoes {'species': 1}"
+  },
+  {
+   "sku": "ENG-OAKL-0012",
+   "record_id": "recrJv37CKOMkxSF4",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — La Men (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'La Men'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0014",
+   "record_id": "rec0RRiO97trNc69N",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Monaco (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Monaco'; vetoes {'species': 1}"
+  },
+  {
+   "sku": "ENG-OAKL-0015",
+   "record_id": "recv0mz8Zyt49TA43",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Natural (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Natural'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0016",
+   "record_id": "recLkiWVf80z1hFAn",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Natural (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Natural'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0017",
+   "record_id": "recjD6fpalWy6IyKP",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Natural (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Natural'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0018",
+   "record_id": "reckpjwrM3BpNPq4k",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Nue (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Nue'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0019",
+   "record_id": "recwhh2dvLuHoBfHc",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Nurburgring (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Nurburgring'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0024",
+   "record_id": "recng0aqFFdaqbTnE",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Spa (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Spa'; vetoes {'species': 1}"
+  },
+  {
+   "sku": "ENG-OAKL-0025",
+   "record_id": "recYJPFeflp8ib2CB",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Tofino (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Tofino'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0026",
+   "record_id": "rec1WsUZIFNnev9VB",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Camel (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Camel'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0029",
+   "record_id": "rec1xMrkHx6nC8Hcq",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Fortino (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Fortino'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0030",
+   "record_id": "rec3PcIxxtnyI9w7n",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Fortino (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Fortino'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0031",
+   "record_id": "recJGu7sahcEuAK1L",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Maillard (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Maillard'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0038",
+   "record_id": "recklsYXoMAZeejW7",
+   "product_name": "Oakel American Oak Multi-Ply 6 Series Click — Imola (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Imola'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-OAKL-0039",
+   "record_id": "recrR2EPV9ZWHqe32",
+   "product_name": "Oakel American Oak Multi-Ply 6 Series Click — Indy (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Indy'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-OAKL-0040",
+   "record_id": "recSbVNYfok0HOsTg",
+   "product_name": "Oakel American Oak Multi-Ply 6 Series Click — Le Man (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Le Man'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-OAKL-0041",
+   "record_id": "rec5Oo5wgBoI4wRKS",
+   "product_name": "Oakel American Oak Multi-Ply 6 Series Click — Monaco (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Monaco'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-OAKL-0042",
+   "record_id": "reclG4m2I3v9xvl9v",
+   "product_name": "Oakel American Oak Multi-Ply 6 Series Click — Nurburgring (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Nurburgring'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0043",
+   "record_id": "recAJlrzBOPt68KIM",
+   "product_name": "Oakel American Oak Multi-Ply 6 Series Click — Spa (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Spa'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-OAKL-0044",
+   "record_id": "recYTM88QMvyYek4d",
+   "product_name": "Oakel American Oak 3-Ply 7 Series — Area (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Area'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0045",
+   "record_id": "recdszOituIHD3esp",
+   "product_name": "Oakel American Oak 3-Ply 7 Series — Bearyl (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Bearyl'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0046",
+   "record_id": "rec19eEl9z0kFTN5v",
+   "product_name": "Oakel American Oak 3-Ply 7 Series — Monza (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Monza'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0048",
+   "record_id": "rech1hWMj1ZcAmv7Q",
+   "product_name": "Oakel European Oak 3-Ply 9 Series — London Fog (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'London Fog'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0049",
+   "record_id": "recAwyXP7rH6J628t",
+   "product_name": "Oakel European Oak 3-Ply 9 Series — London Fog (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'London Fog'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0050",
+   "record_id": "recgxrhrJ1IoCteaq",
+   "product_name": "Oakel European Oak Multi-Ply Herringbone — Harrison (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Harrison'; vetoes {'pattern': 3}"
+  },
+  {
+   "sku": "ENG-OAKL-0051",
+   "record_id": "rec1le6DL5HoEobfG",
+   "product_name": "Oakel European Oak Multi-Ply Herringbone — Maillard (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Maillard'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0052",
+   "record_id": "recGDxVFaOVJ5u9M3",
+   "product_name": "Oakel European Oak Multi-Ply Herringbone — Paradise (Select & Better)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/oakel-city-flooring-herringbone-paradise-ab-grade"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.wordofmouthfloors.com/products/oakel-city-flooring-herringbone-paradise-ab-grade']; {}"
+  },
+  {
+   "sku": "ENG-OAKL-0053",
+   "record_id": "reck6gY7XMXX13XDj",
+   "product_name": "Oakel European Oak Multi-Ply Herringbone — Portobello (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Portobello'; vetoes {'pattern': 2}"
+  },
+  {
+   "sku": "ENG-OAKL-0054",
+   "record_id": "recKm4MEIMo4Aj4DA",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Amber (Select)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-amber-ab-grade",
+    "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-amber-abcd-grade"
+   ],
+   "reason": "model_rejected",
+   "detail": "colour 'Amber'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0059",
+   "record_id": "recVe93b1WYUXGWHP",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Gloden Prime (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Gloden Prime'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0060",
+   "record_id": "recyQnjxpxR40gL3r",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Latte (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Latte'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0061",
+   "record_id": "recodOAX8q534ts0T",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — London Fog (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'London Fog'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0062",
+   "record_id": "recrairnzRngxhfkL",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — London Fog (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'London Fog'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0066",
+   "record_id": "recY6GmZp3zEjQeus",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Roma (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Roma'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0067",
+   "record_id": "recMZCOThxCFjj0hW",
+   "product_name": "Oakel European Oak 3-Ply 7 Series — Roma (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Roma'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0073",
+   "record_id": "recq278e6Xg3cjbDT",
+   "product_name": "Oakel European Oak Multi-Ply 6 Series — Silver Stone (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Silver Stone'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0079",
+   "record_id": "recdOrE8v61tyF7Xj",
+   "product_name": "Oakel American Oak Multi-Ply 6 Series Click — Cargo (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Cargo'; vetoes {'pattern': 1}"
+  },
+  {
+   "sku": "ENG-OAKL-0081",
+   "record_id": "recoaPnCMJVSthJ2L",
+   "product_name": "Oakel European Oak 3-Ply 9 Series — Roma (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Roma'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0083",
+   "record_id": "recnzgCUxAVmEppwa",
+   "product_name": "Oakel European Oak 3-Ply 9 Series — Silver Stone (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Silver Stone'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0084",
+   "record_id": "recJr4HFkQ0AWJiPQ",
+   "product_name": "Oakel European Oak 3-Ply 9 Series — Silver Stone (Select)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Silver Stone'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0085",
+   "record_id": "recnRIZhLHJh6PJmH",
+   "product_name": "Oakel European Oak 3-Ply 10 Series — Nue (Character)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Nue'; vetoes {}"
+  },
+  {
+   "sku": "ENG-OAKL-0086",
+   "record_id": "recCnH0Az9TuQpVU9",
+   "product_name": "Oakel European Oak Multi-Ply Herringbone — Erin Oak (Select & Better)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/oakel-city-flooring-herringbone-erin-oak-ab-grade"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.wordofmouthfloors.com/products/oakel-city-flooring-herringbone-erin-oak-ab-grade']; {'pattern_mismatch': 1}"
+  },
+  {
+   "sku": "ENG-OAKL-0087",
+   "record_id": "reco7dUcO4dR6hqtn",
+   "product_name": "Oakel European Oak Multi-Ply Chevron — Harrison (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Harrison'; vetoes {'pattern': 3}"
+  },
+  {
+   "sku": "ENG-OAKL-0088",
+   "record_id": "recI6RHeQHSB6SQM5",
+   "product_name": "Oakel European Oak Multi-Ply Chevron — Paradise (Select & Better)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Paradise'; vetoes {'pattern': 3}"
+  },
+  {
+   "sku": "LAM-OAKL-MS7503",
+   "record_id": "reclgqwsihTV7bUK9",
+   "product_name": "Oakel Master Step — Dolly",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Dolly'; vetoes {'code': 124}"
+  }
+ ]
+}

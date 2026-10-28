@@ -21,7 +21,7 @@ import re
 
 SPACE = re.compile(r"\s+")
 WIDTH_IN_TEXT = re.compile(
-    r"(?<![\d./])(\d{1,2}(?:\.\d{1,2})?|\d{1,2} ?\d/\d)\s*(?:''|\"|″|”|in\b|inch|-inch|\s*collection)", re.I)
+    r"(?<![\d./])(\d{1,2}(?:\.\d{1,2})?|\d{1,2}[ -]?\d/\d)\s*(?:''|\"|″|”|in\b|inch|-inch|\s*collection)", re.I)
 FRACTIONS = {"1/4": .25, "1/2": .5, "3/4": .75, "1/3": 1 / 3, "2/3": 2 / 3, "½": .5, "¼": .25, "¾": .75}
 
 
@@ -48,7 +48,7 @@ def has_phrase(haystack, phrase):
 
 def to_width(token):
     token = token.strip().replace(" ", " ")
-    m = re.fullmatch(r"(\d{1,2}) ?(\d/\d)", token)
+    m = re.fullmatch(r"(\d{1,2})[ -]?(\d/\d)", token)  # `7 1/2` and Oakel's `7-1/2`
     if m:
         return float(m.group(1)) + FRACTIONS.get(m.group(2), 0)
     try:
@@ -110,6 +110,12 @@ def record_features(rec, supplier_cfg, matching):
         allowed_widths.add(exact_width)
     for n in re.findall(r"(?<![\d.])(\d{1,2}(?:\.\d)?)(?![\d.])", rec.get("Collection") or ""):
         allowed_widths.add(float(n))
+    # `series_widths` (Oakel City, 2026-10-28): its records carry no width, only `7 Series`
+    # in the name, and its own pages say what each series measures (7 Series = 7-1/2").
+    series = re.search(r"(?<![\d.])(\d{1,2}) Series\b", head)
+    if exact_width is None and series and str(series.group(1)) in (supplier_cfg.get("series_widths") or {}):
+        exact_width = float(supplier_cfg["series_widths"][series.group(1)])
+        allowed_widths.add(exact_width)
     line, line_no = product_line(f"{rec.get('Collection') or ''} {head}", supplier_cfg)
     head_and_collection = f"{head} {rec.get('Collection') or ''} {rec.get('Category') or ''}"
     ignore = set(supplier_cfg.get("ignore_pattern_words") or [])
