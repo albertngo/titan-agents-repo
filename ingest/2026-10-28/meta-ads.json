@@ -1,0 +1,34 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-10-28T08:00:00-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-act_927167028457360",
+      "type": "spend_summary",
+      "title": "Meta spend 2026-10-27: $50.92, 4 leads, CPL $12.73",
+      "summary": "Flooring Problems Campaign was the only campaign that spent: $50.92 CAD, 1,472 impressions, 41 clicks, 4 leads at $12.73 CPL, against a 7-day CPL of about $20.96 ($356.40 spend, 17 leads, 2026-10-21 to 10-27). No delivery or disapproval problems.",
+      "timestamp": "2026-10-28T08:00:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 5092,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 5092,
+    "impressions": 1472,
+    "clicks": 41,
+    "leads": 4,
+    "cpl_cents": 1273,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "No prior meta-ads.json found in the last 7 days of ingest/, so the gap since the last run is unknown. The 7-day pull (2026-10-21 to 10-27) was used as the baseline and shows no gaps in delivery. Metrics cover 2026-10-27 only."
+  ]
+}
