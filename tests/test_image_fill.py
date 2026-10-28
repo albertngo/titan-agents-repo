@@ -619,6 +619,18 @@ class TestTwoSources(unittest.TestCase):
         self.assertEqual([x["url"] for x in out], ["https://cs/origins/#img0", "https://cs/origins/#img1"])
         self.assertEqual([len(x["images"]) for x in out], [1, 1])
 
+    def test_gallery_label_codes_carry_the_photos_own_code(self):
+        # Golden Choice, 2026-10-28: `Laminate 1010's` shows GC1010, GC1011 ... as photos.
+        p = {"url": "https://gc/product/laminate-1010s/", "title": "Laminate 1010's", "h1": "", "codes": [], "images": [
+            {"url": "https://gc/up/GC1011-scaled.jpg", "alt": ""}, {"url": "https://gc/up/Bronze-scaled.jpg", "alt": ""}]}
+        out = pull.gallery_pages([p], label_codes=True)
+        self.assertEqual([x["codes"] for x in out], [["1011"], []])
+        self.assertEqual(pull.gallery_pages([p])[0]["codes"], [])  # off unless the listing asks
+        r = {"id": "recGOLDENCHOICE1", "SKU": "LAM-GC-1011", "Product name": "Golden Choice Laminate 1010's — Solar Oak",
+             "Supplier SKU": "1011", "Category": "Laminate"}
+        m = im.match_records([r], out, {}, REG["matching"])[r["id"]]
+        self.assertEqual((m["tier"], m["candidates"][0]["url"]), ("exact", "https://gc/product/laminate-1010s/#img0"))
+
     def test_a_label_only_gallery_links_the_labels_own_page_or_none(self):
         # Grandeur, 2026-10-28: each colour page also shows other colours' thumbnails, and 144
         # of 147 links in the first plan went to a different colour's page.

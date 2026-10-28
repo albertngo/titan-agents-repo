@@ -333,7 +333,7 @@ def image_label(img):
     return re.sub(r"[-_]+", " ", stem).strip()
 
 
-def gallery_pages(pages, label_only=False, alt_only=False):
+def gallery_pages(pages, label_only=False, alt_only=False, label_codes=False):
     """One page per image for brochure sites that show a whole collection on one page
     (Canadian Standard's `Origins`, Evergreen's `OAK`, 2026-10-22): titled `<page> - <image
     label>` so the colour is in the title, linked `<page>#<n>` (the planner drops the
@@ -362,7 +362,11 @@ def gallery_pages(pages, label_only=False, alt_only=False):
                         # on every page) would put `hardwood` into every vinyl image's title.
                         "url": f"{p['url']}#img{n}",
                         "title": label if label_only else f"{p.get('title', '')} - {label}",
-                        "h1": "", "og_title": "", "product_name": "", "codes": [],
+                        "h1": "", "og_title": "", "product_name": "",
+                        # `gallery_label_codes` (Golden Choice, 2026-10-28): a photo named for its
+                        # product code (`gc-1065.jpeg`) carries that code, so the record whose
+                        # supplier SKU is 1065 matches it by code, not by a colour name it lacks.
+                        "codes": re.findall(r"(?<![0-9])\d{3,6}(?:-\d{1,3})?(?![0-9])", label) if label_codes else [],
                         **({"link_url": own_page.get(re.sub(r"[^a-z0-9]", "", label.lower()))}
                            if label_only else {}),
                         "images": [img]})
@@ -710,7 +714,8 @@ def list_pages(fetch, cfg, supplier_cfg, max_pages):
                 pages = [pg for pg in pages if not any(s in pg["url"] for s in skip_urls)]
             if listing.get("gallery"):
                 pages = gallery_pages(pages, listing.get("gallery_label_only", False),
-                                      listing.get("gallery_alt_only", False))
+                                      listing.get("gallery_alt_only", False),
+                                      listing.get("gallery_label_codes", False))
                 # The same thumbnail shown on many pages is one page (first seen).
                 seen_imgs = set()
                 pages = [pg for pg in pages if not (pg["images"][0]["url"] in seen_imgs
