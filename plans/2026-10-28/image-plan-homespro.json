@@ -1,0 +1,794 @@
+{
+ "contract_version": "image-plan-1",
+ "scope": "homespro",
+ "supplier": "HOMESPRO",
+ "run_at": "2026-10-28T09:36:01.649308-04:00",
+ "expires": "2026-10-28T23:59:59-0400",
+ "write_mode": "write",
+ "registry": "platform-settings/supplier-sites.json",
+ "inputs": {
+  "pages": "ingest/2026-10-22/supplier-pages-homespro.json",
+  "judgements": "ingest/2026-10-22/image-judgements-homespro.json",
+  "product_pages": null
+ },
+ "summary": {
+  "records": 36,
+  "actions": 14,
+  "held": 22,
+  "skipped": {},
+  "held_by_reason": {
+   "no_match": 18,
+   "no_usable_image": 4
+  },
+  "fields": {
+   "Swatch images": 14,
+   "Supplier product page": 14
+  },
+  "tiers": {
+   "exact": 14
+  },
+  "manufacturer_pages": 14
+ },
+ "actions": [
+  {
+   "id": "img-ccaf77af5602",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recjEpx3ResB3I0wr",
+   "sku": "LVP-HMPR-0007",
+   "product_name": "Home's Pro Venice 6.5mm SPC — Cody",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.homespros.ca/wp-content/uploads/2023/01/669.png",
+      "filename": "home-s-pro-cody-lvp-7-16in-hom-669-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.homespros.ca/product/669-cody/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.homespros.ca/product/669-cody/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.homespros.ca/wp-content/uploads/2023/01/669.png",
+     "sha1": "80d34b79a97619d78b713e16c4156dc8e8703631",
+     "page": "https://www.homespros.ca/product/669-cody/",
+     "width": 600,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-567cd90ef50d",
+   "seq": 2,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec1dyjPKRBuFLofF",
+   "sku": "LVP-HMPR-0008",
+   "product_name": "Home's Pro Venice 6.5mm SPC — Dover",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.homespros.ca/wp-content/uploads/2023/01/667.png",
+      "filename": "home-s-pro-dover-lvp-7-16in-hom-667-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.homespros.ca/product/667-dover/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.homespros.ca/product/667-dover/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.homespros.ca/wp-content/uploads/2023/01/667.png",
+     "sha1": "245d5871bfc7bb0b9ab94094b9f9e6810b604bda",
+     "page": "https://www.homespros.ca/product/667-dover/",
+     "width": 600,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-0aab895e39cb",
+   "seq": 3,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recxLsd6PZ9Z56kbk",
+   "sku": "LVP-HMPR-0009",
+   "product_name": "Home's Pro Venice 6.5mm SPC — Gabon",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.homespros.ca/wp-content/uploads/2023/01/664.png",
+      "filename": "home-s-pro-gabon-lvp-7-16in-hom-664-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.homespros.ca/product/664-gabon/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.homespros.ca/product/664-gabon/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.homespros.ca/wp-content/uploads/2023/01/664.png",
+     "sha1": "453af71d6b64579b991dc565bade79d57077a599",
+     "page": "https://www.homespros.ca/product/664-gabon/",
+     "width": 600,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-62543b6f1b10",
+   "seq": 4,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recLRvCm2MKJ8tcUM",
+   "sku": "LVP-HMPR-0010",
+   "product_name": "Home's Pro Venice 6.5mm SPC — Havana",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.homespros.ca/wp-content/uploads/2023/01/66B.png",
+      "filename": "home-s-pro-havana-lvp-7-16in-hom-66b-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.homespros.ca/product/66b-havana/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.homespros.ca/product/66b-havana/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.homespros.ca/wp-content/uploads/2023/01/66B.png",
+     "sha1": "0dda83b93d33ba378e37c5cde81521af2527a750",
+     "page": "https://www.homespros.ca/product/66b-havana/",
+     "width": 600,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-796330f1e43a",
+   "seq": 5,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec6JVooMxz3RLM3w",
+   "sku": "LVP-HMPR-0011",
+   "product_name": "Home's Pro Venice 6.5mm SPC — Hawaii",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.homespros.ca/wp-content/uploads/2023/01/66A.png",
+      "filename": "home-s-pro-hawaii-lvp-7-16in-hom-66a-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.homespros.ca/product/66a-hawaii/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.homespros.ca/product/66a-hawaii/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.homespros.ca/wp-content/uploads/2023/01/66A.png",
+     "sha1": "3fe76740a992897f5cc2bf4cc3acedc3a3e0f856",
+     "page": "https://www.homespros.ca/product/66a-hawaii/",
+     "width": 600,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-e69d8102e823",
+   "seq": 6,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recnn9ysdFjQGhmFy",
+   "sku": "LVP-HMPR-0014",
+   "product_name": "Home's Pro Venice 6.5mm SPC — Malta",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.homespros.ca/wp-content/uploads/2023/01/663.png",
+      "filename": "home-s-pro-malta-lvp-7-16in-hom-663-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.homespros.ca/product/663-malta/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.homespros.ca/product/663-malta/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.homespros.ca/wp-content/uploads/2023/01/663.png",
+     "sha1": "9e7ffeeac620dbf046e4058dcd989e3b46327b26",
+     "page": "https://www.homespros.ca/product/663-malta/",
+     "width": 600,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b550f76226a5",
+   "seq": 7,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec3P1lSmoOcfkOog",
+   "sku": "LVP-HMPR-0015",
+   "product_name": "Home's Pro Venice 6.5mm SPC — Texas (HOM.660)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.homespros.ca/wp-content/uploads/2023/01/661.png",
+      "filename": "home-s-pro-texas-lvp-7-16in-hom-660-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.homespros.ca/product/661-texas/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.homespros.ca/product/661-texas/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.homespros.ca/wp-content/uploads/2023/01/661.png",
+     "sha1": "1495dfba4cdfc128d58f5c8d05223f6b92a665a4",
+     "page": "https://www.homespros.ca/product/661-texas/",
+     "width": 600,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-4465b2b827eb",
+   "seq": 8,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "receIgN03IWOopPq7",
+   "sku": "LVP-HMPR-0016",
+   "product_name": "Home's Pro Venice 6.5mm SPC — Texas (HOM.661)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.homespros.ca/wp-content/uploads/2023/01/661.png",
+      "filename": "home-s-pro-texas-lvp-7-16in-hom-661-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.homespros.ca/product/661-texas/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.homespros.ca/product/661-texas/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.homespros.ca/wp-content/uploads/2023/01/661.png",
+     "sha1": "1495dfba4cdfc128d58f5c8d05223f6b92a665a4",
+     "page": "https://www.homespros.ca/product/661-texas/",
+     "width": 600,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5752a83059e8",
+   "seq": 9,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recYcG2CjwmTaMx3n",
+   "sku": "LVP-HMPR-0018",
+   "product_name": "Home's Pro Moscow 7mm SPC — Bonjour",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.homespros.ca/wp-content/uploads/2023/01/771.png",
+      "filename": "home-s-pro-bonjour-lvp-7-16in-hom-771-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.homespros.ca/product/771-bonjour/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.homespros.ca/product/771-bonjour/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.homespros.ca/wp-content/uploads/2023/01/771.png",
+     "sha1": "7b5645d58ff5e3f93c0cd2e6bce9b00c66206756",
+     "page": "https://www.homespros.ca/product/771-bonjour/",
+     "width": 600,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-be967b689b41",
+   "seq": 10,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec7FvmrUuyf1qpV7",
+   "sku": "LVP-HMPR-0019",
+   "product_name": "Home's Pro Moscow 7mm SPC — Hola",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.homespros.ca/wp-content/uploads/2023/01/772.png",
+      "filename": "home-s-pro-hola-lvp-7-16in-hom-772-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.homespros.ca/product/772-hola-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.homespros.ca/product/772-hola-2/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.homespros.ca/wp-content/uploads/2023/01/772.png",
+     "sha1": "fabd573bc473784811529a47cb31237d8c7e08e2",
+     "page": "https://www.homespros.ca/product/772-hola-2/",
+     "width": 600,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-b59a89012d0e",
+   "seq": 11,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recCUDc8avOFvNEbd",
+   "sku": "LVP-HMPR-0023",
+   "product_name": "Home's Pro Moscow 7mm SPC — Shalom",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.homespros.ca/wp-content/uploads/2023/01/775.png",
+      "filename": "home-s-pro-shalom-lvp-7-16in-hom-775-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.homespros.ca/product/775-shalom/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.homespros.ca/product/775-shalom/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.homespros.ca/wp-content/uploads/2023/01/775.png",
+     "sha1": "582a69de603895271c9eda6f9210a1563a90ecb7",
+     "page": "https://www.homespros.ca/product/775-shalom/",
+     "width": 600,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-83fb5307a44e",
+   "seq": 12,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recLBLy4AuF7rPzoX",
+   "sku": "LVP-HMPR-0029",
+   "product_name": "Home's Pro Seoul 5mm Looselay — Bursa",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.homespros.ca/wp-content/uploads/2025/06/4001.png",
+      "filename": "home-s-pro-bursa-lvp-7-36in-hom-4001-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.homespros.ca/product/4001-bursa/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.homespros.ca/product/4001-bursa/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.homespros.ca/wp-content/uploads/2025/06/4001.png",
+     "sha1": "455fe0988e2f110565de64aaf54097ca75bda1d7",
+     "page": "https://www.homespros.ca/product/4001-bursa/",
+     "width": 600,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-737dbf22e0d8",
+   "seq": 13,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recFRqr9Cwvz0KHbF",
+   "sku": "LVP-HMPR-0030",
+   "product_name": "Home's Pro Seoul 5mm Looselay — Pune",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.homespros.ca/wp-content/uploads/2025/06/4002.png",
+      "filename": "home-s-pro-pune-lvp-7-36in-hom-4002-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.homespros.ca/product/4002-pune/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.homespros.ca/product/4002-pune/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.homespros.ca/wp-content/uploads/2025/06/4002.png",
+     "sha1": "3689c8bf0db79af74c370dd0701962607db48493",
+     "page": "https://www.homespros.ca/product/4002-pune/",
+     "width": 600,
+     "height": 900
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8952b7dd1cbb",
+   "seq": 14,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec6pVz6GBVGUacbb",
+   "sku": "LVP-HMPR-0031",
+   "product_name": "Home's Pro Seoul 5mm Looselay — Seto",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://www.homespros.ca/wp-content/uploads/2025/06/4003.png",
+      "filename": "home-s-pro-seto-lvp-7-36in-hom-4003-swatch.png"
+     }
+    ],
+    "Supplier product page": "https://www.homespros.ca/product/4003-seto/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.homespros.ca/product/4003-seto/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://www.homespros.ca/wp-content/uploads/2025/06/4003.png",
+     "sha1": "41467fb85f093f3f775619fd216b0714f9918893",
+     "page": "https://www.homespros.ca/product/4003-seto/",
+     "width": 600,
+     "height": 900
+    }
+   ],
+   "flags": []
+  }
+ ],
+ "held": [
+  {
+   "sku": "ACC-HMPR-0001",
+   "record_id": "rec7EV2tt1nemroZl",
+   "product_name": "Home's Pro - Sundry | Underlay | 3mm STC76 IIC77",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-HMPR-0002",
+   "record_id": "recJ6Cg1D4b1ZkOo0",
+   "product_name": "Home's Pro - Sundry | Floor Protection | 3.28ft x 49ft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-HMPR-0003",
+   "record_id": "recBb6jw7znUaGBRw",
+   "product_name": "Home's Pro - Transition | T-Moulding | SPC",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-HMPR-0004",
+   "record_id": "recoMh07yd47s2N3K",
+   "product_name": "Home's Pro - Transition | Stair Nosing | SPC",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-HMPR-0005",
+   "record_id": "recVRD6AFLCC3quFn",
+   "product_name": "Home's Pro - Transition | Reducer | SPC",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LAM-HMPR-0001",
+   "record_id": "reckz1nX1PivHSpCs",
+   "product_name": "Home's Pro Tuscany 12mm Laminate",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-HMPR-0001",
+   "record_id": "recBoxwaR2hKom0Zt",
+   "product_name": "Home's Pro Milan 5.5mm SPC",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-HMPR-0004",
+   "record_id": "rec68HbbUcx4wLOBB",
+   "product_name": "Home's Pro Vancouver 8mm SPC",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "LVP-HMPR-0006",
+   "record_id": "rec8ij2UgeTxtPS7k",
+   "product_name": "Home's Pro Venice 6.5mm SPC — Baku",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Baku'; vetoes {'code': 203}"
+  },
+  {
+   "sku": "LVP-HMPR-0012",
+   "record_id": "rec0hXjnRAh7mHgcl",
+   "product_name": "Home's Pro Venice 6.5mm SPC — Luka",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Luka'; vetoes {'code': 203}"
+  },
+  {
+   "sku": "LVP-HMPR-0013",
+   "record_id": "recFD3pG1CjQtRbb7",
+   "product_name": "Home's Pro Venice 6.5mm SPC — Maine",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Maine'; vetoes {'code': 203}"
+  },
+  {
+   "sku": "LVP-HMPR-0017",
+   "record_id": "recsCJlYpSiCeZEYM",
+   "product_name": "Home's Pro Venice 6.5mm SPC — Troy",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Troy'; vetoes {'code': 203}"
+  },
+  {
+   "sku": "LVP-HMPR-0020",
+   "record_id": "recd6Wk7hTEDvffRg",
+   "product_name": "Home's Pro Moscow 7mm SPC — Marhaba",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Marhaba'; vetoes {'code': 203}"
+  },
+  {
+   "sku": "LVP-HMPR-0021",
+   "record_id": "recPEmvwqlJNxjpvN",
+   "product_name": "Home's Pro Moscow 7mm SPC — Namaste",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Namaste'; vetoes {'code': 203}"
+  },
+  {
+   "sku": "LVP-HMPR-0022",
+   "record_id": "recQwVBEvim2JrLLT",
+   "product_name": "Home's Pro Moscow 7mm SPC — Salve",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Salve'; vetoes {'code': 203}"
+  },
+  {
+   "sku": "LVP-HMPR-0024",
+   "record_id": "recmgkCiN72D8W2K4",
+   "product_name": "Home's Pro Sydney 6mm SPC — Birch Hills",
+   "candidate_pages": [
+    "https://www.homespros.ca/product/6003-birch-hills/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.homespros.ca/product/6003-birch-hills/']; {'pattern_mismatch': 1}"
+  },
+  {
+   "sku": "LVP-HMPR-0025",
+   "record_id": "recPBvLdqDf5CxNKI",
+   "product_name": "Home's Pro Sydney 6mm SPC — Castletown",
+   "candidate_pages": [
+    "https://www.homespros.ca/product/6004-castletown/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.homespros.ca/product/6004-castletown/']; {'pattern_mismatch': 1}"
+  },
+  {
+   "sku": "LVP-HMPR-0026",
+   "record_id": "receztGKV0f1E2Fnm",
+   "product_name": "Home's Pro Sydney 6mm SPC — Divibeach",
+   "candidate_pages": [
+    "https://www.homespros.ca/product/6001-divibeach/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.homespros.ca/product/6001-divibeach/']; {'pattern_mismatch': 1}"
+  },
+  {
+   "sku": "LVP-HMPR-0027",
+   "record_id": "recMAg5jjN9QHVOw3",
+   "product_name": "Home's Pro Sydney 6mm SPC — Sunderland",
+   "candidate_pages": [
+    "https://www.homespros.ca/product/6002-sunderland/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.homespros.ca/product/6002-sunderland/']; {'pattern_mismatch': 1}"
+  },
+  {
+   "sku": "LVP-HMPR-0028",
+   "record_id": "recXOHEGQyP6yzIi4",
+   "product_name": "Home's Pro Seoul 5mm Looselay — Arish",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Arish'; vetoes {'code': 203}"
+  },
+  {
+   "sku": "LVP-HMPR-0032",
+   "record_id": "recp33dP8DyrSwvek",
+   "product_name": "Home's Pro Seoul 5mm Looselay — Tours",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Tours'; vetoes {'code': 203}"
+  },
+  {
+   "sku": "LVT-HMPR-0001",
+   "record_id": "recfcTjBcSHNLkN5k",
+   "product_name": "Home's Pro Holland 3mm LVT",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  }
+ ]
+}

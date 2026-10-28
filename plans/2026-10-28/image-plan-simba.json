@@ -1,0 +1,3276 @@
+{
+ "contract_version": "image-plan-1",
+ "scope": "simba",
+ "supplier": "SIMBA",
+ "run_at": "2026-10-28T09:35:06.310817-04:00",
+ "expires": "2026-10-28T23:59:59-0400",
+ "write_mode": "write",
+ "registry": "platform-settings/supplier-sites.json",
+ "inputs": {
+  "pages": "ingest/2026-10-22/supplier-pages-simba.json",
+  "judgements": "ingest/2026-10-22/image-judgements-simba.json",
+  "product_pages": null
+ },
+ "summary": {
+  "records": 130,
+  "actions": 49,
+  "held": 81,
+  "skipped": {},
+  "held_by_reason": {
+   "no_match": 48,
+   "no_usable_image": 31,
+   "model_rejected": 2
+  },
+  "fields": {
+   "Detail images": 20,
+   "Supplier product page": 49,
+   "Swatch images": 38,
+   "Room scene images": 4
+  },
+  "tiers": {
+   "exact": 46,
+   "model_confirmed": 3
+  },
+  "manufacturer_pages": 28
+ },
+ "actions": [
+  {
+   "id": "img-d99dda7d8c88",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recxBV78pYJVTCxnn",
+   "sku": "ENG-SIMB-0003",
+   "product_name": "Simba Engineered Oak — Silver Powder (6.5\" x 3/4\", 1.2mm top)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Silver-powder-1-scaled.jpg",
+      "filename": "simba-silver-powder-engineered-hardwood-6-5in-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/silver_powder.jpg?v=1790710993",
+      "filename": "simba-silver-powder-engineered-hardwood-6-5in-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/silver-powder/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/silver-powder/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Silver-powder-1-scaled.jpg",
+     "sha1": "2f2c4177b156db613145d1c04628d5dd02bbeb54",
+     "page": "https://simbaflooringcorp.com/product/silver-powder/",
+     "width": 2560,
+     "height": 1707
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/silver_powder.jpg?v=1790710993",
+     "sha1": "77b7017537d358f5f42458fd55606d9eec0d0cc3",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-silver-powder",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-ed53a45a7dbe",
+   "seq": 2,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recc1KQEzUvfOp0JR",
+   "sku": "ENG-SIMB-0006",
+   "product_name": "Simba Engineered Oak — Sicily (6.5\" x 3/4\", 1.2mm top)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Oak-Sicily-1-scaled.jpg",
+      "filename": "simba-sicily-engineered-hardwood-6-5in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/sicily/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/sicily/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Oak-Sicily-1-scaled.jpg",
+     "sha1": "560be96ecdb2a3cf0a70091240b6d76934a322cb",
+     "page": "https://simbaflooringcorp.com/product/sicily/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-b5af86c52cf6",
+   "seq": 3,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recTOzdgwvXo308sm",
+   "sku": "ENG-SIMB-0007",
+   "product_name": "Simba Engineered Oak — Natural (6.5\" x 3/4\", 1.2mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/oak_natural.jpg?v=1790711017",
+      "filename": "simba-natural-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "model_confirmed",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/oak_natural.jpg?v=1790711017",
+     "sha1": "c2160a99039922fbf0e84b7b6ccce8fa5154b919",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": [
+    "model_matched",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-466d8dcd2915",
+   "seq": 4,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rectoaATY5xt5WSYd",
+   "sku": "ENG-SIMB-0008",
+   "product_name": "Simba Engineered Oak — French Beige (6.5\" x 3/4\", 1.2mm top)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/French-Beige-scaled.jpg",
+      "filename": "simba-french-beige-engineered-hardwood-6-5in-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/french_beige.jpg?v=1790710974",
+      "filename": "simba-french-beige-engineered-hardwood-6-5in-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/french-beigh/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/french-beigh/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/French-Beige-scaled.jpg",
+     "sha1": "f01bf082ef5ae87f247b22e117c49e34f3562156",
+     "page": "https://simbaflooringcorp.com/product/french-beigh/",
+     "width": 2560,
+     "height": 1707
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/french_beige.jpg?v=1790710974",
+     "sha1": "26ee61166f7efac042dc3a19f5597855b81b8571",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-french-beige",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-d32539e881e0",
+   "seq": 5,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recen2bIVE2G620bm",
+   "sku": "ENG-SIMB-0011",
+   "product_name": "Simba Engineered Oak — Natural (7.5\" x 3/4\", 2.0mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/oak_natural.jpg?v=1790711017",
+      "filename": "simba-natural-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "model_confirmed",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/oak_natural.jpg?v=1790711017",
+     "sha1": "c2160a99039922fbf0e84b7b6ccce8fa5154b919",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": [
+    "model_matched",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-4cb17f9b157c",
+   "seq": 6,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recqdzV0RnGXGHo44",
+   "sku": "ENG-SIMB-0012",
+   "product_name": "Simba Engineered Oak — Greyish (7.5\" x 3/4\", 3.0mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/greyish.jpg?v=1790710987",
+      "filename": "simba-greyish-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Greyish-scaled.jpg",
+      "filename": "simba-greyish-engineered-hardwood-7-5in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/greyish-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-greyish",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/greyish.jpg?v=1790710987",
+     "sha1": "b9d51aee067b24c804028bff92d8fadeff521abd",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-greyish",
+     "width": 1400,
+     "height": 1400
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Greyish-scaled.jpg",
+     "sha1": "41034f3aad9298ff254a4bd6627a9ff480857f54",
+     "page": "https://simbaflooringcorp.com/product/greyish-2/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-9c6dbeacbc6e",
+   "seq": 7,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rectfGOWVkqCwaVDc",
+   "sku": "ENG-SIMB-0016",
+   "product_name": "Simba Engineered Oak — Marseille (7.5\" x 3/4\", 3.0mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/OakMarseille.jpg?v=1686000776",
+      "filename": "simba-marseille-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Marseille-scaled.jpg",
+      "filename": "simba-marseille-engineered-hardwood-7-5in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/oak-pearl-river-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-marseille",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/OakMarseille.jpg?v=1686000776",
+     "sha1": "910be384fa292026710289aa793925a956cc893d",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-marseille",
+     "width": 1227,
+     "height": 1227
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Marseille-scaled.jpg",
+     "sha1": "c6260610c5b05a1052e607e5ab0d7aaa0db91744",
+     "page": "https://simbaflooringcorp.com/product/oak-pearl-river-2/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-52f2eecdd01a",
+   "seq": 8,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recFmKeTadDFfBqRJ",
+   "sku": "ENG-SIMB-0017",
+   "product_name": "Simba Engineered Oak — Valence (7.5\" x 3/4\", 3.0mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/valence.jpg?v=1790711011",
+      "filename": "simba-valence-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Valence-scaled.jpg",
+      "filename": "simba-valence-engineered-hardwood-7-5in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/valence-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-valence",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/valence.jpg?v=1790711011",
+     "sha1": "54ce0c49e43975becdacda886a407b466afe83d9",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-valence",
+     "width": 1400,
+     "height": 1400
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Valence-scaled.jpg",
+     "sha1": "09d9639077e45e3c38e81b251109e6a40ae452b3",
+     "page": "https://simbaflooringcorp.com/product/valence-2/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-1489b1833e61",
+   "seq": 9,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recxHD5yDZCkUEk42",
+   "sku": "ENG-SIMB-0018",
+   "product_name": "Simba Engineered Oak — Natural (9.5\" x 3/4\", 4.0mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/oak_natural.jpg?v=1790711017",
+      "filename": "simba-natural-engineered-hardwood-9-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "model_confirmed",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/oak_natural.jpg?v=1790711017",
+     "sha1": "c2160a99039922fbf0e84b7b6ccce8fa5154b919",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": [
+    "model_matched",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-0e71ed4d6556",
+   "seq": 10,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reciYPuf5rzqgDRl8",
+   "sku": "ENG-SIMB-0019",
+   "product_name": "Simba Engineered Hickory — Natural (7.5\" x 3/4\", 1.2mm top)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/hickory_natural.jpg?v=1790711005",
+      "filename": "simba-natural-engineered-hardwood-7-5in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/hickory-natural/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-hickory-natural",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/hickory_natural.jpg?v=1790711005",
+     "sha1": "ff72125b2259321cecef9fef518ea99f010cc37b",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-hickory-natural",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-dfd186c5b303",
+   "seq": 11,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec12AemOYJuieGC6",
+   "sku": "ENG-SIMB-0024",
+   "product_name": "Simba Engineered Oak — Vienna (6.5\" x 3/5\", 1.2mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/vienna.jpg?v=1790710999",
+      "filename": "simba-vienna-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/vienna/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-vienna",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/vienna.jpg?v=1790710999",
+     "sha1": "2ccede70377fcf79be62e4130145c8b264ea50a0",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-vienna",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-3a6f41e56bb6",
+   "seq": 12,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recNG37z5boeorbAb",
+   "sku": "ENG-SIMB-0025",
+   "product_name": "Simba Engineered Oak — Pearl River (6.5\" x 3/5\", 1.2mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/OakPearlRiver.jpg?v=1694818861",
+      "filename": "simba-pearl-river-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2019/03/Pearl-River-scaled.jpg",
+      "filename": "simba-pearl-river-engineered-hardwood-6-5in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/oak-pearl-river/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-pearl-river",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/OakPearlRiver.jpg?v=1694818861",
+     "sha1": "06d5c35226ba2ff9d3ac8db45bb0c272400e5177",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-pearl-river",
+     "width": 1309,
+     "height": 1320
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2019/03/Pearl-River-scaled.jpg",
+     "sha1": "86d24804d0bbfe0fa72768f207da5edc80ef79cd",
+     "page": "https://simbaflooringcorp.com/product/oak-pearl-river/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-8fd403594892",
+   "seq": 13,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recSXQhLAvwtOHuTA",
+   "sku": "ENG-SIMB-0026",
+   "product_name": "Simba Engineered Oak — Silver Powder (6.5\" x 3/5\", 1.2mm top)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Silver-powder-1-scaled.jpg",
+      "filename": "simba-silver-powder-engineered-hardwood-6-5in-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/silver_powder.jpg?v=1790710993",
+      "filename": "simba-silver-powder-engineered-hardwood-6-5in-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/silver-powder/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/silver-powder/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Silver-powder-1-scaled.jpg",
+     "sha1": "2f2c4177b156db613145d1c04628d5dd02bbeb54",
+     "page": "https://simbaflooringcorp.com/product/silver-powder/",
+     "width": 2560,
+     "height": 1707
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/silver_powder.jpg?v=1790710993",
+     "sha1": "77b7017537d358f5f42458fd55606d9eec0d0cc3",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-silver-powder",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-4b947c95d63f",
+   "seq": 14,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recr0f90flcoFuGoW",
+   "sku": "ENG-SIMB-0030",
+   "product_name": "Simba Engineered Oak — Honey (7.5\" x 5/8\", 3.0mm top)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/honey-2-scaled.jpg",
+      "filename": "simba-honey-engineered-hardwood-7-5in-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/honey_90351b97-8592-4b09-a493-156c577839e8.jpg?v=1790711023",
+      "filename": "simba-honey-engineered-hardwood-7-5in-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/honey/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/honey/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/honey-2-scaled.jpg",
+     "sha1": "6bd796bdc241ceec16a1028de3ffc45095d68e0b",
+     "page": "https://simbaflooringcorp.com/product/honey/",
+     "width": 2560,
+     "height": 1707
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/honey_90351b97-8592-4b09-a493-156c577839e8.jpg?v=1790711023",
+     "sha1": "eebafb17d70e33d26626322556e4246f9b4f5f4c",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-honey",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-4a2d7e90767b",
+   "seq": 15,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reca2C8VFz2k6LPSO",
+   "sku": "ENG-SIMB-0031",
+   "product_name": "Simba Engineered Oak — Lion (7.5\" x 5/8\", 3.0mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Lion_6676b797-dcdf-4c9a-aa12-3dc75d1681ff.jpg?v=1651093037",
+      "filename": "simba-lion-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Jen-Lion-Stairs_3.jpg?v=1651092857",
+      "filename": "simba-lion-engineered-hardwood-7-5in-room-scene.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Jen-Lion-2.jpg?v=1651092857",
+      "filename": "simba-lion-engineered-hardwood-7-5in-room-scene-2.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Jen-Lion1.jpg?v=1651092857",
+      "filename": "simba-lion-engineered-hardwood-7-5in-room-scene-3.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Lion-1-scaled.jpg",
+      "filename": "simba-lion-engineered-hardwood-7-5in-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Lion.jpg?v=1651092857",
+      "filename": "simba-lion-engineered-hardwood-7-5in-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/lion/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-lion",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Lion_6676b797-dcdf-4c9a-aa12-3dc75d1681ff.jpg?v=1651093037",
+     "sha1": "968177e7411eeb5d70f8d2ac36f8e666818f410e",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-lion",
+     "width": 1299,
+     "height": 1299
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Jen-Lion-Stairs_3.jpg?v=1651092857",
+     "sha1": "19d3d6c699adfdd591d2c7e9cbacb06f52557265",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-lion",
+     "width": 1440,
+     "height": 1920
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Jen-Lion-2.jpg?v=1651092857",
+     "sha1": "cb92f770a4721ecd647b95d606c4a1a97d533eee",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-lion",
+     "width": 1280,
+     "height": 960
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Jen-Lion1.jpg?v=1651092857",
+     "sha1": "e39d84321f10d13b4021d1d8d61b666a48aeb3a3",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-lion",
+     "width": 1280,
+     "height": 960
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Lion-1-scaled.jpg",
+     "sha1": "11c087f07a1fc4d8262b34cd4e31f944ec5a3f63",
+     "page": "https://simbaflooringcorp.com/product/lion/",
+     "width": 2560,
+     "height": 1707
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Lion.jpg?v=1651092857",
+     "sha1": "cf29c3893f6c7a7456753a0d34fd144c7a500715",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-lion",
+     "width": 483,
+     "height": 483
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-c8dcaf4a9deb",
+   "seq": 16,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recuU1zLe01FrFV9n",
+   "sku": "ENG-SIMB-0032",
+   "product_name": "Simba Engineered Oak — Lisboa (7.5\" x 5/8\", 3.0mm top)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Lisboa-2-scaled.jpg",
+      "filename": "simba-lisboa-engineered-hardwood-7-5in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/lisboa/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/lisboa/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Lisboa-2-scaled.jpg",
+     "sha1": "428fed64c2e5b43df6cbfc827b3c3c9226f13ad8",
+     "page": "https://simbaflooringcorp.com/product/lisboa/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-d5e372f3ddf2",
+   "seq": 17,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recMl4LRupDShdv7D",
+   "sku": "ENG-SIMB-0033",
+   "product_name": "Simba Engineered Oak — Liverpool (7.5\" x 5/8\", 3.0mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Liverpool-scaled.jpg",
+      "filename": "simba-liverpool-engineered-hardwood-7-5in-swatch.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/OakLiverpool.jpg?v=1694820418",
+      "filename": "simba-liverpool-engineered-hardwood-7-5in-swatch-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/liverpool-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/liverpool-2/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Liverpool-scaled.jpg",
+     "sha1": "469eb98a970f7c67019945e4f7b44dfe0e6a4bb2",
+     "page": "https://simbaflooringcorp.com/product/liverpool-2/",
+     "width": 2560,
+     "height": 1707
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/OakLiverpool.jpg?v=1694820418",
+     "sha1": "112c009b7242c471ffa7a6218e9eab3a326b3dec",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-liverpool",
+     "width": 1224,
+     "height": 1235
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-3aba022efaba",
+   "seq": 18,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recOqJayXD4cV7l29",
+   "sku": "ENG-SIMB-0034",
+   "product_name": "Simba Engineered Oak — Pearl River (7.5\" x 5/8\", 3.0mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/OakPearlRiver.jpg?v=1694818861",
+      "filename": "simba-pearl-river-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2019/03/Pearl-River-scaled.jpg",
+      "filename": "simba-pearl-river-engineered-hardwood-7-5in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/oak-pearl-river/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-pearl-river",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/OakPearlRiver.jpg?v=1694818861",
+     "sha1": "06d5c35226ba2ff9d3ac8db45bb0c272400e5177",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-pearl-river",
+     "width": 1309,
+     "height": 1320
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2019/03/Pearl-River-scaled.jpg",
+     "sha1": "86d24804d0bbfe0fa72768f207da5edc80ef79cd",
+     "page": "https://simbaflooringcorp.com/product/oak-pearl-river/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5778f024a7ac",
+   "seq": 19,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec2nLzwc5RYinLqh",
+   "sku": "ENG-SIMB-0035",
+   "product_name": "Simba Engineered Oak — Plymouth (7.5\" x 5/8\", 3.0mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/OakPlymouth.jpg?v=1694820161",
+      "filename": "simba-plymouth-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2018/01/Plymouth-1-scaled.jpg",
+      "filename": "simba-plymouth-engineered-hardwood-7-5in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/plymouth/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-plymouth",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/OakPlymouth.jpg?v=1694820161",
+     "sha1": "67cad112c2359bc52b71ca0a5bede151c1f5a79c",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-plymouth",
+     "width": 1387,
+     "height": 1368
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2018/01/Plymouth-1-scaled.jpg",
+     "sha1": "d2572aa03317909d1c08e91359f5190466cf05b9",
+     "page": "https://simbaflooringcorp.com/product/plymouth/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ab5cffffd74b",
+   "seq": 20,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recDPUufdsHcMfy5q",
+   "sku": "ENG-SIMB-0039",
+   "product_name": "Simba Engineered Hickory — American (6.5\" x 3/5\", 1.2mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/AmericanHickory.jpg?v=1694819967",
+      "filename": "simba-american-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Hickory-American-scaled.jpg",
+      "filename": "simba-american-engineered-hardwood-6-5in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/american/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-hickory-american",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/AmericanHickory.jpg?v=1694819967",
+     "sha1": "5827bbab62aad14b9d30f079d1f4552fb4451947",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-hickory-american",
+     "width": 1346,
+     "height": 1356
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Hickory-American-scaled.jpg",
+     "sha1": "e9d1ed28867af158f5a91f2faba6fc311c3a1281",
+     "page": "https://simbaflooringcorp.com/product/american/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5edb7fdecf69",
+   "seq": 21,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recY58ofOxaIPDrxJ",
+   "sku": "ENG-SIMB-0040",
+   "product_name": "Simba Engineered Hickory — Natural (6.5\" x 3/5\", 1.2mm top)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/hickory_natural.jpg?v=1790711005",
+      "filename": "simba-natural-engineered-hardwood-6-5in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/hickory-natural/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-hickory-natural",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/hickory_natural.jpg?v=1790711005",
+     "sha1": "ff72125b2259321cecef9fef518ea99f010cc37b",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-hickory-natural",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-aa2d3e940b42",
+   "seq": 22,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recYzHJMmIfTumbc1",
+   "sku": "ENG-SIMB-0044",
+   "product_name": "Simba Engineered Sapele — Mahogany (6.5\" x 3/5\", 2.0mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SapeleMahogany.jpg?v=1696373331",
+      "filename": "simba-mahogany-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Sapele-Mahogany-1-scaled.jpg",
+      "filename": "simba-mahogany-engineered-hardwood-6-5in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/sapele-mahogany/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-sapele-sapele-mahogany",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SapeleMahogany.jpg?v=1696373331",
+     "sha1": "64804b08bdbb4323535e541a0dd50b33d9f7c298",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-sapele-sapele-mahogany",
+     "width": 1512,
+     "height": 2016
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Sapele-Mahogany-1-scaled.jpg",
+     "sha1": "a411ae8a80b2d5dfbceca6c1330862285a922495",
+     "page": "https://simbaflooringcorp.com/product/sapele-mahogany/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-923df460b7a5",
+   "seq": 23,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reczqHTzTfGeXOJBK",
+   "sku": "LAM-SIMB-72113",
+   "product_name": "Simba Rocky Mountain (AF) Laminate — 72113 (9.0\" x 14mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Cache-72113.jpg?v=1687458252",
+      "filename": "simba-laminate-9in-72113-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/72113/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-cache",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Cache-72113.jpg?v=1687458252",
+     "sha1": "541cacc2f2a178e928174f10df777b3b3f980ffe",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-cache",
+     "width": 1050,
+     "height": 1029
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f00d9b2c722b",
+   "seq": 24,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recV4T3bEm3FqCr1z",
+   "sku": "LAM-SIMB-72523",
+   "product_name": "Simba Rocky Mountain (AF) Laminate — 72523 (9.0\" x 14mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Hazelton-72523.jpg?v=1687458110",
+      "filename": "simba-laminate-9in-72523-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/72523/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-hazelton",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Hazelton-72523.jpg?v=1687458110",
+     "sha1": "2f256ce8653de7b74d606ebf4532980a6d4962eb",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-hazelton",
+     "width": 943,
+     "height": 914
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-aec1fb33a022",
+   "seq": 25,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recOSi55yBNfc8Tod",
+   "sku": "LVP-SIMB-10223",
+   "product_name": "Simba Universe Vinyl — 1022-3 (7.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/SPC1022-3.jpg?v=1608050761",
+      "filename": "simba-lvp-7in-1022-3-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-aged-ash-timber"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-aged-ash-timber",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/SPC1022-3.jpg?v=1608050761",
+     "sha1": "ccb13b2e9093474f29d3bac99ddb83e7ca577975",
+     "page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-aged-ash-timber",
+     "width": 1472,
+     "height": 1472
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-bfbeb42cda7c",
+   "seq": 26,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recdX1fDjj0kSwUGh",
+   "sku": "LVP-SIMB-1069",
+   "product_name": "Simba Universe Vinyl — 1069 (7.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/SPC1069.jpg?v=1608050594",
+      "filename": "simba-lvp-7in-1069-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/spc-1069/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-heidelberg",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/SPC1069.jpg?v=1608050594",
+     "sha1": "9e5660d86683de5b0d634e5e3ff63dab8aa6f97b",
+     "page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-heidelberg",
+     "width": 1472,
+     "height": 1472
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-34bdc6e45795",
+   "seq": 27,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recvdaPEfB13yYSYD",
+   "sku": "LVP-SIMB-315D",
+   "product_name": "Simba Universe Vinyl — 315D (7.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Smoke315D.jpg?v=1608049115",
+      "filename": "simba-lvp-7in-315d-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/spc-315d/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/smoke",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Smoke315D.jpg?v=1608049115",
+     "sha1": "7b78c55f9b5c4413b3b829d1c4f8c807598b0a38",
+     "page": "https://www.wordofmouthfloors.com/products/smoke",
+     "width": 1472,
+     "height": 1472
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-c756b8a9702d",
+   "seq": 28,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recjErhh6wBdY4SXH",
+   "sku": "LVP-SIMB-4105",
+   "product_name": "Simba Planet Vinyl — 410-5 (12.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/410-5.jpg?v=1610055611",
+      "filename": "simba-lvp-12in-410-5-swatch.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/858224dc-4797-41fc-9450-cae10be7912f.jpg?v=1610055611",
+      "filename": "simba-lvp-12in-410-5-swatch-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/frozen-tundra"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/frozen-tundra",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/410-5.jpg?v=1610055611",
+     "sha1": "1ac884f5a0b3f4575335ff32e1d3686f034b9d05",
+     "page": "https://www.wordofmouthfloors.com/products/frozen-tundra",
+     "width": 1512,
+     "height": 2016
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/858224dc-4797-41fc-9450-cae10be7912f.jpg?v=1610055611",
+     "sha1": "117247d6dce7bc23383f4553553490a15ce86fc0",
+     "page": "https://www.wordofmouthfloors.com/products/frozen-tundra",
+     "width": 1472,
+     "height": 1472
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-40b838340058",
+   "seq": 29,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recL0tWq4q0NPQgQF",
+   "sku": "LVP-SIMB-5810661",
+   "product_name": "Simba Galaxy Vinyl — 581066-1 (9.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Taurus-581066-1.jpg?v=1666286890",
+      "filename": "simba-lvp-9in-581066-1-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-taurus"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-taurus",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Taurus-581066-1.jpg?v=1666286890",
+     "sha1": "b7ecafb79802007cb1619813112f5fb8bdf80edc",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-taurus",
+     "width": 1125,
+     "height": 1125
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-cdcc94d0dae4",
+   "seq": 30,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recOioXeq9olzoyHN",
+   "sku": "LVP-SIMB-589431",
+   "product_name": "Simba Galaxy Vinyl — 58943-1 (9.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Celeste-58943-1.jpg?v=1666219018",
+      "filename": "simba-lvp-9in-58943-1-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-celeste"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-celeste",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Celeste-58943-1.jpg?v=1666219018",
+     "sha1": "749b4f889f435b2b31e226c93a35f21874c53714",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-celeste",
+     "width": 1259,
+     "height": 1259
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-3190128efd9a",
+   "seq": 31,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reccpxCiEBcTUwzvR",
+   "sku": "LVP-SIMB-5894315",
+   "product_name": "Simba Galaxy Vinyl — 58943-15 (9.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Atlas-58943-15.jpg?v=1666219306",
+      "filename": "simba-lvp-9in-58943-15-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-atlas"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-atlas",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Atlas-58943-15.jpg?v=1666219306",
+     "sha1": "c97e95074951ba962257c57e4cca33b1ed5f0045",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-atlas",
+     "width": 1317,
+     "height": 1317
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-2763e733e35d",
+   "seq": 32,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec40HGqEhndvNjn4",
+   "sku": "LVP-SIMB-589433",
+   "product_name": "Simba Galaxy Vinyl — 58943-3 (9.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Astra-58943-3.jpg?v=1666218803",
+      "filename": "simba-lvp-9in-58943-3-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-astra"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-astra",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Astra-58943-3.jpg?v=1666218803",
+     "sha1": "ee9a2d986f82f646260f0b1d3bf624153fd4e2a0",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-astra",
+     "width": 1210,
+     "height": 1210
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-01506f8ff382",
+   "seq": 33,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reckxPCiLlfukgjda",
+   "sku": "LVP-SIMB-589436",
+   "product_name": "Simba Galaxy Vinyl — 58943-6 (9.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Mercury-58943-6.jpg?v=1666219550",
+      "filename": "simba-lvp-9in-58943-6-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-mercury"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-mercury",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Mercury-58943-6.jpg?v=1666219550",
+     "sha1": "8e6cfcd8735aa10a4156fb64ff97eb569c323376",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-mercury",
+     "width": 1204,
+     "height": 1204
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-bc71734c9778",
+   "seq": 34,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recqMe3FlwHBbKtWB",
+   "sku": "LVP-SIMB-5895312",
+   "product_name": "Simba Galaxy Vinyl — 589531-2 (9.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Atlas-589531-2.jpg?v=1666219191",
+      "filename": "simba-lvp-9in-589531-2-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-apollo"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-apollo",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Atlas-589531-2.jpg?v=1666219191",
+     "sha1": "cc5b3f301724bf617c36540ba90aab9b0a627d75",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-apollo",
+     "width": 1195,
+     "height": 1195
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-6b79f9ef433a",
+   "seq": 35,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recMNYeRg2ZuGFvVK",
+   "sku": "LVP-SIMB-5895315",
+   "product_name": "Simba Galaxy Vinyl — 589531-5 (9.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Artemis.jpg?v=1722542620",
+      "filename": "simba-lvp-9in-589531-5-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-artemis"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-artemis",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Artemis.jpg?v=1722542620",
+     "sha1": "74604623643b565b962e95101dac83e9dd89f357",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-artemis",
+     "width": 1987,
+     "height": 1999
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-8b2adc596ea7",
+   "seq": 36,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec4x3sNQOYg9BXAF",
+   "sku": "LVP-SIMB-60074",
+   "product_name": "Simba Planet Vinyl — 6007-4 (12.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6007-4_e23cf3c9-32a7-4e0b-a57e-942db0adf9c2.jpg?v=1610210305",
+      "filename": "simba-lvp-12in-6007-4-swatch.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6007-4.jpg?v=1610210320",
+      "filename": "simba-lvp-12in-6007-4-swatch-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/waterfall-1"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/waterfall-1",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6007-4_e23cf3c9-32a7-4e0b-a57e-942db0adf9c2.jpg?v=1610210305",
+     "sha1": "8c741f8933fa997c59d921dbb869cf48369bc586",
+     "page": "https://www.wordofmouthfloors.com/products/waterfall-1",
+     "width": 1512,
+     "height": 2016
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6007-4.jpg?v=1610210320",
+     "sha1": "7f5fd480916a6251d76e6dc2f4bd6d395c3ec151",
+     "page": "https://www.wordofmouthfloors.com/products/waterfall-1",
+     "width": 1472,
+     "height": 1472
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-d86e816761da",
+   "seq": 37,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recdHWzWZVzYIWzKe",
+   "sku": "LVP-SIMB-65391",
+   "product_name": "Simba Planet Vinyl — 6539-1 (12.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6359-1_d39e9a82-1c99-4461-a037-bb1ff9947b70.jpg?v=1610209107",
+      "filename": "simba-lvp-12in-6539-1-swatch.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6359-1.jpg?v=1610209169",
+      "filename": "simba-lvp-12in-6539-1-swatch-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/carrera-marble"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/carrera-marble",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6359-1_d39e9a82-1c99-4461-a037-bb1ff9947b70.jpg?v=1610209107",
+     "sha1": "77a0dd74800eb8c59dfdb99d0695800d00b31b64",
+     "page": "https://www.wordofmouthfloors.com/products/carrera-marble",
+     "width": 1512,
+     "height": 2016
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6359-1.jpg?v=1610209169",
+     "sha1": "d97a0843c6aa23598e79c2088b2ca03883f93572",
+     "page": "https://www.wordofmouthfloors.com/products/carrera-marble",
+     "width": 1472,
+     "height": 1472
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-fb9152cca6d0",
+   "seq": 38,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rectRsaRnPsc9Bacx",
+   "sku": "LVP-SIMB-66079",
+   "product_name": "Simba Universe Vinyl — 6607-9 (7.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6607-9_2.jpg?v=1607984980",
+      "filename": "simba-lvp-7in-6607-9-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/DesertSandRoomScene3.jpg?v=1607984961",
+      "filename": "simba-lvp-7in-6607-9-room-scene.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/DesertSandRoomScene1.jpg?v=1607984960",
+      "filename": "simba-lvp-7in-6607-9-room-scene-2.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/DesertSandRoomScene2.jpg?v=1607984961",
+      "filename": "simba-lvp-7in-6607-9-room-scene-3.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/DesertSandRoomScene4.jpg?v=1607984961",
+      "filename": "simba-lvp-7in-6607-9-room-scene-4.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/desert-sand"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/desert-sand",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6607-9_2.jpg?v=1607984980",
+     "sha1": "645a95bfac864bbda098a2d986272bc8b9e1d7f6",
+     "page": "https://www.wordofmouthfloors.com/products/desert-sand",
+     "width": 1317,
+     "height": 1317
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/DesertSandRoomScene3.jpg?v=1607984961",
+     "sha1": "f870f91d2ad63543461f19a93cc1e096178ff488",
+     "page": "https://www.wordofmouthfloors.com/products/desert-sand",
+     "width": 1200,
+     "height": 1600
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/DesertSandRoomScene1.jpg?v=1607984960",
+     "sha1": "fd12b9ebed9153d083f805ee5f4bf43883b21d38",
+     "page": "https://www.wordofmouthfloors.com/products/desert-sand",
+     "width": 960,
+     "height": 1280
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/DesertSandRoomScene2.jpg?v=1607984961",
+     "sha1": "7141e8bad11ac0dc609f8b95bdc31c32e8746b65",
+     "page": "https://www.wordofmouthfloors.com/products/desert-sand",
+     "width": 960,
+     "height": 1280
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/DesertSandRoomScene4.jpg?v=1607984961",
+     "sha1": "7cf1d99e2129406732494d1584d55d1f7e9100d4",
+     "page": "https://www.wordofmouthfloors.com/products/desert-sand",
+     "width": 960,
+     "height": 1280
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-3a73995b9da9",
+   "seq": 39,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec15A6glkL0nDzor",
+   "sku": "LVP-SIMB-666110",
+   "product_name": "Simba Universe Vinyl — 6661-10 (7.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6661-10-CLEAROAK_b5a18278-5682-4f22-9fab-985d61be024d.jpg?v=1611440496",
+      "filename": "simba-lvp-7in-6661-10-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-clear-oak"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-clear-oak",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6661-10-CLEAROAK_b5a18278-5682-4f22-9fab-985d61be024d.jpg?v=1611440496",
+     "sha1": "8852d1e1aa75fb86555d34b1ba6114732b43717f",
+     "page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-clear-oak",
+     "width": 1453,
+     "height": 1584
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-5b0fe8a95dbd",
+   "seq": 40,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recR5iWrO88RzHXZT",
+   "sku": "LVP-SIMB-6681",
+   "product_name": "Simba Universe Vinyl — 6681 (7.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6681-Simba.jpg?v=1627410743",
+      "filename": "simba-lvp-7in-6681-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/spc-6681/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-dusk",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6681-Simba.jpg?v=1627410743",
+     "sha1": "ac45d252436dc9c4d1d49452374b1a3a353405b1",
+     "page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-dusk",
+     "width": 1207,
+     "height": 1207
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-3458c181152d",
+   "seq": 41,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recsADCLUIkWkrMIQ",
+   "sku": "LVP-SIMB-681002",
+   "product_name": "Simba Universe Vinyl — 681002 (7.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Wolf-681002.jpg?v=1690926019",
+      "filename": "simba-lvp-7in-681002-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/681002/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-wolf",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Wolf-681002.jpg?v=1690926019",
+     "sha1": "9ddec3bb7f5c94c8db3877b0317bc87f0d54adc4",
+     "page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-wolf",
+     "width": 1307,
+     "height": 1307
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-fa1818a351e6",
+   "seq": 42,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recz8ARnKBiiXQXv4",
+   "sku": "LVP-SIMB-6810198",
+   "product_name": "Simba Galaxy Vinyl — 681019-8 (9.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Venus-681019-8.jpg?v=1666219497",
+      "filename": "simba-lvp-9in-681019-8-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-venus"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-venus",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Venus-681019-8.jpg?v=1666219497",
+     "sha1": "7055b49c6a17864c921f34618533f8bba7ad619a",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-venus",
+     "width": 1211,
+     "height": 1211
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-410665c2e5c1",
+   "seq": 43,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec4r7oPNOIAsIjyP",
+   "sku": "LVP-SIMB-6812A",
+   "product_name": "Simba Universe Vinyl — 68-12A (7.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Nova-68-12A.jpg?v=1690925712",
+      "filename": "simba-lvp-7in-68-12a-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-nova"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-nova",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Nova-68-12A.jpg?v=1690925712",
+     "sha1": "868b6fdd0da4793a87d36727c8579fa49e2d811b",
+     "page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-nova",
+     "width": 1123,
+     "height": 1123
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-b403a79f4e43",
+   "seq": 44,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec62Aj4EKRebf4Vc",
+   "sku": "LVP-SIMB-70851",
+   "product_name": "Simba Planet Vinyl — 7085-1 (12.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/7085-1CremaMarble.jpg?v=1610210089",
+      "filename": "simba-lvp-12in-7085-1-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/crema-marble"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/crema-marble",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/7085-1CremaMarble.jpg?v=1610210089",
+     "sha1": "5b903c615c19e72cebf73211f71426715db73649",
+     "page": "https://www.wordofmouthfloors.com/products/crema-marble",
+     "width": 1122,
+     "height": 1122
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-fef2bef3f3dc",
+   "seq": 45,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec7utQQhUQ5xcDLE",
+   "sku": "LVP-SIMB-817",
+   "product_name": "Simba Universe Vinyl — 817 (7.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Pavel-Seaside-2.jpg?v=1607985216",
+      "filename": "simba-lvp-7in-817-swatch.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Seaside.jpg?v=1628016037",
+      "filename": "simba-lvp-7in-817-swatch-2.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Pavel-Seaside1.jpg?v=1607985215",
+      "filename": "simba-lvp-7in-817-room-scene.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Pavel-Seaside-3.jpg?v=1607985215",
+      "filename": "simba-lvp-7in-817-room-scene-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/seaside"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/seaside",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Pavel-Seaside-2.jpg?v=1607985216",
+     "sha1": "10f939ded2853796bca57ecd410beafd54d54981",
+     "page": "https://www.wordofmouthfloors.com/products/seaside",
+     "width": 916,
+     "height": 1280
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Seaside.jpg?v=1628016037",
+     "sha1": "8c6638579ca36736de495f9fb8b62db1f884730b",
+     "page": "https://www.wordofmouthfloors.com/products/seaside",
+     "width": 1123,
+     "height": 1123
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Pavel-Seaside1.jpg?v=1607985215",
+     "sha1": "31abe0b323eb546fe7d14006be23c7304b8445d3",
+     "page": "https://www.wordofmouthfloors.com/products/seaside",
+     "width": 1600,
+     "height": 1200
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Pavel-Seaside-3.jpg?v=1607985215",
+     "sha1": "bc1bb19b74d459a1c5f9cdef80011233dc02a7f0",
+     "page": "https://www.wordofmouthfloors.com/products/seaside",
+     "width": 1200,
+     "height": 1600
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-8336367dcd13",
+   "seq": 46,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reccoeYzCqtW8vadf",
+   "sku": "LVP-SIMB-906164",
+   "product_name": "Simba Universe Vinyl — 90616-4 (7.0\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/HOFBRAUHAUS_90616-4.jpg?v=1608051009",
+      "filename": "simba-lvp-7in-90616-4-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Sergio-Horbrauhaus-Studio.png?v=1608050980",
+      "filename": "simba-lvp-7in-90616-4-room-scene.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/ScreenShot2020-09-01at9.37.03AM.png?v=1608050983",
+      "filename": "simba-lvp-7in-90616-4-room-scene-2.png"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-hofbrauhaus"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-hofbrauhaus",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/HOFBRAUHAUS_90616-4.jpg?v=1608051009",
+     "sha1": "3e877f15539c0fb428f2e445506e76c67d86ff00",
+     "page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-hofbrauhaus",
+     "width": 1472,
+     "height": 1472
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Sergio-Horbrauhaus-Studio.png?v=1608050980",
+     "sha1": "27d274970609acc07a6995d6dc3be73d6c213db7",
+     "page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-hofbrauhaus",
+     "width": 600,
+     "height": 593
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/ScreenShot2020-09-01at9.37.03AM.png?v=1608050983",
+     "sha1": "3bf9ba7c382d09248d70ade19878896358352475",
+     "page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-hofbrauhaus",
+     "width": 593,
+     "height": 595
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-9414d90ade49",
+   "seq": 47,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recG4Be7h3bwvVvQm",
+   "sku": "LVP-SIMB-SP005",
+   "product_name": "Simba Universe Vinyl — SP005 (7.0\" x 6.5mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/SP005.jpg?v=1608050890",
+      "filename": "simba-sp005-lvp-7in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/spc-sp005-2/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-black-forest",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/SP005.jpg?v=1608050890",
+     "sha1": "4cb914b184f6884a301cd34d394e31f7a1d80be6",
+     "page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-black-forest",
+     "width": 1424,
+     "height": 1424
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-f130e6899ddb",
+   "seq": 48,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recyhoWwtuy56X6Qr",
+   "sku": "LVT-SIMB-20105",
+   "product_name": "Simba Cascade (VP30) Vinyl Tile — 20105 (9.0\" x 3.0mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/lvt_20105.jpg?v=1790711036",
+      "filename": "simba-lvt-9in-20105-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/lvt-20105/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-lvt-dry-back-glue-down-collection-lvt-20105",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/lvt_20105.jpg?v=1790711036",
+     "sha1": "02cec9b4e2d0ec95b081f1ce5ef91d7ab6106f3d",
+     "page": "https://www.wordofmouthfloors.com/products/simba-lvt-dry-back-glue-down-collection-lvt-20105",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-18d8efaf6d76",
+   "seq": 49,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recLo18Tt00bHpwNW",
+   "sku": "LVT-SIMB-32301",
+   "product_name": "Simba Cascade (VP30) Vinyl Tile — 32301 (9.0\" x 3.0mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/lvt_32301.jpg?v=1790711042",
+      "filename": "simba-lvt-9in-32301-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/lvt-32301/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-lvt-dry-back-glue-down-collection-lvt-32301",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/lvt_32301.jpg?v=1790711042",
+     "sha1": "308fcf7f94bec9e21454917f55a92eb65040eb44",
+     "page": "https://www.wordofmouthfloors.com/products/simba-lvt-dry-back-glue-down-collection-lvt-32301",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  }
+ ],
+ "held": [
+  {
+   "sku": "ACC-SIMB-0001",
+   "record_id": "rec28JczEoFew7f4d",
+   "product_name": "Simba - SPC Stair Tread",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-SIMB-0002",
+   "record_id": "reclPlDI0ZFspLBRV",
+   "product_name": "Simba - SPC Stair Riser",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-SIMB-0003",
+   "record_id": "recekPuZt5ukIkHnh",
+   "product_name": "Simba - SPC Stair Nosing",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-SIMB-0004",
+   "record_id": "recVd4hvLhX9SKkAu",
+   "product_name": "Simba - SPC T-moulding",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-SIMB-0005",
+   "record_id": "recWeQSslk8BTOvuH",
+   "product_name": "Simba - SPC Reducer",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-SIMB-0006",
+   "record_id": "reckLYNlWrnzlldVJ",
+   "product_name": "Simba - Laminate Stair Nosing",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-SIMB-0007",
+   "record_id": "recsHFyck69XtARp9",
+   "product_name": "Simba - Laminate T-moulding",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-SIMB-0008",
+   "record_id": "recy3oucqBx2Ozl7E",
+   "product_name": "Simba - Laminate Reducer",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-SIMB-0009",
+   "record_id": "recfT571k48CEfGaZ",
+   "product_name": "Simba Underlayment — IPES (3.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'IPES'; vetoes {}"
+  },
+  {
+   "sku": "ACC-SIMB-0010",
+   "record_id": "rec0D2E0t7OG5tDKY",
+   "product_name": "Simba Underlayment — EVA (1.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'EVA'; vetoes {}"
+  },
+  {
+   "sku": "ACC-SIMB-0011",
+   "record_id": "recYyrL6NDWe8oTgS",
+   "product_name": "Simba Underlayment — EVA (3.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'EVA'; vetoes {}"
+  },
+  {
+   "sku": "ACC-SIMB-0012",
+   "record_id": "reck615V70SbPFB45",
+   "product_name": "Simba Underlayment — IXPE (3.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'IXPE'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0001",
+   "record_id": "recq490RkWycuY4gT",
+   "product_name": "Simba Engineered Oak — Huskie Gray (6.5\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Huskie Gray'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0002",
+   "record_id": "recEb7Hnlv0HXltlm",
+   "product_name": "Simba Engineered Oak — Clay (6.5\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Clay'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0004",
+   "record_id": "recwK5t6P7xkTBH8M",
+   "product_name": "Simba Engineered Oak — Tan (6.5\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Tan'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0005",
+   "record_id": "recQcn6B4e2mhZ1CI",
+   "product_name": "Simba Engineered Oak — Mocha (6.5\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Mocha'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0009",
+   "record_id": "rechQcx0GtD2x9RJw",
+   "product_name": "Simba Engineered Oak — White Coffee (7.5\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'White Coffee'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0010",
+   "record_id": "recvb8iB1rpxGf1t4",
+   "product_name": "Simba Engineered Oak — Natural + (7.5\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/acacia-natural/",
+    "https://simbaflooringcorp.com/product/birch-natural/",
+    "https://simbaflooringcorp.com/product/oak-natural-3/",
+    "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-natural",
+    "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural",
+    "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-walnut-natural"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://simbaflooringcorp.com/product/oak-natural-3/']; {'excluded': 1}"
+  },
+  {
+   "sku": "ENG-SIMB-0013",
+   "record_id": "recxeF7cIz2N6BCso",
+   "product_name": "Simba Engineered Oak — Strasbourg (7.5\" x 3/4\", 3.0mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Strasbourg'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0014",
+   "record_id": "rec0QrdD5KRe2WRkm",
+   "product_name": "Simba Engineered Oak — Brest (7.5\" x 3/4\", 3.0mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Brest'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0015",
+   "record_id": "recA3KcJ1rOTK2Cor",
+   "product_name": "Simba Engineered Oak — Norman Castle (7.5\" x 3/4\", 3.0mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Norman Castle'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0020",
+   "record_id": "recU4yzD4HLUX03iD",
+   "product_name": "Simba Engineered Hickory — Venezuela (7.5\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Venezuela'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0021",
+   "record_id": "recxC6DVo8aVTWv9t",
+   "product_name": "Simba Engineered Hickory — Bristol (7.5\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Bristol'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0022",
+   "record_id": "recGXq9DRXXJul45n",
+   "product_name": "Simba Engineered Hickory — Summer (7.5\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Summer'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0023",
+   "record_id": "recah5M15vAnnl8zD",
+   "product_name": "Simba Engineered Hickory — Battleship (7.5\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Battleship'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0027",
+   "record_id": "recWWSJQNm562gnlI",
+   "product_name": "Simba Engineered Oak — Huskie Gray (7.5\" x 5/8\", 3.0mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Huskie Gray'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0028",
+   "record_id": "recgnG2nu0Vwyw2gI",
+   "product_name": "Simba Engineered Oak — Oscar (7.5\" x 5/8\", 3.0mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Oscar'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0029",
+   "record_id": "recNQpAiWwGaLYOuW",
+   "product_name": "Simba Engineered Oak — Acorn (7.5\" x 5/8\", 3.0mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Acorn'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0036",
+   "record_id": "rec5mYFykz5SOLynr",
+   "product_name": "Simba Engineered Hickory — London Smoke (5.0\" x 1/2\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'London Smoke'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0037",
+   "record_id": "rectxg2bDN2kHPD2X",
+   "product_name": "Simba Engineered Hickory — Battleship (5.0\" x 1/2\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Battleship'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0038",
+   "record_id": "recRPEHveItxNcIxS",
+   "product_name": "Simba Engineered Hickory — Battleship (6.5\" x 1/2\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Battleship'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0041",
+   "record_id": "recXA52WdZPCT7fQR",
+   "product_name": "Simba Engineered Birch — Ash Brown (5.0\" x 1/2\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Ash Brown'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0042",
+   "record_id": "recPuBmO90BgKX4yC",
+   "product_name": "Simba Engineered Birch — Silver Hoe (5.0\" x 1/2\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Silver Hoe'; vetoes {}"
+  },
+  {
+   "sku": "ENG-SIMB-0043",
+   "record_id": "rec7ynatT7XWW86JP",
+   "product_name": "Simba Engineered Birch — Natural (6.5\" x 3/5\", 2.0mm top)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/acacia-natural/",
+    "https://simbaflooringcorp.com/product/birch-natural/",
+    "https://simbaflooringcorp.com/product/oak-natural-3/",
+    "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-natural",
+    "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural",
+    "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-walnut-natural"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://simbaflooringcorp.com/product/birch-natural/']; {'excluded': 1}"
+  },
+  {
+   "sku": "ENG-SIMB-0045",
+   "record_id": "recCR88rvhfuSmD3A",
+   "product_name": "Simba Engineered Maple — Natural (7.5\" x 3/5\", 1.2mm top)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/acacia-natural/",
+    "https://simbaflooringcorp.com/product/birch-natural/",
+    "https://simbaflooringcorp.com/product/oak-natural-3/",
+    "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-natural",
+    "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural",
+    "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-walnut-natural"
+   ],
+   "reason": "model_rejected",
+   "detail": "colour 'Natural'; vetoes {'pattern': 2}"
+  },
+  {
+   "sku": "ENG-SIMB-0046",
+   "record_id": "rec4eDCJTDZLlhift",
+   "product_name": "Simba Engineered Black Walnut — Natural (7.5\" x 3/5\", 2.0mm top)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/acacia-natural/",
+    "https://simbaflooringcorp.com/product/birch-natural/",
+    "https://simbaflooringcorp.com/product/oak-natural-3/",
+    "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-natural",
+    "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural",
+    "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-walnut-natural"
+   ],
+   "reason": "model_rejected",
+   "detail": "colour 'Natural'; vetoes {'pattern': 2}"
+  },
+  {
+   "sku": "LAM-SIMB-720165",
+   "record_id": "reccq62kP4mOulowz",
+   "product_name": "Simba Danube (XB) Laminate — 720165 (9.0\" x 12mm)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-golden"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-golden']; {'excluded': 1}"
+  },
+  {
+   "sku": "LAM-SIMB-72019",
+   "record_id": "recKgthtCmPQ4EkjT",
+   "product_name": "Simba Rocky Mountain (AF) Laminate — 72019 (9.0\" x 14mm)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-penticton"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-penticton']; {'excluded': 1}"
+  },
+  {
+   "sku": "LAM-SIMB-720462",
+   "record_id": "rec6e9rMl9owtKabJ",
+   "product_name": "Simba Danube (XB) Laminate — 720462 (9.0\" x 12mm)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/720462/",
+    "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-kamloops"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://simbaflooringcorp.com/product/720462/', 'https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-kamloops']; {'excluded': 2}"
+  },
+  {
+   "sku": "LAM-SIMB-720860",
+   "record_id": "rechcBpsiqZ7YaiGu",
+   "product_name": "Simba Danube (XB) Laminate — 720860 (7.0\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 280}"
+  },
+  {
+   "sku": "LAM-SIMB-721287",
+   "record_id": "recQU1jpgVZurCVx6",
+   "product_name": "Simba Danube (XB) Laminate — 721287 (9.0\" x 12mm)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/721287/",
+    "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-tofino"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://simbaflooringcorp.com/product/721287/', 'https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-tofino']; {'excluded': 2}"
+  },
+  {
+   "sku": "LAM-SIMB-72134",
+   "record_id": "recZvGqe3jWFd9b0N",
+   "product_name": "Simba Rocky Mountain (AF) Laminate — 72134 (9.0\" x 14mm)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/72134/",
+    "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-chilliwack"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://simbaflooringcorp.com/product/72134/', 'https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-chilliwack']; {'excluded': 2}"
+  },
+  {
+   "sku": "LAM-SIMB-72166",
+   "record_id": "recqYZs72R8DmNFYJ",
+   "product_name": "Simba Rocky Mountain (AF) Laminate — 72166 (9.0\" x 14mm)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/72166/",
+    "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-sicamous"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://simbaflooringcorp.com/product/72166/', 'https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-sicamous']; {'excluded': 2}"
+  },
+  {
+   "sku": "LAM-SIMB-722024",
+   "record_id": "recSFkt1LnrkHP9Ou",
+   "product_name": "Simba Danube (XB) Laminate — 722024 (7.0\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 280}"
+  },
+  {
+   "sku": "LAM-SIMB-722055",
+   "record_id": "rec6rf8jWpQKmdYaQ",
+   "product_name": "Simba Danube (XB) Laminate — 722055 (7.0\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 280}"
+  },
+  {
+   "sku": "LAM-SIMB-72493",
+   "record_id": "recZF688QF3BUlgKj",
+   "product_name": "Simba Rocky Mountain (AF) Laminate — 72493 (9.0\" x 14mm)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/72493/",
+    "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-vernon"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://simbaflooringcorp.com/product/72493/', 'https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-vernon']; {'excluded': 2}"
+  },
+  {
+   "sku": "LAM-SIMB-72495",
+   "record_id": "recVdL1Lg0EYh5vQp",
+   "product_name": "Simba Rocky Mountain (AF) Laminate — 72495 (9.0\" x 14mm)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/72495/",
+    "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-harrison"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://simbaflooringcorp.com/product/72495/', 'https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-harrison']; {'excluded': 2}"
+  },
+  {
+   "sku": "LAM-SIMB-726088",
+   "record_id": "recSDMqUg8AQzYlr0",
+   "product_name": "Simba Danube (XB) Laminate — 726088 (7.0\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 280}"
+  },
+  {
+   "sku": "LAM-SIMB-72740",
+   "record_id": "rec1IS2m4IXvBWP55",
+   "product_name": "Simba Rocky Mountain (AF) Laminate — 72740 (9.0\" x 14mm)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/72740/",
+    "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-cariboo"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://simbaflooringcorp.com/product/72740/', 'https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-cariboo']; {'excluded': 2}"
+  },
+  {
+   "sku": "LAM-SIMB-72741",
+   "record_id": "rec9LEcAce9QNeyrw",
+   "product_name": "Simba Rocky Mountain (AF) Laminate — 72741 (9.0\" x 14mm)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/72741/",
+    "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-skeena"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://simbaflooringcorp.com/product/72741/', 'https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-skeena']; {'excluded': 2}"
+  },
+  {
+   "sku": "LAM-SIMB-72814",
+   "record_id": "recSiH9HGAplTnPk0",
+   "product_name": "Simba Rocky Mountain (AF) Laminate — 72814 (9.0\" x 14mm)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/72814/",
+    "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-cheakamus"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://simbaflooringcorp.com/product/72814/', 'https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-cheakamus']; {'excluded': 2}"
+  },
+  {
+   "sku": "LAM-SIMB-772146",
+   "record_id": "reczKlIQPeBSEkDa1",
+   "product_name": "Simba Danube (XB) Laminate — 772146 (9.0\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 280}"
+  },
+  {
+   "sku": "LAM-SIMB-772161",
+   "record_id": "rechSZViUAZvVprNP",
+   "product_name": "Simba Danube (XB) Laminate — 772161 (7.0\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 280}"
+  },
+  {
+   "sku": "LAM-SIMB-772777",
+   "record_id": "recJqc1LD8MX4BJNQ",
+   "product_name": "Simba Danube (XB) Laminate — 772777 (7.0\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 280}"
+  },
+  {
+   "sku": "LVP-SIMB-22010",
+   "record_id": "recGX5GCf8IevVQCp",
+   "product_name": "Simba Universe Vinyl — 220-10 (7.0\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 280}"
+  },
+  {
+   "sku": "LVP-SIMB-3592",
+   "record_id": "rec30mqGLTIdlEU2m",
+   "product_name": "Simba Universe Vinyl — 359-2 (7.0\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 280}"
+  },
+  {
+   "sku": "LVP-SIMB-36414",
+   "record_id": "recqwyllxFwr9RXb1",
+   "product_name": "Simba Universe Vinyl — 3641-4 (7.0\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 280}"
+  },
+  {
+   "sku": "LVP-SIMB-369",
+   "record_id": "recxYcrAKzdPYZo3A",
+   "product_name": "Simba Universe Vinyl — 369 (7.0\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 280}"
+  },
+  {
+   "sku": "LVP-SIMB-580023",
+   "record_id": "recnoNJPqp7yyXL5P",
+   "product_name": "Simba Galaxy Vinyl — 58002-3 (9.0\" x 6.5mm)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-vega"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.wordofmouthfloors.com/products/simba-galaxy-collection-vega']; {'excluded': 1}"
+  },
+  {
+   "sku": "LVP-SIMB-5802310",
+   "record_id": "recxLR9JQZfRe7PYl",
+   "product_name": "Simba Galaxy Vinyl — 58023-10 (9.0\" x 6.5mm)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-lyra"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.wordofmouthfloors.com/products/simba-galaxy-collection-lyra']; {'excluded': 1}"
+  },
+  {
+   "sku": "LVP-SIMB-580653",
+   "record_id": "recs25QfYasZAAmak",
+   "product_name": "Simba Galaxy Vinyl — 58065-3 (9.0\" x 6.5mm)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-orion"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.wordofmouthfloors.com/products/simba-galaxy-collection-orion']; {'excluded': 1}"
+  },
+  {
+   "sku": "LVP-SIMB-5830521",
+   "record_id": "recxi1awAGyMPtUQs",
+   "product_name": "Simba Galaxy Vinyl — 58305-21 (9.0\" x 8.0mm)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/simba-galaxy-pressed-u-groove-collection-nebula"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.wordofmouthfloors.com/products/simba-galaxy-pressed-u-groove-collection-nebula']; {'excluded': 1}"
+  },
+  {
+   "sku": "LVP-SIMB-5873010",
+   "record_id": "recKGzTxm3qJmMu1f",
+   "product_name": "Simba Galaxy Vinyl — 58730-10 (9.0\" x 8.0mm)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/simba-galaxy-pressed-u-groove-collection-eclipse"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.wordofmouthfloors.com/products/simba-galaxy-pressed-u-groove-collection-eclipse']; {'excluded': 1}"
+  },
+  {
+   "sku": "LVP-SIMB-587302",
+   "record_id": "recl88PVcu4u99bS7",
+   "product_name": "Simba Galaxy Vinyl — 58730-2 (9.0\" x 8.0mm)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/simba-galaxy-pressed-u-groove-collection-comet"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.wordofmouthfloors.com/products/simba-galaxy-pressed-u-groove-collection-comet']; {'excluded': 1}"
+  },
+  {
+   "sku": "LVP-SIMB-5895311",
+   "record_id": "rectzI1Rn5oXYjZfD",
+   "product_name": "Simba Galaxy Vinyl — 589531-1 (9.0\" x 8.0mm)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/simba-galaxy-pressed-u-groove-collection-quasar"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.wordofmouthfloors.com/products/simba-galaxy-pressed-u-groove-collection-quasar']; {'excluded': 1}"
+  },
+  {
+   "sku": "LVP-SIMB-68022",
+   "record_id": "recp9Rb49ZgXMZ5lV",
+   "product_name": "Simba Yellowstone Vinyl — 68022 (9.0\" x 8.0mm)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/68022/",
+    "https://www.wordofmouthfloors.com/products/simba-earth-collection-canyon"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://simbaflooringcorp.com/product/68022/', 'https://www.wordofmouthfloors.com/products/simba-earth-collection-canyon']; {'excluded': 2}"
+  },
+  {
+   "sku": "LVP-SIMB-683477",
+   "record_id": "rec56GNJ0nTyg2giE",
+   "product_name": "Simba Yellowstone Vinyl — 68347-7 (9.0\" x 8.0mm)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/simba-earth-collection-savanna"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.wordofmouthfloors.com/products/simba-earth-collection-savanna']; {'excluded': 1}"
+  },
+  {
+   "sku": "LVP-SIMB-68363",
+   "record_id": "reccdv8QulipX7ybP",
+   "product_name": "Simba Yellowstone Vinyl — 68363 (9.0\" x 8.0mm)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/68363/",
+    "https://www.wordofmouthfloors.com/products/simba-earth-collection-mesa"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://simbaflooringcorp.com/product/68363/', 'https://www.wordofmouthfloors.com/products/simba-earth-collection-mesa']; {'excluded': 2}"
+  },
+  {
+   "sku": "LVP-SIMB-68493",
+   "record_id": "recWxlAXeTv8PelGk",
+   "product_name": "Simba Yellowstone Vinyl — 68493 (9.0\" x 8.0mm)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/68493/",
+    "https://www.wordofmouthfloors.com/products/simba-earth-collection-serengeti"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://simbaflooringcorp.com/product/68493/', 'https://www.wordofmouthfloors.com/products/simba-earth-collection-serengeti']; {'excluded': 2}"
+  },
+  {
+   "sku": "LVP-SIMB-685507",
+   "record_id": "recIvdPUcCXQ5tzDL",
+   "product_name": "Simba Galaxy Vinyl — 685507 (9.0\" x 6.5mm)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-rigel"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.wordofmouthfloors.com/products/simba-galaxy-collection-rigel']; {'excluded': 1}"
+  },
+  {
+   "sku": "LVP-SIMB-68628",
+   "record_id": "recsnIxkVnitXggak",
+   "product_name": "Simba Yellowstone Vinyl — 68628 (9.0\" x 8.0mm)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/68628/",
+    "https://www.wordofmouthfloors.com/products/simba-earth-collection-patagonia"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://simbaflooringcorp.com/product/68628/', 'https://www.wordofmouthfloors.com/products/simba-earth-collection-patagonia']; {'excluded': 2}"
+  },
+  {
+   "sku": "LVP-SIMB-68629",
+   "record_id": "recWNLyqEQUHYG0bN",
+   "product_name": "Simba Yellowstone Vinyl — 68629 (9.0\" x 8.0mm)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/68629/",
+    "https://www.wordofmouthfloors.com/products/simba-earth-collection-everest"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://simbaflooringcorp.com/product/68629/', 'https://www.wordofmouthfloors.com/products/simba-earth-collection-everest']; {'excluded': 2}"
+  },
+  {
+   "sku": "LVP-SIMB-9812316",
+   "record_id": "rec4nXFjuFgN5Ob86",
+   "product_name": "Simba Venus Vinyl — 981231-6 (5.91\" x 7.0mm)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/simba-venus-herringbone-collection-jupiter"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.wordofmouthfloors.com/products/simba-venus-herringbone-collection-jupiter']; {'pattern_mismatch': 1}"
+  },
+  {
+   "sku": "LVP-SIMB-9812319",
+   "record_id": "recNaaSCX0kTAUZxp",
+   "product_name": "Simba Venus Vinyl — 981231-9 (5.91\" x 7.0mm)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/simba-venus-herringbone-collection-neptune"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.wordofmouthfloors.com/products/simba-venus-herringbone-collection-neptune']; {'pattern_mismatch': 1}"
+  },
+  {
+   "sku": "LVP-SIMB-9860054",
+   "record_id": "rec7Je32igpcYF29j",
+   "product_name": "Simba Galaxy Vinyl — 9860054 (9.0\" x 6.5mm)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-polaris"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.wordofmouthfloors.com/products/simba-galaxy-collection-polaris']; {'excluded': 1}"
+  },
+  {
+   "sku": "LVT-SIMB-55007",
+   "record_id": "recjFlvhvISnKJP43",
+   "product_name": "Simba Cascade (VP30) Vinyl Tile — 55007 (9.0\" x 3.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 280}"
+  },
+  {
+   "sku": "LVT-SIMB-82804",
+   "record_id": "rec1OObLrPexdzhGk",
+   "product_name": "Simba Cascade (VP30) Vinyl Tile — 82804 (9.0\" x 3.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 280}"
+  },
+  {
+   "sku": "LVT-SIMB-83221",
+   "record_id": "rec0GzFmV8qpYF1jf",
+   "product_name": "Simba Cascade (VP30) Vinyl Tile — 83221 (9.0\" x 3.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 280}"
+  },
+  {
+   "sku": "LVT-SIMB-83476",
+   "record_id": "rec9dBIS60bqbGgV1",
+   "product_name": "Simba Cascade (VP30) Vinyl Tile — 83476 (9.0\" x 3.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 280}"
+  },
+  {
+   "sku": "LVT-SIMB-83741",
+   "record_id": "reclULaQlCx5b0hbi",
+   "product_name": "Simba Cascade (VP30) Vinyl Tile — 83741 (9.0\" x 3.0mm)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/lvt-83741/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://simbaflooringcorp.com/product/lvt-83741/']; {'excluded': 1}"
+  },
+  {
+   "sku": "LVT-SIMB-84214",
+   "record_id": "recWlYqkdlt06rd4U",
+   "product_name": "Simba Cascade (VP30) Vinyl Tile — 84214 (9.0\" x 3.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 280}"
+  }
+ ]
+}
