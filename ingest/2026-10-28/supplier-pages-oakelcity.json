@@ -3,28 +3,28 @@
  "scope": "oakelcity",
  "supplier": "OAKEL CITY",
  "site": "https://oakelcity.com",
- "pulled_at": "2026-10-28T12:04:05.805123-04:00",
+ "pulled_at": "2026-10-28T12:14:24.523832-04:00",
  "status": "ok",
  "listing": {
   "method": {
    "official": "shopify",
-   "wordofmouth": null
+   "wordofmouth": "shopify"
   },
   "tried": {
    "official": {
     "shopify": "ok"
    },
    "wordofmouth": {
-    "shopify": "unavailable: HTTPError"
+    "shopify": "ok"
    }
   },
-  "requests": 188
+  "requests": 268
  },
  "batches": {},
  "images": {
   "dir": "ingest/2026-10-28/supplier-images/oakelcity",
   "counts": {
-   "downloaded": 133
+   "downloaded": 182
   }
  },
  "sources": {
@@ -43,28 +43,32 @@
   },
   "wordofmouth": {
    "site": "https://www.wordofmouthfloors.com",
-   "method": null,
+   "method": "shopify",
    "tried": {
-    "shopify": "unavailable: HTTPError"
+    "shopify": "ok"
    },
-   "pages": 0,
+   "pages": 129,
    "batches": null,
    "tiers": {
-    "none": 139
+    "exact": 27,
+    "ambiguous": 7,
+    "none": 105
    }
   }
  },
  "summary": {
   "records": 139,
-  "pages": 87,
-  "pages_matched": 54,
+  "pages": 216,
+  "pages_matched": 82,
   "tiers": {
    "official": {
     "exact": 64,
     "none": 75
    },
    "wordofmouth": {
-    "none": 139
+    "exact": 27,
+    "ambiguous": 7,
+    "none": 105
    }
   }
  },
@@ -3769,6 +3773,4312 @@
     }
    ],
    "source": "official"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-pallmann-p4-nl-engineered-hardwood-glue-16-kg-pail",
+   "title": "Oakel City Flooring - Pallmann P4 NL Engineered Hardwood Glue - 16 kg Pail",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Pallmann P4 NL Engineered Hardwood Glue - 16 kg Pail",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "Adhesive",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Adhesive",
+   "codes": [
+    "Oakel Pallmann P4 NL 16KG"
+   ],
+   "images": [],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-super-board-red-tape-24-roll-box",
+   "title": "Oakel City Flooring - Super Board Red Tape - 24 Roll Box",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Super Board Red Tape - 24 Roll Box",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Accessories",
+   "codes": [
+    "Oakel Super Board Red Tape 24RL"
+   ],
+   "images": [],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-floor-protection-super-board-1-0mm-316-sq-ft-roll",
+   "title": "Oakel City Flooring - Floor Protection Super Board 1.0mm - 316 sq ft Roll",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Floor Protection Super Board 1.0mm - 316 sq ft Roll",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Accessories",
+   "codes": [
+    "Oakel Super Board 1.0MM 316SF"
+   ],
+   "images": [],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-felt-surface-protection-150-sq-ft-roll",
+   "title": "Oakel City Flooring - Felt Surface Protection - 150 sq ft Roll",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Felt Surface Protection - 150 sq ft Roll",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Accessories",
+   "codes": [
+    "Oakel Felt Surface Protection 150SF"
+   ],
+   "images": [],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-3mm-eva-iic-74-stc-73-underlay",
+   "title": "Oakel City Flooring - 3MM EVA - IIC 74 STC 73 - UNDERLAY",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 3MM EVA - IIC 74 STC 73 - UNDERLAY",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY",
+    "UNDERLAYMENT"
+   ],
+   "product_type": "UNDERLAYMENT",
+   "codes": [
+    "Oakel 3MM EVA IIC74 STC73 Underlay"
+   ],
+   "images": [],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/motta-square-flush-stair-nose",
+   "title": "Motta - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Motta - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6509 Flush Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_0a13f375-8b36-4777-98a9-d2540ee76f76.png?v=1793131866",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/motta-reducer",
+   "title": "Motta - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Motta - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6509 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_841ce4ad-9364-4e4f-8061-3c2c27c4c50f.png?v=1793131863",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/motta-t-moulding",
+   "title": "Motta T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Motta T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6509 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_38a90ba7-2657-4475-ae77-a61702d77220.png?v=1793131860",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/havre-square-flush-stair-nose",
+   "title": "Havre - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Havre - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1216 Flush Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_7f3dfccc-82f5-426c-9922-b5f4452703c3.png?v=1793131857",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/havre-reducer",
+   "title": "Havre - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Havre - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1216 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_cedb9395-0711-49eb-8f2b-04d1269bb420.png?v=1793131854",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/havre-t-moulding",
+   "title": "Havre T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Havre T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1216 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_b5f27d2a-6f05-4b3a-8d6d-9a5d83f152b9.png?v=1793131851",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/hazel-square-flush-stair-nose",
+   "title": "Hazel - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Hazel - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1215 Flush Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_56fa17c4-50e1-4e60-a6ea-7b89964fed99.png?v=1793131848",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/hazel-reducer",
+   "title": "Hazel - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Hazel - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1215 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_cf6a1f21-4273-4821-9a5a-593c0f0f8f38.png?v=1793131845",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/hazel-t-moulding",
+   "title": "Hazel T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Hazel T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1215 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_e2b46fb7-fab0-4626-a871-e1ff904c930a.png?v=1793131842",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/valen-square-flush-stair-nose",
+   "title": "Valen - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Valen - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1211 Flush Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_ebc7b50b-8ee3-4160-8b77-5ace240b501f.png?v=1793131838",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/valen-reducer",
+   "title": "Valen - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Valen - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1211 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_5cbe6a33-91c0-410a-91b9-59d97cdd710a.png?v=1793131835",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/valen-t-moulding",
+   "title": "Valen T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Valen T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1211 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_79526399-a767-4156-8577-9615ff161fbf.png?v=1793131832",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/koa-square-flush-stair-nose",
+   "title": "Koa - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Koa - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1210 Flush Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_dbd04769-60a5-42cf-80b7-9e8eb870922c.png?v=1793131830",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/koa-reducer",
+   "title": "Koa - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Koa - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1210 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_3c9d19b6-27fe-4d62-87a0-b7eec4e5471f.png?v=1793131827",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/koa-t-moulding",
+   "title": "Koa T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Koa T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1210 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_d77957f9-b4f1-4bf9-8a7d-c87ac179d7c7.png?v=1793131823",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-herringbone-urban-grey-abc-grade",
+   "title": "Oakel City Flooring - Herringbone - Urban Grey - ABC Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Herringbone - Urban Grey - ABC Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "4\" - 4.9\"",
+    "9/16\"",
+    "ABC",
+    "BC",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "Grey",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - Herringbone - Urban Grey - ABC Grade"
+   ],
+   "images": [],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-herringbone-paradise-ab-grade",
+   "title": "Oakel City Flooring - Herringbone - Paradise - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Herringbone - Paradise - AB Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "4\" - 4.9\"",
+    "9/16\"",
+    "AB",
+    "BC",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - Herringbone - Paradise - AB Grade"
+   ],
+   "images": [],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-herringbone-fiorano-ab-grade",
+   "title": "Oakel City Flooring - Herringbone - Fiorano - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Herringbone - Fiorano - AB Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "4\" - 4.9\"",
+    "9/16\"",
+    "AB",
+    "BC",
+    "Beige",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - Herringbone - Fiorano - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/hb-fiorano-ab.jpg?v=1793131740",
+     "alt": "",
+     "width_hint": 1200,
+     "height_hint": 1200
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-herringbone-chester-walnut-abc-grade",
+   "title": "Oakel City Flooring - Herringbone - Chester Walnut - ABC Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Herringbone - Chester Walnut - ABC Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "4\" - 4.9\"",
+    "9/16\"",
+    "ABC",
+    "BC",
+    "Brown",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - Herringbone - Chester Walnut - ABC Grade"
+   ],
+   "images": [],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-american-oak-spa-ab-grade",
+   "title": "Oakel City Flooring - American Oak - Spa - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - American Oak - Spa - AB Grade",
+   "is_product": true,
+   "tags": [
+    "2.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "AB",
+    "American Oak",
+    "BC",
+    "Beige",
+    "ENGINEERED",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - American Oak - Spa - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/american-oak-spa-ab.jpg?v=1793131732",
+     "alt": "",
+     "width_hint": 1200,
+     "height_hint": 1200,
+     "sha1": "6389225faaf417a201f835d1a160f0914745ea83",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/6389225faaf417a201f835d1a160f0914745ea83.jpg",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/6389225faaf417a201f835d1a160f0914745ea83-read.jpg",
+     "width": 1200,
+     "height": 1200,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-american-oak-nurburgring-ab-grade",
+   "title": "Oakel City Flooring - American Oak - Nürburgring - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - American Oak - Nürburgring - AB Grade",
+   "is_product": true,
+   "tags": [
+    "2.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "AB",
+    "American Oak",
+    "BC",
+    "ENGINEERED",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - American Oak - Nürburgring - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/american-oak-nurburgring-ab.jpg?v=1793131729",
+     "alt": "",
+     "width_hint": 1200,
+     "height_hint": 1200
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-american-oak-monaco-ab-grade",
+   "title": "Oakel City Flooring - American Oak - Monaco - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - American Oak - Monaco - AB Grade",
+   "is_product": true,
+   "tags": [
+    "2.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "AB",
+    "American Oak",
+    "BC",
+    "Beige",
+    "ENGINEERED",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - American Oak - Monaco - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/american-oak-monaco-ab.jpg?v=1793131724",
+     "alt": "",
+     "width_hint": 1200,
+     "height_hint": 1200,
+     "sha1": "f36a2b43af85dd4135ebfa4306f4257939ef1218",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/f36a2b43af85dd4135ebfa4306f4257939ef1218.jpg",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/f36a2b43af85dd4135ebfa4306f4257939ef1218-read.jpg",
+     "width": 1200,
+     "height": 1200,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-american-oak-le-man-ab-grade",
+   "title": "Oakel City Flooring - American Oak - Le Man - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - American Oak - Le Man - AB Grade",
+   "is_product": true,
+   "tags": [
+    "2.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "AB",
+    "American Oak",
+    "BC",
+    "ENGINEERED",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - American Oak - Le Man - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/american-oak-le-man-ab.jpg?v=1793131719",
+     "alt": "",
+     "width_hint": 1200,
+     "height_hint": 1200
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-american-oak-indy-ab-grade",
+   "title": "Oakel City Flooring - American Oak - Indy - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - American Oak - Indy - AB Grade",
+   "is_product": true,
+   "tags": [
+    "2.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "AB",
+    "American Oak",
+    "BC",
+    "Beige",
+    "ENGINEERED",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - American Oak - Indy - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/american-oak-indy-ab.jpg?v=1793131715",
+     "alt": "",
+     "width_hint": 1200,
+     "height_hint": 1200,
+     "sha1": "02c6d128e8db45ede55e6bcafa0cfaa983546eeb",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/02c6d128e8db45ede55e6bcafa0cfaa983546eeb.jpg",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/02c6d128e8db45ede55e6bcafa0cfaa983546eeb-read.jpg",
+     "width": 1200,
+     "height": 1200,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-american-oak-imola-ab-grade",
+   "title": "Oakel City Flooring - American Oak - Imola - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - American Oak - Imola - AB Grade",
+   "is_product": true,
+   "tags": [
+    "2.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "AB",
+    "American Oak",
+    "BC",
+    "Beige",
+    "ENGINEERED",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - American Oak - Imola - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/american-oak-imola-ab.jpg?v=1793131710",
+     "alt": "",
+     "width_hint": 1200,
+     "height_hint": 1200,
+     "sha1": "1bdd2dbfd808f5e1d0cbae3d708532ba098c17a9",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/1bdd2dbfd808f5e1d0cbae3d708532ba098c17a9.jpg",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/1bdd2dbfd808f5e1d0cbae3d708532ba098c17a9-read.jpg",
+     "width": 1200,
+     "height": 1200,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-american-oak-chester-walnut-ab-grade",
+   "title": "Oakel City Flooring - American Oak - Chester Walnut - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - American Oak - Chester Walnut - AB Grade",
+   "is_product": true,
+   "tags": [
+    "2.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "AB",
+    "American Oak",
+    "BC",
+    "Brown",
+    "ENGINEERED",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - American Oak - Chester Walnut - AB Grade"
+   ],
+   "images": [],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-american-oak-cargo-ab-grade",
+   "title": "Oakel City Flooring - American Oak - Cargo - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - American Oak - Cargo - AB Grade",
+   "is_product": true,
+   "tags": [
+    "2.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "AB",
+    "American Oak",
+    "BC",
+    "ENGINEERED",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - American Oak - Cargo - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/american-oak-cargo-ab.jpg?v=1793131702",
+     "alt": "",
+     "width_hint": 1200,
+     "height_hint": 1200
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-shannon-fall-abc-grade",
+   "title": "Oakel City Flooring - 7 Series - Shannon Fall - ABC Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Shannon Fall - ABC Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "ABC",
+    "BC",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Shannon Fall - ABC Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-shannon-fall-abc.jpg?v=1793131698",
+     "alt": "",
+     "width_hint": 1200,
+     "height_hint": 1200
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-shannon-fall-ab-grade",
+   "title": "Oakel City Flooring - 7 Series - Shannon Fall - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Shannon Fall - AB Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "AB",
+    "BC",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Shannon Fall - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-shannon-fall-ab.jpg?v=1793131693",
+     "alt": "",
+     "width_hint": 1200,
+     "height_hint": 1200
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-pearl-abcd-grade",
+   "title": "Oakel City Flooring - 7 Series - Pearl - ABCD Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Pearl - ABCD Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "ABCD",
+    "BC",
+    "Beige",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Pearl - ABCD Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-pearl-ab_f7198a78-e79d-43bf-9852-2992c15adfcb.jpg?v=1793131689",
+     "alt": "",
+     "width_hint": 1200,
+     "height_hint": 1200
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-pearl-ab-grade",
+   "title": "Oakel City Flooring - 7 Series - Pearl - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Pearl - AB Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "AB",
+    "BC",
+    "Beige",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Pearl - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-pearl-ab.jpg?v=1793131684",
+     "alt": "",
+     "width_hint": 1200,
+     "height_hint": 1200
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-paradise-abc-grade",
+   "title": "Oakel City Flooring - 7 Series - Paradise - ABC Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Paradise - ABC Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "ABC",
+    "BC",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Paradise - ABC Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-paradise-abc.jpg?v=1793131679",
+     "alt": "",
+     "width_hint": 1200,
+     "height_hint": 1200,
+     "sha1": "a6fbd32d69c58f4229cdf4a95ae7b06118bfb856",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/a6fbd32d69c58f4229cdf4a95ae7b06118bfb856.jpg",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/a6fbd32d69c58f4229cdf4a95ae7b06118bfb856-read.jpg",
+     "width": 1200,
+     "height": 1200,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-paradise-ab-grade",
+   "title": "Oakel City Flooring - 7 Series - Paradise - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Paradise - AB Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "AB",
+    "BC",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Paradise - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-paradise-ab.jpg?v=1793131675",
+     "alt": "",
+     "width_hint": 1200,
+     "height_hint": 1200,
+     "sha1": "23d460ca72a4f9ae96b2a9d716e3c4e960bcf1f6",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/23d460ca72a4f9ae96b2a9d716e3c4e960bcf1f6.jpg",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/23d460ca72a4f9ae96b2a9d716e3c4e960bcf1f6-read.jpg",
+     "width": 1200,
+     "height": 1200,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-mocha-abc-grade",
+   "title": "Oakel City Flooring - 7 Series - Mocha - ABC Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Mocha - ABC Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "ABC",
+    "BC",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Mocha - ABC Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-mocha-abc.jpg?v=1793131670",
+     "alt": "",
+     "width_hint": 1200,
+     "height_hint": 1200,
+     "sha1": "8e0dd04679c2c6e00f54d64d4f3ba40c875a8352",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/8e0dd04679c2c6e00f54d64d4f3ba40c875a8352.jpg",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/8e0dd04679c2c6e00f54d64d4f3ba40c875a8352-read.jpg",
+     "width": 1200,
+     "height": 1200,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-fiorano-abc-grade",
+   "title": "Oakel City Flooring - 7 Series - Fiorano - ABC Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Fiorano - ABC Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "ABC",
+    "BC",
+    "Beige",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Fiorano - ABC Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-fiorano-abc.jpg?v=1793131665",
+     "alt": "",
+     "width_hint": 1200,
+     "height_hint": 1200,
+     "sha1": "c730ce2b43cef6f7052415bc048253ecf4abe2ec",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/c730ce2b43cef6f7052415bc048253ecf4abe2ec.jpg",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/c730ce2b43cef6f7052415bc048253ecf4abe2ec-read.jpg",
+     "width": 1200,
+     "height": 1200,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-fiorano-ab-grade",
+   "title": "Oakel City Flooring - 7 Series - Fiorano - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Fiorano - AB Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "AB",
+    "BC",
+    "Beige",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Fiorano - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-fiorano-ab.jpg?v=1793131661",
+     "alt": "",
+     "width_hint": 1200,
+     "height_hint": 1200,
+     "sha1": "356c2fc8a3094bb85b89dce085a480f58d94d5dc",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/356c2fc8a3094bb85b89dce085a480f58d94d5dc.jpg",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/356c2fc8a3094bb85b89dce085a480f58d94d5dc-read.jpg",
+     "width": 1200,
+     "height": 1200,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-chester-walnut-abc-grade",
+   "title": "Oakel City Flooring - 7 Series - Chester Walnut - ABC Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Chester Walnut - ABC Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "ABC",
+    "BC",
+    "Brown",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Chester Walnut - ABC Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-chester-walnut-abc.jpg?v=1793131656",
+     "alt": "",
+     "width_hint": 1200,
+     "height_hint": 1200
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-amber-abcd-grade",
+   "title": "Oakel City Flooring - 7 Series - Amber - ABCD Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Amber - ABCD Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "ABCD",
+    "BC",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Amber - ABCD Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-amber-abcd.jpg?v=1793131652",
+     "alt": "",
+     "width_hint": 1200,
+     "height_hint": 1200,
+     "sha1": "a682d7a92fae0e2d73d5fee51fdef8043b3bdd66",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/a682d7a92fae0e2d73d5fee51fdef8043b3bdd66.jpg",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/a682d7a92fae0e2d73d5fee51fdef8043b3bdd66-read.jpg",
+     "width": 1200,
+     "height": 1200,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-amber-ab-grade",
+   "title": "Oakel City Flooring - 7 Series - Amber - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Amber - AB Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "AB",
+    "BC",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Amber - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/7s-amber-ab.jpg?v=1793131648",
+     "alt": "",
+     "width_hint": 1200,
+     "height_hint": 1200,
+     "sha1": "e6abc89714a8c16c5e5935b177a11ec348eacc1e",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/e6abc89714a8c16c5e5935b177a11ec348eacc1e.jpg",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/e6abc89714a8c16c5e5935b177a11ec348eacc1e-read.jpg",
+     "width": 1200,
+     "height": 1200,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-herringbone-johnny-snow-ab-grade",
+   "title": "Oakel City Flooring - Herringbone - Johnny Snow - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Herringbone - Johnny Snow - AB Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "AB",
+    "ENGINEERED",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - Herringbone - Johnny Snow - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Oakel-City-Johnny-Snow.jpg?v=1789068859",
+     "alt": "",
+     "width_hint": 3000,
+     "height_hint": 3000
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-herringbone-erin-oak-ab-grade",
+   "title": "Oakel City Flooring - Herringbone - Erin Oak - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Herringbone - Erin Oak - AB Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "AB",
+    "ENGINEERED",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - Herringbone - Erin Oak - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Erin-Oak-Oakel-City.png?v=1789068853",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500,
+     "sha1": "13e1be30e92397f56f3c0121ad8907d8c9676262",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/13e1be30e92397f56f3c0121ad8907d8c9676262.png",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/13e1be30e92397f56f3c0121ad8907d8c9676262-read.jpg",
+     "width": 500,
+     "height": 500,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-herringbone-essence-ab-grade",
+   "title": "Oakel City Flooring - Herringbone - Essence - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Herringbone - Essence - AB Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "AB",
+    "ENGINEERED",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - Herringbone - Essence - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/OakelCity-Essence.jpg?v=1789068849",
+     "alt": "",
+     "width_hint": 3000,
+     "height_hint": 3000
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-expert-collection-havre",
+   "title": "Oakel City Flooring - Destiny Aqua Expert Collection - Havre",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Destiny Aqua Expert Collection - Havre",
+   "is_product": true,
+   "tags": [
+    "AC4",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "LAMINATE",
+   "codes": [
+    "AE1216"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Havre_final.jpg?v=1789068843",
+     "alt": "",
+     "width_hint": 1400,
+     "height_hint": 1400
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-expert-collection-hazel",
+   "title": "Oakel City Flooring - Destiny Aqua Expert Collection - Hazel",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Destiny Aqua Expert Collection - Hazel",
+   "is_product": true,
+   "tags": [
+    "AC4",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "LAMINATE",
+   "codes": [
+    "AE1215"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Hazel_final.jpg?v=1789068839",
+     "alt": "",
+     "width_hint": 1280,
+     "height_hint": 1280
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-expert-collection-valen",
+   "title": "Oakel City Flooring - Destiny Aqua Expert Collection - Valen",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Destiny Aqua Expert Collection - Valen",
+   "is_product": true,
+   "tags": [
+    "AC4",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "LAMINATE",
+   "codes": [
+    "AE1211"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Valen_final.jpg?v=1789068836",
+     "alt": "",
+     "width_hint": 1400,
+     "height_hint": 1400
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-expert-collection-koa",
+   "title": "Oakel City Flooring - Destiny Aqua Expert Collection - Koa",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Destiny Aqua Expert Collection - Koa",
+   "is_product": true,
+   "tags": [
+    "AC4",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "LAMINATE",
+   "codes": [
+    "AE1210"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Koa_final.jpg?v=1789068832",
+     "alt": "",
+     "width_hint": 1400,
+     "height_hint": 1400
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-pro-65-collection-motta",
+   "title": "Oakel City Flooring - Destiny Aqua Pro - 65 Collection - Motta",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Destiny Aqua Pro - 65 Collection - Motta",
+   "is_product": true,
+   "tags": [
+    ".5MM (20MIL)",
+    "7\" - 7.9\"",
+    "ghl",
+    "OAKEL CITY",
+    "SPC",
+    "Vinyl"
+   ],
+   "product_type": "SPC RIGID CORE VINYL",
+   "codes": [
+    "AP6509"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Motta_final.jpg?v=1789068822",
+     "alt": "",
+     "width_hint": 1400,
+     "height_hint": 1400
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-expert-collection-laguna",
+   "title": "Oakel City Flooring - Destiny Aqua Expert Collection - Laguna",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Destiny Aqua Expert Collection - Laguna",
+   "is_product": true,
+   "tags": [
+    "12MM",
+    "7\" - 7.9\"",
+    "AB",
+    "AC4",
+    "BC",
+    "ghl",
+    "LAMINATE",
+    "Light Brown",
+    "OAKEL CITY",
+    "ON",
+    "WATER RESISTANT LAMINATE"
+   ],
+   "product_type": "LAMINATE",
+   "codes": [
+    "AE1209"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Laguna.webp?v=1739391029",
+     "alt": "",
+     "width_hint": 1623,
+     "height_hint": 1622,
+     "sha1": "d149eb210d9b3cea395f2de5b2a5914019f43618",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/d149eb210d9b3cea395f2de5b2a5914019f43618.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/d149eb210d9b3cea395f2de5b2a5914019f43618-read.jpg",
+     "width": 1623,
+     "height": 1622,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Laguna2.webp?v=1739389201",
+     "alt": "",
+     "width_hint": 1180,
+     "height_hint": 1381,
+     "sha1": "271b5b570454152066ae5159481f6bb403d7ba21",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/271b5b570454152066ae5159481f6bb403d7ba21.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/271b5b570454152066ae5159481f6bb403d7ba21-read.jpg",
+     "width": 1180,
+     "height": 1381,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Laguna3.webp?v=1739389201",
+     "alt": "",
+     "width_hint": 1180,
+     "height_hint": 1381,
+     "sha1": "9b3fef2a1378a6bd57790b69a6023de0765dcba2",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/9b3fef2a1378a6bd57790b69a6023de0765dcba2.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/9b3fef2a1378a6bd57790b69a6023de0765dcba2-read.jpg",
+     "width": 1180,
+     "height": 1381,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Laguna4.webp?v=1739389201",
+     "alt": "",
+     "width_hint": 1180,
+     "height_hint": 1381,
+     "sha1": "271b5b570454152066ae5159481f6bb403d7ba21",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/271b5b570454152066ae5159481f6bb403d7ba21.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/271b5b570454152066ae5159481f6bb403d7ba21-read.jpg",
+     "width": 1180,
+     "height": 1381,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Laguna5.webp?v=1739389201",
+     "alt": "",
+     "width_hint": 1180,
+     "height_hint": 1381,
+     "sha1": "9b3fef2a1378a6bd57790b69a6023de0765dcba2",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/9b3fef2a1378a6bd57790b69a6023de0765dcba2.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/9b3fef2a1378a6bd57790b69a6023de0765dcba2-read.jpg",
+     "width": 1180,
+     "height": 1381,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-expert-collection-dawn-grey",
+   "title": "Oakel City Flooring - Destiny Aqua Expert Collection - Dawn Grey",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Destiny Aqua Expert Collection - Dawn Grey",
+   "is_product": true,
+   "tags": [
+    "12MM",
+    "7\" - 7.9\"",
+    "AB",
+    "AC4",
+    "BC",
+    "ghl",
+    "LAMINATE",
+    "Light Brown",
+    "OAKEL CITY",
+    "ON",
+    "WATER RESISTANT LAMINATE"
+   ],
+   "product_type": "LAMINATE",
+   "codes": [
+    "AE1208"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/DawnGrey.webp?v=1739388622",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500,
+     "sha1": "7063bf4d49f11c30b3ca8acc67150e5db9a79d9e",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/7063bf4d49f11c30b3ca8acc67150e5db9a79d9e.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/7063bf4d49f11c30b3ca8acc67150e5db9a79d9e-read.jpg",
+     "width": 500,
+     "height": 500,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/DawnGrey2.webp?v=1739388622",
+     "alt": "",
+     "width_hint": 1144,
+     "height_hint": 818,
+     "sha1": "1428068bb3db32f38ec60d054c9bf8b1dedf6025",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/1428068bb3db32f38ec60d054c9bf8b1dedf6025.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/1428068bb3db32f38ec60d054c9bf8b1dedf6025-read.jpg",
+     "width": 1144,
+     "height": 818,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-expert-collection-dublin",
+   "title": "Oakel City Flooring - Destiny Aqua Expert Collection - Dublin",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Destiny Aqua Expert Collection - Dublin",
+   "is_product": true,
+   "tags": [
+    "12MM",
+    "7\" - 7.9\"",
+    "AB",
+    "AC4",
+    "BC",
+    "Brown",
+    "ghl",
+    "LAMINATE",
+    "OAKEL CITY",
+    "ON",
+    "WATER RESISTANT LAMINATE"
+   ],
+   "product_type": "LAMINATE",
+   "codes": [
+    "AE1207"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Dublin.webp?v=1739388458",
+     "alt": "",
+     "width_hint": 493,
+     "height_hint": 488,
+     "sha1": "d3fd6746a799cd8a15b251b8af6890667089c8d4",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/d3fd6746a799cd8a15b251b8af6890667089c8d4.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/d3fd6746a799cd8a15b251b8af6890667089c8d4-read.jpg",
+     "width": 493,
+     "height": 488,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Dublin2_8c2cea38-3604-4ae8-819b-01d755b569ed.webp?v=1739388458",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572,
+     "sha1": "b2dd6585eb130b90209f79f1661338ebe76e1089",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/b2dd6585eb130b90209f79f1661338ebe76e1089.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/b2dd6585eb130b90209f79f1661338ebe76e1089-read.jpg",
+     "width": 801,
+     "height": 572,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Dublin3_7064007f-2546-4048-92c1-ea5f2f4a2b0f.webp?v=1739388458",
+     "alt": "",
+     "width_hint": 572,
+     "height_hint": 409,
+     "sha1": "c56433b9bda34e0dcc59dd2230193bde39b6ef81",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/c56433b9bda34e0dcc59dd2230193bde39b6ef81.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/c56433b9bda34e0dcc59dd2230193bde39b6ef81-read.jpg",
+     "width": 572,
+     "height": 409,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-expert-collection-riva",
+   "title": "Oakel City Flooring - Destiny Aqua Expert Collection - Riva",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Destiny Aqua Expert Collection - Riva",
+   "is_product": true,
+   "tags": [
+    "12MM",
+    "7\" - 7.9\"",
+    "AB",
+    "AC4",
+    "BC",
+    "Brown",
+    "ghl",
+    "LAMINATE",
+    "OAKEL CITY",
+    "ON",
+    "WATER RESISTANT LAMINATE"
+   ],
+   "product_type": "LAMINATE",
+   "codes": [
+    "AE1206"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Riva.jpg?v=1739387399",
+     "alt": "",
+     "width_hint": 493,
+     "height_hint": 493,
+     "sha1": "fad9fc29461e1c285b03024abf6815b2e3e6cccb",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/fad9fc29461e1c285b03024abf6815b2e3e6cccb.jpg",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/fad9fc29461e1c285b03024abf6815b2e3e6cccb-read.jpg",
+     "width": 493,
+     "height": 493,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Riva2.webp?v=1739387399",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572,
+     "sha1": "744e2f011a66a5eb8dfaff4292484b25d2916502",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/744e2f011a66a5eb8dfaff4292484b25d2916502.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/744e2f011a66a5eb8dfaff4292484b25d2916502-read.jpg",
+     "width": 801,
+     "height": 572,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Riva3.webp?v=1739387399",
+     "alt": "",
+     "width_hint": 572,
+     "height_hint": 409,
+     "sha1": "4e74a6019ec236e42543b66f1c5a6073affac50c",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/4e74a6019ec236e42543b66f1c5a6073affac50c.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/4e74a6019ec236e42543b66f1c5a6073affac50c-read.jpg",
+     "width": 572,
+     "height": 409,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-expert-collection-lidia",
+   "title": "Oakel City Flooring - Destiny Aqua Expert Collection - Lidia",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Destiny Aqua Expert Collection - Lidia",
+   "is_product": true,
+   "tags": [
+    "12MM",
+    "7\" - 7.9\"",
+    "AB",
+    "AC4",
+    "BC",
+    "ghl",
+    "LAMINATE",
+    "Light Brown",
+    "OAKEL CITY",
+    "ON",
+    "WATER RESISTANT LAMINATE"
+   ],
+   "product_type": "LAMINATE",
+   "codes": [
+    "AE1205"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Lidia.webp?v=1739387232",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500,
+     "sha1": "37d918312649a7e3325e52c50c2209a2c190b064",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/37d918312649a7e3325e52c50c2209a2c190b064.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/37d918312649a7e3325e52c50c2209a2c190b064-read.jpg",
+     "width": 500,
+     "height": 500,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/LidiaRS2.webp?v=1739387239",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572,
+     "sha1": "19a1e4a78f66b93339774b1d0a289f3005306c75",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/19a1e4a78f66b93339774b1d0a289f3005306c75.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/19a1e4a78f66b93339774b1d0a289f3005306c75-read.jpg",
+     "width": 801,
+     "height": 572,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/LidiaRS.webp?v=1739387239",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572,
+     "sha1": "68e238785a041367fd54fa2bc9ea91f1b0907ad0",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/68e238785a041367fd54fa2bc9ea91f1b0907ad0.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/68e238785a041367fd54fa2bc9ea91f1b0907ad0-read.jpg",
+     "width": 801,
+     "height": 572,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/3.webp?v=1739387232",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572,
+     "sha1": "f96efbcb20d9e9d5617de421c9c590e183e11277",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/f96efbcb20d9e9d5617de421c9c590e183e11277.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/f96efbcb20d9e9d5617de421c9c590e183e11277-read.jpg",
+     "width": 801,
+     "height": 572,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-expert-collection-fernando",
+   "title": "Oakel City Flooring - Destiny Aqua Expert Collection - Fernando",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Destiny Aqua Expert Collection - Fernando",
+   "is_product": true,
+   "tags": [
+    "12MM",
+    "7\" - 7.9\"",
+    "AB",
+    "AC4",
+    "BC",
+    "ghl",
+    "LAMINATE",
+    "Light Brown",
+    "OAKEL CITY",
+    "ON",
+    "WATER RESISTANT LAMINATE"
+   ],
+   "product_type": "LAMINATE",
+   "codes": [
+    "AE1203"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Fernando.webp?v=1739386571",
+     "alt": "",
+     "width_hint": 493,
+     "height_hint": 493,
+     "sha1": "671ad03b2ae5842d48b1a1e4cbd651ff3d273f0b",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/671ad03b2ae5842d48b1a1e4cbd651ff3d273f0b.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/671ad03b2ae5842d48b1a1e4cbd651ff3d273f0b-read.jpg",
+     "width": 493,
+     "height": 493,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Fernando2.webp?v=1739386571",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572,
+     "sha1": "1787e5fe67d60b15889fa3543e11a727bfd870ba",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/1787e5fe67d60b15889fa3543e11a727bfd870ba.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/1787e5fe67d60b15889fa3543e11a727bfd870ba-read.jpg",
+     "width": 801,
+     "height": 572,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-expert-collection-norway",
+   "title": "Oakel City Flooring - Destiny Aqua Expert Collection - Norway",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Destiny Aqua Expert Collection - Norway",
+   "is_product": true,
+   "tags": [
+    "12MM",
+    "7\" - 7.9\"",
+    "AB",
+    "AC4",
+    "BC",
+    "ghl",
+    "LAMINATE",
+    "OAKEL CITY",
+    "ON",
+    "WATER RESISTANT LAMINATE",
+    "White"
+   ],
+   "product_type": "LAMINATE",
+   "codes": [
+    "AE1202"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Norway1.webp?v=1739385881",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500,
+     "sha1": "477d5f26769cb0d4460c1b9309f85e9245474646",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/477d5f26769cb0d4460c1b9309f85e9245474646.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/477d5f26769cb0d4460c1b9309f85e9245474646-read.jpg",
+     "width": 500,
+     "height": 500,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Norway2.webp?v=1739385881",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572,
+     "sha1": "c7f58113f4a8a2369cc456b969f9b6eed6efad82",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/c7f58113f4a8a2369cc456b969f9b6eed6efad82.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/c7f58113f4a8a2369cc456b969f9b6eed6efad82-read.jpg",
+     "width": 801,
+     "height": 572,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-expert-collection-monet",
+   "title": "Oakel City Flooring - Destiny Aqua Expert Collection - Monet",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Destiny Aqua Expert Collection - Monet",
+   "is_product": true,
+   "tags": [
+    "12MM",
+    "7\" - 7.9\"",
+    "AB",
+    "AC4",
+    "BC",
+    "ghl",
+    "LAMINATE",
+    "Light Brown",
+    "OAKEL CITY",
+    "ON",
+    "WATER RESISTANT LAMINATE"
+   ],
+   "product_type": "LAMINATE",
+   "codes": [
+    "AE1201"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Money.webp?v=1739384689",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500,
+     "sha1": "6cb98a2197d8e0e5363244387b18c0ddee282b9b",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/6cb98a2197d8e0e5363244387b18c0ddee282b9b.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/6cb98a2197d8e0e5363244387b18c0ddee282b9b-read.jpg",
+     "width": 500,
+     "height": 500,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Monet2.webp?v=1739384689",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572,
+     "sha1": "9cb6d50607d425afaf42ac246bd5b4bb9745e9d9",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/9cb6d50607d425afaf42ac246bd5b4bb9745e9d9.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/9cb6d50607d425afaf42ac246bd5b4bb9745e9d9-read.jpg",
+     "width": 801,
+     "height": 572,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-pro-65-collection-cape",
+   "title": "Oakel City Flooring - Destiny Aqua Pro - 65 Collection - Cape",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Destiny Aqua Pro - 65 Collection - Cape",
+   "is_product": true,
+   "tags": [
+    ".5MM (20MIL)",
+    "6.5MM",
+    "7\" - 7.9\"",
+    "AB",
+    "BC",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY",
+    "ON",
+    "SPC"
+   ],
+   "product_type": "SPC RIGID CORE VINYL",
+   "codes": [
+    "AP6508"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Cape.jpg?v=1739466318",
+     "alt": "",
+     "width_hint": 713,
+     "height_hint": 713
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Cape2.webp?v=1739466317",
+     "alt": "",
+     "width_hint": 1000,
+     "height_hint": 667
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Cape3.webp?v=1739466317",
+     "alt": "",
+     "width_hint": 1000,
+     "height_hint": 667
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-pro-65-collection-florence",
+   "title": "Oakel City Flooring - Destiny Aqua Pro - 65 Collection - Florence",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Destiny Aqua Pro - 65 Collection - Florence",
+   "is_product": true,
+   "tags": [
+    ".5MM (20MIL)",
+    "6.5MM",
+    "7\" - 7.9\"",
+    "AB",
+    "BC",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY",
+    "ON",
+    "SPC"
+   ],
+   "product_type": "SPC RIGID CORE VINYL",
+   "codes": [
+    "AP6507"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/F1.webp?v=1739466241",
+     "alt": "",
+     "width_hint": 713,
+     "height_hint": 713
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/F2.webp?v=1739466241",
+     "alt": "",
+     "width_hint": 1000,
+     "height_hint": 667
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/F3.webp?v=1739466241",
+     "alt": "",
+     "width_hint": 1000,
+     "height_hint": 667
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-pro-65-collection-havana",
+   "title": "Oakel City Flooring - Destiny Aqua Pro - 65 Collection - Havana",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Destiny Aqua Pro - 65 Collection - Havana",
+   "is_product": true,
+   "tags": [
+    ".5MM (20MIL)",
+    "6.5MM",
+    "7\" - 7.9\"",
+    "AB",
+    "BC",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY",
+    "ON",
+    "SPC"
+   ],
+   "product_type": "SPC RIGID CORE VINYL",
+   "codes": [
+    "AP6506"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/H1.webp?v=1739466156",
+     "alt": "",
+     "width_hint": 713,
+     "height_hint": 713
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/H2.webp?v=1739466156",
+     "alt": "",
+     "width_hint": 1000,
+     "height_hint": 667
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/H3.webp?v=1739466156",
+     "alt": "",
+     "width_hint": 1000,
+     "height_hint": 667
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-pro-65-collection-tallinn",
+   "title": "Oakel City Flooring - Destiny Aqua Pro - 65 Collection - Tallinn",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Destiny Aqua Pro - 65 Collection - Tallinn",
+   "is_product": true,
+   "tags": [
+    ".5MM (20MIL)",
+    "6.5MM",
+    "7\" - 7.9\"",
+    "AB",
+    "BC",
+    "ghl",
+    "Grey",
+    "OAKEL CITY",
+    "ON",
+    "SPC"
+   ],
+   "product_type": "SPC RIGID CORE VINYL",
+   "codes": [
+    "AP6505"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/T1.webp?v=1739466073",
+     "alt": "",
+     "width_hint": 713,
+     "height_hint": 713
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/T2.webp?v=1739466073",
+     "alt": "",
+     "width_hint": 1000,
+     "height_hint": 667
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/T3.webp?v=1739466073",
+     "alt": "",
+     "width_hint": 1000,
+     "height_hint": 695
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-pro-65-collection-beirut",
+   "title": "Oakel City Flooring - Destiny Aqua Pro - 65 Collection - Beirut",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Destiny Aqua Pro - 65 Collection - Beirut",
+   "is_product": true,
+   "tags": [
+    ".5MM (20MIL)",
+    "6.5MM",
+    "7\" - 7.9\"",
+    "AB",
+    "BC",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY",
+    "ON",
+    "SPC"
+   ],
+   "product_type": "SPC RIGID CORE VINYL",
+   "codes": [
+    "AP6503"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/B1.webp?v=1739465910",
+     "alt": "",
+     "width_hint": 713,
+     "height_hint": 713
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/B2.webp?v=1739465910",
+     "alt": "",
+     "width_hint": 1000,
+     "height_hint": 667
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/B3.webp?v=1739465910",
+     "alt": "",
+     "width_hint": 1000,
+     "height_hint": 667
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-pro-65-collection-suva",
+   "title": "Oakel City Flooring - Destiny Aqua Pro - 65 Collection - Suva",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Destiny Aqua Pro - 65 Collection - Suva",
+   "is_product": true,
+   "tags": [
+    ".5MM (20MIL)",
+    "6.5MM",
+    "7\" - 7.9\"",
+    "AB",
+    "BC",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY",
+    "ON",
+    "SPC"
+   ],
+   "product_type": "SPC RIGID CORE VINYL",
+   "codes": [
+    "AP6502"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Suva.webp?v=1739465796",
+     "alt": "",
+     "width_hint": 713,
+     "height_hint": 713
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SuvaRS.webp?v=1739465797",
+     "alt": "",
+     "width_hint": 1000,
+     "height_hint": 667
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Suva3.webp?v=1739465796",
+     "alt": "",
+     "width_hint": 1000,
+     "height_hint": 667
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-destiny-aqua-pro-65-collection-alpha",
+   "title": "Oakel City Flooring - Destiny Aqua Pro - 65 Collection - Alpha",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Destiny Aqua Pro - 65 Collection - Alpha",
+   "is_product": true,
+   "tags": [
+    ".5MM (20MIL)",
+    "6.5MM",
+    "7\" - 7.9\"",
+    "AB",
+    "BC",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY",
+    "ON",
+    "SPC"
+   ],
+   "product_type": "SPC RIGID CORE VINYL",
+   "codes": [
+    "AP6501"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Alpha1.webp?v=1739465586",
+     "alt": "",
+     "width_hint": 493,
+     "height_hint": 493
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Alpha2.webp?v=1739465586",
+     "alt": "",
+     "width_hint": 1000,
+     "height_hint": 667
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-herringbone-summer-dawn-ab-grade",
+   "title": "Oakel City Flooring - Herringbone - Summer Dawn - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Herringbone - Summer Dawn - AB Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "4\" - 4.9\"",
+    "9/16\"",
+    "BC",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY",
+    "ON"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - Herringbone - Summer Dawn - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SummerDawnHB.webp?v=1739382899",
+     "alt": "",
+     "width_hint": 493,
+     "height_hint": 493
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SDHB.webp?v=1739382996",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2.webp?v=1739382996",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SummerDawn-HB2.webp?v=1739382996",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SummerDawnHB3.webp?v=1739382996",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-black-walnut-victoria-ab-grade",
+   "title": "Oakel City Flooring - Black Walnut - Victoria - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - Black Walnut - Victoria - AB Grade",
+   "is_product": true,
+   "tags": [
+    "2.0MM",
+    "7\" - 7.9\"",
+    "BC",
+    "Brown",
+    "ENGINEERED",
+    "ghl",
+    "OAKEL CITY",
+    "ON",
+    "Walnut",
+    "Yes"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - Black Walnut - Victoria - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Victoria-Walnut.webp?v=1739383507",
+     "alt": "",
+     "width_hint": 493,
+     "height_hint": 493
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-9-series-wheat-berry-ab-grade",
+   "title": "Oakel City Flooring - 9 Series - Wheat Berry - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 9 Series - Wheat Berry - AB Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "9\" - 9.9\"",
+    "9/16\"",
+    "BC",
+    "Brown",
+    "CLEARANCE",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "OAKEL CITY",
+    "ON"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 9 Series - Wheat Berry - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/WheatBerry_08ca52db-b7f0-4f9c-a207-6c3fd3dbb945.webp?v=1739381751",
+     "alt": "",
+     "width_hint": 1946,
+     "height_hint": 1946
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-9-series-urban-grey-abc-grade",
+   "title": "Oakel City Flooring - 9 Series - Urban Grey - ABC Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 9 Series - Urban Grey - ABC Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "9\" - 9.9\"",
+    "9/16\"",
+    "BC",
+    "Brown",
+    "CLEARANCE",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "OAKEL CITY",
+    "ON"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 9 Series - Urban Grey - ABC Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/UrbanGrey_961af9c7-dc4c-45c2-a6df-4d0f248fb6e8.webp?v=1739381840",
+     "alt": "",
+     "width_hint": 1946,
+     "height_hint": 1946,
+     "sha1": "ee43d7bd6c4eb1aa3b581350c5e093dd6bfcf951",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/ee43d7bd6c4eb1aa3b581350c5e093dd6bfcf951.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/ee43d7bd6c4eb1aa3b581350c5e093dd6bfcf951-read.jpg",
+     "width": 1946,
+     "height": 1946,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-9-series-essence-ab-grade",
+   "title": "Oakel City Flooring - 9 Series - Essence - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 9 Series - Essence - AB Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "9\" - 9.9\"",
+    "9/16\"",
+    "BC",
+    "CLEARANCE",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY",
+    "ON"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 9 Series - Essence - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Essence.webp?v=1739381291",
+     "alt": "",
+     "width_hint": 1946,
+     "height_hint": 1946,
+     "sha1": "9df6bcc535c001cdba99829561fab738b8b403c3",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/9df6bcc535c001cdba99829561fab738b8b403c3.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/9df6bcc535c001cdba99829561fab738b8b403c3-read.jpg",
+     "width": 1946,
+     "height": 1946,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-urban-grey-abc-grade",
+   "title": "Oakel City Flooring - 7 Series - Urban Grey - ABC Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Urban Grey - ABC Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "BC",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY",
+    "ON"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Urban Grey - ABC Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/UrbanGrey.webp?v=1739380856",
+     "alt": "",
+     "width_hint": 1946,
+     "height_hint": 1946,
+     "sha1": "ee43d7bd6c4eb1aa3b581350c5e093dd6bfcf951",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/ee43d7bd6c4eb1aa3b581350c5e093dd6bfcf951.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/ee43d7bd6c4eb1aa3b581350c5e093dd6bfcf951-read.jpg",
+     "width": 1946,
+     "height": 1946,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-tylor-sky-abc-grade",
+   "title": "Oakel City Flooring - 7 Series - Tylor Sky - ABC Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Tylor Sky - ABC Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "BC",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "Grey",
+    "OAKEL CITY",
+    "ON"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Tylor Sky - ABC Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Tylor1.webp?v=1739380541",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500,
+     "sha1": "498fc7c3667a5bb9ba97b5e3b172809983cc1013",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/498fc7c3667a5bb9ba97b5e3b172809983cc1013.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/498fc7c3667a5bb9ba97b5e3b172809983cc1013-read.jpg",
+     "width": 500,
+     "height": 500,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Tylor6.webp?v=1739380541",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572,
+     "sha1": "edd94a59710c062a4f3e1dd1afdc4d9115a2b5f3",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/edd94a59710c062a4f3e1dd1afdc4d9115a2b5f3.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/edd94a59710c062a4f3e1dd1afdc4d9115a2b5f3-read.jpg",
+     "width": 801,
+     "height": 572,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Tylor5.webp?v=1739380542",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572,
+     "sha1": "d2343e9cb445c413e6293ff8800dfa0a411f0a58",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/d2343e9cb445c413e6293ff8800dfa0a411f0a58.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/d2343e9cb445c413e6293ff8800dfa0a411f0a58-read.jpg",
+     "width": 801,
+     "height": 572,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Tylor4.webp?v=1739380541",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572,
+     "sha1": "36239fcdad89119a1c8022f0d363f32bbb50f5f7",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/36239fcdad89119a1c8022f0d363f32bbb50f5f7.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/36239fcdad89119a1c8022f0d363f32bbb50f5f7-read.jpg",
+     "width": 801,
+     "height": 572,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Tylor3.webp?v=1739380542",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572,
+     "sha1": "70edb10e82c5c510b9449182ad14bff44b9ac190",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/70edb10e82c5c510b9449182ad14bff44b9ac190.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/70edb10e82c5c510b9449182ad14bff44b9ac190-read.jpg",
+     "width": 801,
+     "height": 572,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Tylor2.webp?v=1739380541",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572,
+     "sha1": "f1e5f2c11ba42004affb9391f7d1b4357560ad89",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/f1e5f2c11ba42004affb9391f7d1b4357560ad89.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/f1e5f2c11ba42004affb9391f7d1b4357560ad89-read.jpg",
+     "width": 801,
+     "height": 572,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-portobello-abc-grade",
+   "title": "Oakel City Flooring - 7 Series - Portobello - ABC Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Portobello - ABC Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "BC",
+    "Brown",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "OAKEL CITY",
+    "ON"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Portobello - ABC Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Portobello.webp?v=1739379366",
+     "alt": "",
+     "width_hint": 493,
+     "height_hint": 493,
+     "sha1": "011ca58991d6869faa37359bb88b524601b27c95",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/011ca58991d6869faa37359bb88b524601b27c95.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/011ca58991d6869faa37359bb88b524601b27c95-read.jpg",
+     "width": 493,
+     "height": 493,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-johnny-snow-abc-grade",
+   "title": "Oakel City Flooring - 7 Series - Johnny Snow - ABC Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Johnny Snow - ABC Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "BC",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "Grey",
+    "OAKEL CITY",
+    "ON"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Johnny Snow - ABC Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/JohnnySnow.webp?v=1738796031",
+     "alt": "",
+     "width_hint": 713,
+     "height_hint": 713
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-driftwood-abc-grade",
+   "title": "Oakel City Flooring - 7 Series - Driftwood - ABC Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Driftwood - ABC Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "BC",
+    "Brown",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "OAKEL CITY",
+    "ON"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Driftwood - ABC Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Driftwood_cef24a69-4e43-4330-a245-2909d8e40936.webp?v=1738795680",
+     "alt": "",
+     "width_hint": 713,
+     "height_hint": 713,
+     "sha1": "3e9f2135eedb0aeae9f117759599662242fd11c1",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/3e9f2135eedb0aeae9f117759599662242fd11c1.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/3e9f2135eedb0aeae9f117759599662242fd11c1-read.jpg",
+     "width": 713,
+     "height": 713,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-summer-dawn-abcd-grade",
+   "title": "Oakel City Flooring - 7 Series - Summer Dawn - ABCD Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Summer Dawn - ABCD Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "BC",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY",
+    "ON",
+    "Yes"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Summer Dawn - ABCD Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SummerDawn.webp?v=1738793096",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SummerDawn2.webp?v=1738793096",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SummerDawn3.webp?v=1738793096",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SummerDawn4.webp?v=1738793096",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SummerDawn5.webp?v=1738793096",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SummerDawn6.webp?v=1738793096",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-summer-dawn-ab-grade",
+   "title": "Oakel City Flooring - 7 Series - Summer Dawn - AB Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Summer Dawn - AB Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "BC",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY",
+    "ON",
+    "Yes"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Summer Dawn - AB Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SummerDawn_7948fb24-7922-4c1c-a0f7-ddd82326f048.webp?v=1738793204",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SummerDawn2_146ba22f-4146-4614-a4bc-e5ad3650aaa2.webp?v=1738793204",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SummerDawn3_4e710cda-3b84-42a0-ac1f-84241ee1b0fe.webp?v=1738793204",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SummerDawn4_5f15eb4e-d049-4942-9409-6f0a170c5482.webp?v=1738793204",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SummerDawn5_b8125edc-34ff-4b92-8d68-4b186bc88c63.webp?v=1738793204",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SummerDawn6_6a4c1a42-b66f-4a6b-acc6-6623aa6e1148.webp?v=1738793204",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-golden-prime-abc-grade",
+   "title": "Oakel City Flooring - 7 Series - Golden Prime - ABC Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Golden Prime - ABC Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "BC",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY",
+    "ON",
+    "Yes"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Golden Prime - ABC Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/GoldenPrime.webp?v=1738792548",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/GoldenPrime1.webp?v=1738792548",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/GoldenPrime2.webp?v=1738792548",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/GoldenPrime3.webp?v=1738792548",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/GoldenPrime4.webp?v=1738792548",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/GoldenPrime5.webp?v=1738792548",
+     "alt": "",
+     "width_hint": 801,
+     "height_hint": 572
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/oakel-city-flooring-7-series-erin-oak-abc-grade",
+   "title": "Oakel City Flooring - 7 Series - Erin Oak - ABC Grade",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Oakel City Flooring - 7 Series - Erin Oak - ABC Grade",
+   "is_product": true,
+   "tags": [
+    "3.0MM",
+    "7\" - 7.9\"",
+    "9/16\"",
+    "BC",
+    "ENGINEERED",
+    "European White Oak",
+    "ghl",
+    "Light Brown",
+    "OAKEL CITY",
+    "ON",
+    "Yes"
+   ],
+   "product_type": "ENGINEERED",
+   "codes": [
+    "Oakel City Flooring - 7 Series - Erin Oak - ABC Grade"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/ErinOak.webp?v=1738792165",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500,
+     "sha1": "fe1b331e9ac2cfde22da36e109a8fdda9762c1a2",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/fe1b331e9ac2cfde22da36e109a8fdda9762c1a2.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/fe1b331e9ac2cfde22da36e109a8fdda9762c1a2-read.jpg",
+     "width": 500,
+     "height": 500,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/ErinOak2.webp?v=1738792165",
+     "alt": "",
+     "width_hint": 1000,
+     "height_hint": 714,
+     "sha1": "2ffed2a6412808c3a4c88d31394223794029ede8",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/2ffed2a6412808c3a4c88d31394223794029ede8.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/2ffed2a6412808c3a4c88d31394223794029ede8-read.jpg",
+     "width": 1000,
+     "height": 714,
+     "status": "downloaded"
+    },
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/ErinOak3.webp?v=1738792165",
+     "alt": "",
+     "width_hint": 1000,
+     "height_hint": 714,
+     "sha1": "a5dee7859d998d9266185a9e252918f15e3152cd",
+     "path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/a5dee7859d998d9266185a9e252918f15e3152cd.webp",
+     "read_path": "/home/user/titan-agents-repo/ingest/2026-10-28/supplier-images/oakelcity/a5dee7859d998d9266185a9e252918f15e3152cd-read.jpg",
+     "width": 1000,
+     "height": 714,
+     "status": "downloaded"
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/lazio-t-moulding",
+   "title": "Lazio T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Lazio T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6517 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_17f176d9-b659-4d8d-bb1f-f0195f0cd6d4.png?v=1712427387",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/cape-t-moulding",
+   "title": "Cape T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Cape T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6508 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_17f176d9-b659-4d8d-bb1f-f0195f0cd6d4.png?v=1712427387",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/florence-t-moulding",
+   "title": "Florence T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Florence T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6507 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_17f176d9-b659-4d8d-bb1f-f0195f0cd6d4.png?v=1712427387",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/havana-t-moulding",
+   "title": "Havana T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Havana T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6506 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_17f176d9-b659-4d8d-bb1f-f0195f0cd6d4.png?v=1712427387",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/tallinn-t-moulding",
+   "title": "Tallinn T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Tallinn T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6505 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_17f176d9-b659-4d8d-bb1f-f0195f0cd6d4.png?v=1712427387",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/beirut-t-moulding-1",
+   "title": "Beirut T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Beirut T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6503 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_17f176d9-b659-4d8d-bb1f-f0195f0cd6d4.png?v=1712427387",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/suva-t-moulding",
+   "title": "Suva T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Suva T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6502 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_17f176d9-b659-4d8d-bb1f-f0195f0cd6d4.png?v=1712427387",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/alpha-t-moulding",
+   "title": "Alpha T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Alpha T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6501 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_17f176d9-b659-4d8d-bb1f-f0195f0cd6d4.png?v=1712427387",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/lazio-reducer",
+   "title": "Lazio - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Lazio - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6517 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_4be7fa8b-1de4-4a10-9165-59bcacbbb2fd.png?v=1712429026",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/cape-reducer",
+   "title": "Cape - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Cape - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6508 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_4be7fa8b-1de4-4a10-9165-59bcacbbb2fd.png?v=1712429026",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/florence-reducer",
+   "title": "Florence - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Florence - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6507 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_4be7fa8b-1de4-4a10-9165-59bcacbbb2fd.png?v=1712429026",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/havana-reducer-1",
+   "title": "Havana - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Havana - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6506 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_4be7fa8b-1de4-4a10-9165-59bcacbbb2fd.png?v=1712429026",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/tallinn-reducer",
+   "title": "Tallinn - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Tallinn - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6505 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_4be7fa8b-1de4-4a10-9165-59bcacbbb2fd.png?v=1712429026",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/beirut-reducer-1",
+   "title": "Beirut - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Beirut - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6503 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_4be7fa8b-1de4-4a10-9165-59bcacbbb2fd.png?v=1712429026",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/suva-reducer",
+   "title": "Suva - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Suva - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6502 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_4be7fa8b-1de4-4a10-9165-59bcacbbb2fd.png?v=1712429026",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/alpha-reducer-1",
+   "title": "Alpha - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Alpha - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6501 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_4be7fa8b-1de4-4a10-9165-59bcacbbb2fd.png?v=1712429026",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/lazio-square-flush-stair-nose",
+   "title": "Lazio - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Lazio - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6517 Flush Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_226f68ec-87d6-4378-8d8c-b995cd2c023c.png?v=1712428312",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/cape-square-flush-stair-nose",
+   "title": "Cape - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Cape - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6508 Flush Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_226f68ec-87d6-4378-8d8c-b995cd2c023c.png?v=1712428312",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/florence-square-flush-stair-nose",
+   "title": "Florence - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Florence - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6507 Flush Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_226f68ec-87d6-4378-8d8c-b995cd2c023c.png?v=1712428312",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/havana-square-flush-stair-nose",
+   "title": "Havana - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Havana - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6506 Flush Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_226f68ec-87d6-4378-8d8c-b995cd2c023c.png?v=1712428312",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/tallinn-square-flush-stair-nose",
+   "title": "Tallinn - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Tallinn - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6505 Flush Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_226f68ec-87d6-4378-8d8c-b995cd2c023c.png?v=1712428312",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/beirut-square-flush-stair-nose",
+   "title": "Beirut - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Beirut - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6503 Flush Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_226f68ec-87d6-4378-8d8c-b995cd2c023c.png?v=1712428312",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/suva-square-flush-stair-nose",
+   "title": "Suva - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Suva - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6502 Flush Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_226f68ec-87d6-4378-8d8c-b995cd2c023c.png?v=1712428312",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/alpha-square-flush-stair-nose",
+   "title": "Alpha - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Alpha - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AP6501 Flush Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_226f68ec-87d6-4378-8d8c-b995cd2c023c.png?v=1712428312",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/laguna-square-flush-stair-nose",
+   "title": "LAGUNA - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "LAGUNA - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1209 Flush Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_226f68ec-87d6-4378-8d8c-b995cd2c023c.png?v=1712428312",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/dawn-grey-square-flush-stair-nose",
+   "title": "Dawn Grey - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Dawn Grey - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1208 Flush Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_226f68ec-87d6-4378-8d8c-b995cd2c023c.png?v=1712428312",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/dublin-square-flush-stair-nose",
+   "title": "Dublin - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Dublin - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1207 Flush Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_226f68ec-87d6-4378-8d8c-b995cd2c023c.png?v=1712428312",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/riva-square-flush-stair-nose",
+   "title": "Riva - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Riva - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1206 Flush Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_226f68ec-87d6-4378-8d8c-b995cd2c023c.png?v=1712428312",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/lidia-square-flush-stair-nose",
+   "title": "Lidia - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Lidia - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1205 Flush Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_226f68ec-87d6-4378-8d8c-b995cd2c023c.png?v=1712428312",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/fernando-square-flush-stair-nose",
+   "title": "Fernando - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Fernando - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1203 Flush Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_226f68ec-87d6-4378-8d8c-b995cd2c023c.png?v=1712428312",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/norway-square-flush-stair-nose",
+   "title": "Norway - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Norway - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1202 Flush Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_226f68ec-87d6-4378-8d8c-b995cd2c023c.png?v=1712428312",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/monet-square-flush-stair-nose",
+   "title": "Monet - Square Flush Stair Nose",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Monet - Square Flush Stair Nose",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1201 - Square Stair Nose"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/311.41.43AM_226f68ec-87d6-4378-8d8c-b995cd2c023c.png?v=1712428312",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/laguna-reducer",
+   "title": "Laguna - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Laguna - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1209 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_4be7fa8b-1de4-4a10-9165-59bcacbbb2fd.png?v=1712429026",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/dawn-grey-reducer",
+   "title": "Dawn Grey - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Dawn Grey - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1208 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_4be7fa8b-1de4-4a10-9165-59bcacbbb2fd.png?v=1712429026",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/dublin-reducer-2",
+   "title": "Dublin  - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Dublin  - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1207 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_4be7fa8b-1de4-4a10-9165-59bcacbbb2fd.png?v=1712429026",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/riva-reducer",
+   "title": "Riva - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Riva - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1206 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_4be7fa8b-1de4-4a10-9165-59bcacbbb2fd.png?v=1712429026",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/lidia-reducer",
+   "title": "Lidia - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Lidia - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1205 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_4be7fa8b-1de4-4a10-9165-59bcacbbb2fd.png?v=1712429026",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/fernando-reducer",
+   "title": "Fernando - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Fernando - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1203 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_4be7fa8b-1de4-4a10-9165-59bcacbbb2fd.png?v=1712429026",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/norway-reducer",
+   "title": "Norway - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Norway - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1202 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_4be7fa8b-1de4-4a10-9165-59bcacbbb2fd.png?v=1712429026",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/monet-reducer",
+   "title": "Monet - Reducer",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Monet - Reducer",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1201 Reducer"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/2_4be7fa8b-1de4-4a10-9165-59bcacbbb2fd.png?v=1712429026",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/laguna-t-moulding",
+   "title": "Laguna T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Laguna T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1209 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_17f176d9-b659-4d8d-bb1f-f0195f0cd6d4.png?v=1712427387",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/dawn-t-moulding",
+   "title": "Dawn Grey T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Dawn Grey T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1208 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_17f176d9-b659-4d8d-bb1f-f0195f0cd6d4.png?v=1712427387",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/dublin-t-moulding-2",
+   "title": "Dublin T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Dublin T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1207 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_17f176d9-b659-4d8d-bb1f-f0195f0cd6d4.png?v=1712427387",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/riva-t-moulding",
+   "title": "Riva T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Riva T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1206 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_17f176d9-b659-4d8d-bb1f-f0195f0cd6d4.png?v=1712427387",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/lidia-t-moulding",
+   "title": "Lidia T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Lidia T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1205 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_17f176d9-b659-4d8d-bb1f-f0195f0cd6d4.png?v=1712427387",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/fernando-t-moulding",
+   "title": "Fernando T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Fernando T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1203 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_17f176d9-b659-4d8d-bb1f-f0195f0cd6d4.png?v=1712427387",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/norway-t-moulding",
+   "title": "Norway T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Norway T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1202 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_17f176d9-b659-4d8d-bb1f-f0195f0cd6d4.png?v=1712427387",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
+  },
+  {
+   "url": "https://www.wordofmouthfloors.com/products/monet-t-moulding",
+   "title": "Monet T-Moulding",
+   "h1": "",
+   "og_title": "",
+   "product_name": "Monet T-Moulding",
+   "is_product": true,
+   "tags": [
+    "Accessories",
+    "ghl",
+    "OAKEL CITY"
+   ],
+   "product_type": "Molding",
+   "codes": [
+    "AE1201 T Moulding"
+   ],
+   "images": [
+    {
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/1_17f176d9-b659-4d8d-bb1f-f0195f0cd6d4.png?v=1712427387",
+     "alt": "",
+     "width_hint": 500,
+     "height_hint": 500
+    }
+   ],
+   "source": "wordofmouth"
   }
  ]
 }
