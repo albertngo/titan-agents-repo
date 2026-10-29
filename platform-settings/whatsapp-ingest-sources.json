@@ -20,9 +20,11 @@
   },
 
   "archive": {
-    "_comment": "Long-term, searchable history so Albert can ask about past supplier, project and sales discussions (his main use, 2026-10-29). The 14-day capture buffer is for the daily ingest only. Where the archive lives is an open decision (methods/whatsapp-ingest.md); until it is built, questions can only reach back 14 days (capture) or to whatever the 2Chat API keeps for 1-to-1 chats.",
-    "location": null,
-    "retention": null
+    "_comment": "Long-term, searchable history so Albert can ask about past supplier, project and sales discussions (his main use, 2026-10-29). Albert's choice the same day: private Notion databases in Albert's Notion Directory, business and personal kept separate, retention indefinite. Written only by the Make scenario, never by an agent; read in chat with the Notion connector (methods/whatsapp-ingest.md, Answering questions). Notion data-source ids are not secrets. The personal archive is read only when Albert asks about personal chats.",
+    "location": "notion",
+    "retention": "indefinite",
+    "business": {"database": "https://app.notion.com/p/0748cf33090442acb40f9cbcd205cbe3", "data_source": "collection://5fac42ae-8404-4920-b986-36691eb82c2f"},
+    "personal": {"database": "https://app.notion.com/p/e8ae2f0b2f8543b69d97c2f060cf9cd7", "data_source": "collection://556698dc-f509-455e-bea8-d9f6c5838efe"}
   },
 
   "chats": {

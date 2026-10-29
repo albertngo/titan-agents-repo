@@ -191,5 +191,14 @@ class TestNotionGate(unittest.TestCase):
             self.assertIn(t, text)
 
 
+class TestArchive(unittest.TestCase):
+    def test_business_and_personal_archives_are_separate(self):
+        a = SETTINGS["archive"]
+        self.assertEqual(a["location"], "notion")
+        self.assertTrue(a["business"]["data_source"].startswith("collection://"))
+        self.assertTrue(a["personal"]["data_source"].startswith("collection://"))
+        self.assertNotEqual(a["business"]["data_source"], a["personal"]["data_source"])
+
+
 if __name__ == "__main__":
     unittest.main()

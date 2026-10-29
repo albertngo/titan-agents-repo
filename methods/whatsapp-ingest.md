@@ -26,6 +26,30 @@ hand on 2026-10-29). The daily ingest comes second. That means:
   list only one at a time, on an explicit yes (the WhatsApp gate in
   `contracts/notion-task-schema.md`).
 
+## Answering questions (the archive)
+
+Albert chose on 2026-10-29: two **private Notion databases** in Albert's Notion
+Directory, kept indefinitely, and written only by the Make scenario.
+
+- **WhatsApp Archive — Business:** `collection://5fac42ae-8404-4920-b986-36691eb82c2f`
+- **WhatsApp Archive — Personal:** `collection://556698dc-f509-455e-bea8-d9f6c5838efe`
+
+Each row is one message: Message (title), Text, Sent At, Chat, Chat Key, Group,
+Direction, Sender Name, Sender Number, Media Type, Message UUID.
+
+When Albert asks about a discussion ("what did Sidco say about the 806 restock?"):
+
+1. Query the **business** archive with `notion-query-data-sources`, narrowing by `Chat`
+   (e.g. `LIKE '%SIDCO%'`), the `date:Sent At:start` range and `Text LIKE '%806%'`. Read
+   the thread in order of `Sent At`.
+2. Read the **personal** archive only when Albert asks about his personal number or a
+   chat that lives there. Never mix its rows into a business answer unprompted.
+3. Cite what you found with chat, date and sender. These answers stay in chat. Copying a
+   personal row anywhere staff can see is ruled out by the WhatsApp gate.
+
+The 14-day Make data store is only the buffer the daily ingest reads. It is not an
+archive.
+
 ## Why two lanes
 
 Both numbers are connected to 2Chat, a third-party app. 2Chat's API returns 1-to-1
@@ -69,9 +93,6 @@ decides otherwise.
 
 ## Open decisions (Albert)
 
-- **Where the long-term archive lives**, so questions can reach back months. The
-  options are a private Notion database only Albert can see, written by the same Make
-  scenario; a longer-lived Make data store; or a private Airtable base.
 
 - Should business-number chats default to **team** (staff already see them in the shared
   2Chat inbox) or stay **private**? Flipping it is a dated vault decision.
