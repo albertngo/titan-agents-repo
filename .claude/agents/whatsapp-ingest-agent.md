@@ -55,10 +55,19 @@ Never emit a type not listed here; adding a type is an edit to this table first.
 | `supplier-return` | A return or credit raised in a supplier chat. `normal`. |
 | `supplier-payment` | A supplier asks for payment or to collect ("request for payment", "when can I come and collect"). Populate `amount_cents` when an amount is stated. `high`. |
 | `customer` | A 1-to-1 chat with a customer or prospect: quote request, scheduling, complaint, warranty. `high` when unanswered past `unanswered_threshold_hours` or a complaint. |
+| `project` | A client project group (client + Titan staff/installers): scope changes, selections, schedule, site issues, payment talk. Name the project or address when the chat makes it clear. `high` for a complaint, a deficiency, a schedule slip or a payment dispute. |
+| `other` | Anything business-relevant that fits no row above: a rep's promo, a trade contact, a referral, a loose order. Use it rather than forcing a wrong type or dropping it. |
 | `staff` | A staff or internal group: who is picking up what, job updates, blockers. `high` only for a blocker or a safety issue. |
 | `personal` | Personal-number traffic that is business-relevant (a supplier or customer writing to Albert's own number). Purely personal chats produce **no item**: count them in `metrics.personal_skipped` only. |
 | `rollup` | The single aggregate item covering overflow past the 50-item cap. |
 | — | Spam, broadcasts and "ok 👍" acknowledgements produce no item. Count them in `metrics.noise_skipped`. |
+
+**Classify from context, not from a list.** Titan's chats are open-ended: supplier
+groups, client project groups, staff groups, 1-to-1 customers, and new kinds as they
+appear. Decide each chat's kind from who is in it and what is discussed. A registry
+`kind` overrides you; the keyword hints only break ties. A chat can carry more than one
+kind of event (a project group can raise a supplier order). Type each item by its event,
+not by the chat.
 
 Group by chat and day: one item per distinct event, not one per message. A supplier
 thread where Titan asks "available?", gets "yes", and then says "picking up now" is one
@@ -88,6 +97,12 @@ whether to mark it `ghl_covered`.
   from the settings file. Both channels default to `"private"` today.
 - **The personal channel is always `"private"`.** Never `"team"`, whatever the content.
 - An item may escalate to `"private"`, never relax to `"team"` below its channel default.
+- **No WhatsApp item ever reaches the staff Notion board** (Albert 2026-10-29,
+  `contracts/notion-task-schema.md`, WhatsApp gate). The `raw_ref` channel segment is
+  what notion-sync gates on, so never omit it or write the wrong channel.
+- On the personal number, only write an item when the chat is clearly business (a
+  supplier, a customer, a project). When unsure, skip it and count it in
+  `personal_skipped`. Never summarize a personal conversation, even in `extensions`.
 
 ## Privacy — the repo is public
 
@@ -121,7 +136,7 @@ rules as items. Nothing in it is the only copy of anything in the brief.
 ## Metrics
 
 Always include: `messages_scanned`, `chats_active`, `supplier_events`,
-`supplier_payment_requests`, `customer`, `unanswered_customer`, `staff`,
+`supplier_payment_requests`, `customer`, `unanswered_customer`, `project`, `staff`, `other`,
 `personal_skipped`, `noise_skipped`, `ghl_covered_skipped`, plus `scanned_business`,
 `scanned_personal`, `lane_capture` and `lane_api`, so a silent lane or channel shows
 in the brief.

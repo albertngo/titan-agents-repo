@@ -9,6 +9,23 @@ Agent: `.claude/agents/whatsapp-ingest-agent.md` · Registry:
 `platform-settings/whatsapp-ingest-sources.json` · Scripts: `scripts/whatsapp_pull.py`,
 `scripts/twochat_client.py` · Tests: `tests/test_whatsapp_ingest.py`.
 
+## What it is for (Albert, 2026-10-29)
+
+The main use is **asking questions** about past discussions: what was ordered or
+promised in a supplier group, what a client agreed to in a project group, and pulling
+those details into sales, orders and payments (e.g. the Sidco statement check done by
+hand on 2026-10-29). The daily ingest comes second. That means:
+
+- **Open-ended chats.** Supplier groups, client project groups, staff groups and
+  1-to-1 customers, with more kinds as they appear. The agent classifies from context,
+  and the registry only overrides.
+- **A long-term archive** is needed. The 14-day capture buffer can't answer "what did
+  Sidco say in September". Where it lives is an open decision (below).
+- **Personal chats never reach staff.** No `whatsapp` item ever goes to the staff
+  Notion board, from either number. Personal-number items reach Albert's private to-do
+  list only one at a time, on an explicit yes (the WhatsApp gate in
+  `contracts/notion-task-schema.md`).
+
 ## Why two lanes
 
 Both numbers are connected to 2Chat, a third-party app. 2Chat's API returns 1-to-1
@@ -51,6 +68,10 @@ decides otherwise.
 | 5 | One manual run, then add to `/daily-ingest` step 2 and the step 5 ledger | after 1–2 |
 
 ## Open decisions (Albert)
+
+- **Where the long-term archive lives**, so questions can reach back months. The
+  options are a private Notion database only Albert can see, written by the same Make
+  scenario; a longer-lived Make data store; or a private Airtable base.
 
 - Should business-number chats default to **team** (staff already see them in the shared
   2Chat inbox) or stay **private**? Flipping it is a dated vault decision.

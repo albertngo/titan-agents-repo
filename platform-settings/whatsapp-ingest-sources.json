@@ -15,12 +15,18 @@
 
   "channels": {
     "_comment": "Which connected numbers are read. sensitivity is the default for every item from that channel. personal is private with no override, ever (genuinely personal: vault CONVENTIONS, Visibility rule 4). business is private as the fail-safe until Albert decides whether staff already see these chats in the shared 2Chat inbox (open question in methods/whatsapp-ingest.md); flipping it to team is a dated vault decision.",
-    "business": {"enabled": true, "sensitivity": "private"},
-    "personal": {"enabled": true, "sensitivity": "private", "locked": true}
+    "business": {"enabled": true, "sensitivity": "private", "notion_team_destination": false},
+    "personal": {"enabled": true, "sensitivity": "private", "locked": true, "notion_team_destination": false}
+  },
+
+  "archive": {
+    "_comment": "Long-term, searchable history so Albert can ask about past supplier, project and sales discussions (his main use, 2026-10-29). The 14-day capture buffer is for the daily ingest only. Where the archive lives is an open decision (methods/whatsapp-ingest.md); until it is built, questions can only reach back 14 days (capture) or to whatever the 2Chat API keeps for 1-to-1 chats.",
+    "location": null,
+    "retention": null
   },
 
   "chats": {
-    "_comment": "Per-chat overrides, keyed by chat_key from the pull. kind is one of supplier | customer | staff | personal | other. ghl_covered: true skips a 1-to-1 chat GHL already ingests as TYPE_WHATSAPP, so a customer is never counted twice. label is a display name only. A chat may escalate sensitivity to private, never relax it below its channel's default. Unlisted chats are classified by the agent from content and the keyword lists below.",
+    "_comment": "Per-chat overrides, keyed by chat_key from the pull. kind is one of supplier | customer | project | staff | personal | other (client project groups are `project`). ghl_covered: true skips a 1-to-1 chat GHL already ingests as TYPE_WHATSAPP, so a customer is never counted twice. label is a display name only. A chat may escalate sensitivity to private, never relax it below its channel's default. Unlisted chats are classified by the agent from content and the keyword lists below.",
     "_example": {"kind": "supplier", "label": "Titan Flooring - SIDCO", "sensitivity": "private", "ghl_covered": false}
   },
 

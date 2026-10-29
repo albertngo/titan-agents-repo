@@ -168,5 +168,28 @@ class TestRegistry(unittest.TestCase):
         self.assertIn("analysis/cache/", (REPO_ROOT / ".gitignore").read_text())
 
 
+class TestNotionGate(unittest.TestCase):
+    """No WhatsApp item ever reaches the staff Notion board (Albert 2026-10-29)."""
+
+    def test_contract_carries_the_gate(self):
+        text = (REPO_ROOT / "contracts/notion-task-schema.md").read_text()
+        self.assertIn("WhatsApp: never the team board", text)
+        self.assertIn('IF source == "whatsapp"                                ⇒  never the team destination', text)
+
+    def test_notion_sync_applies_the_gate(self):
+        text = (REPO_ROOT / ".claude/commands/notion-sync.md").read_text()
+        self.assertIn("Apply the WhatsApp gate too", text)
+
+    def test_no_channel_allows_the_team_board(self):
+        for name, ch in SETTINGS["channels"].items():
+            if not name.startswith("_"):
+                self.assertIs(ch.get("notion_team_destination"), False, name)
+
+    def test_agent_types_cover_projects_and_catch_all(self):
+        text = (REPO_ROOT / ".claude/agents/whatsapp-ingest-agent.md").read_text()
+        for t in ("`project`", "`other`", "`supplier-pickup`", "`customer`"):
+            self.assertIn(t, text)
+
+
 if __name__ == "__main__":
     unittest.main()
