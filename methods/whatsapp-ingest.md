@@ -61,8 +61,8 @@ Designed first, and dropped the same day (2026-10-29):
 At the time 2Chat's API looked like it had no group-history endpoint. Its MCP server
 (`get_whatsapp_group_messages`) shows the API does serve group messages, so copying
 them only cost Make operations: about 4 per message against the Core plan's
-40,000 a month. The two Notion databases exist empty in Albert's Notion Directory and
-await his OK to trash. Meta's WhatsApp Cloud API was rejected outright: history arrives
+40,000 a month. The two Notion databases were created empty in Albert's Notion
+Directory and trashed on his yes the same day (restorable from Notion's Trash). Meta's WhatsApp Cloud API was rejected outright: history arrives
 only by webhook, connecting the business number can't be undone, and it can't reach
 the personal number.
 
@@ -117,4 +117,3 @@ The pull ran on both numbers: 37 messages in 72 h (34 business, 3 personal) acro
 
 ## Open decisions (Albert)
 
-- Trash the two empty Notion archive databases? (Notion's trash is reversible.)
