@@ -1,7 +1,7 @@
 """Tests for the WhatsApp ingest (scripts/twochat_client.py, scripts/whatsapp_pull.py).
 
 The guarantees pinned here:
-- Neither file can write to WhatsApp, 2Chat or Make: no write verbs, no request body,
+- Neither file can write to WhatsApp or 2Chat: no write verbs, no request body,
   every request is a GET.
 - api.p.2chat.io is spelled in one file only.
 - Phone numbers never leave the pull unhashed, and the personal channel is never team.
@@ -40,27 +40,12 @@ class TestNoWritePath(unittest.TestCase):
         cl = tc.TwoChatClient(api_key="k")
         self.assertEqual(cl._request("https://x/y").get_method(), "GET")
 
-    def test_make_store_read_is_get(self):
-        seen = []
-
-        class Resp:
-            def __enter__(self):
-                return self
-
-            def __exit__(self, *a):
-                return False
-
-            def read(self):
-                return b'{"records": []}'
-
-        def fake_open(req, timeout=None):
-            seen.append(req.get_method())
-            return Resp()
-
-        with mock.patch.object(wp.urllib.request, "urlopen", fake_open), \
-                mock.patch.object(wp.json, "load", lambda r: json.loads(r.read())):
-            wp.make_get("https://us2.make.com/api/v2/data-stores/1/data", "t")
-        self.assertEqual(seen, ["GET"])
+    def test_no_make_or_notion_path(self):
+        # 2026-10-29: 2Chat is the only source; the Make capture lane was removed.
+        for rel in self.FILES:
+            src = (REPO_ROOT / rel).read_text()
+            for token in ("make.com", "MAKE_API", "data-stores", "api.notion.com"):
+                self.assertNotIn(token, src, f"{rel} references {token}")
 
     def test_2chat_host_spelled_once(self):
         hits = [p.name for p in (REPO_ROOT / "scripts").glob("*.py")
@@ -83,7 +68,7 @@ class TestNormalize(unittest.TestCase):
         return base
 
     def test_numbers_are_hashed_not_emitted(self):
-        m = wp.normalize(self.raw(), "business", "capture", SALT, {})
+        m = wp.normalize(self.raw(), "business", SALT, {})
         blob = json.dumps(m)
         self.assertNotIn("9055550101", blob)
         self.assertNotIn("555-0101", blob)
@@ -97,68 +82,107 @@ class TestNormalize(unittest.TestCase):
 
     def test_one_to_one_chat_key_is_a_hash(self):
         m = wp.normalize(self.raw(is_group=False, chat_uuid="+19055550199",
-                                  remote_phone_number="+19055550199"), "business", "api", SALT, {})
+                                  remote_phone_number="+19055550199"), "business", SALT, {})
         self.assertFalse(m["is_group"])
         self.assertNotIn("9055550199", json.dumps(m))
         self.assertEqual(m["chat_key"], wp.hash_number("+19055550199", SALT))
 
     def test_registry_override_applies(self):
         chats = {"WAGabc": {"kind": "supplier", "sensitivity": "private", "ghl_covered": False}}
-        m = wp.normalize(self.raw(), "business", "capture", SALT, chats)
+        m = wp.normalize(self.raw(), "business", SALT, chats)
         self.assertEqual(m["kind"], "supplier")
 
     def test_direction_inferred_from_sent_by(self):
-        m = wp.normalize(self.raw(direction=None, sent_by="user"), "business", "api", SALT, {})
+        m = wp.normalize(self.raw(direction=None, sent_by="user"), "business", SALT, {})
         self.assertEqual(m["direction"], "out")
 
-    def test_2chat_webhook_group_payload(self):
+    def test_2chat_group_payload(self):
         raw = {"uuid": "U1", "created_at": "2026-10-29T15:00:00Z", "sent_by": "contact",
                "message": {"text": "pickup done"},
                "group": {"uuid": "WAG42", "wa_group_name": "Titan Flooring - SIDCO"},
                "participant": {"phone_number": "+19055550101", "pushname": "Angad"}}
-        m = wp.normalize(raw, "business", "capture", SALT, {})
+        m = wp.normalize(raw, "business", SALT, {})
         self.assertTrue(m["is_group"])
         self.assertEqual((m["chat_key"], m["chat_name"], m["sender_name"], m["direction"]),
                          ("WAG42", "Titan Flooring - SIDCO", "Angad", "in"))
         self.assertNotIn("9055550101", json.dumps(m))
 
-    def test_2chat_webhook_direct_payload(self):
+    def test_2chat_direct_payload(self):
         raw = {"uuid": "U2", "created_at": "2026-10-29T15:00:00Z", "sent_by": "user",
                "message": {"text": "on our way"}, "remote_phone_number": "+19055550199",
                "contact": {"first_name": "Dawn", "last_name": "G"}}
-        m = wp.normalize(raw, "business", "api", SALT, {})
+        m = wp.normalize(raw, "business", SALT, {})
         self.assertFalse(m["is_group"])
         self.assertEqual((m["chat_name"], m["direction"]), ("Dawn G", "out"))
 
     def test_no_uuid_is_dropped(self):
-        self.assertIsNone(wp.normalize({"text": "x"}, "business", "api", SALT, {}))
+        self.assertIsNone(wp.normalize({"text": "x"}, "business", SALT, {}))
 
 
-class TestMerge(unittest.TestCase):
-    def test_dedupe_prefers_capture(self):
-        api = {"message_uuid": "A", "lane": "api", "sent_at": "2026-10-29T10:00:00+00:00", "chat_name": None}
-        cap = dict(api, lane="capture", chat_name="SIDCO")
-        out = wp.merge([[api], [cap]])
-        self.assertEqual(len(out), 1)
-        self.assertEqual(out[0]["lane"], "capture")
+class FakeClient:
+    def __init__(self, direct, groups, group_msgs, fail_group=None):
+        self.direct, self.groups_, self.group_msgs, self.fail_group = direct, groups, group_msgs, fail_group
 
-    def test_capture_window_filter(self):
-        now = datetime.now(timezone.utc)
-        rec = lambda k, ts: {"key": k, "data": {"chat_uuid": "WAGx", "is_group": True,
-                                                  "direction": "in", "sent_at": ts.isoformat(),
-                                                  "text": "t", "channel": "business"}}
-        page = {"records": [rec("new", now - timedelta(hours=1)), rec("old", now - timedelta(days=3))]}
-        env = {"MAKE_API_TOKEN": "t", "MAKE_API_HOST": "us2.make.com", "WHATSAPP_LOG_DATASTORE_ID": "1"}
-        with mock.patch.dict(os.environ, env), mock.patch.object(wp, "make_get", lambda u, t: page):
-            out, err = wp.pull_capture(now - timedelta(hours=24), SALT, {})
-        self.assertIsNone(err)
+    def messages(self, number):
+        return self.direct
+
+    def groups(self, number):
+        return self.groups_
+
+    def group_messages(self, uuid):
+        if uuid == self.fail_group:
+            raise tc.TwoChatError("HTTP 404 on GET group messages", code=404)
+        return self.group_msgs.get(uuid, [])
+
+
+class TestPull(unittest.TestCase):
+    def setUp(self):
+        self.now = datetime.now(timezone.utc)
+        self.env = mock.patch.dict(os.environ, {"TWOCHAT_BUSINESS_NUMBER": "+19055550000"})
+        self.env.start()
+
+    def tearDown(self):
+        self.env.stop()
+
+    def msg(self, uuid, hours_ago, **kw):
+        d = {"uuid": uuid, "created_at": (self.now - timedelta(hours=hours_ago)).isoformat(),
+             "sent_by": "contact", "message": {"text": "t"}}
+        d.update(kw)
+        return d
+
+    def test_groups_are_read_and_named_from_the_listing(self):
+        client = FakeClient(
+            direct=[self.msg("D1", 1, remote_phone_number="+19055550199")],
+            groups=[{"uuid": "WAG1", "wa_group_name": "Titan Flooring - SIDCO"}],
+            group_msgs={"WAG1": [self.msg("G1", 2, participant={"phone_number": "+19055550101"})]})
+        out, errors = wp.pull(self.now - timedelta(hours=24), SALT, {}, ["business"], client=client)
+        self.assertEqual(errors, [])
+        g = [m for m in out if m["is_group"]]
+        self.assertEqual([(m["chat_key"], m["chat_name"]) for m in g], [("WAG1", "Titan Flooring - SIDCO")])
+        self.assertEqual(len(out), 2)
+
+    def test_window_filter(self):
+        client = FakeClient(direct=[self.msg("new", 1), self.msg("old", 72)], groups=[], group_msgs={})
+        out, _ = wp.pull(self.now - timedelta(hours=24), SALT, {}, ["business"], client=client)
         self.assertEqual([m["message_uuid"] for m in out], ["new"])
 
-    def test_capture_not_configured_is_reported(self):
-        with mock.patch.dict(os.environ, {}, clear=True):
-            out, err = wp.pull_capture(datetime.now(timezone.utc), SALT, {})
-        self.assertEqual(out, [])
-        self.assertIn("MAKE_API_TOKEN", err)
+    def test_one_failing_group_is_isolated(self):
+        client = FakeClient(direct=[self.msg("D1", 1)],
+                            groups=[{"uuid": "WAG1", "wa_group_name": "A"}, {"uuid": "WAG2", "wa_group_name": "B"}],
+                            group_msgs={"WAG2": [self.msg("G2", 1)]}, fail_group="WAG1")
+        out, errors = wp.pull(self.now - timedelta(hours=24), SALT, {}, ["business"], client=client)
+        self.assertEqual(len(errors), 1)
+        self.assertIn("group A", errors[0])
+        self.assertEqual({m["message_uuid"] for m in out}, {"D1", "G2"})
+
+    def test_missing_number_is_reported_not_fatal(self):
+        client = FakeClient(direct=[], groups=[], group_msgs={})
+        out, errors = wp.pull(self.now, SALT, {}, ["personal"], client=client)
+        self.assertIn("TWOCHAT_PERSONAL_NUMBER not set", errors[0])
+
+    def test_dedupe(self):
+        m = {"message_uuid": "A", "sent_at": "2026-10-29T10:00:00+00:00"}
+        self.assertEqual(len(wp.dedupe([m, dict(m)])), 1)
 
 
 class TestRegistry(unittest.TestCase):
@@ -211,12 +235,11 @@ class TestNotionGate(unittest.TestCase):
 
 
 class TestArchive(unittest.TestCase):
-    def test_business_and_personal_archives_are_separate(self):
+    def test_2chat_is_the_archive(self):
         a = SETTINGS["archive"]
-        self.assertEqual(a["location"], "notion")
-        self.assertTrue(a["business"]["data_source"].startswith("collection://"))
-        self.assertTrue(a["personal"]["data_source"].startswith("collection://"))
-        self.assertNotEqual(a["business"]["data_source"], a["personal"]["data_source"])
+        self.assertEqual(a["location"], "2chat")
+        self.assertNotIn("business", a)
+        self.assertNotIn("personal", a)
 
 
 if __name__ == "__main__":

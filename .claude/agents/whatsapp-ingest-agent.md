@@ -23,9 +23,9 @@ and stop.
 python3 scripts/whatsapp_pull.py --hours <window> --out analysis/cache/whatsapp/<date>.json
 ```
 
-Then Read that file. It has `status`, `errors[]`, `count`, `counts_by_lane`,
-`counts_by_channel` and `messages[]`, one record per message: `message_uuid`, `lane`
-(`capture` = Make webhook log, `api` = 2Chat API), `channel` (`business` / `personal`),
+Then Read that file. It has `status`, `errors[]`, `count`, `groups`,
+`counts_by_channel` and `messages[]`, one record per message: `message_uuid`,
+`channel` (`business` / `personal`),
 `chat_key`, `chat_name`, `is_group`, `kind`, `sensitivity`, `ghl_covered`,
 `peer_hash` / `peer_last4`, `sender_hash` / `sender_last4`, `sender_name`, `direction`
 (`in` / `out`), `sent_at` (UTC), `text`, `media_type`.
@@ -41,8 +41,8 @@ dies on scheduled runs. Budget: one script call on a normal day.
 
 `window_hours` back from now. Look back up to 7 days for the last `whatsapp.json` with
 `status` ok/partial; if it is older than the window, widen `--hours` to cover the gap,
-capped at `max_catchup_days`, and say so in `needs_attention`. The capture store keeps
-14 days, so a catch-up beyond that is impossible; say so rather than pretend.
+capped at `max_catchup_days`, and say so in `needs_attention`. 2Chat keeps the history,
+so a catch-up only needs a wider `--hours`.
 
 ## Scope — item types (the complete vocabulary)
 
@@ -80,7 +80,7 @@ question: if no `out` message follows in the same `chat_key` within
 `unanswered_threshold_hours`, it is unanswered. `high` for customers, plus a
 `needs_attention` line ("<chat_name or last-4> — <what they asked> — no reply in N h").
 It is a heuristic: write "no reply found", never "ignored". If the pull has no `out`
-messages at all for a channel, outbound capture is not working. Say so in
+messages at all for a channel, 2Chat is not returning your sent messages. Say so in
 `needs_attention` and emit no unanswered flags for that channel rather than flagging
 everything.
 
@@ -138,13 +138,13 @@ rules as items. Nothing in it is the only copy of anything in the brief.
 Always include: `messages_scanned`, `chats_active`, `supplier_events`,
 `supplier_payment_requests`, `customer`, `unanswered_customer`, `project`, `staff`, `other`,
 `personal_skipped`, `noise_skipped`, `ghl_covered_skipped`, plus `scanned_business`,
-`scanned_personal`, `lane_capture` and `lane_api`, so a silent lane or channel shows
+`scanned_personal` and `groups_scanned`, so a silent number or group shows
 in the brief.
 
 ## Failure policy
 
-One lane or channel failing while the other returns data ⇒ `status: "partial"`, naming
-the gap. Missing credentials (`TWOCHAT_API_KEY`, `MAKE_API_TOKEN`, `REQUESTER_ID_SALT`)
+One number or group failing while the rest return data ⇒ `status: "partial"`, naming
+the gap. Missing credentials (`TWOCHAT_API_KEY`, `REQUESTER_ID_SALT`)
 ⇒ report a **setup gap**, never "WhatsApp is down". The pull failing outright ⇒
 `status: "error"` with the script's error. Never crash without writing the file. A failed
 run must not block sibling ingesters.
@@ -152,5 +152,5 @@ run must not block sibling ingesters.
 ## Done means
 
 File written and valid. Reply to the orchestrator with: status, counts by type,
-unanswered-customer count, per-channel and per-lane counts, and the single most urgent
+unanswered-customer count, per-channel and group counts, and the single most urgent
 item.

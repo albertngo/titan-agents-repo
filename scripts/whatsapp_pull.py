@@ -2,18 +2,17 @@
 """
 Read-only WhatsApp puller for whatsapp-ingest-agent (via 2Chat).
 
-Two lanes, merged and deduped on the 2Chat message uuid:
+2Chat is the only source and the only store: it holds the messages for both connected
+numbers, 1-to-1 and group chats. This script reads them through
+scripts/twochat_client.py (GET only), for both numbers:
 
-  capture  The Make scenario "2Chat -> WhatsApp Log" receives 2Chat's instant
-           webhooks (1-to-1 and group messages, both connected numbers) and writes
-           one record per message into a Make data store. This script reads that
-           store with GET only. It is the only lane that sees group messages:
-           2Chat documents no group-history endpoint.
-  api      scripts/twochat_client.py (GET only) reads 1-to-1 messages straight from
-           2Chat, as a backstop for anything the webhook missed.
+  1-to-1   GET /open/whatsapp/messages/{number}
+  groups   GET /open/whatsapp/groups/{number}, then each group's messages
 
-Each lane and each connected number fails on its own: one failure makes the run
-`partial`, never `error`, as long as anything came back.
+Each number, and each group, fails on its own: one failure makes the run `partial`,
+never `error`, as long as anything came back. (A Make capture scenario and a Notion
+archive were designed first and dropped on 2026-10-29: 2Chat already keeps the history,
+group chats included, so nothing needs copying. See methods/whatsapp-ingest.md.)
 
 Output (stdout, or --out) holds the full message text, because the agent needs it to
 summarize. Always point --out under analysis/cache/whatsapp/ (gitignored). The
@@ -23,12 +22,10 @@ Phone numbers are emitted only as sha256(REQUESTER_ID_SALT + digits) plus the la
 
 Usage:
     python3 scripts/whatsapp_pull.py --hours 24 --out analysis/cache/whatsapp/2026-10-29.json
-    python3 scripts/whatsapp_pull.py --hours 24 --lane capture
+    python3 scripts/whatsapp_pull.py --hours 720 --channel business --out analysis/cache/whatsapp/q.json
 
 Env (see .env.example):
-    TWOCHAT_API_KEY, TWOCHAT_BUSINESS_NUMBER, TWOCHAT_PERSONAL_NUMBER
-    MAKE_API_TOKEN, MAKE_API_HOST, WHATSAPP_LOG_DATASTORE_ID
-    REQUESTER_ID_SALT
+    TWOCHAT_API_KEY, TWOCHAT_BUSINESS_NUMBER, TWOCHAT_PERSONAL_NUMBER, REQUESTER_ID_SALT
 """
 
 import argparse
@@ -37,9 +34,6 @@ import json
 import os
 import re
 import sys
-import urllib.error
-import urllib.parse
-import urllib.request
 from datetime import datetime, timedelta, timezone
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -121,12 +115,17 @@ def first(d, *keys):
     return None
 
 
-def normalize(raw, channel, lane, salt, chats):
-    """One message from either lane -> the record the agent reads.
+def normalize(raw, channel, salt, chats, group=None):
+    """One 2Chat message -> the record the agent reads. `group` is the group record
+    from the groups listing, passed in for messages read per group (their payload may
+    not repeat the group's uuid or name).
 
-    Field names are read defensively (2Chat's payloads are not fully documented):
-    the capture lane's names are the ones our own Make scenario writes; the api lane
-    tries 2Chat's likely spellings. The first live probe pins them."""
+    Field names are read defensively: 2Chat documents them only partly (the Make app's
+    trigger schemas are the best reference). The first live read pins them."""
+    if group:
+        raw = dict(raw)
+        raw.setdefault("group", {"uuid": group.get("uuid"),
+                                 "wa_group_name": group.get("wa_group_name") or group.get("name")})
     uuid = first(raw, "message_uuid", "uuid", "id", "message.id")
     if not uuid:
         return None
@@ -145,7 +144,6 @@ def normalize(raw, channel, lane, salt, chats):
     chat_key = (str(chat_uuid) if is_group else hash_number(chat_uuid, salt)) if chat_uuid else None
     return {
         "message_uuid": str(uuid),
-        "lane": lane,
         "channel": channel,
         "chat_key": chat_key,
         "chat_name": first(raw, "chat_name", "group_name", "wa_group_name", "group.wa_group_name", "contact.name") or (None if is_group else contact_name) or reg.get("label"),
@@ -165,89 +163,61 @@ def normalize(raw, channel, lane, salt, chats):
     }
 
 
-# -- capture lane: Make data store (GET only) -------------------------------
+# -- 2Chat (GET only, via twochat_client) ----------------------------------
 
-def make_get(url, token):
-    # No method argument: urllib sends GET for a request without a body.
-    req = urllib.request.Request(url, headers={
-        "Authorization": "Token " + token,
-        "Accept": "application/json",
-    })
-    with urllib.request.urlopen(req, timeout=60) as r:
-        return json.load(r)
+def in_window(m, since):
+    ts = parse_ts(m["sent_at"]) if m and m.get("sent_at") else None
+    return ts is not None and ts >= since
 
 
-def pull_capture(since, salt, chats, page_size=100, max_pages=50):
-    token = os.environ.get("MAKE_API_TOKEN")
-    host = os.environ.get("MAKE_API_HOST")
-    store = os.environ.get("WHATSAPP_LOG_DATASTORE_ID")
-    missing = [n for n, v in (("MAKE_API_TOKEN", token), ("MAKE_API_HOST", host),
-                              ("WHATSAPP_LOG_DATASTORE_ID", store)) if not v]
-    if missing:
-        return [], "capture lane not configured: missing " + ", ".join(missing)
-    out, offset = [], 0
-    for _ in range(max_pages):
-        q = urllib.parse.urlencode({"pg[limit]": page_size, "pg[offset]": offset})
-        url = "https://%s/api/v2/data-stores/%s/data?%s" % (host, store, q)
-        try:
-            data = make_get(url, token)
-        except urllib.error.HTTPError as e:
-            return out, "capture lane HTTP %s: %s" % (e.code, e.read()[:200].decode("utf-8", "replace"))
-        except Exception as e:
-            return out, "capture lane %s: %s" % (type(e).__name__, e)
-        rows = data.get("records") or []
-        for rec in rows:
-            body = dict(rec.get("data") or {})
-            body.setdefault("message_uuid", rec.get("key"))
-            m = normalize(body, body.get("channel") or "business", "capture", salt, chats)
-            if m and m["sent_at"] and parse_ts(m["sent_at"]) >= since:
-                out.append(m)
-        if len(rows) < page_size:
-            break
-        offset += page_size
-    return out, None
-
-
-# -- api lane: 2Chat (GET only, via twochat_client) -------------------------
-
-def pull_api(since, salt, chats, channels):
+def pull(since, salt, chats, channels, client=None):
+    """Both numbers, 1-to-1 and groups. Returns (messages, errors)."""
     try:
-        client = tc.TwoChatClient()
+        client = client or tc.TwoChatClient()
     except tc.TwoChatError as e:
-        return [], [str(e)], {}
-    out, errors, groups = [], [], {}
+        return [], [str(e)]
+    out, errors = [], []
     for channel in channels:
         number = os.environ.get(CHANNEL_ENV[channel])
         if not number:
-            errors.append("api lane: %s not set, %s channel skipped" % (CHANNEL_ENV[channel], channel))
+            errors.append("%s not set, %s number skipped" % (CHANNEL_ENV[channel], channel))
             continue
         try:
             for raw in client.messages(number):
-                m = normalize(raw, channel, "api", salt, chats)
-                if m and m["sent_at"] and parse_ts(m["sent_at"]) >= since:
+                m = normalize(raw, channel, salt, chats)
+                if in_window(m, since):
                     out.append(m)
-            for g in client.groups(number):
-                if g.get("uuid"):
-                    groups[g["uuid"]] = g.get("wa_group_name") or g.get("name")
         except tc.TwoChatError as e:
-            errors.append("api lane, %s channel: %s" % (channel, e))
-    return out, errors, groups
+            errors.append("%s 1-to-1 messages: %s" % (channel, e))
+        try:
+            groups = client.groups(number)
+        except tc.TwoChatError as e:
+            errors.append("%s group list: %s" % (channel, e))
+            continue
+        for g in groups:
+            if not g.get("uuid"):
+                continue
+            try:
+                for raw in client.group_messages(g["uuid"]):
+                    m = normalize(raw, channel, salt, chats, group=g)
+                    if in_window(m, since):
+                        out.append(m)
+            except tc.TwoChatError as e:
+                errors.append("%s group %s: %s" % (channel, g.get("wa_group_name") or g["uuid"], e))
+    return out, errors
 
 
-def merge(lanes):
-    """Dedupe on message_uuid; the capture record wins (it carries the group name)."""
+def dedupe(messages):
+    """One record per message uuid, oldest first."""
     seen = {}
-    for lane in lanes:
-        for m in lane:
-            if m["message_uuid"] not in seen or m["lane"] == "capture":
-                seen[m["message_uuid"]] = m
+    for m in messages:
+        seen.setdefault(m["message_uuid"], m)
     return sorted(seen.values(), key=lambda m: m["sent_at"] or "")
 
 
 def main():
     ap = argparse.ArgumentParser(description="Read-only WhatsApp puller (2Chat).")
     ap.add_argument("--hours", type=float, default=24)
-    ap.add_argument("--lane", choices=["both", "capture", "api"], default="both")
     ap.add_argument("--channel", choices=["business", "personal"], action="append", dest="channels")
     ap.add_argument("--out", help="Write JSON here (keep it under analysis/cache/whatsapp/).")
     args = ap.parse_args()
@@ -269,33 +239,18 @@ def main():
                                  if isinstance(v, dict) and v.get("enabled")]
     since = datetime.now(timezone.utc) - timedelta(hours=args.hours)
 
-    lanes, errors, groups = [], [], {}
-    if args.lane in ("both", "capture"):
-        cap, err = pull_capture(since, salt, chats)
-        lanes.append(cap)
-        if err:
-            errors.append(err)
-    if args.lane in ("both", "api"):
-        api, errs, groups = pull_api(since, salt, chats, channels)
-        lanes.append(api)
-        errors.extend(errs)
-
-    messages = merge(lanes)
-    for m in messages:
-        if m["is_group"] and not m["chat_name"]:
-            m["chat_name"] = groups.get(m["chat_key"])
+    messages, errors = pull(since, salt, chats, channels)
+    messages = dedupe(messages)
 
     result = {
         "pulled_at": datetime.now(timezone.utc).isoformat(),
         "window_hours": args.hours,
         "since": since.isoformat(),
-        "lanes": args.lane,
         "channels": channels,
         "status": "ok" if not errors else ("partial" if messages else "error"),
         "errors": errors,
         "count": len(messages),
-        "counts_by_lane": {lane: sum(1 for m in messages if m["lane"] == lane)
-                           for lane in ("capture", "api")},
+        "groups": len({m["chat_key"] for m in messages if m["is_group"]}),
         "counts_by_channel": {c: sum(1 for m in messages if m["channel"] == c) for c in channels},
         "messages": messages,
     }

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""2Chat API transport for whatsapp-ingest-agent (the API catch-up lane).
+"""2Chat API transport for whatsapp-ingest-agent.
 
 READ ONLY. Every request this module can make is a GET: urllib.request.Request is
 always built without a method argument, and no write verb appears anywhere in this
@@ -12,13 +12,17 @@ scripts/whatsapp_pull.py. Not a CLI.
 Environment (see .env.example):
     TWOCHAT_API_KEY   the 2Chat account API key (sent as X-User-API-Key)
 
-Endpoints used (developers.2chat.co, checked 2026-10-29):
+Endpoints used:
     GET /open/whatsapp/messages/{connected_number}         1-to-1 messages
     GET /open/whatsapp/messages/{connected_number}/{peer}  one peer's messages
     GET /open/whatsapp/groups/{connected_number}           groups the number is in
-2Chat documents no group-history endpoint, which is why group messages come from the
-Make webhook capture lane instead (methods/whatsapp-ingest.md). The API also only
-returns messages sent or received after the number was connected to 2Chat.
+    GET GROUP_MESSAGES_PATH                                one group's messages
+The first three are documented at developers.2chat.co (checked 2026-10-29). The group
+messages path is NOT yet confirmed: 2Chat's MCP server exposes
+get_whatsapp_group_messages, so the API serves it, but its path is undocumented.
+GROUP_MESSAGES_PATH is the best guess and the first live read pins it (a 404 there
+reports as a per-group error, never a crash). The API only returns messages sent or
+received after the number was connected to 2Chat.
 
 Field names in responses are not fully documented; parse_message() in
 scripts/whatsapp_pull.py reads them defensively and the first live probe
@@ -37,6 +41,8 @@ import urllib.request
 BASE = "https://api.p.2chat.io"
 USER_AGENT = "titan-agents/twochat_client (+read-only)"
 RETRY_STATUSES = (429, 500, 502, 503, 504)
+# Unconfirmed until the first live read (see the module docstring).
+GROUP_MESSAGES_PATH = "/open/whatsapp/groups/messages/{group_uuid}"
 
 
 class TwoChatError(RuntimeError):
@@ -134,6 +140,21 @@ class TwoChatClient:
         path = "/open/whatsapp/messages/" + urllib.parse.quote(number)
         if peer:
             path += "/" + urllib.parse.quote(peer)
+        out = []
+        for page in range(max_pages):
+            data = self.get_json(path, {"page_number": page} if page else None)
+            if isinstance(data, dict):
+                rows = data.get("messages") or data.get("data") or []
+            else:
+                rows = data or []
+            if not rows:
+                break
+            out.extend(rows)
+        return out
+
+    def group_messages(self, group_uuid, max_pages=10):
+        """One group's messages, newest first. Path unconfirmed (GROUP_MESSAGES_PATH)."""
+        path = GROUP_MESSAGES_PATH.format(group_uuid=urllib.parse.quote(group_uuid))
         out = []
         for page in range(max_pages):
             data = self.get_json(path, {"page_number": page} if page else None)

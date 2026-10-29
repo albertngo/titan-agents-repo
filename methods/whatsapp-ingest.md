@@ -19,86 +19,60 @@ hand on 2026-10-29). The daily ingest comes second. That means:
 - **Open-ended chats.** Supplier groups, client project groups, staff groups and
   1-to-1 customers, with more kinds as they appear. The agent classifies from context,
   and the registry only overrides.
-- **A long-term archive** is needed. The 14-day capture buffer can't answer "what did
-  Sidco say in September". Where it lives is an open decision (below).
+- **History you can ask about.** 2Chat already keeps it, group chats included, so it
+  is read live and never copied (see "Answering questions").
 - **Personal chats never reach staff.** No `whatsapp` item ever goes to the staff
   Notion board, from either number. Personal-number items reach Albert's private to-do
   list only one at a time, on an explicit yes (the WhatsApp gate in
   `contracts/notion-task-schema.md`).
 
-## Answering questions (the archive)
+## Answering questions
 
-Albert chose on 2026-10-29: two **private Notion databases** in Albert's Notion
-Directory, kept indefinitely, and written only by the Make scenario.
+2Chat is the archive (Albert, 2026-10-29). Both numbers are connected to 2Chat, a
+third-party app, and it stores their 1-to-1 and group messages. Nothing is copied
+anywhere else. There are two ways to read it:
 
-- **WhatsApp Archive — Business:** `collection://5fac42ae-8404-4920-b986-36691eb82c2f`
-- **WhatsApp Archive — Personal:** `collection://556698dc-f509-455e-bea8-d9f6c5838efe`
+1. **The pull script, any window.** For example,
+   `python3 scripts/whatsapp_pull.py --hours 1440 --channel business --out analysis/cache/whatsapp/q-<date>.json`,
+   then read the chat in question by `chat_name`, ordered by `sent_at`.
+2. **The 2Chat MCP connector**, if Albert adds it (`https://mcp.2chat.io/mcp`, the
+   same API key): `get_whatsapp_group_messages`, `get_whatsapp_messages`,
+   `list_whatsapp_conversations`. It also has send and edit tools. Those must be
+   switched off in the connector settings, and never used without a separate explicit
+   confirmation.
 
-Each row is one message: Message (title), Text, Sent At, Chat, Chat Key, Group,
-Direction, Sender Name, Sender Number, Media Type, Message UUID.
+Rules for both:
+- Read the **personal** number only when Albert asks about personal chats, and never mix
+  it into a business answer unprompted.
+- Answers stay in chat, cited by chat, date and sender. Copying anything from a
+  personal chat where staff can see it is ruled out by the WhatsApp gate.
 
-When Albert asks about a discussion ("what did Sidco say about the 806 restock?"):
+**Still to confirm:** how far back 2Chat keeps history (messages exist from when each
+number was connected). If it trims old messages, revisit and copy only what's at risk.
 
-1. Query the **business** archive with `notion-query-data-sources`, narrowing by `Chat`
-   (e.g. `LIKE '%SIDCO%'`), the `date:Sent At:start` range and `Text LIKE '%806%'`. Read
-   the thread in order of `Sent At`.
-2. Read the **personal** archive only when Albert asks about his personal number or a
-   chat that lives there. Never mix its rows into a business answer unprompted.
-3. Cite what you found with chat, date and sender. These answers stay in chat. Copying a
-   personal row anywhere staff can see is ruled out by the WhatsApp gate.
+## Design history
 
-The 14-day Make data store is only the buffer the daily ingest reads. It is not an
-archive.
+Designed first, and dropped the same day (2026-10-29):
+- A Make capture scenario (a 2Chat webhook feeding a 14-day data store);
+- two private Notion archive databases, "WhatsApp Archive — Business" and "— Personal".
 
-## Why two lanes
+At the time 2Chat's API looked like it had no group-history endpoint. Its MCP server
+(`get_whatsapp_group_messages`) shows the API does serve group messages, so copying
+them only cost Make operations: about 4 per message against the Core plan's
+40,000 a month. The two Notion databases exist empty in Albert's Notion Directory and
+await his OK to trash. Meta's WhatsApp Cloud API was rejected outright: history arrives
+only by webhook, connecting the business number can't be undone, and it can't reach
+the personal number.
 
-Both numbers are connected to 2Chat, a third-party app. 2Chat's API returns 1-to-1
-messages (only those since the number was connected) and lists groups, but documents
-**no group-history endpoint**. It does fire webhooks for both kinds
-(`whatsapp.message.received`, `whatsapp.group.message.received`). So:
-
-1. **Capture (primary).** A Make scenario, "2Chat -> WhatsApp Log", subscribes to those
-   webhooks for both numbers and writes one record per message into a Make data store,
-   keyed on the 2Chat message uuid. The fields are listed in the registry under
-   `capture.record_fields`. A scheduled step deletes records older than 14 days: the
-   store is a rolling buffer, not an archive (earned relevance, vault CONVENTIONS rule 4).
-2. **API (backstop).** `scripts/twochat_client.py` reads 1-to-1 messages directly, so a
-   missed webhook is not a lost message, and maps group uuids to names.
-
-**How capture is wired (checked against Make's 2Chat app on 2026-10-29).** Make's
-"Watch Received WhatsApp Group Message" trigger watches **one configured group** per
-webhook, and Make allows one instant trigger per scenario. Using the app's triggers
-would mean one scenario per group, which doesn't scale. Instead:
-
-- One Make **custom webhook** (`gateway:CustomWebHook`) receives everything.
-- 2Chat is pointed at it once, through its webhook API (`/open/webhooks/subscribe/...`):
-  `whatsapp.message.received`, the sent/echo event if offered, and
-  `whatsapp.group.message.received` with no group filter, for both numbers.
-- The scenario routes on the payload (the group block present or not, the connected
-  number). It writes the data store record and creates the Notion row in the business
-  or personal archive, skipping a Message UUID that's already there.
-
-The payload fields Make documents for the 2Chat triggers (the same ones the webhooks
-send) are `uuid`, `created_at`, `sent_by`, `message.text`, `message.media.type`,
-`remote_phone_number`, `channel_phone_number`, `contact.first_name/last_name`, plus
-`group.uuid`, `group.wa_group_name` and `participant.phone_number/pushname` on group
-messages.
-
-Volume: Make's Core plan allows 40,000 operations a month. Each message costs about 4
-(webhook, router, data store, Notion), so the scenario fits up to roughly 8,000
-messages a month alongside the existing scenarios. Check usage after the first week.
-
-Both lanes are GET-only from this repo. Make is the only thing that writes, and only to
-its own data store.
-
-Meta's WhatsApp Cloud API was rejected: history arrives only by webhook, connecting the
-business number is a one-way switch (coexistence can't be undone), and it can't reach the
-personal number.
+The payload fields Make documents for 2Chat (and which `normalize()` reads) are `uuid`,
+`created_at`, `sent_by`, `message.text`, `message.media.type`, `remote_phone_number`,
+`contact.first_name/last_name`, plus `group.uuid`, `group.wa_group_name` and
+`participant.phone_number/pushname` on group messages.
 
 ## Privacy
 
-titan-agents is public. Full message text lives only in the Make data store (14 days)
-and in `analysis/cache/whatsapp/` (gitignored). The committed `whatsapp.json` holds
+titan-agents is public. Full message text lives only in 2Chat and in
+`analysis/cache/whatsapp/` (gitignored). The committed `whatsapp.json` holds
 summaries in the agent's own words, names or last-4 digits, and salted hashes
 (`REQUESTER_ID_SALT`). There are never phone numbers or quotes. The personal channel is
 always `private` (admin in the vault). The business channel is `private` until Albert
@@ -108,16 +82,14 @@ decides otherwise.
 
 | Step | What | Status |
 |---|---|---|
-| 1 | Probe: with `TWOCHAT_API_KEY` set, run `python3 scripts/whatsapp_pull.py --lane api --hours 72 --out analysis/cache/whatsapp/probe.json`, then pin the real field names in `normalize()` | waiting on the key |
-| 2 | Make capture scenario + data store + 14-day prune; show Albert the blueprint before activating | not started |
+| 1 | First live read: with the four values in the environment, run `python3 scripts/whatsapp_pull.py --hours 72 --out analysis/cache/whatsapp/probe.json`. Confirm the group messages path (`GROUP_MESSAGES_PATH` in `scripts/twochat_client.py`, unconfirmed), the field names, whether sent messages appear, and how far back history goes | values saved 2026-10-29; needs a new session |
+| 2 | ~~Make capture scenario~~ | dropped 2026-10-29 |
 | 3 | Client, pull script, tests | done 2026-10-29 |
 | 4 | Agent file, registry, wiring (CLAUDE.md, departments, notion source_defaults, .env.example) | done 2026-10-29 |
-| 5 | One manual run, then add to `/daily-ingest` step 2 and the step 5 ledger | after 1–2 |
+| 5 | One manual run, then add to `/daily-ingest` step 2 and the step 5 ledger | after step 1 |
 
 ## Open decisions (Albert)
 
-
 - Should business-number chats default to **team** (staff already see them in the shared
   2Chat inbox) or stay **private**? Flipping it is a dated vault decision.
-- Does the 2Chat plan deliver outbound/echo events? Without them, "unanswered" can only
-  come from the API lane, and the agent says so rather than flagging every chat.
+- Trash the two empty Notion archive databases? (Notion's trash is reversible.)

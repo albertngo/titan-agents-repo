@@ -6,13 +6,6 @@
   "unanswered_threshold_hours": 24,
   "max_items": 50,
 
-  "capture": {
-    "_comment": "Make scenario '2Chat -> WhatsApp Log' writes one data-store record per message (key = 2Chat message uuid) and deletes records older than retention_days, so the store is a rolling buffer, never an archive. Scenario and data-store ids go here once built; the host and token live in .env (MAKE_API_HOST, MAKE_API_TOKEN, WHATSAPP_LOG_DATASTORE_ID).",
-    "make_scenario_id": null,
-    "retention_days": 14,
-    "record_fields": ["message_uuid", "channel", "chat_uuid", "chat_name", "is_group", "sender_number", "sender_name", "direction", "sent_at", "text", "media_type"]
-  },
-
   "channels": {
     "_comment": "Which connected numbers are read. sensitivity is the default for every item from that channel. personal is private with no override, ever (genuinely personal: vault CONVENTIONS, Visibility rule 4). business is private as the fail-safe until Albert decides whether staff already see these chats in the shared 2Chat inbox (open question in methods/whatsapp-ingest.md); flipping it to team is a dated vault decision.",
     "business": {"enabled": true, "sensitivity": "private", "notion_team_destination": false},
@@ -20,11 +13,9 @@
   },
 
   "archive": {
-    "_comment": "Long-term, searchable history so Albert can ask about past supplier, project and sales discussions (his main use, 2026-10-29). Albert's choice the same day: private Notion databases in Albert's Notion Directory, business and personal kept separate, retention indefinite. Written only by the Make scenario, never by an agent; read in chat with the Notion connector (methods/whatsapp-ingest.md, Answering questions). Notion data-source ids are not secrets. The personal archive is read only when Albert asks about personal chats.",
-    "location": "notion",
-    "retention": "indefinite",
-    "business": {"database": "https://app.notion.com/p/0748cf33090442acb40f9cbcd205cbe3", "data_source": "collection://5fac42ae-8404-4920-b986-36691eb82c2f"},
-    "personal": {"database": "https://app.notion.com/p/e8ae2f0b2f8543b69d97c2f060cf9cd7", "data_source": "collection://556698dc-f509-455e-bea8-d9f6c5838efe"}
+    "_comment": "Where the history Albert asks about lives. 2026-10-29: 2Chat itself, read live with scripts/whatsapp_pull.py (any window) or the 2Chat MCP connector. No copy is kept anywhere. A Make capture scenario and two private Notion archive databases were designed first and dropped the same day, because 2Chat already holds group and 1-to-1 history and copying it cost Make operations. The two Notion databases were created empty in Albert's Notion Directory and await his OK to trash. Open: how far back 2Chat keeps history; if it trims, revisit and copy only what is at risk.",
+    "location": "2chat",
+    "retention": "whatever 2Chat keeps (unconfirmed)"
   },
 
   "chats": {
