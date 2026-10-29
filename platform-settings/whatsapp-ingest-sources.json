@@ -7,7 +7,7 @@
   "max_items": 50,
 
   "channels": {
-    "_comment": "Which connected numbers are read. sensitivity is the default for every item from that channel. personal is private with no override, ever (genuinely personal: vault CONVENTIONS, Visibility rule 4). business is private as the fail-safe until Albert decides whether staff already see these chats in the shared 2Chat inbox (open question in methods/whatsapp-ingest.md); flipping it to team is a dated vault decision.",
+    "_comment": "Which connected numbers are read. sensitivity is the default for every item from that channel. personal is private with no override, ever (genuinely personal: vault CONVENTIONS, Visibility rule 4). business is private by Albert's decision of 2026-10-29 (\"Let's have them stay private\", vault 05_decisions/2026-10-29-whatsapp-business-chats-private.md); flipping it to team is a new dated vault decision.",
     "business": {"enabled": true, "sensitivity": "private", "notion_team_destination": false},
     "personal": {"enabled": true, "sensitivity": "private", "locked": true, "notion_team_destination": false}
   },

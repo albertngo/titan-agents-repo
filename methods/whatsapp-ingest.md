@@ -77,8 +77,8 @@ titan-agents is public. Full message text lives only in 2Chat and in
 `analysis/cache/whatsapp/` (gitignored). The committed `whatsapp.json` holds
 summaries in the agent's own words, names or last-4 digits, and salted hashes
 (`REQUESTER_ID_SALT`). There are never phone numbers or quotes. The personal channel is
-always `private` (admin in the vault). The business channel is `private` until Albert
-decides otherwise.
+always `private` (admin in the vault). The business channel is `private` too, by Albert's
+decision of 2026-10-29 (vault `05_decisions/2026-10-29-whatsapp-business-chats-private.md`).
 
 ## Build steps and status
 
@@ -117,6 +117,4 @@ The pull ran on both numbers: 37 messages in 72 h (34 business, 3 personal) acro
 
 ## Open decisions (Albert)
 
-- Should business-number chats default to **team** (staff already see them in the shared
-  2Chat inbox) or stay **private**? Flipping it is a dated vault decision.
 - Trash the two empty Notion archive databases? (Notion's trash is reversible.)
