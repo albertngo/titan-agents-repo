@@ -212,15 +212,30 @@ class TestPull(unittest.TestCase):
         self.assertIn("TWOCHAT_PERSONAL_NUMBER not set", errors[0])
 
     def test_staff_messages_count_as_titan(self):
-        staff = wp.hash_number("+19055550101", SALT)
-        settings = {"titan_people": [{"_comment": "x"}, {"label": "Joey", "sender_hash": staff}]}
-        msgs = [{"sender_hash": staff, "direction": "in"},
-                {"sender_hash": wp.hash_number("+19055550199", SALT), "direction": "in"},
-                {"sender_hash": None, "direction": "out"}]
+        own = wp.hash_number("+19055550101", SALT)
+        work = wp.hash_number("+16475550102", SALT)
+        conn = wp.hash_number("+19055550100", SALT)
+        settings = {"titan_people": [{"_comment": "x"},
+                                     {"label": "Pourya", "phone": "own phone", "sender_hash": own},
+                                     {"label": "Pourya", "phone": "Titan business phone", "sender_hash": work}]}
+        msgs = [{"sender_hash": own, "direction": "in", "sent_via": None},
+                {"sender_hash": work, "direction": "in", "sent_via": None},
+                {"sender_hash": wp.hash_number("+19055550199", SALT), "direction": "in", "sent_via": None},
+                {"sender_hash": conn, "direction": "out", "sent_via": "phone"},
+                {"sender_hash": conn, "direction": "out", "sent_via": "inbox"},
+                {"sender_hash": conn, "direction": "out", "sent_via": "automation"}]
         with mock.patch.dict(os.environ, {"TWOCHAT_BUSINESS_NUMBER": "+19055550100"}, clear=True):
             out = wp.mark_titan(msgs, settings, SALT)
         self.assertEqual([(m["direction"], m["titan_person"]) for m in out],
-                         [("out", "Joey"), ("in", None), ("out", "Titan")])
+                         [("out", "Pourya"), ("out", "Pourya"), ("in", None),
+                          ("out", "Albert"), ("out", "2Chat inbox"), ("out", "automation")])
+
+    def test_sent_via_from_sent_by(self):
+        base = {"uuid": "U5", "created_at": "2026-10-29T15:00:00", "message": {"text": "x"},
+                "remote_phone_number": "+19055550199"}
+        got = [wp.normalize(dict(base, sent_by=sb), "business", SALT, {})["sent_via"]
+               for sb in (None, "agent", "api", "user")]
+        self.assertEqual(got, ["phone", "inbox", "automation", None])
 
     def test_dedupe(self):
         m = {"message_uuid": "A", "sent_at": "2026-10-29T10:00:00+00:00"}

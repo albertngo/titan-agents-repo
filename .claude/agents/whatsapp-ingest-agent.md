@@ -27,7 +27,7 @@ Then Read that file. It has `status`, `errors[]`, `count`, `groups`,
 `counts_by_channel` and `messages[]`, one record per message: `message_uuid`,
 `channel` (`business` / `personal`),
 `chat_key`, `chat_name`, `is_group`, `kind`, `sensitivity`, `ghl_covered`,
-`peer_hash` / `peer_last4`, `sender_hash` / `sender_last4`, `sender_name`, `titan_person`, `direction`
+`peer_hash` / `peer_last4`, `sender_hash` / `sender_last4`, `sender_name`, `titan_person`, `sent_via`, `direction`
 (`in` / `out`), `sent_at` (UTC), `text`, `media_type`.
 
 **Always use `--out` under `analysis/cache/whatsapp/`.** That folder is gitignored. The
@@ -89,7 +89,12 @@ question: if no `out` message follows in the same `chat_key` within
 `needs_attention` line ("<chat_name or last-4> — <what they asked> — no reply in N h").
 A message from Titan's own people (both connected numbers and the registry's
 `titan_people`) is `out` with `titan_person` set, wherever it was sent from, so a staff
-member answering in a group counts as Titan replying. It is a heuristic: write "no reply
+member answering in a group counts as Titan replying. **Name the person, never just
+"Titan"** (Albert, 2026-10-29): "Joey asked SIDCO to hold 26 boxes", "Pourya replied".
+Albert asks what a particular person said, so keep each one separate in summaries,
+digests and `needs_attention`. `titan_person` is `2Chat inbox` when it was sent through
+the shared inbox (the person is unknown) and `automation` for an automated send. Say
+that, and never guess a name. It is a heuristic: write "no reply
 found", never "ignored". If the pull has no `out`
 messages at all for a channel, 2Chat is not returning your sent messages. Say so in
 `needs_attention` and emit no unanswered flags for that channel rather than flagging

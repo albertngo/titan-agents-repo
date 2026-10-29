@@ -19,9 +19,9 @@
   },
 
   "titan_people": [
-    {"_comment": "Titan's own people, so their messages count as Titan's replies even from their own phones (Albert, 2026-10-29: staff are Joey, Pourya and Helen). sender_hash is sha256(REQUESTER_ID_SALT + digits)[:16] as the pull prints it, never a number. Both connected numbers count automatically. Pourya has two phones: his own and the Titan business phone he carries; both are listed."},
-    {"label": "Pourya", "sender_hash": "2580a4742ee2e18f"},
-    {"label": "Pourya (Titan business phone)", "sender_hash": "958da1baa30b68b4"},
+    {"_comment": "Titan's own people, so their messages count as Titan's replies even from their own phones (Albert, 2026-10-29: staff are Joey, Pourya and Helen). sender_hash is sha256(REQUESTER_ID_SALT + digits)[:16] as the pull prints it, never a number. Both connected numbers count automatically. One person can have several phones: Pourya carries his own and the Titan business phone, and both are Pourya (label is the person, phone is only a note). Keep people separate: the label is what the agent names in its notes."},
+    {"label": "Pourya", "phone": "own phone", "sender_hash": "2580a4742ee2e18f"},
+    {"label": "Pourya", "phone": "Titan business phone", "sender_hash": "958da1baa30b68b4"},
     {"label": "Joey", "sender_hash": "ccf6f8f1d861040d"},
     {"label": "Helen", "sender_hash": "b669d043370cdaa3"}
   ],

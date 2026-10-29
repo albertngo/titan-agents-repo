@@ -176,6 +176,10 @@ def normalize(raw, channel, salt, chats, group=None, groups_by_wa_id=None):
         "sender_last4": last4(sender),
         "sender_name": first(raw, "sender_name", "participant.pushname", "participant.name", "contact.name") or contact_name,
         "direction": direction,
+        # How a Titan message was sent, from 2Chat's sent_by: "phone" (null), "inbox"
+        # (agent = the shared 2Chat inbox) or "automation" (api). None when inbound.
+        "sent_via": None if direction != "out" or "sent_by" not in raw else
+                    {"agent": "inbox", "api": "automation"}.get(str(raw.get("sent_by") or "").lower(), "phone"),
         "sent_at": ts.isoformat() if ts else None,
         "text": first(raw, "text", "message.text", "body") or "",
         # 2Chat sometimes sends a message with no text and no media block at all
@@ -233,21 +237,25 @@ def pull(since, salt, chats, channels, client=None):
 
 
 def mark_titan(messages, settings, salt):
-    """A message from Titan's own people counts as Titan's (direction "out"), even when
-    it wasn't sent from the connected number: staff write in groups from their own
-    phones (Albert, 2026-10-29). Titan = both connected numbers plus the registry's
-    titan_people (salted hashes only). Sets titan_person on every Titan message."""
+    """A message from one of Titan's people counts as Titan's (direction "out"), even
+    from their own phone in a group (Albert, 2026-10-29). titan_person names the person,
+    never just "Titan": Albert wants to be able to ask what Joey or Pourya said. People
+    come from the registry's titan_people (salted hashes; one person may have several
+    phones) and the two connected numbers, which are Albert's only when sent from the
+    phone. A connected-number message sent through the shared 2Chat inbox can't be tied
+    to a person ("2Chat inbox"), and an api send is an automation ("automation")."""
     people = {p["sender_hash"]: p.get("label") for p in settings.get("titan_people", [])
               if isinstance(p, dict) and p.get("sender_hash")}
-    for env in CHANNEL_ENV.values():
-        h = hash_number(os.environ.get(env), salt)
-        if h:
-            people.setdefault(h, "Albert")
+    connected = {hash_number(os.environ.get(env), salt) for env in CHANNEL_ENV.values()} - {None}
     for m in messages:
-        label = people.get(m.get("sender_hash"))
-        if label:
+        h = m.get("sender_hash")
+        if h in people:
+            m["direction"], m["titan_person"] = "out", people[h]
+        elif m["direction"] == "out" or h in connected:
             m["direction"] = "out"
-        m["titan_person"] = label if label else ("Titan" if m["direction"] == "out" else None)
+            m["titan_person"] = {"inbox": "2Chat inbox", "automation": "automation"}.get(m.get("sent_via"), "Albert")
+        else:
+            m["titan_person"] = None
     return messages
 
 
