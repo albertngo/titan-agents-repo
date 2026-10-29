@@ -115,13 +115,26 @@ def first(d, *keys):
     return None
 
 
-def normalize(raw, channel, salt, chats, group=None):
+def normalize(raw, channel, salt, chats, group=None, groups_by_wa_id=None):
     """One 2Chat message -> the record the agent reads. `group` is the group record
-    from the groups listing, passed in for messages read per group (their payload may
-    not repeat the group's uuid or name).
+    from the groups listing, passed in for messages read per group.
 
-    Field names are read defensively: 2Chat documents them only partly (the Make app's
-    trigger schemas are the best reference). The first live read pins them."""
+    Field names pinned by the first live read (2026-10-29, methods/whatsapp-ingest.md):
+      - session_key is "WW-<channel uuid>-<wa id>". The wa id ends "@g.us" for a group
+        (it is the group's wa_group_id, so groups_by_wa_id maps it to uuid and name)
+        and "@c.us" for a 1-to-1 chat. The number-level messages endpoint returns
+        group messages too, so this is how they are recognised there.
+      - remote_phone_number is set on 1-to-1 messages only; an inbound group message
+        carries participant.phone_number / pushname instead.
+      - sent_by "user" is the other side writing (inbound). "agent" (2Chat inbox),
+        "api" and null (sent from the phone) are Titan's own (outbound).
+      - created_at is naive UTC."""
+    session_key = str(raw.get("session_key") or "")
+    # "WW-" + 39-char channel uuid ("WPN" + 36) + "-" + wa id. Slice, don't split:
+    # an old-style group wa id can contain a dash.
+    wa_id = session_key[43:] if session_key.startswith("WW-WPN") else ""
+    if not group and wa_id.endswith("@g.us"):
+        group = (groups_by_wa_id or {}).get(wa_id) or {"uuid": wa_id}
     if group:
         raw = dict(raw)
         raw.setdefault("group", {"uuid": group.get("uuid"),
@@ -133,12 +146,18 @@ def normalize(raw, channel, salt, chats, group=None):
                     str(first(raw, "chat_uuid") or "").startswith("WAG"))
     chat_uuid = first(raw, "chat_uuid", "group_uuid", "group.uuid", "remote_phone_number", "contact.phone_number")
     peer = None if is_group else first(raw, "remote_phone_number", "peer_number", "contact.phone_number")
-    sender = first(raw, "sender_number", "participant.phone_number", "remote_phone_number")
     contact_name = " ".join(x for x in (first(raw, "contact.first_name"), first(raw, "contact.last_name")) if x) or None
     direction = first(raw, "direction")
     if not direction:
-        sent_by = str(first(raw, "sent_by", "from_me") or "").lower()
-        direction = "out" if sent_by in ("user", "me", "true", "1", "api") else "in"
+        sent_by = str(raw.get("sent_by") or "").lower()
+        if "sent_by" in raw:
+            direction = "in" if sent_by in ("user", "contact") else "out"
+        else:
+            direction = "in"
+    if direction == "out":
+        sender = first(raw, "sender_number", "channel_phone_number")
+    else:
+        sender = first(raw, "sender_number", "participant.phone_number", "remote_phone_number")
     ts = parse_ts(first(raw, "sent_at", "created_at", "timestamp", "message.timestamp"))
     reg = chats.get(str(chat_uuid), {}) if chat_uuid else {}
     chat_key = (str(chat_uuid) if is_group else hash_number(chat_uuid, salt)) if chat_uuid else None
@@ -183,22 +202,25 @@ def pull(since, salt, chats, channels, client=None):
             errors.append("%s not set, %s number skipped" % (CHANNEL_ENV[channel], channel))
             continue
         try:
-            for raw in client.messages(number):
-                m = normalize(raw, channel, salt, chats)
+            groups = client.groups(number)
+        except tc.TwoChatError as e:
+            errors.append("%s group list: %s" % (channel, e))
+            groups = None
+        by_wa_id = {g["wa_group_id"]: g for g in groups or [] if g.get("wa_group_id")}
+        try:
+            for raw in client.messages(number, since=since):
+                m = normalize(raw, channel, salt, chats, groups_by_wa_id=by_wa_id)
                 if in_window(m, since):
                     out.append(m)
         except tc.TwoChatError as e:
             errors.append("%s 1-to-1 messages: %s" % (channel, e))
-        try:
-            groups = client.groups(number)
-        except tc.TwoChatError as e:
-            errors.append("%s group list: %s" % (channel, e))
+        if groups is None:
             continue
         for g in groups:
             if not g.get("uuid"):
                 continue
             try:
-                for raw in client.group_messages(g["uuid"]):
+                for raw in client.group_messages(g["uuid"], since=since):
                     m = normalize(raw, channel, salt, chats, group=g)
                     if in_window(m, since):
                         out.append(m)

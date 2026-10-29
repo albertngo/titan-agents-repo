@@ -93,8 +93,11 @@ class TestNormalize(unittest.TestCase):
         self.assertEqual(m["kind"], "supplier")
 
     def test_direction_inferred_from_sent_by(self):
-        m = wp.normalize(self.raw(direction=None, sent_by="user"), "business", SALT, {})
-        self.assertEqual(m["direction"], "out")
+        # Pinned by the first read (2026-10-29): "user" is the other side (inbound);
+        # agent / api / null are Titan's own messages.
+        for sent_by, want in (("user", "in"), ("agent", "out"), ("api", "out"), (None, "out")):
+            m = wp.normalize(self.raw(direction=None, sent_by=sent_by), "business", SALT, {})
+            self.assertEqual(m["direction"], want, sent_by)
 
     def test_2chat_group_payload(self):
         raw = {"uuid": "U1", "created_at": "2026-10-29T15:00:00Z", "sent_by": "contact",
@@ -113,7 +116,25 @@ class TestNormalize(unittest.TestCase):
                "contact": {"first_name": "Dawn", "last_name": "G"}}
         m = wp.normalize(raw, "business", SALT, {})
         self.assertFalse(m["is_group"])
-        self.assertEqual((m["chat_name"], m["direction"]), ("Dawn G", "out"))
+        self.assertEqual((m["chat_name"], m["direction"]), ("Dawn G", "in"))
+
+    def test_number_level_group_message(self):
+        """Shape of GET /open/whatsapp/messages/{number} for a group (first read
+        2026-10-29), fake values: recognised by session_key, named from the groups list."""
+        chan = "WPN" + "0" * 8 + "-0000-0000-0000-" + "0" * 12
+        gid = "120363000000000001@g.us"
+        groups = {gid: {"uuid": "WAG7", "wa_group_id": gid, "wa_group_name": "Titan Flooring - SIDCO"}}
+        raw = {"uuid": "MSG9", "session_key": "WW-%s-%s" % (chan, gid), "created_at": "2026-10-29T15:00:00",
+               "sent_by": "user", "remote_phone_number": None, "channel_phone_number": "+19055550100",
+               "message": {"text": "pickup done"},
+               "participant": {"phone_number": "+19055550101", "pushname": "Angad"}}
+        m = wp.normalize(raw, "business", SALT, {}, groups_by_wa_id=groups)
+        self.assertEqual((m["is_group"], m["chat_key"], m["chat_name"], m["sender_name"], m["direction"]),
+                         (True, "WAG7", "Titan Flooring - SIDCO", "Angad", "in"))
+        self.assertEqual((m["sent_at"], m["sender_last4"]), ("2026-10-29T15:00:00+00:00", "0101"))
+        own = dict(raw, uuid="MSG10", sent_by=None, participant=None)
+        m = wp.normalize(own, "business", SALT, {}, groups_by_wa_id=groups)
+        self.assertEqual((m["direction"], m["sender_last4"]), ("out", "0100"))
 
     def test_no_uuid_is_dropped(self):
         self.assertIsNone(wp.normalize({"text": "x"}, "business", SALT, {}))
@@ -123,13 +144,13 @@ class FakeClient:
     def __init__(self, direct, groups, group_msgs, fail_group=None):
         self.direct, self.groups_, self.group_msgs, self.fail_group = direct, groups, group_msgs, fail_group
 
-    def messages(self, number):
+    def messages(self, number, since=None):
         return self.direct
 
     def groups(self, number):
         return self.groups_
 
-    def group_messages(self, uuid):
+    def group_messages(self, uuid, since=None):
         if uuid == self.fail_group:
             raise tc.TwoChatError("HTTP 404 on GET group messages", code=404)
         return self.group_msgs.get(uuid, [])
@@ -177,7 +198,9 @@ class TestPull(unittest.TestCase):
 
     def test_missing_number_is_reported_not_fatal(self):
         client = FakeClient(direct=[], groups=[], group_msgs={})
-        out, errors = wp.pull(self.now, SALT, {}, ["personal"], client=client)
+        env = {k: v for k, v in os.environ.items() if k != "TWOCHAT_PERSONAL_NUMBER"}
+        with mock.patch.dict(os.environ, env, clear=True):
+            out, errors = wp.pull(self.now, SALT, {}, ["personal"], client=client)
         self.assertIn("TWOCHAT_PERSONAL_NUMBER not set", errors[0])
 
     def test_dedupe(self):

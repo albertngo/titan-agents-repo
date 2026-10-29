@@ -47,8 +47,10 @@ Rules for both:
 - Answers stay in chat, cited by chat, date and sender. Copying anything from a
   personal chat where staff can see it is ruled out by the WhatsApp gate.
 
-**Still to confirm:** how far back 2Chat keeps history (messages exist from when each
-number was connected). If it trims old messages, revisit and copy only what's at risk.
+**History depth (first read, 2026-10-29):** the business number goes back to
+2025-08-19, its connection date (2,249 messages, no trimming seen). The personal number
+starts 2026-10-29. Whether 2Chat ever trims old messages is still unknown. If it does,
+revisit and copy only what's at risk.
 
 ## Design history
 
@@ -82,11 +84,36 @@ decides otherwise.
 
 | Step | What | Status |
 |---|---|---|
-| 1 | First live read: with the four values in the environment, run `python3 scripts/whatsapp_pull.py --hours 72 --out analysis/cache/whatsapp/probe.json`. Confirm the group messages path (`GROUP_MESSAGES_PATH` in `scripts/twochat_client.py`, unconfirmed), the field names, whether sent messages appear, and how far back history goes | values saved 2026-10-29; needs a new session |
+| 1 | First live read: `python3 scripts/whatsapp_pull.py --hours 72 --out analysis/cache/whatsapp/probe.json` | done 2026-10-29 (see First read below) |
 | 2 | ~~Make capture scenario~~ | dropped 2026-10-29 |
 | 3 | Client, pull script, tests | done 2026-10-29 |
 | 4 | Agent file, registry, wiring (CLAUDE.md, departments, notion source_defaults, .env.example) | done 2026-10-29 |
 | 5 | One manual run, then add to `/daily-ingest` step 2 and the step 5 ledger | after step 1 |
+
+## First read (2026-10-29)
+
+The pull ran on both numbers: 37 messages in 72 h (34 business, 3 personal) across
+6 chats, `status: ok`, no errors. What it settled:
+
+- **The group messages path works.** `GROUP_MESSAGES_PATH`
+  (`/open/whatsapp/groups/messages/{group_uuid}`) returns the group's messages. The
+  business number is in 18 groups and the personal number in 61.
+- **The number-level messages endpoint returns group messages too**, not only 1-to-1.
+  `session_key` is `WW-<channel uuid>-<wa id>`. The wa id ends `@g.us` for a group, and
+  that is the group's `wa_group_id` from the groups list. It ends `@c.us` for a 1-to-1
+  chat. `normalize()` maps a group wa id to the group's uuid and name, so a message read
+  both ways dedupes to one record with the right chat.
+- **Direction.** `sent_by: "user"` means the other side wrote (inbound). `agent` (the
+  2Chat inbox), `api`, and null (sent from the phone) are Titan's own messages. So sent
+  messages do appear, and unanswered detection can work. The first guess had `user` as
+  outbound, which would have inverted every unanswered flag.
+- **Senders.** `remote_phone_number` is set on 1-to-1 messages only. An inbound group
+  message carries `participant.phone_number` and `pushname`. Titan's own group messages
+  carry no participant, so their sender is the connected number.
+- `created_at` is naive UTC. Media is `message.media.{type, url, mime_type}`. About 1
+  message in 10 has neither text nor media (reactions, deletions).
+- Paging: about 49 per page, newest first. Both readers now stop once a page reaches
+  back past the window, so a daily run reads about one page per group.
 
 ## Open decisions (Albert)
 
