@@ -26,6 +26,13 @@ hand on 2026-10-29). The daily ingest comes second. That means:
   list only one at a time, on an explicit yes (the WhatsApp gate in
   `contracts/notion-task-schema.md`).
 
+**The two numbers (Albert, 2026-10-29).** The business number is mostly client
+messages. The personal number is about 90% business: suppliers, trades and internal
+groups such as Cash Handover. Groups are generally named "Titan Flooring - <person or
+company>". Every business item from the personal number is typed `personal`, so the
+type shows which number it came from. Money between Titan and an installer or trade is
+its own type, `payment`.
+
 ## Answering questions
 
 2Chat is the archive (Albert, 2026-10-29). Both numbers are connected to 2Chat, a

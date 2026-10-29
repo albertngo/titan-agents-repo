@@ -136,6 +136,14 @@ class TestNormalize(unittest.TestCase):
         m = wp.normalize(own, "business", SALT, {}, groups_by_wa_id=groups)
         self.assertEqual((m["direction"], m["sender_last4"]), ("out", "0100"))
 
+    def test_contentless_message_is_unknown_media(self):
+        m = wp.normalize({"uuid": "U3", "created_at": "2026-10-29T15:10:00", "sent_by": "user",
+                          "message": {}, "remote_phone_number": "+19055550199"}, "business", SALT, {})
+        self.assertEqual((m["text"], m["media_type"]), ("", "unknown"))
+        m = wp.normalize({"uuid": "U4", "created_at": "2026-10-29T15:10:00", "sent_by": "user",
+                          "message": {"text": "hi"}, "remote_phone_number": "+19055550199"}, "business", SALT, {})
+        self.assertIsNone(m["media_type"])
+
     def test_no_uuid_is_dropped(self):
         self.assertIsNone(wp.normalize({"text": "x"}, "business", SALT, {}))
 

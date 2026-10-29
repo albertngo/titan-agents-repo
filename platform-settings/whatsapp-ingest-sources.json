@@ -19,14 +19,16 @@
   },
 
   "chats": {
-    "_comment": "Per-chat overrides, keyed by chat_key from the pull. kind is one of supplier | customer | project | staff | personal | other (client project groups are `project`). ghl_covered: true skips a 1-to-1 chat GHL already ingests as TYPE_WHATSAPP, so a customer is never counted twice. label is a display name only. A chat may escalate sensitivity to private, never relax it below its channel's default. Unlisted chats are classified by the agent from content and the keyword lists below.",
+    "_comment": "Per-chat overrides, keyed by chat_key from the pull. kind is one of supplier | customer | project | trade | staff | personal | other (trade = an installer, contractor or trade contact) (client project groups are `project`). ghl_covered: true skips a 1-to-1 chat GHL already ingests as TYPE_WHATSAPP, so a customer is never counted twice. label is a display name only. A chat may escalate sensitivity to private, never relax it below its channel's default. Unlisted chats are classified by the agent from content and the keyword lists below.",
     "_example": {"kind": "supplier", "label": "Titan Flooring - SIDCO", "sensitivity": "private", "ghl_covered": false}
   },
 
   "classification": {
     "_comment": "Hints, not rules. The agent classifies semantically; a match here only breaks ties.",
     "supplier_group_keywords": ["sidco", "supplier", "warehouse", "flooring inc", "trading"],
-    "staff_group_keywords": ["titan team", "titan staff", "installers", "crew"],
+    "staff_group_keywords": ["titan team", "titan staff", "installers", "crew", "cash handover"],
+    "business_group_prefixes": ["titan flooring -"],
+    "_numbers": "Albert, 2026-10-29: the business number is mostly client messages; the personal number is about 90% business (suppliers, trades, internal groups). Groups named 'Titan Flooring - <person or company>' are business on either number. Every business item from the personal number is typed `personal` to mark the number.",
     "supplier_event_patterns": {
       "pickup": ["pick up", "pickup", "picking up", "coming to pick", "is coming"],
       "order": ["order", "reserve", "place it for", "set aside"],

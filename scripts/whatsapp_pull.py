@@ -178,7 +178,10 @@ def normalize(raw, channel, salt, chats, group=None, groups_by_wa_id=None):
         "direction": direction,
         "sent_at": ts.isoformat() if ts else None,
         "text": first(raw, "text", "message.text", "body") or "",
-        "media_type": first(raw, "media_type", "message.media.type", "media.type"),
+        # 2Chat sometimes sends a message with no text and no media block at all
+        # (seen 2026-10-29, likely photos or files): "unknown", never silently empty.
+        "media_type": first(raw, "media_type", "message.media.type", "media.type") or
+                      (None if first(raw, "text", "message.text", "body") else "unknown"),
     }
 
 
