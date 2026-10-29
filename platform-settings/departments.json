@@ -301,13 +301,16 @@
       "escalation_order": 6,
       "owns": {
         "sources": [
-          "outlook"
+          "outlook",
+          "wechat"
         ],
         "sub_sources": [],
         "platforms": [
           "outlook",
           "microsoft365",
           "m365",
+          "wechat",
+          "weixin",
           "vault",
           "titan-vault"
         ],
@@ -318,7 +321,8 @@
       },
       "specialists": {
         "readonly": [
-          "outlook-ingest-agent"
+          "outlook-ingest-agent",
+          "wechat-ingest-agent"
         ],
         "actions": [
           "vault-writer-agent"
@@ -329,6 +333,8 @@
         "inbox",
         "mailbox",
         "outlook",
+        "wechat",
+        "weixin",
         "vault",
         "note",
         "notes",
@@ -338,7 +344,7 @@
         "run ledger",
         "what should i do"
       ],
-      "_note": "General is the fallback lane AND the owner of outlook. outlook routes here rather than to a department because the 2026-08-03 per-staff-destination direction is unbuilt: staff mail has no correct destination yet, and assigning it to a department before one exists is the misfiling contracts/notion-task-schema.md forbids. General has no lead agent \u2014 /route answers inline from files already in ingest/, or asks one clarifying question."
+      "_note": "General is the fallback lane AND the owner of outlook. outlook routes here rather than to a department because the 2026-08-03 per-staff-destination direction is unbuilt: staff mail has no correct destination yet, and assigning it to a department before one exists is the misfiling contracts/notion-task-schema.md forbids. General has no lead agent \u2014 /route answers inline from files already in ingest/, or asks one clarifying question. wechat (2026-10-29, Albert) sits here too: Albert's personal WeChat carries supplier and other chats, and it has no department-shaped destination yet."
     }
   },
   "routing": {
