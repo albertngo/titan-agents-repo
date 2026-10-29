@@ -158,6 +158,7 @@ Notion's own search and the Notion connector also see the database.
 
 ## Changelog
 
-- 2026-10-29 — Built (archiver v1, ingest agent, registry, tests). Owner General,
+- 2026-10-29 — Built (archiver v1, ingest agent, registry, tests); decision in vault
+  `05_decisions/2026-10-29-wechat-archive.md`. Owner General,
   private. Mac schedule: every 30 minutes, once a day when unlocked and idle (asked
   for "early morning"; a fixed 06:30 would almost always find the screen locked).
