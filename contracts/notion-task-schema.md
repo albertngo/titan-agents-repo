@@ -54,6 +54,24 @@ AND type != "rollup" AND id does not contain "-rollup-"
 AND a GHL contact ID is derivable (see below)
 ```
 
+### WhatsApp: never the team board (hard rule, Albert 2026-10-29)
+
+**A `whatsapp` item NEVER reaches the team destination**, from either number.
+Albert's personal number carries genuinely personal chats, and the business number
+carries supplier, client-project and personal threads that are not staff-shared
+surfaces. No exceptions: not at `priority: "high"`, not with an approval, not if a
+future edit adds WhatsApp types to the selection rule above, and not if a channel's
+default sensitivity is ever flipped to `team`.
+
+```
+IF source == "whatsapp"                                ⇒  never the team destination
+IF source == "whatsapp" AND channel == "personal"      ⇒  private destination only, and only on an explicit yes for that one item
+```
+
+The channel is read from `raw_ref` (`whatsapp:<channel>:<chat_key>:<message_uuid>`).
+**Fail closed**: a `whatsapp` item whose `raw_ref` has no recognisable channel is
+treated as `personal`. Never fall back to the summary or the chat name.
+
 ### Outlook: mailbox exclusion (hard rule, Albert 2026-08-02)
 
 **A task is NEVER created from an Outlook item that did not arrive in

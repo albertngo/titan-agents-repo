@@ -1,0 +1,59 @@
+{
+  "_comment": "Read-side registry for whatsapp-ingest-agent (.claude/agents/whatsapp-ingest-agent.md) and scripts/whatsapp_pull.py. Created 2026-10-29 on Albert's request: supplier groups, customer chats, staff groups and his personal number, via 2Chat. The repo is public, so NO phone number, API key or message text ever goes in this file: numbers live in .env (TWOCHAT_BUSINESS_NUMBER / TWOCHAT_PERSONAL_NUMBER) and chats are keyed by 2Chat group uuid (WAG...) or by the salted hash scripts/whatsapp_pull.py prints as chat_key. Method: methods/whatsapp-ingest.md.",
+
+  "window_hours": 24,
+  "max_catchup_days": 7,
+  "unanswered_threshold_hours": 24,
+  "max_items": 50,
+
+  "channels": {
+    "_comment": "Which connected numbers are read. sensitivity is the default for every item from that channel. personal is private with no override, ever (genuinely personal: vault CONVENTIONS, Visibility rule 4). business is private by Albert's decision of 2026-10-29 (\"Let's have them stay private\", vault 05_decisions/2026-10-29-whatsapp-business-chats-private.md); flipping it to team is a new dated vault decision.",
+    "business": {"enabled": true, "sensitivity": "private", "notion_team_destination": false},
+    "personal": {"enabled": true, "sensitivity": "private", "locked": true, "notion_team_destination": false}
+  },
+
+  "archive": {
+    "_comment": "Where the history Albert asks about lives. 2026-10-29: 2Chat itself, read live with scripts/whatsapp_pull.py (any window) or the 2Chat MCP connector. No copy is kept anywhere. A Make capture scenario and two private Notion archive databases were designed first and dropped the same day, because 2Chat already holds group and 1-to-1 history and copying it cost Make operations. The two Notion databases were created empty in Albert's Notion Directory and trashed on his yes the same day (restorable from Notion's Trash). The first read (2026-10-29) found business history back to 2025-08-19, when the number was connected (2,249 messages); the personal number starts 2026-10-29. Whether 2Chat ever trims is still unknown; if it does, revisit and copy only what is at risk.",
+    "location": "2chat",
+    "retention": "whatever 2Chat keeps (no trimming seen: business back to 2025-08-19 on 2026-10-29)"
+  },
+
+  "titan_people": [
+    {"_comment": "Titan's own people, so their messages count as Titan's replies even from their own phones (Albert, 2026-10-29: staff are Joey, Pourya and Helen). sender_hash is sha256(REQUESTER_ID_SALT + digits)[:16] as the pull prints it, never a number. Both connected numbers count automatically. One person can have several phones: Pourya carries his own and the Titan business phone, and both are Pourya (label is the person, phone is only a note). Keep people separate: the label is what the agent names in its notes."},
+    {"label": "Pourya", "phone": "own phone", "sender_hash": "2580a4742ee2e18f"},
+    {"label": "Pourya", "phone": "Titan business phone", "sender_hash": "958da1baa30b68b4"},
+    {"label": "Joey", "sender_hash": "ccf6f8f1d861040d"},
+    {"label": "Helen", "sender_hash": "b669d043370cdaa3"}
+  ],
+
+  "chats": {
+    "_comment": "Per-chat overrides, keyed by chat_key from the pull. Each connected number sees its own copy of a group under its own WAG uuid, so a group both numbers are in is listed once per copy. kind is one of supplier | customer | project | trade | staff | personal | other (trade = an installer, contractor or trade contact) (client project groups are `project`). ghl_covered: true skips a 1-to-1 chat GHL already ingests as TYPE_WHATSAPP, so a customer is never counted twice. label is a display name only. A chat may escalate sensitivity to private, never relax it below its channel's default. Unlisted chats are classified by the agent from content and the keyword lists below.",
+    "_example": {"kind": "supplier", "label": "Titan Flooring - SIDCO", "sensitivity": "private", "ghl_covered": false},
+    "WAGe92bd7e4-adbb-4cb7-aa5f-b6982b705a36": {"kind": "trade", "label": "Titan Flooring - Anthony", "_set": "Albert, 2026-10-29"},
+    "WAG4012ff52-232c-400e-b869-33b4c49dc1cc": {"kind": "trade", "label": "Titan Flooring - Luxevista", "_set": "Albert, 2026-10-29"},
+    "WAG94d80b1b-a96e-407a-9c0e-0ea32177b01a": {"kind": "trade", "label": "Titan Flooring - ROY", "_set": "Albert, 2026-10-29"},
+    "WAG32d5deef-6f5a-480b-8378-0f17fe3ee98e": {"kind": "staff", "label": "Celebrate", "_set": "Albert, 2026-10-29: internal company chat"},
+    "WAGc8cc3a5e-85c7-40e2-b138-fce702ded171": {"kind": "staff", "label": "Celebrate", "_set": "Albert, 2026-10-29: internal company chat"},
+    "WAG38fe1193-06eb-4e05-aab9-268816d068f4": {"kind": "staff", "label": "TITAN FLOORING (community)", "_set": "Albert, 2026-10-29: the WhatsApp community chat that holds the other subgroups"},
+    "WAG3f5f6047-a42f-43d2-9403-a7f1bf760529": {"kind": "staff", "label": "TITAN FLOORING (community)", "_set": "Albert, 2026-10-29: the WhatsApp community chat that holds the other subgroups"},
+    "WAGb4a1c5ea-2719-4684-bf71-4643e8220af1": {"kind": "staff", "label": "TITAN FLOORING (community)", "_set": "Albert, 2026-10-29: the WhatsApp community chat that holds the other subgroups"},
+    "WAG9295e024-623a-4810-a625-1fdba8a68b47": {"kind": "staff", "label": "TITAN FLOORING (community)", "_set": "Albert, 2026-10-29: the WhatsApp community chat that holds the other subgroups"},
+    "15c1171d6c4a3d76": {"kind": "trade", "label": "Luxevista (1-to-1)", "_set": "Albert, 2026-10-29: the …7474 chat is Luxevista"},
+    "WAG9fd6b4f2-4007-4ae3-9938-4821f1cbde45": {"kind": "supplier", "label": "Titan Flooring - SIDCO", "_set": "Albert, 2026-10-29"},
+    "WAG7da4877c-3370-4ff1-8028-4452be783ef0": {"kind": "staff", "label": "Cash Handover", "_set": "Albert, 2026-10-29 (internal group)"}
+  },
+
+  "classification": {
+    "_comment": "Hints, not rules. The agent classifies semantically; a match here only breaks ties.",
+    "supplier_group_keywords": ["sidco", "supplier", "warehouse", "flooring inc", "trading"],
+    "staff_group_keywords": ["titan team", "titan staff", "installers", "crew", "cash handover"],
+    "business_group_prefixes": ["titan flooring -"],
+    "_numbers": "Albert, 2026-10-29: the business number is mostly client messages; the personal number is about 90% business (suppliers, trades, internal groups). Groups named 'Titan Flooring - <person or company>' are business on either number, and generally a trade or a supplier group (Albert, 2026-10-29). The Notion work-order 'Send to Contractor' button posts work orders into trade groups from the business number; they arrive as automation (api) sends. Every business item from the personal number is typed `personal` to mark the number.",
+    "supplier_event_patterns": {
+      "pickup": ["pick up", "pickup", "picking up", "coming to pick", "is coming"],
+      "order": ["order", "reserve", "place it for", "set aside"],
+      "return": ["return", "returning"],
+      "payment_request": ["request for payment", "collect the payment", "when i can come and collect", "statement sent"]
+    }
+  }
+}

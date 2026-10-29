@@ -32,6 +32,7 @@ No ingester reads another ingester's raw platform data.
 | `meta-ads-ingest-agent` | Meta Ads (spend, leads, CPL, delivery health) | `meta-ads.json` |
 | `content-ingest-agent` | Notion content calendar + Google Drive media | `content.json` |
 | `wechat-ingest-agent` | WeChat (Albert's personal account, via the private WeChat Archive in Notion) | `wechat.json` |
+| `whatsapp-ingest-agent` | WhatsApp via 2Chat (business + personal numbers; supplier, customer and staff chats) | `whatsapp.json` |
 
 | `ghl-actions-agent` | GoHighLevel (write: replies, stages, tags; mark-read only via `/ghl-triage` + `scripts/ghl_mark_read.py`, live since 2026-10-10) | appends to `actions-log.json` |
 | `lightspeed-actions-agent` | Lightspeed Retail X-Series (write: product create/update ONLY) | appends to `actions-log.json` |
