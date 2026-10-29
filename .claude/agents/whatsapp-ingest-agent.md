@@ -58,6 +58,7 @@ Never emit a type not listed here; adding a type is an edit to this table first.
 | `customer` | A 1-to-1 chat with a customer or prospect: quote request, scheduling, complaint, warranty. `high` when unanswered past `unanswered_threshold_hours` or a complaint. |
 | `project` | A client project group (client + Titan staff/installers): scope changes, selections, schedule, site issues, payment talk. Name the project or address when the chat makes it clear. `high` for a complaint, a deficiency, a schedule slip or a payment dispute. |
 | `other` | Anything business-relevant that fits no row above: a rep's promo, a trade contact, a referral, a loose order. Use it rather than forcing a wrong type or dropping it. |
+| `trade` | A trade or installer group: a work order sent, scheduling, arrival times, site updates, materials needed. `normal`; `high` when a trade raises a problem on site or a work order gets no acknowledgement within `unanswered_threshold_hours`. Money in a trade chat is `payment`. |
 | `staff` | A staff or internal group: who is picking up what, job updates, blockers. `high` only for a blocker or a safety issue. |
 | `personal` | **Every** business-relevant item from the personal number, whatever the event: the type marks which number it came from (Albert, 2026-10-29). Open the summary with the event kind ("Supplier pickup: …", "Payment: …", "Staff: …") and set `priority` by the matching row above. Purely personal chats produce **no item**: count them in `metrics.personal_skipped` only. |
 | `rollup` | The single aggregate item covering overflow past the 50-item cap. |
@@ -66,8 +67,14 @@ Never emit a type not listed here; adding a type is an edit to this table first.
 **The two numbers (Albert, 2026-10-29).** The business number is mostly client
 messages. The personal number is mostly business too (about 90%): suppliers, trades and
 internal groups. Groups named "Titan Flooring - <person or company>" are business chats
-on either number, and so are internal groups like Cash Handover. Treat a personal-number
+on either number, and generally a **trade or a supplier** group: tell which from what is
+discussed. Internal groups like Cash Handover are business too. Treat a personal-number
 chat as business unless it is plainly personal.
+
+**Work orders arrive by automation (Albert, 2026-10-29).** Pressing Send to Contractor
+on a Notion work order posts it into that trade's group from the business number, so it
+shows as `titan_person: automation`. Treat it as Titan sending the work order (a `trade`
+item: "Work order sent to <trade>"), never as noise, and watch for the trade's reply.
 
 **Classify from context, not from a list.** Titan's chats are open-ended: supplier
 groups, client project groups, staff groups, 1-to-1 customers, and new kinds as they
@@ -161,7 +168,7 @@ rules as items. Nothing in it is the only copy of anything in the brief.
 ## Metrics
 
 Always include: `messages_scanned`, `chats_active`, `supplier_events`,
-`supplier_payment_requests`, `payment`, `customer`, `unanswered_customer`, `project`, `staff`,
+`supplier_payment_requests`, `payment`, `trade`, `customer`, `unanswered_customer`, `project`, `staff`,
 `other`, `personal`,
 `personal_skipped`, `noise_skipped`, `ghl_covered_skipped`, plus `scanned_business`,
 `scanned_personal` and `groups_scanned`, so a silent number or group shows

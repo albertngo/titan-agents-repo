@@ -29,7 +29,9 @@ hand on 2026-10-29). The daily ingest comes second. That means:
 **The two numbers (Albert, 2026-10-29).** The business number is mostly client
 messages. The personal number is about 90% business: suppliers, trades and internal
 groups such as Cash Handover. Groups are generally named "Titan Flooring - <person or
-company>". Every business item from the personal number is typed `personal`, so the
+company>", and those are generally trade or supplier groups. Work orders sent with the
+Notion **Send to Contractor** button arrive in the trade's group from the business number
+as an automation send. Every business item from the personal number is typed `personal`, so the
 type shows which number it came from. Money between Titan and an installer or trade is
 its own type, `payment`.
 

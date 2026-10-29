@@ -258,6 +258,8 @@ class TestRegistry(unittest.TestCase):
     def test_registry_holds_no_phone_numbers(self):
         text = (REPO_ROOT / "platform-settings/whatsapp-ingest-sources.json").read_text()
         import re
+        # 2Chat group ids (WAG + a uuid) carry digit runs that look like numbers.
+        text = re.sub(r"WAG[0-9a-f-]{36}", "WAG<uuid>", text)
         self.assertIsNone(re.search(r"\+?\d[\d\s().-]{9,}\d", text), "a phone number in the registry")
 
     def test_source_default_is_private(self):
