@@ -1,0 +1,36 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-10-07T12:06:00-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-act_927167028457360",
+      "type": "spend_summary",
+      "title": "Meta spend 2026-09-30 to 2026-10-06: $347.23, 17 leads, CPL $20.43",
+      "summary": "Window widened to 7 days because the last prior meta-ads run was 2026-09-08. Top (only spending) campaign: Flooring Problems Campaign with all $347.23 and 17 leads. Yesterday alone (2026-10-06): $48.86, 4 leads, CPL $12.22.",
+      "timestamp": "2026-10-07T12:06:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 34723,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 34723,
+    "impressions": 9671,
+    "clicks": 221,
+    "leads": 17,
+    "cpl_cents": 2043,
+    "active_campaigns": 1,
+    "flagged_ads": 0,
+    "yesterday_spend_cents": 4886,
+    "yesterday_leads": 4
+  },
+  "needs_attention": [
+    "Last successful meta-ads run was 2026-09-08 (older than a day); metrics cover the widened 7-day window 2026-09-30 to 2026-10-06, not a single day. Yesterday's figures are given in the summary and yesterday_* metrics."
+  ]
+}
