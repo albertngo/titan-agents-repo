@@ -114,6 +114,3 @@ The pull ran on both numbers: 37 messages in 72 h (34 business, 3 personal) acro
   message in 10 has neither text nor media (reactions, deletions).
 - Paging: about 49 per page, newest first. Both readers now stop once a page reaches
   back past the window, so a daily run reads about one page per group.
-
-## Open decisions (Albert)
-
