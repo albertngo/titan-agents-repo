@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-10-29T12:10:00-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-act_927167028457360",
+      "type": "spend_summary",
+      "title": "Meta Ads 2026-10-22 to 2026-10-28: $353.31 spend, 20 leads, CPL $17.67",
+      "summary": "Window covers 7 days because no prior meta-ads.json exists within the last 7 days. Top (only spending) campaign is Flooring Problems Campaign: 8,505 impressions, 244 clicks, 20 leads. Account is ACTIVE with no flagged ads.",
+      "timestamp": "2026-10-29T12:10:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 35331,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 35331,
+    "impressions": 8505,
+    "clicks": 244,
+    "leads": 20,
+    "cpl_cents": 1767,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Meta window widened to 7 days (2026-10-22 to 2026-10-28): last meta-ads.json on record is 2026-09-08, older than the 7-day lookback. Figures are weekly, not daily.",
+    "No per-campaign CPL baseline comparison possible: only one campaign has spend in the window, so the 7-day baseline equals the window. No anomalies evaluated beyond delivery checks (none triggered)."
+  ]
+}

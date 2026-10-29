@@ -1,0 +1,35 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-10-29T08:12:40-04:00",
+  "status": "error",
+  "error": "GHL MCP server tools (opportunities, contacts, conversations, calendars) were not available in this session, so none of the four GHL categories (new leads, opportunities, appointments, conversations) or workflow drift could be pulled. No data was fabricated or inferred.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest FAILED today: GHL MCP tools unavailable in the ingest session; no leads, pipeline, appointments, conversations or drift findings for 2026-10-29. Check GHL directly or re-run once the ghl MCP server connects (.mcp.json, GHL_PIT_TOKEN / GHL_LOCATION_ID)."
+  ],
+  "extensions": {
+    "ghl": {
+      "template_version": "6",
+      "reporting": {
+        "calls": {
+          "listed": 24,
+          "from_note": 20,
+          "transcribed": 0,
+          "voicemails": null,
+          "minutes": 0.0,
+          "est_cost_usd": 0,
+          "engine": "scribe_v2 (contact notes)",
+          "status": "ok",
+          "error": null,
+          "note": "Counts only; per-call summaries not written because the conversation/contact join data was unavailable."
+        }
+      },
+      "triage": {
+        "status": "error",
+        "error": "ghl_unread_pull.py --mode brief did not finish within the session timeout; not judged this run"
+      }
+    }
+  }
+}
