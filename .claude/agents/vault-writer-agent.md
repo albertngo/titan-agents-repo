@@ -97,7 +97,8 @@ operational rules:
   the planner's territory). Never touch `.obsidian/`.
 - Wiki-links (`[[Client Name]]`) for every entity mention in the daily note.
 - After writing, `git add -A && git commit -m "vault: daily update <date>"` in the
-  vault repo. Do not push unless `$VAULT_AUTOPUSH=true`.
+  vault repo. Push per CLAUDE.md's push rule: on Albert's Mac only if
+  `$VAULT_AUTOPUSH=true`; in a cloud session always, to `main-vault`, in the same step.
 
 ## Done means
 

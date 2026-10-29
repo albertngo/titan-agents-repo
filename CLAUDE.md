@@ -531,16 +531,18 @@ regardless of tier; the repo holds data and method, the vault holds conclusions.
 
 ## Companion repo: titan-vault
 
-The vault (`albertngo/titan-vault`) is a **separate repo**. A cloud session clones one
-repo, so the vault is NOT present at session start — load it before any vault work:
+The vault (`albertngo/titan-vault`) is a **separate repo**. A cloud session usually clones
+only this one, so load the vault before any vault work:
 
+0. If a `titan-vault` checkout is already in the session (attached as a source), use it:
+   `git pull` on `main-vault` first, then skip to the work.
 1. `add_repo` — `albertngo/titan-vault`, `access: "push"` (use `"read"` when only reading).
 2. Clone once, inline, generous timeout: `git clone --depth 1 <clone_url> /workspace/titan-vault`.
-3. `register_repo_root` so the vault's `CONVENTIONS.md` loads into context.
+3. `register_repo_root`, which loads the vault's `CLAUDE.md`, which imports `CONVENTIONS.md`.
 
 **Read the vault before designing a build (2026-10-11, Albert).** Before proposing or
 designing a new build, or a significant change to one, load the vault (steps above) and read
-`goals/`, recent `05_decisions/` and `09_analyses/`, and the notes on the entities the build
+`04_goals/`, recent `05_decisions/` and `09_analyses/`, and the notes on the entities the build
 touches. Ground the suggestion in what they say, name the notes that shaped it, and point out
 where a build would contradict a recorded decision. Read-only: this never writes the vault.
 
@@ -556,7 +558,9 @@ instruction. Anything else, it proposes and stops — same as a manual write alw
 The vault's `CONVENTIONS.md` still governs every write, automatic or manual:
 
 - Append, don't rewrite. Prose above a note's `## Log` is Albert's.
-- Never delete or rename a note. Never edit `goals/`. Never touch `.obsidian/`.
+- Never delete or rename a note. Never touch `.obsidian/`. `vault-writer` never edits
+  `04_goals/`; a work session writes it only on Albert's explicit instruction (CONVENTIONS
+  v2.2, 2026-10-27).
 - **Visibility tagging** (CONVENTIONS v2.0, 2026-08-02): every note carries
   `visibility: staff | admin`; on staff-floor entity notes, admin-grade Log
   bullets carry a trailing `#admin`. Ingest `sensitivity` maps `team → staff`,
@@ -565,6 +569,10 @@ The vault's `CONVENTIONS.md` still governs every write, automatic or manual:
   staff-facing export is built.
 - Commit as `vault: <what> YYYY-MM-DD`. Vault commits go to `main-vault` (the vault
   repo's actual default branch, confirmed with Albert 2026-07-27) — no review step.
+  A vault commit left on any other branch never reaches Obsidian or a later session:
+  the 2026-09-12 website decision and the 2026-10-07/08 flooring-line addenda sat on
+  session branches until 2026-10-27. If the session can push only its own branch, open a
+  PR into `main-vault` and say so in the final reply.
 - **Push rule depends on where the session runs** (Albert, 2026-07-28):
   - **Albert's Mac** (vault at `~/Documents/claude/titan-vault`): the file edit
     itself is durable — the Obsidian git plugin auto-commits and pushes every
@@ -587,14 +595,24 @@ The vault's `CONVENTIONS.md` still governs every write, automatic or manual:
 of a session, and never write outside the whitelist unprompted:
 
 - An agent is added, or its definition/contract changes.
-- A platform quirk, trap, or ID surfaces that `platforms/<Platform>.md` doesn't already have.
+- A platform quirk, trap, or ID surfaces that `06_platforms/<Platform>.md` doesn't already have.
 - An analysis produces findings worth keeping (e.g. the GHL win-timeline) →
-  `09_analyses/YYYY-MM-DD-slug.md` per the vault's `templates/analysis.md`.
-- A decision gets made → `decisions/YYYY-MM-DD-slug.md`.
+  `09_analyses/YYYY-MM-DD-slug.md` per the vault's `08_templates/analysis.md`.
+- A decision gets made → `05_decisions/YYYY-MM-DD-slug.md`. Decisions and analyses carry
+  `serves:` with the goal IDs from the current `04_goals/` note (e.g. `[T2, S1]`), or `none`.
 - A contract in `contracts/` changes.
+- A repo file cites a vault note (a registry `_switched` field, a method changelog, this
+  file) → write that note in the same session. `05_decisions/2026-10-10-ghl-triage-write-mode.md`
+  was cited three times here and not written until 2026-10-27.
 
 Checkpoint flow for off-whitelist writes: draft the change → show it in chat → Albert
 approves → write → commit → push.
+
+**`/wrap-up` (2026-10-27, Albert).** Run it before ending any session that built, decided or
+analysed something. It checks the session against the vault, drafts what is missing, and
+writes what Albert approves. The procedure is the vault's `CONVENTIONS.md`, "Capture from
+work sessions"; the command only points there. titan-desk, titan-website and
+titan-bookkeeper carry the same command and a short pointer section in their CLAUDE.md.
 
 ## Notion writes
 
