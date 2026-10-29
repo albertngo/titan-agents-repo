@@ -33,7 +33,9 @@ company>", and those are generally trade or supplier groups. Work orders sent wi
 Notion **Send to Contractor** button arrive in the trade's group from the business number
 as an automation send. Every business item from the personal number is typed `personal`, so the
 type shows which number it came from. Money between Titan and an installer or trade is
-its own type, `payment`.
+its own type, `payment`. Recorded in vault
+`05_decisions/2026-10-29-whatsapp-ingest-reading-rules.md`. The 2Chat API's quirks are in
+vault `06_platforms/2Chat.md`.
 
 ## Answering questions
 
