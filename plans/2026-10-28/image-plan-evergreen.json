@@ -1,0 +1,5097 @@
+{
+ "contract_version": "image-plan-1",
+ "scope": "evergreen",
+ "supplier": "EVERGREEN",
+ "run_at": "2026-10-28T12:22:47.107555-04:00",
+ "expires": "2026-10-28T23:59:59-0400",
+ "write_mode": "write",
+ "registry": "platform-settings/supplier-sites.json",
+ "inputs": {
+  "pages": "ingest/2026-10-28/supplier-pages-evergreen.json",
+  "judgements": "ingest/2026-10-28/image-judgements-evergreen.json",
+  "product_pages": null
+ },
+ "summary": {
+  "records": 136,
+  "actions": 90,
+  "held": 46,
+  "skipped": {},
+  "held_by_reason": {
+   "no_match": 42,
+   "model_rejected": 2,
+   "no_usable_image": 2
+  },
+  "fields": {
+   "Detail images": 67,
+   "Supplier product page": 90,
+   "Swatch images": 44,
+   "Room scene images": 3
+  },
+  "tiers": {
+   "exact": 85,
+   "model_confirmed": 5
+  },
+  "manufacturer_pages": 56
+ },
+ "actions": [
+  {
+   "id": "img-37ea29cc1191",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recaHVixl8vsZo94O",
+   "sku": "ENG-EVGR-0003",
+   "product_name": "Evergreen Engineered Oak — Silver Powder (6-1/2\" x 3/4\", 1.2mm top)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Silver-powder-1-scaled.jpg",
+      "filename": "evergreen-silver-powder-engineered-hardwood-6-5in-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/silver_powder.jpg?v=1790710993",
+      "filename": "evergreen-silver-powder-engineered-hardwood-6-5in-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/silver-powder/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/silver-powder/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Silver-powder-1-scaled.jpg",
+     "sha1": "2f2c4177b156db613145d1c04628d5dd02bbeb54",
+     "page": "https://simbaflooringcorp.com/product/silver-powder/",
+     "width": 2560,
+     "height": 1707
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/silver_powder.jpg?v=1790710993",
+     "sha1": "77b7017537d358f5f42458fd55606d9eec0d0cc3",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-silver-powder",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-8d2bebbf00e7",
+   "seq": 2,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec7YMuqcgvAzh6ic",
+   "sku": "ENG-EVGR-0005",
+   "product_name": "Evergreen Engineered Oak — Sicily (6-1/2\" x 3/4\", 1.2mm top)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Oak-Sicily-1-scaled.jpg",
+      "filename": "evergreen-sicily-engineered-hardwood-6-5in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/sicily/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/sicily/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Oak-Sicily-1-scaled.jpg",
+     "sha1": "560be96ecdb2a3cf0a70091240b6d76934a322cb",
+     "page": "https://simbaflooringcorp.com/product/sicily/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-ab15da2243c2",
+   "seq": 3,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recLdadFvUhCakPYU",
+   "sku": "ENG-EVGR-0007",
+   "product_name": "Evergreen Engineered Oak — French Beige (6-1/2\" x 3/4\", 1.2mm top)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/French-Beige-scaled.jpg",
+      "filename": "evergreen-french-beige-engineered-hardwood-6-5in-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/french_beige.jpg?v=1790710974",
+      "filename": "evergreen-french-beige-engineered-hardwood-6-5in-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/french-beigh/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/french-beigh/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/French-Beige-scaled.jpg",
+     "sha1": "f01bf082ef5ae87f247b22e117c49e34f3562156",
+     "page": "https://simbaflooringcorp.com/product/french-beigh/",
+     "width": 2560,
+     "height": 1707
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/french_beige.jpg?v=1790710974",
+     "sha1": "26ee61166f7efac042dc3a19f5597855b81b8571",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-french-beige",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-6176de1681c9",
+   "seq": 4,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recD9xAF87u0Jo6Rx",
+   "sku": "ENG-EVGR-0008",
+   "product_name": "Evergreen Engineered Oak — Natural (6-1/2\" x 3/4\", 1.2mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/oak_natural.jpg?v=1790711017",
+      "filename": "evergreen-natural-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "model_confirmed",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/oak_natural.jpg?v=1790711017",
+     "sha1": "c2160a99039922fbf0e84b7b6ccce8fa5154b919",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": [
+    "model_matched",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-f427d3d456f5",
+   "seq": 5,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recVy5vdKvyOoH0Fy",
+   "sku": "ENG-EVGR-0009",
+   "product_name": "Evergreen Engineered Birch — Natural (6-1/2\" x 3/5\", 1.2mm top)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Birch-Natural.jpg",
+      "filename": "evergreen-natural-engineered-hardwood-6-5in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/birch-natural/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/birch-natural/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "model_confirmed",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Birch-Natural.jpg",
+     "sha1": "e6bcb242323358e38410a1396dbfd67e939723b3",
+     "page": "https://simbaflooringcorp.com/product/birch-natural/",
+     "width": 1356,
+     "height": 904
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "model_matched"
+   ]
+  },
+  {
+   "id": "img-ffe8d1af8235",
+   "seq": 6,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recAe6hkFIXSpdzEO",
+   "sku": "ENG-EVGR-0010",
+   "product_name": "Evergreen Engineered Hickory — American (6-1/2\" x 3/5\", 1.2mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/AmericanHickory.jpg?v=1694819967",
+      "filename": "evergreen-american-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Hickory-American-scaled.jpg",
+      "filename": "evergreen-american-engineered-hardwood-6-5in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/american/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-hickory-american",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/AmericanHickory.jpg?v=1694819967",
+     "sha1": "5827bbab62aad14b9d30f079d1f4552fb4451947",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-hickory-american",
+     "width": 1346,
+     "height": 1356
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Hickory-American-scaled.jpg",
+     "sha1": "e9d1ed28867af158f5a91f2faba6fc311c3a1281",
+     "page": "https://simbaflooringcorp.com/product/american/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-c7cefe75b10a",
+   "seq": 7,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recL63R5H5MAYky3h",
+   "sku": "ENG-EVGR-0011",
+   "product_name": "Evergreen Engineered Hickory — Natural (6-1/2\" x 3/5\", 1.2mm top)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Hickory-Natural.jpg",
+      "filename": "evergreen-natural-engineered-hardwood-6-5in-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/hickory_natural.jpg?v=1790711005",
+      "filename": "evergreen-natural-engineered-hardwood-6-5in-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/hickory-natural/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/hickory-natural/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Hickory-Natural.jpg",
+     "sha1": "d97ea13c5587d708bdd64146e0c86059792ee00d",
+     "page": "https://simbaflooringcorp.com/product/hickory-natural/",
+     "width": 1906,
+     "height": 1264
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/hickory_natural.jpg?v=1790711005",
+     "sha1": "ff72125b2259321cecef9fef518ea99f010cc37b",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-hickory-natural",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-90d1f3434df2",
+   "seq": 8,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recQXs0EfQCOMiKnj",
+   "sku": "ENG-EVGR-0012",
+   "product_name": "Evergreen Engineered Sapele — Mahogany (6-1/2\" x 3/5\", 2mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SapeleMahogany.jpg?v=1696373331",
+      "filename": "evergreen-mahogany-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Sapele-Mahogany-1-scaled.jpg",
+      "filename": "evergreen-mahogany-engineered-hardwood-6-5in-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SapeleMahogany1.jpg?v=1696373331",
+      "filename": "evergreen-mahogany-engineered-hardwood-6-5in-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/sapele-mahogany/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-sapele-sapele-mahogany",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SapeleMahogany.jpg?v=1696373331",
+     "sha1": "64804b08bdbb4323535e541a0dd50b33d9f7c298",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-sapele-sapele-mahogany",
+     "width": 1512,
+     "height": 2016
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Sapele-Mahogany-1-scaled.jpg",
+     "sha1": "a411ae8a80b2d5dfbceca6c1330862285a922495",
+     "page": "https://simbaflooringcorp.com/product/sapele-mahogany/",
+     "width": 2560,
+     "height": 1707
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/SapeleMahogany1.jpg?v=1696373331",
+     "sha1": "7178eb184a6b8c8d824be5d5cde02eba97e4c610",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-sapele-sapele-mahogany",
+     "width": 600,
+     "height": 600
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-11a140cb2c9c",
+   "seq": 9,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reccUhDGzdhUVQgXO",
+   "sku": "ENG-EVGR-0013",
+   "product_name": "Evergreen Engineered Oak — Vienna* (6-1/2\" x 3/5\", 1.2mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/vienna.jpg?v=1790710999",
+      "filename": "evergreen-vienna-engineered-hardwood-6-5in-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Vienna-scaled.jpg",
+      "filename": "evergreen-vienna-engineered-hardwood-6-5in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/vienna/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-vienna",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/vienna.jpg?v=1790710999",
+     "sha1": "2ccede70377fcf79be62e4130145c8b264ea50a0",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-vienna",
+     "width": 1400,
+     "height": 1400
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Vienna-scaled.jpg",
+     "sha1": "4773710f44b6b31485365c3241f3cd600517c293",
+     "page": "https://simbaflooringcorp.com/product/vienna/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-114e36aa0f7d",
+   "seq": 10,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recT7VYiItd0nUSHd",
+   "sku": "ENG-EVGR-0014",
+   "product_name": "Evergreen Engineered Oak — Honey (7-1/2\" x 5/8\", 3mm top)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/honey-2-scaled.jpg",
+      "filename": "evergreen-honey-engineered-hardwood-7-5in-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/honey_90351b97-8592-4b09-a493-156c577839e8.jpg?v=1790711023",
+      "filename": "evergreen-honey-engineered-hardwood-7-5in-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/honey/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/honey/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/honey-2-scaled.jpg",
+     "sha1": "6bd796bdc241ceec16a1028de3ffc45095d68e0b",
+     "page": "https://simbaflooringcorp.com/product/honey/",
+     "width": 2560,
+     "height": 1707
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/honey_90351b97-8592-4b09-a493-156c577839e8.jpg?v=1790711023",
+     "sha1": "eebafb17d70e33d26626322556e4246f9b4f5f4c",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-honey",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-0e0f609a9f83",
+   "seq": 11,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec2u6SaZj2J5ZXkf",
+   "sku": "ENG-EVGR-0015",
+   "product_name": "Evergreen Engineered Oak — Liverpool (7-1/2\" x 5/8\", 3mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Liverpool-scaled.jpg",
+      "filename": "evergreen-liverpool-engineered-hardwood-7-5in-swatch.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/OakLiverpool.jpg?v=1694820418",
+      "filename": "evergreen-liverpool-engineered-hardwood-7-5in-swatch-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/liverpool-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/liverpool-2/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Liverpool-scaled.jpg",
+     "sha1": "469eb98a970f7c67019945e4f7b44dfe0e6a4bb2",
+     "page": "https://simbaflooringcorp.com/product/liverpool-2/",
+     "width": 2560,
+     "height": 1707
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/OakLiverpool.jpg?v=1694820418",
+     "sha1": "112c009b7242c471ffa7a6218e9eab3a326b3dec",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-liverpool",
+     "width": 1224,
+     "height": 1235
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-6d83c629c5d0",
+   "seq": 12,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rectnavep79hGcZFG",
+   "sku": "ENG-EVGR-0016",
+   "product_name": "Evergreen Engineered Oak — Plymouth (7-1/2\" x 5/8\", 3mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/OakPlymouth.jpg?v=1694820161",
+      "filename": "evergreen-plymouth-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2018/01/Plymouth-1-scaled.jpg",
+      "filename": "evergreen-plymouth-engineered-hardwood-7-5in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/plymouth/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-plymouth",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/OakPlymouth.jpg?v=1694820161",
+     "sha1": "67cad112c2359bc52b71ca0a5bede151c1f5a79c",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-plymouth",
+     "width": 1387,
+     "height": 1368
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2018/01/Plymouth-1-scaled.jpg",
+     "sha1": "d2572aa03317909d1c08e91359f5190466cf05b9",
+     "page": "https://simbaflooringcorp.com/product/plymouth/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f7ddbfa29c4e",
+   "seq": 13,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recjzW8DMOuOdT11i",
+   "sku": "ENG-EVGR-0023",
+   "product_name": "Evergreen Engineered Hickory — Natural (7-1/2\" x 3/4\", 1.2mm top)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Hickory-Natural.jpg",
+      "filename": "evergreen-natural-engineered-hardwood-7-5in-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/hickory_natural.jpg?v=1790711005",
+      "filename": "evergreen-natural-engineered-hardwood-7-5in-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/hickory-natural/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/hickory-natural/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Hickory-Natural.jpg",
+     "sha1": "d97ea13c5587d708bdd64146e0c86059792ee00d",
+     "page": "https://simbaflooringcorp.com/product/hickory-natural/",
+     "width": 1906,
+     "height": 1264
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/hickory_natural.jpg?v=1790711005",
+     "sha1": "ff72125b2259321cecef9fef518ea99f010cc37b",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-hickory-natural",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-12429d9ec824",
+   "seq": 14,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recAaLDAgoSHc0ksV",
+   "sku": "ENG-EVGR-0025",
+   "product_name": "Evergreen Engineered Oak — Greyish (7-1/2\" x 3/4\", 3mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/greyish.jpg?v=1790710987",
+      "filename": "evergreen-greyish-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Greyish-scaled.jpg",
+      "filename": "evergreen-greyish-engineered-hardwood-7-5in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/greyish-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-greyish",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/greyish.jpg?v=1790710987",
+     "sha1": "b9d51aee067b24c804028bff92d8fadeff521abd",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-greyish",
+     "width": 1400,
+     "height": 1400
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Greyish-scaled.jpg",
+     "sha1": "41034f3aad9298ff254a4bd6627a9ff480857f54",
+     "page": "https://simbaflooringcorp.com/product/greyish-2/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-bcf56bf3297f",
+   "seq": 15,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recgw5WlATU7ZYURZ",
+   "sku": "ENG-EVGR-0027",
+   "product_name": "Evergreen Engineered Oak — Natural + (AB) (7-1/2\" x 3/4\", 1.2mm top)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Oak-Natural-1-scaled.jpg",
+      "filename": "evergreen-natural-engineered-hardwood-7-5in-select-and-better-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/oak-natural-3/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/oak-natural-3/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "model_confirmed",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Oak-Natural-1-scaled.jpg",
+     "sha1": "aa5e12e6dfff83443185cc4f7dc77585dc67dffa",
+     "page": "https://simbaflooringcorp.com/product/oak-natural-3/",
+     "width": 2560,
+     "height": 1655
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "model_matched"
+   ]
+  },
+  {
+   "id": "img-50101bcb88e5",
+   "seq": 16,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec1HXmyQPENEeBni",
+   "sku": "ENG-EVGR-0029",
+   "product_name": "Evergreen Engineered Oak — Natural + (AB) (7-1/2\" x 3/4\", 2mm top)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Oak-Natural-1-scaled.jpg",
+      "filename": "evergreen-natural-engineered-hardwood-7-5in-select-and-better-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/oak-natural-3/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/oak-natural-3/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "model_confirmed",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Oak-Natural-1-scaled.jpg",
+     "sha1": "aa5e12e6dfff83443185cc4f7dc77585dc67dffa",
+     "page": "https://simbaflooringcorp.com/product/oak-natural-3/",
+     "width": 2560,
+     "height": 1655
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "model_matched"
+   ]
+  },
+  {
+   "id": "img-d3fc2cb805e8",
+   "seq": 17,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recqUwczZxElJY0kE",
+   "sku": "ENG-EVGR-0031",
+   "product_name": "Evergreen Engineered Oak — Marseille (7-1/2\" x 3/4\", 3mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/OakMarseille.jpg?v=1686000776",
+      "filename": "evergreen-marseille-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Marseille-scaled.jpg",
+      "filename": "evergreen-marseille-engineered-hardwood-7-5in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/oak-pearl-river-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-marseille",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/OakMarseille.jpg?v=1686000776",
+     "sha1": "910be384fa292026710289aa793925a956cc893d",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-marseille",
+     "width": 1227,
+     "height": 1227
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Marseille-scaled.jpg",
+     "sha1": "c6260610c5b05a1052e607e5ab0d7aaa0db91744",
+     "page": "https://simbaflooringcorp.com/product/oak-pearl-river-2/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-e5608104b281",
+   "seq": 18,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recZggwDsbEPr5WL3",
+   "sku": "ENG-EVGR-0032",
+   "product_name": "Evergreen Engineered Oak — Valence (7-1/2\" x 3/4\", 3mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/valence.jpg?v=1790711011",
+      "filename": "evergreen-valence-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Valence-scaled.jpg",
+      "filename": "evergreen-valence-engineered-hardwood-7-5in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/valence-2/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-valence",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/valence.jpg?v=1790711011",
+     "sha1": "54ce0c49e43975becdacda886a407b466afe83d9",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-valence",
+     "width": 1400,
+     "height": 1400
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Valence-scaled.jpg",
+     "sha1": "09d9639077e45e3c38e81b251109e6a40ae452b3",
+     "page": "https://simbaflooringcorp.com/product/valence-2/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-13f07b7f5d25",
+   "seq": 19,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec1XFS6buP0LGUho",
+   "sku": "ENG-EVGR-0033",
+   "product_name": "Evergreen Engineered Oak — Natural (7-1/2\" x 3/5\", 3mm top)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/oak_natural.jpg?v=1790711017",
+      "filename": "evergreen-natural-engineered-hardwood-7-5in-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "model_confirmed",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/oak_natural.jpg?v=1790711017",
+     "sha1": "c2160a99039922fbf0e84b7b6ccce8fa5154b919",
+     "page": "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": [
+    "model_matched",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-05a772545bab",
+   "seq": 20,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recdGLD2NHnUmoqLS",
+   "sku": "LAM-EVGR-2024",
+   "product_name": "Evergreen Waterproof Laminate — 2024 (7.7\" x 12mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Whistler-2024.jpg?v=1614983061",
+      "filename": "evergreen-laminate-7-7in-2024-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2021/03/2024.jpg",
+      "filename": "evergreen-laminate-7-7in-2024-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/2024/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-waterproof-laminate-collection-whistler",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Whistler-2024.jpg?v=1614983061",
+     "sha1": "57db7fc754e54be51512508b54d34611d747b77a",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-laminate-collection-whistler",
+     "width": 1141,
+     "height": 1141
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2021/03/2024.jpg",
+     "sha1": "272ae2e1a510f36ae1ce967d85c247ebf7a63354",
+     "page": "https://simbaflooringcorp.com/product/2024/",
+     "width": 1000,
+     "height": 1000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-858ff07c32a0",
+   "seq": 21,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recM6VuutBYvAYWK3",
+   "sku": "LAM-EVGR-20360",
+   "product_name": "Evergreen Waterproof Laminate — 20360 (7.7\" x 12mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Creekside.jpg?v=1646074383",
+      "filename": "evergreen-laminate-7-7in-20360-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2021/12/20360-scaled.jpg",
+      "filename": "evergreen-laminate-7-7in-20360-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/20360/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-waterproof-laminate-collection-creekside",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Creekside.jpg?v=1646074383",
+     "sha1": "2556eda69046b40eed5beb6bdc01b78c39f9f094",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-laminate-collection-creekside",
+     "width": 1325,
+     "height": 1325
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2021/12/20360-scaled.jpg",
+     "sha1": "26be00ac88e04f849dc4ac01b8711072acc70d54",
+     "page": "https://simbaflooringcorp.com/product/20360/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-dd83f130755d",
+   "seq": 22,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec3DIbzRCQ5hOGAI",
+   "sku": "LAM-EVGR-2052",
+   "product_name": "Evergreen Waterproof Laminate — 2052 (7.7\" x 12mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/2052.jpg?v=1614983225",
+      "filename": "evergreen-laminate-7-7in-2052-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2021/03/2025.jpg",
+      "filename": "evergreen-laminate-7-7in-2052-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/2052/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-waterproof-laminate-collection-grouse-mountain",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/2052.jpg?v=1614983225",
+     "sha1": "89dbea62bff3a4229765e754b0e31cce93ea40c9",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-laminate-collection-grouse-mountain",
+     "width": 1367,
+     "height": 1367
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2021/03/2025.jpg",
+     "sha1": "13ae6afd9b15c3b97ffbaec5656f0fa919c7a4ea",
+     "page": "https://simbaflooringcorp.com/product/2052/",
+     "width": 768,
+     "height": 768
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ace96c01edf4",
+   "seq": 23,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recF6Q5D4dfPZQw1h",
+   "sku": "LAM-EVGR-2055",
+   "product_name": "Evergreen Waterproof Laminate — 2055 (7.7\" x 12mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/2055.jpg?v=1614983827",
+      "filename": "evergreen-laminate-7-7in-2055-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2021/03/2055.jpg",
+      "filename": "evergreen-laminate-7-7in-2055-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/2055/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-waterproof-laminate-collection-black-tusk",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/2055.jpg?v=1614983827",
+     "sha1": "2e5015521941911c2a4c9716fd4d82d98e081394",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-laminate-collection-black-tusk",
+     "width": 1436,
+     "height": 1436
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2021/03/2055.jpg",
+     "sha1": "937ea57b8b9addb6d5d237bb16b772e22d6aa143",
+     "page": "https://simbaflooringcorp.com/product/2055/",
+     "width": 1000,
+     "height": 1000
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-3238fe83532c",
+   "seq": 24,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recQC3CCTxnLJOcwC",
+   "sku": "LAM-EVGR-20860",
+   "product_name": "Evergreen Waterproof Laminate — 20860 (7.7\" x 12mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/NordicEstates.jpg?v=1646177238",
+      "filename": "evergreen-laminate-7-7in-20860-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2021/12/20860-scaled.jpg",
+      "filename": "evergreen-laminate-7-7in-20860-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/20860/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-waterproof-laminate-collection-nordic-estates",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/NordicEstates.jpg?v=1646177238",
+     "sha1": "a2dfa3837ecafddf4d57da7f65d71ee45e9ea801",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-laminate-collection-nordic-estates",
+     "width": 930,
+     "height": 930
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2021/12/20860-scaled.jpg",
+     "sha1": "da76f458f7e375c3a1fbfb80ef25d47b211c666c",
+     "page": "https://simbaflooringcorp.com/product/20860/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-5ef3d144edf3",
+   "seq": 25,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recYDyxHB0OqGhH6x",
+   "sku": "LAM-EVGR-5086",
+   "product_name": "Evergreen Waterproof Laminate — 5086 (7.7\" x 12mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Blackcomb.jpg?v=1649866402",
+      "filename": "evergreen-laminate-7-7in-5086-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2021/12/5086-scaled.jpg",
+      "filename": "evergreen-laminate-7-7in-5086-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/5086/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-waterproof-laminate-collection-blackcomb",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Blackcomb.jpg?v=1649866402",
+     "sha1": "591992fc7a14f69c087983ecf130f1cb5f85b413",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-laminate-collection-blackcomb",
+     "width": 1139,
+     "height": 1139
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2021/12/5086-scaled.jpg",
+     "sha1": "22dd51c4844bd2c66dd39f1ff69fd0b65d16f521",
+     "page": "https://simbaflooringcorp.com/product/5086/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-083206e9de6c",
+   "seq": 26,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recANPJQ0jXDqCG8a",
+   "sku": "LAM-EVGR-6088",
+   "product_name": "Evergreen Waterproof Laminate — 6088 (7.7\" x 12mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Garibaldi_aa31338f-79a8-4af2-adff-db4f04074873.jpg?v=1643402247",
+      "filename": "evergreen-laminate-7-7in-6088-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2021/12/6088-scaled.jpg",
+      "filename": "evergreen-laminate-7-7in-6088-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/6088/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-waterproof-laminate-collection-garibaldi",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Garibaldi_aa31338f-79a8-4af2-adff-db4f04074873.jpg?v=1643402247",
+     "sha1": "c8ff08e0ca8c09c26de0b65a1d93e30c490c91b6",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-laminate-collection-garibaldi",
+     "width": 1751,
+     "height": 2186
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2021/12/6088-scaled.jpg",
+     "sha1": "ab11dc61b72e2090fbb6a14da44828dc2fce1a10",
+     "page": "https://simbaflooringcorp.com/product/6088/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-153293f2a409",
+   "seq": 27,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recww4TfVlWAfoB3a",
+   "sku": "LAM-EVGR-720165",
+   "product_name": "Evergreen Waterproof Laminate Large Board — 720165 (9.4\" x 12mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-waterproof-laminate-golden.jpg?v=1783017927",
+      "filename": "evergreen-laminate-9-4in-720165-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-golden"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-golden",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-waterproof-laminate-golden.jpg?v=1783017927",
+     "sha1": "6b5b6609d9f8519909d2c8d1ab4ef9a15c834906",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-golden",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-1e4e8b8fd528",
+   "seq": 28,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recLdn00dGOdVuUNL",
+   "sku": "LAM-EVGR-72019",
+   "product_name": "Evergreen Water Resistant Laminate — 72019 (9.4\" x 14mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-water-resistant-laminate-penticton.jpg?v=1783017934",
+      "filename": "evergreen-laminate-9-4in-72019-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-penticton"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-penticton",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-water-resistant-laminate-penticton.jpg?v=1783017934",
+     "sha1": "af92ed505deba74c505a926019254560ec8e77c2",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-penticton",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-70a169c119cf",
+   "seq": 29,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recxXouSuehzUDQ6n",
+   "sku": "LAM-EVGR-720462",
+   "product_name": "Evergreen Waterproof Laminate Large Board — 720462 (9.4\" x 12mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-waterproof-laminate-kamloops.jpg?v=1783017924",
+      "filename": "evergreen-laminate-9-4in-720462-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/720462/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-kamloops",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-waterproof-laminate-kamloops.jpg?v=1783017924",
+     "sha1": "1b23aeba19a2320695f5cbde1c14a0f6bafe8cd5",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-kamloops",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-415295223f06",
+   "seq": 30,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recRLg3aMHTA25SlA",
+   "sku": "LAM-EVGR-72113",
+   "product_name": "Evergreen Water Resistant Laminate — 72113 (9.4\" x 14mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Cache-72113.jpg?v=1687458252",
+      "filename": "evergreen-laminate-9-4in-72113-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72113-scaled.jpg",
+      "filename": "evergreen-laminate-9-4in-72113-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/72113/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-cache",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Cache-72113.jpg?v=1687458252",
+     "sha1": "541cacc2f2a178e928174f10df777b3b3f980ffe",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-cache",
+     "width": 1050,
+     "height": 1029
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72113-scaled.jpg",
+     "sha1": "82de05c8cdbff814ed2f619109415f52733e0b91",
+     "page": "https://simbaflooringcorp.com/product/72113/",
+     "width": 2560,
+     "height": 1626
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-10581421b116",
+   "seq": 31,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recdTpxXXKXP7RERy",
+   "sku": "LAM-EVGR-721287",
+   "product_name": "Evergreen Waterproof Laminate — 721287 (9.4\" x 12mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/721287-1.jpg",
+      "filename": "evergreen-laminate-9-4in-721287-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-waterproof-laminate-tofino.jpg?v=1783017919",
+      "filename": "evergreen-laminate-9-4in-721287-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/721287/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/721287/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/721287-1.jpg",
+     "sha1": "c309987655c4fe9d4763e39c0203d62eaa85ba0e",
+     "page": "https://simbaflooringcorp.com/product/721287/",
+     "width": 1920,
+     "height": 1280
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-waterproof-laminate-tofino.jpg?v=1783017919",
+     "sha1": "06c1d481f66cddeb57ee3e5cba385b8453c2b84b",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-tofino",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-62b703e1e8f3",
+   "seq": 32,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recAyzlqQCQ3Cl3Ia",
+   "sku": "LAM-EVGR-72134",
+   "product_name": "Evergreen Water Resistant Laminate — 72134 (9.4\" x 14mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_07.jpg",
+      "filename": "evergreen-laminate-9-4in-72134-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-wpl2-chilliwack-hero.jpg?v=1783034125",
+      "filename": "evergreen-laminate-9-4in-72134-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/72134/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/72134/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_07.jpg",
+     "sha1": "317902afb32d691e655ad3531e1ef534f9bf9d5b",
+     "page": "https://simbaflooringcorp.com/product/72134/",
+     "width": 1427,
+     "height": 953
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-wpl2-chilliwack-hero.jpg?v=1783034125",
+     "sha1": "d19ae2280fd61ff104f84aafc3e3610238c7ab5e",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-chilliwack",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-5398526d1fee",
+   "seq": 33,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recNoAbciStihmmIJ",
+   "sku": "LAM-EVGR-72146",
+   "product_name": "Evergreen Waterproof Laminate — 72146 (9.4\" x 12mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/72146.jpg",
+      "filename": "evergreen-laminate-9-4in-72146-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-waterproof-laminate-squamish.jpg?v=1783017913",
+      "filename": "evergreen-laminate-9-4in-72146-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/72146/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/72146/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/72146.jpg",
+     "sha1": "fc8f055338238489d7aa14dbb4ecc9d1f4b4e71c",
+     "page": "https://simbaflooringcorp.com/product/72146/",
+     "width": 1920,
+     "height": 1280
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-waterproof-laminate-squamish.jpg?v=1783017913",
+     "sha1": "780d3d4c0e9ba3e6c5a2676e11d21a828aa33323",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-squamish",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-cb681424f3c6",
+   "seq": 34,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rechJxY73EHp0Pzqx",
+   "sku": "LAM-EVGR-72147",
+   "product_name": "Evergreen Waterproof Laminate — 72147 (9.4\" x 12mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/72147.jpg",
+      "filename": "evergreen-laminate-9-4in-72147-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-waterproof-laminate-pemberton.jpg?v=1783017915",
+      "filename": "evergreen-laminate-9-4in-72147-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/72147/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/72147/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/72147.jpg",
+     "sha1": "3e84b3687c2b2b6284f1d6ec5d68c0a50af04fe4",
+     "page": "https://simbaflooringcorp.com/product/72147/",
+     "width": 1919,
+     "height": 1280
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-waterproof-laminate-pemberton.jpg?v=1783017915",
+     "sha1": "e8d3e374ba302ba87f011eb7fb8f7242f9d9b7b7",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-pemberton",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-c4713600d0ef",
+   "seq": 35,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recBriQH4FM60zjkZ",
+   "sku": "LAM-EVGR-72148",
+   "product_name": "Evergreen Waterproof Laminate — 72148 (9.4\" x 12mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/72148.jpg",
+      "filename": "evergreen-laminate-9-4in-72148-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-waterproof-laminate-revelstoke.jpg?v=1783017917",
+      "filename": "evergreen-laminate-9-4in-72148-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/72148/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/72148/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/72148.jpg",
+     "sha1": "2d01e7095f43e1adffba1ad78a3b9195c0b08d20",
+     "page": "https://simbaflooringcorp.com/product/72148/",
+     "width": 1920,
+     "height": 1280
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-waterproof-laminate-revelstoke.jpg?v=1783017917",
+     "sha1": "19c9990e8a18144d58e71055c4e83a87c27b068d",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-revelstoke",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-613094d2995e",
+   "seq": 36,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recbFaILG1dhoFb9o",
+   "sku": "LAM-EVGR-72161",
+   "product_name": "Evergreen Waterproof Laminate — 72161 (7.7\" x 12mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/72161.jpg",
+      "filename": "evergreen-laminate-7-7in-72161-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-waterproof-laminate-fernie.jpg?v=1783017929",
+      "filename": "evergreen-laminate-7-7in-72161-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/72161/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/72161/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/72161.jpg",
+     "sha1": "6520d47d07b20527e297fbfb7d266707160dd943",
+     "page": "https://simbaflooringcorp.com/product/72161/",
+     "width": 1920,
+     "height": 1280
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-waterproof-laminate-fernie.jpg?v=1783017929",
+     "sha1": "4dd5874f2407de685ec4511272d8951f4c8f6af5",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-fernie",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-fb245291ac97",
+   "seq": 37,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recZfdzT1lZ9t8CdN",
+   "sku": "LAM-EVGR-72164",
+   "product_name": "Evergreen Waterproof Laminate — 72164 (7.7\" x 12mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/72164.jpg",
+      "filename": "evergreen-laminate-7-7in-72164-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-waterproof-laminate-nelson.jpg?v=1783017931",
+      "filename": "evergreen-laminate-7-7in-72164-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/72164/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/72164/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/72164.jpg",
+     "sha1": "df52ddfe4a42bfa872e8a9ee586839405e629700",
+     "page": "https://simbaflooringcorp.com/product/72164/",
+     "width": 1920,
+     "height": 1280
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-waterproof-laminate-nelson.jpg?v=1783017931",
+     "sha1": "67124bc2f7ff65888edf9ac4692250bebc0e5491",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-nelson",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-7d6b2c2a927e",
+   "seq": 38,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec9SPFHp9R7bBezl",
+   "sku": "LAM-EVGR-72166",
+   "product_name": "Evergreen Water Resistant Laminate — 72166 (9.4\" x 14mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_08.jpg",
+      "filename": "evergreen-laminate-9-4in-72166-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-wpl2-sicamous-hero.jpg?v=1783034127",
+      "filename": "evergreen-laminate-9-4in-72166-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/72166/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/72166/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_08.jpg",
+     "sha1": "e0b77b178259b448901ed7a6b0e89461ba42b544",
+     "page": "https://simbaflooringcorp.com/product/72166/",
+     "width": 1430,
+     "height": 953
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-wpl2-sicamous-hero.jpg?v=1783034127",
+     "sha1": "6a5851580373f6b1c5fd2b29d1895707341d520a",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-sicamous",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-346b76e38567",
+   "seq": 39,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recGiiZpKVDoHpNOC",
+   "sku": "LAM-EVGR-72493",
+   "product_name": "Evergreen Water Resistant Laminate — 72493 (9.4\" x 14mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72493-scaled.jpg",
+      "filename": "evergreen-laminate-9-4in-72493-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-water-resistant-laminate-vernon.jpg?v=1783017937",
+      "filename": "evergreen-laminate-9-4in-72493-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/72493/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/72493/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72493-scaled.jpg",
+     "sha1": "87246e72402223ea081e67e3203a500291f348e3",
+     "page": "https://simbaflooringcorp.com/product/72493/",
+     "width": 2560,
+     "height": 1707
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-water-resistant-laminate-vernon.jpg?v=1783017937",
+     "sha1": "72112015cf34e53a94c08776244d48983ef1db17",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-vernon",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-9606060dbacc",
+   "seq": 40,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recAjyOg0yOyb06wM",
+   "sku": "LAM-EVGR-72495",
+   "product_name": "Evergreen Water Resistant Laminate — 72495 (9.4\" x 14mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72495-scaled.jpg",
+      "filename": "evergreen-laminate-9-4in-72495-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-water-resistant-laminate-harrison.jpg?v=1783017938",
+      "filename": "evergreen-laminate-9-4in-72495-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/72495/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/72495/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72495-scaled.jpg",
+     "sha1": "94eb13f24769846c7ff137188fff4fa10ae484a6",
+     "page": "https://simbaflooringcorp.com/product/72495/",
+     "width": 2560,
+     "height": 1706
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-water-resistant-laminate-harrison.jpg?v=1783017938",
+     "sha1": "7967f867d894db5ef7666c7dded67fcda085732e",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-harrison",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-1c8e890442ee",
+   "seq": 41,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recfeDWo5FGHiDn9t",
+   "sku": "LAM-EVGR-72523",
+   "product_name": "Evergreen Water Resistant Laminate — 72523 (9.4\" x 14mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Hazelton-72523.jpg?v=1687458110",
+      "filename": "evergreen-laminate-9-4in-72523-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72523-scaled.jpg",
+      "filename": "evergreen-laminate-9-4in-72523-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/72523/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-hazelton",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Hazelton-72523.jpg?v=1687458110",
+     "sha1": "2f256ce8653de7b74d606ebf4532980a6d4962eb",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-hazelton",
+     "width": 943,
+     "height": 914
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72523-scaled.jpg",
+     "sha1": "c946adffc00564acf426d9794f4cf7cc6e491565",
+     "page": "https://simbaflooringcorp.com/product/72523/",
+     "width": 2560,
+     "height": 1524
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-be0e1d7313fd",
+   "seq": 42,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rectY6Rn50XOC0h9a",
+   "sku": "LAM-EVGR-72740",
+   "product_name": "Evergreen Water Resistant Laminate — 72740 (9.4\" x 14mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72740-scaled.jpg",
+      "filename": "evergreen-laminate-9-4in-72740-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-water-resistant-laminate-cariboo.jpg?v=1783017940",
+      "filename": "evergreen-laminate-9-4in-72740-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/72740/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/72740/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72740-scaled.jpg",
+     "sha1": "ac335ce4ef26a9ac06f229d0430caa720a7387ad",
+     "page": "https://simbaflooringcorp.com/product/72740/",
+     "width": 2560,
+     "height": 1707
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-water-resistant-laminate-cariboo.jpg?v=1783017940",
+     "sha1": "5973d91eb298fe2c6da0b1dd07ce45da0fa63aec",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-cariboo",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-10a66a16c824",
+   "seq": 43,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recgfWoIYbADE4ne8",
+   "sku": "LAM-EVGR-72741",
+   "product_name": "Evergreen Water Resistant Laminate — 72741 (9.4\" x 14mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72741-scaled.jpg",
+      "filename": "evergreen-laminate-9-4in-72741-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-water-resistant-laminate-skeena.jpg?v=1783017942",
+      "filename": "evergreen-laminate-9-4in-72741-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/72741/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/72741/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72741-scaled.jpg",
+     "sha1": "6bbb73b8b0c555365e2223b5fe6814d6f811b429",
+     "page": "https://simbaflooringcorp.com/product/72741/",
+     "width": 2560,
+     "height": 1707
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-water-resistant-laminate-skeena.jpg?v=1783017942",
+     "sha1": "c5e1660515691a0c3d888b59ec4324d2a9b6f3bc",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-skeena",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-6f7dd1c80d1d",
+   "seq": 44,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recvdGisyKjhcmd9q",
+   "sku": "LAM-EVGR-72777",
+   "product_name": "Evergreen Waterproof Laminate — 72777 (7.7\" x 12mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/72777.jpg",
+      "filename": "evergreen-laminate-7-7in-72777-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-waterproof-laminate-osoyoos.jpg?v=1783017932",
+      "filename": "evergreen-laminate-7-7in-72777-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/72777/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/72777/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/72777.jpg",
+     "sha1": "0e5dbd1e36a2d595986be2282e9eee9740db47c5",
+     "page": "https://simbaflooringcorp.com/product/72777/",
+     "width": 1920,
+     "height": 1280
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-waterproof-laminate-osoyoos.jpg?v=1783017932",
+     "sha1": "e03f8ff192b56b59b1876de26fa96a563cd60953",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-osoyoos",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-99bd8f52ad18",
+   "seq": 45,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "receK83PPwkZLQVZb",
+   "sku": "LAM-EVGR-72814",
+   "product_name": "Evergreen Water Resistant Laminate — 72814 (9.4\" x 14mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72814-scaled.jpg",
+      "filename": "evergreen-laminate-9-4in-72814-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-water-resistant-laminate-cheakamus.jpg?v=1783017944",
+      "filename": "evergreen-laminate-9-4in-72814-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/72814/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/72814/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72814-scaled.jpg",
+     "sha1": "7f284abf975a87a05e253e2bf0109991e7a94a6f",
+     "page": "https://simbaflooringcorp.com/product/72814/",
+     "width": 2560,
+     "height": 1707
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-water-resistant-laminate-cheakamus.jpg?v=1783017944",
+     "sha1": "6c4cce8c10dd5ce11e2630b6cfe864cfe80f4069",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-cheakamus",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-51c408e2834b",
+   "seq": 46,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recWYWx1BZ4i7FVja",
+   "sku": "LAM-EVGR-728211",
+   "product_name": "Evergreen Waterproof Laminate — 728211 (9.4\" x 12mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72019-scaled.jpg",
+      "filename": "evergreen-laminate-9-4in-728211-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-waterproof-laminate-nanaimo.jpg?v=1783017922",
+      "filename": "evergreen-laminate-9-4in-728211-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/728211-2-2/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/728211-2-2/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72019-scaled.jpg",
+     "sha1": "d6b150340f826f52b0c6687056dde8541a720395",
+     "page": "https://simbaflooringcorp.com/product/728211-2-2/",
+     "width": 2560,
+     "height": 1707
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-waterproof-laminate-nanaimo.jpg?v=1783017922",
+     "sha1": "91138512ff95ffd7ae1fcbbdba9a6652cbd5fd72",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-ii-laminate-collection-nanaimo",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-7e378cefbd4a",
+   "seq": 47,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recKvWphtcaAgvR2j",
+   "sku": "LAM-EVGR-SH003",
+   "product_name": "Evergreen Waterproof Laminate — SH003 (7.7\" x 12mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/BurnsLake-SH003.jpg?v=1687458425",
+      "filename": "evergreen-sh003-laminate-7-7in-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/SH003.jpg",
+      "filename": "evergreen-sh003-laminate-7-7in-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/sh003/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-waterproof-laminate-collection-burns-lake",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/BurnsLake-SH003.jpg?v=1687458425",
+     "sha1": "c475044054b6f92d2f33a9646881cdb55ef6391b",
+     "page": "https://www.wordofmouthfloors.com/products/simba-waterproof-laminate-collection-burns-lake",
+     "width": 971,
+     "height": 996
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/SH003.jpg",
+     "sha1": "cd57bbdfd45d7eabbeffd5a13702091bf325c213",
+     "page": "https://simbaflooringcorp.com/product/sh003/",
+     "width": 1587,
+     "height": 1058
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-4aace9865758",
+   "seq": 48,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recziKYm9E7nivb61",
+   "sku": "LVP-EVGR-1022-3",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 1022-3 (7\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/SPC1022-3.jpg?v=1608050761",
+      "filename": "evergreen-lvp-7in-1022-3-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-aged-ash-timber"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-aged-ash-timber",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/SPC1022-3.jpg?v=1608050761",
+     "sha1": "ccb13b2e9093474f29d3bac99ddb83e7ca577975",
+     "page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-aged-ash-timber",
+     "width": 1472,
+     "height": 1472
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-992170dfd1ba",
+   "seq": 49,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recYQQ6ShPktxiH1T",
+   "sku": "LVP-EVGR-1069",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 1069 (7\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/SPC1069.jpg?v=1608050594",
+      "filename": "evergreen-lvp-7in-1069-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2022/03/1069.jpg",
+      "filename": "evergreen-lvp-7in-1069-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/spc-1069/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-heidelberg",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/SPC1069.jpg?v=1608050594",
+     "sha1": "9e5660d86683de5b0d634e5e3ff63dab8aa6f97b",
+     "page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-heidelberg",
+     "width": 1472,
+     "height": 1472
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2022/03/1069.jpg",
+     "sha1": "d572cf19d366db84d74113cad27be6fafbc7ddfd",
+     "page": "https://simbaflooringcorp.com/product/spc-1069/",
+     "width": 828,
+     "height": 550
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-309e18e49ba4",
+   "seq": 50,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recMgNkw68CMonHZL",
+   "sku": "LVP-EVGR-20105",
+   "product_name": "Evergreen LVT Plank — 20105 (9\" x 3mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_16.jpg",
+      "filename": "evergreen-lvp-9in-20105-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/lvt_20105.jpg?v=1790711036",
+      "filename": "evergreen-lvp-9in-20105-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/lvt-20105/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/lvt-20105/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_16.jpg",
+     "sha1": "4762d5f26602e32e81d7518bcbcea0e16a1e656a",
+     "page": "https://simbaflooringcorp.com/product/lvt-20105/",
+     "width": 1431,
+     "height": 954
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/lvt_20105.jpg?v=1790711036",
+     "sha1": "02cec9b4e2d0ec95b081f1ce5ef91d7ab6106f3d",
+     "page": "https://www.wordofmouthfloors.com/products/simba-lvt-dry-back-glue-down-collection-lvt-20105",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-04f32eb290d2",
+   "seq": 51,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rectZ3x5Ki3yOckAx",
+   "sku": "LVP-EVGR-315D",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 315D (7\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Smoke315D.jpg?v=1608049115",
+      "filename": "evergreen-lvp-7in-315d-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2022/03/315D.jpg",
+      "filename": "evergreen-lvp-7in-315d-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/spc-315d/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/smoke",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Smoke315D.jpg?v=1608049115",
+     "sha1": "7b78c55f9b5c4413b3b829d1c4f8c807598b0a38",
+     "page": "https://www.wordofmouthfloors.com/products/smoke",
+     "width": 1472,
+     "height": 1472
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2022/03/315D.jpg",
+     "sha1": "55f24bf0dc3ccc7552f315a69e2c321774076641",
+     "page": "https://simbaflooringcorp.com/product/spc-315d/",
+     "width": 1080,
+     "height": 721
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-ab17912e67a8",
+   "seq": 52,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rechMOm2K6dKrvoAk",
+   "sku": "LVP-EVGR-32301",
+   "product_name": "Evergreen LVT Plank — 32301 (9\" x 3mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_09.jpg",
+      "filename": "evergreen-lvp-9in-32301-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/lvt_32301.jpg?v=1790711042",
+      "filename": "evergreen-lvp-9in-32301-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/lvt-32301/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/lvt-32301/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_09.jpg",
+     "sha1": "e6ca4ad2122b4e7c3fd5197da03e6073266da66b",
+     "page": "https://simbaflooringcorp.com/product/lvt-32301/",
+     "width": 1430,
+     "height": 954
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/lvt_32301.jpg?v=1790711042",
+     "sha1": "308fcf7f94bec9e21454917f55a92eb65040eb44",
+     "page": "https://www.wordofmouthfloors.com/products/simba-lvt-dry-back-glue-down-collection-lvt-32301",
+     "width": 1400,
+     "height": 1400
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-acf0388a2cfb",
+   "seq": 53,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recIWszuzphCaXe5T",
+   "sku": "LVP-EVGR-58002-3",
+   "product_name": "Evergreen SPC Drop Lock EIR — 58002-3 (9\" x 6.5mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-galaxy-vega.jpg?v=1783017950",
+      "filename": "evergreen-lvp-9in-58002-3-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-vega"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-vega",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-galaxy-vega.jpg?v=1783017950",
+     "sha1": "86f730c4e88aec37d13723924448a78c35fc488c",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-vega",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-755bc0c64856",
+   "seq": 54,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recr8ffMlGUkmIfyP",
+   "sku": "LVP-EVGR-58023-10",
+   "product_name": "Evergreen SPC Drop Lock EIR — 58023-10 (9\" x 6.5mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-galaxy-lyra.jpg?v=1783017948",
+      "filename": "evergreen-lvp-9in-58023-10-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-lyra"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-lyra",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-galaxy-lyra.jpg?v=1783017948",
+     "sha1": "0fcf0313102cc792e6cd492ae5acba909538a55f",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-lyra",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-4115d413317d",
+   "seq": 55,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recsWK345ieNuDtW9",
+   "sku": "LVP-EVGR-58065-3",
+   "product_name": "Evergreen SPC Drop Lock EIR — 58065-3 (9\" x 6.5mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-galaxy-orion.jpg?v=1783017946",
+      "filename": "evergreen-lvp-9in-58065-3-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-orion"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-orion",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-galaxy-orion.jpg?v=1783017946",
+     "sha1": "cdcbc4fe8044887ca1daf530e25323a70eb0c56d",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-orion",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-aa5e6605d108",
+   "seq": 56,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recKGA01nS7mF9wOm",
+   "sku": "LVP-EVGR-581066-1",
+   "product_name": "Evergreen SPC Drop Lock EIR — 581066-1 (9\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Taurus-581066-1.jpg?v=1666286890",
+      "filename": "evergreen-lvp-9in-581066-1-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-taurus"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-taurus",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Taurus-581066-1.jpg?v=1666286890",
+     "sha1": "b7ecafb79802007cb1619813112f5fb8bdf80edc",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-taurus",
+     "width": 1125,
+     "height": 1125
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-6c7af089c641",
+   "seq": 57,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recjHT4ZwhXihjhau",
+   "sku": "LVP-EVGR-58305-21",
+   "product_name": "Evergreen SPC U-Groove Drop Lock 8mm — 58305-21 (9\" x 8mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-galaxy-pressed-u-groove-nebula.jpg?v=1783017952",
+      "filename": "evergreen-lvp-9in-58305-21-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-pressed-u-groove-collection-nebula"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-pressed-u-groove-collection-nebula",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-galaxy-pressed-u-groove-nebula.jpg?v=1783017952",
+     "sha1": "a7dfd81326b19b6fe31fd8cf6f9faf11657d85a5",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-pressed-u-groove-collection-nebula",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-289f9dbe29ca",
+   "seq": 58,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recmKkx6CaEScfNJz",
+   "sku": "LVP-EVGR-58730-10",
+   "product_name": "Evergreen SPC U-Groove Drop Lock 8mm — 58730-10 (9\" x 8mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-galaxy-pressed-u-groove-eclipse.jpg?v=1783017956",
+      "filename": "evergreen-lvp-9in-58730-10-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-pressed-u-groove-collection-eclipse"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-pressed-u-groove-collection-eclipse",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-galaxy-pressed-u-groove-eclipse.jpg?v=1783017956",
+     "sha1": "e1d8997664bf564c2b5a8ffd994d83ac557801c1",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-pressed-u-groove-collection-eclipse",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-d96f5b652ee9",
+   "seq": 59,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recOCPCpLrgBBD3sa",
+   "sku": "LVP-EVGR-58730-2",
+   "product_name": "Evergreen SPC U-Groove Drop Lock 8mm — 58730-2 (9\" x 8mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-galaxy-pressed-u-groove-comet.jpg?v=1783017954",
+      "filename": "evergreen-lvp-9in-58730-2-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-pressed-u-groove-collection-comet"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-pressed-u-groove-collection-comet",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-galaxy-pressed-u-groove-comet.jpg?v=1783017954",
+     "sha1": "5b27c6160cbd14880fe6c531fbaf366abc79c9a8",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-pressed-u-groove-collection-comet",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-cd26ca0350c3",
+   "seq": 60,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recvNTwBZ7wpDbIqD",
+   "sku": "LVP-EVGR-58943-1",
+   "product_name": "Evergreen SPC Drop Lock EIR — 58943-1 (9\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Celeste-58943-1.jpg?v=1666219018",
+      "filename": "evergreen-lvp-9in-58943-1-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-celeste"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-celeste",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Celeste-58943-1.jpg?v=1666219018",
+     "sha1": "749b4f889f435b2b31e226c93a35f21874c53714",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-celeste",
+     "width": 1259,
+     "height": 1259
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-87f941395cc7",
+   "seq": 61,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec9IP0Ek5tB7AAI7",
+   "sku": "LVP-EVGR-58943-15",
+   "product_name": "Evergreen SPC Drop Lock EIR — 58943-15 (9\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Atlas-58943-15.jpg?v=1666219306",
+      "filename": "evergreen-lvp-9in-58943-15-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-atlas"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-atlas",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Atlas-58943-15.jpg?v=1666219306",
+     "sha1": "c97e95074951ba962257c57e4cca33b1ed5f0045",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-atlas",
+     "width": 1317,
+     "height": 1317
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-fb3f6fd71067",
+   "seq": 62,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "receBoL45juHD2Q8l",
+   "sku": "LVP-EVGR-58943-3",
+   "product_name": "Evergreen SPC Drop Lock EIR — 58943-3 (9\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Astra-58943-3.jpg?v=1666218803",
+      "filename": "evergreen-lvp-9in-58943-3-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-astra"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-astra",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Astra-58943-3.jpg?v=1666218803",
+     "sha1": "ee9a2d986f82f646260f0b1d3bf624153fd4e2a0",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-astra",
+     "width": 1210,
+     "height": 1210
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-657675d9442b",
+   "seq": 63,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recHtTlaD5HOLAcBz",
+   "sku": "LVP-EVGR-58943-6",
+   "product_name": "Evergreen SPC Drop Lock EIR — 58943-6 (9\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Mercury-58943-6.jpg?v=1666219550",
+      "filename": "evergreen-lvp-9in-58943-6-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-mercury"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-mercury",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Mercury-58943-6.jpg?v=1666219550",
+     "sha1": "8e6cfcd8735aa10a4156fb64ff97eb569c323376",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-mercury",
+     "width": 1204,
+     "height": 1204
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-815ee6e3d072",
+   "seq": 64,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec4vU1Zx5LnEgTHy",
+   "sku": "LVP-EVGR-589531-1",
+   "product_name": "Evergreen SPC U-Groove Drop Lock 8mm — 589531-1 (9\" x 8mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-galaxy-pressed-u-groove-quasar.jpg?v=1783017958",
+      "filename": "evergreen-lvp-9in-589531-1-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-pressed-u-groove-collection-quasar"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-pressed-u-groove-collection-quasar",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-galaxy-pressed-u-groove-quasar.jpg?v=1783017958",
+     "sha1": "2c0e401d308ebb19ff1f5f3ac336adc26ab764df",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-pressed-u-groove-collection-quasar",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-39be3a497ed4",
+   "seq": 65,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recFRF7PZqBgVIPd5",
+   "sku": "LVP-EVGR-589531-2",
+   "product_name": "Evergreen SPC Drop Lock EIR — 589531-2 (9\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Atlas-589531-2.jpg?v=1666219191",
+      "filename": "evergreen-lvp-9in-589531-2-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-apollo"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-apollo",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Atlas-589531-2.jpg?v=1666219191",
+     "sha1": "cc5b3f301724bf617c36540ba90aab9b0a627d75",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-apollo",
+     "width": 1195,
+     "height": 1195
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-2819f5f68176",
+   "seq": 66,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recPg4mmqwTyminO8",
+   "sku": "LVP-EVGR-589531-5",
+   "product_name": "Evergreen SPC Drop Lock EIR — 589531-5 (9\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Artemis.jpg?v=1722542620",
+      "filename": "evergreen-lvp-9in-589531-5-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-artemis"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-artemis",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Artemis.jpg?v=1722542620",
+     "sha1": "74604623643b565b962e95101dac83e9dd89f357",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-artemis",
+     "width": 1987,
+     "height": 1999
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-c85520000451",
+   "seq": 67,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recfKWvDy0p79yo5a",
+   "sku": "LVP-EVGR-6607-9",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 6607-9 (7\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6607-9_2.jpg?v=1607984980",
+      "filename": "evergreen-lvp-7in-6607-9-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/DesertSandRoomScene3.jpg?v=1607984961",
+      "filename": "evergreen-lvp-7in-6607-9-room-scene.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/DesertSandRoomScene1.jpg?v=1607984960",
+      "filename": "evergreen-lvp-7in-6607-9-room-scene-2.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/DesertSandRoomScene2.jpg?v=1607984961",
+      "filename": "evergreen-lvp-7in-6607-9-room-scene-3.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/desert-sand"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/desert-sand",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6607-9_2.jpg?v=1607984980",
+     "sha1": "645a95bfac864bbda098a2d986272bc8b9e1d7f6",
+     "page": "https://www.wordofmouthfloors.com/products/desert-sand",
+     "width": 1317,
+     "height": 1317
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/DesertSandRoomScene3.jpg?v=1607984961",
+     "sha1": "f870f91d2ad63543461f19a93cc1e096178ff488",
+     "page": "https://www.wordofmouthfloors.com/products/desert-sand",
+     "width": 1200,
+     "height": 1600
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/DesertSandRoomScene1.jpg?v=1607984960",
+     "sha1": "fd12b9ebed9153d083f805ee5f4bf43883b21d38",
+     "page": "https://www.wordofmouthfloors.com/products/desert-sand",
+     "width": 960,
+     "height": 1280
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/DesertSandRoomScene2.jpg?v=1607984961",
+     "sha1": "7141e8bad11ac0dc609f8b95bdc31c32e8746b65",
+     "page": "https://www.wordofmouthfloors.com/products/desert-sand",
+     "width": 960,
+     "height": 1280
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-16153a2eb13d",
+   "seq": 68,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec1JT3fZjU4vf5nT",
+   "sku": "LVP-EVGR-6661-10",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 6661-10 (7\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6661-10-CLEAROAK_b5a18278-5682-4f22-9fab-985d61be024d.jpg?v=1611440496",
+      "filename": "evergreen-lvp-7in-6661-10-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-clear-oak"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-clear-oak",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6661-10-CLEAROAK_b5a18278-5682-4f22-9fab-985d61be024d.jpg?v=1611440496",
+     "sha1": "8852d1e1aa75fb86555d34b1ba6114732b43717f",
+     "page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-clear-oak",
+     "width": 1453,
+     "height": 1584
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-4306dde71e0d",
+   "seq": 69,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recFdFZkreRuStuGe",
+   "sku": "LVP-EVGR-6681",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 6681 (7\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6681-Simba.jpg?v=1627410743",
+      "filename": "evergreen-lvp-7in-6681-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2022/03/6681.jpg",
+      "filename": "evergreen-lvp-7in-6681-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/spc-6681/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-dusk",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6681-Simba.jpg?v=1627410743",
+     "sha1": "ac45d252436dc9c4d1d49452374b1a3a353405b1",
+     "page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-dusk",
+     "width": 1207,
+     "height": 1207
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2022/03/6681.jpg",
+     "sha1": "b8f9427dfe478a8aa99c6ad06fda90424f809f77",
+     "page": "https://simbaflooringcorp.com/product/spc-6681/",
+     "width": 1280,
+     "height": 853
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-2610b5dc6a67",
+   "seq": 70,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recFfKb5aY8V192h3",
+   "sku": "LVP-EVGR-68-12A",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 68-12A (7\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Nova-68-12A.jpg?v=1690925712",
+      "filename": "evergreen-lvp-7in-68-12a-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-nova"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-nova",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Nova-68-12A.jpg?v=1690925712",
+     "sha1": "868b6fdd0da4793a87d36727c8579fa49e2d811b",
+     "page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-nova",
+     "width": 1123,
+     "height": 1123
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-8696498d2000",
+   "seq": 71,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recTqFaxreGlxCFCF",
+   "sku": "LVP-EVGR-68022",
+   "product_name": "Evergreen SPC Drop Lock EIR — 68022 (9\" x 8mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-earth-canyon-hero.jpg?v=1783034116",
+      "filename": "evergreen-lvp-9in-68022-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/68022/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-earth-collection-canyon",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-earth-canyon-hero.jpg?v=1783034116",
+     "sha1": "44f0a8a18a8573e3891d16fcc2c96c7bf76a8063",
+     "page": "https://www.wordofmouthfloors.com/products/simba-earth-collection-canyon",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-b7eb2d2dfbbe",
+   "seq": 72,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recV2LbxvdlqtTXIJ",
+   "sku": "LVP-EVGR-681002",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 681002 (7\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Wolf-681002.jpg?v=1690926019",
+      "filename": "evergreen-lvp-7in-681002-swatch.jpg"
+     }
+    ],
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2023/04/spc-681002-scaled.jpg",
+      "filename": "evergreen-lvp-7in-681002-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/681002/"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-wolf",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/Wolf-681002.jpg?v=1690926019",
+     "sha1": "9ddec3bb7f5c94c8db3877b0317bc87f0d54adc4",
+     "page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-wolf",
+     "width": 1307,
+     "height": 1307
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2023/04/spc-681002-scaled.jpg",
+     "sha1": "aef8d9b9e462b8dacd3dded2c8550bb343a1ed2a",
+     "page": "https://simbaflooringcorp.com/product/681002/",
+     "width": 2560,
+     "height": 1707
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-206cc5676239",
+   "seq": 73,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recmCOkQ2PLsy1NSs",
+   "sku": "LVP-EVGR-681019-8",
+   "product_name": "Evergreen SPC Drop Lock EIR — 681019-8 (9\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Venus-681019-8.jpg?v=1666219497",
+      "filename": "evergreen-lvp-9in-681019-8-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-venus"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-venus",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Venus-681019-8.jpg?v=1666219497",
+     "sha1": "7055b49c6a17864c921f34618533f8bba7ad619a",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-venus",
+     "width": 1211,
+     "height": 1211
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-b61697a45ff3",
+   "seq": 74,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reciRHcLLrKXsV3a8",
+   "sku": "LVP-EVGR-68347-7",
+   "product_name": "Evergreen SPC Drop Lock EIR — 68347-7 (9\" x 8mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-earth-savanna-hero.jpg?v=1783034118",
+      "filename": "evergreen-lvp-9in-68347-7-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-earth-collection-savanna"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-earth-collection-savanna",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-earth-savanna-hero.jpg?v=1783034118",
+     "sha1": "842953b3b876d4ad2a44fd4098a758a0d591e655",
+     "page": "https://www.wordofmouthfloors.com/products/simba-earth-collection-savanna",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-3278cfddb7ae",
+   "seq": 75,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recNxv6qaHzkB7Oh7",
+   "sku": "LVP-EVGR-68363",
+   "product_name": "Evergreen SPC Drop Lock EIR — 68363 (9\" x 8mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_02.jpg",
+      "filename": "evergreen-lvp-9in-68363-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-earth-mesa-hero.jpg?v=1783034117",
+      "filename": "evergreen-lvp-9in-68363-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/68363/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/68363/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_02.jpg",
+     "sha1": "368d5c9cf624d378075287c9c926ee39a5c0354c",
+     "page": "https://simbaflooringcorp.com/product/68363/",
+     "width": 1599,
+     "height": 1279
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-earth-mesa-hero.jpg?v=1783034117",
+     "sha1": "d48dade3d98e2e14db88d757fa2be5c63700506a",
+     "page": "https://www.wordofmouthfloors.com/products/simba-earth-collection-mesa",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-a47c98b31cc6",
+   "seq": 76,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec51hdNHxrUjLX5U",
+   "sku": "LVP-EVGR-68493",
+   "product_name": "Evergreen SPC Drop Lock EIR — 68493 (9\" x 8mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_01.jpg",
+      "filename": "evergreen-lvp-9in-68493-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-earth-serengeti-hero.jpg?v=1783034120",
+      "filename": "evergreen-lvp-9in-68493-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/68493/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/68493/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_01.jpg",
+     "sha1": "d5e8e896c95efb9d1b7d5b71c234f934e1ee3623",
+     "page": "https://simbaflooringcorp.com/product/68493/",
+     "width": 1600,
+     "height": 1279
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-earth-serengeti-hero.jpg?v=1783034120",
+     "sha1": "647bcbd29042579433835ee5cfba248cf112a8c7",
+     "page": "https://www.wordofmouthfloors.com/products/simba-earth-collection-serengeti",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-ae1449a01951",
+   "seq": 77,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "receGzbbBw6hyKnla",
+   "sku": "LVP-EVGR-685507",
+   "product_name": "Evergreen SPC Drop Lock EIR — 685507 (9\" x 6.5mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-galaxy-rigel-hero.jpg?v=1783034125",
+      "filename": "evergreen-lvp-9in-685507-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-rigel"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-rigel",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-galaxy-rigel-hero.jpg?v=1783034125",
+     "sha1": "c5a827b25b6843ad154dd17ccedc7eac6e0a975f",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-rigel",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-3046cab9914e",
+   "seq": 78,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reczEO9jJ1BQ6TEC0",
+   "sku": "LVP-EVGR-68628",
+   "product_name": "Evergreen SPC Drop Lock EIR — 68628 (9\" x 8mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_04.jpg",
+      "filename": "evergreen-lvp-9in-68628-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-earth-patagonia-hero.jpg?v=1783034121",
+      "filename": "evergreen-lvp-9in-68628-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/68628/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/68628/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_04.jpg",
+     "sha1": "228196ad3c76582183a9f955643e523fde9463d8",
+     "page": "https://simbaflooringcorp.com/product/68628/",
+     "width": 1599,
+     "height": 1279
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-earth-patagonia-hero.jpg?v=1783034121",
+     "sha1": "4ce7a5e80a0e1d6740438a376afd52726ac08971",
+     "page": "https://www.wordofmouthfloors.com/products/simba-earth-collection-patagonia",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-1682e65941ff",
+   "seq": 79,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reciqCaWR9ecCb62x",
+   "sku": "LVP-EVGR-68629",
+   "product_name": "Evergreen SPC Drop Lock EIR — 68629 (9\" x 8mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_05.jpg",
+      "filename": "evergreen-lvp-9in-68629-detail.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-earth-everest-hero.jpg?v=1783034122",
+      "filename": "evergreen-lvp-9in-68629-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/68629/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/68629/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_05.jpg",
+     "sha1": "b44bc4619c411dfb0d88acc439f2187b151335a9",
+     "page": "https://simbaflooringcorp.com/product/68629/",
+     "width": 1599,
+     "height": 1279
+    },
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-earth-everest-hero.jpg?v=1783034122",
+     "sha1": "574c0b3021bf3b66c809f34d62612cdc795a5185",
+     "page": "https://www.wordofmouthfloors.com/products/simba-earth-collection-everest",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-aed2722a0604",
+   "seq": 80,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recKHAk5ee3Znw6Ax",
+   "sku": "LVP-EVGR-817",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 817 (7\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Pavel-Seaside-2.jpg?v=1607985216",
+      "filename": "evergreen-lvp-7in-817-swatch.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Seaside.jpg?v=1628016037",
+      "filename": "evergreen-lvp-7in-817-swatch-2.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Pavel-Seaside1.jpg?v=1607985215",
+      "filename": "evergreen-lvp-7in-817-room-scene.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Pavel-Seaside-3.jpg?v=1607985215",
+      "filename": "evergreen-lvp-7in-817-room-scene-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/seaside"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/seaside",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Pavel-Seaside-2.jpg?v=1607985216",
+     "sha1": "10f939ded2853796bca57ecd410beafd54d54981",
+     "page": "https://www.wordofmouthfloors.com/products/seaside",
+     "width": 916,
+     "height": 1280
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Seaside.jpg?v=1628016037",
+     "sha1": "8c6638579ca36736de495f9fb8b62db1f884730b",
+     "page": "https://www.wordofmouthfloors.com/products/seaside",
+     "width": 1123,
+     "height": 1123
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Pavel-Seaside1.jpg?v=1607985215",
+     "sha1": "31abe0b323eb546fe7d14006be23c7304b8445d3",
+     "page": "https://www.wordofmouthfloors.com/products/seaside",
+     "width": 1600,
+     "height": 1200
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Pavel-Seaside-3.jpg?v=1607985215",
+     "sha1": "bc1bb19b74d459a1c5f9cdef80011233dc02a7f0",
+     "page": "https://www.wordofmouthfloors.com/products/seaside",
+     "width": 1200,
+     "height": 1600
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-d9248e6414af",
+   "seq": 81,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec7SN8s0eYcg8PmY",
+   "sku": "LVP-EVGR-83741",
+   "product_name": "Evergreen LVT Plank — 83741 (9\" x 3mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_11.jpeg",
+      "filename": "evergreen-lvp-9in-83741-detail.jpeg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/lvt-83741/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://simbaflooringcorp.com/product/lvt-83741/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_11.jpeg",
+     "sha1": "378952c5c76c76ebd7ac9f1adad4c7d1fc7b152f",
+     "page": "https://simbaflooringcorp.com/product/lvt-83741/",
+     "width": 696,
+     "height": 464
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-060907d26eb3",
+   "seq": 82,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reccsBWK3EEbZo0Yp",
+   "sku": "LVP-EVGR-90616-4",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 90616-4 (7\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/HOFBRAUHAUS_90616-4.jpg?v=1608051009",
+      "filename": "evergreen-lvp-7in-90616-4-swatch.jpg"
+     }
+    ],
+    "Room scene images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Sergio-Horbrauhaus-Studio.png?v=1608050980",
+      "filename": "evergreen-lvp-7in-90616-4-room-scene.png"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/ScreenShot2020-09-01at9.37.03AM.png?v=1608050983",
+      "filename": "evergreen-lvp-7in-90616-4-room-scene-2.png"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-hofbrauhaus"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Room scene images": "fldcB1MQVqcPf6lKY",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Room scene images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-hofbrauhaus",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/HOFBRAUHAUS_90616-4.jpg?v=1608051009",
+     "sha1": "3e877f15539c0fb428f2e445506e76c67d86ff00",
+     "page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-hofbrauhaus",
+     "width": 1472,
+     "height": 1472
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/Sergio-Horbrauhaus-Studio.png?v=1608050980",
+     "sha1": "27d274970609acc07a6995d6dc3be73d6c213db7",
+     "page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-hofbrauhaus",
+     "width": 600,
+     "height": 593
+    },
+    {
+     "target": "room",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/ScreenShot2020-09-01at9.37.03AM.png?v=1608050983",
+     "sha1": "3bf9ba7c382d09248d70ade19878896358352475",
+     "page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-hofbrauhaus",
+     "width": 593,
+     "height": 595
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-61ab1e7c04eb",
+   "seq": 83,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recwxopBzU5PdenLz",
+   "sku": "LVP-EVGR-981231-6",
+   "product_name": "Evergreen SPC Herringbone Drop Lock EIR — 981231-6 (5.91\" x 7mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/981231-6-Jupiter.jpg?v=1690920341",
+      "filename": "evergreen-lvp-herringbone-5-91in-981231-6-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-venus-herringbone-collection-jupiter"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-venus-herringbone-collection-jupiter",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/981231-6-Jupiter.jpg?v=1690920341",
+     "sha1": "5a0f29fcd8637bee14d2e18a6c5e8255f1f0df19",
+     "page": "https://www.wordofmouthfloors.com/products/simba-venus-herringbone-collection-jupiter",
+     "width": 1364,
+     "height": 1364
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-bfdd8453a28e",
+   "seq": 84,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recZQi2jx4MPHq5Jx",
+   "sku": "LVP-EVGR-981231-9",
+   "product_name": "Evergreen SPC Herringbone Drop Lock EIR — 981231-9 (5.91\" x 7mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/981231-9-Neptune.jpg?v=1690920781",
+      "filename": "evergreen-lvp-herringbone-5-91in-981231-9-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-venus-herringbone-collection-neptune"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-venus-herringbone-collection-neptune",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/981231-9-Neptune.jpg?v=1690920781",
+     "sha1": "3476e1a9af4639bb052d4e1b5d4d00919aa0a266",
+     "page": "https://www.wordofmouthfloors.com/products/simba-venus-herringbone-collection-neptune",
+     "width": 1388,
+     "height": 1388
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-ba5428132447",
+   "seq": 85,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "reclLVevMpltEcW0e",
+   "sku": "LVP-EVGR-9860054",
+   "product_name": "Evergreen SPC Drop Lock EIR — 9860054 (9\" x 6.5mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-galaxy-polaris-hero.jpg?v=1783034123",
+      "filename": "evergreen-lvp-9in-9860054-detail.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-polaris"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-polaris",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/files/simba-galaxy-polaris-hero.jpg?v=1783034123",
+     "sha1": "6bcd2e346370b542beb2c37e7d03439043152005",
+     "page": "https://www.wordofmouthfloors.com/products/simba-galaxy-collection-polaris",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "flags": [
+    "no_swatch",
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-095cc550d501",
+   "seq": 86,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recfLAxSWeK5wV0w4",
+   "sku": "LVP-EVGR-SP005",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — SP005 (7\" x 6.5mm)",
+   "fields": {
+    "Detail images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/SP005.jpg?v=1608050890",
+      "filename": "evergreen-sp005-lvp-7in-detail.jpg"
+     },
+     {
+      "url": "https://simbaflooringcorp.com/wp-content/uploads/2022/03/SP005.jpg",
+      "filename": "evergreen-sp005-lvp-7in-detail-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://simbaflooringcorp.com/product/spc-sp005-2/"
+   },
+   "field_ids": {
+    "Detail images": "fldRH7GrND9w10KWH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Detail images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-black-forest",
+   "source": "wordofmouth",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "detail",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/SP005.jpg?v=1608050890",
+     "sha1": "4cb914b184f6884a301cd34d394e31f7a1d80be6",
+     "page": "https://www.wordofmouthfloors.com/products/simba-universe-collection-black-forest",
+     "width": 1424,
+     "height": 1424
+    },
+    {
+     "target": "detail",
+     "url": "https://simbaflooringcorp.com/wp-content/uploads/2022/03/SP005.jpg",
+     "sha1": "c738ede772009543d0fa22aac95ce6449a4e2699",
+     "page": "https://simbaflooringcorp.com/product/spc-sp005-2/",
+     "width": 1080,
+     "height": 721
+    }
+   ],
+   "flags": [
+    "no_swatch"
+   ]
+  },
+  {
+   "id": "img-6a89cddac8a1",
+   "seq": 87,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec4QE71oPlECfT16",
+   "sku": "LVT-EVGR-410-5",
+   "product_name": "Evergreen SPC Drop Lock Tile Look — 410-5 (12\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/410-5.jpg?v=1610055611",
+      "filename": "evergreen-lvt-12in-410-5-swatch.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/858224dc-4797-41fc-9450-cae10be7912f.jpg?v=1610055611",
+      "filename": "evergreen-lvt-12in-410-5-swatch-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/frozen-tundra"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/frozen-tundra",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/410-5.jpg?v=1610055611",
+     "sha1": "1ac884f5a0b3f4575335ff32e1d3686f034b9d05",
+     "page": "https://www.wordofmouthfloors.com/products/frozen-tundra",
+     "width": 1512,
+     "height": 2016
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/858224dc-4797-41fc-9450-cae10be7912f.jpg?v=1610055611",
+     "sha1": "117247d6dce7bc23383f4553553490a15ce86fc0",
+     "page": "https://www.wordofmouthfloors.com/products/frozen-tundra",
+     "width": 1472,
+     "height": 1472
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-0c514feb4cc0",
+   "seq": 88,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recDA6rhyBMtWPwi8",
+   "sku": "LVT-EVGR-6007-4",
+   "product_name": "Evergreen SPC Drop Lock Tile Look — 6007-4 (12\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6007-4_e23cf3c9-32a7-4e0b-a57e-942db0adf9c2.jpg?v=1610210305",
+      "filename": "evergreen-lvt-12in-6007-4-swatch.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6007-4.jpg?v=1610210320",
+      "filename": "evergreen-lvt-12in-6007-4-swatch-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/waterfall-1"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/waterfall-1",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6007-4_e23cf3c9-32a7-4e0b-a57e-942db0adf9c2.jpg?v=1610210305",
+     "sha1": "8c741f8933fa997c59d921dbb869cf48369bc586",
+     "page": "https://www.wordofmouthfloors.com/products/waterfall-1",
+     "width": 1512,
+     "height": 2016
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6007-4.jpg?v=1610210320",
+     "sha1": "7f5fd480916a6251d76e6dc2f4bd6d395c3ec151",
+     "page": "https://www.wordofmouthfloors.com/products/waterfall-1",
+     "width": 1472,
+     "height": 1472
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-3ca80f9608ae",
+   "seq": 89,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recgVtOkya0R7jgdV",
+   "sku": "LVT-EVGR-6539-1",
+   "product_name": "Evergreen SPC Drop Lock Tile Look — 6539-1 (12\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6359-1_d39e9a82-1c99-4461-a037-bb1ff9947b70.jpg?v=1610209107",
+      "filename": "evergreen-lvt-12in-6539-1-swatch.jpg"
+     },
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6359-1.jpg?v=1610209169",
+      "filename": "evergreen-lvt-12in-6539-1-swatch-2.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/carrera-marble"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/carrera-marble",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6359-1_d39e9a82-1c99-4461-a037-bb1ff9947b70.jpg?v=1610209107",
+     "sha1": "77a0dd74800eb8c59dfdb99d0695800d00b31b64",
+     "page": "https://www.wordofmouthfloors.com/products/carrera-marble",
+     "width": 1512,
+     "height": 2016
+    },
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/6359-1.jpg?v=1610209169",
+     "sha1": "d97a0843c6aa23598e79c2088b2ca03883f93572",
+     "page": "https://www.wordofmouthfloors.com/products/carrera-marble",
+     "width": 1472,
+     "height": 1472
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  },
+  {
+   "id": "img-dcf2db76e72e",
+   "seq": 90,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rec4eIRhDsSV14woY",
+   "sku": "LVT-EVGR-7085-1",
+   "product_name": "Evergreen SPC Drop Lock Tile Look — 7085-1 (12\" x 6.5mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/7085-1CremaMarble.jpg?v=1610210089",
+      "filename": "evergreen-lvt-12in-7085-1-swatch.jpg"
+     }
+    ],
+    "Supplier product page": "https://www.wordofmouthfloors.com/products/crema-marble"
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH",
+    "Supplier product page": "flduFw93z4YwnOA3I"
+   },
+   "expect_blank": [
+    "Swatch images",
+    "Supplier product page"
+   ],
+   "source_page": "https://www.wordofmouthfloors.com/products/crema-marble",
+   "source": "wordofmouth",
+   "product_page_source": "wordofmouth",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://cdn.shopify.com/s/files/1/0503/0330/3873/products/7085-1CremaMarble.jpg?v=1610210089",
+     "sha1": "5b903c615c19e72cebf73211f71426715db73649",
+     "page": "https://www.wordofmouthfloors.com/products/crema-marble",
+     "width": 1122,
+     "height": 1122
+    }
+   ],
+   "flags": [
+    "product_page_not_manufacturer"
+   ]
+  }
+ ],
+ "held": [
+  {
+   "sku": "ACC-EVGR-0001",
+   "record_id": "recSf1oeQMaDweoGt",
+   "product_name": "Evergreen - Stair | Stair Board | SPC | 40\" x 12.6\" Square Return",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-EVGR-0002",
+   "record_id": "rec7UioBcIlKnZHGs",
+   "product_name": "Evergreen - Stair | Stair Riser | SPC | 40\" x 7.87\"",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-EVGR-0003",
+   "record_id": "recci8RuzTSNFNbLN",
+   "product_name": "Evergreen - Transition | T-Moulding | SPC | 7.87 ft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-EVGR-0004",
+   "record_id": "recsW7cT0GFA3wMVR",
+   "product_name": "Evergreen - Transition | Reducer | SPC | 7.87 ft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ACC-EVGR-0005",
+   "record_id": "recqWOw2hKRsUHdxl",
+   "product_name": "Evergreen - Transition | Stair Nosing | SPC | 7.87 ft",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {}"
+  },
+  {
+   "sku": "ENG-EVGR-0001",
+   "record_id": "recm1Hva9iZUzHzCo",
+   "product_name": "Evergreen Engineered Oak — Huskie Gray* (6-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Huskie Gray*'; vetoes {}"
+  },
+  {
+   "sku": "ENG-EVGR-0002",
+   "record_id": "recWPCcSa8i6Bwsup",
+   "product_name": "Evergreen Engineered Oak — Clay (6-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Clay'; vetoes {}"
+  },
+  {
+   "sku": "ENG-EVGR-0004",
+   "record_id": "recMeuRAxOiqiULRU",
+   "product_name": "Evergreen Engineered Oak — Tan (6-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Tan'; vetoes {}"
+  },
+  {
+   "sku": "ENG-EVGR-0006",
+   "record_id": "recnlnxRXFfjnx7VJ",
+   "product_name": "Evergreen Engineered Oak — Mocha (6-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Mocha'; vetoes {}"
+  },
+  {
+   "sku": "ENG-EVGR-0017",
+   "record_id": "rectxJSnRnRM72654",
+   "product_name": "Evergreen Engineered Maple — Natural (7-1/2\" x 3/5\", 1.2mm top)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/acacia-natural/",
+    "https://simbaflooringcorp.com/product/birch-natural/",
+    "https://simbaflooringcorp.com/product/oak-natural-3/",
+    "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-natural",
+    "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural",
+    "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-walnut-natural"
+   ],
+   "reason": "model_rejected",
+   "detail": "colour 'Natural'; vetoes {'pattern': 2}"
+  },
+  {
+   "sku": "ENG-EVGR-0018",
+   "record_id": "recohFBMoHh6GTHqd",
+   "product_name": "Evergreen Engineered Black Walnut — Natural (7-1/2\" x 3/5\", 2mm top)",
+   "candidate_pages": [
+    "https://simbaflooringcorp.com/product/acacia-natural/",
+    "https://simbaflooringcorp.com/product/birch-natural/",
+    "https://simbaflooringcorp.com/product/oak-natural-3/",
+    "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-natural",
+    "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-oak-natural",
+    "https://www.wordofmouthfloors.com/products/simba-engineered-hardwood-collection-walnut-natural"
+   ],
+   "reason": "model_rejected",
+   "detail": "colour 'Natural'; vetoes {'pattern': 2}"
+  },
+  {
+   "sku": "ENG-EVGR-0019",
+   "record_id": "rec6r1jijzflsic1y",
+   "product_name": "Evergreen Engineered Hickory — Battleship (7-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Battleship'; vetoes {}"
+  },
+  {
+   "sku": "ENG-EVGR-0020",
+   "record_id": "recbRNMHpkbD3ref1",
+   "product_name": "Evergreen Engineered Hickory — Bristol (7-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Bristol'; vetoes {}"
+  },
+  {
+   "sku": "ENG-EVGR-0021",
+   "record_id": "recOFQQcrBWMeRCH3",
+   "product_name": "Evergreen Engineered Hickory — Summer (7-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Summer'; vetoes {}"
+  },
+  {
+   "sku": "ENG-EVGR-0022",
+   "record_id": "recqCVL88aGjDlEmM",
+   "product_name": "Evergreen Engineered Hickory — Venezuela (7-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Venezuela'; vetoes {}"
+  },
+  {
+   "sku": "ENG-EVGR-0024",
+   "record_id": "recAhDT1YgHRfUQUy",
+   "product_name": "Evergreen Engineered Oak — Brest (7-1/2\" x 3/4\", 3mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Brest'; vetoes {}"
+  },
+  {
+   "sku": "ENG-EVGR-0026",
+   "record_id": "rec6Gua57OkI6sKwH",
+   "product_name": "Evergreen Engineered Oak — Strasbourg (7-1/2\" x 3/4\", 3mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Strasbourg'; vetoes {}"
+  },
+  {
+   "sku": "ENG-EVGR-0028",
+   "record_id": "recCEsrUocBDsSp7P",
+   "product_name": "Evergreen Engineered Oak — White Coffee (7-1/2\" x 3/4\", 1.2mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'White Coffee'; vetoes {}"
+  },
+  {
+   "sku": "ENG-EVGR-0030",
+   "record_id": "recKC6lmh8HovTpy6",
+   "product_name": "Evergreen Engineered Oak — Norman Castle (7-1/2\" x 3/4\", 3mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Norman Castle'; vetoes {}"
+  },
+  {
+   "sku": "ENG-EVGR-0034",
+   "record_id": "recx095X8qu52Hote",
+   "product_name": "Evergreen Engineered Oak — Narural (9-1/2\" x 3/4\", 4mm top)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Narural'; vetoes {}"
+  },
+  {
+   "sku": "LAM-EVGR-2020",
+   "record_id": "recrjhfpw4NrlGgvK",
+   "product_name": "Evergreen Waterproof Laminate — 2020* (7.7\" x 12mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LAM-EVGR-72102",
+   "record_id": "recBGXk3X8AfUtDU9",
+   "product_name": "Evergreen Waterproof Laminate — 72102* (9.4\" x 10mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LAM-EVGR-72103",
+   "record_id": "recPg0wQBhQU16PZC",
+   "product_name": "Evergreen Waterproof Laminate — 72103* (9.4\" x 10mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LAM-EVGR-72113-10MM",
+   "record_id": "recGTjbfnoGAdKNHs",
+   "product_name": "Evergreen Waterproof Laminate — 72113* (9.4\" x 10mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LAM-EVGR-72208",
+   "record_id": "recaT9lY9Pvr8Hp3O",
+   "product_name": "Evergreen Waterproof Laminate — 72208* (9.4\" x 10mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LAM-EVGR-72228",
+   "record_id": "rec1tLfZX9slXABYb",
+   "product_name": "Evergreen Waterproof Laminate — 72228* (9.4\" x 10mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LAM-EVGR-72245",
+   "record_id": "recKb5Zsmv6TUuDya",
+   "product_name": "Evergreen Waterproof Laminate — 72245* (9.4\" x 10mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LAM-EVGR-72523-10MM",
+   "record_id": "rec3kZ56YhQabnVed",
+   "product_name": "Evergreen Waterproof Laminate — 72523* (9.4\" x 10mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LAM-EVGR-72527",
+   "record_id": "recDllkoKQCHI9kNJ",
+   "product_name": "Evergreen Waterproof Laminate — 72527* (9.4\" x 10mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LVP-EVGR-1029-2",
+   "record_id": "recfBWGIKYi3ifBOj",
+   "product_name": "Evergreen SPC Drop Lock 6.5mm — 1029-2* (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LVP-EVGR-220-10",
+   "record_id": "recjPNCOP6lrziGi4",
+   "product_name": "Evergreen SPC Double Click 6.5mm — 220-10 (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LVP-EVGR-359-2",
+   "record_id": "reco35m2IABJpGlqk",
+   "product_name": "Evergreen SPC Double Click 6.5mm — 359-2 (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LVP-EVGR-3641-4",
+   "record_id": "recorFYrUXOVTgMeB",
+   "product_name": "Evergreen SPC Double Click 6.5mm — 3641-4 (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LVP-EVGR-369",
+   "record_id": "reclYGoejcp2zqNoz",
+   "product_name": "Evergreen SPC Double Click 6.5mm — 369 (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LVP-EVGR-3711-5",
+   "record_id": "reckRxbJQxkO1o8cH",
+   "product_name": "Evergreen SPC Double Click 6.5mm — 3711-5 (7\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LVP-EVGR-3836-6",
+   "record_id": "recbH531n8lYqZEXz",
+   "product_name": "Evergreen SPC Drop Lock Large Board — 3836-6 (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LVP-EVGR-3903-1",
+   "record_id": "recAcMNbRJoVW9cJt",
+   "product_name": "Evergreen SPC Drop Lock Large Board — 3903-1 (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LVP-EVGR-55007",
+   "record_id": "reczo6bb5JhcJ2N91",
+   "product_name": "Evergreen LVT Plank — 55007 (9\" x 3mm)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/simba-lvt-dry-back-glue-down-collection-lvt-55007"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.wordofmouthfloors.com/products/simba-lvt-dry-back-glue-down-collection-lvt-55007']; {}"
+  },
+  {
+   "sku": "LVP-EVGR-58943-16",
+   "record_id": "recXv36dJ5bwzkl2o",
+   "product_name": "Evergreen SPC Drop Lock EIR — 58943-16* (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LVP-EVGR-58943-7",
+   "record_id": "recHwDKLbSFfsFt6A",
+   "product_name": "Evergreen SPC Drop Lock EIR — 58943-7 (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LVP-EVGR-681019-4",
+   "record_id": "recgRVlPCDctAJZhh",
+   "product_name": "Evergreen SPC Drop Lock EIR — 681019-4* (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LVP-EVGR-681019-5",
+   "record_id": "recfw9bVC2tlrj7aZ",
+   "product_name": "Evergreen SPC Drop Lock EIR — 681019-5* (9\" x 6.5mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LVP-EVGR-82804",
+   "record_id": "recnWEnmJcRTFuhh6",
+   "product_name": "Evergreen LVT Plank — 82804 (9\" x 3mm)",
+   "candidate_pages": [
+    "https://www.wordofmouthfloors.com/products/simba-lvt-dry-back-glue-down-collection-lvt-82804"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://www.wordofmouthfloors.com/products/simba-lvt-dry-back-glue-down-collection-lvt-82804']; {}"
+  },
+  {
+   "sku": "LVP-EVGR-83221",
+   "record_id": "recykEHfSVBftf47D",
+   "product_name": "Evergreen LVT Plank — 83221 (9\" x 3mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LVP-EVGR-83476",
+   "record_id": "recL3MiwWS3f2lcDF",
+   "product_name": "Evergreen LVT Plank — 83476 (9\" x 3mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  },
+  {
+   "sku": "LVP-EVGR-84214",
+   "record_id": "rec0YKbrLmEUVsOFx",
+   "product_name": "Evergreen LVT Plank — 84214 (9\" x 3mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour ''; vetoes {'code': 304}"
+  }
+ ]
+}

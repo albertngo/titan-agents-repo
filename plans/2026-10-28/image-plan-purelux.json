@@ -1,0 +1,905 @@
+{
+ "contract_version": "image-plan-1",
+ "scope": "purelux",
+ "supplier": "PURELUX",
+ "run_at": "2026-10-28T09:35:06.956761-04:00",
+ "expires": "2026-10-28T23:59:59-0400",
+ "write_mode": "write",
+ "registry": "platform-settings/supplier-sites.json",
+ "inputs": {
+  "pages": "ingest/2026-10-22/supplier-pages-purelux.json",
+  "judgements": "ingest/2026-10-22/image-judgements-purelux.json",
+  "product_pages": null
+ },
+ "summary": {
+  "records": 85,
+  "actions": 2,
+  "held": 83,
+  "skipped": {},
+  "held_by_reason": {
+   "no_usable_image": 61,
+   "no_match": 22
+  },
+  "fields": {
+   "Swatch images": 2
+  },
+  "tiers": {
+   "exact": 2
+  },
+  "manufacturer_pages": 2
+ },
+ "actions": [
+  {
+   "id": "img-7fb087f5023e",
+   "seq": 1,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "recGC2QeyNjLD5yEr",
+   "sku": "LVP-PLUX-0020",
+   "product_name": "Purelux Imperlux 7mm SPC Cork-Backed Vinyl — Cardiff (8.98\" x 7.0mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://pureluxfloors.com/wp-content/uploads/2026/02/Cardiff-4.jpg",
+      "filename": "purelux-cardiff-lvp-8-98in-swatch.jpg"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://pureluxfloors.com/cardiff/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://pureluxfloors.com/wp-content/uploads/2026/02/Cardiff-4.jpg",
+     "sha1": "9762ff0035332594bdfb839cd1e847025415129a",
+     "page": "https://pureluxfloors.com/cardiff/",
+     "width": 1200,
+     "height": 498
+    }
+   ],
+   "flags": []
+  },
+  {
+   "id": "img-f71f0f68aabf",
+   "seq": 2,
+   "target_system": "airtable",
+   "op": "attach_images",
+   "record_id": "rech3Vp9Hx1judIwQ",
+   "sku": "LVP-PLUX-0039",
+   "product_name": "Purelux Pillow Bevel 8mm SPC Vinyl — Front (7.09\" x 8.0mm)",
+   "fields": {
+    "Swatch images": [
+     {
+      "url": "https://pureluxfloors.com/wp-content/uploads/2026/02/FRONT-1.jpg",
+      "filename": "purelux-front-lvp-7-09in-swatch.jpg"
+     }
+    ]
+   },
+   "field_ids": {
+    "Swatch images": "fldbRlqkxa7hp7quH"
+   },
+   "expect_blank": [
+    "Swatch images"
+   ],
+   "source_page": "https://pureluxfloors.com/front/",
+   "source": "official",
+   "product_page_source": "manufacturer",
+   "match_tier": "exact",
+   "images": [
+    {
+     "target": "swatch",
+     "url": "https://pureluxfloors.com/wp-content/uploads/2026/02/FRONT-1.jpg",
+     "sha1": "ef13fc085e45163e0c804f8a96f1444c0af47d64",
+     "page": "https://pureluxfloors.com/front/",
+     "width": 1200,
+     "height": 498
+    }
+   ],
+   "flags": []
+  }
+ ],
+ "held": [
+  {
+   "sku": "LAM-PLUX-0001",
+   "record_id": "recrZZChEcGVy3IQq",
+   "product_name": "Purelux Betten Laminate — Grand Marais (7.72\" x 14.3mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/grand-marais/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/grand-marais/']; {'excluded': 10}"
+  },
+  {
+   "sku": "LAM-PLUX-0002",
+   "record_id": "rec3rR000Uzf5LlrN",
+   "product_name": "Purelux Betten Laminate — Dougall (7.72\" x 14.3mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/dougall/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/dougall/']; {'excluded': 10}"
+  },
+  {
+   "sku": "LAM-PLUX-0003",
+   "record_id": "recuRVCFgiXvgtRqS",
+   "product_name": "Purelux Betten Laminate — Walker (7.72\" x 14.3mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/walker/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/walker/']; {'excluded': 10}"
+  },
+  {
+   "sku": "LAM-PLUX-0004",
+   "record_id": "reczEzFoI0u0fUl2Z",
+   "product_name": "Purelux Betten Laminate — Skyline (7.72\" x 14.3mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Skyline'; vetoes {}"
+  },
+  {
+   "sku": "LAM-PLUX-0005",
+   "record_id": "recDk3jSAGotE88JP",
+   "product_name": "Purelux Betten Laminate — McKay (7.72\" x 14.3mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/grand-marais-2/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/grand-marais-2/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LAM-PLUX-0006",
+   "record_id": "recFoqLYEANBzxDIV",
+   "product_name": "Purelux Betten Laminate — Delong (7.72\" x 14.3mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/delong/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/delong/']; {'excluded': 10}"
+  },
+  {
+   "sku": "LAM-PLUX-0007",
+   "record_id": "recfLh00UHdJ3wW2S",
+   "product_name": "Purelux Betten Laminate — Cabana (7.72\" x 14.3mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/cabana/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/cabana/']; {'excluded': 10}"
+  },
+  {
+   "sku": "LAM-PLUX-0008",
+   "record_id": "recq5IBYVmz2W5czg",
+   "product_name": "Purelux Betten Laminate — Gainsborough (7.72\" x 14.3mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/gainsborough/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/gainsborough/']; {'excluded': 10}"
+  },
+  {
+   "sku": "LAM-PLUX-0009",
+   "record_id": "recPJAzSfg8VvtxJH",
+   "product_name": "Purelux Betten Laminate — Banwell (7.72\" x 14.3mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/banwell/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/banwell/']; {'excluded': 10}"
+  },
+  {
+   "sku": "LVP-PLUX-0001",
+   "record_id": "recKLxuTUAEBwgZgN",
+   "product_name": "Purelux Dynamic Drop Looselay Vinyl — Westin (7.0\" x 5.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/westin/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/westin/']; {'excluded': 8}"
+  },
+  {
+   "sku": "LVP-PLUX-0002",
+   "record_id": "rec0oan9ZFqPuAfeS",
+   "product_name": "Purelux Dynamic Drop Looselay Vinyl — Sphere (7.0\" x 5.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/sphere/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/sphere/']; {'excluded': 8}"
+  },
+  {
+   "sku": "LVP-PLUX-0003",
+   "record_id": "rec8q543UbMktxO8R",
+   "product_name": "Purelux Dynamic Drop Looselay Vinyl — Sahara (7.0\" x 5.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/sahara/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/sahara/']; {'excluded': 8}"
+  },
+  {
+   "sku": "LVP-PLUX-0004",
+   "record_id": "recNJY2bzdNc9IhxD",
+   "product_name": "Purelux Dynamic Drop Looselay Vinyl — Row (7.0\" x 5.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/row/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/row/']; {'excluded': 8}"
+  },
+  {
+   "sku": "LVP-PLUX-0005",
+   "record_id": "reci5slAxHcldkSOI",
+   "product_name": "Purelux Dynamic Drop Looselay Vinyl — Omni (7.0\" x 5.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/omni/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/omni/']; {'excluded': 8}"
+  },
+  {
+   "sku": "LVP-PLUX-0006",
+   "record_id": "rec1xkzg7PwKqJX1U",
+   "product_name": "Purelux Dynamic Drop Looselay Vinyl — Encore (7.0\" x 5.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/encore/",
+    "https://pureluxfloors.com/products-vinyl/looselay-series-5mm/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/encore/']; {'excluded': 8}"
+  },
+  {
+   "sku": "LVP-PLUX-0007",
+   "record_id": "rec5vFyQ7ejNibyEN",
+   "product_name": "Purelux Dynamic 7mm SPC Vinyl — Wyandotte (7.17\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/products-vinyl/dynamic-series-7mm-2/",
+    "https://pureluxfloors.com/wyandotte/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/wyandotte/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0008",
+   "record_id": "recNacGL3EwYxoOK2",
+   "product_name": "Purelux Dynamic 7mm SPC Vinyl — Dominion (7.17\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/dominion/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/dominion/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0009",
+   "record_id": "recBslrAbvVQ4lVn8",
+   "product_name": "Purelux Dynamic 7mm SPC Vinyl — Bridge (7.17\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/bridge/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/bridge/']; {'excluded': 12}"
+  },
+  {
+   "sku": "LVP-PLUX-0010",
+   "record_id": "recVy2EfNhEowIKdT",
+   "product_name": "Purelux Dynamic 7mm SPC Vinyl — Crawford (7.17\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/crawford/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/crawford/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0011",
+   "record_id": "recE0bQC7T92exQQB",
+   "product_name": "Purelux Dynamic 7mm SPC Vinyl — Josephine (7.17\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/josephine/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/josephine/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0012",
+   "record_id": "recpnADg03UDC9ia1",
+   "product_name": "Purelux Dynamic 7mm SPC Vinyl — Pelissier (7.17\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/pelissier/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/pelissier/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0013",
+   "record_id": "rec1FgaGGGP1dmczy",
+   "product_name": "Purelux Dynamic 7mm SPC Vinyl — Randolph (7.17\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/randolph/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/randolph/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0014",
+   "record_id": "recjWVBBJBK4wA33C",
+   "product_name": "Purelux Dynamic 7mm SPC Vinyl — Longfellow (7.17\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/longfellow/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/longfellow/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0015",
+   "record_id": "recJnbrJyj6KuN1kj",
+   "product_name": "Purelux Dynamic 7mm SPC Vinyl — Tecumseh (7.17\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/tecumseh/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/tecumseh/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0016",
+   "record_id": "recFZSTkTrmp8jCMB",
+   "product_name": "Purelux Dynamic 7mm SPC Vinyl — Fanchette (7.17\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/fanchette/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/fanchette/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0017",
+   "record_id": "recxCZIx0UdBDhFFD",
+   "product_name": "Purelux Imperlux 7mm SPC Cork-Backed Vinyl — Solana Beach (8.98\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/products-vinyl/imperlux-series-7mm/",
+    "https://pureluxfloors.com/solana-beach/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/solana-beach/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0018",
+   "record_id": "recZNcmNiRdhgBETt",
+   "product_name": "Purelux Imperlux 7mm SPC Cork-Backed Vinyl — Del Mar (8.98\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/del-mar/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/del-mar/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0019",
+   "record_id": "rec0Slxh34maZAc5W",
+   "product_name": "Purelux Imperlux 7mm SPC Cork-Backed Vinyl — Lajolla (8.98\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/lajolla/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/lajolla/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0021",
+   "record_id": "recKz9gjxnY0rGh8O",
+   "product_name": "Purelux Imperlux 7mm SPC Cork-Backed Vinyl — Pacific Beach (8.98\" x 7.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Pacific Beach'; vetoes {}"
+  },
+  {
+   "sku": "LVP-PLUX-0022",
+   "record_id": "reca05dRriw82LGDK",
+   "product_name": "Purelux Imperlux 7mm SPC Cork-Backed Vinyl — Coronado (8.98\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/coronado/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/coronado/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0023",
+   "record_id": "recC5GAx2TNvl2fM0",
+   "product_name": "Purelux Imperlux 7mm SPC Cork-Backed Vinyl — Imperial Beach (8.98\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/imperial-beach/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/imperial-beach/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0024",
+   "record_id": "recF6ipR6N9VQaF36",
+   "product_name": "Purelux Imperlux 7mm SPC Cork-Backed Vinyl — La Costa (8.98\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/la-costa/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/la-costa/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0025",
+   "record_id": "recWOheGbaGcDcy3z",
+   "product_name": "Purelux Imperlux 7mm SPC Cork-Backed Vinyl — San Clemente (8.98\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/san-clemente/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/san-clemente/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0026",
+   "record_id": "recSQ2HbA1CgWzWwX",
+   "product_name": "Purelux Imperlux 7mm SPC Cork-Backed Vinyl — Bondi (8.98\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/bondi/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/bondi/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0027",
+   "record_id": "rectP2UEGP5UoE4CY",
+   "product_name": "Purelux WPC 8mm Vinyl — Anne (8.98\" x 8.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/anne/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/anne/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0028",
+   "record_id": "rec0bBtrRAyjCHP6k",
+   "product_name": "Purelux WPC 8mm Vinyl — Fleet (8.98\" x 8.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/fleet/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/fleet/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0029",
+   "record_id": "recIhYgjywk38SWlH",
+   "product_name": "Purelux WPC 8mm Vinyl — Lobord (8.98\" x 8.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Lobord'; vetoes {}"
+  },
+  {
+   "sku": "LVP-PLUX-0030",
+   "record_id": "reccLmkNSonqfAwPr",
+   "product_name": "Purelux WPC 8mm Vinyl — Parnell (8.98\" x 8.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/parnell/",
+    "https://pureluxfloors.com/products-vinyl/wpc-series-8mm/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/parnell/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0031",
+   "record_id": "recJVsaV1YRpQ7DF2",
+   "product_name": "Purelux WPC 8mm Vinyl — Earthy Elegance (7.09\" x 8.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/earthy-elegance/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/earthy-elegance/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0032",
+   "record_id": "recmIWbsqcRIsfO0d",
+   "product_name": "Purelux WPC 8mm Vinyl — Arctic Mist (7.09\" x 8.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Arctic Mist'; vetoes {}"
+  },
+  {
+   "sku": "LVP-PLUX-0033",
+   "record_id": "recDlzllGp0UITthv",
+   "product_name": "Purelux WPC 8mm Vinyl — Mocha Glow (7.09\" x 8.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Mocha Glow'; vetoes {}"
+  },
+  {
+   "sku": "LVP-PLUX-0034",
+   "record_id": "recsk0oFX0vjcdVip",
+   "product_name": "Purelux WPC 8mm Vinyl — Natural Essence (7.09\" x 8.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Natural Essence'; vetoes {}"
+  },
+  {
+   "sku": "LVP-PLUX-0035",
+   "record_id": "recOSMueSnibh0RTd",
+   "product_name": "Purelux WPC 8mm Vinyl — Nimbus Gray (7.09\" x 8.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Nimbus Gray'; vetoes {}"
+  },
+  {
+   "sku": "LVP-PLUX-0036",
+   "record_id": "rechzsKN8rtAbProY",
+   "product_name": "Purelux WPC 8mm Vinyl — Whispering Breeze (7.09\" x 8.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Whispering Breeze'; vetoes {}"
+  },
+  {
+   "sku": "LVP-PLUX-0037",
+   "record_id": "reczudodq1Wn0Bb85",
+   "product_name": "Purelux Pillow Bevel 8mm SPC Vinyl — Ashdale (7.09\" x 8.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/ashdale/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/ashdale/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0038",
+   "record_id": "recP6JBt9RLKeX5On",
+   "product_name": "Purelux Pillow Bevel 8mm SPC Vinyl — Coxwell (7.09\" x 8.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/coxwell/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/coxwell/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0040",
+   "record_id": "rec1ia37Hvtvivonh",
+   "product_name": "Purelux Pillow Bevel 8mm SPC Vinyl — Greenwood (7.09\" x 8.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/greenwood/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/greenwood/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0041",
+   "record_id": "recvvhJGJHGFH7azK",
+   "product_name": "Purelux Pillow Bevel 8mm SPC Vinyl — Riverdale (7.09\" x 8.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/products-vinyl/pillow-bevel-series-8mm/",
+    "https://pureluxfloors.com/riverdale/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/riverdale/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0042",
+   "record_id": "recscmgatIhk2aOAo",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Ines (7.2\" x 9.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/ines/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/ines/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0043",
+   "record_id": "recFtdIbajMDEelfN",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Hansel (7.2\" x 9.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/hansel/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/hansel/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0044",
+   "record_id": "reccZnwZauv5ChPq4",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Bellagio (7.2\" x 9.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/bellagio/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/bellagio/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0045",
+   "record_id": "recRUqtwbvrkgg7WX",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Luxor (7.2\" x 9.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Luxor'; vetoes {}"
+  },
+  {
+   "sku": "LVP-PLUX-0046",
+   "record_id": "recKBI3yigCU9XSug",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Venetian (7.2\" x 9.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Venetian'; vetoes {}"
+  },
+  {
+   "sku": "LVP-PLUX-0047",
+   "record_id": "recp0Z9ZtdZwopt9z",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Cosmopolitan (7.2\" x 9.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Cosmopolitan'; vetoes {}"
+  },
+  {
+   "sku": "LVP-PLUX-0048",
+   "record_id": "rec68f7WibC01EDrg",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Westgate (7.2\" x 9.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/westgate/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/westgate/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0049",
+   "record_id": "recqhZxoFw7sfPIEw",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Mirage (7.2\" x 9.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/mirage/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/mirage/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0050",
+   "record_id": "recOGBrWO4AvukK61",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Mandalay (7.2\" x 9.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'Mandalay'; vetoes {}"
+  },
+  {
+   "sku": "LVP-PLUX-0051",
+   "record_id": "rec7yjuFmA3T4d3p1",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Wynn (7.2\" x 9.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/products-vinyl/journey-series-9mm/",
+    "https://pureluxfloors.com/wynn/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/wynn/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0052",
+   "record_id": "recoI53xCaxoNmNeM",
+   "product_name": "Purelux Journey 9mm SPC Vinyl — Aria (7.2\" x 9.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/aria/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/aria/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0053",
+   "record_id": "recUMn9orI1DQWci9",
+   "product_name": "Purelux Proline 7mm SPC Vinyl — Meilan (7.2\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/meilan-2/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/meilan-2/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0054",
+   "record_id": "reckDEozCuOAAlofx",
+   "product_name": "Purelux Proline 7mm SPC Vinyl — Frankfurt (7.2\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/frankfurt/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/frankfurt/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0055",
+   "record_id": "recVWFtdSeAv7U0AU",
+   "product_name": "Purelux Proline 7mm SPC Vinyl — Pearson (7.2\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/pearson-2/",
+    "https://pureluxfloors.com/vinyl-7/proline-7-spc-7mm/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/pearson-2/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0056",
+   "record_id": "recu9vGtdd4oXxnH7",
+   "product_name": "Purelux Proline 7mm SPC Vinyl — Dubai (7.2\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/dubai/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/dubai/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0057",
+   "record_id": "recKFFNSe8j5sm21t",
+   "product_name": "Purelux Proline 7mm SPC Vinyl — Incheon (7.2\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/incheon-2/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/incheon-2/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0058",
+   "record_id": "rec7vOlclqIk3DQE4",
+   "product_name": "Purelux Proline 7mm SPC Vinyl — Changi (7.2\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/changi/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/changi/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0059",
+   "record_id": "recOyvAMOZozeYaxh",
+   "product_name": "Purelux Proline 7mm SPC Vinyl — Narita (7.2\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/narita-2/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/narita-2/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0060",
+   "record_id": "recWTKezh4ChhBxV5",
+   "product_name": "Purelux Proline 7mm SPC Vinyl — Hartsfield (7.2\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/hartsfield-2/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/hartsfield-2/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0061",
+   "record_id": "recKsVwEPkOLnaHQZ",
+   "product_name": "Purelux Proline 7mm SPC Vinyl — Phoenix (7.2\" x 7.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/phoenix/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/phoenix/']; {'excluded': 11}"
+  },
+  {
+   "sku": "LVP-PLUX-0062",
+   "record_id": "recY6QLLAvmCUbsbe",
+   "product_name": "Purelux Proline 7mm SPC Vinyl — LVT 01 (7.2\" x 7.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'LVT 01'; vetoes {}"
+  },
+  {
+   "sku": "LVP-PLUX-0063",
+   "record_id": "recQQ6SvXF2ZdPJGb",
+   "product_name": "Purelux Proline 7mm SPC Vinyl — LVT 03 (7.2\" x 7.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'LVT 03'; vetoes {}"
+  },
+  {
+   "sku": "LVP-PLUX-0064",
+   "record_id": "recj8XJJEVWpfKG4m",
+   "product_name": "Purelux Proline 7mm SPC Vinyl — LVT 04 (7.2\" x 7.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'LVT 04'; vetoes {}"
+  },
+  {
+   "sku": "LVP-PLUX-0065",
+   "record_id": "recZ9gUciULlEhP4k",
+   "product_name": "Purelux Proline 7mm SPC Vinyl — LVT 05 (7.2\" x 7.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'LVT 05'; vetoes {}"
+  },
+  {
+   "sku": "LVP-PLUX-0066",
+   "record_id": "recse7t0Toh9nqWUy",
+   "product_name": "Purelux Proline 7mm SPC Vinyl — LVT 07 (7.2\" x 7.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'LVT 07'; vetoes {}"
+  },
+  {
+   "sku": "LVP-PLUX-0067",
+   "record_id": "recKFYQ5qDgMbXpqD",
+   "product_name": "Purelux Proline 7mm SPC Vinyl — LVT 08 (7.2\" x 7.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'LVT 08'; vetoes {}"
+  },
+  {
+   "sku": "LVP-PLUX-0068",
+   "record_id": "rec9lYxhD3waY2q03",
+   "product_name": "Purelux Proline 9mm SPC Vinyl — LVT90 (7.2\" x 9.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/products-vinyl/high-gloss-series-vinyl-tile-7mm/",
+    "https://pureluxfloors.com/vinyl-9/proline-9-spc-9mm/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/products-vinyl/high-gloss-series-vinyl-tile-7mm/']; {'excluded': 5}"
+  },
+  {
+   "sku": "LVP-PLUX-0069",
+   "record_id": "recxbPNKjXacfoMYO",
+   "product_name": "Purelux Proline 9mm SPC Vinyl — LVT91 (7.2\" x 9.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'LVT91'; vetoes {'category': 1}"
+  },
+  {
+   "sku": "LVP-PLUX-0070",
+   "record_id": "recyITYe1xOx2KpEZ",
+   "product_name": "Purelux Proline 9mm SPC Vinyl — LVT92 (7.2\" x 9.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'LVT92'; vetoes {'category': 1}"
+  },
+  {
+   "sku": "LVP-PLUX-0071",
+   "record_id": "recHXbNpwwrq4smSx",
+   "product_name": "Purelux Proline 9mm SPC Vinyl — LVT93 (7.2\" x 9.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'LVT93'; vetoes {'category': 1}"
+  },
+  {
+   "sku": "LVP-PLUX-0072",
+   "record_id": "recLIHujJdBt0Ek7X",
+   "product_name": "Purelux Proline 9mm SPC Vinyl — LVT94 (7.2\" x 9.0mm)",
+   "candidate_pages": [],
+   "reason": "no_match",
+   "detail": "colour 'LVT94'; vetoes {'category': 1}"
+  },
+  {
+   "sku": "LVT-PLUX-0001",
+   "record_id": "recTNpz47oy495pqP",
+   "product_name": "Purelux Dynamic Tile Drop Vinyl — Berwick (24.0\" x 5.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/berwick/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/berwick/']; {'excluded': 8}"
+  },
+  {
+   "sku": "LVT-PLUX-0002",
+   "record_id": "recXBZ3t25m7JpbIi",
+   "product_name": "Purelux Dynamic Tile Drop Vinyl — Dayton (24.0\" x 5.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/dayton-2/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/dayton-2/']; {'excluded': 8}"
+  },
+  {
+   "sku": "LVT-PLUX-0003",
+   "record_id": "recAqEMmqoS4yVL90",
+   "product_name": "Purelux Dynamic Tile Drop Vinyl — Middleton (24.0\" x 5.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/middleton/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/middleton/']; {'excluded': 8}"
+  },
+  {
+   "sku": "LVT-PLUX-0004",
+   "record_id": "recgh4DB6d7qCaKDc",
+   "product_name": "Purelux Dynamic Tile Drop Vinyl — Kentville (24.0\" x 5.0mm)",
+   "candidate_pages": [
+    "https://pureluxfloors.com/dayton/"
+   ],
+   "reason": "no_usable_image",
+   "detail": "pages ['https://pureluxfloors.com/dayton/']; {'excluded': 8}"
+  }
+ ]
+}

@@ -336,6 +336,17 @@ class TestPlan(unittest.TestCase):
         self.assertEqual(p["actions"], [])
         self.assertEqual(p["summary"]["skipped"], {"all_targets_filled": 1})
 
+    def test_filled_earlier_with_nothing_new_is_skipped_not_held(self):
+        # Olympia 2026-10-28: a record batch 1 gave a swatch, whose page has no room or detail
+        # photo, is fine; it must not land in the troubled CSV as no_usable_image.
+        swatch_only = [page("https://fb/naked-9", "9'' Collection American White Oak-Naked Oak",
+                            [img("s1", "https://cdn/sw.jpg")])]
+        filled = {**NAKED_9, "Swatch images": [{"id": "att1"}], "Supplier product page": "https://fb/naked-9"}
+        p = self.build([filled], swatch_only, self.j)
+        self.assertEqual((p["actions"], p["held"], p["summary"]["skipped"]), ([], [], {"nothing_new": 1}))
+        self.assertEqual(self.build([NAKED_9], [page("https://fb/naked-9", "9'' Collection American White Oak-Naked Oak")],
+                                    self.j)["held"][0]["reason"], "no_usable_image")  # a blank record still reports
+
     def test_a_smaller_swatch_lands_after_the_larger_one(self):
         # 2026-10-03: a lower quality photo is better than none; the larger still goes first.
         p = self.build([NAKED_9], self.pages, self.j)
@@ -359,6 +370,20 @@ class TestPlan(unittest.TestCase):
         a = p["actions"][0]
         self.assertEqual([x["url"] for x in a["fields"]["Swatch images"]], ["https://cdn/small.jpg"])
         self.assertNotIn("Room scene images", a["fields"])
+
+    def test_a_sister_companys_named_watermark_is_kept_and_no_other(self):
+        # Evergreen, 2026-10-28 (Albert): Simba's overlay is fine on Evergreen; an unnamed or
+        # other company's watermark still drops the photo.
+        reg = copy.deepcopy(REG)
+        reg["suppliers"]["VIDAR"]["image_rules"] = {"watermark_ok": ["Simba"]}
+        j = {"contract_version": "image-judgements-1", "images": {
+            "s1": {"kind": "swatch", "watermarked": True, "watermark_by": "Simba"},
+            "r1": {"kind": "room", "watermarked": True, "watermark_by": "Speers"},
+            "s2": {"kind": "swatch", "watermarked": True}}}
+        a = plan.build([NAKED_9], {"pages": self.pages}, j, None, reg, "VIDAR", "vidar")["actions"][0]
+        self.assertEqual([x["url"] for x in a["fields"]["Swatch images"]], ["https://cdn/sw.jpg"])
+        self.assertNotIn("Room scene images", a["fields"])
+        self.assertEqual(self.build([NAKED_9], self.pages, j)["actions"], [])  # no watermark_ok: all dropped
 
     def test_ambiguous_needs_a_verdict_and_null_is_respected(self):
         pages = self.pages + [page("https://fb/naked-9b", "9'' Collection American White Oak-Naked Oak", [img("s3", "https://cdn/b.jpg")])]
@@ -519,6 +544,164 @@ class TestTwoSources(unittest.TestCase):
         self.assertEqual([p["url"] for p in pull.list_shopify(f, "https://sp", "Vidar Design Flooring")],
                          ["https://sp/products/a"])
 
+    def test_split_variants_gives_each_colour_its_own_page_and_photo(self):
+        # Floors At Work, 2026-10-22: one listing per collection, a variant per colour.
+        prod = {"handle": "9mm-aqua-platinum", "title": "9mm Aqua Platinum", "vendor": "Floors",
+                "variants": [{"id": 1, "option1": "Gemini", "sku": None}, {"id": 2, "option1": "Leo", "sku": "L2"},
+                             {"id": 3, "option1": "Libra"}],
+                "images": [{"src": "https://cdn/gemini.jpg", "variant_ids": [1], "width": 750, "height": 563},
+                           {"src": "https://cdn/leo.jpg", "variant_ids": [2]},
+                           {"src": "https://cdn/room-all-colours.jpg", "variant_ids": []}]}
+        body = json.dumps({"products": [prod]}).encode()
+        f = pull.Fetcher({"fetch": {"delay_seconds": 0}},
+                         opener=lambda req, timeout=0: FakeResp(body if req.full_url.endswith("page=1") else b'{"products": []}'))
+        pages = pull.list_shopify(f, "https://faw", split_variants=True)
+        self.assertEqual([(p["title"], p["url"]) for p in pages],
+                         [("9mm Aqua Platinum - Gemini", "https://faw/products/9mm-aqua-platinum?variant=1"),
+                          ("9mm Aqua Platinum - Leo", "https://faw/products/9mm-aqua-platinum?variant=2")])
+        # Only the variant's own photo; the collection-wide one is nobody's. Libra has none: no page.
+        self.assertEqual([i["url"] for i in pages[0]["images"]], ["https://cdn/gemini.jpg"])
+        self.assertEqual(pages[1]["codes"], ["L2"])
+        self.assertEqual(len(pull.list_shopify(f, "https://faw")), 1)  # off by default
+
+    def test_code_only_supplier_never_matches_on_a_colour_title(self):
+        # Olympia Tile, 2026-10-22: `White` is in ~200 collections; code or nothing.
+        sup = {**REG["suppliers"]["OLYMPIA TILE"]}
+        r = {"id": "recOLYMPIA000001", "SKU": "TIL-OLYM-0001", "Product name": "Olympia Motif — White — 48 x 48 (Matte)",
+             "Supplier SKU": "IM.MT.WHT.4848.MT", "Category": "Tile / Stone"}
+        by_title = page("https://w/p1", "OLYMPIA TILE + STONE - Other Series - Porcelain Tile - White - 48\" x 48\"")
+        by_code = {**page("https://w/p2", "OLYMPIA TILE + STONE - Motif Series - Porcelain Tile - White"), "codes": ["IM.MT.WHT.4848.MT"]}
+        self.assertEqual(im.match_records([r], [by_title], sup, REG["matching"])[r["id"]]["tier"], "none")
+        m = im.match_records([r], [by_title, by_code], sup, REG["matching"])[r["id"]]
+        self.assertEqual((m["tier"], m["candidates"][0]["url"]), ("exact", "https://w/p2"))
+
+    def test_tile_sizes_must_agree(self):
+        # Gracious, 2026-10-22: one design on a 24x24 page and a 24x48 page.
+        r = {"id": "recGRACIOUS00001", "SKU": "TIL-GRAC-0001", "Product name": "Gracious — EUT-35 — 24 x 24", "Category": "Tile / Stone"}
+        p24 = page("https://g/p24", "White Matte Tile 24×24 — EUT-35")
+        p48 = page("https://g/p48", "White Matte Tile 24×48 — EUT-35")
+        m = im.match_records([r], [p24, p48], {}, REG["matching"])[r["id"]]
+        self.assertEqual((m["tier"], m["candidates"][0]["url"]), ("exact", "https://g/p24"))
+        self.assertEqual(im.match_records([r], [p48], {}, REG["matching"])[r["id"]]["tier"], "none")
+        self.assertEqual(im.sizes_in('Royale 23.62 x 23.62'), {(23.62, 23.62)})
+        self.assertTrue(im.sizes_agree({(24, 24)}, {(23.62, 23.62)}))
+
+    def test_require_collection_keeps_generic_colours_in_their_collection(self):
+        # CIF, 2026-10-22: `Midtown — Bianco` had found `Aldo Bianco 24"x24"`.
+        sup = {"require_collection": True}
+        r = {"id": "recCIF0000000001", "SKU": "TIL-CIF-0001", "Product name": "CIF Midtown — Bianco — 24 x 24 (Glossy)",
+             "Collection": "Midtown", "Category": "Tile / Stone"}
+        aldo, mid = page("https://c/aldo", 'Aldo Bianco 24"x24"'), page("https://c/mid", 'Midtown Bianco 24"x24"')
+        self.assertEqual(im.match_records([r], [aldo], sup, REG["matching"])[r["id"]]["tier"], "none")
+        self.assertEqual(im.match_records([r], [aldo, mid], sup, REG["matching"])[r["id"]]["candidates"][0]["url"], "https://c/mid")
+        coded = {**r, "Product name": "CIF Crackle Glass Mosaic — FAOC-5 (Black) — 1 x 1", "Collection": "Crackle Glass Mosaic"}
+        self.assertEqual(im.match_records([coded], [page("https://c/f", "Black Crackle Glass 1x1 - FAOC-5")], sup,
+                                          REG["matching"])[r["id"]]["tier"], "exact")  # a code colour is enough
+
+    def test_slug_codes_match_a_numbered_record(self):
+        # Woden, 2026-10-22: a Wix site whose slugs are the product numbers.
+        r = {"id": "recWODEN00000001", "SKU": "LVP-WODN-0001", "Product name": 'Woden SPC 6mm 7" — 603', "Category": "LVP"}
+        pages = [page("https://w/product-page/603", ""), page("https://w/product-page/6030-other", "")]
+        m = im.match_records([r], pages, {"slug_codes": True}, REG["matching"])[r["id"]]
+        self.assertEqual((m["tier"], m["candidates"][0]["url"]), ("exact", "https://w/product-page/603"))
+        self.assertEqual(im.code_hint('Woden SPC 11mm 9" — 1105 Silver Mist'), "1105")
+        self.assertEqual(im.code_hint('Woden Vermont 6.5" — Charcoal'), "")
+
+    def test_gallery_gives_each_image_its_own_page(self):
+        # Canadian Standard / Evergreen, 2026-10-22: a collection page of named colour photos.
+        p = {"url": "https://cs/origins/", "title": "Canadian Standard | Origins", "h1": "", "codes": [], "images": [
+            {"url": "https://cs/up/Origins-American-Hickory-Greysmith.jpg", "alt": ""},
+            {"url": "https://cs/up/Oak-Clay-e1706290826221-qiw0iztihwgft905a9fabjxpxftdrh1rmjulkiekvc.jpg", "alt": ""},
+            {"url": "https://cs/up/CanadianStandard_Final-01_white.png", "alt": "Logo"}]}
+        out = pull.gallery_pages([p])
+        self.assertEqual([x["title"] for x in out], ["Canadian Standard | Origins - Origins American Hickory Greysmith",
+                                                     "Canadian Standard | Origins - Oak Clay"])  # the logo is skipped
+        self.assertEqual([x["url"] for x in out], ["https://cs/origins/#img0", "https://cs/origins/#img1"])
+        self.assertEqual([len(x["images"]) for x in out], [1, 1])
+
+    def test_oakel_series_carry_a_width_and_a_hyphenated_width_reads(self):
+        # Oakel City, 2026-10-28: records name `7 Series` and no width; pages say `7-1/2″`.
+        self.assertEqual((im.widths_in("Essence 7-1/2″"), im.widths_in("Naked Oak 9-1/4″")), ({7.5}, {9.25}))
+        self.assertEqual(im.widths_in('3/4" (18mm)'), set())  # still a thickness
+        sup = {"series_widths": {"6": 6, "7": 7.5, "9": 9.25}}
+        r = {"id": "recOAKELCITY0001", "SKU": "ENG-OAK-1", "Product name": "Oakel European Oak 3-Ply 7 Series — Essence (Select)",
+             "Category": "Engineered hardwood"}
+        pages = [page("https://o/essence-6", "Essence 6″"), page("https://o/essence-7", "Essence 7-1/2″")]
+        m = im.match_records([r], pages, sup, REG["matching"])[r["id"]]
+        self.assertEqual((m["tier"], m["candidates"][0]["url"]), ("exact", "https://o/essence-7"))
+        self.assertEqual(im.match_records([r], pages[:1], sup, REG["matching"])[r["id"]]["tier"], "none")
+        # A title with no width: the store's `7"` tag is the 7 Series, so a 6 Series record vetoes.
+        six = {**r, "id": "recOAKELCITY0002", "Product name": "Oakel European Oak Multi-Ply 6 Series — Daybreak (Select)"}
+        tagged = {**page("https://o/day-break-1", "Daybreak"), "tags": ['7"']}
+        self.assertEqual(im.match_records([six], [tagged], sup, REG["matching"])[six["id"]]["tier"], "none")
+        seven = {**six, "id": "recOAKELCITY0003", "Product name": "Oakel European Oak 3-Ply 7 Series — Daybreak (Select)"}
+        self.assertEqual(im.match_records([seven], [tagged], sup, REG["matching"])[seven["id"]]["tier"], "exact")
+
+    def test_gallery_label_codes_carry_the_photos_own_code(self):
+        # Golden Choice, 2026-10-28: `Laminate 1010's` shows GC1010, GC1011 ... as photos.
+        p = {"url": "https://gc/product/laminate-1010s/", "title": "Laminate 1010's", "h1": "", "codes": [], "images": [
+            {"url": "https://gc/up/GC1011-scaled.jpg", "alt": ""}, {"url": "https://gc/up/Bronze-scaled.jpg", "alt": ""}]}
+        out = pull.gallery_pages([p], label_codes=True)
+        self.assertEqual([x["codes"] for x in out], [["1011"], []])
+        self.assertEqual(pull.gallery_pages([p])[0]["codes"], [])  # off unless the listing asks
+        r = {"id": "recGOLDENCHOICE1", "SKU": "LAM-GC-1011", "Product name": "Golden Choice Laminate 1010's — Solar Oak",
+             "Supplier SKU": "1011", "Category": "Laminate"}
+        m = im.match_records([r], out, {}, REG["matching"])[r["id"]]
+        self.assertEqual((m["tier"], m["candidates"][0]["url"]), ("exact", "https://gc/product/laminate-1010s/#img0"))
+
+    def test_a_label_only_gallery_links_the_labels_own_page_or_none(self):
+        # Grandeur, 2026-10-28: each colour page also shows other colours' thumbnails, and 144
+        # of 147 links in the first plan went to a different colour's page.
+        sard = {"url": "https://g/sardinia.html", "title": "Grandeur Hardwood Flooring", "h1": "", "codes": [], "images": [
+            {"url": "https://g/thumb/bora-bora.jpg", "alt": "Bora Bora"},
+            {"url": "https://g/thumb/st-lucia.jpg", "alt": "St. Lucia"},
+            {"url": "https://g/thumb/wisconsin.jpg", "alt": "Wisconsin(7mm)"}]}
+        bora = {"url": "https://g/bora-bora.html", "title": "Grandeur Hardwood Flooring", "h1": "", "codes": [], "images": []}
+        lucia = {"url": "https://g/st-lucia.html", "title": "Grandeur Hardwood Flooring", "h1": "", "codes": [], "images": []}
+        out = pull.gallery_pages([sard, bora, lucia], label_only=True, alt_only=True)
+        self.assertEqual([(x["title"], x["link_url"]) for x in out],
+                         [("Bora Bora", "https://g/bora-bora.html"), ("St. Lucia", "https://g/st-lucia.html"),
+                          ("Wisconsin(7mm)", None)])  # no crawled page is Wisconsin's: no link
+        self.assertNotIn("link_url", pull.gallery_pages([sard])[0])  # a brochure page links itself
+
+    def test_the_suppliers_code_in_the_url_slug_is_a_code_match(self):
+        # Floordi, 2026-10-22: `/ashen-breeze-spc-flooring-avr655/` for SKU AVR655.
+        r = {"id": "recFLOORDI000001", "SKU": "LVP-FLRD-0001", "Product name": 'Floordi 6.5mm AVO-ROX EASE 7.19" — Ashen Breeze',
+             "Supplier SKU": "AVR655", "Category": "LVP"}
+        en = page("https://f/ashen-breeze-spc-flooring-avr655/", "Ashen Breeze 6,5mm - Luxury Vinyl Plank")
+        tile = page("https://f/ashen-breeze-3mm-glue-down/", "Ashen Breeze 3mm - Glue Down LVT")
+        m = im.match_records([r], [tile, en], {}, REG["matching"])[r["id"]]
+        self.assertEqual((m["tier"], m["candidates"][0]["url"]), ("exact", "https://f/ashen-breeze-spc-flooring-avr655/"))
+
+    def test_codes_that_disagree_veto_and_a_grade_suffix_still_agrees(self):
+        # Impressive, 2026-10-22: Classic Oak Natural 91513-M had taken Paramount NATURAL (91009).
+        r = {"id": "recIMPRESSIVE001", "SKU": "91513-M", "Product name": "Impressive Classic Oak — Natural (3-1/4, Select & Better)",
+             "Supplier SKU": "91513-M", "Category": "Solid hardwood"}
+        other = {**page("https://i/natural/", "NATURAL"), "codes": ["91009"]}
+        self.assertEqual(im.match_records([r], [other], {}, REG["matching"])[r["id"]]["tier"], "none")
+        ridge = {**r, "Supplier SKU": "91507-M", "Product name": "Impressive Classic Oak — Ridge (3-1/4, Select & Better)"}
+        pages = [{**page("https://i/ridge/", "RIDGE"), "codes": ["91507"]}, {**page("https://i/ridge-2/", "RIDGE"), "codes": ["4608"]}]
+        m = im.match_records([ridge], pages, {}, REG["matching"])[r["id"]]
+        self.assertEqual((m["tier"], m["candidates"][0]["url"]), ("exact", "https://i/ridge/"))
+
+    def test_elementor_background_slideshow_images_are_page_images(self):
+        # Purelux, 2026-10-22: a colour's photos live only in Elementor's data-settings.
+        html = ('<html><head><title>CARDIFF</title></head><body><div data-settings="{&quot;background_slideshow_gallery'
+                '&quot;:[{&quot;id&quot;:1,&quot;url&quot;:&quot;https:\\/\\/p.com\\/up\\/Cardiff-2.jpg&quot;}]}"></div>'
+                '<img src="/up/logo.png"></body></html>')
+        urls = [i["url"] for i in pull.page_from_html("https://p.com/cardiff/", html)["images"]]
+        self.assertIn("https://p.com/up/Cardiff-2.jpg", urls)
+
+    def test_browser_listing_is_asked_for_never_automatic(self):
+        tosca = REG["suppliers"]["TOSCA"]["official"]["listing"]
+        self.assertEqual(tosca["method"], "browser")
+        self.assertTrue(tosca["list_url"].startswith("https://toscaflooring.com/"))
+        self.assertTrue((REPO_ROOT / "scripts" / "browser_list.js").exists())
+
+    def test_a_disabled_official_site_is_not_read(self):
+        self.assertEqual([s["name"] for s in pull.supplier_sources(REG["suppliers"]["OLYMPIA TILE"], REG)],
+                         ["wordofmouth"])
+
 
 class TestSeoNames(unittest.TestCase):
     """Albert, 2026-09-29: file names for search and AI answers, built from the record."""
@@ -578,7 +761,7 @@ class TestRegistryAndProse(unittest.TestCase):
     def test_held_reasons_cover_what_the_planner_emits(self):
         text = (REPO_ROOT / "scripts" / "image_fill_plan.py").read_text()
         for reason in ("no_match", "ambiguous_match", "model_rejected", "no_usable_image",
-                       "low_res_swatch", "not_judged", "host_blocked", "all_targets_filled"):
+                       "low_res_swatch", "not_judged", "host_blocked", "all_targets_filled", "nothing_new"):
             self.assertIn(f'"{reason}"', text)
             self.assertIn(reason, REG["held_reasons"])
 

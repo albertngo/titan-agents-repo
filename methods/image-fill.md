@@ -65,6 +65,78 @@ Replace or append to a filled image field; write anything but the four target fi
 write while `write_mode` is `plan_only`; get past a bot challenge; guess a URL.
 
 ## Log
+- 2026-10-28 — The 10-22 run resumed after a week's usage-limit pause, re-planned against fresh
+  snapshots (yesterday's plans had expired). The writer refused Grandeur's first plan before
+  writing anything: 144 of 147 `Supplier product page` links pointed to another colour's page
+  (Bora Bora → `sardinia.html`), because every Grandeur colour page also shows other colours'
+  thumbnails and a gallery image linked whichever page it sat on. A label-only gallery image now
+  carries `link_url`, the crawled page whose address is its label, or none, in which case the
+  next source links (Word of Mouth). Re-planned: 160 links, each naming its record's colour, and
+  28 records left unlinked. Atlantic GF8936 was withheld (its photo is the Continental
+  Wisconsin image). Twice now a file came back stored as a ~210-byte `text/html` page instead of
+  the image (Home's Pro Malta, `663.png`; Purelux Cardiff, `Cardiff-4.jpg`, the second time
+  for that URL), and both were cleared with a compare-and-swap. Cardiff is not re-planned from
+  that URL, because Airtable's fetcher never gets the image from it. Olympia ran in five
+  batches of at most 300 (the policy cap), each planned on a fresh snapshot as scope
+  `olympia-N`: 1,479 of 3,028 records written (Word of Mouth swatch + link, every match on
+  Olympia's own code), 1,331 not on Word of Mouth, 166 with no usable photo. Two were held for
+  carrying another colour's photo: Cristallo Taupe gloss (its page shows `warmgrey-2x12.jpg`) and
+  Sempre White (`qt-sr-arw-0816-mt.jpg`, Serenity Arctic White's file). One swatch was dropped
+  silently by Airtable's fetch (field left empty) and landed on the next batch. New skip reason
+  `nothing_new`: a record an earlier run filled, with nothing usable for its blank rest, is not
+  reported as trouble (batch 3 would have listed 650 fine records as `no_usable_image`). Simba 49,
+  Grandeur 188 and Home's Pro 12 were also written that day. Afterwards no image field in the
+  base held a non-image file (Airtable `fileType: text` filter on all three fields).
+  Later the same day Albert un-parked three. **Evergreen** ("Evergreen and Simba are connected
+  in some way … If the pictures are too small and bad quality, try not to use them"): its own
+  site has only ~260 px thumbnails, so it reads Simba's site (73 of its 95 codes are the same
+  products) and Word of Mouth's Simba listings. New judgement field `watermark_by` and supplier
+  `image_rules.watermark_ok`: Simba's spec-strip overlay is kept on Evergreen, any other mark
+  still drops a photo. 88 written; 728211 withheld (Simba's page for it is titled 72019) and one
+  held by the writer (a 6-1/2" record on a `7" - 7.9"` tagged page). **Golden Choice** and
+  **Oakel City** ("All inactive should be filled for anyway"): Golden Choice shows one page per
+  collection with each colour's photo named for its code, so `listing.gallery_label_codes`
+  reads `GC1010-scaled.jpg` as code 1010 (8 exact matches as pages, 108 as photos); 107
+  written, 14 of them sample boards carrying Golden Choice's own label (`watermark_ok`, the
+  session's call, put to Albert). Oakel's records carry no width, only `<n> Series`: the writer
+  held two plans that put 6″ pages on 7/9 Series records and 7″-tagged pages on 6 Series ones.
+  `series_widths` (6 / 7-1/2 / 9-1/4, from Oakel's own titles) gives the record its width and,
+  for a page whose title names none, reads it from the page's `N"` tag or `N Series` title;
+  `7-1/2″` now parses as 7.5; `species_words` keeps European and American oak apart. 61 written;
+  3 held by the writer because Oakel's site puts the same four room scenes on Smoke Grey and
+  both Snowflake pages.
+- 2026-10-22 — Albert gave 14 supplier sites at once ("Run the skill on all and continue
+  filling in until complete … you can park certain ones if needed"). **Floors At Work**
+  (`floorsatwork.com`, records named `NAF … — <colour>`): its Shopify store sells each
+  collection as ONE product with a variant per colour, so the new `listing.split_variants`
+  lists every colour as its own page (`<collection> - <colour>`, `?variant=` link, only the
+  photos Shopify ties to that variant). 127 photos judged; 121 written (113 swatch, 8 room,
+  121 product pages); one withheld by hand (an engineered Exotic Walnut record matched the
+  solid walnut page, which names no width); 131 colours not on the site, 4 ambiguous
+  clearance/regular pairs answered `null` (different photos under one colour name).
+  Catalogue/site disagreements held by the vetoes (site 7.5" vs record 6.5" Regal, European
+  vs American Designer, site grade AB vs Select & Better) are left for a person.
+  **Olympia Tile**: `olympiatile.com` answers the pull's declared user-agent with HTTP 400 and
+  its robots.txt bars AI agents, so the official source is disabled (`official.enabled:
+  false`, honoured by the pull now) and Word of Mouth runs alone; new `code_only` makes the
+  match Olympia's code or nothing, since `White`/`Grey` repeat across ~200 collections.
+  Later the same day, for the rest of the list, each a registry switch so no supplier's
+  behaviour changes unless its entry asks: tile **face sizes** must agree when both the page
+  and the record name one (Gracious sells one design on a 24x24 and a 24x48 page; half-inch
+  tolerance for nominal vs actual); **`require_collection`** (CIF: the page title must name
+  the record's Collection unless the colour is itself a code, after `Midtown — Bianco` found
+  `Aldo Bianco`); **`slug_codes`** (Woden's Wix site: a record named by a number takes the page
+  whose slug starts with it); **`listing.gallery`** (Canadian Standard, Evergreen: brochure
+  pages show a whole collection as named images, so each image becomes its own page; the
+  product link drops the `#imgN`); **`listing.skip_url_contains`** (Floordi's `/fr/` copy);
+  a supplier's code in the URL slug counts as a listed code for every supplier; and Elementor
+  background slideshows are read as page images (Purelux keeps each colour's photos only
+  there). Tosca's site is a client-rendered React app, so `listing.method: "browser"` reads it
+  through `scripts/browser_list.js` (headless Chromium, what a visitor sees, never past a
+  challenge); `page_collection_must_agree` keeps its colour names, which repeat across
+  collections, apart. Suppliers whose sites have no per-product photos are parked, not forced: Dragona and Floor & Decor (marketing pages only), Weiss (Wix
+  brochure), Umbrellar (nothing listable), Evergreen (260 px thumbnails, some carrying
+  Simba's watermark); Northway's robots.txt bars AI agents, so it is not read.
 - 2026-10-03 — Albert: "a lower quality image it still ok to grab. Having it is better than
   none." Swatch bar 1600 -> 300 px and any-image bar 800 -> 300 px (a floor against icons and
   thumbnails); BiYork's own 1000 px override removed as redundant. The largest photo per

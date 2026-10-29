@@ -30,7 +30,7 @@ Written by the session model after reading `image-todo-<scope>.json`:
   "contract_version": "image-judgements-1",
   "images": {
     "<sha1>": {"kind": "swatch|room|detail|spec_sheet|other",
-               "watermarked": false, "colour_matches_page": true,
+               "watermarked": false, "watermark_by": null, "colour_matches_page": true,
                "laying": "plank|herringbone|chevron|versailles", "note": "short"}
   },
   "matches": {
@@ -39,6 +39,9 @@ Written by the session model after reading `image-todo-<scope>.json`:
 }
 ```
 
+- `watermark_by` (optional) names whose watermark or overlay it is (`"Simba"`). A
+  watermarked image is dropped unless that name is in the supplier's `image_rules.watermark_ok`
+  (Evergreen, 2026-10-28: Simba is its sister company); without a name it is always dropped.
 - `kind` is what the picture IS: `swatch` = a clean flat plank/tile face, no room;
   `room` = installed or lifestyle; `detail` = close-up of texture, edge, bevel, profile,
   cross-section or box; `spec_sheet` / `other` go nowhere.

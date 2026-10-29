@@ -37,6 +37,7 @@ Usage:
 import argparse
 import gzip
 import hashlib
+import html as htmllib
 import json
 import re
 import sys
@@ -234,6 +235,16 @@ def page_from_html(url, html):
         if not u:
             continue
         images.append({**img, "url": urllib.parse.urljoin(url, u)})
+    # Elementor keeps a section's photos in its `data-settings` JSON (background slideshow /
+    # background image), not in <img> (Purelux, 2026-10-22: `/cardiff/` shows Cardiff-2.jpg and
+    # Cardiff-4.jpg only that way). Page-specific, unlike the CSS url() lists of related colours.
+    raw = html.decode("utf-8", "replace") if isinstance(html, bytes) else html
+    for block in re.findall(r'"background(?:_slideshow_gallery|_image)"\s*:\s*(\[.*?\]|\{.*?\})',
+                            htmllib.unescape(raw)):
+        for u in re.findall(r'"url"\s*:\s*"([^"]+)"', block):
+            u = u.replace("\\/", "/")
+            if u and all(i["url"] != urllib.parse.urljoin(url, u) for i in images):
+                images.append({"url": urllib.parse.urljoin(url, u)})
     codes = set(CODE_TOKEN.findall(f"{p.title} {p.h1}"))
     if prod.get("sku"):
         codes.add(str(prod["sku"]))
@@ -277,9 +288,121 @@ def keep_image(url, rules):
 
 # --------------------------------------------------------------------------- listing methods
 
-def list_shopify(fetch, root, vendor=None, max_pages=40):
+def shopify_variant_pages(base, p):
+    """One page per colour variant of a Shopify product that sells every colour of a
+    collection under one listing (Floors At Work, 2026-10-22: `9mm Aqua Platinum` with
+    variants Gemini, Leo, ...). The title is `<product> - <variant>` so the colour is in the
+    title, the link deep-links the variant, and only images Shopify ties to that variant
+    are kept: a collection-wide photo may show any colour, so it is never anyone's."""
+    out = []
+    for v in p.get("variants") or []:
+        label = " / ".join(x for x in (v.get("option1"), v.get("option2"), v.get("option3"))
+                           if x and x.lower() != "default title")
+        imgs = [i for i in p.get("images") or [] if v.get("id") in (i.get("variant_ids") or [])]
+        fi = v.get("featured_image") or {}
+        if fi.get("src") and all(i["src"] != fi["src"] for i in imgs):
+            imgs.append(fi)
+        if not label or not imgs:
+            continue
+        out.append({
+            "url": f"{base}/products/{p['handle']}?variant={v['id']}",
+            "title": f"{p.get('title', '')} - {label}", "h1": "", "og_title": "",
+            "product_name": f"{p.get('title', '')} - {label}", "is_product": True,
+            "tags": [t for t in (p.get("tags") or []) if isinstance(t, str)],
+            "product_type": p.get("product_type") or "",
+            "codes": [v["sku"]] if v.get("sku") else [],
+            "images": [{"url": i["src"], "alt": i.get("alt") or "", "width_hint": i.get("width"),
+                        "height_hint": i.get("height")} for i in imgs],
+        })
+    return out
+
+
+GENERIC_ALT = re.compile(r"^(logo|image|img|photo|picture|banner|icon|\d+)?$", re.I)
+
+
+def image_label(img):
+    """What an image on a gallery page is called: its alt text, else its file name cleaned of
+    WordPress noise (`Oak-Clay-e1706290826221-qiw0iztihw…jpg` -> `Oak Clay`)."""
+    alt = (img.get("alt") or "").strip()
+    if alt and not GENERIC_ALT.match(alt):
+        return alt
+    stem = urllib.parse.unquote(urllib.parse.urlsplit(img["url"]).path.rsplit("/", 1)[-1])
+    stem = re.sub(r"\.[A-Za-z0-9]{2,5}$", "", stem)
+    stem = re.sub(r"-(scaled|e\d{6,}|\d{2,4}x\d{2,4}|[a-z0-9]{20,})(?=-|$)", "", stem)
+    stem = re.sub(r"-(scaled|e\d{6,}|\d{2,4}x\d{2,4}|[a-z0-9]{20,})(?=-|$)", "", stem)
+    return re.sub(r"[-_]+", " ", stem).strip()
+
+
+def gallery_pages(pages, label_only=False, alt_only=False, label_codes=False):
+    """One page per image for brochure sites that show a whole collection on one page
+    (Canadian Standard's `Origins`, Evergreen's `OAK`, 2026-10-22): titled `<page> - <image
+    label>` so the colour is in the title, linked `<page>#<n>` (the planner drops the
+    fragment for the product link), carrying only that one image."""
+    out = []
+    own_page = {}
+    if label_only:
+        # Grandeur (2026-10-28): every colour page also shows other colours' thumbnails, so the
+        # page an image sits on is not that colour's page (Bora Bora's thumbnail on
+        # `sardinia.html`). The link is the crawled page whose address IS the label, else none.
+        for p in pages:
+            stem = urllib.parse.urlsplit(p["url"]).path.rstrip("/").rsplit("/", 1)[-1].rsplit(".", 1)[0]
+            own_page.setdefault(re.sub(r"[^a-z0-9]", "", stem.lower()), p["url"])
+    for p in pages:
+        for n, img in enumerate(p.get("images") or []):
+            # `gallery_alt_only` (Grandeur, 2026-10-22): only images a person named in the alt
+            # text are products; unnamed ones are badges, banners and site chrome.
+            if alt_only and not (img.get("alt") or "").strip():
+                continue
+            label = image_label(img)
+            # The site's own logo (`CanadianStandard_Final-01_white.png`, alt `Logo`) is not `White`.
+            if not label or re.search(r"\blogo\b", img.get("alt") or "", re.I):
+                continue
+            out.append({**{k: v for k, v in p.items() if k != "images"},
+                        # `gallery_label_only`: a site-wide title (`Grandeur Hardwood Flooring`
+                        # on every page) would put `hardwood` into every vinyl image's title.
+                        "url": f"{p['url']}#img{n}",
+                        "title": label if label_only else f"{p.get('title', '')} - {label}",
+                        "h1": "", "og_title": "", "product_name": "",
+                        # `gallery_label_codes` (Golden Choice, 2026-10-28): a photo named for its
+                        # product code (`gc-1065.jpeg`) carries that code, so the record whose
+                        # supplier SKU is 1065 matches it by code, not by a colour name it lacks.
+                        "codes": re.findall(r"(?<![0-9])\d{3,6}(?:-\d{1,3})?(?![0-9])", label) if label_codes else [],
+                        **({"link_url": own_page.get(re.sub(r"[^a-z0-9]", "", label.lower()))}
+                           if label_only else {}),
+                        "images": [img]})
+    return out
+
+
+def list_browser(listing):
+    """A client-rendered site (Tosca, 2026-10-22): scripts/browser_list.js loads the listing
+    page and each product link in headless Chromium and returns what a visitor sees. Never
+    `auto`: a supplier entry asks for it with `listing.method: "browser"`, `list_url` and
+    `link_pattern`. Needs node + Playwright from the environment."""
+    import os
+    import subprocess
+    env = dict(os.environ)
+    if "NODE_PATH" not in env:
+        try:
+            env["NODE_PATH"] = subprocess.run(["npm", "root", "-g"], capture_output=True, text=True,
+                                              timeout=60).stdout.strip()
+        except (OSError, subprocess.SubprocessError):
+            pass
+    proc = subprocess.run(["node", str(REPO_ROOT / "scripts" / "browser_list.js"), listing["list_url"],
+                           listing["link_pattern"], str(listing.get("max_pages", 600))],
+                          capture_output=True, text=True, timeout=3600, env=env)
+    if proc.returncode != 0:
+        raise RuntimeError(f"browser_list.js failed: {proc.stderr.strip()[:300]}")
+    data = json.loads(proc.stdout)
+    for s in data.get("skipped") or []:
+        if s.get("reason") == "challenged":
+            raise Blocked("challenged", s["url"])
+    return data["pages"]
+
+
+def list_shopify(fetch, root, vendor=None, max_pages=40, split_variants=False):
     """Every product in a Shopify store's public products.json; `vendor` keeps one brand
-    (Shopify's own brand field, e.g. `Vidar Design Flooring` at Speers)."""
+    (Shopify's own brand field, e.g. `Vidar Design Flooring` at Speers). `split_variants`
+    lists each colour variant as its own page (see shopify_variant_pages)."""
     base = f"{urllib.parse.urlsplit(root).scheme}://{urllib.parse.urlsplit(root).netloc}"
     pages, n = [], 1
     while n <= max_pages:
@@ -289,6 +412,9 @@ def list_shopify(fetch, root, vendor=None, max_pages=40):
             break
         for p in items:
             if vendor and (p.get("vendor") or "").strip().lower() != vendor.strip().lower():
+                continue
+            if split_variants and len(p.get("variants") or []) > 1:
+                pages += shopify_variant_pages(base, p)
                 continue
             pages.append({
                 "url": f"{base}/products/{p['handle']}", "title": p.get("title", ""), "h1": "",
@@ -499,7 +625,14 @@ def crawl(fetch, root, follow_words, max_pages, start_urls=None):
         if url in seen or urllib.parse.urlsplit(url).netloc != host:
             continue
         seen.add(url)
-        page = page_from_html(url, fetch.get(url))
+        try:
+            page = page_from_html(url, fetch.get(url))
+        except Blocked:
+            raise
+        except urllib.error.HTTPError:
+            continue  # one dead link (Grandeur's site has several, 2026-10-22) is not the site
+        except (ValueError, OSError, UnicodeError):
+            continue
         links = page.pop("_links")
         if page["images"]:
             pages.append(page)
@@ -523,7 +656,9 @@ def supplier_sources(sup, cfg=None):
     for name in order:
         if name == "official":
             off = sup.get("official")
-            if off:
+            # `enabled: false` = the site refuses automated readers for good (Olympia Tile's
+            # 400 to a declared bot, 2026-10-22); the retailers run alone, as for a challenge.
+            if off and off.get("enabled", True):
                 out.append({"name": "official", "site": off["site"], "listing": off.get("listing") or {},
                             "follow_words": off.get("follow_words", [])})
         elif name in (sup.get("retailers") or {}):
@@ -549,7 +684,10 @@ def list_pages(fetch, cfg, supplier_cfg, max_pages):
     for m in order:
         try:
             if m == "shopify":
-                pages = list_shopify(fetch, root, listing.get("vendor"), listing.get("max_pages", 40))
+                pages = list_shopify(fetch, root, listing.get("vendor"), listing.get("max_pages", 40),
+                                     listing.get("split_variants", False))
+            elif m == "browser":
+                pages = list_browser(listing)
             elif m == "woocommerce":
                 pages = list_woocommerce(fetch, root)
             elif m == "sitemap":
@@ -570,6 +708,18 @@ def list_pages(fetch, cfg, supplier_cfg, max_pages):
             continue
         if pages:
             tried[m] = "ok"
+            # `skip_url_contains`: a duplicate language tree (Floordi's `/fr/`, 2026-10-22).
+            skip_urls = listing.get("skip_url_contains") or []
+            if skip_urls:
+                pages = [pg for pg in pages if not any(s in pg["url"] for s in skip_urls)]
+            if listing.get("gallery"):
+                pages = gallery_pages(pages, listing.get("gallery_label_only", False),
+                                      listing.get("gallery_alt_only", False),
+                                      listing.get("gallery_label_codes", False))
+                # The same thumbnail shown on many pages is one page (first seen).
+                seen_imgs = set()
+                pages = [pg for pg in pages if not (pg["images"][0]["url"] in seen_imgs
+                                                    or seen_imgs.add(pg["images"][0]["url"]))]
             return m, pages, tried
         tried[m] = "empty"
     return None, [], tried

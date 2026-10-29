@@ -131,7 +131,10 @@ def usable_images(page, judgements, rules, laying=None):
         if not j:
             problems["not_judged"] += 1
             continue
-        if any(j.get(flag) for flag in ("watermarked",)) or j.get("colour_matches_page") is False:
+        # `watermark_ok` (Evergreen, 2026-10-28): a sister company's own overlay is not a reason to
+        # drop a photo, but only when the judge named whose it is; any other watermark still is.
+        own_mark = j.get("watermark_by") in (rules.get("watermark_ok") or [])
+        if (j.get("watermarked") and not own_mark) or j.get("colour_matches_page") is False:
             problems["excluded"] += 1
             continue
         if laying and j.get("laying") and j["laying"] != laying:
@@ -323,6 +326,11 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
                     for i, img in enumerate(chosen)]
                 images += [{"target": target, "url": img["url"], "sha1": img["sha1"], "page": img["_page"],
                             "width": img.get("width"), "height": img.get("height")} for img in chosen]
+        if not fields and any(t not in blank for t in ("swatch", "room", "detail")):
+            # Filled by an earlier run, and the sources have nothing for its other fields: not
+            # trouble (Olympia 2026-10-28, batch 3 would have reported 300 fine records as held).
+            skipped["nothing_new"] += 1
+            continue
         if not fields:
             reason = ("host_blocked" if problems.get("host_blocked") else
                       "not_judged" if problems.get("not_judged") else
@@ -341,12 +349,16 @@ def build(records, pages_file, judgements, product_pages, cfg, supplier, scope):
         else:
             by_name = {name: url for name, url, _ in chosen_pages}
             for name in link_sources(cfg):
-                if name in by_name:
-                    product_page = by_name[name]
+                # A gallery image shown on another product's page carries its own page as
+                # `link_url`, or None when the crawl found none: then the next source links.
+                link = pages.get(by_name.get(name), {}).get("link_url", by_name.get(name))
+                if link:
+                    product_page = link
                     pp_source = "manufacturer" if name == "official" else name
                     break
         if "product_page" in blank and product_page:
-            fields[targets["product_page"]["name"]] = product_page
+            # A gallery page's per-image `#imgN` is ours, not the site's: link the page itself.
+            fields[targets["product_page"]["name"]] = product_page.split("#", 1)[0]
         flags = []
         if "swatch" in blank and targets["swatch"]["name"] not in fields:
             flags.append("no_swatch")
