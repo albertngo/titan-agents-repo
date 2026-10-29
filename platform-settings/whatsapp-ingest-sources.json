@@ -1,0 +1,38 @@
+{
+  "_comment": "Read-side registry for whatsapp-ingest-agent (.claude/agents/whatsapp-ingest-agent.md) and scripts/whatsapp_pull.py. Created 2026-10-29 on Albert's request: supplier groups, customer chats, staff groups and his personal number, via 2Chat. The repo is public, so NO phone number, API key or message text ever goes in this file: numbers live in .env (TWOCHAT_BUSINESS_NUMBER / TWOCHAT_PERSONAL_NUMBER) and chats are keyed by 2Chat group uuid (WAG...) or by the salted hash scripts/whatsapp_pull.py prints as chat_key. Method: methods/whatsapp-ingest.md.",
+
+  "window_hours": 24,
+  "max_catchup_days": 7,
+  "unanswered_threshold_hours": 24,
+  "max_items": 50,
+
+  "capture": {
+    "_comment": "Make scenario '2Chat -> WhatsApp Log' writes one data-store record per message (key = 2Chat message uuid) and deletes records older than retention_days, so the store is a rolling buffer, never an archive. Scenario and data-store ids go here once built; the host and token live in .env (MAKE_API_HOST, MAKE_API_TOKEN, WHATSAPP_LOG_DATASTORE_ID).",
+    "make_scenario_id": null,
+    "retention_days": 14,
+    "record_fields": ["message_uuid", "channel", "chat_uuid", "chat_name", "is_group", "sender_number", "sender_name", "direction", "sent_at", "text", "media_type"]
+  },
+
+  "channels": {
+    "_comment": "Which connected numbers are read. sensitivity is the default for every item from that channel. personal is private with no override, ever (genuinely personal: vault CONVENTIONS, Visibility rule 4). business is private as the fail-safe until Albert decides whether staff already see these chats in the shared 2Chat inbox (open question in methods/whatsapp-ingest.md); flipping it to team is a dated vault decision.",
+    "business": {"enabled": true, "sensitivity": "private"},
+    "personal": {"enabled": true, "sensitivity": "private", "locked": true}
+  },
+
+  "chats": {
+    "_comment": "Per-chat overrides, keyed by chat_key from the pull. kind is one of supplier | customer | staff | personal | other. ghl_covered: true skips a 1-to-1 chat GHL already ingests as TYPE_WHATSAPP, so a customer is never counted twice. label is a display name only. A chat may escalate sensitivity to private, never relax it below its channel's default. Unlisted chats are classified by the agent from content and the keyword lists below.",
+    "_example": {"kind": "supplier", "label": "Titan Flooring - SIDCO", "sensitivity": "private", "ghl_covered": false}
+  },
+
+  "classification": {
+    "_comment": "Hints, not rules. The agent classifies semantically; a match here only breaks ties.",
+    "supplier_group_keywords": ["sidco", "supplier", "warehouse", "flooring inc", "trading"],
+    "staff_group_keywords": ["titan team", "titan staff", "installers", "crew"],
+    "supplier_event_patterns": {
+      "pickup": ["pick up", "pickup", "picking up", "coming to pick", "is coming"],
+      "order": ["order", "reserve", "place it for", "set aside"],
+      "return": ["return", "returning"],
+      "payment_request": ["request for payment", "collect the payment", "when i can come and collect", "statement sent"]
+    }
+  }
+}
