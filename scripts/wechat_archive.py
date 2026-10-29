@@ -180,13 +180,27 @@ def keep_awake():
     """Hold off display and system sleep for as long as this process lives."""
     import subprocess
     try:
-        subprocess.Popen(["caffeinate", "-dimsu", "-w", str(os.getpid())])
+        # No -u: declaring user activity would reset the idle clock that
+        # archive() reads to notice a real person.
+        subprocess.Popen(["caffeinate", "-dims", "-w", str(os.getpid())])
     except OSError:
         pass
 
 
+def someone_touched(reader, last_touch, clock):
+    """
+    True when keyboard or mouse input arrived after the reader's own last click
+    or scroll. The reader's synthetic events reset the Mac's idle clock too, so
+    "idle < 5 s" would always fire after the first chat; the question is whether
+    the idle clock is younger than our own last action.
+    """
+    if last_touch is None:
+        return reader.idle_seconds() < 5
+    return reader.idle_seconds() < (clock() - last_touch) - 1.0
+
+
 def archive(reader, store, settings, now, only_chat=None, dry_run=False,
-            idle_check=True):
+            idle_check=True, clock=time.monotonic, sleep=time.sleep):
     """Archive every unrecorded message. Returns the run summary."""
     a = settings["archive"]
     kinds = settings["parse"]["kind_patterns"]
@@ -205,23 +219,34 @@ def archive(reader, store, settings, now, only_chat=None, dry_run=False,
     chats = [only_chat] if only_chat else [
         c for c in reader.list_chats() if c not in skip][:a["max_chats"]]
 
+    last_touch = None
     try:
-        for chat in chats:
-            if idle_check and reader.idle_seconds() < 5:
-                raise InUse()
+        for i, chat in enumerate(chats):
+            if idle_check:
+                if i:
+                    # A quiet moment between chats, so a person's input shows
+                    # up as younger than the reader's own last scroll.
+                    sleep(a["between_chats_seconds"])
+                if someone_touched(reader, last_touch, clock):
+                    raise InUse()
             try:
                 tail = store.tail(chat, a["stored_tail_compare"]) if store else []
                 n = a["tail_check_messages"] if tail else a["first_run_messages"]
-                msgs = core.annotate(reader.read_chat(chat, n), now, kinds)
+                try:
+                    raw = reader.read_chat(chat, n)
+                finally:
+                    last_touch = clock()
+                msgs = core.annotate(raw, now, kinds)
                 rows, aligned = core.plan_chat(chat, msgs, tail, a["min_overlap"])
                 if tail and not aligned:
-                    msgs = core.annotate(
-                        reader.read_chat(chat, a["backfill_cap_messages"]), now, kinds)
+                    try:
+                        raw = reader.read_chat(chat, a["backfill_cap_messages"])
+                    finally:
+                        last_touch = clock()
+                    msgs = core.annotate(raw, now, kinds)
                     rows, aligned = core.plan_chat(chat, msgs, tail, a["min_overlap"])
                     if not aligned:
                         summary["gaps"].append(chat)
-            except InUse:
-                raise
             except Exception as exc:  # one chat failing never stops the others
                 summary["errors"].append({"chat": chat, "error": str(exc)[:300]})
                 continue

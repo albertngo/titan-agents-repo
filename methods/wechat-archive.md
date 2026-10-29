@@ -114,6 +114,15 @@ happened, and it can only add rows.
 4. `zsh scripts/wechat_install_mac.sh` creates `.venv-wechat/`, installs the pinned
    reader and loads the LaunchAgent. It prints the Python path to grant **both**
    Accessibility and Screen Recording in System Settings → Privacy & Security.
+   **Grant the same two to Terminal (or iTerm) as well.** macOS checks the app that
+   started a process: scheduled runs come from launchd and use the Python grant, while
+   supervised runs typed in Terminal use Terminal's.
+   **Lock timing:** the archiver needs about 2 idle minutes on an unlocked screen
+   before it starts. If the Mac locks or the display turns off sooner than that
+   (System Settings → Lock Screen), it can never start. 10 minutes or more works.
+   Once running, it holds the display awake itself.
+   **After `brew upgrade python`**, re-run the installer and re-grant the new path.
+   The upgrade moves Python, and macOS ties the permission to the old file.
 5. **Supervised first run, at the desk:**
    ```bash
    .venv-wechat/bin/python scripts/wechat_archive.py --dry-run --no-idle-check --no-notion --chat "<a supplier chat>"

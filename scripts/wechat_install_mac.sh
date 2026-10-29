@@ -82,7 +82,8 @@ Before the first scheduled run, grant this Python both permissions in
 System Settings > Privacy & Security:
   Accessibility     -> $REAL_PY
   Screen Recording  -> $REAL_PY
-(Press + and Cmd-Shift-G to paste the path.) Then do the supervised first run:
+(Press + and Cmd-Shift-G to paste the path.) Grant the same two to Terminal too:
+supervised runs typed here use Terminal's permissions. Then do the supervised first run:
 
   $VENV/bin/python scripts/wechat_archive.py --dry-run --no-idle-check --chat "<one chat name>"
 EOF

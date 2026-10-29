@@ -129,24 +129,46 @@ class TestPlanChat(unittest.TestCase):
 
 
 class FakeWeChat:
+    """
+    Like the real Mac: the reader's own clicks reset the idle clock, so idle is
+    time since the last synthetic event unless a person touched it later.
+    """
+
     def __init__(self, chats, locked=False, idle=600):
         self.chats = chats  # name -> list of raw messages, oldest first
         self.locked = locked
-        self.idle = idle
+        self.start_idle = idle
         self.reads = []
         self.wrong = set()
+        self.t = 0.0
+        self.last_event = None
+        self.touch_before = set()  # chat names a person touches the Mac just before
+
+    def clock(self):
+        return self.t
+
+    def sleep(self, s):
+        self.t += s
 
     def screen_locked(self):
         return self.locked
 
     def idle_seconds(self):
-        return self.idle() if callable(self.idle) else self.idle
+        if self.last_event is None:
+            return self.start_idle
+        return self.t - self.last_event
 
     def list_chats(self):
         return list(self.chats)
 
     def read_chat(self, chat, last_n):
+        if chat in self.touch_before:
+            self.last_event = self.t - 0.5  # a person moved the mouse in the pause
+            self.touch_before.discard(chat)
+            raise AssertionError("archive() should have stopped before reading")
         self.reads.append((chat, last_n))
+        self.t += 2.0
+        self.last_event = self.t  # our own scroll
         if chat in self.wrong:
             raise RuntimeError("opened 'Someone else' instead")
         return self.chats[chat][-last_n:]
@@ -171,7 +193,9 @@ def settings(**archive):
 
 class TestArchive(unittest.TestCase):
     def run_once(self, wx, store, s=None, **kw):
-        return wechat_archive.archive(wx, store, s or settings(), NOW, **kw)
+        wx.t += 3600  # runs are hours apart; the Mac is idle at the start
+        return wechat_archive.archive(wx, store, s or settings(), NOW,
+                                      clock=wx.clock, sleep=wx.sleep, **kw)
 
     def test_rerun_writes_nothing_twice_even_when_separators_change(self):
         wx = FakeWeChat({"Tosca": [msg("UNKNOWN", "10:42"), msg("OTHER", "new list"),
@@ -228,14 +252,32 @@ class TestArchive(unittest.TestCase):
                             FakeNotion())
         self.assertEqual((out["status"], out["reason"]), ("skipped", "screen locked"))
 
+    def test_own_clicks_do_not_count_as_someone_using_the_mac(self):
+        wx = FakeWeChat({f"c{i}": [msg("OTHER", "hi")] for i in range(4)})
+        out = self.run_once(wx, FakeNotion())
+        self.assertEqual(out["status"], "ok")
+        self.assertEqual(out["chats_read"], 4)
+
     def test_someone_using_the_mac_stops_the_run(self):
-        calls = iter([600, 600, 1])  # idle at start and before chat A, busy before B
-        wx = FakeWeChat({"A": [msg("OTHER", "a")], "B": [msg("OTHER", "b")]},
-                        idle=lambda: next(calls))
+        class Touchy(FakeWeChat):
+            def sleep(self, s):
+                super().sleep(s)
+                if len(self.reads) == 1:
+                    self.last_event = self.t - 0.5  # mouse moved during the pause
+        wx = Touchy({"A": [msg("OTHER", "a")], "B": [msg("OTHER", "b")]})
         store = FakeNotion()
         out = self.run_once(wx, store)
         self.assertEqual(out["status"], "interrupted")
         self.assertEqual([r["chat"] for r in store.rows], ["A"])
+
+    def test_busy_at_start_skips(self):
+        out = self.run_once(FakeWeChat({"A": [msg("OTHER", "a")]}, idle=30), FakeNotion())
+        self.assertEqual(out["status"], "skipped")
+
+    def test_caffeinate_never_declares_user_activity(self):
+        src = (REPO_ROOT / "scripts" / "wechat_archive.py").read_text()
+        flags = re.search(r'"caffeinate", "-(\w+)"', src).group(1)
+        self.assertNotIn("u", flags)
 
     def test_dry_run_writes_nothing(self):
         store = FakeNotion()
