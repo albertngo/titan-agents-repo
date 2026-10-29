@@ -1,0 +1,136 @@
+{
+  "contract_version": "1",
+  "source": "whatsapp",
+  "run_at": "2026-10-29T17:20:19-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "whatsapp-payment-4f2f3633",
+      "type": "payment",
+      "title": "…7474: invoices paid, cash-job netting leaves $220 owed to Titan",
+      "summary": "…7474 (installer or trade contact) asked Albert to pay outstanding invoices; Albert sent some and asked how to settle the cash jobs at 43 Harvest and 64 Aspen. …7474 then netted $1750 against $1411 for the job and $119 of Whitby glue and says they owe Titan $220; they also offered to collect cash at the store and sent three things 2Chat didn't show (likely photos or files).",
+      "timestamp": "2026-10-29T11:21:16-04:00",
+      "priority": "normal",
+      "link": null,
+      "amount_cents": 22000,
+      "raw_ref": "whatsapp:business:15c1171d6c4a3d76:MSG4f2f3633-bd6b-412f-be38-70c323f3cccf",
+      "sensitivity": "private",
+      "assigned_to": null
+    },
+    {
+      "id": "whatsapp-personal-04c49b5f",
+      "type": "personal",
+      "title": "Supplier order: 26 boxes of 705 set aside at SIDCO for pickup Oct 30",
+      "summary": "Supplier order: Joey asked in the Titan Flooring - SIDCO group to pick up 26 boxes of 705 tomorrow (2026-10-30), and Angad at SIDCO agreed.",
+      "timestamp": "2026-10-29T14:59:03-04:00",
+      "priority": "normal",
+      "link": null,
+      "amount_cents": null,
+      "raw_ref": "whatsapp:personal:WAG9fd6b4f2-4007-4ae3-9938-4821f1cbde45:MSG04c49b5f-511a-45b0-ac63-a108b98ef42d",
+      "sensitivity": "private",
+      "assigned_to": null
+    },
+    {
+      "id": "whatsapp-personal-e95c7693",
+      "type": "personal",
+      "title": "Staff: cash handed to Stephen at 12:50 pm",
+      "summary": "Staff: Pourya Lalee logged in the Cash Handover group that cash was given to Stephen today at 12:50 pm. No amount was stated.",
+      "timestamp": "2026-10-29T16:15:53-04:00",
+      "priority": "normal",
+      "link": null,
+      "amount_cents": null,
+      "raw_ref": "whatsapp:personal:WAG7da4877c-3370-4ff1-8028-4452be783ef0:MSGe95c7693-eb90-41dd-a24f-d9a2ca991136",
+      "sensitivity": "private",
+      "assigned_to": null
+    },
+    {
+      "id": "whatsapp-other-2f2a0d92",
+      "type": "other",
+      "title": "Titan Flooring - Anthony: Anthony arriving 3:15 pm",
+      "summary": "Anthony Nguyen said he was on his way and would arrive at 3:15 pm; Pourya Lalee acknowledged. The chat does not say whether Anthony is a client, installer or trade.",
+      "timestamp": "2026-10-29T15:13:56-04:00",
+      "priority": "low",
+      "link": null,
+      "amount_cents": null,
+      "raw_ref": "whatsapp:business:WAGe92bd7e4-adbb-4cb7-aa5f-b6982b705a36:MSG2f2a0d92-8b13-46bd-a07c-deb73062066a",
+      "sensitivity": "private",
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "messages_scanned": 16,
+    "chats_active": 4,
+    "supplier_events": 1,
+    "supplier_payment_requests": 0,
+    "payment": 1,
+    "customer": 0,
+    "unanswered_customer": 0,
+    "project": 0,
+    "staff": 0,
+    "other": 1,
+    "personal": 2,
+    "personal_skipped": 0,
+    "noise_skipped": 0,
+    "ghl_covered_skipped": 0,
+    "scanned_business": 13,
+    "scanned_personal": 3,
+    "groups_scanned": 3
+  },
+  "needs_attention": [
+    "Personal number: the pull returned no outgoing messages, so 2Chat may not be returning sent messages on that channel. No unanswered flags were raised for personal chats.",
+    "…7474 (cash jobs at 43 Harvest / 64 Aspen): their netting says they owe Titan $220. Albert said he would handle it; no confirmation of the figures found in chat yet.",
+    "No chats are registered in whatsapp-ingest-sources.json chats{}. Please set a kind for 'Titan Flooring - Anthony' (client project, installer or other?) and for …7474 (looks like an installer or trade)."
+  ],
+  "extensions": {
+    "whatsapp": {
+      "template_version": 1,
+      "chats": [
+        {
+          "chat_key": "15c1171d6c4a3d76",
+          "chat_name": "…7474",
+          "kind": "other",
+          "channel": "business",
+          "is_group": false,
+          "messages_in": 9,
+          "messages_out": 2,
+          "last_activity": "2026-10-29T11:21:16-04:00",
+          "digest": "Invoice payments and a cash-job netting that ends with …7474 saying they owe Titan $220."
+        },
+        {
+          "chat_key": "WAG9fd6b4f2-4007-4ae3-9938-4821f1cbde45",
+          "chat_name": "Titan Flooring - SIDCO",
+          "kind": "supplier",
+          "channel": "personal",
+          "is_group": true,
+          "messages_in": 2,
+          "messages_out": 0,
+          "last_activity": "2026-10-29T14:59:03-04:00",
+          "digest": "26 boxes of 705 set aside for pickup on 2026-10-30."
+        },
+        {
+          "chat_key": "WAG7da4877c-3370-4ff1-8028-4452be783ef0",
+          "chat_name": "Cash Handover",
+          "kind": "staff",
+          "channel": "personal",
+          "is_group": true,
+          "messages_in": 1,
+          "messages_out": 0,
+          "last_activity": "2026-10-29T16:15:53-04:00",
+          "digest": "One cash handover to Stephen logged."
+        },
+        {
+          "chat_key": "WAGe92bd7e4-adbb-4cb7-aa5f-b6982b705a36",
+          "chat_name": "Titan Flooring - Anthony",
+          "kind": "other",
+          "channel": "business",
+          "is_group": true,
+          "messages_in": 2,
+          "messages_out": 0,
+          "last_activity": "2026-10-29T15:13:56-04:00",
+          "digest": "Anthony confirmed an arrival time of 3:15 pm."
+        }
+      ]
+    }
+  }
+}

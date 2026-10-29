@@ -30,6 +30,13 @@ re-derive or guess.
    overridable by priority, sensitivity, or an approval in chat. Log each drop
    with its mailbox so the exclusion is auditable.
 
+   **Apply the WhatsApp gate too**, also before any other test: a `whatsapp`
+   item never goes to the team destination, whatever its priority, sensitivity
+   or an approval in chat. A `personal`-channel item (read from `raw_ref`;
+   unreadable counts as personal) may only be *proposed* for the private
+   destination, one item at a time, never batch-approved. Hard rule per
+   `notion-task-schema.md` (Albert 2026-10-29). Log each drop with its channel.
+
    For GHL specifically,
    derive the contact ID by parsing `item.link`, falling back to
    `extensions.ghl.conversations[].contact_id` for message items. Skip and
