@@ -111,6 +111,25 @@ class TestNormalize(unittest.TestCase):
         m = wp.normalize(self.raw(direction=None, sent_by="user"), "business", "api", SALT, {})
         self.assertEqual(m["direction"], "out")
 
+    def test_2chat_webhook_group_payload(self):
+        raw = {"uuid": "U1", "created_at": "2026-10-29T15:00:00Z", "sent_by": "contact",
+               "message": {"text": "pickup done"},
+               "group": {"uuid": "WAG42", "wa_group_name": "Titan Flooring - SIDCO"},
+               "participant": {"phone_number": "+19055550101", "pushname": "Angad"}}
+        m = wp.normalize(raw, "business", "capture", SALT, {})
+        self.assertTrue(m["is_group"])
+        self.assertEqual((m["chat_key"], m["chat_name"], m["sender_name"], m["direction"]),
+                         ("WAG42", "Titan Flooring - SIDCO", "Angad", "in"))
+        self.assertNotIn("9055550101", json.dumps(m))
+
+    def test_2chat_webhook_direct_payload(self):
+        raw = {"uuid": "U2", "created_at": "2026-10-29T15:00:00Z", "sent_by": "user",
+               "message": {"text": "on our way"}, "remote_phone_number": "+19055550199",
+               "contact": {"first_name": "Dawn", "last_name": "G"}}
+        m = wp.normalize(raw, "business", "api", SALT, {})
+        self.assertFalse(m["is_group"])
+        self.assertEqual((m["chat_name"], m["direction"]), ("Dawn G", "out"))
+
     def test_no_uuid_is_dropped(self):
         self.assertIsNone(wp.normalize({"text": "x"}, "business", "api", SALT, {}))
 

@@ -65,6 +65,29 @@ messages (only those since the number was connected) and lists groups, but docum
 2. **API (backstop).** `scripts/twochat_client.py` reads 1-to-1 messages directly, so a
    missed webhook is not a lost message, and maps group uuids to names.
 
+**How capture is wired (checked against Make's 2Chat app on 2026-10-29).** Make's
+"Watch Received WhatsApp Group Message" trigger watches **one configured group** per
+webhook, and Make allows one instant trigger per scenario. Using the app's triggers
+would mean one scenario per group, which doesn't scale. Instead:
+
+- One Make **custom webhook** (`gateway:CustomWebHook`) receives everything.
+- 2Chat is pointed at it once, through its webhook API (`/open/webhooks/subscribe/...`):
+  `whatsapp.message.received`, the sent/echo event if offered, and
+  `whatsapp.group.message.received` with no group filter, for both numbers.
+- The scenario routes on the payload (the group block present or not, the connected
+  number). It writes the data store record and creates the Notion row in the business
+  or personal archive, skipping a Message UUID that's already there.
+
+The payload fields Make documents for the 2Chat triggers (the same ones the webhooks
+send) are `uuid`, `created_at`, `sent_by`, `message.text`, `message.media.type`,
+`remote_phone_number`, `channel_phone_number`, `contact.first_name/last_name`, plus
+`group.uuid`, `group.wa_group_name` and `participant.phone_number/pushname` on group
+messages.
+
+Volume: Make's Core plan allows 40,000 operations a month. Each message costs about 4
+(webhook, router, data store, Notion), so the scenario fits up to roughly 8,000
+messages a month alongside the existing scenarios. Check usage after the first week.
+
 Both lanes are GET-only from this repo. Make is the only thing that writes, and only to
 its own data store.
 

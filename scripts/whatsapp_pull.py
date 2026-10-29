@@ -130,11 +130,12 @@ def normalize(raw, channel, lane, salt, chats):
     uuid = first(raw, "message_uuid", "uuid", "id", "message.id")
     if not uuid:
         return None
-    is_group = bool(first(raw, "is_group", "group_uuid") or
+    is_group = bool(first(raw, "is_group", "group_uuid", "group.uuid") or
                     str(first(raw, "chat_uuid") or "").startswith("WAG"))
-    chat_uuid = first(raw, "chat_uuid", "group_uuid", "remote_phone_number", "contact.phone_number")
+    chat_uuid = first(raw, "chat_uuid", "group_uuid", "group.uuid", "remote_phone_number", "contact.phone_number")
     peer = None if is_group else first(raw, "remote_phone_number", "peer_number", "contact.phone_number")
     sender = first(raw, "sender_number", "participant.phone_number", "remote_phone_number")
+    contact_name = " ".join(x for x in (first(raw, "contact.first_name"), first(raw, "contact.last_name")) if x) or None
     direction = first(raw, "direction")
     if not direction:
         sent_by = str(first(raw, "sent_by", "from_me") or "").lower()
@@ -147,7 +148,7 @@ def normalize(raw, channel, lane, salt, chats):
         "lane": lane,
         "channel": channel,
         "chat_key": chat_key,
-        "chat_name": first(raw, "chat_name", "group_name", "wa_group_name", "contact.name") or reg.get("label"),
+        "chat_name": first(raw, "chat_name", "group_name", "wa_group_name", "group.wa_group_name", "contact.name") or (None if is_group else contact_name) or reg.get("label"),
         "is_group": is_group,
         "kind": reg.get("kind"),
         "sensitivity": reg.get("sensitivity"),
@@ -156,7 +157,7 @@ def normalize(raw, channel, lane, salt, chats):
         "peer_last4": last4(peer),
         "sender_hash": hash_number(sender, salt),
         "sender_last4": last4(sender),
-        "sender_name": first(raw, "sender_name", "participant.name", "contact.name"),
+        "sender_name": first(raw, "sender_name", "participant.pushname", "participant.name", "contact.name") or contact_name,
         "direction": direction,
         "sent_at": ts.isoformat() if ts else None,
         "text": first(raw, "text", "message.text", "body") or "",
