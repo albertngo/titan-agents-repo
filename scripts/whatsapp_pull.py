@@ -232,6 +232,25 @@ def pull(since, salt, chats, channels, client=None):
     return out, errors
 
 
+def mark_titan(messages, settings, salt):
+    """A message from Titan's own people counts as Titan's (direction "out"), even when
+    it wasn't sent from the connected number: staff write in groups from their own
+    phones (Albert, 2026-10-29). Titan = both connected numbers plus the registry's
+    titan_people (salted hashes only). Sets titan_person on every Titan message."""
+    people = {p["sender_hash"]: p.get("label") for p in settings.get("titan_people", [])
+              if isinstance(p, dict) and p.get("sender_hash")}
+    for env in CHANNEL_ENV.values():
+        h = hash_number(os.environ.get(env), salt)
+        if h:
+            people.setdefault(h, "Albert")
+    for m in messages:
+        label = people.get(m.get("sender_hash"))
+        if label:
+            m["direction"] = "out"
+        m["titan_person"] = label if label else ("Titan" if m["direction"] == "out" else None)
+    return messages
+
+
 def dedupe(messages):
     """One record per message uuid, oldest first."""
     seen = {}
@@ -265,7 +284,7 @@ def main():
     since = datetime.now(timezone.utc) - timedelta(hours=args.hours)
 
     messages, errors = pull(since, salt, chats, channels)
-    messages = dedupe(messages)
+    messages = mark_titan(dedupe(messages), settings, salt)
 
     result = {
         "pulled_at": datetime.now(timezone.utc).isoformat(),

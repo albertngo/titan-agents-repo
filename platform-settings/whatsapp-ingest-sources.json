@@ -18,6 +18,12 @@
     "retention": "whatever 2Chat keeps (no trimming seen: business back to 2025-08-19 on 2026-10-29)"
   },
 
+  "titan_people": [
+    {"_comment": "Titan's own people, so their messages count as Titan's replies even from their own phones (Albert, 2026-10-29: staff are Joey, Pourya and Helen). sender_hash is sha256(REQUESTER_ID_SALT + digits)[:16] as the pull prints it, never a number. Both connected numbers count automatically. Helen is not listed yet: she had not appeared in the chats as of 2026-10-29; add her hash when she does."},
+    {"label": "Pourya", "sender_hash": "2580a4742ee2e18f"},
+    {"label": "Joey", "sender_hash": "ccf6f8f1d861040d"}
+  ],
+
   "chats": {
     "_comment": "Per-chat overrides, keyed by chat_key from the pull. kind is one of supplier | customer | project | trade | staff | personal | other (trade = an installer, contractor or trade contact) (client project groups are `project`). ghl_covered: true skips a 1-to-1 chat GHL already ingests as TYPE_WHATSAPP, so a customer is never counted twice. label is a display name only. A chat may escalate sensitivity to private, never relax it below its channel's default. Unlisted chats are classified by the agent from content and the keyword lists below.",
     "_example": {"kind": "supplier", "label": "Titan Flooring - SIDCO", "sensitivity": "private", "ghl_covered": false}

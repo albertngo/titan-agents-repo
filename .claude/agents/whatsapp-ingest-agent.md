@@ -27,7 +27,7 @@ Then Read that file. It has `status`, `errors[]`, `count`, `groups`,
 `counts_by_channel` and `messages[]`, one record per message: `message_uuid`,
 `channel` (`business` / `personal`),
 `chat_key`, `chat_name`, `is_group`, `kind`, `sensitivity`, `ghl_covered`,
-`peer_hash` / `peer_last4`, `sender_hash` / `sender_last4`, `sender_name`, `direction`
+`peer_hash` / `peer_last4`, `sender_hash` / `sender_last4`, `sender_name`, `titan_person`, `direction`
 (`in` / `out`), `sent_at` (UTC), `text`, `media_type`.
 
 **Always use `--out` under `analysis/cache/whatsapp/`.** That folder is gitignored. The
@@ -87,7 +87,10 @@ For each `customer` chat and each `in` message in a supplier chat that asks Tita
 question: if no `out` message follows in the same `chat_key` within
 `unanswered_threshold_hours`, it is unanswered. `high` for customers, plus a
 `needs_attention` line ("<chat_name or last-4> — <what they asked> — no reply in N h").
-It is a heuristic: write "no reply found", never "ignored". If the pull has no `out`
+A message from Titan's own people (both connected numbers and the registry's
+`titan_people`) is `out` with `titan_person` set, wherever it was sent from, so a staff
+member answering in a group counts as Titan replying. It is a heuristic: write "no reply
+found", never "ignored". If the pull has no `out`
 messages at all for a channel, 2Chat is not returning your sent messages. Say so in
 `needs_attention` and emit no unanswered flags for that channel rather than flagging
 everything.

@@ -211,6 +211,17 @@ class TestPull(unittest.TestCase):
             out, errors = wp.pull(self.now, SALT, {}, ["personal"], client=client)
         self.assertIn("TWOCHAT_PERSONAL_NUMBER not set", errors[0])
 
+    def test_staff_messages_count_as_titan(self):
+        staff = wp.hash_number("+19055550101", SALT)
+        settings = {"titan_people": [{"_comment": "x"}, {"label": "Joey", "sender_hash": staff}]}
+        msgs = [{"sender_hash": staff, "direction": "in"},
+                {"sender_hash": wp.hash_number("+19055550199", SALT), "direction": "in"},
+                {"sender_hash": None, "direction": "out"}]
+        with mock.patch.dict(os.environ, {"TWOCHAT_BUSINESS_NUMBER": "+19055550100"}, clear=True):
+            out = wp.mark_titan(msgs, settings, SALT)
+        self.assertEqual([(m["direction"], m["titan_person"]) for m in out],
+                         [("out", "Joey"), ("in", None), ("out", "Titan")])
+
     def test_dedupe(self):
         m = {"message_uuid": "A", "sent_at": "2026-10-29T10:00:00+00:00"}
         self.assertEqual(len(wp.dedupe([m, dict(m)])), 1)
