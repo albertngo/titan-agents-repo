@@ -31,6 +31,7 @@ No ingester reads another ingester's raw platform data.
 | `notion-ingest-agent` | Notion (projects, work orders, payments, meetings) | `notion.json` |
 | `meta-ads-ingest-agent` | Meta Ads (spend, leads, CPL, delivery health) | `meta-ads.json` |
 | `content-ingest-agent` | Notion content calendar + Google Drive media | `content.json` |
+| `wechat-ingest-agent` | WeChat (Albert's personal account, via the private WeChat Archive in Notion) | `wechat.json` |
 | `whatsapp-ingest-agent` | WhatsApp via 2Chat (business + personal numbers; supplier, customer and staff chats) | `whatsapp.json` |
 
 | `ghl-actions-agent` | GoHighLevel (write: replies, stages, tags; mark-read only via `/ghl-triage` + `scripts/ghl_mark_read.py`, live since 2026-10-10) | appends to `actions-log.json` |
@@ -232,6 +233,22 @@ other languages (Chinese, Vietnamese, Farsi, …) are detected, summarised in En
 an English translation note series beside the original transcript. Do not
 edit that module in Make without re-snapshotting and re-running the tests. Registry
 `platform-settings/ghl-calls.json`; method `methods/ghl-call-transcripts.md`.
+
+### WeChat archive (2026-10-29)
+
+Many supplier conversations happen on Albert's personal WeChat, which has no API.
+`scripts/wechat_archive.py` runs on **Albert's Mac** (launchd, every 30 min; runs once a day,
+the first time after 06:00 the Mac is unlocked and idle). It reads WeChat for Mac through the
+Accessibility API with the pinned, read-only half of `wechat-mcp-server`, and **inserts**
+every message not yet recorded into the private **WeChat Archive** Notion database. Its
+integration has Insert + Read content, never Update, and it is the only file that writes
+there. `wechat-ingest-agent` reads that database through `scripts/wechat_pull.py`
+(Read-content-only token), which is also how a session answers questions about past chats
+(`--search`). Owner: General. Sensitivity: private. Because the repo is public, `wechat.json`
+carries no costs, prices or account numbers; the detail stays in the archive. The archiver
+needs the Mac to itself while it runs (it clicks and scrolls), so it never runs on a locked
+screen and stops when someone touches the Mac. Registry `platform-settings/wechat.json`;
+method and setup `methods/wechat-archive.md`.
 
 ### GHL unread triage (`/ghl-triage`, 2026-10-08)
 

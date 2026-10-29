@@ -7,6 +7,8 @@ analysis/cache/
 # from scripts/ghl_calls_pull.py: customer PII, regenerable from GHL, never committed
 # (the repo is public). The rule above already covers it; this is the record.
 .venv/
+# The WeChat archiver's own venv on the Mac (scripts/wechat_install_mac.sh).
+.venv-wechat/
 
 # Lightspeed product bodies: regenerable from the API, ~9-41 MB per run.
 # The committed record of a pull is the -summary.json beside them.

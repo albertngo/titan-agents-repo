@@ -1,0 +1,77 @@
+{
+  "_comment": "WeChat archive and ingest (2026-10-29, Albert). Two halves: scripts/wechat_archive.py runs on Albert's Mac (launchd, early morning), reads WeChat through the macOS Accessibility API and inserts every message not yet recorded into the private Notion database below; scripts/wechat_pull.py runs anywhere (cloud /daily-ingest included) and only reads that database. Method and setup: methods/wechat-archive.md. Every tunable lives here, never in the scripts.",
+  "notion": {
+    "_comment": "The WeChat Archive database, created 2026-10-29 as a private workspace-level page. Two internal integrations are shared with it and nothing else: the writer (Read content + Insert content, no Update) on the Mac only, and the reader (Read content only) for wechat_pull.py. Insert-only is the structural guarantee that the archiver can never edit or delete a row.",
+    "database_id": "fb098d27177d4ca7aa6f7e7fff0376a4",
+    "data_source_id": "39f66a91-de1c-46cf-aabc-cd046e31f32b",
+    "database_url": "https://www.notion.so/fb098d27177d4ca7aa6f7e7fff0376a4",
+    "api_version": "2025-09-03",
+    "properties": {
+      "title": "Message",
+      "chat": "Chat",
+      "sender": "Sender",
+      "text": "Text",
+      "kind": "Kind",
+      "sent_at": "Sent at",
+      "archived_at": "Archived at",
+      "sequence": "Sequence",
+      "key": "Message key",
+      "gap_before": "Gap before",
+      "run": "Run"
+    },
+    "heartbeat_chat": "(archiver)",
+    "_heartbeat_comment": "Every archiver run, including one that skips, inserts one row in this pseudo-chat with Kind=system and a JSON summary in Text. wechat_pull.py excludes it from messages and reports the newest one, so a Mac that stopped running is a finding instead of a quiet day."
+  },
+  "archive": {
+    "max_chats": 40,
+    "_max_chats_comment": "Chats taken from the top of WeChat's sidebar (most recent first). A chat further down had no new message since the last run unless more than this many chats were active in a day.",
+    "tail_check_messages": 30,
+    "backfill_cap_messages": 200,
+    "_backfill_comment": "Each chat is read newest-first, tail_check_messages at a time. If the stored tail can't be found in that window, the archiver reads up to backfill_cap_messages and, failing that, writes what it read with Gap before ticked on the first row.",
+    "first_run_messages": 100,
+    "_first_run_comment": "How far back a chat with no stored messages starts. Older history is not archived.",
+    "stored_tail_compare": 20,
+    "min_overlap": 3,
+    "idle_seconds_required": 120,
+    "between_chats_seconds": 3,
+    "_idle_comment": "The reader takes focus, clicks and scrolls. It starts only when the keyboard and mouse have been idle this long and never on a locked screen, and it stops between chats the moment someone touches the Mac. Its own clicks and scrolls reset the Mac's idle clock too, so between chats it pauses between_chats_seconds and stops only if input is younger than its own last action.",
+    "schedule": {
+      "first_attempt": "06:00",
+      "last_attempt": "22:00",
+      "every_minutes": 30,
+      "min_hours_between_runs": 20,
+      "_comment": "A Mac is usually locked at a fixed early hour, and a locked screen can't be read. So launchd fires every_minutes and the archiver runs the first time, after first_attempt, that the Mac is unlocked and idle, then not again until min_hours_between_runs after the last completed run. An attempt that isn't due or finds the Mac locked or busy exits without writing anything; a day with no completed run shows up as a stale heartbeat in the brief. Lower min_hours_between_runs to archive more than once a day."
+    },
+    "skip_chats": [
+      "Subscriptions",
+      "订阅号",
+      "Service Accounts",
+      "服务号",
+      "Weixin Team",
+      "微信团队",
+      "Official Accounts",
+      "公众号",
+      "Folded Group Chats",
+      "折叠的群聊"
+    ],
+    "_skip_comment": "Exact sidebar names never opened. Add a personal chat here to keep it out of the archive."
+  },
+  "parse": {
+    "_comment": "Patterns are a best guess at what WeChat for Mac exposes through Accessibility, in English and Chinese UI. They are data so the first supervised run can correct them without a code change.",
+    "kind_patterns": {
+      "image": ["^\\[(Image|Photo|图片)\\]"],
+      "file": ["^\\[(File|文件)\\]"],
+      "voice": ["^\\[(Voice|Audio|语音)\\]"],
+      "video": ["^\\[(Video|视频)\\]"],
+      "link": ["^\\[(Link|链接)\\]", "^https?://"],
+      "sticker": ["^\\[(Sticker|Animated Sticker|动画表情|表情)\\]"],
+      "system": ["recalled a message", "撤回了一条消息", "joined the group", "加入了群聊", "invited .+ to the group", "邀请.+加入了群聊", "^You've added", "以上是打招呼的内容"]
+    }
+  },
+  "ingest": {
+    "window_hours": 30,
+    "_window_comment": "Overlaps a day so a late archiver run is still read; the agent dedupes against nothing, it just summarises what arrived in the window.",
+    "heartbeat_stale_hours": 26,
+    "max_items": 50
+  }
+}
