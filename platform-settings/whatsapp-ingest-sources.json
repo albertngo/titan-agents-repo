@@ -27,11 +27,18 @@
   ],
 
   "chats": {
-    "_comment": "Per-chat overrides, keyed by chat_key from the pull. kind is one of supplier | customer | project | trade | staff | personal | other (trade = an installer, contractor or trade contact) (client project groups are `project`). ghl_covered: true skips a 1-to-1 chat GHL already ingests as TYPE_WHATSAPP, so a customer is never counted twice. label is a display name only. A chat may escalate sensitivity to private, never relax it below its channel's default. Unlisted chats are classified by the agent from content and the keyword lists below.",
+    "_comment": "Per-chat overrides, keyed by chat_key from the pull. Each connected number sees its own copy of a group under its own WAG uuid, so a group both numbers are in is listed once per copy. kind is one of supplier | customer | project | trade | staff | personal | other (trade = an installer, contractor or trade contact) (client project groups are `project`). ghl_covered: true skips a 1-to-1 chat GHL already ingests as TYPE_WHATSAPP, so a customer is never counted twice. label is a display name only. A chat may escalate sensitivity to private, never relax it below its channel's default. Unlisted chats are classified by the agent from content and the keyword lists below.",
     "_example": {"kind": "supplier", "label": "Titan Flooring - SIDCO", "sensitivity": "private", "ghl_covered": false},
     "WAGe92bd7e4-adbb-4cb7-aa5f-b6982b705a36": {"kind": "trade", "label": "Titan Flooring - Anthony", "_set": "Albert, 2026-10-29"},
     "WAG4012ff52-232c-400e-b869-33b4c49dc1cc": {"kind": "trade", "label": "Titan Flooring - Luxevista", "_set": "Albert, 2026-10-29"},
     "WAG94d80b1b-a96e-407a-9c0e-0ea32177b01a": {"kind": "trade", "label": "Titan Flooring - ROY", "_set": "Albert, 2026-10-29"},
+    "WAG32d5deef-6f5a-480b-8378-0f17fe3ee98e": {"kind": "staff", "label": "Celebrate", "_set": "Albert, 2026-10-29: internal company chat"},
+    "WAGc8cc3a5e-85c7-40e2-b138-fce702ded171": {"kind": "staff", "label": "Celebrate", "_set": "Albert, 2026-10-29: internal company chat"},
+    "WAG38fe1193-06eb-4e05-aab9-268816d068f4": {"kind": "staff", "label": "TITAN FLOORING (community)", "_set": "Albert, 2026-10-29: the WhatsApp community chat that holds the other subgroups"},
+    "WAG3f5f6047-a42f-43d2-9403-a7f1bf760529": {"kind": "staff", "label": "TITAN FLOORING (community)", "_set": "Albert, 2026-10-29: the WhatsApp community chat that holds the other subgroups"},
+    "WAGb4a1c5ea-2719-4684-bf71-4643e8220af1": {"kind": "staff", "label": "TITAN FLOORING (community)", "_set": "Albert, 2026-10-29: the WhatsApp community chat that holds the other subgroups"},
+    "WAG9295e024-623a-4810-a625-1fdba8a68b47": {"kind": "staff", "label": "TITAN FLOORING (community)", "_set": "Albert, 2026-10-29: the WhatsApp community chat that holds the other subgroups"},
+    "15c1171d6c4a3d76": {"kind": "trade", "label": "Luxevista (1-to-1)", "_set": "Albert, 2026-10-29: the …7474 chat is Luxevista"},
     "WAG9fd6b4f2-4007-4ae3-9938-4821f1cbde45": {"kind": "supplier", "label": "Titan Flooring - SIDCO", "_set": "Albert, 2026-10-29"},
     "WAG7da4877c-3370-4ff1-8028-4452be783ef0": {"kind": "staff", "label": "Cash Handover", "_set": "Albert, 2026-10-29 (internal group)"}
   },
