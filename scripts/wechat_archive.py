@@ -169,10 +169,17 @@ class MacReader:
         apps = AppKit.NSRunningApplication.runningApplicationsWithBundleIdentifier_(bundle)
         if not apps:
             raise RuntimeError("WeChat is not running")
+        import subprocess
         ax = self._app_quiet()
-        for _ in range(12):
+        for i in range(20):
             if self.frontmost() == bundle:
                 break
+            if i % 6 == 0:
+                # Opening it through LaunchServices, as the Dock does, is the
+                # one request macOS 14+ always honours; activateWithOptions_
+                # is refused while Terminal (or anything else) is active.
+                subprocess.run(["open", "-b", bundle], check=False,
+                               stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             apps[0].unhide()
             apps[0].activateWithOptions_(AppKit.NSApplicationActivateAllWindows)
             AXUIElementSetAttributeValue(ax, kAXFrontmostAttribute, True)
