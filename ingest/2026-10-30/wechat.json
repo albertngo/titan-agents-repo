@@ -1,0 +1,19 @@
+{
+  "contract_version": "1",
+  "source": "wechat",
+  "run_at": "2026-10-30T12:00:00-04:00",
+  "status": "error",
+  "error": "WeChat archive unreadable: NOTION_WECHAT_READ_TOKEN missing from .env. wechat_pull.py could not query the archive.",
+  "items": [],
+  "metrics": {
+    "chats_with_new": 0,
+    "messages_new": 0,
+    "awaiting_reply": 0,
+    "supplier_updates": 0,
+    "gaps": 0,
+    "archiver_hours_since_run": -1
+  },
+  "needs_attention": [
+    "WeChat not read today: NOTION_WECHAT_READ_TOKEN is missing from .env. Zero items here is not a quiet day."
+  ]
+}

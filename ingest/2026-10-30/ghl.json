@@ -1,0 +1,48 @@
+{
+  "contract_version": "1",
+  "source": "ghl",
+  "run_at": "2026-10-30T08:00:00-04:00",
+  "status": "error",
+  "error": "GHL MCP tools (ghl server: contacts, opportunities, calendars, conversations) were not available in this session, so new leads, opportunities, appointments, conversations and workflow drift could not be pulled.",
+  "items": [],
+  "metrics": {},
+  "needs_attention": [
+    "GHL ingest unavailable today: GHL MCP tools (ghl server: contacts, opportunities, calendars, conversations) were not available in this session, so new leads, opportunities, appointments, conversations and workflow drift could not be pulled. Re-run in a session with the ghl MCP connected.",
+    "Call pull itself worked (21 calls listed, 18 with notes) but summaries were not written because the conversation/contact join was unavailable."
+  ],
+  "extensions": {
+    "ghl": {
+      "template_version": "6",
+      "reporting": {
+        "calls": {
+          "listed": 21,
+          "from_note": 18,
+          "transcribed": 0,
+          "voicemails": 4,
+          "minutes": 0.0,
+          "est_cost_usd": 0,
+          "engine": "elevenlabs",
+          "status": "ok",
+          "error": null
+        }
+      },
+      "triage": {
+        "status": "error",
+        "error": "Unread triage not run: no judgements written; the pull did not finish and the GHL MCP was unavailable.",
+        "write_mode": null
+      },
+      "new_leads": [],
+      "opportunities": [],
+      "appointments_booked": [],
+      "conversations": [],
+      "workflow_drift": [],
+      "won_records": [],
+      "stragglers_ranked": [],
+      "calls": [],
+      "call_quality": {
+        "sensitivity": "private",
+        "records": []
+      }
+    }
+  }
+}
