@@ -43,6 +43,7 @@ import wechat_core as core  # noqa: E402
 import wechat_notion as notion  # noqa: E402
 
 ARCHIVER_VERSION = "1"
+FIT = "wechat-4.1.15"  # which WeChat layout the reader was last fitted to
 
 
 class InUse(Exception):
@@ -90,6 +91,19 @@ class MacReader:
                 return v.strip()
         return self._current()
 
+    def _title_report(self):
+        """What the title area looked like, for the error message."""
+        from ApplicationServices import kAXTitleAttribute, kAXValueAttribute
+        found = []
+        for ident in ("current_chat_name_label", "big_title_line_h_view"):
+            el = self._dfs(self._app_quiet(), lambda e, r, t, i, want=ident: i == want)
+            if el is None:
+                found.append(f"{ident}: missing")
+            else:
+                v = self._ax_get(el, kAXValueAttribute) or self._ax_get(el, kAXTitleAttribute)
+                found.append(f"{ident}: {str(v)[:12]!r}")
+        return "; ".join(found)
+
     def _app_quiet(self):
         from ApplicationServices import AXUIElementCreateApplication
         import AppKit
@@ -131,7 +145,8 @@ class MacReader:
                 break
         # Never file one chat's messages under another chat's name.
         if opened is None or self._norm(opened) != self._norm(chat):
-            raise RuntimeError(f"opened {opened!r} instead")
+            raise RuntimeError(f"opened {opened!r} instead after 6 s "
+                               f"(fit {FIT}; {self._title_report()})")
         return [m.to_dict() for m in self._fetch(last_n=last_n)]
 
 
