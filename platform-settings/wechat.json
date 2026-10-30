@@ -57,14 +57,14 @@
     "_skip_comment": "Exact sidebar names never opened. Add a personal chat here to keep it out of the archive."
   },
   "parse": {
-    "_comment": "Patterns are a best guess at what WeChat for Mac exposes through Accessibility, in English and Chinese UI. They are data so the first supervised run can correct them without a code change. Fitted 2026-10-30 to WeChat for Mac 4.1.15: bubbles read 'Image' and 'File <name>', without brackets; separators read '10/21 13:17'.",
+    "_comment": "Patterns are a best guess at what WeChat for Mac exposes through Accessibility, in English and Chinese UI. They are data so the first supervised run can correct them without a code change. Fitted 2026-10-30 to WeChat for Mac 4.1.15: bubbles read 'Image' and 'File' then the name and size on their own lines, without brackets; separators read '10/21 13:17'.",
     "kind_patterns": {
       "image": [
         "^\\[?(Image|Photo|图片)\\]?$"
       ],
       "file": [
         "^\\[(File|文件)\\]",
-        "^(File|文件) \\S"
+        "^(File|文件)\\n"
       ],
       "voice": [
         "^\\[?(Voice|Audio|语音)\\]?($|\\s)"
