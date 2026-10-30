@@ -55,6 +55,8 @@ class TestSeparators(unittest.TestCase):
         self.check("10月20日 下午3:05", "2026-10-20 15:05")
         self.check("12:30 PM", "2026-10-29 12:30")
         self.check("12:05 AM", "2026-10-29 00:05")
+        self.check("10/21 13:17", "2026-10-21 13:17")  # WeChat 4.1.15
+        self.check("12/30 09:00", "2025-12-30 09:00")  # no year shown, later than today
 
     def test_not_separators(self):
         for text in ("ok", "25:00", "Call me at 3", "2026/13/40 10:00", "", "price 10:42 sqft"):
@@ -69,6 +71,11 @@ class TestAnnotate(unittest.TestCase):
         self.assertTrue(out[0]["sent_at"].startswith("2026-10-28T14:03"))
         self.assertEqual([m["sender"] for m in out], ["Them", "Me"])
 
+    def test_dated_separator_even_if_the_side_was_misread(self):
+        out = core.annotate([msg("OTHER", "10/21 13:17"), msg("OTHER", "hi")], NOW, KINDS)
+        self.assertEqual([m["text"] for m in out], ["hi"])
+        self.assertTrue(out[0]["sent_at"].startswith("2026-10-21T13:17"))
+
     def test_a_person_typing_a_time_is_a_message(self):
         out = core.annotate([msg("OTHER", "10:42")], NOW, KINDS)
         self.assertEqual(len(out), 1)
@@ -77,6 +84,9 @@ class TestAnnotate(unittest.TestCase):
         self.assertEqual(core.classify_kind("[Image]", KINDS), "image")
         self.assertEqual(core.classify_kind("[图片]", KINDS), "image")
         self.assertEqual(core.classify_kind("[File] PL-2026.pdf", KINDS), "file")
+        self.assertEqual(core.classify_kind("Image", KINDS), "image")  # WeChat 4.1.15
+        self.assertEqual(core.classify_kind("File Trim Profiles.pdf", KINDS), "file")
+        self.assertEqual(core.classify_kind("Image looks good", KINDS), "text")
         self.assertEqual(core.classify_kind("https://example.com/x", KINDS), "link")
         self.assertEqual(core.classify_kind("Lily recalled a message", KINDS), "system")
         self.assertEqual(core.classify_kind("see you tomorrow", KINDS), "text")
@@ -338,6 +348,8 @@ class TestBoundary(unittest.TestCase):
                                      "import wechat_mcp names explicitly")
         allowed = {
             ("wechat_mcp.wechat_accessibility", "_normalize_chat_title"),
+            ("wechat_mcp.wechat_accessibility", "ax_get"),
+            ("wechat_mcp.wechat_accessibility", "dfs"),
             ("wechat_mcp.wechat_accessibility", "click_element_center"),
             ("wechat_mcp.wechat_accessibility", "collect_chat_elements"),
             ("wechat_mcp.wechat_accessibility", "get_current_chat_name"),

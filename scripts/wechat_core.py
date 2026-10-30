@@ -45,6 +45,7 @@ _RE_WEEKDAY = re.compile(rf"^({'|'.join(_WEEKDAYS)})\s*{_TIME}$", re.I)
 _RE_YMD = re.compile(rf"^(\d{{4}})[/\-年](\d{{1,2}})[/\-月](\d{{1,2}})日?\s*{_TIME}$")
 _RE_MDY = re.compile(rf"^(\d{{1,2}})/(\d{{1,2}})/(\d{{2}})\s*{_TIME}$")
 _RE_MD_ZH = re.compile(rf"^(\d{{1,2}})月(\d{{1,2}})日\s*{_TIME}$")
+_RE_MD = re.compile(rf"^(\d{{1,2}})/(\d{{1,2}})\s+{_TIME}$")  # WeChat 4.1: "10/21 13:17"
 
 
 def load_settings(path=SETTINGS):
@@ -102,10 +103,14 @@ def parse_separator(text, now):
     if m:
         mo, d, y = int(m.group(1)), int(m.group(2)), 2000 + int(m.group(3))
         return _safe_date(now, y, mo, d, m.groups()[3:])
-    m = _RE_MD_ZH.match(t)
+    m = _RE_MD_ZH.match(t) or _RE_MD.match(t)
     if m:
         mo, d = int(m.group(1)), int(m.group(2))
-        return _safe_date(now, now.year, mo, d, m.groups()[2:])
+        when = _safe_date(now, now.year, mo, d, m.groups()[2:])
+        # No year shown: a date later than today is from last year.
+        if when is not None and when.date() > now.date():
+            when = _safe_date(now, now.year - 1, mo, d, m.groups()[2:])
+        return when
     return None
 
 
@@ -139,11 +144,13 @@ def annotate(raw_messages, now, kind_patterns):
         if not text:
             continue
         sender = m.get("sender", "UNKNOWN")
-        if sender == "UNKNOWN":
-            when = parse_separator(text, now)
-            if when is not None:
-                stamp = when
-                continue
+        when = parse_separator(text, now)
+        # A dated separator ("10/21 13:17", "Yesterday 09:15") is one whichever
+        # side the pixel heuristic guessed; a bare "10:42" only when it sat in
+        # the middle (UNKNOWN), since a person might type just a time.
+        if when is not None and (sender == "UNKNOWN" or not _RE_TODAY.match(text)):
+            stamp = when
+            continue
         out.append({
             "sender": SENDERS.get(sender, "Unknown"),
             "text": text,

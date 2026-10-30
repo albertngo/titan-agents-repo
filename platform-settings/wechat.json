@@ -57,15 +57,38 @@
     "_skip_comment": "Exact sidebar names never opened. Add a personal chat here to keep it out of the archive."
   },
   "parse": {
-    "_comment": "Patterns are a best guess at what WeChat for Mac exposes through Accessibility, in English and Chinese UI. They are data so the first supervised run can correct them without a code change.",
+    "_comment": "Patterns are a best guess at what WeChat for Mac exposes through Accessibility, in English and Chinese UI. They are data so the first supervised run can correct them without a code change. Fitted 2026-10-30 to WeChat for Mac 4.1.15: bubbles read 'Image' and 'File <name>', without brackets; separators read '10/21 13:17'.",
     "kind_patterns": {
-      "image": ["^\\[(Image|Photo|图片)\\]"],
-      "file": ["^\\[(File|文件)\\]"],
-      "voice": ["^\\[(Voice|Audio|语音)\\]"],
-      "video": ["^\\[(Video|视频)\\]"],
-      "link": ["^\\[(Link|链接)\\]", "^https?://"],
-      "sticker": ["^\\[(Sticker|Animated Sticker|动画表情|表情)\\]"],
-      "system": ["recalled a message", "撤回了一条消息", "joined the group", "加入了群聊", "invited .+ to the group", "邀请.+加入了群聊", "^You've added", "以上是打招呼的内容"]
+      "image": [
+        "^\\[?(Image|Photo|图片)\\]?$"
+      ],
+      "file": [
+        "^\\[(File|文件)\\]",
+        "^(File|文件) \\S"
+      ],
+      "voice": [
+        "^\\[?(Voice|Audio|语音)\\]?($|\\s)"
+      ],
+      "video": [
+        "^\\[?(Video|视频)\\]?$"
+      ],
+      "link": [
+        "^\\[(Link|链接)\\]",
+        "^https?://"
+      ],
+      "sticker": [
+        "^\\[?(Sticker|Animated Sticker|动画表情|表情)\\]?$"
+      ],
+      "system": [
+        "recalled a message",
+        "撤回了一条消息",
+        "joined the group",
+        "加入了群聊",
+        "invited .+ to the group",
+        "邀请.+加入了群聊",
+        "^You've added",
+        "以上是打招呼的内容"
+      ]
     }
   },
   "ingest": {

@@ -59,7 +59,9 @@ class MacReader:
         from wechat_mcp.wechat_accessibility import (
             _normalize_chat_title,
             click_element_center,
+            ax_get,
             collect_chat_elements,
+            dfs,
             get_current_chat_name,
             get_wechat_ax_app,
         )
@@ -70,6 +72,32 @@ class MacReader:
         self._app = get_wechat_ax_app
         self._fetch = fetch_recent_messages
         self._norm = _normalize_chat_title
+        self._ax_get = ax_get
+        self._dfs = dfs
+
+    def _opened_name(self):
+        """
+        The open chat's name. WeChat 4.1 has a label holding just the name
+        (id current_chat_name_label, beside a separate member-count label);
+        older versions only have the combined title the library reads.
+        """
+        from ApplicationServices import kAXTitleAttribute, kAXValueAttribute
+        label = self._dfs(self._app_quiet(),
+                          lambda el, role, title, ident: ident == "current_chat_name_label")
+        if label is not None:
+            v = self._ax_get(label, kAXValueAttribute) or self._ax_get(label, kAXTitleAttribute)
+            if isinstance(v, str) and v.strip():
+                return v.strip()
+        return self._current()
+
+    def _app_quiet(self):
+        from ApplicationServices import AXUIElementCreateApplication
+        import AppKit
+        apps = AppKit.NSRunningApplication.runningApplicationsWithBundleIdentifier_(
+            "com.tencent.xinWeChat")
+        if not apps:
+            raise RuntimeError("WeChat is not running")
+        return AXUIElementCreateApplication(apps[0].processIdentifier())
 
     @staticmethod
     def screen_locked():
@@ -93,8 +121,14 @@ class MacReader:
         if el is None:
             raise RuntimeError("not in the sidebar any more")
         self._click(el)
-        time.sleep(0.6)
-        opened = self._current()
+        # WeChat takes a moment to draw the chat it switched to; wait for the
+        # title to show the chat clicked, up to 6 s.
+        opened = None
+        for _ in range(24):
+            time.sleep(0.25)
+            opened = self._opened_name()
+            if opened is not None and self._norm(opened) == self._norm(chat):
+                break
         # Never file one chat's messages under another chat's name.
         if opened is None or self._norm(opened) != self._norm(chat):
             raise RuntimeError(f"opened {opened!r} instead")
