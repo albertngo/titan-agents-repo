@@ -95,6 +95,49 @@ class TestAnnotate(unittest.TestCase):
         self.assertEqual(core.classify_kind("see you tomorrow", KINDS), "text")
 
 
+class TestNames(unittest.TestCase):
+    """Albert, 2026-10-30: every message carries a named sender."""
+
+    PEOPLE = {"me": "Albert", "aliases": {"helen": "Helen"},
+              "alias_patterns": {r"^前景Sam\b": "Sam (前景)"}}
+
+    def names(self, raw, chat, is_group):
+        out = core.annotate({"messages": raw, "is_group": is_group}, NOW, KINDS,
+                            chat=chat, people=self.PEOPLE)
+        return [(m["from"], m["to"], m["sender"], m["chat_type"]) for m in out]
+
+    def test_group_names_read_off_the_screen(self):
+        raw = [{"sender": "OTHER", "text": "Image", "speaker": "前景Sam 4165550199"},
+               {"sender": "OTHER", "text": "Thank you so much", "speaker": "helen"},
+               {"sender": "UNKNOWN", "text": "10/21 13:17", "speaker": None},
+               {"sender": "ME", "text": "Got it", "speaker": None},
+               {"sender": "OTHER", "text": "ok", "speaker": None}]
+        self.assertEqual(self.names(raw, "VISTA (Markham)", True), [
+            ("Sam (前景)", "VISTA (Markham)", "Them", "group"),
+            ("Helen", "VISTA (Markham)", "Them", "group"),
+            ("Albert", "VISTA (Markham)", "Me", "group"),
+            ("Unknown", "VISTA (Markham)", "Them", "group"),  # no name read: never guessed
+        ])
+
+    def test_a_name_above_the_bubble_means_it_is_not_mine(self):
+        raw = [{"sender": "ME", "text": "hi", "speaker": "helen"}]
+        self.assertEqual(self.names(raw, "G", True)[0][:3], ("Helen", "G", "Them"))
+
+    def test_direct_chat(self):
+        raw = [{"sender": "OTHER", "text": "price list attached"},
+               {"sender": "ME", "text": "thanks"},
+               {"sender": "UNKNOWN", "text": "?"}]
+        self.assertEqual(self.names(raw, "diana", False), [
+            ("diana", "Albert", "Them", "direct"),
+            ("Albert", "diana", "Me", "direct"),
+            ("Unknown", None, "Unknown", "direct"),
+        ])
+
+    def test_speaker_ignored_in_direct_chats(self):
+        raw = [{"sender": "OTHER", "text": "x", "speaker": "noise"}]
+        self.assertEqual(self.names(raw, "diana", False)[0][0], "diana")
+
+
 class TestAlign(unittest.TestCase):
     def test_empty_tail_starts_at_zero(self):
         self.assertEqual(core.align([], ["a", "b"], 3), 0)
@@ -350,6 +393,14 @@ class TestBoundary(unittest.TestCase):
                     self.assertFalse(a.name.startswith("wechat_mcp"),
                                      "import wechat_mcp names explicitly")
         allowed = {
+            ("wechat_mcp.wechat_accessibility", "axvalue_to_point"),
+            ("wechat_mcp.wechat_accessibility", "axvalue_to_size"),
+            ("wechat_mcp.wechat_accessibility", "get_list_center"),
+            ("wechat_mcp.fetch_messages_by_chat_utils", "capture_message_area"),
+            ("wechat_mcp.fetch_messages_by_chat_utils", "classify_sender_for_message"),
+            ("wechat_mcp.fetch_messages_by_chat_utils", "get_messages_list"),
+            ("wechat_mcp.fetch_messages_by_chat_utils", "scroll_to_bottom"),
+            ("wechat_mcp.fetch_messages_by_chat_utils", "scroll_up_small"),
             ("wechat_mcp.wechat_accessibility", "_normalize_chat_title"),
             ("wechat_mcp.wechat_accessibility", "ax_get"),
             ("wechat_mcp.wechat_accessibility", "dfs"),
@@ -357,7 +408,6 @@ class TestBoundary(unittest.TestCase):
             ("wechat_mcp.wechat_accessibility", "collect_chat_elements"),
             ("wechat_mcp.wechat_accessibility", "get_current_chat_name"),
             ("wechat_mcp.wechat_accessibility", "get_wechat_ax_app"),
-            ("wechat_mcp.fetch_messages_by_chat_utils", "fetch_recent_messages"),
         }
         self.assertEqual(imported, allowed)
 
@@ -394,7 +444,7 @@ class TestRegistry(unittest.TestCase):
         self.assertRegex(n["data_source_id"], r"^[0-9a-f-]{36}$")
         self.assertEqual(set(n["properties"]), {
             "title", "chat", "sender", "text", "kind", "sent_at", "archived_at",
-            "sequence", "key", "gap_before", "run"})
+            "sequence", "key", "gap_before", "run", "from", "to", "chat_type"})
 
     def test_kind_patterns_compile_and_are_known_kinds(self):
         for kind, pats in KINDS.items():

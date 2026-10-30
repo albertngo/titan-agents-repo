@@ -66,13 +66,32 @@ class MacReader:
             get_current_chat_name,
             get_wechat_ax_app,
         )
-        from wechat_mcp.fetch_messages_by_chat_utils import fetch_recent_messages
+        from wechat_mcp.wechat_accessibility import (
+            axvalue_to_point,
+            axvalue_to_size,
+            get_list_center,
+        )
+        from wechat_mcp.fetch_messages_by_chat_utils import (
+            capture_message_area,
+            classify_sender_for_message,
+            get_messages_list,
+            scroll_to_bottom,
+            scroll_up_small,
+        )
         self._click = click_element_center
         self._collect = collect_chat_elements
         self._current = get_current_chat_name
         self._app = get_wechat_ax_app
-        self._fetch = fetch_recent_messages
         self._norm = _normalize_chat_title
+        self._to_point = axvalue_to_point
+        self._to_size = axvalue_to_size
+        self._list_center = get_list_center
+        self._capture = capture_message_area
+        self._side = classify_sender_for_message
+        self._messages_list = get_messages_list
+        self._scroll_to_bottom = scroll_to_bottom
+        self._scroll_up = scroll_up_small
+        self.name_band = None  # set by archive() from settings["archive"]["name_band"]
         self._ax_get = ax_get
         self._dfs = dfs
 
@@ -186,7 +205,122 @@ class MacReader:
         if opened is None or self._norm(opened) != self._norm(chat):
             raise RuntimeError(f"opened {opened!r} instead after 6 s "
                                f"(fit {FIT}; {self._title_report()})")
-        return [m.to_dict() for m in self._fetch(last_n=last_n)]
+        is_group = self._is_group()
+        return {"messages": self._read_messages(last_n, is_group), "is_group": is_group}
+
+    def _is_group(self):
+        """WeChat shows a member count, "(4)", beside a group's name only."""
+        from ApplicationServices import kAXTitleAttribute, kAXValueAttribute
+        el = self._dfs(self._app_quiet(),
+                       lambda e, r, t, i: i == "current_chat_count_label")
+        if el is None:
+            return False
+        v = self._ax_get(el, kAXValueAttribute) or self._ax_get(el, kAXTitleAttribute)
+        return bool(v and str(v).strip())
+
+    def _read_messages(self, last_n, is_group):
+        """
+        The open chat's last messages, oldest first, as
+        {"sender": ME|OTHER|UNKNOWN, "text", "speaker"}.
+
+        The library's fetch_recent_messages, rebuilt so each row keeps its
+        position: WeChat 4.1 exposes a group member's name only as pixels on
+        the top line of the message's row, so it is read off the screenshot
+        (macOS Vision, on the Mac). Coordinates are scaled to the screenshot,
+        which is in device pixels (2x on a Retina screen).
+        """
+        from ApplicationServices import (kAXChildrenAttribute, kAXPositionAttribute,
+                                         kAXSizeAttribute, kAXTitleAttribute,
+                                         kAXValueAttribute)
+        msg_list = self._messages_list(self._app_quiet())
+        center = self._list_center(msg_list)
+        self._scroll_to_bottom(msg_list, center)
+        messages, no_new = [], 0
+        for _ in range(400):
+            image, origin, size = self._capture(msg_list)
+            scale = image.width / size[0] if size and size[0] else 1.0
+            visible = []
+            for child in self._ax_get(msg_list, kAXChildrenAttribute) or []:
+                text = (self._ax_get(child, kAXValueAttribute)
+                        or self._ax_get(child, kAXTitleAttribute))
+                if not text:
+                    continue
+                pt = self._to_point(self._ax_get(child, kAXPositionAttribute))
+                sz = self._to_size(self._ax_get(child, kAXSizeAttribute))
+                visible.append({"text": str(text), "pt": pt, "sz": sz})
+            if not visible:
+                break
+            if not messages:
+                fresh = visible
+            else:
+                anchor = messages[0]["text"]
+                idx = next((i for i, m in enumerate(visible) if m["text"] == anchor), None)
+                fresh = visible if idx is None else visible[:idx]
+            for m in fresh:  # only rows not seen yet are classified and read
+                m.update(self._who(image, origin, scale, m, is_group))
+                del m["pt"], m["sz"]
+            if fresh:
+                messages = fresh + messages
+                no_new = 0
+            else:
+                no_new += 1
+                if no_new >= 5:
+                    break
+            if len(messages) >= last_n:
+                break
+            self._scroll_up(center)
+        return messages[-last_n:]
+
+    def _who(self, image, origin, scale, m, is_group):
+        if m["pt"] is None or m["sz"] is None:
+            return {"sender": "UNKNOWN", "speaker": None}
+        rx, ry = (m["pt"][0] - origin[0]) * scale, (m["pt"][1] - origin[1]) * scale
+        w, h = m["sz"][0] * scale, m["sz"][1] * scale
+        sender = self._side(image, (0, 0), (rx, ry), (w, h))
+        speaker = None
+        if is_group and sender != "ME":
+            b = self.name_band or {"top": 0, "height": 19, "left": 50, "right_fraction": 0.7}
+            box = (int(rx + b["left"] * scale), int(ry + b["top"] * scale),
+                   int(rx + w * b["right_fraction"]), int(ry + (b["top"] + b["height"]) * scale))
+            if box[2] > box[0] and box[3] > box[1] and h > (b["height"] + 8) * scale:
+                speaker = ocr_line(image.crop(box))
+                # A band that caught the bubble's own text is not a name.
+                if speaker and m["text"].replace("\n", " ").startswith(speaker[:8]):
+                    speaker = None
+        return {"sender": sender, "speaker": speaker}
+
+
+def ocr_line(pil_image):
+    """
+    Read one short line of text (a group member's name) with macOS Vision,
+    on the Mac. Nothing leaves the machine. Returns None when nothing reads.
+    """
+    import io
+    import Quartz
+    import Vision
+    from Foundation import NSData
+    img = pil_image.convert("RGB")
+    if img.height < 60:  # small UI text reads better upscaled
+        f = 60 / img.height
+        img = img.resize((int(img.width * f), 60))
+    buf = io.BytesIO()
+    img.save(buf, "PNG")
+    raw = buf.getvalue()
+    src = Quartz.CGImageSourceCreateWithData(NSData.dataWithBytes_length_(raw, len(raw)), None)
+    cg = Quartz.CGImageSourceCreateImageAtIndex(src, 0, None)
+    req = Vision.VNRecognizeTextRequest.alloc().init()
+    req.setRecognitionLevel_(Vision.VNRequestTextRecognitionLevelAccurate)
+    req.setUsesLanguageCorrection_(False)
+    req.setRecognitionLanguages_(["zh-Hans", "zh-Hant", "en-US"])
+    handler = Vision.VNImageRequestHandler.alloc().initWithCGImage_options_(cg, None)
+    handler.performRequests_error_([req], None)
+    parts = []
+    for r in req.results() or []:
+        cands = r.topCandidates_(1)
+        if cands:
+            parts.append(str(cands[0].string()).strip())
+    text = " ".join(p for p in parts if p)
+    return text or None
 
 
 class NotionStore:
@@ -219,6 +353,11 @@ class NotionStore:
         }
         if row.get("sent_at"):
             props[p["sent_at"]] = {"date": {"start": row["sent_at"]}}
+        for key in ("from", "to"):
+            if row.get(key):
+                props[p[key]] = {"rich_text": [{"text": {"content": row[key][:2000]}}]}
+        if row.get("chat_type"):
+            props[p["chat_type"]] = {"select": {"name": row["chat_type"]}}
         body = {
             "parent": {"type": "data_source_id",
                        "data_source_id": self.s["notion"]["data_source_id"]},
@@ -292,6 +431,9 @@ def archive(reader, store, settings, now, only_chat=None, dry_run=False,
     """Archive every unrecorded message. Returns the run summary."""
     a = settings["archive"]
     kinds = settings["parse"]["kind_patterns"]
+    people = settings["people"]
+    if hasattr(reader, "name_band"):
+        reader.name_band = a.get("name_band")
     run = core.run_id(now)
     stamp = now.isoformat()
     summary = {"run": run, "archiver_version": ARCHIVER_VERSION, "status": "ok",
@@ -324,14 +466,14 @@ def archive(reader, store, settings, now, only_chat=None, dry_run=False,
                     raw = reader.read_chat(chat, n)
                 finally:
                     last_touch = clock()
-                msgs = core.annotate(raw, now, kinds)
+                msgs = core.annotate(raw, now, kinds, chat=chat, people=people)
                 rows, aligned = core.plan_chat(chat, msgs, tail, a["min_overlap"])
                 if tail and not aligned:
                     try:
                         raw = reader.read_chat(chat, a["backfill_cap_messages"])
                     finally:
                         last_touch = clock()
-                    msgs = core.annotate(raw, now, kinds)
+                    msgs = core.annotate(raw, now, kinds, chat=chat, people=people)
                     rows, aligned = core.plan_chat(chat, msgs, tail, a["min_overlap"])
                     if not aligned:
                         summary["gaps"].append(chat)
@@ -354,8 +496,9 @@ def archive(reader, store, settings, now, only_chat=None, dry_run=False,
             summary["messages_new"] += written
             entry = {"chat": chat, "new": written}
             if dry_run:
-                entry["preview"] = [{k: r[k] for k in ("sender", "kind", "sent_at", "text")}
-                                    for r in rows[-5:]]
+                entry["preview"] = [{k: r.get(k) for k in
+                                     ("from", "to", "sender", "kind", "sent_at", "text")}
+                                    for r in rows[-8:]]
             summary["chats"].append(entry)
     except InUse:
         summary.update(status="interrupted", reason="the Mac was used mid-run")

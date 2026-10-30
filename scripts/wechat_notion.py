@@ -110,6 +110,9 @@ def parse_row(settings, page):
         "key": _plain(props.get(p["key"])),
         "gap_before": bool((props.get(p["gap_before"]) or {}).get("checkbox")),
         "run": _plain(props.get(p["run"])),
+        "from": _plain(props.get(p["from"])) if "from" in p else None,
+        "to": _plain(props.get(p["to"])) if "to" in p else None,
+        "chat_type": select(p["chat_type"]) if "chat_type" in p else None,
     }
 
 

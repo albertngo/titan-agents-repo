@@ -64,16 +64,19 @@ def pull(settings, token, hours=None, chat=None, search=None, now=None):
 
     chats = {}
     for r in rows:
-        c = chats.setdefault(r["chat"], {"chat": r["chat"], "count": 0, "gap": False,
+        c = chats.setdefault(r["chat"], {"chat": r["chat"], "chat_type": r.get("chat_type"),
+                                         "count": 0, "gap": False,
                                          "first_url": r["url"], "messages": []})
         c["count"] += 1
         c["gap"] = c["gap"] or r["gap_before"]
         c["messages"].append({k: r[k] for k in (
-            "sequence", "sender", "kind", "sent_at", "archived_at", "text", "url")})
+            "sequence", "from", "to", "sender", "kind", "sent_at", "archived_at", "text",
+            "url")})
     for c in chats.values():
         c["messages"].sort(key=lambda m: m["sequence"] or 0)
         last = c["messages"][-1]
         c["last_sender"] = last["sender"]
+        c["last_from"] = last["from"]
         c["last_sent_at"] = last["sent_at"]
 
     return {

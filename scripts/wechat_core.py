@@ -131,12 +131,40 @@ def classify_kind(text, kind_patterns):
     return "text"
 
 
-def annotate(raw_messages, now, kind_patterns):
+def name_of(speaker, people):
+    """A read-off-the-screen name, tidied and mapped through people.aliases."""
+    if not speaker:
+        return None
+    name = re.sub(r"\s+", " ", speaker).strip()
+    aliases = people.get("aliases") or {}
+    if name in aliases:
+        return aliases[name]
+    for pattern, display in (people.get("alias_patterns") or {}).items():
+        if re.search(pattern, name):
+            return display
+    return name
+
+
+def annotate(raw_messages, now, kind_patterns, chat=None, people=None):
     """
-    raw_messages: [{"sender": "ME|OTHER|UNKNOWN", "text": str}, ...] oldest first,
-    as wechat_mcp returns them. Returns messages without separators, each with
-    sender (Me/Them/Unknown), text, kind and sent_at (ISO string or None).
+    raw_messages: the reader's {"messages": [...], "is_group": bool}, or a bare
+    list, of {"sender": "ME|OTHER|UNKNOWN", "text": str, "speaker": str|None}
+    oldest first. Returns messages without separators, each with sender
+    (Me/Them/Unknown), from, to, chat_type, text, kind and sent_at.
+
+    Who wrote it:
+    - Albert's own messages (right-hand side) are from people.me;
+    - in a direct chat, everything else is from the chat's name, to Albert;
+    - in a group, the name WeChat printed above the message, read off the
+      screen; no name read means "Unknown", never a guess. A group message's
+      "to" is the group.
     """
+    people = people or {"me": "Me"}
+    me = people.get("me", "Me")
+    is_group = False
+    if isinstance(raw_messages, dict):
+        is_group = bool(raw_messages.get("is_group"))
+        raw_messages = raw_messages.get("messages") or []
     out = []
     stamp = None
     for m in raw_messages:
@@ -151,8 +179,22 @@ def annotate(raw_messages, now, kind_patterns):
         if when is not None and (sender == "UNKNOWN" or not _RE_TODAY.match(text)):
             stamp = when
             continue
+        speaker = name_of(m.get("speaker"), people) if is_group else None
+        if speaker:
+            sender = "OTHER"  # WeChat prints names over other people's messages only
+        if sender == "ME":
+            frm, to = me, chat
+        elif is_group:
+            frm, to = speaker or "Unknown", chat
+        elif sender == "OTHER":
+            frm, to = chat, me
+        else:
+            frm, to = "Unknown", None
         out.append({
             "sender": SENDERS.get(sender, "Unknown"),
+            "from": frm,
+            "to": to,
+            "chat_type": "group" if is_group else "direct",
             "text": text,
             "kind": classify_kind(text, kind_patterns),
             "sent_at": stamp.isoformat() if stamp else None,

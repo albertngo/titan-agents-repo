@@ -17,7 +17,10 @@
       "sequence": "Sequence",
       "key": "Message key",
       "gap_before": "Gap before",
-      "run": "Run"
+      "run": "Run",
+      "from": "From",
+      "to": "To",
+      "chat_type": "Chat type"
     },
     "heartbeat_chat": "(archiver)",
     "_heartbeat_comment": "Every archiver run, including one that skips, inserts one row in this pseudo-chat with Kind=system and a JSON summary in Text. wechat_pull.py excludes it from messages and reports the newest one, so a Mac that stopped running is a finding instead of a quiet day."
@@ -54,7 +57,14 @@
       "Folded Group Chats",
       "折叠的群聊"
     ],
-    "_skip_comment": "Exact sidebar names never opened. Add a personal chat here to keep it out of the archive."
+    "_skip_comment": "Exact sidebar names never opened. Add a personal chat here to keep it out of the archive.",
+    "name_band": {
+      "top": 0,
+      "height": 19,
+      "left": 50,
+      "right_fraction": 0.7,
+      "_comment": "Where a group member's name sits inside a message row, in points from the row's top-left: the strip right of the avatar, above the bubble. Fitted 2026-10-30 to WeChat 4.1.15 (each row includes its name line: one image row ran y 587-766)."
+    }
   },
   "parse": {
     "_comment": "Patterns are a best guess at what WeChat for Mac exposes through Accessibility, in English and Chinese UI. They are data so the first supervised run can correct them without a code change. Fitted 2026-10-30 to WeChat for Mac 4.1.15: bubbles read 'Image' and 'File' then the name and size on their own lines, without brackets; separators read '10/21 13:17'.",
@@ -96,5 +106,11 @@
     "_window_comment": "Overlaps a day so a late archiver run is still read; the agent dedupes against nothing, it just summarises what arrived in the window.",
     "heartbeat_stale_hours": 26,
     "max_items": 50
+  },
+  "people": {
+    "_comment": "Who wrote each message (Albert, 2026-10-30: 'I would want the senders to be specifically named'). Albert's own messages are from `me`. In a direct chat the other side is the chat's name. In a group, WeChat 4.1 shows a member's name only as pixels above their message, so it is read off the screen with macOS Vision on the Mac; a name that doesn't read is 'Unknown', never guessed. `aliases` maps an exact name as read to how it should be stored; `alias_patterns` does the same by regex (for names Vision reads slightly differently each time, or with a phone number in them).",
+    "me": "Albert",
+    "aliases": {},
+    "alias_patterns": {}
   }
 }
