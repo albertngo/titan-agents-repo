@@ -144,7 +144,7 @@ class TestRegistry(unittest.TestCase):
         self.assertEqual(pol["approve_verdicts"], ["CLOSER", "SPAM"])
         self.assertEqual(pol["approve_stale"], ["UNSURE", "HELD", "FYI"])  # FYI: 2026-10-30
         self.assertEqual(pol["stale"]["FYI"]["hours"], 72)
-        self.assertEqual(pol["stale"]["FYI"]["kinds"], ["deferring", "third-party"])
+        self.assertEqual(pol["stale"]["FYI"]["kinds"], ["deferring", "lost", "third-party"])
         self.assertEqual(pol["exception_date"], "2026-10-10")
         self.assertEqual(pol["min_unread_hours"], 4)
         self.assertEqual(pol["stale"]["UNSURE"]["days"], 7)
@@ -581,7 +581,7 @@ class TestPlan(unittest.TestCase):
     def test_fyi_age_out(self):
         # Rubric v5 (Albert, 2026-10-30): deferring and third-party FYIs clear after 72 quiet hours.
         self.assertEqual(REG["policy"]["stale"]["FYI"], {**REG["policy"]["stale"]["FYI"],
-                                                        "hours": 72, "kinds": ["deferring", "third-party"]})
+                                                        "hours": 72, "kinds": ["deferring", "lost", "third-party"]})
         self.assertIn("FYI", REG["policy"]["approve_stale"])
 
         def fyi(cid, key, hours):
@@ -602,13 +602,14 @@ class TestPlan(unittest.TestCase):
         self.assertEqual(got["d1"], ("clear", "stale_fyi"))
         self.assertEqual(got["t1"], ("clear", "stale_fyi"))
         self.assertEqual(got["d2"][0], "fyi", "not yet 72 h")
-        for cid in ("l1", "i1", "u1", "x1"):
+        self.assertEqual(got["l1"], ("clear", "stale_fyi"))
+        for cid in ("i1", "u1", "x1"):
             self.assertEqual(got[cid][0], "fyi", f"{cid}: a tag not switched on, or no tag")
         self.assertEqual(got["c1"][0], "action", "an opt-out never ages out")
         self.assertEqual({a["conversation_id"]: a["kind"] for a in p["actions"]},
-                         {"d1": "stale_fyi", "t1": "stale_fyi"})
+                         {"d1": "stale_fyi", "t1": "stale_fyi", "l1": "stale_fyi"})
         self.assertTrue(all(a["reason"].startswith("untouched 72h+: ") for a in p["actions"]))
-        self.assertEqual(p["summary"]["would_clear_by_kind"]["stale_fyi"], 2)
+        self.assertEqual(p["summary"]["would_clear_by_kind"]["stale_fyi"], 3)
         off = plan.build_plan(cands_doc(convs), j, reg_with(approve_stale=["UNSURE", "HELD"]))
         self.assertEqual(off["actions"], [], "FYI is its own switch")
         bad = copy.deepcopy(REG)

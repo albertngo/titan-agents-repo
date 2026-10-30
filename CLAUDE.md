@@ -266,7 +266,7 @@ is the only copy of the classifier, read by the session model in both:
   or a long message vetoes CLOSER; SPAM only from a stranger; a `compliance:` reason is
   always ACTION) and the cap (25, all-or-nothing). What can be marked read: CLOSER and SPAM
   once the customer's latest message is 4 h old; a model UNSURE after 7 quiet days; a hold
-  (call, attachment, too long, nothing inbound) after 14; an FYI tagged `deferring:` or `third-party:`
+  (call, attachment, too long, nothing inbound) after 14; an FYI tagged `deferring:`, `lost:` or `third-party:`
   after 72 h (rubric v5, 2026-10-30). NEEDS_RESPONSE, ACTION and any other FYI never.
 - **`ghl-ingest-agent`** (template v6): the window plus everything unread, split into a reply
   list (24 h age flag), a "to action" list (missed calls and attachments land here too) and an
