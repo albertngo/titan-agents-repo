@@ -42,8 +42,8 @@ Judge the batch **as a whole** and return exactly one verdict:
 
 `NEEDS_RESPONSE` and `ACTION` are never marked read. `CLOSER` and `SPAM` are, once the
 customer's latest message is `policy.min_unread_hours` (4) old. `UNSURE` is marked read only
-after a quiet week, and some kinds of `FYI` after 72 hours (below, "FYI kind tags" and
-"Age-outs").
+after a quiet week, and a tagged `FYI` after 72 hours or 14 days by kind (below, "FYI kind
+tags" and "Age-outs").
 
 Rules, in order:
 
@@ -216,9 +216,9 @@ Titan has replied since.
 |---|---|---|
 | `stale_unsure` | A model `UNSURE` quiet for `policy.stale.UNSURE.days` (7) is marked read | Untouched for a week, it is taken as seen: it was FYI. Context is the brief's job. A guarded `UNSURE` (a vetoed closer, or spam from a non-stranger) never ages out. |
 | `stale_hold` | A hold in `policy.stale.HELD.holds` (calls, attachments, too long, nothing inbound) quiet for `policy.stale.HELD.days` (14) is marked read | "Clear if longer than 14 days." For `no_customer_text` the clock is the conversation's last message, which is ours. |
-| `stale_fyi` | An `FYI` whose kind tag is in `policy.stale.FYI.kinds` (`deferring`, `lost`, `third-party`) quiet for `policy.stale.FYI.hours` (72) is marked read | Rubric v5 (Albert, 2026-10-30): "change the rule to allow for these to be cleared out in 72h" for still-deciding threads, and "we can clear these no problem" for pitches, job seekers and other third parties. Lost jobs joined at the same 72 h (nothing acts on a lost job yet, and the pipeline automations already move the opportunity). Three days covers the brief that lists it and two more. `info` and `praise` are tagged but are separate switches, off. |
+| `stale_fyi` | An `FYI` whose kind tag is in `policy.stale.FYI.kinds` is marked read once quiet for that tag's hours: `deferring`, `lost`, `third-party` 72; `info`, `praise` 336 (14 days) | Rubric v5 (Albert, 2026-10-30): "change the rule to allow for these to be cleared out in 72h" for still-deciding threads, and "we can clear these no problem" for pitches, job seekers and other third parties. Lost jobs joined at the same 72 h (nothing acts on a lost job yet, and the pipeline automations already move the opportunity). Three days covers the brief that lists it and two more. `info` and `praise` clear "with the normal 14 days quiet" (same day), the same as holds. |
 
-`NEEDS_RESPONSE`, `ACTION`, a guarded verdict and an untagged `FYI` never age out.
+`NEEDS_RESPONSE`, `ACTION`, a guarded verdict and an untagged `FYI` (a mixed batch, a promise still owed to us) never age out.
 
 ## What happens to each verdict
 
@@ -227,7 +227,7 @@ Titan has replied since.
 | `NEEDS_RESPONSE` | left unread | **reply**: the "waiting on a reply" list → Notion task, 24 h flag |
 | `UNSURE`, holds not named below | left unread; `UNSURE` marked read after 7 quiet days | **reply**, as above |
 | `ACTION`; holds `call_in_batch`, `non_text_content` | left unread; the holds marked read after 14 quiet days | **act**: the "to action" list → Notion task, 24 h flag; an opt-out also gets its own attention line |
-| `FYI` | left unread; `deferring:`, `lost:` and `third-party:` marked read after 72 quiet hours | **know**: the "FYI" list on the day it arrives (the customer's latest message is under 24 h old), a count after that; no task, no age flag |
+| `FYI` | left unread; `deferring:`, `lost:` and `third-party:` marked read after 72 quiet hours, `info:` and `praise:` after 14 days; untagged never | **know**: the "FYI" list on the day it arrives (the customer's latest message is under 24 h old), a count after that; no task, no age flag |
 | `CLOSER`, `SPAM` | marked read once the customer's latest message is 4 h old (switch: `policy.approve_verdicts`) | **clear**: off every list; listed under "cleared" |
 | `no_customer_text` | marked read after 14 quiet days | off every list; counted |
 
@@ -298,6 +298,7 @@ back by itself. Remove the block once it has expired.
   `20261029T2059-4e19` (median 76 days quiet, since `FYI` never aged out). Every `FYI` reason
   now starts with a kind tag (`deferring:`, `lost:`, `third-party:`, `info:`, `praise:`), and
   a new age-out, `stale_fyi`, clears `deferring`, `lost` and `third-party` after 72 quiet hours
+  and `info` and `praise` after 14 days
   (vault `05_decisions/2026-10-30-ghl-triage-fyi-age-out.md`). No verdict changes meaning.
   v4 verdicts in the cache are discarded by the bump, so the first v5 run judges every
   unread conversation again.

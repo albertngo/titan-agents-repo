@@ -20,8 +20,8 @@ action_holds are `action`; FYI is `fyi`; no_customer_text is `not_ours`; everyth
 `waiting` (the reply list). Age-out rules then turn a row `clear`: a model UNSURE whose
 customer has been silent policy.stale.UNSURE.days (7) and a hold in policy.stale.HELD.holds
 silent policy.stale.HELD.days (14) (rubric v4, Albert 2026-10-10), and an FYI whose reason
-carries a kind tag in policy.stale.FYI.kinds silent policy.stale.FYI.hours (72) (rubric v5,
-Albert 2026-10-30). Only `clear` rows
+carries a kind tag in policy.stale.FYI.kinds, silent that tag's hours (rubric v5, Albert
+2026-10-30). Only `clear` rows
 become actions: in sweep mode, on a conversation still unread, when the verdict is in
 policy.approve_verdicts and the customer's latest message is at least
 policy.min_unread_hours old, or when the age-out kind is in policy.approve_stale. ACTION, FYI
@@ -54,7 +54,7 @@ PHONE_OR_EMAIL = (r"[\w.+-]+@[\w-]+\.[\w.]+", r"\+?\d[\d\s().-]{6,}\d")
 # Never marked read, whatever the registry says: reply, act and know (rubric v3).
 NEVER_CLEAR = frozenset({"NEEDS_RESPONSE", "UNSURE", "ACTION", "FYI"})
 # Age-out kinds (policy.approve_stale): UNSURE after a quiet week, holds after two, a tagged
-# FYI after policy.stale.FYI.hours.
+# FYI after its tag's hours in policy.stale.FYI.kinds.
 STALE_KINDS = {"UNSURE": "stale_unsure", "HELD": "stale_hold", "FYI": "stale_fyi"}
 # The kind tags an FYI reason may start with (rubric v5). Untagged FYI never ages out.
 FYI_KINDS = ("deferring", "lost", "third-party", "info", "praise")
@@ -100,7 +100,7 @@ def check_inputs(candidates, judgements, reg):
     bad = sorted(set(reg["policy"].get("approve_stale", [])) - set(STALE_KINDS))
     if bad:
         raise InputError(f"registry policy.approve_stale lists {bad}: only {sorted(STALE_KINDS)} age out")
-    bad = sorted(set(((reg["policy"].get("stale") or {}).get("FYI") or {}).get("kinds", []))
+    bad = sorted(set(((reg["policy"].get("stale") or {}).get("FYI") or {}).get("kinds", {}))
                  - set(FYI_KINDS))
     if bad:
         raise InputError(f"registry policy.stale.FYI.kinds lists {bad}: the tags are {list(FYI_KINDS)}")
@@ -203,7 +203,7 @@ def fyi_kind(row):
 def age_out(row, reg):
     """Rubric v4 (Albert, 2026-10-10): a model UNSURE untouched for a week is taken as seen;
     a hold untouched for two weeks is cleared. Rubric v5 (Albert, 2026-10-30): an FYI whose
-    kind tag is in policy.stale.FYI.kinds is cleared after policy.stale.FYI.hours. Never
+    kind tag is in policy.stale.FYI.kinds is cleared after that tag's hours. Never
     NEEDS_RESPONSE, ACTION or an untagged FYI."""
     stale = reg["policy"].get("stale") or {}
     quiet = quiet_hours(row)
@@ -216,12 +216,14 @@ def age_out(row, reg):
     elif h and row["verdict"] == "HELD" and row["hold_reason"] in h["holds"] and quiet >= h["days"] * 24:
         kind, days = "stale_hold", h["days"]
     elif f and row["verdict"] == "FYI" and row["verdict_source"] in ("model", "cache") \
-            and not row["guard"] and fyi_kind(row) in f["kinds"] and quiet >= f["hours"]:
-        kind, days = "stale_fyi", None
+            and not row["guard"] and fyi_kind(row) in f["kinds"] \
+            and quiet >= f["kinds"][fyi_kind(row)]:
+        kind, hours = "stale_fyi", f["kinds"][fyi_kind(row)]
+        days = hours // 24 if hours % 24 == 0 and hours >= 7 * 24 else None
     else:
         return
     what = row["reason"] or row["hold_reason"] or ""
-    age = f"{f['hours']}h+" if kind == "stale_fyi" else f"{days}d+"
+    age = f"{days}d+" if days else f"{hours}h+"
     row.update(disposition="clear", clear_kind=kind, age_flag=False,
                reason=sanitize_reason(f"untouched {age}: {what}", reg["reason_max_chars"]))
 
