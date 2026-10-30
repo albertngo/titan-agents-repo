@@ -374,7 +374,7 @@ class MacReader:
         w, h = m["sz"][0] * scale, m["sz"][1] * scale
         sender = self._side(image, (0, 0), (rx, ry), (w, h))
         speaker = None
-        if is_group and sender != "ME":
+        if is_group:  # read even when the side guess says ME: a name there settles it
             b = self.name_band or {"top": 4, "height": 30, "left": 60, "right_fraction": 0.75}
             box = (int(rx + b["left"] * scale), int(ry + b["top"] * scale),
                    int(rx + w * b["right_fraction"]), int(ry + (b["top"] + b["height"]) * scale))
