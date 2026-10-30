@@ -623,6 +623,18 @@ class TestPlan(unittest.TestCase):
         with self.assertRaises(plan.InputError):
             plan.build_plan(cands_doc(convs), j, bad)
 
+    def test_cached_age_out_reason_keeps_its_tag(self):
+        # 2026-10-30: the run record caches the prefixed reason; read back, the tag must still count.
+        c = cand("f1", "k1", waiting=999)
+        c["last_inbound_hours"] = 999
+        c["cached"] = {"verdict": "FYI", "reason": "untouched 72h+: untouched 72h+: lost: went elsewhere",
+                       "run_id": "r0"}
+        p = plan.build_plan(cands_doc([c]), None, REG)
+        row = p["rows"][0]
+        self.assertEqual((row["disposition"], row["clear_kind"]), ("clear", "stale_fyi"))
+        self.assertEqual(row["reason"], "untouched 72h+: lost: went elsewhere")
+        self.assertEqual(len(p["actions"]), 1)
+
     def test_cleanup_window_lifts_the_cap_then_ends(self):
         # Albert, 2026-10-17: a one-off backlog clear through policy.cleanup.until, then 25 again.
         until = REG["policy"]["cleanup"]["until"]
