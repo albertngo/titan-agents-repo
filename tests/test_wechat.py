@@ -55,6 +55,8 @@ class TestSeparators(unittest.TestCase):
         self.check("10月20日 下午3:05", "2026-10-20 15:05")
         self.check("12:30 PM", "2026-10-29 12:30")
         self.check("12:05 AM", "2026-10-29 00:05")
+        self.check("10/21 13:17", "2026-10-21 13:17")  # WeChat 4.1.15
+        self.check("12/30 09:00", "2025-12-30 09:00")  # no year shown, later than today
 
     def test_not_separators(self):
         for text in ("ok", "25:00", "Call me at 3", "2026/13/40 10:00", "", "price 10:42 sqft"):
@@ -69,6 +71,11 @@ class TestAnnotate(unittest.TestCase):
         self.assertTrue(out[0]["sent_at"].startswith("2026-10-28T14:03"))
         self.assertEqual([m["sender"] for m in out], ["Them", "Me"])
 
+    def test_dated_separator_even_if_the_side_was_misread(self):
+        out = core.annotate([msg("OTHER", "10/21 13:17"), msg("OTHER", "hi")], NOW, KINDS)
+        self.assertEqual([m["text"] for m in out], ["hi"])
+        self.assertTrue(out[0]["sent_at"].startswith("2026-10-21T13:17"))
+
     def test_a_person_typing_a_time_is_a_message(self):
         out = core.annotate([msg("OTHER", "10:42")], NOW, KINDS)
         self.assertEqual(len(out), 1)
@@ -77,9 +84,93 @@ class TestAnnotate(unittest.TestCase):
         self.assertEqual(core.classify_kind("[Image]", KINDS), "image")
         self.assertEqual(core.classify_kind("[图片]", KINDS), "image")
         self.assertEqual(core.classify_kind("[File] PL-2026.pdf", KINDS), "file")
+        self.assertEqual(core.classify_kind("Image", KINDS), "image")  # WeChat 4.1.15
+        self.assertEqual(core.classify_kind('Audio10"sec', KINDS), "voice")
+        self.assertEqual(core.classify_kind("Voice CallDuration: 04:00", KINDS), "call")
+        self.assertEqual(core.classify_kind("Video CallCanceled", KINDS), "call")
+        # WeChat 4.1.15, seen live 2026-10-30
+        self.assertEqual(core.classify_kind("File\nTrim Price 10-16-2026 Store.pdf\n984.8K", KINDS),
+                         "file")
+        self.assertEqual(core.classify_kind("File the invoice please", KINDS), "text")
+        self.assertEqual(core.classify_kind("Image looks good", KINDS), "text")
         self.assertEqual(core.classify_kind("https://example.com/x", KINDS), "link")
         self.assertEqual(core.classify_kind("Lily recalled a message", KINDS), "system")
         self.assertEqual(core.classify_kind("see you tomorrow", KINDS), "text")
+
+
+class TestNames(unittest.TestCase):
+    """Albert, 2026-10-30: every message carries a named sender."""
+
+    PEOPLE = {"me": "Albert", "aliases": {"helen": "Helen"},
+              "alias_patterns": {r"^前景Sam\b": "Sam (前景)"}}
+
+    def names(self, raw, chat, is_group):
+        out = core.annotate({"messages": raw, "is_group": is_group}, NOW, KINDS,
+                            chat=chat, people=self.PEOPLE)
+        return [(m["from"], m["to"], m["sender"], m["chat_type"]) for m in out]
+
+    def test_group_names_read_off_the_screen(self):
+        raw = [{"sender": "OTHER", "text": "Image", "speaker": "前景Sam 4165550199"},
+               {"sender": "OTHER", "text": "Thank you so much", "speaker": "helen"},
+               {"sender": "UNKNOWN", "text": "10/21 13:17", "speaker": None},
+               {"sender": "ME", "text": "Got it", "speaker": None},
+               {"sender": "OTHER", "text": "ok", "speaker": None}]
+        self.assertEqual(self.names(raw, "VISTA (Markham)", True), [
+            ("Sam (前景)", "VISTA (Markham)", "Them", "group"),
+            ("Helen", "VISTA (Markham)", "Them", "group"),
+            ("Albert", "VISTA (Markham)", "Me", "group"),
+            ("Unknown", "VISTA (Markham)", "Them", "group"),  # no name read: never guessed
+        ])
+
+    def test_a_name_above_the_bubble_means_it_is_not_mine(self):
+        raw = [{"sender": "ME", "text": "hi", "speaker": "helen"}]
+        self.assertEqual(self.names(raw, "G", True)[0][:3], ("Helen", "G", "Them"))
+
+    def test_direct_chat(self):
+        raw = [{"sender": "OTHER", "text": "price list attached"},
+               {"sender": "ME", "text": "thanks"},
+               {"sender": "UNKNOWN", "text": "?"}]
+        self.assertEqual(self.names(raw, "diana", False), [
+            ("diana", "Albert", "Them", "direct"),
+            ("Albert", "diana", "Me", "direct"),
+            ("Unknown", None, "Unknown", "direct"),
+        ])
+
+    def test_speaker_ignored_in_direct_chats(self):
+        raw = [{"sender": "OTHER", "text": "x", "speaker": "noise"}]
+        self.assertEqual(self.names(raw, "diana", False)[0][0], "diana")
+
+
+class TestSidebar(unittest.TestCase):
+    GROUP = "VISTA\nPinned to top\n前景Sam: [File] Trim Price 10-16-2026 Skid.pdf\n10/21\n"
+
+    def test_parse(self):
+        self.assertEqual(core.parse_sidebar(self.GROUP),
+                         ("前景Sam", "[File] Trim Price 10-16-2026 Skid.pdf"))
+        self.assertEqual(core.parse_sidebar("diana\nok see you\nYesterday 18:56\n"),
+                         (None, "ok see you"))
+
+    def test_match(self):
+        self.assertTrue(core.matches_newest("[File] Trim Price 10-16-2026 Skid.pdf",
+                                            "File\nTrim Price 10-16-2026 Skid.pdf\n821.0K", KINDS))
+        self.assertTrue(core.matches_newest("[Voice]", 'Audio10"sec', KINDS))
+        self.assertFalse(core.matches_newest("see you tomorrow", "Right side open", KINDS))
+
+    def test_newest_named_from_the_sidebar_and_mismatch_warned(self):
+        raw = {"is_group": True, "sidebar": self.GROUP,
+               "messages": [{"sender": "OTHER", "text": "File\nTrim Price 10-16-2026 Skid.pdf\n821.0K",
+                             "speaker": None}]}
+        people = {"me": "Albert", "alias_patterns": {"^前景\\s?Sam": "Sam (前景)"}}
+        msgs = core.annotate(raw, NOW, KINDS, chat="VISTA", people=people)
+        summary = {}
+        wechat_archive.check_newest(raw, msgs, "VISTA", people, KINDS, summary)
+        self.assertEqual(msgs[-1]["from"], "Sam (前景)")
+        self.assertNotIn("warnings", summary)
+        raw["messages"][0]["text"] = "an older message"
+        msgs = core.annotate(raw, NOW, KINDS, chat="VISTA", people=people)
+        wechat_archive.check_newest(raw, msgs, "VISTA", people, KINDS, summary)
+        self.assertEqual(len(summary["warnings"]), 1)
+        self.assertEqual(msgs[-1]["from"], "Unknown")
 
 
 class TestAlign(unittest.TestCase):
@@ -337,12 +428,20 @@ class TestBoundary(unittest.TestCase):
                     self.assertFalse(a.name.startswith("wechat_mcp"),
                                      "import wechat_mcp names explicitly")
         allowed = {
+            ("wechat_mcp.wechat_accessibility", "axvalue_to_point"),
+            ("wechat_mcp.wechat_accessibility", "axvalue_to_size"),
+            ("wechat_mcp.wechat_accessibility", "get_list_center"),
+            ("wechat_mcp.wechat_accessibility", "post_scroll"),
+            ("wechat_mcp.fetch_messages_by_chat_utils", "capture_message_area"),
+            ("wechat_mcp.fetch_messages_by_chat_utils", "classify_sender_for_message"),
+            ("wechat_mcp.fetch_messages_by_chat_utils", "get_messages_list"),
+            ("wechat_mcp.fetch_messages_by_chat_utils", "scroll_up_small"),
             ("wechat_mcp.wechat_accessibility", "_normalize_chat_title"),
-            ("wechat_mcp.wechat_accessibility", "click_element_center"),
+            ("wechat_mcp.wechat_accessibility", "ax_get"),
+            ("wechat_mcp.wechat_accessibility", "dfs"),
             ("wechat_mcp.wechat_accessibility", "collect_chat_elements"),
             ("wechat_mcp.wechat_accessibility", "get_current_chat_name"),
             ("wechat_mcp.wechat_accessibility", "get_wechat_ax_app"),
-            ("wechat_mcp.fetch_messages_by_chat_utils", "fetch_recent_messages"),
         }
         self.assertEqual(imported, allowed)
 
@@ -379,11 +478,12 @@ class TestRegistry(unittest.TestCase):
         self.assertRegex(n["data_source_id"], r"^[0-9a-f-]{36}$")
         self.assertEqual(set(n["properties"]), {
             "title", "chat", "sender", "text", "kind", "sent_at", "archived_at",
-            "sequence", "key", "gap_before", "run"})
+            "sequence", "key", "gap_before", "run", "from", "to", "chat_type"})
 
     def test_kind_patterns_compile_and_are_known_kinds(self):
         for kind, pats in KINDS.items():
-            self.assertIn(kind, {"image", "file", "voice", "video", "link", "sticker", "system"})
+            self.assertIn(kind, {"image", "file", "voice", "video", "link", "sticker", "system",
+                                 "call"})
             for p in pats:
                 re.compile(p)
 

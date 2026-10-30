@@ -54,6 +54,33 @@ So it:
 aren't due, or that find the Mac locked or busy, exit without writing anything. A day
 with no completed run shows up as a stale heartbeat in the brief.
 
+## Who wrote each message (2026-10-30)
+
+Albert: "I would want the senders to be specifically named." Every row carries
+**From**, **To** and **Chat type**:
+
+| Chat | Albert's message | Anyone else's |
+|---|---|---|
+| direct | From Albert, To the chat's name | From the chat's name, To Albert |
+| group | From Albert, To the group | From the member's name, To the group |
+
+WeChat 4.1 doesn't expose a group member's name through Accessibility: each
+message offers only its text, position and size (checked with
+`scripts/wechat_ax_probe.py --bubbles` on 2026-10-30). The name exists only as
+pixels on the top line of the message's row, so the archiver reads it from the
+screenshot it already takes, using macOS's own text recognition (Vision), on the
+Mac. Rules:
+- WeChat prints names only above other people's messages. So a name read means
+  "not Albert", whatever side the bubble-side heuristic guessed.
+- No name read means **Unknown**, never a guess.
+- Vision can drop an emoji or misread a character, so a name may come out a little
+  differently from run to run. `people.aliases` (exact) and `people.alias_patterns`
+  (regex) in the settings map what was read to one stored name. Add one when a name
+  shows up two ways. Keep phone numbers out of the patterns, because this repo is
+  public: match on the name part.
+- Where the name sits inside a row is `archive.name_band` in the settings, fitted
+  to WeChat 4.1.15.
+
 ## What "not recorded yet" means
 
 There is no message id and no per-message timestamp on screen. Per chat:
@@ -166,6 +193,12 @@ Notion's own search and the Notion connector also see the database.
   gap flag.
 
 ## Changelog
+
+- 2026-10-30 — Named senders (From, To, Chat type), on Albert's request. Group
+  names are read off the screen with macOS Vision. Fitted to WeChat 4.1.15 after the
+  first supervised runs: WeChat is brought to the front before clicking, the title is
+  read from `current_chat_name_label`, `10/21 13:17` separators are parsed, and
+  `Image` / `File` bubbles are recognised.
 
 - 2026-10-29 — Built (archiver v1, ingest agent, registry, tests); decision in vault
   `05_decisions/2026-10-29-wechat-archive.md`. Owner General,

@@ -17,7 +17,10 @@
       "sequence": "Sequence",
       "key": "Message key",
       "gap_before": "Gap before",
-      "run": "Run"
+      "run": "Run",
+      "from": "From",
+      "to": "To",
+      "chat_type": "Chat type"
     },
     "heartbeat_chat": "(archiver)",
     "_heartbeat_comment": "Every archiver run, including one that skips, inserts one row in this pseudo-chat with Kind=system and a JSON summary in Text. wechat_pull.py excludes it from messages and reports the newest one, so a Mac that stopped running is a finding instead of a quiet day."
@@ -54,18 +57,52 @@
       "Folded Group Chats",
       "折叠的群聊"
     ],
-    "_skip_comment": "Exact sidebar names never opened. Add a personal chat here to keep it out of the archive."
+    "_skip_comment": "Exact sidebar names never opened. Add a personal chat here to keep it out of the archive.",
+    "name_band": {
+      "top": 4,
+      "height": 30,
+      "left": 60,
+      "right_fraction": 0.75,
+      "_comment": "Where a group member's name sits inside a message row, in points from the row's top-left: the strip right of the avatar, above the bubble. Fitted to WeChat 4.1.15 on 2026-10-30 from saved strips: the name sits about 15 pt below the row's top, so a 0-19 pt strip cut it in half or missed it; the avatar's edge ends about 56 pt in. The strip is tall enough to hold the whole name and may catch the bubble's first line, so only the top line read is kept."
+    }
   },
   "parse": {
-    "_comment": "Patterns are a best guess at what WeChat for Mac exposes through Accessibility, in English and Chinese UI. They are data so the first supervised run can correct them without a code change.",
+    "_comment": "Patterns are a best guess at what WeChat for Mac exposes through Accessibility, in English and Chinese UI. They are data so the first supervised run can correct them without a code change. Fitted 2026-10-30 to WeChat for Mac 4.1.15: bubbles read 'Image' and 'File' then the name and size on their own lines, without brackets; separators read '10/21 13:17'.",
     "kind_patterns": {
-      "image": ["^\\[(Image|Photo|图片)\\]"],
-      "file": ["^\\[(File|文件)\\]"],
-      "voice": ["^\\[(Voice|Audio|语音)\\]"],
-      "video": ["^\\[(Video|视频)\\]"],
-      "link": ["^\\[(Link|链接)\\]", "^https?://"],
-      "sticker": ["^\\[(Sticker|Animated Sticker|动画表情|表情)\\]"],
-      "system": ["recalled a message", "撤回了一条消息", "joined the group", "加入了群聊", "invited .+ to the group", "邀请.+加入了群聊", "^You've added", "以上是打招呼的内容"]
+      "call": [
+        "^(Video Call|Voice Call|视频通话|语音通话)"
+      ],
+      "image": [
+        "^\\[?(Image|Photo|图片)\\]?$"
+      ],
+      "file": [
+        "^\\[(File|文件)\\]",
+        "^(File|文件)\\n"
+      ],
+      "voice": [
+        "^\\[?(Voice|Audio|语音)\\]?($|\\s)",
+        "^(Audio|语音)\\s?\\d+\\s?\"\\s?(sec|秒)?"
+      ],
+      "video": [
+        "^\\[?(Video|视频)\\]?$"
+      ],
+      "link": [
+        "^\\[(Link|链接)\\]",
+        "^https?://"
+      ],
+      "sticker": [
+        "^\\[?(Sticker|Animated Sticker|动画表情|表情)\\]?$"
+      ],
+      "system": [
+        "recalled a message",
+        "撤回了一条消息",
+        "joined the group",
+        "加入了群聊",
+        "invited .+ to the group",
+        "邀请.+加入了群聊",
+        "^You've added",
+        "以上是打招呼的内容"
+      ]
     }
   },
   "ingest": {
@@ -73,5 +110,14 @@
     "_window_comment": "Overlaps a day so a late archiver run is still read; the agent dedupes against nothing, it just summarises what arrived in the window.",
     "heartbeat_stale_hours": 26,
     "max_items": 50
+  },
+  "people": {
+    "_comment": "Who wrote each message (Albert, 2026-10-30: 'I would want the senders to be specifically named'). Albert's own messages are from `me`. In a direct chat the other side is the chat's name. In a group, WeChat 4.1 shows a member's name only as pixels above their message, so it is read off the screen with macOS Vision on the Mac; a name that doesn't read is 'Unknown', never guessed. `aliases` maps an exact name as read to how it should be stored; `alias_patterns` does the same by regex (for names Vision reads slightly differently each time, or with a phone number in them).",
+    "me": "Albert",
+    "aliases": {},
+    "alias_patterns": {
+      "^前景\\s?Joanna": "Joanna (前景)"
+    },
+    "_alias_comment": "Patterns match the name part only: the repo is public, so no phone numbers here. 前景 Joanna's display name carries an emoji that Vision reads as stray characters (髪量, 質), so she is matched by prefix."
   }
 }

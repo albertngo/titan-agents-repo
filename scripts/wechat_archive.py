@@ -43,6 +43,7 @@ import wechat_core as core  # noqa: E402
 import wechat_notion as notion  # noqa: E402
 
 ARCHIVER_VERSION = "1"
+FIT = "wechat-4.1.15"  # which WeChat layout the reader was last fitted to
 
 
 class InUse(Exception):
@@ -58,18 +59,94 @@ class MacReader:
                               os.path.expanduser("~/Library/Logs/titan-wechat-archive"))
         from wechat_mcp.wechat_accessibility import (
             _normalize_chat_title,
-            click_element_center,
+            ax_get,
             collect_chat_elements,
+            dfs,
             get_current_chat_name,
             get_wechat_ax_app,
         )
-        from wechat_mcp.fetch_messages_by_chat_utils import fetch_recent_messages
-        self._click = click_element_center
+        from wechat_mcp.wechat_accessibility import (
+            axvalue_to_point,
+            axvalue_to_size,
+            get_list_center,
+            post_scroll,
+        )
+        from wechat_mcp.fetch_messages_by_chat_utils import (
+            capture_message_area,
+            classify_sender_for_message,
+            get_messages_list,
+            scroll_up_small,
+        )
         self._collect = collect_chat_elements
         self._current = get_current_chat_name
         self._app = get_wechat_ax_app
-        self._fetch = fetch_recent_messages
         self._norm = _normalize_chat_title
+        self._to_point = axvalue_to_point
+        self._to_size = axvalue_to_size
+        self._list_center = get_list_center
+        self._post_scroll = post_scroll
+        self._capture = capture_message_area
+        self._side = classify_sender_for_message
+        self._messages_list = get_messages_list
+        self._scroll_up = scroll_up_small
+        self.name_band = None  # set by archive() from settings["archive"]["name_band"]
+        self.open_method = None  # how the last chat was opened, for the summary
+        self.bottom_steps = None
+        self.save_name_crops = None  # a folder, from --save-name-crops
+        self.crop_log = []
+        self._crop_n = 0
+        self._ax_get = ax_get
+        self._dfs = dfs
+
+    def _opened_name(self):
+        """
+        The open chat's name. WeChat 4.1 has a label holding just the name
+        (id current_chat_name_label, beside a separate member-count label);
+        older versions only have the combined title the library reads.
+        """
+        from ApplicationServices import kAXTitleAttribute, kAXValueAttribute
+        label = self._dfs(self._app_quiet(),
+                          lambda el, role, title, ident: ident == "current_chat_name_label")
+        if label is not None:
+            v = self._ax_get(label, kAXValueAttribute) or self._ax_get(label, kAXTitleAttribute)
+            if isinstance(v, str) and v.strip():
+                return v.strip()
+        return self._current()
+
+    def _title_report(self):
+        """What the title area looked like, for the error message."""
+        from ApplicationServices import kAXTitleAttribute, kAXValueAttribute
+        found = []
+        for ident in ("current_chat_name_label", "big_title_line_h_view"):
+            el = self._dfs(self._app_quiet(), lambda e, r, t, i, want=ident: i == want)
+            if el is None:
+                found.append(f"{ident}: missing")
+            else:
+                v = self._ax_get(el, kAXValueAttribute) or self._ax_get(el, kAXTitleAttribute)
+                found.append(f"{ident}: {str(v)[:12]!r}")
+        found.append(f"frontmost: {self.frontmost()}")
+        from ApplicationServices import (kAXChildrenAttribute, kAXRoleAttribute,
+                                         kAXSubroleAttribute)
+        app = self._app_quiet()
+        wins = []
+        for w in self._ax_get(app, kAXChildrenAttribute) or []:
+            if self._ax_get(w, kAXRoleAttribute) == "AXWindow":
+                t = self._ax_get(w, kAXTitleAttribute)
+                wins.append(f"{str(t)[:12]!r}/{self._ax_get(w, kAXSubroleAttribute)}")
+        found.append(f"windows: {', '.join(wins) or 'none'}")
+        for ident in ("session_list", "chat_message_list"):
+            el = self._dfs(app, lambda e, r, t, i, want=ident: i == want)
+            found.append(f"{ident}: {'present' if el is not None else 'missing'}")
+        return "; ".join(found)
+
+    def _app_quiet(self):
+        from ApplicationServices import AXUIElementCreateApplication
+        import AppKit
+        apps = AppKit.NSRunningApplication.runningApplicationsWithBundleIdentifier_(
+            "com.tencent.xinWeChat")
+        if not apps:
+            raise RuntimeError("WeChat is not running")
+        return AXUIElementCreateApplication(apps[0].processIdentifier())
 
     @staticmethod
     def screen_locked():
@@ -86,19 +163,382 @@ class MacReader:
     def list_chats(self):
         return list(self._collect(self._app()).keys())
 
+    @staticmethod
+    def frontmost():
+        """
+        Bundle id of the app in front, asked live. NSWorkspace's
+        frontmostApplication only refreshes on a running main run loop, which
+        a command-line process doesn't have, so it kept answering "Terminal"
+        after WeChat had come forward. The system-wide AX element is asked
+        fresh every call.
+        """
+        import AppKit
+        from ApplicationServices import (AXUIElementCopyAttributeValue,
+                                         AXUIElementCreateSystemWide,
+                                         AXUIElementGetPid,
+                                         kAXFocusedApplicationAttribute)
+        try:
+            err, app_el = AXUIElementCopyAttributeValue(
+                AXUIElementCreateSystemWide(), kAXFocusedApplicationAttribute, None)
+            if err == 0 and app_el is not None:
+                err, pid = AXUIElementGetPid(app_el, None)
+                if err == 0:
+                    app = AppKit.NSRunningApplication.runningApplicationWithProcessIdentifier_(pid)
+                    if app is not None:
+                        return app.bundleIdentifier()
+        except Exception:
+            pass
+        AppKit.NSRunLoop.currentRunLoop().runUntilDate_(
+            AppKit.NSDate.dateWithTimeIntervalSinceNow_(0.05))
+        app = AppKit.NSWorkspace.sharedWorkspace().frontmostApplication()
+        return app.bundleIdentifier() if app else None
+
+    def bring_to_front(self):
+        """
+        Make WeChat the frontmost app and raise its window, and confirm it.
+        Newer macOS often ignores activateWithOptions_ from a background
+        process, and a click sent while another window is on top lands there.
+        """
+        import AppKit
+        from ApplicationServices import (AXUIElementPerformAction,
+                                         AXUIElementSetAttributeValue,
+                                         kAXChildrenAttribute, kAXFrontmostAttribute,
+                                         kAXRaiseAction, kAXRoleAttribute)
+        bundle = "com.tencent.xinWeChat"
+        apps = AppKit.NSRunningApplication.runningApplicationsWithBundleIdentifier_(bundle)
+        if not apps:
+            raise RuntimeError("WeChat is not running")
+        import subprocess
+        ax = self._app_quiet()
+        for i in range(20):
+            if self.frontmost() == bundle:
+                break
+            if i % 6 == 0:
+                # Opening it through LaunchServices, as the Dock does, is the
+                # one request macOS 14+ always honours; activateWithOptions_
+                # is refused while Terminal (or anything else) is active.
+                subprocess.run(["open", "-b", bundle], check=False,
+                               stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            apps[0].unhide()
+            apps[0].activateWithOptions_(AppKit.NSApplicationActivateAllWindows)
+            AXUIElementSetAttributeValue(ax, kAXFrontmostAttribute, True)
+            time.sleep(0.25)
+        for child in self._ax_get(ax, kAXChildrenAttribute) or []:
+            if self._ax_get(child, kAXRoleAttribute) == "AXWindow":
+                AXUIElementPerformAction(child, kAXRaiseAction)
+                break
+        time.sleep(0.3)
+        if self.frontmost() != bundle:
+            raise RuntimeError(f"WeChat would not come to the front ({self.frontmost()} stayed)")
+
     def read_chat(self, chat, last_n):
         """Open `chat` from the sidebar and return its last messages, oldest first."""
+        self.bring_to_front()
         elements = self._collect(self._app())
         el = elements.get(chat)
         if el is None:
             raise RuntimeError("not in the sidebar any more")
-        self._click(el)
-        time.sleep(0.6)
-        opened = self._current()
+        opened = None
+        self.open_method = None
+        for method in ("ax_press", "ax_select", "click", "click"):
+            if method == "click" and self.open_method is None:
+                self.bring_to_front()  # in case focus moved while the AX tries ran
+            el = self._collect(self._app()).get(chat)
+            if el is None:
+                raise RuntimeError("not in the sidebar any more")
+            if not self._open_by(method, el):
+                continue
+            # WeChat takes a moment to draw the chat it switched to.
+            for _ in range(12):
+                time.sleep(0.25)
+                opened = self._opened_name()
+                if opened is not None and self._norm(opened) == self._norm(chat):
+                    break
+            if opened is not None and self._norm(opened) == self._norm(chat):
+                self.open_method = method
+                break
         # Never file one chat's messages under another chat's name.
         if opened is None or self._norm(opened) != self._norm(chat):
-            raise RuntimeError(f"opened {opened!r} instead")
-        return [m.to_dict() for m in self._fetch(last_n=last_n)]
+            raise RuntimeError(f"opened {opened!r} instead after AX press, AX select and 2 clicks "
+                               f"(fit {FIT}; {self._title_report()})")
+        is_group = self._is_group()
+        messages = self._read_messages(last_n, is_group)
+        try:
+            sidebar = self.sidebar_preview(chat)
+        except Exception:
+            sidebar = None
+        return {"messages": messages, "is_group": is_group, "sidebar": sidebar}
+
+    def _open_by(self, method, el):
+        """
+        Ask WeChat to open the chat behind sidebar element `el`. False when the
+        method isn't available for that element. The library's click didn't
+        open chats on WeChat 4.1.15 (the pointer moved, nothing happened: its
+        synthetic events carry no click count), so the accessibility routes,
+        which need no pointer at all, go first.
+        """
+        import Quartz
+        from ApplicationServices import (AXUIElementPerformAction,
+                                         AXUIElementSetAttributeValue,
+                                         kAXParentAttribute, kAXPositionAttribute,
+                                         kAXPressAction, kAXSelectedChildrenAttribute,
+                                         kAXSizeAttribute)
+        if method == "ax_press":
+            return AXUIElementPerformAction(el, kAXPressAction) == 0
+        if method == "ax_select":
+            parent = self._ax_get(el, kAXParentAttribute)
+            if parent is None:
+                return False
+            return AXUIElementSetAttributeValue(parent, kAXSelectedChildrenAttribute, [el]) == 0
+        # A click formed like a real one: move, then down and up, click count 1.
+        pt = self._to_point(self._ax_get(el, kAXPositionAttribute))
+        sz = self._to_size(self._ax_get(el, kAXSizeAttribute))
+        if pt is None or sz is None:
+            return False
+        where = Quartz.CGPoint(pt[0] + sz[0] / 2, pt[1] + sz[1] / 2)
+        src = Quartz.CGEventSourceCreate(Quartz.kCGEventSourceStateHIDSystemState)
+        events = [
+            (Quartz.kCGEventMouseMoved, 0.10),
+            (Quartz.kCGEventLeftMouseDown, 0.08),
+            (Quartz.kCGEventLeftMouseUp, 0.05),
+        ]
+        for kind, pause in events:
+            ev = Quartz.CGEventCreateMouseEvent(src, kind, where, Quartz.kCGMouseButtonLeft)
+            if kind != Quartz.kCGEventMouseMoved:
+                Quartz.CGEventSetIntegerValueField(ev, Quartz.kCGMouseEventClickState, 1)
+            Quartz.CGEventPost(Quartz.kCGHIDEventTap, ev)
+            time.sleep(pause)
+        return True
+
+    def _is_group(self):
+        """WeChat shows a member count, "(4)", beside a group's name only."""
+        from ApplicationServices import kAXTitleAttribute, kAXValueAttribute
+        el = self._dfs(self._app_quiet(),
+                       lambda e, r, t, i: i == "current_chat_count_label")
+        if el is None:
+            return False
+        v = self._ax_get(el, kAXValueAttribute) or self._ax_get(el, kAXTitleAttribute)
+        return bool(v and str(v).strip())
+
+    def _read_messages(self, last_n, is_group):
+        """
+        The open chat's last messages, oldest first, as
+        {"sender": ME|OTHER|UNKNOWN, "text", "speaker"}.
+
+        The library's fetch_recent_messages, rebuilt so each row keeps its
+        position: WeChat 4.1 exposes a group member's name only as pixels on
+        the top line of the message's row, so it is read off the screenshot
+        (macOS Vision, on the Mac). Coordinates are scaled to the screenshot,
+        which is in device pixels (2x on a Retina screen).
+        """
+        from ApplicationServices import (kAXChildrenAttribute, kAXPositionAttribute,
+                                         kAXSizeAttribute, kAXTitleAttribute,
+                                         kAXValueAttribute)
+        msg_list = self._messages_list(self._app_quiet())
+        center = self._list_center(msg_list)
+        self._to_bottom(msg_list, center)
+        messages, no_new = [], 0
+        for _ in range(400):
+            image, origin, size = self._capture(msg_list)
+            scale = image.width / size[0] if size and size[0] else 1.0
+            visible = []
+            for child in self._ax_get(msg_list, kAXChildrenAttribute) or []:
+                text = (self._ax_get(child, kAXValueAttribute)
+                        or self._ax_get(child, kAXTitleAttribute))
+                if not text:
+                    continue
+                pt = self._to_point(self._ax_get(child, kAXPositionAttribute))
+                sz = self._to_size(self._ax_get(child, kAXSizeAttribute))
+                visible.append({"text": str(text), "pt": pt, "sz": sz})
+            if not visible:
+                break
+            if not messages:
+                fresh, idx = visible, len(visible)
+            else:
+                anchor = messages[0]["text"]
+                idx = next((i for i, m in enumerate(visible) if m["text"] == anchor), None)
+                fresh = visible if idx is None else visible[:idx]
+                if idx is None:
+                    idx = len(visible)
+            new = [{"text": v["text"], "sender": None, "speaker": None, "named": False}
+                   for v in fresh]
+            if fresh:
+                messages = new + messages
+                no_new = 0
+            else:
+                no_new += 1
+            # Pair what is on screen with the messages it shows: the fresh rows
+            # are the new oldest ones, the rest follow in order. A row is read
+            # once it is fully on screen: one that has only just scrolled in at
+            # the top has its name line still cut off by the list's edge.
+            on_screen = list(zip(visible[:idx], new)) + list(zip(visible[idx:], messages[len(new):]))
+            top, bottom = origin[1], origin[1] + size[1]
+            for v, m in on_screen:
+                if v["pt"] is None or v["sz"] is None:
+                    continue
+                # Only the name line has to be on screen: the newest row
+                # often runs past the bottom edge.
+                band = self.name_band or {"top": 4, "height": 30}
+                whole = (v["pt"][1] >= top + 1 and
+                         v["pt"][1] + band["top"] + band["height"] <= bottom - 1)
+                if m["sender"] is None or (whole and not m["named"]):
+                    got = self._who(image, origin, scale, v, is_group and whole)
+                    if m["sender"] is None or whole:
+                        m["sender"] = got["sender"]
+                    if whole:
+                        m["speaker"], m["named"] = got["speaker"], True
+            if no_new >= 5 or len(messages) >= last_n + 2:
+                break
+            self._scroll_up(center)
+        # The oldest one or two were never fully on screen; reading a couple
+        # past last_n leaves them out of what is kept.
+        out = [{"text": m["text"], "sender": m["sender"] or "UNKNOWN", "speaker": m["speaker"]}
+               for m in messages]
+        return out[-last_n:]
+
+    def _last_row(self, msg_list):
+        """(text, bottom y) of the lowest message row on screen, or None."""
+        from ApplicationServices import (kAXChildrenAttribute, kAXPositionAttribute,
+                                         kAXSizeAttribute, kAXTitleAttribute,
+                                         kAXValueAttribute)
+        last = None
+        for child in self._ax_get(msg_list, kAXChildrenAttribute) or []:
+            text = self._ax_get(child, kAXValueAttribute) or self._ax_get(child, kAXTitleAttribute)
+            pt = self._to_point(self._ax_get(child, kAXPositionAttribute))
+            sz = self._to_size(self._ax_get(child, kAXSizeAttribute))
+            if text and pt is not None and sz is not None:
+                last = (str(text), round(pt[1] + sz[1]))
+        return last
+
+    def _to_bottom(self, msg_list, center):
+        """
+        Scroll to the newest message. WeChat 4.1 keeps each chat's scroll
+        position, and ignored the library's -1000 scroll steps (the reader's
+        +50 steps upward worked), so runs started wherever the last one left
+        the chat. This scrolls down in small steps and stops once the lowest
+        row on screen has stayed the same for 15 steps.
+        """
+        last, same, steps = self._last_row(msg_list), 0, 0
+        for steps in range(1, 1500):
+            self._post_scroll(center, -60)
+            time.sleep(0.04)
+            if steps % 5:
+                continue
+            now = self._last_row(msg_list)
+            if now == last:
+                same += 5
+                if same >= 15:
+                    break
+            else:
+                same, last = 0, now
+        self.bottom_steps = steps
+        time.sleep(0.4)
+
+    def sidebar_preview(self, chat):
+        """The sidebar entry's full text for `chat` (it ends with the newest message)."""
+        from ApplicationServices import (kAXDescriptionAttribute, kAXTitleAttribute,
+                                         kAXValueAttribute)
+        el = self._collect(self._app_quiet()).get(chat)
+        if el is None:
+            return None
+        parts = [self._ax_get(el, a) for a in
+                 (kAXTitleAttribute, kAXValueAttribute, kAXDescriptionAttribute)]
+        return " | ".join(str(p) for p in parts if p) or None
+
+    def _who(self, image, origin, scale, m, is_group):
+        if m["pt"] is None or m["sz"] is None:
+            return {"sender": "UNKNOWN", "speaker": None}
+        rx, ry = (m["pt"][0] - origin[0]) * scale, (m["pt"][1] - origin[1]) * scale
+        w, h = m["sz"][0] * scale, m["sz"][1] * scale
+        sender = self._side(image, (0, 0), (rx, ry), (w, h))
+        speaker = None
+        if is_group:  # read even when the side guess says ME: a name there settles it
+            b = self.name_band or {"top": 4, "height": 30, "left": 60, "right_fraction": 0.75}
+            box = (int(rx + b["left"] * scale), int(ry + b["top"] * scale),
+                   int(rx + w * b["right_fraction"]), int(ry + (b["top"] + b["height"]) * scale))
+            # Rows shorter than a name plus a bubble (time separators) are skipped.
+            if box[2] > box[0] and box[3] > box[1] and h > (b["top"] + b["height"] + 10) * scale:
+                save_to = None
+                if self.save_name_crops:
+                    self._crop_n += 1
+                    save_to = os.path.join(self.save_name_crops, f"name-{self._crop_n:03d}.png")
+                speaker = ocr_line(image.crop(box), save_to)
+                if save_to:
+                    self.crop_log.append({"file": os.path.basename(save_to),
+                                          "read": speaker, "text": m["text"][:30]})
+                # A band that caught the bubble's own text is not a name.
+                if speaker and m["text"].replace("\n", " ").startswith(speaker[:8]):
+                    speaker = None
+        return {"sender": sender, "speaker": speaker}
+
+
+def prepare_for_ocr(pil_image):
+    """
+    Small grey name text on WeChat's dark background reads poorly as is: make
+    it dark-on-white, stretch the contrast, enlarge it and pad it.
+    """
+    from PIL import ImageOps
+    img = ImageOps.grayscale(pil_image)
+    hist = img.histogram()
+    mean = sum(i * c for i, c in enumerate(hist)) / max(1, sum(hist))
+    if mean < 128:  # dark mode
+        img = ImageOps.invert(img)
+    img = ImageOps.autocontrast(img, cutoff=2)
+    if img.height < 120:
+        f = 120 / img.height
+        img = img.resize((int(img.width * f), 120), resample=3)  # LANCZOS
+    return ImageOps.expand(img, border=24, fill=255)
+
+
+def _vision(img, languages):
+    import io
+    import Quartz
+    import Vision
+    from Foundation import NSData
+    buf = io.BytesIO()
+    img.convert("RGB").save(buf, "PNG")
+    raw = buf.getvalue()
+    src = Quartz.CGImageSourceCreateWithData(NSData.dataWithBytes_length_(raw, len(raw)), None)
+    cg = Quartz.CGImageSourceCreateImageAtIndex(src, 0, None)
+    req = Vision.VNRecognizeTextRequest.alloc().init()
+    req.setRecognitionLevel_(Vision.VNRequestTextRecognitionLevelAccurate)
+    req.setUsesLanguageCorrection_(False)
+    req.setMinimumTextHeight_(0.0)
+    req.setRecognitionLanguages_(languages)
+    handler = Vision.VNImageRequestHandler.alloc().initWithCGImage_options_(cg, None)
+    handler.performRequests_error_([req], None)
+    # Keep the top line only: the strip is tall enough to hold the whole name,
+    # so it can also catch the first line of the bubble below it. Vision's
+    # boxes are normalised with the origin at the bottom-left.
+    obs = []
+    for r in req.results() or []:
+        cands = r.topCandidates_(1)
+        if cands and str(cands[0].string()).strip():
+            b = r.boundingBox()
+            obs.append((b.origin.y + b.size.height / 2, b.size.height, b.origin.x,
+                        str(cands[0].string()).strip()))
+    if not obs:
+        return None
+    top = max(obs, key=lambda o: o[0])
+    line = [o for o in obs if abs(o[0] - top[0]) < max(top[1], 0.05) * 0.6]
+    return " ".join(o[3] for o in sorted(line, key=lambda o: o[2])) or None
+
+
+def ocr_line(pil_image, save_to=None):
+    """
+    Read one short line of text (a group member's name) with macOS Vision,
+    on the Mac. Nothing leaves the machine. Returns None when nothing reads.
+    Tries mixed Chinese/English first, then each alone. save_to, when given,
+    is a path the prepared strip is written to, for checking what was read.
+    """
+    img = prepare_for_ocr(pil_image)
+    if save_to:
+        img.save(save_to)
+    for langs in (["zh-Hans", "en-US"], ["en-US"], ["zh-Hans", "zh-Hant"]):
+        text = _vision(img, langs)
+        if text:
+            return text
+    return None
 
 
 class NotionStore:
@@ -131,6 +571,11 @@ class NotionStore:
         }
         if row.get("sent_at"):
             props[p["sent_at"]] = {"date": {"start": row["sent_at"]}}
+        for key in ("from", "to"):
+            if row.get(key):
+                props[p[key]] = {"rich_text": [{"text": {"content": row[key][:2000]}}]}
+        if row.get("chat_type"):
+            props[p["chat_type"]] = {"select": {"name": row["chat_type"]}}
         body = {
             "parent": {"type": "data_source_id",
                        "data_source_id": self.s["notion"]["data_source_id"]},
@@ -199,11 +644,36 @@ def someone_touched(reader, last_touch, clock):
     return reader.idle_seconds() < (clock() - last_touch) - 1.0
 
 
+def check_newest(raw, msgs, chat, people, kinds, summary):
+    """
+    The sidebar shows each chat's newest message and, in a group, who sent
+    it. Compare it with the newest message read, so a run that didn't reach
+    the bottom says so; and name that message from the sidebar when its name
+    strip didn't read.
+    """
+    if not isinstance(raw, dict) or not msgs:
+        return
+    sender, preview = core.parse_sidebar(raw.get("sidebar"))
+    ok = core.matches_newest(preview, msgs[-1]["text"], kinds)
+    if ok is False:
+        summary.setdefault("warnings", []).append({
+            "chat": chat,
+            "warning": "the newest message read doesn't match the sidebar's, so the "
+                       "newest messages may be missing until the next run"})
+    if ok and raw.get("is_group") and sender and msgs[-1]["from"] == "Unknown":
+        if core.name_of(sender, people) != people.get("me"):
+            msgs[-1]["from"] = core.name_of(sender, people)
+            msgs[-1]["sender"] = "Them"
+
+
 def archive(reader, store, settings, now, only_chat=None, dry_run=False,
             idle_check=True, clock=time.monotonic, sleep=time.sleep):
     """Archive every unrecorded message. Returns the run summary."""
     a = settings["archive"]
     kinds = settings["parse"]["kind_patterns"]
+    people = settings["people"]
+    if hasattr(reader, "name_band"):
+        reader.name_band = a.get("name_band")
     run = core.run_id(now)
     stamp = now.isoformat()
     summary = {"run": run, "archiver_version": ARCHIVER_VERSION, "status": "ok",
@@ -236,14 +706,15 @@ def archive(reader, store, settings, now, only_chat=None, dry_run=False,
                     raw = reader.read_chat(chat, n)
                 finally:
                     last_touch = clock()
-                msgs = core.annotate(raw, now, kinds)
+                msgs = core.annotate(raw, now, kinds, chat=chat, people=people)
+                check_newest(raw, msgs, chat, people, kinds, summary)
                 rows, aligned = core.plan_chat(chat, msgs, tail, a["min_overlap"])
                 if tail and not aligned:
                     try:
                         raw = reader.read_chat(chat, a["backfill_cap_messages"])
                     finally:
                         last_touch = clock()
-                    msgs = core.annotate(raw, now, kinds)
+                    msgs = core.annotate(raw, now, kinds, chat=chat, people=people)
                     rows, aligned = core.plan_chat(chat, msgs, tail, a["min_overlap"])
                     if not aligned:
                         summary["gaps"].append(chat)
@@ -265,9 +736,19 @@ def archive(reader, store, settings, now, only_chat=None, dry_run=False,
                 written = len(rows)
             summary["messages_new"] += written
             entry = {"chat": chat, "new": written}
+            if getattr(reader, "open_method", None):
+                entry["opened_by"] = reader.open_method
+            if dry_run and hasattr(reader, "sidebar_preview"):
+                entry["scroll_down_steps"] = getattr(reader, "bottom_steps", None)
+                try:
+                    entry["sidebar"] = reader.sidebar_preview(chat)
+                except Exception as exc:
+                    entry["sidebar"] = f"error: {exc}"[:120]
+                entry["newest_read"] = rows[-1]["text"][:80] if rows else None
             if dry_run:
-                entry["preview"] = [{k: r[k] for k in ("sender", "kind", "sent_at", "text")}
-                                    for r in rows[-5:]]
+                entry["preview"] = [{k: r.get(k) for k in
+                                     ("from", "to", "sender", "kind", "sent_at", "text")}
+                                    for r in rows[-8:]]
             summary["chats"].append(entry)
     except InUse:
         summary.update(status="interrupted", reason="the Mac was used mid-run")
@@ -294,6 +775,8 @@ def main():
                     help="run now even if the Mac is in use (supervised runs)")
     ap.add_argument("--no-notion", action="store_true",
                     help="with --dry-run: don't read stored tails either")
+    ap.add_argument("--save-name-crops", metavar="DIR",
+                    help="with --dry-run: save each group-name strip as a PNG here")
     ap.add_argument("--force", action="store_true",
                     help="run even if a run completed recently or it's outside the window")
     args = ap.parse_args()
@@ -326,8 +809,15 @@ def main():
             print(json.dumps({"status": "not_due", "reason": why}))
             return 0
 
+    if args.save_name_crops and not args.dry_run:
+        print(json.dumps({"status": "error", "error": "--save-name-crops needs --dry-run"}))
+        return 2
+
     try:
         reader = MacReader()
+        if args.save_name_crops:
+            os.makedirs(os.path.expanduser(args.save_name_crops), exist_ok=True)
+            reader.save_name_crops = os.path.expanduser(args.save_name_crops)
     except Exception as exc:
         summary = {"run": core.run_id(now), "status": "error",
                    "reason": f"WeChat reader unavailable: {exc}"[:300]}
@@ -357,6 +847,8 @@ def main():
         except Exception as exc:
             summary["heartbeat_error"] = str(exc)[:300]
 
+    if args.save_name_crops and "reader" in locals() and getattr(reader, "crop_log", None):
+        summary["name_crops"] = reader.crop_log
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     return 0 if summary.get("status") in ("ok", "skipped", "interrupted") else 1
 

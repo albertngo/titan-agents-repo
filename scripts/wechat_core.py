@@ -45,6 +45,7 @@ _RE_WEEKDAY = re.compile(rf"^({'|'.join(_WEEKDAYS)})\s*{_TIME}$", re.I)
 _RE_YMD = re.compile(rf"^(\d{{4}})[/\-年](\d{{1,2}})[/\-月](\d{{1,2}})日?\s*{_TIME}$")
 _RE_MDY = re.compile(rf"^(\d{{1,2}})/(\d{{1,2}})/(\d{{2}})\s*{_TIME}$")
 _RE_MD_ZH = re.compile(rf"^(\d{{1,2}})月(\d{{1,2}})日\s*{_TIME}$")
+_RE_MD = re.compile(rf"^(\d{{1,2}})/(\d{{1,2}})\s+{_TIME}$")  # WeChat 4.1: "10/21 13:17"
 
 
 def load_settings(path=SETTINGS):
@@ -102,10 +103,14 @@ def parse_separator(text, now):
     if m:
         mo, d, y = int(m.group(1)), int(m.group(2)), 2000 + int(m.group(3))
         return _safe_date(now, y, mo, d, m.groups()[3:])
-    m = _RE_MD_ZH.match(t)
+    m = _RE_MD_ZH.match(t) or _RE_MD.match(t)
     if m:
         mo, d = int(m.group(1)), int(m.group(2))
-        return _safe_date(now, now.year, mo, d, m.groups()[2:])
+        when = _safe_date(now, now.year, mo, d, m.groups()[2:])
+        # No year shown: a date later than today is from last year.
+        if when is not None and when.date() > now.date():
+            when = _safe_date(now, now.year - 1, mo, d, m.groups()[2:])
+        return when
     return None
 
 
@@ -126,12 +131,79 @@ def classify_kind(text, kind_patterns):
     return "text"
 
 
-def annotate(raw_messages, now, kind_patterns):
+def parse_sidebar(text):
     """
-    raw_messages: [{"sender": "ME|OTHER|UNKNOWN", "text": str}, ...] oldest first,
-    as wechat_mcp returns them. Returns messages without separators, each with
-    sender (Me/Them/Unknown), text, kind and sent_at (ISO string or None).
+    WeChat 4.1's sidebar entry text:
+    "<chat>\n[Pinned to top\n]<sender>: <preview>\n<time>\n" in a group,
+    without "<sender>: " in a direct chat. Returns (sender, preview), either
+    None when it doesn't parse.
     """
+    if not text:
+        return None, None
+    lines = [l.strip() for l in str(text).split("\n") if l.strip()]
+    lines = [l for l in lines[1:] if l not in ("Pinned to top", "置顶", "Muted", "消息免打扰")]
+    if len(lines) >= 2:
+        lines = lines[:-1]  # the time column ("10/21", "Yesterday 18:56")
+    if not lines:
+        return None, None
+    body = " ".join(lines)
+    m = re.match(r"^(.{1,60}?):\s(.+)$", body)
+    if m and not body.startswith("["):
+        return m.group(1), m.group(2)
+    return None, body
+
+
+def _flat(t):
+    return re.sub(r"[\[\]\s]+", " ", (t or "")).strip().lower()
+
+
+def matches_newest(preview, newest_text, kind_patterns=None):
+    """Does the sidebar's preview describe the newest message read?"""
+    if not preview or not newest_text:
+        return None  # can't tell
+    if kind_patterns:
+        k1, k2 = classify_kind(preview, kind_patterns), classify_kind(newest_text, kind_patterns)
+        if k1 == k2 and k1 not in ("text", "file", "link"):
+            return True  # "[Voice]" vs 'Audio10"sec', "[Image]" vs "Image"
+    a, b = _flat(preview).rstrip("…. "), _flat(newest_text)
+    n = min(len(a), 25)
+    return a[:n] in b or b[:n] in a
+
+
+def name_of(speaker, people):
+    """A read-off-the-screen name, tidied and mapped through people.aliases."""
+    if not speaker:
+        return None
+    name = re.sub(r"\s+", " ", speaker).strip()
+    aliases = people.get("aliases") or {}
+    if name in aliases:
+        return aliases[name]
+    for pattern, display in (people.get("alias_patterns") or {}).items():
+        if re.search(pattern, name):
+            return display
+    return name
+
+
+def annotate(raw_messages, now, kind_patterns, chat=None, people=None):
+    """
+    raw_messages: the reader's {"messages": [...], "is_group": bool}, or a bare
+    list, of {"sender": "ME|OTHER|UNKNOWN", "text": str, "speaker": str|None}
+    oldest first. Returns messages without separators, each with sender
+    (Me/Them/Unknown), from, to, chat_type, text, kind and sent_at.
+
+    Who wrote it:
+    - Albert's own messages (right-hand side) are from people.me;
+    - in a direct chat, everything else is from the chat's name, to Albert;
+    - in a group, the name WeChat printed above the message, read off the
+      screen; no name read means "Unknown", never a guess. A group message's
+      "to" is the group.
+    """
+    people = people or {"me": "Me"}
+    me = people.get("me", "Me")
+    is_group = False
+    if isinstance(raw_messages, dict):
+        is_group = bool(raw_messages.get("is_group"))
+        raw_messages = raw_messages.get("messages") or []
     out = []
     stamp = None
     for m in raw_messages:
@@ -139,13 +211,29 @@ def annotate(raw_messages, now, kind_patterns):
         if not text:
             continue
         sender = m.get("sender", "UNKNOWN")
-        if sender == "UNKNOWN":
-            when = parse_separator(text, now)
-            if when is not None:
-                stamp = when
-                continue
+        when = parse_separator(text, now)
+        # A dated separator ("10/21 13:17", "Yesterday 09:15") is one whichever
+        # side the pixel heuristic guessed; a bare "10:42" only when it sat in
+        # the middle (UNKNOWN), since a person might type just a time.
+        if when is not None and (sender == "UNKNOWN" or not _RE_TODAY.match(text)):
+            stamp = when
+            continue
+        speaker = name_of(m.get("speaker"), people) if is_group else None
+        if speaker:
+            sender = "OTHER"  # WeChat prints names over other people's messages only
+        if sender == "ME":
+            frm, to = me, chat
+        elif is_group:
+            frm, to = speaker or "Unknown", chat
+        elif sender == "OTHER":
+            frm, to = chat, me
+        else:
+            frm, to = "Unknown", None
         out.append({
             "sender": SENDERS.get(sender, "Unknown"),
+            "from": frm,
+            "to": to,
+            "chat_type": "group" if is_group else "direct",
             "text": text,
             "kind": classify_kind(text, kind_patterns),
             "sent_at": stamp.isoformat() if stamp else None,

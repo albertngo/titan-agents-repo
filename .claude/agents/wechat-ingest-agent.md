@@ -28,9 +28,13 @@ python3 scripts/wechat_pull.py --out analysis/cache/wechat/<date>.json
 
 It reads the archive with a read-only Notion token and writes JSON with
 `status`, `errors[]`, `since`, `count`, `heartbeat` (the newest archiver run) and
-`chats[]`: per chat `chat`, `count`, `gap`, `first_url`, `last_sender`,
-`last_sent_at` and `messages[]` (`sequence`, `sender` Me/Them/Unknown, `kind`,
-`sent_at`, `text`, `url`). Always use `--out` under `analysis/cache/`
+`chats[]`: per chat `chat`, `chat_type` (direct/group), `count`, `gap`,
+`first_url`, `last_sender`, `last_from`, `last_sent_at` and `messages[]`
+(`sequence`, `from`, `to`, `sender` Me/Them/Unknown, `kind`, `sent_at`, `text`,
+`url`). `from` names who wrote it: `Albert` for his own messages, the chat name
+in a direct chat, and in a group the member name WeChat shows above the message,
+read off the screen (`Unknown` when it didn't read; rows archived before
+2026-10-30 have no `from`). Always use `--out` under `analysis/cache/`
 (gitignored): the output carries full message text and **the repo is public**.
 
 Do not reach for the Notion MCP connector. It is session-attached and dies on a
@@ -48,7 +52,7 @@ scheduled run.
 
 One item per chat at most (plus `archiver_status`). `title` names the chat;
 `summary` is 1–3 sentences in English, whatever language the chat is in — say
-what changed and what, if anything, Albert has to do. `link` is the chat's
+who said what (by `from`), what changed and what, if anything, Albert has to do. `link` is the chat's
 `first_url` (the Notion row of its first new message). `raw_ref`:
 `wechat:chat:<chat name>`, the cross-day key. `timestamp`: the last message's
 `sent_at`, else its `archived_at`. `sensitivity: "private"` on every item: this
@@ -61,7 +65,9 @@ when the text reads as theirs; say so in the summary when you had to guess.
 ## The public-repo rule
 
 `wechat.json` is committed to a public repo. Never put a cost, price, discount,
-margin, account or bank number, phone number, address or WeChat ID in it. Write
+margin, account or bank number, phone number, address or WeChat ID in it. Name
+people by first name or company only: WeChat display names often carry a phone
+number, so drop any digits from a name you write. Write
 "new pricing on the 12 mm line, effective Nov 15 — see the archive" and let the
 `link` carry the detail. Chat names may appear; they are the sidebar names.
 
@@ -74,6 +80,10 @@ margin, account or bank number, phone number, address or WeChat ID in it. Write
 A stale heartbeat makes the file `status: "partial"`: zero messages with a dead
 Mac is not a quiet day. `skipped` and `interrupted` keep `status: "ok"`; the
 next run catches up.
+
+A heartbeat `warnings[]` entry means a chat's newest message read didn't match
+WeChat's sidebar, so its newest messages may be missing until the next run. Name
+each such chat in one `needs_attention` line.
 
 A chat with `gap: true` means the archiver could not line up with what it had
 stored, so messages may be missing before the flagged one. Name each such chat in
