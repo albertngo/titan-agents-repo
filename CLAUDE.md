@@ -260,13 +260,14 @@ is the only copy of the classifier, read by the session model in both:
 - **`/ghl-triage`**, an hourly routine (8am–9pm Toronto, Mon–Sat): `scripts/ghl_unread_pull.py`
   (read-only) builds each unread conversation's batch — what the customer wrote since our
   last **human** reply; automations never count as a reply — holds anything unreadable
-  (photos, calls, voicemail), the model judges with rubric v4 (2026-10-10) — reply
+  (photos, calls, voicemail), the model judges with rubric v5 (2026-10-30) — reply
   (`NEEDS_RESPONSE` / `UNSURE`), act (`ACTION`, written opt-outs as `compliance:`), know
   (`FYI`), clear (`CLOSER` / `SPAM`) — and `scripts/ghl_unread_plan.py` applies guards (a `?`
   or a long message vetoes CLOSER; SPAM only from a stranger; a `compliance:` reason is
   always ACTION) and the cap (25, all-or-nothing). What can be marked read: CLOSER and SPAM
   once the customer's latest message is 4 h old; a model UNSURE after 7 quiet days; a hold
-  (call, attachment, too long, nothing inbound) after 14. NEEDS_RESPONSE, ACTION and FYI never.
+  (call, attachment, too long, nothing inbound) after 14; an FYI tagged `deferring:` or `third-party:`
+  after 72 h (rubric v5, 2026-10-30). NEEDS_RESPONSE, ACTION and any other FYI never.
 - **`ghl-ingest-agent`** (template v6): the window plus everything unread, split into a reply
   list (24 h age flag), a "to action" list (missed calls and attachments land here too) and an
   FYI list shown once — closers and spam dropped from day one, and threads whose customer has

@@ -142,7 +142,9 @@ class TestRegistry(unittest.TestCase):
         pol = REG["policy"]
         self.assertEqual(REG["write_mode"]["mode"], "write")
         self.assertEqual(pol["approve_verdicts"], ["CLOSER", "SPAM"])
-        self.assertEqual(pol["approve_stale"], ["UNSURE", "HELD"])
+        self.assertEqual(pol["approve_stale"], ["UNSURE", "HELD", "FYI"])  # FYI: 2026-10-30
+        self.assertEqual(pol["stale"]["FYI"]["hours"], 72)
+        self.assertEqual(pol["stale"]["FYI"]["kinds"], ["deferring", "third-party"])
         self.assertEqual(pol["exception_date"], "2026-10-10")
         self.assertEqual(pol["min_unread_hours"], 4)
         self.assertEqual(pol["stale"]["UNSURE"]["days"], 7)
@@ -572,9 +574,47 @@ class TestPlan(unittest.TestCase):
         off = plan.build_plan(cands_doc(convs), j, reg_with(approve_stale=["HELD"]))
         self.assertEqual({a["conversation_id"] for a in off["actions"]}, {"h1", "h3"})
         with self.assertRaises(plan.InputError):
-            plan.build_plan(cands_doc(convs), j, reg_with(approve_stale=["FYI"]))
+            plan.build_plan(cands_doc(convs), j, reg_with(approve_stale=["NEEDS_RESPONSE"]))
         rec = plan.run_record(p)
         self.assertIn("clear_kind", rec["rows"][0])
+
+    def test_fyi_age_out(self):
+        # Rubric v5 (Albert, 2026-10-30): deferring and third-party FYIs clear after 72 quiet hours.
+        self.assertEqual(REG["policy"]["stale"]["FYI"], {**REG["policy"]["stale"]["FYI"],
+                                                        "hours": 72, "kinds": ["deferring", "third-party"]})
+        self.assertIn("FYI", REG["policy"]["approve_stale"])
+
+        def fyi(cid, key, hours):
+            c = cand(cid, key, waiting=hours)
+            c["last_inbound_hours"] = hours
+            return c
+        convs = [fyi("d1", "k1", 72), fyi("d2", "k2", 71.9), fyi("t1", "k3", 100),
+                 fyi("l1", "k4", 999), fyi("i1", "k5", 999), fyi("u1", "k6", 999),
+                 fyi("x1", "k7", 999), fyi("c1", "k8", 999)]
+        reasons = {"k1": "deferring: still deciding", "k2": "Deferring: will call later",
+                   "k3": "third-party: factory pitch", "k4": "lost: went elsewhere",
+                   "k5": "info: address sent", "k6": "still deciding, no tag",
+                   "k7": "deferringly: not a tag", "k8": "compliance: deferring: opt-out"}
+        j = {"contract_version": "ghl-triage-judgements-1", "rubric_version": REG["rubric"]["version"],
+             "verdicts": {k: {"verdict": "FYI", "reason": r} for k, r in reasons.items()}}
+        p = plan.build_plan(cands_doc(convs), j, REG)
+        got = {r["conversation_id"]: (r["disposition"], r["clear_kind"]) for r in p["rows"]}
+        self.assertEqual(got["d1"], ("clear", "stale_fyi"))
+        self.assertEqual(got["t1"], ("clear", "stale_fyi"))
+        self.assertEqual(got["d2"][0], "fyi", "not yet 72 h")
+        for cid in ("l1", "i1", "u1", "x1"):
+            self.assertEqual(got[cid][0], "fyi", f"{cid}: a tag not switched on, or no tag")
+        self.assertEqual(got["c1"][0], "action", "an opt-out never ages out")
+        self.assertEqual({a["conversation_id"]: a["kind"] for a in p["actions"]},
+                         {"d1": "stale_fyi", "t1": "stale_fyi"})
+        self.assertTrue(all(a["reason"].startswith("untouched 72h+: ") for a in p["actions"]))
+        self.assertEqual(p["summary"]["would_clear_by_kind"]["stale_fyi"], 2)
+        off = plan.build_plan(cands_doc(convs), j, reg_with(approve_stale=["UNSURE", "HELD"]))
+        self.assertEqual(off["actions"], [], "FYI is its own switch")
+        bad = copy.deepcopy(REG)
+        bad["policy"]["stale"]["FYI"]["kinds"] = ["deferring", "anything"]
+        with self.assertRaises(plan.InputError):
+            plan.build_plan(cands_doc(convs), j, bad)
 
     def test_cleanup_window_lifts_the_cap_then_ends(self):
         # Albert, 2026-10-17: a one-off backlog clear through policy.cleanup.until, then 25 again.
