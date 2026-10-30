@@ -405,7 +405,6 @@ class TestBoundary(unittest.TestCase):
             ("wechat_mcp.wechat_accessibility", "_normalize_chat_title"),
             ("wechat_mcp.wechat_accessibility", "ax_get"),
             ("wechat_mcp.wechat_accessibility", "dfs"),
-            ("wechat_mcp.wechat_accessibility", "click_element_center"),
             ("wechat_mcp.wechat_accessibility", "collect_chat_elements"),
             ("wechat_mcp.wechat_accessibility", "get_current_chat_name"),
             ("wechat_mcp.wechat_accessibility", "get_wechat_ax_app"),

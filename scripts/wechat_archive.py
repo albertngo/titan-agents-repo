@@ -59,7 +59,6 @@ class MacReader:
                               os.path.expanduser("~/Library/Logs/titan-wechat-archive"))
         from wechat_mcp.wechat_accessibility import (
             _normalize_chat_title,
-            click_element_center,
             ax_get,
             collect_chat_elements,
             dfs,
@@ -78,7 +77,6 @@ class MacReader:
             scroll_to_bottom,
             scroll_up_small,
         )
-        self._click = click_element_center
         self._collect = collect_chat_elements
         self._current = get_current_chat_name
         self._app = get_wechat_ax_app
@@ -92,6 +90,7 @@ class MacReader:
         self._scroll_to_bottom = scroll_to_bottom
         self._scroll_up = scroll_up_small
         self.name_band = None  # set by archive() from settings["archive"]["name_band"]
+        self.open_method = None  # how the last chat was opened, for the summary
         self.save_name_crops = None  # a folder, from --save-name-crops
         self.crop_log = []
         self._crop_n = 0
@@ -239,30 +238,71 @@ class MacReader:
         if el is None:
             raise RuntimeError("not in the sidebar any more")
         opened = None
-        for attempt in range(2):
-            if attempt:
-                # One more go: WeChat sometimes comes forward without its chat
-                # pane drawn, and a second click brings it back.
-                self.bring_to_front()
-                el = self._collect(self._app()).get(chat)
-                if el is None:
-                    raise RuntimeError("not in the sidebar any more")
-            self._click(el)
-            # WeChat takes a moment to draw the chat it switched to; wait for
-            # the title to show the chat clicked, up to 6 s.
-            for _ in range(24):
+        self.open_method = None
+        for method in ("ax_press", "ax_select", "click", "click"):
+            if method == "click" and self.open_method is None:
+                self.bring_to_front()  # in case focus moved while the AX tries ran
+            el = self._collect(self._app()).get(chat)
+            if el is None:
+                raise RuntimeError("not in the sidebar any more")
+            if not self._open_by(method, el):
+                continue
+            # WeChat takes a moment to draw the chat it switched to.
+            for _ in range(12):
                 time.sleep(0.25)
                 opened = self._opened_name()
                 if opened is not None and self._norm(opened) == self._norm(chat):
                     break
             if opened is not None and self._norm(opened) == self._norm(chat):
+                self.open_method = method
                 break
         # Never file one chat's messages under another chat's name.
         if opened is None or self._norm(opened) != self._norm(chat):
-            raise RuntimeError(f"opened {opened!r} instead after 2 tries "
+            raise RuntimeError(f"opened {opened!r} instead after AX press, AX select and 2 clicks "
                                f"(fit {FIT}; {self._title_report()})")
         is_group = self._is_group()
         return {"messages": self._read_messages(last_n, is_group), "is_group": is_group}
+
+    def _open_by(self, method, el):
+        """
+        Ask WeChat to open the chat behind sidebar element `el`. False when the
+        method isn't available for that element. The library's click didn't
+        open chats on WeChat 4.1.15 (the pointer moved, nothing happened: its
+        synthetic events carry no click count), so the accessibility routes,
+        which need no pointer at all, go first.
+        """
+        import Quartz
+        from ApplicationServices import (AXUIElementPerformAction,
+                                         AXUIElementSetAttributeValue,
+                                         kAXParentAttribute, kAXPositionAttribute,
+                                         kAXPressAction, kAXSelectedChildrenAttribute,
+                                         kAXSizeAttribute)
+        if method == "ax_press":
+            return AXUIElementPerformAction(el, kAXPressAction) == 0
+        if method == "ax_select":
+            parent = self._ax_get(el, kAXParentAttribute)
+            if parent is None:
+                return False
+            return AXUIElementSetAttributeValue(parent, kAXSelectedChildrenAttribute, [el]) == 0
+        # A click formed like a real one: move, then down and up, click count 1.
+        pt = self._to_point(self._ax_get(el, kAXPositionAttribute))
+        sz = self._to_size(self._ax_get(el, kAXSizeAttribute))
+        if pt is None or sz is None:
+            return False
+        where = Quartz.CGPoint(pt[0] + sz[0] / 2, pt[1] + sz[1] / 2)
+        src = Quartz.CGEventSourceCreate(Quartz.kCGEventSourceStateHIDSystemState)
+        events = [
+            (Quartz.kCGEventMouseMoved, 0.10),
+            (Quartz.kCGEventLeftMouseDown, 0.08),
+            (Quartz.kCGEventLeftMouseUp, 0.05),
+        ]
+        for kind, pause in events:
+            ev = Quartz.CGEventCreateMouseEvent(src, kind, where, Quartz.kCGMouseButtonLeft)
+            if kind != Quartz.kCGEventMouseMoved:
+                Quartz.CGEventSetIntegerValueField(ev, Quartz.kCGMouseEventClickState, 1)
+            Quartz.CGEventPost(Quartz.kCGHIDEventTap, ev)
+            time.sleep(pause)
+        return True
 
     def _is_group(self):
         """WeChat shows a member count, "(4)", beside a group's name only."""
@@ -585,6 +625,8 @@ def archive(reader, store, settings, now, only_chat=None, dry_run=False,
                 written = len(rows)
             summary["messages_new"] += written
             entry = {"chat": chat, "new": written}
+            if getattr(reader, "open_method", None):
+                entry["opened_by"] = reader.open_method
             if dry_run:
                 entry["preview"] = [{k: r.get(k) for k in
                                      ("from", "to", "sender", "kind", "sent_at", "text")}
