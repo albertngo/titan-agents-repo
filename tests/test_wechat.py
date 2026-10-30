@@ -86,6 +86,8 @@ class TestAnnotate(unittest.TestCase):
         self.assertEqual(core.classify_kind("[File] PL-2026.pdf", KINDS), "file")
         self.assertEqual(core.classify_kind("Image", KINDS), "image")  # WeChat 4.1.15
         self.assertEqual(core.classify_kind('Audio10"sec', KINDS), "voice")
+        self.assertEqual(core.classify_kind("Voice CallDuration: 04:00", KINDS), "call")
+        self.assertEqual(core.classify_kind("Video CallCanceled", KINDS), "call")
         # WeChat 4.1.15, seen live 2026-10-30
         self.assertEqual(core.classify_kind("File\nTrim Price 10-16-2026 Store.pdf\n984.8K", KINDS),
                          "file")
@@ -480,7 +482,8 @@ class TestRegistry(unittest.TestCase):
 
     def test_kind_patterns_compile_and_are_known_kinds(self):
         for kind, pats in KINDS.items():
-            self.assertIn(kind, {"image", "file", "voice", "video", "link", "sticker", "system"})
+            self.assertIn(kind, {"image", "file", "voice", "video", "link", "sticker", "system",
+                                 "call"})
             for p in pats:
                 re.compile(p)
 
