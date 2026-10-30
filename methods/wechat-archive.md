@@ -148,6 +148,10 @@ happened, and it can only add rows.
    before it starts. If the Mac locks or the display turns off sooner than that
    (System Settings → Lock Screen), it can never start. 10 minutes or more works.
    Once running, it holds the display awake itself.
+   **Left unlocked for the 6 am run (Albert, 2026-10-30):** the archiver wakes a
+   sleeping display itself (black screenshots would lose names and bubble sides), but
+   it can't wake a sleeping Mac. Keep the Mac from sleeping: System Settings → Energy
+   (Mac mini) → "Prevent automatic sleeping when the display is off".
    **After `brew upgrade python`**, re-run the installer and re-grant the new path.
    The upgrade moves Python, and macOS ties the permission to the old file.
 5. **Supervised first run, at the desk:**

@@ -361,13 +361,24 @@ class TestArchive(unittest.TestCase):
         self.assertEqual(out["status"], "interrupted")
         self.assertEqual([r["chat"] for r in store.rows], ["A"])
 
+    def test_waking_the_display_does_not_count_as_someone_using_the_mac(self):
+        class Sleepy(FakeWeChat):
+            def wake_display(self):
+                self.t += 3
+                self.last_event = self.t  # caffeinate -u resets the idle clock
+        wx = Sleepy({"A": [msg("OTHER", "a")], "B": [msg("OTHER", "b")]})
+        out = self.run_once(wx, FakeNotion())
+        self.assertEqual((out["status"], out["chats_read"]), ("ok", 2))
+
     def test_busy_at_start_skips(self):
         out = self.run_once(FakeWeChat({"A": [msg("OTHER", "a")]}, idle=30), FakeNotion())
         self.assertEqual(out["status"], "skipped")
 
     def test_caffeinate_never_declares_user_activity(self):
         src = (REPO_ROOT / "scripts" / "wechat_archive.py").read_text()
-        flags = re.search(r'"caffeinate", "-(\w+)"', src).group(1)
+        # The keep-awake call runs for the whole run (-w <pid>): it must never
+        # declare user activity. The one-off wake_display() call (-t 2) may.
+        flags = re.search(r'"caffeinate", "-(\w+)", "-w"', src).group(1)
         self.assertNotIn("u", flags)
 
     def test_dry_run_writes_nothing(self):
