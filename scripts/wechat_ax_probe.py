@@ -9,6 +9,11 @@ Text is cut to a few characters per element, so the printout shows the window's
 structure (roles and identifiers), not conversations.
 
     .venv-wechat/bin/python scripts/wechat_ax_probe.py --find "Titan Flooring" | pbcopy
+    .venv-wechat/bin/python scripts/wechat_ax_probe.py --bubbles | pbcopy
+
+--bubbles lists every attribute WeChat exposes on each element of the open
+chat's message list (and their children), plus position and size, to find
+where a group member's name lives.
 """
 
 import argparse
@@ -43,11 +48,57 @@ def short(v):
     return s if len(s) <= KEEP else s[:KEEP] + "…"
 
 
+def bubbles(root, limit):
+    from ApplicationServices import (AXUIElementCopyAttributeNames,
+                                     AXUIElementCopyParameterizedAttributeNames)
+
+    def find_list(el, depth=0):
+        if depth > 30:
+            return None
+        if ax_get(el, kAXIdentifierAttribute) == "chat_message_list":
+            return el
+        for c in ax_get(el, kAXChildrenAttribute) or []:
+            hit = find_list(c, depth + 1)
+            if hit is not None:
+                return hit
+        return None
+
+    lst = find_list(root)
+    if lst is None:
+        print("chat_message_list not found: open a chat first")
+        return
+    items = [c for c in (ax_get(lst, kAXChildrenAttribute) or [])
+             if ax_get(c, kAXIdentifierAttribute) != "virtual_cell"]
+    print(f"visible message-list items: {len(items)} (showing last {limit})")
+
+    def dump(el, depth):
+        err, names = AXUIElementCopyAttributeNames(el, None)
+        perr, pnames = AXUIElementCopyParameterizedAttributeNames(el, None)
+        pad = "  " * depth
+        print(pad + "---")
+        for n in sorted(names or []):
+            if n in ("AXParent", "AXTopLevelUIElement", "AXWindow", "AXChildren"):
+                continue
+            v = ax_get(el, n)
+            sv = short(v) if not hasattr(v, "__len__") or isinstance(v, str) else f"<{len(v)} items>"
+            print(f"{pad}{n} = {sv!r}")
+        if pnames:
+            print(f"{pad}(parameterized: {', '.join(sorted(pnames))})")
+        for c in ax_get(el, kAXChildrenAttribute) or []:
+            dump(c, depth + 1)
+
+    for el in items[-limit:]:
+        dump(el, 0)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--find", help="also list the path to every element whose text contains this")
     ap.add_argument("--depth", type=int, default=30)
     ap.add_argument("--max-lines", type=int, default=1500)
+    ap.add_argument("--bubbles", action="store_true",
+                    help="dump every attribute of the open chat's visible messages")
+    ap.add_argument("--last", type=int, default=8, help="with --bubbles: how many items")
     args = ap.parse_args()
 
     apps = AppKit.NSRunningApplication.runningApplicationsWithBundleIdentifier_(
@@ -58,6 +109,9 @@ def main():
         print(f"WeChat version: {info.get('CFBundleShortVersionString')} "
               f"({info.get('CFBundleVersion')})")
     root = get_wechat_ax_app()
+    if args.bubbles:
+        bubbles(root, args.last)
+        return 0
 
     lines, found = [], []
 
