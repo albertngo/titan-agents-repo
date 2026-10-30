@@ -1,290 +1,42 @@
 # Titan Agents
 
-Multi-agent system for Titan Flooring, split into two agent classes:
-
-- **`*-ingest` agents** — read-only. Pull from one platform each, normalize to the
-  shared contract, write dated output files. Safe to run unattended on a schedule.
-- **`*-actions` agents** — write. Execute explicit, pre-approved actions on a platform
-  and append to the daily actions log. Never scheduled, never autonomous — except a
-  narrow, dated 2026-09-11 exception for `lightspeed-actions-agent` and
-  `airtable-actions-agent` via `/catalog-sync`'s policy auto-approval; see Agent class
-  rules below.
-
-A daily orchestrator spawns the ingesters, reads their outputs, produces the daily
-brief, then hands off to `vault-writer-agent` (vault) and `.claude/commands/notion-sync.md`
-(Notion) — see Orchestration below.
+Multi-agent system for Titan Flooring. This file holds the rules every session needs.
+The detail, history and reasons behind them are in **`methods/system-reference.md`** (the
+full CLAUDE.md as it stood on 2026-10-30). **Read the matching section there before you
+change a pipeline, an agent, a contract, a registry policy or a write mode.** Older files
+that cite "CLAUDE.md, <section>" mean that file's section of the same name.
 
 ## Architecture rule (do not break)
 
-**Agents coordinate through data, not conversation.**
-Every ingester writes to `/ingest/YYYY-MM-DD/<source>.json` conforming to
-`contracts/ingest-schema.md`. The orchestrator only reads those files.
-No ingester reads another ingester's raw platform data.
+**Agents coordinate through data, not conversation.** Every ingester writes
+`/ingest/YYYY-MM-DD/<source>.json` conforming to `contracts/ingest-schema.md`. The
+orchestrator only reads those files. No ingester reads another ingester's raw platform data.
+
+The flow is always **ingest → decide → act**. No agent does all three steps.
 
 ## Agents
 
 | Agent | Source | Output file |
 |---|---|---|
-| `ghl-ingest-agent` | GoHighLevel (leads, SMS, pipeline) | `ghl.json` |
+| `ghl-ingest-agent` | GoHighLevel (leads, SMS, pipeline, call transcripts) | `ghl.json` |
 | `outlook-ingest-agent` | Outlook / M365 | `outlook.json` |
 | `bookkeeper-ingest-agent` | QuickBooks / receipts | `bookkeeper.json` |
 | `notion-ingest-agent` | Notion (projects, work orders, payments, meetings) | `notion.json` |
 | `meta-ads-ingest-agent` | Meta Ads (spend, leads, CPL, delivery health) | `meta-ads.json` |
 | `content-ingest-agent` | Notion content calendar + Google Drive media | `content.json` |
-| `wechat-ingest-agent` | WeChat (Albert's personal account, via the private WeChat Archive in Notion) | `wechat.json` |
-| `whatsapp-ingest-agent` | WhatsApp via 2Chat (business + personal numbers; supplier, customer and staff chats) | `whatsapp.json` |
+| `wechat-ingest-agent` | WeChat, via the private WeChat Archive in Notion | `wechat.json` |
+| `whatsapp-ingest-agent` | WhatsApp via 2Chat (business + personal numbers) | `whatsapp.json` |
 
-| `ghl-actions-agent` | GoHighLevel (write: replies, stages, tags; mark-read only via `/ghl-triage` + `scripts/ghl_mark_read.py`, live since 2026-10-10) | appends to `actions-log.json` |
-| `lightspeed-actions-agent` | Lightspeed Retail X-Series (write: product create/update ONLY) | appends to `actions-log.json` |
-| `airtable-actions-agent` | Airtable catalogue (write: upsert, LS-ID backfill, price history) | appends to `actions-log.json` |
-| `social-actions-agent` | Metricool (write: schedule posts, and move a still-scheduled one to a new date — never edits or deletes a LIVE post, never replies) | appends to `actions-log.json` |
-| `vault-writer-agent` | titan-vault Obsidian repo (write) | vault notes per its CONVENTIONS.md — runs automatically in `/daily-ingest`, bound to its whitelist. See Vault writes. |
+| Actions agent | May write | Output |
+|---|---|---|
+| `ghl-actions-agent` | GoHighLevel: replies, stages, tags; mark-read only via `/ghl-triage` | appends to `actions-log.json` |
+| `lightspeed-actions-agent` | Lightspeed Retail X-Series: product create/update ONLY | appends to `actions-log.json` |
+| `airtable-actions-agent` | Airtable catalogue: upsert, LS-ID backfill, price history, blank-only style tags and images | appends to `actions-log.json` |
+| `social-actions-agent` | Metricool: schedule posts, move a still-scheduled one. Never edits or deletes a live post, never replies | appends to `actions-log.json` |
+| `vault-writer-agent` | titan-vault, bound to its whitelist (see Vault) | vault notes |
 
-`.claude/commands/notion-sync.md` runs automatically at the end of `/daily-ingest` too,
-but is a command, not an agent — see Notion writes below for why.
-
-### The price-list / catalogue pipeline
-
-Not part of `/daily-ingest`. Triggered per price list, and it is the only flow that
-writes to two platforms:
-
-```
-Make 4381438  ->  Notion Price Lists row  ->  /process-price-list  (produces 2 CSVs, commits them, writes no platform)
-                                                     |
-                                   /catalog-sync <notionID>  — steps 1-6, same session
-                                                     |
-              scripts/lightspeed_pull.py  ------>  scripts/catalog_reconcile.py
-              (read-only catalogue pull)          (one reviewable diff, writes no platform)
-                                                     |
-                      [ policy auto-approves what qualifies; a person approves the rest ]
-                                                     |
-                      lightspeed-actions-agent  +  airtable-actions-agent
-```
-
-**`/catalog-sync` is the entry point** (`.claude/commands/catalog-sync.md` — the
-authoritative procedure; `methods/pricelist-pipeline-routine-prompt.md` holds the
-merged routine's stored text and its rationale).
-
-**`/catalog-sync` runs all six steps in one unattended session (2026-09-11, widened
-2026-09-12 — both Albert), immediately after `/process-price-list` on the same
-notionID.** Policy approves and executes everything except three carve-outs in
-`contracts/catalog-plan-schema.md` ("Policy auto-approval"):
-
-1. `blocked` entries — structural; no `id` exists to approve.
-2. Rows flagged `Ambiguous Pricing`.
-3. Every action on a plan whose `cost_basis` is `null`.
-
-`New Supplier` no longer holds a write (2026-09-12, reversing the previous day's
-rule). Neither do `Ambiguous Naming`, `Unmapped Grade`, `Unmapped Category` or
-`Spec Gap` — those write and are reported. The two pricing carve-outs remain because
-a wrong cost is the one error that is silent *and* monetary: it doesn't look broken,
-it just sells at the wrong margin, and a later correction doesn't recover the
-difference.
-
-`*-actions` agents still execute **only** an id that appears `approved` in the
-approval file; what changed is who writes that file.
-
-**The human checkpoint is now a report, not a gate.** Everything held, plus
-everything written carrying a flag, lands in a per-SKU CSV
-(`contracts/troubled-skus-schema.md`) attached to the row's **`Troubled Files`**
-property, with a mandatory PushNotification behind it.
-`Troubled Files is not empty` is the worklist. This is a deliberately weaker control
-than stopping — a wrong spec can go live and be found after — and that trade is
-recorded in `methods/pricelist-pipeline-routine-prompt.md` rather than left implicit.
-
-**The report answers back (2026-09-21, Albert).** The CSV carries a twelfth column,
-`Action`, and the run renders the same rows as a table in the Notion page body —
-a file property cannot be edited in place, so that table is where a reviewer replies.
-`/catalog-sync` step 0 reads those cells back before it plans, and step 6a carries
-them across the overwrite. **An `Action` cell is prose, never an approval**: it can
-resolve an ambiguity, but the resulting id still has to appear `approved` in the
-approval file, and it cannot clear either pricing carve-out — a cost decision belongs
-in bert-airtable-schema's `#### Cost column`, where the next run reads it. Albert
-invented this column by hand on PL-377 before it existed anywhere in the repo.
-
-**Lightspeed is written before Airtable** — the reverse of `forced_downstream_order` in
-`pricelist-sources.json`, which describes the manual CSV flow. `POST /api/2.0/products`
-returns the new UUID, so the Lightspeed create is what mints the id the Airtable write
-needs.
-
-Contracts: `catalog-plan-schema.md` (the diff and the approval file),
-`actions-log-schema.md` (every write). Ids live in `platform-settings/lightspeed.json`,
-`airtable-destinations.json` and `pricelist-sources.json` — never in a prompt.
-
-The Notion row carries the state. `Extraction Status` says *that* a human must look;
-**`Review Reason`** (multi-select) says *why* — `New Supplier`, `Ambiguous Pricing`,
-`Ambiguous Naming`, `Unmapped Category`, `Unmapped Grade`, `Spec Gap` — written
-additively by both runs and cleared only by the reviewer. `Airtable Sync`, `LS Upload`
-and `UUID Backfill` are stage indicators for **whoever ran the stage**: the manual CSV
-path stays available and writes the same fields the sync does.
-
-**Not every attachment is a price list (2026-09-11, Albert).** Stage 1 no longer just
-stops on a non-price-list file. If it has real content (a catalogue, spec sheet,
-marketing material), Stage 1 tags it freely — a gray, open-ended tag, never `Regular
-List`/`Promo` — and records what it shows about the company in
-`platform-settings/company-profiles.md`, the repo's new memory of what each company
-sells beyond its price lists. If it has no content at all (a bare logo, a blank
-file), and only on an untouched row, Stage 1 may archive the Notion page —
-Notion's own reversible soft-delete, never anything harder, and always reported.
-Full procedure: `methods/pricelist-extraction.md`, "When the file is not a price
-list at all."
-
-**The human gate became a human report (2026-09-12, Albert — superseding both
-same-day-2026-09-11 notes above and below this one).** Policy clears everything but
-the three carve-outs; what it holds is reported per SKU in `Troubled Files` and
-pushed, not queued behind a stop. `/catalog-sync` step 3a still exists for clearing
-that residue in one reply, but on an unattended run it is a digest, not a wait.
-Nothing changed about an action needing an id in the approval file before an
-`*-actions` agent touches it.
-
-> **Scheduling status (2026-09-27).** The routine trigger is **enabled** (Albert,
-> 2026-09-27: "Routine should be up and running now"), reversing the 2026-09-23
-> "Not yet. I'll do manual". It fires on Make's `notionID` payload (extract → date
-> check → sync) and once a day with no payload (`/price-list-sweep`, which now includes
-> the promo lane), cron `0 23 * * *` UTC = 7 pm Toronto (EDT). First scheduled fire
-> 2026-09-26 23:04Z succeeded and wrote nothing (nothing was due). **No unattended fire
-> has yet completed both systems on one row.** Do not disable it, or change its
-> schedule, on a session's own initiative. Detail:
-> `methods/pricelist-pipeline-routine-prompt.md`, Routine environment and Still open.
-
-**Only two files can change the POS**: `scripts/lightspeed_write.py` and
-`scripts/lightspeed_push.py` (the promo lane's planner, `promo_sweep.py`, only writes a plan). The read path contains no write verb and a test
-enforces that. Removing a product the supplier's newest list no longer carries is a person's call only
-(Albert, 2026-09-24): **deactivate** is an ordinary update of Lightspeed `is_active` / Airtable `Active` that the
-reconciler never plans, and a guarded **delete** exists that policy can never approve. First use: FAW's old T&G
-Toffee / Warm Honey, set inactive, not deleted.
-
-Add a new agent = add one file in `.claude/agents/` + conform to the matching contract
-(`ingest-schema.md` for ingesters, `actions-log-schema.md` for actions agents).
-Nothing else changes.
-
-### Style tags (`/style-tag`, 2026-09-26)
-
-Second catalogue flow, Airtable only, **not** part of `/daily-ingest` and never
-scheduled. `/style-tag <SUPPLIER>` fills the blank style fields on that supplier's
-records — `Undertone`, `Tone depth`, `Texture`, `Style`, `Busyness` — from specs and
-images, marks them `AI suggested`, and leaves staff to confirm. Same shape as
-`/catalog-sync`: `scripts/style_tag_pull.py` (read-only) → the session model's
-judgement file → `scripts/style_tag_plan.py` (read-only, deterministic) → a policy
-approval file → `airtable-actions-agent` (`airtable_update_style_tags`, blank fields
-only, read-before-write) → a plain-English `Style questions` checklist on each record
-plus a PushNotification. **Review happens on the record (2026-09-27, Albert):** he
-answers in `Style notes` (typed or dictated); the next run turns what a new note clearly
-says into tags (it may replace an earlier `AI suggested` value, compare-and-swap) and
-puts anything vague back as a question. The `Style review` formula sorts records into
-`Needs your input` / `Note waiting` / `Ready to confirm` / `Confirmed`. The Notion page
-table is retired for style tags. Contracts: `contracts/style-plan-schema.md`,
-`contracts/troubled-tags-schema.md`; registry `platform-settings/style-tags.json`;
-method and rubric `methods/style-tags.md`.
-
-Three rules that are not negotiable, all from Albert on 2026-09-26: a record whose
-`Style tags status` is `Staff confirmed` is never touched; colour tags come from
-`Swatch images` only — never a room scene — and no swatch means hold; the run never
-writes `Staff confirmed`. `write_mode` starts at `plan_only` and flipping it is a
-dated vault decision, same as the social pipeline was.
-
-### Product images (`/image-fill`, 2026-09-29)
-
-Third catalogue flow, Airtable only, never scheduled. `/image-fill <SUPPLIER>` finds a
-supplier's product photos on the web and fills the **blank** `Swatch images`,
-`Room scene images` and `Detail images` fields, plus a new `Supplier product page` link:
-`scripts/supplier_site_pull.py` (read-only) → the session model judges each image's kind
-and any ambiguous match → `scripts/image_fill_plan.py` (read-only, deterministic; contact
-sheet + held CSV) → policy approval → `airtable-actions-agent` (`airtable_attach_images`,
-blank only, read-before-write). Registry `platform-settings/supplier-sites.json` (site URLs
-live only there); contract `contracts/image-plan-schema.md`; method `methods/image-fill.md`.
-`write_mode` is `write` since 2026-09-29 (vault `05_decisions/2026-09-29-image-fill-write-mode.md`):
-policy attaches confident matches and reports the rest. Files get descriptive SEO names.
-**Sources, in order (Albert, 2026-09-29):** the supplier's official site, then The Floor Box
-and Word of Mouth Floors side by side, then Speers last; `Supplier product page` is the official
-page, else The Floor Box, else Word of Mouth — **never Speers** (a local competitor). An official site the environment refuses stops the run (blank-only means
-retailer photos filled first could never be replaced); one behind a bot challenge (Vidar) is
-reported, never worked around, and the retailers run alone.
-
-### Call transcripts and call notes (2026-10-01)
-
-`ghl-ingest-agent` now reads call content. Step 0 of its run is
-`scripts/ghl_calls_pull.py` (read-only; reaches GHL only through the GET-only
-`scripts/ghl_client.py`): it lists the window's call messages, takes each transcript
-from the contact's `[call-note]` notes if they exist, else downloads the `.wav` and
-transcribes it (ElevenLabs Scribe v2, locked in 2026-10-02 by Albert; Deepgram
-dropped), else falls back to GHL's own transcript.
-Audio and full text stay in the gitignored `analysis/cache/ghl-calls/`; only
-summaries reach `ghl.json` (`extensions.ghl.calls[]`, `call_quality` (private,
-coaching), `reporting.calls`, template v4). A transcript failure never flips the
-file's `status` — it reports under `reporting.calls` plus one `needs_attention` line
-(Albert, 2026-10-01). The read PIT reads recordings and contact notes; it still
-writes nothing.
-
-**The contact note and the summary comment are Make writes.** Make scenario "GHL Call
--> Note" (4951497, **live since 2026-10-02**, fired by Albert's GHL "Call Status" workflow;
-blueprint
-`platform-settings/blueprints/ghl-call-notes-4951497.json`) writes the transcript as
-contact notes and, since 2026-10-02 (Albert), posts Summary + Next steps as an
-**internal comment** on the conversation, both stamped with the call's date, time, staff
-name and `Ref C-MMDD-HHmm`. They are GHL writes outside the `ghl-actions-agent` approval
-gate, the same class as Website Inquiry Ingester and the Stage scenarios. **The comment
-sits behind a gate** ("internal comments only … no slip ups", Albert): its own one-scope
-token used by one module, a literal last-key `type`, JSON-escaped text, an exact-body
-pattern filter, a read-back of the type, an instant WhatsApp alarm that also
-blocks every later comment (kill switch), and a daily alarm if a summary ever lands as
-anything else — every layer pinned by `tests/test_ghl_calls.py` on the snapshot. Calls in
-other languages (Chinese, Vietnamese, Farsi, …) are detected, summarised in English, and get
-an English translation note series beside the original transcript. Do not
-edit that module in Make without re-snapshotting and re-running the tests. Registry
-`platform-settings/ghl-calls.json`; method `methods/ghl-call-transcripts.md`.
-
-### WeChat archive (2026-10-29)
-
-Many supplier conversations happen on Albert's personal WeChat, which has no API.
-`scripts/wechat_archive.py` runs on **Albert's Mac** (launchd, every 30 min; runs once a day,
-the first time after 06:00 the Mac is unlocked and idle). It reads WeChat for Mac through the
-Accessibility API with the pinned, read-only half of `wechat-mcp-server`, and **inserts**
-every message not yet recorded into the private **WeChat Archive** Notion database. Its
-integration has Insert + Read content, never Update, and it is the only file that writes
-there. `wechat-ingest-agent` reads that database through `scripts/wechat_pull.py`
-(Read-content-only token), which is also how a session answers questions about past chats
-(`--search`). Owner: General. Sensitivity: private. Because the repo is public, `wechat.json`
-carries no costs, prices or account numbers; the detail stays in the archive. The archiver
-needs the Mac to itself while it runs (it clicks and scrolls), so it never runs on a locked
-screen and stops when someone touches the Mac. Registry `platform-settings/wechat.json`;
-method and setup `methods/wechat-archive.md`.
-
-### GHL unread triage (`/ghl-triage`, 2026-10-08)
-
-GHL keeps a conversation unread until somebody replies, so the unread count fills with
-closers ("sounds good, see you Tuesday"). Albert's spec, grilled 2026-10-07/08: make unread
-mean *needs a human response*. **One rubric, two callers** — `methods/ghl-unread-triage.md`
-is the only copy of the classifier, read by the session model in both:
-
-- **`/ghl-triage`**, an hourly routine (8am–9pm Toronto, Mon–Sat): `scripts/ghl_unread_pull.py`
-  (read-only) builds each unread conversation's batch — what the customer wrote since our
-  last **human** reply; automations never count as a reply — holds anything unreadable
-  (photos, calls, voicemail), the model judges with rubric v4 (2026-10-10) — reply
-  (`NEEDS_RESPONSE` / `UNSURE`), act (`ACTION`, written opt-outs as `compliance:`), know
-  (`FYI`), clear (`CLOSER` / `SPAM`) — and `scripts/ghl_unread_plan.py` applies guards (a `?`
-  or a long message vetoes CLOSER; SPAM only from a stranger; a `compliance:` reason is
-  always ACTION) and the cap (25, all-or-nothing). What can be marked read: CLOSER and SPAM
-  once the customer's latest message is 4 h old; a model UNSURE after 7 quiet days; a hold
-  (call, attachment, too long, nothing inbound) after 14. NEEDS_RESPONSE, ACTION and FYI never.
-- **`ghl-ingest-agent`** (template v6): the window plus everything unread, split into a reply
-  list (24 h age flag), a "to action" list (missed calls and attachments land here too) and an
-  FYI list shown once — closers and spam dropped from day one, and threads whose customer has
-  been quiet 14+ days as a count. notion-sync is unchanged: reply and to-action items become
-  tasks, FYI does not.
-
-`write_mode` is **`write` since 2026-10-10** (Albert, vault
-`05_decisions/2026-10-10-ghl-triage-write-mode.md`), switched on before the 7-day pilot bar
-on his review of 34/34 right closers. Each clearable kind is its own switch in the registry
-`policy` (`approve_verdicts`, `approve_stale`); changing one is a dated vault decision. The
-write token is `GHL_WRITE_API` (conversations.write only). Every run is logged to branch
-**`claude/ghl-triage-log`** — never merged, never PR'd, written only by `scripts/ghl_triage_log.py` — which is also the verdict cache.
-**`scripts/ghl_mark_read.py` is the only file in this repo that can write to GHL**, and it
-can do one thing: `PUT /conversations/<id>` `{locationId, unreadCount: 0}`, with its own
-`conversations.write` token, compare-and-swap before and read-back after. The repo is
-public, so the log carries no customer text until `log.excerpts` is turned on. Registry
-`platform-settings/ghl-unread-triage.json`; contract `contracts/ghl-triage-schema.md`;
-routine `methods/ghl-triage-routine-prompt.md`.
+Adding an agent means one file in `.claude/agents/` that conforms to the matching contract
+(`ingest-schema.md` or `actions-log-schema.md`), plus a row above. Nothing else changes.
 
 ## Agent class rules
 
@@ -296,406 +48,145 @@ routine `methods/ghl-triage-routine-prompt.md`.
 | Output | Overwrites `<source>.json` (idempotent) | Appends to `actions-log.json` (audit trail) |
 | Failure mode | Writes `status: "error"`, never blocks siblings | Stops the batch, logs, reports |
 
-**"Explicit instruction + approval gate only" (2026-09-11 exception, Albert, widened
-2026-09-12):** for `lightspeed-actions-agent` and `airtable-actions-agent`
-specifically, invoked only via `/catalog-sync`, "approval" now includes the policy
-auto-approval in `contracts/catalog-plan-schema.md` as well as a person's yes — and
-since 2026-09-12 that policy clears everything but three carve-outs, so in practice
-most catalogue writes now happen with no person in the loop at all. The gate itself —
-an actions agent executes only an id that appears `approved` in an approval file,
-never originates a write on its own — did not move; only who satisfies it. Every
-other `*-actions` agent is unchanged: explicit instruction and a person's approval, still,
-always — `ghl-actions-agent` too, except its one mark-read slice below.
+A third class, `*-lead`, is the decide step: `tools: Read, Write` only, reads contract
+files, writes exactly one plan, originates no platform write.
 
-**Second narrow exception (2026-10-10, Albert):** `ghl-actions-agent` may execute a
-**policy**-approved `mark_conversation_read` — that type only, via `/ghl-triage` only, through
-`scripts/ghl_mark_read.py` only — on an approval file `scripts/ghl_unread_plan.py` wrote that
-run (`policy.exception_date` 2026-10-10). The kinds policy may approve are the registry's
-`approve_verdicts` and `approve_stale`, at most 25 per run, all-or-nothing; more waits for a
-person. Every other `ghl-actions-agent` action (replies, stages, tags) still needs a person's
-approval, always. Vault `05_decisions/2026-10-10-ghl-triage-write-mode.md`.
+**The approval gate.** An `*-actions` agent executes only an id that appears `approved` in
+an approval file, and never originates a write. A person's yes always satisfies it. Policy
+satisfies it only in these dated exceptions:
 
-The flow is always: **ingest → decide (Albert, a department lead, policy for the
-narrow catalogue slice above, or the orchestrator) → act**. No agent does all three
-steps.
+- **Catalogue (2026-09-11, widened 2026-09-12, Albert).** `lightspeed-actions-agent` and
+  `airtable-actions-agent`, via `/catalog-sync` only, under "Policy auto-approval" in
+  `contracts/catalog-plan-schema.md`. Three carve-outs are always held: `blocked` entries,
+  rows flagged `Ambiguous Pricing`, and every action on a plan whose `cost_basis` is `null`.
+  `/style-tag` and `/image-fill` use the same policy shape for `airtable-actions-agent`,
+  each behind its own registry `write_mode`.
+- **Second narrow exception (2026-10-10, Albert).** `ghl-actions-agent` may execute a
+  policy-approved `mark_conversation_read` — that type only, via `/ghl-triage` only, through
+  `scripts/ghl_mark_read.py` only, on an approval file `scripts/ghl_unread_plan.py` wrote
+  that run. At most 25 per run, all-or-nothing. Vault
+  `05_decisions/2026-10-10-ghl-triage-write-mode.md`.
 
-A third class, `*-lead`, occupies the decide step: read-only against contract
-files (`tools: Read, Write`, no `Bash`, no `mcp__*`), writes exactly one plan,
-originates no platform write. See Departments below.
+Every other action (GHL replies, stages, tags; social posts; private Notion tasks) needs a
+person's approval, always. Flipping a `write_mode` or a policy switch is a dated vault
+decision, never an edit made to get a run through.
+
+## Files that can write to a platform
+
+- **Lightspeed:** only `scripts/lightspeed_write.py` and `scripts/lightspeed_push.py`. The
+  read path has no write verb, and a test enforces it. Deactivating or deleting a product
+  is a person's call only; policy can never approve a delete.
+- **GHL, from this repo:** only `scripts/ghl_mark_read.py`, and it does one thing
+  (`PUT /conversations/<id>` `{locationId, unreadCount: 0}`). Make writes GHL outside the
+  gate (call notes and comments, scenario 4951497; Website Inquiry Ingester; Stage
+  scenarios). Do not edit 4951497 in Make without re-snapshotting it and re-running
+  `tests/test_ghl_calls.py`.
+- **WeChat Archive (Notion):** only `scripts/wechat_archive.py`, insert-only, on Albert's Mac.
+
+**The repo is public.** No customer text, phone numbers, prices, costs or account numbers
+in committed files (ingest outputs, logs, registries).
+
+## Workflows
+
+Each flow's procedure lives in its command or method file. Read it before running or
+changing the flow.
+
+| Flow | Entry point | Read first |
+|---|---|---|
+| Daily brief | `/daily-ingest` | `.claude/commands/daily-ingest.md` |
+| Price lists | Make 4381438 → `/process-price-list` → `/catalog-sync`; daily `/price-list-sweep` (with promo lane) | `.claude/commands/catalog-sync.md`, `methods/pricelist-pipeline-routine-prompt.md` |
+| Style tags | `/style-tag <SUPPLIER>` | `methods/style-tags.md` |
+| Product images | `/image-fill <SUPPLIER>` | `methods/image-fill.md` |
+| GHL unread triage | `/ghl-triage` (hourly routine) | `methods/ghl-unread-triage.md` |
+| Call transcripts | `ghl-ingest-agent` step 0, `scripts/ghl_calls_pull.py` | `methods/ghl-call-transcripts.md` |
+| WeChat | `scripts/wechat_archive.py` (Mac) → `wechat-ingest-agent` | `methods/wechat-archive.md` |
+| Content | `/content-schedule`, `/content-sweep`, `/content-feedback` | those command files |
+| Departments | `/route` | `methods/departments.md` |
+
+Rules from those flows that a session could break without opening the file:
+
+- **Catalogue.** Lightspeed is written before Airtable (the create mints the UUID). An
+  `Action` cell in the troubled report is prose, never an approval, and cannot clear a
+  pricing carve-out. A list whose `Effective Date` is after today is staged: extract, write
+  nothing, and the sweep applies it on the day. `Effective Date` is the price-list date.
+  Ids live in `platform-settings/`, never in a prompt. The "New Price Lists" routine is
+  enabled (2026-09-27); never disable it or change its schedule on a session's own initiative.
+- **Style tags.** Never touch a record whose `Style tags status` is `Staff confirmed`; never
+  write `Staff confirmed`; colour tags come from `Swatch images` only, and no swatch means hold.
+- **Images.** Sources in order: official site, then The Floor Box and Word of Mouth Floors,
+  then Speers. `Supplier product page` is never Speers. A bot challenge is reported, never
+  worked around.
+- **GHL triage.** The log branch **`claude/ghl-triage-log`** is never merged or PR'd; only
+  `scripts/ghl_triage_log.py` pushes to it. `NEEDS_RESPONSE`, `ACTION` and `FYI` are never
+  marked read.
+- **Content.** Notion is the source of truth for `Post Date`; a reschedule is a proposal
+  through the plan and approval file. `/content-sweep` is not wired into `/daily-ingest`
+  (Albert's call).
+- **Departments.** Ownership keys on source, never platform (`platform-settings/departments.json`).
+  A lead's `dispatch[]` names only read-only specialists. No cross-department ranking. A
+  `private` item is never returned to a `staff`-tier requester.
 
 ## Orchestration
 
-Run `/daily-ingest` (see `.claude/commands/daily-ingest.md`).
-It spawns each ingester as a subagent in parallel, waits, then synthesizes
-`/ingest/YYYY-MM-DD/DAILY-BRIEF.md`. After the brief is written, it hands off to:
-
-1. `vault-writer-agent` — writes/updates vault notes per its whitelist (Vault writes, below).
-2. `.claude/commands/notion-sync.md` — auto-creates/updates team-visible GHL tasks in
-   Notion, proposes-and-stops for anything private/sensitive (Notion writes, below).
-
-Both run every time `/daily-ingest` runs, including unattended/scheduled runs. Neither
-can affect `DAILY-BRIEF.md` — it's already written before either starts.
-
-**The catalogue pipeline is separate and has its own routine** — not part of
-`/daily-ingest`, and it never touches the brief.
-
-**One routine, one shape, always keyed on a notionID** (re-merged 2026-09-11, Albert —
-collapses what was briefly "two stages branching on the fire payload" into a single
-continuous run per row):
-
-Every fire carries `{"notionID": …}` (Make 4381438, the moment a new price list
-lands). One session, in order, on that one row:
-
-1. **Extract.** Runs `/process-price-list`. Downloads the PDF, assigns `Company` and
-   `Tags`, extracts against the live Airtable catalogue, produces and **commits** the
-   two upload CSVs to `ingest/YYYY-MM-DD/`, attaches them to the row, sets
-   `Extraction Status` to `Extracted [Needs Review]` (or `[Error]`). Writes no
-   platform.
-2. **Check the effective date (2026-09-25).** If the row's `Effective Date` is after
-   today the list is staged: no sync now; the routine's scheduled sweep runs it on
-   the day. Otherwise go on.
-3. **Sync, same session.** Runs `/catalog-sync` on the same notionID,
-   reading the CSVs the previous step just committed — never a Notion re-download,
-   which is why the commit in step 1 is load-bearing now, not just tidy. Pulls
-   Lightspeed, reconciles, produces the plan, then applies policy auto-approval
-   (`contracts/catalog-plan-schema.md`) and writes everything but the three
-   carve-outs. Held rows and flagged writes go to the troubled CSV on `Troubled
-   Files`, and the run pushes a notification naming the counts.
-
-`Extracted [Ready to Upload]` is no longer a precondition this routine waits for —
-sync no longer waits on Albert manually promoting a row before it runs. The status
-still exists for the manual CSV path (whoever runs a stage by hand still uses it),
-per "all three trackers are kept" below.
-
-**`Effective Date` IS the price list date (2026-10-03, Albert).** One field, not two: a separate
-`Price List Date` (added 2026-09-28, read by Titan Desk) drifted behind it — Triforest's PL-382 moved
-160 records to 2026-10-01 and left it at 2026-08-15. Every record was matched to the higher of the two
-(1,859 written) and nothing writes it any more. Albert deleted the field in Airtable the same day
-and moved Titan Desk's mapping to `Effective Date` (titan-desk commit 9b03625, migration 008).
-
-**Lists received before they take effect are staged (2026-09-25, Albert).** The row's
-`Effective Date` (Notion) is the list's date; when it is after today, extraction runs
-but `/catalog-sync` writes nothing and `catalog_reconcile.py` blocks every row
-`not_yet_effective`. `/price-list-sweep` applies due lists on the day, against a fresh
-pull. Staged = `Effective Date` in the future with `Airtable Sync: Pending`. The sweep
-is the "New Price Lists" routine's **scheduled** fire: a fire with a `notionID` extracts
-that row, a fire without one sweeps (Albert, 2026-09-25 — one routine, not two). The
-sweep runs each row's next skill: `Ready to Upload` (a person answered) → sync;
-`Effective Date` arrived → sync; a `Not started` row from the last 14 days the webhook
-missed → extract + sync. At most 5 rows a morning; held `Partial` rows, errors and the
-older backlog wait for a person. `/catalog-sync` refuses a list older than one already
-applied for the same company.
-
-**Promos come and go in Lightspeed with the sweep (2026-09-26, Albert).** Every
-`/price-list-sweep` runs a promo lane (`scripts/promo_sweep.py`): from Airtable's
-`Promo cost` / `Promo end date` — kept forever, never cleared — it puts the
-`(P YYYY-MM-DD)` name prefix and the promo cost on a standalone Lightspeed product
-while the promo runs and takes both off the morning after it ends. A verbal extension
-is one Airtable edit (move the end date). **Every promo has an end date** (2026-09-26):
-printed, else the last day of its Promo row's month, else of its list's month — the
-earlier when unsure; an undated one counts as over. Policy approves a morning of ≤50 changes;
-more waits for a person. The report lists promos ended in the last 14 days with their
-`Promo List URL` ("ask the rep"). **Rep rates** (`Rep cost ($/sf)`, entered by hand,
-end date optional) run the same way with an `(R …)` marker; the lower of promo and
-rep wins, and a sync never pushes a list cost over either. Variant members carry the
-marker on their own variant value, never the family name. No `PROMO` tag.
-
-**A periodic no-`notionID` sweep can still exist as a backstop**, not the primary
-path: it would pick up any row where `Airtable Sync` is still `Pending`/`Partial`
-after its own fire should have cleared it (an interrupted run, a Lightspeed outage
-mid-session) and re-run `/catalog-sync` on it. Not wired up as of this edit — add it
-only if rows are actually observed getting stuck, not preemptively.
-
-Canonical text: `methods/pricelist-pipeline-routine-prompt.md`. It stores a *pointer*
-to `/process-price-list` and `/catalog-sync` rather than a copy of either procedure —
-same reason as always: on 2026-09-03 the (then-separate) extraction routine fired
-carrying a procedure that had gone stale on 09-01 and reported success against an
-instruction set missing five of its seven steps. A pointer has nothing in it to fall
-behind. The predecessor files (`methods/pricelist-routine-prompt.md`,
-`methods/catalog-sync-routine-prompt.md`) are superseded but kept for their
-changelogs.
-
-## Departments
-
-A third layer sits between ingest and act: `/route` takes a request from wherever
-it arrives, decides which department owns it, and spawns that department's lead.
-The lead reads its own sources and writes ONE plan — it proposes, it never
-executes. Full shape in `methods/departments.md`; ownership is data in
-`platform-settings/departments.json`.
-
-| Department | Owns | Lead | Status |
-|---|---|---|---|
-| Sales | `ghl` | `planner-agent` | active — the reference build |
-| Operations | `notion` (5 sub-sources) | — | spec: source live, no rule table yet |
-| Catalogue | Airtable · Lightspeed · price lists | `/catalog-sync` | active — complete before this layer existed |
-| Marketing | `meta-ads` · `content` | `/content-schedule` | active — content posting live (write mode permanent since 2026-09-28), feedback loop reporting; ad reporting still needs a framework doc |
-| Finance | `bookkeeper` | — | **blocked — the source has never worked** |
-| General | `outlook` | — (`/route` answers inline) | active — the fallback lane |
-
-**A lead cannot spawn a subagent** (harness constraint), so it names specialists
-in its plan's `dispatch[]` and `/route` runs them. `dispatch[]` may name only
-read-only specialists; an `*-actions` agent is reachable solely through an
-approval file naming exact action ids — enforced by
-`tests/test_departments_registry.py` and by `contracts/dept-plan-schema.md`.
-
-**Ownership keys on source, never platform.** `owns.sources[]` must be a
-partition of the ingest sources in the table above: owned twice routes
-non-deterministically, owned by nobody falls silently to General.
-
-**A department is not a sensitivity boundary** — provenance decides (Albert,
-2026-08-02). The layer adds no routing axis; the one new rule is a filter, that a
-`private` item is never returned to a `staff`-tier requester
-(`platform-settings/requesters.json`).
-
-**Cross-department ranking is banned.** Plans render side by side in the
-registry's `escalation_order`; there is no company-wide priority number, for the
-same reason project and STORE pipelines are never summed.
-
-`/daily-ingest` is unchanged and stays that way — the layer is additive, and a
-department failing must never touch `DAILY-BRIEF.md`.
-
-**The content pipeline needs a daily `/content-sweep`** (`.claude/commands/content-sweep.md`).
-Nothing else can set `Post Status = Posted`, so without the sweep every row sits at
-`Scheduled` permanently. **Corrected 2026-10-18:** `getScheduledPosts` keeps returning a
-post after it publishes, with each provider `status: PUBLISHED` and its `publicUrl`, and
-that is the sweep's primary signal (`published_in_planner`). The original belief, that a
-published post disappears, would have marked the first five live posts `Failed`. For a
-post that does leave the list, absence is ambiguous, so the sweep still demands absence
-**and** a passed due time **and** a wide enough query window **and** `write_mode.mode`
-not being `draft` before writing `Posted`. In draft mode it marks
-nothing posted at all — a draft does not publish, so a vanished one was deleted by a
-person. **Not wired into `/daily-ingest`**: that would add a platform write to the
-orchestrator, which is Albert's call, so it runs by hand for now.
-
-**Publication is then CONFIRMED against analytics, not inferred** (2026-09-14).
-`scripts/social_publish_reconcile.py` matches each candidate to a real published post
-via `getAnalyticsDataByMetrics`, which is also the only source for `Live URL`,
-`Posted Caption` and `Posted At`. Per-surface metric ids are data in `social-destinations.json` → `analytics`,
-captured live. Three things that are limits rather than gaps: YouTube exposes a title
-and no description, so `Posted Caption` stays blank there; Google Business Profile
-exposes no permalink, so `Live URL` stays blank there; and the join is by surface and
-time-proximity, not by id, because Metricool's planner uuid and a network's own post id
-never map to each other. Two candidates in one window are refused, never guessed.
-
-**Notion is the source of truth for `Post Date`** (Albert, 2026-09-14). Drift between
-the two systems is therefore resolvable, and the sweep emits a `social_reschedule_post`
-**proposal** — which still goes through the plan, approval file and actions log like any
-other platform write. It withholds the proposal when Notion's date is in the past or
-when either side fires imminently. Captions are the other way round: they may be edited
-in Metricool (better previews) and are read back afterwards. `Caption` is a per-row
-TEXT field copied from the idea at row creation (2026-09-14, Albert — it was a rollup;
-`Caption Override` is gone as redundant), so per-platform captions are the default
-rather than an escape hatch. That matters because "link in bio" and hashtag blocks do
-not travel between Instagram, YouTube and a Google listing — and because a live rollup
-would retroactively rewrite what already-posted rows appear to have said.
-
-**Each platform's caption is its own property on the idea** (2026-09-28, Albert).
-Titan Content Ideas' single `Caption` is gone. In its place: `Caption - Instagram`,
-`- TikTok`, `- Facebook`, `- YouTube`, `- Google Business`, plus `YouTube Title` and
-`First Comment`, all written by the `titan-content-scripts` skill. The **Send to
-Calendar** button picks one with an `ifs()` on `Next: Post To` and copies it into the new
-log row's `Caption`. It's a Notion formula on the button, so no Make scenario is involved.
-One press makes one row for one platform. There is **no fallback**: an empty field
-gives a blank Caption, which `/content-schedule` holds, instead of another platform's
-caption. The mapping is data in `content-sources.json` → `caption_fields`, and it has to
-match the button formula by hand, because the API can't read buttons.
-
-**Posts report back (`/content-feedback`, 2026-09-28, Albert).** From day 7 after a post goes
-live, Metricool's per-post stats land on its Content Calendar Log row: day-7 numbers, frozen,
-drive every ranking; day-30 numbers are frozen for the long tail; a rolling pull every 30
-days from day 60 watches for a **Late Surge** (2× the day-30 views) and stops once a post
-has gone quiet twice. Rankings are rates (saves, shares, comments and engagement per view)
-compared **within one platform only**, against Titan's own average, with fewer than 5 posts
-treated as an early signal. The join is `Live URL`, never `Metricool Post ID`. Metric ids are
-data in `social-destinations.json` → `analytics.surfaces.<surface>.stats`, and four gaps are
-permanent: no per-reel follows on Instagram, no saves on TikTok, 10-second (not 3-second)
-views on Facebook, and no % viewed or subscribers on YouTube. Results go to a **Performance
-notes** page that `titan-content-scripts` reads to weight its ★ picks, keeping about 20% of
-each batch exploratory. Until a transcript step exists, Hook A (AEO) is assumed filmed.
+`/daily-ingest` spawns every ingester in parallel, waits, writes
+`/ingest/YYYY-MM-DD/DAILY-BRIEF.md`, then hands off to `vault-writer-agent` and
+`.claude/commands/notion-sync.md`. Both run every time, unattended runs included, and
+neither can affect the brief. The catalogue pipeline, the departments layer and every other
+flow are separate and never touch the brief.
 
 ## Analyses
 
-An analysis earns structure by being re-run, not by being interesting. The ladder:
+Structure is earned by re-runs: one-off → vault `09_analyses/` note + raw output in
+`analysis/output/` (default); asked twice → `methods/<slug>.md` + `analysis/<slug>.py`;
+re-run with traps → a command (`won-analysis` is the example); agent + contract only when it
+joins the daily flow. Findings always land in the vault.
 
-| Tier | What exists | When |
-|---|---|---|
-| 0 — inline | Findings note in vault `09_analyses/YYYY-MM-DD-slug.md` + raw artifact in `analysis/output/` | Any one-off question. **Default.** |
-| 1 — method + script | `methods/<slug>.md` + `analysis/<slug>.py` | Second time the same question is asked (rule of two), or first time if the pull needs caching |
-| 2 — command | `.claude/commands/<slug>.md` wrapping the script | Re-run on demand AND has traps that must not be re-derived (field mappings, unit conversions, exclusion rules). Reference example: `won-analysis` |
-| 3 — agent + contract | `.claude/agents/` + `contracts/` | Only when it joins the scheduled daily flow. High bar — `planner-agent` is parked at exactly this boundary |
+## Vault (albertngo/titan-vault, branch `main-vault`)
 
-Promotion triggers (any one suffices): asked twice; painful-to-get-right method;
-output feeds other automation; expensive pull needing a cache. Not triggers:
-"interesting," "might be useful later." Findings always land in the vault
-regardless of tier; the repo holds data and method, the vault holds conclusions.
-
-## Companion repo: titan-vault
-
-The vault (`albertngo/titan-vault`) is a **separate repo**. A cloud session usually clones
-only this one, so load the vault before any vault work:
-
-0. If a `titan-vault` checkout is already in the session (attached as a source), use it:
-   `git pull` on `main-vault` first, then skip to the work.
-1. `add_repo` — `albertngo/titan-vault`, `access: "push"` (use `"read"` when only reading).
-2. Clone once, inline, generous timeout: `git clone --depth 1 <clone_url> /workspace/titan-vault`.
-3. `register_repo_root`, which loads the vault's `CLAUDE.md`, which imports `CONVENTIONS.md`.
-
-**Read the vault before designing a build (2026-10-11, Albert).** Before proposing or
-designing a new build, or a significant change to one, load the vault (steps above) and read
-`04_goals/`, recent `05_decisions/` and `09_analyses/`, and the notes on the entities the build
-touches. Ground the suggestion in what they say, name the notes that shaped it, and point out
-where a build would contradict a recorded decision. Read-only: this never writes the vault.
-
-## Vault writes
-
-`vault-writer-agent` runs automatically at the end of `/daily-ingest` (**un-parked
-2026-07-27**, on Albert's explicit instruction, ahead of its own originally-stated
-"three clean sessions" bar — see the note in its definition). It may ONLY write in
-the 5 whitelisted patterns there: daily note, entity-note Log appends, new entity
-notes (ID-matched), decision notes on explicit record, platform notes on explicit
-instruction. Anything else, it proposes and stops — same as a manual write always did.
-
-The vault's `CONVENTIONS.md` still governs every write, automatic or manual:
-
-- Append, don't rewrite. Prose above a note's `## Log` is Albert's.
-- Never delete or rename a note. Never touch `.obsidian/`. `vault-writer` never edits
-  `04_goals/`; a work session writes it only on Albert's explicit instruction (CONVENTIONS
-  v2.2, 2026-10-27).
-- **Visibility tagging** (CONVENTIONS v2.0, 2026-08-02): every note carries
-  `visibility: staff | admin`; on staff-floor entity notes, admin-grade Log
-  bullets carry a trailing `#admin`. Ingest `sensitivity` maps `team → staff`,
-  `private → admin`; anything missing or unknown reads as admin. The vault
-  CONVENTIONS Visibility section is canonical; the tag is advisory until a
-  staff-facing export is built.
-- Commit as `vault: <what> YYYY-MM-DD`. Vault commits go to `main-vault` (the vault
-  repo's actual default branch, confirmed with Albert 2026-07-27) — no review step.
-  A vault commit left on any other branch never reaches Obsidian or a later session:
-  the 2026-09-12 website decision and the 2026-10-07/08 flooring-line addenda sat on
-  session branches until 2026-10-27. If the session can push only its own branch, open a
-  PR into `main-vault` and say so in the final reply.
-- **Push rule depends on where the session runs** (Albert, 2026-07-28):
-  - **Albert's Mac** (vault at `~/Documents/claude/titan-vault`): the file edit
-    itself is durable — the Obsidian git plugin auto-commits and pushes every
-    ~10 min, sweeping up anything a session left uncommitted. Make the
-    descriptive commit when git cooperates, but never block on it. Manual push
-    only if `$VAULT_AUTOPUSH=true` (currently `false`).
-  - **Cloud/VM session** (vault cloned to `/workspace/titan-vault`): the sandbox
-    is ephemeral and there is no Obsidian to sweep up after you — **commit AND
-    push are mandatory**, in the same step as the write. `$VAULT_AUTOPUSH` does
-    not apply here; an unpushed vault commit in a VM is a lost write.
-- **Earned relevance, not bulk import** (CONVENTIONS.md note rule 4 + "Scaling to
-  more sources"): a vault note is created when something durable happens to an
-  entity — a win, a `needs_attention` hit, an analysis touching it — never by a
-  proactive bulk or windowed pull of a platform's history, GHL or otherwise. This is
-  exactly why the whitelist excludes routine drift findings: most days, most GHL
-  activity produces no vault write at all. Read that section before proposing any
-  backfill.
-
-**Ask Albert / propose-and-stop** for anything off-whitelist. Don't batch to the end
-of a session, and never write outside the whitelist unprompted:
-
-- An agent is added, or its definition/contract changes.
-- A platform quirk, trap, or ID surfaces that `06_platforms/<Platform>.md` doesn't already have.
-- An analysis produces findings worth keeping (e.g. the GHL win-timeline) →
-  `09_analyses/YYYY-MM-DD-slug.md` per the vault's `08_templates/analysis.md`.
-- A decision gets made → `05_decisions/YYYY-MM-DD-slug.md`. Decisions and analyses carry
-  `serves:` with the goal IDs from the current `04_goals/` note (e.g. `[T2, S1]`), or `none`.
-- A contract in `contracts/` changes.
-- A repo file cites a vault note (a registry `_switched` field, a method changelog, this
-  file) → write that note in the same session. `05_decisions/2026-10-10-ghl-triage-write-mode.md`
-  was cited three times here and not written until 2026-10-27.
-
-Checkpoint flow for off-whitelist writes: draft the change → show it in chat → Albert
-approves → write → commit → push.
-
-**`/wrap-up` (2026-10-27, Albert).** Run it before ending any session that built, decided or
-analysed something. It checks the session against the vault, drafts what is missing, and
-writes what Albert approves. The procedure is the vault's `CONVENTIONS.md`, "Capture from
-work sessions"; the command only points there. titan-desk, titan-website and
-titan-bookkeeper carry the same command and a short pointer section in their CLAUDE.md.
+- **Load it:** use an attached checkout (`git pull` on `main-vault`); otherwise `add_repo`
+  (`access: "push"`, or `"read"`), `git clone --depth 1 <clone_url> /workspace/titan-vault`,
+  `register_repo_root`.
+- **Read before designing a build:** `04_goals/`, recent `05_decisions/` and `09_analyses/`,
+  and the notes on what the build touches. Name them, and flag any contradiction.
+- **The vault's `CONVENTIONS.md` governs every write.** `vault-writer-agent` writes only its
+  whitelist. Anything else is propose-and-stop: draft → show Albert → he approves → write →
+  commit → push. That covers: an agent or contract change, a platform quirk, analysis
+  findings, a decision (with `serves:`), and any vault note a repo file cites (write it in
+  the same session).
+- Commit `vault: <what> YYYY-MM-DD` to `main-vault`. In a cloud session, commit **and push**
+  in the same step. If only a session branch can be pushed, open a PR into `main-vault` and
+  say so.
+- Earned relevance: never bulk-import a platform's history into the vault.
+- Run **`/wrap-up`** before ending a session that built, decided or analysed something.
 
 ## Notion writes
 
-`.claude/commands/notion-sync.md` runs automatically at the end of `/daily-ingest`
-(wired in 2026-07-27, on Albert's explicit instruction). Governed by
-`contracts/notion-task-schema.md`; all ids/property names/routing live in
-`platform-settings/notion-destinations.json`, never hardcoded in the command.
-
-Separately, `notion-ingest-agent` READS Notion daily (read-side registry:
-`platform-settings/notion-ingest-sources.json`) — including the same Tactical
-Tasks List this sync writes to. That coexistence is deliberate: the ingester is
-strictly read-only and excludes rows the sync created the same day.
-
-Two destinations, different trust levels:
-
-- **Team** — the shared "✅ Tactical Tasks List" (Titan Flooring HQ teamspace).
-  Auto-write: high-priority GHL findings become task rows, deduped by an exact
-  match on a constructed contact-detail URL (never `item.id` — see the contract for
-  why that's not cross-day stable). Rows are always created unassigned and
-  `Verification: Needs Verification` — the sync never assigns a person or a due date.
-- **Private** — Albert's personal "to-do" database (to-do list (personal), PERSONAL
-  section). Always approval-gated: candidates are proposed in chat with their routing
-  reason, written only on explicit yes. Bookkeeper/Outlook findings default here;
-  a GHL item can escalate `team → private` via its own `sensitivity` field, never
-  the reverse.
-
-Every write is logged to `actions-log.json` per `contracts/actions-log-schema.md`
-(`notion_create_task` / `notion_update_task`). A Notion outage never blocks or
-retroactively affects `DAILY-BRIEF.md` — the sync runs after the brief is already
-written.
+`notion-sync` (end of `/daily-ingest`) auto-writes team-visible GHL findings to the Tactical
+Tasks List: unassigned, `Needs Verification`, deduped on the contact-detail URL. Albert's
+private to-do database is always propose-and-wait. Contract `contracts/notion-task-schema.md`;
+ids in `platform-settings/notion-destinations.json`; every write logged to `actions-log.json`.
 
 ## Failure policy
 
 - One ingester failing must NOT block the others or the brief.
-- A failed source appears in the brief under "Sources missing today" — never silently omitted.
-- Ingesters write `status: "error"` records rather than crashing when a platform is unreachable.
+- A failed source appears in the brief under "Sources missing today", never silently omitted.
+- Ingesters write `status: "error"` records rather than crashing.
 
 ## Conventions
 
-- Dates: `YYYY-MM-DD`, timezone America/Toronto.
-- Money: cents as integers, CAD unless stated.
-- Brand color for any rendered output: RiderBlue #1e6fff.
-- Response style for briefs: terse, PARA (Point, Action, Result, Ask) where a decision is needed.
+- Dates `YYYY-MM-DD`, timezone America/Toronto. Money in integer cents, CAD unless stated.
+- Brand colour for rendered output: RiderBlue #1e6fff.
+- Briefs: terse, PARA (Point, Action, Result, Ask) where a decision is needed.
 
 ## Git workflow
 
-`main-agents` is this repo's actual default branch on GitHub (verify with
-`gh repo view --json defaultBranchRef` if unsure — don't trust a stale session
-hint). `main` is a separate, older branch that predates active work here; treat
-it as legacy, not the PR target.
-
-Work on a session-named branch off `main-agents` (e.g. `session/2026-07-27-notion-sync`),
-open the PR against `main-agents`, merge there. Decided 2026-07-27 after a PR
-was accidentally opened against `main` instead.
-
-One standing exception (2026-10-08): **`claude/ghl-triage-log`** is GHL unread triage's log
-branch. It is never merged and never PR'd (`scripts/publish_run.py` refuses it); only
-`scripts/ghl_triage_log.py` pushes to it, by plumbing, never by checkout or force.
+`main-agents` is the default branch and the PR target; `main` is legacy. Work on a session
+branch, open the PR against `main-agents`. Exception: `claude/ghl-triage-log` (above).
 
 ## Secrets
 
-No secrets in this repo. See `.env.example` for what each environment must provide.
-Cloud environment env vars are not a secrets store — treat anything there as visible.
-
-**Check this every run, not just at setup (2026-09-11).** Before using any credential
-`.env.example` documents, confirm it actually comes from `.env` — never accept a
-same-named cloud/session env var as satisfying that requirement, even if it would
-work functionally (a script reading `os.environ` can't tell the difference; you have
-to). If a required credential is only present as a cloud env var, treat it as
-missing: report the exact variable name and stop, per the consuming command's
-"Before you start" section (e.g. `/catalog-sync`'s Lightspeed check) — never fall
-back to the cloud var to get past it.
-
-**Superseded for cloud/VM sessions (2026-09-11, Albert).** `.claude/hooks/session-start.sh`
-runs on every `SessionStart` (remote only, gated on `$CLAUDE_CODE_REMOTE`) and copies any
-`.env.example`-documented key from the environment's own env vars into `.env`, whenever
-`.env` doesn't already hold a non-empty value for that key — it never overwrites a value
-someone set deliberately. This is a conscious, explicit trade against the paragraph above:
-Albert decided the friction of re-confirming a cloud-provisioned credential every run
-wasn't earning its keep, and chose to have the environment provision `.env` automatically
-instead of stopping to ask each time. The check above ("confirm it actually comes from
-`.env`") still holds literally — by the time any command or agent runs, the value really is
-in `.env` — but the human-in-the-loop step it used to force is now a one-time decision made
-here, not a per-run one. If a credential still reads as missing after this hook has run,
-it is genuinely absent from the environment (not just cloud-only) — report the variable name
-and stop, same as before.
+No secrets in this repo; `.env.example` lists what each environment must provide.
+Credentials must come from `.env`, never a same-named cloud env var directly. In cloud
+sessions `.claude/hooks/session-start.sh` copies documented keys from the environment into
+`.env` without overwriting. If a credential is still missing after that, report the
+variable name and stop.
