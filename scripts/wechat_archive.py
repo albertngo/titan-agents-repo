@@ -102,6 +102,7 @@ class MacReader:
             else:
                 v = self._ax_get(el, kAXValueAttribute) or self._ax_get(el, kAXTitleAttribute)
                 found.append(f"{ident}: {str(v)[:12]!r}")
+        found.append(f"frontmost: {self.frontmost()}")
         return "; ".join(found)
 
     def _app_quiet(self):
@@ -128,8 +129,46 @@ class MacReader:
     def list_chats(self):
         return list(self._collect(self._app()).keys())
 
+    @staticmethod
+    def frontmost():
+        import AppKit
+        app = AppKit.NSWorkspace.sharedWorkspace().frontmostApplication()
+        return app.bundleIdentifier() if app else None
+
+    def bring_to_front(self):
+        """
+        Make WeChat the frontmost app and raise its window, and confirm it.
+        Newer macOS often ignores activateWithOptions_ from a background
+        process, and a click sent while another window is on top lands there.
+        """
+        import AppKit
+        from ApplicationServices import (AXUIElementPerformAction,
+                                         AXUIElementSetAttributeValue,
+                                         kAXChildrenAttribute, kAXFrontmostAttribute,
+                                         kAXRaiseAction, kAXRoleAttribute)
+        bundle = "com.tencent.xinWeChat"
+        apps = AppKit.NSRunningApplication.runningApplicationsWithBundleIdentifier_(bundle)
+        if not apps:
+            raise RuntimeError("WeChat is not running")
+        ax = self._app_quiet()
+        for _ in range(12):
+            if self.frontmost() == bundle:
+                break
+            apps[0].unhide()
+            apps[0].activateWithOptions_(AppKit.NSApplicationActivateAllWindows)
+            AXUIElementSetAttributeValue(ax, kAXFrontmostAttribute, True)
+            time.sleep(0.25)
+        for child in self._ax_get(ax, kAXChildrenAttribute) or []:
+            if self._ax_get(child, kAXRoleAttribute) == "AXWindow":
+                AXUIElementPerformAction(child, kAXRaiseAction)
+                break
+        time.sleep(0.3)
+        if self.frontmost() != bundle:
+            raise RuntimeError(f"WeChat would not come to the front ({self.frontmost()} stayed)")
+
     def read_chat(self, chat, last_n):
         """Open `chat` from the sidebar and return its last messages, oldest first."""
+        self.bring_to_front()
         elements = self._collect(self._app())
         el = elements.get(chat)
         if el is None:
