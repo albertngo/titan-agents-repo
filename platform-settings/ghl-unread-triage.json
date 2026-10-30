@@ -5,7 +5,7 @@
 
   "rubric": {
     "file": "methods/ghl-unread-triage.md",
-    "version": "4",
+    "version": "5",
     "_bump": "Bump here and in the method file's 'Rubric version' in the same commit. A bump discards every cached verdict."
   },
 
@@ -27,17 +27,18 @@
   "reason_max_chars": 80,
 
   "policy": {
-    "approved_by": "policy: ghl-unread-triage auto-approval (rubric v4)",
+    "approved_by": "policy: ghl-unread-triage auto-approval (rubric v5)",
     "approve_verdicts": ["CLOSER", "SPAM"],
     "_approve_verdicts": "Each clearable verdict is its own switch (Albert, 2026-10-08). Empty while plan_only. A verdict joins only after its pilot bar below is met and a vault decision records it.",
     "min_unread_hours": 4,
     "_min_unread_hours": "Albert, 2026-10-10: a CLOSER or SPAM is marked read only once the customer's latest message is at least this many hours old, so staff get a window to see it. The sweep stops at 9pm, so anything after ~5pm survives to the next morning. Tunable: 8, or 24 for 'next day'.",
-    "approve_stale": ["UNSURE", "HELD"],
+    "approve_stale": ["UNSURE", "HELD", "FYI"],
     "stale": {
       "UNSURE": {"days": 7, "_note": "Albert, 2026-10-10: an UNSURE left untouched for a week (no new customer message, no human reply) is assumed seen, i.e. FYI, and marked read. Model UNSURE only: a guarded one (a '?' or long message vetoed as CLOSER, or spam from a non-stranger) never ages out."},
-      "HELD": {"days": 14, "holds": ["call_in_batch", "non_text_content", "batch_too_long", "no_customer_text"], "_note": "Albert, 2026-10-10: 'clear if longer than 14 days' for every hold he reviewed. Measured from the customer's latest message (for no_customer_text, from the conversation's last message, which is ours and therefore later)."}
+      "HELD": {"days": 14, "holds": ["call_in_batch", "non_text_content", "batch_too_long", "no_customer_text"], "_note": "Albert, 2026-10-10: 'clear if longer than 14 days' for every hold he reviewed. Measured from the customer's latest message (for no_customer_text, from the conversation's last message, which is ours and therefore later)."},
+      "FYI": {"kinds": {"deferring": 72, "lost": 72, "third-party": 72, "info": 336, "praise": 336}, "_note": "Hours of quiet per kind tag. Albert, 2026-10-30 (vault 05_decisions/2026-10-30-ghl-triage-fyi-age-out.md), on his review of run 20261029T2059-4e19's 76 FYI threads: a 'still deciding, I'll get back to you' is cleared after 72 h ('change the rule to allow for these to be cleared out in 72h'), and so are pitches, job seekers and other third parties ('we can clear these no problem'). Lost or declined jobs joined the same day at the same 72 h, on Claude's suggestion, which Albert invited ('could be cleared earlier') and approved ('yes'). Same day, address, location, arrival, site-detail and praise FYIs (info, praise) clear 'with the normal 14 days quiet' (Albert), 336 h. The kind is the tag the reason starts with (rubric v5). An untagged FYI (a mixed batch, a promise still owed to us) is not listed and never ages out. An untagged or guarded FYI never ages out."}
     },
-    "_stale": "Age-based clears, separate from verdict clears. NEEDS_RESPONSE, ACTION and FYI never age out. Each kind is its own switch (approve_stale).",
+    "_stale": "Age-based clears, separate from verdict clears. NEEDS_RESPONSE, ACTION and an untagged FYI never age out; a tagged FYI after its kind's hours in stale.FYI.kinds. Each kind is its own switch (approve_stale).",
     "max_mark_read_per_run": 25,
     "cleanup": {"until": "2026-10-19", "max_mark_read_per_run": 400},
     "_cleanup": "Albert, 2026-10-17: a one-off backlog cleanup. Every run 2026-10-12..16 tripped the 25 cap (~237 clearable: closers past 4 h, UNSURE quiet 7 d, holds quiet 14 d), so nothing cleared. Through 'until' (Toronto date, inclusive: Sat 17 and Mon 19) a run may clear up to this many; the day after, the normal cap applies again by itself. Same kinds, same guards, same compare-and-swap. Remove this block in a follow-up once it has expired.",

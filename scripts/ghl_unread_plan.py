@@ -17,13 +17,15 @@ appends to the log branch). For each conversation, in order:
 
 Dispositions (rubric v3): CLOSER and SPAM are `clear`; ACTION and the registry's
 action_holds are `action`; FYI is `fyi`; no_customer_text is `not_ours`; everything else is
-`waiting` (the reply list). Two age-out rules then turn a row `clear` (rubric v4, Albert
-2026-10-10): a model UNSURE whose customer has been silent policy.stale.UNSURE.days (7), and
-a hold in policy.stale.HELD.holds silent policy.stale.HELD.days (14). Only `clear` rows
+`waiting` (the reply list). Age-out rules then turn a row `clear`: a model UNSURE whose
+customer has been silent policy.stale.UNSURE.days (7) and a hold in policy.stale.HELD.holds
+silent policy.stale.HELD.days (14) (rubric v4, Albert 2026-10-10), and an FYI whose reason
+carries a kind tag in policy.stale.FYI.kinds, silent that tag's hours (rubric v5, Albert
+2026-10-30). Only `clear` rows
 become actions: in sweep mode, on a conversation still unread, when the verdict is in
 policy.approve_verdicts and the customer's latest message is at least
 policy.min_unread_hours old, or when the age-out kind is in policy.approve_stale. ACTION, FYI
-and NEEDS_RESPONSE never do — a registry that lists them (or UNSURE) as clearable or
+and NEEDS_RESPONSE never do as a verdict — a registry that lists them (or UNSURE) as clearable or
 approvable as a verdict is refused. More actions than policy.max_mark_read_per_run makes the
 plan `needs_person` and approves NOTHING (Albert, 2026-10-08: all-or-nothing).
 
@@ -51,8 +53,11 @@ CANDIDATES_VERSION = "ghl-triage-candidates-1"
 PHONE_OR_EMAIL = (r"[\w.+-]+@[\w-]+\.[\w.]+", r"\+?\d[\d\s().-]{6,}\d")
 # Never marked read, whatever the registry says: reply, act and know (rubric v3).
 NEVER_CLEAR = frozenset({"NEEDS_RESPONSE", "UNSURE", "ACTION", "FYI"})
-# Age-out kinds (policy.approve_stale): UNSURE after a quiet week, holds after two.
-STALE_KINDS = {"UNSURE": "stale_unsure", "HELD": "stale_hold"}
+# Age-out kinds (policy.approve_stale): UNSURE after a quiet week, holds after two, a tagged
+# FYI after its tag's hours in policy.stale.FYI.kinds.
+STALE_KINDS = {"UNSURE": "stale_unsure", "HELD": "stale_hold", "FYI": "stale_fyi"}
+# The kind tags an FYI reason may start with (rubric v5). Untagged FYI never ages out.
+FYI_KINDS = ("deferring", "lost", "third-party", "info", "praise")
 
 
 class InputError(ValueError):
@@ -95,6 +100,10 @@ def check_inputs(candidates, judgements, reg):
     bad = sorted(set(reg["policy"].get("approve_stale", [])) - set(STALE_KINDS))
     if bad:
         raise InputError(f"registry policy.approve_stale lists {bad}: only {sorted(STALE_KINDS)} age out")
+    bad = sorted(set(((reg["policy"].get("stale") or {}).get("FYI") or {}).get("kinds", {}))
+                 - set(FYI_KINDS))
+    if bad:
+        raise InputError(f"registry policy.stale.FYI.kinds lists {bad}: the tags are {list(FYI_KINDS)}")
     if candidates.get("contract_version") != CANDIDATES_VERSION:
         raise InputError(f"candidates contract {candidates.get('contract_version')!r} "
                          f"!= {CANDIDATES_VERSION}")
@@ -184,24 +193,39 @@ def quiet_hours(row):
     return None
 
 
+def fyi_kind(row):
+    """The kind tag an FYI reason starts with ("deferring: still deciding"), else None."""
+    head, sep, _ = row["reason"].partition(":")
+    head = head.strip().lower()
+    return head if sep and head in FYI_KINDS else None
+
+
 def age_out(row, reg):
     """Rubric v4 (Albert, 2026-10-10): a model UNSURE untouched for a week is taken as seen;
-    a hold untouched for two weeks is cleared. Never NEEDS_RESPONSE, ACTION or FYI."""
+    a hold untouched for two weeks is cleared. Rubric v5 (Albert, 2026-10-30): an FYI whose
+    kind tag is in policy.stale.FYI.kinds is cleared after that tag's hours. Never
+    NEEDS_RESPONSE, ACTION or an untagged FYI."""
     stale = reg["policy"].get("stale") or {}
     quiet = quiet_hours(row)
     if quiet is None:
         return
-    u, h = stale.get("UNSURE"), stale.get("HELD")
+    u, h, f = stale.get("UNSURE"), stale.get("HELD"), stale.get("FYI")
     if u and row["verdict"] == "UNSURE" and row["verdict_source"] in ("model", "cache") \
             and not row["guard"] and quiet >= u["days"] * 24:
         kind, days = "stale_unsure", u["days"]
     elif h and row["verdict"] == "HELD" and row["hold_reason"] in h["holds"] and quiet >= h["days"] * 24:
         kind, days = "stale_hold", h["days"]
+    elif f and row["verdict"] == "FYI" and row["verdict_source"] in ("model", "cache") \
+            and not row["guard"] and fyi_kind(row) in f["kinds"] \
+            and quiet >= f["kinds"][fyi_kind(row)]:
+        kind, hours = "stale_fyi", f["kinds"][fyi_kind(row)]
+        days = hours // 24 if hours % 24 == 0 and hours >= 7 * 24 else None
     else:
         return
     what = row["reason"] or row["hold_reason"] or ""
+    age = f"{days}d+" if days else f"{hours}h+"
     row.update(disposition="clear", clear_kind=kind, age_flag=False,
-               reason=sanitize_reason(f"untouched {days}d+: {what}", reg["reason_max_chars"]))
+               reason=sanitize_reason(f"untouched {age}: {what}", reg["reason_max_chars"]))
 
 
 def is_compliance(row, reg):
@@ -284,7 +308,7 @@ def build_plan(candidates, judgements, reg):
                                               and r["clear_kind"] == "verdict" and r["verdict"] == v)
                                        for v in reg["clearable_verdicts"]},
             "would_clear_by_kind": {k: sum(1 for r in rows if r["clear_kind"] == k)
-                                    for k in ("verdict", "stale_unsure", "stale_hold")},
+                                    for k in ("verdict", "stale_unsure", "stale_hold", "stale_fyi")},
             "clear_not_yet_due": sum(1 for r in rows if r["clear_kind"] == "verdict" and r["unread"]
                                      and r["verdict"] in approve and not due(r)),
             "actions": len(actions), "cap": cap,

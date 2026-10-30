@@ -1,6 +1,6 @@
 # GHL unread triage — the one rubric
 
-**Rubric version: 4**
+**Rubric version: 5**
 
 This file is the classifier. Both callers read it and nothing else for their judgement:
 
@@ -40,9 +40,10 @@ Judge the batch **as a whole** and return exactly one verdict:
 | `SPAM` | clear | An unsolicited pitch or scam from a stranger: website/SEO/marketing/lead-generation/loan/crypto/"business funding" pitches, phishing, "cash offer" scams, wrong-number bulk texts. |
 | `UNSURE` | reply | Anything you cannot confidently place. |
 
-`NEEDS_RESPONSE`, `ACTION` and `FYI` are never marked read. `CLOSER` and `SPAM` are, once
-the customer's latest message is `policy.min_unread_hours` (4) old. `UNSURE` is marked read
-only after a quiet week (below, "Age-outs").
+`NEEDS_RESPONSE` and `ACTION` are never marked read. `CLOSER` and `SPAM` are, once the
+customer's latest message is `policy.min_unread_hours` (4) old. `UNSURE` is marked read only
+after a quiet week, and a tagged `FYI` after 72 hours or 14 days by kind (below, "FYI kind
+tags" and "Age-outs").
 
 Rules, in order:
 
@@ -68,7 +69,26 @@ Rules, in order:
 6. **Reason** is a short paraphrase, 80 characters at most, with no names, phone numbers,
    emails, addresses or amounts: "confirming measure appointment", not "Sarah confirming
    Thursday at 14 Elm St". For `ACTION` it says what to do: "address sent, update contact
-   and book measure".
+   and book measure". For `FYI` it starts with a kind tag (next section).
+7. **Every `FYI` reason starts with one kind tag** and a colon, when the whole batch fits
+   that one kind: `deferring:`, `lost:`, `third-party:`, `info:` or `praise:`. A batch
+   that mixes kinds, or fits none, gets no tag. An untagged `FYI` never ages out, so when in
+   doubt leave the tag off.
+
+### FYI kind tags (rubric v5, Albert 2026-10-30)
+
+| Tag | The whole batch is | Example reason |
+|---|---|---|
+| `deferring:` | A plan to follow up later with no question and nothing promised to us: still deciding, comparing quotes, will discuss with a spouse, busy and will call back, will visit the store some time | `deferring: still deciding, will let us know` |
+| `lost:` | A lost or declined job: went with someone else, too expensive, postponed, on hold, not interested, already done | `lost: went with another contractor` |
+| `third-party:` | Not a customer writing about their own job: a supplier, factory or trade pitch, a job seeker or installer looking for work, a rep, a stray line, an unrelated third party | `third-party: overseas factory pitch` |
+| `info:` | An address, location or contact detail on its own, an arrival note, a site detail that needs nothing done | `info: address sent` |
+| `praise:` | Praise, a review left, a referral | `praise: review left` |
+
+A promise still owed to us (photos, a payment, a deposit drop-off) is not `deferring:` —
+someone has to check it arrived, so it is `ACTION` (the table below: a payment notice), or
+an untagged `FYI` when nothing has to be checked yet. Which tags age out, and after how long,
+is the registry's `policy.stale.FYI` (below, "Age-outs").
 
 Output, per batch key:
 
@@ -186,9 +206,9 @@ Thresholds live in the registry, `guards`.
 
 ---
 
-## Age-outs (rubric v4, Albert 2026-10-10)
+## Age-outs (rubric v4, Albert 2026-10-10; FYI v5, 2026-10-30)
 
-Two deterministic rules in `scripts/ghl_unread_plan.py`, each its own switch in
+Deterministic rules in `scripts/ghl_unread_plan.py`, each its own switch in
 `policy.approve_stale`. "Quiet" means the customer's latest message is that old and nobody at
 Titan has replied since.
 
@@ -196,8 +216,9 @@ Titan has replied since.
 |---|---|---|
 | `stale_unsure` | A model `UNSURE` quiet for `policy.stale.UNSURE.days` (7) is marked read | Untouched for a week, it is taken as seen: it was FYI. Context is the brief's job. A guarded `UNSURE` (a vetoed closer, or spam from a non-stranger) never ages out. |
 | `stale_hold` | A hold in `policy.stale.HELD.holds` (calls, attachments, too long, nothing inbound) quiet for `policy.stale.HELD.days` (14) is marked read | "Clear if longer than 14 days." For `no_customer_text` the clock is the conversation's last message, which is ours. |
+| `stale_fyi` | An `FYI` whose kind tag is in `policy.stale.FYI.kinds` is marked read once quiet for that tag's hours: `deferring`, `lost`, `third-party` 72; `info`, `praise` 336 (14 days) | Rubric v5 (Albert, 2026-10-30): "change the rule to allow for these to be cleared out in 72h" for still-deciding threads, and "we can clear these no problem" for pitches, job seekers and other third parties. Lost jobs joined at the same 72 h (nothing acts on a lost job yet, and the pipeline automations already move the opportunity). Three days covers the brief that lists it and two more. `info` and `praise` clear "with the normal 14 days quiet" (same day), the same as holds. |
 
-`NEEDS_RESPONSE`, `ACTION` and `FYI` never age out.
+`NEEDS_RESPONSE`, `ACTION`, a guarded verdict and an untagged `FYI` (a mixed batch, a promise still owed to us) never age out.
 
 ## What happens to each verdict
 
@@ -206,7 +227,7 @@ Titan has replied since.
 | `NEEDS_RESPONSE` | left unread | **reply**: the "waiting on a reply" list → Notion task, 24 h flag |
 | `UNSURE`, holds not named below | left unread; `UNSURE` marked read after 7 quiet days | **reply**, as above |
 | `ACTION`; holds `call_in_batch`, `non_text_content` | left unread; the holds marked read after 14 quiet days | **act**: the "to action" list → Notion task, 24 h flag; an opt-out also gets its own attention line |
-| `FYI` | left unread | **know**: the "FYI" list on the day it arrives (the customer's latest message is under 24 h old), a count after that; no task, no age flag |
+| `FYI` | left unread; `deferring:`, `lost:` and `third-party:` marked read after 72 quiet hours, `info:` and `praise:` after 14 days; untagged never | **know**: the "FYI" list on the day it arrives (the customer's latest message is under 24 h old), a count after that; no task, no age flag |
 | `CLOSER`, `SPAM` | marked read once the customer's latest message is 4 h old (switch: `policy.approve_verdicts`) | **clear**: off every list; listed under "cleared" |
 | `no_customer_text` | marked read after 14 quiet days | off every list; counted |
 
@@ -273,3 +294,11 @@ back by itself. Remove the block once it has expired.
   age-outs (a model `UNSURE` after 7 quiet days, holds after 14). Closers were 34 of 34 right
   and spam 2 of 2. One guard-held spam (not a stranger) was spam too; the guard stays. v3
   verdicts in the cache are discarded by the bump.
+- **v5 (2026-10-30).** Albert's review of the 76 `FYI` threads left unread by run
+  `20261029T2059-4e19` (median 76 days quiet, since `FYI` never aged out). Every `FYI` reason
+  now starts with a kind tag (`deferring:`, `lost:`, `third-party:`, `info:`, `praise:`), and
+  a new age-out, `stale_fyi`, clears `deferring`, `lost` and `third-party` after 72 quiet hours
+  and `info` and `praise` after 14 days
+  (vault `05_decisions/2026-10-30-ghl-triage-fyi-age-out.md`). No verdict changes meaning.
+  v4 verdicts in the cache are discarded by the bump, so the first v5 run judges every
+  unread conversation again.
