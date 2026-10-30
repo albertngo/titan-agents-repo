@@ -69,12 +69,12 @@ class MacReader:
             axvalue_to_point,
             axvalue_to_size,
             get_list_center,
+            post_scroll,
         )
         from wechat_mcp.fetch_messages_by_chat_utils import (
             capture_message_area,
             classify_sender_for_message,
             get_messages_list,
-            scroll_to_bottom,
             scroll_up_small,
         )
         self._collect = collect_chat_elements
@@ -84,10 +84,10 @@ class MacReader:
         self._to_point = axvalue_to_point
         self._to_size = axvalue_to_size
         self._list_center = get_list_center
+        self._post_scroll = post_scroll
         self._capture = capture_message_area
         self._side = classify_sender_for_message
         self._messages_list = get_messages_list
-        self._scroll_to_bottom = scroll_to_bottom
         self._scroll_up = scroll_up_small
         self.name_band = None  # set by archive() from settings["archive"]["name_band"]
         self.open_method = None  # how the last chat was opened, for the summary
@@ -330,7 +330,7 @@ class MacReader:
                                          kAXValueAttribute)
         msg_list = self._messages_list(self._app_quiet())
         center = self._list_center(msg_list)
-        self._scroll_to_bottom(msg_list, center)
+        self._to_bottom(msg_list, center)
         messages, no_new = [], 0
         for _ in range(400):
             image, origin, size = self._capture(msg_list)
@@ -347,25 +347,90 @@ class MacReader:
             if not visible:
                 break
             if not messages:
-                fresh = visible
+                fresh, idx = visible, len(visible)
             else:
                 anchor = messages[0]["text"]
                 idx = next((i for i, m in enumerate(visible) if m["text"] == anchor), None)
                 fresh = visible if idx is None else visible[:idx]
-            for m in fresh:  # only rows not seen yet are classified and read
-                m.update(self._who(image, origin, scale, m, is_group))
-                del m["pt"], m["sz"]
+                if idx is None:
+                    idx = len(visible)
+            new = [{"text": v["text"], "sender": None, "speaker": None, "named": False}
+                   for v in fresh]
             if fresh:
-                messages = fresh + messages
+                messages = new + messages
                 no_new = 0
             else:
                 no_new += 1
-                if no_new >= 5:
-                    break
-            if len(messages) >= last_n:
+            # Pair what is on screen with the messages it shows: the fresh rows
+            # are the new oldest ones, the rest follow in order. A row is read
+            # once it is fully on screen: one that has only just scrolled in at
+            # the top has its name line still cut off by the list's edge.
+            on_screen = list(zip(visible[:idx], new)) + list(zip(visible[idx:], messages[len(new):]))
+            top, bottom = origin[1], origin[1] + size[1]
+            for v, m in on_screen:
+                if v["pt"] is None or v["sz"] is None:
+                    continue
+                whole = v["pt"][1] >= top + 1 and v["pt"][1] + v["sz"][1] <= bottom - 1
+                if m["sender"] is None or (whole and not m["named"]):
+                    got = self._who(image, origin, scale, v, is_group and whole)
+                    if m["sender"] is None or whole:
+                        m["sender"] = got["sender"]
+                    if whole:
+                        m["speaker"], m["named"] = got["speaker"], True
+            if no_new >= 5 or len(messages) >= last_n + 2:
                 break
             self._scroll_up(center)
-        return messages[-last_n:]
+        # The oldest one or two were never fully on screen; reading a couple
+        # past last_n leaves them out of what is kept.
+        out = [{"text": m["text"], "sender": m["sender"] or "UNKNOWN", "speaker": m["speaker"]}
+               for m in messages]
+        return out[-last_n:]
+
+    def _last_row(self, msg_list):
+        """(text, bottom y) of the lowest message row on screen, or None."""
+        from ApplicationServices import (kAXChildrenAttribute, kAXPositionAttribute,
+                                         kAXSizeAttribute, kAXTitleAttribute,
+                                         kAXValueAttribute)
+        last = None
+        for child in self._ax_get(msg_list, kAXChildrenAttribute) or []:
+            text = self._ax_get(child, kAXValueAttribute) or self._ax_get(child, kAXTitleAttribute)
+            pt = self._to_point(self._ax_get(child, kAXPositionAttribute))
+            sz = self._to_size(self._ax_get(child, kAXSizeAttribute))
+            if text and pt is not None and sz is not None:
+                last = (str(text), round(pt[1] + sz[1]))
+        return last
+
+    def _to_bottom(self, msg_list, center):
+        """
+        Scroll to the newest message and prove it. The library's
+        scroll_to_bottom waits 0.05 s between scrolls and stops once the last
+        text repeats three times, which WeChat 4.1 satisfies mid-scroll: a run
+        on 2026-10-30 started a month behind the newest message. This waits
+        0.25 s, needs the last row's text and position unchanged four times,
+        then checks that row sits at the list's bottom edge.
+        """
+        from ApplicationServices import kAXPositionAttribute, kAXSizeAttribute
+        prev, stable = None, 0
+        for _ in range(80):
+            self._post_scroll(center, -1000)
+            time.sleep(0.25)
+            now = self._last_row(msg_list)
+            if now is not None and now == prev:
+                stable += 1
+                if stable >= 4:
+                    break
+            else:
+                stable = 0
+            prev = now
+        time.sleep(0.4)
+        pt = self._to_point(self._ax_get(msg_list, kAXPositionAttribute))
+        sz = self._to_size(self._ax_get(msg_list, kAXSizeAttribute))
+        last = self._last_row(msg_list)
+        if pt is not None and sz is not None and last is not None:
+            gap = (pt[1] + sz[1]) - last[1]
+            if gap > 60:
+                raise RuntimeError(f"couldn't reach the newest message "
+                                   f"({int(gap)} pt short of the bottom); nothing read")
 
     def _who(self, image, origin, scale, m, is_group):
         if m["pt"] is None or m["sz"] is None:

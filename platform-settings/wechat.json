@@ -112,6 +112,9 @@
     "_comment": "Who wrote each message (Albert, 2026-10-30: 'I would want the senders to be specifically named'). Albert's own messages are from `me`. In a direct chat the other side is the chat's name. In a group, WeChat 4.1 shows a member's name only as pixels above their message, so it is read off the screen with macOS Vision on the Mac; a name that doesn't read is 'Unknown', never guessed. `aliases` maps an exact name as read to how it should be stored; `alias_patterns` does the same by regex (for names Vision reads slightly differently each time, or with a phone number in them).",
     "me": "Albert",
     "aliases": {},
-    "alias_patterns": {}
+    "alias_patterns": {
+      "^前景\\s?Joanna": "Joanna (前景)"
+    },
+    "_alias_comment": "Patterns match the name part only: the repo is public, so no phone numbers here. 前景 Joanna's display name carries an emoji that Vision reads as stray characters (髪量, 質), so she is matched by prefix."
   }
 }
