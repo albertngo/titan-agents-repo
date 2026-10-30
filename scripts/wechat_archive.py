@@ -125,6 +125,18 @@ class MacReader:
                 v = self._ax_get(el, kAXValueAttribute) or self._ax_get(el, kAXTitleAttribute)
                 found.append(f"{ident}: {str(v)[:12]!r}")
         found.append(f"frontmost: {self.frontmost()}")
+        from ApplicationServices import (kAXChildrenAttribute, kAXRoleAttribute,
+                                         kAXSubroleAttribute)
+        app = self._app_quiet()
+        wins = []
+        for w in self._ax_get(app, kAXChildrenAttribute) or []:
+            if self._ax_get(w, kAXRoleAttribute) == "AXWindow":
+                t = self._ax_get(w, kAXTitleAttribute)
+                wins.append(f"{str(t)[:12]!r}/{self._ax_get(w, kAXSubroleAttribute)}")
+        found.append(f"windows: {', '.join(wins) or 'none'}")
+        for ident in ("session_list", "chat_message_list"):
+            el = self._dfs(app, lambda e, r, t, i, want=ident: i == want)
+            found.append(f"{ident}: {'present' if el is not None else 'missing'}")
         return "; ".join(found)
 
     def _app_quiet(self):
@@ -226,18 +238,28 @@ class MacReader:
         el = elements.get(chat)
         if el is None:
             raise RuntimeError("not in the sidebar any more")
-        self._click(el)
-        # WeChat takes a moment to draw the chat it switched to; wait for the
-        # title to show the chat clicked, up to 6 s.
         opened = None
-        for _ in range(24):
-            time.sleep(0.25)
-            opened = self._opened_name()
+        for attempt in range(2):
+            if attempt:
+                # One more go: WeChat sometimes comes forward without its chat
+                # pane drawn, and a second click brings it back.
+                self.bring_to_front()
+                el = self._collect(self._app()).get(chat)
+                if el is None:
+                    raise RuntimeError("not in the sidebar any more")
+            self._click(el)
+            # WeChat takes a moment to draw the chat it switched to; wait for
+            # the title to show the chat clicked, up to 6 s.
+            for _ in range(24):
+                time.sleep(0.25)
+                opened = self._opened_name()
+                if opened is not None and self._norm(opened) == self._norm(chat):
+                    break
             if opened is not None and self._norm(opened) == self._norm(chat):
                 break
         # Never file one chat's messages under another chat's name.
         if opened is None or self._norm(opened) != self._norm(chat):
-            raise RuntimeError(f"opened {opened!r} instead after 6 s "
+            raise RuntimeError(f"opened {opened!r} instead after 2 tries "
                                f"(fit {FIT}; {self._title_report()})")
         is_group = self._is_group()
         return {"messages": self._read_messages(last_n, is_group), "is_group": is_group}
