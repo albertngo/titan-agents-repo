@@ -375,10 +375,11 @@ class MacReader:
         sender = self._side(image, (0, 0), (rx, ry), (w, h))
         speaker = None
         if is_group and sender != "ME":
-            b = self.name_band or {"top": 0, "height": 19, "left": 50, "right_fraction": 0.7}
+            b = self.name_band or {"top": 4, "height": 30, "left": 60, "right_fraction": 0.75}
             box = (int(rx + b["left"] * scale), int(ry + b["top"] * scale),
                    int(rx + w * b["right_fraction"]), int(ry + (b["top"] + b["height"]) * scale))
-            if box[2] > box[0] and box[3] > box[1] and h > (b["height"] + 8) * scale:
+            # Rows shorter than a name plus a bubble (time separators) are skipped.
+            if box[2] > box[0] and box[3] > box[1] and h > (b["top"] + b["height"] + 10) * scale:
                 save_to = None
                 if self.save_name_crops:
                     self._crop_n += 1
@@ -428,12 +429,21 @@ def _vision(img, languages):
     req.setRecognitionLanguages_(languages)
     handler = Vision.VNImageRequestHandler.alloc().initWithCGImage_options_(cg, None)
     handler.performRequests_error_([req], None)
-    parts = []
-    for r in sorted(req.results() or [], key=lambda r: r.boundingBox().origin.x):
+    # Keep the top line only: the strip is tall enough to hold the whole name,
+    # so it can also catch the first line of the bubble below it. Vision's
+    # boxes are normalised with the origin at the bottom-left.
+    obs = []
+    for r in req.results() or []:
         cands = r.topCandidates_(1)
-        if cands:
-            parts.append(str(cands[0].string()).strip())
-    return " ".join(p for p in parts if p) or None
+        if cands and str(cands[0].string()).strip():
+            b = r.boundingBox()
+            obs.append((b.origin.y + b.size.height / 2, b.size.height, b.origin.x,
+                        str(cands[0].string()).strip()))
+    if not obs:
+        return None
+    top = max(obs, key=lambda o: o[0])
+    line = [o for o in obs if abs(o[0] - top[0]) < max(top[1], 0.05) * 0.6]
+    return " ".join(o[3] for o in sorted(line, key=lambda o: o[2])) or None
 
 
 def ocr_line(pil_image, save_to=None):

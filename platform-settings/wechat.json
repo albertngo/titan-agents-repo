@@ -59,11 +59,11 @@
     ],
     "_skip_comment": "Exact sidebar names never opened. Add a personal chat here to keep it out of the archive.",
     "name_band": {
-      "top": 0,
-      "height": 19,
-      "left": 50,
-      "right_fraction": 0.7,
-      "_comment": "Where a group member's name sits inside a message row, in points from the row's top-left: the strip right of the avatar, above the bubble. Fitted 2026-10-30 to WeChat 4.1.15 (each row includes its name line: one image row ran y 587-766)."
+      "top": 4,
+      "height": 30,
+      "left": 60,
+      "right_fraction": 0.75,
+      "_comment": "Where a group member's name sits inside a message row, in points from the row's top-left: the strip right of the avatar, above the bubble. Fitted to WeChat 4.1.15 on 2026-10-30 from saved strips: the name sits about 15 pt below the row's top, so a 0-19 pt strip cut it in half or missed it; the avatar's edge ends about 56 pt in. The strip is tall enough to hold the whole name and may catch the bubble's first line, so only the top line read is kept."
     }
   },
   "parse": {
