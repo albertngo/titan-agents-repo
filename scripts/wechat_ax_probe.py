@@ -80,7 +80,15 @@ def bubbles(root, limit):
             if n in ("AXParent", "AXTopLevelUIElement", "AXWindow", "AXChildren"):
                 continue
             v = ax_get(el, n)
-            sv = short(v) if not hasattr(v, "__len__") or isinstance(v, str) else f"<{len(v)} items>"
+            if n in ("AXPosition", "AXSize", "AXFrame"):
+                # geometry is not text: show it whole
+                import re as _re
+                m = _re.search(r"\{value = (.*?) type", str(v))
+                sv = m.group(1) if m else str(v)[:80]
+            elif hasattr(v, "__len__") and not isinstance(v, str):
+                sv = f"<{len(v)} items>"
+            else:
+                sv = short(v)
             print(f"{pad}{n} = {sv!r}")
         if pnames:
             print(f"{pad}(parameterized: {', '.join(sorted(pnames))})")
