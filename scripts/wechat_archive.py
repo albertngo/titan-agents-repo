@@ -150,7 +150,31 @@ class MacReader:
 
     @staticmethod
     def frontmost():
+        """
+        Bundle id of the app in front, asked live. NSWorkspace's
+        frontmostApplication only refreshes on a running main run loop, which
+        a command-line process doesn't have, so it kept answering "Terminal"
+        after WeChat had come forward. The system-wide AX element is asked
+        fresh every call.
+        """
         import AppKit
+        from ApplicationServices import (AXUIElementCopyAttributeValue,
+                                         AXUIElementCreateSystemWide,
+                                         AXUIElementGetPid,
+                                         kAXFocusedApplicationAttribute)
+        try:
+            err, app_el = AXUIElementCopyAttributeValue(
+                AXUIElementCreateSystemWide(), kAXFocusedApplicationAttribute, None)
+            if err == 0 and app_el is not None:
+                err, pid = AXUIElementGetPid(app_el, None)
+                if err == 0:
+                    app = AppKit.NSRunningApplication.runningApplicationWithProcessIdentifier_(pid)
+                    if app is not None:
+                        return app.bundleIdentifier()
+        except Exception:
+            pass
+        AppKit.NSRunLoop.currentRunLoop().runUntilDate_(
+            AppKit.NSDate.dateWithTimeIntervalSinceNow_(0.05))
         app = AppKit.NSWorkspace.sharedWorkspace().frontmostApplication()
         return app.bundleIdentifier() if app else None
 
