@@ -99,7 +99,7 @@ decision of 2026-10-29 (vault `05_decisions/2026-10-29-whatsapp-business-chats-p
 | 2 | ~~Make capture scenario~~ | dropped 2026-10-29 |
 | 3 | Client, pull script, tests | done 2026-10-29 |
 | 4 | Agent file, registry, wiring (CLAUDE.md, departments, notion source_defaults, .env.example) | done 2026-10-29 |
-| 5 | One manual run (done 2026-10-29, re-run under the new rules), then add to `/daily-ingest` step 2 and the step 5 ledger | Albert, 2026-10-29: wire in after a few clean days |
+| 5 | One manual run, then add to `/daily-ingest` step 2 and the step 5 ledger | done 2026-10-30. First run 2026-10-29. Albert chose to wire it in now rather than wait for a few clean days. |
 
 ## First read (2026-10-29)
 
