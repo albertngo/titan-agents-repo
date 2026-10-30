@@ -92,6 +92,9 @@ class MacReader:
         self._scroll_to_bottom = scroll_to_bottom
         self._scroll_up = scroll_up_small
         self.name_band = None  # set by archive() from settings["archive"]["name_band"]
+        self.save_name_crops = None  # a folder, from --save-name-crops
+        self.crop_log = []
+        self._crop_n = 0
         self._ax_get = ax_get
         self._dfs = dfs
 
@@ -314,44 +317,78 @@ class MacReader:
             box = (int(rx + b["left"] * scale), int(ry + b["top"] * scale),
                    int(rx + w * b["right_fraction"]), int(ry + (b["top"] + b["height"]) * scale))
             if box[2] > box[0] and box[3] > box[1] and h > (b["height"] + 8) * scale:
-                speaker = ocr_line(image.crop(box))
+                save_to = None
+                if self.save_name_crops:
+                    self._crop_n += 1
+                    save_to = os.path.join(self.save_name_crops, f"name-{self._crop_n:03d}.png")
+                speaker = ocr_line(image.crop(box), save_to)
+                if save_to:
+                    self.crop_log.append({"file": os.path.basename(save_to),
+                                          "read": speaker, "text": m["text"][:30]})
                 # A band that caught the bubble's own text is not a name.
                 if speaker and m["text"].replace("\n", " ").startswith(speaker[:8]):
                     speaker = None
         return {"sender": sender, "speaker": speaker}
 
 
-def ocr_line(pil_image):
+def prepare_for_ocr(pil_image):
     """
-    Read one short line of text (a group member's name) with macOS Vision,
-    on the Mac. Nothing leaves the machine. Returns None when nothing reads.
+    Small grey name text on WeChat's dark background reads poorly as is: make
+    it dark-on-white, stretch the contrast, enlarge it and pad it.
     """
+    from PIL import ImageOps
+    img = ImageOps.grayscale(pil_image)
+    hist = img.histogram()
+    mean = sum(i * c for i, c in enumerate(hist)) / max(1, sum(hist))
+    if mean < 128:  # dark mode
+        img = ImageOps.invert(img)
+    img = ImageOps.autocontrast(img, cutoff=2)
+    if img.height < 120:
+        f = 120 / img.height
+        img = img.resize((int(img.width * f), 120), resample=3)  # LANCZOS
+    return ImageOps.expand(img, border=24, fill=255)
+
+
+def _vision(img, languages):
     import io
     import Quartz
     import Vision
     from Foundation import NSData
-    img = pil_image.convert("RGB")
-    if img.height < 60:  # small UI text reads better upscaled
-        f = 60 / img.height
-        img = img.resize((int(img.width * f), 60))
     buf = io.BytesIO()
-    img.save(buf, "PNG")
+    img.convert("RGB").save(buf, "PNG")
     raw = buf.getvalue()
     src = Quartz.CGImageSourceCreateWithData(NSData.dataWithBytes_length_(raw, len(raw)), None)
     cg = Quartz.CGImageSourceCreateImageAtIndex(src, 0, None)
     req = Vision.VNRecognizeTextRequest.alloc().init()
     req.setRecognitionLevel_(Vision.VNRequestTextRecognitionLevelAccurate)
     req.setUsesLanguageCorrection_(False)
-    req.setRecognitionLanguages_(["zh-Hans", "zh-Hant", "en-US"])
+    req.setMinimumTextHeight_(0.0)
+    req.setRecognitionLanguages_(languages)
     handler = Vision.VNImageRequestHandler.alloc().initWithCGImage_options_(cg, None)
     handler.performRequests_error_([req], None)
     parts = []
-    for r in req.results() or []:
+    for r in sorted(req.results() or [], key=lambda r: r.boundingBox().origin.x):
         cands = r.topCandidates_(1)
         if cands:
             parts.append(str(cands[0].string()).strip())
-    text = " ".join(p for p in parts if p)
-    return text or None
+    return " ".join(p for p in parts if p) or None
+
+
+def ocr_line(pil_image, save_to=None):
+    """
+    Read one short line of text (a group member's name) with macOS Vision,
+    on the Mac. Nothing leaves the machine. Returns None when nothing reads.
+    Tries mixed Chinese/English first, then each alone. save_to, when given,
+    is a path the prepared strip is written to, for checking what was read.
+    """
+    img = prepare_for_ocr(pil_image)
+    if save_to:
+        img.save(save_to)
+    for langs in (["zh-Hans", "en-US"], ["en-US"], ["zh-Hans", "zh-Hant"]):
+        text = _vision(img, langs)
+        if text:
+            return text
+    return None
 
 
 class NotionStore:
@@ -556,6 +593,8 @@ def main():
                     help="run now even if the Mac is in use (supervised runs)")
     ap.add_argument("--no-notion", action="store_true",
                     help="with --dry-run: don't read stored tails either")
+    ap.add_argument("--save-name-crops", metavar="DIR",
+                    help="with --dry-run: save each group-name strip as a PNG here")
     ap.add_argument("--force", action="store_true",
                     help="run even if a run completed recently or it's outside the window")
     args = ap.parse_args()
@@ -588,8 +627,15 @@ def main():
             print(json.dumps({"status": "not_due", "reason": why}))
             return 0
 
+    if args.save_name_crops and not args.dry_run:
+        print(json.dumps({"status": "error", "error": "--save-name-crops needs --dry-run"}))
+        return 2
+
     try:
         reader = MacReader()
+        if args.save_name_crops:
+            os.makedirs(os.path.expanduser(args.save_name_crops), exist_ok=True)
+            reader.save_name_crops = os.path.expanduser(args.save_name_crops)
     except Exception as exc:
         summary = {"run": core.run_id(now), "status": "error",
                    "reason": f"WeChat reader unavailable: {exc}"[:300]}
@@ -619,6 +665,8 @@ def main():
         except Exception as exc:
             summary["heartbeat_error"] = str(exc)[:300]
 
+    if args.save_name_crops and "reader" in locals() and getattr(reader, "crop_log", None):
+        summary["name_crops"] = reader.crop_log
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     return 0 if summary.get("status") in ("ok", "skipped", "interrupted") else 1
 

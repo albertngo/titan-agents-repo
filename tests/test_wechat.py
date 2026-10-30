@@ -85,6 +85,7 @@ class TestAnnotate(unittest.TestCase):
         self.assertEqual(core.classify_kind("[图片]", KINDS), "image")
         self.assertEqual(core.classify_kind("[File] PL-2026.pdf", KINDS), "file")
         self.assertEqual(core.classify_kind("Image", KINDS), "image")  # WeChat 4.1.15
+        self.assertEqual(core.classify_kind('Audio10"sec', KINDS), "voice")
         # WeChat 4.1.15, seen live 2026-10-30
         self.assertEqual(core.classify_kind("File\nTrim Price 10-16-2026 Store.pdf\n984.8K", KINDS),
                          "file")
