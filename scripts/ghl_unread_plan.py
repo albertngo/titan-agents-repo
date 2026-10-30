@@ -51,6 +51,10 @@ APPROVAL_VERSION = "ghl-triage-approval-1"
 JUDGEMENTS_VERSION = "ghl-triage-judgements-1"
 CANDIDATES_VERSION = "ghl-triage-candidates-1"
 PHONE_OR_EMAIL = (r"[\w.+-]+@[\w-]+\.[\w.]+", r"\+?\d[\d\s().-]{6,}\d")
+# The prefix age_out() puts on a reason. The run record, and so the verdict cache, carries the
+# prefixed reason, so a cached reason is stripped of it before use: otherwise an FYI's kind tag
+# is hidden behind it and never ages out again, and the prefix stacks up run after run.
+AGE_PREFIX = re.compile(r"^(?:untouched \d+[hd]\+: )+")
 # Never marked read, whatever the registry says: reply, act and know (rubric v3).
 NEVER_CLEAR = frozenset({"NEEDS_RESPONSE", "UNSURE", "ACTION", "FYI"})
 # Age-out kinds (policy.approve_stale): UNSURE after a quiet week, holds after two, a tagged
@@ -134,7 +138,7 @@ def resolve(c, verdicts, reg):
         row.update(verdict="HELD", verdict_source="hold")
     elif c.get("cached"):
         row.update(model_verdict=c["cached"]["verdict"], verdict_source="cache",
-                   reason=sanitize_reason(c["cached"].get("reason"), limit))
+                   reason=sanitize_reason(AGE_PREFIX.sub("", c["cached"].get("reason") or ""), limit))
     else:
         j = verdicts.get(c.get("batch_key"))
         if j is None:
