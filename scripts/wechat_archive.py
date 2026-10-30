@@ -91,6 +91,7 @@ class MacReader:
         self._scroll_up = scroll_up_small
         self.name_band = None  # set by archive() from settings["archive"]["name_band"]
         self.open_method = None  # how the last chat was opened, for the summary
+        self.bottom_steps = None
         self.save_name_crops = None  # a folder, from --save-name-crops
         self.crop_log = []
         self._crop_n = 0
@@ -402,35 +403,38 @@ class MacReader:
 
     def _to_bottom(self, msg_list, center):
         """
-        Scroll to the newest message and prove it. The library's
-        scroll_to_bottom waits 0.05 s between scrolls and stops once the last
-        text repeats three times, which WeChat 4.1 satisfies mid-scroll: a run
-        on 2026-10-30 started a month behind the newest message. This waits
-        0.25 s, needs the last row's text and position unchanged four times,
-        then checks that row sits at the list's bottom edge.
+        Scroll to the newest message. WeChat 4.1 keeps each chat's scroll
+        position, and ignored the library's -1000 scroll steps (the reader's
+        +50 steps upward worked), so runs started wherever the last one left
+        the chat. This scrolls down in small steps and stops once the lowest
+        row on screen has stayed the same for 15 steps.
         """
-        from ApplicationServices import kAXPositionAttribute, kAXSizeAttribute
-        prev, stable = None, 0
-        for _ in range(80):
-            self._post_scroll(center, -1000)
-            time.sleep(0.25)
+        last, same, steps = self._last_row(msg_list), 0, 0
+        for steps in range(1, 1500):
+            self._post_scroll(center, -60)
+            time.sleep(0.04)
+            if steps % 5:
+                continue
             now = self._last_row(msg_list)
-            if now is not None and now == prev:
-                stable += 1
-                if stable >= 4:
+            if now == last:
+                same += 5
+                if same >= 15:
                     break
             else:
-                stable = 0
-            prev = now
+                same, last = 0, now
+        self.bottom_steps = steps
         time.sleep(0.4)
-        pt = self._to_point(self._ax_get(msg_list, kAXPositionAttribute))
-        sz = self._to_size(self._ax_get(msg_list, kAXSizeAttribute))
-        last = self._last_row(msg_list)
-        if pt is not None and sz is not None and last is not None:
-            gap = (pt[1] + sz[1]) - last[1]
-            if gap > 60:
-                raise RuntimeError(f"couldn't reach the newest message "
-                                   f"({int(gap)} pt short of the bottom); nothing read")
+
+    def sidebar_preview(self, chat):
+        """The sidebar entry's full text for `chat` (it ends with the newest message)."""
+        from ApplicationServices import (kAXDescriptionAttribute, kAXTitleAttribute,
+                                         kAXValueAttribute)
+        el = self._collect(self._app_quiet()).get(chat)
+        if el is None:
+            return None
+        parts = [self._ax_get(el, a) for a in
+                 (kAXTitleAttribute, kAXValueAttribute, kAXDescriptionAttribute)]
+        return " | ".join(str(p) for p in parts if p) or None
 
     def _who(self, image, origin, scale, m, is_group):
         if m["pt"] is None or m["sz"] is None:
@@ -702,6 +706,13 @@ def archive(reader, store, settings, now, only_chat=None, dry_run=False,
             entry = {"chat": chat, "new": written}
             if getattr(reader, "open_method", None):
                 entry["opened_by"] = reader.open_method
+            if dry_run and hasattr(reader, "sidebar_preview"):
+                entry["scroll_down_steps"] = getattr(reader, "bottom_steps", None)
+                try:
+                    entry["sidebar"] = reader.sidebar_preview(chat)
+                except Exception as exc:
+                    entry["sidebar"] = f"error: {exc}"[:120]
+                entry["newest_read"] = rows[-1]["text"][:80] if rows else None
             if dry_run:
                 entry["preview"] = [{k: r.get(k) for k in
                                      ("from", "to", "sender", "kind", "sent_at", "text")}
