@@ -139,6 +139,38 @@ class TestNames(unittest.TestCase):
         self.assertEqual(self.names(raw, "diana", False)[0][0], "diana")
 
 
+class TestSidebar(unittest.TestCase):
+    GROUP = "VISTA\nPinned to top\n前景Sam: [File] Trim Price 10-16-2026 Skid.pdf\n10/21\n"
+
+    def test_parse(self):
+        self.assertEqual(core.parse_sidebar(self.GROUP),
+                         ("前景Sam", "[File] Trim Price 10-16-2026 Skid.pdf"))
+        self.assertEqual(core.parse_sidebar("diana\nok see you\nYesterday 18:56\n"),
+                         (None, "ok see you"))
+
+    def test_match(self):
+        self.assertTrue(core.matches_newest("[File] Trim Price 10-16-2026 Skid.pdf",
+                                            "File\nTrim Price 10-16-2026 Skid.pdf\n821.0K", KINDS))
+        self.assertTrue(core.matches_newest("[Voice]", 'Audio10"sec', KINDS))
+        self.assertFalse(core.matches_newest("see you tomorrow", "Right side open", KINDS))
+
+    def test_newest_named_from_the_sidebar_and_mismatch_warned(self):
+        raw = {"is_group": True, "sidebar": self.GROUP,
+               "messages": [{"sender": "OTHER", "text": "File\nTrim Price 10-16-2026 Skid.pdf\n821.0K",
+                             "speaker": None}]}
+        people = {"me": "Albert", "alias_patterns": {"^前景\\s?Sam": "Sam (前景)"}}
+        msgs = core.annotate(raw, NOW, KINDS, chat="VISTA", people=people)
+        summary = {}
+        wechat_archive.check_newest(raw, msgs, "VISTA", people, KINDS, summary)
+        self.assertEqual(msgs[-1]["from"], "Sam (前景)")
+        self.assertNotIn("warnings", summary)
+        raw["messages"][0]["text"] = "an older message"
+        msgs = core.annotate(raw, NOW, KINDS, chat="VISTA", people=people)
+        wechat_archive.check_newest(raw, msgs, "VISTA", people, KINDS, summary)
+        self.assertEqual(len(summary["warnings"]), 1)
+        self.assertEqual(msgs[-1]["from"], "Unknown")
+
+
 class TestAlign(unittest.TestCase):
     def test_empty_tail_starts_at_zero(self):
         self.assertEqual(core.align([], ["a", "b"], 3), 0)

@@ -131,6 +131,45 @@ def classify_kind(text, kind_patterns):
     return "text"
 
 
+def parse_sidebar(text):
+    """
+    WeChat 4.1's sidebar entry text:
+    "<chat>\n[Pinned to top\n]<sender>: <preview>\n<time>\n" in a group,
+    without "<sender>: " in a direct chat. Returns (sender, preview), either
+    None when it doesn't parse.
+    """
+    if not text:
+        return None, None
+    lines = [l.strip() for l in str(text).split("\n") if l.strip()]
+    lines = [l for l in lines[1:] if l not in ("Pinned to top", "置顶", "Muted", "消息免打扰")]
+    if len(lines) >= 2:
+        lines = lines[:-1]  # the time column ("10/21", "Yesterday 18:56")
+    if not lines:
+        return None, None
+    body = " ".join(lines)
+    m = re.match(r"^(.{1,60}?):\s(.+)$", body)
+    if m and not body.startswith("["):
+        return m.group(1), m.group(2)
+    return None, body
+
+
+def _flat(t):
+    return re.sub(r"[\[\]\s]+", " ", (t or "")).strip().lower()
+
+
+def matches_newest(preview, newest_text, kind_patterns=None):
+    """Does the sidebar's preview describe the newest message read?"""
+    if not preview or not newest_text:
+        return None  # can't tell
+    if kind_patterns:
+        k1, k2 = classify_kind(preview, kind_patterns), classify_kind(newest_text, kind_patterns)
+        if k1 == k2 and k1 not in ("text", "file", "link"):
+            return True  # "[Voice]" vs 'Audio10"sec', "[Image]" vs "Image"
+    a, b = _flat(preview).rstrip("…. "), _flat(newest_text)
+    n = min(len(a), 25)
+    return a[:n] in b or b[:n] in a
+
+
 def name_of(speaker, people):
     """A read-off-the-screen name, tidied and mapped through people.aliases."""
     if not speaker:

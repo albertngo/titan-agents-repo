@@ -262,7 +262,12 @@ class MacReader:
             raise RuntimeError(f"opened {opened!r} instead after AX press, AX select and 2 clicks "
                                f"(fit {FIT}; {self._title_report()})")
         is_group = self._is_group()
-        return {"messages": self._read_messages(last_n, is_group), "is_group": is_group}
+        messages = self._read_messages(last_n, is_group)
+        try:
+            sidebar = self.sidebar_preview(chat)
+        except Exception:
+            sidebar = None
+        return {"messages": messages, "is_group": is_group, "sidebar": sidebar}
 
     def _open_by(self, method, el):
         """
@@ -371,7 +376,11 @@ class MacReader:
             for v, m in on_screen:
                 if v["pt"] is None or v["sz"] is None:
                     continue
-                whole = v["pt"][1] >= top + 1 and v["pt"][1] + v["sz"][1] <= bottom - 1
+                # Only the name line has to be on screen: the newest row
+                # often runs past the bottom edge.
+                band = self.name_band or {"top": 4, "height": 30}
+                whole = (v["pt"][1] >= top + 1 and
+                         v["pt"][1] + band["top"] + band["height"] <= bottom - 1)
                 if m["sender"] is None or (whole and not m["named"]):
                     got = self._who(image, origin, scale, v, is_group and whole)
                     if m["sender"] is None or whole:
@@ -635,6 +644,28 @@ def someone_touched(reader, last_touch, clock):
     return reader.idle_seconds() < (clock() - last_touch) - 1.0
 
 
+def check_newest(raw, msgs, chat, people, kinds, summary):
+    """
+    The sidebar shows each chat's newest message and, in a group, who sent
+    it. Compare it with the newest message read, so a run that didn't reach
+    the bottom says so; and name that message from the sidebar when its name
+    strip didn't read.
+    """
+    if not isinstance(raw, dict) or not msgs:
+        return
+    sender, preview = core.parse_sidebar(raw.get("sidebar"))
+    ok = core.matches_newest(preview, msgs[-1]["text"], kinds)
+    if ok is False:
+        summary.setdefault("warnings", []).append({
+            "chat": chat,
+            "warning": "the newest message read doesn't match the sidebar's, so the "
+                       "newest messages may be missing until the next run"})
+    if ok and raw.get("is_group") and sender and msgs[-1]["from"] == "Unknown":
+        if core.name_of(sender, people) != people.get("me"):
+            msgs[-1]["from"] = core.name_of(sender, people)
+            msgs[-1]["sender"] = "Them"
+
+
 def archive(reader, store, settings, now, only_chat=None, dry_run=False,
             idle_check=True, clock=time.monotonic, sleep=time.sleep):
     """Archive every unrecorded message. Returns the run summary."""
@@ -676,6 +707,7 @@ def archive(reader, store, settings, now, only_chat=None, dry_run=False,
                 finally:
                     last_touch = clock()
                 msgs = core.annotate(raw, now, kinds, chat=chat, people=people)
+                check_newest(raw, msgs, chat, people, kinds, summary)
                 rows, aligned = core.plan_chat(chat, msgs, tail, a["min_overlap"])
                 if tail and not aligned:
                     try:

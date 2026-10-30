@@ -81,6 +81,10 @@ A stale heartbeat makes the file `status: "partial"`: zero messages with a dead
 Mac is not a quiet day. `skipped` and `interrupted` keep `status: "ok"`; the
 next run catches up.
 
+A heartbeat `warnings[]` entry means a chat's newest message read didn't match
+WeChat's sidebar, so its newest messages may be missing until the next run. Name
+each such chat in one `needs_attention` line.
+
 A chat with `gap: true` means the archiver could not line up with what it had
 stored, so messages may be missing before the flagged one. Name each such chat in
 one `needs_attention` line.
