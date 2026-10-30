@@ -149,6 +149,18 @@ class MacReader:
         return AXUIElementCreateApplication(apps[0].processIdentifier())
 
     @staticmethod
+    def wake_display():
+        """
+        Turn a sleeping display on. The Mac is left unlocked for the 6 am run,
+        but its display is usually asleep by then, and a sleeping display gives
+        black screenshots: no names, no bubble sides. Declaring user activity
+        wakes it; it also resets the idle clock, which archive() allows for.
+        """
+        import subprocess
+        subprocess.run(["caffeinate", "-u", "-t", "2"], check=False)
+        time.sleep(1.0)
+
+    @staticmethod
     def screen_locked():
         import Quartz
         info = Quartz.CGSessionCopyCurrentDictionary() or {}
@@ -690,6 +702,9 @@ def archive(reader, store, settings, now, only_chat=None, dry_run=False,
         c for c in reader.list_chats() if c not in skip][:a["max_chats"]]
 
     last_touch = None
+    if hasattr(reader, "wake_display"):
+        reader.wake_display()
+        last_touch = clock()  # the wake-up counts as our own input, not a person's
     try:
         for i, chat in enumerate(chats):
             if idle_check:
