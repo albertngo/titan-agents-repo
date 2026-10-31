@@ -1,0 +1,33 @@
+{
+  "contract_version": "1",
+  "source": "wechat",
+  "run_at": "2026-10-31T08:05:58-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "wechat-supplier_update-c77584b5",
+      "type": "supplier_update",
+      "title": "Titan Flooring - VISTA (Markham)",
+      "summary": "Joanna (the supplier rep) sent new store and skid trim price lists dated Oct 16, said 8 ft baseboard is sold out with 7 ft and 12 ft available and restock expected mid/end of next month, and credited a small amount to Helen's account. Helen and Joey Hou (who appear on our side) ordered trim for pickup; Joanna also asked Helen to call her back. Nothing is awaiting a reply; review the new price lists in the archive.",
+      "timestamp": "2026-10-30T10:20:00.000-04:00",
+      "priority": "normal",
+      "link": "https://app.notion.com/p/yes-409596a4505f81c4bb91e49726dc4e4c",
+      "amount_cents": null,
+      "raw_ref": "wechat:chat:Titan Flooring - VISTA (Markham)",
+      "sensitivity": "private",
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "chats_with_new": 1,
+    "messages_new": 66,
+    "awaiting_reply": 0,
+    "supplier_updates": 1,
+    "gaps": 0,
+    "archiver_hours_since_run": 16
+  },
+  "needs_attention": [
+    "Sender labels in VISTA (Markham) are all 'Them', including Helen and Joey Hou who appear to be our own side; sent_at is mostly null, so message timing is archive time only."
+  ]
+}

@@ -1,0 +1,195 @@
+{
+ "contract_version": "1",
+ "source": "whatsapp",
+ "run_at": "2026-10-31T08:10:00-04:00",
+ "status": "ok",
+ "error": null,
+ "items": [
+  {
+   "id": "whatsapp-trade-51df80cd",
+   "type": "trade",
+   "title": "Anthony: job scheduled, then reported finished",
+   "summary": "Pourya pressed Anthony for an update and a finish this week; after a back-and-forth the owner's preferred time was agreed (3pm). Anthony later said he was finished on site and sent a photo; Pourya said he was passing it to the owner.",
+   "timestamp": "2026-10-30T10:14:00-04:00",
+   "priority": "normal",
+   "link": null,
+   "amount_cents": null,
+   "raw_ref": "whatsapp:business:WAGe92bd7e4-adbb-4cb7-aa5f-b6982b705a36:MSG51df80cd-ebd5-4541-9695-6addf533e533",
+   "sensitivity": "private",
+   "assigned_to": null
+  },
+  {
+   "id": "whatsapp-trade-bbdf4e8d",
+   "type": "trade",
+   "title": "Luxevista: loose area on site, photos exchanged",
+   "summary": "Pourya sent photos of a loose area and asked Luxevista whether to go fix it that day or look first. Luxevista replied with photos and a 'Done' message.",
+   "timestamp": "2026-10-28T13:40:00-04:00",
+   "priority": "normal",
+   "link": null,
+   "amount_cents": null,
+   "raw_ref": "whatsapp:business:WAG4012ff52-232c-400e-b869-33b4c49dc1cc:MSGbbdf4e8d-cb2d-4e47-83fe-a31c0ebdf471",
+   "sensitivity": "private",
+   "assigned_to": null
+  },
+  {
+   "id": "whatsapp-personal-ea9f685b",
+   "type": "personal",
+   "title": "Supplier pickup: Joey collecting 705 stock at SIDCO",
+   "summary": "Supplier pickup: Joey asked SIDCO to hold 26 boxes of 705 for pickup on 10-30 (Angad said sure), then said he was coming that evening and asked them to prepare it; Angad confirmed.",
+   "timestamp": "2026-10-30T15:21:00-04:00",
+   "priority": "normal",
+   "link": null,
+   "amount_cents": null,
+   "raw_ref": "whatsapp:personal:WAG9fd6b4f2-4007-4ae3-9938-4821f1cbde45:MSGea9f685b-2e77-4318-aa3e-51b77c05bef1",
+   "sensitivity": "private",
+   "assigned_to": null
+  },
+  {
+   "id": "whatsapp-personal-895d527d",
+   "type": "personal",
+   "title": "Supplier order: Joey reserves 27 more boxes of 705 at SIDCO",
+   "summary": "Supplier order: Joey asked SIDCO to reserve another 27 boxes of 705 for a customer and noted a possible further ~600-650 sq ft that is unconfirmed with a later timeline. Angad agreed and offered to reserve the extra as well. No pickup message yet.",
+   "timestamp": "2026-10-30T17:57:00-04:00",
+   "priority": "normal",
+   "link": null,
+   "amount_cents": null,
+   "raw_ref": "whatsapp:personal:WAG9fd6b4f2-4007-4ae3-9938-4821f1cbde45:MSG895d527d-5198-4dda-abd0-33cb8e6ee953",
+   "sensitivity": "private",
+   "assigned_to": null
+  },
+  {
+   "id": "whatsapp-personal-48fe67a8",
+   "type": "personal",
+   "title": "Supplier inquiry: SIDCO beige matte 1224 options",
+   "summary": "Other: the shared inbox (sender unknown) asked SIDCO what beige matte 1224 options they have for about 100 sf; Angad replied with a photo.",
+   "timestamp": "2026-10-30T09:18:00-04:00",
+   "priority": "normal",
+   "link": null,
+   "amount_cents": null,
+   "raw_ref": "whatsapp:personal:WAG9fd6b4f2-4007-4ae3-9938-4821f1cbde45:MSG48fe67a8-6c16-49fb-80f1-d9c9d58f177e",
+   "sensitivity": "private",
+   "assigned_to": null
+  },
+  {
+   "id": "whatsapp-personal-6e01f4e6",
+   "type": "personal",
+   "title": "Payment: SIDCO confirms cash received",
+   "summary": "Payment: after the shared inbox told SIDCO they could collect cash before 1, SIDCO posted a receipt note for $7630 on 30 Oct.",
+   "timestamp": "2026-10-30T12:47:00-04:00",
+   "priority": "normal",
+   "link": null,
+   "amount_cents": 763000,
+   "raw_ref": "whatsapp:personal:WAG9fd6b4f2-4007-4ae3-9938-4821f1cbde45:MSG6e01f4e6-db1b-4210-87be-084d70329d76",
+   "sensitivity": "private",
+   "assigned_to": null
+  }
+ ],
+ "metrics": {
+  "messages_scanned": 63,
+  "chats_active": 7,
+  "supplier_events": 2,
+  "supplier_payment_requests": 0,
+  "payment": 0,
+  "trade": 2,
+  "customer": 0,
+  "unanswered_customer": 0,
+  "project": 0,
+  "staff": 0,
+  "other": 0,
+  "personal": 4,
+  "personal_skipped": 1,
+  "noise_skipped": 8,
+  "ghl_covered_skipped": 0,
+  "scanned_business": 38,
+  "scanned_personal": 25,
+  "groups_scanned": 6
+ },
+ "needs_attention": [
+  "Catch-up: last ok whatsapp.json was 2026-10-29 17:20; pulled 72 h to cover the gap. Earlier messages already reported on 10-29 are not repeated as items.",
+  "Unnamed chat ...(hash 7ea129bf5ae8) on the personal number sent 4 photos with no text on 10-31; sender unknown, not itemised."
+ ],
+ "extensions": {
+  "whatsapp": {
+   "template_version": 1,
+   "chats": [
+    {
+     "chat_key": "WAGe92bd7e4",
+     "chat_name": "Titan Flooring - Anthony",
+     "kind": "trade",
+     "channel": "business",
+     "is_group": true,
+     "messages_in": 7,
+     "messages_out": 8,
+     "last_activity": "2026-10-30 10:08",
+     "digest": "Install scheduling settled and Anthony reported the job finished."
+    },
+    {
+     "chat_key": "WAG4012ff52",
+     "chat_name": "Titan Flooring - Luxevista",
+     "kind": "trade",
+     "channel": "business",
+     "is_group": true,
+     "messages_in": 5,
+     "messages_out": 3,
+     "last_activity": "2026-10-28 13:40",
+     "digest": "Loose area on site; Luxevista replied with photos and Done."
+    },
+    {
+     "chat_key": "15c1171d6c4a3d76",
+     "chat_name": "Luxevista (1-to-1)",
+     "kind": "trade",
+     "channel": "business",
+     "is_group": false,
+     "messages_in": 9,
+     "messages_out": 2,
+     "last_activity": "2026-10-29 11:21",
+     "digest": "Invoice and cash settlement thread (covered in the 10-29 run)."
+    },
+    {
+     "chat_key": "WAG9fd6b4f2",
+     "chat_name": "Titan Flooring - SIDCO",
+     "kind": "supplier",
+     "channel": "personal",
+     "is_group": true,
+     "messages_in": 7,
+     "messages_out": 9,
+     "last_activity": "2026-10-30 18:01",
+     "digest": "705 pickups and reservation, beige 1224 inquiry, cash received."
+    },
+    {
+     "chat_key": "WAG7da4877c",
+     "chat_name": "Cash Handover",
+     "kind": "staff",
+     "channel": "personal",
+     "is_group": true,
+     "messages_in": 0,
+     "messages_out": 1,
+     "last_activity": "2026-10-29 16:15",
+     "digest": "Pourya logged a cash handover (covered earlier)."
+    },
+    {
+     "chat_key": "WAG32d5deef/WAGc8cc3a5e",
+     "chat_name": "Celebrate",
+     "kind": "staff",
+     "channel": "both",
+     "is_group": true,
+     "messages_in": 0,
+     "messages_out": 8,
+     "last_activity": "2026-10-30 17:02",
+     "digest": "Automated closed-project announcements only."
+    },
+    {
+     "chat_key": "7ea129bf5ae8",
+     "chat_name": "(no saved name)",
+     "kind": "other",
+     "channel": "personal",
+     "is_group": false,
+     "messages_in": 4,
+     "messages_out": 0,
+     "last_activity": "2026-10-31 07:58",
+     "digest": "Four photos arrived with no text; sender unknown."
+    }
+   ]
+  }
+ }
+}

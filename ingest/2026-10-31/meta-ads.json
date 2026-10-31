@@ -1,0 +1,34 @@
+{
+  "contract_version": "1",
+  "source": "meta-ads",
+  "run_at": "2026-10-31T08:00:00-04:00",
+  "status": "ok",
+  "error": null,
+  "items": [
+    {
+      "id": "meta-ads-spend_summary-act_927167028457360",
+      "type": "spend_summary",
+      "title": "Meta spend 2026-10-29 to 10-30: $93.44, 4 leads, CPL $23.36",
+      "summary": "Two-day window spend was $93.44 CAD across 2,301 impressions and 65 clicks, yielding 4 leads at $23.36 CPL (7-day baseline about $17.51, within 2x). Top and only spending campaign: Flooring Problems Campaign.",
+      "timestamp": "2026-10-31T08:00:00-04:00",
+      "priority": "low",
+      "link": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=927167028457360",
+      "amount_cents": 9344,
+      "raw_ref": "meta-ads:act_927167028457360:account",
+      "sensitivity": null,
+      "assigned_to": null
+    }
+  ],
+  "metrics": {
+    "spend_cents": 9344,
+    "impressions": 2301,
+    "clicks": 65,
+    "leads": 4,
+    "cpl_cents": 2336,
+    "active_campaigns": 1,
+    "flagged_ads": 0
+  },
+  "needs_attention": [
+    "Window widened to 2 days (2026-10-29 and 10-30): no meta-ads.json for 10-30 or 10-29; last prior file is 2026-10-07. Spend and leads cover both days combined."
+  ]
+}
